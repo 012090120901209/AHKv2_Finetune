@@ -1,0 +1,3 @@
+{"prompt":"Teach me one AHK v2 hotkey tip","response":"Use the a hotkey with the tilde prefix to pass the key through while still triggering your handler Example `~a:: MsgBox \"You pressed A\"`"}
+{"prompt":"What is QLoRA","response":"QLoRA trains low rank adapters on 4 bit quantized base weights It cuts VRAM needs while preserving quality"}
+

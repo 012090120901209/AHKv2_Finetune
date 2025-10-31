@@ -1,0 +1,36 @@
+base_model: "openai/gpt-oss-20b"
+max_seq_length: 1024
+load_in_4bit: true
+bf16: false
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+train:
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 2e-4
+  weight_decay: 0.0
+  warmup_ratio: 0.03
+  logging_steps: 10
+  save_steps: 200
+  num_train_epochs: 1
+  max_steps: null
+  seed: 3407
+  output_dir: "outputs"
+  dataset_path: "data/prepared/train.jsonl"
+
+merge:
+  out_dir: "gpt-oss-finetuned-merged"
+  save_method: "bf16"   # options bf16 or mxfp4
+

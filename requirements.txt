@@ -1,0 +1,13 @@
+torch>=2.3.0
+triton>=3.0.0
+bitsandbytes>=0.43.3
+accelerate>=0.34.2
+transformers>=4.44.2
+datasets>=2.20.0
+peft>=0.12.0
+trl>=0.10.1
+einops>=0.8.0
+sentencepiece>=0.2.0
+git+https://github.com/unslothai/unsloth
+git+https://github.com/unslothai/unsloth-zoo
+
