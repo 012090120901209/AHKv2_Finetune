@@ -1,0 +1,33 @@
+[
+  {
+    "path": "data/raw_scripts/@LBL,HK,HS,FUNC/2025-10/HK,LBL combo 01.ah2",
+    "replacements": [
+      "'V1toV2_GblCode_001' -> 'GlobalInitBlock' (4x)"
+    ]
+  },
+  {
+    "path": "data/raw_scripts/@LBL,HK,HS,FUNC/2025-10/HK,LBL combo 02.ah2",
+    "replacements": [
+      "'V1toV2_GblCode_001' -> 'GlobalInitBlock' (4x)"
+    ]
+  },
+  {
+    "path": "data/raw_scripts/@LBL,HK,HS,FUNC/2025-10/HK,LBL combo 04.ah2",
+    "replacements": [
+      "'V1toV2_GblCode_001' -> 'GlobalInitBlock' (4x)"
+    ]
+  },
+  {
+    "path": "data/raw_scripts/@LBL,HK,HS,FUNC/2025-10/Lbl 11 (with brc + trail code).ah2",
+    "replacements": [
+      "'V1toV2_GblCode_001' -> 'GlobalInitBlock' (4x)",
+      "'V1toV2_GblCode_002' -> 'GlobalInitBlock2' (4x)"
+    ]
+  },
+  {
+    "path": "data/raw_scripts/Window/Control/Menu_funcParam_131.ah2",
+    "replacements": [
+      "'Issue #(\\\\d+)' -> 'Legacy issue reference (Issue #\\\\g<1>)' (1x)"
+    ]
+  }
+]

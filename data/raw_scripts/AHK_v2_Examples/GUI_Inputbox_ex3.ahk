@@ -1,0 +1,2 @@
+#Requires AutoHotkey v2.1-alpha.16
+#SingleInstance Force ; Source: Graphical User Interfaces/Inputbox_ex3.ah2 IB := InputBox("Test:: ", ":: Test:: Test"), Test := IB.Value IB := InputBox("Provide the corrected word on the right side. You can also edit the left side if you wish.`n`nExample entry:`n:: teh:: the", "New Hotstring", , ":: " Hotstring ":: " Hotstring), Hotstring := IB.Value

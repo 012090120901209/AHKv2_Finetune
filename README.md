@@ -41,6 +41,19 @@ python .\src\train_qlora.py --config .\config\sft.yaml --merge_only 1
 - Use QLoRA defaults in config for a single 12 to 16 GB GPU
 - Provide your own dataset in `data/samples.jsonl` or point `--in` at your file
 
+## Build datasets from AutoHotkey snippets
+1. Verify raw snippets live under `data/raw_scripts` (OneDrive or network sync locations can cause missing files—double-check before running).
+2. Generate the JSONL splits:
+   - PowerShell: `python -m src.build_dataset`
+   - Bash: `python -m src.build_dataset --input-dir data/raw_scripts --output-dir data/prepared`
+3. Confirm the script reports train/val/test counts and that `data/prepared/train.jsonl`, `data/prepared/val.jsonl`, and `data/prepared/test.jsonl` exist.
+4. Validate the files with a quick JSONL sanity check (e.g. `python -m json.tool < data/prepared/train.jsonl | head`).
+5. Convert each split into Harmony chat format for training:
+   - `python -m src.data_prep --in data/prepared/train.jsonl --out data/prepared/train_harmony.jsonl`
+   - `python -m src.data_prep --in data/prepared/val.jsonl --out data/prepared/val_harmony.jsonl`
+   - `python -m src.data_prep --in data/prepared/test.jsonl --out data/prepared/test_harmony.jsonl`
+6. Run any downstream build steps (`npm run build`, config sync, data copy) so the refreshed datasets propagate through the stack.
+
 ## Layout
 - config/sft.yaml training hyperparams
 - src/train_qlora.py training and merge
