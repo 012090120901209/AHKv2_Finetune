@@ -1,5 +1,0 @@
-#Requires AutoHotkey v2.1-alpha.16
-#SingleInstance Force ; Basic AHK v2 example demonstrating variable assignment and control flow Haystack := "abcdefghijklmnopqrs"
-Needle := "xyz"
-pos := InStr(Haystack, Needle) - 1
-MsgBox("The string was found at position " pos ".")
