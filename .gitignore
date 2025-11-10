@@ -6,3 +6,4 @@ checkpoints/
 data/prepared/
 *.gguf
 
+Lib/
