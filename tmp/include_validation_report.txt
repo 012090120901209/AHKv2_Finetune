@@ -1,0 +1,211 @@
+================================================================================
+AutoHotkey #Include Validation Report
+================================================================================
+
+Total #Include directives found: 50
+Valid references: 0 (0%)
+Broken references: 50 (100%)
+
+--------------------------------------------------------------------------------
+BROKEN REFERENCES:
+--------------------------------------------------------------------------------
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_01_Chunk.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_02_Compact.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_03_DepthOf.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_04_Difference.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_05_Drop.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_06_DropRight.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_07_Fill.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_08_Flatten.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_09_FlattenDeep.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_10_FlattenDepth.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_11_FromPairs.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_12_Head.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_13_IndexOf.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_14_Initial.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_15_Intersection.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_16_Join.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_17_Last.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_18_LastIndexOf.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_19_Nth.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_20_Reverse.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_21_Slice.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_22_SortedIndex.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_23_SortedUniq.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_24_Tail.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_25_Take.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_26_TakeRight.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_27_Union.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_28_Uniq.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_29_Unzip.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_30_Without.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_31_Zip.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Array_32_ZipObject.ahk
+  Line 3: #Include <adash>
+    → Cannot find included file: adash (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Lib_01_String_Extensions.ahk
+  Line 15: #Include <String>
+    → Cannot find included file: String (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Lib_02_Array_Extensions.ahk
+  Line 15: #Include <Array>
+    → Cannot find included file: Array (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Lib_03_WinEvent_Monitoring.ahk
+  Line 14: #Include <WinEvent>
+    → Cannot find included file: WinEvent (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Lib_04_Media_Control.ahk
+  Line 15: #Include <Media>
+    → Cannot find included file: Media (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_01_ActiveScript_JScript.ahk
+  Line 29: #Include <ActiveScript>
+    → Cannot find included file: ActiveScript (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_02_CLR_DotNet.ahk
+  Line 31: #Include <CLR>
+    → Cannot find included file: CLR (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_03_WinRT_Modern.ahk
+  Line 31: #Include <winrt.ahk>
+    → Cannot find included file: winrt.ahk (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_04_ActiveScript_JSON.ahk
+  Line 20: #Include <ActiveScript>
+    → Cannot find included file: ActiveScript (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_05_CLR_WindowsForms.ahk
+  Line 20: #Include <CLR>
+    → Cannot find included file: CLR (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_06_CLR_Cryptography.ahk
+  Line 20: #Include <CLR>
+    → Cannot find included file: CLR (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_07_CLR_HTTP_Requests.ahk
+  Line 20: #Include <CLR>
+    → Cannot find included file: CLR (library include - expected in Lib/ subdirectory)
+  Line 92:     #Include <ActiveScript>
+    → Cannot find included file: ActiveScript (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_08_WinRT_Toasts.ahk
+  Line 22: #Include <winrt.ahk>
+    → Cannot find included file: winrt.ahk (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_09_WinRT_JSON.ahk
+  Line 20: #Include <winrt.ahk>
+    → Cannot find included file: winrt.ahk (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_10_WinRT_Crypto.ahk
+  Line 20: #Include <winrt.ahk>
+    → Cannot find included file: winrt.ahk (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_11_CLR_Database.ahk
+  Line 20: #Include <CLR>
+    → Cannot find included file: CLR (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_12_CLR_XML.ahk
+  Line 20: #Include <CLR>
+    → Cannot find included file: CLR (library include - expected in Lib/ subdirectory)
+
+File: /home/user/AHKv2_Finetune/data/raw_scripts/AHK_v2_Examples/Library_13_ActiveScript_Regex.ahk
+  Line 20: #Include <ActiveScript>
+    → Cannot find included file: ActiveScript (library include - expected in Lib/ subdirectory)
+
+================================================================================
