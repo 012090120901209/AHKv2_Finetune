@@ -8,7 +8,7 @@
 
 ## 📊 Summary
 
-**Total AHK v2 Example Files: 763**
+**Total AHK v2 Example Files: 1,719**
 
 All files are standalone, runnable AHK v2 code extracted from the converter test suite.
 
@@ -87,7 +87,7 @@ if (var = 2)
 5. **Adapt patterns** for your own scripts
 
 ### Complete Reference
-- **763 working examples** covering all major AHK v2 operations
+- **1,719 working examples** covering all major AHK v2 operations
 - **No dependencies** - all files are standalone
 - **Clean syntax** - properly formatted v2 code
 - **Organized** - grouped by operation type
