@@ -8,9 +8,14 @@
 
 ## 📊 Summary
 
-**Total AHK v2 Example Files: 1,719**
+**Total AHK v2 Example Files: 1,746**
 
-All files are standalone, runnable AHK v2 code extracted from the converter test suite.
+All files are standalone, runnable AHK v2 code extracted from the converter test suite and enhanced with examples from popular AHK v2 libraries and official documentation.
+
+**Dataset Quality:**
+- V2 Verified: 99.9% (1,745/1,746 files)
+- With Library Dependencies: 3.8% (66 files)
+- Complete metadata catalog available in `data/examples_catalog.json`
 
 ### Distribution by Category
 
@@ -87,10 +92,11 @@ if (var = 2)
 5. **Adapt patterns** for your own scripts
 
 ### Complete Reference
-- **1,719 working examples** covering all major AHK v2 operations
-- **No dependencies** - all files are standalone
+- **1,746 working examples** covering all major AHK v2 operations
+- **Minimal dependencies** - most files are standalone
 - **Clean syntax** - properly formatted v2 code
 - **Organized** - grouped by operation type
+- **Library examples** - includes demos from popular AHK v2 libraries (UIA, OCR, ImagePut, cJson, etc.)
 
 ---
 
@@ -138,4 +144,10 @@ For comparison with v1 syntax:
 
 ---
 
-**This collection represents 600+ conversion test pairs - every AHK v2 example has been validated for correctness against its v1 source!**
+**This collection represents 600+ conversion test pairs plus curated examples from top AHK v2 libraries. Examples include GUI automation, OCR, image processing, HTTP servers, and more!**
+
+### 📦 Recent Additions (Nov 2025)
+- **Library examples** from Descolada/UIA-v2, Descolada/OCR, iseahound/ImagePut
+- **Official documentation** examples demonstrating v2 best practices
+- **Advanced patterns** including async operations, GUI creation, string manipulation
+- **Metadata catalog** with source URLs and categorization (`data/examples_catalog.json`)

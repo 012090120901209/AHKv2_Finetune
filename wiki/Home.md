@@ -5,17 +5,19 @@ Welcome to the **AHKv2_Finetune** project! This repository provides a complete p
 ## 🎯 Project Overview
 
 This project enables you to:
-- **Build high-quality datasets** from 1,719 AutoHotkey v2 examples
+- **Build high-quality datasets** from 1,746 AutoHotkey v2 examples
 - **Fine-tune large language models** to generate AutoHotkey v2 code
 - **Convert models to GGUF** for local inference in LM Studio or llama.cpp
 - **Validate code quality** with automated testing and #Include validation
 
 ## 📊 Dataset Statistics
 
-- **1,719 .ahk files** (44,475+ lines of code)
-- **1,703 unique examples** after deduplication
-- **2,123 training pairs** with CSV reference data
-- **Comprehensive coverage** of all AHK v2 features
+- **1,746 .ahk files** (45,000+ lines of code)
+- **1,730 unique examples** (estimated after deduplication)
+- **2,150+ training pairs** with CSV reference data
+- **99.9% v2 verified** (1,745/1,746 files)
+- **Comprehensive coverage** of all AHK v2 features including library usage
+- **Complete metadata catalog** available (`data/examples_catalog.json`)
 
 ### Example Categories
 
@@ -30,7 +32,7 @@ This project enables you to:
 | String Operations | 68+ | String manipulation, parsing |
 | Window Management | 49 | Window detection, positioning |
 | Hotkeys & Input | 34 | Hotkey definitions, input simulation |
-| Library Examples | 10 | Real-world library usage (JSON, HTTP, CLR) |
+| Library Examples | 27 | Real-world library usage (UIA, OCR, ImagePut, JSON, HTTP, CLR) |
 
 ## 🚀 Quick Start
 

@@ -4,7 +4,12 @@
 
 This project has collected and created **comprehensive AutoHotkey v2 examples** for LLM training, sourced from multiple origins and demonstrating a wide range of patterns and techniques.
 
-## Total Example Files: 1,719+
+## Total Example Files: 1,746+
+
+### Latest Additions (Nov 2025)
+- **11 new examples** from GitHub scraping (UIA, OCR, ImagePut libraries)
+- **16 library demonstration examples** from top AHK v2 repositories
+- **Complete metadata catalog** with source URLs and categorization
 
 ---
 

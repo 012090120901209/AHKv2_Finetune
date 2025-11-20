@@ -1,0 +1,1747 @@
+filename,title,category,source_url,description,v2_verified,library_count,libraries,code_hash,file_size,line_count
+01_Uia.ahk,Uia,GUI,,Example from Descolada/UIA-v2: UIA.ahk,True,0,,1c5f6536ee73d2c5,424373,7954
+02_Imageput.ahk,Imageput,GUI,,Script:    ImagePut.ahk License:   MIT License Author:    Edison Hua (iseahound) Github:    https://github.com/iseahound/ImagePut Date:      2025-03-15 Version:   1.11 Scroll down for a list of all ou,True,0,,0f0a667d8d5ebab8,267281,5725
+04_Ocr.ahk,Ocr,GUI,,Example from Descolada/OCR: OCR.ahk,True,0,,cc0bb85c14e94dc0,100740,1825
+08_Httpserver.ahk,Httpserver,GUI,,#Include <compress>	; Used to support gzip/zstd compression and decompression #Include <JSON>	; https://github.com/thqby/ahk2_lib/blob/master/JSON.ahk @region http structs @lint-disable class-non-dyna,True,2,"OVERLAPPED, ctypes",dad2cace4cb6e8a1,24158,599
+15_MsgBox___Basic_Usage.ahk,MsgBox - Basic Usage,GUI,,"Basic MsgBox function examples showing different parameter combinations including simple messages, titles, button types, and icons.",True,0,,a644326aea5f5b7c,695,23
+16_Array___Creation_and_Manipulation.ahk,Array - Creation and Manipulation,Array,,"Comprehensive examples of array creation, manipulation, iteration, and common operations in AutoHotkey v2.",True,0,,866daa6b96cd6f20,886,36
+17_FileRead_and_FileAppend___File_Operation.ahk,FileRead and FileAppend - File Operations,File,,"File reading and writing operations including error handling, encodings, and line-by-line processing.",True,0,,50035237e8de7cde,988,38
+18_Gui.Create___Simple_GUI_Application.ahk,Gui.Create - Simple GUI Application,GUI,,"Creating a simple GUI window with text, edit box, and buttons including event handling.",True,0,,9610d710456f26ee,728,27
+19_Hotkeys___Keyboard_Shortcuts.ahk,Hotkeys - Keyboard Shortcuts,Hotkey,,Various hotkey and hotstring examples including context-sensitive hotkeys and dynamic hotkey creation.,True,0,,268efab37f2606ea,906,38
+"20_String_Operations___StrReplace,_SubStr,_.ahk","String Operations - StrReplace, SubStr, RegEx",String,,"Comprehensive string manipulation examples including replacement, substring extraction, searching, and regular expressions.",True,0,,c6ea94b3de0f026c,1236,42
+22_Map___Key_Value_Data_Structure.ahk,Map - Key-Value Data Structure,Array,,"Map (dictionary/hash table) creation and manipulation including iteration, checking keys, and nested structures.",True,0,,bfe4b80ac43571d6,1027,51
+Advanced_Class_EventEmitter.ahk,Advanced Class EventEmitter,Uncategorized,,,True,0,,ce9169a5cda18936,1248,50
+Advanced_Class_Factory.ahk,Advanced Class Factory,Uncategorized,,,True,0,,fc12a8284dff85a6,1202,58
+Advanced_Class_LinkedList.ahk,Advanced Class LinkedList,Uncategorized,,,True,0,,fa47d09ee3a76678,1526,82
+Advanced_Class_Observer.ahk,Advanced Class Observer,Uncategorized,,,True,0,,74884ec38ccc5eae,917,49
+Advanced_Class_Singleton.ahk,Advanced Class Singleton,Uncategorized,,,True,0,,da6019541dc30df1,966,39
+Advanced_DataStructure_NestedMaps.ahk,Advanced DataStructure NestedMaps,Uncategorized,,,True,0,,f3a81d764e288dd7,6008,228
+Advanced_DataStructure_Queue.ahk,Advanced DataStructure Queue,Uncategorized,,,True,0,,ec394ff18b9f64c6,6730,277
+Advanced_DataStructure_Stack.ahk,Advanced DataStructure Stack,Uncategorized,,,True,0,,7b8553d331213bc2,6924,287
+Advanced_File_BackupManager.ahk,Advanced File BackupManager,Uncategorized,,,True,0,,395bb007be5e00e5,2244,76
+Advanced_File_BatchRename.ahk,Advanced File BatchRename,Uncategorized,,,True,0,,e92d4712e559ecfa,3833,141
+Advanced_File_CSVProcessor.ahk,Advanced File CSVProcessor,Uncategorized,,,True,0,,7e0531e3a0b68395,3933,169
+Advanced_File_DuplicateFinder.ahk,Advanced File DuplicateFinder,Uncategorized,,,True,0,,37f7a46f7cf5c32d,1566,56
+Advanced_File_LogParser.ahk,Advanced File LogParser,Uncategorized,,,True,0,,77a111ff2dc7e813,1812,68
+Advanced_File_TextMerger.ahk,Advanced File TextMerger,Uncategorized,,,True,0,,bf1a3899d6528ebf,1293,49
+Advanced_FlowControl_AsyncCallbacks.ahk,Advanced FlowControl AsyncCallbacks,Uncategorized,,,True,0,,7f1cd2369012af9a,5520,215
+Advanced_FlowControl_Pipeline.ahk,Advanced FlowControl Pipeline,Uncategorized,,,True,0,,22b6b08a8c5d5b77,8374,314
+Advanced_FlowControl_StateMachine.ahk,Advanced FlowControl StateMachine,Uncategorized,,,True,0,,799a5e65adcc1f1d,3901,158
+Advanced_GUI_Calculator.ahk,Advanced GUI Calculator,Uncategorized,,,True,0,,88dfba8433f59e14,1620,60
+Advanced_GUI_ColorPicker.ahk,Advanced GUI ColorPicker,Uncategorized,,,True,0,,6e8c1efea5e49e02,2484,86
+Advanced_GUI_ContextMenu.ahk,Advanced GUI ContextMenu,Uncategorized,,,True,0,,9abc3f6d37e4c248,3115,98
+Advanced_GUI_DataGrid.ahk,Advanced GUI DataGrid,Uncategorized,,,True,0,,1afcb5f8cac86785,5208,193
+Advanced_GUI_DynamicControls.ahk,Advanced GUI DynamicControls,Uncategorized,,,True,0,,90ed84d97bc75271,4478,182
+Advanced_GUI_MultiMonitor.ahk,Advanced GUI MultiMonitor,Uncategorized,,,True,0,,c779111d38e24612,3440,111
+Advanced_GUI_ProgressBar.ahk,Advanced GUI ProgressBar,Uncategorized,,,True,0,,9beb48260bad2668,2669,92
+Advanced_GUI_SplashScreen.ahk,Advanced GUI SplashScreen,Uncategorized,,,True,0,,0f94ff5b5a51f81d,2340,77
+Advanced_GUI_TabControl.ahk,Advanced GUI TabControl,Uncategorized,,,True,0,,a784a40f06c4c158,2867,77
+Advanced_GUI_TodoList.ahk,Advanced GUI TodoList,Uncategorized,,,True,0,,946147048bf699b1,2824,110
+Advanced_Hotkey_Chords.ahk,Advanced Hotkey Chords,Uncategorized,,,True,0,,4848b67c40d41024,4532,247
+Advanced_Hotkey_MediaKeys.ahk,Advanced Hotkey MediaKeys,Uncategorized,,,True,0,,5507fa568237fd60,3449,147
+Advanced_Hotkey_MouseGestures.ahk,Advanced Hotkey MouseGestures,Uncategorized,,,True,0,,51f2bbe2774f8d35,4844,197
+Advanced_Hotkey_MultiFunction.ahk,Advanced Hotkey MultiFunction,Uncategorized,,,True,0,,972d0362c9c923ab,4972,227
+Advanced_Hotkey_Remapping.ahk,Advanced Hotkey Remapping,Uncategorized,,,True,0,,fdd3eee62f9a78a1,1476,65
+Advanced_Hotkey_WindowSpecific.ahk,Advanced Hotkey WindowSpecific,Uncategorized,,,True,0,,5bb9d3dc3b1a5faf,3674,206
+Advanced_Hotstring_Autocorrect.ahk,Advanced Hotstring Autocorrect,Uncategorized,,,True,0,,ac293ba3c036791e,2929,150
+Advanced_Hotstring_SmartQuotes.ahk,Advanced Hotstring SmartQuotes,Uncategorized,,,True,0,,0d38dd8d271ab7e9,3980,342
+Advanced_Loop_Generator.ahk,Advanced Loop Generator,Uncategorized,,,True,0,,321a4f89b3751b01,6941,311
+Advanced_Loop_Recursive.ahk,Advanced Loop Recursive,Uncategorized,,,True,0,,872001798b157723,6009,249
+Advanced_Misc_ClipboardManager.ahk,Advanced Misc ClipboardManager,Uncategorized,,,True,0,,9bed68f6dc879ae9,1423,58
+Advanced_Misc_Countdown.ahk,Advanced Misc Countdown,Uncategorized,,,True,0,,b8cdf4717096fb86,1833,71
+Advanced_Misc_PasswordGenerator.ahk,Advanced Misc PasswordGenerator,Uncategorized,,,True,0,,c0ca3894ac4ee0c2,2464,87
+Advanced_Misc_ScreenshotTool.ahk,Advanced Misc ScreenshotTool,Uncategorized,,,True,0,,58e72b67f6422b50,1116,39
+Advanced_Misc_Stopwatch.ahk,Advanced Misc Stopwatch,Uncategorized,,,True,0,,06705f2f23b88f35,1679,69
+Advanced_Misc_SystemInfo.ahk,Advanced Misc SystemInfo,Uncategorized,,,True,0,,c107da42b98f96e5,1257,39
+Advanced_Misc_UnitConverter.ahk,Advanced Misc UnitConverter,Uncategorized,,,True,0,,63287e37c351f935,3116,107
+Advanced_Process_Monitor.ahk,Advanced Process Monitor,Uncategorized,,,True,0,,42d8f8595e7d444c,1317,51
+Advanced_Window_AlwaysOnTop.ahk,Advanced Window AlwaysOnTop,Uncategorized,,,True,0,,cdf247494162f238,563,22
+Advanced_Window_Arranger.ahk,Advanced Window Arranger,Uncategorized,,,True,0,,419223aaca6fb950,1649,59
+Advanced_Window_ClickThrough.ahk,Advanced Window ClickThrough,Uncategorized,,,True,0,,215bb7e916256c45,699,22
+Advanced_Window_Minimizer.ahk,Advanced Window Minimizer,Uncategorized,,,True,0,,e5b618675b94161d,1051,52
+Advanced_Window_Spy.ahk,Advanced Window Spy,Uncategorized,,,True,0,,a373af7292caa336,1826,66
+Array_01_Chunk.ahk,Array 01 Chunk,Uncategorized,,,True,1,adash,47b026dedb503ecc,578,22
+Array_02_Compact.ahk,Array 02 Compact,Uncategorized,,,True,1,adash,1b306d44bc200bcc,394,18
+Array_03_DepthOf.ahk,Array 03 DepthOf,Uncategorized,,,True,1,adash,0a0b9230c87e5c94,493,27
+Array_04_Difference.ahk,Array 04 Difference,Uncategorized,,,True,1,adash,ff11854f107e2913,378,17
+Array_05_Drop.ahk,Array 05 Drop,Uncategorized,,,True,1,adash,00742a1000097529,547,27
+Array_06_DropRight.ahk,Array 06 DropRight,Uncategorized,,,True,1,adash,fc5182cd5670be0a,584,27
+Array_07_Fill.ahk,Array 07 Fill,Uncategorized,,,True,1,adash,36541ae1b975c338,489,22
+Array_08_Flatten.ahk,Array 08 Flatten,Uncategorized,,,True,1,adash,25c931cfbed2e542,401,19
+Array_09_FlattenDeep.ahk,Array 09 FlattenDeep,Uncategorized,,,True,1,adash,aa39cfe1b7db68aa,509,23
+Array_10_FlattenDepth.ahk,Array 10 FlattenDepth,Uncategorized,,,True,1,adash,65f889244f28d30f,434,19
+Array_11_FromPairs.ahk,Array 11 FromPairs,Uncategorized,,,True,1,adash,128106f8af3a009e,316,15
+Array_12_Head.ahk,Array 12 Head,Uncategorized,,,True,1,adash,b4976e8d76dc4bc2,406,24
+Array_13_IndexOf.ahk,Array 13 IndexOf,Uncategorized,,,True,1,adash,179d15dcd164c8a1,467,20
+Array_14_Initial.ahk,Array 14 Initial,Uncategorized,,,True,1,adash,8fb7592c621a014d,364,19
+Array_15_Intersection.ahk,Array 15 Intersection,Uncategorized,,,True,1,adash,cc807205c82a4eb8,385,17
+Array_16_Join.ahk,Array 16 Join,Uncategorized,,,True,1,adash,66a2ebfcc0d8e388,362,19
+Array_17_Last.ahk,Array 17 Last,Uncategorized,,,True,1,adash,ee24be08dd957ba8,354,23
+Array_18_LastIndexOf.ahk,Array 18 LastIndexOf,Uncategorized,,,True,1,adash,732e0d8c67adab13,398,19
+Array_19_Nth.ahk,Array 19 Nth,Uncategorized,,,True,1,adash,e81849133c475c96,426,24
+Array_20_Reverse.ahk,Array 20 Reverse,Uncategorized,,,True,1,adash,48adca77dc52f33b,489,20
+Array_21_Slice.ahk,Array 21 Slice,Uncategorized,,,True,1,adash,716193520a21db6c,445,23
+Array_22_SortedIndex.ahk,Array 22 SortedIndex,Uncategorized,,,True,1,adash,b0a4cdaddf2f33d7,536,24
+Array_23_SortedUniq.ahk,Array 23 SortedUniq,Uncategorized,,,True,1,adash,72893d447087ff64,297,15
+Array_24_Tail.ahk,Array 24 Tail,Uncategorized,,,True,1,adash,cbf5ca3e0d8ca2f7,351,19
+Array_25_Take.ahk,Array 25 Take,Uncategorized,,,True,1,adash,f5d7835e065c9b02,545,27
+Array_26_TakeRight.ahk,Array 26 TakeRight,Uncategorized,,,True,1,adash,8e24545df133a220,578,27
+Array_27_Union.ahk,Array 27 Union,Uncategorized,,,True,1,adash,6a5133254e49a7a9,286,15
+Array_28_Uniq.ahk,Array 28 Uniq,Uncategorized,,,True,1,adash,6adcba4bc3410cc4,397,17
+Array_29_Unzip.ahk,Array 29 Unzip,Uncategorized,,,True,1,adash,0881b3d3da0f018c,510,20
+Array_30_Without.ahk,Array 30 Without,Uncategorized,,,True,1,adash,290d0947db82b1da,286,15
+Array_31_Zip.ahk,Array 31 Zip,Uncategorized,,,True,1,adash,0db1047402b217c4,443,17
+Array_32_ZipObject.ahk,Array 32 ZipObject,Uncategorized,,,True,1,adash,d121eeca20438dc7,356,16
+Array_Advanced_01_Chunk.ahk,Array Advanced 01 Chunk,Uncategorized,,,True,0,,24e8f37b2810f3a5,1057,47
+Array_Advanced_02_Fill.ahk,Array Advanced 02 Fill,Uncategorized,,,True,0,,0a4bc570c3414b73,1054,46
+Array_Advanced_03_FlattenDeep.ahk,Array Advanced 03 FlattenDeep,Uncategorized,,,True,0,,8f6590e316a90822,1077,49
+Array_Advanced_04_SortedIndex.ahk,Array Advanced 04 SortedIndex,Uncategorized,,,True,0,,6d606a59dbb5a095,1274,51
+Array_Advanced_05_Intersection.ahk,Array Advanced 05 Intersection,Uncategorized,,,True,0,,0fee53ec1effa555,1669,77
+Array_Advanced_06_Union.ahk,Array Advanced 06 Union,Uncategorized,,,True,0,,d83a88d34891aeed,1039,51
+Array_Advanced_07_Zip.ahk,Array Advanced 07 Zip,Uncategorized,,,True,0,,721d46a859032661,1200,49
+Array_Advanced_08_Unzip.ahk,Array Advanced 08 Unzip,Uncategorized,,,True,0,,45e2f9bb6e9c02d4,1007,49
+Array_Advanced_09_DepthOf.ahk,Array Advanced 09 DepthOf,Uncategorized,,,True,0,,ad5e5583451a4c63,850,43
+Array_Advanced_10_Nth.ahk,Array Advanced 10 Nth,Uncategorized,,,True,0,,63fae14e7e1e4acb,1086,48
+Array_Advanced_11_FlattenDepth.ahk,Array Advanced 11 FlattenDepth,Uncategorized,,,True,0,,9957eead1dc47105,1310,61
+Array_Advanced_12_Without.ahk,Array Advanced 12 Without,Uncategorized,,,True,0,,73cec7f87c47b90f,1010,49
+Array_Advanced_13_Difference.ahk,Array Advanced 13 Difference,Uncategorized,,,True,0,,a970f74a06dedfb9,1033,50
+Array_Advanced_14_ZipObject.ahk,Array Advanced 14 ZipObject,Uncategorized,,,True,0,,2cc9046bfc1e819a,1013,43
+Array_Advanced_15_FromPairs.ahk,Array Advanced 15 FromPairs,Uncategorized,,,True,0,,b050d4faf71f118a,916,40
+Array_Advanced_16_SortedUniq.ahk,Array Advanced 16 SortedUniq,Uncategorized,,,True,0,,09a490b2a0ec6be4,1051,48
+Array_Advanced_17_LastIndexOf.ahk,Array Advanced 17 LastIndexOf,Uncategorized,,,True,0,,70cd41be5cdaa442,1035,48
+Array_Advanced_18_Complete_Example.ahk,Array Advanced 18 Complete Example,Uncategorized,,,True,0,,b35cef0cfff794ec,2083,96
+Array_Standalone_01_Chunk.ahk,Array Standalone 01 Chunk,Uncategorized,,,True,0,,5fcb8ee50ef15e4b,893,41
+Array_Standalone_02_Compact.ahk,Array Standalone 02 Compact,Uncategorized,,,True,0,,f1d52a8a480783ee,671,31
+Array_Standalone_03_DepthOf.ahk,Array Standalone 03 DepthOf,Uncategorized,,,True,0,,ff3499347962937a,912,43
+Array_Standalone_04_Difference.ahk,Array Standalone 04 Difference,Uncategorized,,,True,0,,d8e7c8b18d31a7c7,805,37
+Array_Standalone_05_Drop.ahk,Array Standalone 05 Drop,Uncategorized,,,True,0,,835ebeb044b4a987,790,40
+Array_Standalone_06_DropRight.ahk,Array Standalone 06 DropRight,Uncategorized,,,True,0,,0d93a1ab4433e594,819,40
+Array_Standalone_07_Fill.ahk,Array Standalone 07 Fill,Uncategorized,,,True,0,,c9452076c11ab521,774,37
+Array_Standalone_08_Flatten.ahk,Array Standalone 08 Flatten,Uncategorized,,,True,0,,fc9a703f9fade86d,776,36
+Array_Standalone_09_FlattenDeep.ahk,Array Standalone 09 FlattenDeep,Uncategorized,,,True,0,,ac47ef1ba06f24ae,906,41
+Array_Standalone_10_FlattenDepth.ahk,Array Standalone 10 FlattenDepth,Uncategorized,,,True,0,,b393cc0f8a5cc56a,934,41
+Array_Standalone_11_FromPairs.ahk,Array Standalone 11 FromPairs,Uncategorized,,,True,0,,817d04c43f634683,536,29
+Array_Standalone_12_Head.ahk,Array Standalone 12 Head,Uncategorized,,,True,0,,bbcdb62335fa4947,493,30
+Array_Standalone_13_IndexOf.ahk,Array Standalone 13 IndexOf,Uncategorized,,,True,0,,d934aa200e2b83f0,746,35
+Array_Standalone_14_Initial.ahk,Array Standalone 14 Initial,Uncategorized,,,True,0,,dbba4a123a72cd5e,547,29
+Array_Standalone_15_Intersection.ahk,Array Standalone 15 Intersection,Uncategorized,,,True,0,,e7009376f4101881,1474,63
+Array_Standalone_16_Join.ahk,Array Standalone 16 Join,Uncategorized,,,True,0,,33cc59ab20431373,689,36
+Array_Standalone_17_Last.ahk,Array Standalone 17 Last,Uncategorized,,,True,0,,88593d39760758aa,504,30
+Array_Standalone_18_LastIndexOf.ahk,Array Standalone 18 LastIndexOf,Uncategorized,,,True,0,,11038f5f7116ed6a,858,39
+Array_Standalone_19_Nth.ahk,Array Standalone 19 Nth,Uncategorized,,,True,0,,0abb73c2ece61cfc,818,42
+Array_Standalone_20_Reverse.ahk,Array Standalone 20 Reverse,Uncategorized,,,True,0,,6b1cbc8f43aaa7a1,574,29
+Array_Standalone_21_Slice.ahk,Array Standalone 21 Slice,Uncategorized,,,True,0,,9bb7a039d748b0e2,789,40
+Array_Standalone_22_SortedIndex.ahk,Array Standalone 22 SortedIndex,Uncategorized,,,True,0,,406d5b5748cc9171,873,42
+Array_Standalone_23_SortedUniq.ahk,Array Standalone 23 SortedUniq,Uncategorized,,,True,0,,82a3c4b5d7f3b3d6,681,33
+Array_Standalone_24_Tail.ahk,Array Standalone 24 Tail,Uncategorized,,,True,0,,be105333bb5ee97d,535,29
+Array_Standalone_25_Take.ahk,Array Standalone 25 Take,Uncategorized,,,True,0,,73c30ae86a5d6ca0,733,39
+Array_Standalone_26_TakeRight.ahk,Array Standalone 26 TakeRight,Uncategorized,,,True,0,,c45aa5ec89104278,835,40
+Array_Standalone_27_Union.ahk,Array Standalone 27 Union,Uncategorized,,,True,0,,33a144ca7b7af7f5,640,32
+Array_Standalone_28_Uniq.ahk,Array Standalone 28 Uniq,Uncategorized,,,True,0,,515d8482bd4ecf0a,596,31
+Array_Standalone_29_Unzip.ahk,Array Standalone 29 Unzip,Uncategorized,,,True,0,,44748871c3aaa563,1029,48
+Array_Standalone_30_Without.ahk,Array Standalone 30 Without,Uncategorized,,,True,0,,01dbecf3dcfc5c66,675,34
+Array_Standalone_31_Zip.ahk,Array Standalone 31 Zip,Uncategorized,,,True,0,,1b42c215dd2eb2f3,952,47
+Array_Standalone_32_ZipObject.ahk,Array Standalone 32 ZipObject,Uncategorized,,,True,0,,ac65a35dccbd963d,567,27
+Base64_Examples.ahk,Base64 Examples,Uncategorized,,,True,0,,c7752884dfbb91c9,7964,293
+BuiltIn_A_Variables_01_SystemInfo.ahk,BuiltIn A Variables 01 SystemInfo,Uncategorized,,,True,0,,396dee344c97c800,14258,490
+BuiltIn_A_Variables_02_ScriptInfo.ahk,BuiltIn A Variables 02 ScriptInfo,Uncategorized,,,True,0,,6ce8dc73e2e27e6a,12394,426
+BuiltIn_A_Variables_03_TimeDate.ahk,BuiltIn A Variables 03 TimeDate,Uncategorized,,,True,0,,87d0c5b5d2a18b3f,12352,426
+BuiltIn_Abs_01_BasicUsage.ahk,BuiltIn Abs 01 BasicUsage,Uncategorized,,,True,0,,c802f5bff969afdb,9506,326
+BuiltIn_Abs_02_MathOperations.ahk,BuiltIn Abs 02 MathOperations,Uncategorized,,,True,0,,dc4adfa600a8b42c,11687,429
+BuiltIn_Abs_03_DataProcessing.ahk,BuiltIn Abs 03 DataProcessing,Uncategorized,,,True,0,,f710da07128cdf15,18616,629
+BuiltIn_Array_InsertAt_01_BasicUsage.ahk,BuiltIn Array InsertAt 01 BasicUsage,Uncategorized,,,True,0,,5e8d49a9155d92fc,12176,414
+BuiltIn_Array_InsertAt_02_Sorting.ahk,BuiltIn Array InsertAt 02 Sorting,Uncategorized,,,True,0,,ba887790a1bd8194,8144,318
+BuiltIn_Array_InsertAt_03_ListManagement.ahk,BuiltIn Array InsertAt 03 ListManagement,Uncategorized,,,True,0,,7169eec9001b7e87,8695,327
+BuiltIn_Array_InsertAt_04_DataStructures.ahk,BuiltIn Array InsertAt 04 DataStructures,Uncategorized,,,True,0,,8cc58ca440573d55,8600,370
+BuiltIn_Array_Pop_01_BasicUsage.ahk,BuiltIn Array Pop 01 BasicUsage,Uncategorized,,,True,0,,27181e4d70524370,12354,397
+BuiltIn_Array_Pop_02_LIFO.ahk,BuiltIn Array Pop 02 LIFO,Uncategorized,,,True,0,,9a90ab823bd10f04,12584,412
+BuiltIn_Array_Pop_03_UndoSystem.ahk,BuiltIn Array Pop 03 UndoSystem,Uncategorized,,,True,0,,d0c311776e5a7096,17722,637
+BuiltIn_Array_Pop_04_Processing.ahk,BuiltIn Array Pop 04 Processing,Uncategorized,,,True,0,,4e049a5e4d63dca6,11873,403
+BuiltIn_Array_Push_01_BasicUsage.ahk,BuiltIn Array Push 01 BasicUsage,Uncategorized,,,True,0,,8674cf72e2f6e529,11042,351
+BuiltIn_Array_Push_02_ListBuilding.ahk,BuiltIn Array Push 02 ListBuilding,Uncategorized,,,True,0,,3241628f80524293,15008,497
+BuiltIn_Array_Push_03_DataCollection.ahk,BuiltIn Array Push 03 DataCollection,Uncategorized,,,True,0,,3d4e6173989739ae,16800,603
+BuiltIn_Array_Push_04_StackOperations.ahk,BuiltIn Array Push 04 StackOperations,Uncategorized,,,True,0,,f136e586507d63b4,14629,522
+BuiltIn_Array_RemoveAt_01_BasicUsage.ahk,BuiltIn Array RemoveAt 01 BasicUsage,Uncategorized,,,True,0,,288cfc9e318bf856,7151,245
+BuiltIn_Array_RemoveAt_02_Filtering.ahk,BuiltIn Array RemoveAt 02 Filtering,Uncategorized,,,True,0,,98f5a1bd6ae9377f,7230,253
+BuiltIn_Array_RemoveAt_03_Cleanup.ahk,BuiltIn Array RemoveAt 03 Cleanup,Uncategorized,,,True,0,,75cf73f451a0cdab,7567,272
+BuiltIn_Array_RemoveAt_04_Batch.ahk,BuiltIn Array RemoveAt 04 Batch,Uncategorized,,,True,0,,9d4970036c0331e9,7497,278
+BuiltIn_Binary_01_FileHeaders.ahk,BuiltIn Binary 01 FileHeaders,Uncategorized,,,True,0,,9980c6a791e4be66,8200,252
+BuiltIn_Binary_02_NetworkData.ahk,BuiltIn Binary 02 NetworkData,Uncategorized,,,True,0,,13d3653f5ac0f107,8550,272
+BuiltIn_Binary_03_Serialization.ahk,BuiltIn Binary 03 Serialization,Uncategorized,,,True,0,,3b29caee6b11e08c,9511,339
+BuiltIn_Binary_04_Interop.ahk,BuiltIn Binary 04 Interop,Uncategorized,,,True,0,,fed6fe9d721950df,5672,175
+BuiltIn_BreakContinue_01.ahk,BuiltIn BreakContinue 01,Uncategorized,,,True,0,,84209bf554b4abf0,4249,183
+BuiltIn_Buffer_01_BasicUsage.ahk,BuiltIn Buffer 01 BasicUsage,Uncategorized,,,True,0,,29acee0b44cc1838,17475,531
+BuiltIn_Buffer_02_Memory.ahk,BuiltIn Buffer 02 Memory,Uncategorized,,,True,0,,1ded401fe2c67118,17763,547
+BuiltIn_Buffer_03_Structures.ahk,BuiltIn Buffer 03 Structures,Uncategorized,,,True,0,,bf7854eeb29fb131,21363,613
+BuiltIn_Buffer_04_Advanced.ahk,BuiltIn Buffer 04 Advanced,Uncategorized,,,True,0,,d477f3bac4ac6c08,23612,771
+BuiltIn_COM_ComObjActive_01.ahk,BuiltIn COM ComObjActive 01,Uncategorized,,,True,0,,f28510a44fe7a9d5,3632,138
+BuiltIn_COM_ComObjArray_01.ahk,BuiltIn COM ComObjArray 01,Uncategorized,,,True,0,,9572497c9469332d,3680,152
+BuiltIn_COM_ComObjConnect_01.ahk,BuiltIn COM ComObjConnect 01,Uncategorized,,,True,0,,af1af3051e235f89,2810,119
+BuiltIn_COM_ComObjGet_01.ahk,BuiltIn COM ComObjGet 01,Uncategorized,,,True,0,,e9edded5415b1e2d,2727,115
+BuiltIn_COM_ComValue_01.ahk,BuiltIn COM ComValue 01,Uncategorized,,,True,0,,c63da071a70fde1a,2845,119
+BuiltIn_COM_Excel_01_BasicUsage.ahk,BuiltIn COM Excel 01 BasicUsage,Uncategorized,,,True,0,,ba3e616cc42a2f9c,13253,404
+BuiltIn_COM_Excel_02_Cells.ahk,BuiltIn COM Excel 02 Cells,Uncategorized,,,True,0,,72d83cbd60a66f7d,15585,479
+BuiltIn_COM_Excel_03_Formulas.ahk,BuiltIn COM Excel 03 Formulas,Uncategorized,,,True,0,,1478c0c135cff1f8,19434,549
+BuiltIn_COM_Excel_04_Formatting.ahk,BuiltIn COM Excel 04 Formatting,Uncategorized,,,True,0,,fba2c124df6c0246,22574,662
+BuiltIn_COM_Excel_05_Charts.ahk,BuiltIn COM Excel 05 Charts,Uncategorized,,,True,0,,f6297a7379a317b7,18820,556
+BuiltIn_COM_IE_01_BasicUsage.ahk,BuiltIn COM IE 01 BasicUsage,Uncategorized,,,True,0,,bad088e11e162bae,3660,157
+BuiltIn_COM_IE_02_DOM.ahk,BuiltIn COM IE 02 DOM,Uncategorized,,,True,0,,86eb634280da43fe,3939,153
+BuiltIn_COM_IE_03_Forms.ahk,BuiltIn COM IE 03 Forms,Uncategorized,,,True,0,,6b1bb79efe4e3e82,3951,151
+BuiltIn_COM_IE_04_Tables.ahk,BuiltIn COM IE 04 Tables,Uncategorized,,,True,0,,a8bb9cc56ca54d7e,4186,153
+BuiltIn_COM_IE_05_JavaScript.ahk,BuiltIn COM IE 05 JavaScript,Uncategorized,,,True,0,,0d915941eb148fee,4147,152
+BuiltIn_COM_Outlook_01_BasicUsage.ahk,BuiltIn COM Outlook 01 BasicUsage,Uncategorized,,,True,0,,28747e8ee0e21719,7937,262
+BuiltIn_COM_Outlook_02_Contacts.ahk,BuiltIn COM Outlook 02 Contacts,Uncategorized,,,True,0,,4db983c6fd1802f1,7452,252
+BuiltIn_COM_Outlook_03_Calendar.ahk,BuiltIn COM Outlook 03 Calendar,Uncategorized,,,True,0,,f9cc69f65657a672,4917,192
+BuiltIn_COM_Outlook_04_Tasks.ahk,BuiltIn COM Outlook 04 Tasks,Uncategorized,,,True,0,,9625b8f694219060,4866,193
+BuiltIn_COM_Outlook_05_Folders.ahk,BuiltIn COM Outlook 05 Folders,Uncategorized,,,True,0,,fab7310b6e5b50be,4345,173
+BuiltIn_COM_Shell_01_Files.ahk,BuiltIn COM Shell 01 Files,Uncategorized,,,True,0,,bbb2a0c48f32d5cb,3191,130
+BuiltIn_COM_Shell_02_Registry.ahk,BuiltIn COM Shell 02 Registry,Uncategorized,,,True,0,,35d5f65b3ae24b8e,3260,124
+BuiltIn_COM_Shell_03_Shortcuts.ahk,BuiltIn COM Shell 03 Shortcuts,Uncategorized,,,True,0,,a964385fffecf209,4000,144
+BuiltIn_COM_WMI_01_Processes.ahk,BuiltIn COM WMI 01 Processes,Uncategorized,,,True,0,,e1343f60e39e85c1,4169,161
+BuiltIn_COM_WMI_02_System.ahk,BuiltIn COM WMI 02 System,Uncategorized,,,True,0,,3e284c678ac174e7,4361,168
+BuiltIn_COM_Word_01_BasicUsage.ahk,BuiltIn COM Word 01 BasicUsage,Uncategorized,,,True,0,,9d3dbbb5d6a6b351,13661,404
+BuiltIn_COM_Word_02_Text.ahk,BuiltIn COM Word 02 Text,Uncategorized,,,True,0,,ca19fac9a2b8a885,15381,447
+BuiltIn_COM_Word_03_Formatting.ahk,BuiltIn COM Word 03 Formatting,Uncategorized,,,True,0,,12f818d35571242b,21749,602
+BuiltIn_COM_Word_04_Tables.ahk,BuiltIn COM Word 04 Tables,Uncategorized,,,True,0,,a17915fd50040852,7978,278
+BuiltIn_COM_Word_05_MailMerge.ahk,BuiltIn COM Word 05 MailMerge,Uncategorized,,,True,0,,886baf4b2731e250,9256,310
+BuiltIn_Ceil_01_BasicUsage.ahk,BuiltIn Ceil 01 BasicUsage,Uncategorized,,,True,0,,8daabba736f1c007,9887,332
+BuiltIn_Ceil_02_Pagination.ahk,BuiltIn Ceil 02 Pagination,Uncategorized,,,True,0,,322424817d1646fb,15884,552
+BuiltIn_Ceil_03_Quantization.ahk,BuiltIn Ceil 03 Quantization,Uncategorized,,,True,0,,410f5138eede760d,17985,582
+BuiltIn_Chr_01_CodeToCharacter.ahk,BuiltIn Chr 01 CodeToCharacter,Uncategorized,,,True,0,,07dbd8981cf25e02,13950,490
+BuiltIn_Chr_02_SpecialCharacters.ahk,BuiltIn Chr 02 SpecialCharacters,Uncategorized,,,True,0,,d794cbd01c2de83f,12160,426
+BuiltIn_Click_01.ahk,BuiltIn Click 01,Uncategorized,,,True,0,,d41432038bbaf416,12769,499
+BuiltIn_Click_02.ahk,BuiltIn Click 02,Uncategorized,,,True,0,,0a03ea7027355f00,13990,539
+BuiltIn_Click_03.ahk,BuiltIn Click 03,Uncategorized,,,True,0,,94b327c2165c29df,16825,750
+BuiltIn_ClipWait_01.ahk,BuiltIn ClipWait 01,Uncategorized,,,True,0,,ae019c1c400a7fa0,25603,899
+BuiltIn_ClipWait_02.ahk,BuiltIn ClipWait 02,Uncategorized,,,True,0,,801d7ae2b225a7cb,27259,940
+BuiltIn_ClipboardAll_01.ahk,BuiltIn ClipboardAll 01,Uncategorized,,,True,0,,449e17be8f691704,26094,868
+BuiltIn_ClipboardAll_02.ahk,BuiltIn ClipboardAll 02,Uncategorized,,,True,0,,b65a8b44cb851bb4,23055,766
+BuiltIn_ClipboardAll_03.ahk,BuiltIn ClipboardAll 03,Uncategorized,,,True,0,,14854c479bd7b978,25740,827
+BuiltIn_Clipboard_01.ahk,BuiltIn Clipboard 01,Uncategorized,,,True,0,,6981d3cd114da387,19113,582
+BuiltIn_Clipboard_02.ahk,BuiltIn Clipboard 02,Uncategorized,,,True,0,,fe1e3dbdbe33ec8e,27627,919
+BuiltIn_Clipboard_03.ahk,BuiltIn Clipboard 03,Uncategorized,,,True,0,,798158d19edbb1e3,26303,922
+BuiltIn_ControlClick_01.ahk,BuiltIn ControlClick 01,Uncategorized,,,True,0,,aac2eaeb32ba3fd5,28032,816
+BuiltIn_ControlClick_02.ahk,BuiltIn ControlClick 02,Uncategorized,,,True,0,,e1f02d3538b99306,27225,859
+BuiltIn_ControlClick_03.ahk,BuiltIn ControlClick 03,Uncategorized,,,True,0,,d15f5c71a4a9b2c9,28409,893
+BuiltIn_ControlGetChecked_01.ahk,BuiltIn ControlGetChecked 01,Uncategorized,,,True,0,,cfe8eef370e4fc59,9435,271
+BuiltIn_ControlGetChecked_02.ahk,BuiltIn ControlGetChecked 02,Uncategorized,,,True,0,,9ae3813fe9476f12,9454,267
+BuiltIn_ControlGetChecked_03.ahk,BuiltIn ControlGetChecked 03,Uncategorized,,,True,0,,3e92e1642705e0d3,10684,287
+BuiltIn_ControlGetEnabled_01.ahk,BuiltIn ControlGetEnabled 01,Uncategorized,,,True,0,,c8d0a22d1578b063,10789,352
+BuiltIn_ControlGetEnabled_02.ahk,BuiltIn ControlGetEnabled 02,Uncategorized,,,True,0,,cf1873338152ffb8,11905,366
+BuiltIn_ControlGetEnabled_03.ahk,BuiltIn ControlGetEnabled 03,Uncategorized,,,True,0,,5d9ba56d95501569,8402,249
+BuiltIn_ControlGetStyle_01.ahk,BuiltIn ControlGetStyle 01,Uncategorized,,,True,0,,0c3cc4727d975e67,30885,850
+BuiltIn_ControlGetStyle_02.ahk,BuiltIn ControlGetStyle 02,Uncategorized,,,True,0,,1a4bb781f1858143,28790,834
+BuiltIn_ControlGetStyle_03.ahk,BuiltIn ControlGetStyle 03,Uncategorized,,,True,0,,066160b4a1c2bb2c,34001,1017
+BuiltIn_ControlGetVisible_01.ahk,BuiltIn ControlGetVisible 01,Uncategorized,,,True,0,,28af3019652da122,9150,265
+BuiltIn_ControlGetVisible_02.ahk,BuiltIn ControlGetVisible 02,Uncategorized,,,True,0,,8cb86ec523a1a67a,9987,279
+BuiltIn_ControlGetVisible_03.ahk,BuiltIn ControlGetVisible 03,Uncategorized,,,True,0,,31126c58e8d8ef2c,10924,306
+BuiltIn_ControlHide_01.ahk,BuiltIn ControlHide 01,Uncategorized,,,True,0,,163e7e22f54a7a6b,6687,223
+BuiltIn_ControlHide_02.ahk,BuiltIn ControlHide 02,Uncategorized,,,True,0,,5182138ee60167be,7274,242
+BuiltIn_ControlHide_03.ahk,BuiltIn ControlHide 03,Uncategorized,,,True,0,,81f807130aa5a566,9033,291
+BuiltIn_ControlSetChecked_01.ahk,BuiltIn ControlSetChecked 01,Uncategorized,,,True,0,,c2529951463f0a47,7763,234
+BuiltIn_ControlSetEnabled_01.ahk,BuiltIn ControlSetEnabled 01,Uncategorized,,,True,0,,a19c094de4f38f1e,7248,218
+BuiltIn_ControlSetEnabled_02.ahk,BuiltIn ControlSetEnabled 02,Uncategorized,,,True,0,,f0e1403d51e8a4a5,7331,230
+BuiltIn_ControlSetEnabled_03.ahk,BuiltIn ControlSetEnabled 03,Uncategorized,,,True,0,,2ed508f435dab037,8561,270
+BuiltIn_ControlSetStyle_01.ahk,BuiltIn ControlSetStyle 01,Uncategorized,,,True,0,,71d81bda676d025d,25519,705
+BuiltIn_ControlSetStyle_02.ahk,BuiltIn ControlSetStyle 02,Uncategorized,,,True,0,,c76ce010911dd139,10184,332
+BuiltIn_ControlSetStyle_03.ahk,BuiltIn ControlSetStyle 03,Uncategorized,,,True,0,,a4d9329e9872d9bd,10997,353
+BuiltIn_ControlShow_01.ahk,BuiltIn ControlShow 01,Uncategorized,,,True,0,,e7eb5082b2588e8c,6723,228
+BuiltIn_ControlShow_02.ahk,BuiltIn ControlShow 02,Uncategorized,,,True,0,,a831e917776141da,7746,265
+BuiltIn_ControlShow_03.ahk,BuiltIn ControlShow 03,Uncategorized,,,True,0,,95a1f357e4d38c79,8142,267
+BuiltIn_CoordMode_01_MouseCoordinates.ahk,BuiltIn CoordMode 01 MouseCoordinates,Uncategorized,,,True,0,,6a70c4041a6b22df,16520,493
+BuiltIn_CoordMode_02_PixelSearch.ahk,BuiltIn CoordMode 02 PixelSearch,Uncategorized,,,True,0,,2825c141693b6e39,17126,526
+BuiltIn_CoordMode_03_MenuPositioning.ahk,BuiltIn CoordMode 03 MenuPositioning,Uncategorized,,,True,0,,c4e5f929295838f9,17749,560
+BuiltIn_Critical_01.ahk,BuiltIn Critical 01,Uncategorized,,,True,0,,4d0d04fa0223ece0,23552,740
+BuiltIn_Critical_02.ahk,BuiltIn Critical 02,Uncategorized,,,True,0,,418329bf6713d9e6,25373,779
+BuiltIn_DPI_01_Awareness.ahk,BuiltIn DPI 01 Awareness,Uncategorized,,,True,0,,233d24f9907db9d8,15851,454
+BuiltIn_DPI_02_Scaling.ahk,BuiltIn DPI 02 Scaling,Uncategorized,,,True,0,,ea826f74101d91c7,14460,422
+BuiltIn_DPI_03_MultiDPI.ahk,BuiltIn DPI 03 MultiDPI,Uncategorized,,,True,0,,7239976c930a46c5,21587,660
+BuiltIn_DateAdd_01.ahk,BuiltIn DateAdd 01,Uncategorized,,,True,0,,bbb8f9d9fff5c61c,20120,558
+BuiltIn_DateAdd_02.ahk,BuiltIn DateAdd 02,Uncategorized,,,True,0,,7a3c378e05e0d8b1,19902,598
+BuiltIn_DateAdd_03.ahk,BuiltIn DateAdd 03,Uncategorized,,,True,0,,7d5420d4b213c6ce,21919,643
+BuiltIn_DateDiff_01.ahk,BuiltIn DateDiff 01,Uncategorized,,,True,0,,d4c057d3eb045fb6,17816,529
+BuiltIn_DateDiff_02.ahk,BuiltIn DateDiff 02,Uncategorized,,,True,0,,996a5ad1b79a296d,21795,606
+BuiltIn_DirCopy_01_BasicCopying.ahk,BuiltIn DirCopy 01 BasicCopying,Uncategorized,,,True,0,,8c0ec8c05360c037,14087,490
+BuiltIn_DirCopy_02_RecursiveCopy.ahk,BuiltIn DirCopy 02 RecursiveCopy,Uncategorized,,,True,0,,3ee0929d061f23d3,12267,426
+BuiltIn_DirCopy_03_BackupSolutions.ahk,BuiltIn DirCopy 03 BackupSolutions,Uncategorized,,,True,0,,e64800ff20192edb,12306,426
+BuiltIn_DirCreate_01_BasicCreation.ahk,BuiltIn DirCreate 01 BasicCreation,Uncategorized,,,True,0,,2f672fdb5d5e6954,14210,490
+BuiltIn_DirCreate_02_NestedDirectories.ahk,BuiltIn DirCreate 02 NestedDirectories,Uncategorized,,,True,0,,70b50b55a1842434,12435,426
+BuiltIn_DirDelete_01_SafeDeletion.ahk,BuiltIn DirDelete 01 SafeDeletion,Uncategorized,,,True,0,,a92a86bbc7e32df4,14191,490
+BuiltIn_DirDelete_02_RecursiveDelete.ahk,BuiltIn DirDelete 02 RecursiveDelete,Uncategorized,,,True,0,,2efecdaaeb3d912c,12397,426
+BuiltIn_DirExist_01_DirectoryChecks.ahk,BuiltIn DirExist 01 DirectoryChecks,Uncategorized,,,True,0,,256ebff9f1ed5505,14209,490
+BuiltIn_DirExist_02_AttributeVerification.ahk,BuiltIn DirExist 02 AttributeVerification,Uncategorized,,,True,0,,16bc7069ae3691b2,12467,426
+BuiltIn_DirMove_01_BasicMoving.ahk,BuiltIn DirMove 01 BasicMoving,Uncategorized,,,True,0,,6e80d526740744fc,14058,490
+BuiltIn_DirMove_02_RenameOperations.ahk,BuiltIn DirMove 02 RenameOperations,Uncategorized,,,True,0,,a750de599233a25d,12326,426
+BuiltIn_DirSelect_01.ahk,BuiltIn DirSelect 01,Uncategorized,,,True,0,,1d5f8b5b45c3cddf,19891,716
+BuiltIn_DirSelect_02.ahk,BuiltIn DirSelect 02,Uncategorized,,,True,0,,a371c35cd5d15c05,27455,1109
+BuiltIn_DllCall_Advapi32_01_Registry.ahk,BuiltIn DllCall Advapi32 01 Registry,Uncategorized,,,True,0,,a292fd731189be8f,6396,195
+BuiltIn_DllCall_Custom_01_UserDLL.ahk,BuiltIn DllCall Custom 01 UserDLL,Uncategorized,,,True,0,,7db1f9dc8bf960ba,6363,195
+BuiltIn_DllCall_Dwmapi_01_Desktop.ahk,BuiltIn DllCall Dwmapi 01 Desktop,Uncategorized,,,True,0,,3709d67bc6afbb3a,6366,195
+BuiltIn_DllCall_Gdi32_01_Drawing.ahk,BuiltIn DllCall Gdi32 01 Drawing,Uncategorized,,,True,0,,234cbe416ae2c230,13011,385
+BuiltIn_DllCall_Gdi32_02_Fonts.ahk,BuiltIn DllCall Gdi32 02 Fonts,Uncategorized,,,True,0,,09d0173ffb9ded16,6290,195
+BuiltIn_DllCall_Gdi32_03_Colors.ahk,BuiltIn DllCall Gdi32 03 Colors,Uncategorized,,,True,0,,858472d30cdb8f5c,6323,195
+BuiltIn_DllCall_Gdi32_04_Bitmaps.ahk,BuiltIn DllCall Gdi32 04 Bitmaps,Uncategorized,,,True,0,,fa79ed0d3fbeb368,6360,195
+BuiltIn_DllCall_Gdi32_05_Screen.ahk,BuiltIn DllCall Gdi32 05 Screen,Uncategorized,,,True,0,,589a025d32d7bb38,6320,195
+BuiltIn_DllCall_Kernel32_01_Memory.ahk,BuiltIn DllCall Kernel32 01 Memory,Uncategorized,,,True,0,,a254eabf600dae95,19732,617
+BuiltIn_DllCall_Kernel32_02_Files.ahk,BuiltIn DllCall Kernel32 02 Files,Uncategorized,,,True,0,,ec4d8bc0e31f0ffe,21337,672
+BuiltIn_DllCall_Kernel32_03_Processes.ahk,BuiltIn DllCall Kernel32 03 Processes,Uncategorized,,,True,0,,24a7af18c043fa5c,15078,469
+BuiltIn_DllCall_Kernel32_04_Time.ahk,BuiltIn DllCall Kernel32 04 Time,Uncategorized,,,True,0,,e58fb2205b1442e9,15265,481
+BuiltIn_DllCall_Kernel32_05_Console.ahk,BuiltIn DllCall Kernel32 05 Console,Uncategorized,,,True,0,,f391e49c8d1ab111,17697,546
+BuiltIn_DllCall_Psapi_01_Performance.ahk,BuiltIn DllCall Psapi 01 Performance,Uncategorized,,,True,0,,5c768a30120eef75,6494,195
+BuiltIn_DllCall_Shell32_01_FileOps.ahk,BuiltIn DllCall Shell32 01 FileOps,Uncategorized,,,True,0,,009cda1248494cdb,6359,195
+BuiltIn_DllCall_Shell32_02_Icons.ahk,BuiltIn DllCall Shell32 02 Icons,Uncategorized,,,True,0,,0459a104c93a6e75,6298,195
+BuiltIn_DllCall_Shell32_03_Shell.ahk,BuiltIn DllCall Shell32 03 Shell,Uncategorized,,,True,0,,ed6cd88e16b4d237,6297,195
+BuiltIn_DllCall_Shell32_04_Folders.ahk,BuiltIn DllCall Shell32 04 Folders,Uncategorized,,,True,0,,cfa3583165299a07,6358,195
+BuiltIn_DllCall_Shell32_05_Taskbar.ahk,BuiltIn DllCall Shell32 05 Taskbar,Uncategorized,,,True,0,,bf74be8fc7515616,6356,195
+BuiltIn_DllCall_User32_01_MessageBox.ahk,BuiltIn DllCall User32 01 MessageBox,Uncategorized,,,True,0,,6c1cfac62b2fef27,14703,413
+BuiltIn_DllCall_User32_02_Windows.ahk,BuiltIn DllCall User32 02 Windows,Uncategorized,,,True,0,,fadfa419d48d5ab3,18360,556
+BuiltIn_DllCall_User32_03_Input.ahk,BuiltIn DllCall User32 03 Input,Uncategorized,,,True,0,,68533ed76e0c127a,18191,580
+BuiltIn_DllCall_User32_04_Clipboard.ahk,BuiltIn DllCall User32 04 Clipboard,Uncategorized,,,True,0,,5b025ab1377107a8,19927,619
+BuiltIn_DllCall_User32_05_SystemMetrics.ahk,BuiltIn DllCall User32 05 SystemMetrics,Uncategorized,,,True,0,,ff851ed7858c1161,20427,570
+BuiltIn_DllCall_Winmm_01_Sound.ahk,BuiltIn DllCall Winmm 01 Sound,Uncategorized,,,True,0,,8a4a4be80c39454c,6284,195
+BuiltIn_DllCall_Winmm_02_Volume.ahk,BuiltIn DllCall Winmm 02 Volume,Uncategorized,,,True,0,,a60e6d80d8e4dd67,6319,195
+BuiltIn_DllCall_Winmm_03_MIDI.ahk,BuiltIn DllCall Winmm 03 MIDI,Uncategorized,,,True,0,,85d5ec04bce2ad81,6248,195
+BuiltIn_DllCall_Winmm_04_Joystick.ahk,BuiltIn DllCall Winmm 04 Joystick,Uncategorized,,,True,0,,8bd426c17bc9a502,6385,195
+BuiltIn_DllCall_Winmm_05_Timer.ahk,BuiltIn DllCall Winmm 05 Timer,Uncategorized,,,True,0,,5842587441248df7,6286,195
+BuiltIn_DllCall_Winspool_01_Printing.ahk,BuiltIn DllCall Winspool 01 Printing,Uncategorized,,,True,0,,b527aed744721140,6407,195
+BuiltIn_DllLoad_01.ahk,BuiltIn DllLoad 01,Uncategorized,,,True,0,,c2e31c305815a677,10846,429
+BuiltIn_DllLoad_02.ahk,BuiltIn DllLoad 02,Uncategorized,,,True,0,,2d1f83c034eec332,10828,429
+BuiltIn_Download_01.ahk,BuiltIn Download 01,Uncategorized,,,True,0,,7a1aa0bd5574ac16,13396,426
+BuiltIn_Download_02.ahk,BuiltIn Download 02,Uncategorized,,,True,0,,9798b82f66a9e47d,20489,620
+BuiltIn_Download_03.ahk,BuiltIn Download 03,Uncategorized,,,True,0,,9246d88a641f3275,21126,690
+BuiltIn_Download_04.ahk,BuiltIn Download 04,Uncategorized,,,True,0,,435afc545d816eb3,23284,727
+BuiltIn_Download_05.ahk,BuiltIn Download 05,Uncategorized,,,True,0,,d74b0608a20e0623,24766,750
+BuiltIn_Download_06.ahk,BuiltIn Download 06,Uncategorized,,,True,0,,326b467393103885,26059,799
+BuiltIn_Download_07.ahk,BuiltIn Download 07,Uncategorized,,,True,0,,3f262b06b719302f,26181,805
+BuiltIn_Download_08.ahk,BuiltIn Download 08,Uncategorized,,,True,0,,a740c3ee8faf54f2,24770,729
+BuiltIn_Download_09.ahk,BuiltIn Download 09,Uncategorized,,,True,0,,5926e1f929c6483b,25449,784
+BuiltIn_Download_10.ahk,BuiltIn Download 10,Uncategorized,,,True,0,,9709118d69134ec7,22606,669
+BuiltIn_Edit_01_BasicUsage.ahk,BuiltIn Edit 01 BasicUsage,Uncategorized,,,True,0,,77ffac3f6738ec84,12432,394
+BuiltIn_Edit_02_Multiline.ahk,BuiltIn Edit 02 Multiline,Uncategorized,,,True,0,,1d51def51002c578,12384,394
+BuiltIn_Edit_03_ReadOnly.ahk,BuiltIn Edit 03 ReadOnly,Uncategorized,,,True,0,,1b90c7278cf5881e,12337,394
+BuiltIn_Edit_04_Selection.ahk,BuiltIn Edit 04 Selection,Uncategorized,,,True,0,,7819deed836dffbd,12385,394
+BuiltIn_Edit_05_Formatting.ahk,BuiltIn Edit 05 Formatting,Uncategorized,,,True,0,,a844b260befa59f9,12431,394
+BuiltIn_Edit_06_Validation.ahk,BuiltIn Edit 06 Validation,Uncategorized,,,True,0,,69693b74a23ffceb,12426,394
+BuiltIn_Edit_07_Autocomplete.ahk,BuiltIn Edit 07 Autocomplete,Uncategorized,,,True,0,,363523edaedfa36f,12509,394
+BuiltIn_Edit_08_UndoRedo.ahk,BuiltIn Edit 08 UndoRedo,Uncategorized,,,True,0,,bf2d559aca5987d6,12338,394
+BuiltIn_Edit_09_Search.ahk,BuiltIn Edit 09 Search,Uncategorized,,,True,0,,f0d1713532fda676,12254,394
+BuiltIn_Edit_10_Advanced.ahk,BuiltIn Edit 10 Advanced,Uncategorized,,,True,0,,4de1025fef6d8d92,12339,394
+BuiltIn_EnvGet_01_SystemVariables.ahk,BuiltIn EnvGet 01 SystemVariables,Uncategorized,,,True,0,,4df1cadba1a0315a,20928,654
+BuiltIn_EnvGet_02_PathManagement.ahk,BuiltIn EnvGet 02 PathManagement,Uncategorized,,,True,0,,ee6886d9b1a6a2c3,8773,306
+BuiltIn_EnvGet_03_UserEnvironment.ahk,BuiltIn EnvGet 03 UserEnvironment,Uncategorized,,,True,0,,4a24f1c4e1964851,18939,560
+BuiltIn_EnvSet_01_SettingVariables.ahk,BuiltIn EnvSet 01 SettingVariables,Uncategorized,,,True,0,,3e283220dd47a049,14140,490
+BuiltIn_EnvSet_02_ProcessEnvironment.ahk,BuiltIn EnvSet 02 ProcessEnvironment,Uncategorized,,,True,0,,d4c89facf76f62c3,12327,426
+BuiltIn_Exp_01_BasicUsage.ahk,BuiltIn Exp 01 BasicUsage,Uncategorized,,,True,0,,4b29e030e34197ef,11549,431
+BuiltIn_Exp_02_Growth.ahk,BuiltIn Exp 02 Growth,Uncategorized,,,True,0,,7807cd5517854dda,17405,613
+BuiltIn_Exp_03_Decay.ahk,BuiltIn Exp 03 Decay,Uncategorized,,,True,0,,6cf5ba9b3ae911a3,16790,610
+BuiltIn_FileAppend_01_BasicAppend.ahk,BuiltIn FileAppend 01 BasicAppend,Uncategorized,,,True,0,,284172d08580261c,16890,543
+BuiltIn_FileAppend_02_Logging.ahk,BuiltIn FileAppend 02 Logging,Uncategorized,,,True,0,,22436cae984f8cdb,17412,579
+BuiltIn_FileAppend_03_CSV.ahk,BuiltIn FileAppend 03 CSV,Uncategorized,,,True,0,,b20af54e157d31dd,13843,439
+BuiltIn_FileAppend_04_ErrorHandling.ahk,BuiltIn FileAppend 04 ErrorHandling,Uncategorized,,,True,0,,aec2cf82faa37d1b,12391,396
+BuiltIn_FileCopy_01_BasicCopy.ahk,BuiltIn FileCopy 01 BasicCopy,Uncategorized,,,True,0,,2fe5ff17008456f1,5133,170
+BuiltIn_FileCopy_02_Backup.ahk,BuiltIn FileCopy 02 Backup,Uncategorized,,,True,0,,e847be164a45bb59,5131,170
+BuiltIn_FileCopy_03_BatchCopy.ahk,BuiltIn FileCopy 03 BatchCopy,Uncategorized,,,True,0,,98c99d7c6e5cd265,5115,170
+BuiltIn_FileCopy_04_OverwriteHandling.ahk,BuiltIn FileCopy 04 OverwriteHandling,Uncategorized,,,True,0,,c372be3329576a10,5174,170
+BuiltIn_FileDelete_01_BasicDelete.ahk,BuiltIn FileDelete 01 BasicDelete,Uncategorized,,,True,0,,6601c1bb9b443b7b,12100,391
+BuiltIn_FileDelete_02_Wildcards.ahk,BuiltIn FileDelete 02 Wildcards,Uncategorized,,,True,0,,c5476b5edc507e79,14813,475
+BuiltIn_FileDelete_03_Cleanup.ahk,BuiltIn FileDelete 03 Cleanup,Uncategorized,,,True,0,,88de23171bcf40c5,5165,170
+BuiltIn_FileDelete_04_SafeDeletion.ahk,BuiltIn FileDelete 04 SafeDeletion,Uncategorized,,,True,0,,06627ca412f61125,5155,170
+BuiltIn_FileExist_01.ahk,BuiltIn FileExist 01,Uncategorized,,,True,0,,21356df61cb37abb,11217,405
+BuiltIn_FileExist_02.ahk,BuiltIn FileExist 02,Uncategorized,,,True,0,,837854d5300e193f,13469,495
+BuiltIn_FileExist_03.ahk,BuiltIn FileExist 03,Uncategorized,,,True,0,,8498df7eff31552b,17891,626
+BuiltIn_FileExist_04.ahk,BuiltIn FileExist 04,Uncategorized,,,True,0,,574664855553c71e,15661,564
+BuiltIn_FileGetAttrib_13.ahk,BuiltIn FileGetAttrib 13,Uncategorized,,,True,0,,9b81449789417342,12795,479
+BuiltIn_FileGetAttrib_14.ahk,BuiltIn FileGetAttrib 14,Uncategorized,,,True,0,,e57a3602512d981f,13475,514
+BuiltIn_FileGetAttrib_15.ahk,BuiltIn FileGetAttrib 15,Uncategorized,,,True,0,,ead3be6e324e16f3,7360,284
+BuiltIn_FileGetAttrib_16.ahk,BuiltIn FileGetAttrib 16,Uncategorized,,,True,0,,809e57ccee1b6540,10616,405
+BuiltIn_FileGetSize_05.ahk,BuiltIn FileGetSize 05,Uncategorized,,,True,0,,72dfabc845d6fab8,11903,454
+BuiltIn_FileGetSize_06.ahk,BuiltIn FileGetSize 06,Uncategorized,,,True,0,,62838e5f7af7371d,13455,508
+BuiltIn_FileGetSize_07.ahk,BuiltIn FileGetSize 07,Uncategorized,,,True,0,,39e0ccc7caa937cf,16993,649
+BuiltIn_FileGetSize_08.ahk,BuiltIn FileGetSize 08,Uncategorized,,,True,0,,0219ccf3eaa1e374,17715,652
+BuiltIn_FileGetTime_09.ahk,BuiltIn FileGetTime 09,Uncategorized,,,True,0,,7f85bb3c8433e37a,14625,521
+BuiltIn_FileGetTime_10.ahk,BuiltIn FileGetTime 10,Uncategorized,,,True,0,,e702397bacce6621,14132,542
+BuiltIn_FileGetTime_11.ahk,BuiltIn FileGetTime 11,Uncategorized,,,True,0,,0b2c836e817e35f7,12895,488
+BuiltIn_FileGetTime_12.ahk,BuiltIn FileGetTime 12,Uncategorized,,,True,0,,feecfd8094e32334,14420,522
+BuiltIn_FileMove_01_BasicMove.ahk,BuiltIn FileMove 01 BasicMove,Uncategorized,,,True,0,,d9ef5ff9ad4e5247,5130,170
+BuiltIn_FileMove_02_Rename.ahk,BuiltIn FileMove 02 Rename,Uncategorized,,,True,0,,a7ae942d45813b56,5130,170
+BuiltIn_FileMove_03_Organize.ahk,BuiltIn FileMove 03 Organize,Uncategorized,,,True,0,,efe60056c6ad25de,5147,170
+BuiltIn_FileMove_04_Atomicity.ahk,BuiltIn FileMove 04 Atomicity,Uncategorized,,,True,0,,0592134e6d84111e,5153,170
+BuiltIn_FileRead_01_BasicReading.ahk,BuiltIn FileRead 01 BasicReading,Uncategorized,,,True,0,,cc6c10e7c9dc7ddc,18405,635
+BuiltIn_FileRead_02_Encoding.ahk,BuiltIn FileRead 02 Encoding,Uncategorized,,,True,0,,0304bfa2920c0599,17656,572
+BuiltIn_FileRead_03_LargeFiles.ahk,BuiltIn FileRead 03 LargeFiles,Uncategorized,,,True,0,,8dae09f4fd927f13,19136,599
+BuiltIn_FileRead_04_StructuredData.ahk,BuiltIn FileRead 04 StructuredData,Uncategorized,,,True,0,,8a32bdcbda9b8771,25415,872
+BuiltIn_FileSelect_01.ahk,BuiltIn FileSelect 01,Uncategorized,,,True,0,,29fb9876a6593d00,18997,646
+BuiltIn_FileSelect_02.ahk,BuiltIn FileSelect 02,Uncategorized,,,True,0,,7a0a7f70310343dc,19284,723
+BuiltIn_FileSetAttrib_17.ahk,BuiltIn FileSetAttrib 17,Uncategorized,,,True,0,,dcc1f91432099be7,9913,368
+BuiltIn_FileSetAttrib_18.ahk,BuiltIn FileSetAttrib 18,Uncategorized,,,True,0,,188d1c0f0ffb443a,11903,443
+BuiltIn_FileSetAttrib_19.ahk,BuiltIn FileSetAttrib 19,Uncategorized,,,True,0,,e4e53791e817795c,12392,513
+BuiltIn_FileSetAttrib_20.ahk,BuiltIn FileSetAttrib 20,Uncategorized,,,True,0,,cb95aedcf7d085c0,15762,618
+BuiltIn_Floor_01_BasicUsage.ahk,BuiltIn Floor 01 BasicUsage,Uncategorized,,,True,0,,9fd06ec76fb12904,10425,370
+BuiltIn_Floor_02_GridAlignment.ahk,BuiltIn Floor 02 GridAlignment,Uncategorized,,,True,0,,868d06d699fc5039,16286,580
+BuiltIn_Floor_03_Binning.ahk,BuiltIn Floor 03 Binning,Uncategorized,,,True,0,,40e23817d76a55c9,17586,677
+BuiltIn_For_01.ahk,BuiltIn For 01,Uncategorized,,,True,0,,5cfc30a51b2fce20,4215,179
+BuiltIn_For_02.ahk,BuiltIn For 02,Uncategorized,,,True,0,,0bfcbc56b52f2593,4210,179
+BuiltIn_For_03.ahk,BuiltIn For 03,Uncategorized,,,True,0,,21d77297889e18e8,4205,179
+BuiltIn_For_04.ahk,BuiltIn For 04,Uncategorized,,,True,0,,506886d2fa5945fc,4214,179
+BuiltIn_FormatTime_01.ahk,BuiltIn FormatTime 01,Uncategorized,,,True,0,,4a37ba88128f462b,16379,438
+BuiltIn_FormatTime_02.ahk,BuiltIn FormatTime 02,Uncategorized,,,True,0,,d765cd440fa9949a,17097,451
+BuiltIn_FormatTime_03.ahk,BuiltIn FormatTime 03,Uncategorized,,,True,0,,1e66fc2a87130d7c,23813,647
+BuiltIn_FormatTime_04.ahk,BuiltIn FormatTime 04,Uncategorized,,,True,0,,e5535b59625ccbe1,22571,675
+BuiltIn_FormatTime_05.ahk,BuiltIn FormatTime 05,Uncategorized,,,True,0,,7cd396002e1a80dd,22716,705
+BuiltIn_Format_01.ahk,BuiltIn Format 01,Uncategorized,,,True,0,,c8681df088461c24,13149,383
+BuiltIn_Format_02.ahk,BuiltIn Format 02,Uncategorized,,,True,0,,81f42207f79af3ac,17333,549
+BuiltIn_Format_03.ahk,BuiltIn Format 03,Uncategorized,,,True,0,,678bc332f16cc983,19970,619
+BuiltIn_Format_04.ahk,BuiltIn Format 04,Uncategorized,,,True,0,,16da909acc61b162,25846,774
+BuiltIn_Format_05.ahk,BuiltIn Format 05,Uncategorized,,,True,0,,7677fd20e50813ec,32687,867
+BuiltIn_GetKeyState_01.ahk,BuiltIn GetKeyState 01,Uncategorized,,,True,0,,095d4fa36f9a9905,12916,523
+BuiltIn_GetKeyState_02.ahk,BuiltIn GetKeyState 02,Uncategorized,,,True,0,,b4dec8a3c136a1a8,16612,616
+BuiltIn_GroupActivate_01_BasicActivation.ahk,BuiltIn GroupActivate 01 BasicActivation,Uncategorized,,,True,0,,2afcf846c926b16f,14469,490
+BuiltIn_GroupActivate_02_CyclingWindows.ahk,BuiltIn GroupActivate 02 CyclingWindows,Uncategorized,,,True,0,,25aa73738349402e,12564,426
+BuiltIn_GroupAdd_01_WindowGroups.ahk,BuiltIn GroupAdd 01 WindowGroups,Uncategorized,,,True,0,,707f928242b7f1ab,14137,490
+BuiltIn_GroupAdd_02_AdvancedGrouping.ahk,BuiltIn GroupAdd 02 AdvancedGrouping,Uncategorized,,,True,0,,9cd5fa8f2934d93c,12368,426
+BuiltIn_GuiAdvanced_01.ahk,BuiltIn GuiAdvanced 01,Uncategorized,,,True,0,,d5a8f584ec86a2e4,21034,579
+BuiltIn_GuiAdvanced_02.ahk,BuiltIn GuiAdvanced 02,Uncategorized,,,True,0,,a77d03af95715f85,21120,579
+BuiltIn_GuiAdvanced_03.ahk,BuiltIn GuiAdvanced 03,Uncategorized,,,True,0,,b095dee45f73af6b,20895,579
+BuiltIn_GuiAdvanced_04.ahk,BuiltIn GuiAdvanced 04,Uncategorized,,,True,0,,1fff1ee09b71ed35,20906,579
+BuiltIn_GuiControls_01.ahk,BuiltIn GuiControls 01,Uncategorized,,,True,0,,96304e881bdeb251,29068,727
+BuiltIn_GuiControls_02.ahk,BuiltIn GuiControls 02,Uncategorized,,,True,0,,c93846375ed81aac,29180,867
+BuiltIn_GuiControls_03.ahk,BuiltIn GuiControls 03,Uncategorized,,,True,0,,b11df5c35e8fcb6e,29000,817
+BuiltIn_GuiControls_04.ahk,BuiltIn GuiControls 04,Uncategorized,,,True,0,,2dbac87393e55bd7,21337,579
+BuiltIn_GuiEvents_01.ahk,BuiltIn GuiEvents 01,Uncategorized,,,True,0,,5bd053e10f197939,18409,530
+BuiltIn_GuiEvents_02.ahk,BuiltIn GuiEvents 02,Uncategorized,,,True,0,,0f52c51049b9fef1,18366,530
+BuiltIn_GuiEvents_03.ahk,BuiltIn GuiEvents 03,Uncategorized,,,True,0,,25963aba0b748c9f,18275,530
+BuiltIn_GuiEvents_04.ahk,BuiltIn GuiEvents 04,Uncategorized,,,True,0,,f4134543b357be12,18437,530
+BuiltIn_GuiListView_01.ahk,BuiltIn GuiListView 01,Uncategorized,,,True,0,,948491b5394d4e77,27305,796
+BuiltIn_GuiListView_02.ahk,BuiltIn GuiListView 02,Uncategorized,,,True,0,,6d894e037e998299,27289,796
+BuiltIn_GuiListView_03.ahk,BuiltIn GuiListView 03,Uncategorized,,,True,0,,88861593df6fe39b,27178,796
+BuiltIn_GuiListView_04.ahk,BuiltIn GuiListView 04,Uncategorized,,,True,0,,df707263149d25ad,27178,796
+BuiltIn_Gui_01.ahk,BuiltIn Gui 01,Uncategorized,,,True,0,,c8662bc969a0502f,20725,538
+BuiltIn_Gui_02.ahk,BuiltIn Gui 02,Uncategorized,,,True,0,,ae3e4ac2b342b79c,20330,528
+BuiltIn_Gui_03.ahk,BuiltIn Gui 03,Uncategorized,,,True,0,,ed7d1260f5618534,21368,605
+BuiltIn_Gui_04.ahk,BuiltIn Gui 04,Uncategorized,,,True,0,,5ff463b48b37e3dc,31749,966
+BuiltIn_HotIf_01.ahk,BuiltIn HotIf 01,Uncategorized,,,True,0,,14367f6856c88841,14467,515
+BuiltIn_HotIf_02.ahk,BuiltIn HotIf 02,Uncategorized,,,True,0,,5b523ff8db748e0b,16915,622
+BuiltIn_HotIf_03.ahk,BuiltIn HotIf 03,Uncategorized,,,True,0,,e8658731e93848d1,17317,678
+BuiltIn_HotIf_04.ahk,BuiltIn HotIf 04,Uncategorized,,,True,0,,b7b1eaf68ff47c91,24183,878
+BuiltIn_HotkeyExamples_01.ahk,BuiltIn HotkeyExamples 01,Uncategorized,,,True,0,,8ac977047c3fa204,14833,571
+BuiltIn_HotkeyExamples_02.ahk,BuiltIn HotkeyExamples 02,Uncategorized,,,True,0,,4d598c6b94135e12,16040,590
+BuiltIn_HotkeyManagement_01.ahk,BuiltIn HotkeyManagement 01,Uncategorized,,,True,0,,fdc2cc7dd39c8485,13918,535
+BuiltIn_HotkeyManagement_02.ahk,BuiltIn HotkeyManagement 02,Uncategorized,,,True,0,,6b3b19cc482088cc,13556,470
+BuiltIn_HotkeyManagement_03.ahk,BuiltIn HotkeyManagement 03,Uncategorized,,,True,0,,2bd97481bd472a1f,19094,676
+BuiltIn_Hotkey_01.ahk,BuiltIn Hotkey 01,Uncategorized,,,True,0,,50ece534f84003ee,13957,423
+BuiltIn_Hotkey_02.ahk,BuiltIn Hotkey 02,Uncategorized,,,True,0,,1300535311d015cb,17820,632
+BuiltIn_Hotkey_03.ahk,BuiltIn Hotkey 03,Uncategorized,,,True,0,,1161e2f4c049f629,19022,696
+BuiltIn_Hotkey_04.ahk,BuiltIn Hotkey 04,Uncategorized,,,True,0,,ff1529981124dae1,18343,637
+BuiltIn_HotstringExamples_01.ahk,BuiltIn HotstringExamples 01,Uncategorized,,,True,0,,5019af1672ccbab4,15117,628
+BuiltIn_HotstringExamples_02.ahk,BuiltIn HotstringExamples 02,Uncategorized,,,True,0,,88f28822c28cd854,18375,604
+BuiltIn_Hotstring_01.ahk,BuiltIn Hotstring 01,Uncategorized,,,True,0,,6982c5967aec8de5,17379,602
+BuiltIn_Hotstring_02.ahk,BuiltIn Hotstring 02,Uncategorized,,,True,0,,990c488787485547,14824,424
+BuiltIn_Hotstring_03.ahk,BuiltIn Hotstring 03,Uncategorized,,,True,0,,dab42c596b60f2af,17419,601
+BuiltIn_Hotstring_04.ahk,BuiltIn Hotstring 04,Uncategorized,,,True,0,,d6be242c3f5e1aa2,13727,437
+BuiltIn_IfElse_01.ahk,BuiltIn IfElse 01,Uncategorized,,,True,0,,f89dc59c685649fd,14700,528
+BuiltIn_IfElse_02.ahk,BuiltIn IfElse 02,Uncategorized,,,True,0,,22c917022579e241,22085,666
+BuiltIn_IfElse_03.ahk,BuiltIn IfElse 03,Uncategorized,,,True,0,,2ff0767909586fa9,21103,675
+BuiltIn_IfElse_04.ahk,BuiltIn IfElse 04,Uncategorized,,,True,0,,f6c9c1a2ae6a019a,21631,769
+BuiltIn_ImageSearch_01.ahk,BuiltIn ImageSearch 01,Uncategorized,,,True,0,,3a1635d920155075,26107,886
+BuiltIn_ImageSearch_02.ahk,BuiltIn ImageSearch 02,Uncategorized,,,True,0,,d85f7a8f9c4c7280,28728,1038
+BuiltIn_InStr_01_BasicUsage.ahk,BuiltIn InStr 01 BasicUsage,Uncategorized,,,True,0,,b7d15847f1c1feb2,7179,254
+BuiltIn_InStr_02_Parsing.ahk,BuiltIn InStr 02 Parsing,Uncategorized,,,True,0,,3a19403f9472baa3,6622,272
+BuiltIn_InStr_03_Validation.ahk,BuiltIn InStr 03 Validation,Uncategorized,,,True,0,,79cfe81a2deebe07,8929,365
+BuiltIn_Include_01.ahk,BuiltIn Include 01,Uncategorized,,,True,0,,e935108b0398c11d,23071,858
+BuiltIn_Include_02.ahk,BuiltIn Include 02,Uncategorized,,,True,0,,8f02f387f5e8dc9d,27240,957
+BuiltIn_Include_03.ahk,BuiltIn Include 03,Uncategorized,,,True,0,,8409ec1a3bdb0cc6,29898,1037
+BuiltIn_IniRead_01.ahk,BuiltIn IniRead 01,Uncategorized,,,True,0,,943fddc6f4842b90,14773,480
+BuiltIn_IniRead_02.ahk,BuiltIn IniRead 02,Uncategorized,,,True,0,,026678e5ec7358d5,15104,483
+BuiltIn_IniRead_03.ahk,BuiltIn IniRead 03,Uncategorized,,,True,0,,7691dc043e869f7a,13178,447
+BuiltIn_IniWrite_01.ahk,BuiltIn IniWrite 01,Uncategorized,,,True,0,,e1a9bc1768bdac34,14468,464
+BuiltIn_IniWrite_02.ahk,BuiltIn IniWrite 02,Uncategorized,,,True,0,,892391ae3b6583f5,12982,417
+BuiltIn_IniWrite_03.ahk,BuiltIn IniWrite 03,Uncategorized,,,True,0,,602712d88a23e971,14046,418
+BuiltIn_InputBox_01.ahk,BuiltIn InputBox 01,Uncategorized,,,True,0,,062366712620d569,20045,651
+BuiltIn_InputBox_02.ahk,BuiltIn InputBox 02,Uncategorized,,,True,0,,7c09f0ac3093a6f9,24841,866
+BuiltIn_InputBox_03.ahk,BuiltIn InputBox 03,Uncategorized,,,True,0,,b764881c7505de70,27817,946
+BuiltIn_ListLines_01_DebuggingBasics.ahk,BuiltIn ListLines 01 DebuggingBasics,Uncategorized,,,True,0,,43bcbd1db6c3290c,14255,490
+BuiltIn_ListLines_02_PerformanceTracking.ahk,BuiltIn ListLines 02 PerformanceTracking,Uncategorized,,,True,0,,1ea1ba57b4552e4d,12481,426
+BuiltIn_ListVars_01_VariableInspection.ahk,BuiltIn ListVars 01 VariableInspection,Uncategorized,,,True,0,,84c02b80e9f22797,14272,490
+BuiltIn_ListVars_02_DebuggingTools.ahk,BuiltIn ListVars 02 DebuggingTools,Uncategorized,,,True,0,,0d621fff19b56ba3,12334,426
+BuiltIn_ListView_01_BasicUsage.ahk,BuiltIn ListView 01 BasicUsage,Uncategorized,,,True,0,,dc9f13ad26924fa2,17315,523
+BuiltIn_ListView_02_Columns.ahk,BuiltIn ListView 02 Columns,Uncategorized,,,True,0,,ed6d7e0b3f866b05,22379,667
+BuiltIn_ListView_03_Sorting.ahk,BuiltIn ListView 03 Sorting,Uncategorized,,,True,0,,eac90a3c2bae1b4d,22890,673
+BuiltIn_ListView_04_Selection.ahk,BuiltIn ListView 04 Selection,Uncategorized,,,True,0,,0a8c2091dd527d04,27176,879
+BuiltIn_ListView_05_Icons.ahk,BuiltIn ListView 05 Icons,Uncategorized,,,True,0,,3b4f1f076884a21c,20234,573
+BuiltIn_ListView_06_ContextMenu.ahk,BuiltIn ListView 06 ContextMenu,Uncategorized,,,True,0,,68fac1ebe7ae44f8,23627,791
+BuiltIn_ListView_07_Editing.ahk,BuiltIn ListView 07 Editing,Uncategorized,,,True,0,,3847d861b26a3ce6,24172,804
+BuiltIn_ListView_08_DataBinding.ahk,BuiltIn ListView 08 DataBinding,Uncategorized,,,True,0,,dd1930f9679d9445,27136,900
+BuiltIn_ListView_09_Virtualization.ahk,BuiltIn ListView 09 Virtualization,Uncategorized,,,True,0,,4abddfbc30b521fd,26240,860
+BuiltIn_ListView_10_Styling.ahk,BuiltIn ListView 10 Styling,Uncategorized,,,True,0,,741496d19f8f10d2,21140,637
+BuiltIn_Ln_01_BasicUsage.ahk,BuiltIn Ln 01 BasicUsage,Uncategorized,,,True,0,,cdbf57830c19ce83,14180,507
+BuiltIn_Ln_02_GrowthRates.ahk,BuiltIn Ln 02 GrowthRates,Uncategorized,,,True,0,,526ac8d962de7f0c,19660,679
+BuiltIn_Ln_03_HalfLife.ahk,BuiltIn Ln 03 HalfLife,Uncategorized,,,True,0,,41583beea391cdd8,19520,643
+BuiltIn_Log_01_BasicUsage.ahk,BuiltIn Log 01 BasicUsage,Uncategorized,,,True,0,,a271dfaef3749f54,11862,436
+BuiltIn_Log_02_Scales.ahk,BuiltIn Log 02 Scales,Uncategorized,,,True,0,,e9bcb02740d471d3,20014,688
+BuiltIn_Log_03_DataAnalysis.ahk,BuiltIn Log 03 DataAnalysis,Uncategorized,,,True,0,,b35e1988fb3b209b,21917,761
+BuiltIn_Loop_01.ahk,BuiltIn Loop 01,Uncategorized,,,True,0,,bf6291d7303ecc7f,10252,392
+BuiltIn_Loop_02.ahk,BuiltIn Loop 02,Uncategorized,,,True,0,,b3639e56c861d8a5,9034,348
+BuiltIn_Loop_03.ahk,BuiltIn Loop 03,Uncategorized,,,True,0,,800ea142cf2641e8,6137,248
+BuiltIn_Loop_04.ahk,BuiltIn Loop 04,Uncategorized,,,True,0,,a75df0e30c1c3bde,4161,179
+BuiltIn_Map_Clear_01_BasicUsage.ahk,BuiltIn Map Clear 01 BasicUsage,Uncategorized,,,True,0,,7325ee546499e58a,9642,343
+BuiltIn_Map_Delete_01_BasicUsage.ahk,BuiltIn Map Delete 01 BasicUsage,Uncategorized,,,True,0,,dc48fbef9ccf7ccc,10425,373
+BuiltIn_Map_Delete_02_Cleanup.ahk,BuiltIn Map Delete 02 Cleanup,Uncategorized,,,True,0,,6ed245f3938aa82d,11518,413
+BuiltIn_Map_Delete_03_Cache.ahk,BuiltIn Map Delete 03 Cache,Uncategorized,,,True,0,,5d52cfba1b565ee9,11682,425
+BuiltIn_Map_Get_01_BasicUsage.ahk,BuiltIn Map Get 01 BasicUsage,Uncategorized,,,True,0,,41ae6dfc3c054562,14959,514
+BuiltIn_Map_Get_02_DefaultValues.ahk,BuiltIn Map Get 02 DefaultValues,Uncategorized,,,True,0,,4eea7329fa0af6b9,19584,698
+BuiltIn_Map_Get_03_DataRetrieval.ahk,BuiltIn Map Get 03 DataRetrieval,Uncategorized,,,True,0,,211f6d676b07393c,22695,805
+BuiltIn_Map_Get_04_Lookups.ahk,BuiltIn Map Get 04 Lookups,Uncategorized,,,True,0,,e9452598cbb2a0ec,21252,764
+BuiltIn_Map_Has_01_BasicUsage.ahk,BuiltIn Map Has 01 BasicUsage,Uncategorized,,,True,0,,caa17006eac60880,17641,630
+BuiltIn_Map_Has_02_Validation.ahk,BuiltIn Map Has 02 Validation,Uncategorized,,,True,0,,a5e1cb09f98a9a7e,23194,789
+BuiltIn_Map_Has_03_Conditional.ahk,BuiltIn Map Has 03 Conditional,Uncategorized,,,True,0,,9ca2ca2f95150f6c,10655,360
+BuiltIn_Map_Has_04_DataIntegrity.ahk,BuiltIn Map Has 04 DataIntegrity,Uncategorized,,,True,0,,3bb9537640cb19c6,15328,501
+BuiltIn_Map_Set_01_BasicUsage.ahk,BuiltIn Map Set 01 BasicUsage,Uncategorized,,,True,0,,13f699d5471cd5ca,13174,416
+BuiltIn_Map_Set_02_Configuration.ahk,BuiltIn Map Set 02 Configuration,Uncategorized,,,True,0,,dd4b53f400b21364,21241,716
+BuiltIn_Map_Set_03_Caching.ahk,BuiltIn Map Set 03 Caching,Uncategorized,,,True,0,,fa9d53f16adbbb8a,23387,884
+BuiltIn_Map_Set_04_Batch.ahk,BuiltIn Map Set 04 Batch,Uncategorized,,,True,0,,696ff72f7f340a68,20662,749
+BuiltIn_MaxThreads_01.ahk,BuiltIn MaxThreads 01,Uncategorized,,,True,0,,fe85099fcc343f4d,10896,429
+BuiltIn_MaxThreads_02.ahk,BuiltIn MaxThreads 02,Uncategorized,,,True,0,,932fd97c9f43a6af,10886,429
+BuiltIn_Menu_01_BasicUsage.ahk,BuiltIn Menu 01 BasicUsage,Uncategorized,,,True,0,,2530ea0930398a59,12270,422
+BuiltIn_Menu_02_Submenus.ahk,BuiltIn Menu 02 Submenus,Uncategorized,,,True,0,,7fa7c914c25e0c0f,12185,422
+BuiltIn_Menu_03_Icons.ahk,BuiltIn Menu 03 Icons,Uncategorized,,,True,0,,0f61b9c6643fc05b,12042,422
+BuiltIn_Menu_04_Checkmarks.ahk,BuiltIn Menu 04 Checkmarks,Uncategorized,,,True,0,,8022f0e9142e8fcf,12263,422
+BuiltIn_Menu_05_ContextMenu.ahk,BuiltIn Menu 05 ContextMenu,Uncategorized,,,True,0,,63c7e3799f1275c8,12302,422
+BuiltIn_Menu_06_TrayMenu.ahk,BuiltIn Menu 06 TrayMenu,Uncategorized,,,True,0,,e6af2b668afdbbc8,12179,422
+BuiltIn_Menu_07_MenuBar.ahk,BuiltIn Menu 07 MenuBar,Uncategorized,,,True,0,,0e239e65d4dd0bf7,12138,422
+BuiltIn_Menu_08_Dynamic.ahk,BuiltIn Menu 08 Dynamic,Uncategorized,,,True,0,,08bf2a3558913f21,12135,422
+BuiltIn_Menu_09_Keyboard.ahk,BuiltIn Menu 09 Keyboard,Uncategorized,,,True,0,,03daaae8ce0fe3ce,12179,422
+BuiltIn_Menu_10_Advanced.ahk,BuiltIn Menu 10 Advanced,Uncategorized,,,True,0,,d558380df80d5bbe,12181,422
+BuiltIn_MinMax_01_BasicUsage.ahk,BuiltIn MinMax 01 BasicUsage,Uncategorized,,,True,0,,ba3440e3cc0e21d4,9929,357
+BuiltIn_MinMax_02_RangeValidation.ahk,BuiltIn MinMax 02 RangeValidation,Uncategorized,,,True,0,,ab7b77ef68447975,15669,610
+BuiltIn_MinMax_03_DataAnalysis.ahk,BuiltIn MinMax 03 DataAnalysis,Uncategorized,,,True,0,,c558955971fdda64,18060,626
+BuiltIn_Mod_01_BasicUsage.ahk,BuiltIn Mod 01 BasicUsage,Uncategorized,,,True,0,,6e35aabe923b603c,13273,527
+BuiltIn_Mod_02_CyclicPatterns.ahk,BuiltIn Mod 02 CyclicPatterns,Uncategorized,,,True,0,,63c0432ac9f43413,18085,725
+BuiltIn_MonitorGetCount_01_BasicUsage.ahk,BuiltIn MonitorGetCount 01 BasicUsage,Uncategorized,,,True,0,,32caa0f73eb8c2e0,19215,581
+BuiltIn_MonitorGetCount_02_Detection.ahk,BuiltIn MonitorGetCount 02 Detection,Uncategorized,,,True,0,,fe462fdf58958718,22691,705
+BuiltIn_MonitorGetCount_03_Display.ahk,BuiltIn MonitorGetCount 03 Display,Uncategorized,,,True,0,,54ec541fee0f12a2,17532,560
+BuiltIn_MonitorGetPrimary_01_BasicUsage.ahk,BuiltIn MonitorGetPrimary 01 BasicUsage,Uncategorized,,,True,0,,514c8f6a258bee40,18489,503
+BuiltIn_MonitorGetPrimary_02_Positioning.ahk,BuiltIn MonitorGetPrimary 02 Positioning,Uncategorized,,,True,0,,6ab6cc9932631c37,23517,750
+BuiltIn_MonitorGetPrimary_03_MultiDisplay.ahk,BuiltIn MonitorGetPrimary 03 MultiDisplay,Uncategorized,,,True,0,,8b25814cd9aa6683,24260,737
+BuiltIn_MonitorGet_01_BasicUsage.ahk,BuiltIn MonitorGet 01 BasicUsage,Uncategorized,,,True,0,,2c3b4a1131e9f4ac,14717,448
+BuiltIn_MonitorGet_02_MultiMonitor.ahk,BuiltIn MonitorGet 02 MultiMonitor,Uncategorized,,,True,0,,1f7ae866f3452d2b,22767,671
+BuiltIn_MonitorGet_03_Positioning.ahk,BuiltIn MonitorGet 03 Positioning,Uncategorized,,,True,0,,4d416a654bd9149c,26826,799
+BuiltIn_MouseGetPos_01.ahk,BuiltIn MouseGetPos 01,Uncategorized,,,True,0,,297ae7a6e0230e1d,15034,592
+BuiltIn_MouseGetPos_02.ahk,BuiltIn MouseGetPos 02,Uncategorized,,,True,0,,49c851d81f109c25,16178,567
+BuiltIn_MouseGetPos_03.ahk,BuiltIn MouseGetPos 03,Uncategorized,,,True,0,,910510f10545af19,17588,657
+BuiltIn_MouseMove_01.ahk,BuiltIn MouseMove 01,Uncategorized,,,True,0,,c702af7e0cffacd5,13663,585
+BuiltIn_MouseMove_02.ahk,BuiltIn MouseMove 02,Uncategorized,,,True,0,,888b7eadf452cf3d,14761,611
+BuiltIn_MouseMove_03.ahk,BuiltIn MouseMove 03,Uncategorized,,,True,0,,384ad213c0a3afff,16410,714
+BuiltIn_MsgBox_01.ahk,BuiltIn MsgBox 01,Uncategorized,,,True,0,,f3fe007ffdbf42e6,18498,523
+BuiltIn_MsgBox_02.ahk,BuiltIn MsgBox 02,Uncategorized,,,True,0,,aa74cd4bc84e89b1,21231,678
+BuiltIn_MsgBox_03.ahk,BuiltIn MsgBox 03,Uncategorized,,,True,0,,f3394405f5d33ffe,24580,767
+BuiltIn_NoTrayIcon_01.ahk,BuiltIn NoTrayIcon 01,Uncategorized,,,True,0,,98fccf6222079b76,10870,429
+BuiltIn_NoTrayIcon_02.ahk,BuiltIn NoTrayIcon 02,Uncategorized,,,True,0,,198cc9fea76f7430,10888,429
+BuiltIn_NumGet_01_BasicUsage.ahk,BuiltIn NumGet 01 BasicUsage,Uncategorized,,,True,0,,8524f0a684c973e3,18053,513
+BuiltIn_NumGet_02_FloatingPoint.ahk,BuiltIn NumGet 02 FloatingPoint,Uncategorized,,,True,0,,7297bc288ce4177c,19517,563
+BuiltIn_NumGet_03_Pointers.ahk,BuiltIn NumGet 03 Pointers,Uncategorized,,,True,0,,2d700b8b715d7408,15510,462
+BuiltIn_NumGet_04_Structures.ahk,BuiltIn NumGet 04 Structures,Uncategorized,,,True,0,,27c7c1f6d687e947,17616,531
+BuiltIn_NumPut_01_BasicUsage.ahk,BuiltIn NumPut 01 BasicUsage,Uncategorized,,,True,0,,a6dc59eb29d12122,12335,376
+BuiltIn_NumPut_02_FloatingPoint.ahk,BuiltIn NumPut 02 FloatingPoint,Uncategorized,,,True,0,,7282be389a984723,11333,346
+BuiltIn_NumPut_03_Pointers.ahk,BuiltIn NumPut 03 Pointers,Uncategorized,,,True,0,,a85e6c350b734879,10180,334
+BuiltIn_NumPut_04_Structures.ahk,BuiltIn NumPut 04 Structures,Uncategorized,,,True,0,,34e14e9fa4e9269d,10189,305
+BuiltIn_OOP_Class_01_BasicUsage.ahk,BuiltIn OOP Class 01 BasicUsage,Uncategorized,,,True,0,,b80cef6e49d76f5d,11223,423
+BuiltIn_OOP_Class_02_Properties.ahk,BuiltIn OOP Class 02 Properties,Uncategorized,,,True,0,,5b331ed0e7aba28f,12800,533
+BuiltIn_OOP_Class_03_Constructor.ahk,BuiltIn OOP Class 03 Constructor,Uncategorized,,,True,0,,c5a957b31d1787dd,16396,577
+BuiltIn_OOP_Class_04_Static.ahk,BuiltIn OOP Class 04 Static,Uncategorized,,,True,0,,4bb08f728e715b6a,18403,675
+BuiltIn_OOP_Class_05_ThisKeyword.ahk,BuiltIn OOP Class 05 ThisKeyword,Uncategorized,,,True,0,,3e36754dde01a206,14816,588
+BuiltIn_OOP_Inherit_01_BasicUsage.ahk,BuiltIn OOP Inherit 01 BasicUsage,Uncategorized,,,True,0,,0f37f9094e9e9cf3,15289,637
+BuiltIn_OOP_Inherit_02_Super.ahk,BuiltIn OOP Inherit 02 Super,Uncategorized,,,True,0,,10c15a4a007e3dc2,16778,683
+BuiltIn_OOP_Inherit_03_Override.ahk,BuiltIn OOP Inherit 03 Override,Uncategorized,,,True,0,,b31c3ccf0eac4068,16213,701
+BuiltIn_OOP_Inherit_04_Abstract.ahk,BuiltIn OOP Inherit 04 Abstract,Uncategorized,,,True,0,,d9fe68cce8aef61b,20460,848
+BuiltIn_OOP_Inherit_05_Polymorphism.ahk,BuiltIn OOP Inherit 05 Polymorphism,Uncategorized,,,True,0,,71487f814acfaaf9,21497,923
+BuiltIn_OOP_Meta_01_Call.ahk,BuiltIn OOP Meta 01 Call,Uncategorized,,,True,0,,824bd98f541bb15b,15832,639
+BuiltIn_OOP_Meta_02_Get.ahk,BuiltIn OOP Meta 02 Get,Uncategorized,,,True,0,,de400d802f3d4c4e,13277,519
+BuiltIn_OOP_Meta_03_Set.ahk,BuiltIn OOP Meta 03 Set,Uncategorized,,,True,0,,fb9abbffc907c610,9607,377
+BuiltIn_OOP_Meta_04_Enum.ahk,BuiltIn OOP Meta 04 Enum,Uncategorized,,,True,0,,2d5b1106a0233570,1413,57
+BuiltIn_OOP_Meta_05_Delete.ahk,BuiltIn OOP Meta 05 Delete,Uncategorized,,,True,0,,ec78a55606cedbc7,1400,57
+BuiltIn_OOP_Object_01_Create.ahk,BuiltIn OOP Object 01 Create,Uncategorized,,,True,0,,e29d9c02043df6e2,1399,57
+BuiltIn_OOP_Object_02_HasOwnProp.ahk,BuiltIn OOP Object 02 HasOwnProp,Uncategorized,,,True,0,,66285c3a55be759a,1405,57
+BuiltIn_OOP_Object_03_OwnProps.ahk,BuiltIn OOP Object 03 OwnProps,Uncategorized,,,True,0,,74601e9e09b128ca,1397,57
+BuiltIn_OOP_Object_04_Clone.ahk,BuiltIn OOP Object 04 Clone,Uncategorized,,,True,0,,bc3dabc4a33d86f6,1378,57
+BuiltIn_OOP_Object_05_Prototype.ahk,BuiltIn OOP Object 05 Prototype,Uncategorized,,,True,0,,192488900aa23495,1399,57
+BuiltIn_OOP_Pattern_01_Singleton.ahk,BuiltIn OOP Pattern 01 Singleton,Uncategorized,,,True,0,,bab1ff8f646615a7,1395,57
+BuiltIn_OOP_Pattern_02_Factory.ahk,BuiltIn OOP Pattern 02 Factory,Uncategorized,,,True,0,,b7dce9a8380d768d,1390,57
+BuiltIn_OOP_Pattern_03_Observer.ahk,BuiltIn OOP Pattern 03 Observer,Uncategorized,,,True,0,,8096297c41a95b35,1402,57
+BuiltIn_OOP_Pattern_04_Strategy.ahk,BuiltIn OOP Pattern 04 Strategy,Uncategorized,,,True,0,,8a1302a9b3284192,1406,57
+BuiltIn_OOP_Pattern_05_Decorator.ahk,BuiltIn OOP Pattern 05 Decorator,Uncategorized,,,True,0,,ff9e54732f613d40,1398,57
+BuiltIn_OOP_Practical_01_Database.ahk,BuiltIn OOP Practical 01 Database,Uncategorized,,,True,0,,89b88d54cbd2bfb7,1411,57
+BuiltIn_OOP_Practical_02_HTTP.ahk,BuiltIn OOP Practical 02 HTTP,Uncategorized,,,True,0,,1de41de80ed7b200,1389,57
+BuiltIn_OOP_Practical_03_Logger.ahk,BuiltIn OOP Practical 03 Logger,Uncategorized,,,True,0,,c18ebd9e12bf8536,1382,57
+BuiltIn_OOP_Practical_04_Config.ahk,BuiltIn OOP Practical 04 Config,Uncategorized,,,True,0,,9ad283c98ab60784,1401,57
+BuiltIn_OOP_Practical_05_Validator.ahk,BuiltIn OOP Practical 05 Validator,Uncategorized,,,True,0,,4bbe73976e5c1fe2,1400,57
+BuiltIn_OnClipboardChange_01.ahk,BuiltIn OnClipboardChange 01,Uncategorized,,,True,0,,72c7e78ba3029560,26358,891
+BuiltIn_OnClipboardChange_02.ahk,BuiltIn OnClipboardChange 02,Uncategorized,,,True,0,,1fd5d83382f188c4,35883,1161
+BuiltIn_Ord_01_CharacterCodes.ahk,BuiltIn Ord 01 CharacterCodes,Uncategorized,,,True,0,,b51726eefc1ccd1e,13928,490
+BuiltIn_Ord_02_UnicodeHandling.ahk,BuiltIn Ord 02 UnicodeHandling,Uncategorized,,,True,0,,b223f7f2461dadb0,12122,426
+BuiltIn_Pause_01.ahk,BuiltIn Pause 01,Uncategorized,,,True,0,,844fba188172025e,25724,864
+BuiltIn_Persistent_01.ahk,BuiltIn Persistent 01,Uncategorized,,,True,0,,b1dd7b60adead429,24396,761
+BuiltIn_PixelSearch_01.ahk,BuiltIn PixelSearch 01,Uncategorized,,,True,0,,eab3bcd3b39d363f,21439,734
+BuiltIn_PixelSearch_02.ahk,BuiltIn PixelSearch 02,Uncategorized,,,True,0,,ec1f3fa554ab219f,28525,996
+BuiltIn_ProcessClose_01.ahk,BuiltIn ProcessClose 01,Uncategorized,,,True,0,,ff33fbcc95b5b819,9897,307
+BuiltIn_ProcessClose_02.ahk,BuiltIn ProcessClose 02,Uncategorized,,,True,0,,ab0c8333bddb92ee,9888,307
+BuiltIn_ProcessClose_03.ahk,BuiltIn ProcessClose 03,Uncategorized,,,True,0,,c10e6f75a177beb9,9900,307
+BuiltIn_ProcessClose_04.ahk,BuiltIn ProcessClose 04,Uncategorized,,,True,0,,1ea9bb05d4459530,9870,307
+BuiltIn_ProcessExist_01.ahk,BuiltIn ProcessExist 01,Uncategorized,,,True,0,,86a1dbbb13a20bde,13153,390
+BuiltIn_ProcessExist_02.ahk,BuiltIn ProcessExist 02,Uncategorized,,,True,0,,e20b500472bef564,6560,195
+BuiltIn_ProcessExist_03.ahk,BuiltIn ProcessExist 03,Uncategorized,,,True,0,,8f8808466b2bb939,6650,195
+BuiltIn_ProcessExist_04.ahk,BuiltIn ProcessExist 04,Uncategorized,,,True,0,,c2a25f187932e3df,6614,195
+BuiltIn_ProcessSetPriority_01.ahk,BuiltIn ProcessSetPriority 01,Uncategorized,,,True,0,,8e180866a46aeaa8,11199,336
+BuiltIn_ProcessSetPriority_02.ahk,BuiltIn ProcessSetPriority 02,Uncategorized,,,True,0,,b911dd82163fd85e,11196,336
+BuiltIn_Random_01_BasicUsage.ahk,BuiltIn Random 01 BasicUsage,Uncategorized,,,True,0,,4bd8f025caf70ca2,18075,763
+BuiltIn_RegDelete_01.ahk,BuiltIn RegDelete 01,Uncategorized,,,True,0,,78713c76035e44f5,20610,673
+BuiltIn_RegDelete_02.ahk,BuiltIn RegDelete 02,Uncategorized,,,True,0,,b12d4892134c310c,21088,690
+BuiltIn_RegDelete_03.ahk,BuiltIn RegDelete 03,Uncategorized,,,True,0,,b4bb2752bf878a34,20724,736
+BuiltIn_RegEx_Match_01_BasicUsage.ahk,BuiltIn RegEx Match 01 BasicUsage,Uncategorized,,,True,0,,e367f9a8fb9361ca,16903,505
+BuiltIn_RegEx_Match_02_Groups.ahk,BuiltIn RegEx Match 02 Groups,Uncategorized,,,True,0,,065e7f4a4e873d72,20884,616
+BuiltIn_RegEx_Match_03_Patterns.ahk,BuiltIn RegEx Match 03 Patterns,Uncategorized,,,True,0,,6fc0163324afa97c,22145,708
+BuiltIn_RegEx_Match_04_Options.ahk,BuiltIn RegEx Match 04 Options,Uncategorized,,,True,0,,fbde05e58c5203a3,21628,756
+BuiltIn_RegEx_Match_05_Advanced.ahk,BuiltIn RegEx Match 05 Advanced,Uncategorized,,,True,0,,0e27f0d980da0c05,23711,776
+BuiltIn_RegEx_Patterns_01_Email.ahk,BuiltIn RegEx Patterns 01 Email,Uncategorized,,,True,0,,96bf73b027fec36b,2135,95
+BuiltIn_RegEx_Patterns_02_URL.ahk,BuiltIn RegEx Patterns 02 URL,Uncategorized,,,True,0,,38eca8d84471705d,2113,95
+BuiltIn_RegEx_Patterns_03_Phone.ahk,BuiltIn RegEx Patterns 03 Phone,Uncategorized,,,True,0,,e43cddc430281711,2113,95
+BuiltIn_RegEx_Patterns_04_DateTime.ahk,BuiltIn RegEx Patterns 04 DateTime,Uncategorized,,,True,0,,e056b8498cb62df4,2037,95
+BuiltIn_RegEx_Patterns_05_DataExtraction.ahk,BuiltIn RegEx Patterns 05 DataExtraction,Uncategorized,,,True,0,,d621cd02cd020318,2119,95
+BuiltIn_RegEx_Practical_01_Validation.ahk,BuiltIn RegEx Practical 01 Validation,Uncategorized,,,True,0,,08a44c8fd344c401,1701,96
+BuiltIn_RegEx_Practical_02_Parsing.ahk,BuiltIn RegEx Practical 02 Parsing,Uncategorized,,,True,0,,08a44c8fd344c401,1701,96
+BuiltIn_RegEx_Practical_03_Cleaning.ahk,BuiltIn RegEx Practical 03 Cleaning,Uncategorized,,,True,0,,08a44c8fd344c401,1701,96
+BuiltIn_RegEx_Practical_04_Extraction.ahk,BuiltIn RegEx Practical 04 Extraction,Uncategorized,,,True,0,,08a44c8fd344c401,1701,96
+BuiltIn_RegEx_Practical_05_Transformation.ahk,BuiltIn RegEx Practical 05 Transformation,Uncategorized,,,True,0,,08a44c8fd344c401,1701,96
+BuiltIn_RegEx_Replace_01_BasicUsage.ahk,BuiltIn RegEx Replace 01 BasicUsage,Uncategorized,,,True,0,,48d2b17216d1ff03,19433,624
+BuiltIn_RegEx_Replace_02_Backreferences.ahk,BuiltIn RegEx Replace 02 Backreferences,Uncategorized,,,True,0,,ccfac600cd42552c,14997,495
+BuiltIn_RegEx_Replace_03_Functions.ahk,BuiltIn RegEx Replace 03 Functions,Uncategorized,,,True,0,,b76f2e9cd002352e,13097,477
+BuiltIn_RegEx_Replace_04_Patterns.ahk,BuiltIn RegEx Replace 04 Patterns,Uncategorized,,,True,0,,845b5f9c653ecdb1,12543,440
+BuiltIn_RegEx_Replace_05_Advanced.ahk,BuiltIn RegEx Replace 05 Advanced,Uncategorized,,,True,0,,3bc560019582c035,11314,366
+BuiltIn_RegRead_01.ahk,BuiltIn RegRead 01,Uncategorized,,,True,0,,011c559ca35b8ebf,16432,529
+BuiltIn_RegRead_02.ahk,BuiltIn RegRead 02,Uncategorized,,,True,0,,d7489620a855e138,24101,782
+BuiltIn_RegRead_03.ahk,BuiltIn RegRead 03,Uncategorized,,,True,0,,d3095d56cb121c58,26699,867
+BuiltIn_RegWrite_01.ahk,BuiltIn RegWrite 01,Uncategorized,,,True,0,,e881d02b4ebc1072,24551,832
+BuiltIn_RegWrite_02.ahk,BuiltIn RegWrite 02,Uncategorized,,,True,0,,6c3937c6dd667fe1,26488,917
+BuiltIn_RegWrite_03.ahk,BuiltIn RegWrite 03,Uncategorized,,,True,0,,76ac91f7c181332e,26776,858
+BuiltIn_Requires_01.ahk,BuiltIn Requires 01,Uncategorized,,,True,0,,4253c8c41dbcc24c,17711,598
+BuiltIn_Requires_02.ahk,BuiltIn Requires 02,Uncategorized,,,True,0,,d944790f87e2382e,21960,750
+BuiltIn_Round_01_BasicUsage.ahk,BuiltIn Round 01 BasicUsage,Uncategorized,,,True,0,,8c556aa01b3e4ecd,9673,306
+BuiltIn_Round_02_Financial.ahk,BuiltIn Round 02 Financial,Uncategorized,,,True,0,,11f8912b3dfcf394,15985,522
+BuiltIn_Round_03_DataFormatting.ahk,BuiltIn Round 03 DataFormatting,Uncategorized,,,True,0,,6472ea440226e701,16635,600
+BuiltIn_RunWait_01.ahk,BuiltIn RunWait 01,Uncategorized,,,True,0,,1882a3fbc687f98a,21838,640
+BuiltIn_RunWait_02.ahk,BuiltIn RunWait 02,Uncategorized,,,True,0,,1f06d1760ea0032f,25390,737
+BuiltIn_RunWait_03.ahk,BuiltIn RunWait 03,Uncategorized,,,True,0,,bed5c4edfc761cec,22889,645
+BuiltIn_RunWait_04.ahk,BuiltIn RunWait 04,Uncategorized,,,True,0,,181c03fcd21cf10c,19144,550
+BuiltIn_Run_01.ahk,BuiltIn Run 01,Uncategorized,,,True,0,,36902424bff921be,15535,434
+BuiltIn_Run_02.ahk,BuiltIn Run 02,Uncategorized,,,True,0,,a1b2e7dc35d2c7c7,19259,530
+BuiltIn_Run_03.ahk,BuiltIn Run 03,Uncategorized,,,True,0,,47623a72413f3e48,23056,623
+BuiltIn_Run_04.ahk,BuiltIn Run 04,Uncategorized,,,True,0,,c0dd4d07beaecf41,23119,604
+BuiltIn_SendInput_01.ahk,BuiltIn SendInput 01,Uncategorized,,,True,0,,b832f8cfc8b9d86b,13585,587
+BuiltIn_SendInput_02.ahk,BuiltIn SendInput 02,Uncategorized,,,True,0,,eb8af54bf4b4102b,12201,598
+BuiltIn_SendInput_03.ahk,BuiltIn SendInput 03,Uncategorized,,,True,0,,780853f7c381fcd6,14822,610
+BuiltIn_SendText_01.ahk,BuiltIn SendText 01,Uncategorized,,,True,0,,acd9d75b866f21f0,12554,585
+BuiltIn_SendText_02.ahk,BuiltIn SendText 02,Uncategorized,,,True,0,,a7c638bee537865f,13381,602
+BuiltIn_SendText_03.ahk,BuiltIn SendText 03,Uncategorized,,,True,0,,fd3cb605eab3d448,14478,603
+BuiltIn_Send_01.ahk,BuiltIn Send 01,Uncategorized,,,True,0,,3d18d85cb369fcc3,12407,604
+BuiltIn_Send_02.ahk,BuiltIn Send 02,Uncategorized,,,True,0,,43e03b09ffaf10f9,13337,650
+BuiltIn_Send_03.ahk,BuiltIn Send 03,Uncategorized,,,True,0,,458186f1ff88bd98,13547,640
+BuiltIn_SetTimer_01.ahk,BuiltIn SetTimer 01,Uncategorized,,,True,0,,45dce6d6cfc46f7f,21029,653
+BuiltIn_SetTimer_02.ahk,BuiltIn SetTimer 02,Uncategorized,,,True,0,,a227cb4744c014a7,28146,887
+BuiltIn_SetTimer_03.ahk,BuiltIn SetTimer 03,Uncategorized,,,True,0,,2e6ae0613e2df436,26854,892
+BuiltIn_Shutdown_01.ahk,BuiltIn Shutdown 01,Uncategorized,,,True,0,,9ce45e5b74d244d8,10717,280
+BuiltIn_Shutdown_02.ahk,BuiltIn Shutdown 02,Uncategorized,,,True,0,,392727e48bab4672,10732,280
+BuiltIn_SingleInstance_01.ahk,BuiltIn SingleInstance 01,Uncategorized,,,True,0,,fa3cadf7595c78e9,21201,767
+BuiltIn_SingleInstance_02.ahk,BuiltIn SingleInstance 02,Uncategorized,,,True,0,,e1c69379b1210c66,20290,691
+BuiltIn_Sleep_01.ahk,BuiltIn Sleep 01,Uncategorized,,,True,0,,667ac2bdfdcf174d,25335,782
+BuiltIn_Sleep_02.ahk,BuiltIn Sleep 02,Uncategorized,,,True,0,,6fb8d2bfeb0c80ff,28227,833
+BuiltIn_Sleep_03.ahk,BuiltIn Sleep 03,Uncategorized,,,True,0,,328141bafe0e42a9,22715,755
+BuiltIn_Sort_01_BasicSorting.ahk,BuiltIn Sort 01 BasicSorting,Uncategorized,,,True,0,,de1e443ecb561402,13927,490
+BuiltIn_Sort_02_AdvancedSorting.ahk,BuiltIn Sort 02 AdvancedSorting,Uncategorized,,,True,0,,d731311ef816529a,12167,426
+BuiltIn_Sort_03_CustomSorting.ahk,BuiltIn Sort 03 CustomSorting,Uncategorized,,,True,0,,84023d0296b4b6e4,12122,426
+BuiltIn_SoundBeep_01.ahk,BuiltIn SoundBeep 01,Uncategorized,,,True,0,,8bd0f0d8d1d6c101,19982,744
+BuiltIn_SoundBeep_02.ahk,BuiltIn SoundBeep 02,Uncategorized,,,True,0,,7b217aea35ed5bc9,23952,955
+BuiltIn_SoundPlay_01.ahk,BuiltIn SoundPlay 01,Uncategorized,,,True,0,,3a10c93d9b953b03,14601,510
+BuiltIn_SoundPlay_02.ahk,BuiltIn SoundPlay 02,Uncategorized,,,True,0,,43dda9985b149116,20727,801
+BuiltIn_SoundVolume_01.ahk,BuiltIn SoundVolume 01,Uncategorized,,,True,0,,4f90131eca612cbd,16738,612
+BuiltIn_SoundVolume_02.ahk,BuiltIn SoundVolume 02,Uncategorized,,,True,0,,eaf0c59c27ddad44,27357,1041
+BuiltIn_SplitPath_01_PathParsing.ahk,BuiltIn SplitPath 01 PathParsing,Uncategorized,,,True,0,,3237d29ba9d4226e,14176,490
+BuiltIn_SplitPath_02_FileOperations.ahk,BuiltIn SplitPath 02 FileOperations,Uncategorized,,,True,0,,a148f7a5952ca45e,12377,426
+BuiltIn_SplitPath_03_AdvancedParsing.ahk,BuiltIn SplitPath 03 AdvancedParsing,Uncategorized,,,True,0,,7545ab82d189bc0d,12407,426
+BuiltIn_Sqrt_01_BasicUsage.ahk,BuiltIn Sqrt 01 BasicUsage,Uncategorized,,,True,0,,36af912626196f82,9574,340
+BuiltIn_Sqrt_02_Geometry.ahk,BuiltIn Sqrt 02 Geometry,Uncategorized,,,True,0,,e9d95f7d2725aa52,13630,552
+BuiltIn_Sqrt_03_Statistics.ahk,BuiltIn Sqrt 03 Statistics,Uncategorized,,,True,0,,eb3f7c208d8235d8,15465,562
+BuiltIn_StrCase_01_BasicConversions.ahk,BuiltIn StrCase 01 BasicConversions,Uncategorized,,,True,0,,ca222fa14080a8b1,12332,423
+BuiltIn_StrCase_02_TextFormatting.ahk,BuiltIn StrCase 02 TextFormatting,Uncategorized,,,True,0,,32c0bf1afe60fd82,17617,610
+BuiltIn_StrCase_03_DataNormalization.ahk,BuiltIn StrCase 03 DataNormalization,Uncategorized,,,True,0,,b84cfdd55a159764,22453,848
+BuiltIn_StrGet_01_BasicUsage.ahk,BuiltIn StrGet 01 BasicUsage,Uncategorized,,,True,0,,c217c082ee6bdefd,9461,294
+BuiltIn_StrGet_02_Encoding.ahk,BuiltIn StrGet 02 Encoding,Uncategorized,,,True,0,,9cd23b757b4da22d,8154,260
+BuiltIn_StrLen_01_BasicUsage.ahk,BuiltIn StrLen 01 BasicUsage,Uncategorized,,,True,0,,54323efcb1139d7a,5448,199
+BuiltIn_StrLen_02_Validation.ahk,BuiltIn StrLen 02 Validation,Uncategorized,,,True,0,,90b312c703ab5889,9434,351
+BuiltIn_StrLen_03_TextProcessing.ahk,BuiltIn StrLen 03 TextProcessing,Uncategorized,,,True,0,,60858c72508d8f41,11242,415
+BuiltIn_StrPut_01_BasicUsage.ahk,BuiltIn StrPut 01 BasicUsage,Uncategorized,,,True,0,,904771ace9512388,9225,300
+BuiltIn_StrPut_02_Encoding.ahk,BuiltIn StrPut 02 Encoding,Uncategorized,,,True,0,,10e1b4fb7266cbb7,8901,299
+BuiltIn_StrReplace_01_BasicUsage.ahk,BuiltIn StrReplace 01 BasicUsage,Uncategorized,,,True,0,,18d1eef057b35f01,25171,659
+BuiltIn_StrReplace_02_TextCleaning.ahk,BuiltIn StrReplace 02 TextCleaning,Uncategorized,,,True,0,,ccfd8ecc814f0e9e,35978,957
+BuiltIn_StrReplace_03_AdvancedReplacement.ahk,BuiltIn StrReplace 03 AdvancedReplacement,Uncategorized,,,True,0,,9f62bbfc4ee8e105,40631,1131
+BuiltIn_StrSplit_01_BasicUsage.ahk,BuiltIn StrSplit 01 BasicUsage,Uncategorized,,,True,0,,bc8506fae757b569,11061,406
+BuiltIn_StrSplit_02_CSVParsing.ahk,BuiltIn StrSplit 02 CSVParsing,Uncategorized,,,True,0,,e64995ec05ccd405,13841,587
+BuiltIn_StrSplit_03_AdvancedParsing.ahk,BuiltIn StrSplit 03 AdvancedParsing,Uncategorized,,,True,0,,5c03729cb1ac1f23,17965,669
+BuiltIn_SubStr_01_BasicUsage.ahk,BuiltIn SubStr 01 BasicUsage,Uncategorized,,,True,0,,b16d89f7aa3409c9,6686,246
+BuiltIn_SubStr_02_TextManipulation.ahk,BuiltIn SubStr 02 TextManipulation,Uncategorized,,,True,0,,729ef977b6c542ef,10953,417
+BuiltIn_SubStr_03_DataExtraction.ahk,BuiltIn SubStr 03 DataExtraction,Uncategorized,,,True,0,,f7122c0447265f75,9622,373
+BuiltIn_Switch_01.ahk,BuiltIn Switch 01,Uncategorized,,,True,0,,f6d28d2e28933838,21812,755
+BuiltIn_Switch_02.ahk,BuiltIn Switch 02,Uncategorized,,,True,0,,9bedcc659ceee68e,18046,630
+BuiltIn_Switch_03.ahk,BuiltIn Switch 03,Uncategorized,,,True,0,,9625ca4a04c7f064,16355,562
+BuiltIn_Switch_04.ahk,BuiltIn Switch 04,Uncategorized,,,True,0,,22c825490d432876,17024,570
+BuiltIn_SysGet_01_Metrics.ahk,BuiltIn SysGet 01 Metrics,Uncategorized,,,True,0,,264b6e9a6cb32aae,19512,508
+BuiltIn_SysGet_02_Colors.ahk,BuiltIn SysGet 02 Colors,Uncategorized,,,True,0,,1460e09a1408c047,18254,502
+BuiltIn_SysGet_03_Info.ahk,BuiltIn SysGet 03 Info,Uncategorized,,,True,0,,132629ab86aeafff,20288,510
+BuiltIn_ToolTip_01.ahk,BuiltIn ToolTip 01,Uncategorized,,,True,0,,f4cdf650c2c16b36,15116,551
+BuiltIn_ToolTip_02.ahk,BuiltIn ToolTip 02,Uncategorized,,,True,0,,00c21e01cee0a23b,22782,844
+BuiltIn_ToolTip_03.ahk,BuiltIn ToolTip 03,Uncategorized,,,True,0,,1aad673865e0f4a8,22020,829
+BuiltIn_TrayTip_01.ahk,BuiltIn TrayTip 01,Uncategorized,,,True,0,,0d5ab4fb95f7cafe,14975,544
+BuiltIn_TrayTip_02.ahk,BuiltIn TrayTip 02,Uncategorized,,,True,0,,bfbef9dbe3398c3a,20567,838
+BuiltIn_TreeView_01_BasicUsage.ahk,BuiltIn TreeView 01 BasicUsage,Uncategorized,,,True,0,,805e7167311afdba,24921,812
+BuiltIn_TreeView_02_Navigation.ahk,BuiltIn TreeView 02 Navigation,Uncategorized,,,True,0,,bc004f19735a98b2,31204,1142
+BuiltIn_TreeView_03_Selection.ahk,BuiltIn TreeView 03 Selection,Uncategorized,,,True,0,,ecc5e9a96fa8af86,31979,1100
+BuiltIn_TreeView_04_Icons.ahk,BuiltIn TreeView 04 Icons,Uncategorized,,,True,0,,74c526edeedd1a18,24444,709
+BuiltIn_TreeView_05_DragDrop.ahk,BuiltIn TreeView 05 DragDrop,Uncategorized,,,True,0,,b81f1af854c0e75f,27077,907
+BuiltIn_TreeView_06_ContextMenu.ahk,BuiltIn TreeView 06 ContextMenu,Uncategorized,,,True,0,,670b2884d994221b,32483,1011
+BuiltIn_TreeView_07_FileSystem.ahk,BuiltIn TreeView 07 FileSystem,Uncategorized,,,True,0,,35396cff665539ad,28903,911
+BuiltIn_TreeView_08_DataBinding.ahk,BuiltIn TreeView 08 DataBinding,Uncategorized,,,True,0,,d0eb2a5c61d65024,19725,680
+BuiltIn_TreeView_09_Searching.ahk,BuiltIn TreeView 09 Searching,Uncategorized,,,True,0,,1da5fd60dd80864e,25606,899
+BuiltIn_TreeView_10_Checkboxes.ahk,BuiltIn TreeView 10 Checkboxes,Uncategorized,,,True,0,,4c5b31a07d43c26d,27753,940
+BuiltIn_Trim_01_BasicUsage.ahk,BuiltIn Trim 01 BasicUsage,Uncategorized,,,True,0,,16ea0f6a949c7531,10688,388
+BuiltIn_Trim_02_DataCleaning.ahk,BuiltIn Trim 02 DataCleaning,Uncategorized,,,True,0,,fda2c2580172abf7,15433,630
+BuiltIn_Trim_03_TextProcessing.ahk,BuiltIn Trim 03 TextProcessing,Uncategorized,,,True,0,,362888738dc586e5,18352,749
+BuiltIn_TryCatch_01.ahk,BuiltIn TryCatch 01,Uncategorized,,,True,0,,de2f1bba345b4ec2,4333,184
+BuiltIn_TryCatch_02.ahk,BuiltIn TryCatch 02,Uncategorized,,,True,0,,537d03b093ea0c11,4336,184
+BuiltIn_TryCatch_03.ahk,BuiltIn TryCatch 03,Uncategorized,,,True,0,,defd1669b7621d2c,4321,184
+BuiltIn_TryCatch_04.ahk,BuiltIn TryCatch 04,Uncategorized,,,True,0,,98d14a0bb0ff2b74,4326,184
+BuiltIn_UseHook_01.ahk,BuiltIn UseHook 01,Uncategorized,,,True,0,,2240186950976b29,10833,429
+BuiltIn_VerCompare_01_BasicComparison.ahk,BuiltIn VerCompare 01 BasicComparison,Uncategorized,,,True,0,,61462f2e3cee4f1e,14312,490
+BuiltIn_VerCompare_02_VersionValidation.ahk,BuiltIn VerCompare 02 VersionValidation,Uncategorized,,,True,0,,8ddc8f1a04cf53cd,12485,426
+BuiltIn_Warn_01.ahk,BuiltIn Warn 01,Uncategorized,,,True,0,,539d712c820ac72d,10799,429
+BuiltIn_Warn_02.ahk,BuiltIn Warn 02,Uncategorized,,,True,0,,aad7e53bdcc9a421,10781,429
+BuiltIn_While_01.ahk,BuiltIn While 01,Uncategorized,,,True,0,,ce5b4a4da543c870,4192,181
+BuiltIn_While_02.ahk,BuiltIn While 02,Uncategorized,,,True,0,,9ee79bd47ad19a1f,4195,181
+BuiltIn_While_03.ahk,BuiltIn While 03,Uncategorized,,,True,0,,dc39a7d5a31a2c95,4189,181
+BuiltIn_While_04.ahk,BuiltIn While 04,Uncategorized,,,True,0,,5ca2488f3ae968b1,4201,181
+BuiltIn_WinActivate_01.ahk,BuiltIn WinActivate 01,Uncategorized,,,True,0,,6a29c22d58fe9248,11734,373
+BuiltIn_WinActivate_02.ahk,BuiltIn WinActivate 02,Uncategorized,,,True,0,,4368584a9d248512,15386,500
+BuiltIn_WinActivate_03.ahk,BuiltIn WinActivate 03,Uncategorized,,,True,0,,b5aa8d97a6bc9fa6,18131,654
+BuiltIn_WinClose_01.ahk,BuiltIn WinClose 01,Uncategorized,,,True,0,,1175920c30a0ad5a,6986,287
+BuiltIn_WinClose_02.ahk,BuiltIn WinClose 02,Uncategorized,,,True,0,,0fc2d96222ba0a1b,8089,320
+BuiltIn_WinClose_03.ahk,BuiltIn WinClose 03,Uncategorized,,,True,0,,863598d1c191096e,10863,419
+BuiltIn_WinExist_01.ahk,BuiltIn WinExist 01,Uncategorized,,,True,0,,9965736e04d4b583,15273,531
+BuiltIn_WinExist_02.ahk,BuiltIn WinExist 02,Uncategorized,,,True,0,,d69a9e14a331cccd,15720,531
+BuiltIn_WinExist_03.ahk,BuiltIn WinExist 03,Uncategorized,,,True,0,,06c14de0dea21363,14896,499
+BuiltIn_WinGetClass_01.ahk,BuiltIn WinGetClass 01,Uncategorized,,,True,0,,61a4272fbd112a4f,26472,911
+BuiltIn_WinGetClass_02.ahk,BuiltIn WinGetClass 02,Uncategorized,,,True,0,,71bedcd8ad52aa12,21918,774
+BuiltIn_WinGetClass_03.ahk,BuiltIn WinGetClass 03,Uncategorized,,,True,0,,90a95e6263ee7670,22553,801
+BuiltIn_WinGetList_01.ahk,BuiltIn WinGetList 01,Uncategorized,,,True,0,,0dccf074ce4f874b,15426,581
+BuiltIn_WinGetList_02.ahk,BuiltIn WinGetList 02,Uncategorized,,,True,0,,04583d1cbe3b589b,12860,500
+BuiltIn_WinGetPID_01.ahk,BuiltIn WinGetPID 01,Uncategorized,,,True,0,,81b13ea3ac09a39f,21442,765
+BuiltIn_WinGetPID_02.ahk,BuiltIn WinGetPID 02,Uncategorized,,,True,0,,c2a3e73edb291bf1,12647,463
+BuiltIn_WinGetPID_03.ahk,BuiltIn WinGetPID 03,Uncategorized,,,True,0,,9ea0f4484be3eaf9,16057,582
+BuiltIn_WinGetPos_01.ahk,BuiltIn WinGetPos 01,Uncategorized,,,True,0,,81168934e73ecb3a,31052,961
+BuiltIn_WinGetPos_02.ahk,BuiltIn WinGetPos 02,Uncategorized,,,True,0,,d3fac60c044e2f07,26735,924
+BuiltIn_WinGetPos_03.ahk,BuiltIn WinGetPos 03,Uncategorized,,,True,0,,9a041a155b091336,30509,1021
+BuiltIn_WinGetTitle_01.ahk,BuiltIn WinGetTitle 01,Uncategorized,,,True,0,,dc4f207a77f30a19,16085,577
+BuiltIn_WinGetTitle_02.ahk,BuiltIn WinGetTitle 02,Uncategorized,,,True,0,,ec3b4533c0851ecf,21273,747
+BuiltIn_WinGetTitle_03.ahk,BuiltIn WinGetTitle 03,Uncategorized,,,True,0,,8c7fdacd1658c881,23912,837
+BuiltIn_WinHide_01.ahk,BuiltIn WinHide 01,Uncategorized,,,True,0,,c73e28d742142d99,5329,218
+BuiltIn_WinHide_02.ahk,BuiltIn WinHide 02,Uncategorized,,,True,0,,d45489ae2408a0e2,5329,218
+BuiltIn_WinHide_03.ahk,BuiltIn WinHide 03,Uncategorized,,,True,0,,10b56cdc67d727d3,5329,218
+BuiltIn_WinMinMax_01.ahk,BuiltIn WinMinMax 01,Uncategorized,,,True,0,,dfdcaa2928ee73bb,10006,384
+BuiltIn_WinMove_01.ahk,BuiltIn WinMove 01,Uncategorized,,,True,0,,93b5d0a7dcc68560,12221,478
+BuiltIn_WinMove_02.ahk,BuiltIn WinMove 02,Uncategorized,,,True,0,,bc8d3c3f7c3d7cab,13336,474
+BuiltIn_WinMove_03.ahk,BuiltIn WinMove 03,Uncategorized,,,True,0,,1f1afa199f1f6dc2,13545,509
+BuiltIn_WinSetAlwaysOnTop_01.ahk,BuiltIn WinSetAlwaysOnTop 01,Uncategorized,,,True,0,,15a4e7b8ca5a3510,8481,331
+BuiltIn_WinSetAlwaysOnTop_02.ahk,BuiltIn WinSetAlwaysOnTop 02,Uncategorized,,,True,0,,da8770e03040ea78,7493,274
+BuiltIn_WinSetTitle_01.ahk,BuiltIn WinSetTitle 01,Uncategorized,,,True,0,,31711b569a3b93ad,19007,666
+BuiltIn_WinSetTitle_02.ahk,BuiltIn WinSetTitle 02,Uncategorized,,,True,0,,2ecc73d63710aad5,16379,617
+BuiltIn_WinSetTitle_03.ahk,BuiltIn WinSetTitle 03,Uncategorized,,,True,0,,2c28c6df5960b334,12902,493
+BuiltIn_WinSetTransparent_01.ahk,BuiltIn WinSetTransparent 01,Uncategorized,,,True,0,,346e9309a8431470,8245,303
+BuiltIn_WinSetTransparent_02.ahk,BuiltIn WinSetTransparent 02,Uncategorized,,,True,0,,cba5093f3c0ad7b2,5186,192
+BuiltIn_WinShow_01.ahk,BuiltIn WinShow 01,Uncategorized,,,True,0,,0de614fc8ac55ae8,6921,276
+BuiltIn_WinShow_02.ahk,BuiltIn WinShow 02,Uncategorized,,,True,0,,2264f5ef0ec2b09d,6921,276
+BuiltIn_WinShow_03.ahk,BuiltIn WinShow 03,Uncategorized,,,True,0,,2a9d79afa27e9023,6921,276
+BuiltIn_WinWaitClose_01.ahk,BuiltIn WinWaitClose 01,Uncategorized,,,True,0,,d148b6b59c6c8e99,14154,502
+BuiltIn_WinWaitClose_02.ahk,BuiltIn WinWaitClose 02,Uncategorized,,,True,0,,5b5079355a06f093,9116,349
+BuiltIn_WinWait_01.ahk,BuiltIn WinWait 01,Uncategorized,,,True,0,,18d72640e16ff970,18671,668
+BuiltIn_WinWait_02.ahk,BuiltIn WinWait 02,Uncategorized,,,True,0,,2ce2f9d2ba55ddb7,12735,480
+BuiltIn_WinWait_03.ahk,BuiltIn WinWait 03,Uncategorized,,,True,0,,1a7c3d67bb5dcf60,16974,603
+ChildProcess_Examples.ahk,ChildProcess Examples,Uncategorized,,,True,0,,2c5b947da9ce2125,7153,283
+ControlFocus_01.ahk,ControlFocus 01,Uncategorized,,,True,0,,1251bc226aceaecd,11880,375
+ControlFocus_02.ahk,ControlFocus 02,Uncategorized,,,True,0,,5c1cf37bc29f0244,11879,375
+ControlFocus_03.ahk,ControlFocus 03,Uncategorized,,,True,0,,f16dcddbf5470b94,11878,375
+ControlGetFocus_01.ahk,ControlGetFocus 01,Uncategorized,,,True,0,,0068a8212e93ee2f,11899,375
+ControlGetFocus_02.ahk,ControlGetFocus 02,Uncategorized,,,True,0,,2e3b3b306aaef864,11896,375
+ControlGetFocus_03.ahk,ControlGetFocus 03,Uncategorized,,,True,0,,ad891f3385cf7fe5,11896,375
+ControlGetHwnd_01.ahk,ControlGetHwnd 01,Uncategorized,,,True,0,,f73349b805c69b7e,11894,375
+ControlGetPos_01.ahk,ControlGetPos 01,Uncategorized,,,True,0,,5790b0d5b9a6fe01,11887,375
+ControlGetPos_02.ahk,ControlGetPos 02,Uncategorized,,,True,0,,a04a4e6ad0ade4e5,11885,375
+ControlGetPos_03.ahk,ControlGetPos 03,Uncategorized,,,True,0,,68df84315777582c,11885,375
+ControlGetText_01.ahk,ControlGetText 01,Uncategorized,,,True,0,,470899fea21ac87a,11892,375
+ControlGetText_02.ahk,ControlGetText 02,Uncategorized,,,True,0,,1955cd7247826728,11896,375
+ControlGetText_03.ahk,ControlGetText 03,Uncategorized,,,True,0,,33117613671bbe5c,11890,375
+ControlMove_01.ahk,ControlMove 01,Uncategorized,,,True,0,,9c0b07964f898a1d,11880,375
+ControlMove_02.ahk,ControlMove 02,Uncategorized,,,True,0,,3e6af6ae6daaab3f,11875,375
+ControlMove_03.ahk,ControlMove 03,Uncategorized,,,True,0,,550f3ef60e8ea907,11877,375
+ControlSend_01.ahk,ControlSend 01,Uncategorized,,,True,0,,0fadbddbf066adcc,21839,686
+ControlSend_02.ahk,ControlSend 02,Uncategorized,,,True,0,,5274d8edf8956250,25216,787
+ControlSend_03.ahk,ControlSend 03,Uncategorized,,,True,0,,14e51ecf7237af17,11872,375
+ControlSetText_01.ahk,ControlSetText 01,Uncategorized,,,True,0,,9b40a35f8a9fb26d,11889,375
+ControlSetText_02.ahk,ControlSetText 02,Uncategorized,,,True,0,,fae17713c7317faf,11887,375
+ControlSetText_03.ahk,ControlSetText 03,Uncategorized,,,True,0,,1b34447972e58808,11890,375
+Control_#Include_ex1.ahk,Control #Include ex1,Uncategorized,,,True,0,,f13996cf8420e18e,159,3
+Control_#Include_ex2.ahk,Control #Include ex2,Uncategorized,,,True,0,,bfc80565d11679e7,125,3
+Control_#Include_ex3.ahk,Control #Include ex3,Uncategorized,,,True,0,,70cc3fa351002605,125,3
+Control_ByRef_ex1.ahk,Control ByRef ex1,Uncategorized,,,True,0,,0e185b13c380e543,219,8
+Control_ByRef_ex2.ahk,Control ByRef ex2,Uncategorized,,,True,0,,0546aef8b4770094,189,5
+Control_ByRef_ex3.ahk,Control ByRef ex3,Uncategorized,,,True,0,,02fdc847bfb3e057,241,6
+Control_ByRef_ex4.ahk,Control ByRef ex4,Uncategorized,,,True,0,,d6cff5af7c8bd864,162,4
+Control_ByRef_ex5.ahk,Control ByRef ex5,Uncategorized,,,True,0,,2ff4874f6818baaf,276,5
+Control_Catch_ex1.ahk,Control Catch ex1,Uncategorized,,,True,0,,3b0c64c5c8b5cc32,217,7
+Control_Exception_ex1.ahk,Control Exception ex1,Uncategorized,,,True,0,,88f042f3a4b515bf,138,3
+Control_IfEqual_ex1.ahk,Control IfEqual ex1,Uncategorized,,,True,0,,ea17e36292d50484,184,5
+Control_IfEqual_ex2.ahk,Control IfEqual ex2,Uncategorized,,,True,0,,11da31a8a8938ad9,169,5
+Control_Indentation-Issue349.ahk,Control Indentation-Issue349,Uncategorized,,,True,0,,e193250508c9ce5c,158,3
+Control_LoopFiles_ex1.ahk,Control LoopFiles ex1,Uncategorized,,,True,0,,5b8ba9cdbf1d0dde,272,5
+Control_LoopFiles_ex2.ahk,Control LoopFiles ex2,Uncategorized,,,True,0,,2da2d910f5507d88,378,7
+Control_LoopFiles_ex3.ahk,Control LoopFiles ex3,Uncategorized,,,True,0,,ec97bf48f5d1b1b2,515,8
+Control_LoopParse_ex1.ahk,Control LoopParse ex1,Uncategorized,,,True,0,,c2caf3c2ea7e9b05,214,6
+Control_LoopParse_ex3.ahk,Control LoopParse ex3,Uncategorized,,,True,0,,e3d59d0235737288,254,5
+Control_LoopParse_ex4.ahk,Control LoopParse ex4,Uncategorized,,,True,0,,8f4e24448fcc5b52,580,8
+Control_LoopParse_issue_77.ahk,Control LoopParse issue 77,Uncategorized,,,True,0,,12d18c3155446825,304,4
+Control_LoopReadFile_ex1.ahk,Control LoopReadFile ex1,Uncategorized,,,True,0,,dad241f88406110b,287,5
+Control_LoopReadFile_ex2.ahk,Control LoopReadFile ex2,Uncategorized,,,True,0,,d62c397eef6e61eb,213,3
+Control_Return_ex1-2.ahk,Control Return ex1-2,Uncategorized,,,True,0,,a665f1d49f130c76,208,4
+Control_Return_ex3.ahk,Control Return ex3,Uncategorized,,,True,0,,10420b9bc044cc24,415,9
+Control_Return_ex4.ahk,Control Return ex4,Uncategorized,,,True,0,,499d1b857a4b631b,246,3
+Control_SetTimer_ex1.ahk,Control SetTimer ex1,Uncategorized,,,True,0,,0932b217fb25c749,344,7
+Control_SetTimer_ex2.ahk,Control SetTimer ex2,Uncategorized,,,True,0,,808073dce359fa41,153,7
+Control_Switch_ex1.ahk,Control Switch ex1,Uncategorized,,,True,0,,13660267fbbeb4d4,332,4
+Control_Switch_ex2.ahk,Control Switch ex2,Uncategorized,,,True,0,,92fc42cf9cc167f3,156,5
+Control_Ternary_ex1.ahk,Control Ternary ex1,Uncategorized,,,True,0,,0717f87d67ea6038,120,3
+Control_if-blank-expr_ex1.ahk,Control if-blank-expr ex1,Uncategorized,,,True,0,,6d8f182565e2cd08,141,4
+Control_ifVarContains_ex1.ahk,Control ifVarContains ex1,Uncategorized,,,True,0,,9be408f951919f02,204,4
+Control_ifVarContains_ex3.ahk,Control ifVarContains ex3,Uncategorized,,,True,0,,29f75a33f5164de8,276,4
+Control_if_between_ex1.ahk,Control if between ex1,Uncategorized,,,True,0,,ab9f5c94cff6755a,231,7
+Control_if_issue25.ahk,Control if issue25,Uncategorized,,,True,0,,19088fbaa5a3a4fa,158,4
+Control_if_issue26_ex1.ahk,Control if issue26 ex1,Uncategorized,,,True,0,,8c00784802fe665d,134,4
+Control_if_issue26_ex2.ahk,Control if issue26 ex2,Uncategorized,,,True,0,,9807475cf022ca8f,160,5
+Control_if_issue26_ex3.ahk,Control if issue26 ex3,Uncategorized,,,True,0,,4de6744c49370fec,165,5
+Control_if_issue87_ex1.ahk,Control if issue87 ex1,Uncategorized,,,True,0,,c916ac2e796e11de,158,7
+Control_if_issue87_ex2.ahk,Control if issue87 ex2,Uncategorized,,,True,0,,ea6035b8662530d2,184,8
+Control_if_issue87_ex3.ahk,Control if issue87 ex3,Uncategorized,,,True,0,,8338214fae94599e,168,6
+Control_if_traditional_ex1.ahk,Control if traditional ex1,Uncategorized,,,True,0,,5ee2b207ce470399,145,4
+Control_if_traditional_ex2.ahk,Control if traditional ex2,Uncategorized,,,True,0,,69aeda07b9acb122,529,11
+Crypt_Examples.ahk,Crypt Examples,Uncategorized,,,True,0,,7866b9efbf9f7ab3,10923,385
+DataStructures_01_Stack_Queue.ahk,DataStructures 01 Stack Queue,Uncategorized,,,True,0,,0ddda6fd9a4cf3f8,4971,247
+DataStructures_02_MapBestPractices.ahk,DataStructures 02 MapBestPractices,Uncategorized,,,True,0,,f276c2dc9568b5c5,4770,190
+DateTime_DateAdd_ex01.ahk,DateTime DateAdd ex01,Uncategorized,,,True,0,,329a7ce972ce9404,160,6
+DateTime_DateAdd_ex02.ahk,DateTime DateAdd ex02,Uncategorized,,,True,0,,9548418d83c673b2,223,6
+DateTime_DateDiff_ex01.ahk,DateTime DateDiff ex01,Uncategorized,,,True,0,,cbe551cc66cc957e,152,6
+DateTime_DateDiff_ex02.ahk,DateTime DateDiff ex02,Uncategorized,,,True,0,,568dc1a2997aea6c,215,6
+DateTime_FormatTime_ex01.ahk,DateTime FormatTime ex01,Uncategorized,,,True,0,,7b17c9e85806396e,168,8
+DateTime_FormatTime_ex02.ahk,DateTime FormatTime ex02,Uncategorized,,,True,0,,c954568141299006,208,4
+Descolada_Basics_50_Examples.ahk,Descolada Basics 50 Examples,Uncategorized,,,True,0,,f5c7e19033bce227,15754,556
+DirCopy_01.ahk,DirCopy 01,Uncategorized,,,True,0,,3555c00adee2497b,12216,415
+DirCopy_02.ahk,DirCopy 02,Uncategorized,,,True,0,,834ea77779bd3c61,12239,415
+DirCopy_03.ahk,DirCopy 03,Uncategorized,,,True,0,,bfe5ae7c13eb391f,12238,415
+DirCreate_01.ahk,DirCreate 01,Uncategorized,,,True,0,,41f312a0bdcdf3de,13870,472
+DirCreate_02.ahk,DirCreate 02,Uncategorized,,,True,0,,ec4faafd33b8d1b7,15387,544
+DirCreate_03.ahk,DirCreate 03,Uncategorized,,,True,0,,888decffd0ddd584,12132,410
+DirDelete_01.ahk,DirDelete 01,Uncategorized,,,True,0,,17ff4433fc733f1a,12163,410
+DirExist_01.ahk,DirExist 01,Uncategorized,,,True,0,,f404e06614acd772,12075,412
+DirMove_01.ahk,DirMove 01,Uncategorized,,,True,0,,bab0d44e45b34c41,12207,415
+DirMove_02.ahk,DirMove 02,Uncategorized,,,True,0,,55409e72ff041e45,12227,415
+Directive_#AllowSameLineComments_ex1.ahk,Directive #AllowSameLineComments ex1,Uncategorized,,,True,0,,224f107da0f35b31,143,3
+Directive_#CommentFlag_ex1.ahk,Directive #CommentFlag ex1,Uncategorized,,,True,0,,0f3ebf9838c65e78,133,3
+Directive_#Delimiter_ex1.ahk,Directive #Delimiter ex1,Uncategorized,,,True,0,,ba88fb33f5a756d1,136,4
+Directive_#Delimiter_ex2.ahk,Directive #Delimiter ex2,Uncategorized,,,True,0,,66cdc732a39b7a60,153,4
+Directive_#Delimiter_ex3.ahk,Directive #Delimiter ex3,Uncategorized,,,True,0,,79d27e66edb02d05,156,4
+Directive_#Delimiter_ex5.ahk,Directive #Delimiter ex5,Uncategorized,,,True,0,,5f5b1b4431d848b8,160,4
+Directive_#EscapeChar_ex1.ahk,Directive #EscapeChar ex1,Uncategorized,,,True,0,,919cce5363ca56de,129,3
+Directive_#HotkeyInterval_ex1.ahk,Directive #HotkeyInterval ex1,Uncategorized,,,True,0,,e43aef45d853f419,136,3
+Directive_#HotkeyModifierTimeout_ex1.ahk,Directive #HotkeyModifierTimeout ex1,Uncategorized,,,True,0,,5d83c16049e7730d,150,3
+Directive_#Hotstring_ex1.ahk,Directive #Hotstring ex1,Uncategorized,,,True,0,,5bd603076bb89d81,117,3
+Directive_#If_ex1.ahk,Directive #If ex1,Uncategorized,,,True,0,,eac1fd478c53b5a8,294,6
+Directive_#If_ex3.ahk,Directive #If ex3,Uncategorized,,,True,0,,c02ff5ab37033f8b,114,4
+Directive_#InputLevel.ahk,Directive #InputLevel,Uncategorized,,,True,0,,b84c669df90ebae5,230,7
+Directive_#NoEnv_ex1.ahk,Directive #NoEnv ex1,Uncategorized,,,True,0,,2b6729977c06a6e0,201,4
+Directive_#Warn_ex1.ahk,Directive #Warn ex1,Uncategorized,,,True,0,,3d866da98ee1d7d7,298,10
+Directive_#WinActivateForce_ex1.ahk,Directive #WinActivateForce ex1,Uncategorized,,,True,0,,a5427b5f8285dfc0,123,3
+Directive_Directive_Mix.ahk,Directive Directive Mix,Uncategorized,,,True,0,,466ca463e1132008,303,8
+Directive_Directive_Mix2.ahk,Directive Directive Mix2,Uncategorized,,,True,0,,c17e559d6e8dd960,165,4
+Directive_Requires_ex1.ahk,Directive Requires ex1,Uncategorized,,,True,0,,10d0be2275854335,221,5
+DriveEject_01.ahk,DriveEject 01,Uncategorized,,,True,0,,cda9d743e62b12f5,24719,827
+DriveEject_02.ahk,DriveEject 02,Uncategorized,,,True,0,,cb4c751c8fc34c50,13349,454
+DriveGet_01.ahk,DriveGet 01,Uncategorized,,,True,0,,fc8dd54a0128d1fe,21368,646
+DriveGet_02.ahk,DriveGet 02,Uncategorized,,,True,0,,8a414d8416db31ae,30310,961
+DriveInfo_01.ahk,DriveInfo 01,Uncategorized,,,True,0,,dd257eb303f59ab3,28610,924
+DriveInfo_02.ahk,DriveInfo 02,Uncategorized,,,True,0,,1363462544f4acff,34913,1075
+DriveList_01.ahk,DriveList 01,Uncategorized,,,True,0,,4251fd3421b6b414,19030,580
+DriveList_02.ahk,DriveList 02,Uncategorized,,,True,0,,5b2850ae5a60db36,24736,737
+DriveSet_01.ahk,DriveSet 01,Uncategorized,,,True,0,,4499c27b62a5cf72,28762,949
+DriveSet_02.ahk,DriveSet 02,Uncategorized,,,True,0,,2db81f648c5970fa,34388,1145
+Env_BatchLines_ex1.ahk,Env BatchLines ex1,Uncategorized,,,True,0,,5e18a5375eaf2fec,148,5
+Env_CaretXY_ex1.ahk,Env CaretXY ex1,Uncategorized,,,True,0,,60cc5b6504c1209f,301,6
+Env_CaretXY_ex2.ahk,Env CaretXY ex2,Uncategorized,,,True,0,,3675a49c4c0e1bb3,270,8
+Env_CaretXY_ex3.ahk,Env CaretXY ex3,Uncategorized,,,True,0,,57122c230c15b74e,229,4
+Env_ClipWait_ex1.ahk,Env ClipWait ex1,Uncategorized,,,True,0,,f48156fde8e36707,290,9
+Env_Clipboard_ex1.ahk,Env Clipboard ex1,Uncategorized,,,True,0,,402bc55a49c6fc9d,301,4
+Env_EnvGet_ex1.ahk,Env EnvGet ex1,Uncategorized,,,True,0,,3f44b7eb84d8c98d,129,3
+Env_EnvGet_ex2.ahk,Env EnvGet ex2,Uncategorized,,,True,0,,dd6b569815199eb5,204,4
+Env_EnvSet_ex1.ahk,Env EnvSet ex1,Uncategorized,,,True,0,,313b75d7941b210c,148,3
+Env_Goto_ex1.ahk,Env Goto ex1,Uncategorized,,,True,0,,8e83b197eea83fab,268,8
+Env_Goto_ex2.ahk,Env Goto ex2,Uncategorized,,,True,0,,1aa7b95e4204931b,369,8
+Env_Goto_ex3.ahk,Env Goto ex3,Uncategorized,,,True,0,,00a73eb107c87d8c,913,27
+Env_Goto_ex4.ahk,Env Goto ex4,Uncategorized,,,True,0,,38608c859372b067,314,9
+Env_IPAddress_ex1-4.ahk,Env IPAddress ex1-4,Uncategorized,,,True,0,,bc21b6a905fbe718,282,7
+Env_OnClipboardChange_ex1.ahk,Env OnClipboardChange ex1,Uncategorized,,,True,0,,cfdb191c86b3657e,235,9
+Env_SysGet_ex1.ahk,Env SysGet ex1,Uncategorized,,,True,0,,9269468ed944e9a4,125,3
+Env_SysGet_ex2.ahk,Env SysGet ex2,Uncategorized,,,True,0,,6f925a047fdf7079,161,4
+Env_SysGet_ex3.ahk,Env SysGet ex3,Uncategorized,,,True,0,,1ebaa238ccbd293f,784,8
+Failed_#Delimiter_ex4.ahk,Failed #Delimiter ex4,Uncategorized,,,True,0,,805ab7b4f3592c21,266,10
+Failed_GlobalGui_ex1.ahk,Failed GlobalGui ex1,Uncategorized,,,True,0,,960dba56272567f8,306,17
+Failed_Menu_ex10.ahk,Failed Menu ex10,Uncategorized,,,True,0,,72c74157f2c738a1,314,14
+Failed_Menu_ex11.ahk,Failed Menu ex11,Uncategorized,,,True,0,,909fb95e4667ddb7,338,17
+Failed_MsgBox_ex11.ahk,Failed MsgBox ex11,Uncategorized,,,True,0,,5aecf2d611ea779b,321,19
+Failed_Process_ex3.ahk,Failed Process ex3,Uncategorized,,,True,0,,4883bc2484d4cc57,1181,45
+Failed_StringCaseSense_ex4.ahk,Failed StringCaseSense ex4,Uncategorized,,,True,0,,54880b5aa71d8b80,309,13
+Failed_Ternary_ex5.ahk,Failed Ternary ex5,Uncategorized,,,True,0,,5f1ff55070c094b0,225,10
+File_Append_ex1.ahk,File Append ex1,Uncategorized,,,True,0,,0c1f470e8a8d1573,169,3
+File_Append_ex2.ahk,File Append ex2,Uncategorized,,,True,0,,222c73fe2766f7f3,455,9
+File_Append_ex3.ahk,File Append ex3,Uncategorized,,,True,0,,b7076990eff6e090,704,19
+File_CopyDir_ex1.ahk,File CopyDir ex1,Uncategorized,,,True,0,,6d0244bfec95726f,160,3
+File_Copy_ex1.ahk,File Copy ex1,Uncategorized,,,True,0,,0a2627d9744d6600,166,3
+File_Copy_ex2.ahk,File Copy ex2,Uncategorized,,,True,0,,22f9ae3a0fe4e64a,158,3
+File_Copy_ex3.ahk,File Copy ex3,Uncategorized,,,True,0,,c3ea1178d9fec3c8,161,3
+File_CreateShortcut_ex1.ahk,File CreateShortcut ex1,Uncategorized,,,True,0,,5445b0d137a75db3,259,3
+File_Delete_ex1.ahk,File Delete ex1,Uncategorized,,,True,0,,a85e68cc1cb802d8,145,3
+File_DirCopy_ex01.ahk,File DirCopy ex01,Uncategorized,,,True,0,,1c8b6664a11c419f,158,4
+File_DirCopy_ex02.ahk,File DirCopy ex02,Uncategorized,,,True,0,,461581afd22cdab9,230,4
+File_DirCreate_ex01.ahk,File DirCreate ex01,Uncategorized,,,True,0,,a60e5ffed79f0d45,85,3
+File_DirCreate_ex02.ahk,File DirCreate ex02,Uncategorized,,,True,0,,d06909de2160a6cb,157,3
+File_DirDelete_ex01.ahk,File DirDelete ex01,Uncategorized,,,True,0,,be136cc4b0e7652e,114,4
+File_DirDelete_ex02.ahk,File DirDelete ex02,Uncategorized,,,True,0,,a12a290e4119fd3d,186,4
+File_DirMove_ex01.ahk,File DirMove ex01,Uncategorized,,,True,0,,a16299a66049e47b,158,4
+File_DirMove_ex02.ahk,File DirMove ex02,Uncategorized,,,True,0,,59cdeaff112aee41,230,4
+File_DirSelect_ex01.ahk,File DirSelect ex01,Uncategorized,,,True,0,,f44c65a83ce15646,142,5
+File_DirSelect_ex02.ahk,File DirSelect ex02,Uncategorized,,,True,0,,ca807320823c0c5b,214,5
+File_DriveGet_ex1.ahk,File DriveGet ex1,Uncategorized,,,True,0,,d2edb481540feca2,641,13
+File_DriveSpaceFree_ex1.ahk,File DriveSpaceFree ex1,Uncategorized,,,True,0,,20231ce19f9f5cfd,171,4
+File_Drive_ex1.ahk,File Drive ex1,Uncategorized,,,True,0,,9cb45bab333c54c2,141,3
+File_Drive_ex2.ahk,File Drive ex2,Uncategorized,,,True,0,,1111633cb2d36c82,121,3
+File_Exists_ex1.ahk,File Exists ex1,Uncategorized,,,True,0,,89863f80366a5cc5,159,3
+File_Exists_ex2.ahk,File Exists ex2,Uncategorized,,,True,0,,47d7a31fb9ba3cb8,182,3
+File_Exists_ex3.ahk,File Exists ex3,Uncategorized,,,True,0,,5e0d481a65b65ea4,192,3
+File_Exists_ex4.ahk,File Exists ex4,Uncategorized,,,True,0,,00c7295002ed8b7d,184,3
+File_FileAppend_ex02.ahk,File FileAppend ex02,Uncategorized,,,True,0,,302de213d770321a,176,12
+File_FileAppend_ex03.ahk,File FileAppend ex03,Uncategorized,,,True,0,,a995ed9efdd0ca84,95,4
+File_FileAppend_ex12.ahk,File FileAppend ex12,Uncategorized,,,True,0,,8bcd1f6d38f21c6d,235,6
+File_FileAppend_ex13.ahk,File FileAppend ex13,Uncategorized,,,True,0,,7cbf252794cac506,244,6
+File_FileAppend_ex16.ahk,File FileAppend ex16,Uncategorized,,,True,0,,9793f1f488590610,200,5
+File_FileAppend_ex2.ahk,File FileAppend ex2,Uncategorized,,,True,0,,73183e0ae37dfa18,459,14
+File_FileAppend_ex42.ahk,File FileAppend ex42,Uncategorized,,,True,0,,924bc7a758279fe9,223,11
+File_FileAppend_ex43.ahk,File FileAppend ex43,Uncategorized,,,True,0,,29191a305a2759e7,239,11
+File_FileExist_ex01.ahk,File FileExist ex01,Uncategorized,,,True,0,,0898468bef797bd8,115,3
+File_FileExist_ex02.ahk,File FileExist ex02,Uncategorized,,,True,0,,8687fd3a6d14272b,178,3
+File_FileExist_ex03.ahk,File FileExist ex03,Uncategorized,,,True,0,,bbb7c21ee7d7cac2,124,3
+File_FileExist_ex04.ahk,File FileExist ex04,Uncategorized,,,True,0,,3749f13262043a47,187,3
+File_FileGetSize_ex01.ahk,File FileGetSize ex01,Uncategorized,,,True,0,,1def9bc5985da60c,190,4
+File_GetAttrib_ex1.ahk,File GetAttrib ex1,Uncategorized,,,True,0,,c68df3aa44734309,158,3
+File_GetAttrib_ex2.ahk,File GetAttrib ex2,Uncategorized,,,True,0,,5d8d1d6d7a3578b3,216,4
+File_GetShortcut.ahk,File GetShortcut,Uncategorized,,,True,0,,628805b500fd1b22,411,6
+File_GetSize_1.ahk,File GetSize 1,Uncategorized,,,True,0,,47e8be5c97b8b4a3,382,7
+File_GetSize_ex1.ahk,File GetSize ex1,Uncategorized,,,True,0,,125fe08a004933e0,165,3
+File_GetSize_ex2.ahk,File GetSize ex2,Uncategorized,,,True,0,,899b1d38e24316eb,170,3
+File_GetTime_ex1.ahk,File GetTime ex1,Uncategorized,,,True,0,,d291c2ab45bca4bc,165,3
+File_GetTime_ex2.ahk,File GetTime ex2,Uncategorized,,,True,0,,865c8d35dc93fe9b,170,3
+File_GetVersion_ex1.ahk,File GetVersion ex1,Uncategorized,,,True,0,,4f59275a167c32e4,166,3
+File_GetVersion_ex2.ahk,File GetVersion ex2,Uncategorized,,,True,0,,15d14ea89b035c21,202,4
+File_IfExists_ex1.ahk,File IfExists ex1,Uncategorized,,,True,0,,5ef530c062126281,157,3
+File_IfExists_ex2.ahk,File IfExists ex2,Uncategorized,,,True,0,,53ec020a5edd8b05,180,3
+File_IfExists_ex3.ahk,File IfExists ex3,Uncategorized,,,True,0,,47a0eb3dd2fcaed9,190,3
+File_IniDelete_ex1.ahk,File IniDelete ex1,Uncategorized,,,True,0,,7845a742570c3725,161,3
+File_Install_ex1.ahk,File Install ex1,Uncategorized,,,True,0,,612d0a1c966c2d65,173,3
+File_MoveDir_ex1.ahk,File MoveDir ex1,Uncategorized,,,True,0,,3a92472b47a19212,152,3
+File_MoveDir_ex2.ahk,File MoveDir ex2,Uncategorized,,,True,0,,5666a1c9ee7c891a,167,3
+File_MoveDir_ex3.ahk,File MoveDir ex3,Uncategorized,,,True,0,,dbcebae69dff4bd9,170,3
+File_Move_ex1.ahk,File Move ex1,Uncategorized,,,True,0,,6b1eba8c1e3e8ca3,166,3
+File_Move_ex2.ahk,File Move ex2,Uncategorized,,,True,0,,396abb7b11426a03,161,3
+File_Move_ex3.ahk,File Move ex3,Uncategorized,,,True,0,,57e8f8ffea857248,161,3
+File_Move_ex4.ahk,File Move ex4,Uncategorized,,,True,0,,ff45c128b81ed09a,1167,9
+File_Obj_ex1.ahk,File Obj ex1,Uncategorized,,,True,0,,3f7a70109f8942d8,264,4
+File_ReadLine_Issue20.ahk,File ReadLine Issue20,Uncategorized,,,True,0,,60933aa162820621,211,5
+File_ReadLine_Issue20b.ahk,File ReadLine Issue20b,Uncategorized,,,True,0,,b8fac394ce97d83e,359,8
+File_Read_ex1.ahk,File Read ex1,Uncategorized,,,True,0,,9b962d8eea6963c3,162,3
+File_RecycleEmpty_ex1.ahk,File RecycleEmpty ex1,Uncategorized,,,True,0,,018ab9239b341706,141,3
+File_Recycle_ex1.ahk,File Recycle ex1,Uncategorized,,,True,0,,148f14fcc8eed079,147,3
+File_RemoveDir_ex1.ahk,File RemoveDir ex1,Uncategorized,,,True,0,,56c096ee58f0b76c,144,3
+File_RemoveDir_ex2.ahk,File RemoveDir ex2,Uncategorized,,,True,0,,c7802f33dd9a0af2,147,3
+File_SelectFile_ex1.ahk,File SelectFile ex1,Uncategorized,,,True,0,,0e69136f49ede1df,223,4
+File_SelectFile_ex2.ahk,File SelectFile ex2,Uncategorized,,,True,0,,bc004bc7d1895536,550,17
+File_SetAttrib_ex1.ahk,File SetAttrib ex1,Uncategorized,,,True,0,,b333d7032dbe3219,186,3
+File_SetAttrib_ex2.ahk,File SetAttrib ex2,Uncategorized,,,True,0,,7a3def931a4917f9,148,3
+File_SetAttrib_ex3.ahk,File SetAttrib ex3,Uncategorized,,,True,0,,93c19079fbfe49a3,160,3
+File_SetAttrib_ex4.ahk,File SetAttrib ex4,Uncategorized,,,True,0,,6e0600bf682db868,151,3
+File_SetTime_ex1.ahk,File SetTime ex1,Uncategorized,,,True,0,,143cafaf7e348496,143,3
+File_SetTime_ex2.ahk,File SetTime ex2,Uncategorized,,,True,0,,01e7ca58fb6e582c,162,3
+File_SetTime_ex3.ahk,File SetTime ex3,Uncategorized,,,True,0,,840dde161e137bd0,171,3
+File_SetTime_ex4.ahk,File SetTime ex4,Uncategorized,,,True,0,,fb4cd3d5b8ae5fdd,166,3
+File_SetWorkingDir_ex1.ahk,File SetWorkingDir ex1,Uncategorized,,,True,0,,986adc3337c3b893,149,3
+File_SetWorkingDir_ex2.ahk,File SetWorkingDir ex2,Uncategorized,,,True,0,,5a1f94185d9dcee7,141,3
+File_SplitPath_ex1.ahk,File SplitPath ex1,Uncategorized,,,True,0,,572bf6acee6cd1e3,645,12
+Flow_Sleep_ex01.ahk,Flow Sleep ex01,Uncategorized,,,True,0,,c9d877c70903ce30,70,3
+Flow_Sleep_ex04.ahk,Flow Sleep ex04,Uncategorized,,,True,0,,1eae767bcce25150,233,7
+Flow_Ternary_ex01.ahk,Flow Ternary ex01,Uncategorized,,,True,0,,33e79f7c7a6a42c2,120,7
+Flow_Ternary_ex02.ahk,Flow Ternary ex02,Uncategorized,,,True,0,,e2ef57c31008b956,192,7
+Functions_05_HigherOrder.ahk,Functions 05 HigherOrder,Uncategorized,,,True,0,,25a2eff733bfac9e,4448,172
+Functions_06_Types_Comparison.ahk,Functions 06 Types Comparison,Uncategorized,,,True,0,,44eed905d3966d80,4781,184
+GUI_05_StateManagement.ahk,GUI 05 StateManagement,Uncategorized,,,True,0,,5b81378d65c782d0,5335,190
+GUI_06_EventDriven.ahk,GUI 06 EventDriven,Uncategorized,,,True,0,,a010dca968545764,5635,231
+GUI_07_ControlPatterns.ahk,GUI 07 ControlPatterns,Uncategorized,,,True,0,,43702e1ccbb65e66,4851,195
+GUI_A_GuiControl_ex1.ahk,GUI A GuiControl ex1,Uncategorized,,,True,0,,ee266c506a98307f,612,11
+GUI_Anti-gLabel_ex1.ahk,GUI Anti-gLabel ex1,Uncategorized,,,True,0,,634c0819481374b2,342,8
+GUI_Gui-Assumed-gLabels.ahk,GUI Gui-Assumed-gLabels,Uncategorized,,,True,0,,8b52b9282c7c317a,1224,23
+GUI_Gui-Cancel_ex1.ahk,GUI Gui-Cancel ex1,Uncategorized,,,True,0,,40a4e10fa7488c52,327,9
+GUI_Gui-DDL-ContSec_ex1.ahk,GUI Gui-DDL-ContSec ex1,Uncategorized,,,True,0,,12db5deeb3e6faee,299,5
+GUI_Gui-Hwnd_ex1.ahk,GUI Gui-Hwnd ex1,Uncategorized,,,True,0,,7840521b2dd834df,561,9
+GUI_Gui-Hwnd_ex2.ahk,GUI Gui-Hwnd ex2,Uncategorized,,,True,0,,15add452575990d2,470,11
+GUI_Gui-Hwnd_ex3.ahk,GUI Gui-Hwnd ex3,Uncategorized,,,True,0,,514d3351144b712e,226,6
+GUI_Gui-Hwnd_ex4.ahk,GUI Gui-Hwnd ex4,Uncategorized,,,True,0,,05b3f54299b68252,525,16
+GUI_Gui-Hwnd_ex5.ahk,GUI Gui-Hwnd ex5,Uncategorized,,,True,0,,aeae011c7681ff26,254,7
+GUI_Gui-Hwnd_ex6.ahk,GUI Gui-Hwnd ex6,Uncategorized,,,True,0,,f19ebe65904a32ca,194,4
+GUI_Gui-Hwnd_ex7.ahk,GUI Gui-Hwnd ex7,Uncategorized,,,True,0,,3c9a73685f46e5f6,193,4
+GUI_Gui-New-Opt.ahk,GUI Gui-New-Opt,Uncategorized,,,True,0,,55716cfb46912233,225,4
+GUI_GuiControl-Font_ex1.ahk,GUI GuiControl-Font ex1,Uncategorized,,,True,0,,f686e2bbd517f862,408,7
+GUI_GuiControl-Options.ahk,GUI GuiControl-Options,Uncategorized,,,True,0,,efe6333eea86a51b,150,3
+GUI_GuiControl-Var_ex1.ahk,GUI GuiControl-Var ex1,Uncategorized,,,True,0,,883356b049454e1f,508,10
+GUI_GuiControlGet_ex1.ahk,GUI GuiControlGet ex1,Uncategorized,,,True,0,,188e1d01046f8337,578,11
+GUI_GuiControl_test.ahk,GUI GuiControl test,Uncategorized,,,True,0,,407dcb4c96bc772f,3357,29
+GUI_GuiExample1.ahk,GUI GuiExample1,Uncategorized,,,True,0,,2d049392fac5d70b,226,6
+GUI_GuiMenu_ex1.ahk,GUI GuiMenu ex1,Uncategorized,,,True,0,,c8802e791726d8b5,148,4
+GUI_Gui_Issue331.ahk,GUI Gui Issue331,Uncategorized,,,True,0,,bb691ee8bcc10c20,155,5
+GUI_Gui_ListWithVar_ex1.ahk,GUI Gui ListWithVar ex1,Uncategorized,,,True,0,,933292fc6068292d,259,6
+GUI_Gui_ex01.ahk,GUI Gui ex01,Uncategorized,,,True,0,,346ff0fabc4bff93,325,7
+GUI_Gui_ex02.ahk,GUI Gui ex02,Uncategorized,,,True,0,,9767dc66870fb585,397,7
+GUI_Gui_issue281_ex1.ahk,GUI Gui issue281 ex1,Uncategorized,,,True,0,,73e3a93ee689bbeb,228,5
+GUI_Gui_issue_#202.ahk,GUI Gui issue #202,Uncategorized,,,True,0,,5e41957fd07da238,1011,23
+GUI_Gui_pr_137_fixed.ahk,GUI Gui pr 137 fixed,Uncategorized,,,True,0,,06a24a2b49b9e83c,267,6
+GUI_InputBox_ex01.ahk,GUI InputBox ex01,Uncategorized,,,True,0,,5e1de2cf25815994,157,3
+GUI_InputBox_ex02.ahk,GUI InputBox ex02,Uncategorized,,,True,0,,caaf222d16ff3a37,229,3
+GUI_Inputbox_CBE.ahk,GUI Inputbox CBE,Uncategorized,,,True,0,,d82efa2baf10f006,425,3
+GUI_Inputbox_all-params.ahk,GUI Inputbox all-params,Uncategorized,,,True,0,,1229196f016fd8e5,344,3
+GUI_Inputbox_ex1.ahk,GUI Inputbox ex1,Uncategorized,,,True,0,,69b4c3f98679fd1f,208,3
+GUI_Inputbox_ex2.ahk,GUI Inputbox ex2,Uncategorized,,,True,0,,ceb4231dac656875,399,5
+GUI_Inputbox_ex3.ahk,GUI Inputbox ex3,Uncategorized,,,True,0,,9134917081c33828,388,3
+GUI_Listview_1.ahk,GUI Listview 1,Uncategorized,,,True,0,,ca6356b6be2d5899,1260,18
+GUI_Listview_2.ahk,GUI Listview 2,Uncategorized,,,True,0,,76502df86a71d372,954,16
+GUI_MenuGetHandle_ex1.ahk,GUI MenuGetHandle ex1,Uncategorized,,,True,0,,441a5e9854fb807f,179,3
+GUI_MsgBox_continuation.ahk,GUI MsgBox continuation,Uncategorized,,,True,0,,0c768433c1befacd,152,8
+GUI_MsgBox_ex01.ahk,GUI MsgBox ex01,Uncategorized,,,True,0,,6714493b1ce0bacf,158,4
+GUI_MsgBox_ex02.ahk,GUI MsgBox ex02,Uncategorized,,,True,0,,e2b666d8b9fd23e0,166,4
+GUI_MsgBox_ex03.ahk,GUI MsgBox ex03,Uncategorized,,,True,0,,24ad0adc639054c2,180,4
+GUI_MsgBox_ex04.ahk,GUI MsgBox ex04,Uncategorized,,,True,0,,164cbaa777382dfb,216,8
+GUI_MsgBox_ex05.ahk,GUI MsgBox ex05,Uncategorized,,,True,0,,c31b86cb55017ff2,224,10
+GUI_MsgBox_ex08.ahk,GUI MsgBox ex08,Uncategorized,,,True,0,,655a899f9f7c81fc,289,6
+GUI_MsgBox_ex09.ahk,GUI MsgBox ex09,Uncategorized,,,True,0,,fc56679ba900f48d,298,6
+GUI_MsgBox_ex1.ahk,GUI MsgBox ex1,Uncategorized,,,True,0,,10d94796be0ea67e,189,3
+GUI_MsgBox_ex12.ahk,GUI MsgBox ex12,Uncategorized,,,True,0,,12e7e5743886eb8c,165,4
+GUI_MsgBox_ex2.ahk,GUI MsgBox ex2,Uncategorized,,,True,0,,17fefc0ea015096d,194,3
+GUI_MsgBox_ex3.ahk,GUI MsgBox ex3,Uncategorized,,,True,0,,0741b525522833d4,201,4
+GUI_MsgBox_ex4.ahk,GUI MsgBox ex4,Uncategorized,,,True,0,,18c8c5c3a215cb15,201,4
+GUI_MsgBox_ex6.ahk,GUI MsgBox ex6,Uncategorized,,,True,0,,682df236726d9ac9,338,6
+GUI_MsgBox_ex7.ahk,GUI MsgBox ex7,Uncategorized,,,True,0,,ea13f677c220d1c9,198,3
+GUI_MsgBox_ex8.ahk,GUI MsgBox ex8,Uncategorized,,,True,0,,07c54f78d556a858,189,4
+GUI_MsgBox_ex9.ahk,GUI MsgBox ex9,Uncategorized,,,True,0,,69672fea2fca4184,167,3
+GUI_MsgBox_smart-mode-mix-1.ahk,GUI MsgBox smart-mode-mix-1,Uncategorized,,,True,0,,f05464d6757b6d53,530,11
+GUI_MsgBox_smart-mode-mix-2.ahk,GUI MsgBox smart-mode-mix-2,Uncategorized,,,True,0,,3c18fdfd7fe93bba,391,19
+GUI_MsgBox_wrong-timeout.ahk,GUI MsgBox wrong-timeout,Uncategorized,,,True,0,,84510a0806d178b5,225,4
+GUI_SB_SetParts_ex1.ahk,GUI SB SetParts ex1,Uncategorized,,,True,0,,51578ddb350c5f90,149,3
+GUI_Tray_Add_ex01.ahk,GUI Tray Add ex01,Uncategorized,,,True,0,,e301d87aa0942d49,175,5
+GUI_Tray_Add_ex02.ahk,GUI Tray Add ex02,Uncategorized,,,True,0,,58b1d0110b98a17d,247,5
+GUI_Treeview_1.ahk,GUI Treeview 1,Uncategorized,,,True,0,,81fd884054fe25f1,701,16
+GUI_gLabel_2025-07-03.ahk,GUI gLabel 2025-07-03,Uncategorized,,,True,0,,140e6379f43d2fb2,667,9
+GUI_gLabel_ex1.ahk,GUI gLabel ex1,Uncategorized,,,True,0,,eeeb10441dc21379,334,9
+GUI_msgbox_cont-sect-mix.ahk,GUI msgbox cont-sect-mix,Uncategorized,,,True,0,,ce808b76a5ff6536,490,15
+GitHub_01_Mouse_Hold.ahk,GitHub 01 Mouse Hold,Uncategorized,,,True,0,,be631202afe9c6fd,6589,253
+GitHub_02_System_Metrics_Menu.ahk,GitHub 02 System Metrics Menu,Uncategorized,,,True,0,,4b28dbc1e3630bfd,8904,292
+GitHub_03_APM_Counter.ahk,GitHub 03 APM Counter,Uncategorized,,,True,0,,723b092baec9df13,8381,326
+GitHub_04_Keyboard_Cursor_Control.ahk,GitHub 04 Keyboard Cursor Control,Uncategorized,,,True,0,,a71c3da38bf85166,9207,415
+GitHub_05_Edge_Triggered_Window.ahk,GitHub 05 Edge Triggered Window,Uncategorized,,,True,0,,d2f98926685f857f,9522,376
+GitHub_COM_01_Excel_CreateWorkbook.ahk,GitHub COM 01 Excel CreateWorkbook,Uncategorized,,,True,0,,20843db8f4af3030,9185,357
+GitHub_DllCall_01_CreateGUID.ahk,GitHub DllCall 01 CreateGUID,Uncategorized,,,True,0,,c99a6f182481bd09,4298,155
+GitHub_DllCall_02_SystemProcessorInfo.ahk,GitHub DllCall 02 SystemProcessorInfo,Uncategorized,,,True,0,,6e36402608792699,7966,252
+GitHub_DllCall_03_ClipboardHTML.ahk,GitHub DllCall 03 ClipboardHTML,Uncategorized,,,True,0,,fa953462d2ba93f7,9537,358
+GitHub_Example_01_CreateGUID.ahk,GitHub Example 01 CreateGUID,Uncategorized,,,True,0,,f89741d1f2961efb,1122,47
+GitHub_Example_02_WinExist_Patterns.ahk,GitHub Example 02 WinExist Patterns,Uncategorized,,,True,0,,e5a3289a404fd9fc,1049,44
+GitHub_Example_03_Notification_GUI.ahk,GitHub Example 03 Notification GUI,Uncategorized,,,True,0,,a44f9225119259a6,1081,39
+GitHub_Example_04_CSV_Parser_Simple.ahk,GitHub Example 04 CSV Parser Simple,Uncategorized,,,True,0,,27a7de30fcc90a8e,1861,82
+GitHub_Example_05_Buffer_Management.ahk,GitHub Example 05 Buffer Management,Uncategorized,,,True,0,,66b730ffefd5e812,1660,74
+GitHub_Example_06_Timer_Patterns.ahk,GitHub Example 06 Timer Patterns,Uncategorized,,,True,0,,4207b19f1d7e9fe3,1753,78
+GitHub_HTTP_01_WinHttpRequest_GET.ahk,GitHub HTTP 01 WinHttpRequest GET,Uncategorized,,,True,0,,a30049df0bb2e6a3,7847,294
+GitHub_HTTP_02_WinHttpRequest_POST.ahk,GitHub HTTP 02 WinHttpRequest POST,Uncategorized,,,True,0,,4518b16537a114a2,9499,367
+Hook_01_WinEventHook_Class.ahk,Hook 01 WinEventHook Class,Uncategorized,,,True,0,,cfef1c3d13cc6aff,5056,163
+Hook_02_WinEventHook_WindowTracking.ahk,Hook 02 WinEventHook WindowTracking,Uncategorized,,,True,0,,98478b5ac6d0f183,5467,159
+Hook_03_ShellHook_WindowTracking.ahk,Hook 03 ShellHook WindowTracking,Uncategorized,,,True,0,,fe61c73ac3d301d2,3623,151
+Hotkey_01_Basic_F1.ahk,Hotkey 01 Basic F1,Uncategorized,,,True,0,,fae1d9d5fa1d5a7b,189,11
+Hotkey_02_Single_Key_Action.ahk,Hotkey 02 Single Key Action,Uncategorized,,,True,0,,1c13a96197b963ba,319,16
+Hotkey_03_Ctrl_Modifier.ahk,Hotkey 03 Ctrl Modifier,Uncategorized,,,True,0,,aa5511da094bbb20,215,11
+Hotkey_04_Alt_Modifier.ahk,Hotkey 04 Alt Modifier,Uncategorized,,,True,0,,ad1a2f66938ee528,276,14
+Hotkey_05_Shift_Modifier.ahk,Hotkey 05 Shift Modifier,Uncategorized,,,True,0,,e9326df8177feb5d,236,13
+Hotkey_06_Win_Modifier.ahk,Hotkey 06 Win Modifier,Uncategorized,,,True,0,,2fe8ea2e53a172d1,299,15
+Hotkey_07_Multiple_Modifiers.ahk,Hotkey 07 Multiple Modifiers,Uncategorized,,,True,0,,66e837cc02cf3bbf,472,17
+Hotkey_08_Mouse_Buttons.ahk,Hotkey 08 Mouse Buttons,Uncategorized,,,True,0,,a734f9ad5eb72f3a,469,20
+Hotkey_09_Function_Keys.ahk,Hotkey 09 Function Keys,Uncategorized,,,True,0,,9f7f6c0353d2aff2,376,16
+Hotkey_10_Special_Keys.ahk,Hotkey 10 Special Keys,Uncategorized,,,True,0,,7d81cdaf35bcd95c,468,23
+Hotkey_11_Left_Right_Modifiers.ahk,Hotkey 11 Left Right Modifiers,Uncategorized,,,True,0,,02f864faec09d1dd,478,26
+Hotkey_12_Wildcard_Modifier.ahk,Hotkey 12 Wildcard Modifier,Uncategorized,,,True,0,,30139dee22b54875,490,21
+Hotkey_13_Tilde_Passthrough.ahk,Hotkey 13 Tilde Passthrough,Uncategorized,,,True,0,,72d34c2f877ac363,487,21
+Hotkey_14_Dollar_Prefix.ahk,Hotkey 14 Dollar Prefix,Uncategorized,,,True,0,,7bc7f7df1554be19,513,20
+Hotkey_15_Up_Suffix.ahk,Hotkey 15 Up Suffix,Uncategorized,,,True,0,,f771066aad7c9654,420,21
+Hotkey_16_Double_Colon_Remapping.ahk,Hotkey 16 Double Colon Remapping,Uncategorized,,,True,0,,edb74d54e899170a,340,21
+Hotkey_17_Custom_Combinations.ahk,Hotkey 17 Custom Combinations,Uncategorized,,,True,0,,7393ca781cc3317a,569,22
+Hotkey_18_Numpad_Keys.ahk,Hotkey 18 Numpad Keys,Uncategorized,,,True,0,,7db9abfc6dad1264,505,25
+Hotkey_19_Media_Keys.ahk,Hotkey 19 Media Keys,Uncategorized,,,True,0,,9e44b87e3b5d5691,674,29
+Hotkey_20_Joy_Gamepad.ahk,Hotkey 20 Joy Gamepad,Uncategorized,,,True,0,,acd915742ee3f672,694,24
+Hotkey_21_Hotkey_Function.ahk,Hotkey 21 Hotkey Function,Uncategorized,,,True,0,,2cbda995c1051cee,656,30
+Hotkey_22_Toggle_Hotkey.ahk,Hotkey 22 Toggle Hotkey,Uncategorized,,,True,0,,32a3747fcf87c6f4,516,27
+Hotkey_23_MaxThreads_Option.ahk,Hotkey 23 MaxThreads Option,Uncategorized,,,True,0,,157bcc39e775949f,739,30
+Hotkey_24_Priority_Option.ahk,Hotkey 24 Priority Option,Uncategorized,,,True,0,,0a7e07ddb882a066,684,27
+Hotkey_25_Suspend_Hotkeys.ahk,Hotkey 25 Suspend Hotkeys,Uncategorized,,,True,0,,43e3a463f3cc328b,608,23
+Hotkey_26_InputLevel.ahk,Hotkey 26 InputLevel,Uncategorized,,,True,0,,27b736615ef42ec4,671,27
+Hotkey_27_Dynamic_Remap.ahk,Hotkey 27 Dynamic Remap,Uncategorized,,,True,0,,3447835a5975b271,630,32
+Hotkey_28_Variant_HotIf.ahk,Hotkey 28 Variant HotIf,Uncategorized,,,True,0,,1b3479e6ebc79a4f,746,44
+Hotkey_29_Buffer_Option.ahk,Hotkey 29 Buffer Option,Uncategorized,,,True,0,,f0c8520444bac2c8,721,23
+Hotkey_30_Hotkey_If_Expr.ahk,Hotkey 30 Hotkey If Expr,Uncategorized,,,True,0,,76360322f2573d33,685,33
+Hotkey_31_HotIf_WinActive.ahk,Hotkey 31 HotIf WinActive,Uncategorized,,,True,0,,20a7752bb1bcf0cc,633,24
+Hotkey_32_HotIf_WinExist.ahk,Hotkey 32 HotIf WinExist,Uncategorized,,,True,0,,b2cead496c836323,741,31
+Hotkey_33_HotIf_MouseIsOver.ahk,Hotkey 33 HotIf MouseIsOver,Uncategorized,,,True,0,,b0e9a7430f86c5a3,784,30
+Hotkey_34_HotIf_GetKeyState.ahk,Hotkey 34 HotIf GetKeyState,Uncategorized,,,True,0,,67eac1d6d95454a3,749,31
+Hotkey_35_HotIf_Time.ahk,Hotkey 35 HotIf Time,Uncategorized,,,True,0,,366224721add3338,748,30
+Hotkey_36_HotIf_Custom_Function.ahk,Hotkey 36 HotIf Custom Function,Uncategorized,,,True,0,,ed2eba967efe6d7e,963,38
+Hotkey_37_HotIf_CaretPos.ahk,Hotkey 37 HotIf CaretPos,Uncategorized,,,True,0,,e78e584b18b0910f,951,49
+Hotkey_38_HotIf_Variables.ahk,Hotkey 38 HotIf Variables,Uncategorized,,,True,0,,96cd93f62e73602a,1015,54
+Hotkey_39_HotIf_FileExists.ahk,Hotkey 39 HotIf FileExists,Uncategorized,,,True,0,,eeba414417da33d0,807,36
+Hotkey_40_HotIf_ComboPress.ahk,Hotkey 40 HotIf ComboPress,Uncategorized,,,True,0,,d6c2fb82152b8be8,1253,54
+Hotkey_BlockInput_ex1.ahk,Hotkey BlockInput ex1,Uncategorized,,,True,0,,8aeeeefbae76a342,227,7
+Hotkey_Click_ex1.ahk,Hotkey Click ex1,Uncategorized,,,True,0,,587084b89a2729e1,108,3
+Hotkey_Click_ex2.ahk,Hotkey Click ex2,Uncategorized,,,True,0,,912b3ad4317f7f09,117,3
+Hotkey_CoordMode_ex1.ahk,Hotkey CoordMode ex1,Uncategorized,,,True,0,,91437ebe5134f904,135,3
+Hotkey_CoordMode_ex2.ahk,Hotkey CoordMode ex2,Uncategorized,,,True,0,,794d693c32641417,125,3
+Hotkey_GetKeyName_ex1.ahk,Hotkey GetKeyName ex1,Uncategorized,,,True,0,,f2763f1989364368,275,5
+Hotkey_GetKeyState_ex1.ahk,Hotkey GetKeyState ex1,Uncategorized,,,True,0,,1c0362b50a795514,487,6
+Hotkey_Input_ex1.ahk,Hotkey Input ex1,Uncategorized,,,True,0,,39e3b0dc6c109157,339,6
+Hotkey_Input_ex2.ahk,Hotkey Input ex2,Uncategorized,,,True,0,,39b85969a3b15be0,339,6
+Hotkey_Input_ex3.ahk,Hotkey Input ex3,Uncategorized,,,True,0,,8574357f2955b9c8,239,4
+Hotkey_KeyWait_ex5.ahk,Hotkey KeyWait ex5,Uncategorized,,,True,0,,d65c7780a0a203eb,339,8
+Hotkey_KeyWait_ex6.ahk,Hotkey KeyWait ex6,Uncategorized,,,True,0,,8cdbce006c432244,414,9
+Hotkey_KeyWait_ex7.ahk,Hotkey KeyWait ex7,Uncategorized,,,True,0,,9b30d1b964275c50,429,9
+Hotkey_ListOfKeys_ex1.ahk,Hotkey ListOfKeys ex1,Uncategorized,,,True,0,,ac34e07d5d8d2f08,888,15
+Hotkey_MousClick_examples.ahk,Hotkey MousClick examples,Uncategorized,,,True,0,,e57e28392266cf42,284,7
+Hotkey_MouseClickDrag_ex1.ahk,Hotkey MouseClickDrag ex1,Uncategorized,,,True,0,,9910cca7598fd6c2,150,3
+Hotkey_MouseClickDrag_ex2.ahk,Hotkey MouseClickDrag ex2,Uncategorized,,,True,0,,fb54fc0a6b8a86e0,521,13
+Hotkey_MouseGetPos_ex1.ahk,Hotkey MouseGetPos ex1,Uncategorized,,,True,0,,f793bdfe7e60ba20,182,4
+Hotkey_MouseGetPos_ex2.ahk,Hotkey MouseGetPos ex2,Uncategorized,,,True,0,,28804bf6ffb4f997,353,7
+Hotkey_SendLevel_ex1.ahk,Hotkey SendLevel ex1,Uncategorized,,,True,0,,79898c088061a15a,117,3
+Hotkey_SendMode_ex1.ahk,Hotkey SendMode ex1,Uncategorized,,,True,0,,9770c6a8d1c31d8a,121,3
+Hotkey_Send_ex1.ahk,Hotkey Send ex1,Uncategorized,,,True,0,,2998f1bc744961dc,136,3
+Hotkey_SetCapsLockState_ex1.ahk,Hotkey SetCapsLockState ex1,Uncategorized,,,True,0,,e33bafa44add2da8,161,3
+Hotkey_SetCapsLockState_examples.ahk,Hotkey SetCapsLockState examples,Uncategorized,,,True,0,,16c29d6c385dfa4d,220,5
+Hotkey_SetDefaultMouseSpeed_ex1.ahk,Hotkey SetDefaultMouseSpeed ex1,Uncategorized,,,True,0,,059442cd81a0c8d6,139,3
+Hotkey_SetKeyDelay_ex_1.ahk,Hotkey SetKeyDelay ex 1,Uncategorized,,,True,0,,704b47dd6df9a419,122,3
+Hotkey_SetNumLockState_ex1.ahk,Hotkey SetNumLockState ex1,Uncategorized,,,True,0,,8812f7fc150d5afa,132,3
+Hotkey_SetStoreCapsLockMode_ex1.ahk,Hotkey SetStoreCapsLockMode ex1,Uncategorized,,,True,0,,b0884cbe4f0a83c3,143,3
+Hotkey_SetStoreCapsLockMoed_ex1.ahk,Hotkey SetStoreCapsLockMoed ex1,Uncategorized,,,True,0,,7b9640b9626c8b81,143,3
+Hotkey_controlSend_ex1.ahk,Hotkey controlSend ex1,Uncategorized,,,True,0,,f2c2600ed742bcb3,619,9
+Hotkey_controlSend_ex2.ahk,Hotkey controlSend ex2,Uncategorized,,,True,0,,394dde7f32dc29e6,313,6
+Hotkey_controlclick_ex1.ahk,Hotkey controlclick ex1,Uncategorized,,,True,0,,47d94946468c2b76,178,4
+Hotkey_controlclick_ex2.ahk,Hotkey controlclick ex2,Uncategorized,,,True,0,,7029c9555f7f3099,152,3
+Hotkey_controlclick_ex3.ahk,Hotkey controlclick ex3,Uncategorized,,,True,0,,c28702b8b6d07239,247,4
+Hotstring_41_Basic.ahk,Hotstring 41 Basic,Uncategorized,,,True,0,,203138965c39db5a,505,33
+Hotstring_42_Asterisk_Option.ahk,Hotstring 42 Asterisk Option,Uncategorized,,,True,0,,ff2c2d1430d0f9c8,547,27
+Hotstring_43_Question_Option.ahk,Hotstring 43 Question Option,Uncategorized,,,True,0,,2089443d833b7894,626,29
+Hotstring_44_Case_Sensitive.ahk,Hotstring 44 Case Sensitive,Uncategorized,,,True,0,,76951ea749e48ae0,669,32
+Hotstring_45_Raw_Text.ahk,Hotstring 45 Raw Text,Uncategorized,,,True,0,,0355665bbbc17540,801,38
+Hotstring_46_Backspace_Option.ahk,Hotstring 46 Backspace Option,Uncategorized,,,True,0,,f4c2c249b4ff1e44,569,30
+Hotstring_47_Dynamic_Hotstrings.ahk,Hotstring 47 Dynamic Hotstrings,Uncategorized,,,True,0,,6d4ed041873c45a5,859,56
+Hotstring_48_Multi_Option.ahk,Hotstring 48 Multi Option,Uncategorized,,,True,0,,3c6023cb134617ae,911,51
+Hotstring_49_Context_Hotstrings.ahk,Hotstring 49 Context Hotstrings,Uncategorized,,,True,0,,dc6df1273b6e9272,955,49
+Hotstring_50_Advanced_Replacement.ahk,Hotstring 50 Advanced Replacement,Uncategorized,,,True,0,,b6dc5a43ec072467,1900,87
+Integrity_Accumulated Errors 01.ahk,Integrity Accumulated Errors 01,Uncategorized,,,True,0,,9c5a345ddf2fbae5,18328,97
+Integrity_Class&Func_Mask_01.ahk,Integrity Class&Func Mask 01,Uncategorized,,,True,0,,4788e1fd2d036a92,1152,14
+Integrity_Class_01_Issue_379.ahk,Integrity Class 01 Issue 379,Uncategorized,,,True,0,,8b754c07768b7862,506,5
+Integrity_Continuation MIX 2025-06.ahk,Integrity Continuation MIX 2025-06,Uncategorized,,,True,0,,9cd85ac560713713,6775,158
+Integrity_blankMissing_output_issue_277.ahk,Integrity blankMissing output issue 277,Uncategorized,,,True,0,,b25536f95dbe852e,392,9
+Iterator_01_Chainable.ahk,Iterator 01 Chainable,Uncategorized,,,True,0,,eaf8d768d4c87236,4349,165
+Iterator_02_Range.ahk,Iterator 02 Range,Uncategorized,,,True,0,,614b34ba8dfcc11b,4068,166
+JSON_Practical_Examples.ahk,JSON Practical Examples,Uncategorized,,,True,0,,6b2d1c8efd1360e0,15803,535
+Lib_01_String_Extensions.ahk,Lib 01 String Extensions,Uncategorized,,,True,1,String,497c5a5327e69715,6081,207
+Lib_02_Array_Extensions.ahk,Lib 02 Array Extensions,Uncategorized,,,True,1,Array,c9b9327fee638bd8,8244,279
+Lib_03_WinEvent_Monitoring.ahk,Lib 03 WinEvent Monitoring,Uncategorized,,,True,1,WinEvent,e234c38c86f4d6e5,7498,306
+Lib_04_Media_Control.ahk,Lib 04 Media Control,Uncategorized,,,True,1,Media,0f3eccfe5310bbd5,7999,308
+Lib_ComObjError_ex1.ahk,Lib ComObjError ex1,Uncategorized,,,True,0,,b17ba5c7931fc587,219,5
+Lib_ComObjMissing_ex1.ahk,Lib ComObjMissing ex1,Uncategorized,,,True,0,,8db38467735aea4a,845,10
+Lib_ComObjMissing_ex2.ahk,Lib ComObjMissing ex2,Uncategorized,,,True,0,,2c635d5c5300ae0a,601,8
+Lib_ComObjParameter_ex1.ahk,Lib ComObjParameter ex1,Uncategorized,,,True,0,,3dccb30ba2700d7b,159,3
+Lib_DllCall_ex11.ahk,Lib DllCall ex11,Uncategorized,,,True,0,,a80348baa08bbf6c,950,10
+Lib_DllCall_ex12.ahk,Lib DllCall ex12,Uncategorized,,,True,0,,2d538ae724cabeb4,420,4
+Lib_DllCall_ex5.ahk,Lib DllCall ex5,Uncategorized,,,True,0,,7f032aa9d6ce56dc,373,7
+Lib_DllCall_ex7.ahk,Lib DllCall ex7,Uncategorized,,,True,0,,753a85ac72fd8436,591,8
+Lib_Numput.ahk,Lib Numput,Uncategorized,,,True,0,,7ca17a25fbd32b73,273,4
+Lib_NumputInNumput_Inline.ahk,Lib NumputInNumput Inline,Uncategorized,,,True,0,,6663126e6439ccec,320,4
+Lib_NumputInNumput_WithContinuationSection.ahk,Lib NumputInNumput WithContinuationSection,Uncategorized,,,True,0,,a02947dc0bf51189,404,3
+Lib_Numput_ex2.ahk,Lib Numput ex2,Uncategorized,,,True,0,,8d704e12f95d42c8,348,3
+Lib_VarSetCapacity_ex1.ahk,Lib VarSetCapacity ex1,Uncategorized,,,True,0,,73ae8c556a4e9364,276,3
+Lib_VarSetCapacity_ex10.ahk,Lib VarSetCapacity ex10,Uncategorized,,,True,0,,36c67ecaf7ac56be,1387,8
+Lib_VarSetCapacity_ex11.ahk,Lib VarSetCapacity ex11,Uncategorized,,,True,0,,c93a21a77247f72a,1406,16
+Lib_VarSetCapacity_ex12.ahk,Lib VarSetCapacity ex12,Uncategorized,,,True,0,,909e761b515c0aa2,291,5
+Lib_VarSetCapacity_ex2.ahk,Lib VarSetCapacity ex2,Uncategorized,,,True,0,,c5adc41cd755015f,310,3
+Lib_VarSetCapacity_ex3.ahk,Lib VarSetCapacity ex3,Uncategorized,,,True,0,,a3e9037d05680af9,413,3
+Lib_VarSetCapacity_ex4.ahk,Lib VarSetCapacity ex4,Uncategorized,,,True,0,,c33ed452c77fce0d,2109,10
+Lib_VarSetCapacity_ex5.ahk,Lib VarSetCapacity ex5,Uncategorized,,,True,0,,eeb85e530966c0e1,534,3
+Lib_VarSetCapacity_ex6.ahk,Lib VarSetCapacity ex6,Uncategorized,,,True,0,,88e91839488ac935,538,8
+Lib_VarSetCapacity_ex7.ahk,Lib VarSetCapacity ex7,Uncategorized,,,True,0,,9f6183270fdb2d49,589,6
+Lib_VarSetCapacity_ex8.ahk,Lib VarSetCapacity ex8,Uncategorized,,,True,0,,1a2811b5f8772452,344,5
+Lib_VarSetCapacity_ex9.ahk,Lib VarSetCapacity ex9,Uncategorized,,,True,0,,20181be4669f4398,670,3
+Library_01_ActiveScript_JScript.ahk,Library 01 ActiveScript JScript,Uncategorized,,,True,1,ActiveScript,1d1baddd0fe1fc11,3891,134
+Library_02_CLR_DotNet.ahk,Library 02 CLR DotNet,Uncategorized,,,True,1,CLR,5c301a7a2e4e0a7a,5624,203
+Library_03_WinRT_Modern.ahk,Library 03 WinRT Modern,Uncategorized,,,True,1,winrt.ahk,b3e71ebac19f8aaf,6505,205
+Library_04_ActiveScript_JSON.ahk,Library 04 ActiveScript JSON,Uncategorized,,,True,1,ActiveScript,6cccdf9e96a3aeea,3812,139
+Library_05_CLR_WindowsForms.ahk,Library 05 CLR WindowsForms,Uncategorized,,,True,1,CLR,cf639bbe3cac187c,5359,193
+Library_06_CLR_Cryptography.ahk,Library 06 CLR Cryptography,Uncategorized,,,True,1,CLR,5986ec0ccf61bfc2,6264,214
+Library_07_CLR_HTTP_Requests.ahk,Library 07 CLR HTTP Requests,Uncategorized,,,True,2,"CLR, ActiveScript",49833d4ba3e6e70e,5906,217
+Library_08_WinRT_Toasts.ahk,Library 08 WinRT Toasts,Uncategorized,,,True,1,winrt.ahk,fdc9722e7ced4a20,5672,216
+Library_09_WinRT_JSON.ahk,Library 09 WinRT JSON,Uncategorized,,,True,1,winrt.ahk,9145d644be6907b0,6481,241
+Library_10_WinRT_Crypto.ahk,Library 10 WinRT Crypto,Uncategorized,,,True,1,winrt.ahk,6f783bef6eb68ebd,6837,237
+Library_11_CLR_Database.ahk,Library 11 CLR Database,Uncategorized,,,True,1,CLR,9951e4519c464ab6,6972,259
+Library_12_CLR_XML.ahk,Library 12 CLR XML,Uncategorized,,,True,1,CLR,8c6c2d78a69d1992,7526,263
+Library_13_ActiveScript_Regex.ahk,Library 13 ActiveScript Regex,Uncategorized,,,True,1,ActiveScript,bc1529e50c7d91ca,7388,257
+Library_Acc_01_ElementFromPoint.ahk,Library Acc 01 ElementFromPoint,Accessibility (MSAA),,,True,1,Descolada/Acc-v2,b8461f0bf9ae5bfb,1588,54
+Library_Array_01_Map.ahk,Library Array 01 Map,Functional Programming,,,True,1,Descolada/AHK-v2-libraries/Array.ahk,4892e499874b6d19,1362,54
+Library_Audio_Examples.ahk,Library Audio Examples,Uncategorized,,,True,0,,dfa48cc04ed16485,15815,407
+Library_Chrome_Examples.ahk,Library Chrome Examples,Uncategorized,,,True,0,,93666ddf46f2edf3,11046,330
+Library_DirectoryWatcher_Examples.ahk,Library DirectoryWatcher Examples,Uncategorized,,,True,0,,d0039a8795ab245d,14141,386
+Library_GDI_01_CreateBitmap.ahk,Library GDI 01 CreateBitmap,Graphics (GDI+),,,True,1,mmikeww/AHKv2-Gdip,9c24ba6e1cbe3a8d,2061,71
+Library_HTTP_01_Request.ahk,Library HTTP 01 Request,Networking,,,True,1,thqby/ahk2_lib/WinHttpRequest,1ea904616ae9fec7,2050,81
+Library_HTTP_Examples.ahk,Library HTTP Examples,Uncategorized,,,True,0,,b63d14e7a8e376f1,11301,343
+Library_ImagePut_01_Window.ahk,Library ImagePut 01 Window,Image Processing,,,True,1,iseahound/ImagePut,aa139bbba7eb13cf,1442,52
+Library_ImagePut_02_Clipboard.ahk,Library ImagePut 02 Clipboard,Image Processing,,,True,1,iseahound/ImagePut,045a01e55520fa32,1684,54
+Library_JSON_01_Load.ahk,Library JSON 01 Load,Data Serialization,,,True,1,G33kDude/cJson.ahk,198f40ad54374d4d,2026,69
+Library_JSON_02_Dump.ahk,Library JSON 02 Dump,Data Serialization,,,True,1,G33kDude/cJson.ahk,ea7a84384640db5e,1999,80
+Library_JSON_Examples.ahk,Library JSON Examples,Uncategorized,,,True,0,,8e372531a03a77b1,9860,420
+Library_Monitor_Examples.ahk,Library Monitor Examples,Uncategorized,,,True,0,,4861bcd80b001b93,11314,328
+Library_OCR_01_FromRect.ahk,Library OCR 01 FromRect,Optical Character Recognition,,,True,1,Descolada/OCR,770c19e4761550ce,1378,51
+Library_OCR_02_FindString.ahk,Library OCR 02 FindString,Optical Character Recognition,,,True,1,Descolada/OCR,beb9cec57a35e3b9,1382,51
+Library_Promise_Examples.ahk,Library Promise Examples,Uncategorized,,,True,0,,5c98b0f19e7fc7ee,10197,322
+Library_SQLite_01_Query.ahk,Library SQLite 01 Query,Database,,,True,1,RaptorX/SQLite,e10eb108c1506452,1956,74
+Library_Socket_Examples.ahk,Library Socket Examples,Uncategorized,,,True,0,,283a0027bfea5795,12174,355
+Library_String_01_Case.ahk,Library String 01 Case,String Manipulation,,,True,1,Descolada/AHK-v2-libraries/String.ahk,8d3b832cefcf8cd6,1841,66
+Library_UIA_01_ElementFromPoint.ahk,Library UIA 01 ElementFromPoint,UI Automation,,,True,1,Descolada/UIA-v2,670651c28be9d5e9,1340,39
+Library_UIA_02_FindElement.ahk,Library UIA 02 FindElement,UI Automation,,,True,1,Descolada/UIA-v2,46f1fb9f8bac9c25,1366,51
+Library_WebSocket_Examples.ahk,Library WebSocket Examples,Uncategorized,,,True,0,,57ce4cf57fe26f8e,16950,477
+Library_WebView2_01_Create.ahk,Library WebView2 01 Create,Web-based GUI,,,True,1,thqby/ahk2_lib/WebView2,0a648b64ad04c312,1819,70
+Library_WinRT_01_Toast.ahk,Library WinRT 01 Toast,Windows Runtime (UWP),,,True,1,Lexikos/winrt.ahk,c96cd28c882859eb,1851,68
+Library_YAML_Examples.ahk,Library YAML Examples,Uncategorized,,,True,0,,c43ccafd8efdf634,11373,369
+Local_Research_Scanner.ahk,Local Research Scanner,Uncategorized,,,True,0,,80b904932334d5fb,13641,504
+Maths_Transform_BitMath.ahk,Maths Transform BitMath,Uncategorized,,,True,0,,ab7d23d36f9167ae,479,9
+Maths_Transform_NumberMath.ahk,Maths Transform NumberMath,Uncategorized,,,True,0,,57a685a9c8d0ea01,562,18
+MetaFunction_01_Call.ahk,MetaFunction 01 Call,Uncategorized,,,True,0,,07ccd153933ca805,3901,144
+MetaFunction_02_Enum_Range.ahk,MetaFunction 02 Enum Range,Uncategorized,,,True,0,,cb5f563ec0740174,3620,138
+MetaFunction_03_Enum_GroupedArray.ahk,MetaFunction 03 Enum GroupedArray,Uncategorized,,,True,0,,4282f9d7c14b6040,4343,173
+Misc_Class-Property.ahk,Misc Class-Property,Uncategorized,,,True,0,,21de11a47e401211,175,4
+Misc_Concat_ex01.ahk,Misc Concat ex01,Uncategorized,,,True,0,,cd219f313ddd121e,128,7
+Misc_Concat_ex02.ahk,Misc Concat ex02,Uncategorized,,,True,0,,a5bb567bce07a48f,210,4
+Misc_Concat_ex04.ahk,Misc Concat ex04,Uncategorized,,,True,0,,3d1c1083b9ebbeee,198,4
+Misc_Concat_ex05.ahk,Misc Concat ex05,Uncategorized,,,True,0,,cd219f313ddd121e,128,7
+Misc_Concat_ex06.ahk,Misc Concat ex06,Uncategorized,,,True,0,,46fc2765dea95826,123,7
+Misc_Concat_ex07.ahk,Misc Concat ex07,Uncategorized,,,True,0,,16ed4c92b7929080,193,4
+Misc_Concat_ex08.ahk,Misc Concat ex08,Uncategorized,,,True,0,,5cce35b2231fe217,180,13
+Misc_Concat_ex09.ahk,Misc Concat ex09,Uncategorized,,,True,0,,aa7d2836edcf7c2e,212,5
+Misc_Concat_ex10.ahk,Misc Concat ex10,Uncategorized,,,True,0,,fca82bd7f8de17f9,253,13
+Misc_Concat_ex11.ahk,Misc Concat ex11,Uncategorized,,,True,0,,7ff3e03bb1a33ee3,275,5
+Misc_DriveGetSpaceFree_ex01.ahk,Misc DriveGetSpaceFree ex01,Uncategorized,,,True,0,,2e2673c72800b687,187,4
+Misc_FuncObj-Call_ex1.ahk,Misc FuncObj-Call ex1,Uncategorized,,,True,0,,2c6cfdbc19369e74,171,5
+Misc_FuncsInObj.ahk,Misc FuncsInObj,Uncategorized,,,True,0,,23deb1de7b135dde,146,3
+Misc_MyFunc_ex01.ahk,Misc MyFunc ex01,Uncategorized,,,True,0,,0fababe084815715,198,4
+Misc_MyFunc_ex02.ahk,Misc MyFunc ex02,Uncategorized,,,True,0,,d6ccd0f271ca9292,193,6
+Misc_RunWait_ex01.ahk,Misc RunWait ex01,Uncategorized,,,True,0,,b2acc857ea5acd8e,92,3
+Misc_RunWait_ex02.ahk,Misc RunWait ex02,Uncategorized,,,True,0,,7e4fb324cc81b1ee,164,3
+Misc_SendMessage_ex01.ahk,Misc SendMessage ex01,Uncategorized,,,True,0,,e7a2d60ef0432859,161,3
+Misc_SendMessage_ex02.ahk,Misc SendMessage ex02,Uncategorized,,,True,0,,b9f914435b0d0205,233,3
+Misc_Sort_ex01.ahk,Misc Sort ex01,Uncategorized,,,True,0,,534ea77029e57e36,194,5
+Misc_Sort_ex02.ahk,Misc Sort ex02,Uncategorized,,,True,0,,ed844670dd319989,257,5
+Misc_SplitPath_ex01.ahk,Misc SplitPath ex01,Uncategorized,,,True,0,,a18f02dbac2b27f6,222,7
+Misc_SplitPath_ex02.ahk,Misc SplitPath ex02,Uncategorized,,,True,0,,dc644ef6814e406d,285,7
+Misc_SplitPath_ex03.ahk,Misc SplitPath ex03,Uncategorized,,,True,0,,c0cb1298a36f766a,215,6
+Misc_SplitPath_ex04.ahk,Misc SplitPath ex04,Uncategorized,,,True,0,,31541ef4558e56ad,278,6
+Misc_SplitPath_ex06.ahk,Misc SplitPath ex06,Uncategorized,,,True,0,,dc644ef6814e406d,285,7
+Misc_ToolTip_ex01.ahk,Misc ToolTip ex01,Uncategorized,,,True,0,,f18baa6f88475ed9,103,4
+Misc_ToolTip_ex02.ahk,Misc ToolTip ex02,Uncategorized,,,True,0,,5ab91ad3fddf40e5,166,4
+Misc_func_A_ThisFunc.ahk,Misc func A ThisFunc,Uncategorized,,,True,0,,cf94f2c2bb91ada6,205,4
+Misc_func_ex1.ahk,Misc func ex1,Uncategorized,,,True,0,,3f571bc7c42c20a3,170,4
+Misc_isFloat_ex01.ahk,Misc isFloat ex01,Uncategorized,,,True,0,,32d369e966a31b73,176,5
+Misc_isFloat_ex02.ahk,Misc isFloat ex02,Uncategorized,,,True,0,,4df595fa8a102f10,230,5
+Misc_isFloat_ex03.ahk,Misc isFloat ex03,Uncategorized,,,True,0,,de80b97d62729688,188,5
+Misc_isFloat_ex04.ahk,Misc isFloat ex04,Uncategorized,,,True,0,,a01b1838ae2450c2,242,5
+Module_Practical_01_Validators.ahk,Module Practical 01 Validators,Uncategorized,,,True,0,,0df8ab30d5a9c8b0,9648,402
+Module_Practical_02_Validators_Consumer.ahk,Module Practical 02 Validators Consumer,Uncategorized,,,True,0,,14894ad233c171d3,9185,348
+Module_Practical_03_EventSystem.ahk,Module Practical 03 EventSystem,Uncategorized,,,True,0,,78e815976d2f2bc4,6740,298
+Module_Practical_04_EventSystem_Consumer.ahk,Module Practical 04 EventSystem Consumer,Uncategorized,,,True,0,,d7f9dc225fe1e14d,8627,359
+Module_Tier1_01_MathHelpers_Module.ahk,Module Tier1 01 MathHelpers Module,Uncategorized,,,True,0,,6f570c01d7bbd677,3298,163
+Module_Tier1_02_MathHelpers_Consumer.ahk,Module Tier1 02 MathHelpers Consumer,Uncategorized,,,True,0,,1e2212898cf4df7c,2445,101
+Module_Tier1_03_DataStructures_Module.ahk,Module Tier1 03 DataStructures Module,Uncategorized,,,True,0,,516fc6dd45b5cb0f,5635,285
+Module_Tier1_04_DataStructures_Consumer.ahk,Module Tier1 04 DataStructures Consumer,Uncategorized,,,True,0,,36e93389330c385c,5594,220
+Module_Tier1_05_Constants_Module.ahk,Module Tier1 05 Constants Module,Uncategorized,,,True,0,,caddf98a98f8028b,7884,340
+Module_Tier1_06_Constants_Consumer.ahk,Module Tier1 06 Constants Consumer,Uncategorized,,,True,0,,6a2fd351d6479314,5075,161
+Module_Tier2_01_StringHelpers_Module.ahk,Module Tier2 01 StringHelpers Module,Uncategorized,,,True,0,,b60cc1fd45775bd5,6977,294
+Module_Tier2_02_SelectiveImports_Demo.ahk,Module Tier2 02 SelectiveImports Demo,Uncategorized,,,True,0,,ec0bdc530c81881e,5389,186
+Module_Tier2_03_ImportAliases_Demo.ahk,Module Tier2 03 ImportAliases Demo,Uncategorized,,,True,0,,43acb6269048ab8e,7394,273
+Module_Tier2_04_ArrayHelpers_Module.ahk,Module Tier2 04 ArrayHelpers Module,Uncategorized,,,True,0,,7056841def8f2759,7526,333
+Module_Tier2_05_MixedImports_Demo.ahk,Module Tier2 05 MixedImports Demo,Uncategorized,,,True,0,,c392c3bd27cb4d24,8258,307
+Module_Tier3_01_Helpers_Bundle.ahk,Module Tier3 01 Helpers Bundle,Uncategorized,,,True,0,,1031af6b648f0d1a,3133,121
+Module_Tier3_02_Bundle_Consumer.ahk,Module Tier3 02 Bundle Consumer,Uncategorized,,,True,0,,8ce9d98aff8da99a,7202,252
+OOP_01_FirstClass_Functions.ahk,OOP 01 FirstClass Functions,Uncategorized,,,True,0,,ed2646735a46eaa8,4376,186
+OOP_02_PropertyDescriptors.ahk,OOP 02 PropertyDescriptors,Uncategorized,,,True,0,,3a31f93abe9ddf1d,2897,108
+OOP_03_ObjBindMethod_Timer.ahk,OOP 03 ObjBindMethod Timer,Uncategorized,,,True,0,,a5432a0206487b24,1791,79
+OOP_04_ObjBindMethod_GUI.ahk,OOP 04 ObjBindMethod GUI,Uncategorized,,,True,0,,602673eeaf143680,2366,89
+OOP_05_Super_Inheritance.ahk,OOP 05 Super Inheritance,Uncategorized,,,True,0,,713cdf82a8e28f23,3009,147
+OOP_06_Inheritance_Practical.ahk,OOP 06 Inheritance Practical,Uncategorized,,,True,0,,0dea9a207d503205,4447,189
+OOP_07_PropertyValidation.ahk,OOP 07 PropertyValidation,Uncategorized,,,True,0,,d3a99e3946721479,4757,226
+OOP_08_StaticMethods.ahk,OOP 08 StaticMethods,Uncategorized,,,True,0,,51c195f20573018e,5034,227
+OOP_09_Destructors.ahk,OOP 09 Destructors,Uncategorized,,,True,0,,4c7218d44783cd0e,4975,216
+OOP_App_BankingSystem.ahk,OOP App BankingSystem,Uncategorized,,,True,0,,027524cc475bfbc9,6498,189
+OOP_App_BlogSystem.ahk,OOP App BlogSystem,Uncategorized,,,True,0,,bb8b88b88358c083,9387,293
+OOP_App_CalendarScheduler.ahk,OOP App CalendarScheduler,Uncategorized,,,True,0,,af2d324a0ce40afe,8804,280
+OOP_App_ChatApplication.ahk,OOP App ChatApplication,Uncategorized,,,True,0,,95758d6338ce19de,8064,260
+OOP_App_CourseRegistration.ahk,OOP App CourseRegistration,Uncategorized,,,True,0,,de83f4ac08ad8a34,8901,264
+OOP_App_EmployeeManagement.ahk,OOP App EmployeeManagement,Uncategorized,,,True,0,,aa72e8b4cc4bb24d,8068,244
+OOP_App_FileManager.ahk,OOP App FileManager,Uncategorized,,,True,0,,1fec300a88a21092,8481,304
+OOP_App_GameEngine.ahk,OOP App GameEngine,Uncategorized,,,True,0,,bdc24f98b2f08772,7949,276
+OOP_App_HotelBooking.ahk,OOP App HotelBooking,Uncategorized,,,True,0,,75b0812ff2c27b73,7965,231
+OOP_App_InventoryManagement.ahk,OOP App InventoryManagement,Uncategorized,,,True,0,,557d98081b22a4d7,9668,277
+OOP_App_LibraryManagement.ahk,OOP App LibraryManagement,Uncategorized,,,True,0,,0848e07cd2e54747,7184,230
+OOP_App_RestaurantOrder.ahk,OOP App RestaurantOrder,Uncategorized,,,True,0,,8f1951287cff0a5f,8042,250
+OOP_App_ShoppingCart.ahk,OOP App ShoppingCart,Uncategorized,,,True,0,,75781dc0589c6584,5399,184
+OOP_App_TaskManagement.ahk,OOP App TaskManagement,Uncategorized,,,True,0,,6dbb4b022f51fcb4,4662,151
+OOP_App_TicketSystem.ahk,OOP App TicketSystem,Uncategorized,,,True,0,,9ec8c4c2a44d2afd,7282,209
+OOP_DataStructure_BinarySearchTree.ahk,OOP DataStructure BinarySearchTree,Uncategorized,,,True,0,,9fa4ab245975f4df,4553,181
+OOP_DataStructure_CircularBuffer.ahk,OOP DataStructure CircularBuffer,Uncategorized,,,True,0,,68de7f9aababd56e,2788,120
+OOP_DataStructure_Deque.ahk,OOP DataStructure Deque,Uncategorized,,,True,0,,c78233df645def84,3014,122
+OOP_DataStructure_DoublyLinkedList.ahk,OOP DataStructure DoublyLinkedList,Uncategorized,,,True,0,,b8c3b6e2b0a34ecc,4163,185
+OOP_DataStructure_Graph.ahk,OOP DataStructure Graph,Uncategorized,,,True,0,,368518de816bfa86,4687,173
+OOP_DataStructure_HashTable.ahk,OOP DataStructure HashTable,Uncategorized,,,True,0,,2758813f64830606,5362,224
+OOP_DataStructure_LinkedList.ahk,OOP DataStructure LinkedList,Uncategorized,,,True,0,,907dda672cc1ae3a,3401,148
+OOP_DataStructure_MinHeap.ahk,OOP DataStructure MinHeap,Uncategorized,,,True,0,,64682f253deab050,2722,104
+OOP_DataStructure_MinMaxStack.ahk,OOP DataStructure MinMaxStack,Uncategorized,,,True,0,,1f7edd959d634b7b,2242,81
+OOP_DataStructure_Trie.ahk,OOP DataStructure Trie,Uncategorized,,,True,0,,531d09c8e8d8cc18,4529,178
+OOP_Event_AsyncHandler.ahk,OOP Event AsyncHandler,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_CustomEvents.ahk,OOP Event CustomEvents,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_Dispatcher.ahk,OOP Event Dispatcher,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_EventAggregator.ahk,OOP Event EventAggregator,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_EventEmitter.ahk,OOP Event EventEmitter,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_EventQueue.ahk,OOP Event EventQueue,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_MessageBus.ahk,OOP Event MessageBus,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_ObserverNotify.ahk,OOP Event ObserverNotify,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_Publisher.ahk,OOP Event Publisher,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_ReactiveStream.ahk,OOP Event ReactiveStream,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Event_SignalSlot.ahk,OOP Event SignalSlot,Uncategorized,,,True,0,,1120ac5e7a89e8bf,523,12
+OOP_Feature_AbstractClass.ahk,OOP Feature AbstractClass,Uncategorized,,,True,0,,d843d7e54d6cbe2e,1385,36
+OOP_Feature_ClassVariables.ahk,OOP Feature ClassVariables,Uncategorized,,,True,0,,14d0ca0b2af9b24f,3216,107
+OOP_Feature_DelegationPattern.ahk,OOP Feature DelegationPattern,Uncategorized,,,True,0,,aa510229ffce167f,3733,127
+OOP_Feature_Destructors.ahk,OOP Feature Destructors,Uncategorized,,,True,0,,485b86f87f447038,3441,116
+OOP_Feature_Inheritance.ahk,OOP Feature Inheritance,Uncategorized,,,True,0,,840240421f8eb2fd,1569,50
+OOP_Feature_InterfacePattern.ahk,OOP Feature InterfacePattern,Uncategorized,,,True,0,,894dd26ed0890a37,3641,133
+OOP_Feature_LazyInitialization.ahk,OOP Feature LazyInitialization,Uncategorized,,,True,0,,9a1aa42aecfe1df8,4893,169
+OOP_Feature_MethodChaining.ahk,OOP Feature MethodChaining,Uncategorized,,,True,0,,bc5b73625f3877f3,2047,70
+OOP_Feature_MethodOverriding.ahk,OOP Feature MethodOverriding,Uncategorized,,,True,0,,dd1a5a16fdc05fb6,2782,98
+OOP_Feature_Mixins.ahk,OOP Feature Mixins,Uncategorized,,,True,0,,d69b211ecbd161d2,2391,71
+OOP_Feature_NestedClasses.ahk,OOP Feature NestedClasses,Uncategorized,,,True,0,,f4b8493eda47a61e,2848,91
+OOP_Feature_OperatorOverloading.ahk,OOP Feature OperatorOverloading,Uncategorized,,,True,0,,fd30312b9472595d,1494,46
+OOP_Feature_PrivateMembers.ahk,OOP Feature PrivateMembers,Uncategorized,,,True,0,,38b2530fe229691f,3176,110
+OOP_Feature_PropertyGetterSetter.ahk,OOP Feature PropertyGetterSetter,Uncategorized,,,True,0,,3fe175825bfb1502,1399,42
+OOP_Feature_StaticMethods.ahk,OOP Feature StaticMethods,Uncategorized,,,True,0,,66b7a7c331f7ef60,1215,41
+OOP_File_BatchProcessor.ahk,OOP File BatchProcessor,Uncategorized,,,True,0,,96dc554de6c25906,266,9
+OOP_GUI_DataGrid.ahk,OOP GUI DataGrid,Uncategorized,,,True,0,,1971c0ad31b20935,2547,85
+OOP_GUI_FormBuilder.ahk,OOP GUI FormBuilder,Uncategorized,,,True,0,,350b789c3e5bf193,4173,152
+OOP_GUI_MenuSystem.ahk,OOP GUI MenuSystem,Uncategorized,,,True,0,,15775ca36ad648ff,310,9
+OOP_GUI_NotificationSystem.ahk,OOP GUI NotificationSystem,Uncategorized,,,True,0,,a1fd22a0bb53a48e,315,9
+OOP_GUI_TabsManager.ahk,OOP GUI TabsManager,Uncategorized,,,True,0,,60bde90af9c5bd79,1352,44
+OOP_Pattern_Adapter.ahk,OOP Pattern Adapter,Uncategorized,,,True,0,,b4e638f69985826e,957,39
+OOP_Pattern_Builder.ahk,OOP Pattern Builder,Uncategorized,,,True,0,,6197ccaf418499dc,1172,39
+OOP_Pattern_ChainOfResponsibility.ahk,OOP Pattern ChainOfResponsibility,Uncategorized,,,True,0,,4df0918364ed5cec,1726,57
+OOP_Pattern_Command.ahk,OOP Pattern Command,Uncategorized,,,True,0,,81d8e1a41303f68c,1820,62
+OOP_Pattern_Composite.ahk,OOP Pattern Composite,Uncategorized,,,True,0,,cf10e9130cd6d773,1550,49
+OOP_Pattern_Decorator.ahk,OOP Pattern Decorator,Uncategorized,,,True,0,,fbe612e2711c7284,1397,49
+OOP_Pattern_Flyweight.ahk,OOP Pattern Flyweight,Uncategorized,,,True,0,,95342921578ec11a,1614,54
+OOP_Pattern_Mediator.ahk,OOP Pattern Mediator,Uncategorized,,,True,0,,fbe7116dc9c2bbbc,1258,51
+OOP_Pattern_Memento.ahk,OOP Pattern Memento,Uncategorized,,,True,0,,f184fc668a24b3e5,1248,48
+OOP_Pattern_Proxy.ahk,OOP Pattern Proxy,Uncategorized,,,True,0,,0e84390d45d450b0,1486,55
+OOP_Pattern_Repository.ahk,OOP Pattern Repository,Uncategorized,,,True,0,,1d31c2ac00545235,1589,60
+OOP_Pattern_State.ahk,OOP Pattern State,Uncategorized,,,True,0,,5ddf07deb6dee220,1328,48
+OOP_Pattern_Strategy.ahk,OOP Pattern Strategy,Uncategorized,,,True,0,,04c4f82334b5630b,1235,36
+OOP_Pattern_TemplateMethod.ahk,OOP Pattern TemplateMethod,Uncategorized,,,True,0,,645cdeca644f6527,1801,46
+OOP_Pattern_Visitor.ahk,OOP Pattern Visitor,Uncategorized,,,True,0,,d19f54dd5ed3b4d4,1541,51
+Pattern_01_MVC_Basic.ahk,Pattern 01 MVC Basic,Uncategorized,,,True,0,,8e5f27e6852a039d,2784,114
+Pattern_02_Observer_Basic.ahk,Pattern 02 Observer Basic,Uncategorized,,,True,0,,fd2d7e4f223bf1f6,2645,114
+Pattern_03_Observer_Counter.ahk,Pattern 03 Observer Counter,Uncategorized,,,True,0,,6ee26910287d6a42,3607,158
+Pattern_04_DependencyInjection_Basic.ahk,Pattern 04 DependencyInjection Basic,Uncategorized,,,True,0,,ec472af775a52b94,3375,141
+Pattern_05_MethodChaining.ahk,Pattern 05 MethodChaining,Uncategorized,,,True,0,,a6e303fbcc85cb2b,3259,135
+Pattern_06_Closures_Counter.ahk,Pattern 06 Closures Counter,Uncategorized,,,True,0,,d22524b2d9ac4a23,4409,155
+Pattern_07_Closures_Multiplier.ahk,Pattern 07 Closures Multiplier,Uncategorized,,,True,0,,3c1f1d27930f94ac,4308,164
+Pattern_08_EventSystem_PubSub.ahk,Pattern 08 EventSystem PubSub,Uncategorized,,,True,0,,4dafa98c7c79d844,2829,114
+Pattern_09_AbstractFactory.ahk,Pattern 09 AbstractFactory,Uncategorized,,,True,0,,dc127758b921e96d,3481,161
+Pattern_10_Callback_Advanced.ahk,Pattern 10 Callback Advanced,Uncategorized,,,True,0,,fa3199b54e3962f9,4345,174
+Pattern_11_EventEmitter.ahk,Pattern 11 EventEmitter,Uncategorized,,,True,0,,7e93bd89067b4f33,6366,244
+Pattern_12_Mixins_Composition.ahk,Pattern 12 Mixins Composition,Uncategorized,,,True,0,,514d3320c500e1d5,5014,221
+Process_OnMessage_Issue_136.ahk,Process OnMessage Issue 136,Uncategorized,,,True,0,,84cae95143ee17c5,475,16
+Process_OnMessage_Issue_384.ahk,Process OnMessage Issue 384,Uncategorized,,,True,0,,86cb04e1f06cf4f0,488,7
+Process_OnMessage_ex2.ahk,Process OnMessage ex2,Uncategorized,,,True,0,,6e2ff7366d964951,144,4
+Process_OnMessage_ex4.ahk,Process OnMessage ex4,Uncategorized,,,True,0,,5f65ce84bd80bd37,577,16
+Process_OnMessage_ex5.ahk,Process OnMessage ex5,Uncategorized,,,True,0,,166ea6d89ab4a821,487,11
+Process_OnMessage_ex6.ahk,Process OnMessage ex6,Uncategorized,,,True,0,,62be2938701c7ebd,256,7
+Process_OnMessage_ex7.ahk,Process OnMessage ex7,Uncategorized,,,True,0,,b36e3051577d4d33,153,3
+Process_OnMessage_ex8.ahk,Process OnMessage ex8,Uncategorized,,,True,0,,4453d0f302bb53a9,392,9
+Process_Process_close.ahk,Process Process close,Uncategorized,,,True,0,,00ad3732dc09e7a7,121,3
+Process_Process_ex1.ahk,Process Process ex1,Uncategorized,,,True,0,,4f4bb7d806bcdbbe,216,5
+Process_Process_ex2.ahk,Process Process ex2,Uncategorized,,,True,0,,6e5552a442d905da,691,14
+Process_Run_ex1.ahk,Process Run ex1,Uncategorized,,,True,0,,83c385c8cb73327d,102,3
+Process_Run_ex2.ahk,Process Run ex2,Uncategorized,,,True,0,,7eca22b712d0e641,199,3
+Process_Run_ex3.ahk,Process Run ex3,Uncategorized,,,True,0,,54a0f957692b70f5,232,5
+Process_Run_ex5.ahk,Process Run ex5,Uncategorized,,,True,0,,bf7d0b29e0010514,136,3
+Process_Run_ex6.ahk,Process Run ex6,Uncategorized,,,True,0,,11921780349e0bd4,158,3
+Process_Run_ex7.ahk,Process Run ex7,Uncategorized,,,True,0,,e161ecdf295e7195,875,10
+Process_Runas_ex1.ahk,Process Runas ex1,Uncategorized,,,True,0,,bc5bbb1ea5efd62a,181,5
+Process_Shutdown_ex1.ahk,Process Shutdown ex1,Uncategorized,,,True,0,,1d607c43ec95d0bb,118,4
+Process_Shutdown_ex2.ahk,Process Shutdown ex2,Uncategorized,,,True,0,,f0b06e2e3d45b9f7,158,3
+Registry_Loop_regestry_ex1.ahk,Registry Loop regestry ex1,Uncategorized,,,True,0,,e95d5a821b91cc4c,187,3
+Registry_RegDelete_ex1.ahk,Registry RegDelete ex1,Uncategorized,,,True,0,,3269256365a1315d,164,3
+Registry_RegDelete_ex1_2.ahk,Registry RegDelete ex1 2,Uncategorized,,,True,0,,392e38a9d5a2a4b6,166,3
+Registry_RegRead_ex1.ahk,Registry RegRead ex1,Uncategorized,,,True,0,,f8bcb2a15bfae651,173,3
+Registry_RegRead_ex2.ahk,Registry RegRead ex2,Uncategorized,,,True,0,,9cfc9ac70030064d,410,6
+Registry_RegWrite_ex1.ahk,Registry RegWrite ex1,Uncategorized,,,True,0,,b23b1d71c87f9731,180,3
+Registry_RegWrite_ex1_oldSyntax.ahk,Registry RegWrite ex1 oldSyntax,Uncategorized,,,True,0,,e7561aceb4dc18a3,190,3
+Registry_RegWrite_ex2.ahk,Registry RegWrite ex2,Uncategorized,,,True,0,,9a185a412d272554,180,3
+Registry_RegWrite_ex3.ahk,Registry RegWrite ex3,Uncategorized,,,True,0,,00011b0a0db58524,186,3
+Registry_SetRegView_ex1.ahk,Registry SetRegView ex1,Uncategorized,,,True,0,,2d5e416a33468789,577,10
+Screen_ImageSearch_ex1.ahk,Screen ImageSearch ex1,Uncategorized,,,True,0,,1dc8d93f0ed55c63,183,3
+Screen_ImageSearch_ex2.ahk,Screen ImageSearch ex2,Uncategorized,,,True,0,,acafe3da116ed1e5,531,7
+Screen_PixelGetColor_ex1.ahk,Screen PixelGetColor ex1,Uncategorized,,,True,0,,d146de9956e7c769,479,7
+Screen_PixelSearch_ex1.ahk,Screen PixelSearch ex1,Uncategorized,,,True,0,,2e049fa37c3e9930,425,6
+Screen_PixelSearch_ex2.ahk,Screen PixelSearch ex2,Uncategorized,,,True,0,,5e864a1f27ec6afe,350,6
+Sound_SoundBeeb_ex1.ahk,Sound SoundBeeb ex1,Uncategorized,,,True,0,,154abfda71c2d81a,103,3
+Sound_SoundBeeb_ex2.ahk,Sound SoundBeeb ex2,Uncategorized,,,True,0,,c41199314bfd34a1,111,3
+Sound_SoundGet_ex1.ahk,Sound SoundGet ex1,Uncategorized,,,True,0,,6fd4acf5f07f1fa5,178,4
+Sound_SoundPlay_ex1.ahk,Sound SoundPlay ex1,Uncategorized,,,True,0,,a5d436bcb10cae17,129,3
+Sound_SoundPlay_ex2.ahk,Sound SoundPlay ex2,Uncategorized,,,True,0,,afea649803e9fa37,108,3
+StdLib_01_FileRead.ahk,StdLib 01 FileRead,Uncategorized,,,True,0,,3a24426eb4e1556d,341,18
+StdLib_02_FileAppend.ahk,StdLib 02 FileAppend,Uncategorized,,,True,0,,1a7e6658ddc1d8ce,412,21
+StdLib_03_FileOpen.ahk,StdLib 03 FileOpen,Uncategorized,,,True,0,,5d52731ffb8da932,578,27
+StdLib_04_FileExist.ahk,StdLib 04 FileExist,Uncategorized,,,True,0,,85a9eb1e520b68f0,451,20
+StdLib_05_FileDelete.ahk,StdLib 05 FileDelete,Uncategorized,,,True,0,,2169ce6a6acdc7a8,462,20
+StdLib_06_FileCopy.ahk,StdLib 06 FileCopy,Uncategorized,,,True,0,,a7053aeaaf8b0fbe,435,23
+StdLib_07_FileMove.ahk,StdLib 07 FileMove,Uncategorized,,,True,0,,629779c155681f39,442,23
+StdLib_08_FileGetSize.ahk,StdLib 08 FileGetSize,Uncategorized,,,True,0,,0668b2286f72f2e9,411,20
+StdLib_09_FileGetAttrib.ahk,StdLib 09 FileGetAttrib,Uncategorized,,,True,0,,61ad7885651b5b11,567,24
+StdLib_10_FileSetAttrib.ahk,StdLib 10 FileSetAttrib,Uncategorized,,,True,0,,512c0563cf7b9c47,421,21
+StdLib_11_FileGetTime.ahk,StdLib 11 FileGetTime,Uncategorized,,,True,0,,67e9e210bf85e39c,525,21
+StdLib_12_FileSetTime.ahk,StdLib 12 FileSetTime,Uncategorized,,,True,0,,9b6f5b97136080da,455,21
+StdLib_13_FileSelect.ahk,StdLib 13 FileSelect,Uncategorized,,,True,0,,56dcf670015a5e67,317,16
+StdLib_14_DirSelect.ahk,StdLib 14 DirSelect,Uncategorized,,,True,0,,9e78a09e2b39b1f2,297,16
+StdLib_15_LoopFiles.ahk,StdLib 15 LoopFiles,Uncategorized,,,True,0,,d85f73bd5ffb3d0d,537,29
+StdLib_16_DirCreate.ahk,StdLib 16 DirCreate,Uncategorized,,,True,0,,9e29087a490cf96b,269,19
+StdLib_17_DirDelete.ahk,StdLib 17 DirDelete,Uncategorized,,,True,0,,37eefff981452b0f,298,16
+StdLib_18_DirExist.ahk,StdLib 18 DirExist,Uncategorized,,,True,0,,2179cbabd0aec436,382,15
+StdLib_19_DirCopy.ahk,StdLib 19 DirCopy,Uncategorized,,,True,0,,00b8cffcfef698f5,494,26
+StdLib_20_DirMove.ahk,StdLib 20 DirMove,Uncategorized,,,True,0,,604494e20c792931,335,21
+StdLib_21_StrLen.ahk,StdLib 21 StrLen,Uncategorized,,,True,0,,02f3f8335fd049e7,245,13
+StdLib_22_SubStr.ahk,StdLib 22 SubStr,Uncategorized,,,True,0,,017ec2ccb7ee27f9,444,20
+StdLib_23_InStr.ahk,StdLib 23 InStr,Uncategorized,,,True,0,,222e286a192c667b,438,20
+StdLib_24_StrReplace.ahk,StdLib 24 StrReplace,Uncategorized,,,True,0,,d7b29cc049b2989a,412,19
+StdLib_25_StrSplit.ahk,StdLib 25 StrSplit,Uncategorized,,,True,0,,e6dad5a9c958cac2,364,19
+StdLib_26_StrCase.ahk,StdLib 26 StrCase,Uncategorized,,,True,0,,b243fc7957207ff7,362,20
+StdLib_27_Trim.ahk,StdLib 27 Trim,Uncategorized,,,True,0,,24bf4232499de7fb,391,20
+StdLib_28_RegExMatch.ahk,StdLib 28 RegExMatch,Uncategorized,,,True,0,,8a8a696d33a6f99c,338,17
+StdLib_29_RegExReplace.ahk,StdLib 29 RegExReplace,Uncategorized,,,True,0,,5bc7f301bbd3baae,445,21
+StdLib_30_Format.ahk,StdLib 30 Format,Uncategorized,,,True,0,,23cc8ae18bdc946b,295,17
+StdLib_31_StrCompare.ahk,StdLib 31 StrCompare,Uncategorized,,,True,0,,f2b8fe68b92275ee,573,22
+StdLib_32_Sort.ahk,StdLib 32 Sort,Uncategorized,,,True,0,,300c22f0112fe79c,441,20
+StdLib_33_ChrOrd.ahk,StdLib 33 ChrOrd,Uncategorized,,,True,0,,f44fd01d0b970e44,315,18
+StdLib_34_StrPutGet.ahk,StdLib 34 StrPutGet,Uncategorized,,,True,0,,52c3e1ed5737d7a7,435,22
+StdLib_35_VerCompare.ahk,StdLib 35 VerCompare,Uncategorized,,,True,0,,fc30946b06d1cb6a,336,18
+StdLib_36_FormatTime.ahk,StdLib 36 FormatTime,Uncategorized,,,True,0,,aed9589a40445a37,480,22
+StdLib_37_DateAdd.ahk,StdLib 37 DateAdd,Uncategorized,,,True,0,,7481285140b917a1,498,20
+StdLib_38_DateDiff.ahk,StdLib 38 DateDiff,Uncategorized,,,True,0,,c54410454f9a70f2,490,23
+StdLib_39_StrPtr.ahk,StdLib 39 StrPtr,Uncategorized,,,True,0,,d7bebd59c9a27b35,285,16
+StdLib_40_Concatenation.ahk,StdLib 40 Concatenation,Uncategorized,,,True,0,,bc6aac31094881ac,480,24
+StdLib_41_Arithmetic.ahk,StdLib 41 Arithmetic,Uncategorized,,,True,0,,1032ec4d5f58979b,450,21
+StdLib_42_Abs.ahk,StdLib 42 Abs,Uncategorized,,,True,0,,3d36dac5e81da276,220,15
+StdLib_43_Rounding.ahk,StdLib 43 Rounding,Uncategorized,,,True,0,,d0851bf97ddef6f5,354,17
+StdLib_44_MinMax.ahk,StdLib 44 MinMax,Uncategorized,,,True,0,,a9b9e8af3d1bc30c,336,18
+StdLib_45_Sqrt.ahk,StdLib 45 Sqrt,Uncategorized,,,True,0,,4228deeedc6771f8,270,17
+StdLib_46_ExpLn.ahk,StdLib 46 ExpLn,Uncategorized,,,True,0,,8d871fbdbdb4b17c,335,18
+StdLib_47_Log.ahk,StdLib 47 Log,Uncategorized,,,True,0,,2cad7fefa41aa27a,280,17
+StdLib_48_Trig.ahk,StdLib 48 Trig,Uncategorized,,,True,0,,e60b1b49786fedf6,411,17
+StdLib_49_InverseTrig.ahk,StdLib 49 InverseTrig,Uncategorized,,,True,0,,bc3168dadd2972a6,373,16
+StdLib_50_Random.ahk,StdLib 50 Random,Uncategorized,,,True,0,,533a0074806e3a0e,502,23
+StdLib_51_Mod.ahk,StdLib 51 Mod,Uncategorized,,,True,0,,8f9ae20417ef4607,283,14
+StdLib_52_Bitwise.ahk,StdLib 52 Bitwise,Uncategorized,,,True,0,,34c12588ea180e87,499,21
+StdLib_53_Comparison.ahk,StdLib 53 Comparison,Uncategorized,,,True,0,,7dc28f849e3ac91a,364,20
+StdLib_54_Logical.ahk,StdLib 54 Logical,Uncategorized,,,True,0,,de0873eb9da3ee13,293,18
+StdLib_55_Ternary.ahk,StdLib 55 Ternary,Uncategorized,,,True,0,,77f27351dbe0d543,356,18
+StdLib_56_Integer.ahk,StdLib 56 Integer,Uncategorized,,,True,0,,073935bf3a308c90,295,18
+StdLib_57_Float.ahk,StdLib 57 Float,Uncategorized,,,True,0,,0a3bdfe78350f212,308,18
+StdLib_58_Number.ahk,StdLib 58 Number,Uncategorized,,,True,0,,f03da5a0c6368a23,392,21
+StdLib_59_String.ahk,StdLib 59 String,Uncategorized,,,True,0,,a70d2e476dc7a2b6,367,21
+StdLib_60_Type.ahk,StdLib 60 Type,Uncategorized,,,True,0,,6496215a1d7bb44d,404,21
+StdLib_61_IsNumber.ahk,StdLib 61 IsNumber,Uncategorized,,,True,0,,1104079872de5372,339,17
+StdLib_62_IsInteger.ahk,StdLib 62 IsInteger,Uncategorized,,,True,0,,0f638b02fce83587,326,17
+StdLib_63_IsFloat.ahk,StdLib 63 IsFloat,Uncategorized,,,True,0,,b7975d9dea1ee32f,312,17
+StdLib_64_IsObject.ahk,StdLib 64 IsObject,Uncategorized,,,True,0,,636f0a6846a59d4a,408,19
+StdLib_65_NumberFormat.ahk,StdLib 65 NumberFormat,Uncategorized,,,True,0,,a0dae773b38dbd3e,391,17
+StdLib_66_WinExist.ahk,StdLib 66 WinExist,Uncategorized,,,True,0,,a900dfe898d8f5b6,264,13
+StdLib_67_WinActive.ahk,StdLib 67 WinActive,Uncategorized,,,True,0,,d90e96d246e117d2,274,14
+StdLib_68_WinActivate.ahk,StdLib 68 WinActivate,Uncategorized,,,True,0,,f084e5ba6647581c,250,14
+StdLib_69_WinClose.ahk,StdLib 69 WinClose,Uncategorized,,,True,0,,04b1cd92f393e1c0,286,17
+StdLib_70_WinState.ahk,StdLib 70 WinState,Uncategorized,,,True,0,,8c71fadc95877f3d,407,22
+StdLib_71_WinMove.ahk,StdLib 71 WinMove,Uncategorized,,,True,0,,9c2c570e52e4e6a0,338,18
+StdLib_72_WinGetPos.ahk,StdLib 72 WinGetPos,Uncategorized,,,True,0,,08c54b09c6caf9c9,332,16
+StdLib_73_WinGetTitle.ahk,StdLib 73 WinGetTitle,Uncategorized,,,True,0,,f3f1c3b8d25540e9,217,12
+StdLib_74_WinSetTitle.ahk,StdLib 74 WinSetTitle,Uncategorized,,,True,0,,bac9977819c2653b,319,18
+StdLib_75_WinGetClass.ahk,StdLib 75 WinGetClass,Uncategorized,,,True,0,,7deb2b1dfede3ffd,195,12
+StdLib_76_WinGetPID.ahk,StdLib 76 WinGetPID,Uncategorized,,,True,0,,6abf9923af86930a,265,16
+StdLib_77_WinGetList.ahk,StdLib 77 WinGetList,Uncategorized,,,True,0,,308da6c8a30b045b,432,27
+StdLib_78_WinWait.ahk,StdLib 78 WinWait,Uncategorized,,,True,0,,1b1883a9d5941ff7,283,16
+StdLib_79_WinHideShow.ahk,StdLib 79 WinHideShow,Uncategorized,,,True,0,,4be63c5fdd9074e3,385,22
+StdLib_80_WinAlwaysOnTop.ahk,StdLib 80 WinAlwaysOnTop,Uncategorized,,,True,0,,de4aaf8ba6d1c8b6,408,21
+StdLib_81_WinTransparent.ahk,StdLib 81 WinTransparent,Uncategorized,,,True,0,,80937fe9dfd97ef3,385,19
+StdLib_82_ControlSend.ahk,StdLib 82 ControlSend,Uncategorized,,,True,0,,20c6ae46941b8fa5,405,20
+StdLib_83_ControlClick.ahk,StdLib 83 ControlClick,Uncategorized,,,True,0,,112b26e742f043d6,234,11
+StdLib_84_ControlGetText.ahk,StdLib 84 ControlGetText,Uncategorized,,,True,0,,6b3644e2e8ee5db0,411,22
+StdLib_85_ControlGetPos.ahk,StdLib 85 ControlGetPos,Uncategorized,,,True,0,,8d43e2ea5d3e7bf7,370,16
+StdLib_86_Run.ahk,StdLib 86 Run,Uncategorized,,,True,0,,f04074d12a4d93b1,217,14
+StdLib_87_RunWait.ahk,StdLib 87 RunWait,Uncategorized,,,True,0,,bfa619b8374a6802,256,13
+StdLib_88_ProcessExist.ahk,StdLib 88 ProcessExist,Uncategorized,,,True,0,,6f228a5be09bd6f4,271,12
+StdLib_89_ProcessClose.ahk,StdLib 89 ProcessClose,Uncategorized,,,True,0,,f21f54bde3150d8c,312,18
+StdLib_90_ProcessGetName.ahk,StdLib 90 ProcessGetName,Uncategorized,,,True,0,,adcf9113fa70dab4,269,15
+StdLib_91_ProcessGetPath.ahk,StdLib 91 ProcessGetPath,Uncategorized,,,True,0,,0a2ea23640e91afc,266,15
+StdLib_92_ScriptInfo.ahk,StdLib 92 ScriptInfo,Uncategorized,,,True,0,,a23b58a6fdf9b1a6,330,14
+StdLib_93_SystemInfo.ahk,StdLib 93 SystemInfo,Uncategorized,,,True,0,,91dd32ff91b4dbd5,329,15
+StdLib_94_ScreenInfo.ahk,StdLib 94 ScreenInfo,Uncategorized,,,True,0,,2db0071a3ab56c18,272,13
+StdLib_95_Clipboard.ahk,StdLib 95 Clipboard,Uncategorized,,,True,0,,2b5929e486265a55,342,20
+String_!= Conversion.ahk,String != Conversion,Uncategorized,,,True,0,,8c23d8becb10ef22,134,4
+String_Array_ex1.ahk,String Array ex1,Uncategorized,,,True,0,,6c3a059df4d9ba5b,331,7
+String_Array_ex2.ahk,String Array ex2,Uncategorized,,,True,0,,d60b1f49cfbf7cc0,197,5
+String_Array_ex3.ahk,String Array ex3,Uncategorized,,,True,0,,9751dce151ec6b47,403,11
+String_Array_ex4.ahk,String Array ex4,Uncategorized,,,True,0,,773c34a4f8b4caba,157,5
+String_Array_ex5.ahk,String Array ex5,Uncategorized,,,True,0,,895950a4e3cd4047,118,4
+String_Assignment_ex1.ahk,String Assignment ex1,Uncategorized,,,True,0,,3be5775d23969323,213,5
+String_Assignment_ex10.ahk,String Assignment ex10,Uncategorized,,,True,0,,ce180521b81c4e5e,183,3
+String_Assignment_ex11.ahk,String Assignment ex11,Uncategorized,,,True,0,,dabdbedba42ae7dc,209,6
+String_Assignment_ex12.ahk,String Assignment ex12,Uncategorized,,,True,0,,568697c9cee45aa1,816,8
+String_Assignment_ex13.ahk,String Assignment ex13,Uncategorized,,,True,0,,3d903160b174d93e,206,7
+String_Assignment_ex2.ahk,String Assignment ex2,Uncategorized,,,True,0,,e9e86c2c00657486,202,4
+String_Assignment_ex3.ahk,String Assignment ex3,Uncategorized,,,True,0,,8fa630f131721542,258,8
+String_Assignment_ex4.ahk,String Assignment ex4,Uncategorized,,,True,0,,6f4c3c33c7faa98f,162,5
+String_Assignment_ex5.ahk,String Assignment ex5,Uncategorized,,,True,0,,e5ae4bf41917c4a9,168,5
+String_Assignment_ex6.ahk,String Assignment ex6,Uncategorized,,,True,0,,aed0ec2a556e968d,191,3
+String_Assignment_ex7.ahk,String Assignment ex7,Uncategorized,,,True,0,,3fb96608461e5a0b,159,5
+String_Assignment_ex8.ahk,String Assignment ex8,Uncategorized,,,True,0,,a01457ff9f62095f,136,3
+String_Assignment_ex9.ahk,String Assignment ex9,Uncategorized,,,True,0,,cbf69ed6c046b640,128,4
+String_ContinuationComments_ex1.ahk,String ContinuationComments ex1,Uncategorized,,,True,0,,5b89992afc3341f6,194,3
+String_ContinuationComments_ex2.ahk,String ContinuationComments ex2,Uncategorized,,,True,0,,ffc36727a9d5adc9,199,3
+String_ContinuationWithVar.ahk,String ContinuationWithVar,Uncategorized,,,True,0,,3882ddc4aed87e16,205,6
+String_ContinuationWithVar2.ahk,String ContinuationWithVar2,Uncategorized,,,True,0,,6b848a3ef49731b4,276,8
+String_ContinuationWithVar3.ahk,String ContinuationWithVar3,Uncategorized,,,True,0,,79f2f43d1fe96f1e,433,9
+String_ContinuationWithVar4.ahk,String ContinuationWithVar4,Uncategorized,,,True,0,,9b7704a82da9372c,185,9
+String_ContinuationWithVar5.ahk,String ContinuationWithVar5,Uncategorized,,,True,0,,a200d4ec5c73dfde,266,10
+String_Continuation_Issue_72.ahk,String Continuation Issue 72,Uncategorized,,,True,0,,ac79445cdca69b1a,290,5
+String_DblQuoteMsgBox_ex1.ahk,String DblQuoteMsgBox ex1,Uncategorized,,,True,0,,0fe8fe87b0039f55,248,6
+String_EscapedLiteralChars_01.ahk,String EscapedLiteralChars 01,Uncategorized,,,True,0,,1f1bfceaaabd2c11,139,3
+String_Fix_272_StringsResembleFunc.ahk,String Fix 272 StringsResembleFunc,Uncategorized,,,True,0,,f30ec8b49a9e13d2,239,5
+String_Fix_QuoteConvTrunication.ahk,String Fix QuoteConvTrunication,Uncategorized,,,True,0,,dd586c6891c1a250,1908,59
+String_IfInString_ex1.ahk,String IfInString ex1,Uncategorized,,,True,0,,f1a6e4015b4d3321,185,5
+String_InStr_StartingPos.ahk,String InStr StartingPos,Uncategorized,,,True,0,,d8109a2f23a23183,236,5
+String_InStr_ex01.ahk,String InStr ex01,Uncategorized,,,True,0,,8573c304700db98a,219,6
+String_InStr_ex04.ahk,String InStr ex04,Uncategorized,,,True,0,,e238209558c2d2e2,265,5
+String_InStr_ex10.ahk,String InStr ex10,Uncategorized,,,True,0,,75452bd335b4c667,297,7
+String_InStr_ex15.ahk,String InStr ex15,Uncategorized,,,True,0,,33f2668e6fc0041a,226,6
+String_InStr_ex20.ahk,String InStr ex20,Uncategorized,,,True,0,,45496635daeaac9a,299,6
+String_InStr_ex24.ahk,String InStr ex24,Uncategorized,,,True,0,,4a6675a9875d4a5b,289,6
+String_Issue_83.ahk,String Issue 83,Uncategorized,,,True,0,,9ee66bb8969e44c6,125,4
+String_MinIndex-MaxIndex_ex1.ahk,String MinIndex-MaxIndex ex1,Uncategorized,,,True,0,,987b46d83ff3b3dd,1024,10
+String_MsgBox_ex7.ahk,String MsgBox ex7,Uncategorized,,,True,0,,57e5fcf37a99ff83,123,3
+String_ObjRaw_ex1.ahk,String ObjRaw ex1,Uncategorized,,,True,0,,bedcc817bc4289cd,177,3
+String_PrePostXcrement-Ordering.ahk,String PrePostXcrement-Ordering,Uncategorized,,,True,0,,3d7cecf95be4272a,170,8
+String_PrePostXcrement-WithSpace.ahk,String PrePostXcrement-WithSpace,Uncategorized,,,True,0,,26f581d635d64d33,265,8
+String_QuotedObjLiteral-WithVar.ahk,String QuotedObjLiteral-WithVar,Uncategorized,,,True,0,,eca7a9b9d1a923a2,159,5
+String_QuotedObjLiterals_ex1.ahk,String QuotedObjLiterals ex1,Uncategorized,,,True,0,,0c40d73efab89be4,182,5
+String_QuotedObjLiterals_ex2.ahk,String QuotedObjLiterals ex2,Uncategorized,,,True,0,,27aa557edccc6d09,124,3
+String_Quotes_Issue_253.ahk,String Quotes Issue 253,Uncategorized,,,True,0,,d1198f54d2f06e10,204,6
+String_StrCompare_ex01.ahk,String StrCompare ex01,Uncategorized,,,True,0,,9c7f8e36b6014298,224,7
+String_StrCompare_ex02.ahk,String StrCompare ex02,Uncategorized,,,True,0,,9707f25a8bf8d34c,271,4
+String_StrCompare_ex03.ahk,String StrCompare ex03,Uncategorized,,,True,0,,7a8b345b5ee34f92,142,7
+String_StrCompare_ex04.ahk,String StrCompare ex04,Uncategorized,,,True,0,,6a03fcbd1cd2eb93,190,4
+String_StrCompare_ex05.ahk,String StrCompare ex05,Uncategorized,,,True,0,,ebafd1cfebc12060,147,7
+String_StrCompare_ex06.ahk,String StrCompare ex06,Uncategorized,,,True,0,,e6b8b2dea31c3be8,193,4
+String_StrCompare_ex07.ahk,String StrCompare ex07,Uncategorized,,,True,0,,cf977df82fb967c2,142,7
+String_StrCompare_ex08.ahk,String StrCompare ex08,Uncategorized,,,True,0,,ed1e76963f9b9a18,190,4
+String_StrCompare_ex09.ahk,String StrCompare ex09,Uncategorized,,,True,0,,064ea853767d2940,145,7
+String_StrCompare_ex10.ahk,String StrCompare ex10,Uncategorized,,,True,0,,accecb48d6de5960,191,4
+String_StrLen_ex01.ahk,String StrLen ex01,Uncategorized,,,True,0,,a512b32050b5f095,201,5
+String_StrLen_ex02.ahk,String StrLen ex02,Uncategorized,,,True,0,,9f681c0e2bd759de,264,5
+String_StrReplace_ex01.ahk,String StrReplace ex01,Uncategorized,,,True,0,,31b10fe43a1524f4,157,5
+String_StrReplace_ex02.ahk,String StrReplace ex02,Uncategorized,,,True,0,,39210716f04bb72b,220,5
+String_StrReplace_ex03.ahk,String StrReplace ex03,Uncategorized,,,True,0,,c9d2844f6a5fa631,158,5
+String_StrReplace_ex04.ahk,String StrReplace ex04,Uncategorized,,,True,0,,400ecf4f927e3e4b,221,5
+String_StrReplace_ex05.ahk,String StrReplace ex05,Uncategorized,,,True,0,,b4e52d90339b492e,153,5
+String_StrReplace_ex06.ahk,String StrReplace ex06,Uncategorized,,,True,0,,5273979db2b680c5,216,5
+String_StrReplace_ex07.ahk,String StrReplace ex07,Uncategorized,,,True,0,,7ee86ef8194e7a5d,164,5
+String_StrReplace_ex08.ahk,String StrReplace ex08,Uncategorized,,,True,0,,1eb7326f2f606572,227,5
+String_StrReplace_ex09.ahk,String StrReplace ex09,Uncategorized,,,True,0,,667e56e788221e8f,204,5
+String_StrReplace_ex10.ahk,String StrReplace ex10,Uncategorized,,,True,0,,44997b7ad3985707,267,5
+String_StrReplace_ex11.ahk,String StrReplace ex11,Uncategorized,,,True,0,,e8370f37751cb491,165,5
+String_StrReplace_ex12.ahk,String StrReplace ex12,Uncategorized,,,True,0,,e101b269bb09f971,228,5
+String_StrReplace_ex13.ahk,String StrReplace ex13,Uncategorized,,,True,0,,6b911af83e55c03e,217,5
+String_StrTitle_ex01.ahk,String StrTitle ex01,Uncategorized,,,True,0,,28f3707ca8e7ca98,164,5
+String_StrTitle_ex02.ahk,String StrTitle ex02,Uncategorized,,,True,0,,78fe8c8df308443e,227,5
+String_StrUpper_ex01.ahk,String StrUpper ex01,Uncategorized,,,True,0,,6b2edcc8e9e9c430,129,5
+String_StrUpper_ex02.ahk,String StrUpper ex02,Uncategorized,,,True,0,,4e9073f0c5729b74,192,5
+String_StringCaseSense_ex1.ahk,String StringCaseSense ex1,Uncategorized,,,True,0,,3646c9ecf0e4eced,269,7
+String_StringCaseSense_ex2.ahk,String StringCaseSense ex2,Uncategorized,,,True,0,,2b08f11994be8a3f,437,7
+String_StringCaseSense_ex3.ahk,String StringCaseSense ex3,Uncategorized,,,True,0,,ad7d1bc082ac4fe4,185,3
+String_StringGetPos_ex1.ahk,String StringGetPos ex1,Uncategorized,,,True,0,,84fa220d49376b8a,242,6
+String_StringMid_ex1.ahk,String StringMid ex1,Uncategorized,,,True,0,,4910a0f112488b46,194,5
+String_StringMid_ex2.ahk,String StringMid ex2,Uncategorized,,,True,0,,f409c4bc11a67cfd,288,6
+String_StringSplit_ex1.ahk,String StringSplit ex1,Uncategorized,,,True,0,,ae3b81c531d1715f,237,5
+String_StringSplit_ex2.ahk,String StringSplit ex2,Uncategorized,,,True,0,,de6117f52673e590,275,7
+String_SubStr_ex01.ahk,String SubStr ex01,Uncategorized,,,True,0,,27cd8db83b06a080,142,5
+String_SubStr_ex02.ahk,String SubStr ex02,Uncategorized,,,True,0,,68e62ce2215202d5,205,5
+String_SubStr_ex04.ahk,String SubStr ex04,Uncategorized,,,True,0,,aa10c46b6652eeb9,222,6
+String_SubStr_ex10.ahk,String SubStr ex10,Uncategorized,,,True,0,,345093efdba69253,256,5
+String_SubStr_ex15.ahk,String SubStr ex15,Uncategorized,,,True,0,,e20408ec1dcd7dfb,174,7
+String_SubStr_ex20.ahk,String SubStr ex20,Uncategorized,,,True,0,,e50cec04b3e44832,224,6
+String_TernaryDblQuote_ex1.ahk,String TernaryDblQuote ex1,Uncategorized,,,True,0,,d10e12e8d232bb2d,142,3
+String_Ternary_ex2.ahk,String Ternary ex2,Uncategorized,,,True,0,,1d1b4a286f0aab4b,159,4
+String_Ternary_ex3.ahk,String Ternary ex3,Uncategorized,,,True,0,,4e76521b5611cb38,121,3
+String_Ternary_ex4.ahk,String Ternary ex4,Uncategorized,,,True,0,,dbb5cacd2e002576,216,3
+String_ifVar_ex1.ahk,String ifVar ex1,Uncategorized,,,True,0,,18cffc67f6d1ab5c,187,4
+String_ifVar_ex2.ahk,String ifVar ex2,Uncategorized,,,True,0,,9fdf4780e67e606e,199,4
+String_ifVar_ex4.ahk,String ifVar ex4,Uncategorized,,,True,0,,f599da6be9d28268,281,4
+String_ifVar_ex5.ahk,String ifVar ex5,Uncategorized,,,True,0,,22cae5b9a20b3baf,221,4
+String_ifVar_ex6.ahk,String ifVar ex6,Uncategorized,,,True,0,,479f1f7074959b4c,345,5
+String_new Conversion.ahk,String new Conversion,Uncategorized,,,True,0,,3d16eab149139d49,119,3
+String_static-trailing-comma.ahk,String static-trailing-comma,Uncategorized,,,True,0,,a56b12c4ca7ee581,201,4
+String_static_ex1.ahk,String static ex1,Uncategorized,,,True,0,,802a03a479e9caa8,173,5
+String_static_ex2.ahk,String static ex2,Uncategorized,,,True,0,,e6ac6e242ceb792b,133,3
+Strings_01_Parsing_Formatting.ahk,Strings 01 Parsing Formatting,Uncategorized,,,True,0,,980be0348f42e3c1,4756,184
+Sync_01_Mutex_Basic.ahk,Sync 01 Mutex Basic,Uncategorized,,,True,0,,95b411ed5918d324,3887,138
+Sync_02_Semaphore_Basic.ahk,Sync 02 Semaphore Basic,Uncategorized,,,True,0,,62bd702b1e70df79,5338,183
+Syntax_A_AhkVersion.ahk,Syntax A AhkVersion,Uncategorized,,,True,0,,f22ce2422abc507c,255,3
+Syntax_A_LoopRegSubKey_conversion.ahk,Syntax A LoopRegSubKey conversion,Uncategorized,,,True,0,,d8ab30010617be87,144,3
+Syntax_Associative_Arrays_ex1.ahk,Syntax Associative Arrays ex1,Uncategorized,,,True,0,,d630badb0c770d8f,218,7
+Syntax_Associative_Arrays_key-types.ahk,Syntax Associative Arrays key-types,Uncategorized,,,True,0,,da36a608dc2e6fc8,206,4
+Syntax_Cmd_Removal_Issue_#375.ahk,Syntax Cmd Removal Issue #375,Uncategorized,,,True,0,,c86d1c79c73dfa23,396,6
+Syntax_Comment_Blocks.ahk,Syntax Comment Blocks,Uncategorized,,,True,0,,48cff89e8b334a4e,238,8
+Syntax_Empty_Str_Ass_ex1.ahk,Syntax Empty Str Ass ex1,Uncategorized,,,True,0,,e3d7adff8df9d80b,195,5
+Syntax_Empty_Str_Ass_ex2.ahk,Syntax Empty Str Ass ex2,Uncategorized,,,True,0,,ede3a3761477a710,274,4
+Syntax_Indentation-Mix.ahk,Syntax Indentation-Mix,Uncategorized,,,True,0,,0da4c905703f6fbd,282,5
+Syntax_Var_Declaration_Keywords.ahk,Syntax Var Declaration Keywords,Uncategorized,,,True,0,,f2d333e6d465488e,621,8
+Syntax_mix_of_single_line_comments.ahk,Syntax mix of single line comments,Uncategorized,,,True,0,,6954bd334c3892a7,233,3
+Utility_01_DeepCompare.ahk,Utility 01 DeepCompare,Uncategorized,,,True,0,,89d3127f79bcc9d2,5119,204
+Utility_02_ArrayExtensions.ahk,Utility 02 ArrayExtensions,Uncategorized,,,True,0,,d638dda57669a086,2748,101
+Utility_03_MapExtensions.ahk,Utility 03 MapExtensions,Uncategorized,,,True,0,,a132b43a1a39c5b9,2078,86
+Utility_04_StringExtensions.ahk,Utility 04 StringExtensions,Uncategorized,,,True,0,,477cb1bfaa4fce3d,2813,113
+Utility_05_DeepClone.ahk,Utility 05 DeepClone,Uncategorized,,,True,0,,298d79868be2a61a,3424,139
+Utility_06_Memoization_Cache.ahk,Utility 06 Memoization Cache,Uncategorized,,,True,0,,bfd8d2349abdc319,4583,204
+Utility_07_GetObjectFromString.ahk,Utility 07 GetObjectFromString,Uncategorized,,,True,0,,3571b5cd73329a74,4311,178
+Utility_08_WindowDetection_Timer.ahk,Utility 08 WindowDetection Timer,Uncategorized,,,True,0,,eb2bb6574c7f1889,4827,193
+Window_DetectHiddenText_ex1.ahk,Window DetectHiddenText ex1,Uncategorized,,,True,0,,0a277c998d5ea9a5,123,3
+Window_DetectHiddenWindows_ex1.ahk,Window DetectHiddenWindows ex1,Uncategorized,,,True,0,,b1bdb3aa5b29fd93,128,3
+Window_SetTitleMatchMode_ex1.ahk,Window SetTitleMatchMode ex1,Uncategorized,,,True,0,,97736a7c01b29cc3,121,3
+Window_SetTitleMatchMode_ex2.ahk,Window SetTitleMatchMode ex2,Uncategorized,,,True,0,,bae254044aa41b25,126,3
+Window_SetWinDelay_ex1.ahk,Window SetWinDelay ex1,Uncategorized,,,True,0,,c0d56790eeace50a,110,3
+Window_StatusbarWait_ex1.ahk,Window StatusbarWait ex1,Uncategorized,,,True,0,,1daba8da5774358b,496,5
+Window_StatusbargetText_ex1.ahk,Window StatusbargetText ex1,Uncategorized,,,True,0,,801deb33395e7c26,229,4
+Window_WinActivate_1.ahk,Window WinActivate 1,Uncategorized,,,True,0,,0fdd9cc1eea04b9c,207,4
+Window_WinActive_ex02.ahk,Window WinActive ex02,Uncategorized,,,True,0,,42cc0e88b8a0a001,176,4
+Window_WinActive_ex03.ahk,Window WinActive ex03,Uncategorized,,,True,0,,0c22fbbe803d1ca9,230,4
+Window_WinActive_ex04.ahk,Window WinActive ex04,Uncategorized,,,True,0,,1dcd516ef3774d20,177,4
+Window_WinActive_ex05.ahk,Window WinActive ex05,Uncategorized,,,True,0,,3d649785d035b74e,231,4
+Window_WinActive_ex06.ahk,Window WinActive ex06,Uncategorized,,,True,0,,56f7433e1cbc0c33,178,4
+Window_WinActive_ex07.ahk,Window WinActive ex07,Uncategorized,,,True,0,,86ad431268a2f62f,232,4
+Window_WinActive_ex1.ahk,Window WinActive ex1,Uncategorized,,,True,0,,45d5c9ac956fefb4,210,4
+Window_WinClose_ex1.ahk,Window WinClose ex1,Uncategorized,,,True,0,,83568f1a45fe7adb,200,4
+Window_WinExist_ex01.ahk,Window WinExist ex01,Uncategorized,,,True,0,,b8b193b967c688c0,171,4
+Window_WinExist_ex02.ahk,Window WinExist ex02,Uncategorized,,,True,0,,39a090a4c89c8ea8,225,4
+Window_WinExist_ex03.ahk,Window WinExist ex03,Uncategorized,,,True,0,,13e402605a7048e8,173,4
+Window_WinExist_ex04.ahk,Window WinExist ex04,Uncategorized,,,True,0,,4d70b200335d6345,227,4
+Window_WinGetActiveStats_ex1.ahk,Window WinGetActiveStats ex1,Uncategorized,,,True,0,,806c712ce005a211,276,5
+Window_WinGetActiveTitle_ex1.ahk,Window WinGetActiveTitle ex1,Uncategorized,,,True,0,,938fdd6c3e3f3080,172,4
+Window_WinGetClass_ex1.ahk,Window WinGetClass ex1,Uncategorized,,,True,0,,38c3623a3da2dd59,176,4
+Window_WinGetPos_ex1.ahk,Window WinGetPos ex1,Uncategorized,,,True,0,,70290f6136a124a7,197,4
+Window_WinGetPos_ex2.ahk,Window WinGetPos ex2,Uncategorized,,,True,0,,6ae2d840b61ce4fb,119,3
+Window_WinGetPos_ex3.ahk,Window WinGetPos ex3,Uncategorized,,,True,0,,9879edaf7953ff78,230,4
+Window_WinGetText_ex1.ahk,Window WinGetText ex1,Uncategorized,,,True,0,,2cac72216f2b9116,149,3
+Window_WinGetTitle_ex02.ahk,Window WinGetTitle ex02,Uncategorized,,,True,0,,400ef1b336db88c4,163,5
+Window_WinGetTitle_ex03.ahk,Window WinGetTitle ex03,Uncategorized,,,True,0,,1f6f3da121f59bd1,226,5
+Window_WinGetTitle_ex04.ahk,Window WinGetTitle ex04,Uncategorized,,,True,0,,58b62eba3a767ff0,116,4
+Window_WinGetTitle_ex05.ahk,Window WinGetTitle ex05,Uncategorized,,,True,0,,5f60b3983b69d196,179,4
+Window_WinGetTitle_ex1.ahk,Window WinGetTitle ex1,Uncategorized,,,True,0,,3c215e17fcfc6ebf,120,3
+Window_WinGet_ex1.ahk,Window WinGet ex1,Uncategorized,,,True,0,,2046e7711d432156,204,5
+Window_WinGet_ex2.ahk,Window WinGet ex2,Uncategorized,,,True,0,,c3095c617a5fa519,540,11
+Window_WinGet_ex3.ahk,Window WinGet ex3,Uncategorized,,,True,0,,c9dac503711a00f6,368,9
+Window_WinGet_ex4.ahk,Window WinGet ex4,Uncategorized,,,True,0,,01525f38e0a2bd42,308,7
+Window_WinHide_ex1.ahk,Window WinHide ex1,Uncategorized,,,True,0,,0db85704285d1c78,252,8
+Window_WinKill_ex1.ahk,Window WinKill ex1,Uncategorized,,,True,0,,e00cd3eabb3f74df,197,4
+Window_WinMaximize_test1.ahk,Window WinMaximize test1,Uncategorized,,,True,0,,7f055e9707b091d9,194,5
+Window_WinMinimizeAll_ex1.ahk,Window WinMinimizeAll ex1,Uncategorized,,,True,0,,2c5d06315ef9fb13,143,5
+Window_WinMinimize_ex1.ahk,Window WinMinimize ex1,Uncategorized,,,True,0,,4b3fcb34e7360d71,192,5
+Window_WinMinimize_ex2.ahk,Window WinMinimize ex2,Uncategorized,,,True,0,,5bd5e69dd99c5b22,131,3
+Window_WinMove_ex1.ahk,Window WinMove ex1,Uncategorized,,,True,0,,e566ae33e4d3934f,177,5
+Window_WinMove_ex2.ahk,Window WinMove ex2,Uncategorized,,,True,0,,a622dfd4b6d230de,357,6
+Window_WinMove_ex3.ahk,Window WinMove ex3,Uncategorized,,,True,0,,fece3bb21efcbfd6,274,4
+Window_WinMove_issue_114.ahk,Window WinMove issue 114,Uncategorized,,,True,0,,68177030910eb04d,158,4
+Window_WinMove_param_combinations.ahk,Window WinMove param combinations,Uncategorized,,,True,0,,ab7ef634c8b2ded5,421,14
+Window_WinRestore_ex1.ahk,Window WinRestore ex1,Uncategorized,,,True,0,,2cdb89f22c886c61,126,3
+Window_WinSetTitle_ex1.ahk,Window WinSetTitle ex1,Uncategorized,,,True,0,,e3dc915d58df59a0,151,3
+Window_WinSetTitle_ex2.ahk,Window WinSetTitle ex2,Uncategorized,,,True,0,,91b43c79ee39cfce,225,5
+Window_WinSet_ex1.ahk,Window WinSet ex1,Uncategorized,,,True,0,,4145d1cf75a15fdf,134,3
+Window_WinSet_ex10.ahk,Window WinSet ex10,Uncategorized,,,True,0,,fd204d45b4a448f0,144,4
+Window_WinSet_ex2.ahk,Window WinSet ex2,Uncategorized,,,True,0,,297add3c1fd33e62,137,3
+Window_WinSet_ex3.ahk,Window WinSet ex3,Uncategorized,,,True,0,,093fb2291a40be8c,125,3
+Window_WinSet_ex4.ahk,Window WinSet ex4,Uncategorized,,,True,0,,039db9b73ff92c07,1120,23
+Window_WinSet_ex5.ahk,Window WinSet ex5,Uncategorized,,,True,0,,98b226a9b495aff8,159,4
+Window_WinSet_ex6.ahk,Window WinSet ex6,Uncategorized,,,True,0,,697f91f44095f3be,362,7
+Window_WinSet_ex7.ahk,Window WinSet ex7,Uncategorized,,,True,0,,838e1912aed13833,141,3
+Window_WinSet_ex8.ahk,Window WinSet ex8,Uncategorized,,,True,0,,07c764ea054cd798,148,3
+Window_WinSet_ex9.ahk,Window WinSet ex9,Uncategorized,,,True,0,,c639a114a738c2dd,143,3
+Window_WinWaitActive_ex1.ahk,Window WinWaitActive ex1,Uncategorized,,,True,0,,bf3c47036d7f51ad,279,8
+Window_WinWaitClose_ex1.ahk,Window WinWaitClose ex1,Uncategorized,,,True,0,,7786ba8c57c8a1fc,227,6
+Window_WinWait_ex1.ahk,Window WinWait ex1,Uncategorized,,,True,0,,57718951e4a79135,261,8
+Xypha_01_Notification_System.ahk,Xypha 01 Notification System,Uncategorized,,,True,0,,41d40d49bc62d296,5340,196
+Xypha_02_MultiClip_Manager.ahk,Xypha 02 MultiClip Manager,Uncategorized,,,True,0,,4c23c52615b1d6ad,7120,308
+Xypha_03_Text_Case_Converter.ahk,Xypha 03 Text Case Converter,Uncategorized,,,True,0,,0ddfd1a35ca691bb,6375,273
+Xypha_04_Window_Transparency.ahk,Xypha 04 Window Transparency,Uncategorized,,,True,0,,8eb1ae187a1345ef,4569,190
+Xypha_05_Text_Wrapping.ahk,Xypha 05 Text Wrapping,Uncategorized,,,True,0,,cef5f44d37fb49d4,4512,189
+Xypha_06_Encoding_Utilities.ahk,Xypha 06 Encoding Utilities,Uncategorized,,,True,0,,e596e58d9f101af9,6424,262
+Xypha_07_Window_AlwaysOnTop.ahk,Xypha 07 Window AlwaysOnTop,Uncategorized,,,True,0,,61875e77aed41499,3063,128
+Xypha_08_Window_Close_Operations.ahk,Xypha 08 Window Close Operations,Uncategorized,,,True,0,,310183d995a33322,4265,174
+Xypha_09_Mouse_Numpad_Control.ahk,Xypha 09 Mouse Numpad Control,Uncategorized,,,True,0,,e51766c5f6580ec1,4227,165
+Xypha_10_Process_Priority_Control.ahk,Xypha 10 Process Priority Control,Uncategorized,,,True,0,,e1751f7213151f37,5666,208
+Xypha_11_Horizontal_Scrolling.ahk,Xypha 11 Horizontal Scrolling,Uncategorized,,,True,0,,ab9c9f7c9fc46bd7,4370,162
+Xypha_12_File_Operations.ahk,Xypha 12 File Operations,Uncategorized,,,True,0,,008351dc16dba7f6,5265,219
+Xypha_13_System_File_Visibility.ahk,Xypha 13 System File Visibility,Uncategorized,,,True,0,,7336053b91e5fb39,4738,160
+Xypha_14_Character_Swap.ahk,Xypha 14 Character Swap,Uncategorized,,,True,0,,0c4991a3f2c786d7,4081,169
+Xypha_15_Display_Control.ahk,Xypha 15 Display Control,Uncategorized,,,True,0,,f99f243e55e42746,3468,134
+create_remaining_control_files.ahk,create remaining control files,Uncategorized,,,False,0,,2e437c23f0a61632,178,4
+v2_Fixed_ControlFunctions.ahk,v2 Fixed ControlFunctions,Uncategorized,,,True,0,,2ad9b500fd4985c8,10993,362
+v2_Fixed_DriveFunctions.ahk,v2 Fixed DriveFunctions,Uncategorized,,,True,0,,b2c1dbbf57660cf6,7983,341
+v2_Fixed_MouseKeyboard.ahk,v2 Fixed MouseKeyboard,Uncategorized,,,True,0,,553d33ea9766a4ce,7031,243
+v2_Fixed_ProcessCommand.ahk,v2 Fixed ProcessCommand,Uncategorized,,,True,0,,fdaeecc2b06770e5,7840,251
+v2_Fixed_SystemSettings.ahk,v2 Fixed SystemSettings,Uncategorized,,,True,0,,47ee59d6567cd81b,6165,203
+v2_Fixed_UtilityFunctions.ahk,v2 Fixed UtilityFunctions,Uncategorized,,,True,0,,1ebe8bfc9b52fa4d,8440,306
