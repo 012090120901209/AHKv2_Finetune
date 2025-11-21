@@ -71,9 +71,24 @@ This catalog lists every example group in `data/raw_scripts/AHK_v2_Examples`, us
 | Xypha | 15 |
 | create | 1 |
 | v2 | 6 |
+| **Total** | **1,719** |
 
 ## Methodology
 
 - Parsed all `.ahk` files in `data/raw_scripts/AHK_v2_Examples`.
 - Grouped by the substring before the first underscore in each filename (for example, `Advanced_Class_EventEmitter.ahk` belongs to **Advanced**).
 - Counted group membership to provide a quick inventory of available example categories.
+- The counts can be regenerated with:
+
+  ```bash
+  python - <<'PY'
+  import pathlib
+  from collections import Counter
+
+  root = pathlib.Path('data/raw_scripts/AHK_v2_Examples')
+  counts = Counter(path.stem.split('_')[0] for path in root.glob('*.ahk'))
+  print('total', sum(counts.values()))
+  for name, count in sorted(counts.items()):
+      print(f"{name}\t{count}")
+  PY
+  ```
