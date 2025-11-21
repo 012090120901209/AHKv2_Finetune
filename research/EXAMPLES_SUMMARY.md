@@ -4,7 +4,12 @@
 
 This project has collected and created **comprehensive AutoHotkey v2 examples** for LLM training, sourced from multiple origins and demonstrating a wide range of patterns and techniques.
 
-## Total Example Files: 1,098+
+## Total Example Files: 1,746+
+
+### Latest Additions (Nov 2025)
+- **11 new examples** from GitHub scraping (UIA, OCR, ImagePut libraries)
+- **16 library demonstration examples** from top AHK v2 repositories
+- **Complete metadata catalog** with source URLs and categorization
 
 ---
 
@@ -117,7 +122,7 @@ Created in earlier session:
 
 ## Additional Files (1000+ files)
 
-The repository contains **1,098 total .ahk files**, including:
+The repository contains **1,719 total .ahk files**, including:
 
 - Advanced class patterns (Factory, Singleton, Observer, EventEmitter)
 - Advanced data structures (Queue, Stack, LinkedList, NestedMaps)
@@ -248,7 +253,7 @@ data/raw_scripts/AHK_v2_Examples/
 
 ### For LLM Fine-tuning:
 
-**Diversity:** 1,098+ examples covering all AHK v2 features
+**Diversity:** 1,719+ examples covering all AHK v2 features
 
 **Quality:** Mix of simple, intermediate, and advanced patterns
 
@@ -301,7 +306,7 @@ data/raw_scripts/AHK_v2_Examples/
 | GitHub Examples | 6 | Extracted from repos |
 | Library Examples | 14 | thqby, practical utilities |
 | Advanced Examples | 1,000+ | Previous sessions/auto-generated |
-| **Total** | **1,098+** | **Multiple sources** |
+| **Total** | **1,719+** | **Multiple sources** |
 
 ---
 
@@ -309,7 +314,7 @@ data/raw_scripts/AHK_v2_Examples/
 
 1. **GITHUB_SCRAPING_GUIDE.md** - Complete guide for finding more examples
 2. **EXAMPLES_SUMMARY.md** - This file
-3. **Individual .ahk files** - 1,098+ training examples
+3. **Individual .ahk files** - 1,719+ training examples
 
 ---
 

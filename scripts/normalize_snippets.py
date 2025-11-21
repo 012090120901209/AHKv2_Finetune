@@ -67,7 +67,7 @@ def apply_replacements(text: str, replacements: Sequence[Replacement]) -> tuple[
 
 
 def iter_files(root: Path) -> Iterator[Path]:
-    for path in sorted(root.rglob("*.ah2")):
+    for path in sorted(root.rglob("*.ahk")):
         if path.is_file():
             yield path
 

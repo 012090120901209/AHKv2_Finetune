@@ -1,7 +1,7 @@
 # AutoHotkey v2 Examples - Comprehensive Feature Guide
 
 **Generated:** November 5, 2025
-**Based on:** 763 AHK v2 example files from `data/raw_scripts/AHK_v2_Examples/`
+**Based on:** 1,719 AHK v2 example files from `data/raw_scripts/AHK_v2_Examples/`
 
 ---
 
@@ -31,7 +31,7 @@
 
 ## Introduction
 
-This guide documents all AutoHotkey v2 features covered by the 763 example files in this repository. Each example has been converted from AHK v1 and validated for correctness. All examples begin with:
+This guide documents all AutoHotkey v2 features covered by the 1,719 example files in this repository. Each example has been converted from AHK v1 and validated for correctness. All examples begin with:
 
 ```ahk
 #Requires AutoHotkey v2.1-alpha.16
@@ -2410,7 +2410,7 @@ map["key"] := "value"
 
 ## Summary of Coverage
 
-This repository's 763 examples comprehensively cover:
+This repository's 1,719 examples comprehensively cover:
 
 ### ✅ **Extensively Covered** (50+ examples each)
 - String operations and manipulation
@@ -2479,5 +2479,5 @@ This repository's 763 examples comprehensively cover:
 ---
 
 **Last Updated:** November 5, 2025
-**Total Examples Documented:** 763
+**Total Examples Documented:** 1,719
 **Categories Covered:** 19

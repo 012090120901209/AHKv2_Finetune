@@ -67,7 +67,7 @@ def build_prompt(category: str, title: str, source_path: str) -> str:
 
 
 def iterate_snippets(root: Path) -> Iterable[SnippetRecord]:
-    for path in sorted(root.rglob("*.ah2")):
+    for path in sorted(root.rglob("*.ahk")):
         if not path.is_file():
             continue
 
