@@ -1,0 +1,300 @@
+{
+  "summary": {
+    "total": 1753,
+    "passed": 314,
+    "failed": 58,
+    "errors": 0
+  },
+  "failures": [
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Class_Factory.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Class_Factory.ahk (1) : ==> This script requires AutoHotkey v2.0 AutoHotkey v2.0.\n\nCurrent interpreter: AutoHotkey v2.1-alpha.17 64-bit\nC:\\Program Files\\AutoHotkey\\v2\\AutoHotkey.exe",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Class_Observer.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Class_Observer.ahk (1) : ==> This script requires AutoHotkey v2.0 AutoHotkey v2.0.\n\nCurrent interpreter: AutoHotkey v2.1-alpha.17 64-bit\nC:\\Program Files\\AutoHotkey\\v2\\AutoHotkey.exe",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Hotkey_MediaKeys.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Hotkey_MediaKeys.ahk (1) : ==> This script requires AutoHotkey v2.0 AutoHotkey v2.0.\n\nCurrent interpreter: AutoHotkey v2.1-alpha.17 64-bit\nC:\\Program Files\\AutoHotkey\\v2\\AutoHotkey.exe",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Hotkey_MultiFunction.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Hotstring_SmartQuotes.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Hotstring_SmartQuotes.ahk (1) : ==> This script requires AutoHotkey v2.0 AutoHotkey v2.0.\n\nCurrent interpreter: AutoHotkey v2.1-alpha.17 64-bit\nC:\\Program Files\\AutoHotkey\\v2\\AutoHotkey.exe",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Misc_ScreenshotTool.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Advanced_Misc_ScreenshotTool.ahk (1) : ==> This script requires AutoHotkey v2.0 AutoHotkey v2.0.\n\nCurrent interpreter: AutoHotkey v2.1-alpha.17 64-bit\nC:\\Program Files\\AutoHotkey\\v2\\AutoHotkey.exe",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_01_Chunk.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_02_Compact.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_04_Difference.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_05_Drop.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_06_DropRight.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_07_Fill.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_08_Flatten.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_09_FlattenDeep.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_10_FlattenDepth.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_10_FlattenDepth.ahk (3) : ==> #Include file \".\\JSON.ahk .\\JSON.ahk\" cannot be opened.",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_11_FromPairs.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_14_Initial.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_15_Intersection.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_20_Reverse.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_21_Slice.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_23_SortedUniq.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_24_Tail.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_25_Take.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_26_TakeRight.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_27_Union.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_28_Uniq.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_29_Unzip.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_30_Without.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_31_Zip.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_32_ZipObject.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Lib\\JSON.ahk (3) : ==> This class declaration conflicts with an existing Class.\n     Specifically: JSON",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Advanced_06_Union.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Advanced_06_Union.ahk (3) : ==> #Include file \"JSON.ahk JSON.ahk\" cannot be opened.",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Standalone_08_Flatten.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Standalone_08_Flatten.ahk (3) : ==> #Include file \"JSON.ahk JSON.ahk\" cannot be opened.",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Standalone_09_FlattenDeep.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Standalone_09_FlattenDeep.ahk (2) : ==> Unexpected declaration.\n     Specifically: (array) {",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Standalone_10_FlattenDepth.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Array_Standalone_10_FlattenDepth.ahk (2) : ==> Unexpected declaration.\n     Specifically: (array, depth := 1) {",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\Base64_Examples.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Array_InsertAt_01_BasicUsage.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Array_Push_03_DataCollection.ahk",
+      "error": "",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Buffer_03_Structures.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Buffer_03_Structures.ahk (614) : ==> This class declaration conflicts with an existing Class.\n     Specifically: Point",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Ceil_02_Pagination.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Ceil_02_Pagination.ahk (116) : ==> This Func cannot be used as an output variable.\n     Specifically: Range",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Clipboard_03.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Clipboard_03.ahk (2) : ==> #Include file \".\\JSON.ahk .\\JSON.ahk\" cannot be opened.",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_ControlGetStyle_01.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_ControlGetStyle_02.ahk",
+      "error": "",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_ControlGetStyle_03.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_ControlSetStyle_01.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DirSelect_01.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DllCall_Kernel32_04_Time.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DllCall_Kernel32_04_Time.ahk (77) : ==> Invalid variable declaration.\n     Specifically: := Format(\"{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}\", lYear, lMonth, lDay, lHour, lMinute, lSecond)",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DllCall_Kernel32_05_Console.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DllCall_Kernel32_05_Console.ahk (273) : ==> Illegal character in expression.\n     Specifically: ; srWindow.Bottom",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DllCall_User32_02_Windows.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_DllCall_User32_02_Windows.ahk (87) : ==> Missing comma\n     Specifically: (length > 0) {",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Download_02.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Download_02.ahk (392) : ==> Too many parameters passed to function.\n     Specifically: FormatTime",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Download_09.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Download_09.ahk (38) : ==> The following reserved word must not be used as a variable name:\n\"local\"",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_EnvGet_02_PathManagement.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_EnvGet_02_PathManagement.ahk (293) : ==> Hotkeys/hotstrings are not allowed inside functions or classes.\n     Specifically: ~RButton::menu.Show()",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Exp_02_Growth.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_Exp_02_Growth.ahk (236) : ==> Syntax error.\n     Specifically: for t := 0 to years step interval {",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileAppend_02_Logging.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileAppend_03_CSV.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileExist_01.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileExist_01.ahk (121) : ==> Invalid class.\n     Specifically: Error as err",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileGetAttrib_13.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileGetAttrib_13.ahk (80) : ==> This Func cannot be used as an output variable.\n     Specifically: IsReadOnly",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileGetAttrib_16.ahk",
+      "error": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileGetAttrib_16.ahk (251) : ==> Missing \"(\"\n     Specifically: isSet",
+      "returncode": 2
+    },
+    {
+      "file": "C:\\Users\\uphol\\Documents\\Design\\Coding\\ahk-finetune\\data\\raw_scripts\\AHK_v2_Examples\\BuiltIn_FileSelect_01.ahk",
+      "error": "Validation timed out after 5 seconds",
+      "returncode": -1
+    }
+  ]
+}

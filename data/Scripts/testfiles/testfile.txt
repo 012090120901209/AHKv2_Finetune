@@ -1,0 +1,3 @@
+This is test content for measuring file size.
+Each line adds to the total size.
+File size is measured in bytes by default.

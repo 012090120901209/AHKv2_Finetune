@@ -1,5 +1,0 @@
-#Requires AutoHotkey v2.1-alpha.16
-#SingleInstance Force ; Source: Screen_PixelSearch_ex1.ah2 ErrorLevel := ! PixelSearch(&Px, &Py, 200, 200, 300, 300, 0x46639d, 3) ; Converted colour to RGB format
-ErrorLevel := ! PixelSearch(&Px, &Py, 200, 200, 300, 300, 0x9d6346, 3)
-if ErrorLevel MsgBox("That color was not found in the specified region.")
-else MsgBox("A color within 3 shades of variation was found at X" Px " Y" Py ".")
