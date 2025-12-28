@@ -7,3 +7,7 @@ data/prepared/
 *.gguf
 
 Lib/
+.history/
+.local-history/
+logs/mcp-debug.log
+logs/mcp-debug.log

@@ -11,6 +11,35 @@
 * ; #Include <Base64>
 */
 
+; Provide a minimal Base64 helper when the library is not included.
+if !IsSet(Base64) {
+    class Base64 {
+        static Encode(text, encoding := "UTF-8") {
+            byteCount := StrPut(text, encoding)
+            buffer := Buffer(byteCount)
+            StrPut(text, buffer, encoding)
+            dataLen := byteCount - (encoding = "UTF-16" ? 2 : 1)  ; drop null terminator
+
+            outLen := 0
+            DllCall("Crypt32\\CryptBinaryToString", "ptr", buffer.Ptr, "uint", dataLen, "uint", 0x1, "ptr", 0, "uint*", outLen)
+            outBuf := Buffer(outLen * 2, 0)
+            DllCall("Crypt32\\CryptBinaryToString", "ptr", buffer.Ptr, "uint", dataLen, "uint", 0x1, "ptr", outBuf.Ptr, "uint*", outLen)
+            return StrGet(outBuf, outLen)
+        }
+
+        static Decode(encoded) {
+            bytes := 0
+            if !DllCall("Crypt32\\CryptStringToBinary", "str", encoded, "uint", 0, "uint", 0x1, "ptr", 0, "uint*", bytes, "ptr", 0, "ptr", 0)
+                throw Error("Invalid Base64 string.")
+
+            out := Buffer(bytes, 0)
+            if !DllCall("Crypt32\\CryptStringToBinary", "str", encoded, "uint", 0, "uint", 0x1, "ptr", out.Ptr, "uint*", bytes, "ptr", 0, "ptr", 0)
+                throw Error("Invalid Base64 string.")
+            return out
+        }
+    }
+}
+
 /**
 * Example 1: Basic String Encoding
 */

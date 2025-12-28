@@ -633,6 +633,3 @@ class ClassName {
         // Method
     }
 }
-
-; Moved class ClassName from nested scope
-class ClassName:

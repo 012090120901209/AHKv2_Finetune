@@ -4,5 +4,7 @@
 Persistent
 SetTimer(Msg, 1)
 Msg()
-Msg() { MsgBox()
+
+Msg() {
+    MsgBox()
 }

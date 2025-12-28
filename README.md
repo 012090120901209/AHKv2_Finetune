@@ -41,6 +41,10 @@ python .\src\train_qlora.py --config .\config\sft.yaml --merge_only 1
 - Use QLoRA defaults in config for a single 12 to 16 GB GPU
 - Provide your own dataset in `data/samples.jsonl` or point `--in` at your file
 
+## Export VS Code problems to chat
+- Convert a Problems panel entry into chat-ready text: `python tools/problems_to_chat.py --index 0 --chat-file tmp/chat_context.txt`
+- Emit Harmony-formatted JSONL instead of plain text: `python tools/problems_to_chat.py --match Httpserver.ahk --harmony-jsonl tmp/problems_chat.jsonl`
+
 ## Build datasets from AutoHotkey snippets
 1. Verify raw snippets live under `data/raw_scripts` (OneDrive or network sync locations can cause missing files—double-check before running).
 2. Generate the JSONL splits:

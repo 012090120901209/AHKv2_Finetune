@@ -4,6 +4,14 @@
 myGui := Gui()
 ogcButtonMakeMsgBox := myGui.Add("Button", , "Make MsgBox")
 ogcButtonMakeMsgBox.OnEvent("Click", InitVars.Bind("Normal"))
-myGui.Show() ^l:: HK1_l() InitVars(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("Created MsgBox")
-} HK1_l() { InitVars()
+myGui.Show()
+
+^l:: HK1_l()
+
+InitVars(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("Created MsgBox")
+}
+
+HK1_l() {
+    InitVars()
 }

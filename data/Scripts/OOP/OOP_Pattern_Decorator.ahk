@@ -35,14 +35,14 @@ class WhippedCreamDecorator extends CoffeeDecorator {
 }
 
 ; Elegant composition
-coffee := Coffee()
-coffee := MilkDecorator(coffee)
-coffee := SugarDecorator(coffee)
-coffee := CaramelDecorator(coffee)
-coffee := WhippedCreamDecorator(coffee)
+coffee := Coffee.New()
+coffee := MilkDecorator.New(coffee)
+coffee := SugarDecorator.New(coffee)
+coffee := CaramelDecorator.New(coffee)
+coffee := WhippedCreamDecorator.New(coffee)
 
 MsgBox(Format("{}`nTotal: ${:.2f}", coffee.Description(), coffee.Cost()))
 
 ; One-liner version
-fancyCoffee := WhippedCreamDecorator(CaramelDecorator(MilkDecorator(Coffee())))
+fancyCoffee := WhippedCreamDecorator.New(CaramelDecorator.New(MilkDecorator.New(Coffee.New())))
 MsgBox(Format("{}`nTotal: ${:.2f}", fancyCoffee.Description(), fancyCoffee.Cost()))

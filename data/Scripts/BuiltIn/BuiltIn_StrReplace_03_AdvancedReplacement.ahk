@@ -657,42 +657,96 @@ Example6_ConfigurationDriven() {
 ; Demonstrates building a sophisticated text processing pipeline that
 ; combines multiple techniques for complex document transformation.
 
-Example7_ProcessingPipeline() {
-    ; Create a comprehensive document processor
-    ProcessDocument(rawText) {
-        ; Stage 1: Clean whitespace
-        text := Trim(rawText)
-        Loop {
-            prev := text
-            text := StrReplace(text, "  ", " ")
-            if (text = prev)
+ProcessDocument_Example7(rawText) {
+    ; Stage 1: Clean whitespace
+    text := Trim(rawText)
+    Loop {
+        prev := text
+        text := StrReplace(text, "  ", " ")
+        if (text = prev)
             break
-        }
-
-        ; Stage 2: Normalize line endings
-        text := StrReplace(text, "`r`n", "`n")
-        text := StrReplace(text, "`r", "`n")
-
-        ; Stage 3: Replace smart quotes with regular quotes
-        text := StrReplace(text, "“", '"')  ; Left double quote
-        text := StrReplace(text, "”", '"')  ; Right double quote
-        text := StrReplace(text, "‘", "'")  ; Left single quote
-        text := StrReplace(text, "’", "'")  ; Right single quote
-
-        ; Stage 4: Convert special characters
-        text := StrReplace(text, "—", "--")  ; Em dash
-        text := StrReplace(text, "–", "-")   ; En dash
-        text := StrReplace(text, "…", "...") ; Ellipsis
-
-        ; Stage 5: Standardize formatting
-        text := StrReplace(text, " ,", ",")
-        text := StrReplace(text, " .", ".")
-        text := StrReplace(text, " !", "!")
-        text := StrReplace(text, " ?", "?")
-
-        return text
     }
 
+    ; Stage 2: Normalize line endings
+    text := StrReplace(text, "`r`n", "`n")
+    text := StrReplace(text, "`r", "`n")
+
+    ; Stage 3: Replace smart quotes with regular quotes
+    text := StrReplace(text, "“", '"')  ; Left double quote
+    text := StrReplace(text, "”", '"')  ; Right double quote
+    text := StrReplace(text, "‘", "'")  ; Left single quote
+    text := StrReplace(text, "’", "'")  ; Right single quote
+
+    ; Stage 4: Convert special characters
+    text := StrReplace(text, "—", "--")  ; Em dash
+    text := StrReplace(text, "–", "-")   ; En dash
+    text := StrReplace(text, "…", "...") ; Ellipsis
+
+    ; Stage 5: Standardize formatting
+    text := StrReplace(text, " ,", ",")
+    text := StrReplace(text, " .", ".")
+    text := StrReplace(text, " !", "!")
+    text := StrReplace(text, " ?", "?")
+
+    return text
+}
+
+MarkdownToHTML_Example7(markdown) {
+    html := markdown
+
+    ; Convert headers
+    html := StrReplace(html, "### ", "<h3>")
+    html := StrReplace(html, "## ", "<h2>")
+    html := StrReplace(html, "# ", "<h1>")
+
+    ; Convert emphasis
+    html := StrReplace(html, "**", "<strong>", , , 1)
+    html := StrReplace(html, "**", "</strong>", , , 1)
+    html := StrReplace(html, "*", "<em>", , , 1)
+    html := StrReplace(html, "*", "</em>", , , 1)
+
+    ; Convert line breaks
+    html := StrReplace(html, "`n`n", "</p><p>")
+    html := "<p>" . html . "</p>"
+
+    return html
+}
+
+AnonymizeLog_Example7(logText) {
+    anonymized := logText
+
+    ; Replace IP addresses (simplified pattern)
+    Loop 256 {
+        anonymized := StrReplace(anonymized, "192.168.1." . (A_Index - 1), "XXX.XXX.X.XXX")
+    }
+
+    ; Replace email addresses (simplified)
+    anonymized := StrReplace(anonymized, "@example.com", "@XXX.com")
+
+    ; Replace user IDs
+    Loop 100 {
+        anonymized := StrReplace(anonymized, "user" . A_Index, "userXXX")
+    }
+
+    return anonymized
+}
+
+FormatCodeSnippet_Example7(code) {
+    formatted := code
+
+    ; Add syntax highlighting markers (simplified)
+    formatted := StrReplace(formatted, "function", "[KEYWORD]function[/KEYWORD]")
+    formatted := StrReplace(formatted, "return", "[KEYWORD]return[/KEYWORD]")
+    formatted := StrReplace(formatted, "const", "[KEYWORD]const[/KEYWORD]")
+    formatted := StrReplace(formatted, "let", "[KEYWORD]let[/KEYWORD]")
+
+    ; Format strings
+    formatted := StrReplace(formatted, '"', '[STRING]"')
+
+    return formatted
+}
+
+Example7_ProcessingPipeline() {
     ; Test document with various issues
     RawDocument := "
     (
@@ -701,74 +755,19 @@ Example7_ProcessingPipeline() {
     Multiple   spaces    everywhere   !
     )"
 
-    ProcessedDocument := ProcessDocument(RawDocument)
+    ProcessedDocument := ProcessDocument_Example7(RawDocument)
 
     ; Example 2: Markdown to HTML converter (simplified)
-    MarkdownToHTML(markdown) {
-        html := markdown
-
-        ; Convert headers
-        html := StrReplace(html, "### ", "<h3>")
-        html := StrReplace(html, "## ", "<h2>")
-        html := StrReplace(html, "# ", "<h1>")
-
-        ; Convert emphasis
-        html := StrReplace(html, "**", "<strong>", , , 1)
-        html := StrReplace(html, "**", "</strong>", , , 1)
-        html := StrReplace(html, "*", "<em>", , , 1)
-        html := StrReplace(html, "*", "</em>", , , 1)
-
-        ; Convert line breaks
-        html := StrReplace(html, "`n`n", "</p><p>")
-        html := "<p>" . html . "</p>"
-
-        return html
-    }
-
     MarkdownText := "# Welcome`n`nThis is **bold** and this is *italic* text."
-    HTMLText := MarkdownToHTML(MarkdownText)
+    HTMLText := MarkdownToHTML_Example7(MarkdownText)
 
     ; Example 3: Log file anonymizer
-    AnonymizeLog(logText) {
-        anonymized := logText
-
-        ; Replace IP addresses (simplified pattern)
-        Loop 256 {
-            anonymized := StrReplace(anonymized, "192.168.1." . (A_Index - 1), "XXX.XXX.X.XXX")
-        }
-
-        ; Replace email addresses (simplified)
-        anonymized := StrReplace(anonymized, "@example.com", "@XXX.com")
-
-        ; Replace user IDs
-        Loop 100 {
-            anonymized := StrReplace(anonymized, "user" . A_Index, "userXXX")
-        }
-
-        return anonymized
-    }
-
     LogSample := "User user42 logged in from 192.168.1.100. Email: user42@example.com"
-    AnonymizedLog := AnonymizeLog(LogSample)
+    AnonymizedLog := AnonymizeLog_Example7(LogSample)
 
     ; Example 4: Code snippet formatter
-    FormatCodeSnippet(code) {
-        formatted := code
-
-        ; Add syntax highlighting markers (simplified)
-        formatted := StrReplace(formatted, "function", "[KEYWORD]function[/KEYWORD]")
-        formatted := StrReplace(formatted, "return", "[KEYWORD]return[/KEYWORD]")
-        formatted := StrReplace(formatted, "const", "[KEYWORD]const[/KEYWORD]")
-        formatted := StrReplace(formatted, "let", "[KEYWORD]let[/KEYWORD]")
-
-        ; Format strings
-        formatted := StrReplace(formatted, '"', '[STRING]"')
-
-        return formatted
-    }
-
     CodeSnippet := 'function test() { const x = "hello"; return x; }'
-    FormattedCode := FormatCodeSnippet(CodeSnippet)
+    FormattedCode := FormatCodeSnippet_Example7(CodeSnippet)
 
     MsgBox("
     (

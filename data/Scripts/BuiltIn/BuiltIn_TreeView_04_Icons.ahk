@@ -369,14 +369,15 @@ Example4_CustomIcons() {
     TV.Modify(Root, "Expand")
 
     ; Icon source info
-    infoText := myGui.Add("Edit", "xm y+10 w500 h100 ReadOnly", "
-    (
+    infoBlock := '
+    ( LTrim
     Icon Sources:
     - shell32.dll: Classic Windows icons
     - imageres.dll: Modern Windows Vista+ icons
     - You can also load from .ico files or .exe resources
-    - Format: IL_Add(ImageListID, ""path\\file"", IconNumber)
-    )")
+    - Format: IL_Add(ImageListID, "path\\file", IconNumber)
+    )'
+    infoText := myGui.Add("Edit", "xm y+10 w500 h100 ReadOnly", infoBlock)
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())

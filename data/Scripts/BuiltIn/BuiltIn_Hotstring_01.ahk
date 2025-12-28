@@ -590,14 +590,3 @@ Hotkey("^+!6", (*) => Example6_ContextAware())
 Hotkey("^+!7", (*) => Example7_ManagementSystem())
 
 ShowExampleMenu()
-
-; Moved class ClassName from nested scope
-class ClassName {
-    __New() {
-        ; Constructor placeholder
-    }
-
-    Method() {
-        ; Method implementation placeholder
-    }
-}

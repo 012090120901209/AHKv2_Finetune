@@ -45,21 +45,21 @@ Example1_SimpleStructures() {
     ; struct Rectangle { int left; int top; int right; int bottom; }
 
     ; Create and use structures
-    pt1 := Point.Create(100, 200)
-    pt2 := Point.Create(350, 450)
+    pt1 := BufferPoint.Create(100, 200)
+    pt2 := BufferPoint.Create(350, 450)
 
     rect := Rectangle.Create(50, 50, 400, 300)
 
     ; Modify point
-    Point.SetX(pt1, Point.GetX(pt1) + 10)
-    Point.SetY(pt1, Point.GetY(pt1) + 20)
+    BufferPoint.SetX(pt1, BufferPoint.GetX(pt1) + 10)
+    BufferPoint.SetY(pt1, BufferPoint.GetY(pt1) + 20)
 
     ; Display results
     result := "Simple Structure Examples:`n`n"
 
     result .= "Point Structures:`n"
-    result .= "  pt1: " . Point.ToString(pt1) . "`n"
-    result .= "  pt2: " . Point.ToString(pt2) . "`n`n"
+    result .= "  pt1: " . BufferPoint.ToString(pt1) . "`n"
+    result .= "  pt2: " . BufferPoint.ToString(pt2) . "`n`n"
 
     result .= "Rectangle Structure:`n"
     result .= "  " . Rectangle.ToString(rect) . "`n"
@@ -283,11 +283,11 @@ Example2_MixedTypeStructures() {
             ShowMenu()
 
             ; Moved class Point from nested scope
-            class Point {
+            class BufferPoint {
                 static SIZE := 8  ; 4 + 4 bytes
 
                 static Create(x, y) {
-                    buf := Buffer(Point.SIZE)
+                    buf := Buffer(BufferPoint.SIZE)
                     NumPut("Int", x, buf, 0)
                     NumPut("Int", y, buf, 4)
                     return buf
@@ -299,7 +299,7 @@ Example2_MixedTypeStructures() {
                 static SetY(buf, value) => NumPut("Int", value, buf, 4)
 
                 static ToString(buf) {
-                    return "Point(" . Point.GetX(buf) . ", " . Point.GetY(buf) . ")"
+                    return "Point(" . BufferPoint.GetX(buf) . ", " . BufferPoint.GetY(buf) . ")"
                 }
             }
 

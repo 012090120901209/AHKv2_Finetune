@@ -381,35 +381,35 @@ ClassifyCharacter(char) {
     switch char {
         case "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m":
         case "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z":
-        charType := "Lowercase Letter"
-        isAlpha := true
-        isNumeric := false
+            charType := "Lowercase Letter"
+            isAlpha := true
+            isNumeric := false
 
         case "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M":
         case "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z":
-        charType := "Uppercase Letter"
-        isAlpha := true
-        isNumeric := false
+            charType := "Uppercase Letter"
+            isAlpha := true
+            isNumeric := false
 
         case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-        charType := "Digit"
-        isAlpha := false
-        isNumeric := true
+            charType := "Digit"
+            isAlpha := false
+            isNumeric := true
 
         case " ", "`t", "`n", "`r":
-        charType := "Whitespace"
-        isAlpha := false
-        isNumeric := false
+            charType := "Whitespace"
+            isAlpha := false
+            isNumeric := false
 
         case "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+":
-        charType := "Special Character"
-        isAlpha := false
-        isNumeric := false
+            charType := "Special Character"
+            isAlpha := false
+            isNumeric := false
 
         default:
-        charType := "Other"
-        isAlpha := false
-        isNumeric := false
+            charType := "Other"
+            isAlpha := false
+            isNumeric := false
     }
 
     OutputDebug("Character '" char "': " charType "`n")

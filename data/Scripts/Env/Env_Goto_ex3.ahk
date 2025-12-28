@@ -10,19 +10,30 @@ ogcButtonTest := myGui.Add("Button", , "Test")
 ogcButtonTest.OnEvent("Click", Tag1.Bind("Normal"))
 ogcButtonTest := myGui.Add("Button", , "Test")
 ogcButtonTest.OnEvent("Click", Test1.Bind("Normal"))
-myGui.Show() Goto("Somewhere")
+myGui.Show()
+
 Somewhere()
 Tag()
 Test()
 Tag1()
 Test1()
-Somewhere() { MsgBox("Test")
+
+Somewhere() {
+    MsgBox("Test")
 }
-Tag(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("tag")
+
+Tag(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("tag")
 }
-Test(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("test")
+
+Test(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("test")
 }
-Tag1(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("tag1")
+
+Tag1(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("tag1")
 }
-Test1(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("test1")
+
+Test1(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("test1")
 }
