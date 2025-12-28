@@ -2,6 +2,6 @@
 #SingleInstance Force
 
 if !WinExist("ahk_class Notepad")
-MsgBox("notepad is not open")
+    MsgBox("notepad is not open")
 else
-MsgBox("notepad is open")
+    MsgBox("notepad is open")

@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Read Examples - Part 3
-* ============================================================================
-*
-* This file demonstrates comprehensive registry reading for system
-* diagnostics, software inventory, and configuration validation.
-*
-* @description System diagnostics and software inventory
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Read Examples - Part 3
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive registry reading for system
+ * diagnostics, software inventory, and configuration validation.
+ * 
+ * @description System diagnostics and software inventory
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Installed Software Inventory
 ; ============================================================================
 
 /**
-* @class SoftwareInventory
-* @description Enumerates installed software from registry
-*/
+ * @class SoftwareInventory
+ * @description Enumerates installed software from registry
+ */
 class SoftwareInventory {
     software := []
 
     /**
-    * @method Scan
-    * @description Scans registry for installed software
-    * @returns {Integer} Number of programs found
-    */
+     * @method Scan
+     * @description Scans registry for installed software
+     * @returns {Integer} Number of programs found
+     */
     Scan() {
         this.software := []
 
         ; Scan both 64-bit and 32-bit locations
         locations := [
-        "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",
-        "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall",
-        "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+            "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",
+            "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall",
+            "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
         ]
 
         for location in locations {
             try {
                 Loop Reg, location, "K"
- {
+                {
                     subKey := location . "\" . A_LoopRegName
 
                     ; Try to get display name
@@ -52,7 +52,7 @@ class SoftwareInventory {
 
                         ; Skip entries without display name
                         if (displayName = "")
-                        continue
+                            continue
 
                         ; Get additional info
                         publisher := this.SafeRead(subKey, "Publisher")
@@ -61,12 +61,12 @@ class SoftwareInventory {
                         installLocation := this.SafeRead(subKey, "InstallLocation")
 
                         this.software.Push(Map(
-                        "name", displayName,
-                        "publisher", publisher,
-                        "version", version,
-                        "installDate", installDate,
-                        "location", installLocation,
-                        "regKey", subKey
+                            "name", displayName,
+                            "publisher", publisher,
+                            "version", version,
+                            "installDate", installDate,
+                            "location", installLocation,
+                            "regKey", subKey
                         ))
                     } catch {
                         ; Skip entries without display name
@@ -81,13 +81,13 @@ class SoftwareInventory {
     }
 
     /**
-    * @method SafeRead
-    * @description Safely reads a registry value
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    * @param {String} default - Default value
-    * @returns {String} Registry value or default
-    */
+     * @method SafeRead
+     * @description Safely reads a registry value
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     * @param {String} default - Default value
+     * @returns {String} Registry value or default
+     */
     SafeRead(keyPath, valueName, default := "") {
         try {
             return RegRead(keyPath, valueName)
@@ -97,11 +97,11 @@ class SoftwareInventory {
     }
 
     /**
-    * @method FindByName
-    * @description Finds software by name (partial match)
-    * @param {String} searchTerm - Search term
-    * @returns {Array} Matching software entries
-    */
+     * @method FindByName
+     * @description Finds software by name (partial match)
+     * @param {String} searchTerm - Search term
+     * @returns {Array} Matching software entries
+     */
     FindByName(searchTerm) {
         results := []
         for app in this.software {
@@ -113,11 +113,11 @@ class SoftwareInventory {
     }
 
     /**
-    * @method GetReport
-    * @description Gets formatted inventory report
-    * @param {Integer} limit - Maximum entries to show
-    * @returns {String} Formatted report
-    */
+     * @method GetReport
+     * @description Gets formatted inventory report
+     * @param {Integer} limit - Maximum entries to show
+     * @returns {String} Formatted report
+     */
     GetReport(limit := 25) {
         report := "Installed Software Inventory:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -126,33 +126,33 @@ class SoftwareInventory {
         count := 0
         for app in this.software {
             if (count >= limit)
-            break
+                break
 
             report .= (count + 1) . ". " . app["name"] . "`n"
             if (app["publisher"] != "")
-            report .= "   Publisher: " . app["publisher"] . "`n"
+                report .= "   Publisher: " . app["publisher"] . "`n"
             if (app["version"] != "")
-            report .= "   Version: " . app["version"] . "`n"
+                report .= "   Version: " . app["version"] . "`n"
             report .= "`n"
 
             count++
         }
 
         if (this.software.Length > limit)
-        report .= "... (" . (this.software.Length - limit) . " more programs)"
+            report .= "... (" . (this.software.Length - limit) . " more programs)"
 
         return report
     }
 }
 
 /**
-* @function Example1_SoftwareInventory
-* @description Demonstrates installed software enumeration
-* @returns {void}
-*/
+ * @function Example1_SoftwareInventory
+ * @description Demonstrates installed software enumeration
+ * @returns {void}
+ */
 Example1_SoftwareInventory() {
     MsgBox "=== Example 1: Software Inventory ===`n`n" .
-    "Scanning installed software...`nThis may take a moment.", "Scanning"
+        "Scanning installed software...`nThis may take a moment.", "Scanning"
 
     inventory := SoftwareInventory()
     count := inventory.Scan()
@@ -166,17 +166,17 @@ Example1_SoftwareInventory() {
 ; ============================================================================
 
 /**
-* @class SystemDiagnostics
-* @description Collects system diagnostic information from registry
-*/
+ * @class SystemDiagnostics
+ * @description Collects system diagnostic information from registry
+ */
 class SystemDiagnostics {
     diagnostics := Map()
 
     /**
-    * @method Collect
-    * @description Collects diagnostic information
-    * @returns {Boolean} Success status
-    */
+     * @method Collect
+     * @description Collects diagnostic information
+     * @returns {Boolean} Success status
+     */
     Collect() {
         this.diagnostics := Map()
 
@@ -196,101 +196,101 @@ class SystemDiagnostics {
     }
 
     /**
-    * @method CollectSystemInfo
-    * @description Collects system information
-    */
+     * @method CollectSystemInfo
+     * @description Collects system information
+     */
     CollectSystemInfo() {
         sysInfo := Map()
 
         sysInfo["ProductName"] := this.SafeRead(
-        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-        "ProductName"
+            "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+            "ProductName"
         )
         sysInfo["CurrentBuild"] := this.SafeRead(
-        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-        "CurrentBuild"
+            "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+            "CurrentBuild"
         )
         sysInfo["BuildBranch"] := this.SafeRead(
-        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-        "BuildBranch"
+            "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+            "BuildBranch"
         )
         sysInfo["RegisteredOwner"] := this.SafeRead(
-        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-        "RegisteredOwner"
+            "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+            "RegisteredOwner"
         )
         sysInfo["SystemRoot"] := this.SafeRead(
-        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-        "SystemRoot"
+            "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+            "SystemRoot"
         )
 
         this.diagnostics["System"] := sysInfo
     }
 
     /**
-    * @method CollectHardwareInfo
-    * @description Collects hardware information
-    */
+     * @method CollectHardwareInfo
+     * @description Collects hardware information
+     */
     CollectHardwareInfo() {
         hwInfo := Map()
 
         hwInfo["ProcessorName"] := this.SafeRead(
-        "HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0",
-        "ProcessorNameString"
+            "HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0",
+            "ProcessorNameString"
         )
         hwInfo["ProcessorIdentifier"] := this.SafeRead(
-        "HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0",
-        "Identifier"
+            "HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0",
+            "Identifier"
         )
 
         this.diagnostics["Hardware"] := hwInfo
     }
 
     /**
-    * @method CollectNetworkInfo
-    * @description Collects network information
-    */
+     * @method CollectNetworkInfo
+     * @description Collects network information
+     */
     CollectNetworkInfo() {
         netInfo := Map()
 
         netInfo["ComputerName"] := this.SafeRead(
-        "HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName",
-        "ComputerName"
+            "HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName",
+            "ComputerName"
         )
         netInfo["Domain"] := this.SafeRead(
-        "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters",
-        "Domain"
+            "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters",
+            "Domain"
         )
         netInfo["HostName"] := this.SafeRead(
-        "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters",
-        "Hostname"
+            "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters",
+            "Hostname"
         )
 
         this.diagnostics["Network"] := netInfo
     }
 
     /**
-    * @method CollectPerformanceInfo
-    * @description Collects performance-related information
-    */
+     * @method CollectPerformanceInfo
+     * @description Collects performance-related information
+     */
     CollectPerformanceInfo() {
         perfInfo := Map()
 
         perfInfo["BootExecute"] := this.SafeRead(
-        "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager",
-        "BootExecute"
+            "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager",
+            "BootExecute"
         )
         perfInfo["CrashControl"] := this.SafeRead(
-        "HKLM\SYSTEM\CurrentControlSet\Control\CrashControl",
-        "CrashDumpEnabled"
+            "HKLM\SYSTEM\CurrentControlSet\Control\CrashControl",
+            "CrashDumpEnabled"
         )
 
         this.diagnostics["Performance"] := perfInfo
     }
 
     /**
-    * @method SafeRead
-    * @description Safely reads a registry value
-    */
+     * @method SafeRead
+     * @description Safely reads a registry value
+     */
     SafeRead(keyPath, valueName, default := "N/A") {
         try {
             return RegRead(keyPath, valueName)
@@ -300,10 +300,10 @@ class SystemDiagnostics {
     }
 
     /**
-    * @method GetReport
-    * @description Gets formatted diagnostics report
-    * @returns {String} Formatted report
-    */
+     * @method GetReport
+     * @description Gets formatted diagnostics report
+     * @returns {String} Formatted report
+     */
     GetReport() {
         report := "System Diagnostics Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
@@ -313,7 +313,7 @@ class SystemDiagnostics {
             for key, value in info {
                 valueStr := String(value)
                 if (StrLen(valueStr) > 50)
-                valueStr := SubStr(valueStr, 1, 47) . "..."
+                    valueStr := SubStr(valueStr, 1, 47) . "..."
                 report .= "  " . key . ": " . valueStr . "`n"
             }
             report .= "`n"
@@ -324,13 +324,13 @@ class SystemDiagnostics {
 }
 
 /**
-* @function Example2_SystemDiagnostics
-* @description Demonstrates system diagnostics collection
-* @returns {void}
-*/
+ * @function Example2_SystemDiagnostics
+ * @description Demonstrates system diagnostics collection
+ * @returns {void}
+ */
 Example2_SystemDiagnostics() {
     MsgBox "=== Example 2: System Diagnostics ===`n`n" .
-    "Collecting system diagnostic information..."
+        "Collecting system diagnostic information..."
 
     diag := SystemDiagnostics()
     diag.Collect()
@@ -344,13 +344,13 @@ Example2_SystemDiagnostics() {
 ; ============================================================================
 
 /**
-* @function Example3_FileAssociations
-* @description Reads file type associations from registry
-* @returns {void}
-*/
+ * @function Example3_FileAssociations
+ * @description Reads file type associations from registry
+ * @returns {void}
+ */
 Example3_FileAssociations() {
     MsgBox "=== Example 3: File Associations ===`n`n" .
-    "Reading file type associations..."
+        "Reading file type associations..."
 
     SafeRead(keyPath, valueName, default := "") {
         try {
@@ -362,7 +362,7 @@ Example3_FileAssociations() {
 
     ; Common file extensions to check
     extensions := [".txt", ".pdf", ".jpg", ".png", ".doc", ".docx",
-    ".xls", ".xlsx", ".mp3", ".mp4", ".html", ".zip"]
+        ".xls", ".xlsx", ".mp3", ".mp4", ".html", ".zip"]
 
     associations := Map()
 
@@ -378,9 +378,9 @@ Example3_FileAssociations() {
             command := SafeRead("HKEY_CLASSES_ROOT\" . fileType . "\shell\open\command", "")
 
             associations[ext] := Map(
-            "type", fileType,
-            "description", description,
-            "command", command
+                "type", fileType,
+                "description", description,
+                "command", command
             )
         }
     }
@@ -392,11 +392,11 @@ Example3_FileAssociations() {
     for ext, info in associations {
         result .= ext . " → " . info["type"] . "`n"
         if (info["description"] != "")
-        result .= "  Description: " . info["description"] . "`n"
+            result .= "  Description: " . info["description"] . "`n"
         if (info["command"] != "") {
             cmdStr := info["command"]
             if (StrLen(cmdStr) > 60)
-            cmdStr := SubStr(cmdStr, 1, 57) . "..."
+                cmdStr := SubStr(cmdStr, 1, 57) . "..."
             result .= "  Command: " . cmdStr . "`n"
         }
         result .= "`n"
@@ -410,45 +410,45 @@ Example3_FileAssociations() {
 ; ============================================================================
 
 /**
-* @class StartupAnalyzer
-* @description Analyzes programs that run at startup
-*/
+ * @class StartupAnalyzer
+ * @description Analyzes programs that run at startup
+ */
 class StartupAnalyzer {
     startupItems := []
 
     /**
-    * @method Scan
-    * @description Scans all startup locations
-    * @returns {Integer} Number of startup items found
-    */
+     * @method Scan
+     * @description Scans all startup locations
+     * @returns {Integer} Number of startup items found
+     */
     Scan() {
         this.startupItems := []
 
         ; Define startup locations
         locations := [
-        Map("key", "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run",
-        "scope", "System", "type", "Run"),
-        Map("key", "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run",
-        "scope", "User", "type", "Run"),
-        Map("key", "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce",
-        "scope", "System", "type", "RunOnce"),
-        Map("key", "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce",
-        "scope", "User", "type", "RunOnce")
+            Map("key", "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run",
+                "scope", "System", "type", "Run"),
+            Map("key", "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run",
+                "scope", "User", "type", "Run"),
+            Map("key", "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce",
+                "scope", "System", "type", "RunOnce"),
+            Map("key", "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce",
+                "scope", "User", "type", "RunOnce")
         ]
 
         for location in locations {
             try {
                 Loop Reg, location["key"], "V"
- {
+                {
                     try {
                         command := RegRead(location["key"], A_LoopRegName)
 
                         this.startupItems.Push(Map(
-                        "name", A_LoopRegName,
-                        "command", command,
-                        "scope", location["scope"],
-                        "type", location["type"],
-                        "location", location["key"]
+                            "name", A_LoopRegName,
+                            "command", command,
+                            "scope", location["scope"],
+                            "type", location["type"],
+                            "location", location["key"]
                         ))
                     } catch {
                         ; Skip inaccessible values
@@ -463,10 +463,10 @@ class StartupAnalyzer {
     }
 
     /**
-    * @method GetReport
-    * @description Gets formatted startup report
-    * @returns {String} Formatted report
-    */
+     * @method GetReport
+     * @description Gets formatted startup report
+     * @returns {String} Formatted report
+     */
     GetReport() {
         report := "Startup Programs Analysis:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -478,9 +478,9 @@ class StartupAnalyzer {
 
         for item in this.startupItems {
             if (item["scope"] = "System")
-            systemItems.Push(item)
+                systemItems.Push(item)
             else
-            userItems.Push(item)
+                userItems.Push(item)
         }
 
         if (systemItems.Length > 0) {
@@ -489,7 +489,7 @@ class StartupAnalyzer {
                 report .= "  • " . item["name"] . " [" . item["type"] . "]`n"
                 cmdStr := item["command"]
                 if (StrLen(cmdStr) > 70)
-                cmdStr := SubStr(cmdStr, 1, 67) . "..."
+                    cmdStr := SubStr(cmdStr, 1, 67) . "..."
                 report .= "    " . cmdStr . "`n`n"
             }
         }
@@ -500,7 +500,7 @@ class StartupAnalyzer {
                 report .= "  • " . item["name"] . " [" . item["type"] . "]`n"
                 cmdStr := item["command"]
                 if (StrLen(cmdStr) > 70)
-                cmdStr := SubStr(cmdStr, 1, 67) . "..."
+                    cmdStr := SubStr(cmdStr, 1, 67) . "..."
                 report .= "    " . cmdStr . "`n`n"
             }
         }
@@ -510,13 +510,13 @@ class StartupAnalyzer {
 }
 
 /**
-* @function Example4_StartupAnalyzer
-* @description Demonstrates startup program analysis
-* @returns {void}
-*/
+ * @function Example4_StartupAnalyzer
+ * @description Demonstrates startup program analysis
+ * @returns {void}
+ */
 Example4_StartupAnalyzer() {
     MsgBox "=== Example 4: Startup Programs ===`n`n" .
-    "Analyzing startup programs..."
+        "Analyzing startup programs..."
 
     analyzer := StartupAnalyzer()
     count := analyzer.Scan()
@@ -534,13 +534,13 @@ Example4_StartupAnalyzer() {
 ; ============================================================================
 
 /**
-* @function Example5_EnvironmentVariables
-* @description Reads environment variables from registry
-* @returns {void}
-*/
+ * @function Example5_EnvironmentVariables
+ * @description Reads environment variables from registry
+ * @returns {void}
+ */
 Example5_EnvironmentVariables() {
     MsgBox "=== Example 5: Environment Variables ===`n`n" .
-    "Reading environment variables..."
+        "Reading environment variables..."
 
     SafeRead(keyPath, valueName, default := "") {
         try {
@@ -556,7 +556,7 @@ Example5_EnvironmentVariables() {
     ; Read system environment variables
     try {
         Loop Reg, "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment", "V"
- {
+        {
             try {
                 value := RegRead("HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment", A_LoopRegName)
                 systemVars[A_LoopRegName] := value
@@ -567,7 +567,7 @@ Example5_EnvironmentVariables() {
     ; Read user environment variables
     try {
         Loop Reg, "HKCU\Environment", "V"
- {
+        {
             try {
                 value := RegRead("HKCU\Environment", A_LoopRegName)
                 userVars[A_LoopRegName] := value
@@ -584,15 +584,15 @@ Example5_EnvironmentVariables() {
         count := 0
         for varName, varValue in systemVars {
             if (count >= 10)
-            break
+                break
             valueStr := String(varValue)
             if (StrLen(valueStr) > 50)
-            valueStr := SubStr(valueStr, 1, 47) . "..."
+                valueStr := SubStr(valueStr, 1, 47) . "..."
             result .= "  " . varName . " = " . valueStr . "`n"
             count++
         }
         if (systemVars.Count > 10)
-        result .= "  ... (" . (systemVars.Count - 10) . " more)`n"
+            result .= "  ... (" . (systemVars.Count - 10) . " more)`n"
         result .= "`n"
     }
 
@@ -601,15 +601,15 @@ Example5_EnvironmentVariables() {
         count := 0
         for varName, varValue in userVars {
             if (count >= 10)
-            break
+                break
             valueStr := String(varValue)
             if (StrLen(valueStr) > 50)
-            valueStr := SubStr(valueStr, 1, 47) . "..."
+                valueStr := SubStr(valueStr, 1, 47) . "..."
             result .= "  " . varName . " = " . valueStr . "`n"
             count++
         }
         if (userVars.Count > 10)
-        result .= "  ... (" . (userVars.Count - 10) . " more)`n"
+            result .= "  ... (" . (userVars.Count - 10) . " more)`n"
     }
 
     MsgBox result, "Environment Variables"
@@ -620,13 +620,13 @@ Example5_EnvironmentVariables() {
 ; ============================================================================
 
 /**
-* @function Example6_ServicesConfig
-* @description Reads Windows services configuration
-* @returns {void}
-*/
+ * @function Example6_ServicesConfig
+ * @description Reads Windows services configuration
+ * @returns {void}
+ */
 Example6_ServicesConfig() {
     MsgBox "=== Example 6: Services Configuration ===`n`n" .
-    "Reading Windows services configuration..."
+        "Reading Windows services configuration..."
 
     SafeRead(keyPath, valueName, default := "") {
         try {
@@ -662,11 +662,11 @@ Example6_ServicesConfig() {
             }
 
             services.Push(Map(
-            "name", serviceName,
-            "displayName", displayName,
-            "description", description,
-            "startType", startTypeText,
-            "imagePath", imagePath
+                "name", serviceName,
+                "displayName", displayName,
+                "description", description,
+                "startType", startTypeText,
+                "imagePath", imagePath
             ))
         } catch {
             ; Skip if service not found
@@ -680,12 +680,12 @@ Example6_ServicesConfig() {
     for service in services {
         result .= service["displayName"] . "`n"
         if (service["description"] != "")
-        result .= "  Description: " . service["description"] . "`n"
+            result .= "  Description: " . service["description"] . "`n"
         result .= "  Start Type: " . service["startType"] . "`n"
         if (service["imagePath"] != "") {
             pathStr := service["imagePath"]
             if (StrLen(pathStr) > 60)
-            pathStr := SubStr(pathStr, 1, 57) . "..."
+                pathStr := SubStr(pathStr, 1, 57) . "..."
             result .= "  Path: " . pathStr . "`n"
         }
         result .= "`n"
@@ -699,29 +699,29 @@ Example6_ServicesConfig() {
 ; ============================================================================
 
 /**
-* @class ConfigValidator
-* @description Validates registry configuration against expected values
-*/
+ * @class ConfigValidator
+ * @description Validates registry configuration against expected values
+ */
 class ConfigValidator {
     validationResults := []
 
     /**
-    * @method ValidateValue
-    * @description Validates a single registry value
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    * @param {Any} expectedValue - Expected value
-    * @param {String} description - Description of the setting
-    * @returns {Boolean} Validation result
-    */
+     * @method ValidateValue
+     * @description Validates a single registry value
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     * @param {Any} expectedValue - Expected value
+     * @param {String} description - Description of the setting
+     * @returns {Boolean} Validation result
+     */
     ValidateValue(keyPath, valueName, expectedValue, description := "") {
         result := Map(
-        "keyPath", keyPath,
-        "valueName", valueName,
-        "expectedValue", expectedValue,
-        "description", description,
-        "status", "Unknown",
-        "actualValue", ""
+            "keyPath", keyPath,
+            "valueName", valueName,
+            "expectedValue", expectedValue,
+            "description", description,
+            "status", "Unknown",
+            "actualValue", ""
         )
 
         try {
@@ -742,10 +742,10 @@ class ConfigValidator {
     }
 
     /**
-    * @method GetReport
-    * @description Gets validation report
-    * @returns {String} Formatted report
-    */
+     * @method GetReport
+     * @description Gets validation report
+     * @returns {String} Formatted report
+     */
     GetReport() {
         report := "Configuration Validation Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
@@ -756,17 +756,17 @@ class ConfigValidator {
 
         for result in this.validationResults {
             if (result["status"] = "✓ Pass")
-            passed++
+                passed++
             else if (result["status"] = "✗ Fail")
-            failed++
+                failed++
             else
-            notFound++
+                notFound++
 
             report .= result["status"] . " "
             if (result["description"] != "")
-            report .= result["description"]
+                report .= result["description"]
             else
-            report .= result["valueName"]
+                report .= result["valueName"]
             report .= "`n"
 
             if (result["status"] != "✓ Pass") {
@@ -774,7 +774,7 @@ class ConfigValidator {
                 report .= "  Value: " . result["valueName"] . "`n"
                 report .= "  Expected: " . result["expectedValue"] . "`n"
                 if (result["actualValue"] != "")
-                report .= "  Actual: " . result["actualValue"] . "`n"
+                    report .= "  Actual: " . result["actualValue"] . "`n"
             }
             report .= "`n"
         }
@@ -789,30 +789,30 @@ class ConfigValidator {
 }
 
 /**
-* @function Example7_ConfigValidator
-* @description Demonstrates configuration validation
-* @returns {void}
-*/
+ * @function Example7_ConfigValidator
+ * @description Demonstrates configuration validation
+ * @returns {void}
+ */
 Example7_ConfigValidator() {
     MsgBox "=== Example 7: Configuration Validator ===`n`n" .
-    "Validating registry configuration..."
+        "Validating registry configuration..."
 
     validator := ConfigValidator()
 
     ; Example validations (these are just examples, actual values may differ)
     validator.ValidateValue(
-    "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-    "ProductName",
-    "Windows 11 Pro",
-    "Windows Edition Check"
+        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+        "ProductName",
+        "Windows 11 Pro",
+        "Windows Edition Check"
     )
 
     ; This validation will likely fail as it's an example
     validator.ValidateValue(
-    "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes",
-    "CurrentTheme",
-    "C:\Windows\Resources\Themes\aero.theme",
-    "Default Theme Check"
+        "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes",
+        "CurrentTheme",
+        "C:\Windows\Resources\Themes\aero.theme",
+        "Default Theme Check"
     )
 
     report := validator.GetReport()
@@ -854,8 +854,8 @@ ShowMenu() {
         case "7": Example7_ConfigValidator()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

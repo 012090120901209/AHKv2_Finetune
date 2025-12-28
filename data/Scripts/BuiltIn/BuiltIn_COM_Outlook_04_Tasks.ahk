@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Outlook_04_Tasks.ahk
-*
-* DESCRIPTION:
-* Task management in Outlook using COM automation.
-*
-* FEATURES:
-* - Creating tasks
-* - Setting priorities
-* - Due dates and reminders
-* - Task status tracking
-* - Task categories
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*/
+ * BuiltIn_COM_Outlook_04_Tasks.ahk
+ * 
+ * DESCRIPTION:
+ * Task management in Outlook using COM automation.
+ * 
+ * FEATURES:
+ * - Creating tasks
+ * - Setting priorities
+ * - Due dates and reminders
+ * - Task status tracking
+ * - Task categories
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ */
 
 Example1_CreateTask() {
     MsgBox("Example 1: Create Task")
@@ -188,7 +188,7 @@ ShowMenu() {
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

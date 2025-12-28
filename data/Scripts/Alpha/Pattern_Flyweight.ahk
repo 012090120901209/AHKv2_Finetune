@@ -14,7 +14,7 @@ class IconFactory {
             this.cacheHits++
             return this.cache[name]
         }
-        
+
         this.cacheMisses++
         this.cache[name] := Icon(name)
         return this.cache[name]
@@ -22,8 +22,8 @@ class IconFactory {
 
     static GetStats() {
         return "Cache: " this.cache.Count " icons`n"
-             . "Hits: " this.cacheHits "`n"
-             . "Misses: " this.cacheMisses
+            . "Hits: " this.cacheHits "`n"
+            . "Misses: " this.cacheMisses
     }
 }
 

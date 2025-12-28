@@ -51,11 +51,11 @@ class StockMovement {
     }
 
     ToString() => Format("[{1}] {2} {3}: {4} units - {5}",
-    FormatTime(this.timestamp, "MM/dd HH:mm"),
-    this.type,
-    this.product.name,
-    this.quantity,
-    this.notes)
+        FormatTime(this.timestamp, "MM/dd HH:mm"),
+        this.type,
+        this.product.name,
+        this.quantity,
+        this.notes)
 }
 
 class PurchaseOrder {
@@ -76,14 +76,14 @@ class PurchaseOrder {
     }
 
     AddItem(product, quantity) {
-        this.items[product.productId] := {product: product, quantity: quantity}
+        this.items[product.productId] := { product: product, quantity: quantity }
         return this
     }
 
     GetTotal() {
         total := 0
         for id, item in this.items
-        total += item.product.price * item.quantity
+            total += item.product.price * item.quantity
         return total
     }
 
@@ -93,11 +93,11 @@ class PurchaseOrder {
 
     ToString() {
         po := Format("Purchase Order #{1}`nSupplier: {2}`nStatus: {3}`n",
-        this.poId, this.supplier.name, this.status)
+            this.poId, this.supplier.name, this.status)
         po .= "Items:`n"
         for id, item in this.items
-        po .= Format("  {1} x{2} @ ${3:.2f} = ${4:.2f}`n",
-        item.product.name, item.quantity, item.product.price, item.product.price * item.quantity)
+            po .= Format("  {1} x{2} @ ${3:.2f} = ${4:.2f}`n",
+                item.product.name, item.quantity, item.product.price, item.product.price * item.quantity)
         po .= Format("Total: ${:.2f}", this.GetTotal())
         return po
     }
@@ -111,7 +111,7 @@ class Warehouse {
 
     ReceiveStock(product, quantity, notes := "") {
         if (!this.products.Has(product.productId))
-        return MsgBox("Product not in warehouse!", "Error")
+            return MsgBox("Product not in warehouse!", "Error")
 
         product.stockLevel += quantity
         this.movements.Push(StockMovement(product, StockMovement.TYPE_IN, quantity, notes))
@@ -121,10 +121,10 @@ class Warehouse {
 
     ShipStock(product, quantity, notes := "") {
         if (!this.products.Has(product.productId))
-        return MsgBox("Product not in warehouse!", "Error")
+            return MsgBox("Product not in warehouse!", "Error")
 
         if (product.stockLevel < quantity)
-        return MsgBox("Insufficient stock!", "Error")
+            return MsgBox("Insufficient stock!", "Error")
 
         product.stockLevel -= quantity
         this.movements.Push(StockMovement(product, StockMovement.TYPE_OUT, quantity, notes))
@@ -132,15 +132,15 @@ class Warehouse {
 
         ; Check if reorder needed
         if (product.NeedsReorder())
-        MsgBox(Format("LOW STOCK ALERT!`n{1} needs reordering`nCurrent: {2} | Reorder Point: {3}",
-        product.name, product.stockLevel, product.reorderPoint), "Stock Alert")
+            MsgBox(Format("LOW STOCK ALERT!`n{1} needs reordering`nCurrent: {2} | Reorder Point: {3}",
+                product.name, product.stockLevel, product.reorderPoint), "Stock Alert")
 
         return true
     }
 
     AdjustStock(product, newLevel, reason) {
         if (!this.products.Has(product.productId))
-        return MsgBox("Product not in warehouse!", "Error")
+            return MsgBox("Product not in warehouse!", "Error")
 
         difference := newLevel - product.stockLevel
         product.stockLevel := newLevel
@@ -151,7 +151,7 @@ class Warehouse {
 
     CreatePurchaseOrder(supplier) {
         if (!this.suppliers.Has(supplier.supplierId))
-        return MsgBox("Supplier not found!", "Error")
+            return MsgBox("Supplier not found!", "Error")
 
         po := PurchaseOrder(supplier)
         this.purchaseOrders.Push(po)
@@ -161,14 +161,14 @@ class Warehouse {
     ProcessPurchaseOrder(poId) {
         po := this._FindPurchaseOrder(poId)
         if (!po)
-        return MsgBox("Purchase order not found!", "Error")
+            return MsgBox("Purchase order not found!", "Error")
 
         if (po.status != PurchaseOrder.STATUS_ORDERED)
-        return MsgBox("Purchase order not in ordered status!", "Error")
+            return MsgBox("Purchase order not in ordered status!", "Error")
 
         ; Receive all items
         for id, item in po.items
-        this.ReceiveStock(item.product, item.quantity, Format("PO #{1}", po.poId))
+            this.ReceiveStock(item.product, item.quantity, Format("PO #{1}", po.poId))
 
         po.Receive()
         MsgBox(Format("Purchase Order #{1} received!", po.poId))
@@ -178,24 +178,24 @@ class Warehouse {
     GetLowStockProducts() {
         lowStock := []
         for id, product in this.products
-        if (product.NeedsReorder())
-        lowStock.Push(product)
+            if (product.NeedsReorder())
+                lowStock.Push(product)
         return lowStock
     }
 
     GenerateReorderReport() {
         lowStock := this.GetLowStockProducts()
         if (lowStock.Length = 0)
-        return "All products adequately stocked!"
+            return "All products adequately stocked!"
 
         report := "REORDER REPORT`n" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n`n"
         for product in lowStock
-        report .= Format("{1}`nCurrent: {2} | Reorder Point: {3}`nReorder Quantity: {4} | Supplier: {5}`n`n",
-        product.name,
-        product.stockLevel,
-        product.reorderPoint,
-        product.reorderQuantity,
-        product.supplier ? product.supplier.name : "None")
+            report .= Format("{1}`nCurrent: {2} | Reorder Point: {3}`nReorder Quantity: {4} | Supplier: {5}`n`n",
+                product.name,
+                product.stockLevel,
+                product.reorderPoint,
+                product.reorderQuantity,
+                product.supplier ? product.supplier.name : "None")
 
         return report
     }
@@ -203,7 +203,7 @@ class Warehouse {
     GetInventoryValue() {
         total := 0
         for id, product in this.products
-        total += product.price * product.stockLevel
+            total += product.price * product.stockLevel
         return total
     }
 
@@ -220,8 +220,8 @@ class Warehouse {
 
     _FindPurchaseOrder(poId) {
         for po in this.purchaseOrders
-        if (po.poId = poId)
-        return po
+            if (po.poId = poId)
+                return po
         return ""
     }
 }

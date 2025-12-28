@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Shell_03_Shortcuts.ahk
-*
-* DESCRIPTION:
-* Creating and managing shortcuts using WScript.Shell.
-*
-* FEATURES:
-* - Create shortcuts
-* - Set shortcut properties
-* - Read shortcut info
-* - Desktop shortcuts
-* - Start menu shortcuts
-*/
+ * BuiltIn_COM_Shell_03_Shortcuts.ahk
+ * 
+ * DESCRIPTION:
+ * Creating and managing shortcuts using WScript.Shell.
+ * 
+ * FEATURES:
+ * - Create shortcuts
+ * - Set shortcut properties
+ * - Read shortcut info
+ * - Desktop shortcuts
+ * - Start menu shortcuts
+ */
 
 Example1_CreateShortcut() {
     MsgBox("Example 1: Create Shortcut")
@@ -140,6 +140,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

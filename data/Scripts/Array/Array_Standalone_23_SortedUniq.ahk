@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* SortedUniq() - Remove duplicates from sorted array (Standalone Implementation)
-*
-* Optimized for sorted arrays - only checks adjacent elements.
-*/
+ * SortedUniq() - Remove duplicates from sorted array (Standalone Implementation)
+ * 
+ * Optimized for sorted arrays - only checks adjacent elements.
+ */
 
 SortedUniq(array) {
     if (array.Length = 0) {

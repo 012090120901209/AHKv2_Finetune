@@ -15,7 +15,8 @@ class Vector2D {
 
 class Component {
     __New(entity) => this.entity := entity
-    Update(deltaTime) { }  ; Override in subclasses
+    Update(deltaTime) {
+    }  ; Override in subclasses
 }
 
 class Transform extends Component {
@@ -45,7 +46,7 @@ class Physics extends Component {
         this.velocity := this.velocity.Add(this.acceleration.Multiply(deltaTime))
         transform := this.entity.GetComponent("Transform")
         if (transform)
-        transform.position := transform.position.Add(this.velocity.Multiply(deltaTime))
+            transform.position := transform.position.Add(this.velocity.Multiply(deltaTime))
         this.acceleration := Vector2D(0, 0)  ; Reset acceleration
     }
 
@@ -62,7 +63,7 @@ class Health extends Component {
     TakeDamage(amount) {
         this.currentHealth := Max(0, this.currentHealth - amount)
         if (this.currentHealth = 0)
-        this.entity.Destroy()
+            this.entity.Destroy()
         return this
     }
 
@@ -89,17 +90,17 @@ class Entity {
     AddTag(tag) => (this.tags.Push(tag), this)
     HasTag(tag) {
         for t in this.tags
-        if (t = tag)
-        return true
+            if (t = tag)
+                return true
         return false
     }
 
     Update(deltaTime) {
         if (!this.active)
-        return
+            return
 
         for type, component in this.components
-        component.Update(deltaTime)
+            component.Update(deltaTime)
     }
 
     Destroy() => (this.active := false, this)
@@ -107,7 +108,7 @@ class Entity {
     ToString() {
         info := Format("[Entity #{1}] {2}{3}`n", this.entityId, this.name, this.active ? "" : " (DESTROYED)")
         for type, component in this.components
-        info .= "  " . type . ": " . component.ToString() . "`n"
+            info .= "  " . type . ": " . component.ToString() . "`n"
         return info
     }
 }
@@ -124,22 +125,22 @@ class GameWorld {
     Update(deltaTime) {
         this.time += deltaTime
         for entity in this.entities
-        entity.Update(deltaTime)
+            entity.Update(deltaTime)
     }
 
     FindEntitiesByTag(tag) {
         results := []
         for entity in this.entities
-        if (entity.active && entity.HasTag(tag))
-        results.Push(entity)
+            if (entity.active && entity.HasTag(tag))
+                results.Push(entity)
         return results
     }
 
     FindEntitiesWithComponent(componentType) {
         results := []
         for entity in this.entities
-        if (entity.active && entity.HasComponent(componentType))
-        results.Push(entity)
+            if (entity.active && entity.HasComponent(componentType))
+                results.Push(entity)
         return results
     }
 
@@ -147,17 +148,17 @@ class GameWorld {
         i := 1
         while (i <= this.entities.Length) {
             if (!this.entities[i].active)
-            this.entities.RemoveAt(i)
+                this.entities.RemoveAt(i)
             else
-            i++
+                i++
         }
     }
 
     GetEntityCount() {
         count := 0
         for entity in this.entities
-        if (entity.active)
-        count++
+            if (entity.active)
+                count++
         return count
     }
 
@@ -190,14 +191,14 @@ class Game {
 
     Tick() {
         if (!this.running)
-        return
+            return
 
         this.world.Update(this.deltaTime)
     }
 
     RunSimulation(ticks) {
         loop ticks
-        this.Tick()
+            this.Tick()
         MsgBox(Format("Ran {1} ticks (sim time: {2:.2f}s)", ticks, ticks * this.deltaTime))
     }
 }
@@ -214,21 +215,21 @@ playerPhysics := Physics(player)
 playerHealth := Health(player, 100)
 
 player.AddComponent("Transform", playerTransform)
-.AddComponent("Physics", playerPhysics)
-.AddComponent("Health", playerHealth)
+    .AddComponent("Physics", playerPhysics)
+    .AddComponent("Health", playerHealth)
 
 ; Create enemies
 enemy1 := game.world.CreateEntity("Enemy1")
 enemy1.AddTag("enemy")
 enemy1.AddComponent("Transform", Transform(enemy1, 300, 200))
-.AddComponent("Physics", Physics(enemy1))
-.AddComponent("Health", Health(enemy1, 50))
+    .AddComponent("Physics", Physics(enemy1))
+    .AddComponent("Health", Health(enemy1, 50))
 
 enemy2 := game.world.CreateEntity("Enemy2")
 enemy2.AddTag("enemy")
 enemy2.AddComponent("Transform", Transform(enemy2, 400, 150))
-.AddComponent("Physics", Physics(enemy2))
-.AddComponent("Health", Health(enemy2, 50))
+    .AddComponent("Physics", Physics(enemy2))
+    .AddComponent("Health", Health(enemy2, 50))
 
 ; Create power-up
 powerup := game.world.CreateEntity("Health Pack")

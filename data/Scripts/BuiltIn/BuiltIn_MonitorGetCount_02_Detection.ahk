@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGetCount_02_Detection.ahk
-*
-* DESCRIPTION:
-* Advanced monitor count detection and change monitoring. Demonstrates
-* real-time detection of monitor configuration changes, hotplug events,
-* and dynamic adaptation to display changes.
-*
-* FEATURES:
-* - Real-time monitor count monitoring
-* - Hotplug event detection
-* - Configuration change notifications
-* - Historical count tracking
-* - Change event logging
-* - Automatic UI adaptation
-* - Monitor connect/disconnect handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Timer-based monitoring
-* - Event callback functions
-* - Dynamic GUI updates
-* - Array/Map data structures
-* - Custom event system
-* - OnMessage for system events
-*
-* LEARNING POINTS:
-* 1. Monitor count can change during runtime
-* 2. Hotplug events require continuous monitoring
-* 3. Cache count to detect changes efficiently
-* 4. Configuration changes may affect existing windows
-* 5. Applications should adapt to monitor changes
-* 6. WM_DISPLAYCHANGE message indicates monitor changes
-* 7. Re-query count after display change events
-*/
+ * BuiltIn_MonitorGetCount_02_Detection.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced monitor count detection and change monitoring. Demonstrates
+ * real-time detection of monitor configuration changes, hotplug events,
+ * and dynamic adaptation to display changes.
+ * 
+ * FEATURES:
+ * - Real-time monitor count monitoring
+ * - Hotplug event detection
+ * - Configuration change notifications
+ * - Historical count tracking
+ * - Change event logging
+ * - Automatic UI adaptation
+ * - Monitor connect/disconnect handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Timer-based monitoring
+ * - Event callback functions
+ * - Dynamic GUI updates
+ * - Array/Map data structures
+ * - Custom event system
+ * - OnMessage for system events
+ * 
+ * LEARNING POINTS:
+ * 1. Monitor count can change during runtime
+ * 2. Hotplug events require continuous monitoring
+ * 3. Cache count to detect changes efficiently
+ * 4. Configuration changes may affect existing windows
+ * 5. Applications should adapt to monitor changes
+ * 6. WM_DISPLAYCHANGE message indicates monitor changes
+ * 7. Re-query count after display change events
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Real-Time Monitor Count Monitor
@@ -71,7 +71,7 @@ Example1_RealTimeMonitor() {
 
     UpdateDisplay() {
         if isPaused
-        return
+            return
 
         MonCount := MonitorGetCount()
         updateCount++
@@ -143,8 +143,8 @@ Example2_ChangeDetector() {
 
             ; Show notification
             TrayTip("Monitor Configuration Changed",
-            "Count changed from " (newCount - change) " to " newCount,
-            "Mute")
+                "Count changed from " (newCount - change) " to " newCount,
+                "Mute")
         }
     }
 
@@ -174,7 +174,7 @@ Example3_DisplayChangeHandler() {
     g.Add("Text", , "Listening for WM_DISPLAYCHANGE events...")
 
     lv := g.Add("ListView", "w700 h300", [
-    "Time", "Event", "Monitor Count", "Resolution", "Color Depth"
+        "Time", "Event", "Monitor Count", "Resolution", "Color Depth"
     ])
 
     txtStats := g.Add("Text", "xm w700 +Border")
@@ -230,7 +230,7 @@ Example3_DisplayChangeHandler() {
         stats .= "Monitoring Since: " A_Hour ":" A_Min
 
         MonitorGet(1, &L, &T, &R, &B)
-        stats .= " | Primary: " (R-L) "x" (B-T)
+        stats .= " | Primary: " (R - L) "x" (B - T)
 
         txtStats.Value := stats
     }
@@ -249,7 +249,7 @@ Example4_HistoryTracker() {
 
     ; Timeline view
     lv := g.Add("ListView", "w700 h250", [
-    "#", "Timestamp", "Count", "Duration", "Change Type", "Notes"
+        "#", "Timestamp", "Count", "Duration", "Change Type", "Notes"
     ])
 
     ; Statistics panel
@@ -294,11 +294,11 @@ Example4_HistoryTracker() {
             seconds := DateDiff(timestamp, lastTime, "Seconds")
 
             if seconds < 60
-            duration := seconds " seconds"
+                duration := seconds " seconds"
             else if seconds < 3600
-            duration := Round(seconds / 60, 1) " minutes"
+                duration := Round(seconds / 60, 1) " minutes"
             else
-            duration := Round(seconds / 3600, 1) " hours"
+                duration := Round(seconds / 3600, 1) " hours"
         }
 
         ; Store entry
@@ -326,7 +326,7 @@ Example4_HistoryTracker() {
 
     UpdateStats() {
         if history.Length = 0
-        return
+            return
 
         ; Calculate statistics
         totalChanges := history.Length - 1  ; Exclude initial entry
@@ -346,9 +346,9 @@ Example4_HistoryTracker() {
         stats .= "Average Change Frequency: "
 
         if totalChanges > 0 && totalDuration > 0
-        stats .= Round(totalDuration / totalChanges / 60, 1) " minutes between changes"
+            stats .= Round(totalDuration / totalChanges / 60, 1) " minutes between changes"
         else
-        stats .= "N/A (no changes yet)"
+            stats .= "N/A (no changes yet)"
 
         txtStats.Value := stats
     }
@@ -431,8 +431,8 @@ Example5_AdaptiveResponder() {
         ; Notification
         if chkNotify.Value {
             TrayTip("Display Configuration Changed",
-            "Monitors " action ": " oldCount " → " newCount,
-            "Mute")
+                "Monitors " action ": " oldCount " → " newCount,
+                "Mute")
             Log("Notification sent to user")
         }
 
@@ -457,7 +457,7 @@ Example5_AdaptiveResponder() {
         for winID in windowList {
             try {
                 if !WinExist(winID)
-                continue
+                    continue
 
                 WinGetPos(&X, &Y, &W, &H, winID)
 
@@ -483,7 +483,7 @@ Example5_AdaptiveResponder() {
         }
 
         if repositioned > 0
-        Log("Repositioned " repositioned " window(s) to visible area")
+            Log("Repositioned " repositioned " window(s) to visible area")
     }
 
     ResizeWindows(monCount) {
@@ -576,25 +576,25 @@ Example6_AlertSystem() {
 
     CheckCount() {
         if !isMonitoring
-        return
+            return
 
         numChecks++
         expectedCount := Integer(edtExpected.Value)
         actualCount := MonitorGetCount()
 
         if chkLog.Value
-        LogMessage("Check #" numChecks ": " actualCount " monitor(s)")
+            LogMessage("Check #" numChecks ": " actualCount " monitor(s)")
 
         if actualCount != expectedCount {
             ; Alert!
             LogMessage("⚠ ALERT: Expected " expectedCount ", found " actualCount)
 
             if chkSound.Value
-            SoundBeep(750, 200)
+                SoundBeep(750, 200)
 
             if chkPopup.Value {
                 MsgBox("Monitor count mismatch!`n`nExpected: " expectedCount "`nActual: " actualCount,
-                "Monitor Alert", "Icon! T3")
+                    "Monitor Alert", "Icon! T3")
             }
         }
     }
@@ -618,93 +618,89 @@ Example7_ConfigurationValidator() {
     g.Add("Text", "w400", "Application Requirements Validator")
 
     ; Define requirements
-    requirements := [
-    {
-        Name: "Standard Mode", MinMonitors: 1, Recommended: 1},
-        {
-            Name: "Extended Mode", MinMonitors: 2, Recommended: 2},
-            {
-                Name: "Pro Mode", MinMonitors: 3, Recommended: 3},
-                {
+    requirements := [{
+        Name: "Standard Mode", MinMonitors: 1, Recommended: 1 }, {
+            Name: "Extended Mode", MinMonitors: 2, Recommended: 2 }, {
+                Name: "Pro Mode", MinMonitors: 3, Recommended: 3 }, {
                     Name: "Studio Mode", MinMonitors: 4, Recommended: 4
                 }
-                ]
+    ]
 
-                g.Add("Text", "xm Section", "Select Application Mode:")
+    g.Add("Text", "xm Section", "Select Application Mode:")
 
-                cmbMode := g.Add("ComboBox", "xs w250")
-                for req in requirements
-                cmbMode.Add([req.Name])
-                cmbMode.Choose(1)
+    cmbMode := g.Add("ComboBox", "xs w250")
+    for req in requirements
+        cmbMode.Add([req.Name])
+    cmbMode.Choose(1)
 
-                g.Add("Button", "xs w200", "Validate Configuration").OnEvent("Click", Validate)
+    g.Add("Button", "xs w200", "Validate Configuration").OnEvent("Click", Validate)
 
-                txtResult := g.Add("Text", "xs w400 h250 +Border")
+    txtResult := g.Add("Text", "xs w400 h250 +Border")
 
-                g.Show()
+    g.Show()
 
-                Validate(*) {
-                    currentCount := MonitorGetCount()
-                    selectedMode := cmbMode.Value
-                    req := requirements[selectedMode]
+    Validate(*) {
+        currentCount := MonitorGetCount()
+        selectedMode := cmbMode.Value
+        req := requirements[selectedMode]
 
-                    result := "CONFIGURATION VALIDATION`n"
-                    result .= "========================`n`n"
+        result := "CONFIGURATION VALIDATION`n"
+        result .= "========================`n`n"
 
-                    result .= "Mode: " req.Name "`n"
-                    result .= "Current Monitors: " currentCount "`n"
-                    result .= "Required: " req.MinMonitors "`n"
-                    result .= "Recommended: " req.Recommended "`n`n"
+        result .= "Mode: " req.Name "`n"
+        result .= "Current Monitors: " currentCount "`n"
+        result .= "Required: " req.MinMonitors "`n"
+        result .= "Recommended: " req.Recommended "`n`n"
 
-                    if currentCount >= req.Recommended {
-                        result .= "Status: ✓ OPTIMAL`n"
-                        result .= "Your configuration meets all recommendations.`n"
-                    } else if currentCount >= req.MinMonitors {
-                        result .= "Status: ⚠ ACCEPTABLE`n"
-                        result .= "Minimum requirements met, but not optimal.`n"
-                        result .= "Consider adding " (req.Recommended - currentCount) " more monitor(s).`n"
-                    } else {
-                        result .= "Status: ✗ INSUFFICIENT`n"
-                        result .= "Configuration does not meet minimum requirements.`n"
-                        result .= "You need " (req.MinMonitors - currentCount) " more monitor(s).`n"
-                    }
+        if currentCount >= req.Recommended {
+            result .= "Status: ✓ OPTIMAL`n"
+            result .= "Your configuration meets all recommendations.`n"
+        } else if currentCount >= req.MinMonitors {
+            result .= "Status: ⚠ ACCEPTABLE`n"
+            result .= "Minimum requirements met, but not optimal.`n"
+            result .= "Consider adding " (req.Recommended - currentCount) " more monitor(s).`n"
+        } else {
+            result .= "Status: ✗ INSUFFICIENT`n"
+            result .= "Configuration does not meet minimum requirements.`n"
+            result .= "You need " (req.MinMonitors - currentCount) " more monitor(s).`n"
+        }
 
-                    result .= "`nRECOMMENDATIONS:`n"
-                    if currentCount < req.MinMonitors {
-                        result .= "• Add " (req.MinMonitors - currentCount) " monitor(s) to use this mode`n"
-                        result .= "• Or select a mode requiring fewer monitors`n"
-                    } else if currentCount < req.Recommended {
-                        result .= "• Add " (req.Recommended - currentCount) " monitor(s) for optimal experience`n"
-                        result .= "• Current setup will work but may be limiting`n"
-                    } else {
-                        result .= "• Configuration is optimal for this mode`n"
-                        result .= "• All features fully supported`n"
-                    }
+        result .= "`nRECOMMENDATIONS:`n"
+        if currentCount < req.MinMonitors {
+            result .= "• Add " (req.MinMonitors - currentCount) " monitor(s) to use this mode`n"
+            result .= "• Or select a mode requiring fewer monitors`n"
+        } else if currentCount < req.Recommended {
+            result .= "• Add " (req.Recommended - currentCount) " monitor(s) for optimal experience`n"
+            result .= "• Current setup will work but may be limiting`n"
+        } else {
+            result .= "• Configuration is optimal for this mode`n"
+            result .= "• All features fully supported`n"
+        }
 
-                    txtResult.Value := result
-                }
-            }
+        txtResult.Value := result
+    }
+}
 
-            ;=============================================================================
-            ; MAIN MENU
-            ;=============================================================================
-            CreateMainMenu() {
-                g := Gui(, "MonitorGetCount Detection Examples")
-                g.SetFont("s10")
+;=============================================================================
+; MAIN MENU
+;=============================================================================
+CreateMainMenu() {
+    g := Gui(, "MonitorGetCount Detection Examples")
+    g.SetFont("s10")
 
-                g.Add("Text", "w450", "Monitor Count Detection & Change Monitoring:")
+    g.Add("Text", "w450", "Monitor Count Detection & Change Monitoring:")
 
-                g.Add("Button", "w450", "Example 1: Real-Time Monitor").OnEvent("Click", (*) => Example1_RealTimeMonitor())
-                g.Add("Button", "w450", "Example 2: Change Detector").OnEvent("Click", (*) => Example2_ChangeDetector())
-                g.Add("Button", "w450", "Example 3: Display Change Handler").OnEvent("Click", (*) => Example3_DisplayChangeHandler())
-                g.Add("Button", "w450", "Example 4: History Tracker").OnEvent("Click", (*) => Example4_HistoryTracker())
-                g.Add("Button", "w450", "Example 5: Adaptive Responder").OnEvent("Click", (*) => Example5_AdaptiveResponder())
-                g.Add("Button", "w450", "Example 6: Alert System").OnEvent("Click", (*) => Example6_AlertSystem())
-                g.Add("Button", "w450", "Example 7: Configuration Validator").OnEvent("Click", (*) => Example7_ConfigurationValidator())
+    g.Add("Button", "w450", "Example 1: Real-Time Monitor").OnEvent("Click", (*) => Example1_RealTimeMonitor())
+    g.Add("Button", "w450", "Example 2: Change Detector").OnEvent("Click", (*) => Example2_ChangeDetector())
+    g.Add("Button", "w450", "Example 3: Display Change Handler").OnEvent("Click", (*) => Example3_DisplayChangeHandler())
+    g.Add("Button", "w450", "Example 4: History Tracker").OnEvent("Click", (*) => Example4_HistoryTracker())
+    g.Add("Button", "w450", "Example 5: Adaptive Responder").OnEvent("Click", (*) => Example5_AdaptiveResponder())
+    g.Add("Button", "w450", "Example 6: Alert System").OnEvent("Click", (*) => Example6_AlertSystem())
+    g.Add("Button", "w450", "Example 7: Configuration Validator").OnEvent("Click", (*) => Example7_ConfigurationValidator())
 
-                g.Add("Button", "w450", "Exit").OnEvent("Click", (*) => ExitApp())
+    g.Add("Button", "w450", "Exit").OnEvent("Click", (*) => ExitApp())
 
-                g.Show()
-            }
+    g.Show()
+}
 
-            CreateMainMenu()
+CreateMainMenu()

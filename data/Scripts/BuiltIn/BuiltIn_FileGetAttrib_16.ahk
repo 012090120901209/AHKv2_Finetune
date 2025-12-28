@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetAttrib_16.ahk
-*
-* DESCRIPTION:
-* Attribute monitoring and change detection
-*
-* FEATURES:
-* - Monitor attribute changes
-* - Detect unauthorized modifications
-* - Track attribute history
-* - Alert on attribute changes
-* - Attribute integrity checking
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetAttrib() for monitoring
-* - Attribute change detection
-* - State tracking
-* - Integrity validation
-* - Alert systems
-*
-* LEARNING POINTS:
-* 1. Monitor file attributes over time
-* 2. Detect unauthorized changes
-* 3. Track attribute modification history
-* 4. Implement integrity checks
-* 5. Alert on suspicious changes
-* 6. Maintain attribute baselines
-*/
+ * BuiltIn_FileGetAttrib_16.ahk
+ * 
+ * DESCRIPTION:
+ * Attribute monitoring and change detection
+ * 
+ * FEATURES:
+ * - Monitor attribute changes
+ * - Detect unauthorized modifications
+ * - Track attribute history
+ * - Alert on attribute changes
+ * - Attribute integrity checking
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetAttrib() for monitoring
+ * - Attribute change detection
+ * - State tracking
+ * - Integrity validation
+ * - Alert systems
+ * 
+ * LEARNING POINTS:
+ * 1. Monitor file attributes over time
+ * 2. Detect unauthorized changes
+ * 3. Track attribute modification history
+ * 4. Implement integrity checks
+ * 5. Alert on suspicious changes
+ * 6. Maintain attribute baselines
+ */
 
 ; ============================================================
 ; Example 1: Attribute Change Detection
 ; ============================================================
 
 /**
-* Detect if file attributes have changed
-*
-* @param {String} filePath - File to monitor
-* @param {String} baselineAttrs - Original attributes
-* @returns {Object} - Change detection result
-*/
+ * Detect if file attributes have changed
+ * 
+ * @param {String} filePath - File to monitor
+ * @param {String} baselineAttrs - Original attributes
+ * @returns {Object} - Change detection result
+ */
 DetectAttributeChange(filePath, baselineAttrs) {
     result := {
         changed: false,
@@ -53,26 +53,26 @@ DetectAttributeChange(filePath, baselineAttrs) {
     }
 
     if (!FileExist(filePath))
-    return result
+        return result
 
     currentAttrs := FileGetAttrib(filePath)
     result.currentAttrs := currentAttrs
 
     if (currentAttrs = baselineAttrs)
-    return result
+        return result
 
     result.changed := true
 
     ; Detect added attributes
     loop parse, currentAttrs {
         if (!InStr(baselineAttrs, A_LoopField))
-        result.added.Push(A_LoopField)
+            result.added.Push(A_LoopField)
     }
 
     ; Detect removed attributes
     loop parse, baselineAttrs {
         if (!InStr(currentAttrs, A_LoopField))
-        result.removed.Push(A_LoopField)
+            result.removed.Push(A_LoopField)
     }
 
     return result
@@ -97,14 +97,14 @@ output .= "Changed: " (changes.changed ? "YES" : "NO") "`n`n"
 if (changes.added.Length > 0) {
     output .= "Added Attributes: "
     for attr in changes.added
-    output .= attr " "
+        output .= attr " "
     output .= "`n"
 }
 
 if (changes.removed.Length > 0) {
     output .= "Removed Attributes: "
     for attr in changes.removed
-    output .= attr " "
+        output .= attr " "
     output .= "`n"
 }
 
@@ -125,7 +125,7 @@ class AttributeMonitor {
 
     RecordSnapshot() {
         if (!FileExist(this.filePath))
-        return false
+            return false
 
         this.history.Push({
             timestamp: A_Now,
@@ -136,7 +136,7 @@ class AttributeMonitor {
 
     DetectChanges() {
         if (this.history.Length < 2)
-        return {hasChanges: false}
+            return { hasChanges: false }
 
         recent := this.history[this.history.Length]
         previous := this.history[this.history.Length - 1]
@@ -182,12 +182,12 @@ MsgBox(monitor.GetReport(), "Attribute Monitor", "Icon!")
 ; ============================================================
 
 /**
-* Verify file attributes match expected state
-*
-* @param {String} filePath - File to check
-* @param {String} expectedAttrs - Expected attributes
-* @returns {Object} - Integrity check result
-*/
+ * Verify file attributes match expected state
+ * 
+ * @param {String} filePath - File to check
+ * @param {String} expectedAttrs - Expected attributes
+ * @returns {Object} - Integrity check result
+ */
 CheckAttributeIntegrity(filePath, expectedAttrs) {
     result := {
         intact: false,
@@ -217,23 +217,23 @@ expected := FileGetAttrib(testFile)
 integrity := CheckAttributeIntegrity(testFile, expected)
 
 MsgBox("INTEGRITY CHECK:`n`n"
-. "Expected: " expected "`n"
-. "Status: " (integrity.intact ? "INTACT ✓" : "COMPROMISED ✗") "`n"
-. "Message: " integrity.message,
-"Integrity", integrity.intact ? "Icon!" : "IconX")
+    . "Expected: " expected "`n"
+    . "Status: " (integrity.intact ? "INTACT ✓" : "COMPROMISED ✗") "`n"
+    . "Message: " integrity.message,
+    "Integrity", integrity.intact ? "Icon!" : "IconX")
 
 ; ============================================================
 ; Example 4: Unauthorized Change Alert
 ; ============================================================
 
 /**
-* Alert if critical attributes have been modified
-*
-* @param {String} filePath - File to check
-* @param {String} criticalAttrs - Attributes that should not change
-* @param {String} baseline - Baseline attributes
-* @returns {Object} - Alert status
-*/
+ * Alert if critical attributes have been modified
+ * 
+ * @param {String} filePath - File to check
+ * @param {String} criticalAttrs - Attributes that should not change
+ * @param {String} baseline - Baseline attributes
+ * @returns {Object} - Alert status
+ */
 AlertUnauthorizedChange(filePath, criticalAttrs, baseline) {
     result := {
         alert: false,
@@ -241,7 +241,7 @@ AlertUnauthorizedChange(filePath, criticalAttrs, baseline) {
     }
 
     if (!FileExist(filePath))
-    return result
+        return result
 
     currentAttrs := FileGetAttrib(filePath)
 
@@ -275,7 +275,7 @@ output .= "Alert Triggered: " (alert.alert ? "YES ⚠" : "NO ✓") "`n`n"
 if (alert.violations.Length > 0) {
     output .= "Violations Detected:`n"
     for violation in alert.violations
-    output .= "  • " violation "`n"
+        output .= "  • " violation "`n"
 }
 
 MsgBox(output, "Security Alert", alert.alert ? "IconX" : "Icon!")
@@ -287,8 +287,8 @@ FileSetAttrib("-R", testFile)
 ; ============================================================
 
 /**
-* Manage attribute baselines for multiple files
-*/
+ * Manage attribute baselines for multiple files
+ */
 class BaselineManager {
     __New() {
         this.baselines := Map()
@@ -296,7 +296,7 @@ class BaselineManager {
 
     SetBaseline(filePath) {
         if (!FileExist(filePath))
-        return false
+            return false
 
         this.baselines[filePath] := FileGetAttrib(filePath)
         return true
@@ -304,10 +304,10 @@ class BaselineManager {
 
     VerifyBaseline(filePath) {
         if (!this.baselines.Has(filePath))
-        return {verified: false, reason: "No baseline set"}
+            return { verified: false, reason: "No baseline set" }
 
         if (!FileExist(filePath))
-        return {verified: false, reason: "File not found"}
+            return { verified: false, reason: "File not found" }
 
         baseline := this.baselines[filePath]
         current := FileGetAttrib(filePath)
@@ -315,8 +315,8 @@ class BaselineManager {
         return {
             verified: (baseline = current),
             reason: (baseline = current)
-            ? "Attributes match baseline"
-            : "Attributes differ (Baseline: " baseline ", Current: " current ")"
+                ? "Attributes match baseline"
+                : "Attributes differ (Baseline: " baseline ", Current: " current ")"
         }
     }
 

@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Chr() and Ord() - Character conversions
-*
-* Convert between characters and their numeric codes.
-*/
+ * Chr() and Ord() - Character conversions
+ * 
+ * Convert between characters and their numeric codes.
+ */
 
 ; Ord() - Get character code
 code := Ord("A")
@@ -14,4 +14,4 @@ code := Ord("A")
 char := Chr(65)
 
 MsgBox("Ord('A') = " code
-. "`nChr(65) = '" char "'")
+    . "`nChr(65) = '" char "'")

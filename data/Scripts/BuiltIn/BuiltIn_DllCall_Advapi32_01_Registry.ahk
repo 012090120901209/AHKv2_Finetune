@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Advapi32_01_Registry.ahk
-*
-* DESCRIPTION:
-* Demonstrates Registry operations using Windows API through DllCall.
-* Comprehensive examples showing various Registry operations.
-*
-* FEATURES:
-* - Registry API integration
-* - Practical Registry examples
-* - Error handling
-* - Resource management
-* - Advanced Registry techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Advapi32 API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Advapi32 API functions
-* 2. Working with Registry operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Registry techniques
-* 6. Best practices for Advapi32 API
-* 7. Real-world Registry applications
-*/
+ * BuiltIn_DllCall_Advapi32_01_Registry.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Registry operations using Windows API through DllCall.
+ * Comprehensive examples showing various Registry operations.
+ * 
+ * FEATURES:
+ * - Registry API integration
+ * - Practical Registry examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Registry techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Advapi32 API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Advapi32 API functions
+ * 2. Working with Registry operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Registry techniques
+ * 6. Best practices for Advapi32 API
+ * 7. Real-world Registry applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Registry Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Registry operations
-*/
+ * Helper function for Registry operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Registry Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

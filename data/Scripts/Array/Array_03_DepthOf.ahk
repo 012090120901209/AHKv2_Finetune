@@ -3,10 +3,10 @@
 #Include <adash>
 
 /**
-* _.depthOf() - Get array depth
-*
-* Explores the array and returns the maximum depth.
-*/
+ * _.depthOf() - Get array depth
+ * 
+ * Explores the array and returns the maximum depth.
+ */
 
 depth1 := _.depthOf([1])
 ; => 1
@@ -21,6 +21,6 @@ depth4 := _.depthOf([1, [2, [3, [4]], 5]])
 ; => 4
 
 MsgBox("Depth of [1]: " depth1 "`n"
-. "Depth of [1, [2]]: " depth2 "`n"
-. "Depth of [1, [[2]]]: " depth3 "`n"
-. "Depth of [1, [2, [3, [4]], 5]]: " depth4)
+    . "Depth of [1, [2]]: " depth2 "`n"
+    . "Depth of [1, [[2]]]: " depth3 "`n"
+    . "Depth of [1, [2, [3, [4]], 5]]: " depth4)

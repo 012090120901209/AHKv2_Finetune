@@ -132,7 +132,7 @@ result := "Shipping Cost Decision Table:`n`n"
 for test in tests {
     cost := shippingTable.Evaluate(test)
     result .= Format("Weight: {}kg, Zone: {}, Express: {} => ${:.2f}`n",
-                     test["weight"], test["zone"], test["express"], cost)
+        test["weight"], test["zone"], test["express"], cost)
 }
 
 MsgBox(result)
@@ -162,8 +162,8 @@ result := "Discount Decision Table:`n`n"
 for test in tests {
     r := discountTable.Evaluate(test)
     result .= Format("{} member, {} orders, ${} total => {}% ({})`n",
-                     test["memberType"], test["orderCount"], test["orderTotal"],
-                     Round(r["discount"] * 100), r["reason"])
+        test["memberType"], test["orderCount"], test["orderTotal"],
+        Round(r["discount"] * 100), r["reason"])
 }
 
 MsgBox(result)

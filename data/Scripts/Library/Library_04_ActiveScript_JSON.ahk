@@ -3,17 +3,17 @@
 #Include JSON.ahk
 
 /**
-* ActiveScript - JSON Manipulation with JavaScript
-*
-* Demonstrates using JavaScript's native JSON capabilities for parsing,
-* manipulating, and stringifying JSON data.
-*
-* Library: https://github.com/Lexikos/ActiveScript.ahk
-*/
+ * ActiveScript - JSON Manipulation with JavaScript
+ * 
+ * Demonstrates using JavaScript's native JSON capabilities for parsing,
+ * manipulating, and stringifying JSON data.
+ * 
+ * Library: https://github.com/Lexikos/ActiveScript.ahk
+ */
 
 MsgBox("ActiveScript - JSON Example`n`n"
-. "Demonstrates JavaScript JSON manipulation`n"
-. "Requires: ActiveScript.ahk in Lib folder", , "T3")
+    . "Demonstrates JavaScript JSON manipulation`n"
+    . "Requires: ActiveScript.ahk in Lib folder", , "T3")
 
 /*
 ; Uncomment to run (requires ActiveScript.ahk):
@@ -91,53 +91,54 @@ jsonData := '
 
         stats := script.Eval("JSON.stringify(stats)")
         MsgBox("User Statistics:`n`n" stats, , "T3")
-        */
+*/
 
-        /*
-        * Key Concepts:
-        *
-        * 1. JSON Parsing:
-        *    script.Exec("var obj = JSON.parse(jsonString)")
-        *    Native JavaScript JSON parser
-        *    Faster than AHK parsing
-        *
-        * 2. JSON Stringification:
-        *    json := script.Eval("JSON.stringify(obj, null, 2)")
-        *    Second param: replacer (null = all)
-        *    Third param: indentation (2 spaces)
-        *
-        * 3. JavaScript Array Methods:
-        *    .filter(fn) - Filter elements
-        *    .map(fn) - Transform elements
-        *    .reduce(fn, init) - Aggregate
-        *    .find(fn) - Find first match
-        *
-        * 4. Escaping Strings:
-        *    StrReplace(json, "'", "\'")
-        *    Escape quotes when passing to JS
-        *    Or use different quote style
-        *
-        * 5. Use Cases:
-        *    ✅ Complex JSON parsing
-        *    ✅ API response processing
-        *    ✅ Data transformation
-        *    ✅ JSON validation
-        *    ✅ Nested data queries
-        *
-        * 6. Advantages over AHK:
-        *    ✅ Native JSON support
-        *    ✅ Powerful array methods
-        *    ✅ Functional programming
-        *    ✅ Built-in validation
-        *
-        * 7. Performance:
-        *    For large JSON: JavaScript faster
-        *    For simple parsing: AHK sufficient
-        *    Balance interop overhead
-        *
-        * 8. Best Practices:
-        *    ✅ Validate JSON first
-        *    ✅ Handle errors with try/catch
-        *    ✅ Cache parsed objects
-        *    ✅ Minimize JS/AHK transitions
-        */
+/*
+* Key Concepts:
+*
+* 1. JSON Parsing:
+*    script.Exec("var obj = JSON.parse(jsonString)")
+*    Native JavaScript JSON parser
+*    Faster than AHK parsing
+*
+* 2. JSON Stringification:
+*    json := script.Eval("JSON.stringify(obj, null, 2)")
+*    Second param: replacer (null = all)
+*    Third param: indentation (2 spaces)
+*
+* 3. JavaScript Array Methods:
+*    .filter(fn) - Filter elements
+*    .map(fn) - Transform elements
+*    .reduce(fn, init) - Aggregate
+*    .find(fn) - Find first match
+*
+* 4. Escaping Strings:
+*    StrReplace(json, "'", "\'")
+*    Escape quotes when passing to JS
+*    Or use different quote style
+*
+* 5. Use Cases:
+*    ✅ Complex JSON parsing
+*    ✅ API response processing
+*    ✅ Data transformation
+*    ✅ JSON validation
+*    ✅ Nested data queries
+*
+* 6. Advantages over AHK:
+*    ✅ Native JSON support
+*    ✅ Powerful array methods
+*    ✅ Functional programming
+*    ✅ Built-in validation
+*
+* 7. Performance:
+*    For large JSON: JavaScript faster
+*    For simple parsing: AHK sufficient
+*    Balance interop overhead
+*
+* 8. Best Practices:
+*    ✅ Validate JSON first
+*    ✅ Handle errors with try/catch
+*    ✅ Cache parsed objects
+*    ✅ Minimize JS/AHK transitions
+*/
+

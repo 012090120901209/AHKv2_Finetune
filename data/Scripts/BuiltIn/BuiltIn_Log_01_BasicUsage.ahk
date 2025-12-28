@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Log_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of Log() function for base-10 logarithm calculations
-*
-* FEATURES:
-* - Basic logarithm (base 10) calculations
-* - Logarithm properties and rules
-* - Relationship between Log() and powers of 10
-* - Converting between logarithms and exponentials
-* - Orders of magnitude
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Math.htm#Log
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Log() function (base 10)
-* - Ln() function (natural logarithm)
-* - Mathematical expressions
-* - Format() for scientific notation
-* - Power operator (**)
-*
-* LEARNING POINTS:
-* 1. Log(x) calculates log₁₀(x)
-* 2. Log(10^n) = n
-* 3. 10^Log(x) = x
-* 4. Log is only defined for positive numbers
-* 5. Logarithms turn multiplication into addition
-*/
+ * BuiltIn_Log_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of Log() function for base-10 logarithm calculations
+ * 
+ * FEATURES:
+ * - Basic logarithm (base 10) calculations
+ * - Logarithm properties and rules
+ * - Relationship between Log() and powers of 10
+ * - Converting between logarithms and exponentials
+ * - Orders of magnitude
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Math.htm#Log
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Log() function (base 10)
+ * - Ln() function (natural logarithm)
+ * - Mathematical expressions
+ * - Format() for scientific notation
+ * - Power operator (**)
+ * 
+ * LEARNING POINTS:
+ * 1. Log(x) calculates log₁₀(x)
+ * 2. Log(10^n) = n
+ * 3. 10^Log(x) = x
+ * 4. Log is only defined for positive numbers
+ * 5. Logarithms turn multiplication into addition
+ */
 
 ; ============================================================
 ; Example 1: Basic Logarithm Calculations
@@ -45,11 +45,11 @@ for x in values {
 
     ; Special cases
     if (x = 1)
-    output .= "  (Always equals 0)"
+        output .= "  (Always equals 0)"
     else if (x = 10)
-    output .= "  (Always equals 1)"
+        output .= "  (Always equals 1)"
     else if (Mod(Log(x) / Log(10), 1) = 0)
-    output .= "  (Power of 10)"
+        output .= "  (Power of 10)"
 
     output .= "`n"
 }
@@ -61,8 +61,8 @@ MsgBox(output, "Basic Log() Function", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrate inverse relationship between Log and 10^x
-*/
+ * Demonstrate inverse relationship between Log and 10^x
+ */
 DemonstratePowersOf10() {
     exponents := [-3, -2, -1, 0, 1, 2, 3, 4, 5]
     results := []
@@ -105,8 +105,8 @@ MsgBox(output, "Powers of 10", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrate key logarithm properties
-*/
+ * Demonstrate key logarithm properties
+ */
 DemonstrateLogProperties() {
     a := 100
     b := 1000
@@ -135,12 +135,12 @@ DemonstrateLogProperties() {
     prop6_right := Log(a) / 2
 
     return {
-        prop1: {left: prop1_left, right: prop1_right, a: a, b: b},
-        prop2: {left: prop2_left, right: prop2_right, a: a, b: b},
-        prop3: {left: prop3_left, right: prop3_right, a: a, power: power},
+        prop1: { left: prop1_left, right: prop1_right, a: a, b: b },
+        prop2: { left: prop2_left, right: prop2_right, a: a, b: b },
+        prop3: { left: prop3_left, right: prop3_right, a: a, power: power },
         prop4: prop4,
         prop5: prop5,
-        prop6: {left: prop6_left, right: prop6_right, a: a}
+        prop6: { left: prop6_left, right: prop6_right, a: a }
     }
 }
 
@@ -183,16 +183,16 @@ MsgBox(output, "Logarithm Properties", "Icon!")
 ; ============================================================
 
 /**
-* Convert logarithm from one base to another
-* log_b(x) = log₁₀(x) / log₁₀(b)
-*/
+ * Convert logarithm from one base to another
+ * log_b(x) = log₁₀(x) / log₁₀(b)
+ */
 LogBase(x, base) {
     return Log(x) / Log(base)
 }
 
 /**
-* Calculate logarithm in various bases
-*/
+ * Calculate logarithm in various bases
+ */
 CalculateMultipleBases(x) {
     return {
         log2: LogBase(x, 2),      ; Binary logarithm
@@ -211,176 +211,172 @@ output .= "Value: " testValue "`n`n"
 output .= "Base       Notation    Result`n"
 output .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
 
-bases := [
-{
-    base: 2, name: "Binary", notation: "log₂", value: results.log2},
-    {
-        base: "e", name: "Natural", notation: "ln", value: results.logE},
-        {
-            base: 10, name: "Common", notation: "log₁₀", value: results.log10},
-            {
+bases := [{
+    base: 2, name: "Binary", notation: "log₂", value: results.log2 }, {
+        base: "e", name: "Natural", notation: "ln", value: results.logE }, {
+            base: 10, name: "Common", notation: "log₁₀", value: results.log10 }, {
                 base: 16, name: "Hexadecimal", notation: "log₁₆", value: results.log16
             }
-            ]
+]
 
-            for b in bases {
-                output .= Format("{:>4s}", b.base)
-                output .= Format("{:14s}", "  " b.name)
-                output .= Format("{:9s}", b.notation)
-                output .= Format("{:12.8f}", b.value)
-                output .= "`n"
-            }
+for b in bases {
+    output .= Format("{:>4s}", b.base)
+    output .= Format("{:14s}", "  " b.name)
+    output .= Format("{:9s}", b.notation)
+    output .= Format("{:12.8f}", b.value)
+    output .= "`n"
+}
 
-            ; Show that 256 = 2^8, 16^2
-            output .= "`nVerification:`n"
-            output .= "256 = 2^" Format("{:.0f}", results.log2) " = 16^" Format("{:.0f}", results.log16)
+; Show that 256 = 2^8, 16^2
+output .= "`nVerification:`n"
+output .= "256 = 2^" Format("{:.0f}", results.log2) " = 16^" Format("{:.0f}", results.log16)
 
-            MsgBox(output, "Different Bases", "Icon!")
+MsgBox(output, "Different Bases", "Icon!")
 
-            ; ============================================================
-            ; Example 5: Orders of Magnitude
-            ; ============================================================
+; ============================================================
+; Example 5: Orders of Magnitude
+; ============================================================
 
-            /**
-            * Calculate order of magnitude (power of 10)
-            */
-            OrderOfMagnitude(x) {
-                return Floor(Log(Abs(x)))
-            }
+/**
+ * Calculate order of magnitude (power of 10)
+ */
+OrderOfMagnitude(x) {
+    return Floor(Log(Abs(x)))
+}
 
-            /**
-            * Express number in scientific notation
-            */
-            ScientificNotation(x) {
-                if (x = 0)
-                return {mantissa: 0, exponent: 0}
+/**
+ * Express number in scientific notation
+ */
+ScientificNotation(x) {
+    if (x = 0)
+        return { mantissa: 0, exponent: 0 }
 
-                exponent := OrderOfMagnitude(x)
-                mantissa := x / (10 ** exponent)
+    exponent := OrderOfMagnitude(x)
+    mantissa := x / (10 ** exponent)
 
-                return {mantissa: mantissa, exponent: exponent}
-            }
+    return { mantissa: mantissa, exponent: exponent }
+}
 
-            numbers := [1234, 0.00567, 987654321, 0.0000123, 5.6e8, 3.14e-5]
+numbers := [1234, 0.00567, 987654321, 0.0000123, 5.6e8, 3.14e-5]
 
-            output := "ORDERS OF MAGNITUDE:`n`n"
-            output .= "Number            Order   Scientific Notation`n"
-            output .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+output := "ORDERS OF MAGNITUDE:`n`n"
+output .= "Number            Order   Scientific Notation`n"
+output .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
 
-            for num in numbers {
-                order := OrderOfMagnitude(num)
-                sci := ScientificNotation(num)
+for num in numbers {
+    order := OrderOfMagnitude(num)
+    sci := ScientificNotation(num)
 
-                output .= Format("{:16.8g}", num)
-                output .= Format("{:8d}", order)
-                output .= "    " Format("{:.4f}", sci.mantissa) " × 10^" sci.exponent
-                output .= "`n"
-            }
+    output .= Format("{:16.8g}", num)
+    output .= Format("{:8d}", order)
+    output .= "    " Format("{:.4f}", sci.mantissa) " × 10^" sci.exponent
+    output .= "`n"
+}
 
-            MsgBox(output, "Orders of Magnitude", "Icon!")
+MsgBox(output, "Orders of Magnitude", "Icon!")
 
-            ; ============================================================
-            ; Example 6: Solving Exponential Equations
-            ; ============================================================
+; ============================================================
+; Example 6: Solving Exponential Equations
+; ============================================================
 
-            /**
-            * Solve equations of the form 10^x = N
-            * Solution: x = log₁₀(N)
-            */
-            SolveExponential10(N) {
-                return Log(N)
-            }
+/**
+ * Solve equations of the form 10^x = N
+ * Solution: x = log₁₀(N)
+ */
+SolveExponential10(N) {
+    return Log(N)
+}
 
-            /**
-            * Solve equations of the form a^x = N
-            * Solution: x = log(N) / log(a)
-            */
-            SolveExponentialBase(a, N) {
-                return Log(N) / Log(a)
-            }
+/**
+ * Solve equations of the form a^x = N
+ * Solution: x = log(N) / log(a)
+ */
+SolveExponentialBase(a, N) {
+    return Log(N) / Log(a)
+}
 
-            output := "SOLVING EXPONENTIAL EQUATIONS:`n`n"
+output := "SOLVING EXPONENTIAL EQUATIONS:`n`n"
 
-            ; Solve 10^x = N
-            output .= "Solve: 10^x = N`n"
-            output .= "Solution: x = log₁₀(N)`n`n"
+; Solve 10^x = N
+output .= "Solve: 10^x = N`n"
+output .= "Solution: x = log₁₀(N)`n`n"
 
-            targets := [50, 100, 500, 1000, 5000]
-            for N in targets {
-                x := SolveExponential10(N)
-                verify := 10 ** x
+targets := [50, 100, 500, 1000, 5000]
+for N in targets {
+    x := SolveExponential10(N)
+    verify := 10 ** x
 
-                output .= "  10^x = " Format("{:5d}", N) " → x = " Format("{:.6f}", x)
-                output .= " (verify: " Format("{:.2f}", verify) ")`n"
-            }
+    output .= "  10^x = " Format("{:5d}", N) " → x = " Format("{:.6f}", x)
+    output .= " (verify: " Format("{:.2f}", verify) ")`n"
+}
 
-            ; Solve a^x = N
-            output .= "`nSolve: 2^x = N`n"
-            output .= "Solution: x = log₁₀(N) / log₁₀(2)`n`n"
+; Solve a^x = N
+output .= "`nSolve: 2^x = N`n"
+output .= "Solution: x = log₁₀(N) / log₁₀(2)`n`n"
 
-            base := 2
-            targets := [8, 16, 32, 64, 128, 256]
-            for N in targets {
-                x := SolveExponentialBase(base, N)
-                verify := base ** x
+base := 2
+targets := [8, 16, 32, 64, 128, 256]
+for N in targets {
+    x := SolveExponentialBase(base, N)
+    verify := base ** x
 
-                output .= "  2^x = " Format("{:4d}", N) " → x = " Format("{:.6f}", x)
-                output .= " (verify: " Format("{:.2f}", verify) ")`n"
-            }
+    output .= "  2^x = " Format("{:4d}", N) " → x = " Format("{:.6f}", x)
+    output .= " (verify: " Format("{:.2f}", verify) ")`n"
+}
 
-            MsgBox(output, "Solving Exponentials", "Icon!")
+MsgBox(output, "Solving Exponentials", "Icon!")
 
-            ; ============================================================
-            ; Example 7: Logarithmic Scale Comparison
-            ; ============================================================
+; ============================================================
+; Example 7: Logarithmic Scale Comparison
+; ============================================================
 
-            /**
-            * Compare linear vs logarithmic scale
-            */
-            CompareScales(values) {
-                results := []
+/**
+ * Compare linear vs logarithmic scale
+ */
+CompareScales(values) {
+    results := []
 
-                for val in values {
-                    linearDiff := val - values[1]
-                    logDiff := Log(val) - Log(values[1])
+    for val in values {
+        linearDiff := val - values[1]
+        logDiff := Log(val) - Log(values[1])
 
-                    results.Push({
-                        value: val,
-                        linear: linearDiff,
-                        log: logDiff
-                    })
-                }
+        results.Push({
+            value: val,
+            linear: linearDiff,
+            log: logDiff
+        })
+    }
 
-                return results
-            }
+    return results
+}
 
-            values := [1, 10, 100, 1000, 10000, 100000]
-            results := CompareScales(values)
+values := [1, 10, 100, 1000, 10000, 100000]
+results := CompareScales(values)
 
-            output := "LINEAR vs LOGARITHMIC SCALE:`n`n"
-            output .= "   Value    Linear Diff    Log Diff`n"
-            output .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+output := "LINEAR vs LOGARITHMIC SCALE:`n`n"
+output .= "   Value    Linear Diff    Log Diff`n"
+output .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
 
-            for r in results {
-                output .= Format("{:8,.0f}", r.value)
-                output .= Format("{:15,.0f}", r.linear)
-                output .= Format("{:12.4f}", r.log)
-                output .= "`n"
-            }
+for r in results {
+    output .= Format("{:8,.0f}", r.value)
+    output .= Format("{:15,.0f}", r.linear)
+    output .= Format("{:12.4f}", r.log)
+    output .= "`n"
+}
 
-            output .= "`nNotice:`n"
-            output .= "- Linear: differences grow exponentially`n"
-            output .= "- Logarithmic: differences are constant (1.0)`n"
-            output .= "- Each value is 10× the previous`n"
-            output .= "- Log increases by 1 each time"
+output .= "`nNotice:`n"
+output .= "- Linear: differences grow exponentially`n"
+output .= "- Logarithmic: differences are constant (1.0)`n"
+output .= "- Each value is 10× the previous`n"
+output .= "- Log increases by 1 each time"
 
-            MsgBox(output, "Scale Comparison", "Icon!")
+MsgBox(output, "Scale Comparison", "Icon!")
 
-            ; ============================================================
-            ; Reference Information
-            ; ============================================================
+; ============================================================
+; Reference Information
+; ============================================================
 
-            info := "
+info := "
             (
             LOG() FUNCTION REFERENCE:
 
@@ -438,4 +434,4 @@ bases := [
             • log(1) = 0
             )"
 
-            MsgBox(info, "Log() Reference", "Icon!")
+MsgBox(info, "Log() Reference", "Icon!")

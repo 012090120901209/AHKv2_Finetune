@@ -24,7 +24,7 @@ statusText := splash.Add("Text", "x0 y130 w400 Center", "Initializing...")
 
 ; Add version info
 splash.SetFont("s8 c888888", "Segoe UI")
-splash.Add("Text", "x0 y180 w400 Center", "© 2025 MyCompany. All rights reserved.")
+splash.Add("Text", "x0 y180 w400 Center", "Â© 2025 MyCompany. All rights reserved.")
 
 splash.Show("w400 h210 Center")
 

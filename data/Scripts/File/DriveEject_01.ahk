@@ -1,19 +1,19 @@
 /**
-* @file DriveEject_01.ahk
-* @description Comprehensive examples of DriveEject, DriveRetract, and DriveGetStatusCD functions in AutoHotkey v2
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Safely ejecting removable drives and optical media
-* - Retracting CD/DVD trays
-* - Checking CD/DVD drive status
-* - Automated eject procedures
-* - Safe eject validation
-* - Multi-drive eject operations
-* - CD/DVD tray automation
-*/
+ * @file DriveEject_01.ahk
+ * @description Comprehensive examples of DriveEject, DriveRetract, and DriveGetStatusCD functions in AutoHotkey v2
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Safely ejecting removable drives and optical media
+ * - Retracting CD/DVD trays
+ * - Checking CD/DVD drive status
+ * - Automated eject procedures
+ * - Safe eject validation
+ * - Multi-drive eject operations
+ * - CD/DVD tray automation
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,19 +22,19 @@
 ; ===================================================================================================
 
 /**
-* @function SafeEjectDrive
-* @description Safely ejects a drive after validation
-* @param {String} driveLetter - The drive letter to eject
-* @param {Boolean} retract - Whether to retract after ejecting (for optical drives)
-* @returns {Object} Result object with success status
-*
-* @example
-* result := SafeEjectDrive("E:", false)
-* MsgBox(result.Success ? "Ejected" : "Failed")
-*/
+ * @function SafeEjectDrive
+ * @description Safely ejects a drive after validation
+ * @param {String} driveLetter - The drive letter to eject
+ * @param {Boolean} retract - Whether to retract after ejecting (for optical drives)
+ * @returns {Object} Result object with success status
+ * 
+ * @example
+ * result := SafeEjectDrive("E:", false)
+ * MsgBox(result.Success ? "Ejected" : "Failed")
+ */
 SafeEjectDrive(driveLetter, retract := false) {
     if !InStr(driveLetter, ":")
-    driveLetter .= ":"
+        driveLetter .= ":"
 
     ; Check drive type
     driveType := DriveGetType(driveLetter)
@@ -111,9 +111,9 @@ Example1_BasicEject() {
         }
 
         message .= Format("{1} [{2}] - {3}`n",
-        drive,
-        driveType,
-        label != "" ? label : "(No Label)"
+            drive,
+            driveType,
+            label != "" ? label : "(No Label)"
         )
     }
 
@@ -142,19 +142,19 @@ Example1_BasicEject() {
 ; ===================================================================================================
 
 /**
-* @class OpticalDriveController
-* @description Controls CD/DVD drive tray operations
-*/
+ * @class OpticalDriveController
+ * @description Controls CD/DVD drive tray operations
+ */
 class OpticalDriveController {
     /**
-    * @method GetCDDriveStatus
-    * @description Gets the status of a CD/DVD drive
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Status information
-    */
+     * @method GetCDDriveStatus
+     * @description Gets the status of a CD/DVD drive
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Status information
+     */
     static GetCDDriveStatus(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetType(driveLetter) != "CDROM") {
             return {
@@ -191,14 +191,14 @@ class OpticalDriveController {
     }
 
     /**
-    * @method ToggleTray
-    * @description Toggles CD/DVD tray (open/close)
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Result object
-    */
+     * @method ToggleTray
+     * @description Toggles CD/DVD tray (open/close)
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Result object
+     */
     static ToggleTray(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         statusInfo := OpticalDriveController.GetCDDriveStatus(driveLetter)
 
@@ -232,10 +232,10 @@ class OpticalDriveController {
     }
 
     /**
-    * @method EjectAll
-    * @description Ejects all CD/DVD drives
-    * @returns {Array} Results for each drive
-    */
+     * @method EjectAll
+     * @description Ejects all CD/DVD drives
+     * @returns {Array} Results for each drive
+     */
     static EjectAll() {
         results := []
         cdDrives := DriveGetList("CDROM")
@@ -250,10 +250,10 @@ class OpticalDriveController {
     }
 
     /**
-    * @method RetractAll
-    * @description Retracts all CD/DVD drives
-    * @returns {Array} Results for each drive
-    */
+     * @method RetractAll
+     * @description Retracts all CD/DVD drives
+     * @returns {Array} Results for each drive
+     */
     static RetractAll() {
         results := []
         cdDrives := DriveGetList("CDROM")
@@ -327,19 +327,19 @@ Example2_CDDriveControl() {
 ; ===================================================================================================
 
 /**
-* @class SafeEjectManager
-* @description Manages safe ejection with comprehensive validation
-*/
+ * @class SafeEjectManager
+ * @description Manages safe ejection with comprehensive validation
+ */
 class SafeEjectManager {
     /**
-    * @method ValidateEjectSafety
-    * @description Validates if a drive can be safely ejected
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Validation result
-    */
+     * @method ValidateEjectSafety
+     * @description Validates if a drive can be safely ejected
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Validation result
+     */
     static ValidateEjectSafety(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         issues := []
 
@@ -384,12 +384,12 @@ class SafeEjectManager {
     }
 
     /**
-    * @method SafeEjectWithValidation
-    * @description Ejects a drive after validation
-    * @param {String} driveLetter - Drive letter
-    * @param {Boolean} forceEject - Whether to force eject despite warnings
-    * @returns {Object} Result object
-    */
+     * @method SafeEjectWithValidation
+     * @description Ejects a drive after validation
+     * @param {String} driveLetter - Drive letter
+     * @param {Boolean} forceEject - Whether to force eject despite warnings
+     * @returns {Object} Result object
+     */
     static SafeEjectWithValidation(driveLetter, forceEject := false) {
         validation := SafeEjectManager.ValidateEjectSafety(driveLetter)
 
@@ -454,20 +454,20 @@ Example3_SafeEjectValidation() {
 ; ===================================================================================================
 
 /**
-* @class AutoEjectOnComplete
-* @description Automatically ejects drive after file operations complete
-*/
+ * @class AutoEjectOnComplete
+ * @description Automatically ejects drive after file operations complete
+ */
 class AutoEjectOnComplete {
     /**
-    * @method CopyAndEject
-    * @description Copies files to drive and ejects when complete
-    * @param {String} sourcePath - Source file or folder
-    * @param {String} targetDrive - Target drive
-    * @returns {Object} Result object
-    */
+     * @method CopyAndEject
+     * @description Copies files to drive and ejects when complete
+     * @param {String} sourcePath - Source file or folder
+     * @param {String} targetDrive - Target drive
+     * @returns {Object} Result object
+     */
     static CopyAndEject(sourcePath, targetDrive) {
         if !InStr(targetDrive, ":")
-        targetDrive .= ":"
+            targetDrive .= ":"
 
         if (DriveGetStatus(targetDrive) != "Ready") {
             return {
@@ -566,17 +566,17 @@ Example4_AutoEject() {
 ; ===================================================================================================
 
 /**
-* @class MultiDriveEjectManager
-* @description Manages ejection of multiple drives
-*/
+ * @class MultiDriveEjectManager
+ * @description Manages ejection of multiple drives
+ */
 class MultiDriveEjectManager {
     /**
-    * @method EjectMultipleDrives
-    * @description Ejects multiple drives
-    * @param {Array} drives - Array of drive letters
-    * @param {Number} delayMs - Delay between ejects in milliseconds
-    * @returns {Array} Results for each drive
-    */
+     * @method EjectMultipleDrives
+     * @description Ejects multiple drives
+     * @param {Array} drives - Array of drive letters
+     * @param {Number} delayMs - Delay between ejects in milliseconds
+     * @returns {Array} Results for each drive
+     */
     static EjectMultipleDrives(drives, delayMs := 1000) {
         results := []
 
@@ -586,17 +586,17 @@ class MultiDriveEjectManager {
 
             ; Delay before next eject
             if (A_Index < drives.Length)
-            Sleep(delayMs)
+                Sleep(delayMs)
         }
 
         return results
     }
 
     /**
-    * @method ShowEjectResults
-    * @description Shows results of multi-drive eject
-    * @param {Array} results - Eject results
-    */
+     * @method ShowEjectResults
+     * @description Shows results of multi-drive eject
+     * @param {Array} results - Eject results
+     */
     static ShowEjectResults(results) {
         report := "Multi-Drive Eject Results`n"
         report .= "═══════════════════════════════════════`n`n"
@@ -621,10 +621,10 @@ class MultiDriveEjectManager {
     }
 
     /**
-    * @method EjectAllRemovable
-    * @description Ejects all removable drives
-    * @returns {Array} Results
-    */
+     * @method EjectAllRemovable
+     * @description Ejects all removable drives
+     * @returns {Array} Results
+     */
     static EjectAllRemovable() {
         drives := []
         removables := DriveGetList("Removable")
@@ -665,14 +665,14 @@ Example5_MultiDriveEject() {
 ; ===================================================================================================
 
 /**
-* @function CDTrayAnimation
-* @description Creates a fun animation with CD tray
-* @param {String} driveLetter - Drive letter
-* @param {Number} cycles - Number of open/close cycles
-*/
+ * @function CDTrayAnimation
+ * @description Creates a fun animation with CD tray
+ * @param {String} driveLetter - Drive letter
+ * @param {Number} cycles - Number of open/close cycles
+ */
 CDTrayAnimation(driveLetter, cycles := 3) {
     if !InStr(driveLetter, ":")
-    driveLetter .= ":"
+        driveLetter .= ":"
 
     if (DriveGetType(driveLetter) != "CDROM") {
         MsgBox("Not a CD/DVD drive.", "Error", "Icon!")
@@ -709,7 +709,7 @@ Example6_TrayAnimation() {
     firstDrive := SubStr(cdDrives, 1, 1) . ":"
 
     if (MsgBox("Play CD tray animation on drive " . firstDrive . "?",
-    "Tray Animation", "YesNo Icon?") = "Yes") {
+        "Tray Animation", "YesNo Icon?") = "Yes") {
         CDTrayAnimation(firstDrive, 3)
     }
 }
@@ -719,16 +719,16 @@ Example6_TrayAnimation() {
 ; ===================================================================================================
 
 /**
-* @class EmergencyEject
-* @description Emergency eject all removable media
-*/
+ * @class EmergencyEject
+ * @description Emergency eject all removable media
+ */
 class EmergencyEject {
     /**
-    * @method EjectAllNow
-    * @description Immediately ejects all removable media
-    * @param {Boolean} includeOptical - Whether to include optical drives
-    * @returns {Object} Summary of eject operations
-    */
+     * @method EjectAllNow
+     * @description Immediately ejects all removable media
+     * @param {Boolean} includeOptical - Whether to include optical drives
+     * @returns {Object} Summary of eject operations
+     */
     static EjectAllNow(includeOptical := true) {
         ejectedDrives := []
         failedDrives := []
@@ -771,10 +771,10 @@ class EmergencyEject {
     }
 
     /**
-    * @method ShowEmergencyEjectSummary
-    * @description Shows summary of emergency eject
-    * @param {Object} summary - Eject summary
-    */
+     * @method ShowEmergencyEjectSummary
+     * @description Shows summary of emergency eject
+     * @param {Object} summary - Eject summary
+     */
     static ShowEmergencyEjectSummary(summary) {
         message := "Emergency Eject Summary`n"
         message .= "═══════════════════════════════════════`n`n"
@@ -824,3 +824,4 @@ Example7_EmergencyEject() {
 
 ; Press Ctrl+F12 for emergency eject all
 ; ^F12::Example7_EmergencyEject()
+

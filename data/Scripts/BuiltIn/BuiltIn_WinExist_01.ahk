@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinExist Examples - Part 1: Check Window Existence
-* ============================================================================
-*
-* This script demonstrates how to use WinExist to check if windows exist.
-* WinExist is essential for conditional window operations and error prevention.
-*
-* @description Comprehensive examples of checking window existence
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinExist Examples - Part 1: Check Window Existence
+ * ============================================================================
+ * 
+ * This script demonstrates how to use WinExist to check if windows exist.
+ * WinExist is essential for conditional window operations and error prevention.
+ * 
+ * @description Comprehensive examples of checking window existence
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Window Existence Check
 ; ============================================================================
 
 /**
-* Checks if a window exists before performing operations
-* This prevents errors when trying to interact with non-existent windows
-*
-* @hotkey F1 - Check if Notepad exists
-*/
+ * Checks if a window exists before performing operations
+ * This prevents errors when trying to interact with non-existent windows
+ * 
+ * @hotkey F1 - Check if Notepad exists
+ */
 F1:: {
     try {
         if WinExist("ahk_class Notepad") {
@@ -32,7 +32,7 @@ F1:: {
             MsgBox("Notepad window found!`nHWND: " hwnd "`nTitle: " title, "Window Exists", 64)
         } else {
             result := MsgBox("Notepad window not found. Would you like to launch it?",
-            "Window Not Found", 4)
+                "Window Not Found", 4)
             if result = "Yes" {
                 Run("notepad.exe")
             }
@@ -47,25 +47,25 @@ F1:: {
 ; ============================================================================
 
 /**
-* Checks for multiple windows and reports their status
-* Useful for verifying application state
-*
-* @hotkey F2 - Check multiple applications
-*/
+ * Checks for multiple windows and reports their status
+ * Useful for verifying application state
+ * 
+ * @hotkey F2 - Check multiple applications
+ */
 F2:: {
     CheckMultipleWindows()
 }
 
 /**
-* Checks existence of multiple common applications
-*/
+ * Checks existence of multiple common applications
+ */
 CheckMultipleWindows() {
     applications := Map(
-    "Notepad", "ahk_class Notepad",
-    "Calculator", "ahk_exe ApplicationFrameHost.exe Calculator",
-    "File Explorer", "ahk_class CabinetWClass",
-    "Chrome", "ahk_exe chrome.exe",
-    "Visual Studio Code", "ahk_exe Code.exe"
+        "Notepad", "ahk_class Notepad",
+        "Calculator", "ahk_exe ApplicationFrameHost.exe Calculator",
+        "File Explorer", "ahk_class CabinetWClass",
+        "Chrome", "ahk_exe chrome.exe",
+        "Visual Studio Code", "ahk_exe Code.exe"
     )
 
     results := ""
@@ -92,8 +92,8 @@ CheckMultipleWindows() {
 }
 
 /**
-* Helper function to repeat a string
-*/
+ * Helper function to repeat a string
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count {
@@ -107,18 +107,18 @@ StrRepeat(str, count) {
 ; ============================================================================
 
 /**
-* Performs different actions based on window existence
-* Demonstrates practical use of WinExist in conditional logic
-*
-* @hotkey F3 - Smart window operation
-*/
+ * Performs different actions based on window existence
+ * Demonstrates practical use of WinExist in conditional logic
+ * 
+ * @hotkey F3 - Smart window operation
+ */
 F3:: {
     SmartWindowOperation()
 }
 
 /**
-* Performs context-aware window operations
-*/
+ * Performs context-aware window operations
+ */
 SmartWindowOperation() {
     try {
         ; Check if Notepad exists
@@ -149,11 +149,11 @@ SmartWindowOperation() {
 ; ============================================================================
 
 /**
-* Monitors window existence in real-time
-* Shows how to track window state changes
-*
-* @hotkey F4 - Start window monitor
-*/
+ * Monitors window existence in real-time
+ * Shows how to track window state changes
+ * 
+ * @hotkey F4 - Start window monitor
+ */
 F4:: {
     static monitoring := false
     static monitorTimer := 0
@@ -171,8 +171,8 @@ F4:: {
 }
 
 /**
-* Creates a real-time window monitoring GUI
-*/
+ * Creates a real-time window monitoring GUI
+ */
 ShowMonitorGUI() {
     static monitorGui := ""
     static statusText := ""
@@ -198,9 +198,9 @@ ShowMonitorGUI() {
 
     UpdateMonitor() {
         watchList := Map(
-        "Notepad", "ahk_class Notepad",
-        "Calculator", "ahk_exe ApplicationFrameHost.exe",
-        "Chrome", "ahk_exe chrome.exe"
+            "Notepad", "ahk_class Notepad",
+            "Calculator", "ahk_exe ApplicationFrameHost.exe",
+            "Chrome", "ahk_exe chrome.exe"
         )
 
         output := "Last Updated: " A_Now "`n`n"
@@ -244,18 +244,18 @@ ShowMonitorGUI() {
 ; ============================================================================
 
 /**
-* Checks for window existence with a timeout mechanism
-* Useful for waiting for windows to appear with a time limit
-*
-* @hotkey F5 - Check with timeout
-*/
+ * Checks for window existence with a timeout mechanism
+ * Useful for waiting for windows to appear with a time limit
+ * 
+ * @hotkey F5 - Check with timeout
+ */
 F5:: {
     CheckWindowWithTimeout()
 }
 
 /**
-* Waits for a window to exist with timeout
-*/
+ * Waits for a window to exist with timeout
+ */
 CheckWindowWithTimeout() {
     static checkGui := ""
 
@@ -332,18 +332,18 @@ CheckWindowWithTimeout() {
 ; ============================================================================
 
 /**
-* Checks window existence and retrieves detailed information
-* Demonstrates comprehensive window analysis
-*
-* @hotkey F6 - Detailed window check
-*/
+ * Checks window existence and retrieves detailed information
+ * Demonstrates comprehensive window analysis
+ * 
+ * @hotkey F6 - Detailed window check
+ */
 F6:: {
     DetailedWindowCheck()
 }
 
 /**
-* Performs detailed analysis of window existence
-*/
+ * Performs detailed analysis of window existence
+ */
 DetailedWindowCheck() {
     static detailGui := ""
 
@@ -426,18 +426,18 @@ DetailedWindowCheck() {
 ; ============================================================================
 
 /**
-* Uses various matching modes to check window existence
-* Demonstrates different ways to match windows
-*
-* @hotkey F7 - Pattern matching checker
-*/
+ * Uses various matching modes to check window existence
+ * Demonstrates different ways to match windows
+ * 
+ * @hotkey F7 - Pattern matching checker
+ */
 F7:: {
     PatternMatchingChecker()
 }
 
 /**
-* Creates GUI for testing different matching patterns
-*/
+ * Creates GUI for testing different matching patterns
+ */
 PatternMatchingChecker() {
     static patternGui := ""
 
@@ -453,7 +453,7 @@ PatternMatchingChecker() {
 
     patternGui.Add("Text", "w400", "Match Mode:")
     matchMode := patternGui.Add("DropDownList", "w400 vMatchMode Choose1",
-    ["1 - Starts with", "2 - Contains (anywhere)", "3 - Exact match", "RegEx"])
+        ["1 - Starts with", "2 - Contains (anywhere)", "3 - Exact match", "RegEx"])
 
     patternGui.Add("Text", "w400", "Case Sensitive:")
     caseSensitive := patternGui.Add("CheckBox", "vCaseSensitive", "Enabled")
@@ -470,42 +470,42 @@ PatternMatchingChecker() {
 
         ; Set match mode
         if mode = 4 {  ; RegEx
-        SetTitleMatchMode("RegEx")
-    } else {
-        SetTitleMatchMode(mode)
-    }
-
-    ; Set case sensitivity
-    SetTitleMatchMode(caseSens ? "On" : "Off")
-
-    ; Test pattern
-    if WinExist(pattern) {
-        count := WinGetCount(pattern)
-        matchingWindows := ""
-
-        allMatches := WinGetList(pattern)
-        for hwnd in allMatches {
-            matchingWindows .= WinGetTitle(hwnd) "`n"
+            SetTitleMatchMode("RegEx")
+        } else {
+            SetTitleMatchMode(mode)
         }
 
-        MsgBox("Pattern matched " count " window(s):`n`n" matchingWindows,
-        "Pattern Match Success", 64)
-    } else {
-        MsgBox("No windows match the pattern:`n" pattern,
-        "No Match", 48)
-    }
+        ; Set case sensitivity
+        SetTitleMatchMode(caseSens ? "On" : "Off")
 
-    ; Reset to defaults
-    SetTitleMatchMode(1)
-    SetTitleMatchMode("Off")
-}
+        ; Test pattern
+        if WinExist(pattern) {
+            count := WinGetCount(pattern)
+            matchingWindows := ""
+
+            allMatches := WinGetList(pattern)
+            for hwnd in allMatches {
+                matchingWindows .= WinGetTitle(hwnd) "`n"
+            }
+
+            MsgBox("Pattern matched " count " window(s):`n`n" matchingWindows,
+                "Pattern Match Success", 64)
+        } else {
+            MsgBox("No windows match the pattern:`n" pattern,
+                "No Match", 48)
+        }
+
+        ; Reset to defaults
+        SetTitleMatchMode(1)
+        SetTitleMatchMode("Off")
+    }
 }
 
 ; ============================================================================
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

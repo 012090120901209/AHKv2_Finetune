@@ -15,10 +15,10 @@ class Transaction {
     }
 
     ToString() => Format("[{1}] {2}: ${3:.2f} - {4}",
-    FormatTime(this.timestamp, "MM/dd HH:mm"),
-    this.type,
-    this.amount,
-    this.description)
+        FormatTime(this.timestamp, "MM/dd HH:mm"),
+        this.type,
+        this.amount,
+        this.description)
 }
 
 class Account {
@@ -35,7 +35,7 @@ class Account {
 
     Deposit(amount, description := "Deposit") {
         if (amount <= 0)
-        return MsgBox("Deposit amount must be positive!", "Error")
+            return MsgBox("Deposit amount must be positive!", "Error")
 
         this.balance += amount
         this._LogTransaction("DEPOSIT", amount, description)
@@ -45,10 +45,10 @@ class Account {
 
     Withdraw(amount, description := "Withdrawal") {
         if (amount <= 0)
-        return MsgBox("Withdrawal amount must be positive!", "Error")
+            return MsgBox("Withdrawal amount must be positive!", "Error")
 
         if (!this._CanWithdraw(amount))
-        return MsgBox("Insufficient funds!", "Error")
+            return MsgBox("Insufficient funds!", "Error")
 
         this.balance -= amount
         this._LogTransaction("WITHDRAWAL", amount, description)
@@ -65,7 +65,7 @@ class Account {
 
         count := Min(limit, this.transactions.Length)
         loop count
-        statement .= this.transactions[this.transactions.Length - A_Index + 1].ToString() "`n"
+            statement .= this.transactions[this.transactions.Length - A_Index + 1].ToString() "`n"
 
         return statement
     }
@@ -73,7 +73,7 @@ class Account {
     _CanWithdraw(amount) => amount <= this.balance
 
     _LogTransaction(type, amount, description) =>
-    this.transactions.Push(Transaction(type, amount, description))
+        this.transactions.Push(Transaction(type, amount, description))
 }
 
 class SavingsAccount extends Account {
@@ -119,17 +119,17 @@ class Bank {
     }
 
     GetAccount(accountNumber) =>
-    this.accounts.Has(accountNumber) ? this.accounts[accountNumber] : ""
+        this.accounts.Has(accountNumber) ? this.accounts[accountNumber] : ""
 
     Transfer(fromAccountNum, toAccountNum, amount, description := "Transfer") {
         fromAccount := this.GetAccount(fromAccountNum)
         toAccount := this.GetAccount(toAccountNum)
 
         if (!fromAccount || !toAccount)
-        return MsgBox("Invalid account number!", "Error")
+            return MsgBox("Invalid account number!", "Error")
 
         if (!fromAccount._CanWithdraw(amount))
-        return MsgBox("Insufficient funds for transfer!", "Error")
+            return MsgBox("Insufficient funds for transfer!", "Error")
 
         fromAccount.balance -= amount
         toAccount.balance += amount

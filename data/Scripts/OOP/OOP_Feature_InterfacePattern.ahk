@@ -38,9 +38,9 @@ class Employee extends IComparable {
 
     CompareTo(other) {
         if (this.salary < other.salary)
-        return -1
+            return -1
         if (this.salary > other.salary)
-        return 1
+            return 1
         return 0
     }
 
@@ -51,7 +51,7 @@ class TempFile extends IDisposable {
     __New(content := "") {
         this.filePath := A_ScriptDir "\temp_" A_TickCount ".txt"
         if (content)
-        FileAppend(content, this.filePath)
+            FileAppend(content, this.filePath)
         MsgBox("Temp file created: " this.filePath)
     }
 
@@ -95,7 +95,7 @@ SortByComparable(items) {
 
 CleanupResources(disposables*) {
     for resource in disposables
-    resource.Dispose()
+        resource.Dispose()
 }
 
 ; Usage - polymorphic interface usage
@@ -106,10 +106,10 @@ MsgBox("Restored product: " restored.name " ($" restored.price ")")
 
 ; Sorting with IComparable
 employees := [
-Employee("Alice", 75000),
-Employee("Bob", 65000),
-Employee("Charlie", 85000),
-Employee("Diana", 70000)
+    Employee("Alice", 75000),
+    Employee("Bob", 65000),
+    Employee("Charlie", 85000),
+    Employee("Diana", 70000)
 ]
 
 MsgBox("Before sorting:`n" employees[1].ToString() "`n" employees[2].ToString() "`n" employees[3].ToString() "`n" employees[4].ToString())
@@ -117,7 +117,6 @@ MsgBox("Before sorting:`n" employees[1].ToString() "`n" employees[2].ToString() 
 SortByComparable(employees)
 
 MsgBox("After sorting:`n" employees[1].ToString() "`n" employees[2].ToString() "`n" employees[3].ToString() "`n" employees[4].ToString())
-
 ; Resource cleanup with IDisposable
 {
     file1 := TempFile("Test content 1")

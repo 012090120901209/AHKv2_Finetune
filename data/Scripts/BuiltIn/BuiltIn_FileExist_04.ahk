@@ -1,48 +1,48 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileExist_04.ahk
-*
-* DESCRIPTION:
-* Advanced FileExist() patterns for complex file management scenarios
-*
-* FEATURES:
-* - Pattern matching with wildcards
-* - Version detection and management
-* - File type detection
-* - Configuration cascading
-* - Resource location
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileExist.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileExist() with wildcards
-* - Advanced pattern matching
-* - File system queries
-* - Dynamic resource loading
-* - Version management
-*
-* LEARNING POINTS:
-* 1. FileExist() accepts wildcard patterns
-* 2. Returns attributes of first match with wildcards
-* 3. Can check for specific file types
-* 4. Useful for version detection
-* 5. Enables dynamic resource loading
-* 6. Supports configuration cascading
-*/
+ * BuiltIn_FileExist_04.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced FileExist() patterns for complex file management scenarios
+ * 
+ * FEATURES:
+ * - Pattern matching with wildcards
+ * - Version detection and management
+ * - File type detection
+ * - Configuration cascading
+ * - Resource location
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileExist.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileExist() with wildcards
+ * - Advanced pattern matching
+ * - File system queries
+ * - Dynamic resource loading
+ * - Version management
+ * 
+ * LEARNING POINTS:
+ * 1. FileExist() accepts wildcard patterns
+ * 2. Returns attributes of first match with wildcards
+ * 3. Can check for specific file types
+ * 4. Useful for version detection
+ * 5. Enables dynamic resource loading
+ * 6. Supports configuration cascading
+ */
 
 ; ============================================================
 ; Example 1: Wildcard Pattern Matching
 ; ============================================================
 
 /**
-* Check if any file matching pattern exists
-*
-* @param {String} pattern - File pattern with wildcards
-* @returns {Object} - Match information
-*/
+ * Check if any file matching pattern exists
+ * 
+ * @param {String} pattern - File pattern with wildcards
+ * @returns {Object} - Match information
+ */
 CheckPattern(pattern) {
     result := {
         hasMatch: false,
@@ -57,9 +57,9 @@ CheckPattern(pattern) {
         result.attributes := attrs
 
         ; Find the actual first match
-        SplitPath(pattern, , &dir, , )
+        SplitPath(pattern, , &dir, ,)
         if (!dir)
-        dir := A_ScriptDir
+            dir := A_ScriptDir
 
         Loop Files, pattern {
             result.firstMatch := A_LoopFilePath
@@ -72,15 +72,15 @@ CheckPattern(pattern) {
 
 ; Create test files
 Loop 3
-FileAppend("Content " A_Index, A_ScriptDir "\test_" A_Index ".txt")
+    FileAppend("Content " A_Index, A_ScriptDir "\test_" A_Index ".txt")
 
 FileAppend("Log entry", A_ScriptDir "\app.log")
 
 ; Test pattern matching
 patterns := [
-A_ScriptDir "\test_*.txt",
-A_ScriptDir "\*.log",
-A_ScriptDir "\missing_*.txt"
+    A_ScriptDir "\test_*.txt",
+    A_ScriptDir "\*.log",
+    A_ScriptDir "\missing_*.txt"
 ]
 
 output := "WILDCARD PATTERN MATCHING:`n`n"
@@ -89,7 +89,7 @@ for pattern in patterns {
     output .= "Pattern: " pattern "`n"
     output .= "  Match: " (matchInfo.hasMatch ? "Yes ✓" : "No ✗") "`n"
     if (matchInfo.hasMatch)
-    output .= "  First: " matchInfo.firstMatch "`n"
+        output .= "  First: " matchInfo.firstMatch "`n"
     output .= "`n"
 }
 
@@ -100,12 +100,12 @@ MsgBox(output, "Pattern Matching", "Icon!")
 ; ============================================================
 
 /**
-* Find latest version of a file
-*
-* @param {String} baseName - Base file name without version
-* @param {String} extension - File extension
-* @returns {Object} - Version information
-*/
+ * Find latest version of a file
+ * 
+ * @param {String} baseName - Base file name without version
+ * @param {String} extension - File extension
+ * @returns {Object} - Version information
+ */
 FindLatestVersion(baseName, extension := "txt") {
     result := {
         found: false,
@@ -153,7 +153,7 @@ output .= "File Path: " (versionInfo.filePath ? versionInfo.filePath : "N/A") "`
 if (versionInfo.allVersions.Length > 0) {
     output .= "All Versions Found:`n"
     for ver in versionInfo.allVersions
-    output .= "  v" ver.version ": " ver.name "`n"
+        output .= "  v" ver.version ": " ver.name "`n"
 }
 
 MsgBox(output, "Version Detection", versionInfo.found ? "Icon!" : "IconX")
@@ -163,11 +163,11 @@ MsgBox(output, "Version Detection", versionInfo.found ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Detect file type by extension and content
-*
-* @param {String} filePath - File to check
-* @returns {Object} - File type information
-*/
+ * Detect file type by extension and content
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Object} - File type information
+ */
 DetectFileType(filePath) {
     result := {
         exists: false,
@@ -178,7 +178,7 @@ DetectFileType(filePath) {
     }
 
     if (!FileExist(filePath))
-    return result
+        return result
 
     result.exists := true
 
@@ -193,15 +193,15 @@ DetectFileType(filePath) {
 
     ; Categorize by extension
     extensionMap := Map(
-    "txt", {category: "Text", mime: "text/plain"},
-    "log", {category: "Log", mime: "text/plain"},
-    "ini", {category: "Configuration", mime: "text/plain"},
-    "csv", {category: "Data", mime: "text/csv"},
-    "json", {category: "Data", mime: "application/json"},
-    "xml", {category: "Data", mime: "application/xml"},
-    "ahk", {category: "Script", mime: "text/plain"},
-    "exe", {category: "Executable", mime: "application/x-msdownload"},
-    "dll", {category: "Library", mime: "application/x-msdownload"}
+        "txt", { category: "Text", mime: "text/plain" },
+        "log", { category: "Log", mime: "text/plain" },
+        "ini", { category: "Configuration", mime: "text/plain" },
+        "csv", { category: "Data", mime: "text/csv" },
+        "json", { category: "Data", mime: "application/json" },
+        "xml", { category: "Data", mime: "application/xml" },
+        "ahk", { category: "Script", mime: "text/plain" },
+        "exe", { category: "Executable", mime: "application/x-msdownload" },
+        "dll", { category: "Library", mime: "application/x-msdownload" }
     )
 
     if (extensionMap.Has(ext)) {
@@ -215,10 +215,10 @@ DetectFileType(filePath) {
 
 ; Test file type detection
 testFiles := [
-A_ScriptDir "\test_1.txt",
-A_ScriptDir "\app.log",
-A_ScriptDir,
-A_AhkPath
+    A_ScriptDir "\test_1.txt",
+    A_ScriptDir "\app.log",
+    A_ScriptDir,
+    A_AhkPath
 ]
 
 output := "FILE TYPE DETECTION:`n`n"
@@ -230,9 +230,9 @@ for file in testFiles {
     if (typeInfo.exists) {
         output .= "  Category: " typeInfo.category "`n"
         if (typeInfo.extension)
-        output .= "  Extension: ." typeInfo.extension "`n"
+            output .= "  Extension: ." typeInfo.extension "`n"
         if (typeInfo.mimeType)
-        output .= "  MIME: " typeInfo.mimeType "`n"
+            output .= "  MIME: " typeInfo.mimeType "`n"
     }
     output .= "`n"
 }
@@ -244,18 +244,18 @@ MsgBox(output, "File Type Detection", "Icon!")
 ; ============================================================
 
 /**
-* Load configuration from cascading sources
-*
-* @param {String} configName - Configuration file name
-* @returns {Object} - Configuration result
-*/
+ * Load configuration from cascading sources
+ * 
+ * @param {String} configName - Configuration file name
+ * @returns {Object} - Configuration result
+ */
 LoadCascadingConfig(configName) {
     ; Configuration cascade (highest priority first)
     sources := [
-    A_ScriptDir "\" configName ".local.ini",      ; Local override
-    A_AppData "\MyApp\" configName ".ini",        ; User config
-    A_ScriptDir "\" configName ".ini",            ; Default config
-    A_ScriptDir "\config\" configName ".ini"      ; Fallback
+        A_ScriptDir "\" configName ".local.ini",      ; Local override
+        A_AppData "\MyApp\" configName ".ini",        ; User config
+        A_ScriptDir "\" configName ".ini",            ; Default config
+        A_ScriptDir "\config\" configName ".ini"      ; Fallback
     ]
 
     result := {
@@ -316,12 +316,12 @@ MsgBox(output, "Config Cascade", configResult.loaded ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Locate resource file in multiple search paths
-*
-* @param {String} resourceName - Resource file name
-* @param {String} resourceType - Type of resource (images, sounds, etc)
-* @returns {String} - Full path to resource or empty string
-*/
+ * Locate resource file in multiple search paths
+ * 
+ * @param {String} resourceName - Resource file name
+ * @param {String} resourceType - Type of resource (images, sounds, etc)
+ * @returns {String} - Full path to resource or empty string
+ */
 LocateResource(resourceName, resourceType := "") {
     searchPaths := []
 
@@ -338,7 +338,7 @@ LocateResource(resourceName, resourceType := "") {
     ; Search each path
     for path in searchPaths {
         if (FileExist(path) && !InStr(FileExist(path), "D"))
-        return path
+            return path
     }
 
     return ""  ; Not found
@@ -357,7 +357,7 @@ for resource in resources {
     output .= "Resource: " resource "`n"
     output .= "  Found: " (location ? "Yes ✓" : "No ✗") "`n"
     if (location)
-    output .= "  Path: " location "`n"
+        output .= "  Path: " location "`n"
     output .= "`n"
 }
 
@@ -368,26 +368,26 @@ MsgBox(output, "Resource Locator", "Icon!")
 ; ============================================================
 
 /**
-* Find all backup files for a given file
-*
-* @param {String} originalFile - Original file path
-* @returns {Array} - Array of backup file information
-*/
+ * Find all backup files for a given file
+ * 
+ * @param {String} originalFile - Original file path
+ * @returns {Array} - Array of backup file information
+ */
 FindBackups(originalFile) {
     backups := []
 
     if (!FileExist(originalFile))
-    return backups
+        return backups
 
     SplitPath(originalFile, &fileName, &fileDir, &ext, &nameNoExt)
 
     ; Search for backup files with various patterns
     patterns := [
-    fileDir "\" nameNoExt ".backup." ext,
-    fileDir "\" nameNoExt "_backup_*." ext,
-    fileDir "\" nameNoExt "_*.bak",
-    fileDir "\backups\" fileName,
-    fileDir "\backups\" nameNoExt "_*." ext
+        fileDir "\" nameNoExt ".backup." ext,
+        fileDir "\" nameNoExt "_backup_*." ext,
+        fileDir "\" nameNoExt "_*.bak",
+        fileDir "\backups\" fileName,
+        fileDir "\backups\" nameNoExt "_*." ext
     ]
 
     for pattern in patterns {
@@ -430,11 +430,11 @@ MsgBox(output, "Backup Finder", "Icon!")
 ; ============================================================
 
 /**
-* Analyze files by extension in a directory
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Analysis results
-*/
+ * Analyze files by extension in a directory
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Analysis results
+ */
 AnalyzeFileExtensions(dirPath) {
     result := {
         totalFiles: 0,
@@ -443,7 +443,7 @@ AnalyzeFileExtensions(dirPath) {
     }
 
     if (!FileExist(dirPath) || !InStr(FileExist(dirPath), "D"))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "F" {
         result.totalFiles++
@@ -452,10 +452,10 @@ AnalyzeFileExtensions(dirPath) {
         SplitPath(A_LoopFilePath, , , &ext)
 
         if (!ext)
-        ext := "(no extension)"
+            ext := "(no extension)"
 
         if (!result.extensions.Has(ext))
-        result.extensions[ext] := {count: 0, totalSize: 0, files: []}
+            result.extensions[ext] := { count: 0, totalSize: 0, files: [] }
 
         extInfo := result.extensions[ext]
         extInfo.count++
@@ -553,7 +553,7 @@ MsgBox(info, "Advanced FileExist() Reference", "Icon!")
 
 ; Cleanup
 Loop 3
-FileDelete(A_ScriptDir "\test_" A_Index ".txt")
+    FileDelete(A_ScriptDir "\test_" A_Index ".txt")
 FileDelete(A_ScriptDir "\app.log")
 FileDelete(A_ScriptDir "\document_v1.txt")
 FileDelete(A_ScriptDir "\document_v2.txt")

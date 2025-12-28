@@ -14,7 +14,7 @@ class MinHeap {
 
     ExtractMin() {
         if (this.IsEmpty())
-        return ""
+            return ""
 
         min := this.heap[1]
         last := this.heap.Pop()
@@ -35,7 +35,7 @@ class MinHeap {
 
     _HeapifyUp(index) {
         if (index <= 1)
-        return
+            return
 
         parentIndex := index // 2
 
@@ -55,10 +55,10 @@ class MinHeap {
         rightChild := 2 * index + 1
 
         if (leftChild <= this.heap.Length && this.heap[leftChild] < this.heap[smallest])
-        smallest := leftChild
+            smallest := leftChild
 
         if (rightChild <= this.heap.Length && this.heap[rightChild] < this.heap[smallest])
-        smallest := rightChild
+            smallest := rightChild
 
         if (smallest != index) {
             temp := this.heap[index]
@@ -91,10 +91,10 @@ MsgBox("Extract min: " . heap.ExtractMin() . "`nHeap: " . heap.ToString())
 
 ; Priority queue simulation
 tasks := MinHeap()
-tasks.Insert({priority: 3, name: "Low priority task"})
-.Insert({priority: 1, name: "Critical task"})
-.Insert({priority: 2, name: "Medium priority task"})
-.Insert({priority: 1, name: "Another critical task"})
+tasks.Insert({ priority: 3, name: "Low priority task" })
+    .Insert({ priority: 1, name: "Critical task" })
+    .Insert({ priority: 2, name: "Medium priority task" })
+    .Insert({ priority: 1, name: "Another critical task" })
 
 MsgBox("Processing tasks by priority...")
 while (!tasks.IsEmpty()) {

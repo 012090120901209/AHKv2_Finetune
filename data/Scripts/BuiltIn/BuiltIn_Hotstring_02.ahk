@@ -1,23 +1,23 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Hotstring() Function - Abbreviation Systems
-* ============================================================================
-*
-* This file demonstrates creating comprehensive abbreviation systems using
-* hotstrings for professional, technical, and everyday use.
-*
-* Features:
-* - Professional abbreviations
-* - Technical acronyms
-* - Medical terminology
-* - Programming shortcuts
-* - Custom abbreviation sets
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-*/
+ * ============================================================================
+ * Hotstring() Function - Abbreviation Systems
+ * ============================================================================
+ * 
+ * This file demonstrates creating comprehensive abbreviation systems using
+ * hotstrings for professional, technical, and everyday use.
+ * 
+ * Features:
+ * - Professional abbreviations
+ * - Technical acronyms
+ * - Medical terminology
+ * - Programming shortcuts
+ * - Custom abbreviation sets
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Professional Business Abbreviations
@@ -296,8 +296,8 @@ Example7_DynamicBuilder() {
     global customAbbreviations := Map()
 
     /**
-    * Adds a custom abbreviation
-    */
+     * Adds a custom abbreviation
+     */
     AddAbbreviation(abbr, expansion) {
         global customAbbreviations
         Hotstring("::" . abbr . "::", expansion)
@@ -309,8 +309,8 @@ Example7_DynamicBuilder() {
     }
 
     /**
-    * Lists custom abbreviations
-    */
+     * Lists custom abbreviations
+     */
     ListCustomAbbreviations() {
         global customAbbreviations
 
@@ -329,8 +329,8 @@ Example7_DynamicBuilder() {
     }
 
     /**
-    * GUI for adding abbreviations
-    */
+     * GUI for adding abbreviations
+     */
     ShowAbbreviationBuilder() {
         builderGui := Gui("+AlwaysOnTop", "Abbreviation Builder")
 
@@ -343,57 +343,52 @@ Example7_DynamicBuilder() {
         builderGui.AddButton("w300", "Add Abbreviation").OnEvent("Click", (*) => {
             abbr := abbrEdit.Value
             expansion := expansionEdit.Value
-
             if abbr = "" || expansion = "" {
                 MsgBox("Both fields are required!", "Error")
                 return
-            }
+                }
+                AddAbbreviation(abbr, expansion)
+                MsgBox("Added: " abbr " → " expansion, "Success")
+                abbrEdit.Value := ""
+                expansionEdit.Value := ""
+            })
+            builderGui.AddButton("w300", "List All").OnEvent("Click", (*) => ListCustomAbbreviations())
+            builderGui.Show()
+        }
 
-            AddAbbreviation(abbr, expansion)
-            MsgBox("Added: " abbr " → " expansion, "Success")
+        Repeat(char, count) {
+            result := ""
+            Loop count
+                result .= char
+            return result
+        }
 
-            abbrEdit.Value := ""
-            expansionEdit.Value := ""
-        })
+        ; Pre-load some examples
+        AddAbbreviation("myemail", "user@example.com")
+        AddAbbreviation("myphone", "(555) 123-4567")
+        AddAbbreviation("myaddr", "123 Main St, City, State 12345")
 
-        builderGui.AddButton("w300", "List All").OnEvent("Click", (*) => ListCustomAbbreviations())
+        ; Create hotkey to show builder
+        Hotkey("^!b", (*) => ShowAbbreviationBuilder())
 
-        builderGui.Show()
+        MsgBox(
+            "Dynamic Abbreviation Builder`n`n"
+            "Ctrl+Alt+B - Open abbreviation builder`n`n"
+            "Pre-loaded examples:`n"
+            "  myemail → user@example.com`n"
+            "  myphone → (555) 123-4567`n"
+            "  myaddr → address`n`n"
+            "Add your own custom abbreviations!",
+            "Example 7"
+        )
     }
 
-    Repeat(char, count) {
-        result := ""
-        Loop count
-        result .= char
-        return result
-    }
+    ; ============================================================================
+    ; Main Execution
+    ; ============================================================================
 
-    ; Pre-load some examples
-    AddAbbreviation("myemail", "user@example.com")
-    AddAbbreviation("myphone", "(555) 123-4567")
-    AddAbbreviation("myaddr", "123 Main St, City, State 12345")
-
-    ; Create hotkey to show builder
-    Hotkey("^!b", (*) => ShowAbbreviationBuilder())
-
-    MsgBox(
-    "Dynamic Abbreviation Builder`n`n"
-    "Ctrl+Alt+B - Open abbreviation builder`n`n"
-    "Pre-loaded examples:`n"
-    "  myemail → user@example.com`n"
-    "  myphone → (555) 123-4567`n"
-    "  myaddr → address`n`n"
-    "Add your own custom abbreviations!",
-    "Example 7"
-    )
-}
-
-; ============================================================================
-; Main Execution
-; ============================================================================
-
-ShowExampleMenu() {
-    menu := "
+    ShowExampleMenu() {
+        menu := "
     (
     Hotstring Abbreviation Systems
     ===============================
@@ -409,15 +404,15 @@ ShowExampleMenu() {
     Press Win+[1-7] to load
     )"
 
-    MsgBox(menu, "Abbreviation Examples")
-}
+        MsgBox(menu, "Abbreviation Examples")
+    }
 
-Hotkey("#1", (*) => Example1_BusinessAbbreviations())
-Hotkey("#2", (*) => Example2_TechnicalAbbreviations())
-Hotkey("#3", (*) => Example3_MedicalAbbreviations())
-Hotkey("#4", (*) => Example4_AcademicAbbreviations())
-Hotkey("#5", (*) => Example5_GeographicAbbreviations())
-Hotkey("#6", (*) => Example6_CustomDomain())
-Hotkey("#7", (*) => Example7_DynamicBuilder())
+    Hotkey("#1", (*) => Example1_BusinessAbbreviations())
+    Hotkey("#2", (*) => Example2_TechnicalAbbreviations())
+    Hotkey("#3", (*) => Example3_MedicalAbbreviations())
+    Hotkey("#4", (*) => Example4_AcademicAbbreviations())
+    Hotkey("#5", (*) => Example5_GeographicAbbreviations())
+    Hotkey("#6", (*) => Example6_CustomDomain())
+    Hotkey("#7", (*) => Example7_DynamicBuilder())
 
-ShowExampleMenu()
+    ShowExampleMenu()

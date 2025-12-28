@@ -1,27 +1,27 @@
 /**
-* @file BuiltIn_WinGetPID_03.ahk
-* @description PID correlation, process analysis, and advanced window-process linking using WinGetPID in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: PID-based window searcher
-* Example 2: Process instance counter
-* Example 3: PID collision detector
-* Example 4: Process window tracker
-* Example 5: PID-based automation scripts
-* Example 6: Process performance analyzer
-* Example 7: Multi-instance manager
-*
-* @section FEATURES
-* - PID-based searching
-* - Instance counting
-* - Collision detection
-* - Window tracking
-* - Automation scripting
-* - Performance analysis
-*/
+ * @file BuiltIn_WinGetPID_03.ahk
+ * @description PID correlation, process analysis, and advanced window-process linking using WinGetPID in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: PID-based window searcher
+ * Example 2: Process instance counter
+ * Example 3: PID collision detector
+ * Example 4: Process window tracker
+ * Example 5: PID-based automation scripts
+ * Example 6: Process performance analyzer
+ * Example 7: Multi-instance manager
+ * 
+ * @section FEATURES
+ * - PID-based searching
+ * - Instance counting
+ * - Collision detection
+ * - Window tracking
+ * - Automation scripting
+ * - Performance analysis
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -61,7 +61,7 @@ class PIDSearcher {
                 if InStr(WinGetProcessName("ahk_id " winId), processName) {
                     pid := WinGetPID("ahk_id " winId)
                     if !pidResults.Has(pid)
-                    pidResults[pid] := []
+                        pidResults[pid] := []
 
                     pidResults[pid].Push({
                         ID: winId,
@@ -77,7 +77,7 @@ class PIDSearcher {
 ^+s:: {
     pid := InputBox("Enter PID to search:", "PID Search").Value
     if pid = ""
-    return
+        return
 
     results := PIDSearcher.SearchByPID(Integer(pid))
 
@@ -90,7 +90,7 @@ class PIDSearcher {
     for win in results {
         output .= win.Class " - " win.Title "`n"
         if A_Index > 10
-        break
+            break
     }
 
     MsgBox(output, "PID Search Results", "Icon!")
@@ -127,7 +127,7 @@ class InstanceCounter {
                 processName := WinGetProcessName("ahk_id " winId)
 
                 if !processCounts.Has(processName)
-                processCounts[processName] := Map()
+                    processCounts[processName] := Map()
 
                 processCounts[processName][pid] := true
             }
@@ -151,10 +151,10 @@ class InstanceCounter {
     output := "Process Instance Counts:`n`n"
     for data in counts {
         if data.InstanceCount > 1
-        output .= data.Process ": " data.InstanceCount " instances`n"
+            output .= data.Process ": " data.InstanceCount " instances`n"
 
         if A_Index > 15
-        break
+            break
     }
 
     MsgBox(output, "Instance Counter", "Icon!")
@@ -179,7 +179,7 @@ class PIDCollisionDetector {
                 key := pid
 
                 if !currentPIDs.Has(key)
-                currentPIDs[key] := []
+                    currentPIDs[key] := []
 
                 currentPIDs[key].Push({
                     Process: processName,
@@ -280,7 +280,7 @@ class WindowTracker {
 
     static GetReport(processName) {
         if !this.trackedProcesses.Has(processName)
-        return "Process not tracked"
+            return "Process not tracked"
 
         trackData := this.trackedProcesses[processName]
 
@@ -365,7 +365,7 @@ class PerformanceAnalyzer {
             ; Get memory info
             hProcess := DllCall("OpenProcess", "UInt", 0x1000, "Int", false, "UInt", pid, "Ptr")
             if !hProcess
-            return {Error: "Cannot open process"}
+                return { Error: "Cannot open process" }
 
             memCounters := Buffer(72, 0)
             NumPut("UInt", 72, memCounters, 0)
@@ -397,7 +397,7 @@ class PerformanceAnalyzer {
             }
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
@@ -407,7 +407,7 @@ class PerformanceAnalyzer {
         for pid in pids {
             analysis := this.AnalyzeProcess(pid)
             if !analysis.HasOwnProp("Error")
-            results.Push(analysis)
+                results.Push(analysis)
         }
 
         return results
@@ -415,11 +415,11 @@ class PerformanceAnalyzer {
 
     static FormatBytes(bytes) {
         if bytes >= 1073741824
-        return Round(bytes / 1073741824, 2) " GB"
+            return Round(bytes / 1073741824, 2) " GB"
         if bytes >= 1048576
-        return Round(bytes / 1048576, 2) " MB"
+            return Round(bytes / 1048576, 2) " MB"
         if bytes >= 1024
-        return Round(bytes / 1024, 2) " KB"
+            return Round(bytes / 1024, 2) " KB"
         return bytes " bytes"
     }
 }
@@ -503,13 +503,13 @@ class MultiInstanceManager {
     static CloseInstance(lv, instances) {
         row := lv.GetNext()
         if !row
-        return
+            return
 
         pid := Integer(lv.GetText(row, 1))
 
         result := MsgBox("Close all windows for PID " pid "?", "Confirm", "YesNo Icon?")
         if result = "No"
-        return
+            return
 
         if instances.Has(pid) {
             for win in instances[pid].Windows {
@@ -552,7 +552,7 @@ class WindowProcessMapper {
         for winId in allWindows {
             try {
                 if WinGetPID("ahk_id " winId) = pid
-                count++
+                    count++
             }
         }
 

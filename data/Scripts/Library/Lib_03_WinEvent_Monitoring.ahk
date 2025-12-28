@@ -1,17 +1,17 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include <WinEvent>
 
 /**
-* Window Event Monitoring with WinEvent
-*
-* Demonstrates monitoring window events using the WinEvent library
-* including creation, closing, activation, minimizing, and more.
-*
-* Source: nperovic-AHK-v2-Libraries/Lib/WinEvent.ahk
-* Inspired by: https://github.com/nperovic/AHK-v2-Libraries
-*/
+ * Window Event Monitoring with WinEvent
+ * 
+ * Demonstrates monitoring window events using the WinEvent library
+ * including creation, closing, activation, minimizing, and more.
+ * 
+ * Source: nperovic-AHK-v2-Libraries/Lib/WinEvent.ahk
+ * Inspired by: https://github.com/nperovic/AHK-v2-Libraries
+ */
 
-#Include <WinEvent>
 
 ; GUI for displaying events
 global eventLog := Gui()
@@ -26,12 +26,12 @@ global statusCtrl := eventLog.Add("Text", "w600", "Ready - Monitoring...")
 eventLog.Show()
 
 MsgBox("Window Event Monitor`n`n"
-. "This script will monitor window events:`n"
-. "- Window created`n"
-. "- Window closed`n"
-. "- Window activated`n"
-. "- Window minimized/maximized`n`n"
-. "Try opening Notepad to see events!", , "T5")
+    . "This script will monitor window events:`n"
+    . "- Window created`n"
+    . "- Window closed`n"
+    . "- Window activated`n"
+    . "- Window minimized/maximized`n`n"
+    . "Try opening Notepad to see events!", , "T5")
 
 ; Run Notepad as demo
 Run("notepad.exe")
@@ -41,8 +41,8 @@ Run("notepad.exe")
 ; ===============================================
 
 /**
-* Monitor when new windows are created
-*/
+ * Monitor when new windows are created
+ */
 WinEvent.Create(WindowCreated, , 5)  ; Monitor last 5 events
 
 WindowCreated(event, hWnd, time) {
@@ -55,11 +55,11 @@ WindowCreated(event, hWnd, time) {
 
         ; Skip certain system windows
         if (title == "" || InStr(class, "Shell_TrayWnd"))
-        return
+            return
 
         msg := FormatTime(time, "HH:mm:ss")
-        . " | CREATED | " processName
-        . " | " title "`n"
+            . " | CREATED | " processName
+            . " | " title "`n"
 
         LogEvent(msg)
         statusCtrl.Value := "Window created: " title
@@ -71,15 +71,15 @@ WindowCreated(event, hWnd, time) {
 ; ===============================================
 
 /**
-* Monitor when windows are closed
-*/
+ * Monitor when windows are closed
+ */
 WinEvent.Close(WindowClosed)
 
 WindowClosed(event, hWnd, time) {
     global statusCtrl
 
     msg := FormatTime(time, "HH:mm:ss")
-    . " | CLOSED | Window closed (hwnd: " hWnd ")`n"
+        . " | CLOSED | Window closed (hwnd: " hWnd ")`n"
 
     LogEvent(msg)
     statusCtrl.Value := "Window closed"
@@ -90,8 +90,8 @@ WindowClosed(event, hWnd, time) {
 ; ===============================================
 
 /**
-* Monitor when windows are activated (focused)
-*/
+ * Monitor when windows are activated (focused)
+ */
 WinEvent.Active(WindowActivated)
 
 WindowActivated(event, hWnd, time) {
@@ -102,11 +102,11 @@ WindowActivated(event, hWnd, time) {
         processName := WinGetProcessName("ahk_id " hWnd)
 
         if (title == "" || processName == "explorer.exe")
-        return
+            return
 
         msg := FormatTime(time, "HH:mm:ss")
-        . " | ACTIVE | " processName
-        . " | " title "`n"
+            . " | ACTIVE | " processName
+            . " | " title "`n"
 
         LogEvent(msg)
         statusCtrl.Value := "Activated: " title
@@ -118,8 +118,8 @@ WindowActivated(event, hWnd, time) {
 ; ===============================================
 
 /**
-* Monitor when windows are minimized
-*/
+ * Monitor when windows are minimized
+ */
 WinEvent.Minimize(WindowMinimized)
 
 WindowMinimized(event, hWnd, time) {
@@ -129,7 +129,7 @@ WindowMinimized(event, hWnd, time) {
         title := WinGetTitle("ahk_id " hWnd)
 
         msg := FormatTime(time, "HH:mm:ss")
-        . " | MINIMIZE | " title "`n"
+            . " | MINIMIZE | " title "`n"
 
         LogEvent(msg)
         statusCtrl.Value := "Minimized: " title
@@ -141,8 +141,8 @@ WindowMinimized(event, hWnd, time) {
 ; ===============================================
 
 /**
-* Monitor when windows are maximized
-*/
+ * Monitor when windows are maximized
+ */
 WinEvent.Maximize(WindowMaximized)
 
 WindowMaximized(event, hWnd, time) {
@@ -152,7 +152,7 @@ WindowMaximized(event, hWnd, time) {
         title := WinGetTitle("ahk_id " hWnd)
 
         msg := FormatTime(time, "HH:mm:ss")
-        . " | MAXIMIZE | " title "`n"
+            . " | MAXIMIZE | " title "`n"
 
         LogEvent(msg)
         statusCtrl.Value := "Maximized: " title
@@ -164,8 +164,8 @@ WindowMaximized(event, hWnd, time) {
 ; ===============================================
 
 /**
-* Monitor when windows are moved or resized
-*/
+ * Monitor when windows are moved or resized
+ */
 WinEvent.Move(WindowMoved, "ahk_exe notepad.exe")  ; Only Notepad
 
 WindowMoved(event, hWnd, time) {
@@ -176,8 +176,8 @@ WindowMoved(event, hWnd, time) {
         WinGetPos(&x, &y, &w, &h, "ahk_id " hWnd)
 
         msg := FormatTime(time, "HH:mm:ss")
-        . " | MOVE/RESIZE | " title
-        . " | Pos: " x "," y " Size: " w "x" h "`n"
+            . " | MOVE/RESIZE | " title
+            . " | Pos: " x "," y " Size: " w "x" h "`n"
 
         LogEvent(msg)
         statusCtrl.Value := "Moved/Resized: " title
@@ -189,8 +189,8 @@ WindowMoved(event, hWnd, time) {
 ; ===============================================
 
 /**
-* Add event to log
-*/
+ * Add event to log
+ */
 LogEvent(msg) {
     global logText, logCtrl
 
@@ -200,7 +200,7 @@ LogEvent(msg) {
         lines.RemoveAt(1)
         logText := ""
         for line in lines
-        logText .= line "`n"
+            logText .= line "`n"
     }
 
     logText .= msg
@@ -303,3 +303,4 @@ OnExit((*) => WinEvent.Stop())
 *     vs ShellHook: More events
 *     vs WM_ACTIVATE: System-wide
 */
+

@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* Keyboard Cursor Control - Vim-Inspired Mouse Navigation
-*
-* Demonstrates keyboard-driven cursor control with quadrant bisection
-* algorithm for precise positioning. Essential for accessibility and
-* keyboard-centric workflows.
-*
-* Source: jotnguyen/autohotkey-productivity-scripts - Vimium.ahk
-* Inspired by: https://github.com/jotnguyen/autohotkey-productivity-scripts
-*/
+ * Keyboard Cursor Control - Vim-Inspired Mouse Navigation
+ * 
+ * Demonstrates keyboard-driven cursor control with quadrant bisection
+ * algorithm for precise positioning. Essential for accessibility and
+ * keyboard-centric workflows.
+ * 
+ * Source: jotnguyen/autohotkey-productivity-scripts - Vimium.ahk
+ * Inspired by: https://github.com/jotnguyen/autohotkey-productivity-scripts
+ */
 
 ; Global state
 global cursorMode := false
@@ -19,17 +19,17 @@ global cursorY := 0
 global cursorStep := 50
 
 MsgBox("Keyboard Cursor Control`n`n"
-. "CapsLock-based Vim navigation:`n`n"
-. "CapsLock + H/J/K/L - Move cursor (Vim style)`n"
-. "CapsLock + U/I/O/P - Quadrant jump`n"
-. "CapsLock + Space - Left click`n"
-. "CapsLock + Enter - Right click`n"
-. "CapsLock + [ / ] - Decrease/Increase speed`n`n"
-. "Perfect for:`n"
-. "- Keyboard-only navigation`n"
-. "- Accessibility`n"
-. "- Precision work`n"
-. "- Vim users", , "T8")
+    . "CapsLock-based Vim navigation:`n`n"
+    . "CapsLock + H/J/K/L - Move cursor (Vim style)`n"
+    . "CapsLock + U/I/O/P - Quadrant jump`n"
+    . "CapsLock + Space - Left click`n"
+    . "CapsLock + Enter - Right click`n"
+    . "CapsLock + [ / ] - Decrease/Increase speed`n`n"
+    . "Perfect for:`n"
+    . "- Keyboard-only navigation`n"
+    . "- Accessibility`n"
+    . "- Precision work`n"
+    . "- Vim users", , "T8")
 
 ; Disable CapsLock default behavior
 SetCapsLockState("AlwaysOff")
@@ -39,28 +39,28 @@ SetCapsLockState("AlwaysOff")
 ; ===============================================
 
 /**
-* Move cursor left (H)
-*/
-CapsLock & h::MoveCursor(-1, 0)
+ * Move cursor left (H)
+ */
+CapsLock & h:: MoveCursor(-1, 0)
 
 /**
-* Move cursor down (J)
-*/
-CapsLock & j::MoveCursor(0, 1)
+ * Move cursor down (J)
+ */
+CapsLock & j:: MoveCursor(0, 1)
 
 /**
-* Move cursor up (K)
-*/
-CapsLock & k::MoveCursor(0, -1)
+ * Move cursor up (K)
+ */
+CapsLock & k:: MoveCursor(0, -1)
 
 /**
-* Move cursor right (L)
-*/
-CapsLock & l::MoveCursor(1, 0)
+ * Move cursor right (L)
+ */
+CapsLock & l:: MoveCursor(1, 0)
 
 /**
-* Move cursor by direction
-*/
+ * Move cursor by direction
+ */
 MoveCursor(dx, dy) {
     global cursorStep
 
@@ -87,28 +87,28 @@ MoveCursor(dx, dy) {
 ; ===============================================
 
 /**
-* Jump to top-left quadrant (U)
-*/
-CapsLock & u::JumpToQuadrant(0.25, 0.25)
+ * Jump to top-left quadrant (U)
+ */
+CapsLock & u:: JumpToQuadrant(0.25, 0.25)
 
 /**
-* Jump to top-right quadrant (I)
-*/
-CapsLock & i::JumpToQuadrant(0.75, 0.25)
+ * Jump to top-right quadrant (I)
+ */
+CapsLock & i:: JumpToQuadrant(0.75, 0.25)
 
 /**
-* Jump to bottom-left quadrant (O)
-*/
-CapsLock & o::JumpToQuadrant(0.25, 0.75)
+ * Jump to bottom-left quadrant (O)
+ */
+CapsLock & o:: JumpToQuadrant(0.25, 0.75)
 
 /**
-* Jump to bottom-right quadrant (P)
-*/
-CapsLock & p::JumpToQuadrant(0.75, 0.75)
+ * Jump to bottom-right quadrant (P)
+ */
+CapsLock & p:: JumpToQuadrant(0.75, 0.75)
 
 /**
-* Jump to screen position by percentage
-*/
+ * Jump to screen position by percentage
+ */
 JumpToQuadrant(xPercent, yPercent) {
     newX := Round(A_ScreenWidth * xPercent)
     newY := Round(A_ScreenHeight * yPercent)
@@ -125,24 +125,24 @@ JumpToQuadrant(xPercent, yPercent) {
 ; ===============================================
 
 /**
-* Bisect screen horizontally - Left half (,)
-*/
-CapsLock & ,::BisectScreen("left")
+ * Bisect screen horizontally - Left half (,)
+ */
+CapsLock & ,:: BisectScreen("left")
 
 /**
-* Bisect screen horizontally - Right half (.)
-*/
-CapsLock & .::BisectScreen("right")
+ * Bisect screen horizontally - Right half (.)
+ */
+CapsLock & .:: BisectScreen("right")
 
 /**
-* Bisect screen vertically - Top half (;)
-*/
-CapsLock & `;::BisectScreen("top")
+ * Bisect screen vertically - Top half (;)
+ */
+CapsLock & `;:: BisectScreen("top")
 
 /**
-* Bisect screen vertically - Bottom half (')
-*/
-CapsLock & '::BisectScreen("bottom")
+ * Bisect screen vertically - Bottom half (')
+ */
+CapsLock & ':: BisectScreen("bottom")
 
 global bisectLeft := 0
 global bisectTop := 0
@@ -151,8 +151,8 @@ global bisectBottom := A_ScreenHeight
 global bisectActive := false
 
 /**
-* Bisect current area and jump to half
-*/
+ * Bisect current area and jump to half
+ */
 BisectScreen(direction) {
     global bisectLeft, bisectTop, bisectRight, bisectBottom, bisectActive
 
@@ -173,24 +173,24 @@ BisectScreen(direction) {
     ; Bisect based on direction
     switch direction {
         case "left":
-        bisectRight := centerX
-        newX := bisectLeft + (width / 4)
-        newY := centerY
+            bisectRight := centerX
+            newX := bisectLeft + (width / 4)
+            newY := centerY
 
         case "right":
-        bisectLeft := centerX
-        newX := bisectLeft + (width / 4)
-        newY := centerY
+            bisectLeft := centerX
+            newX := bisectLeft + (width / 4)
+            newY := centerY
 
         case "top":
-        bisectBottom := centerY
-        newX := centerX
-        newY := bisectTop + (height / 4)
+            bisectBottom := centerY
+            newX := centerX
+            newY := bisectTop + (height / 4)
 
         case "bottom":
-        bisectTop := centerY
-        newX := centerX
-        newY := bisectTop + (height / 4)
+            bisectTop := centerY
+            newX := centerX
+            newY := bisectTop + (height / 4)
     }
 
     ; Move to new center
@@ -202,9 +202,9 @@ BisectScreen(direction) {
 }
 
 /**
-* Reset bisection
-*/
-CapsLock & r::ResetBisect()
+ * Reset bisection
+ */
+CapsLock & r:: ResetBisect()
 
 ResetBisect() {
     global bisectActive
@@ -218,38 +218,38 @@ ResetBisect() {
 ; ===============================================
 
 /**
-* Left click (Space)
-*/
-CapsLock & Space::Click()
+ * Left click (Space)
+ */
+CapsLock & Space:: Click()
 
 /**
-* Right click (Enter)
-*/
-CapsLock & Enter::Click("Right")
+ * Right click (Enter)
+ */
+CapsLock & Enter:: Click("Right")
 
 /**
-* Middle click (M)
-*/
-CapsLock & m::Click("Middle")
+ * Middle click (M)
+ */
+CapsLock & m:: Click("Middle")
 
 /**
-* Double click (D)
-*/
-CapsLock & d::Click(2)
+ * Double click (D)
+ */
+CapsLock & d:: Click(2)
 
 ; ===============================================
 ; SPEED CONTROL
 ; ===============================================
 
 /**
-* Decrease cursor speed ([)
-*/
-CapsLock & [::AdjustSpeed(-10)
+ * Decrease cursor speed ([)
+ */
+CapsLock & [:: AdjustSpeed(-10)
 
 /**
-* Increase cursor speed (])
-*/
-CapsLock & ]::AdjustSpeed(10)
+ * Increase cursor speed (])
+ */
+CapsLock & ]:: AdjustSpeed(10)
 
 AdjustSpeed(delta) {
     global cursorStep
@@ -265,8 +265,8 @@ AdjustSpeed(delta) {
 ; ===============================================
 
 /**
-* Show crosshair at cursor position
-*/
+ * Show crosshair at cursor position
+ */
 ShowCrosshair(x, y) {
     size := 20
     color := "Red"
@@ -288,8 +288,8 @@ ShowCrosshair(x, y) {
 }
 
 /**
-* Show bisect area outline
-*/
+ * Show bisect area outline
+ */
 ShowBisectArea() {
     global bisectLeft, bisectTop, bisectRight, bisectBottom
 
@@ -305,9 +305,9 @@ ShowBisectArea() {
 ; ===============================================
 
 /**
-* Jump to screen center
-*/
-#c::CenterCursor()
+ * Jump to screen center
+ */
+#c:: CenterCursor()
 
 CenterCursor() {
     centerX := A_ScreenWidth / 2
@@ -412,3 +412,4 @@ CenterCursor() {
 *     - Mouse gestures
 *     - Acceleration curves
 */
+

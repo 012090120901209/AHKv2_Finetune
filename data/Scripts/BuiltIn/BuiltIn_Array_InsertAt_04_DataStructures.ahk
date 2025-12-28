@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.InsertAt() - Advanced Data Structures
-* ============================================================================
-*
-* Demonstrates using InsertAt() to implement complex data structures
-* like linked lists, trees, and specialized collections.
-*
-* @description Advanced data structure implementations
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.InsertAt() - Advanced Data Structures
+ * ============================================================================
+ * 
+ * Demonstrates using InsertAt() to implement complex data structures
+ * like linked lists, trees, and specialized collections.
+ * 
+ * @description Advanced data structure implementations
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; Example 1: Ordered Set Implementation
 Example1_OrderedSet() {
@@ -65,9 +65,9 @@ Example3_IntervalTree() {
 
     OutputDebug("`nChecking conflicts:`n")
     if (HasConflict(intervals, 2.5, 3.5))
-    OutputDebug("  Conflict found at time 2.5-3.5`n")
+        OutputDebug("  Conflict found at time 2.5-3.5`n")
     if (!HasConflict(intervals, 7.5, 8.5))
-    OutputDebug("  No conflict at time 7.5-8.5`n")
+        OutputDebug("  No conflict at time 7.5-8.5`n")
 
     OutputDebug("`n")
 }
@@ -97,7 +97,7 @@ Example5_SkipList() {
     values := [3, 6, 7, 9, 12, 17, 19, 21, 25, 26]
 
     for value in values
-    InsertInSkipList(skipList, value)
+        InsertInSkipList(skipList, value)
 
     OutputDebug("Skip list values: " FormatArray(skipList) "`n")
     OutputDebug("Search for 12: " (SearchSkipList(skipList, 12) != 0 ? "Found" : "Not found") "`n")
@@ -148,12 +148,12 @@ class OrderedSet {
 
     Add(value) {
         if (this.Contains(value))
-        return false
+            return false
 
         pos := 1
         for item in this.items {
             if (value < item)
-            break
+                break
             pos++
         }
 
@@ -163,8 +163,8 @@ class OrderedSet {
 
     Contains(value) {
         for item in this.items
-        if (item = value)
-        return true
+            if (item = value)
+                return true
         return false
     }
 
@@ -174,7 +174,7 @@ class OrderedSet {
         result := "{"
         for index, value in this.items {
             if (index > 1)
-            result .= ", "
+                result .= ", "
             result .= value
         }
         return result "}"
@@ -185,12 +185,12 @@ class SortedMapByValue {
     entries := []
 
     Add(key, value) {
-        newEntry := {key: key, value: value}
+        newEntry := { key: key, value: value }
         pos := 1
 
         for entry in this.entries {
             if (value < entry.value)
-            break
+                break
             pos++
         }
 
@@ -199,7 +199,7 @@ class SortedMapByValue {
 
     Display() {
         for entry in this.entries
-        OutputDebug("  " entry.key ": " entry.value "`n")
+            OutputDebug("  " entry.key ": " entry.value "`n")
     }
 }
 
@@ -207,7 +207,7 @@ class SparseArray {
     elements := []
 
     Set(index, value) {
-        newElem := {index: index, value: value}
+        newElem := { index: index, value: value }
         pos := 1
 
         for elem in this.elements {
@@ -216,7 +216,7 @@ class SparseArray {
                 return
             }
             if (index < elem.index)
-            break
+                break
             pos++
         }
 
@@ -225,14 +225,14 @@ class SparseArray {
 
     Get(index) {
         for elem in this.elements
-        if (elem.index = index)
-        return elem.value
+            if (elem.index = index)
+                return elem.value
         return ""
     }
 
     Display() {
         for elem in this.elements
-        OutputDebug("  [" elem.index "] = " elem.value "`n")
+            OutputDebug("  [" elem.index "] = " elem.value "`n")
     }
 }
 
@@ -243,23 +243,23 @@ class MultiLevelCache {
     __New(maxLevel := 3) {
         this.maxLevel := maxLevel
         Loop maxLevel
-        this.levels.Push([])
+            this.levels.Push([])
     }
 
     Put(key, value, level) {
         if (level < 1 || level > this.maxLevel)
-        return false
+            return false
 
-        newEntry := {key: key, value: value}
+        newEntry := { key: key, value: value }
         this.levels[level].InsertAt(1, newEntry)
         return true
     }
 
     Get(key) {
         for level in this.levels
-        for entry in level
-        if (entry.key = key)
-        return entry.value
+            for entry in level
+                if (entry.key = key)
+                    return entry.value
         return ""
     }
 
@@ -267,19 +267,19 @@ class MultiLevelCache {
         for levelNum, level in this.levels {
             OutputDebug("  Level " levelNum ": " level.Length " items`n")
             for entry in level
-            OutputDebug("    " entry.key ": " entry.value "`n")
+                OutputDebug("    " entry.key ": " entry.value "`n")
         }
     }
 }
 
 ; Helper Functions
 AddInterval(intervals, start, end, name) {
-    newInterval := {start: start, end: end, name: name}
+    newInterval := { start: start, end: end, name: name }
     pos := 1
 
     for interval in intervals {
         if (start < interval.start)
-        break
+            break
         pos++
     }
 
@@ -288,23 +288,23 @@ AddInterval(intervals, start, end, name) {
 
 ShowIntervals(intervals) {
     for interval in intervals
-    OutputDebug("  [" interval.start "-" interval.end "] " interval.name "`n")
+        OutputDebug("  [" interval.start "-" interval.end "] " interval.name "`n")
 }
 
 HasConflict(intervals, start, end) {
     for interval in intervals
-    if (!(end <= interval.start || start >= interval.end))
-    return true
+        if (!(end <= interval.start || start >= interval.end))
+            return true
     return false
 }
 
 AddRange(ranges, start, end) {
-    newRange := {start: start, end: end}
+    newRange := { start: start, end: end }
     pos := 1
 
     for range in ranges {
         if (start < range.start)
-        break
+            break
         pos++
     }
 
@@ -313,14 +313,14 @@ AddRange(ranges, start, end) {
 
 ShowRanges(ranges) {
     for range in ranges
-    OutputDebug("  [" range.start ", " range.end "]`n")
+        OutputDebug("  [" range.start ", " range.end "]`n")
 }
 
 InsertInSkipList(list, value) {
     pos := 1
     for item in list {
         if (value < item)
-        break
+            break
         pos++
     }
     list.InsertAt(pos, value)
@@ -328,18 +328,18 @@ InsertInSkipList(list, value) {
 
 SearchSkipList(list, value) {
     for index, item in list
-    if (item = value)
-    return index
+        if (item = value)
+            return index
     return 0
 }
 
 FormatArray(arr) {
     if (arr.Length = 0)
-    return "[]"
+        return "[]"
     result := "["
     for index, value in arr {
         if (index > 1)
-        result .= ", "
+            result .= ", "
         result .= value
     }
     return result "]"
@@ -363,7 +363,7 @@ Main() {
     OutputDebug(String.Repeat("=", 80) "`n")
 
     MsgBox("Array.InsertAt() data structures examples completed!`nCheck DebugView for output.",
-    "Examples Complete", "Icon!")
+        "Examples Complete", "Icon!")
 }
 
 Main()

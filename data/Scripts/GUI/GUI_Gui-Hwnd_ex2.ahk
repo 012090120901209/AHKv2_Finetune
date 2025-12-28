@@ -8,5 +8,6 @@ ogcButtonSubmit := myGui.Add("Button", , "Submit")
 ogcButtonSubmit.OnEvent("Click", Clicked.Bind("Normal"))
 myGui.Show()
 Clicked()
-Clicked(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox(test)
+Clicked(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox(test)
 }

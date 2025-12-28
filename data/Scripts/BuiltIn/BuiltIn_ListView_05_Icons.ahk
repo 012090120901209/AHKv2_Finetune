@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_05_Icons.ahk
-*
-* DESCRIPTION:
-* Demonstrates how to use icons and image lists with ListView controls including
-* system icons, custom icons, icon states, and dynamic icon management.
-*
-* FEATURES:
-* - Creating and attaching image lists
-* - Using system icons (shell32.dll icons)
-* - Custom icon files (.ico)
-* - Small and large icon views
-* - Setting icons for individual items
-* - Dynamic icon changes
-* - Icon overlays and states
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-* https://www.autohotkey.com/docs/v2/lib/IL_Create.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - IL_Create() for image list creation
-* - IL_Add() for adding icons
-* - ListView icon option syntax
-* - SetImageList() method
-* - Icon parameter in Add() and Modify()
-*
-* LEARNING POINTS:
-* 1. Image lists must be created before adding to ListView
-* 2. Icons are referenced by 1-based index
-* 3. Shell32.dll contains many useful system icons
-* 4. Small icons (16x16) are standard for ListView
-* 5. Icon index 0 means no icon
-* 6. Image lists can be shared across controls
-* 7. Icons enhance visual data representation
-*/
+ * BuiltIn_ListView_05_Icons.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates how to use icons and image lists with ListView controls including
+ * system icons, custom icons, icon states, and dynamic icon management.
+ * 
+ * FEATURES:
+ * - Creating and attaching image lists
+ * - Using system icons (shell32.dll icons)
+ * - Custom icon files (.ico)
+ * - Small and large icon views
+ * - Setting icons for individual items
+ * - Dynamic icon changes
+ * - Icon overlays and states
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * https://www.autohotkey.com/docs/v2/lib/IL_Create.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - IL_Create() for image list creation
+ * - IL_Add() for adding icons
+ * - ListView icon option syntax
+ * - SetImageList() method
+ * - Icon parameter in Add() and Modify()
+ * 
+ * LEARNING POINTS:
+ * 1. Image lists must be created before adding to ListView
+ * 2. Icons are referenced by 1-based index
+ * 3. Shell32.dll contains many useful system icons
+ * 4. Small icons (16x16) are standard for ListView
+ * 5. Icon index 0 means no icon
+ * 6. Image lists can be shared across controls
+ * 7. Icons enhance visual data representation
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Icon Usage with System Icons
@@ -104,15 +104,15 @@ Example2_FileTypeIcons() {
 
     ; Simulated file list with appropriate icons
     files := [
-    ["readme.txt", "Text Document", "5 KB", "2025-11-01", 2],
-    ["photo.jpg", "JPEG Image", "1.2 MB", "2025-11-05", 3],
-    ["video.mp4", "MP4 Video", "45 MB", "2025-11-10", 4],
-    ["music.mp3", "MP3 Audio", "4.5 MB", "2025-11-12", 5],
-    ["archive.zip", "ZIP Archive", "15 MB", "2025-11-08", 6],
-    ["setup.exe", "Application", "25 MB", "2025-10-28", 7],
-    ["Documents", "Folder", "--", "2025-11-15", 8],
-    ["report.pdf", "PDF Document", "850 KB", "2025-11-14", 9],
-    ["script.ahk", "Script", "8 KB", "2025-11-16", 2]
+        ["readme.txt", "Text Document", "5 KB", "2025-11-01", 2],
+        ["photo.jpg", "JPEG Image", "1.2 MB", "2025-11-05", 3],
+        ["video.mp4", "MP4 Video", "45 MB", "2025-11-10", 4],
+        ["music.mp3", "MP3 Audio", "4.5 MB", "2025-11-12", 5],
+        ["archive.zip", "ZIP Archive", "15 MB", "2025-11-08", 6],
+        ["setup.exe", "Application", "25 MB", "2025-10-28", 7],
+        ["Documents", "Folder", "--", "2025-11-15", 8],
+        ["report.pdf", "PDF Document", "850 KB", "2025-11-14", 9],
+        ["script.ahk", "Script", "8 KB", "2025-11-16", 2]
     ]
 
     for file in files {
@@ -148,14 +148,14 @@ Example3_StatusIcons() {
 
     ; Task list with status icons
     tasks := [
-    ["Write Documentation", "Complete", "100%", "Alice", 1],
-    ["Fix Bug #123", "In Progress", "75%", "Bob", 2],
-    ["Code Review", "Error", "0%", "Charlie", 3],
-    ["Deploy to Staging", "Pending", "0%", "Diana", 4],
-    ["Update Dependencies", "Complete", "100%", "Edward", 1],
-    ["Write Tests", "In Progress", "50%", "Fiona", 2],
-    ["Database Migration", "Pending", "0%", "George", 4],
-    ["Security Audit", "Error", "25%", "Hannah", 3]
+        ["Write Documentation", "Complete", "100%", "Alice", 1],
+        ["Fix Bug #123", "In Progress", "75%", "Bob", 2],
+        ["Code Review", "Error", "0%", "Charlie", 3],
+        ["Deploy to Staging", "Pending", "0%", "Diana", 4],
+        ["Update Dependencies", "Complete", "100%", "Edward", 1],
+        ["Write Tests", "In Progress", "50%", "Fiona", 2],
+        ["Database Migration", "Pending", "0%", "George", 4],
+        ["Security Audit", "Error", "25%", "Hannah", 3]
     ]
 
     for task in tasks {
@@ -232,14 +232,14 @@ Example4_PriorityIcons() {
     LV.SetImageList(ImageListID)
 
     issues := [
-    ["Server Down", "Critical", "Blocker", "System Monitor", 1],
-    ["Login Failed", "High", "Major", "User Support", 2],
-    ["UI Glitch", "Medium", "Minor", "QA Team", 3],
-    ["Typo in Help", "Low", "Trivial", "Documentation", 4],
-    ["Feature Request", "None", "Enhancement", "Customer", 5],
-    ["Database Slow", "High", "Major", "DBA", 2],
-    ["Missing Icon", "Low", "Minor", "Designer", 4],
-    ["Security Hole", "Critical", "Blocker", "Security Team", 1]
+        ["Server Down", "Critical", "Blocker", "System Monitor", 1],
+        ["Login Failed", "High", "Major", "User Support", 2],
+        ["UI Glitch", "Medium", "Minor", "QA Team", 3],
+        ["Typo in Help", "Low", "Trivial", "Documentation", 4],
+        ["Feature Request", "None", "Enhancement", "Customer", 5],
+        ["Database Slow", "High", "Major", "DBA", 2],
+        ["Missing Icon", "Low", "Minor", "Designer", 4],
+        ["Security Hole", "Critical", "Blocker", "Security Team", 1]
     ]
 
     for issue in issues {
@@ -293,11 +293,11 @@ Example5_DynamicIcons() {
 
     ; Add process list
     processes := [
-    ["Data Import", "Stopped", "0:00"],
-    ["File Sync", "Stopped", "0:00"],
-    ["Backup Task", "Stopped", "0:00"],
-    ["Report Gen", "Stopped", "0:00"],
-    ["Email Send", "Stopped", "0:00"]
+        ["Data Import", "Stopped", "0:00"],
+        ["File Sync", "Stopped", "0:00"],
+        ["Backup Task", "Stopped", "0:00"],
+        ["Report Gen", "Stopped", "0:00"],
+        ["Email Send", "Stopped", "0:00"]
     ]
 
     for proc in processes {
@@ -364,9 +364,9 @@ Example5_DynamicIcons() {
         Loop LV.GetCount() {
             ; Complete or error randomly
             if Random(0, 1)
-            LV.Modify(A_Index, "Icon4", , "Complete", Random(2, 8) ":00")
+                LV.Modify(A_Index, "Icon4", , "Complete", Random(2, 8) ":00")
             else
-            LV.Modify(A_Index, "Icon6", , "Error", Random(1, 3) ":00")
+                LV.Modify(A_Index, "Icon6", , "Error", Random(1, 3) ":00")
         }
 
         MsgBox("Simulation complete!")
@@ -385,7 +385,7 @@ Example6_IconReference() {
 
     ; Add a range of commonly used shell32.dll icons
     iconNumbers := [1, 2, 3, 4, 5, 8, 14, 16, 21, 22, 27, 28, 43, 54, 70, 71, 78,
-    116, 131, 147, 151, 165, 234, 235, 238, 240, 242, 244, 297]
+        116, 131, 147, 151, 165, 234, 235, 238, 240, 242, 244, 297]
 
     for iconNum in iconNumbers {
         IL_Add(ImageListID, "shell32.dll", iconNum)
@@ -396,35 +396,35 @@ Example6_IconReference() {
 
     ; Add reference entries
     descriptions := [
-    [1, 1, "Generic file"],
-    [2, 2, "Folder/Directory"],
-    [3, 3, "Closed folder"],
-    [4, 4, "Open folder"],
-    [5, 5, "Drive"],
-    [8, 6, "Hard drive"],
-    [14, 7, "Executable/Program"],
-    [16, 8, "Computer/Desktop"],
-    [21, 9, "Search/Find"],
-    [22, 10, "Help"],
-    [27, 11, "Information"],
-    [28, 12, "Error/Critical"],
-    [43, 13, "Settings/Tools"],
-    [54, 14, "Delete/Trash"],
-    [70, 15, "Text file"],
-    [71, 16, "Success/Check"],
-    [78, 17, "Warning/Alert"],
-    [116, 18, "Music/Audio"],
-    [131, 19, "Network"],
-    [147, 20, "Image/Picture"],
-    [151, 21, "Archive/ZIP"],
-    [165, 22, "Video"],
-    [234, 23, "Up arrow/High"],
-    [235, 24, "Down arrow/Low"],
-    [238, 25, "Play"],
-    [240, 26, "Stop"],
-    [242, 27, "Pause"],
-    [244, 28, "Clock/Time"],
-    [297, 29, "Check/Complete"]
+        [1, 1, "Generic file"],
+        [2, 2, "Folder/Directory"],
+        [3, 3, "Closed folder"],
+        [4, 4, "Open folder"],
+        [5, 5, "Drive"],
+        [8, 6, "Hard drive"],
+        [14, 7, "Executable/Program"],
+        [16, 8, "Computer/Desktop"],
+        [21, 9, "Search/Find"],
+        [22, 10, "Help"],
+        [27, 11, "Information"],
+        [28, 12, "Error/Critical"],
+        [43, 13, "Settings/Tools"],
+        [54, 14, "Delete/Trash"],
+        [70, 15, "Text file"],
+        [71, 16, "Success/Check"],
+        [78, 17, "Warning/Alert"],
+        [116, 18, "Music/Audio"],
+        [131, 19, "Network"],
+        [147, 20, "Image/Picture"],
+        [151, 21, "Archive/ZIP"],
+        [165, 22, "Video"],
+        [234, 23, "Up arrow/High"],
+        [235, 24, "Down arrow/Low"],
+        [238, 25, "Play"],
+        [240, 26, "Stop"],
+        [242, 27, "Pause"],
+        [244, 28, "Clock/Time"],
+        [297, 29, "Check/Complete"]
     ]
 
     for desc in descriptions {
@@ -571,3 +571,4 @@ LV.Add("Icon2", "Success", "Complete")
 ; Change icon dynamically
 LV.Modify(RowNum, "Icon3")
 */
+

@@ -13,7 +13,7 @@ class Result {
 
     static Ok(value) => Result(value)
     static Fail(error) => Result("", error)
-    
+
     static Try(fn, args*) {
         try
             return Result.Ok(fn(args*))
@@ -35,7 +35,7 @@ class Result {
             return this
         return fn(this.value)
     }
-    
+
     MapError(fn) {
         if this.isSuccess
             return this
@@ -43,13 +43,13 @@ class Result {
     }
 
     GetOrElse(defaultVal) => this.isSuccess ? this.value : defaultVal
-    
+
     GetOrThrow() {
         if !this.isSuccess
             throw Error(this.error)
         return this.value
     }
-    
+
     Match(onSuccess, onFailure) {
         return this.isSuccess ? onSuccess(this.value) : onFailure(this.error)
     }

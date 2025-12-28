@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetSize_05.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of FileGetSize() function to get file sizes
-*
-* FEATURES:
-* - Get file size in bytes
-* - Size unit conversion (KB, MB, GB)
-* - Human-readable formatting
-* - File size comparison
-* - Storage calculations
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetSize() function
-* - Size unit conversion
-* - Number formatting
-* - Mathematical operations
-* - String concatenation
-*
-* LEARNING POINTS:
-* 1. FileGetSize() returns file size in bytes
-* 2. Can specify size units (K=KB, M=MB)
-* 3. Useful for storage management
-* 4. Can track file growth
-* 5. Essential for disk space monitoring
-* 6. Supports human-readable formatting
-*/
+ * BuiltIn_FileGetSize_05.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of FileGetSize() function to get file sizes
+ * 
+ * FEATURES:
+ * - Get file size in bytes
+ * - Size unit conversion (KB, MB, GB)
+ * - Human-readable formatting
+ * - File size comparison
+ * - Storage calculations
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetSize() function
+ * - Size unit conversion
+ * - Number formatting
+ * - Mathematical operations
+ * - String concatenation
+ * 
+ * LEARNING POINTS:
+ * 1. FileGetSize() returns file size in bytes
+ * 2. Can specify size units (K=KB, M=MB)
+ * 3. Useful for storage management
+ * 4. Can track file growth
+ * 5. Essential for disk space monitoring
+ * 6. Supports human-readable formatting
+ */
 
 ; ============================================================
 ; Example 1: Basic File Size Retrieval
@@ -49,20 +49,20 @@ FileAppend(testContent, testFile)
 sizeBytes := FileGetSize(testFile)
 
 MsgBox("File: " testFile "`n`n"
-. "Size: " sizeBytes " bytes`n"
-. "Content length: " StrLen(testContent) " characters",
-"Basic File Size", "Icon!")
+    . "Size: " sizeBytes " bytes`n"
+    . "Content length: " StrLen(testContent) " characters",
+    "Basic File Size", "Icon!")
 
 ; ============================================================
 ; Example 2: Size in Different Units
 ; ============================================================
 
 /**
-* Get file size in different units
-*
-* @param {String} filePath - Path to file
-* @returns {Object} - Size in multiple units
-*/
+ * Get file size in different units
+ * 
+ * @param {String} filePath - Path to file
+ * @returns {Object} - Size in multiple units
+ */
 GetSizeInUnits(filePath) {
     return {
         bytes: FileGetSize(filePath),
@@ -75,7 +75,7 @@ GetSizeInUnits(filePath) {
 largeFile := A_ScriptDir "\largefile.txt"
 largeContent := ""
 Loop 1000
-largeContent .= "This is line " A_Index " with some content to make the file larger.`n"
+    largeContent .= "This is line " A_Index " with some content to make the file larger.`n"
 
 FileAppend(largeContent, largeFile)
 
@@ -83,44 +83,44 @@ FileAppend(largeContent, largeFile)
 sizes := GetSizeInUnits(largeFile)
 
 MsgBox("File: largefile.txt`n`n"
-. "Bytes: " sizes.bytes " B`n"
-. "Kilobytes: " sizes.kilobytes " KB`n"
-. "Megabytes: " sizes.megabytes " MB",
-"Size Units", "Icon!")
+    . "Bytes: " sizes.bytes " B`n"
+    . "Kilobytes: " sizes.kilobytes " KB`n"
+    . "Megabytes: " sizes.megabytes " MB",
+    "Size Units", "Icon!")
 
 ; ============================================================
 ; Example 3: Human-Readable Size Formatting
 ; ============================================================
 
 /**
-* Format file size in human-readable format
-*
-* @param {Integer} bytes - Size in bytes
-* @param {Integer} decimals - Number of decimal places
-* @returns {String} - Formatted size string
-*/
+ * Format file size in human-readable format
+ * 
+ * @param {Integer} bytes - Size in bytes
+ * @param {Integer} decimals - Number of decimal places
+ * @returns {String} - Formatted size string
+ */
 FormatFileSize(bytes, decimals := 2) {
     if (bytes < 1024)
-    return bytes " B"
+        return bytes " B"
 
     if (bytes < 1024 * 1024)
-    return Round(bytes / 1024, decimals) " KB"
+        return Round(bytes / 1024, decimals) " KB"
 
     if (bytes < 1024 * 1024 * 1024)
-    return Round(bytes / (1024 * 1024), decimals) " MB"
+        return Round(bytes / (1024 * 1024), decimals) " MB"
 
     return Round(bytes / (1024 * 1024 * 1024), decimals) " GB"
 }
 
 /**
-* Get formatted file size
-*
-* @param {String} filePath - Path to file
-* @returns {String} - Human-readable size
-*/
+ * Get formatted file size
+ * 
+ * @param {String} filePath - Path to file
+ * @returns {String} - Human-readable size
+ */
 GetFormattedSize(filePath) {
     if (!FileExist(filePath))
-    return "File not found"
+        return "File not found"
 
     bytes := FileGetSize(filePath)
     return FormatFileSize(bytes)
@@ -128,9 +128,9 @@ GetFormattedSize(filePath) {
 
 ; Test with various files
 testFiles := [
-testFile,
-largeFile,
-A_AhkPath
+    testFile,
+    largeFile,
+    A_AhkPath
 ]
 
 output := "HUMAN-READABLE FILE SIZES:`n`n"
@@ -149,12 +149,12 @@ MsgBox(output, "Formatted Sizes", "Icon!")
 ; ============================================================
 
 /**
-* Compare sizes of two files
-*
-* @param {String} file1 - First file path
-* @param {String} file2 - Second file path
-* @returns {Object} - Comparison result
-*/
+ * Compare sizes of two files
+ * 
+ * @param {String} file1 - First file path
+ * @param {String} file2 - Second file path
+ * @returns {Object} - Comparison result
+ */
 CompareFileSizes(file1, file2) {
     size1 := FileGetSize(file1)
     size2 := FileGetSize(file2)
@@ -195,9 +195,9 @@ output .= name2 ": " FormatFileSize(comparison.size2) "`n`n"
 output .= "Difference: " FormatFileSize(comparison.difference) "`n"
 
 if (comparison.larger != "equal")
-output .= name2 " is " comparison.percentDiff "% larger"
+    output .= name2 " is " comparison.percentDiff "% larger"
 else
-output .= "Files are equal size"
+    output .= "Files are equal size"
 
 MsgBox(output, "Size Comparison", "Icon!")
 
@@ -206,12 +206,12 @@ MsgBox(output, "Size Comparison", "Icon!")
 ; ============================================================
 
 /**
-* Calculate total size of all files in directory
-*
-* @param {String} dirPath - Directory path
-* @param {Boolean} recursive - Include subdirectories
-* @returns {Object} - Directory size information
-*/
+ * Calculate total size of all files in directory
+ * 
+ * @param {String} dirPath - Directory path
+ * @param {Boolean} recursive - Include subdirectories
+ * @returns {Object} - Directory size information
+ */
 GetDirectorySize(dirPath, recursive := false) {
     result := {
         totalBytes: 0,
@@ -221,7 +221,7 @@ GetDirectorySize(dirPath, recursive := false) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     ; Count files and sum sizes
     recurseFlag := recursive ? "FR" : "F"
@@ -233,7 +233,7 @@ GetDirectorySize(dirPath, recursive := false) {
     ; Count directories if recursive
     if (recursive) {
         Loop Files, dirPath "\*.*", "D"
-        result.dirCount++
+            result.dirCount++
     }
 
     result.formatted := FormatFileSize(result.totalBytes)
@@ -245,7 +245,7 @@ testDir := A_ScriptDir "\SizeTest"
 DirCreate(testDir)
 
 Loop 5
-FileAppend("File " A_Index " content here.`n", testDir "\file" A_Index ".txt")
+    FileAppend("File " A_Index " content here.`n", testDir "\file" A_Index ".txt")
 
 ; Get directory size
 dirSize := GetDirectorySize(testDir, false)
@@ -263,13 +263,13 @@ MsgBox(output, "Directory Size", "Icon!")
 ; ============================================================
 
 /**
-* Validate file size is within acceptable range
-*
-* @param {String} filePath - File to validate
-* @param {Integer} minBytes - Minimum size in bytes
-* @param {Integer} maxBytes - Maximum size in bytes
-* @returns {Object} - Validation result
-*/
+ * Validate file size is within acceptable range
+ * 
+ * @param {String} filePath - File to validate
+ * @param {Integer} minBytes - Minimum size in bytes
+ * @param {Integer} maxBytes - Maximum size in bytes
+ * @returns {Object} - Validation result
+ */
 ValidateFileSize(filePath, minBytes := 0, maxBytes := 0) {
     result := {
         valid: false,
@@ -320,11 +320,11 @@ MsgBox(output, "Size Validation", validation.valid ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Monitor file size and track changes
-*
-* @param {String} filePath - File to monitor
-* @returns {Object} - Size tracking information
-*/
+ * Monitor file size and track changes
+ * 
+ * @param {String} filePath - File to monitor
+ * @returns {Object} - Size tracking information
+ */
 class FileSizeMonitor {
     __New(filePath) {
         this.filePath := filePath
@@ -334,7 +334,7 @@ class FileSizeMonitor {
 
     RecordSize() {
         if (!FileExist(this.filePath))
-        return false
+            return false
 
         size := FileGetSize(this.filePath)
         this.history.Push({
@@ -347,7 +347,7 @@ class FileSizeMonitor {
 
     GetGrowth() {
         if (this.history.Length < 2)
-        return 0
+            return 0
 
         first := this.history[1].size
         last := this.history[this.history.Length].size
@@ -356,7 +356,7 @@ class FileSizeMonitor {
 
     GetReport() {
         if (this.history.Length = 0)
-        return "No data recorded"
+            return "No data recorded"
 
         report := "FILE SIZE HISTORY:`n`n"
         report .= "File: " this.filePath "`n`n"

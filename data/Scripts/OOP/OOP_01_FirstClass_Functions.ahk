@@ -2,16 +2,16 @@
 #SingleInstance Force
 
 /**
-* First-Class Functions
-*
-* Demonstrates that functions are first-class citizens in AHK v2:
-* - Stored in variables
-* - Passed as arguments
-* - Returned from functions
-* - Stored in data structures
-*
-* Source: AHK_Notes/Concepts/First_Class_Functions.md
-*/
+ * First-Class Functions
+ * 
+ * Demonstrates that functions are first-class citizens in AHK v2:
+ * - Stored in variables
+ * - Passed as arguments
+ * - Returned from functions
+ * - Stored in data structures
+ * 
+ * Source: AHK_Notes/Concepts/First_Class_Functions.md
+ */
 
 ; Example 1: Functions as Callback Arguments
 MsgBox("Example 1: Functions as Callbacks", , "T2")
@@ -29,9 +29,9 @@ squaredNumbers := ProcessItems(numbers, square)
 cubedNumbers := ProcessItems(numbers, cube)
 
 MsgBox("Original: [1,2,3,4,5]`n`n"
-. "Doubled: [" Join(doubledNumbers) "]`n"
-. "Squared: [" Join(squaredNumbers) "]`n"
-. "Cubed: [" Join(cubedNumbers) "]", , "T5")
+    . "Doubled: [" Join(doubledNumbers) "]`n"
+    . "Squared: [" Join(squaredNumbers) "]`n"
+    . "Cubed: [" Join(cubedNumbers) "]", , "T5")
 
 ; Example 2: Function Factories
 MsgBox("Example 2: Function Factories", , "T2")
@@ -43,59 +43,59 @@ result1 := multiplyByTwo(5)
 result2 := multiplyByTen(5)
 
 MsgBox("multiplyByTwo(5) = " result1 "`n"
-. "multiplyByTen(5) = " result2, , "T3")
+    . "multiplyByTen(5) = " result2, , "T3")
 
 ; Example 3: Functions in Data Structures
 MsgBox("Example 3: Functions in Map", , "T2")
 
 operations := Map(
-"add", (x, y) => x + y,
-"subtract", (x, y) => x - y,
-"multiply", (x, y) => x * y,
-"divide", (x, y) => x / y,
-"power", (x, y) => x ** y
+    "add", (x, y) => x + y,
+    "subtract", (x, y) => x - y,
+    "multiply", (x, y) => x * y,
+    "divide", (x, y) => x / y,
+    "power", (x, y) => x ** y
 )
 
 result := operations["multiply"](6, 7)
 MsgBox("operations['multiply'](6, 7) = " result, , "T3")
 
 /**
-* ProcessItems - Higher-Order Function
-*
-* Applies a processor function to each item in an array.
-*
-* @param items - Array of items to process
-* @param processor - Function to apply to each item
-* @return Array of processed items
-*/
+ * ProcessItems - Higher-Order Function
+ * 
+ * Applies a processor function to each item in an array.
+ * 
+ * @param items - Array of items to process
+ * @param processor - Function to apply to each item
+ * @return Array of processed items
+ */
 ProcessItems(items, processor) {
     results := []
     for item in items
-    results.Push(processor(item))
+        results.Push(processor(item))
     return results
 }
 
 /**
-* CreateMultiplier - Function Factory
-*
-* Returns a function that multiplies by a factor.
-*
-* @param factor - Multiplication factor
-* @return Function that multiplies by factor
-*/
+ * CreateMultiplier - Function Factory
+ * 
+ * Returns a function that multiplies by a factor.
+ * 
+ * @param factor - Multiplication factor
+ * @return Function that multiplies by factor
+ */
 CreateMultiplier(factor) {
     return (x) => x * factor
 }
 
 /**
-* Join - Helper Function
-*
-* Joins array elements with commas.
-*/
+ * Join - Helper Function
+ * 
+ * Joins array elements with commas.
+ */
 Join(arr) {
     result := ""
     for item in arr
-    result .= (result ? "," : "") item
+        result .= (result ? "," : "") item
     return result
 }
 
@@ -182,4 +182,5 @@ Join(arr) {
         *    - Function composition
         *    - Partial application
         *    - Currying
-        */
+*/
+

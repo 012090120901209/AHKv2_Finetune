@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileCopy() - Copy files
-*
-* Copies one or more files.
-*/
+ * FileCopy() - Copy files
+ * 
+ * Copies one or more files.
+ */
 
 source := A_ScriptDir "\source.txt"
 dest := A_ScriptDir "\destination.txt"

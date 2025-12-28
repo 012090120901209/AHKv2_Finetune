@@ -22,9 +22,9 @@ class BinarySearchTree {
         }
 
         if (value < node.value)
-        node.left := this._InsertNode(node.left, value)
+            node.left := this._InsertNode(node.left, value)
         else if (value > node.value)
-        node.right := this._InsertNode(node.right, value)
+            node.right := this._InsertNode(node.right, value)
 
         return node
     }
@@ -33,35 +33,35 @@ class BinarySearchTree {
 
     _SearchNode(node, value) {
         if (!node)
-        return false
+            return false
         if (value = node.value)
-        return true
+            return true
         if (value < node.value)
-        return this._SearchNode(node.left, value)
+            return this._SearchNode(node.left, value)
         return this._SearchNode(node.right, value)
     }
 
     FindMin() {
         if (!this.root)
-        return ""
+            return ""
         return this._FindMin(this.root).value
     }
 
     _FindMin(node) {
         while (node.left)
-        node := node.left
+            node := node.left
         return node
     }
 
     FindMax() {
         if (!this.root)
-        return ""
+            return ""
         return this._FindMax(this.root).value
     }
 
     _FindMax(node) {
         while (node.right)
-        node := node.right
+            node := node.right
         return node
     }
 
@@ -72,12 +72,12 @@ class BinarySearchTree {
 
     _DeleteNode(node, value) {
         if (!node)
-        return ""
+            return ""
 
         if (value < node.value)
-        node.left := this._DeleteNode(node.left, value)
+            node.left := this._DeleteNode(node.left, value)
         else if (value > node.value)
-        node.right := this._DeleteNode(node.right, value)
+            node.right := this._DeleteNode(node.right, value)
         else {
             ; Node found - delete it
             if (!node.left && !node.right) {
@@ -110,7 +110,7 @@ class BinarySearchTree {
 
     _InOrderTraversal(node, result) {
         if (!node)
-        return
+            return
         this._InOrderTraversal(node.left, result)
         result.Push(node.value)
         this._InOrderTraversal(node.right, result)
@@ -124,7 +124,7 @@ class BinarySearchTree {
 
     _PreOrderTraversal(node, result) {
         if (!node)
-        return
+            return
         result.Push(node.value)
         this._PreOrderTraversal(node.left, result)
         this._PreOrderTraversal(node.right, result)
@@ -138,7 +138,7 @@ class BinarySearchTree {
 
     _PostOrderTraversal(node, result) {
         if (!node)
-        return
+            return
         this._PostOrderTraversal(node.left, result)
         this._PostOrderTraversal(node.right, result)
         result.Push(node.value)
@@ -148,7 +148,7 @@ class BinarySearchTree {
 
     _GetHeight(node) {
         if (!node)
-        return -1
+            return -1
         return 1 + Max(this._GetHeight(node.left), this._GetHeight(node.right))
     }
 

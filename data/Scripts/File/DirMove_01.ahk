@@ -1,19 +1,19 @@
 /**
-* @file DirMove_01.ahk
-* @description Comprehensive examples of DirMove folder moving and renaming operations
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Basic folder moving
-* - Folder renaming
-* - Cross-drive moving
-* - Atomic move operations
-* - Move with validation
-* - Batch moving
-* - Organized file migration
-*/
+ * @file DirMove_01.ahk
+ * @description Comprehensive examples of DirMove folder moving and renaming operations
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Basic folder moving
+ * - Folder renaming
+ * - Cross-drive moving
+ * - Atomic move operations
+ * - Move with validation
+ * - Batch moving
+ * - Organized file migration
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,17 +22,17 @@
 ; ===================================================================================================
 
 /**
-* @function BasicDirMoveOperation
-* @description Demonstrates basic DirMove usage
-* @param {String} path - Path to operate on
-* @returns {Object} Result object
-*/
+ * @function BasicDirMoveOperation
+ * @description Demonstrates basic DirMove usage
+ * @param {String} path - Path to operate on
+ * @returns {Object} Result object
+ */
 BasicDirMoveOperation(path) {
     try {
         ; Example operation implementation
-        return {Success: true, Path: path}
+        return { Success: true, Path: path }
     } catch as err {
-        return {Success: false, Error: err.Message}
+        return { Success: false, Error: err.Message }
     }
 }
 
@@ -53,9 +53,9 @@ Example1_Basic() {
 ; ===================================================================================================
 
 /**
-* @class DirMoveManager
-* @description Manages dirmove operations with comprehensive error handling
-*/
+ * @class DirMoveManager
+ * @description Manages dirmove operations with comprehensive error handling
+ */
 class DirMoveManager {
     lastError := ""
 
@@ -66,14 +66,14 @@ class DirMoveManager {
             ; Validate inputs
             if (sourcePath = "") {
                 this.lastError := "Source path is required"
-                return {Success: false, Error: this.lastError}
+                return { Success: false, Error: this.lastError }
             }
 
             ; Perform operation based on file type
 
             if !DirExist(sourcePath) {
                 this.lastError := "Source directory does not exist"
-                return {Success: false, Error: this.lastError}
+                return { Success: false, Error: this.lastError }
             }
 
             if (targetPath = "") {
@@ -81,11 +81,11 @@ class DirMoveManager {
             }
 
             DirMove(sourcePath, targetPath)
-            return {Success: true, Source: sourcePath, Target: targetPath}
+            return { Success: true, Source: sourcePath, Target: targetPath }
 
         } catch as err {
             this.lastError := err.Message
-            return {Success: false, Error: err.Message}
+            return { Success: false, Error: err.Message }
         }
     }
 
@@ -104,7 +104,7 @@ Example2_Advanced() {
         message := "Advanced operation completed!`n`n"
         for key, value in result.OwnProps() {
             if (key != "Success")
-            message .= key . ": " . value . "`n"
+                message .= key . ": " . value . "`n"
         }
         MsgBox(message, "Success", "Iconi")
     } else {
@@ -119,9 +119,9 @@ Example2_Advanced() {
 ; ===================================================================================================
 
 /**
-* @class BatchDirMoveManager
-* @description Handles batch dirmove operations
-*/
+ * @class BatchDirMoveManager
+ * @description Handles batch dirmove operations
+ */
 class BatchDirMoveManager {
     static ProcessMultiple(paths) {
         results := []
@@ -133,9 +133,9 @@ class BatchDirMoveManager {
             result := manager.Execute(path)
 
             if (result.Success)
-            successCount++
+                successCount++
             else
-            failCount++
+                failCount++
 
             results.Push(result)
         }
@@ -176,14 +176,14 @@ Example3_Batch() {
 ; ===================================================================================================
 
 /**
-* @function InteractiveDirMove
-* @description Interactive dirmove operation with user prompts
-*/
+ * @function InteractiveDirMove
+ * @description Interactive dirmove operation with user prompts
+ */
 InteractiveDirMove() {
     sourcePath := InputBox("Enter source path:", "DirMove Operation").Value
 
     if (sourcePath = "")
-    return
+        return
 
     manager := DirMoveManager()
     result := manager.Execute(sourcePath)
@@ -206,9 +206,9 @@ Example4_Interactive() {
 ; ===================================================================================================
 
 /**
-* @class DirMoveLogger
-* @description Logs all dirmove operations
-*/
+ * @class DirMoveLogger
+ * @description Logs all dirmove operations
+ */
 class DirMoveLogger {
     logFile := A_ScriptDir . "\dirmove_operations.log"
 
@@ -219,7 +219,7 @@ class DirMoveLogger {
         logEntry := Format("[{1}] {2} - {3}", timestamp, status, path)
 
         if (details != "")
-        logEntry .= " - " . details
+            logEntry .= " - " . details
 
         logEntry .= "`n"
 
@@ -255,7 +255,7 @@ class DirMoveLogger {
 
         for i, line in allLines {
             if (i >= startIndex && line != "")
-            report .= line . "`n"
+                report .= line . "`n"
         }
 
         MsgBox(report, "Operation Log", "Iconi")
@@ -280,9 +280,9 @@ Example5_Logging() {
 ; ===================================================================================================
 
 /**
-* @class ScheduledDirMove
-* @description Schedules dirmove operations
-*/
+ * @class ScheduledDirMove
+ * @description Schedules dirmove operations
+ */
 class ScheduledDirMove {
     schedules := Map()
 
@@ -301,7 +301,7 @@ class ScheduledDirMove {
 
                 if (result.Success) {
                     MsgBox(Format("Scheduled operation completed for: {1}", path),
-                    "Scheduled DirMove", "Iconi")
+                        "Scheduled DirMove", "Iconi")
                 }
 
                 this.schedules.Delete(path)
@@ -319,9 +319,9 @@ Example6_Scheduled() {
     if (scheduleTime != "" && StrLen(scheduleTime) = 4) {
         scheduler.Schedule(testPath, scheduleTime)
         MsgBox(Format("Operation scheduled for {1}:{2}",
-        SubStr(scheduleTime, 1, 2),
-        SubStr(scheduleTime, 3, 2)),
-        "Scheduled", "Iconi")
+            SubStr(scheduleTime, 1, 2),
+            SubStr(scheduleTime, 3, 2)),
+            "Scheduled", "Iconi")
     }
 
     return scheduler
@@ -332,9 +332,9 @@ Example6_Scheduled() {
 ; ===================================================================================================
 
 /**
-* @class DirMoveStatistics
-* @description Tracks statistics for dirmove operations
-*/
+ * @class DirMoveStatistics
+ * @description Tracks statistics for dirmove operations
+ */
 class DirMoveStatistics {
     totalOperations := 0
     successfulOperations := 0
@@ -344,15 +344,15 @@ class DirMoveStatistics {
         this.totalOperations++
 
         if (result.Success)
-        this.successfulOperations++
+            this.successfulOperations++
         else
-        this.failedOperations++
+            this.failedOperations++
     }
 
     GetStatistics() {
         successRate := this.totalOperations > 0
-        ? Round((this.successfulOperations / this.totalOperations) * 100, 2)
-        : 0
+            ? Round((this.successfulOperations / this.totalOperations) * 100, 2)
+            : 0
 
         return {
             Total: this.totalOperations,
@@ -412,3 +412,4 @@ Example7_Statistics() {
 
 ; Press Ctrl+Alt+5 for logged operation
 ; ^!5::Example5_Logging()
+

@@ -21,7 +21,7 @@ myArray.RemoveAt(1)  ; Removes "apple"
 
 ; Loop through array
 for index, value in myArray
-MsgBox "Item " index ": " value
+    MsgBox "Item " index ": " value
 
 ; Array methods
 MsgBox "Length: " myArray.Length
@@ -31,5 +31,5 @@ MsgBox "Has banana? " myArray.Has("banana")
 numbers := [1, 2, 3, 4, 5]
 evens := []
 for num in numbers
-if Mod(num, 2) = 0
-evens.Push(num)
+    if Mod(num, 2) = 0
+        evens.Push(num)

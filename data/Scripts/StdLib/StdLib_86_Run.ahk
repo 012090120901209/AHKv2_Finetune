@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Run() - Run program
-*
-* Launches an external program or document.
-*/
+ * Run() - Run program
+ * 
+ * Launches an external program or document.
+ */
 
 Run("notepad.exe")
 MsgBox("Notepad launched")

@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Context-Sensitive Hotstrings
-* Hotstrings that only work in specific applications
-*/
+ * Context-Sensitive Hotstrings
+ * Hotstrings that only work in specific applications
+ */
 
 ; Only works in Notepad
 #HotIf WinActive("ahk_exe notepad.exe")

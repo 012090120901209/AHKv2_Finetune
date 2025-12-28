@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 INI Write Examples - Part 2
-* ============================================================================
-*
-* Advanced INI writing scenarios including migrations, versioning,
-* and configuration synchronization.
-*
-* @description Advanced INI file writing techniques
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 INI Write Examples - Part 2
+ * ============================================================================
+ * 
+ * Advanced INI writing scenarios including migrations, versioning,
+ * and configuration synchronization.
+ * 
+ * @description Advanced INI file writing techniques
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Configuration Migration Writer
@@ -40,7 +40,7 @@ class ConfigMigrator {
 
 Example1_ConfigMigration() {
     MsgBox "=== Example 1: Configuration Migration ===`n`n" .
-    "Migrating configuration format..."
+        "Migrating configuration format..."
 
     oldFile := A_ScriptDir . "\old_format.ini"
     newFile := A_ScriptDir . "\new_format.ini"
@@ -72,7 +72,7 @@ Example1_ConfigMigration() {
 
 Example2_MultiProfile() {
     MsgBox "=== Example 2: Multi-Profile Config ===`n`n" .
-    "Creating multiple configuration profiles..."
+        "Creating multiple configuration profiles..."
 
     iniFile := A_ScriptDir . "\profiles.ini"
 
@@ -117,7 +117,7 @@ Example2_MultiProfile() {
 
 Example3_ConfigSync() {
     MsgBox "=== Example 3: Configuration Sync ===`n`n" .
-    "Synchronizing configuration files..."
+        "Synchronizing configuration files..."
 
     localFile := A_ScriptDir . "\local_config.ini"
     remoteFile := A_ScriptDir . "\remote_config.ini"
@@ -139,12 +139,12 @@ Example3_ConfigSync() {
     localSections := IniRead(localFile)
     for section in StrSplit(localSections, "`n") {
         if (section = "")
-        continue
+            continue
 
         keys := IniRead(localFile, section)
         for key in StrSplit(keys, "`n") {
             if (key = "")
-            continue
+                continue
 
             value := IniRead(localFile, section, key)
             IniWrite value, remoteFile, section, key
@@ -167,7 +167,7 @@ Example3_ConfigSync() {
 
 Example4_HierarchicalConfig() {
     MsgBox "=== Example 4: Hierarchical Config ===`n`n" .
-    "Writing hierarchical configuration..."
+        "Writing hierarchical configuration..."
 
     iniFile := A_ScriptDir . "\hierarchical.ini"
 
@@ -231,7 +231,7 @@ class ValidatingConfigWriter {
 
 Example5_ValidatedWrite() {
     MsgBox "=== Example 5: Validated Writing ===`n`n" .
-    "Writing with validation..."
+        "Writing with validation..."
 
     iniFile := A_ScriptDir . "\validated.ini"
 
@@ -273,7 +273,7 @@ Example5_ValidatedWrite() {
 
 Example6_AtomicWrite() {
     MsgBox "=== Example 6: Atomic Writing ===`n`n" .
-    "Performing atomic configuration updates..."
+        "Performing atomic configuration updates..."
 
     iniFile := A_ScriptDir . "\atomic.ini"
     tempFile := iniFile . ".tmp"
@@ -322,7 +322,7 @@ Example6_AtomicWrite() {
 
 Example7_ChangeTracking() {
     MsgBox "=== Example 7: Change Tracking ===`n`n" .
-    "Tracking configuration changes..."
+        "Tracking configuration changes..."
 
     iniFile := A_ScriptDir . "\tracked.ini"
     auditFile := A_ScriptDir . "\audit.ini"
@@ -360,7 +360,7 @@ Example7_ChangeTracking() {
     changeCount := 0
     for section in StrSplit(auditSections, "`n") {
         if (InStr(section, "Change_"))
-        changeCount++
+            changeCount++
     }
 
     result := "Configuration Changes Tracked:`n"
@@ -406,8 +406,8 @@ ShowMenu() {
         case "7": Example7_ChangeTracking()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     SetTimer(() => ShowMenu(), -1000)

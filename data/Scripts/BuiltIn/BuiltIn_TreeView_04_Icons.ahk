@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_04_Icons.ahk
-*
-* DESCRIPTION:
-* Demonstrates using icons in TreeView controls including image lists,
-* custom icons, system icons, and dynamic icon changes.
-*
-* FEATURES:
-* - Creating and managing image lists
-* - Adding system shell icons
-* - Custom icon files
-* - Dynamic icon updates
-* - State-based icon changes
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - IL_Create for image list creation
-* - IL_Add for adding icons
-* - GuiControl.SetImageList method
-* - Dynamic icon manipulation
-*
-* LEARNING POINTS:
-* 1. Image lists must be created before associating with TreeView
-* 2. Icons are referenced by 1-based index
-* 3. Each node can have normal and selected state icons
-* 4. System shell icons provide familiar file/folder icons
-* 5. Icons enhance visual hierarchies and status indication
-*/
+ * BuiltIn_TreeView_04_Icons.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates using icons in TreeView controls including image lists,
+ * custom icons, system icons, and dynamic icon changes.
+ * 
+ * FEATURES:
+ * - Creating and managing image lists
+ * - Adding system shell icons
+ * - Custom icon files
+ * - Dynamic icon updates
+ * - State-based icon changes
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm#IL
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - IL_Create for image list creation
+ * - IL_Add for adding icons
+ * - GuiControl.SetImageList method
+ * - Dynamic icon manipulation
+ * 
+ * LEARNING POINTS:
+ * 1. Image lists must be created before associating with TreeView
+ * 2. Icons are referenced by 1-based index
+ * 3. Each node can have normal and selected state icons
+ * 4. System shell icons provide familiar file/folder icons
+ * 5. Icons enhance visual hierarchies and status indication
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Icon Usage
@@ -79,8 +79,8 @@ Example1_BasicIcons() {
 
     ; Info text
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Icons are loaded from shell32.dll and assigned to each node.`n" .
-    "Different icon numbers represent different icon types.")
+        "Icons are loaded from shell32.dll and assigned to each node.`n" .
+        "Different icon numbers represent different icon types.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -104,16 +104,16 @@ Example2_FileSystemIcons() {
 
     ; Add various file system icons from shell32.dll
     Icons := Map(
-    "Folder", IL_Add(ImageListID, "shell32.dll", 4),
-    "OpenFolder", IL_Add(ImageListID, "shell32.dll", 5),
-    "Drive", IL_Add(ImageListID, "shell32.dll", 9),
-    "Document", IL_Add(ImageListID, "shell32.dll", 71),
-    "Text", IL_Add(ImageListID, "shell32.dll", 70),
-    "Image", IL_Add(ImageListID, "shell32.dll", 72),
-    "Music", IL_Add(ImageListID, "shell32.dll", 108),
-    "Video", IL_Add(ImageListID, "shell32.dll", 238),
-    "Zip", IL_Add(ImageListID, "shell32.dll", 165),
-    "Exe", IL_Add(ImageListID, "shell32.dll", 2)
+        "Folder", IL_Add(ImageListID, "shell32.dll", 4),
+        "OpenFolder", IL_Add(ImageListID, "shell32.dll", 5),
+        "Drive", IL_Add(ImageListID, "shell32.dll", 9),
+        "Document", IL_Add(ImageListID, "shell32.dll", 71),
+        "Text", IL_Add(ImageListID, "shell32.dll", 70),
+        "Image", IL_Add(ImageListID, "shell32.dll", 72),
+        "Music", IL_Add(ImageListID, "shell32.dll", 108),
+        "Video", IL_Add(ImageListID, "shell32.dll", 238),
+        "Zip", IL_Add(ImageListID, "shell32.dll", 165),
+        "Exe", IL_Add(ImageListID, "shell32.dll", 2)
     )
 
     ; Create TreeView
@@ -178,7 +178,7 @@ Example2_FileSystemIcons() {
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Icons change based on file type. Folders show open/closed states.")
+        "Icons change based on file type. Folders show open/closed states.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -201,12 +201,12 @@ Example3_DynamicIcons() {
 
     ; Add status icons
     Icons := Map(
-    "Pending", IL_Add(ImageListID, "shell32.dll", 238),    ; Clock
-    "InProgress", IL_Add(ImageListID, "shell32.dll", 165), ; Gear
-    "Complete", IL_Add(ImageListID, "shell32.dll", 297),   ; Checkmark
-    "Error", IL_Add(ImageListID, "shell32.dll", 131),      ; X mark
-    "Warning", IL_Add(ImageListID, "shell32.dll", 78),     ; Warning
-    "Folder", IL_Add(ImageListID, "shell32.dll", 4)
+        "Pending", IL_Add(ImageListID, "shell32.dll", 238),    ; Clock
+        "InProgress", IL_Add(ImageListID, "shell32.dll", 165), ; Gear
+        "Complete", IL_Add(ImageListID, "shell32.dll", 297),   ; Checkmark
+        "Error", IL_Add(ImageListID, "shell32.dll", 131),      ; X mark
+        "Warning", IL_Add(ImageListID, "shell32.dll", 78),     ; Warning
+        "Folder", IL_Add(ImageListID, "shell32.dll", 4)
     )
 
     ; Create TreeView with checkboxes
@@ -265,11 +265,11 @@ Example3_DynamicIcons() {
 
     UpdateSummary() {
         counts := Map(
-        "Complete", 0,
-        "InProgress", 0,
-        "Pending", 0,
-        "Error", 0,
-        "Warning", 0
+            "Complete", 0,
+            "InProgress", 0,
+            "Pending", 0,
+            "Error", 0,
+            "Warning", 0
         )
 
         CountIcons(Project, Icons, counts)
@@ -417,15 +417,15 @@ Example5_IconBrowser() {
 
         ; Group icons
         if (iconNum <= 10)
-        groupText := "Icons 1-10"
+            groupText := "Icons 1-10"
         else if (iconNum <= 20)
-        groupText := "Icons 11-20"
+            groupText := "Icons 11-20"
         else if (iconNum <= 30)
-        groupText := "Icons 21-30"
+            groupText := "Icons 21-30"
         else if (iconNum <= 40)
-        groupText := "Icons 31-40"
+            groupText := "Icons 31-40"
         else
-        groupText := "Icons 41-50"
+            groupText := "Icons 41-50"
 
         ; Find or create group
         groupID := FindOrCreateGroup(TV, Root, groupText, iconNum)
@@ -474,7 +474,7 @@ FindOrCreateGroup(TV, ParentID, GroupText, IconNum) {
     ChildID := TV.GetChild(ParentID)
     while (ChildID) {
         if (TV.GetText(ChildID) = GroupText)
-        return ChildID
+            return ChildID
         ChildID := TV.GetNext(ChildID)
     }
 
@@ -495,12 +495,12 @@ Example6_IconStates() {
 
     ; Add icon pairs (normal and selected states)
     Icons := Map(
-    "FolderClosed", IL_Add(ImageListID, "shell32.dll", 4),
-    "FolderOpen", IL_Add(ImageListID, "shell32.dll", 5),
-    "FileClosed", IL_Add(ImageListID, "shell32.dll", 71),
-    "FileOpen", IL_Add(ImageListID, "shell32.dll", 70),
-    "Unchecked", IL_Add(ImageListID, "shell32.dll", 47),
-    "Checked", IL_Add(ImageListID, "shell32.dll", 297)
+        "FolderClosed", IL_Add(ImageListID, "shell32.dll", 4),
+        "FolderOpen", IL_Add(ImageListID, "shell32.dll", 5),
+        "FileClosed", IL_Add(ImageListID, "shell32.dll", 71),
+        "FileOpen", IL_Add(ImageListID, "shell32.dll", 70),
+        "Unchecked", IL_Add(ImageListID, "shell32.dll", 47),
+        "Checked", IL_Add(ImageListID, "shell32.dll", 297)
     )
 
     ; Create TreeView
@@ -528,25 +528,25 @@ Example6_IconStates() {
         ; Restore previous selection's icon
         if (lastSelected) {
             if (TV.GetChild(lastSelected))
-            TV.Modify(lastSelected, "Icon" . Icons["FolderClosed"])
+                TV.Modify(lastSelected, "Icon" . Icons["FolderClosed"])
             else
-            TV.Modify(lastSelected, "Icon" . Icons["FileClosed"])
+                TV.Modify(lastSelected, "Icon" . Icons["FileClosed"])
         }
 
         ; Change new selection's icon
         if (ItemID) {
             if (TV.GetChild(ItemID))
-            TV.Modify(ItemID, "Icon" . Icons["FolderOpen"])
+                TV.Modify(ItemID, "Icon" . Icons["FolderOpen"])
             else
-            TV.Modify(ItemID, "Icon" . Icons["FileOpen"])
+                TV.Modify(ItemID, "Icon" . Icons["FileOpen"])
 
             lastSelected := ItemID
         }
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Icons change when items are selected.`n" .
-    "Folders show open/closed icons, files show selected state.")
+        "Icons change when items are selected.`n" .
+        "Folders show open/closed icons, files show selected state.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -602,12 +602,12 @@ Example7_IconManagement() {
             parts := StrSplit(key, ":")
             source := parts[1]
             if (!sources.Has(source))
-            sources[source] := 0
+                sources[source] := 0
             sources[source]++
         }
 
         for source, count in sources
-        stats .= "  " . source . ": " . count . " icons`n"
+            stats .= "  " . source . ": " . count . " icons`n"
 
         statsText.Value := stats
     }
@@ -701,7 +701,7 @@ class IconManager {
     GetIcon(source, index) {
         key := source . ":" . index
         if (this.IconCache.Has(key))
-        return this.IconCache[key]
+            return this.IconCache[key]
 
         iconNum := IL_Add(this.ImageListID, source, index)
         this.IconCache[key] := iconNum

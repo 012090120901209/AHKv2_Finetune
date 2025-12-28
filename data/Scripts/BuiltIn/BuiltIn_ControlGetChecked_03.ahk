@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetChecked - Real-World Applications
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetChecked - Real-World Applications
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -94,7 +94,7 @@ Example3() {
             answer := ControlGetChecked(ctrl) ? "Yes" : "No"
             result .= question . ": " . answer . "\n"
             if (ControlGetChecked(ctrl))
-            yesCount++
+                yesCount++
         }
         score := Round((yesCount / questions.Count) * 100)
         result .= "\nSatisfaction Score: " . score . "%\n"
@@ -125,12 +125,12 @@ Example4() {
         grantedPerms := []
         for perm, ctrl in perms {
             if (ControlGetChecked(ctrl))
-            grantedPerms.Push(perm)
+                grantedPerms.Push(perm)
         }
         if (grantedPerms.Length > 0) {
             result .= "Granted:\n"
             for perm in grantedPerms
-            result .= "  ✓ " . perm . "\n"
+                result .= "  ✓ " . perm . "\n"
         } else {
             result .= "No permissions granted\n"
         }
@@ -161,12 +161,12 @@ Example5() {
         activeFilters := []
         for filter, ctrl in filters {
             if (ControlGetChecked(ctrl))
-            activeFilters.Push(filter)
+                activeFilters.Push(filter)
         }
         if (activeFilters.Length > 0) {
             result .= "Showing:\n"
             for filter in activeFilters
-            result .= "  • " . filter . "\n"
+                result .= "  • " . filter . "\n"
         } else {
             result .= "No filters active - showing nothing\n"
         }
@@ -202,9 +202,9 @@ Example6() {
         } else {
             result := "✗ Please agree to required terms:\n"
             if (!termsOk)
-            result .= "  • Terms of Service\n"
+                result .= "  • Terms of Service\n"
             if (!privacyOk)
-            result .= "  • Privacy Policy\n"
+                result .= "  • Privacy Policy\n"
             ResultsEdit.Value := result
         }
     }
@@ -250,13 +250,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Form Preferences",
-"Example 2: Feature Selection",
-"Example 3: Survey Response",
-"Example 4: Permission System",
-"Example 5: Filter Selection",
-"Example 6: Terms Agreement",
-"Example 7: Settings Export",
+    "Example 1: Form Preferences",
+    "Example 2: Feature Selection",
+    "Example 3: Survey Response",
+    "Example 4: Permission System",
+    "Example 5: Filter Selection",
+    "Example 6: Terms Agreement",
+    "Example 7: Settings Export",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

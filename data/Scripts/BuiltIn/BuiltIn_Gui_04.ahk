@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Gui_04.ahk - Multi-Window Management
-*
-* This file demonstrates managing multiple windows in AutoHotkey v2.
-* Topics covered:
-* - Parent-child window relationships
-* - Window ownership and dependencies
-* - Inter-window communication
-* - Window switching and focus management
-* - Multiple document interface (MDI-like) patterns
-* - Coordinated window operations
-* - Window state synchronization
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_Gui_04.ahk - Multi-Window Management
+ * 
+ * This file demonstrates managing multiple windows in AutoHotkey v2.
+ * Topics covered:
+ * - Parent-child window relationships
+ * - Window ownership and dependencies
+ * - Inter-window communication
+ * - Window switching and focus management
+ * - Multiple document interface (MDI-like) patterns
+ * - Coordinated window operations
+ * - Window state synchronization
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Parent-Child Windows
 ; =============================================================================
 
 /**
-* Demonstrates parent-child window relationships
-* Child windows are owned by parent
-*/
+ * Demonstrates parent-child window relationships
+ * Child windows are owned by parent
+ */
 Example1_ParentChild() {
     ; Create parent window
     parentGui := Gui(, "Parent Window")
@@ -77,7 +77,7 @@ Example1_ParentChild() {
         childGui.Show("w300 h260")
 
         ; Track child
-        children.Push({gui: childGui, num: childNum})
+        children.Push({ gui: childGui, num: childNum })
         UpdateChildList()
     }
 
@@ -108,7 +108,7 @@ Example1_ParentChild() {
         }
         childList.Delete()
         if (items.Length > 0)
-        childList.Add(items)
+            childList.Add(items)
 
         statusText.Value := "Children: " children.Length
     }
@@ -126,9 +126,9 @@ Example1_ParentChild() {
 ; =============================================================================
 
 /**
-* Windows that communicate with each other
-* Demonstrates message passing between windows
-*/
+ * Windows that communicate with each other
+ * Demonstrates message passing between windows
+ */
 Example2_WindowCommunication() {
     ; Shared data object
     sharedData := {
@@ -165,7 +165,7 @@ Example2_WindowCommunication() {
     BroadcastMessage() {
         msg := messageEdit.Value
         if (msg = "")
-        return
+            return
 
         sharedData.messages.Push({
             text: msg,
@@ -249,7 +249,7 @@ Example2_WindowCommunication() {
 
     SendFromDisplay(displayNum, message) {
         if (message = "")
-        return
+            return
 
         sharedData.messages.Push({
             text: message,
@@ -298,7 +298,7 @@ Example2_WindowCommunication() {
 
     UpdateStatus() {
         statusText.Value := Format("Active Displays: {1} | Messages: {2} | Counter: {3}",
-        displays.Length, sharedData.messages.Length, sharedData.counter)
+            displays.Length, sharedData.messages.Length, sharedData.counter)
     }
 
     Cleanup() {
@@ -314,9 +314,9 @@ Example2_WindowCommunication() {
 ; =============================================================================
 
 /**
-* Multiple Document Interface pattern
-* Container window with multiple document windows
-*/
+ * Multiple Document Interface pattern
+ * Container window with multiple document windows
+ */
 Example3_MDIInterface() {
     ; Main container window
     mainGui := Gui("+Resize", "MDI-Like Interface")
@@ -424,7 +424,7 @@ Example3_MDIInterface() {
 
     TileHorizontal() {
         if (documents.Length = 0)
-        return
+            return
 
         mainGui.GetPos(&mainX, &mainY, &mainW, &mainH)
 
@@ -439,7 +439,7 @@ Example3_MDIInterface() {
 
     TileVertical() {
         if (documents.Length = 0)
-        return
+            return
 
         mainGui.GetPos(&mainX, &mainY, &mainW)
 
@@ -454,7 +454,7 @@ Example3_MDIInterface() {
 
     Cascade() {
         if (documents.Length = 0)
-        return
+            return
 
         mainGui.GetPos(&mainX, &mainY)
 
@@ -467,7 +467,7 @@ Example3_MDIInterface() {
 
     UpdateStatus() {
         statusText.Value := Format("Ready | Documents: {1} | Active: {2}",
-        documents.Length, activeDoc > 0 ? "Document " activeDoc : "None")
+            documents.Length, activeDoc > 0 ? "Document " activeDoc : "None")
     }
 
     mainGui.OnEvent("Close", (*) => (CloseAllDocuments(), mainGui.Destroy()))
@@ -479,9 +479,9 @@ Example3_MDIInterface() {
 ; =============================================================================
 
 /**
-* Windows that synchronize their state
-* Demonstrates coordinated window updates
-*/
+ * Windows that synchronize their state
+ * Demonstrates coordinated window updates
+ */
 Example4_SynchronizedWindows() {
     ; Shared state
     sharedState := {
@@ -535,7 +535,7 @@ Example4_SynchronizedWindows() {
         displayText := syncGui.Add("Text", "x20 y20 w260 h100 Border Center Background" sharedState.color, sharedState.text)
 
         infoText := syncGui.Add("Text", "x20 y130 w260", Format("Window #{1}`nColor: {2}`nFont: {3}pt",
-        winNum, sharedState.color, sharedState.fontSize))
+            winNum, sharedState.color, sharedState.fontSize))
 
         syncGui.Add("Button", "x20 y180 w260", "Close This Window").OnEvent("Click", (*) => CloseSyncedWindow(syncGui))
         syncGui.OnEvent("Close", (*) => CloseSyncedWindow(syncGui))
@@ -564,17 +564,17 @@ Example4_SynchronizedWindows() {
             try {
                 switch prop {
                     case "color":
-                    win.gui.BackColor := value
-                    win.displayText.Opt("Background" value)
-                    win.infoText.Value := Format("Window #{1}`nColor: {2}`nFont: {3}pt",
-                    win.num, sharedState.color, sharedState.fontSize)
+                        win.gui.BackColor := value
+                        win.displayText.Opt("Background" value)
+                        win.infoText.Value := Format("Window #{1}`nColor: {2}`nFont: {3}pt",
+                            win.num, sharedState.color, sharedState.fontSize)
                     case "fontSize":
-                    win.gui.SetFont("s" value)
-                    win.displayText.SetFont()
-                    win.infoText.Value := Format("Window #{1}`nColor: {2}`nFont: {3}pt",
-                    win.num, sharedState.color, sharedState.fontSize)
+                        win.gui.SetFont("s" value)
+                        win.displayText.SetFont()
+                        win.infoText.Value := Format("Window #{1}`nColor: {2}`nFont: {3}pt",
+                            win.num, sharedState.color, sharedState.fontSize)
                     case "text":
-                    win.displayText.Value := value
+                        win.displayText.Value := value
                 }
             }
         }
@@ -616,9 +616,9 @@ Example4_SynchronizedWindows() {
 ; =============================================================================
 
 /**
-* Manages focus across multiple windows
-* Demonstrates focus tracking and switching
-*/
+ * Manages focus across multiple windows
+ * Demonstrates focus tracking and switching
+ */
 Example5_FocusManagement() {
     ; Main window
     mainGui := Gui(, "Focus Management Demo")
@@ -714,7 +714,7 @@ Example5_FocusManagement() {
         UpdateWindowList()
 
         if (testWindows.Length = 0)
-        SetTimer(CheckFocus, 0)
+            SetTimer(CheckFocus, 0)
     }
 
     FocusSelected() {
@@ -738,7 +738,7 @@ Example5_FocusManagement() {
             items.Push("Test Window #" win.num)
         }
         if (items.Length > 0)
-        windowList.Add(items)
+            windowList.Add(items)
     }
 
     mainGui.OnEvent("Close", (*) => (SetTimer(CheckFocus, 0), mainGui.Destroy()))
@@ -750,9 +750,9 @@ Example5_FocusManagement() {
 ; =============================================================================
 
 /**
-* Demonstrates chained modal dialogs
-* Each dialog blocks its parent
-*/
+ * Demonstrates chained modal dialogs
+ * Each dialog blocks its parent
+ */
 Example6_ModalChain() {
     ; Start with main window
     ShowLevel1()
@@ -834,9 +834,9 @@ Example6_ModalChain() {
 ; =============================================================================
 
 /**
-* Task manager showing all application windows
-* Demonstrates window enumeration and management
-*/
+ * Task manager showing all application windows
+ * Demonstrates window enumeration and management
+ */
 Example7_TaskManager() {
     taskGui := Gui("+Resize", "Window Task Manager")
     taskGui.BackColor := "White"
@@ -874,60 +874,60 @@ Example7_TaskManager() {
 
                 ; Filter out hidden and tool windows
                 if (title != "" && WinGetExStyle(hwnd) & 0x80 = 0) {  ; Not a tool window
-                isVisible := WinGetStyle(hwnd) & 0x10000000  ; WS_VISIBLE
-                status := isVisible ? "Visible" : "Hidden"
+                    isVisible := WinGetStyle(hwnd) & 0x10000000  ; WS_VISIBLE
+                    status := isVisible ? "Visible" : "Hidden"
 
-                windowLV.Add(, title, process, hwnd, status)
-                count++
+                    windowLV.Add(, title, process, hwnd, status)
+                    count++
+                }
             }
         }
+
+        statusText.Value := Format("Windows: {1} (visible windows with titles)", count)
     }
 
-    statusText.Value := Format("Windows: {1} (visible windows with titles)", count)
-}
-
-ActivateSelected() {
-    row := windowLV.GetNext()
-    if (row) {
-        hwnd := Integer(windowLV.GetText(row, 3))
-        try {
-            WinActivate(hwnd)
-            MsgBox("Activated window: " windowLV.GetText(row, 1), "Success")
-        } catch as err {
-            MsgBox("Failed to activate window: " err.Message, "Error")
-        }
-    } else {
-        MsgBox("Please select a window first", "No Selection")
-    }
-}
-
-CloseSelectedWindow() {
-    row := windowLV.GetNext()
-    if (row) {
-        hwnd := Integer(windowLV.GetText(row, 3))
-        title := windowLV.GetText(row, 1)
-
-        result := MsgBox("Close window: " title "?", "Confirm Close", "YesNo")
-        if (result = "Yes") {
+    ActivateSelected() {
+        row := windowLV.GetNext()
+        if (row) {
+            hwnd := Integer(windowLV.GetText(row, 3))
             try {
-                WinClose(hwnd)
-                Sleep(500)
-                RefreshWindowList()
+                WinActivate(hwnd)
+                MsgBox("Activated window: " windowLV.GetText(row, 1), "Success")
             } catch as err {
-                MsgBox("Failed to close window: " err.Message, "Error")
+                MsgBox("Failed to activate window: " err.Message, "Error")
             }
+        } else {
+            MsgBox("Please select a window first", "No Selection")
         }
-    } else {
-        MsgBox("Please select a window first", "No Selection")
     }
-}
 
-; Auto-refresh timer
-SetTimer(RefreshWindowList, 3000)
-taskGui.OnEvent("Close", (*) => SetTimer(RefreshWindowList, 0))
+    CloseSelectedWindow() {
+        row := windowLV.GetNext()
+        if (row) {
+            hwnd := Integer(windowLV.GetText(row, 3))
+            title := windowLV.GetText(row, 1)
 
-RefreshWindowList()
-taskGui.Show("w600 h420")
+            result := MsgBox("Close window: " title "?", "Confirm Close", "YesNo")
+            if (result = "Yes") {
+                try {
+                    WinClose(hwnd)
+                    Sleep(500)
+                    RefreshWindowList()
+                } catch as err {
+                    MsgBox("Failed to close window: " err.Message, "Error")
+                }
+            }
+        } else {
+            MsgBox("Please select a window first", "No Selection")
+        }
+    }
+
+    ; Auto-refresh timer
+    SetTimer(RefreshWindowList, 3000)
+    taskGui.OnEvent("Close", (*) => SetTimer(RefreshWindowList, 0))
+
+    RefreshWindowList()
+    taskGui.Show("w600 h420")
 }
 
 ; =============================================================================
@@ -935,8 +935,8 @@ taskGui.Show("w600 h420")
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_Gui_04 - Multi-Window Examples")
     menuGui.BackColor := "White"

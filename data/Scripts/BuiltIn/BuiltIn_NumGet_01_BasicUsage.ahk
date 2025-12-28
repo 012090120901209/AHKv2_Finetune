@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_NumGet_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates fundamental NumGet usage for reading integer values from binary data.
-* Covers all integer types and basic memory reading patterns.
-*
-* FEATURES:
-* - Reading signed and unsigned integers
-* - Understanding type sizes (Char, Short, Int, Int64)
-* - Offset calculations for sequential reads
-* - Endianness considerations
-* - Type safety and overflow handling
-* - Practical integer data extraction
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - NumGet Function
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - NumGet(buffer, offset, type) syntax
-* - Type specifiers: UChar, Char, UShort, Short, UInt, Int, UInt64, Int64
-* - Automatic pointer arithmetic
-* - Buffer integration with NumGet
-* - Zero-based offset indexing
-*
-* LEARNING POINTS:
-* 1. NumGet reads numeric values from binary data at specified offsets
-* 2. Type parameter determines how many bytes to read and interpretation
-* 3. Offset is in bytes, zero-indexed from buffer start
-* 4. Signed types can represent negative numbers using two's complement
-* 5. Always ensure offset + type_size <= buffer size to avoid access violations
-*/
+ * BuiltIn_NumGet_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates fundamental NumGet usage for reading integer values from binary data.
+ * Covers all integer types and basic memory reading patterns.
+ * 
+ * FEATURES:
+ * - Reading signed and unsigned integers
+ * - Understanding type sizes (Char, Short, Int, Int64)
+ * - Offset calculations for sequential reads
+ * - Endianness considerations
+ * - Type safety and overflow handling
+ * - Practical integer data extraction
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - NumGet Function
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - NumGet(buffer, offset, type) syntax
+ * - Type specifiers: UChar, Char, UShort, Short, UInt, Int, UInt64, Int64
+ * - Automatic pointer arithmetic
+ * - Buffer integration with NumGet
+ * - Zero-based offset indexing
+ * 
+ * LEARNING POINTS:
+ * 1. NumGet reads numeric values from binary data at specified offsets
+ * 2. Type parameter determines how many bytes to read and interpretation
+ * 3. Offset is in bytes, zero-indexed from buffer start
+ * 4. Signed types can represent negative numbers using two's complement
+ * 5. Always ensure offset + type_size <= buffer size to avoid access violations
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Basic Integer Reading
@@ -163,21 +163,21 @@ Example3_MixedTypeReading() {
 
     ; Calculate offsets
     offsets := Map(
-    "UChar", 0,
-    "Char", 1,
-    "UShort", 2,
-    "Short", 4,
-    "UInt", 6,
-    "Int", 10
+        "UChar", 0,
+        "Char", 1,
+        "UShort", 2,
+        "Short", 4,
+        "UInt", 6,
+        "Int", 10
     )
 
     sizes := Map(
-    "UChar", 1,
-    "Char", 1,
-    "UShort", 2,
-    "Short", 2,
-    "UInt", 4,
-    "Int", 4
+        "UChar", 1,
+        "Char", 1,
+        "UShort", 2,
+        "Short", 2,
+        "UInt", 4,
+        "Int", 4
     )
 
     ; Read back all values
@@ -219,7 +219,7 @@ Example4_ArrayProcessing() {
 
     ; Simulate sensor data (temperatures in Celsius * 10)
     sensorData := [215, 223, 218, 230, 225, 220, 228, 232, 227, 224,
-    226, 229, 231, 228, 225, 223, 221, 219, 222, 224]
+        226, 229, 231, 228, 225, 223, 221, 219, 222, 224]
 
     ; Write sensor data
     loop sensorCount {
@@ -236,9 +236,9 @@ Example4_ArrayProcessing() {
         sum += value
 
         if value < min
-        min := value
+            min := value
         if value > max
-        max := value
+            max := value
     }
 
     average := sum / sensorCount
@@ -248,7 +248,7 @@ Example4_ArrayProcessing() {
     loop sensorCount {
         value := NumGet(buf, (A_Index - 1) * 4, "Int")
         if value > average
-        aboveAverage.Push({index: A_Index, value: value})
+            aboveAverage.Push({ index: A_Index, value: value })
     }
 
     ; Find consecutive increases
@@ -257,7 +257,7 @@ Example4_ArrayProcessing() {
         current := NumGet(buf, (A_Index - 1) * 4, "Int")
         next := NumGet(buf, A_Index * 4, "Int")
         if next > current
-        increases.Push(A_Index)
+            increases.Push(A_Index)
     }
 
     ; Display results
@@ -377,9 +377,9 @@ Example6_BinaryHeader() {
 
     ; Convert magic to string
     magicStr := Chr(magic & 0xFF)
-    . Chr((magic >> 8) & 0xFF)
-    . Chr((magic >> 16) & 0xFF)
-    . Chr((magic >> 24) & 0xFF)
+        . Chr((magic >> 8) & 0xFF)
+        . Chr((magic >> 16) & 0xFF)
+        . Chr((magic >> 24) & 0xFF)
 
     ; Display results
     result := "Binary File Header Parsing:`n`n"
@@ -400,7 +400,7 @@ Example6_BinaryHeader() {
 
     result .= "File Information:`n"
     result .= "  Size: " . Format("{:,}", fileSize) . " bytes ("
-    . Round(fileSize / 1024 / 1024, 2) . " MB)`n"
+        . Round(fileSize / 1024 / 1024, 2) . " MB)`n"
     result .= "  Data Offset: " . dataOffset . " bytes`n"
     result .= "  Record Count: " . Format("{:,}", recordCount)
 
@@ -494,7 +494,7 @@ ShowMenu() {
     choice := InputBox(menu, "NumGet Basic Examples", "w450 h350")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicIntegerReading()

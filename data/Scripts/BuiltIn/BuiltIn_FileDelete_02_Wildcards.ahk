@@ -1,23 +1,23 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileDelete - Wildcard Patterns and Pattern Matching
-* ============================================================================
-*
-* Demonstrates wildcard pattern deletion including:
-* - Simple wildcard patterns (*.txt, *.log, etc.)
-* - Complex pattern matching
-* - Recursive pattern deletion
-* - Pattern-based filtering
-* - Safe wildcard operations
-* - Pattern validation
-*
-* @description Wildcard pattern deletion examples for FileDelete
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileDelete.htm
-*/
+ * ============================================================================
+ * FileDelete - Wildcard Patterns and Pattern Matching
+ * ============================================================================
+ * 
+ * Demonstrates wildcard pattern deletion including:
+ * - Simple wildcard patterns (*.txt, *.log, etc.)
+ * - Complex pattern matching
+ * - Recursive pattern deletion
+ * - Pattern-based filtering
+ * - Safe wildcard operations
+ * - Pattern validation
+ * 
+ * @description Wildcard pattern deletion examples for FileDelete
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileDelete.htm
+ */
 
 ; ============================================================================
 ; Example 1: Simple Wildcard Deletion
@@ -29,20 +29,20 @@ Example1_SimpleWildcard() {
     try {
         ; Create test directory
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create various file types
         extensions := [".txt", ".log", ".tmp", ".bak", ".dat"]
 
         for ext in extensions {
             Loop 3
-            FileAppend("Test content", testDir "\file" A_Index ext)
+                FileAppend("Test content", testDir "\file" A_Index ext)
         }
 
         ; Show files before deletion
         output := "Files Before Deletion:`n`n"
         Loop Files, testDir "\*.*"
-        output .= A_LoopFileName "`n"
+            output .= A_LoopFileName "`n"
 
         MsgBox(output, "Before Wildcard Delete")
 
@@ -54,7 +54,7 @@ Example1_SimpleWildcard() {
         ; Show files after deletion
         output := "Files After Deleting *.txt:`n`n"
         Loop Files, testDir "\*.*"
-        output .= A_LoopFileName "`n"
+            output .= A_LoopFileName "`n"
 
         MsgBox(output, "After Wildcard Delete")
 
@@ -62,7 +62,7 @@ Example1_SimpleWildcard() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -76,17 +76,17 @@ Example2_MultiplePatterns() {
     try {
         ; Create test directory and files
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create files with different extensions
         files := [
-        "document.txt", "report.doc", "data.csv",
-        "backup.bak", "temp.tmp", "log.log",
-        "image.jpg", "photo.png", "archive.zip"
+            "document.txt", "report.doc", "data.csv",
+            "backup.bak", "temp.tmp", "log.log",
+            "image.jpg", "photo.png", "archive.zip"
         ]
 
         for fileName in files
-        FileAppend("Content", testDir "\" fileName)
+            FileAppend("Content", testDir "\" fileName)
 
         ; Define patterns to delete
         patterns := ["*.tmp", "*.bak", "*.log"]
@@ -94,7 +94,7 @@ Example2_MultiplePatterns() {
         ; Show before deletion
         output := "Files Before Deletion:`n`n"
         Loop Files, testDir "\*.*"
-        output .= A_LoopFileName "`n"
+            output .= A_LoopFileName "`n"
 
         MsgBox(output, "Before Multi-Pattern Delete")
 
@@ -110,11 +110,11 @@ Example2_MultiplePatterns() {
         ; Show results
         output := "Deleted Files:`n"
         for file in deleted
-        output .= "- " file "`n"
+            output .= "- " file "`n"
 
         output .= "`nRemaining Files:`n"
         Loop Files, testDir "\*.*"
-        output .= "- " A_LoopFileName "`n"
+            output .= "- " A_LoopFileName "`n"
 
         MsgBox(output, "Multi-Pattern Delete Results")
 
@@ -122,7 +122,7 @@ Example2_MultiplePatterns() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -136,7 +136,7 @@ Example3_DateBasedPattern() {
     try {
         ; Create test directory
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create files with date-like names
         dates := ["2024-01-15", "2024-02-20", "2024-03-10", "2023-12-25", "2023-11-30"]
@@ -148,7 +148,7 @@ Example3_DateBasedPattern() {
         ; Show all files
         output := "All Log Files:`n`n"
         Loop Files, testDir "\log_*.txt"
-        output .= A_LoopFileName "`n"
+            output .= A_LoopFileName "`n"
 
         MsgBox(output, "All Files")
 
@@ -164,7 +164,7 @@ Example3_DateBasedPattern() {
         output .= "Remaining Files:`n`n"
 
         Loop Files, testDir "\log_*.txt"
-        output .= A_LoopFileName "`n"
+            output .= A_LoopFileName "`n"
 
         MsgBox(output, "Date Pattern Delete")
 
@@ -172,7 +172,7 @@ Example3_DateBasedPattern() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -186,14 +186,14 @@ Example4_SizeBasedDeletion() {
     try {
         ; Create test directory
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create files of different sizes
         Loop 10 {
             content := ""
             ; Create content of varying sizes
             Loop Random(10, 100)
-            content .= "Data line " A_Index "`n"
+                content .= "Data line " A_Index "`n"
 
             FileAppend(content, testDir "\file" A_Index ".txt")
         }
@@ -212,7 +212,7 @@ Example4_SizeBasedDeletion() {
 
         Loop Files, testDir "\*.txt" {
             if A_LoopFileSize > threshold {
-                deleted.Push({name: A_LoopFileName, size: A_LoopFileSize})
+                deleted.Push({ name: A_LoopFileName, size: A_LoopFileSize })
                 FileDelete(A_LoopFilePath)
             }
         }
@@ -220,11 +220,11 @@ Example4_SizeBasedDeletion() {
         ; Show results
         output := "Deleted Files (> " threshold " bytes):`n`n"
         for file in deleted
-        output .= file.name " - " file.size " bytes`n"
+            output .= file.name " - " file.size " bytes`n"
 
         output .= "`nRemaining Files:`n`n"
         Loop Files, testDir "\*.txt"
-        output .= A_LoopFileName " - " A_LoopFileSize " bytes`n"
+            output .= A_LoopFileName " - " A_LoopFileSize " bytes`n"
 
         MsgBox(output, "Size-Based Delete Results")
 
@@ -232,7 +232,7 @@ Example4_SizeBasedDeletion() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -249,30 +249,30 @@ Example5_RecursivePattern() {
 
         for dir in dirs {
             if !DirExist(dir)
-            DirCreate(dir)
+                DirCreate(dir)
         }
 
         ; Create .tmp files in all directories
         for dir in dirs {
             Loop 3
-            FileAppend("Temp data", dir "\temp" A_Index ".tmp")
+                FileAppend("Temp data", dir "\temp" A_Index ".tmp")
 
             ; Also create some .txt files
             Loop 2
-            FileAppend("Text data", dir "\file" A_Index ".txt")
+                FileAppend("Text data", dir "\file" A_Index ".txt")
         }
 
         ; Count files before deletion
         tmpCount := 0
         Loop Files, baseDir "\*.tmp", "R"
-        tmpCount++
+            tmpCount++
 
         output := "Before Deletion:`n"
         output .= "Total .tmp files: " tmpCount "`n`n"
 
         ; Show directory structure
         Loop Files, baseDir "\*.*", "R"
-        output .= A_LoopFilePath "`n"
+            output .= A_LoopFilePath "`n"
 
         MsgBox(output, "Before Recursive Delete")
 
@@ -288,7 +288,7 @@ Example5_RecursivePattern() {
         output .= "Remaining files:`n"
 
         Loop Files, baseDir "\*.*", "R"
-        output .= A_LoopFilePath "`n"
+            output .= A_LoopFilePath "`n"
 
         MsgBox(output, "After Recursive Delete")
 
@@ -296,7 +296,7 @@ Example5_RecursivePattern() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(baseDir)
-        DirDelete(baseDir, true)
+            DirDelete(baseDir, true)
     }
 }
 
@@ -310,10 +310,10 @@ Example6_SafeWildcardDelete() {
     try {
         ; Create test directory and files
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         Loop 10
-        FileAppend("Data", testDir "\file" A_Index ".txt")
+            FileAppend("Data", testDir "\file" A_Index ".txt")
 
         ; Safe wildcard delete function
         SafeWildcardDelete := (directory, pattern) {
@@ -328,17 +328,17 @@ Example6_SafeWildcardDelete() {
 
             if count = 0 {
                 MsgBox("No files match pattern: " pattern, "No Files")
-                return {deleted: 0, cancelled: false}
+                return { deleted: 0, cancelled: false }
             }
 
             ; Show confirmation
             result := MsgBox("Delete " count " file(s) matching '" pattern "'?`n`n" .
-            "Total size: " totalSize " bytes`n`n" .
-            "This cannot be undone.",
-            "Confirm Deletion", 4 + 48)
+                "Total size: " totalSize " bytes`n`n" .
+                "This cannot be undone.",
+                "Confirm Deletion", 4 + 48)
 
             if result = "No"
-            return {deleted: 0, cancelled: true}
+                return { deleted: 0, cancelled: true }
 
             ; Delete files
             deleted := 0
@@ -351,7 +351,7 @@ Example6_SafeWildcardDelete() {
                 }
             }
 
-            return {deleted: deleted, cancelled: false}
+            return { deleted: deleted, cancelled: false }
         }
 
         ; Test safe deletion
@@ -367,7 +367,7 @@ Example6_SafeWildcardDelete() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -382,7 +382,7 @@ Example7_PatternCleanupLog() {
     try {
         ; Create test environment
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         FileDelete(logFile)
 
@@ -391,7 +391,7 @@ Example7_PatternCleanupLog() {
 
         for ext in extensions {
             Loop 5
-            FileAppend("Data", testDir "\file" A_Index ext)
+                FileAppend("Data", testDir "\file" A_Index ext)
         }
 
         ; Cleanup patterns (temporary file patterns)
@@ -443,7 +443,7 @@ Example7_PatternCleanupLog() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
         FileDelete(logFile)
     }
 }
@@ -453,30 +453,24 @@ Example7_PatternCleanupLog() {
 ; ============================================================================
 
 RunAllExamples() {
-    examples := [
-    {
-        name: "Simple Wildcard", func: Example1_SimpleWildcard},
-        {
-            name: "Multiple Patterns", func: Example2_MultiplePatterns},
-            {
-                name: "Date-Based Pattern", func: Example3_DateBasedPattern},
-                {
-                    name: "Size-Based Deletion", func: Example4_SizeBasedDeletion},
-                    {
-                        name: "Recursive Pattern", func: Example5_RecursivePattern},
-                        {
-                            name: "Safe Wildcard Delete", func: Example6_SafeWildcardDelete},
-                            {
+    examples := [{
+        name: "Simple Wildcard", func: Example1_SimpleWildcard }, {
+            name: "Multiple Patterns", func: Example2_MultiplePatterns }, {
+                name: "Date-Based Pattern", func: Example3_DateBasedPattern }, {
+                    name: "Size-Based Deletion", func: Example4_SizeBasedDeletion }, {
+                        name: "Recursive Pattern", func: Example5_RecursivePattern }, {
+                            name: "Safe Wildcard Delete", func: Example6_SafeWildcardDelete }, {
                                 name: "Pattern Cleanup Log", func: Example7_PatternCleanupLog
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "Wildcard Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "Wildcard Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
 
-                        ; Uncomment to run all examples interactively:
-                        ; RunAllExamples()
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

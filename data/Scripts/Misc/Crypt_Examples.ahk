@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Cryptography Examples - thqby/ahk2_lib
-*
-* Hashing (MD5, SHA1, CRC32) and AES encryption/decryption
-* Library: https://github.com/thqby/ahk2_lib/blob/master/Crypt.ahk
-*
-* To use these examples:
-* #Include <Crypt>
-*/
+ * Cryptography Examples - thqby/ahk2_lib
+ * 
+ * Hashing (MD5, SHA1, CRC32) and AES encryption/decryption
+ * Library: https://github.com/thqby/ahk2_lib/blob/master/Crypt.ahk
+ * 
+ * To use these examples:
+ * #Include <Crypt>
+ */
 
 /**
-* Example 1: Calculate MD5 Hash of String
-*/
+ * Example 1: Calculate MD5 Hash of String
+ */
 MD5HashExample() {
     text := "Hello, World!"
 
@@ -31,8 +31,8 @@ MD5HashExample() {
 }
 
 /**
-* Example 2: Calculate MD5 Hash of File
-*/
+ * Example 2: Calculate MD5 Hash of File
+ */
 MD5FileExample() {
     ; Create a test file
     testFile := A_ScriptDir "\test_file.txt"
@@ -57,8 +57,8 @@ MD5FileExample() {
 }
 
 /**
-* Example 3: Verify File Integrity
-*/
+ * Example 3: Verify File Integrity
+ */
 FileIntegrityExample() {
     ; Create original file
     originalFile := A_ScriptDir "\original.dat"
@@ -84,9 +84,9 @@ FileIntegrityExample() {
     output .= "Current MD5:  " newHash "`n`n"
 
     if (originalHash = newHash)
-    output .= "✓ File integrity verified - No changes detected"
+        output .= "✓ File integrity verified - No changes detected"
     else
-    output .= "✗ WARNING: File has been modified!"
+        output .= "✗ WARNING: File has been modified!"
 
     MsgBox(output)
 
@@ -95,8 +95,8 @@ FileIntegrityExample() {
 }
 
 /**
-* Example 4: SHA1 Hashing
-*/
+ * Example 4: SHA1 Hashing
+ */
 SHA1HashExample() {
     text := "Secure data to be hashed"
 
@@ -117,8 +117,8 @@ SHA1HashExample() {
 }
 
 /**
-* Example 5: CRC32 Checksum
-*/
+ * Example 5: CRC32 Checksum
+ */
 CRC32Example() {
     text := "Data packet to checksum"
 
@@ -137,8 +137,8 @@ CRC32Example() {
 }
 
 /**
-* Example 6: AES-256 Encryption
-*/
+ * Example 6: AES-256 Encryption
+ */
 AESEncryptExample() {
     ; Original text
     plaintext := "This is secret data that needs encryption!"
@@ -172,8 +172,8 @@ AESEncryptExample() {
 }
 
 /**
-* Example 7: AES-256 Decryption
-*/
+ * Example 7: AES-256 Decryption
+ */
 AESDecryptExample() {
     ; Original text
     plaintext := "Confidential message to encrypt and decrypt"
@@ -201,8 +201,8 @@ AESDecryptExample() {
 }
 
 /**
-* Example 8: Password Hashing (DO NOT use MD5 for passwords!)
-*/
+ * Example 8: Password Hashing (DO NOT use MD5 for passwords!)
+ */
 PasswordHashExample() {
     password := "UserPassword123"
 
@@ -225,8 +225,8 @@ PasswordHashExample() {
 }
 
 /**
-* Example 9: File Encryption/Decryption
-*/
+ * Example 9: File Encryption/Decryption
+ */
 FileEncryptionExample() {
     ; Create test file
     originalFile := A_ScriptDir "\secret_document.txt"
@@ -281,8 +281,8 @@ FileEncryptionExample() {
 }
 
 /**
-* Example 10: Data Integrity with Hash Comparison
-*/
+ * Example 10: Data Integrity with Hash Comparison
+ */
 DataIntegritySystemExample() {
     ; Simulate a data integrity system
 
@@ -316,18 +316,18 @@ DataIntegritySystemExample() {
 
 ; Display menu
 MsgBox("Cryptography Library Examples Loaded`n`n"
-. "Available Examples:`n`n"
-. "1. MD5HashExample() - MD5 hash of strings`n"
-. "2. MD5FileExample() - MD5 hash of files`n"
-. "3. FileIntegrityExample() - Verify file integrity`n"
-. "4. SHA1HashExample() - SHA1 hashing`n"
-. "5. CRC32Example() - CRC32 checksums`n"
-. "6. AESEncryptExample() - AES-256 encryption`n"
-. "7. AESDecryptExample() - AES-256 decryption`n"
-. "8. PasswordHashExample() - Password hashing (with warnings)`n"
-. "9. FileEncryptionExample() - Encrypt/decrypt files`n"
-. "10. DataIntegritySystemExample() - Complete integrity system`n`n"
-. "Uncomment any function call below to run")
+    . "Available Examples:`n`n"
+    . "1. MD5HashExample() - MD5 hash of strings`n"
+    . "2. MD5FileExample() - MD5 hash of files`n"
+    . "3. FileIntegrityExample() - Verify file integrity`n"
+    . "4. SHA1HashExample() - SHA1 hashing`n"
+    . "5. CRC32Example() - CRC32 checksums`n"
+    . "6. AESEncryptExample() - AES-256 encryption`n"
+    . "7. AESDecryptExample() - AES-256 decryption`n"
+    . "8. PasswordHashExample() - Password hashing (with warnings)`n"
+    . "9. FileEncryptionExample() - Encrypt/decrypt files`n"
+    . "10. DataIntegritySystemExample() - Complete integrity system`n`n"
+    . "Uncomment any function call below to run")
 
 ; Uncomment to run examples:
 ; MD5HashExample()
@@ -348,7 +348,7 @@ class DataIntegrity {
     ; Store file hash
     static RegisterFile(filePath) {
         if (!FileExist(filePath))
-        return false
+            return false
 
         hash := MD5_File(filePath)
         this.hashDatabase[filePath] := hash
@@ -358,18 +358,18 @@ class DataIntegrity {
     ; Verify file hasn't changed
     static VerifyFile(filePath) {
         if (!FileExist(filePath))
-        return {valid: false, reason: "File not found"}
+            return { valid: false, reason: "File not found" }
 
         if (!this.hashDatabase.Has(filePath))
-        return {valid: false, reason: "File not registered"}
+            return { valid: false, reason: "File not registered" }
 
         currentHash := MD5_File(filePath)
         storedHash := this.hashDatabase[filePath]
 
         if (currentHash = storedHash)
-        return {valid: true, hash: currentHash}
+            return { valid: true, hash: currentHash }
         else
-        return {valid: false, reason: "Hash mismatch", stored: storedHash, current: currentHash}
+            return { valid: false, reason: "Hash mismatch", stored: storedHash, current: currentHash }
     }
 
     ; Get integrity report

@@ -26,11 +26,11 @@ blockInput(option) {
     ; In v2, BlockInput takes true/false or "Send"/"Mouse"/"SendAndMouse"/"Default"
     try {
         if (option = "On" || option = 1)
-        BlockInput(true)
+            BlockInput(true)
         else if (option = "Off" || option = 0)
-        BlockInput(false)
+            BlockInput(false)
         else
-        BlockInput(option)  ; "Send", "Mouse", etc.
+            BlockInput(option)  ; "Send", "Mouse", etc.
         return true
     } catch Error as e {
         MsgBox("BlockInput error: " e.Message)
@@ -94,11 +94,11 @@ critical(onOffNumeric := true) {
     ; Can also use numeric timeout: Critical(1000) for 1 second
     try {
         if (onOffNumeric = "" || onOffNumeric = true || onOffNumeric = "On")
-        Critical()
+            Critical()
         else if (onOffNumeric = false || onOffNumeric = "Off")
-        Critical(false)
+            Critical(false)
         else if (IsNumber(onOffNumeric))
-        Critical(onOffNumeric)  ; Numeric timeout in ms
+            Critical(onOffNumeric)  ; Numeric timeout in ms
         return true
     } catch Error as e {
         MsgBox("Critical error: " e.Message)
@@ -127,9 +127,9 @@ DetectHiddenExample() {
 detectHiddenWindows(onOff) {
     try {
         if (onOff = "On" || onOff = 1 || onOff = true)
-        DetectHiddenWindows(true)
+            DetectHiddenWindows(true)
         else
-        DetectHiddenWindows(false)
+            DetectHiddenWindows(false)
         return true
     } catch Error as e {
         MsgBox("DetectHiddenWindows error: " e.Message)
@@ -140,9 +140,9 @@ detectHiddenWindows(onOff) {
 detectHiddenText(onOff) {
     try {
         if (onOff = "On" || onOff = 1 || onOff = true)
-        DetectHiddenText(true)
+            DetectHiddenText(true)
         else
-        DetectHiddenText(false)
+            DetectHiddenText(false)
         return true
     } catch Error as e {
         MsgBox("DetectHiddenText error: " e.Message)

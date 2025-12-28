@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinClose() - Close window
-*
-* Sends a close command to a window.
-*/
+ * WinClose() - Close window
+ * 
+ * Sends a close command to a window.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

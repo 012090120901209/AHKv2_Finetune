@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 MouseGetPos - Monitor Coordinates
-* ============================================================================
-*
-* Demonstrates multi-monitor support, coordinate translation between monitors,
-* and monitor-specific positioning logic.
-*
-* @module BuiltIn_MouseGetPos_02
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 MouseGetPos - Monitor Coordinates
+ * ============================================================================
+ * 
+ * Demonstrates multi-monitor support, coordinate translation between monitors,
+ * and monitor-specific positioning logic.
+ * 
+ * @module BuiltIn_MouseGetPos_02
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Monitor Detection
 ; ============================================================================
 
 /**
-* Detects which monitor the cursor is on.
-* Works with single or multiple monitor setups.
-*
-* @example
-* ; Press F1 to show current monitor
-*/
+ * Detects which monitor the cursor is on.
+ * Works with single or multiple monitor setups.
+ * 
+ * @example
+ * ; Press F1 to show current monitor
+ */
 F1:: {
     MouseGetPos(&x, &y)
 
@@ -53,16 +53,16 @@ F1:: {
         info .= "`n`nMonitor " currentMonitor " Bounds:`n"
         info .= "Left: " left ", Top: " top "`n"
         info .= "Right: " right ", Bottom: " bottom "`n"
-        info .= "Size: " (right-left) "x" (bottom-top)
+        info .= "Size: " (right - left) "x" (bottom - top)
     }
 
     MsgBox(info, "Monitor Detection")
 }
 
 /**
-* Shows all monitors and cursor position
-* Displays complete multi-monitor layout
-*/
+ * Shows all monitors and cursor position
+ * Displays complete multi-monitor layout
+ */
 F2:: {
     MouseGetPos(&mouseX, &mouseY)
 
@@ -75,18 +75,18 @@ F2:: {
 
         info .= "Monitor " A_Index
         if (A_Index = MonitorGetPrimary())
-        info .= " (Primary)"
+            info .= " (Primary)"
         info .= ":`n"
 
         info .= "  Full: " left "," top " to " right "," bottom
-        info .= " (" (right-left) "x" (bottom-top) ")`n"
+        info .= " (" (right - left) "x" (bottom - top) ")`n"
 
         info .= "  Work: " waLeft "," waTop " to " waRight "," waBottom
-        info .= " (" (waRight-waLeft) "x" (waBottom-waTop) ")`n"
+        info .= " (" (waRight - waLeft) "x" (waBottom - waTop) ")`n"
 
         ; Check if cursor is on this monitor
         if (mouseX >= left && mouseX < right && mouseY >= top && mouseY < bottom)
-        info .= "  >>> CURSOR IS HERE <<<`n"
+            info .= "  >>> CURSOR IS HERE <<<`n"
 
         info .= "`n"
     }
@@ -101,12 +101,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Converts screen coordinates to monitor-relative.
-* Shows position relative to current monitor's top-left.
-*
-* @description
-* Useful for monitor-independent automation
-*/
+ * Converts screen coordinates to monitor-relative.
+ * Shows position relative to current monitor's top-left.
+ * 
+ * @description
+ * Useful for monitor-independent automation
+ */
 ^F1:: {
     MouseGetPos(&x, &y)
 
@@ -136,7 +136,7 @@ F2:: {
             info .= "  X: " relX ", Y: " relY "`n`n"
             info .= "Monitor Percentage:`n"
             info .= "  X: " percentX "%, Y: " percentY "%`n`n"
-            info .= "Monitor Size: " (right-left) "x" (bottom-top)
+            info .= "Monitor Size: " (right - left) "x" (bottom - top)
 
             MsgBox(info, "Relative Coordinates")
             break
@@ -144,13 +144,13 @@ F2:: {
     }
 
     if (!currentMonitor)
-    MsgBox("Cursor not on any monitor!", "Error")
+        MsgBox("Cursor not on any monitor!", "Error")
 }
 
 /**
-* Work area vs full monitor coordinates
-* Shows difference between full screen and work area
-*/
+ * Work area vs full monitor coordinates
+ * Shows difference between full screen and work area
+ */
 ^F2:: {
     MouseGetPos(&x, &y)
 
@@ -170,11 +170,11 @@ F2:: {
 
             info := "Full Monitor vs Work Area:`n`n"
             info .= "=== Full Monitor ===`n"
-            info .= "Bounds: " (right-left) "x" (bottom-top) "`n"
+            info .= "Bounds: " (right - left) "x" (bottom - top) "`n"
             info .= "Relative: X=" fullRelX ", Y=" fullRelY "`n`n"
 
             info .= "=== Work Area ===`n"
-            info .= "Bounds: " (waRight-waLeft) "x" (waBottom-waTop) "`n"
+            info .= "Bounds: " (waRight - waLeft) "x" (waBottom - waTop) "`n"
             info .= "Relative: X=" workRelX ", Y=" workRelY "`n`n"
 
             info .= "=== Taskbar Space ===`n"
@@ -194,12 +194,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Tours all monitors with cursor.
-* Moves cursor to center of each monitor.
-*
-* @description
-* Demonstrates multi-monitor cursor control
-*/
+ * Tours all monitors with cursor.
+ * Moves cursor to center of each monitor.
+ * 
+ * @description
+ * Demonstrates multi-monitor cursor control
+ */
 ^F3:: {
     monitorCount := MonitorGetCount()
 
@@ -223,9 +223,9 @@ F2:: {
 }
 
 /**
-* Cycle cursor through monitor corners
-* Visits corners of each monitor
-*/
+ * Cycle cursor through monitor corners
+ * Visits corners of each monitor
+ */
 ^F4:: {
     monitorCount := MonitorGetCount()
 
@@ -259,12 +259,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Detects when cursor crosses monitor boundaries.
-* Monitors cursor movement between screens.
-*
-* @description
-* Useful for multi-monitor-aware automation
-*/
+ * Detects when cursor crosses monitor boundaries.
+ * Monitors cursor movement between screens.
+ * 
+ * @description
+ * Useful for multi-monitor-aware automation
+ */
 ^F5:: {
     global boundaryMonitoring := true
     global lastMonitor := 0
@@ -275,7 +275,7 @@ F2:: {
 
     CheckMonitorBoundary() {
         if (!boundaryMonitoring)
-        return
+            return
 
         MouseGetPos(&x, &y)
         monitorCount := MonitorGetCount()
@@ -313,12 +313,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Positions cursor at same relative position on each monitor.
-* Demonstrates proportional positioning across monitors.
-*
-* @description
-* Maintains relative position across different screen sizes
-*/
+ * Positions cursor at same relative position on each monitor.
+ * Demonstrates proportional positioning across monitors.
+ * 
+ * @description
+ * Maintains relative position across different screen sizes
+ */
 ^F6:: {
     MouseGetPos(&x, &y)
 
@@ -337,7 +337,7 @@ F2:: {
         }
     }
 
-    ToolTip("Applying position (" Round(relativeX*100) "%, " Round(relativeY*100) "%) to all monitors...")
+    ToolTip("Applying position (" Round(relativeX * 100) "%, " Round(relativeY * 100) "%) to all monitors...")
     Sleep(1000)
 
     ; Apply same relative position to all monitors
@@ -362,12 +362,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Analyzes monitor arrangement.
-* Detects horizontal/vertical monitor layouts.
-*
-* @description
-* Provides detailed multi-monitor configuration info
-*/
+ * Analyzes monitor arrangement.
+ * Detects horizontal/vertical monitor layouts.
+ * 
+ * @description
+ * Provides detailed multi-monitor configuration info
+ */
 ^F7:: {
     monitorCount := MonitorGetCount()
 
@@ -383,15 +383,15 @@ F2:: {
     arrangement := ""
 
     if (mon2Left >= mon1Right)
-    arrangement := "Monitor 2 is RIGHT of Monitor 1"
+        arrangement := "Monitor 2 is RIGHT of Monitor 1"
     else if (mon2Right <= mon1Left)
-    arrangement := "Monitor 2 is LEFT of Monitor 1"
+        arrangement := "Monitor 2 is LEFT of Monitor 1"
     else if (mon2Top >= mon1Bottom)
-    arrangement := "Monitor 2 is BELOW Monitor 1"
+        arrangement := "Monitor 2 is BELOW Monitor 1"
     else if (mon2Bottom <= mon1Top)
-    arrangement := "Monitor 2 is ABOVE Monitor 1"
+        arrangement := "Monitor 2 is ABOVE Monitor 1"
     else
-    arrangement := "Monitors OVERLAP"
+        arrangement := "Monitors OVERLAP"
 
     ; Calculate virtual screen bounds
     minLeft := 999999
@@ -426,12 +426,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Snaps cursor to nearest monitor edge or center.
-* Provides quick navigation within monitor.
-*
-* @description
-* Useful for rapid positioning on large monitors
-*/
+ * Snaps cursor to nearest monitor edge or center.
+ * Provides quick navigation within monitor.
+ * 
+ * @description
+ * Useful for rapid positioning on large monitors
+ */
 ^F8:: {
     MouseGetPos(&x, &y)
 
@@ -449,7 +449,7 @@ F2:: {
             distToRight := right - x
             distToTop := y - top
             distToBottom := bottom - y
-            distToCenter := Sqrt((x - centerX)**2 + (y - centerY)**2)
+            distToCenter := Sqrt((x - centerX) ** 2 + (y - centerY) ** 2)
 
             ; Find nearest point
             minDist := Min(distToLeft, distToRight, distToTop, distToBottom, distToCenter)
@@ -483,12 +483,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Get monitor at coordinates
-*
-* @param {Number} x - X coordinate
-* @param {Number} y - Y coordinate
-* @returns {Number} Monitor number (0 if not found)
-*/
+ * Get monitor at coordinates
+ * 
+ * @param {Number} x - X coordinate
+ * @param {Number} y - Y coordinate
+ * @returns {Number} Monitor number (0 if not found)
+ */
 GetMonitorAt(x, y) {
     monitorCount := MonitorGetCount()
 
@@ -496,18 +496,18 @@ GetMonitorAt(x, y) {
         MonitorGet(A_Index, &left, &top, &right, &bottom)
 
         if (x >= left && x < right && y >= top && y < bottom)
-        return A_Index
+            return A_Index
     }
 
     return 0
 }
 
 /**
-* Get monitor center
-*
-* @param {Number} monitorNum - Monitor number
-* @returns {Object} {x, y} coordinates
-*/
+ * Get monitor center
+ * 
+ * @param {Number} monitorNum - Monitor number
+ * @returns {Object} {x, y} coordinates
+ */
 GetMonitorCenter(monitorNum) {
     MonitorGet(monitorNum, &left, &top, &right, &bottom)
 
@@ -536,7 +536,7 @@ GetMonitorCenter(monitorNum) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

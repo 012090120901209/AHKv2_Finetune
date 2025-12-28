@@ -43,7 +43,7 @@ TrackGesture() {
     global gesturePath, gestureStartX, gestureStartY
 
     if (!isGesturing)
-    return
+        return
 
     MouseGetPos(&currentX, &currentY)
 
@@ -81,66 +81,66 @@ TrackGesture() {
 
 ProcessGesture(path) {
     if (path = "")
-    return
+        return
 
     Switch path {
         case "L":
-        ; Left = Back (browser/file explorer)
-        Send("!{Left}")
-        ShowGestureResult("◄ Back")
+            ; Left = Back (browser/file explorer)
+            Send("!{Left}")
+            ShowGestureResult("◄ Back")
 
         case "R":
-        ; Right = Forward
-        Send("!{Right}")
-        ShowGestureResult("► Forward")
+            ; Right = Forward
+            Send("!{Right}")
+            ShowGestureResult("► Forward")
 
         case "U":
-        ; Up = Maximize window
-        WinMaximize("A")
-        ShowGestureResult("⬆ Maximize")
+            ; Up = Maximize window
+            WinMaximize("A")
+            ShowGestureResult("⬆ Maximize")
 
         case "D":
-        ; Down = Minimize window
-        WinMinimize("A")
-        ShowGestureResult("⬇ Minimize")
+            ; Down = Minimize window
+            WinMinimize("A")
+            ShowGestureResult("⬇ Minimize")
 
         case "DU":
-        ; Down then Up = Close window
-        WinClose("A")
-        ShowGestureResult("✖ Close Window")
+            ; Down then Up = Close window
+            WinClose("A")
+            ShowGestureResult("✖ Close Window")
 
         case "RL":
-        ; Right then Left = Reload page (browser)
-        Send("^r")
-        ShowGestureResult("↻ Reload")
+            ; Right then Left = Reload page (browser)
+            Send("^r")
+            ShowGestureResult("↻ Reload")
 
         case "LR":
-        ; Left then Right = Open new tab
-        Send("^t")
-        ShowGestureResult("➕ New Tab")
+            ; Left then Right = Open new tab
+            Send("^t")
+            ShowGestureResult("➕ New Tab")
 
         case "UD":
-        ; Up then Down = Scroll to top
-        Send("{Home}")
-        ShowGestureResult("⇈ Scroll Top")
+            ; Up then Down = Scroll to top
+            Send("{Home}")
+            ShowGestureResult("⇈ Scroll Top")
 
         case "DUD":
-        ; Down-Up-Down = Scroll to bottom
-        Send("^{End}")
-        ShowGestureResult("⇊ Scroll Bottom")
+            ; Down-Up-Down = Scroll to bottom
+            Send("^{End}")
+            ShowGestureResult("⇊ Scroll Bottom")
 
         case "RD":
-        ; Right then Down = Next window
-        Send("!{Esc}")
-        ShowGestureResult("⊞ Next Window")
+            ; Right then Down = Next window
+            Send("!{Esc}")
+            ShowGestureResult("⊞ Next Window")
 
         case "RU":
-        ; Right then Up = Previous window
-        Send("+!{Esc}")
-        ShowGestureResult("⊟ Previous Window")
+            ; Right then Up = Previous window
+            Send("+!{Esc}")
+            ShowGestureResult("⊟ Previous Window")
 
         default:
-        ShowGestureResult("Unknown: " path)
+            ShowGestureResult("Unknown: " path)
     }
 }
 

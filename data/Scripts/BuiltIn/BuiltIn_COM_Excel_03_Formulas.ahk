@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Excel_03_Formulas.ahk
-*
-* DESCRIPTION:
-* Demonstrates working with Excel formulas and functions using COM automation.
-* Shows how to insert, evaluate, and manipulate formulas programmatically.
-*
-* FEATURES:
-* - Creating formulas with Formula property
-* - Using R1C1 notation for dynamic formulas
-* - Working with built-in Excel functions
-* - Formula auditing and calculation
-* - Array formulas
-* - Named ranges in formulas
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for Excel automation
-* - Formula and FormulaR1C1 properties
-* - COM method chaining
-* - Error handling for formula errors
-*
-* LEARNING POINTS:
-* 1. How to insert formulas into cells
-* 2. Using R1C1 vs A1 notation for formulas
-* 3. Working with SUM, AVERAGE, COUNT, and other functions
-* 4. Creating dependent formulas
-* 5. Handling formula errors
-* 6. Calculating and recalculating workbooks
-* 7. Using named ranges in formulas
-*/
+ * BuiltIn_COM_Excel_03_Formulas.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates working with Excel formulas and functions using COM automation.
+ * Shows how to insert, evaluate, and manipulate formulas programmatically.
+ * 
+ * FEATURES:
+ * - Creating formulas with Formula property
+ * - Using R1C1 notation for dynamic formulas
+ * - Working with built-in Excel functions
+ * - Formula auditing and calculation
+ * - Array formulas
+ * - Named ranges in formulas
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for Excel automation
+ * - Formula and FormulaR1C1 properties
+ * - COM method chaining
+ * - Error handling for formula errors
+ * 
+ * LEARNING POINTS:
+ * 1. How to insert formulas into cells
+ * 2. Using R1C1 vs A1 notation for formulas
+ * 3. Working with SUM, AVERAGE, COUNT, and other functions
+ * 4. Creating dependent formulas
+ * 5. Handling formula errors
+ * 6. Calculating and recalculating workbooks
+ * 7. Using named ranges in formulas
+ */
 
 ;===============================================================================
 ; Example 1: Basic Formula Operations
@@ -87,7 +87,7 @@ Example1_BasicFormulas() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -150,7 +150,7 @@ Example2_BuiltInFunctions() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -212,7 +212,7 @@ Example3_R1C1Notation() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -280,7 +280,7 @@ Example4_ConditionalFormulas() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -305,11 +305,11 @@ Example5_LookupFunctions() {
 
         ; Add products
         products := [
-        ["P001", "Laptop", 999.99, 25],
-        ["P002", "Mouse", 24.99, 150],
-        ["P003", "Keyboard", 79.99, 80],
-        ["P004", "Monitor", 299.99, 45],
-        ["P005", "Webcam", 89.99, 60]
+            ["P001", "Laptop", 999.99, 25],
+            ["P002", "Mouse", 24.99, 150],
+            ["P003", "Keyboard", 79.99, 80],
+            ["P004", "Monitor", 299.99, 45],
+            ["P005", "Webcam", 89.99, 60]
         ]
 
         Loop products.Length {
@@ -351,7 +351,7 @@ Example5_LookupFunctions() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -422,7 +422,7 @@ Example6_DateTimeFunctions() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -500,7 +500,7 @@ Example7_TextFunctions() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -537,13 +537,13 @@ ShowMenu() {
         case "7": Example7_TextFunctions()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

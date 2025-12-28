@@ -8,10 +8,10 @@ class PathParser {
     ; Parse path into components
     static Parse(path) {
         result := Map()
-        
+
         ; Normalize separators
         normalized := StrReplace(path, "/", "\")
-        
+
         ; Root (drive letter or UNC)
         if RegExMatch(normalized, "^([A-Za-z]:)", &m) {
             result["root"] := m[1] "\"
@@ -25,14 +25,14 @@ class PathParser {
         } else {
             result["root"] := ""
         }
-        
+
         ; Directory and filename
         lastSlash := 0
         Loop StrLen(normalized) {
             if SubStr(normalized, A_Index, 1) = "\"
                 lastSlash := A_Index
         }
-        
+
         if lastSlash {
             result["dir"] := result["root"] SubStr(normalized, 1, lastSlash - 1)
             result["base"] := SubStr(normalized, lastSlash + 1)
@@ -40,7 +40,7 @@ class PathParser {
             result["dir"] := result["root"]
             result["base"] := LTrim(normalized, "\")
         }
-        
+
         ; Extension
         dotPos := 0
         base := result["base"]
@@ -48,7 +48,7 @@ class PathParser {
             if SubStr(base, A_Index, 1) = "."
                 dotPos := A_Index
         }
-        
+
         if dotPos > 1 {
             result["name"] := SubStr(base, 1, dotPos - 1)
             result["ext"] := SubStr(base, dotPos)
@@ -56,7 +56,7 @@ class PathParser {
             result["name"] := base
             result["ext"] := ""
         }
-        
+
         return result
     }
 
@@ -67,10 +67,10 @@ class PathParser {
             part := String(part)
             if part = ""
                 continue
-            
+
             ; Normalize separators
             part := StrReplace(part, "/", "\")
-            
+
             if result = "" || RegExMatch(part, "^[A-Za-z]:|^\\\\") {
                 result := part
             } else {
@@ -104,21 +104,21 @@ class PathParser {
     ; Normalize path (resolve . and ..)
     static Normalize(path) {
         path := StrReplace(path, "/", "\")
-        
+
         ; Extract root
         root := ""
         if RegExMatch(path, "^([A-Za-z]:\\|\\\\[^\\]+\\[^\\]+\\?)", &m) {
             root := m[1]
             path := SubStr(path, StrLen(root) + 1)
         }
-        
+
         parts := StrSplit(path, "\")
         result := []
-        
+
         for part in parts {
             if part = "" || part = "."
                 continue
-            
+
             if part = ".." {
                 if result.Length > 0 && result[result.Length] != ".."
                     result.Pop()
@@ -128,7 +128,7 @@ class PathParser {
                 result.Push(part)
             }
         }
-        
+
         return root this.JoinArray(result, "\")
     }
 
@@ -141,7 +141,7 @@ class PathParser {
     static Relative(fromPath, toPath) {
         from := StrSplit(this.Normalize(fromPath), "\")
         to := StrSplit(this.Normalize(toPath), "\")
-        
+
         ; Find common prefix
         common := 0
         minLen := Min(from.Length, to.Length)
@@ -150,17 +150,17 @@ class PathParser {
                 break
             common := A_Index
         }
-        
+
         ; Build relative path
         result := []
         Loop from.Length - common
             result.Push("..")
         Loop to.Length - common
             result.Push(to[common + A_Index])
-        
+
         return result.Length ? this.JoinArray(result, "\") : "."
     }
-    
+
     static JoinArray(arr, sep) {
         result := ""
         for i, v in arr

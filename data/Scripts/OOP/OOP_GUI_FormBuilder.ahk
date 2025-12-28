@@ -20,7 +20,7 @@ class FormField {
 
     Validate() {
         if (this.required && !this.value)
-        return (this.errorMessage := "This field is required", false)
+            return (this.errorMessage := "This field is required", false)
 
         for validator in this.validators {
             if (!validator.Validate(this.value)) {
@@ -75,9 +75,9 @@ class Form {
             this.gui.Add("Text", "x10 y" . y . " w100", field.label . (field.required ? " *" : ""))
 
             if (field.type = "Edit")
-            field.control := this.gui.Add("Edit", "x120 y" . y . " w250")
+                field.control := this.gui.Add("Edit", "x120 y" . y . " w250")
             else if (field.type = "DropDownList")
-            field.control := this.gui.Add("DropDownList", "x120 y" . y . " w250", ["Option 1", "Option 2", "Option 3"])
+                field.control := this.gui.Add("DropDownList", "x120 y" . y . " w250", ["Option 1", "Option 2", "Option 3"])
 
             y += 30
         }
@@ -92,7 +92,7 @@ class Form {
     HandleSubmit() {
         ; Get values
         for field in this.fields
-        field.value := field.control.Value
+            field.value := field.control.Value
 
         ; Validate all fields
         isValid := true
@@ -112,7 +112,7 @@ class Form {
 
         ; Call submit callback
         if (this.onSubmit)
-        this.onSubmit.Call(this.GetFormData())
+            this.onSubmit.Call(this.GetFormData())
 
         this.gui.Destroy()
     }
@@ -120,7 +120,7 @@ class Form {
     GetFormData() {
         data := Map()
         for field in this.fields
-        data[field.name] := field.value
+            data[field.name] := field.value
         return data
     }
 }
@@ -130,20 +130,20 @@ form := Form("User Registration")
 
 ; Add fields with validation
 nameField := FormField("name", "Full Name")
-.SetRequired()
-.AddValidator(MinLengthValidator(3))
+    .SetRequired()
+    .AddValidator(MinLengthValidator(3))
 
 emailField := FormField("email", "Email")
-.SetRequired()
-.AddValidator(EmailValidator())
+    .SetRequired()
+    .AddValidator(EmailValidator())
 
 ageField := FormField("age", "Age")
-.SetRequired()
-.AddValidator(NumericValidator())
+    .SetRequired()
+    .AddValidator(NumericValidator())
 
 form.AddField(nameField)
-.AddField(emailField)
-.AddField(ageField)
+    .AddField(emailField)
+    .AddField(ageField)
 
 ; Set submit callback
 form.SetSubmitCallback((data) => MsgBox("Form submitted!`n`nName: " . data["name"] . "`nEmail: " . data["email"] . "`nAge: " . data["age"]))

@@ -2,20 +2,20 @@
 #SingleInstance Force
 
 /**
-* AHK v2 Drive Functions
-*
-* Functions for drive and disk operations
-*/
+ * AHK v2 Drive Functions
+ * 
+ * Functions for drive and disk operations
+ */
 
 /**
-* Eject/retract a CD/DVD drive
-*
-* @param {String} drive - Drive letter (e.g., "D:")
-* @param {Integer} retract - 1 to retract, 0 to eject
-* @returns {Integer} Success (1) or failure (0)
-*
-* Example: DriveEject("D:") or DriveEject("D:", 1) to retract
-*/
+ * Eject/retract a CD/DVD drive
+ * 
+ * @param {String} drive - Drive letter (e.g., "D:")
+ * @param {Integer} retract - 1 to retract, 0 to eject
+ * @returns {Integer} Success (1) or failure (0)
+ * 
+ * Example: DriveEject("D:") or DriveEject("D:", 1) to retract
+ */
 DriveEjectExample() {
     drive := "D:"
 
@@ -32,8 +32,8 @@ DriveEjectExample() {
 }
 
 /**
-* Retract a CD/DVD drive
-*/
+ * Retract a CD/DVD drive
+ */
 DriveRetractExample() {
     drive := "D:"
 
@@ -46,11 +46,11 @@ DriveRetractExample() {
 }
 
 /**
-* Lock or unlock a drive
-*
-* @param {String} drive - Drive letter
-* @param {Integer} lock - 1 to lock, 0 to unlock
-*/
+ * Lock or unlock a drive
+ * 
+ * @param {String} drive - Drive letter
+ * @param {Integer} lock - 1 to lock, 0 to unlock
+ */
 DriveLockExample() {
     drive := "D:"
 
@@ -70,11 +70,11 @@ DriveLockExample() {
 }
 
 /**
-* Get drive type
-*
-* @param {String} path - Drive letter or path
-* @returns {String} Drive type: "Unknown", "Removable", "Fixed", "Network", "CDROM", "RAMDisk"
-*/
+ * Get drive type
+ * 
+ * @param {String} path - Drive letter or path
+ * @returns {String} Drive type: "Unknown", "Removable", "Fixed", "Network", "CDROM", "RAMDisk"
+ */
 DriveGetTypeExample() {
     drives := DriveGetList()
 
@@ -94,8 +94,8 @@ DriveGetTypeExample() {
 }
 
 /**
-* Get drive label (volume name)
-*/
+ * Get drive label (volume name)
+ */
 DriveGetLabelExample() {
     drive := "C:"
 
@@ -108,8 +108,8 @@ DriveGetLabelExample() {
 }
 
 /**
-* Set drive label
-*/
+ * Set drive label
+ */
 DriveSetLabelExample() {
     drive := "D:"
     newLabel := "MyDrive"
@@ -127,8 +127,8 @@ DriveSetLabelExample() {
 }
 
 /**
-* Get drive filesystem
-*/
+ * Get drive filesystem
+ */
 DriveGetFilesystemExample() {
     drive := "C:"
 
@@ -141,8 +141,8 @@ DriveGetFilesystemExample() {
 }
 
 /**
-* Get drive serial number
-*/
+ * Get drive serial number
+ */
 DriveGetSerialExample() {
     drive := "C:"
 
@@ -155,8 +155,8 @@ DriveGetSerialExample() {
 }
 
 /**
-* Get drive capacity and free space
-*/
+ * Get drive capacity and free space
+ */
 DriveGetSpaceExample() {
     drives := DriveGetList()
 
@@ -183,17 +183,17 @@ DriveGetSpaceExample() {
 }
 
 /**
-* Get drive status
-*/
+ * Get drive status
+ */
 DriveGetStatusExample() {
     drive := "C:"
 
     try {
         status := DriveGetStatus(drive)
         statusText := status = "Ready" ? "Ready"
-        : status = "NotReady" ? "Not Ready"
-        : status = "Invalid" ? "Invalid"
-        : "Unknown"
+            : status = "NotReady" ? "Not Ready"
+            : status = "Invalid" ? "Invalid"
+            : "Unknown"
 
         MsgBox("Drive " drive " status: " statusText)
     } catch Error as e {
@@ -202,8 +202,8 @@ DriveGetStatusExample() {
 }
 
 /**
-* Get all drives
-*/
+ * Get all drives
+ */
 DriveGetListExample() {
     drives := DriveGetList()
 
@@ -226,24 +226,24 @@ DriveGetListExample() {
 }
 
 /**
-* Helper function to format bytes
-*/
+ * Helper function to format bytes
+ */
 FormatBytes(bytes) {
     if (bytes < 1024)
-    return Round(bytes, 2) " B"
+        return Round(bytes, 2) " B"
     else if (bytes < 1048576)
-    return Round(bytes / 1024, 2) " KB"
+        return Round(bytes / 1024, 2) " KB"
     else if (bytes < 1073741824)
-    return Round(bytes / 1048576, 2) " MB"
+        return Round(bytes / 1048576, 2) " MB"
     else if (bytes < 1099511627776)
-    return Round(bytes / 1073741824, 2) " GB"
+        return Round(bytes / 1073741824, 2) " GB"
     else
-    return Round(bytes / 1099511627776, 2) " TB"
+        return Round(bytes / 1099511627776, 2) " TB"
 }
 
 /**
-* Comprehensive drive information display
-*/
+ * Comprehensive drive information display
+ */
 ComprehensiveDriveInfoExample() {
     drives := DriveGetList()
 
@@ -290,8 +290,8 @@ ComprehensiveDriveInfoExample() {
 }
 
 /**
-* Monitor drive space in real-time
-*/
+ * Monitor drive space in real-time
+ */
 MonitorDriveSpaceExample() {
     drive := "C:"
 
@@ -307,9 +307,9 @@ MonitorDriveSpaceExample() {
             usedPercent := Round((used / capacity) * 100, 1)
 
             ToolTip("Drive " drive " Space Monitor`n"
-            . "Capacity: " FormatBytes(capacity) "`n"
-            . "Used: " FormatBytes(used) " (" usedPercent "%)`n"
-            . "Free: " FormatBytes(free))
+                . "Capacity: " FormatBytes(capacity) "`n"
+                . "Used: " FormatBytes(used) " (" usedPercent "%)`n"
+                . "Free: " FormatBytes(free))
 
             Sleep(1000)
         } catch {
@@ -317,7 +317,7 @@ MonitorDriveSpaceExample() {
         }
 
         if (A_TickCount - startTime > 10000)
-        break
+            break
     }
 
     ToolTip()
@@ -325,12 +325,12 @@ MonitorDriveSpaceExample() {
 }
 
 MsgBox("Drive Functions Loaded`n`n"
-. "Available Examples:`n"
-. "- DriveGetTypeExample()`n"
-. "- DriveGetSpaceExample()`n"
-. "- DriveGetListExample()`n"
-. "- ComprehensiveDriveInfoExample()`n"
-. "- MonitorDriveSpaceExample()")
+    . "Available Examples:`n"
+    . "- DriveGetTypeExample()`n"
+    . "- DriveGetSpaceExample()`n"
+    . "- DriveGetListExample()`n"
+    . "- ComprehensiveDriveInfoExample()`n"
+    . "- MonitorDriveSpaceExample()")
 
 ; Uncomment to test:
 ; DriveGetTypeExample()
@@ -338,3 +338,4 @@ MsgBox("Drive Functions Loaded`n`n"
 ; DriveGetListExample()
 ; ComprehensiveDriveInfoExample()
 ; MonitorDriveSpaceExample()
+

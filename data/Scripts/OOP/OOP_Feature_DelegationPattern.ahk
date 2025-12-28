@@ -13,11 +13,11 @@ class Engine {
 }
 
 class GPS {
-    __New() => (this.location := {lat: 0, lon: 0})
+    __New() => (this.location := { lat: 0, lon: 0 })
 
     Navigate(destination) => MsgBox("Navigating to: " destination "`nCurrent: " this.GetLocation())
     GetLocation() => Format("({1}, {2})", this.location.lat, this.location.lon)
-    UpdateLocation(lat, lon) => (this.location := {lat: lat, lon: lon})
+    UpdateLocation(lat, lon) => (this.location := { lat: lat, lon: lon })
 }
 
 class SoundSystem {
@@ -59,10 +59,10 @@ class Car {
     }
 
     GetStatus() => Format("{1}`nEngine: {2}`nGPS: {3}`nSound: {4}",
-    this.model,
-    this.engine.GetInfo(),
-    this.gps.GetLocation(),
-    this.sound.playing ? "Playing" : "Silent")
+        this.model,
+        this.engine.GetInfo(),
+        this.gps.GetLocation(),
+        this.sound.playing ? "Playing" : "Silent")
 }
 
 class Printer {

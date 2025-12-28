@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Custom_01_UserDLL.ahk
-*
-* DESCRIPTION:
-* Demonstrates Custom DLL loading and calling using Windows API through DllCall.
-* Comprehensive examples showing various UserDLL operations.
-*
-* FEATURES:
-* - UserDLL API integration
-* - Practical UserDLL examples
-* - Error handling
-* - Resource management
-* - Advanced UserDLL techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Custom API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Custom API functions
-* 2. Working with UserDLL operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced UserDLL techniques
-* 6. Best practices for Custom API
-* 7. Real-world UserDLL applications
-*/
+ * BuiltIn_DllCall_Custom_01_UserDLL.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Custom DLL loading and calling using Windows API through DllCall.
+ * Comprehensive examples showing various UserDLL operations.
+ * 
+ * FEATURES:
+ * - UserDLL API integration
+ * - Practical UserDLL examples
+ * - Error handling
+ * - Resource management
+ * - Advanced UserDLL techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Custom API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Custom API functions
+ * 2. Working with UserDLL operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced UserDLL techniques
+ * 6. Best practices for Custom API
+ * 7. Real-world UserDLL applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic UserDLL Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for UserDLL operations
-*/
+ * Helper function for UserDLL operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "UserDLL Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

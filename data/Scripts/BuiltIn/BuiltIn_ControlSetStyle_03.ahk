@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlSetStyle - Professional UI Customization
-* ============================================================================
-*
-* Professional-grade UI customization techniques using ControlSetStyle.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ============================================================================
+ * ControlSetStyle - Professional UI Customization
+ * ============================================================================
+ * 
+ * Professional-grade UI customization techniques using ControlSetStyle.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -18,11 +18,11 @@
 ;==============================================================================
 
 /**
-* Manage form states with style changes
-*
-* @example
-* Switch between edit and view modes
-*/
+ * Manage form states with style changes
+ * 
+ * @example
+ * Switch between edit and view modes
+ */
 Example1_FormStates() {
     MyGui := Gui("+Resize", "Example 1: Form State Management")
 
@@ -63,11 +63,11 @@ Example1_FormStates() {
 ;==============================================================================
 
 /**
-* Improve accessibility with style modifications
-*
-* @example
-* Enhanced visual accessibility
-*/
+ * Improve accessibility with style modifications
+ * 
+ * @example
+ * Enhanced visual accessibility
+ */
 Example2_AccessibilityEnhance() {
     MyGui := Gui("+Resize", "Example 2: Accessibility Enhancements")
 
@@ -101,11 +101,11 @@ Example2_AccessibilityEnhance() {
 ;==============================================================================
 
 /**
-* Indicate errors with style changes
-*
-* @example
-* Visual error feedback
-*/
+ * Indicate errors with style changes
+ * 
+ * @example
+ * Visual error feedback
+ */
 Example3_ErrorIndication() {
     MyGui := Gui("+Resize", "Example 3: Error State Indication")
 
@@ -138,11 +138,11 @@ Example3_ErrorIndication() {
 ;==============================================================================
 
 /**
-* Progressively reveal form fields
-*
-* @example
-* Show fields based on selections
-*/
+ * Progressively reveal form fields
+ * 
+ * @example
+ * Show fields based on selections
+ */
 Example4_ProgressiveDisclosure() {
     MyGui := Gui("+Resize", "Example 4: Progressive Disclosure")
 
@@ -180,11 +180,11 @@ Example4_ProgressiveDisclosure() {
 ;==============================================================================
 
 /**
-* Adjust styles based on content
-*
-* @example
-* Dynamic style adaptation
-*/
+ * Adjust styles based on content
+ * 
+ * @example
+ * Dynamic style adaptation
+ */
 Example5_ResponsiveStyling() {
     MyGui := Gui("+Resize", "Example 5: Responsive Styling")
 
@@ -219,11 +219,11 @@ Example5_ResponsiveStyling() {
 ;==============================================================================
 
 /**
-* Enhance focus indication
-*
-* @example
-* Clear focus visualization
-*/
+ * Enhance focus indication
+ * 
+ * @example
+ * Clear focus visualization
+ */
 Example6_FocusVisualization() {
     MyGui := Gui("+Resize", "Example 6: Focus Visualization")
 
@@ -261,11 +261,11 @@ Example6_FocusVisualization() {
 ;==============================================================================
 
 /**
-* Save and restore custom styles
-*
-* @example
-* Persistent style configurations
-*/
+ * Save and restore custom styles
+ * 
+ * @example
+ * Persistent style configurations
+ */
 Example7_StylePersistence() {
     MyGui := Gui("+Resize", "Example 7: Style Persistence")
 
@@ -314,13 +314,13 @@ MainGui := Gui("+Resize", "Control Function Examples - Main Menu")
 MainGui.Add("Text", "w400", "Select an example to run:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Form State Management",
-"Example 2: Accessibility Enhancements",
-"Example 3: Error State Indication",
-"Example 4: Progressive Disclosure",
-"Example 5: Responsive Styling",
-"Example 6: Focus Visualization",
-"Example 7: Style Persistence"
+    "Example 1: Form State Management",
+    "Example 2: Accessibility Enhancements",
+    "Example 3: Error State Indication",
+    "Example 4: Progressive Disclosure",
+    "Example 5: Responsive Styling",
+    "Example 6: Focus Visualization",
+    "Example 7: Style Persistence"
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

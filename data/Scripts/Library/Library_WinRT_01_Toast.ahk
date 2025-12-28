@@ -12,26 +12,26 @@
 
 DemoWinRTToast() {
     MsgBox("WinRT Toast Notification Demo`n`n"
-    "Show modern Windows notifications:`n`n"
-    "Usage with winrt.ahk:`n"
-    "toast := ToastNotification.CreateToastNotifier('AppName')`n"
-    "toast.Show(xml)`n`n"
-    "XML Format:`n"
-    "<toast>`n"
-    "  <visual>`n"
-    "    <binding template='ToastGeneric'>`n"
-    "      <text>Title</text>`n"
-    "      <text>Message</text>`n"
-    "    </binding>`n"
-    "  </visual>`n"
-    "</toast>`n`n"
-    "Features:`n"
-    "- Rich formatting`n"
-    "- Action buttons`n"
-    "- Images/icons`n"
-    "- Sound options`n`n"
-    "Install: Download from Lexikos/winrt.ahk",
-    "WinRT Toast Demo")
+        "Show modern Windows notifications:`n`n"
+        "Usage with winrt.ahk:`n"
+        "toast := ToastNotification.CreateToastNotifier('AppName')`n"
+        "toast.Show(xml)`n`n"
+        "XML Format:`n"
+        "<toast>`n"
+        "  <visual>`n"
+        "    <binding template='ToastGeneric'>`n"
+        "      <text>Title</text>`n"
+        "      <text>Message</text>`n"
+        "    </binding>`n"
+        "  </visual>`n"
+        "</toast>`n`n"
+        "Features:`n"
+        "- Rich formatting`n"
+        "- Action buttons`n"
+        "- Images/icons`n"
+        "- Sound options`n`n"
+        "Install: Download from Lexikos/winrt.ahk",
+        "WinRT Toast Demo")
 }
 
 ; Real implementation example (commented out, requires library):

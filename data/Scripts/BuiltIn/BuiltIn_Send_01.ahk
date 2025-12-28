@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Send Function - Send Keys
-* ============================================================================
-*
-* The Send function simulates keystrokes and key combinations. It's one of
-* the most fundamental functions for automation, supporting special keys,
-* modifiers, and various sending modes.
-*
-* Syntax: Send(Keys)
-*
-* @module BuiltIn_Send_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 Send Function - Send Keys
+ * ============================================================================
+ * 
+ * The Send function simulates keystrokes and key combinations. It's one of
+ * the most fundamental functions for automation, supporting special keys,
+ * modifiers, and various sending modes.
+ * 
+ * Syntax: Send(Keys)
+ * 
+ * @module BuiltIn_Send_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Text Sending
 ; ============================================================================
 
 /**
-* Sends plain text to active window.
-* Simulates typing text character by character.
-*
-* @example
-* ; Press F1 to type "Hello World"
-*/
+ * Sends plain text to active window.
+ * Simulates typing text character by character.
+ * 
+ * @example
+ * ; Press F1 to type "Hello World"
+ */
 F1:: {
     ToolTip("Sending text in 2 seconds...`nActivate target window!")
     Sleep(2000)
@@ -40,9 +40,9 @@ F1:: {
 }
 
 /**
-* Sends text with line breaks
-* Demonstrates multi-line text sending
-*/
+ * Sends text with line breaks
+ * Demonstrates multi-line text sending
+ */
 F2:: {
     ToolTip("Sending multi-line text in 2 seconds...")
     Sleep(2000)
@@ -58,9 +58,9 @@ F2:: {
 }
 
 /**
-* Sends formatted text
-* Includes paragraphs and spacing
-*/
+ * Sends formatted text
+ * Includes paragraphs and spacing
+ */
 F3:: {
     ToolTip("Sending formatted text in 2 seconds...")
     Sleep(2000)
@@ -87,12 +87,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Demonstrates sending special keys.
-* Uses curly braces {} for special key names.
-*
-* @description
-* Shows various special key syntax
-*/
+ * Demonstrates sending special keys.
+ * Uses curly braces {} for special key names.
+ * 
+ * @description
+ * Shows various special key syntax
+ */
 ^F1:: {
     ToolTip("Special keys demonstration in 2 seconds...")
     Sleep(2000)
@@ -124,9 +124,9 @@ F3:: {
 }
 
 /**
-* Arrow keys demonstration
-* Sends directional navigation keys
-*/
+ * Arrow keys demonstration
+ * Sends directional navigation keys
+ */
 ^F2:: {
     ToolTip("Arrow keys in 2 seconds...")
     Sleep(2000)
@@ -158,9 +158,9 @@ F3:: {
 }
 
 /**
-* Function keys and special combinations
-* Demonstrates F1-F12 and other special keys
-*/
+ * Function keys and special combinations
+ * Demonstrates F1-F12 and other special keys
+ */
 ^F3:: {
     ToolTip("Function keys in 2 seconds...")
     Sleep(2000)
@@ -196,12 +196,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends keys with Ctrl modifier.
-* Uses ^ symbol for Ctrl.
-*
-* @description
-* Demonstrates Ctrl+Key combinations
-*/
+ * Sends keys with Ctrl modifier.
+ * Uses ^ symbol for Ctrl.
+ * 
+ * @description
+ * Demonstrates Ctrl+Key combinations
+ */
 ^F4:: {
     ToolTip("Ctrl combinations in 2 seconds...")
     Sleep(2000)
@@ -233,9 +233,9 @@ F3:: {
 }
 
 /**
-* Sends keys with Shift modifier
-* Uses + symbol for Shift
-*/
+ * Sends keys with Shift modifier
+ * Uses + symbol for Shift
+ */
 ^F5:: {
     ToolTip("Shift combinations in 2 seconds...")
     Sleep(2000)
@@ -264,9 +264,9 @@ F3:: {
 }
 
 /**
-* Sends keys with Alt modifier
-* Uses ! symbol for Alt
-*/
+ * Sends keys with Alt modifier
+ * Uses ! symbol for Alt
+ */
 ^F6:: {
     ToolTip("Alt combinations in 2 seconds...")
     Sleep(2000)
@@ -295,12 +295,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends keys with multiple modifiers.
-* Combines Ctrl, Shift, Alt.
-*
-* @description
-* Shows complex key combinations
-*/
+ * Sends keys with multiple modifiers.
+ * Combines Ctrl, Shift, Alt.
+ * 
+ * @description
+ * Shows complex key combinations
+ */
 ^F7:: {
     ToolTip("Combined modifiers in 2 seconds...")
     Sleep(2000)
@@ -332,12 +332,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends repeated keystrokes.
-* Uses {Key N} syntax for repetition.
-*
-* @description
-* Demonstrates key repetition
-*/
+ * Sends repeated keystrokes.
+ * Uses {Key N} syntax for repetition.
+ * 
+ * @description
+ * Demonstrates key repetition
+ */
 ^F8:: {
     ToolTip("Repeated keys in 2 seconds...")
     Sleep(2000)
@@ -364,9 +364,9 @@ F3:: {
 }
 
 /**
-* Sends keys with delays
-* Introduces pauses between keystrokes
-*/
+ * Sends keys with delays
+ * Introduces pauses between keystrokes
+ */
 ^F9:: {
     ToolTip("Timed sending in 2 seconds...")
     Sleep(2000)
@@ -396,12 +396,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Automates filling a form with Tab navigation.
-* Demonstrates practical data entry automation.
-*
-* @description
-* Simulates completing a multi-field form
-*/
+ * Automates filling a form with Tab navigation.
+ * Demonstrates practical data entry automation.
+ * 
+ * @description
+ * Simulates completing a multi-field form
+ */
 ^F10:: {
     ToolTip("Form filling in 2 seconds...`nActivate form window!")
     Sleep(2000)
@@ -443,9 +443,9 @@ F3:: {
 }
 
 /**
-* Login automation example
-* Fills username and password fields
-*/
+ * Login automation example
+ * Fills username and password fields
+ */
 ^F11:: {
     ToolTip("Login automation in 2 seconds...")
     Sleep(2000)
@@ -479,12 +479,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Send keys with raw mode.
-* Uses {Raw} for literal text.
-*
-* @description
-* Shows how to send special characters literally
-*/
+ * Send keys with raw mode.
+ * Uses {Raw} for literal text.
+ * 
+ * @description
+ * Shows how to send special characters literally
+ */
 ^F12:: {
     ToolTip("Raw send mode in 2 seconds...")
     Sleep(2000)
@@ -513,11 +513,11 @@ F3:: {
 ; ============================================================================
 
 /**
-* Types text character by character with delay
-*
-* @param {String} text - Text to type
-* @param {Number} delayMs - Delay between characters
-*/
+ * Types text character by character with delay
+ * 
+ * @param {String} text - Text to type
+ * @param {Number} delayMs - Delay between characters
+ */
 TypeSlowly(text, delayMs := 50) {
     Loop Parse text {
         Send(A_LoopField)
@@ -526,11 +526,11 @@ TypeSlowly(text, delayMs := 50) {
 }
 
 /**
-* Sends key combination safely
-*
-* @param {String} keys - Keys to send
-* @returns {Boolean} Success status
-*/
+ * Sends key combination safely
+ * 
+ * @param {String} keys - Keys to send
+ * @returns {Boolean} Success status
+ */
 SafeSend(keys) {
     try {
         Send(keys)
@@ -565,7 +565,7 @@ SafeSend(keys) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

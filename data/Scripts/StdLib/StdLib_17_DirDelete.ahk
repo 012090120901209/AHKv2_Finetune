@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* DirDelete() - Delete directory
-*
-* Deletes a folder.
-*/
+ * DirDelete() - Delete directory
+ * 
+ * Deletes a folder.
+ */
 
 testDir := A_ScriptDir "\tempdir"
 DirCreate(testDir)

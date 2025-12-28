@@ -30,14 +30,14 @@ class RateLimiter {
     GetWaitTime() {
         if this.requests.Length < this.maxRequests
             return 0
-        
+
         this.Cleanup(A_TickCount)
         if this.requests.Length < this.maxRequests
             return 0
-            
+
         return this.windowMs - (A_TickCount - this.requests[1])
     }
-    
+
     GetRemaining() {
         this.Cleanup(A_TickCount)
         return this.maxRequests - this.requests.Length

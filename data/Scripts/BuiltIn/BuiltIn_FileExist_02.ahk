@@ -1,60 +1,60 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileExist_02.ahk
-*
-* DESCRIPTION:
-* Advanced FileExist() examples focusing on directory validation and recursive operations
-*
-* FEATURES:
-* - Directory existence validation
-* - Recursive directory checking
-* - Path normalization
-* - Network path validation
-* - Directory tree validation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileExist.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileExist() with directories
-* - DirCreate() and DirExist()
-* - Path manipulation
-* - Recursive operations
-* - Array and Map usage
-*
-* LEARNING POINTS:
-* 1. FileExist() works for both files and directories
-* 2. "D" in attribute string indicates directory
-* 3. Can validate entire directory structures
-* 4. Useful for ensuring output paths exist
-* 5. Can check network paths (if accessible)
-* 6. Combine with DirCreate for safe directory operations
-*/
+ * BuiltIn_FileExist_02.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced FileExist() examples focusing on directory validation and recursive operations
+ * 
+ * FEATURES:
+ * - Directory existence validation
+ * - Recursive directory checking
+ * - Path normalization
+ * - Network path validation
+ * - Directory tree validation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileExist.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileExist() with directories
+ * - DirCreate() and DirExist()
+ * - Path manipulation
+ * - Recursive operations
+ * - Array and Map usage
+ * 
+ * LEARNING POINTS:
+ * 1. FileExist() works for both files and directories
+ * 2. "D" in attribute string indicates directory
+ * 3. Can validate entire directory structures
+ * 4. Useful for ensuring output paths exist
+ * 5. Can check network paths (if accessible)
+ * 6. Combine with DirCreate for safe directory operations
+ */
 
 ; ============================================================
 ; Example 1: Directory Existence Validation
 ; ============================================================
 
 /**
-* Ensure directory exists, create if necessary
-*
-* @param {String} dirPath - Directory path
-* @param {Boolean} createIfMissing - Create if doesn't exist
-* @returns {Boolean} - True if directory exists or was created
-*/
+ * Ensure directory exists, create if necessary
+ * 
+ * @param {String} dirPath - Directory path
+ * @param {Boolean} createIfMissing - Create if doesn't exist
+ * @returns {Boolean} - True if directory exists or was created
+ */
 EnsureDirectory(dirPath, createIfMissing := true) {
     attrs := FileExist(dirPath)
 
     ; Directory exists
     if (attrs && InStr(attrs, "D"))
-    return true
+        return true
 
     ; Path exists but is a file
     if (attrs && !InStr(attrs, "D")) {
         MsgBox("Error: Path exists but is a file, not a directory:`n" dirPath,
-        "Path Error", "IconX")
+            "Path Error", "IconX")
         return false
     }
 
@@ -65,7 +65,7 @@ EnsureDirectory(dirPath, createIfMissing := true) {
             return true
         } catch Error as err {
             MsgBox("Failed to create directory:`n" dirPath "`n`nError: " err.Message,
-            "Creation Error", "IconX")
+                "Creation Error", "IconX")
             return false
         }
     }
@@ -77,8 +77,8 @@ EnsureDirectory(dirPath, createIfMissing := true) {
 testDir := A_ScriptDir "\TestDirectory"
 if (EnsureDirectory(testDir)) {
     MsgBox("Directory ready: " testDir "`n"
-    . "Attributes: " FileExist(testDir),
-    "Directory Ensured", "Icon!")
+        . "Attributes: " FileExist(testDir),
+        "Directory Ensured", "Icon!")
 }
 
 ; ============================================================
@@ -86,12 +86,12 @@ if (EnsureDirectory(testDir)) {
 ; ============================================================
 
 /**
-* Validate entire directory tree structure
-*
-* @param {String} basePath - Base directory path
-* @param {Array} subdirs - Array of required subdirectories
-* @returns {Object} - Validation result
-*/
+ * Validate entire directory tree structure
+ * 
+ * @param {String} basePath - Base directory path
+ * @param {Array} subdirs - Array of required subdirectories
+ * @returns {Object} - Validation result
+ */
 ValidateDirectoryTree(basePath, subdirs) {
     result := {
         valid: true,
@@ -141,13 +141,13 @@ output .= "Status: " (treeResult.valid ? "VALID ✓" : "INVALID ✗") "`n`n"
 if (treeResult.created.Length > 0) {
     output .= "Created (" treeResult.created.Length "):`n"
     for dir in treeResult.created
-    output .= "  + " dir "`n"
+        output .= "  + " dir "`n"
 }
 
 if (treeResult.missing.Length > 0) {
     output .= "`nMissing (" treeResult.missing.Length "):`n"
     for dir in treeResult.missing
-    output .= "  - " dir "`n"
+        output .= "  - " dir "`n"
 }
 
 MsgBox(output, "Tree Validation", treeResult.valid ? "Icon!" : "IconX")
@@ -157,11 +157,11 @@ MsgBox(output, "Tree Validation", treeResult.valid ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Check if all parent directories exist in a path
-*
-* @param {String} filePath - Full file path
-* @returns {Object} - Information about directory chain
-*/
+ * Check if all parent directories exist in a path
+ * 
+ * @param {String} filePath - Full file path
+ * @returns {Object} - Information about directory chain
+ */
 ValidatePathChain(filePath) {
     result := {
         valid: true,
@@ -185,7 +185,7 @@ ValidatePathChain(filePath) {
         }
 
         exists := FileExist(current) && InStr(FileExist(current), "D")
-        result.chain.Push({path: current, exists: exists})
+        result.chain.Push({ path: current, exists: exists })
 
         if (!exists && result.missingStart = -1) {
             result.missingStart := index
@@ -218,23 +218,23 @@ MsgBox(output, "Path Chain", chainResult.valid ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Search for file in multiple possible directories
-*
-* @param {String} fileName - File name to search for
-* @param {Array} searchPaths - Array of directories to search
-* @returns {String} - Full path if found, empty string otherwise
-*/
+ * Search for file in multiple possible directories
+ * 
+ * @param {String} fileName - File name to search for
+ * @param {Array} searchPaths - Array of directories to search
+ * @returns {String} - Full path if found, empty string otherwise
+ */
 FindInPaths(fileName, searchPaths) {
     for dirPath in searchPaths {
         ; Skip if directory doesn't exist
         if (!FileExist(dirPath) || !InStr(FileExist(dirPath), "D"))
-        continue
+            continue
 
         fullPath := dirPath "\" fileName
 
         ; Check if file exists in this directory
         if (FileExist(fullPath) && !InStr(FileExist(fullPath), "D"))
-        return fullPath
+            return fullPath
     }
 
     return ""  ; Not found
@@ -247,10 +247,10 @@ FileAppend("[Settings]`nValue=Test", testFile)
 
 ; Search in multiple locations
 searchLocations := [
-A_ScriptDir,
-projectDir "\bin",
-projectDir "\data",
-projectDir "\config"
+    A_ScriptDir,
+    projectDir "\bin",
+    projectDir "\data",
+    projectDir "\config"
 ]
 
 foundPath := FindInPaths("config.ini", searchLocations)
@@ -266,7 +266,7 @@ for path in searchLocations {
 
 output .= "`nResult: " (foundPath ? "FOUND" : "NOT FOUND") "`n"
 if (foundPath)
-output .= "Location: " foundPath
+    output .= "Location: " foundPath
 
 MsgBox(output, "File Search", foundPath ? "Icon!" : "IconX")
 
@@ -275,11 +275,11 @@ MsgBox(output, "File Search", foundPath ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Perform operation only if directory is valid and not empty
-*
-* @param {String} dirPath - Directory to check
-* @returns {Object} - Directory information
-*/
+ * Perform operation only if directory is valid and not empty
+ * 
+ * @param {String} dirPath - Directory to check
+ * @returns {Object} - Directory information
+ */
 GetDirectoryInfo(dirPath) {
     info := {
         exists: false,
@@ -292,20 +292,20 @@ GetDirectoryInfo(dirPath) {
     attrs := FileExist(dirPath)
 
     if (!attrs)
-    return info
+        return info
 
     info.exists := true
     info.isDirectory := InStr(attrs, "D") ? true : false
 
     if (!info.isDirectory)
-    return info
+        return info
 
     ; Count contents
     Loop Files, dirPath "\*.*", "F"
-    info.fileCount++
+        info.fileCount++
 
     Loop Files, dirPath "\*.*", "D"
-    info.dirCount++
+        info.dirCount++
 
     info.isEmpty := (info.fileCount = 0 && info.dirCount = 0)
 
@@ -330,12 +330,12 @@ MsgBox(output, "Directory Info", "Icon!")
 ; ============================================================
 
 /**
-* Get valid output directory, creating if necessary
-*
-* @param {Array} preferredPaths - Ordered list of preferred directories
-* @param {String} createDir - Directory name to create if none exist
-* @returns {String} - Valid output directory path
-*/
+ * Get valid output directory, creating if necessary
+ * 
+ * @param {Array} preferredPaths - Ordered list of preferred directories
+ * @param {String} createDir - Directory name to create if none exist
+ * @returns {String} - Valid output directory path
+ */
 GetOutputDirectory(preferredPaths, createDir := "") {
     ; Try preferred paths first
     for dirPath in preferredPaths {
@@ -365,45 +365,45 @@ GetOutputDirectory(preferredPaths, createDir := "") {
 
 ; Test output directory selection
 preferredOutputs := [
-A_Temp "\MyApp",
-projectDir "\output",
-A_ScriptDir "\output"
+    A_Temp "\MyApp",
+    projectDir "\output",
+    A_ScriptDir "\output"
 ]
 
 outputDir := GetOutputDirectory(preferredOutputs, A_ScriptDir "\output")
 
 MsgBox("Selected Output Directory:`n" outputDir "`n`n"
-. "Exists: " (FileExist(outputDir) ? "Yes" : "No") "`n"
-. "Attributes: " FileExist(outputDir),
-"Output Directory", "Icon!")
+    . "Exists: " (FileExist(outputDir) ? "Yes" : "No") "`n"
+    . "Attributes: " FileExist(outputDir),
+    "Output Directory", "Icon!")
 
 ; ============================================================
 ; Example 7: Directory Hierarchy Browser
 ; ============================================================
 
 /**
-* Build directory hierarchy map
-*
-* @param {String} rootPath - Root directory
-* @param {Integer} maxDepth - Maximum depth to traverse
-* @returns {Array} - Array of directory information
-*/
+ * Build directory hierarchy map
+ * 
+ * @param {String} rootPath - Root directory
+ * @param {Integer} maxDepth - Maximum depth to traverse
+ * @returns {Array} - Array of directory information
+ */
 BuildDirectoryHierarchy(rootPath, maxDepth := 2) {
     hierarchy := []
 
     if (!FileExist(rootPath) || !InStr(FileExist(rootPath), "D"))
-    return hierarchy
+        return hierarchy
 
     BuildLevel(rootPath, 0, hierarchy, maxDepth)
     return hierarchy
 
     BuildLevel(path, level, &result, maxDepth) {
         if (level >= maxDepth)
-        return
+            return
 
         indent := ""
         Loop level
-        indent .= "  "
+            indent .= "  "
 
         Loop Files, path "\*.*", "D" {
             result.Push({
@@ -426,7 +426,7 @@ output .= "Root: " projectDir "`n`n"
 
 if (hierarchy.Length > 0) {
     for item in hierarchy
-    output .= item.display "`n"
+        output .= item.display "`n"
 } else {
     output .= "(No subdirectories or directory doesn't exist)"
 }

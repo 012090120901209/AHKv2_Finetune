@@ -53,7 +53,7 @@ click(params*) {
             ; More than 3 parameters - concatenate as string
             paramStr := ""
             for index, param in params
-            paramStr .= (index = 1 ? param : " " param)
+                paramStr .= (index = 1 ? param : " " param)
             Click(paramStr)
         }
         return true
@@ -152,9 +152,9 @@ ClipWaitExample() {
     result := ClipWait(1)
 
     if (result)
-    MsgBox("Clipboard contains: " A_Clipboard)
+        MsgBox("Clipboard contains: " A_Clipboard)
     else
-    MsgBox("Clipboard wait timed out")
+        MsgBox("Clipboard wait timed out")
 }
 
 ; Corrected clipWait wrapper
@@ -163,9 +163,9 @@ clipWait(timeout := 1, mode := 0) {
     ; mode: 0 = wait for any data, 1 = wait for non-text data
     try {
         if (mode = 1)
-        return ClipWait(timeout, true)
+            return ClipWait(timeout, true)
         else
-        return ClipWait(timeout)
+            return ClipWait(timeout)
     } catch Error as e {
         return false
     }
@@ -181,9 +181,9 @@ KeyWaitExample() {
     result := KeyWait("Space", "D T5")  ; D=Down, T5=5 second timeout
 
     if (result)
-    MsgBox("Space was pressed!")
+        MsgBox("Space was pressed!")
     else
-    MsgBox("Timed out waiting for Space")
+        MsgBox("Timed out waiting for Space")
 
     ; Wait for key to be released
     MsgBox("Hold down Space, then release it...")
@@ -199,15 +199,15 @@ KeyWaitExample() {
 GetKeyStateExample() {
     ; Check if key is physically pressed
     if (GetKeyState("Shift", "P"))
-    MsgBox("Shift is physically pressed")
+        MsgBox("Shift is physically pressed")
 
     ; Check logical state (toggled)
     if (GetKeyState("CapsLock", "T"))
-    MsgBox("CapsLock is ON")
+        MsgBox("CapsLock is ON")
 
     ; Check mouse button
     if (GetKeyState("LButton", "P"))
-    MsgBox("Left mouse button is pressed")
+        MsgBox("Left mouse button is pressed")
 
     ; Get joystick position
     xPos := GetKeyState("JoyX")

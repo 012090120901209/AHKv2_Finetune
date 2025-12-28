@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Examples - ProcessExist Function (Part 1: Check Process)
-* ============================================================================
-*
-* ProcessExist checks if a process is running and returns its PID.
-*
-* @description Examples demonstrating basic process checking
-* @author AHK v2 Documentation Team
-* @date 2024
-* @version 2.0.0
-*
-* SYNTAX:
-*   PID := ProcessExist([PIDOrName])
-*   - If parameter omitted: returns script's own PID
-*   - If PID given: returns PID if exists, 0 if not
-*   - If name given: returns PID of first matching process, 0 if not found
-*
-* RETURN VALUE:
-*   - Process ID (PID) if process exists
-*   - 0 if process not found
-*/
+ * ============================================================================
+ * AutoHotkey v2 Examples - ProcessExist Function (Part 1: Check Process)
+ * ============================================================================
+ * 
+ * ProcessExist checks if a process is running and returns its PID.
+ * 
+ * @description Examples demonstrating basic process checking
+ * @author AHK v2 Documentation Team
+ * @date 2024
+ * @version 2.0.0
+ * 
+ * SYNTAX:
+ *   PID := ProcessExist([PIDOrName])
+ *   - If parameter omitted: returns script's own PID
+ *   - If PID given: returns PID if exists, 0 if not
+ *   - If name given: returns PID of first matching process, 0 if not found
+ * 
+ * RETURN VALUE:
+ *   - Process ID (PID) if process exists
+ *   - 0 if process not found
+ */
 
 ; ============================================================================
 ; Example 1: Basic Process Detection
@@ -30,16 +30,16 @@
 
 Example1_BasicDetection() {
     MsgBox("Example 1: Basic Process Detection`n`n" .
-    "Check if common processes are running:",
-    "ProcessExist - Example 1", "Icon!")
+        "Check if common processes are running:",
+        "ProcessExist - Example 1", "Icon!")
 
     ; Check several common processes
     processes := [
-    "explorer.exe",
-    "notepad.exe",
-    "calc.exe",
-    "cmd.exe",
-    "powershell.exe"
+        "explorer.exe",
+        "notepad.exe",
+        "calc.exe",
+        "cmd.exe",
+        "powershell.exe"
     ]
 
     results := ""
@@ -59,8 +59,8 @@ Example1_BasicDetection() {
     ; Get script's own PID
     myPID := ProcessExist()
     MsgBox("This script's PID: " . myPID . "`n`n" .
-    "Use ProcessExist() without parameters to get your own PID.",
-    "Script PID", "Icon!")
+        "Use ProcessExist() without parameters to get your own PID.",
+        "Script PID", "Icon!")
 }
 
 ; ============================================================================
@@ -70,8 +70,8 @@ Example1_BasicDetection() {
 
 Example2_LaunchAndVerify() {
     MsgBox("Example 2: Launch and Verify`n`n" .
-    "Launch a program and verify it started successfully:",
-    "ProcessExist - Example 2", "Icon!")
+        "Launch a program and verify it started successfully:",
+        "ProcessExist - Example 2", "Icon!")
 
     MsgBox("Launching Notepad...", "Launching", "T1")
 
@@ -87,10 +87,10 @@ Example2_LaunchAndVerify() {
 
         if verifyPID {
             MsgBox("SUCCESS!`n`n" .
-            "Launched PID: " . launchedPID . "`n" .
-            "Verified PID: " . verifyPID . "`n`n" .
-            "Notepad is confirmed running.",
-            "Verified", "Icon! T3")
+                "Launched PID: " . launchedPID . "`n" .
+                "Verified PID: " . verifyPID . "`n`n" .
+                "Notepad is confirmed running.",
+                "Verified", "Icon! T3")
 
             Sleep(2000)
 
@@ -99,9 +99,9 @@ Example2_LaunchAndVerify() {
             MsgBox("Closed Notepad.", "Closed", "T2")
         } else {
             MsgBox("Process verification failed!`n" .
-            "Launched PID: " . launchedPID . "`n" .
-            "But ProcessExist returned: " . verifyPID,
-            "Failed")
+                "Launched PID: " . launchedPID . "`n" .
+                "But ProcessExist returned: " . verifyPID,
+                "Failed")
         }
 
     } catch Error as err {
@@ -116,8 +116,8 @@ Example2_LaunchAndVerify() {
 
 Example3_ProcessMonitor() {
     MsgBox("Example 3: Real-Time Process Monitor`n`n" .
-    "Monitor specific processes in real-time:",
-    "ProcessExist - Example 3", "Icon!")
+        "Monitor specific processes in real-time:",
+        "ProcessExist - Example 3", "Icon!")
 
     CreateProcessMonitor()
 }
@@ -216,9 +216,9 @@ CreateProcessMonitor() {
     monitor.Show()
 
     MsgBox("Process Monitor Created!`n`n" .
-    "Add process names to monitor (e.g., 'notepad.exe').`n" .
-    "Click 'Start Monitoring' to begin real-time monitoring.",
-    "Monitor Ready", "Icon!")
+        "Add process names to monitor (e.g., 'notepad.exe').`n" .
+        "Click 'Start Monitoring' to begin real-time monitoring.",
+        "Monitor Ready", "Icon!")
 }
 
 ; ============================================================================
@@ -228,14 +228,14 @@ CreateProcessMonitor() {
 
 Example4_ConditionalActions() {
     MsgBox("Example 4: Conditional Actions`n`n" .
-    "Perform different actions based on whether processes exist:",
-    "ProcessExist - Example 4", "Icon!")
+        "Perform different actions based on whether processes exist:",
+        "ProcessExist - Example 4", "Icon!")
 
     ; Check if Notepad is running
     if ProcessExist("notepad.exe") {
         result := MsgBox("Notepad is currently running.`n`n" .
-        "Would you like to close all Notepad instances?",
-        "Notepad Running", "YesNo Icon?")
+            "Would you like to close all Notepad instances?",
+            "Notepad Running", "YesNo Icon?")
 
         if result = "Yes" {
             closed := 0
@@ -249,8 +249,8 @@ Example4_ConditionalActions() {
         }
     } else {
         result := MsgBox("Notepad is not currently running.`n`n" .
-        "Would you like to launch it?",
-        "Notepad Not Running", "YesNo Icon?")
+            "Would you like to launch it?",
+            "Notepad Not Running", "YesNo Icon?")
 
         if result = "Yes" {
             Run("notepad.exe", , , &pid)
@@ -266,8 +266,8 @@ Example4_ConditionalActions() {
 
 Example5_MultipleInstances() {
     MsgBox("Example 5: Multiple Instance Detection`n`n" .
-    "Detect and count multiple instances of a process:",
-    "ProcessExist - Example 5", "Icon!")
+        "Detect and count multiple instances of a process:",
+        "ProcessExist - Example 5", "Icon!")
 
     result := MsgBox("Launch 3 Notepad instances to demonstrate?", "Demo", "YesNo Icon?")
 
@@ -281,21 +281,21 @@ Example5_MultipleInstances() {
         }
 
         MsgBox("Launched 3 Notepad instances:`n" .
-        "PIDs: " . pids.Join(", "), "Launched", "T2")
+            "PIDs: " . pids.Join(", "), "Launched", "T2")
 
         ; Count instances using WMI
         count := CountProcessInstances("notepad.exe")
 
         MsgBox("Detection Results:`n`n" .
-        "ProcessExist found PID: " . ProcessExist("notepad.exe") . "`n" .
-        "Total instances running: " . count . "`n`n" .
-        "Note: ProcessExist returns only ONE PID even if multiple instances exist!",
-        "Multiple Instances", "Icon! T4")
+            "ProcessExist found PID: " . ProcessExist("notepad.exe") . "`n" .
+            "Total instances running: " . count . "`n`n" .
+            "Note: ProcessExist returns only ONE PID even if multiple instances exist!",
+            "Multiple Instances", "Icon! T4")
 
         ; Close all instances
         for pid in pids {
             if ProcessExist(pid)
-            ProcessClose(pid)
+                ProcessClose(pid)
         }
 
         MsgBox("Closed all test instances.", "Cleanup", "T2")
@@ -317,17 +317,17 @@ CountProcessInstances(processName) {
 
 Example6_WaitForProcess() {
     MsgBox("Example 6: Wait for Process`n`n" .
-    "Demonstrate waiting for a process to appear or disappear:",
-    "ProcessExist - Example 6", "Icon!")
+        "Demonstrate waiting for a process to appear or disappear:",
+        "ProcessExist - Example 6", "Icon!")
 
     result := MsgBox("Wait for Notepad to be launched?`n`n" .
-    "The script will wait up to 10 seconds.`n" .
-    "Launch Notepad within 10 seconds!",
-    "Wait for Launch", "YesNo Icon?")
+        "The script will wait up to 10 seconds.`n" .
+        "Launch Notepad within 10 seconds!",
+        "Wait for Launch", "YesNo Icon?")
 
     if result = "Yes" {
         MsgBox("Waiting for Notepad to launch...`n`n" .
-        "Launch Notepad now!", "Waiting", "T2")
+            "Launch Notepad now!", "Waiting", "T2")
 
         startTime := A_TickCount
         timeout := 10000  ; 10 seconds
@@ -347,16 +347,16 @@ Example6_WaitForProcess() {
 
         if found {
             MsgBox("SUCCESS!`n`n" .
-            "Notepad detected after " . Format("{:.1f}", elapsed) . " seconds`n" .
-            "PID: " . pid,
-            "Found", "Icon!")
+                "Notepad detected after " . Format("{:.1f}", elapsed) . " seconds`n" .
+                "PID: " . pid,
+                "Found", "Icon!")
 
             Sleep(2000)
             ProcessClose(pid)
         } else {
             MsgBox("TIMEOUT!`n`n" .
-            "Notepad was not launched within 10 seconds.",
-            "Timeout", "Icon!")
+                "Notepad was not launched within 10 seconds.",
+                "Timeout", "Icon!")
         }
     }
 }

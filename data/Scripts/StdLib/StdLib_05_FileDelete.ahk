@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileDelete() and FileRecycle() - Delete files
-*
-* FileDelete permanently deletes files, FileRecycle sends them to the recycle bin.
-*/
+ * FileDelete() and FileRecycle() - Delete files
+ * 
+ * FileDelete permanently deletes files, FileRecycle sends them to the recycle bin.
+ */
 
 temp1 := A_ScriptDir "\temp1.txt"
 temp2 := A_ScriptDir "\temp2.txt"

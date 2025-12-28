@@ -2,29 +2,29 @@
 #SingleInstance Force
 
 /**
-* System File Visibility Toggle
-*
-* Demonstrates toggling the visibility of hidden system files
-* in Windows Explorer via registry modification.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * System File Visibility Toggle
+ * 
+ * Demonstrates toggling the visibility of hidden system files
+ * in Windows Explorer via registry modification.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("System File Visibility Toggle`n`n"
-. "This script toggles the visibility of:`n"
-. "- Hidden files and folders`n"
-. "- System files`n"
-. "- File extensions`n`n"
-. "Press Win+H to toggle visibility`n`n"
-. "Changes are applied to all Explorer windows.", , "T5")
+    . "This script toggles the visibility of:`n"
+    . "- Hidden files and folders`n"
+    . "- System files`n"
+    . "- File extensions`n`n"
+    . "Press Win+H to toggle visibility`n`n"
+    . "Changes are applied to all Explorer windows.", , "T5")
 
 ; Hotkey to toggle
-#h::ToggleSystemFileVisibility()
+#h:: ToggleSystemFileVisibility()
 
 /**
-* Toggle system file visibility in Explorer
-*/
+ * Toggle system file visibility in Explorer
+ */
 ToggleSystemFileVisibility() {
     ; Registry key for Explorer settings
     regKey := "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
@@ -55,8 +55,8 @@ ToggleSystemFileVisibility() {
 
         ; Show notification
         ToolTip("System Files: " state "`n"
-        . "Hidden Files: " state "`n"
-        . "File Extensions: " (state == "Visible" ? "Shown" : "Hidden"))
+            . "Hidden Files: " state "`n"
+            . "File Extensions: " (state == "Visible" ? "Shown" : "Hidden"))
         SetTimer(() => ToolTip(), -3000)
 
     } catch Error as e {
@@ -65,8 +65,8 @@ ToggleSystemFileVisibility() {
 }
 
 /**
-* Refresh all Explorer windows to apply changes
-*/
+ * Refresh all Explorer windows to apply changes
+ */
 RefreshExplorer() {
     ; Method 1: Send F5 to all Explorer windows
     try {
@@ -157,3 +157,4 @@ RefreshExplorer() {
 *     - Tray icon indicator
 *     - Keyboard shortcuts in Explorer
 */
+

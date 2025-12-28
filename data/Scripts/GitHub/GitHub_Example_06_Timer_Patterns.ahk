@@ -2,16 +2,16 @@
 #SingleInstance Force
 
 /**
-* Timer Patterns in AHK v2
-* Source: Patterns from notification examples
-*
-* Demonstrates:
-* - SetTimer with arrow functions
-* - One-shot timers (negative period)
-* - Repeating timers
-* - Timer cleanup
-* - Timer with closures
-*/
+ * Timer Patterns in AHK v2
+ * Source: Patterns from notification examples
+ * 
+ * Demonstrates:
+ * - SetTimer with arrow functions
+ * - One-shot timers (negative period)
+ * - Repeating timers
+ * - Timer cleanup
+ * - Timer with closures
+ */
 
 ; Example 1: One-shot timer (runs once after delay)
 OneShotTimer() {
@@ -29,10 +29,10 @@ RepeatingTimer() {
 
     ; Positive value = repeat every 1000ms
     timerFunc := () => (
-    global count,
-    count++,
-    ToolTip("Timer tick: " count),
-    count >= 5 ? (SetTimer(timerFunc, 0), ToolTip()) : ""
+        global count,
+        count++,
+        ToolTip("Timer tick: " count),
+        count >= 5 ? (SetTimer(timerFunc, 0), ToolTip()) : ""
     )
 
     SetTimer(timerFunc, 1000)
@@ -41,9 +41,9 @@ RepeatingTimer() {
 ; Example 3: Timer with cleanup
 TimerWithCleanup() {
     cleanup := () => (
-    ToolTip("Cleaning up..."),
-    Sleep(1000),
-    ToolTip()
+        ToolTip("Cleaning up..."),
+        Sleep(1000),
+        ToolTip()
     )
 
     MsgBox("Timer will auto-cleanup in 3 seconds...")
@@ -61,17 +61,17 @@ MultipleTimers() {
 
 ; Menu to choose examples
 choice := MsgBox("Choose timer example:`n`n"
-. "Yes = One-shot`n"
-. "No = Repeating`n"
-. "Cancel = Multiple", "Timer Examples", "YNC")
+    . "Yes = One-shot`n"
+    . "No = Repeating`n"
+    . "Cancel = Multiple", "Timer Examples", "YNC")
 
 if (choice = "Yes")
-OneShotTimer()
+    OneShotTimer()
 else if (choice = "No")
-RepeatingTimer()
+    RepeatingTimer()
 else if (choice = "Cancel")
-MultipleTimers()
+    MultipleTimers()
 
 ; Keep script running for timers
 Persistent
-Esc::ExitApp
+Esc:: ExitApp

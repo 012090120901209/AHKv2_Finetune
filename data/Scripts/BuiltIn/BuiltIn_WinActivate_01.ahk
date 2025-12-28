@@ -1,30 +1,30 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinActivate Examples - Part 1: Activate by Title
-* ============================================================================
-*
-* This script demonstrates how to use WinActivate to bring windows to the
-* foreground by their window title. WinActivate is one of the most commonly
-* used window management functions in AutoHotkey.
-*
-* @description Comprehensive examples of activating windows using title matching
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinActivate Examples - Part 1: Activate by Title
+ * ============================================================================
+ * 
+ * This script demonstrates how to use WinActivate to bring windows to the
+ * foreground by their window title. WinActivate is one of the most commonly
+ * used window management functions in AutoHotkey.
+ * 
+ * @description Comprehensive examples of activating windows using title matching
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Window Activation by Exact Title
 ; ============================================================================
 
 /**
-* Activates a window with an exact title match
-*
-* @hotkey F1 - Activate Notepad window
-* @example WinActivate("Untitled - Notepad")
-*/
+ * Activates a window with an exact title match
+ * 
+ * @hotkey F1 - Activate Notepad window
+ * @example WinActivate("Untitled - Notepad")
+ */
 F1:: {
     try {
         ; Activate Notepad with exact title
@@ -44,12 +44,12 @@ F1:: {
 ; ============================================================================
 
 /**
-* Activates windows using partial title matching
-* This is useful when the full title is dynamic or unknown
-*
-* @hotkey F2 - Activate any Chrome window
-* @example WinActivate("ahk_exe chrome.exe")
-*/
+ * Activates windows using partial title matching
+ * This is useful when the full title is dynamic or unknown
+ * 
+ * @hotkey F2 - Activate any Chrome window
+ * @example WinActivate("ahk_exe chrome.exe")
+ */
 F2:: {
     try {
         ; Activate any window with "Chrome" in the title
@@ -68,11 +68,11 @@ F2:: {
 ; ============================================================================
 
 /**
-* Cycles through multiple windows that match the same title pattern
-* Useful for navigating between multiple instances of the same application
-*
-* @hotkey F3 - Cycle through Notepad windows
-*/
+ * Cycles through multiple windows that match the same title pattern
+ * Useful for navigating between multiple instances of the same application
+ * 
+ * @hotkey F3 - Cycle through Notepad windows
+ */
 F3:: {
     static lastActivated := ""
 
@@ -113,11 +113,11 @@ F3:: {
 ; ============================================================================
 
 /**
-* Attempts to activate a window, and if it doesn't exist, launches the application
-* This is a common pattern for productivity scripts
-*
-* @hotkey F4 - Activate or launch Calculator
-*/
+ * Attempts to activate a window, and if it doesn't exist, launches the application
+ * This is a common pattern for productivity scripts
+ * 
+ * @hotkey F4 - Activate or launch Calculator
+ */
 F4:: {
     try {
         ; Try to activate existing Calculator window
@@ -149,11 +149,11 @@ F4:: {
 ; ============================================================================
 
 /**
-* Uses regular expressions for advanced title matching
-* Useful when dealing with dynamic window titles
-*
-* @hotkey F5 - Activate window with pattern matching
-*/
+ * Uses regular expressions for advanced title matching
+ * Useful when dealing with dynamic window titles
+ * 
+ * @hotkey F5 - Activate window with pattern matching
+ */
 F5:: {
     try {
         ; Find windows with titles containing numbers (like "Document 1 - Word")
@@ -181,18 +181,18 @@ F5:: {
 ; ============================================================================
 
 /**
-* Creates a GUI list of windows and activates the selected one
-* Demonstrates integration of WinActivate with GUI controls
-*
-* @hotkey F6 - Show window switcher GUI
-*/
+ * Creates a GUI list of windows and activates the selected one
+ * Demonstrates integration of WinActivate with GUI controls
+ * 
+ * @hotkey F6 - Show window switcher GUI
+ */
 F6:: {
     ShowWindowSwitcher()
 }
 
 /**
-* Creates and displays a window switcher GUI
-*/
+ * Creates and displays a window switcher GUI
+ */
 ShowWindowSwitcher() {
     static windowSwitcherGui := ""
 
@@ -221,47 +221,47 @@ ShowWindowSwitcher() {
         try {
             ; Only include visible windows with titles
             if WinGetTitle(hwnd) != "" && WinGetStyle(hwnd) & 0x10000000 {  ; WS_VISIBLE
-            title := WinGetTitle(hwnd)
-            exe := WinGetProcessName(hwnd)
-            displayText := title " [" exe "]"
-            windows[displayText] := hwnd
-            windowTitles.Push(displayText)
+                title := WinGetTitle(hwnd)
+                exe := WinGetProcessName(hwnd)
+                displayText := title " [" exe "]"
+                windows[displayText] := hwnd
+                windowTitles.Push(displayText)
+            }
         }
     }
-}
 
-; Populate list box
-if windowTitles.Length > 0 {
-    windowList.Add(windowTitles)
-    windowList.Choose(1)
-} else {
-    windowList.Add(["No windows found"])
-}
-
-; Add buttons
-windowSwitcherGui.Add("Button", "w195 Default", "Activate").OnEvent("Click", ActivateSelectedWindow)
-windowSwitcherGui.Add("Button", "w195 x+10 yp", "Cancel").OnEvent("Click", (*) => windowSwitcherGui.Destroy())
-
-; Show GUI centered
-windowSwitcherGui.Show()
-
-/**
-* Activates the window selected in the list
-*/
-ActivateSelectedWindow(*) {
-    try {
-        selected := windowList.Text
-        if windows.Has(selected) {
-            hwnd := windows[selected]
-            WinActivate(hwnd)
-            windowSwitcherGui.Destroy()
-            ToolTip("Activated: " selected)
-            SetTimer(() => ToolTip(), -2000)
-        }
-    } catch Error as err {
-        MsgBox("Error activating window: " err.Message, "Error", 16)
+    ; Populate list box
+    if windowTitles.Length > 0 {
+        windowList.Add(windowTitles)
+        windowList.Choose(1)
+    } else {
+        windowList.Add(["No windows found"])
     }
-}
+
+    ; Add buttons
+    windowSwitcherGui.Add("Button", "w195 Default", "Activate").OnEvent("Click", ActivateSelectedWindow)
+    windowSwitcherGui.Add("Button", "w195 x+10 yp", "Cancel").OnEvent("Click", (*) => windowSwitcherGui.Destroy())
+
+    ; Show GUI centered
+    windowSwitcherGui.Show()
+
+    /**
+     * Activates the window selected in the list
+     */
+    ActivateSelectedWindow(*) {
+        try {
+            selected := windowList.Text
+            if windows.Has(selected) {
+                hwnd := windows[selected]
+                WinActivate(hwnd)
+                windowSwitcherGui.Destroy()
+                ToolTip("Activated: " selected)
+                SetTimer(() => ToolTip(), -2000)
+            }
+        } catch Error as err {
+            MsgBox("Error activating window: " err.Message, "Error", 16)
+        }
+    }
 }
 
 ; ============================================================================
@@ -269,20 +269,20 @@ ActivateSelectedWindow(*) {
 ; ============================================================================
 
 /**
-* Activates windows on specific monitors
-* Useful for multi-monitor setups where you want to focus on a particular screen
-*
-* @hotkey F7 - Activate window on primary monitor
-*/
+ * Activates windows on specific monitors
+ * Useful for multi-monitor setups where you want to focus on a particular screen
+ * 
+ * @hotkey F7 - Activate window on primary monitor
+ */
 F7:: {
     ActivateWindowOnMonitor(1)
 }
 
 /**
-* Activates the topmost window on a specific monitor
-*
-* @param {Integer} monitorNum - Monitor number (1-based)
-*/
+ * Activates the topmost window on a specific monitor
+ * 
+ * @param {Integer} monitorNum - Monitor number (1-based)
+ */
 ActivateWindowOnMonitor(monitorNum) {
     try {
         ; Get monitor bounds
@@ -315,11 +315,11 @@ ActivateWindowOnMonitor(monitorNum) {
 ; ============================================================================
 
 /**
-* Gets the monitor number where a window is primarily located
-*
-* @param {String|Integer} winTitle - Window title or HWND
-* @returns {Integer} Monitor number (1-based)
-*/
+ * Gets the monitor number where a window is primarily located
+ * 
+ * @param {String|Integer} winTitle - Window title or HWND
+ * @returns {Integer} Monitor number (1-based)
+ */
 GetWindowMonitor(winTitle := "A") {
     try {
         WinGetPos(&x, &y, &width, &height, winTitle)
@@ -344,11 +344,11 @@ GetWindowMonitor(winTitle := "A") {
 ; ============================================================================
 
 ; Press Escape to exit the script
-Esc::ExitApp()
+Esc:: ExitApp()
 
 /**
-* Script information display
-*/
+ * Script information display
+ */
 ^F1:: {
     info := "
     (

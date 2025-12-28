@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiControls_01.ahk - Button and Text Controls
-*
-* This file demonstrates button and text controls in AutoHotkey v2.
-* Topics covered:
-* - Button types and styles
-* - Text controls and labels
-* - Static text formatting
-* - Button events and handlers
-* - Dynamic button states (enable/disable)
-* - Button icons and images
-* - Grouped buttons and button bars
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_GuiControls_01.ahk - Button and Text Controls
+ * 
+ * This file demonstrates button and text controls in AutoHotkey v2.
+ * Topics covered:
+ * - Button types and styles
+ * - Text controls and labels
+ * - Static text formatting
+ * - Button events and handlers
+ * - Dynamic button states (enable/disable)
+ * - Button icons and images
+ * - Grouped buttons and button bars
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Basic Buttons
 ; =============================================================================
 
 /**
-* Demonstrates basic button creation and click handling
-* Shows different button styles and configurations
-*/
+ * Demonstrates basic button creation and click handling
+ * Shows different button styles and configurations
+ */
 Example1_BasicButtons() {
     myGui := Gui(, "Basic Buttons Demo")
     myGui.BackColor := "White"
@@ -84,9 +84,9 @@ Example1_BasicButtons() {
 ; =============================================================================
 
 /**
-* Demonstrates various text control types and formatting
-* Shows static text, labels, and text styling
-*/
+ * Demonstrates various text control types and formatting
+ * Shows static text, labels, and text styling
+ */
 Example2_TextControls() {
     myGui := Gui(, "Text Controls Demo")
     myGui.BackColor := "White"
@@ -160,9 +160,9 @@ Example2_TextControls() {
 ; =============================================================================
 
 /**
-* Demonstrates button state management
-* Enable, disable, show, hide functionality
-*/
+ * Demonstrates button state management
+ * Enable, disable, show, hide functionality
+ */
 Example3_ButtonStates() {
     myGui := Gui(, "Button States Demo")
     myGui.BackColor := "0xF0F0F0"
@@ -235,9 +235,9 @@ Example3_ButtonStates() {
 ; =============================================================================
 
 /**
-* Creates button groups and toolbar-like layouts
-* Demonstrates organized button collections
-*/
+ * Creates button groups and toolbar-like layouts
+ * Demonstrates organized button collections
+ */
 Example4_ButtonGroups() {
     myGui := Gui(, "Button Groups Demo")
     myGui.BackColor := "White"
@@ -333,7 +333,7 @@ Example4_ButtonGroups() {
     numPadButtons := []
     startX := 20
     startY := 375
-    for row in [[7,8,9], [4,5,6], [1,2,3], [0]] {
+    for row in [[7, 8, 9], [4, 5, 6], [1, 2, 3], [0]] {
         for col, num in row {
             x := startX + (col - 1) * 60
             y := startY + (A_Index - 1) * 35
@@ -369,9 +369,9 @@ Example4_ButtonGroups() {
 ; =============================================================================
 
 /**
-* Demonstrates dynamic button text changes
-* Buttons that change their labels based on state
-*/
+ * Demonstrates dynamic button text changes
+ * Buttons that change their labels based on state
+ */
 Example5_DynamicButtons() {
     myGui := Gui(, "Dynamic Button Text Demo")
     myGui.BackColor := "White"
@@ -451,20 +451,20 @@ Example5_DynamicButtons() {
     AdvanceState(*) {
         currentState++
         if (currentState > 3)
-        currentState := 1
+            currentState := 1
 
         stateBtn.Value := states[currentState]
 
         switch currentState {
             case 1:
-            stateDisplay.Opt("BackgroundYellow")
-            stateDisplay.Value := "Ready to start"
+                stateDisplay.Opt("BackgroundYellow")
+                stateDisplay.Value := "Ready to start"
             case 2:
-            stateDisplay.Opt("BackgroundAqua")
-            stateDisplay.Value := "In progress..."
+                stateDisplay.Opt("BackgroundAqua")
+                stateDisplay.Value := "In progress..."
             case 3:
-            stateDisplay.Opt("BackgroundLime")
-            stateDisplay.Value := "✓ Completed!"
+                stateDisplay.Opt("BackgroundLime")
+                stateDisplay.Value := "✓ Completed!"
         }
     }
 
@@ -526,9 +526,9 @@ Example5_DynamicButtons() {
 ; =============================================================================
 
 /**
-* Common button layout patterns
-* Dialog buttons, confirmation patterns
-*/
+ * Common button layout patterns
+ * Dialog buttons, confirmation patterns
+ */
 Example6_ButtonLayouts() {
     myGui := Gui(, "Button Layout Patterns")
     myGui.BackColor := "White"
@@ -587,9 +587,9 @@ Example6_ButtonLayouts() {
 ; =============================================================================
 
 /**
-* Visual and textual feedback for button clicks
-* Demonstrates user feedback techniques
-*/
+ * Visual and textual feedback for button clicks
+ * Demonstrates user feedback techniques
+ */
 Example7_ButtonFeedback() {
     myGui := Gui(, "Button Click Feedback Demo")
     myGui.BackColor := "0xF5F5F5"
@@ -696,8 +696,8 @@ Example7_ButtonFeedback() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiControls_01 - Button & Text Examples")
     menuGui.BackColor := "White"

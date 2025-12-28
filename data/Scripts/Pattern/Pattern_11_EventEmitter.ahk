@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* EventEmitter Pattern
-*
-* Demonstrates implementing an EventEmitter base class for event-driven
-* programming with on(), once(), off(), and emit() methods.
-*
-* Source: AHK_Notes/Classes/event-emitter.md
-*/
+ * EventEmitter Pattern
+ * 
+ * Demonstrates implementing an EventEmitter base class for event-driven
+ * programming with on(), once(), off(), and emit() methods.
+ * 
+ * Source: AHK_Notes/Classes/event-emitter.md
+ */
 
 ; Test basic event emitter
 emitter := EventEmitter()
@@ -37,8 +37,8 @@ FileAppend("Line 1`nLine 2`nLine 3", testFile)
 reader := FileReader()
 
 reader.on("data", (line) => ToolTip("Data: " line))
-.on("end", (*) => MsgBox("File reading complete!", , "T3"))
-.on("error", (err) => MsgBox("Error: " err, , "T3"))
+    .on("end", (*) => MsgBox("File reading complete!", , "T3"))
+    .on("error", (err) => MsgBox("Error: " err, , "T3"))
 
 MsgBox("Reading file with events...", , "T2")
 reader.ReadFile(testFile)
@@ -48,20 +48,20 @@ ToolTip()
 FileDelete(testFile)
 
 /**
-* EventEmitter - Base class for event-driven objects
-*/
+ * EventEmitter - Base class for event-driven objects
+ */
 class EventEmitter {
     _events := Map()
 
     /**
-    * Register event listener
-    * @param {string} eventName - Event to listen for
-    * @param {func} callback - Function to call
-    * @return {EventEmitter} this (for chaining)
-    */
+     * Register event listener
+     * @param {string} eventName - Event to listen for
+     * @param {func} callback - Function to call
+     * @return {EventEmitter} this (for chaining)
+     */
     on(eventName, callback) {
         if (!this._events.Has(eventName))
-        this._events[eventName] := []
+            this._events[eventName] := []
 
         this._events[eventName].Push({
             callback: callback,
@@ -72,14 +72,14 @@ class EventEmitter {
     }
 
     /**
-    * Register one-time event listener
-    * @param {string} eventName - Event to listen for
-    * @param {func} callback - Function to call once
-    * @return {EventEmitter} this (for chaining)
-    */
+     * Register one-time event listener
+     * @param {string} eventName - Event to listen for
+     * @param {func} callback - Function to call once
+     * @return {EventEmitter} this (for chaining)
+     */
     once(eventName, callback) {
         if (!this._events.Has(eventName))
-        this._events[eventName] := []
+            this._events[eventName] := []
 
         this._events[eventName].Push({
             callback: callback,
@@ -90,13 +90,13 @@ class EventEmitter {
     }
 
     /**
-    * Remove event listener(s)
-    * @param {string} eventName - Event name
-    * @param {func} callback - Specific callback to remove (optional)
-    */
+     * Remove event listener(s)
+     * @param {string} eventName - Event name
+     * @param {func} callback - Specific callback to remove (optional)
+     */
     off(eventName, callback := "") {
         if (!this._events.Has(eventName))
-        return
+            return
 
         if (callback == "") {
             ; Remove all listeners for this event
@@ -114,13 +114,13 @@ class EventEmitter {
     }
 
     /**
-    * Emit event to all listeners
-    * @param {string} eventName - Event to emit
-    * @param {any} args* - Arguments to pass to listeners
-    */
+     * Emit event to all listeners
+     * @param {string} eventName - Event to emit
+     * @param {any} args* - Arguments to pass to listeners
+     */
     emit(eventName, args*) {
         if (!this._events.Has(eventName))
-        return
+            return
 
         listeners := this._events[eventName]
         toRemove := []
@@ -132,7 +132,7 @@ class EventEmitter {
 
                 ; Mark once listeners for removal
                 if (listener.once)
-                toRemove.Push(index)
+                    toRemove.Push(index)
 
             } catch as err {
                 ; Handle errors without stopping other listeners
@@ -147,20 +147,20 @@ class EventEmitter {
     }
 
     /**
-    * Remove all listeners
-    */
+     * Remove all listeners
+     */
     removeAllListeners() {
         this._events := Map()
     }
 }
 
 /**
-* FileReader - Example class using EventEmitter
-*/
+ * FileReader - Example class using EventEmitter
+ */
 class FileReader extends EventEmitter {
     /**
-    * Read file and emit events
-    */
+     * Read file and emit events
+     */
     ReadFile(filePath) {
         try {
             if (!FileExist(filePath)) {
@@ -240,4 +240,5 @@ class FileReader extends EventEmitter {
     *     ✅ Multiple handlers per event
     *     ✅ Easy to add/remove listeners
     *     ✅ Clean async patterns
-    */
+*/
+

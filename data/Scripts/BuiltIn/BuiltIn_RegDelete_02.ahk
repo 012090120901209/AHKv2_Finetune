@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Delete Examples - Part 2
-* ============================================================================
-*
-* This file demonstrates advanced registry deletion scenarios including
-* batch cleanup, pattern matching, and registry maintenance.
-*
-* @description Advanced registry deletion techniques
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Delete Examples - Part 2
+ * ============================================================================
+ * 
+ * This file demonstrates advanced registry deletion scenarios including
+ * batch cleanup, pattern matching, and registry maintenance.
+ * 
+ * @description Advanced registry deletion techniques
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Pattern-Based Deletion
 ; ============================================================================
 
 /**
-* @class PatternDelete
-* @description Deletes registry values matching patterns
-*/
+ * @class PatternDelete
+ * @description Deletes registry values matching patterns
+ */
 class PatternDelete {
     /**
-    * @method DeleteByPattern
-    * @description Deletes values matching a pattern
-    * @param {String} keyPath - Registry key path
-    * @param {String} pattern - Pattern to match (supports * wildcard)
-    * @returns {Map} Deletion result
-    */
+     * @method DeleteByPattern
+     * @description Deletes values matching a pattern
+     * @param {String} keyPath - Registry key path
+     * @param {String} pattern - Pattern to match (supports * wildcard)
+     * @returns {Map} Deletion result
+     */
     static DeleteByPattern(keyPath, pattern) {
         result := Map(
-        "scanned", 0,
-        "matched", 0,
-        "deleted", 0,
-        "failed", 0,
-        "details", []
+            "scanned", 0,
+            "matched", 0,
+            "deleted", 0,
+            "failed", 0,
+            "details", []
         )
 
         ; Convert pattern to regex
@@ -45,7 +45,7 @@ class PatternDelete {
 
         try {
             Loop Reg, keyPath, "V"
- {
+            {
                 valueName := A_LoopRegName
                 result["scanned"]++
 
@@ -57,15 +57,15 @@ class PatternDelete {
                         RegDelete keyPath, valueName
                         result["deleted"]++
                         result["details"].Push(Map(
-                        "name", valueName,
-                        "status", "Deleted"
+                            "name", valueName,
+                            "status", "Deleted"
                         ))
                     } catch Error as err {
                         result["failed"]++
                         result["details"].Push(Map(
-                        "name", valueName,
-                        "status", "Failed",
-                        "error", err.Message
+                            "name", valueName,
+                            "status", "Failed",
+                            "error", err.Message
                         ))
                     }
                 }
@@ -76,9 +76,9 @@ class PatternDelete {
     }
 
     /**
-    * @method GetReport
-    * @description Formats deletion report
-    */
+     * @method GetReport
+     * @description Formats deletion report
+     */
     static GetReport(result) {
         report := "Pattern-Based Deletion Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -100,13 +100,13 @@ class PatternDelete {
 }
 
 /**
-* @function Example1_PatternDeletion
-* @description Demonstrates pattern-based deletion
-* @returns {void}
-*/
+ * @function Example1_PatternDeletion
+ * @description Demonstrates pattern-based deletion
+ * @returns {void}
+ */
 Example1_PatternDeletion() {
     MsgBox "=== Example 1: Pattern-Based Deletion ===`n`n" .
-    "Deleting values matching patterns..."
+        "Deleting values matching patterns..."
 
     testKey := "HKCU\Software\AHKv2Examples\PatternTest"
 
@@ -132,38 +132,38 @@ Example1_PatternDeletion() {
 ; ============================================================================
 
 /**
-* @class BatchCleanup
-* @description Performs batch cleanup operations
-*/
+ * @class BatchCleanup
+ * @description Performs batch cleanup operations
+ */
 class BatchCleanup {
     cleanupLog := []
 
     /**
-    * @method AddCleanupTask
-    * @description Adds a cleanup task
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name (empty for entire key)
-    * @param {String} type - "value" or "key"
-    */
+     * @method AddCleanupTask
+     * @description Adds a cleanup task
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name (empty for entire key)
+     * @param {String} type - "value" or "key"
+     */
     AddCleanupTask(keyPath, valueName := "", type := "value") {
         this.cleanupLog.Push(Map(
-        "keyPath", keyPath,
-        "valueName", valueName,
-        "type", type,
-        "status", "Pending"
+            "keyPath", keyPath,
+            "valueName", valueName,
+            "type", type,
+            "status", "Pending"
         ))
     }
 
     /**
-    * @method ExecuteCleanup
-    * @description Executes all cleanup tasks
-    * @returns {Map} Execution result
-    */
+     * @method ExecuteCleanup
+     * @description Executes all cleanup tasks
+     * @returns {Map} Execution result
+     */
     ExecuteCleanup() {
         result := Map(
-        "total", this.cleanupLog.Length,
-        "completed", 0,
-        "failed", 0
+            "total", this.cleanupLog.Length,
+            "completed", 0,
+            "failed", 0
         )
 
         for task in this.cleanupLog {
@@ -188,9 +188,9 @@ class BatchCleanup {
     }
 
     /**
-    * @method GetCleanupReport
-    * @description Gets cleanup report
-    */
+     * @method GetCleanupReport
+     * @description Gets cleanup report
+     */
     GetCleanupReport() {
         report := "Batch Cleanup Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━`n`n"
@@ -200,12 +200,12 @@ class BatchCleanup {
             report .= status . " " . task["type"] . ": " . task["keyPath"]
 
             if (task["valueName"] != "")
-            report .= "\" . task["valueName"]
+                report .= "\" . task["valueName"]
 
             report .= "`n"
 
             if (task.Has("error"))
-            report .= "  Error: " . task["error"] . "`n"
+                report .= "  Error: " . task["error"] . "`n"
         }
 
         return report
@@ -213,13 +213,13 @@ class BatchCleanup {
 }
 
 /**
-* @function Example2_BatchCleanup
-* @description Demonstrates batch cleanup operations
-* @returns {void}
-*/
+ * @function Example2_BatchCleanup
+ * @description Demonstrates batch cleanup operations
+ * @returns {void}
+ */
 Example2_BatchCleanup() {
     MsgBox "=== Example 2: Batch Cleanup ===`n`n" .
-    "Performing batch cleanup operations..."
+        "Performing batch cleanup operations..."
 
     testKey := "HKCU\Software\AHKv2Examples\BatchCleanupTest"
 
@@ -242,7 +242,7 @@ Example2_BatchCleanup() {
     report := cleanup.GetCleanupReport()
 
     MsgBox "Completed: " . result["completed"] . "/" . result["total"] . "`n`n" . report,
-    "Batch Cleanup Results"
+        "Batch Cleanup Results"
 }
 
 ; ============================================================================
@@ -250,13 +250,13 @@ Example2_BatchCleanup() {
 ; ============================================================================
 
 /**
-* @function Example3_OrphanedCleanup
-* @description Finds and cleans up orphaned registry entries
-* @returns {void}
-*/
+ * @function Example3_OrphanedCleanup
+ * @description Finds and cleans up orphaned registry entries
+ * @returns {void}
+ */
 Example3_OrphanedCleanup() {
     MsgBox "=== Example 3: Orphaned Entry Cleanup ===`n`n" .
-    "Finding and cleaning orphaned entries..."
+        "Finding and cleaning orphaned entries..."
 
     baseKey := "HKCU\Software\AHKv2Examples\OrphanedTest"
 
@@ -273,7 +273,7 @@ Example3_OrphanedCleanup() {
     ; Check each entry
     try {
         Loop Reg, baseKey, "V"
- {
+        {
             valueName := A_LoopRegName
             try {
                 filePath := RegRead(baseKey, valueName)
@@ -310,9 +310,9 @@ Example3_OrphanedCleanup() {
 ; ============================================================================
 
 /**
-* @class CacheExpiration
-* @description Manages cache expiration and cleanup
-*/
+ * @class CacheExpiration
+ * @description Manages cache expiration and cleanup
+ */
 class CacheExpiration {
     cacheKey := ""
 
@@ -321,20 +321,20 @@ class CacheExpiration {
     }
 
     /**
-    * @method CleanExpiredCache
-    * @description Removes expired cache entries
-    * @returns {Map} Cleanup result
-    */
+     * @method CleanExpiredCache
+     * @description Removes expired cache entries
+     * @returns {Map} Cleanup result
+     */
     CleanExpiredCache() {
         result := Map(
-        "scanned", 0,
-        "expired", 0,
-        "active", 0
+            "scanned", 0,
+            "expired", 0,
+            "active", 0
         )
 
         try {
             Loop Reg, this.cacheKey, "K"
- {
+            {
                 result["scanned"]++
                 entryKey := this.cacheKey . "\" . A_LoopRegName
 
@@ -362,33 +362,33 @@ class CacheExpiration {
     }
 
     /**
-    * @method CleanBySize
-    * @description Removes oldest entries to maintain size limit
-    * @param {Integer} maxEntries - Maximum number of entries
-    * @returns {Integer} Number of entries removed
-    */
+     * @method CleanBySize
+     * @description Removes oldest entries to maintain size limit
+     * @param {Integer} maxEntries - Maximum number of entries
+     * @returns {Integer} Number of entries removed
+     */
     CleanBySize(maxEntries) {
         entries := []
 
         ; Collect all entries with timestamps
         try {
             Loop Reg, this.cacheKey, "K"
- {
+            {
                 entryKey := this.cacheKey . "\" . A_LoopRegName
 
                 try {
                     timestamp := RegRead(entryKey, "CreatedAt")
                     entries.Push(Map(
-                    "key", entryKey,
-                    "name", A_LoopRegName,
-                    "timestamp", timestamp
+                        "key", entryKey,
+                        "name", A_LoopRegName,
+                        "timestamp", timestamp
                     ))
                 } catch {
                     ; No timestamp, add with current time
                     entries.Push(Map(
-                    "key", entryKey,
-                    "name", A_LoopRegName,
-                    "timestamp", A_Now
+                        "key", entryKey,
+                        "name", A_LoopRegName,
+                        "timestamp", A_Now
                     ))
                 }
             }
@@ -396,7 +396,7 @@ class CacheExpiration {
 
         ; If under limit, nothing to do
         if (entries.Length <= maxEntries)
-        return 0
+            return 0
 
         ; Sort by timestamp (oldest first)
         this.SortByTimestamp(&entries)
@@ -407,7 +407,7 @@ class CacheExpiration {
 
         for i, entry in entries {
             if (i > deleteCount)
-            break
+                break
 
             try {
                 RegDeleteKey entry["key"]
@@ -419,9 +419,9 @@ class CacheExpiration {
     }
 
     /**
-    * @method SortByTimestamp
-    * @description Sorts entries by timestamp
-    */
+     * @method SortByTimestamp
+     * @description Sorts entries by timestamp
+     */
     SortByTimestamp(&entries) {
         ; Simple bubble sort
         n := entries.Length
@@ -436,19 +436,19 @@ class CacheExpiration {
                 }
             }
             if (!swapped)
-            break
+                break
         }
     }
 }
 
 /**
-* @function Example4_CacheCleanup
-* @description Demonstrates cache expiration cleanup
-* @returns {void}
-*/
+ * @function Example4_CacheCleanup
+ * @description Demonstrates cache expiration cleanup
+ * @returns {void}
+ */
 Example4_CacheCleanup() {
     MsgBox "=== Example 4: Cache Expiration Cleanup ===`n`n" .
-    "Cleaning up expired cache entries..."
+        "Cleaning up expired cache entries..."
 
     cacheKey := "HKCU\Software\AHKv2Examples\CacheTest"
 
@@ -483,13 +483,13 @@ Example4_CacheCleanup() {
 ; ============================================================================
 
 /**
-* @function Example5_DuplicateRemoval
-* @description Removes duplicate registry entries
-* @returns {void}
-*/
+ * @function Example5_DuplicateRemoval
+ * @description Removes duplicate registry entries
+ * @returns {void}
+ */
 Example5_DuplicateRemoval() {
     MsgBox "=== Example 5: Duplicate Entry Removal ===`n`n" .
-    "Finding and removing duplicate entries..."
+        "Finding and removing duplicate entries..."
 
     testKey := "HKCU\Software\AHKv2Examples\DuplicateTest"
 
@@ -508,7 +508,7 @@ Example5_DuplicateRemoval() {
 
     try {
         Loop Reg, testKey, "V"
- {
+        {
             valueName := A_LoopRegName
             try {
                 value := RegRead(testKey, valueName)
@@ -544,13 +544,13 @@ Example5_DuplicateRemoval() {
 ; ============================================================================
 
 /**
-* @function Example6_TypeBasedCleanup
-* @description Cleans up entries based on data type
-* @returns {void}
-*/
+ * @function Example6_TypeBasedCleanup
+ * @description Cleans up entries based on data type
+ * @returns {void}
+ */
 Example6_TypeBasedCleanup() {
     MsgBox "=== Example 6: Type-Based Cleanup ===`n`n" .
-    "Cleaning entries by data type..."
+        "Cleaning entries by data type..."
 
     testKey := "HKCU\Software\AHKv2Examples\TypeCleanupTest"
 
@@ -570,7 +570,7 @@ Example6_TypeBasedCleanup() {
     ; Clean up empty strings and zero values
     try {
         Loop Reg, testKey, "V"
- {
+        {
             valueName := A_LoopRegName
             try {
                 value := RegRead(testKey, valueName)
@@ -602,13 +602,13 @@ Example6_TypeBasedCleanup() {
 ; ============================================================================
 
 /**
-* @function Example7_MaintenanceScheduler
-* @description Demonstrates automated maintenance tasks
-* @returns {void}
-*/
+ * @function Example7_MaintenanceScheduler
+ * @description Demonstrates automated maintenance tasks
+ * @returns {void}
+ */
 Example7_MaintenanceScheduler() {
     MsgBox "=== Example 7: Maintenance Scheduler ===`n`n" .
-    "Configuring automated maintenance..."
+        "Configuring automated maintenance..."
 
     maintKey := "HKCU\Software\AHKv2Examples\Maintenance"
 
@@ -677,8 +677,8 @@ ShowMenu() {
         case "7": Example7_MaintenanceScheduler()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

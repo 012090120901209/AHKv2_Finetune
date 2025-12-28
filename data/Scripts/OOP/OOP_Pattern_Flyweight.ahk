@@ -14,7 +14,7 @@ class TreeFactory {
     static GetTreeType(name, color, texture) {
         key := name . color . texture
         if (!this.types.Has(key))
-        this.types[key] := TreeType(name, color, texture)
+            this.types[key] := TreeType(name, color, texture)
         return this.types[key]
     }
 
@@ -38,16 +38,16 @@ class Forest {
 
     Draw() {
         for tree in this.trees
-        tree.Draw()
+            tree.Draw()
         MsgBox(Format("Memory: {} unique tree types for {} trees", TreeFactory.GetTypeCount(), this.trees.Length))
     }
 }
 
 ; Usage - memory efficient with thousands of trees
 forest := Forest()
-.PlantTree(10, 20, "Oak", "Green", "Rough")
-.PlantTree(30, 40, "Pine", "DarkGreen", "Smooth")
-.PlantTree(50, 60, "Oak", "Green", "Rough")  ; Reuses first type
-.PlantTree(70, 80, "Pine", "DarkGreen", "Smooth")  ; Reuses second type
+    .PlantTree(10, 20, "Oak", "Green", "Rough")
+    .PlantTree(30, 40, "Pine", "DarkGreen", "Smooth")
+    .PlantTree(50, 60, "Oak", "Green", "Rough")  ; Reuses first type
+    .PlantTree(70, 80, "Pine", "DarkGreen", "Smooth")  ; Reuses second type
 
 forest.Draw()

@@ -3,9 +3,9 @@
 
 A_Clipboard := "" ; Empty the clipboard
 Send("^c")
-Errorlevel := ! ClipWait(2)
+Errorlevel := !ClipWait(2)
 if ErrorLevel
- {
+{
     MsgBox("The attempt to copy text onto the clipboard failed.")
 }
 MsgBox("clipboard = " A_Clipboard)

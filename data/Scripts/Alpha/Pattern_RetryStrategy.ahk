@@ -18,13 +18,13 @@ class RetryStrategy {
     GetDelay(attempt) {
         delay := this.baseDelay * (this.backoffMultiplier ** (attempt - 1))
         delay := Min(delay, this.maxDelay)
-        
+
         ; Add jitter (0-25% random variation)
         if this.jitter {
             jitterAmount := delay * 0.25 * Random()
             delay += jitterAmount
         }
-        
+
         return Round(delay)
     }
 
@@ -57,10 +57,10 @@ class RetryExecutor {
         while attempt <= this.strategy.maxAttempts {
             try {
                 result := operation()
-                
+
                 if this.onSuccess
                     this.onSuccess(result, attempt)
-                
+
                 return Map(
                     "success", true,
                     "result", result,
@@ -68,7 +68,7 @@ class RetryExecutor {
                 )
             } catch Error as e {
                 lastError := e
-                
+
                 if !this.strategy.ShouldRetry(e, attempt) {
                     break
                 }
@@ -78,7 +78,7 @@ class RetryExecutor {
 
                 if attempt < this.strategy.maxAttempts
                     Sleep(this.strategy.GetDelay(attempt))
-                
+
                 attempt++
             }
         }
@@ -133,7 +133,7 @@ class CircuitBreaker {
 
     _recordSuccess() {
         this.failures := 0
-        
+
         if this.state = "HALF_OPEN" {
             this.successes++
             if this.successes >= this.successThreshold {
@@ -146,7 +146,7 @@ class CircuitBreaker {
     _recordFailure() {
         this.failures++
         this.lastFailure := A_TickCount
-        
+
         if this.state = "HALF_OPEN" || this.failures >= this.failureThreshold {
             this.state := "OPEN"
         }

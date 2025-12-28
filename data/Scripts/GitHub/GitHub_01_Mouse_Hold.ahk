@@ -2,14 +2,14 @@
 #SingleInstance Force
 
 /**
-* Mouse Hold - Accessibility Mouse Button Lock
-*
-* Demonstrates holding down mouse buttons without physical pressure,
-* useful for accessibility, drag operations, and gaming.
-*
-* Source: JWCow/AHK-Collection - mouse_hold.ahk
-* Inspired by: https://github.com/JWCow/AHK-Collection
-*/
+ * Mouse Hold - Accessibility Mouse Button Lock
+ * 
+ * Demonstrates holding down mouse buttons without physical pressure,
+ * useful for accessibility, drag operations, and gaming.
+ * 
+ * Source: JWCow/AHK-Collection - mouse_hold.ahk
+ * Inspired by: https://github.com/JWCow/AHK-Collection
+ */
 
 ; Global state tracking
 global leftHeld := false
@@ -17,79 +17,79 @@ global rightHeld := false
 global middleHeld := false
 
 MsgBox("Mouse Hold Demo`n`n"
-. "Hotkeys:`n"
-. "Ctrl+Alt+Shift+1 - Toggle LEFT button hold`n"
-. "Ctrl+Alt+Shift+2 - Toggle RIGHT button hold`n"
-. "Ctrl+Alt+Shift+3 - Toggle MIDDLE button hold`n`n"
-. "Useful for:`n"
-. "- Long drag operations`n"
-. "- Accessibility needs`n"
-. "- Gaming macros`n"
-. "- Hands-free operations", , "T7")
+    . "Hotkeys:`n"
+    . "Ctrl+Alt+Shift+1 - Toggle LEFT button hold`n"
+    . "Ctrl+Alt+Shift+2 - Toggle RIGHT button hold`n"
+    . "Ctrl+Alt+Shift+3 - Toggle MIDDLE button hold`n`n"
+    . "Useful for:`n"
+    . "- Long drag operations`n"
+    . "- Accessibility needs`n"
+    . "- Gaming macros`n"
+    . "- Hands-free operations", , "T7")
 
 ; ===============================================
 ; MOUSE HOLD HOTKEYS
 ; ===============================================
 
 /**
-* Toggle left mouse button hold
-*/
-^!+1::ToggleMouseHold("Left")
+ * Toggle left mouse button hold
+ */
+^!+1:: ToggleMouseHold("Left")
 
 /**
-* Toggle right mouse button hold
-*/
-^!+2::ToggleMouseHold("Right")
+ * Toggle right mouse button hold
+ */
+^!+2:: ToggleMouseHold("Right")
 
 /**
-* Toggle middle mouse button hold
-*/
-^!+3::ToggleMouseHold("Middle")
+ * Toggle middle mouse button hold
+ */
+^!+3:: ToggleMouseHold("Middle")
 
 ; ===============================================
 ; TOGGLE FUNCTION
 ; ===============================================
 
 /**
-* Toggle mouse button hold state
-* @param {string} button - "Left", "Right", or "Middle"
-*/
+ * Toggle mouse button hold state
+ * @param {string} button - "Left", "Right", or "Middle"
+ */
 ToggleMouseHold(button) {
     global leftHeld, rightHeld, middleHeld
 
     switch button {
         case "Left":
-        leftHeld := !leftHeld
-        if (leftHeld) {
-            Click("Down")
-            ToolTip("LEFT button HELD`nPress Ctrl+Alt+Shift+1 to release")
-        } else {
-            Click("Up")
-            ToolTip("LEFT button RELEASED")
-            SetTimer(() => ToolTip(), -1500)
-        }
+            leftHeld := !leftHeld
+            if (leftHeld) {
+                Click("Down")
+                ToolTip("LEFT button HELD`nPress Ctrl+Alt+Shift+1 to release")
+            } else {
+                Click("Up")
+                ToolTip("LEFT button RELEASED")
+                SetTimer(() => ToolTip(), -1500)
+            }
 
         case "Right":
-        rightHeld := !rightHeld
-        if (rightHeld) {
-            Click("Right Down")
-            ToolTip("RIGHT button HELD`nPress Ctrl+Alt+Shift+2 to release")
-        } else {
-            Click("Right Up")
-            ToolTip("RIGHT button RELEASED")
-            SetTimer(() => ToolTip(), -1500)
-        }
+            rightHeld := !rightHeld
+            if (rightHeld) {
+                Click("Right Down")
+                ToolTip("RIGHT button HELD`nPress Ctrl+Alt+Shift+2 to release")
+            } else {
+                Click("Right Up")
+                ToolTip("RIGHT button RELEASED")
+                SetTimer(() => ToolTip(), -1500)
+            }
 
         case "Middle":
-        middleHeld := !middleHeld
-        if (middleHeld) {
-            Click("Middle Down")
-            ToolTip("MIDDLE button HELD`nPress Ctrl+Alt+Shift+3 to release")
-        } else {
-            Click("Middle Up")
-            ToolTip("MIDDLE button RELEASED")
-            SetTimer(() => ToolTip(), -1500)
-        }
+            middleHeld := !middleHeld
+            if (middleHeld) {
+                Click("Middle Down")
+                ToolTip("MIDDLE button HELD`nPress Ctrl+Alt+Shift+3 to release")
+            } else {
+                Click("Middle Up")
+                ToolTip("MIDDLE button RELEASED")
+                SetTimer(() => ToolTip(), -1500)
+            }
     }
 }
 
@@ -98,18 +98,18 @@ ToggleMouseHold(button) {
 ; ===============================================
 
 /**
-* Show current hold status
-*/
-#m::ShowStatus()
+ * Show current hold status
+ */
+#m:: ShowStatus()
 
 ShowStatus() {
     global leftHeld, rightHeld, middleHeld
 
     status := "Mouse Hold Status:`n`n"
-    . "LEFT:   " (leftHeld ? "HELD ✓" : "Released") "`n"
-    . "RIGHT:  " (rightHeld ? "HELD ✓" : "Released") "`n"
-    . "MIDDLE: " (middleHeld ? "HELD ✓" : "Released") "`n`n"
-    . "Win+M to check status anytime"
+        . "LEFT:   " (leftHeld ? "HELD ✓" : "Released") "`n"
+        . "RIGHT:  " (rightHeld ? "HELD ✓" : "Released") "`n"
+        . "MIDDLE: " (middleHeld ? "HELD ✓" : "Released") "`n`n"
+        . "Win+M to check status anytime"
 
     MsgBox(status, "Mouse Hold Status", "T3")
 }
@@ -119,8 +119,8 @@ ShowStatus() {
 ; ===============================================
 
 /**
-* Emergency release all held buttons
-*/
+ * Emergency release all held buttons
+ */
 ~Esc::
 {
     global leftHeld, rightHeld, middleHeld
@@ -152,11 +152,11 @@ ReleaseAll() {
     global leftHeld, rightHeld, middleHeld
 
     if (leftHeld)
-    Click("Up")
+        Click("Up")
     if (rightHeld)
-    Click("Right Up")
+        Click("Right Up")
     if (middleHeld)
-    Click("Middle Up")
+        Click("Middle Up")
 }
 
 /*
@@ -250,3 +250,4 @@ ReleaseAll() {
 *     ⚠ Some apps may not recognize synthetic holds
 *     ⚠ Always respect ToS
 */
+

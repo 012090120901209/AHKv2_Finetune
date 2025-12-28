@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_WMI_02_System.ahk
-*
-* DESCRIPTION:
-* System information using WMI (Windows Management Instrumentation).
-*
-* FEATURES:
-* - Operating system info
-* - Computer system details
-* - BIOS information
-* - Disk information
-* - Network adapters
-*/
+ * BuiltIn_COM_WMI_02_System.ahk
+ * 
+ * DESCRIPTION:
+ * System information using WMI (Windows Management Instrumentation).
+ * 
+ * FEATURES:
+ * - Operating system info
+ * - Computer system details
+ * - BIOS information
+ * - Disk information
+ * - Network adapters
+ */
 
 Example1_OSInfo() {
     MsgBox("Example 1: OS Information")
@@ -164,6 +164,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

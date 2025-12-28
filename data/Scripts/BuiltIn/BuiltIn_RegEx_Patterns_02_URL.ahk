@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_Patterns_02_URL.ahk
-*
-* URL ParsingRIPTION:
-* Comprehensive patterns for URL validation, parsing, and extraction with validation, extraction, and formatting examples.
-*
-* FEATURES:
-* - Pattern validation
-* - Data extraction
-* - Format conversion
-* - Multiple format support
-* - Error handling
-* - Real-world examples
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Complex regex patterns
-* - Named capture groups
-* - Pattern testing
-* - Validation functions
-* - Data transformation
-*
-* LEARNING POINTS:
-* 1. Validation patterns ensure data integrity
-* 2. Extract specific components using groups
-* 3. Multiple formats require flexible patterns
-* 4. Test with edge cases
-* 5. Combine validation with extraction
-* 6. Format conversion uses backreferences
-* 7. Real-world data is messy - handle variations
-*/
+ * BuiltIn_RegEx_Patterns_02_URL.ahk
+ * 
+ * URL ParsingRIPTION:
+ * Comprehensive patterns for URL validation, parsing, and extraction with validation, extraction, and formatting examples.
+ * 
+ * FEATURES:
+ * - Pattern validation
+ * - Data extraction
+ * - Format conversion
+ * - Multiple format support
+ * - Error handling
+ * - Real-world examples
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Complex regex patterns
+ * - Named capture groups
+ * - Pattern testing
+ * - Validation functions
+ * - Data transformation
+ * 
+ * LEARNING POINTS:
+ * 1. Validation patterns ensure data integrity
+ * 2. Extract specific components using groups
+ * 3. Multiple formats require flexible patterns
+ * 4. Test with edge cases
+ * 5. Combine validation with extraction
+ * 6. Format conversion uses backreferences
+ * 7. Real-world data is messy - handle variations
+ */
 
 ; Example placeholder - comprehensive examples would be here
 Example1() {
     MsgBox "Example for Patterns_02_URL`n" .
-    "URL validation, parsing, and extraction patterns and validation"
+        "URL validation, parsing, and extraction patterns and validation"
 }
 
 Example2() {
@@ -82,13 +82,13 @@ ShowMenu() {
     )"
 }
 
-^1::Example1()
-^2::Example2()
-^3::Example3()
-^4::Example4()
-^5::Example5()
-^6::Example6()
-^7::Example7()
-^h::ShowMenu()
+^1:: Example1()
+^2:: Example2()
+^3:: Example3()
+^4:: Example4()
+^5:: Example5()
+^6:: Example6()
+^7:: Example7()
+^h:: ShowMenu()
 
 ShowMenu()

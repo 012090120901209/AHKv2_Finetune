@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinGetPID_02.ahk
-* @description Advanced PID-based automation, process linking, and window correlation examples using WinGetPID in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Process grouping by executable
-* Example 2: PID-based hotkey router
-* Example 3: Process lifecycle monitor
-* Example 4: Cross-process window coordinator
-* Example 5: Process affinity manager
-* Example 6: PID-based clipboard manager
-*
-* @section FEATURES
-* - Process grouping
-* - PID-based routing
-* - Lifecycle monitoring
-* - Window coordination
-* - Affinity management
-* - Clipboard management
-*/
+ * @file BuiltIn_WinGetPID_02.ahk
+ * @description Advanced PID-based automation, process linking, and window correlation examples using WinGetPID in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Process grouping by executable
+ * Example 2: PID-based hotkey router
+ * Example 3: Process lifecycle monitor
+ * Example 4: Cross-process window coordinator
+ * Example 5: Process affinity manager
+ * Example 6: PID-based clipboard manager
+ * 
+ * @section FEATURES
+ * - Process grouping
+ * - PID-based routing
+ * - Lifecycle monitoring
+ * - Window coordination
+ * - Affinity management
+ * - Clipboard management
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -29,9 +29,9 @@
 ; ========================================
 
 /**
-* @class ProcessGrouper
-* @description Group windows by their process executable
-*/
+ * @class ProcessGrouper
+ * @description Group windows by their process executable
+ */
 class ProcessGrouper {
     static groups := Map()
 
@@ -45,7 +45,7 @@ class ProcessGrouper {
                 processName := WinGetProcessName("ahk_id " winId)
 
                 if !this.groups.Has(processName)
-                this.groups[processName] := []
+                    this.groups[processName] := []
 
                 this.groups[processName].Push({
                     WinID: winId,
@@ -65,7 +65,7 @@ class ProcessGrouper {
         for processName, windows in groups {
             uniquePIDs := Map()
             for win in windows
-            uniquePIDs[win.PID] := true
+                uniquePIDs[win.PID] := true
 
             stats.Push({
                 Process: processName,
@@ -85,7 +85,7 @@ class ProcessGrouper {
     for data in stats {
         output .= data.Process ": " data.Windows " windows, " data.Instances " instance(s)`n"
         if A_Index > 15
-        break
+            break
     }
 
     MsgBox(output, "Process Groups", "Icon!")
@@ -96,15 +96,15 @@ class ProcessGrouper {
 ; ========================================
 
 /**
-* @class PIDRouter
-* @description Route hotkeys based on process ID
-*/
+ * @class PIDRouter
+ * @description Route hotkeys based on process ID
+ */
 class PIDRouter {
     static routes := Map()
 
     static RegisterRoute(processName, hotkey, action) {
         if !this.routes.Has(processName)
-        this.routes[processName] := Map()
+            this.routes[processName] := Map()
 
         if !this.routes[processName].Has(hotkey) {
             this.routes[processName][hotkey] := action
@@ -138,13 +138,13 @@ PIDRouter.RegisterRoute("chrome.exe", "^t", () => Send("^t"))
 ; ========================================
 
 /**
-* @class LifecycleMonitor
-* @description Monitor process creation and termination
-*/
+ * @class LifecycleMonitor
+ * @description Monitor process creation and termination
+ */
 class LifecycleMonitor {
     static knownPIDs := Map()
     static monitoring := false
-    static callbacks := {Created: [], Terminated: []}
+    static callbacks := { Created: [], Terminated: [] }
 
     static StartMonitoring() {
         this.monitoring := true
@@ -189,7 +189,7 @@ class LifecycleMonitor {
                     this.knownPIDs[pid] := processData
 
                     for callback in this.callbacks.Created
-                    callback(processData)
+                        callback(processData)
                 }
             }
         }
@@ -198,7 +198,7 @@ class LifecycleMonitor {
         for pid, data in this.knownPIDs {
             if !currentPIDs.Has(pid) {
                 for callback in this.callbacks.Terminated
-                callback(data)
+                    callback(data)
 
                 this.knownPIDs.Delete(pid)
             }
@@ -225,9 +225,9 @@ LifecycleMonitor.OnProcessTerminated((data) => TrayTip("Process terminated: " da
 ; ========================================
 
 /**
-* @class WindowCoordinator
-* @description Coordinate windows across multiple processes
-*/
+ * @class WindowCoordinator
+ * @description Coordinate windows across multiple processes
+ */
 class WindowCoordinator {
     static TileByProcess() {
         groups := ProcessGrouper.GroupAllWindows()
@@ -239,11 +239,11 @@ class WindowCoordinator {
         processCount := 0
         for processName, windows in groups {
             if windows.Length > 0
-            processCount++
+                processCount++
         }
 
         if processCount = 0
-        return
+            return
 
         cols := Ceil(Sqrt(processCount))
         rows := Ceil(processCount / cols)
@@ -253,7 +253,7 @@ class WindowCoordinator {
         index := 0
         for processName, windows in groups {
             if windows.Length = 0
-            continue
+                continue
 
             row := index // cols
             col := Mod(index, cols)
@@ -277,7 +277,7 @@ class WindowCoordinator {
         windows := WindowProcessMapper.GetProcessWindows(pid)
 
         if windows.Length <= 1
-        return
+            return
 
         MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
         workWidth := right - left
@@ -305,15 +305,15 @@ class WindowCoordinator {
 ; ========================================
 
 /**
-* @class AffinityManager
-* @description Manage CPU affinity for processes
-*/
+ * @class AffinityManager
+ * @description Manage CPU affinity for processes
+ */
 class AffinityManager {
     static GetProcessAffinity(pid) {
         try {
             hProcess := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", pid, "Ptr")
             if !hProcess
-            return 0
+                return 0
 
             processAffinity := 0
             systemAffinity := 0
@@ -330,7 +330,7 @@ class AffinityManager {
         try {
             hProcess := DllCall("OpenProcess", "UInt", 0x0200, "Int", false, "UInt", pid, "Ptr")
             if !hProcess
-            return false
+                return false
 
             result := DllCall("SetProcessAffinityMask", "Ptr", hProcess, "UInt", affinityMask)
             DllCall("CloseHandle", "Ptr", hProcess)
@@ -348,7 +348,7 @@ class AffinityManager {
         cpuList := []
         Loop this.GetCPUCount() {
             if mask & (1 << (A_Index - 1))
-            cpuList.Push("CPU" (A_Index - 1))
+                cpuList.Push("CPU" (A_Index - 1))
         }
         return cpuList.Length > 0 ? StrJoin(cpuList, ", ") : "None"
     }
@@ -357,7 +357,7 @@ class AffinityManager {
 StrJoin(arr, delim) {
     result := ""
     for i, val in arr
-    result .= (i > 1 ? delim : "") val
+        result .= (i > 1 ? delim : "") val
     return result
 }
 
@@ -378,9 +378,9 @@ StrJoin(arr, delim) {
 ; ========================================
 
 /**
-* @class PIDClipboard
-* @description Manage clipboards per process
-*/
+ * @class PIDClipboard
+ * @description Manage clipboards per process
+ */
 class PIDClipboard {
     static clipboards := Map()
     static maxHistory := 10
@@ -396,7 +396,7 @@ class PIDClipboard {
             content := A_Clipboard
 
             if !this.clipboards.Has(pid)
-            this.clipboards[pid] := []
+                this.clipboards[pid] := []
 
             this.clipboards[pid].Push({
                 Content: content,
@@ -404,7 +404,7 @@ class PIDClipboard {
             })
 
             if this.clipboards[pid].Length > this.maxHistory
-            this.clipboards[pid].RemoveAt(1)
+                this.clipboards[pid].RemoveAt(1)
 
             TrayTip("Copied to PID " pid " clipboard", "PID Clipboard", "Icon!")
         }
@@ -441,7 +441,7 @@ class PIDClipboard {
         for i, item in this.clipboards[pid] {
             output .= i ". " SubStr(item.Content, 1, 50)
             if StrLen(item.Content) > 50
-            output .= "..."
+                output .= "..."
             output .= "`n"
         }
 

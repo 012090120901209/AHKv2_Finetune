@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Hotkey() Function - Context-Sensitive Hotkeys
-* ============================================================================
-*
-* This file demonstrates creating context-sensitive hotkeys that behave
-* differently based on active window, cursor position, system state, and
-* other contextual factors using HotIf and the Hotkey() function.
-*
-* Features demonstrated:
-* - Window-specific hotkeys
-* - Application-specific hotkeys
-* - Position-based hotkeys
-* - State-based hotkeys
-* - Multi-context hotkey systems
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/Hotkey.htm
-* @see https://www.autohotkey.com/docs/v2/lib/HotIf.htm
-*/
+ * ============================================================================
+ * Hotkey() Function - Context-Sensitive Hotkeys
+ * ============================================================================
+ * 
+ * This file demonstrates creating context-sensitive hotkeys that behave
+ * differently based on active window, cursor position, system state, and
+ * other contextual factors using HotIf and the Hotkey() function.
+ * 
+ * Features demonstrated:
+ * - Window-specific hotkeys
+ * - Application-specific hotkeys
+ * - Position-based hotkeys
+ * - State-based hotkeys
+ * - Multi-context hotkey systems
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/Hotkey.htm
+ * @see https://www.autohotkey.com/docs/v2/lib/HotIf.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Window-Specific Hotkeys
 ; ============================================================================
 
 /**
-* Demonstrates creating hotkeys that only work in specific windows.
-*
-* @example
-* ; Same hotkey, different behavior in different applications
-*/
+ * Demonstrates creating hotkeys that only work in specific windows.
+ * 
+ * @example
+ * ; Same hotkey, different behavior in different applications
+ */
 Example1_WindowSpecific() {
     ; Hotkey for Notepad
     HotIf(() => WinActive("ahk_exe notepad.exe"))
@@ -55,15 +55,15 @@ Example1_WindowSpecific() {
     HotIf() ; Reset context
 
     MsgBox(
-    "Window-Specific Hotkeys Created`n`n"
-    "Ctrl+Q - Different behavior in:`n"
-    "  • Notepad`n"
-    "  • Browser`n"
-    "  • Other windows`n`n"
-    "Ctrl+Alt+T - Insert timestamp (Notepad only)`n"
-    "Ctrl+Alt+N - New folder (Explorer only)`n`n"
-    "Try in different windows!",
-    "Example 1"
+        "Window-Specific Hotkeys Created`n`n"
+        "Ctrl+Q - Different behavior in:`n"
+        "  • Notepad`n"
+        "  • Browser`n"
+        "  • Other windows`n`n"
+        "Ctrl+Alt+T - Insert timestamp (Notepad only)`n"
+        "Ctrl+Alt+N - New folder (Explorer only)`n`n"
+        "Try in different windows!",
+        "Example 1"
     )
 }
 
@@ -72,11 +72,11 @@ Example1_WindowSpecific() {
 ; ============================================================================
 
 /**
-* Creates hotkeys that activate based on window titles or partial matches.
-*
-* @example
-* ; Hotkeys for specific document types or project names
-*/
+ * Creates hotkeys that activate based on window titles or partial matches.
+ * 
+ * @example
+ * ; Hotkeys for specific document types or project names
+ */
 Example2_TitleBased() {
     ; Hotkey for windows with "Report" in title
     HotIf(() => WinActive("Report"))
@@ -96,7 +96,7 @@ Example2_TitleBased() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -104,23 +104,23 @@ Example2_TitleBased() {
     Hotkey("^!i", (*) {
         title := WinGetTitle("A")
         MsgBox(
-        "Active Window Title:`n" . title . "`n`n"
-        "Context hotkeys available:`n"
-        "• Contains 'Report': Ctrl+Alt+H`n"
-        "• Contains 'Email': Ctrl+Alt+S`n"
-        "• Contains code ext: Ctrl+Alt+C",
-        "Title Info"
+            "Active Window Title:`n" . title . "`n`n"
+            "Context hotkeys available:`n"
+            "• Contains 'Report': Ctrl+Alt+H`n"
+            "• Contains 'Email': Ctrl+Alt+S`n"
+            "• Contains code ext: Ctrl+Alt+C",
+            "Title Info"
         )
     })
 
     MsgBox(
-    "Title-Based Context Hotkeys`n`n"
-    "Ctrl+Alt+H - Report header (if 'Report' in title)`n"
-    "Ctrl+Alt+S - Email signature (if 'Email' in title)`n"
-    "Ctrl+Alt+C - TODO comment (if code file in title)`n"
-    "Ctrl+Alt+I - Show current window title`n`n"
-    "Open different windows and test!",
-    "Example 2"
+        "Title-Based Context Hotkeys`n`n"
+        "Ctrl+Alt+H - Report header (if 'Report' in title)`n"
+        "Ctrl+Alt+S - Email signature (if 'Email' in title)`n"
+        "Ctrl+Alt+C - TODO comment (if code file in title)`n"
+        "Ctrl+Alt+I - Show current window title`n`n"
+        "Open different windows and test!",
+        "Example 2"
     )
 }
 
@@ -129,36 +129,36 @@ Example2_TitleBased() {
 ; ============================================================================
 
 /**
-* Implements hotkeys that behave differently based on mouse position
-* on the screen.
-*
-* @example
-* ; Different actions based on screen region
-*/
+ * Implements hotkeys that behave differently based on mouse position
+ * on the screen.
+ * 
+ * @example
+ * ; Different actions based on screen region
+ */
 Example3_MousePositionBased() {
     ; Get screen dimensions
     screenWidth := A_ScreenWidth
     screenHeight := A_ScreenHeight
 
     /**
-    * Checks if mouse is in left half of screen
-    */
+     * Checks if mouse is in left half of screen
+     */
     IsMouseLeft() {
         MouseGetPos(&x, &y)
         return x < (A_ScreenWidth / 2)
     }
 
     /**
-    * Checks if mouse is in top half of screen
-    */
+     * Checks if mouse is in top half of screen
+     */
     IsMouseTop() {
         MouseGetPos(&x, &y)
         return y < (A_ScreenHeight / 2)
     }
 
     /**
-    * Checks if mouse is in center region
-    */
+     * Checks if mouse is in center region
+     */
     IsMouseCenter() {
         MouseGetPos(&x, &y)
         centerX := A_ScreenWidth / 2
@@ -194,23 +194,23 @@ Example3_MousePositionBased() {
         region .= IsMouseCenter() ? " (Center)" : ""
 
         MsgBox(
-        "Mouse Position: " x ", " y "`n"
-        "Screen Region: " region "`n`n"
-        "Ctrl+Space has different behavior based on left/right`n"
-        "Ctrl+Alt+Space works in center region",
-        "Position Info"
+            "Mouse Position: " x ", " y "`n"
+            "Screen Region: " region "`n`n"
+            "Ctrl+Space has different behavior based on left/right`n"
+            "Ctrl+Alt+Space works in center region",
+            "Position Info"
         )
     })
 
     MsgBox(
-    "Mouse Position-Based Hotkeys`n`n"
-    "Ctrl+Space - Different action based on:`n"
-    "  • LEFT half of screen`n"
-    "  • RIGHT half of screen`n`n"
-    "Ctrl+Alt+Space - Special action (center only)`n"
-    "Ctrl+Alt+P - Show current position/region`n`n"
-    "Move mouse and test!",
-    "Example 3"
+        "Mouse Position-Based Hotkeys`n`n"
+        "Ctrl+Space - Different action based on:`n"
+        "  • LEFT half of screen`n"
+        "  • RIGHT half of screen`n`n"
+        "Ctrl+Alt+Space - Special action (center only)`n"
+        "Ctrl+Alt+P - Show current position/region`n`n"
+        "Move mouse and test!",
+        "Example 3"
     )
 }
 
@@ -219,11 +219,11 @@ Example3_MousePositionBased() {
 ; ============================================================================
 
 /**
-* Creates a mode system where hotkeys change based on application state.
-*
-* @example
-* ; Insert mode vs Command mode (like Vim)
-*/
+ * Creates a mode system where hotkeys change based on application state.
+ * 
+ * @example
+ * ; Insert mode vs Command mode (like Vim)
+ */
 Example4_StateBased() {
     static appMode := "normal"
 
@@ -278,26 +278,26 @@ Example4_StateBased() {
     ; Status hotkey (works in all modes)
     Hotkey("^!?", (*) {
         MsgBox(
-        "Current Mode: " StrUpper(appMode) . "`n`n"
-        "Mode Controls:`n"
-        "Ctrl+I - Insert mode`n"
-        "Ctrl+; - Command mode`n"
-        "ESC - Normal mode`n`n"
-        "Ctrl+S and Ctrl+D behave differently in each mode",
-        "Status"
+            "Current Mode: " StrUpper(appMode) . "`n`n"
+            "Mode Controls:`n"
+            "Ctrl+I - Insert mode`n"
+            "Ctrl+; - Command mode`n"
+            "ESC - Normal mode`n`n"
+            "Ctrl+S and Ctrl+D behave differently in each mode",
+            "Status"
         )
     })
 
     MsgBox(
-    "State-Based Context System`n`n"
-    "Modes:`n"
-    "• NORMAL (default)`n"
-    "• INSERT (Ctrl+I)`n"
-    "• COMMAND (Ctrl+;)`n"
-    "• ESC returns to NORMAL`n`n"
-    "Ctrl+S and Ctrl+D work differently in each mode`n"
-    "Ctrl+Alt+? - Show current mode",
-    "Example 4"
+        "State-Based Context System`n`n"
+        "Modes:`n"
+        "• NORMAL (default)`n"
+        "• INSERT (Ctrl+I)`n"
+        "• COMMAND (Ctrl+;)`n"
+        "• ESC returns to NORMAL`n`n"
+        "Ctrl+S and Ctrl+D work differently in each mode`n"
+        "Ctrl+Alt+? - Show current mode",
+        "Example 4"
     )
 }
 
@@ -306,31 +306,31 @@ Example4_StateBased() {
 ; ============================================================================
 
 /**
-* Hotkeys that behave differently based on clipboard contents.
-*
-* @example
-* ; Different paste operations based on what's in clipboard
-*/
+ * Hotkeys that behave differently based on clipboard contents.
+ * 
+ * @example
+ * ; Different paste operations based on what's in clipboard
+ */
 Example5_ClipboardBased() {
     /**
-    * Checks if clipboard contains a URL
-    */
+     * Checks if clipboard contains a URL
+     */
     IsClipboardURL() {
         content := A_Clipboard
         return RegExMatch(content, "i)^https?://")
     }
 
     /**
-    * Checks if clipboard contains a number
-    */
+     * Checks if clipboard contains a number
+     */
     IsClipboardNumber() {
         content := A_Clipboard
         return IsNumber(content)
     }
 
     /**
-    * Checks if clipboard contains an email
-    */
+     * Checks if clipboard contains an email
+     */
     IsClipboardEmail() {
         content := A_Clipboard
         return RegExMatch(content, "i)^[\w.+-]+@[\w.-]+\.\w+$")
@@ -358,33 +358,33 @@ Example5_ClipboardBased() {
         type := "Unknown"
 
         if IsClipboardURL()
-        type := "URL"
+            type := "URL"
         else if IsClipboardNumber()
-        type := "Number"
+            type := "Number"
         else if IsClipboardEmail()
-        type := "Email"
+            type := "Email"
         else
-        type := "Text"
+            type := "Text"
 
         MsgBox(
-        "Clipboard Type: " type "`n`n"
-        "Content: " SubStr(content, 1, 50) .
-        (StrLen(content) > 50 ? "..." : "") . "`n`n"
-        "Ctrl+Alt+V will paste with format for: " type,
-        "Clipboard Info"
+            "Clipboard Type: " type "`n`n"
+            "Content: " SubStr(content, 1, 50) .
+            (StrLen(content) > 50 ? "..." : "") . "`n`n"
+            "Ctrl+Alt+V will paste with format for: " type,
+            "Clipboard Info"
         )
     })
 
     MsgBox(
-    "Clipboard Content-Based Hotkeys`n`n"
-    "Ctrl+Alt+V pastes differently based on clipboard:`n"
-    "• URL → HTML link`n"
-    "• Number → Formatted number`n"
-    "• Email → Email format`n"
-    "• Text → Plain text`n`n"
-    "Ctrl+Alt+C - Show clipboard type`n`n"
-    "Copy different content types and test!",
-    "Example 5"
+        "Clipboard Content-Based Hotkeys`n`n"
+        "Ctrl+Alt+V pastes differently based on clipboard:`n"
+        "• URL → HTML link`n"
+        "• Number → Formatted number`n"
+        "• Email → Email format`n"
+        "• Text → Plain text`n`n"
+        "Ctrl+Alt+C - Show clipboard type`n`n"
+        "Copy different content types and test!",
+        "Example 5"
     )
 }
 
@@ -393,15 +393,15 @@ Example5_ClipboardBased() {
 ; ============================================================================
 
 /**
-* Hotkeys that behave differently based on time of day or day of week.
-*
-* @example
-* ; Work hours vs personal time hotkeys
-*/
+ * Hotkeys that behave differently based on time of day or day of week.
+ * 
+ * @example
+ * ; Work hours vs personal time hotkeys
+ */
 Example6_TimeBased() {
     /**
-    * Checks if current time is work hours (9 AM - 5 PM, Mon-Fri)
-    */
+     * Checks if current time is work hours (9 AM - 5 PM, Mon-Fri)
+     */
     IsWorkHours() {
         hour := A_Hour + 0
         day := A_WDay
@@ -414,8 +414,8 @@ Example6_TimeBased() {
     }
 
     /**
-    * Checks if it's weekend
-    */
+     * Checks if it's weekend
+     */
     IsWeekend() {
         day := A_WDay
         return (day = 1 || day = 7) ; Sunday = 1, Saturday = 7
@@ -446,31 +446,31 @@ Example6_TimeBased() {
         context := ""
 
         if IsWorkHours()
-        context := "WORK HOURS"
+            context := "WORK HOURS"
         else if IsWeekend()
-        context := "WEEKEND"
+            context := "WEEKEND"
         else
-        context := "AFTER HOURS"
+            context := "AFTER HOURS"
 
         MsgBox(
-        "Current Context: " context "`n`n"
-        "Day: " day "`n"
-        "Time: " FormatTime(, "h:mm tt") "`n`n"
-        "Ctrl+Alt+G and Ctrl+Alt+M adapt to time context",
-        "Time Context"
+            "Current Context: " context "`n`n"
+            "Day: " day "`n"
+            "Time: " FormatTime(, "h:mm tt") "`n`n"
+            "Ctrl+Alt+G and Ctrl+Alt+M adapt to time context",
+            "Time Context"
         )
     })
 
     MsgBox(
-    "Time-Based Context Hotkeys`n`n"
-    "Hotkeys adapt to time context:`n"
-    "• Work hours (Mon-Fri 9-5)`n"
-    "• After hours (weekday evening)`n"
-    "• Weekend`n`n"
-    "Ctrl+Alt+G - Context greeting`n"
-    "Ctrl+Alt+M - Context message`n"
-    "Ctrl+Alt+T - Show time context",
-    "Example 6"
+        "Time-Based Context Hotkeys`n`n"
+        "Hotkeys adapt to time context:`n"
+        "• Work hours (Mon-Fri 9-5)`n"
+        "• After hours (weekday evening)`n"
+        "• Weekend`n`n"
+        "Ctrl+Alt+G - Context greeting`n"
+        "Ctrl+Alt+M - Context message`n"
+        "Ctrl+Alt+T - Show time context",
+        "Example 6"
     )
 }
 
@@ -479,32 +479,32 @@ Example6_TimeBased() {
 ; ============================================================================
 
 /**
-* Advanced system combining multiple context factors.
-*
-* @example
-* ; Hotkeys based on window + time + clipboard + mouse position
-*/
+ * Advanced system combining multiple context factors.
+ * 
+ * @example
+ * ; Hotkeys based on window + time + clipboard + mouse position
+ */
 Example7_MultiFactorContext() {
     /**
-    * Complex context: Notepad + URL in clipboard
-    */
+     * Complex context: Notepad + URL in clipboard
+     */
     IsNotepadWithURL() {
         return WinActive("ahk_exe notepad.exe") &&
-        RegExMatch(A_Clipboard, "i)^https?://")
+            RegExMatch(A_Clipboard, "i)^https?://")
     }
 
     /**
-    * Complex context: Explorer + weekend
-    */
+     * Complex context: Explorer + weekend
+     */
     IsExplorerWeekend() {
         day := A_WDay
         return WinActive("ahk_class CabinetWClass") &&
-        (day = 1 || day = 7)
+            (day = 1 || day = 7)
     }
 
     /**
-    * Complex context: Mouse on right + work hours
-    */
+     * Complex context: Mouse on right + work hours
+     */
     IsRightWorkHours() {
         MouseGetPos(&x, &y)
         hour := A_Hour + 0
@@ -537,17 +537,17 @@ Example7_MultiFactorContext() {
         ; Window
         try analysis .= "Window: " . WinGetTitle("A") . "`n"
         catch
-        analysis .= "Window: Unknown`n"
+            analysis .= "Window: Unknown`n"
 
         ; Clipboard
         clipType := "Empty"
         if A_Clipboard != "" {
             if RegExMatch(A_Clipboard, "i)^https?://")
-            clipType := "URL"
+                clipType := "URL"
             else if IsNumber(A_Clipboard)
-            clipType := "Number"
+                clipType := "Number"
             else
-            clipType := "Text"
+                clipType := "Text"
         }
         analysis .= "Clipboard: " . clipType . "`n"
 
@@ -561,21 +561,21 @@ Example7_MultiFactorContext() {
         day := A_WDay
         timeCtx := ""
         if (day >= 2 && day <= 6) && (hour >= 9 && hour < 17)
-        timeCtx := "Work hours"
+            timeCtx := "Work hours"
         else if (day = 1 || day = 7)
-        timeCtx := "Weekend"
+            timeCtx := "Weekend"
         else
-        timeCtx := "After hours"
+            timeCtx := "After hours"
         analysis .= "Time: " . timeCtx . "`n`n"
 
         ; Active contexts
         analysis .= "Active Contexts:`n"
         if IsNotepadWithURL()
-        analysis .= "✓ Notepad + URL`n"
+            analysis .= "✓ Notepad + URL`n"
         if IsExplorerWeekend()
-        analysis .= "✓ Explorer + Weekend`n"
+            analysis .= "✓ Explorer + Weekend`n"
         if IsRightWorkHours()
-        analysis .= "✓ Right + Work Hours`n"
+            analysis .= "✓ Right + Work Hours`n"
 
         MsgBox(analysis, "Context Analysis")
     })
@@ -583,18 +583,18 @@ Example7_MultiFactorContext() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     MsgBox(
-    "Multi-Factor Context System`n`n"
-    "Hotkeys activate based on combined factors:`n`n"
-    "Ctrl+Alt+L - Markdown link (Notepad + URL)`n"
-    "Ctrl+Alt+P - Weekend file org (Explorer + Weekend)`n"
-    "Ctrl+Alt+W - Work action (Right screen + Work hours)`n`n"
-    "Ctrl+Alt+A - Analyze current context",
-    "Example 7"
+        "Multi-Factor Context System`n`n"
+        "Hotkeys activate based on combined factors:`n`n"
+        "Ctrl+Alt+L - Markdown link (Notepad + URL)`n"
+        "Ctrl+Alt+P - Weekend file org (Explorer + Weekend)`n"
+        "Ctrl+Alt+W - Work action (Right screen + Work hours)`n`n"
+        "Ctrl+Alt+A - Analyze current context",
+        "Example 7"
     )
 }
 

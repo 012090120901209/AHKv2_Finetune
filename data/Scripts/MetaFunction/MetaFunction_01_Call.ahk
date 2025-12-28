@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* __Call Meta-Function - Undefined Method Handler
-*
-* Demonstrates the __Call meta-function which intercepts calls
-* to undefined methods. Useful for error handling and debugging.
-*
-* Source: AHK_Notes/Methods/__call-method.md
-*/
+ * __Call Meta-Function - Undefined Method Handler
+ * 
+ * Demonstrates the __Call meta-function which intercepts calls
+ * to undefined methods. Useful for error handling and debugging.
+ * 
+ * Source: AHK_Notes/Methods/__call-method.md
+ */
 
 ; Create instance and test method calls
 menu := MenuSystem()
@@ -24,10 +24,10 @@ MsgBox("Testing completely undefined method...", , "T2")
 menu.NonExistentMethod()  ; Triggers __Call
 
 /**
-* MenuSystem Class
-*
-* Demonstrates __Call for catching undefined method calls
-*/
+ * MenuSystem Class
+ * 
+ * Demonstrates __Call for catching undefined method calls
+ */
 class MenuSystem {
     static Name := "MenuSystem"
 
@@ -36,29 +36,29 @@ class MenuSystem {
     }
 
     /**
-    * __Call Meta-Function
-    *
-    * Automatically called when an undefined method is invoked.
-    *
-    * @param Method - Name of the undefined method
-    * @param Args - Array of arguments passed to the method
-    */
+     * __Call Meta-Function
+     * 
+     * Automatically called when an undefined method is invoked.
+     * 
+     * @param Method - Name of the undefined method
+     * @param Args - Array of arguments passed to the method
+     */
     __Call(Method, Args*) {
         errorMsg := "Error: Method '" Method "' does not exist in class " MenuSystem.Name
 
         ; Add suggestion for common typos
         if (Method = "SetupPropertie")
-        errorMsg .= "`n`nDid you mean: SetupProperties()?"
+            errorMsg .= "`n`nDid you mean: SetupProperties()?"
         else if (Method = "CreateMenu")
-        errorMsg .= "`n`nDid you mean: CreateMenus()?"
+            errorMsg .= "`n`nDid you mean: CreateMenus()?"
 
         MsgBox(errorMsg, "Method Not Found", "Icon!")
         return
     }
 
     /**
-    * Defined methods - these work normally
-    */
+     * Defined methods - these work normally
+     */
     SetupProperties() {
         MsgBox("✓ SetupProperties executed successfully", , "T2")
     }
@@ -140,4 +140,5 @@ class MenuSystem {
                 *    - Can throw errors
                 *    - Can modify state
                 *    - Can delegate to other methods
-                */
+*/
+

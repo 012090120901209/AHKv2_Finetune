@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FormatTime() - Format timestamps
-*
-* Formats a date-time stamp into a string.
-*/
+ * FormatTime() - Format timestamps
+ * 
+ * Formats a date-time stamp into a string.
+ */
 
 timestamp := A_Now
 
@@ -15,7 +15,7 @@ format3 := FormatTime(timestamp, "LongDate")
 format4 := FormatTime(timestamp, "ShortDate")
 
 MsgBox("Timestamp: " timestamp
-. "`n`nDate: " format1
-. "`nTime: " format2
-. "`nLong: " format3
-. "`nShort: " format4)
+    . "`n`nDate: " format1
+    . "`nTime: " format2
+    . "`nLong: " format3
+    . "`nShort: " format4)

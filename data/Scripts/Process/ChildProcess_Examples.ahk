@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Child Process Examples - thqby/ahk2_lib
-*
-* Execute external programs and capture output
-* Library: https://github.com/thqby/ahk2_lib/blob/master/child_process.ahk
-*
-* To use these examples:
-* #Include <child_process>
-*/
+ * Child Process Examples - thqby/ahk2_lib
+ * 
+ * Execute external programs and capture output
+ * Library: https://github.com/thqby/ahk2_lib/blob/master/child_process.ahk
+ * 
+ * To use these examples:
+ * #Include <child_process>
+ */
 
 /**
-* Example 1: Run Command and Get Output
-*/
+ * Example 1: Run Command and Get Output
+ */
 RunCommandExample() {
     ; Run ping command
     proc := child_process('ping -n 4 google.com')
@@ -28,8 +28,8 @@ RunCommandExample() {
 }
 
 /**
-* Example 2: Run with Arguments Array
-*/
+ * Example 2: Run with Arguments Array
+ */
 RunWithArgsExample() {
     ; Run with arguments array
     args := ['-n', '2', 'localhost']
@@ -42,8 +42,8 @@ RunWithArgsExample() {
 }
 
 /**
-* Example 3: Capture Stdout and Stderr Separately
-*/
+ * Example 3: Capture Stdout and Stderr Separately
+ */
 CaptureStdErrExample() {
     ; Run command that might produce errors
     proc := child_process('cmd /c dir C:\NonExistentFolder 2>&1')
@@ -60,8 +60,8 @@ CaptureStdErrExample() {
 }
 
 /**
-* Example 4: Set Working Directory
-*/
+ * Example 4: Set Working Directory
+ */
 SetWorkingDirectoryExample() {
     ; Run dir command in specific directory
     options := Map()
@@ -75,8 +75,8 @@ SetWorkingDirectoryExample() {
 }
 
 /**
-* Example 5: Send Input to Process
-*/
+ * Example 5: Send Input to Process
+ */
 SendInputExample() {
     ; Start cmd.exe
     options := Map()
@@ -98,8 +98,8 @@ SendInputExample() {
 }
 
 /**
-* Example 6: Run Python Script
-*/
+ * Example 6: Run Python Script
+ */
 RunPythonExample() {
     ; Create simple Python script
     scriptPath := A_ScriptDir "\test_script.py"
@@ -124,8 +124,8 @@ RunPythonExample() {
 }
 
 /**
-* Example 7: Monitor Process Exit Code
-*/
+ * Example 7: Monitor Process Exit Code
+ */
 ExitCodeExample() {
     ; Run command that succeeds
     proc1 := child_process('cmd /c exit 0')
@@ -146,8 +146,8 @@ ExitCodeExample() {
 }
 
 /**
-* Example 8: Run Hidden Process
-*/
+ * Example 8: Run Hidden Process
+ */
 RunHiddenExample() {
     ; Run process completely hidden
     options := Map()
@@ -161,8 +161,8 @@ RunHiddenExample() {
 }
 
 /**
-* Example 9: Timeout on Long-Running Process
-*/
+ * Example 9: Timeout on Long-Running Process
+ */
 TimeoutExample() {
     ; Start long-running process
     proc := child_process('ping -n 100 localhost')
@@ -173,16 +173,16 @@ TimeoutExample() {
     elapsed := A_TickCount - startTime
 
     if (result = 0x102) {  ; WAIT_TIMEOUT
-    proc.terminate()
-    MsgBox("Process timeout!`nElapsed: " elapsed "ms`nProcess was terminated.")
-} else {
-    MsgBox("Process completed`nElapsed: " elapsed "ms")
-}
+        proc.terminate()
+        MsgBox("Process timeout!`nElapsed: " elapsed "ms`nProcess was terminated.")
+    } else {
+        MsgBox("Process completed`nElapsed: " elapsed "ms")
+    }
 }
 
 /**
-* Example 10: Interactive Command Shell
-*/
+ * Example 10: Interactive Command Shell
+ */
 InteractiveShellExample() {
 
     ; Create interactive shell
@@ -208,18 +208,18 @@ InteractiveShellExample() {
 
 ; Display menu
 MsgBox("Child Process Library Examples Loaded`n`n"
-. "Available Examples:`n`n"
-. "1. RunCommandExample() - Run command and get output`n"
-. "2. RunWithArgsExample() - Use arguments array`n"
-. "3. CaptureStdErrExample() - Capture errors`n"
-. "4. SetWorkingDirectoryExample() - Set working dir`n"
-. "5. SendInputExample() - Send input to process`n"
-. "6. RunPythonExample() - Execute Python scripts`n"
-. "7. ExitCodeExample() - Monitor exit codes`n"
-. "8. RunHiddenExample() - Run hidden processes`n"
-. "9. TimeoutExample() - Timeout long processes`n"
-. "10. InteractiveShellExample() - Interactive cmd shell`n`n"
-. "Uncomment any function call below to run")
+    . "Available Examples:`n`n"
+    . "1. RunCommandExample() - Run command and get output`n"
+    . "2. RunWithArgsExample() - Use arguments array`n"
+    . "3. CaptureStdErrExample() - Capture errors`n"
+    . "4. SetWorkingDirectoryExample() - Set working dir`n"
+    . "5. SendInputExample() - Send input to process`n"
+    . "6. RunPythonExample() - Execute Python scripts`n"
+    . "7. ExitCodeExample() - Monitor exit codes`n"
+    . "8. RunHiddenExample() - Run hidden processes`n"
+    . "9. TimeoutExample() - Timeout long processes`n"
+    . "10. InteractiveShellExample() - Interactive cmd shell`n`n"
+    . "Uncomment any function call below to run")
 
 ; Uncomment to run examples:
 ; RunCommandExample()
@@ -252,10 +252,10 @@ class InteractiveShell {
         this.stdout.onData := (pipe, data) => {
             ; Detect command prompt to know when output is complete
             if RegExMatch(data, '(^|`n)(\s*[A-Z]:[^>]*>)$', &m) {
-                pipe.append(SubStr(data, pipe.complete := 1, -m.Len[2]))
-            } else {
-                pipe.append(data)
-            }
+            pipe.append(SubStr(data, pipe.complete := 1, -m.Len[2]))
+        } else {
+            pipe.append(data)
+        }
         }
     }
 
@@ -268,7 +268,7 @@ class InteractiveShell {
         this.stdout.complete := false
         timeout := A_TickCount + 5000
         while (!this.stdout.complete && A_TickCount < timeout)
-        Sleep(10)
+            Sleep(10)
 
         ; Read output
         result := this.stdout.read()

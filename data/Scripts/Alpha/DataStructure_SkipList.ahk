@@ -47,7 +47,7 @@ class SkipList {
 
         ; Generate random level for new node
         level := this._randomLevel()
-        
+
         if level > this.level {
             i := this.level + 1
             while i <= level {
@@ -74,7 +74,7 @@ class SkipList {
 
     Search(value) {
         x := this.header
-        
+
         i := this.level
         while i >= 1 {
             while x.forward[i] && x.forward[i].value < value
@@ -141,14 +141,14 @@ class SkipList {
             return "(empty)"
 
         result := ""
-        
+
         ; From top level down
         i := this.level
         while i >= 1 {
             result .= "L" i ": "
             x := this.header.forward[i]
             prev := this.header
-            
+
             ; Walk bottom level to show gaps
             bottom := this.header.forward[1]
             while bottom {

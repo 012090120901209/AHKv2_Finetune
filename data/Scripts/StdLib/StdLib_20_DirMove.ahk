@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* DirMove() - Move/rename directory
-*
-* Moves or renames a folder.
-*/
+ * DirMove() - Move/rename directory
+ * 
+ * Moves or renames a folder.
+ */
 
 oldDir := A_ScriptDir "\olddir"
 newDir := A_ScriptDir "\newdir"

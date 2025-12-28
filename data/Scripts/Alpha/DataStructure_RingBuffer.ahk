@@ -37,16 +37,16 @@ class RingBuffer {
 
     Peek() => this.count > 0 ? this.buffer[this.head] : ""
     PeekLast() => this.count > 0 ? this.buffer[Mod(this.tail - 2 + this.capacity, this.capacity) + 1] : ""
-    
+
     IsFull() => this.count = this.capacity
     IsEmpty() => this.count = 0
     Size() => this.count
-    
+
     ToArray() {
         result := []
         if this.count = 0
             return result
-        
+
         i := this.head
         Loop this.count {
             result.Push(this.buffer[i])
@@ -63,15 +63,15 @@ logBuffer := RingBuffer(5)
 Loop 8 {
     logBuffer.Push("Log entry " A_Index)
     arr := logBuffer.ToArray()
-    
+
     content := ""
     for item in arr
         content .= item ", "
-    
+
     OutputDebug("After push " A_Index ": [" content "]`n")
 }
 
-MsgBox("Buffer keeps last 5 entries:`n" 
-     . "Size: " logBuffer.Size() "`n"
-     . "Full: " logBuffer.IsFull() "`n`n"
-     . "Contents: " logBuffer.ToArray()[1] " ... " logBuffer.PeekLast())
+MsgBox("Buffer keeps last 5 entries:`n"
+    . "Size: " logBuffer.Size() "`n"
+    . "Full: " logBuffer.IsFull() "`n`n"
+    . "Contents: " logBuffer.ToArray()[1] " ... " logBuffer.PeekLast())

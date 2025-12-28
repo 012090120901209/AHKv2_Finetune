@@ -2,16 +2,16 @@
 #SingleInstance Force
 
 /**
-* Simple CSV Parser (Simplified from DSVParser)
-* Source: Inspired by github.com/jasonsparc/dsvparser-ahk2
-*
-* Demonstrates:
-* - Class definition with __New constructor
-* - Property definitions (read-only)
-* - String splitting and manipulation
-* - Array operations
-* - Regex for quoted field handling
-*/
+ * Simple CSV Parser (Simplified from DSVParser)
+ * Source: Inspired by github.com/jasonsparc/dsvparser-ahk2
+ * 
+ * Demonstrates:
+ * - Class definition with __New constructor
+ * - Property definitions (read-only)
+ * - String splitting and manipulation
+ * - Array operations
+ * - Regex for quoted field handling
+ */
 
 class SimpleCSVParser {
     __New(delimiter := ",") {
@@ -28,7 +28,7 @@ class SimpleCSVParser {
 
         for line in lines {
             if (Trim(line) = "")
-            continue
+                continue
 
             ; Simple split (doesn't handle quoted commas)
             cells := StrSplit(line, this._delimiter)
@@ -73,9 +73,9 @@ MsgBox(output)
 
 ; Convert back to CSV
 newData := [
-["Product", "Price", "Stock"],
-["Apple", "1.50", "100"],
-["Banana", "0.75", "150"]
+    ["Product", "Price", "Stock"],
+    ["Apple", "1.50", "100"],
+    ["Banana", "0.75", "150"]
 ]
 csvOutput := csv.FromArray(newData)
 MsgBox("Generated CSV:`n`n" csvOutput)

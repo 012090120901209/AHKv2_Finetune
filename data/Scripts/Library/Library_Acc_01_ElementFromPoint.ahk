@@ -12,18 +12,18 @@
 
 DemoAccElementFromPoint() {
     MsgBox("Acc ElementFromPoint Demonstration`n`n"
-    "Get accessible elements using MSAA:`n`n"
-    "Usage with Acc library:`n"
-    "element := Acc.ElementFromPoint(x, y)`n"
-    "name := element.Name`n"
-    "role := element.Role`n"
-    "value := element.Value`n`n"
-    "When to use Acc vs UIA:`n"
-    "- Use Acc for older Windows apps (pre-Vista)`n"
-    "- Use UIA for modern apps (Windows 7+)`n"
-    "- Some apps only support MSAA, not UIA`n`n"
-    "Install: Download from Descolada/Acc-v2",
-    "Acc Demo")
+        "Get accessible elements using MSAA:`n`n"
+        "Usage with Acc library:`n"
+        "element := Acc.ElementFromPoint(x, y)`n"
+        "name := element.Name`n"
+        "role := element.Role`n"
+        "value := element.Value`n`n"
+        "When to use Acc vs UIA:`n"
+        "- Use Acc for older Windows apps (pre-Vista)`n"
+        "- Use UIA for modern apps (Windows 7+)`n"
+        "- Some apps only support MSAA, not UIA`n`n"
+        "Install: Download from Descolada/Acc-v2",
+        "Acc Demo")
 }
 
 ; Real implementation example (commented out, requires library):

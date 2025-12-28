@@ -21,10 +21,10 @@ class Template {
             key := m[1]
             content := m[2]
             replacement := ""
-            
+
             if data.Has(key) && data[key]
                 replacement := content
-            
+
             result := StrReplace(result, m[0], replacement)
         }
 
@@ -33,24 +33,24 @@ class Template {
             key := m[1]
             itemTemplate := m[2]
             replacement := ""
-            
+
             if data.Has(key) && IsObject(data[key]) {
                 items := data[key]
                 for item in items {
                     itemResult := itemTemplate
-                    
+
                     if IsObject(item) && item is Map {
                         for k, v in item
                             itemResult := StrReplace(itemResult, "{{" k "}}", String(v))
                     } else {
                         itemResult := StrReplace(itemResult, "{{this}}", String(item))
                     }
-                    
+
                     itemResult := StrReplace(itemResult, "{{@index}}", String(A_Index))
                     replacement .= itemResult
                 }
             }
-            
+
             result := StrReplace(result, m[0], replacement)
         }
 

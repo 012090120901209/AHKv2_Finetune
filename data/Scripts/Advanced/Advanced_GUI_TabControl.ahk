@@ -59,7 +59,7 @@ SaveSettings(*) {
     saved := myGui.Submit(false)
     settings := ""
     for name, value in saved.OwnProps()
-    settings .= name ": " value "`n"
+        settings .= name ": " value "`n"
     MsgBox("Settings saved!`n`n" settings, "Success")
     myGui.Destroy()
 }
@@ -72,5 +72,5 @@ ApplySettings(*) {
 ClearCache(*) {
     result := MsgBox("Clear all cached data?", "Confirm", "YesNo Icon?")
     if (result = "Yes")
-    MsgBox("Cache cleared!", "Success")
+        MsgBox("Cache cleared!", "Success")
 }

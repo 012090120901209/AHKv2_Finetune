@@ -76,7 +76,7 @@ class HashSet {
     }
 
     IsSuperset(other) => other.IsSubset(this)
-    
+
     IsDisjoint(other) => this.Intersection(other).Size() = 0
 
     __Enum(varCount) {
@@ -105,8 +105,8 @@ small := HashSet([1, 2])
 large := HashSet([1, 2, 3, 4, 5])
 
 MsgBox("Is {1,2} subset of {1,2,3,4,5}? " small.IsSubset(large)
-     . "`nIs {1,2,3,4,5} superset of {1,2}? " large.IsSuperset(small)
-     . "`nAre {1,2,3} and {4,5,6} disjoint? " HashSet([1,2,3]).IsDisjoint(HashSet([4,5,6])))
+    . "`nIs {1,2,3,4,5} superset of {1,2}? " large.IsSuperset(small)
+    . "`nAre {1,2,3} and {4,5,6} disjoint? " HashSet([1, 2, 3]).IsDisjoint(HashSet([4, 5, 6])))
 
 ; Helper
 ArrayJoin(arr, sep := ", ") {

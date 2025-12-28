@@ -1,47 +1,47 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_StrSplit_02_CSVParsing.ahk
-*
-* DESCRIPTION:
-* Advanced CSV and structured data parsing using StrSplit() function
-*
-* FEATURES:
-* - Parse CSV (Comma-Separated Values) data
-* - Parse TSV (Tab-Separated Values) data
-* - Handle quoted fields with commas
-* - Process multi-line CSV data
-* - Build data tables from CSV
-* - Export data back to CSV format
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - StrSplit()
-* Common CSV parsing patterns
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - StrSplit() for CSV parsing
-* - Array of Arrays (2D data)
-* - Map objects for structured data
-* - Loop Parse for line-by-line processing
-* - String manipulation with InStr() and SubStr()
-*
-* LEARNING POINTS:
-* 1. CSV is a common data exchange format
-* 2. Simple CSV can be parsed with StrSplit(line, ",")
-* 3. Quoted fields require special handling
-* 4. Multi-line data needs line-by-line parsing
-* 5. Headers can be used as Map keys
-* 6. Data validation is important when parsing
-* 7. Whitespace often needs trimming
-*/
+ * BuiltIn_StrSplit_02_CSVParsing.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced CSV and structured data parsing using StrSplit() function
+ * 
+ * FEATURES:
+ * - Parse CSV (Comma-Separated Values) data
+ * - Parse TSV (Tab-Separated Values) data
+ * - Handle quoted fields with commas
+ * - Process multi-line CSV data
+ * - Build data tables from CSV
+ * - Export data back to CSV format
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - StrSplit()
+ * Common CSV parsing patterns
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - StrSplit() for CSV parsing
+ * - Array of Arrays (2D data)
+ * - Map objects for structured data
+ * - Loop Parse for line-by-line processing
+ * - String manipulation with InStr() and SubStr()
+ * 
+ * LEARNING POINTS:
+ * 1. CSV is a common data exchange format
+ * 2. Simple CSV can be parsed with StrSplit(line, ",")
+ * 3. Quoted fields require special handling
+ * 4. Multi-line data needs line-by-line parsing
+ * 5. Headers can be used as Map keys
+ * 6. Data validation is important when parsing
+ * 7. Whitespace often needs trimming
+ */
 
 ; ============================================================
 ; Example 1: Simple CSV Line Parsing
 ; ============================================================
 
 /**
-* Parse a simple CSV line without quoted fields
-*/
+ * Parse a simple CSV line without quoted fields
+ */
 csvLine := "John,Doe,35,Engineer,New York"
 fields := StrSplit(csvLine, ",")
 
@@ -60,15 +60,15 @@ MsgBox(output, "Simple CSV Parsing", "Icon!")
 ; ============================================================
 
 /**
-* Parse CSV data with headers into array of Maps
-*
-* @param {String} csvData - Multi-line CSV data
-* @returns {Array} - Array of Map objects
-*/
+ * Parse CSV data with headers into array of Maps
+ * 
+ * @param {String} csvData - Multi-line CSV data
+ * @returns {Array} - Array of Map objects
+ */
 ParseCSVWithHeaders(csvData) {
     lines := StrSplit(csvData, "`n", "`r")  ; Split lines, omit CR
     if (lines.Length < 2)
-    return []
+        return []
 
     ; First line is headers
     headers := StrSplit(lines[1], ",")
@@ -83,7 +83,7 @@ ParseCSVWithHeaders(csvData) {
     Loop lines.Length - 1 {
         rowIndex := A_Index + 1
         if (Trim(lines[rowIndex]) = "")  ; Skip empty lines
-        continue
+            continue
 
         fields := StrSplit(lines[rowIndex], ",")
         row := Map()
@@ -129,9 +129,9 @@ MsgBox(output, "CSV with Headers", "Icon!")
 ; ============================================================
 
 /**
-* Parse Tab-Separated Values
-* Common in spreadsheet exports
-*/
+ * Parse Tab-Separated Values
+ * Common in spreadsheet exports
+ */
 tsvData := "
 (
 Product`tQuantity`tPrice`tTotal
@@ -147,7 +147,7 @@ ParseTSV(tsvData) {
     for line in lines {
         line := Trim(line)
         if (line = "")
-        continue
+            continue
 
         fields := StrSplit(line, "`t")
         result.Push(fields)
@@ -181,7 +181,7 @@ total := 0
 Loop table.Length - 1 {
     row := table[A_Index + 1]
     if (row.Length >= 4)
-    total += Float(row[4])
+        total += Float(row[4])
 }
 
 output .= "`nGrand Total: $" Format("{:.2f}", total)
@@ -193,12 +193,12 @@ MsgBox(output, "TSV Parsing", "Icon!")
 ; ============================================================
 
 /**
-* Parse CSV with quoted fields that may contain commas
-* This is a simplified parser for demonstration
-*
-* @param {String} csvLine - CSV line to parse
-* @returns {Array} - Array of fields
-*/
+ * Parse CSV with quoted fields that may contain commas
+ * This is a simplified parser for demonstration
+ * 
+ * @param {String} csvLine - CSV line to parse
+ * @returns {Array} - Array of fields
+ */
 ParseQuotedCSV(csvLine) {
     fields := []
     currentField := ""
@@ -225,10 +225,10 @@ ParseQuotedCSV(csvLine) {
 
 ; Test with quoted fields
 testLines := [
-'John,Doe,Engineer',
-'"Smith, Jane",Developer',
-'"Brown, Bob","Senior Manager","Acme Corp"',
-'Alice,"Quality Assurance","Company, Inc."'
+    'John,Doe,Engineer',
+    '"Smith, Jane",Developer',
+    '"Brown, Bob","Senior Manager","Acme Corp"',
+    'Alice,"Quality Assurance","Company, Inc."'
 ]
 
 output := "QUOTED CSV PARSING:`n`n"
@@ -251,17 +251,17 @@ MsgBox(output, "Quoted CSV Fields", "Icon!")
 ; ============================================================
 
 /**
-* Convert CSV data to a 2D array (table)
-* Useful for data manipulation and analysis
-*/
+ * Convert CSV data to a 2D array (table)
+ * Useful for data manipulation and analysis
+ */
 class CSVTable {
     /**
-    * Parse CSV into 2D table
-    *
-    * @param {String} csvData - CSV data
-    * @param {Boolean} hasHeaders - True if first row is headers
-    * @returns {Object} - Table object with data and headers
-    */
+     * Parse CSV into 2D table
+     * 
+     * @param {String} csvData - CSV data
+     * @param {Boolean} hasHeaders - True if first row is headers
+     * @returns {Object} - Table object with data and headers
+     */
     static FromCSV(csvData, hasHeaders := true) {
         lines := StrSplit(csvData, "`n", "`r")
         table := {
@@ -287,7 +287,7 @@ class CSVTable {
             line := Trim(lines[rowIndex])
 
             if (line = "")
-            continue
+                continue
 
             fields := StrSplit(line, ",")
             cleanFields := []
@@ -300,38 +300,38 @@ class CSVTable {
             table.rowCount++
 
             if (table.colCount = 0)
-            table.colCount := cleanFields.Length
+                table.colCount := cleanFields.Length
         }
 
         return table
     }
 
     /**
-    * Get specific column data
-    *
-    * @param {Object} table - Table object
-    * @param {Integer} colIndex - Column index (1-based)
-    * @returns {Array} - Column values
-    */
+     * Get specific column data
+     * 
+     * @param {Object} table - Table object
+     * @param {Integer} colIndex - Column index (1-based)
+     * @returns {Array} - Column values
+     */
     static GetColumn(table, colIndex) {
         column := []
         for row in table.rows {
             if (colIndex <= row.Length)
-            column.Push(row[colIndex])
+                column.Push(row[colIndex])
         }
         return column
     }
 
     /**
-    * Calculate sum of numeric column
-    */
+     * Calculate sum of numeric column
+     */
     static SumColumn(table, colIndex) {
         sum := 0
         for row in table.rows {
             if (colIndex <= row.Length) {
                 value := Float(row[colIndex])
                 if (value != "")
-                sum += value
+                    sum += value
             }
         }
         return sum
@@ -386,12 +386,12 @@ MsgBox(output, "CSV Table Analysis", "Icon!")
 ; ============================================================
 
 /**
-* Convert array of Maps back to CSV format
-*
-* @param {Array} data - Array of Map objects
-* @param {Array} headers - Column headers
-* @returns {String} - CSV formatted string
-*/
+ * Convert array of Maps back to CSV format
+ * 
+ * @param {Array} data - Array of Map objects
+ * @param {Array} headers - Column headers
+ * @returns {String} - CSV formatted string
+ */
 ExportToCSV(data, headers) {
     csv := ""
 
@@ -399,7 +399,7 @@ ExportToCSV(data, headers) {
     for index, header in headers {
         csv .= header
         if (index < headers.Length)
-        csv .= ","
+            csv .= ","
     }
     csv .= "`n"
 
@@ -410,11 +410,11 @@ ExportToCSV(data, headers) {
 
             ; Quote if contains comma
             if (InStr(value, ","))
-            value := '"' value '"'
+                value := '"' value '"'
 
             csv .= value
             if (index < headers.Length)
-            csv .= ","
+                csv .= ","
         }
         csv .= "`n"
     }
@@ -426,24 +426,24 @@ ExportToCSV(data, headers) {
 products := []
 
 products.Push(Map(
-"ID", "001",
-"Name", "Widget, Premium",
-"Price", "29.99",
-"Stock", "150"
+    "ID", "001",
+    "Name", "Widget, Premium",
+    "Price", "29.99",
+    "Stock", "150"
 ))
 
 products.Push(Map(
-"ID", "002",
-"Name", "Gadget Pro",
-"Price", "49.99",
-"Stock", "75"
+    "ID", "002",
+    "Name", "Gadget Pro",
+    "Price", "49.99",
+    "Stock", "75"
 ))
 
 products.Push(Map(
-"ID", "003",
-"Name", "Tool, Deluxe",
-"Price", "39.99",
-"Stock", "200"
+    "ID", "003",
+    "Name", "Tool, Deluxe",
+    "Price", "39.99",
+    "Stock", "200"
 ))
 
 headers := ["ID", "Name", "Price", "Stock"]
@@ -460,9 +460,9 @@ MsgBox(output, "Export to CSV", "Icon!")
 ; ============================================================
 
 /**
-* Parse configuration data in CSV format
-* Format: key,value
-*/
+ * Parse configuration data in CSV format
+ * Format: key,value
+ */
 ParseConfigCSV(configData) {
     config := Map()
     lines := StrSplit(configData, "`n", "`r")
@@ -472,7 +472,7 @@ ParseConfigCSV(configData) {
 
         ; Skip empty lines and comments
         if (line = "" || SubStr(line, 1, 1) = "#")
-        continue
+            continue
 
         parts := StrSplit(line, ",")
         if (parts.Length >= 2) {

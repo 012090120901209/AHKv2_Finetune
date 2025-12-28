@@ -13,11 +13,14 @@ ogcButtonBBBB := guiName1.Add("Button", "Default", "BBBB")
 ogcButtonBBBB.OnEvent("Click", ButtonBBBB.Bind("Normal"))
 guiName1.Show()
 guiNameButtonAAAA(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { ; Gui, Add, Button, Default, AAAA ; guiName + Button + AAAA ; guiNameButtonAAAA MsgBox("Button AAAA is call")
-} ButtonBBBB(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("Button BBBB is call")
+} ButtonBBBB(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("Button BBBB is call")
 } GuiClose()
 GuiEscape()
 ExitApp()
-GuiClose(*) { GuiEscape()
+GuiClose(*) {
+    GuiEscape()
 }
-GuiEscape() { ExitApp()
+GuiEscape() {
+    ExitApp()
 }

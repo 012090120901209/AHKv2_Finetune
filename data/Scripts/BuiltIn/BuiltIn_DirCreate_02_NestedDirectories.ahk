@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DirCreate_02_NestedDirectories.ahk
-*
-* DESCRIPTION:
-* Nested directory structures with comprehensive examples demonstrating
-* key concepts and practical applications.
-*
-* FEATURES:
-* - DirCreate basic usage and syntax
-* - Error handling and validation
-* - Practical real-world examples
-* - Integration with other AutoHotkey features
-* - Performance considerations
-* - Best practices and patterns
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DirCreate() function syntax
-* - Return value handling
-* - Error handling with Try/Catch
-* - GUI integration
-* - Event-driven programming
-* - Map and Array usage
-*
-* LEARNING POINTS:
-* 1. DirCreate provides essential functionality
-* 2. Always validate inputs and outputs
-* 3. Handle errors gracefully
-* 4. Consider performance implications
-* 5. Use appropriate data structures
-* 6. Follow AutoHotkey v2 conventions
-* 7. Test edge cases thoroughly
-*/
+ * BuiltIn_DirCreate_02_NestedDirectories.ahk
+ * 
+ * DESCRIPTION:
+ * Nested directory structures with comprehensive examples demonstrating
+ * key concepts and practical applications.
+ * 
+ * FEATURES:
+ * - DirCreate basic usage and syntax
+ * - Error handling and validation
+ * - Practical real-world examples
+ * - Integration with other AutoHotkey features
+ * - Performance considerations
+ * - Best practices and patterns
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DirCreate() function syntax
+ * - Return value handling
+ * - Error handling with Try/Catch
+ * - GUI integration
+ * - Event-driven programming
+ * - Map and Array usage
+ * 
+ * LEARNING POINTS:
+ * 1. DirCreate provides essential functionality
+ * 2. Always validate inputs and outputs
+ * 3. Handle errors gracefully
+ * 4. Consider performance implications
+ * 5. Use appropriate data structures
+ * 6. Follow AutoHotkey v2 conventions
+ * 7. Test edge cases thoroughly
+ */
 
 ;;===============================================================================
 ; EXAMPLE 1: NestedDirectories Example 1
@@ -424,3 +424,4 @@ Example6_DirCreate() {
 ; Example4_DirCreate()
 ; Example5_DirCreate()
 ; Example6_DirCreate()
+

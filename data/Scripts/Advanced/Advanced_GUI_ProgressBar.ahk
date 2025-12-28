@@ -54,7 +54,7 @@ UpdateProgress() {
     global isProcessing, currentFile, totalFiles, startTime
 
     if (!isProcessing)
-    return
+        return
 
     currentFile += Random(1, 3)
 

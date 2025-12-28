@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinHide Examples - Part 3
-* ============================================================================
-*
-* Demonstrates window hiding techniques.
-*
-* @description Window hiding examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinHide Examples - Part 3
+ * ============================================================================
+ * 
+ * Demonstrates window hiding techniques.
+ * 
+ * @description Window hiding examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Hide Active Window
 ; ============================================================================
 
 /**
-* Hides the active window
-*
-* @hotkey F1 - Hide active window
-*/
+ * Hides the active window
+ * 
+ * @hotkey F1 - Hide active window
+ */
 F1:: {
     if WinExist("A") {
         WinHide("A")
@@ -35,10 +35,10 @@ F1:: {
 ; ============================================================================
 
 /**
-* Hides window to system tray concept
-*
-* @hotkey F2 - Hide to tray
-*/
+ * Hides window to system tray concept
+ * 
+ * @hotkey F2 - Hide to tray
+ */
 F2:: {
     if WinExist("A") {
         global hiddenWindow := WinGetID("A")
@@ -52,22 +52,22 @@ F2:: {
 ; ============================================================================
 
 /**
-* Toggles visibility of specific window
-*
-* @hotkey F3 - Toggle Notepad visibility
-*/
+ * Toggles visibility of specific window
+ * 
+ * @hotkey F3 - Toggle Notepad visibility
+ */
 F3:: {
     if WinExist("ahk_class Notepad") {
         if WinGetStyle("ahk_class Notepad") & 0x10000000 {  ; WS_VISIBLE
-        WinHide("ahk_class Notepad")
-        ToolTip("Notepad hidden")
-    } else {
-        WinShow("ahk_class Notepad")
-        WinActivate("ahk_class Notepad")
-        ToolTip("Notepad shown")
+            WinHide("ahk_class Notepad")
+            ToolTip("Notepad hidden")
+        } else {
+            WinShow("ahk_class Notepad")
+            WinActivate("ahk_class Notepad")
+            ToolTip("Notepad shown")
+        }
+        SetTimer(() => ToolTip(), -1500)
     }
-    SetTimer(() => ToolTip(), -1500)
-}
 }
 
 ; ============================================================================
@@ -75,10 +75,10 @@ F3:: {
 ; ============================================================================
 
 /**
-* Hides all windows of a process
-*
-* @hotkey F4 - Hide all Notepad windows
-*/
+ * Hides all windows of a process
+ * 
+ * @hotkey F4 - Hide all Notepad windows
+ */
 F4:: {
     windows := WinGetList("ahk_exe notepad.exe")
 
@@ -96,10 +96,10 @@ F4:: {
 ; ============================================================================
 
 /**
-* Hides all windows except active
-*
-* @hotkey F5 - Hide all except active
-*/
+ * Hides all windows except active
+ * 
+ * @hotkey F5 - Hide all except active
+ */
 F5:: {
     activeHwnd := WinGetID("A")
     allWindows := WinGetList()
@@ -125,10 +125,10 @@ F5:: {
 ; ============================================================================
 
 /**
-* Hides window temporarily then shows again
-*
-* @hotkey F6 - Temporary hide
-*/
+ * Hides window temporarily then shows again
+ * 
+ * @hotkey F6 - Temporary hide
+ */
 F6:: {
     if !WinExist("A") {
         return
@@ -155,10 +155,10 @@ RestoreWindow(hwnd) {
 ; ============================================================================
 
 /**
-* Hides a group of windows
-*
-* @hotkey F7 - Hide window group
-*/
+ * Hides a group of windows
+ * 
+ * @hotkey F7 - Hide window group
+ */
 F7:: {
     ; Hide all browser windows
     browsers := ["chrome.exe", "firefox.exe", "msedge.exe"]
@@ -181,7 +181,7 @@ F7:: {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

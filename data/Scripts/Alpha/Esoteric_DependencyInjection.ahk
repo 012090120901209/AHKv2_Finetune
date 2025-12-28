@@ -14,7 +14,7 @@ class Container {
         this._singletons := Map()
         this._instances := Map()
     }
-    
+
     ; Register transient binding
     Bind(abstract, concrete := "") {
         concrete := concrete || abstract
@@ -24,7 +24,7 @@ class Container {
         }
         return this
     }
-    
+
     ; Register singleton binding
     Singleton(abstract, concrete := "") {
         concrete := concrete || abstract
@@ -34,13 +34,13 @@ class Container {
         }
         return this
     }
-    
+
     ; Register instance
     Instance(abstract, instance) {
         this._instances[abstract] := instance
         return this
     }
-    
+
     ; Register factory function
     Factory(abstract, factory, singleton := false) {
         this._bindings[abstract] := {
@@ -50,23 +50,23 @@ class Container {
         }
         return this
     }
-    
+
     ; Resolve dependency
     Make(abstract, params := []) {
         ; Check instances first
         if this._instances.Has(abstract)
             return this._instances[abstract]
-        
+
         ; Check singleton cache
         if this._singletons.Has(abstract)
             return this._singletons[abstract]
-        
+
         ; Get binding
         if !this._bindings.Has(abstract)
             throw Error("No binding for: " abstract)
-        
+
         binding := this._bindings[abstract]
-        
+
         ; Resolve
         if binding.HasOwnProp("isFactory") && binding.isFactory {
             instance := binding.resolver(this, params*)
@@ -75,33 +75,33 @@ class Container {
         } else {
             instance := this._build(binding.resolver, params)
         }
-        
+
         ; Cache singleton
         if binding.singleton
             this._singletons[abstract] := instance
-        
+
         return instance
     }
-    
+
     _build(concrete, params) {
         ; If concrete is a class, instantiate it
         if concrete is Class
             return concrete(params*)
-        
+
         ; If it's a string class name, try to resolve
         try {
             classObj := %concrete%
             return classObj(params*)
         }
-        
+
         return concrete
     }
-    
+
     ; Check if bound
     Has(abstract) {
         return this._bindings.Has(abstract) || this._instances.Has(abstract)
     }
-    
+
     ; Get alias
     Alias(alias, abstract) {
         this._bindings[alias] := this._bindings[abstract]
@@ -118,32 +118,32 @@ class AutoWireContainer extends Container {
         super.__New()
         this._typeHints := Map()  ; Store type hints for classes
     }
-    
+
     ; Register type hints for a class
     WithDependencies(className, dependencies*) {
         this._typeHints[className] := dependencies
         return this
     }
-    
+
     ; Override Make to support auto-wiring
     Make(abstract, params := []) {
         ; Try parent first
         if this._instances.Has(abstract) || this._singletons.Has(abstract)
             return super.Make(abstract, params)
-        
+
         ; Auto-wire if we have type hints
         if this._typeHints.Has(abstract) {
             deps := []
             for depType in this._typeHints[abstract]
                 deps.Push(this.Make(depType))
-            
+
             ; Build with resolved dependencies
             return this._build(
                 this._bindings.Has(abstract) ? this._bindings[abstract].resolver : abstract,
                 deps
             )
         }
-        
+
         return super.Make(abstract, params)
     }
 }
@@ -154,24 +154,24 @@ class AutoWireContainer extends Container {
 
 class ServiceLocator {
     static _services := Map()
-    
+
     static Register(name, service) {
         this._services[name] := service
     }
-    
+
     static Get(name) {
         if !this._services.Has(name)
             throw Error("Service not registered: " name)
         return this._services[name]
     }
-    
+
     static Has(name) => this._services.Has(name)
-    
+
     static Remove(name) {
         if this._services.Has(name)
             this._services.Delete(name)
     }
-    
+
     static Clear() => this._services := Map()
 }
 
@@ -184,17 +184,17 @@ class ContextualContainer extends Container {
         super.__New()
         this._contextBindings := Map()
     }
-    
+
     ; When building X, use Y for dependency Z
     When(concrete) {
         return ContextualBindingBuilder(this, concrete)
     }
-    
+
     _addContextBinding(concrete, abstract, implementation) {
         key := concrete . ":" . abstract
         this._contextBindings[key] := implementation
     }
-    
+
     ; Override Make to check context
     MakeFor(requestor, abstract) {
         key := requestor . ":" . abstract
@@ -209,12 +209,12 @@ class ContextualBindingBuilder {
         this._container := container
         this._concrete := concrete
     }
-    
+
     Needs(abstract) {
         this._abstract := abstract
         return this
     }
-    
+
     Give(implementation) {
         this._container._addContextBinding(
             this._concrete,
@@ -234,7 +234,7 @@ class TaggedContainer extends Container {
         super.__New()
         this._tags := Map()
     }
-    
+
     ; Tag a binding
     Tag(abstract, tags*) {
         for tag in tags {
@@ -244,18 +244,18 @@ class TaggedContainer extends Container {
         }
         return this
     }
-    
+
     ; Get all services with tag
     Tagged(tag) {
         if !this._tags.Has(tag)
             return []
-        
+
         services := []
         for abstract in this._tags[tag]
             services.Push(this.Make(abstract))
         return services
     }
-    
+
     ; Chain with Tag
     BindTagged(abstract, concrete, tags*) {
         this.Bind(abstract, concrete)
@@ -274,25 +274,25 @@ class ScopedContainer extends Container {
         this._parent := parent
         this._scopeId := A_TickCount . "_" . Random(1000, 9999)
     }
-    
+
     ; Create child scope
     CreateScope() {
         return ScopedContainer(this)
     }
-    
+
     ; Override Make to check parent
     Make(abstract, params := []) {
         ; Check local bindings first
         if this._bindings.Has(abstract) || this._instances.Has(abstract)
             return super.Make(abstract, params)
-        
+
         ; Delegate to parent
         if this._parent
             return this._parent.Make(abstract, params)
-        
+
         throw Error("No binding for: " abstract)
     }
-    
+
     ScopeId => this._scopeId
 }
 
@@ -305,29 +305,29 @@ class MethodInjector {
         this._container := container
         this._methodParams := Map()
     }
-    
+
     ; Register method parameter types
     RegisterMethod(className, methodName, paramTypes*) {
         key := className . "." . methodName
         this._methodParams[key] := paramTypes
         return this
     }
-    
+
     ; Call method with injected dependencies
     Call(obj, methodName, extraParams*) {
         key := Type(obj) . "." . methodName
-        
+
         injectedParams := []
-        
+
         if this._methodParams.Has(key) {
             for paramType in this._methodParams[key]
                 injectedParams.Push(this._container.Make(paramType))
         }
-        
+
         ; Append extra params
         for p in extraParams
             injectedParams.Push(p)
-        
+
         return obj.%methodName%(injectedParams*)
     }
 }
@@ -341,7 +341,7 @@ class DecoratingContainer extends Container {
         super.__New()
         this._decorators := Map()
     }
-    
+
     ; Add decorator for a service
     Decorate(abstract, decorator) {
         if !this._decorators.Has(abstract)
@@ -349,16 +349,16 @@ class DecoratingContainer extends Container {
         this._decorators[abstract].Push(decorator)
         return this
     }
-    
+
     ; Override Make to apply decorators
     Make(abstract, params := []) {
         instance := super.Make(abstract, params)
-        
+
         if this._decorators.Has(abstract) {
             for decorator in this._decorators[abstract]
                 instance := decorator(instance, this)
         }
-        
+
         return instance
     }
 }
@@ -393,7 +393,7 @@ class FileLogger extends ILogger {
     __New(path := "app.log") {
         this.path := path
     }
-    
+
     Log(message) {
         FileAppend(A_Now " - " message "`n", this.path)
         return true
@@ -404,7 +404,7 @@ class MemoryDatabase extends IDatabase {
     __New() {
         this._data := Map()
     }
-    
+
     Query(sql) => "Result for: " sql
 }
 
@@ -412,7 +412,7 @@ class MemoryCache extends ICache {
     __New() {
         this._cache := Map()
     }
-    
+
     Get(key) => this._cache.Get(key, "")
     Set(key, value) => this._cache[key] := value
 }
@@ -424,7 +424,7 @@ class UserService {
         this._database := database
         this._cache := cache
     }
-    
+
     GetUser(id) {
         this._logger.Log("Getting user: " id)
         return this._database.Query("SELECT * FROM users WHERE id=" id)
@@ -441,7 +441,7 @@ container := Container()
 container
     .Bind("ILogger", ConsoleLogger)
     .Singleton("IDatabase", MemoryDatabase)
-    .Instance("config", {appName: "MyApp", debug: true})
+    .Instance("config", { appName: "MyApp", debug: true })
 
 logger := container.Make("ILogger")
 db := container.Make("IDatabase")

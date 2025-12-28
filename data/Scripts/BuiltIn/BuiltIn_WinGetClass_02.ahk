@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinGetClass_02.ahk
-* @description Advanced window class-based identification, filtering, and monitoring examples using WinGetClass in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Class-based window monitor
-* Example 2: Application launcher by class
-* Example 3: Class hierarchy analyzer
-* Example 4: Window class grouping
-* Example 5: Class-based automation router
-* Example 6: Dynamic class templates
-*
-* @section FEATURES
-* - Real-time class monitoring
-* - Application launching
-* - Class hierarchies
-* - Window grouping
-* - Automation routing
-* - Template system
-*/
+ * @file BuiltIn_WinGetClass_02.ahk
+ * @description Advanced window class-based identification, filtering, and monitoring examples using WinGetClass in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Class-based window monitor
+ * Example 2: Application launcher by class
+ * Example 3: Class hierarchy analyzer
+ * Example 4: Window class grouping
+ * Example 5: Class-based automation router
+ * Example 6: Dynamic class templates
+ * 
+ * @section FEATURES
+ * - Real-time class monitoring
+ * - Application launching
+ * - Class hierarchies
+ * - Window grouping
+ * - Automation routing
+ * - Template system
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -29,21 +29,21 @@
 ; ========================================
 
 /**
-* @class ClassMonitor
-* @description Monitor windows based on their class names
-*/
+ * @class ClassMonitor
+ * @description Monitor windows based on their class names
+ */
 class ClassMonitor {
     static monitors := Map()
     static checkInterval := 1000
     static timerActive := false
 
     /**
-    * @method WatchForClass
-    * @description Watch for windows of a specific class
-    * @param className Class to watch for
-    * @param callback Function to call when found
-    * @param continuous Keep watching (default: false)
-    */
+     * @method WatchForClass
+     * @description Watch for windows of a specific class
+     * @param className Class to watch for
+     * @param callback Function to call when found
+     * @param continuous Keep watching (default: false)
+     */
     static WatchForClass(className, callback, continuous := false) {
         this.monitors[className] := {
             ClassName: className,
@@ -62,10 +62,10 @@ class ClassMonitor {
     }
 
     /**
-    * @method StopWatching
-    * @description Stop watching for a class
-    * @param className Class name
-    */
+     * @method StopWatching
+     * @description Stop watching for a class
+     * @param className Class name
+     */
     static StopWatching(className) {
         this.monitors.Delete(className)
 
@@ -76,9 +76,9 @@ class ClassMonitor {
     }
 
     /**
-    * @method CheckAllMonitors
-    * @description Check all monitored classes
-    */
+     * @method CheckAllMonitors
+     * @description Check all monitored classes
+     */
     static CheckAllMonitors() {
         for className, monitor in this.monitors {
             this.CheckClass(className, monitor)
@@ -86,11 +86,11 @@ class ClassMonitor {
     }
 
     /**
-    * @method CheckClass
-    * @description Check for windows of a specific class
-    * @param className Class to check
-    * @param monitor Monitor data
-    */
+     * @method CheckClass
+     * @description Check for windows of a specific class
+     * @param className Class to check
+     * @param monitor Monitor data
+     */
     static CheckClass(className, monitor) {
         allWindows := WinGetList()
         foundNow := Map()
@@ -142,13 +142,13 @@ class ClassMonitor {
     }
 
     /**
-    * @method GetMonitorStats
-    * @description Get statistics for all monitors
-    * @returns {String} Formatted statistics
-    */
+     * @method GetMonitorStats
+     * @description Get statistics for all monitors
+     * @returns {String} Formatted statistics
+     */
     static GetMonitorStats() {
         if this.monitors.Count = 0
-        return "No active monitors"
+            return "No active monitors"
 
         output := "Active Class Monitors:`n`n"
 
@@ -182,20 +182,20 @@ OnClassDetected(data) {
 ; ========================================
 
 /**
-* @class ClassLauncher
-* @description Launch or activate applications by their window class
-*/
+ * @class ClassLauncher
+ * @description Launch or activate applications by their window class
+ */
 class ClassLauncher {
     static appDatabase := Map()
 
     /**
-    * @method RegisterApplication
-    * @description Register an application with its class and executable
-    * @param name Application name
-    * @param className Window class
-    * @param exePath Executable path
-    * @param args Command line arguments
-    */
+     * @method RegisterApplication
+     * @description Register an application with its class and executable
+     * @param name Application name
+     * @param className Window class
+     * @param exePath Executable path
+     * @param args Command line arguments
+     */
     static RegisterApplication(name, className, exePath, args := "") {
         this.appDatabase[name] := {
             Name: name,
@@ -208,11 +208,11 @@ class ClassLauncher {
     }
 
     /**
-    * @method LaunchOrActivate
-    * @description Launch app if not running, or activate if it is
-    * @param name Application name
-    * @returns {Boolean} Success status
-    */
+     * @method LaunchOrActivate
+     * @description Launch app if not running, or activate if it is
+     * @param name Application name
+     * @returns {Boolean} Success status
+     */
     static LaunchOrActivate(name) {
         if !this.appDatabase.Has(name) {
             MsgBox("Application not registered: " name, "Error", "IconX")
@@ -264,9 +264,9 @@ class ClassLauncher {
     }
 
     /**
-    * @method RegisterCommonApps
-    * @description Register common Windows applications
-    */
+     * @method RegisterCommonApps
+     * @description Register common Windows applications
+     */
     static RegisterCommonApps() {
         ; Notepad
         this.RegisterApplication("Notepad", "Notepad", "notepad.exe")
@@ -284,13 +284,13 @@ class ClassLauncher {
     }
 
     /**
-    * @method ListRegistered
-    * @description List all registered applications
-    * @returns {String} Formatted list
-    */
+     * @method ListRegistered
+     * @description List all registered applications
+     * @returns {String} Formatted list
+     */
     static ListRegistered() {
         if this.appDatabase.Count = 0
-        return "No applications registered"
+            return "No applications registered"
 
         output := "Registered Applications:`n`n"
 
@@ -315,7 +315,7 @@ ClassLauncher.RegisterCommonApps()
 
     name := InputBox("Enter application name to launch:", "Class Launcher").Value
     if name != ""
-    ClassLauncher.LaunchOrActivate(name)
+        ClassLauncher.LaunchOrActivate(name)
 }
 
 ; ========================================
@@ -323,16 +323,16 @@ ClassLauncher.RegisterCommonApps()
 ; ========================================
 
 /**
-* @class ClassHierarchy
-* @description Analyze window class hierarchies and parent-child relationships
-*/
+ * @class ClassHierarchy
+ * @description Analyze window class hierarchies and parent-child relationships
+ */
 class ClassHierarchy {
     /**
-    * @method GetWindowHierarchy
-    * @description Get full window hierarchy starting from a window
-    * @param WinTitle Window identifier
-    * @returns {Object} Hierarchy data
-    */
+     * @method GetWindowHierarchy
+     * @description Get full window hierarchy starting from a window
+     * @param WinTitle Window identifier
+     * @returns {Object} Hierarchy data
+     */
     static GetWindowHierarchy(WinTitle := "A") {
         try {
             hwnd := WinExist(WinTitle)
@@ -355,13 +355,13 @@ class ClassHierarchy {
                 Loop {
                     parent := DllCall("GetParent", "Ptr", current, "Ptr")
                     if !parent
-                    break
+                        break
 
                     hierarchy.Ancestors.Push(this.GetWindowInfo(parent))
                     current := parent
 
                     if A_Index > 20  ; Safety limit
-                    break
+                        break
                 }
             }
 
@@ -377,16 +377,16 @@ class ClassHierarchy {
             return hierarchy
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method GetWindowInfo
-    * @description Get information about a window by HWND
-    * @param hwnd Window handle
-    * @returns {Object} Window information
-    */
+     * @method GetWindowInfo
+     * @description Get information about a window by HWND
+     * @param hwnd Window handle
+     * @returns {Object} Window information
+     */
     static GetWindowInfo(hwnd) {
         try {
             return {
@@ -407,11 +407,11 @@ class ClassHierarchy {
     }
 
     /**
-    * @method GetChildWindows
-    * @description Get direct children of a window
-    * @param hwnd Parent window handle
-    * @returns {Array} Child window handles
-    */
+     * @method GetChildWindows
+     * @description Get direct children of a window
+     * @param hwnd Parent window handle
+     * @returns {Array} Child window handles
+     */
     static GetChildWindows(hwnd) {
         children := []
 
@@ -428,16 +428,16 @@ class ClassHierarchy {
     }
 
     /**
-    * @method GetAllDescendants
-    * @description Get all descendants recursively
-    * @param hwnd Root window handle
-    * @returns {Array} All descendant windows
-    */
+     * @method GetAllDescendants
+     * @description Get all descendants recursively
+     * @param hwnd Root window handle
+     * @returns {Array} All descendant windows
+     */
     static GetAllDescendants(hwnd, depth := 0) {
         descendants := []
 
         if depth > 10  ; Safety limit
-        return descendants
+            return descendants
 
         children := this.GetChildWindows(hwnd)
 
@@ -455,11 +455,11 @@ class ClassHierarchy {
     }
 
     /**
-    * @method FormatHierarchy
-    * @description Format hierarchy as readable text
-    * @param hierarchy Hierarchy data
-    * @returns {String} Formatted text
-    */
+     * @method FormatHierarchy
+     * @description Format hierarchy as readable text
+     * @param hierarchy Hierarchy data
+     * @returns {String} Formatted text
+     */
     static FormatHierarchy(hierarchy) {
         output := "=== Window Hierarchy ===`n`n"
 
@@ -469,7 +469,7 @@ class ClassHierarchy {
             for i, ancestor in hierarchy.Ancestors {
                 output .= "  " StrRepeat("  ", i - 1) "↑ " ancestor.Class
                 if ancestor.Title != ""
-                output .= " (" ancestor.Title ")"
+                    output .= " (" ancestor.Title ")"
                 output .= "`n"
             }
             output .= "`n"
@@ -479,7 +479,7 @@ class ClassHierarchy {
         output .= "Current Window:`n"
         output .= "  • " hierarchy.Window.Class
         if hierarchy.Window.Title != ""
-        output .= " (" hierarchy.Window.Title ")"
+            output .= " (" hierarchy.Window.Title ")"
         output .= "`n`n"
 
         ; Children
@@ -488,7 +488,7 @@ class ClassHierarchy {
             for child in hierarchy.Children {
                 output .= "  ↓ " child.Class
                 if child.Title != ""
-                output .= " (" child.Title ")"
+                    output .= " (" child.Title ")"
                 output .= "`n"
             }
             output .= "`n"
@@ -530,18 +530,18 @@ StrRepeat(str, count) {
 ; ========================================
 
 /**
-* @class WindowGroups
-* @description Group windows by their class for batch operations
-*/
+ * @class WindowGroups
+ * @description Group windows by their class for batch operations
+ */
 class WindowGroups {
     static groups := Map()
 
     /**
-    * @method CreateGroup
-    * @description Create a group of windows by class
-    * @param groupName Group name
-    * @param classPatterns Array of class patterns
-    */
+     * @method CreateGroup
+     * @description Create a group of windows by class
+     * @param groupName Group name
+     * @param classPatterns Array of class patterns
+     */
     static CreateGroup(groupName, classPatterns) {
         this.groups[groupName] := {
             Name: groupName,
@@ -551,14 +551,14 @@ class WindowGroups {
     }
 
     /**
-    * @method GetGroupWindows
-    * @description Get all windows belonging to a group
-    * @param groupName Group name
-    * @returns {Array} Window IDs
-    */
+     * @method GetGroupWindows
+     * @description Get all windows belonging to a group
+     * @param groupName Group name
+     * @returns {Array} Window IDs
+     */
     static GetGroupWindows(groupName) {
         if !this.groups.Has(groupName)
-        return []
+            return []
 
         group := this.groups[groupName]
         windows := []
@@ -581,10 +581,10 @@ class WindowGroups {
     }
 
     /**
-    * @method MinimizeGroup
-    * @description Minimize all windows in a group
-    * @param groupName Group name
-    */
+     * @method MinimizeGroup
+     * @description Minimize all windows in a group
+     * @param groupName Group name
+     */
     static MinimizeGroup(groupName) {
         windows := this.GetGroupWindows(groupName)
 
@@ -598,16 +598,16 @@ class WindowGroups {
     }
 
     /**
-    * @method CloseGroup
-    * @description Close all windows in a group
-    * @param groupName Group name
-    */
+     * @method CloseGroup
+     * @description Close all windows in a group
+     * @param groupName Group name
+     */
     static CloseGroup(groupName) {
         windows := this.GetGroupWindows(groupName)
 
         result := MsgBox("Close " windows.Length " windows?", "Confirm", "YesNo Icon?")
         if result = "No"
-        return
+            return
 
         for winId in windows {
             try {
@@ -619,9 +619,9 @@ class WindowGroups {
     }
 
     /**
-    * @method CreatePredefinedGroups
-    * @description Create common window groups
-    */
+     * @method CreatePredefinedGroups
+     * @description Create common window groups
+     */
     static CreatePredefinedGroups() {
         ; Browser group
         this.CreateGroup("Browsers", ["Chrome", "Mozilla", "Edge", "Firefox"])
@@ -647,19 +647,19 @@ WindowGroups.CreatePredefinedGroups()
 ; ========================================
 
 /**
-* @class AutomationRouter
-* @description Route automation actions based on window class
-*/
+ * @class AutomationRouter
+ * @description Route automation actions based on window class
+ */
 class AutomationRouter {
     static routes := Map()
 
     /**
-    * @method RegisterRoute
-    * @description Register a class-specific automation
-    * @param className Window class
-    * @param hotkey Hotkey to trigger
-    * @param action Function to execute
-    */
+     * @method RegisterRoute
+     * @description Register a class-specific automation
+     * @param className Window class
+     * @param hotkey Hotkey to trigger
+     * @param action Function to execute
+     */
     static RegisterRoute(className, hotkey, action) {
         if !this.routes.Has(hotkey) {
             this.routes[hotkey] := Map()
@@ -672,10 +672,10 @@ class AutomationRouter {
     }
 
     /**
-    * @method RouteAction
-    * @description Route action based on active window class
-    * @param hotkey Triggered hotkey
-    */
+     * @method RouteAction
+     * @description Route action based on active window class
+     * @param hotkey Triggered hotkey
+     */
     static RouteAction(hotkey) {
         try {
             className := WinGetClass("A")
@@ -699,27 +699,27 @@ AutomationRouter.RegisterRoute("Chrome_WidgetWin_1", "^!t", () => Send("^t"))  ;
 ; ========================================
 
 /**
-* @class ClassTemplates
-* @description Create and apply templates based on window classes
-*/
+ * @class ClassTemplates
+ * @description Create and apply templates based on window classes
+ */
 class ClassTemplates {
     static templates := Map()
 
     /**
-    * @method CreateTemplate
-    * @description Create a template for a window class
-    * @param className Class name
-    * @param settings Template settings
-    */
+     * @method CreateTemplate
+     * @description Create a template for a window class
+     * @param className Class name
+     * @param settings Template settings
+     */
     static CreateTemplate(className, settings) {
         this.templates[className] := settings
     }
 
     /**
-    * @method ApplyTemplate
-    * @description Apply template to matching windows
-    * @param WinTitle Window identifier
-    */
+     * @method ApplyTemplate
+     * @description Apply template to matching windows
+     * @param WinTitle Window identifier
+     */
     static ApplyTemplate(WinTitle := "A") {
         try {
             className := WinGetClass(WinTitle)
@@ -734,7 +734,7 @@ class ClassTemplates {
             ; Apply position
             if template.HasOwnProp("Position") {
                 WinMove(template.Position.X, template.Position.Y,
-                template.Position.Width, template.Position.Height, WinTitle)
+                    template.Position.Width, template.Position.Height, WinTitle)
             }
 
             ; Apply transparency

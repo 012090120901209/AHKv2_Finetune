@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Floor_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of Floor() function for rounding down to the nearest
-* integer and floor operations in various contexts
-*
-* FEATURES:
-* - Round down to nearest integer
-* - Always rounds toward negative infinity
-* - Positive and negative number handling
-* - Truncation and floor comparison
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Floor.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Floor() function
-* - Mathematical floor operations
-* - Comparison with Ceil() and Round()
-* - Integer extraction from floats
-*
-* LEARNING POINTS:
-* 1. Floor() always rounds down to previous integer
-* 2. Floor(3.1) = 3, Floor(3.9) = 3
-* 3. For negative numbers, rounds away from zero
-* 4. Floor(-2.5) = -3 (down on number line)
-* 5. Useful for extracting integer parts
-*/
+ * BuiltIn_Floor_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of Floor() function for rounding down to the nearest
+ * integer and floor operations in various contexts
+ * 
+ * FEATURES:
+ * - Round down to nearest integer
+ * - Always rounds toward negative infinity
+ * - Positive and negative number handling
+ * - Truncation and floor comparison
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Floor.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Floor() function
+ * - Mathematical floor operations
+ * - Comparison with Ceil() and Round()
+ * - Integer extraction from floats
+ * 
+ * LEARNING POINTS:
+ * 1. Floor() always rounds down to previous integer
+ * 2. Floor(3.1) = 3, Floor(3.9) = 3
+ * 3. For negative numbers, rounds away from zero
+ * 4. Floor(-2.5) = -3 (down on number line)
+ * 5. Useful for extracting integer parts
+ */
 
 ; ============================================================
 ; Example 1: Basic Floor Operation
@@ -41,13 +41,13 @@ num3 := 3.9
 num4 := 4.0
 
 MsgBox("Basic Floor (Round Down):`n`n"
-. "Floor(" num1 ") = " Floor(num1) "`n"
-. "Floor(" num2 ") = " Floor(num2) "`n"
-. "Floor(" num3 ") = " Floor(num3) "`n"
-. "Floor(" num4 ") = " Floor(num4) "`n`n"
-. "Floor always rounds DOWN to previous integer`n"
-. "Even 3.9 rounds down to 3",
-"Basic Floor Example", "Icon!")
+    . "Floor(" num1 ") = " Floor(num1) "`n"
+    . "Floor(" num2 ") = " Floor(num2) "`n"
+    . "Floor(" num3 ") = " Floor(num3) "`n"
+    . "Floor(" num4 ") = " Floor(num4) "`n`n"
+    . "Floor always rounds DOWN to previous integer`n"
+    . "Even 3.9 rounds down to 3",
+    "Basic Floor Example", "Icon!")
 
 ; ============================================================
 ; Example 2: Negative Numbers
@@ -59,13 +59,13 @@ negNum3 := -2.9
 negNum4 := -3.0
 
 MsgBox("Floor with Negative Numbers:`n`n"
-. "Floor(" negNum1 ") = " Floor(negNum1) "`n"
-. "Floor(" negNum2 ") = " Floor(negNum2) "`n"
-. "Floor(" negNum3 ") = " Floor(negNum3) "`n"
-. "Floor(" negNum4 ") = " Floor(negNum4) "`n`n"
-. "'Down' means toward negative infinity`n"
-. "So -2.1 rounds down to -3, not -2",
-"Negative Number Floor", "Icon!")
+    . "Floor(" negNum1 ") = " Floor(negNum1) "`n"
+    . "Floor(" negNum2 ") = " Floor(negNum2) "`n"
+    . "Floor(" negNum3 ") = " Floor(negNum3) "`n"
+    . "Floor(" negNum4 ") = " Floor(negNum4) "`n`n"
+    . "'Down' means toward negative infinity`n"
+    . "So -2.1 rounds down to -3, not -2",
+    "Negative Number Floor", "Icon!")
 
 ; ============================================================
 ; Example 3: Comparison with Round and Ceil
@@ -92,11 +92,11 @@ MsgBox(result, "Function Comparison", "Icon!")
 ; ============================================================
 
 /**
-* Extract integer and fractional parts
-*
-* @param {Number} value - Number to split
-* @returns {Object} - Integer and fractional parts
-*/
+ * Extract integer and fractional parts
+ * 
+ * @param {Number} value - Number to split
+ * @returns {Object} - Integer and fractional parts
+ */
 SplitNumber(value) {
     integerPart := Floor(value)
     fractionalPart := value - integerPart
@@ -118,7 +118,7 @@ for num in testNumbers {
     split := SplitNumber(num)
 
     output .= Format("{1} = {2} + {3}`n",
-    split.original, split.integerPart, split.fractionalPart)
+        split.original, split.integerPart, split.fractionalPart)
 }
 
 output .= "`nFloor() extracts the integer part`n"
@@ -131,11 +131,11 @@ MsgBox(output, "Integer Extraction", "Icon!")
 ; ============================================================
 
 /**
-* Calculate age in complete years (floor of years)
-*
-* @param {Number} yearsDecimal - Age in decimal years
-* @returns {Object} - Age breakdown
-*/
+ * Calculate age in complete years (floor of years)
+ * 
+ * @param {Number} yearsDecimal - Age in decimal years
+ * @returns {Object} - Age breakdown
+ */
 CalculateAge(yearsDecimal) {
     completeYears := Floor(yearsDecimal)
     remainingMonths := Floor((yearsDecimal - completeYears) * 12)
@@ -147,7 +147,7 @@ CalculateAge(yearsDecimal) {
         months: remainingMonths,
         days: remainingDays,
         formatted: Format("{1} years, {2} months, {3} days",
-        completeYears, remainingMonths, remainingDays)
+            completeYears, remainingMonths, remainingDays)
     }
 }
 
@@ -172,11 +172,11 @@ MsgBox(output, "Age Calculation", "Icon!")
 ; ============================================================
 
 /**
-* Get whole dollar amount (drop cents)
-*
-* @param {Number} price - Price with cents
-* @returns {Object} - Dollar and cent breakdown
-*/
+ * Get whole dollar amount (drop cents)
+ * 
+ * @param {Number} price - Price with cents
+ * @returns {Object} - Dollar and cent breakdown
+ */
 ExtractDollars(price) {
     dollars := Floor(price)
     cents := Round((price - dollars) * 100, 0)
@@ -212,11 +212,11 @@ MsgBox(output, "Price Truncation", "Icon!")
 ; ============================================================
 
 /**
-* Convert decimal hours to hours and minutes
-*
-* @param {Number} decimalHours - Time in decimal hours
-* @returns {Object} - Time breakdown
-*/
+ * Convert decimal hours to hours and minutes
+ * 
+ * @param {Number} decimalHours - Time in decimal hours
+ * @returns {Object} - Time breakdown
+ */
 ConvertToHoursMinutes(decimalHours) {
     hours := Floor(decimalHours)
     minutesDecimal := (decimalHours - hours) * 60
@@ -234,8 +234,8 @@ ConvertToHoursMinutes(decimalHours) {
 }
 
 /**
-* Calculate work time from start/end (simplified simulation)
-*/
+ * Calculate work time from start/end (simplified simulation)
+ */
 CalculateWorkHours(startHour, endHour) {
     totalHours := endHour - startHour
     time := ConvertToHoursMinutes(totalHours)
@@ -248,37 +248,36 @@ CalculateWorkHours(startHour, endHour) {
 }
 
 ; Time tracking examples
-timeEntries := [
-{
-    start: 9.0, end: 17.5},    ; 9:00 AM to 5:30 PM
+timeEntries := [{
+    start: 9.0, end: 17.5 },    ; 9:00 AM to 5:30 PM
     {
-        start: 8.25, end: 16.75},  ; 8:15 AM to 4:45 PM
-        {
-            start: 10.5, end: 14.25}   ; 10:30 AM to 2:15 PM
-            ]
+        start: 8.25, end: 16.75 },  ; 8:15 AM to 4:45 PM
+    {
+        start: 10.5, end: 14.25 }   ; 10:30 AM to 2:15 PM
+]
 
-            output := "Work Time Calculations:`n`n"
+output := "Work Time Calculations:`n`n"
 
-            totalWorked := 0
-            for entry in timeEntries {
-                work := CalculateWorkHours(entry.start, entry.end)
-                totalWorked += work.time.decimal
+totalWorked := 0
+for entry in timeEntries {
+    work := CalculateWorkHours(entry.start, entry.end)
+    totalWorked += work.time.decimal
 
-                output .= Format("Shift: {1:.2f} - {2:.2f} = {3}`n",
-                work.start, work.end, work.time.formatted)
-            }
+    output .= Format("Shift: {1:.2f} - {2:.2f} = {3}`n",
+        work.start, work.end, work.time.formatted)
+}
 
-            totalTime := ConvertToHoursMinutes(totalWorked)
-            output .= Format("`nTotal: {1} ({2:.2f} hours)",
-            totalTime.formatted, totalWorked)
+totalTime := ConvertToHoursMinutes(totalWorked)
+output .= Format("`nTotal: {1} ({2:.2f} hours)",
+    totalTime.formatted, totalWorked)
 
-            MsgBox(output, "Time Conversion", "Icon!")
+MsgBox(output, "Time Conversion", "Icon!")
 
-            ; ============================================================
-            ; Reference Information
-            ; ============================================================
+; ============================================================
+; Reference Information
+; ============================================================
 
-            info := "
+info := "
             (
             FLOOR() FUNCTION REFERENCE:
 
@@ -370,4 +369,4 @@ timeEntries := [
             Negative: Floor(-2.3)=-3, Ceil(-2.3)=-2
             )"
 
-            MsgBox(info, "Floor() Reference", "Icon!")
+MsgBox(info, "Floor() Reference", "Icon!")

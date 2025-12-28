@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_ComObjGet_01.ahk
-*
-* DESCRIPTION:
-* Using ComObjGet to retrieve COM objects.
-*
-* FEATURES:
-* - Getting objects by moniker
-* - WMI connections
-* - File system objects
-* - Running objects
-* - Special objects
-*/
+ * BuiltIn_COM_ComObjGet_01.ahk
+ * 
+ * DESCRIPTION:
+ * Using ComObjGet to retrieve COM objects.
+ * 
+ * FEATURES:
+ * - Getting objects by moniker
+ * - WMI connections
+ * - File system objects
+ * - Running objects
+ * - Special objects
+ */
 
 Example1_GetWMI() {
     MsgBox("Example 1: Get WMI Object")
@@ -111,6 +111,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

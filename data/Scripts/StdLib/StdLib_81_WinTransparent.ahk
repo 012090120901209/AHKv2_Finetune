@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinSetTransparent() - Set transparency
-*
-* Makes a window semi-transparent (0-255).
-*/
+ * WinSetTransparent() - Set transparency
+ * 
+ * Makes a window semi-transparent (0-255).
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

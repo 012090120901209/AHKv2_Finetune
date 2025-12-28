@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetChecked - Get Checkbox/Radio State
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetChecked - Get Checkbox/Radio State
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -51,13 +51,13 @@ Example2() {
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h200 ReadOnly Multi")
     CheckRadio(*) {
         if (ControlGetChecked(Radio1))
-        result := "Selected: Option 1\n"
+            result := "Selected: Option 1\n"
         else if (ControlGetChecked(Radio2))
-        result := "Selected: Option 2\n"
+            result := "Selected: Option 2\n"
         else if (ControlGetChecked(Radio3))
-        result := "Selected: Option 3\n"
+            result := "Selected: Option 3\n"
         else
-        result := "Nothing selected\n"
+            result := "Nothing selected\n"
         ResultsEdit.Value := result . ResultsEdit.Value
     }
 
@@ -74,7 +74,7 @@ Example3() {
 
     checks := []
     loop 5
-    checks.Push(MyGui.Add("Checkbox", "xm y+10", "Option " . A_Index))
+        checks.Push(MyGui.Add("Checkbox", "xm y+10", "Option " . A_Index))
     BtnCheckAll := MyGui.Add("Button", "xm y+20 w200", "Check All States")
     BtnCheckAll.OnEvent("Click", CheckAll)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h250 ReadOnly Multi")
@@ -85,7 +85,7 @@ Example3() {
             state := ControlGetChecked(check)
             result .= "Option " . i . ": " . (state ? "✓ Checked" : "✗ Unchecked") . "\n"
             if (state)
-            checkedCount++
+                checkedCount++
         }
         result .= "\nTotal Checked: " . checkedCount . "/" . checks.Length . "\n"
         ResultsEdit.Value := result
@@ -108,9 +108,9 @@ Example4() {
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h200 ReadOnly Multi")
     TrySubmit(*) {
         if (ControlGetChecked(Agreement))
-        ResultsEdit.Value := "✓ Submitted successfully!\n" . ResultsEdit.Value
+            ResultsEdit.Value := "✓ Submitted successfully!\n" . ResultsEdit.Value
         else
-        ResultsEdit.Value := "✗ Please agree to terms first\n" . ResultsEdit.Value
+            ResultsEdit.Value := "✗ Please agree to terms first\n" . ResultsEdit.Value
     }
 
     MyGui.Show()
@@ -145,7 +145,7 @@ Example5() {
     }
     CheckState() {
         if (!monitoring)
-        return
+            return
         current := ControlGetChecked(TestCheck)
         if (current != lastState) {
             ResultsEdit.Value := "State changed: " . (current ? "Checked" : "Unchecked") . "\n" . ResultsEdit.Value
@@ -175,13 +175,13 @@ Example6() {
         req1 := ControlGetChecked(Required1)
         req2 := ControlGetChecked(Required2)
         if (!req1)
-        result .= "✗ Required 1 not checked\n"
+            result .= "✗ Required 1 not checked\n"
         if (!req2)
-        result .= "✗ Required 2 not checked\n"
+            result .= "✗ Required 2 not checked\n"
         if (req1 && req2)
-        result .= "✓ Form is valid!\n"
+            result .= "✓ Form is valid!\n"
         else
-        result .= "\n✗ Form is invalid\n"
+            result .= "\n✗ Form is invalid\n"
         ResultsEdit.Value := result
     }
 
@@ -200,9 +200,9 @@ Example7() {
     categories["Features"] := []
     categories["Options"] := []
     loop 3
-    categories["Features"].Push(MyGui.Add("Checkbox", "xm y+10", "Feature " . A_Index))
+        categories["Features"].Push(MyGui.Add("Checkbox", "xm y+10", "Feature " . A_Index))
     loop 2
-    categories["Options"].Push(MyGui.Add("Checkbox", "xm y+10", "Option " . A_Index))
+        categories["Options"].Push(MyGui.Add("Checkbox", "xm y+10", "Option " . A_Index))
     BtnReport := MyGui.Add("Button", "xm y+20 w200", "Generate Report")
     BtnReport.OnEvent("Click", Report)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w500 h250 ReadOnly Multi")
@@ -234,13 +234,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Checked State",
-"Example 2: Radio Button State",
-"Example 3: Multiple Checkboxes",
-"Example 4: Conditional Actions",
-"Example 5: State Monitoring",
-"Example 6: Form Validation",
-"Example 7: Summary Report",
+    "Example 1: Basic Checked State",
+    "Example 2: Radio Button State",
+    "Example 3: Multiple Checkboxes",
+    "Example 4: Conditional Actions",
+    "Example 5: State Monitoring",
+    "Example 6: Form Validation",
+    "Example 7: Summary Report",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

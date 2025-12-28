@@ -2,19 +2,19 @@
 #SingleInstance Force
 
 /**
-* Window Always-On-Top Toggle
-*
-* Demonstrates toggling the always-on-top state of windows,
-* useful for keeping reference windows visible while working.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Window Always-On-Top Toggle
+ * 
+ * Demonstrates toggling the always-on-top state of windows,
+ * useful for keeping reference windows visible while working.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Always-On-Top Toggle Demo`n`n"
-. "Hotkey: Alt+T`n`n"
-. "Open Notepad and press Alt+T to toggle always-on-top.`n"
-. "The window will stay on top of other windows.", , "T5")
+    . "Hotkey: Alt+T`n`n"
+    . "Open Notepad and press Alt+T to toggle always-on-top.`n"
+    . "The window will stay on top of other windows.", , "T5")
 
 ; Open Notepad for demo
 Run("notepad.exe")
@@ -24,16 +24,16 @@ WinActivate("ahk_exe notepad.exe")
 MsgBox("Press Alt+T to toggle always-on-top for this window!", , "T3")
 
 ; Hotkey to toggle always-on-top
-!t::ToggleAlwaysOnTop()
+!t:: ToggleAlwaysOnTop()
 
 /**
-* Toggle always-on-top for active window
-*/
+ * Toggle always-on-top for active window
+ */
 ToggleAlwaysOnTop() {
     ; Get active window
     hwnd := WinExist("A")
     if (!hwnd)
-    return
+        return
 
     ; Get window title
     title := WinGetTitle("ahk_id " hwnd)
@@ -125,3 +125,4 @@ ToggleAlwaysOnTop() {
 *     ⚠ Some apps override style
 *     ⚠ May interfere with full-screen
 */
+

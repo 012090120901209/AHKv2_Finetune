@@ -2,40 +2,40 @@
 #Include JSON.ahk
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Basic Switch Statements
-* ============================================================================
-*
-* This script demonstrates basic switch statement usage in AutoHotkey v2.
-* It covers simple case matching, default clauses, and when to use switch
-* versus if/else chains.
-*
-* @file BuiltIn_Switch_01.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Basic switch statement syntax
-* 2. Switch with string matching
-* 3. Switch with numeric values
-* 4. Default case handling
-* 5. Switch vs if/else performance
-* 6. Multiple statements per case
-* 7. Real-world switch applications
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Basic Switch Statements
+ * ============================================================================
+ * 
+ * This script demonstrates basic switch statement usage in AutoHotkey v2.
+ * It covers simple case matching, default clauses, and when to use switch
+ * versus if/else chains.
+ * 
+ * @file BuiltIn_Switch_01.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Basic switch statement syntax
+ * 2. Switch with string matching
+ * 3. Switch with numeric values
+ * 4. Default case handling
+ * 5. Switch vs if/else performance
+ * 6. Multiple statements per case
+ * 7. Real-world switch applications
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Switch Statement Syntax
 ; ============================================================================
 
 /**
-* Demonstrates fundamental switch statement structure.
-* Shows basic case matching and default handling.
-*/
+ * Demonstrates fundamental switch statement structure.
+ * Shows basic case matching and default handling.
+ */
 Example1_BasicSwitchSyntax() {
     OutputDebug("=== Example 1: Basic Switch Syntax ===`n")
 
@@ -44,13 +44,13 @@ Example1_BasicSwitchSyntax() {
 
     switch dayOfWeek {
         case "Monday":
-        OutputDebug("Start of the work week`n")
+            OutputDebug("Start of the work week`n")
         case "Friday":
-        OutputDebug("Almost weekend!`n")
+            OutputDebug("Almost weekend!`n")
         case "Saturday", "Sunday":
-        OutputDebug("Weekend! Time to relax`n")
+            OutputDebug("Weekend! Time to relax`n")
         default:
-        OutputDebug("Middle of the week: " dayOfWeek "`n")
+            OutputDebug("Middle of the week: " dayOfWeek "`n")
     }
 
     ; Switch with numeric values
@@ -58,15 +58,15 @@ Example1_BasicSwitchSyntax() {
 
     switch priority {
         case 1:
-        OutputDebug("Priority: Critical - Immediate action required`n")
+            OutputDebug("Priority: Critical - Immediate action required`n")
         case 2:
-        OutputDebug("Priority: High - Address today`n")
+            OutputDebug("Priority: High - Address today`n")
         case 3:
-        OutputDebug("Priority: Medium - This week`n")
+            OutputDebug("Priority: Medium - This week`n")
         case 4:
-        OutputDebug("Priority: Low - When possible`n")
+            OutputDebug("Priority: Low - When possible`n")
         default:
-        OutputDebug("Priority: Unknown level`n")
+            OutputDebug("Priority: Unknown level`n")
     }
 
     ; Switch with variable assignment
@@ -75,15 +75,15 @@ Example1_BasicSwitchSyntax() {
 
     switch status {
         case "active":
-        message := "Account is active"
+            message := "Account is active"
         case "pending":
-        message := "Account activation pending"
+            message := "Account activation pending"
         case "suspended":
-        message := "Account temporarily suspended"
+            message := "Account temporarily suspended"
         case "closed":
-        message := "Account is closed"
+            message := "Account is closed"
         default:
-        message := "Unknown account status"
+            message := "Unknown account status"
     }
 
     OutputDebug("Status message: " message "`n")
@@ -96,20 +96,20 @@ Example1_BasicSwitchSyntax() {
 }
 
 /**
-* Function using switch to return values.
-*/
+ * Function using switch to return values.
+ */
 GetStatusColor(status) {
     switch status {
         case "success":
-        return "green"
+            return "green"
         case "warning":
-        return "yellow"
+            return "yellow"
         case "error":
-        return "red"
+            return "red"
         case "info":
-        return "blue"
+            return "blue"
         default:
-        return "gray"
+            return "gray"
     }
 }
 
@@ -118,9 +118,9 @@ GetStatusColor(status) {
 ; ============================================================================
 
 /**
-* Demonstrates switch statements for string-based decisions.
-* Shows case-insensitive matching and string patterns.
-*/
+ * Demonstrates switch statements for string-based decisions.
+ * Shows case-insensitive matching and string patterns.
+ */
 Example2_StringMatching() {
     OutputDebug("=== Example 2: String Matching ===`n")
 
@@ -130,23 +130,23 @@ Example2_StringMatching() {
 
     switch extension {
         case ".txt":
-        OutputDebug("Text file - Open in editor`n")
-        fileType := "text"
+            OutputDebug("Text file - Open in editor`n")
+            fileType := "text"
         case ".pdf":
-        OutputDebug("PDF file - Open in PDF reader`n")
-        fileType := "document"
+            OutputDebug("PDF file - Open in PDF reader`n")
+            fileType := "document"
         case ".jpg", ".png", ".gif":
-        OutputDebug("Image file - Open in image viewer`n")
-        fileType := "image"
+            OutputDebug("Image file - Open in image viewer`n")
+            fileType := "image"
         case ".mp3", ".wav", ".flac":
-        OutputDebug("Audio file - Open in media player`n")
-        fileType := "audio"
+            OutputDebug("Audio file - Open in media player`n")
+            fileType := "audio"
         case ".mp4", ".avi", ".mkv":
-        OutputDebug("Video file - Open in video player`n")
-        fileType := "video"
+            OutputDebug("Video file - Open in video player`n")
+            fileType := "video"
         default:
-        OutputDebug("Unknown file type: " extension "`n")
-        fileType := "unknown"
+            OutputDebug("Unknown file type: " extension "`n")
+            fileType := "unknown"
     }
 
     ; HTTP status code interpretation
@@ -154,23 +154,23 @@ Example2_StringMatching() {
 
     switch statusCode {
         case "200":
-        OutputDebug("OK - Request successful`n")
+            OutputDebug("OK - Request successful`n")
         case "201":
-        OutputDebug("Created - Resource created`n")
+            OutputDebug("Created - Resource created`n")
         case "301":
-        OutputDebug("Moved Permanently`n")
+            OutputDebug("Moved Permanently`n")
         case "400":
-        OutputDebug("Bad Request - Client error`n")
+            OutputDebug("Bad Request - Client error`n")
         case "401":
-        OutputDebug("Unauthorized - Authentication required`n")
+            OutputDebug("Unauthorized - Authentication required`n")
         case "403":
-        OutputDebug("Forbidden - Access denied`n")
+            OutputDebug("Forbidden - Access denied`n")
         case "404":
-        OutputDebug("Not Found - Resource not found`n")
+            OutputDebug("Not Found - Resource not found`n")
         case "500":
-        OutputDebug("Internal Server Error`n")
+            OutputDebug("Internal Server Error`n")
         default:
-        OutputDebug("HTTP Status: " statusCode "`n")
+            OutputDebug("HTTP Status: " statusCode "`n")
     }
 
     ; Command parser
@@ -178,19 +178,19 @@ Example2_StringMatching() {
 
     switch command {
         case "new":
-        OutputDebug("Creating new document...`n")
+            OutputDebug("Creating new document...`n")
         case "open":
-        OutputDebug("Opening file dialog...`n")
+            OutputDebug("Opening file dialog...`n")
         case "save":
-        OutputDebug("Saving current document...`n")
+            OutputDebug("Saving current document...`n")
         case "saveas":
-        OutputDebug("Save as dialog...`n")
+            OutputDebug("Save as dialog...`n")
         case "print":
-        OutputDebug("Printing document...`n")
+            OutputDebug("Printing document...`n")
         case "exit", "quit":
-        OutputDebug("Exiting application...`n")
+            OutputDebug("Exiting application...`n")
         default:
-        OutputDebug("Unknown command: " command "`n")
+            OutputDebug("Unknown command: " command "`n")
     }
 
     ; User role permissions
@@ -198,25 +198,25 @@ Example2_StringMatching() {
 
     switch userRole {
         case "admin":
-        OutputDebug("Full access granted`n")
-        canRead := true
-        canWrite := true
-        canDelete := true
+            OutputDebug("Full access granted`n")
+            canRead := true
+            canWrite := true
+            canDelete := true
         case "editor":
-        OutputDebug("Edit access granted`n")
-        canRead := true
-        canWrite := true
-        canDelete := false
+            OutputDebug("Edit access granted`n")
+            canRead := true
+            canWrite := true
+            canDelete := false
         case "viewer":
-        OutputDebug("Read-only access`n")
-        canRead := true
-        canWrite := false
-        canDelete := false
+            OutputDebug("Read-only access`n")
+            canRead := true
+            canWrite := false
+            canDelete := false
         default:
-        OutputDebug("No access`n")
-        canRead := false
-        canWrite := false
-        canDelete := false
+            OutputDebug("No access`n")
+            canRead := false
+            canWrite := false
+            canDelete := false
     }
 
     OutputDebug("`n")
@@ -227,9 +227,9 @@ Example2_StringMatching() {
 ; ============================================================================
 
 /**
-* Demonstrates switch statements with numbers.
-* Shows integer matching and numeric ranges.
-*/
+ * Demonstrates switch statements with numbers.
+ * Shows integer matching and numeric ranges.
+ */
 Example3_NumericValues() {
     OutputDebug("=== Example 3: Numeric Values ===`n")
 
@@ -238,17 +238,17 @@ Example3_NumericValues() {
 
     switch menuChoice {
         case 1:
-        OutputDebug("Selected: New Project`n")
+            OutputDebug("Selected: New Project`n")
         case 2:
-        OutputDebug("Selected: Open Project`n")
+            OutputDebug("Selected: Open Project`n")
         case 3:
-        OutputDebug("Selected: Save Project`n")
+            OutputDebug("Selected: Save Project`n")
         case 4:
-        OutputDebug("Selected: Settings`n")
+            OutputDebug("Selected: Settings`n")
         case 5:
-        OutputDebug("Selected: Exit`n")
+            OutputDebug("Selected: Exit`n")
         default:
-        OutputDebug("Invalid menu selection`n")
+            OutputDebug("Invalid menu selection`n")
     }
 
     ; Grade conversion
@@ -260,15 +260,15 @@ Example3_NumericValues() {
 
     switch gradeLevel {
         case 5:
-        grade := "A"
+            grade := "A"
         case 4:
-        grade := "B"
+            grade := "B"
         case 3:
-        grade := "C"
+            grade := "C"
         case 2:
-        grade := "D"
+            grade := "D"
         case 1:
-        grade := "F"
+            grade := "F"
     }
 
     OutputDebug("Score " score " = Grade " grade "`n")
@@ -278,17 +278,17 @@ Example3_NumericValues() {
 
     switch errorCode {
         case 0:
-        OutputDebug("No error`n")
+            OutputDebug("No error`n")
         case 1:
-        OutputDebug("Error: File not found`n")
+            OutputDebug("Error: File not found`n")
         case 2:
-        OutputDebug("Error: Access denied`n")
+            OutputDebug("Error: Access denied`n")
         case 3:
-        OutputDebug("Error: Invalid format`n")
+            OutputDebug("Error: Invalid format`n")
         case 4:
-        OutputDebug("Error: Network timeout`n")
+            OutputDebug("Error: Network timeout`n")
         default:
-        OutputDebug("Error: Unknown error code " errorCode "`n")
+            OutputDebug("Error: Unknown error code " errorCode "`n")
     }
 
     ; Month name from number
@@ -296,31 +296,31 @@ Example3_NumericValues() {
 
     switch monthNum {
         case 1:
-        monthName := "January"
+            monthName := "January"
         case 2:
-        monthName := "February"
+            monthName := "February"
         case 3:
-        monthName := "March"
+            monthName := "March"
         case 4:
-        monthName := "April"
+            monthName := "April"
         case 5:
-        monthName := "May"
+            monthName := "May"
         case 6:
-        monthName := "June"
+            monthName := "June"
         case 7:
-        monthName := "July"
+            monthName := "July"
         case 8:
-        monthName := "August"
+            monthName := "August"
         case 9:
-        monthName := "September"
+            monthName := "September"
         case 10:
-        monthName := "October"
+            monthName := "October"
         case 11:
-        monthName := "November"
+            monthName := "November"
         case 12:
-        monthName := "December"
+            monthName := "December"
         default:
-        monthName := "Invalid month"
+            monthName := "Invalid month"
     }
 
     OutputDebug("Month " monthNum " = " monthName "`n")
@@ -333,9 +333,9 @@ Example3_NumericValues() {
 ; ============================================================================
 
 /**
-* Demonstrates proper use of default cases.
-* Shows when and why to include default handling.
-*/
+ * Demonstrates proper use of default cases.
+ * Shows when and why to include default handling.
+ */
 Example4_DefaultCaseHandling() {
     OutputDebug("=== Example 4: Default Case Handling ===`n")
 
@@ -344,14 +344,14 @@ Example4_DefaultCaseHandling() {
 
     switch userInput {
         case "start":
-        OutputDebug("Starting service...`n")
+            OutputDebug("Starting service...`n")
         case "stop":
-        OutputDebug("Stopping service...`n")
+            OutputDebug("Stopping service...`n")
         case "restart":
-        OutputDebug("Restarting service...`n")
+            OutputDebug("Restarting service...`n")
         default:
-        OutputDebug("Error: Unknown command '" userInput "'`n")
-        OutputDebug("Valid commands: start, stop, restart`n")
+            OutputDebug("Error: Unknown command '" userInput "'`n")
+            OutputDebug("Valid commands: start, stop, restart`n")
     }
 
     ; Default for validation
@@ -359,11 +359,11 @@ Example4_DefaultCaseHandling() {
 
     switch direction {
         case "up", "down", "left", "right":
-        OutputDebug("Valid direction: " direction "`n")
-        isValid := true
+            OutputDebug("Valid direction: " direction "`n")
+            isValid := true
         default:
-        OutputDebug("Invalid direction: " direction "`n")
-        isValid := false
+            OutputDebug("Invalid direction: " direction "`n")
+            isValid := false
     }
 
     ; Default with logging
@@ -371,14 +371,14 @@ Example4_DefaultCaseHandling() {
 
     switch operation {
         case "read":
-        OutputDebug("Performing read operation`n")
+            OutputDebug("Performing read operation`n")
         case "write":
-        OutputDebug("Performing write operation`n")
+            OutputDebug("Performing write operation`n")
         case "update":
-        OutputDebug("Performing update operation`n")
+            OutputDebug("Performing update operation`n")
         default:
-        OutputDebug("WARNING: Unrecognized operation '" operation "'`n")
-        LogUnknownOperation(operation)
+            OutputDebug("WARNING: Unrecognized operation '" operation "'`n")
+            LogUnknownOperation(operation)
     }
 
     ; Default with fallback behavior
@@ -386,18 +386,18 @@ Example4_DefaultCaseHandling() {
 
     switch theme {
         case "light":
-        backgroundColor := "white"
-        textColor := "black"
+            backgroundColor := "white"
+            textColor := "black"
         case "dark":
-        backgroundColor := "black"
-        textColor := "white"
+            backgroundColor := "black"
+            textColor := "white"
         case "blue":
-        backgroundColor := "navy"
-        textColor := "white"
+            backgroundColor := "navy"
+            textColor := "white"
         default:
-        OutputDebug("Unknown theme '" theme "', using default`n")
-        backgroundColor := "white"
-        textColor := "black"
+            OutputDebug("Unknown theme '" theme "', using default`n")
+            backgroundColor := "white"
+            textColor := "black"
     }
 
     OutputDebug("Theme colors - BG: " backgroundColor ", Text: " textColor "`n")
@@ -406,8 +406,8 @@ Example4_DefaultCaseHandling() {
 }
 
 /**
-* Helper function to log unknown operations.
-*/
+ * Helper function to log unknown operations.
+ */
 LogUnknownOperation(operation) {
     OutputDebug("  [LOG] Unknown operation logged: " operation "`n")
 }
@@ -417,9 +417,9 @@ LogUnknownOperation(operation) {
 ; ============================================================================
 
 /**
-* Demonstrates when to use switch vs if/else.
-* Shows readability and performance considerations.
-*/
+ * Demonstrates when to use switch vs if/else.
+ * Shows readability and performance considerations.
+ */
 Example5_SwitchVsIfElse() {
     OutputDebug("=== Example 5: Switch vs If/Else ===`n")
 
@@ -443,15 +443,15 @@ Example5_SwitchVsIfElse() {
     OutputDebug("`n--- Using Switch ---`n")
     switch value {
         case "option1":
-        OutputDebug("Selected option 1`n")
+            OutputDebug("Selected option 1`n")
         case "option2":
-        OutputDebug("Selected option 2`n")
+            OutputDebug("Selected option 2`n")
         case "option3":
-        OutputDebug("Selected option 3`n")
+            OutputDebug("Selected option 3`n")
         case "option4":
-        OutputDebug("Selected option 4`n")
+            OutputDebug("Selected option 4`n")
         default:
-        OutputDebug("Unknown option`n")
+            OutputDebug("Unknown option`n")
     }
 
     ; When if/else is better (complex conditions)
@@ -475,15 +475,15 @@ Example5_SwitchVsIfElse() {
 
     switch productCode {
         case "PRD-A":
-        price := 29.99
+            price := 29.99
         case "PRD-B":
-        price := 49.99
+            price := 49.99
         case "PRD-C":
-        price := 79.99
+            price := 79.99
         case "PRD-D":
-        price := 99.99
+            price := 99.99
         default:
-        price := 0
+            price := 0
     }
 
     OutputDebug("Product " productCode " price: $" price "`n")
@@ -496,9 +496,9 @@ Example5_SwitchVsIfElse() {
 ; ============================================================================
 
 /**
-* Demonstrates executing multiple statements in each case.
-* Shows complex logic within case blocks.
-*/
+ * Demonstrates executing multiple statements in each case.
+ * Shows complex logic within case blocks.
+ */
 Example6_MultipleStatements() {
     OutputDebug("=== Example 6: Multiple Statements Per Case ===`n")
 
@@ -507,53 +507,53 @@ Example6_MultipleStatements() {
 
     switch accountType {
         case "free":
-        maxStorage := 5
-        maxUsers := 1
-        features := "Basic"
-        monthlyCost := 0
-        OutputDebug("Account: Free Tier`n")
-        OutputDebug("  Storage: " maxStorage "GB`n")
-        OutputDebug("  Users: " maxUsers "`n")
-        OutputDebug("  Features: " features "`n")
-        OutputDebug("  Cost: $" monthlyCost "/month`n")
+            maxStorage := 5
+            maxUsers := 1
+            features := "Basic"
+            monthlyCost := 0
+            OutputDebug("Account: Free Tier`n")
+            OutputDebug("  Storage: " maxStorage "GB`n")
+            OutputDebug("  Users: " maxUsers "`n")
+            OutputDebug("  Features: " features "`n")
+            OutputDebug("  Cost: $" monthlyCost "/month`n")
 
         case "standard":
-        maxStorage := 50
-        maxUsers := 5
-        features := "Standard + Priority Support"
-        monthlyCost := 9.99
-        OutputDebug("Account: Standard Tier`n")
-        OutputDebug("  Storage: " maxStorage "GB`n")
-        OutputDebug("  Users: " maxUsers "`n")
-        OutputDebug("  Features: " features "`n")
-        OutputDebug("  Cost: $" monthlyCost "/month`n")
+            maxStorage := 50
+            maxUsers := 5
+            features := "Standard + Priority Support"
+            monthlyCost := 9.99
+            OutputDebug("Account: Standard Tier`n")
+            OutputDebug("  Storage: " maxStorage "GB`n")
+            OutputDebug("  Users: " maxUsers "`n")
+            OutputDebug("  Features: " features "`n")
+            OutputDebug("  Cost: $" monthlyCost "/month`n")
 
         case "premium":
-        maxStorage := 500
-        maxUsers := 25
-        features := "All Features + 24/7 Support"
-        monthlyCost := 29.99
-        discount := 0.10
-        OutputDebug("Account: Premium Tier`n")
-        OutputDebug("  Storage: " maxStorage "GB`n")
-        OutputDebug("  Users: " maxUsers "`n")
-        OutputDebug("  Features: " features "`n")
-        OutputDebug("  Cost: $" monthlyCost "/month`n")
-        OutputDebug("  Annual discount: " (discount * 100) "%`n")
+            maxStorage := 500
+            maxUsers := 25
+            features := "All Features + 24/7 Support"
+            monthlyCost := 29.99
+            discount := 0.10
+            OutputDebug("Account: Premium Tier`n")
+            OutputDebug("  Storage: " maxStorage "GB`n")
+            OutputDebug("  Users: " maxUsers "`n")
+            OutputDebug("  Features: " features "`n")
+            OutputDebug("  Cost: $" monthlyCost "/month`n")
+            OutputDebug("  Annual discount: " (discount * 100) "%`n")
 
         case "enterprise":
-        maxStorage := "Unlimited"
-        maxUsers := "Unlimited"
-        features := "Custom Features + Dedicated Support"
-        monthlyCost := "Custom"
-        OutputDebug("Account: Enterprise Tier`n")
-        OutputDebug("  Storage: " maxStorage "`n")
-        OutputDebug("  Users: " maxUsers "`n")
-        OutputDebug("  Features: " features "`n")
-        OutputDebug("  Cost: " monthlyCost " pricing`n")
+            maxStorage := "Unlimited"
+            maxUsers := "Unlimited"
+            features := "Custom Features + Dedicated Support"
+            monthlyCost := "Custom"
+            OutputDebug("Account: Enterprise Tier`n")
+            OutputDebug("  Storage: " maxStorage "`n")
+            OutputDebug("  Users: " maxUsers "`n")
+            OutputDebug("  Features: " features "`n")
+            OutputDebug("  Cost: " monthlyCost " pricing`n")
 
         default:
-        OutputDebug("Unknown account type`n")
+            OutputDebug("Unknown account type`n")
     }
 
     ; Transaction processing
@@ -563,39 +563,39 @@ Example6_MultipleStatements() {
 
     switch transactionType {
         case "deposit":
-        balance := 1000
-        balance += amount
-        fee := 0
-        OutputDebug("Deposit processed: $" amount "`n")
-        OutputDebug("New balance: $" balance "`n")
-        OutputDebug("Fee: $" fee "`n")
+            balance := 1000
+            balance += amount
+            fee := 0
+            OutputDebug("Deposit processed: $" amount "`n")
+            OutputDebug("New balance: $" balance "`n")
+            OutputDebug("Fee: $" fee "`n")
 
         case "withdrawal":
-        balance := 1000
-        fee := 2.50
-        if (balance >= amount + fee) {
-            balance -= (amount + fee)
-            OutputDebug("Withdrawal processed: $" amount "`n")
-            OutputDebug("Fee: $" fee "`n")
-            OutputDebug("New balance: $" balance "`n")
-        } else {
-            OutputDebug("Insufficient funds`n")
-        }
+            balance := 1000
+            fee := 2.50
+            if (balance >= amount + fee) {
+                balance -= (amount + fee)
+                OutputDebug("Withdrawal processed: $" amount "`n")
+                OutputDebug("Fee: $" fee "`n")
+                OutputDebug("New balance: $" balance "`n")
+            } else {
+                OutputDebug("Insufficient funds`n")
+            }
 
         case "transfer":
-        balance := 1000
-        fee := 1.00
-        if (balance >= amount + fee) {
-            balance -= (amount + fee)
-            OutputDebug("Transfer processed: $" amount "`n")
-            OutputDebug("Fee: $" fee "`n")
-            OutputDebug("New balance: $" balance "`n")
-        } else {
-            OutputDebug("Insufficient funds for transfer`n")
-        }
+            balance := 1000
+            fee := 1.00
+            if (balance >= amount + fee) {
+                balance -= (amount + fee)
+                OutputDebug("Transfer processed: $" amount "`n")
+                OutputDebug("Fee: $" fee "`n")
+                OutputDebug("New balance: $" balance "`n")
+            } else {
+                OutputDebug("Insufficient funds for transfer`n")
+            }
 
         default:
-        OutputDebug("Invalid transaction type`n")
+            OutputDebug("Invalid transaction type`n")
     }
 
     OutputDebug("`n")
@@ -606,9 +606,9 @@ Example6_MultipleStatements() {
 ; ============================================================================
 
 /**
-* Demonstrates practical real-world switch statement usage.
-* Shows common patterns in real applications.
-*/
+ * Demonstrates practical real-world switch statement usage.
+ * Shows common patterns in real applications.
+ */
 Example7_RealWorldApplications() {
     OutputDebug("=== Example 7: Real-World Applications ===`n")
 
@@ -617,32 +617,32 @@ Example7_RealWorldApplications() {
 
     switch emailAction {
         case "reply":
-        OutputDebug("Opening reply window...`n")
-        recipient := "sender@example.com"
-        subject := "Re: Original Subject"
-        OutputDebug("To: " recipient "`n")
+            OutputDebug("Opening reply window...`n")
+            recipient := "sender@example.com"
+            subject := "Re: Original Subject"
+            OutputDebug("To: " recipient "`n")
 
         case "replyall":
-        OutputDebug("Opening reply all window...`n")
-        recipients := "sender@example.com; cc@example.com"
-        subject := "Re: Original Subject"
-        OutputDebug("To: " recipients "`n")
+            OutputDebug("Opening reply all window...`n")
+            recipients := "sender@example.com; cc@example.com"
+            subject := "Re: Original Subject"
+            OutputDebug("To: " recipients "`n")
 
         case "forward":
-        OutputDebug("Opening forward window...`n")
-        subject := "Fwd: Original Subject"
-        OutputDebug("Subject: " subject "`n")
+            OutputDebug("Opening forward window...`n")
+            subject := "Fwd: Original Subject"
+            OutputDebug("Subject: " subject "`n")
 
         case "delete":
-        OutputDebug("Moving to trash...`n")
-        location := "Trash"
+            OutputDebug("Moving to trash...`n")
+            location := "Trash"
 
         case "archive":
-        OutputDebug("Archiving email...`n")
-        location := "Archive"
+            OutputDebug("Archiving email...`n")
+            location := "Archive"
 
         default:
-        OutputDebug("Unknown email action`n")
+            OutputDebug("Unknown email action`n")
     }
 
     ; Game state machine
@@ -651,27 +651,27 @@ Example7_RealWorldApplications() {
 
     switch gameState {
         case "menu":
-        OutputDebug("Game State: Main Menu`n")
-        ShowMenu()
+            OutputDebug("Game State: Main Menu`n")
+            ShowMenu()
 
         case "playing":
-        OutputDebug("Game State: Active Gameplay`n")
-        UpdateGame()
+            OutputDebug("Game State: Active Gameplay`n")
+            UpdateGame()
 
         case "paused":
-        OutputDebug("Game State: Paused`n")
-        ShowPauseMenu()
+            OutputDebug("Game State: Paused`n")
+            ShowPauseMenu()
 
         case "gameover":
-        OutputDebug("Game State: Game Over`n")
-        ShowGameOverScreen()
+            OutputDebug("Game State: Game Over`n")
+            ShowGameOverScreen()
 
         case "victory":
-        OutputDebug("Game State: Victory!`n")
-        ShowVictoryScreen()
+            OutputDebug("Game State: Victory!`n")
+            ShowVictoryScreen()
 
         default:
-        OutputDebug("Unknown game state`n")
+            OutputDebug("Unknown game state`n")
     }
 
     ; Content type handler
@@ -680,36 +680,36 @@ Example7_RealWorldApplications() {
 
     switch contentType {
         case "text/html":
-        parser := "HTMLParser"
-        encoding := "UTF-8"
-        OutputDebug("Parsing HTML content`n")
+            parser := "HTMLParser"
+            encoding := "UTF-8"
+            OutputDebug("Parsing HTML content`n")
 
         case "application/json":
-        parser := "JSONParser"
-        encoding := "UTF-8"
-        OutputDebug("Parsing JSON content`n")
+            parser := "JSONParser"
+            encoding := "UTF-8"
+            OutputDebug("Parsing JSON content`n")
 
         case "application/xml", "text/xml":
-        parser := "XMLParser"
-        encoding := "UTF-8"
-        OutputDebug("Parsing XML content`n")
+            parser := "XMLParser"
+            encoding := "UTF-8"
+            OutputDebug("Parsing XML content`n")
 
         case "text/plain":
-        parser := "TextParser"
-        encoding := "UTF-8"
-        OutputDebug("Parsing plain text`n")
+            parser := "TextParser"
+            encoding := "UTF-8"
+            OutputDebug("Parsing plain text`n")
 
         default:
-        parser := "BinaryParser"
-        OutputDebug("Unknown content type, using binary parser`n")
+            parser := "BinaryParser"
+            OutputDebug("Unknown content type, using binary parser`n")
     }
 
     OutputDebug("`n")
 }
 
 /**
-* Helper functions for game state example.
-*/
+ * Helper functions for game state example.
+ */
 ShowMenu() {
     OutputDebug("  Displaying main menu options`n")
 }

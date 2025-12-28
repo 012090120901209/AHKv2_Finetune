@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Send Function - Special Keys
-* ============================================================================
-*
-* Advanced special key handling, multimedia keys, numpad keys, and
-* application-specific key combinations for comprehensive automation.
-*
-* @module BuiltIn_Send_03
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 Send Function - Special Keys
+ * ============================================================================
+ * 
+ * Advanced special key handling, multimedia keys, numpad keys, and
+ * application-specific key combinations for comprehensive automation.
+ * 
+ * @module BuiltIn_Send_03
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Function Keys (F1-F12)
 ; ============================================================================
 
 /**
-* Demonstrates all function keys.
-* F1-F12 with various applications.
-*
-* @example
-* ; Press F1 to cycle through function keys
-*/
+ * Demonstrates all function keys.
+ * F1-F12 with various applications.
+ * 
+ * @example
+ * ; Press F1 to cycle through function keys
+ */
 F1:: {
     ToolTip("Function keys demonstration in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     functionKeys := ["{F1}", "{F2}", "{F3}", "{F4}", "{F5}", "{F6}",
-    "{F7}", "{F8}", "{F9}", "{F10}", "{F11}", "{F12}"]
+        "{F7}", "{F8}", "{F9}", "{F10}", "{F11}", "{F12}"]
 
     for index, fkey in functionKeys {
         ToolTip("Pressing " SubStr(fkey, 2, -1) "...")
@@ -44,9 +44,9 @@ F1:: {
 }
 
 /**
-* Function keys with modifiers
-* Demonstrates Shift/Ctrl/Alt + Function keys
-*/
+ * Function keys with modifiers
+ * Demonstrates Shift/Ctrl/Alt + Function keys
+ */
 F2:: {
     ToolTip("Modified function keys in 2 seconds...")
     Sleep(2000)
@@ -78,12 +78,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Demonstrates Page Up/Down, Home/End keys.
-* Essential for document navigation.
-*
-* @description
-* Shows page and line navigation
-*/
+ * Demonstrates Page Up/Down, Home/End keys.
+ * Essential for document navigation.
+ * 
+ * @description
+ * Shows page and line navigation
+ */
 ^F1:: {
     ToolTip("Navigation keys in 2 seconds...")
     Sleep(2000)
@@ -125,9 +125,9 @@ F2:: {
 }
 
 /**
-* Insert/Delete keys
-* Toggle insert mode and delete operations
-*/
+ * Insert/Delete keys
+ * Toggle insert mode and delete operations
+ */
 ^F2:: {
     ToolTip("Insert/Delete keys in 2 seconds...")
     Sleep(2000)
@@ -163,12 +163,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Sends numpad-specific keys.
-* Differentiates between numpad and top row numbers.
-*
-* @description
-* Demonstrates NumpadX key syntax
-*/
+ * Sends numpad-specific keys.
+ * Differentiates between numpad and top row numbers.
+ * 
+ * @description
+ * Demonstrates NumpadX key syntax
+ */
 ^F3:: {
     ToolTip("Numpad keys in 2 seconds...")
     Sleep(2000)
@@ -208,9 +208,9 @@ F2:: {
 }
 
 /**
-* Calculator automation with numpad
-* Demonstrates numpad for calculations
-*/
+ * Calculator automation with numpad
+ * Demonstrates numpad for calculations
+ */
 ^F4:: {
     ToolTip("Opening Calculator...")
 
@@ -247,12 +247,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Sends multimedia control keys.
-* Volume, playback, and media controls.
-*
-* @description
-* Demonstrates media key simulation
-*/
+ * Sends multimedia control keys.
+ * Volume, playback, and media controls.
+ * 
+ * @description
+ * Demonstrates media key simulation
+ */
 ^F5:: {
     ToolTip("Multimedia keys demo...")
 
@@ -281,9 +281,9 @@ F2:: {
 }
 
 /**
-* Media playback controls
-* Play, pause, next, previous
-*/
+ * Media playback controls
+ * Play, pause, next, previous
+ */
 ^F6:: {
     ToolTip("Media playback controls...")
 
@@ -317,12 +317,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Browser-specific special keys.
-* Back, forward, refresh, search.
-*
-* @description
-* Demonstrates browser navigation keys
-*/
+ * Browser-specific special keys.
+ * Back, forward, refresh, search.
+ * 
+ * @description
+ * Demonstrates browser navigation keys
+ */
 ^F7:: {
     ToolTip("Browser keys in 2 seconds...")
     Sleep(2000)
@@ -363,12 +363,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Application launcher keys.
-* Quick launch media, mail, etc.
-*
-* @description
-* Demonstrates launch key simulation
-*/
+ * Application launcher keys.
+ * Quick launch media, mail, etc.
+ * 
+ * @description
+ * Demonstrates launch key simulation
+ */
 ^F8:: {
     ToolTip("Launch keys demo...")
 
@@ -397,12 +397,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Sends special characters using Alt codes.
-* Numeric keypad method for special characters.
-*
-* @description
-* Demonstrates Alt+NumCode input
-*/
+ * Sends special characters using Alt codes.
+ * Numeric keypad method for special characters.
+ * 
+ * @description
+ * Demonstrates Alt+NumCode input
+ */
 ^F9:: {
     ToolTip("Special characters in 2 seconds...")
     Sleep(2000)
@@ -435,9 +435,9 @@ F2:: {
 }
 
 /**
-* Unicode character input
-* Sends Unicode characters
-*/
+ * Unicode character input
+ * Sends Unicode characters
+ */
 ^F10:: {
     ToolTip("Unicode characters in 2 seconds...")
     Sleep(2000)
@@ -464,12 +464,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Toggles lock keys.
-* CapsLock, NumLock, ScrollLock.
-*
-* @description
-* Demonstrates lock key control
-*/
+ * Toggles lock keys.
+ * CapsLock, NumLock, ScrollLock.
+ * 
+ * @description
+ * Demonstrates lock key control
+ */
 ^F11:: {
     ToolTip("Lock keys demo...")
 
@@ -514,12 +514,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* System-level special keys.
-* PrintScreen, Pause, Apps.
-*
-* @description
-* Demonstrates system key simulation
-*/
+ * System-level special keys.
+ * PrintScreen, Pause, Apps.
+ * 
+ * @description
+ * Demonstrates system key simulation
+ */
 ^F12:: {
     ToolTip("System keys demo...")
 
@@ -550,10 +550,10 @@ F2:: {
 ; ============================================================================
 
 /**
-* Sends numpad sequence
-*
-* @param {String} numbers - String of digits
-*/
+ * Sends numpad sequence
+ * 
+ * @param {String} numbers - String of digits
+ */
 SendNumpadSequence(numbers) {
     Loop Parse numbers {
         Send("{Numpad" A_LoopField "}")
@@ -562,10 +562,10 @@ SendNumpadSequence(numbers) {
 }
 
 /**
-* Types special character by Alt code
-*
-* @param {String} code - Alt code (e.g., "0169" for ©)
-*/
+ * Types special character by Alt code
+ * 
+ * @param {String} code - Alt code (e.g., "0169" for ©)
+ */
 TypeAltCode(code) {
     Send("{Alt down}")
     Loop Parse code {
@@ -604,7 +604,7 @@ TypeAltCode(code) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

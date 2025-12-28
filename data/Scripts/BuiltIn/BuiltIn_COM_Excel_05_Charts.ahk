@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Excel_05_Charts.ahk
-*
-* DESCRIPTION:
-* Demonstrates creating and formatting charts in Microsoft Excel using COM automation.
-* Shows various chart types, customization options, and data visualization techniques.
-*
-* FEATURES:
-* - Creating different chart types (bar, line, pie, scatter)
-* - Customizing chart appearance
-* - Adding chart titles and labels
-* - Formatting chart elements
-* - Working with chart data ranges
-* - Multiple charts on one sheet
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for Excel automation
-* - Chart objects and ChartObjects collection
-* - Excel chart type constants
-* - Chart customization properties
-*
-* LEARNING POINTS:
-* 1. How to create charts programmatically
-* 2. Different chart types and when to use them
-* 3. Customizing chart titles, axes, and legends
-* 4. Formatting chart colors and styles
-* 5. Setting data ranges for charts
-* 6. Positioning and sizing charts
-* 7. Creating multiple charts on a worksheet
-*/
+ * BuiltIn_COM_Excel_05_Charts.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates creating and formatting charts in Microsoft Excel using COM automation.
+ * Shows various chart types, customization options, and data visualization techniques.
+ * 
+ * FEATURES:
+ * - Creating different chart types (bar, line, pie, scatter)
+ * - Customizing chart appearance
+ * - Adding chart titles and labels
+ * - Formatting chart elements
+ * - Working with chart data ranges
+ * - Multiple charts on one sheet
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for Excel automation
+ * - Chart objects and ChartObjects collection
+ * - Excel chart type constants
+ * - Chart customization properties
+ * 
+ * LEARNING POINTS:
+ * 1. How to create charts programmatically
+ * 2. Different chart types and when to use them
+ * 3. Customizing chart titles, axes, and legends
+ * 4. Formatting chart colors and styles
+ * 5. Setting data ranges for charts
+ * 6. Positioning and sizing charts
+ * 7. Creating multiple charts on a worksheet
+ */
 
 ;===============================================================================
 ; Example 1: Basic Column Chart
@@ -81,7 +81,7 @@ Example1_BasicColumnChart() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -143,7 +143,7 @@ Example2_LineChart() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -204,7 +204,7 @@ Example3_PieChart() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -259,11 +259,11 @@ Example4_BarChart() {
             value := sheet.Cells(A_Index + 1, 2).Value
 
             if (value >= 90)
-            point.Interior.Color := 0x00FF00  ; Green
+                point.Interior.Color := 0x00FF00  ; Green
             else if (value >= 75)
-            point.Interior.Color := 0x00FFFF  ; Yellow
+                point.Interior.Color := 0x00FFFF  ; Yellow
             else
-            point.Interior.Color := 0x0000FF  ; Red
+                point.Interior.Color := 0x0000FF  ; Red
         }
 
         MsgBox("Bar chart created!`n`nBars are color-coded by performance level.`n`nClose Excel manually when done.")
@@ -271,7 +271,7 @@ Example4_BarChart() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -335,7 +335,7 @@ Example5_ScatterPlot() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -405,7 +405,7 @@ Example6_ComboChart() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -544,13 +544,13 @@ ShowMenu() {
         case "7": Example7_Dashboard()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

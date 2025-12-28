@@ -1,54 +1,54 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlSend_02 - Text Entry and Special Characters
-* ============================================================================
-*
-* Demonstrates advanced text entry including special characters, Unicode,
-* escape sequences, and formatted text sending.
-*
-* @description
-* ControlSend supports various text formats and special characters:
-* - Unicode text
-* - Escape sequences
-* - Special characters
-* - Formatted text with line breaks
-* - Tab characters and spacing
-*
-* Key Features:
-* - Unicode character support
-* - Escape sequence handling
-* - Special character sending
-* - Multi-line text formatting
-* - Raw vs processed text modes
-*
-* @syntax ControlSend Keys, Control, WinTitle, WinText
-*
-* @author AutoHotkey Community
-* @version 1.0.0
-* @since 2024-01-16
-*
-* @example
-* ; Send Unicode text
-* ControlSend "Hello 世界!", "Edit1", "Notepad"
-*
-* @see https://www.autohotkey.com/docs/v2/lib/ControlSend.htm
-*/
+ * ============================================================================
+ * ControlSend_02 - Text Entry and Special Characters
+ * ============================================================================
+ * 
+ * Demonstrates advanced text entry including special characters, Unicode,
+ * escape sequences, and formatted text sending.
+ * 
+ * @description
+ * ControlSend supports various text formats and special characters:
+ * - Unicode text
+ * - Escape sequences
+ * - Special characters
+ * - Formatted text with line breaks
+ * - Tab characters and spacing
+ * 
+ * Key Features:
+ * - Unicode character support
+ * - Escape sequence handling
+ * - Special character sending
+ * - Multi-line text formatting
+ * - Raw vs processed text modes
+ * 
+ * @syntax ControlSend Keys, Control, WinTitle, WinText
+ * 
+ * @author AutoHotkey Community
+ * @version 1.0.0
+ * @since 2024-01-16
+ * 
+ * @example
+ * ; Send Unicode text
+ * ControlSend "Hello 世界!", "Edit1", "Notepad"
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/ControlSend.htm
+ */
 
 ; ============================================================================
 ; Example 1: Special Characters and Escape Sequences
 ; ============================================================================
 
 /**
-* @function Example1_SpecialCharacters
-* @description Demonstrates sending special characters
-* Shows escape sequences and special character handling
-*/
+ * @function Example1_SpecialCharacters
+ * @description Demonstrates sending special characters
+ * Shows escape sequences and special character handling
+ */
 Example1_SpecialCharacters() {
     MsgBox("Example 1: Special Characters`n`n" .
-    "Send special characters and escape sequences.",
-    "Special Characters", "OK Icon!")
+        "Send special characters and escape sequences.",
+        "Special Characters", "OK Icon!")
 
     ; Create output GUI
     myGui := Gui("+AlwaysOnTop", "Special Characters Demo")
@@ -147,14 +147,14 @@ Example1_SpecialCharacters() {
 ; ============================================================================
 
 /**
-* @function Example2_Unicode
-* @description Demonstrates Unicode text sending
-* Shows international characters and emoji support
-*/
+ * @function Example2_Unicode
+ * @description Demonstrates Unicode text sending
+ * Shows international characters and emoji support
+ */
 Example2_Unicode() {
     MsgBox("Example 2: Unicode Characters`n`n" .
-    "Send Unicode and international text.",
-    "Unicode Demo", "OK Icon!")
+        "Send Unicode and international text.",
+        "Unicode Demo", "OK Icon!")
 
     ; Create output GUI
     myGui := Gui("+AlwaysOnTop", "Unicode Demo")
@@ -260,14 +260,14 @@ Example2_Unicode() {
 ; ============================================================================
 
 /**
-* @function Example3_FormattedText
-* @description Send formatted text templates
-* Shows practical text formatting and template usage
-*/
+ * @function Example3_FormattedText
+ * @description Send formatted text templates
+ * Shows practical text formatting and template usage
+ */
 Example3_FormattedText() {
     MsgBox("Example 3: Formatted Text Templates`n`n" .
-    "Send pre-formatted text templates.",
-    "Formatted Text", "OK Icon!")
+        "Send pre-formatted text templates.",
+        "Formatted Text", "OK Icon!")
 
     ; Create GUI
     myGui := Gui("+AlwaysOnTop", "Text Templates Demo")
@@ -482,14 +482,14 @@ Example3_FormattedText() {
 ; ============================================================================
 
 /**
-* @function Example4_EscapeSequences
-* @description Demonstrates escape sequence handling
-* Shows how to send literal special characters
-*/
+ * @function Example4_EscapeSequences
+ * @description Demonstrates escape sequence handling
+ * Shows how to send literal special characters
+ */
 Example4_EscapeSequences() {
     MsgBox("Example 4: Escape Sequences`n`n" .
-    "Handle escape sequences and literal characters.",
-    "Escape Sequences", "OK Icon!")
+        "Handle escape sequences and literal characters.",
+        "Escape Sequences", "OK Icon!")
 
     ; Create GUI
     myGui := Gui("+AlwaysOnTop", "Escape Sequences Demo")
@@ -501,31 +501,23 @@ Example4_EscapeSequences() {
 
     ; Info panel
     infoEdit := myGui.Add("Edit", "w500 h100 y+10 ReadOnly Multi",
-    "Escape Sequences:`n" .
-    "``n = newline    ``t = tab    ``r = carriage return`n" .
-    "``` = backtick   `"" = double quote")
-
-    literalBtn := myGui.Add("Button", "w160 y+20", "Send Literal {}")
-    literalBtn.OnEvent("Click", (*) => SendLiteral())
-
-    escapedBtn := myGui.Add("Button", "w160 x+10", "Send Escaped Text")
-    escapedBtn.OnEvent("Click", (*) => SendEscaped())
-
-    rawBtn := myGui.Add("Button", "w160 x+10", "Send Raw Block")
-    rawBtn.OnEvent("Click", (*) => SendRaw())
-
-    clearBtn := myGui.Add("Button", "w245 y+20", "Clear Output")
-    clearBtn.OnEvent("Click", (*) => outputEdit.Value := "")
-
-    closeBtn := myGui.Add("Button", "w245 x+10", "Close Demo")
-    closeBtn.OnEvent("Click", (*) => myGui.Destroy())
-
-    myGui.Show()
-
-    winTitle := "Escape Sequences Demo"
-
-    ; Send literal brackets
-    SendLiteral() {
+        "Escape Sequences:`n" .
+        "``n = newline    ``t = tab    ``r = carriage return`n" .
+        "``` = backtick   `"" = double quote ")
+        literalBtn := myGui.Add("Button", "w160 y+20", "Send Literal {}")
+        literalBtn.OnEvent("Click", (*) => SendLiteral())
+        escapedBtn := myGui.Add("Button", "w160 x+10", "Send Escaped Text")
+        escapedBtn.OnEvent("Click", (*) => SendEscaped())
+        rawBtn := myGui.Add("Button", "w160 x+10", "Send Raw Block")
+        rawBtn.OnEvent("Click", (*) => SendRaw())
+        clearBtn := myGui.Add("Button", "w245 y+20", "Clear Output")
+        clearBtn.OnEvent("Click", (*) => outputEdit.Value := "")
+        closeBtn := myGui.Add("Button", "w245 x+10", "Close Demo")
+        closeBtn.OnEvent("Click", (*) => myGui.Destroy())
+        myGui.Show()
+        winTitle := "Escape Sequences Demo"
+        ; Send literal brackets
+        SendLiteral() {
         ; Use Chr() to send literal curly braces
         text := "`n=== Literal Brackets ===`n"
         text .= "Round brackets: (test)`n"
@@ -535,9 +527,8 @@ Example4_EscapeSequences() {
 
         ControlSend(text, "Edit1", winTitle)
     }
-
-    ; Send escaped text
-    SendEscaped() {
+        ; Send escaped text
+        SendEscaped() {
         text := "`n=== Escaped Characters ===`n"
         text .= "Newline: ``n`n"
         text .= "Tab: ``t`n"
@@ -548,9 +539,8 @@ Example4_EscapeSequences() {
 
         ControlSend(text, "Edit1", winTitle)
     }
-
-    ; Send raw block
-    SendRaw() {
+        ; Send raw block
+        SendRaw() {
         text := "
         (
         === Raw Text Block ===
@@ -566,60 +556,59 @@ Example4_EscapeSequences() {
 
         ControlSend("`n" . text . "`n`n", "Edit1", winTitle)
     }
+        MsgBox("Escape sequences demo started!", "Info", "OK Icon! T2")
+    }
 
-    MsgBox("Escape sequences demo started!", "Info", "OK Icon! T2")
-}
+    ; ============================================================================
+    ; Example 5: Multi-Line Text Formatting
+    ; ============================================================================
 
-; ============================================================================
-; Example 5: Multi-Line Text Formatting
-; ============================================================================
+    /**
+     * @function Example5_MultiLineFormatting
+     * @description Advanced multi-line text formatting
+     * Shows complex text structure and alignment
+     */
+    Example5_MultiLineFormatting() {
+        MsgBox("Example 5: Multi-Line Formatting`n`n" .
+            "Create complex formatted multi-line text.",
+            "Multi-Line Formatting", "OK Icon!")
 
-/**
-* @function Example5_MultiLineFormatting
-* @description Advanced multi-line text formatting
-* Shows complex text structure and alignment
-*/
-Example5_MultiLineFormatting() {
-    MsgBox("Example 5: Multi-Line Formatting`n`n" .
-    "Create complex formatted multi-line text.",
-    "Multi-Line Formatting", "OK Icon!")
+        ; Create GUI
+        myGui := Gui("+AlwaysOnTop", "Multi-Line Formatting Demo")
+        myGui.Add("Text", "w550", "Formatted Output:")
 
-    ; Create GUI
-    myGui := Gui("+AlwaysOnTop", "Multi-Line Formatting Demo")
-    myGui.Add("Text", "w550", "Formatted Output:")
+        outputEdit := myGui.Add("Edit", "w550 h400 Multi", "")
 
-    outputEdit := myGui.Add("Edit", "w550 h400 Multi", "")
+        myGui.Add("Text", "w550 y+10", "Format Examples:")
 
-    myGui.Add("Text", "w550 y+10", "Format Examples:")
+        boxBtn := myGui.Add("Button", "w105 y+10", "Box Drawing")
+        boxBtn.OnEvent("Click", (*) => SendBox())
 
-    boxBtn := myGui.Add("Button", "w105 y+10", "Box Drawing")
-    boxBtn.OnEvent("Click", (*) => SendBox())
+        asciiBtn := myGui.Add("Button", "w105 x+10", "ASCII Art")
+        asciiBtn.OnEvent("Click", (*) => SendAscii())
 
-    asciiBtn := myGui.Add("Button", "w105 x+10", "ASCII Art")
-    asciiBtn.OnEvent("Click", (*) => SendAscii())
+        chartBtn := myGui.Add("Button", "w105 x+10", "Bar Chart")
+        chartBtn.OnEvent("Click", (*) => SendChart())
 
-    chartBtn := myGui.Add("Button", "w105 x+10", "Bar Chart")
-    chartBtn.OnEvent("Click", (*) => SendChart())
+        menuBtn := myGui.Add("Button", "w105 x+10", "Menu")
+        menuBtn.OnEvent("Click", (*) => SendMenu())
 
-    menuBtn := myGui.Add("Button", "w105 x+10", "Menu")
-    menuBtn.OnEvent("Click", (*) => SendMenu())
+        treeBtn := myGui.Add("Button", "w105 x+10", "Tree View")
+        treeBtn.OnEvent("Click", (*) => SendTree())
 
-    treeBtn := myGui.Add("Button", "w105 x+10", "Tree View")
-    treeBtn.OnEvent("Click", (*) => SendTree())
+        clearBtn := myGui.Add("Button", "w270 y+20", "Clear Output")
+        clearBtn.OnEvent("Click", (*) => outputEdit.Value := "")
 
-    clearBtn := myGui.Add("Button", "w270 y+20", "Clear Output")
-    clearBtn.OnEvent("Click", (*) => outputEdit.Value := "")
+        closeBtn := myGui.Add("Button", "w270 x+10", "Close Demo")
+        closeBtn.OnEvent("Click", (*) => myGui.Destroy())
 
-    closeBtn := myGui.Add("Button", "w270 x+10", "Close Demo")
-    closeBtn.OnEvent("Click", (*) => myGui.Destroy())
+        myGui.Show()
 
-    myGui.Show()
+        winTitle := "Multi-Line Formatting Demo"
 
-    winTitle := "Multi-Line Formatting Demo"
-
-    ; Box drawing
-    SendBox() {
-        box := "
+        ; Box drawing
+        SendBox() {
+            box := "
         (
         ┌─────────────────────────────────────────┐
         │                                         │
@@ -635,12 +624,12 @@ Example5_MultiLineFormatting() {
 
         )"
 
-        ControlSend("`n" . box . "`n", "Edit1", winTitle)
-    }
+            ControlSend("`n" . box . "`n", "Edit1", winTitle)
+        }
 
-    ; ASCII art
-    SendAscii() {
-        art := "
+        ; ASCII art
+        SendAscii() {
+            art := "
         (
         _   _   _ _  __
         /_\ | | | | |/ /
@@ -655,12 +644,12 @@ Example5_MultiLineFormatting() {
 
         )"
 
-        ControlSend("`n" . art . "`n", "Edit1", winTitle)
-    }
+            ControlSend("`n" . art . "`n", "Edit1", winTitle)
+        }
 
-    ; Bar chart
-    SendChart() {
-        chart := "
+        ; Bar chart
+        SendChart() {
+            chart := "
         (
         Performance Metrics
         ═══════════════════════════════════════
@@ -675,12 +664,12 @@ Example5_MultiLineFormatting() {
 
         )"
 
-        ControlSend("`n" . chart . "`n", "Edit1", winTitle)
-    }
+            ControlSend("`n" . chart . "`n", "Edit1", winTitle)
+        }
 
-    ; Menu
-    SendMenu() {
-        menu := "
+        ; Menu
+        SendMenu() {
+            menu := "
         (
         ╔══════════════════════════════════════╗
         ║         MAIN MENU                    ║
@@ -703,12 +692,12 @@ Example5_MultiLineFormatting() {
 
         )"
 
-        ControlSend("`n" . menu . "`n", "Edit1", winTitle)
-    }
+            ControlSend("`n" . menu . "`n", "Edit1", winTitle)
+        }
 
-    ; Tree view
-    SendTree() {
-        tree := "
+        ; Tree view
+        SendTree() {
+            tree := "
         (
         Project Structure
         │
@@ -738,18 +727,18 @@ Example5_MultiLineFormatting() {
 
         )"
 
-        ControlSend("`n" . tree . "`n", "Edit1", winTitle)
+            ControlSend("`n" . tree . "`n", "Edit1", winTitle)
+        }
+
+        MsgBox("Multi-line formatting demo started!", "Info", "OK Icon! T2")
     }
 
-    MsgBox("Multi-line formatting demo started!", "Info", "OK Icon! T2")
-}
+    ; ============================================================================
+    ; Main Menu
+    ; ============================================================================
 
-; ============================================================================
-; Main Menu
-; ============================================================================
-
-ShowMainMenu() {
-    menuText := "
+    ShowMainMenu() {
+        menuText := "
     (
     ControlSend Examples - Text Entry
     ==================================
@@ -763,24 +752,24 @@ ShowMainMenu() {
     Select an example (1-5) or press Esc to exit
     )"
 
-    choice := InputBox(menuText, "ControlSend Text Entry Examples", "w400 h280")
+        choice := InputBox(menuText, "ControlSend Text Entry Examples", "w400 h280")
 
-    if (choice.Result = "Cancel")
-    return
+        if (choice.Result = "Cancel")
+            return
 
-    switch choice.Value {
-        case "1": Example1_SpecialCharacters()
-        case "2": Example2_Unicode()
-        case "3": Example3_FormattedText()
-        case "4": Example4_EscapeSequences()
-        case "5": Example5_MultiLineFormatting()
-        default:
-        MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
+        switch choice.Value {
+            case "1": Example1_SpecialCharacters()
+            case "2": Example2_Unicode()
+            case "3": Example3_FormattedText()
+            case "4": Example4_EscapeSequences()
+            case "5": Example5_MultiLineFormatting()
+            default:
+                MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
+        }
+
+        ; Show menu again
+        SetTimer(() => ShowMainMenu(), -500)
     }
 
-    ; Show menu again
-    SetTimer(() => ShowMainMenu(), -500)
-}
-
-; Start the demo
-ShowMainMenu()
+    ; Start the demo
+    ShowMainMenu()

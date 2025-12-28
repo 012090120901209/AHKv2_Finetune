@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Gui_02.ahk - GUI Layouts and Positioning
-*
-* This file demonstrates layout techniques and control positioning in AutoHotkey v2.
-* Topics covered:
-* - Absolute vs relative positioning
-* - Grid layouts and alignment
-* - Anchoring and docking controls
-* - Dynamic layout adjustments
-* - Section-based layouts
-* - Margin and padding management
-* - Responsive design patterns
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_Gui_02.ahk - GUI Layouts and Positioning
+ * 
+ * This file demonstrates layout techniques and control positioning in AutoHotkey v2.
+ * Topics covered:
+ * - Absolute vs relative positioning
+ * - Grid layouts and alignment
+ * - Anchoring and docking controls
+ * - Dynamic layout adjustments
+ * - Section-based layouts
+ * - Margin and padding management
+ * - Responsive design patterns
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Absolute Positioning
 ; =============================================================================
 
 /**
-* Demonstrates absolute positioning of controls
-* Each control has explicit x, y coordinates
-*/
+ * Demonstrates absolute positioning of controls
+ * Each control has explicit x, y coordinates
+ */
 Example1_AbsolutePositioning() {
     myGui := Gui(, "Absolute Positioning Example")
     myGui.BackColor := "White"
@@ -61,9 +61,9 @@ Example1_AbsolutePositioning() {
 ; =============================================================================
 
 /**
-* Demonstrates relative positioning using section markers
-* Controls positioned relative to previous control
-*/
+ * Demonstrates relative positioning using section markers
+ * Controls positioned relative to previous control
+ */
 Example2_RelativePositioning() {
     myGui := Gui(, "Relative Positioning Example")
     myGui.BackColor := "0xF0F8FF"
@@ -109,9 +109,9 @@ Example2_RelativePositioning() {
 ; =============================================================================
 
 /**
-* Creates a grid-based layout
-* Demonstrates structured multi-column layouts
-*/
+ * Creates a grid-based layout
+ * Demonstrates structured multi-column layouts
+ */
 Example3_GridLayout() {
     myGui := Gui(, "Grid Layout Example")
     myGui.BackColor := "White"
@@ -132,10 +132,10 @@ Example3_GridLayout() {
 
     ; Button labels in grid format
     buttons := [
-    ["7", "8", "9", "/"],
-    ["4", "5", "6", "*"],
-    ["1", "2", "3", "-"],
-    ["0", ".", "=", "+"]
+        ["7", "8", "9", "/"],
+        ["4", "5", "6", "*"],
+        ["1", "2", "3", "-"],
+        ["0", ".", "=", "+"]
     ]
 
     ; Create grid of buttons
@@ -164,9 +164,9 @@ Example3_GridLayout() {
         if (label >= "0" && label <= "9" || label = ".") {
             ; Number or decimal point
             if (currentValue = "0" || operator != "")
-            currentValue := label
+                currentValue := label
             else
-            currentValue .= label
+                currentValue .= label
             operator := ""
         } else if (label = "+" || label = "-" || label = "*" || label = "/") {
             ; Operator
@@ -196,9 +196,9 @@ Example3_GridLayout() {
 ; =============================================================================
 
 /**
-* Demonstrates anchored controls that resize with window
-* Controls maintain relative positions when window resizes
-*/
+ * Demonstrates anchored controls that resize with window
+ * Controls maintain relative positions when window resizes
+ */
 Example4_AnchoredLayout() {
     myGui := Gui("+Resize", "Anchored Layout Example")
     myGui.BackColor := "0xF5F5F5"
@@ -230,7 +230,7 @@ Example4_AnchoredLayout() {
 
     ResizeControls(thisGui, MinMax, Width, Height) {
         if (MinMax = -1)  ; Minimized
-        return
+            return
 
         ; Calculate new dimensions
         margin := 10
@@ -268,9 +268,9 @@ Example4_AnchoredLayout() {
 ; =============================================================================
 
 /**
-* Demonstrates section markers for complex layouts
-* Uses xs, ys, xp, yp, section markers
-*/
+ * Demonstrates section markers for complex layouts
+ * Uses xs, ys, xp, yp, section markers
+ */
 Example5_SectionLayout() {
     myGui := Gui(, "Section-Based Layout")
     myGui.BackColor := "White"
@@ -323,9 +323,9 @@ Example5_SectionLayout() {
 ; =============================================================================
 
 /**
-* Creates a multi-column form layout
-* Demonstrates side-by-side control placement
-*/
+ * Creates a multi-column form layout
+ * Demonstrates side-by-side control placement
+ */
 Example6_MultiColumnLayout() {
     myGui := Gui(, "Multi-Column Form Layout")
     myGui.BackColor := "0xFAFAFA"
@@ -397,9 +397,9 @@ Example6_MultiColumnLayout() {
 ; =============================================================================
 
 /**
-* Creates a dashboard-style layout with multiple panels
-* Demonstrates complex layout with multiple sections
-*/
+ * Creates a dashboard-style layout with multiple panels
+ * Demonstrates complex layout with multiple sections
+ */
 Example7_DashboardLayout() {
     myGui := Gui("+Resize", "Dashboard Layout")
     myGui.BackColor := "0x2C3E50"
@@ -449,13 +449,13 @@ Example7_DashboardLayout() {
 
     myGui.SetFont("s9 Norm c000000")
     activityList := myGui.Add("ListBox", "x30 y230 w350 h230", [
-    "User JohnD logged in - 2 min ago",
-    "New user registered - 5 min ago",
-    "System backup completed - 10 min ago",
-    "Database optimized - 15 min ago",
-    "User report generated - 20 min ago",
-    "Email sent to 150 users - 25 min ago",
-    "Server restart - 1 hour ago"
+        "User JohnD logged in - 2 min ago",
+        "New user registered - 5 min ago",
+        "System backup completed - 10 min ago",
+        "Database optimized - 15 min ago",
+        "User report generated - 20 min ago",
+        "Email sent to 150 users - 25 min ago",
+        "Server restart - 1 hour ago"
     ])
 
     ; System status panel
@@ -497,8 +497,8 @@ Example7_DashboardLayout() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_Gui_02 - Layout Examples")
     menuGui.BackColor := "White"

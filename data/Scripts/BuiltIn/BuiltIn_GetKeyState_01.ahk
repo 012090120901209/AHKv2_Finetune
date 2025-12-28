@@ -1,48 +1,48 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 GetKeyState Function - Check Key State
-* ============================================================================
-*
-* GetKeyState retrieves the current state of a keyboard key or mouse button.
-* Essential for conditional logic, state-based automation, and input monitoring.
-*
-* Syntax: GetKeyState(KeyName [, Mode])
-* Modes: "P" (Physical), "T" (Toggle)
-*
-* @module BuiltIn_GetKeyState_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 GetKeyState Function - Check Key State
+ * ============================================================================
+ * 
+ * GetKeyState retrieves the current state of a keyboard key or mouse button.
+ * Essential for conditional logic, state-based automation, and input monitoring.
+ * 
+ * Syntax: GetKeyState(KeyName [, Mode])
+ * Modes: "P" (Physical), "T" (Toggle)
+ * 
+ * @module BuiltIn_GetKeyState_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Key State Checking
 ; ============================================================================
 
 /**
-* Checks if key is currently pressed.
-* Returns true if key is down, false if up.
-*
-* @example
-* ; Press F1 to check Shift state
-*/
+ * Checks if key is currently pressed.
+ * Returns true if key is down, false if up.
+ * 
+ * @example
+ * ; Press F1 to check Shift state
+ */
 F1:: {
     shiftState := GetKeyState("Shift", "P")
 
     if (shiftState)
-    ToolTip("Shift is currently PRESSED")
+        ToolTip("Shift is currently PRESSED")
     else
-    ToolTip("Shift is currently RELEASED")
+        ToolTip("Shift is currently RELEASED")
 
     Sleep(2000)
     ToolTip()
 }
 
 /**
-* Checks Ctrl key state
-* Demonstrates physical state checking
-*/
+ * Checks Ctrl key state
+ * Demonstrates physical state checking
+ */
 F2:: {
     ctrlState := GetKeyState("Ctrl", "P")
 
@@ -53,16 +53,16 @@ F2:: {
 }
 
 /**
-* Checks Alt key state
-* Useful for modifier-dependent actions
-*/
+ * Checks Alt key state
+ * Useful for modifier-dependent actions
+ */
 F3:: {
     altState := GetKeyState("Alt", "P")
 
     if (altState)
-    MsgBox("Alt key is being held!", "Alt Detected")
+        MsgBox("Alt key is being held!", "Alt Detected")
     else
-    MsgBox("Alt key is not pressed.", "Alt Not Detected")
+        MsgBox("Alt key is not pressed.", "Alt Not Detected")
 }
 
 ; ============================================================================
@@ -70,25 +70,25 @@ F3:: {
 ; ============================================================================
 
 /**
-* Checks CapsLock toggle state.
-* Returns true if CapsLock is ON.
-*
-* @description
-* Demonstrates toggle state monitoring
-*/
+ * Checks CapsLock toggle state.
+ * Returns true if CapsLock is ON.
+ * 
+ * @description
+ * Demonstrates toggle state monitoring
+ */
 ^F1:: {
     capsState := GetKeyState("CapsLock", "T")
 
     if (capsState)
-    MsgBox("CapsLock is ON", "CapsLock State")
+        MsgBox("CapsLock is ON", "CapsLock State")
     else
-    MsgBox("CapsLock is OFF", "CapsLock State")
+        MsgBox("CapsLock is OFF", "CapsLock State")
 }
 
 /**
-* Checks NumLock state
-* Monitors numpad mode
-*/
+ * Checks NumLock state
+ * Monitors numpad mode
+ */
 ^F2:: {
     numState := GetKeyState("NumLock", "T")
 
@@ -99,9 +99,9 @@ F3:: {
 }
 
 /**
-* Checks ScrollLock state
-* Less common but still useful
-*/
+ * Checks ScrollLock state
+ * Less common but still useful
+ */
 ^F3:: {
     scrollState := GetKeyState("ScrollLock", "T")
 
@@ -112,9 +112,9 @@ F3:: {
 }
 
 /**
-* Checks Insert key toggle
-* Insert/Overwrite mode
-*/
+ * Checks Insert key toggle
+ * Insert/Overwrite mode
+ */
 ^F4:: {
     insertState := GetKeyState("Insert", "T")
 
@@ -129,12 +129,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Checks left mouse button state.
-* Detects if button is being held.
-*
-* @description
-* Mouse button monitoring
-*/
+ * Checks left mouse button state.
+ * Detects if button is being held.
+ * 
+ * @description
+ * Mouse button monitoring
+ */
 ^F5:: {
     ToolTip("Checking mouse buttons for 5 seconds...`nPress and hold mouse buttons!")
 
@@ -143,7 +143,7 @@ F3:: {
     Loop {
         elapsed := A_TickCount - startTime
         if (elapsed > 5000)
-        break
+            break
 
         lbState := GetKeyState("LButton", "P")
         rbState := GetKeyState("RButton", "P")
@@ -167,25 +167,25 @@ F3:: {
 ; ============================================================================
 
 /**
-* Performs different actions based on modifier state.
-* Shift changes behavior.
-*
-* @description
-* State-dependent automation
-*/
+ * Performs different actions based on modifier state.
+ * Shift changes behavior.
+ * 
+ * @description
+ * State-dependent automation
+ */
 ^F6:: {
     shiftHeld := GetKeyState("Shift", "P")
 
     if (shiftHeld)
-    MsgBox("SHIFT MODE: Special action executed!", "Conditional Action")
+        MsgBox("SHIFT MODE: Special action executed!", "Conditional Action")
     else
-    MsgBox("NORMAL MODE: Standard action executed!", "Conditional Action")
+        MsgBox("NORMAL MODE: Standard action executed!", "Conditional Action")
 }
 
 /**
-* Multi-modifier checking
-* Different actions for different modifier combinations
-*/
+ * Multi-modifier checking
+ * Different actions for different modifier combinations
+ */
 ^F7:: {
     shiftHeld := GetKeyState("Shift", "P")
     ctrlHeld := GetKeyState("Ctrl", "P")
@@ -194,21 +194,21 @@ F3:: {
     action := "Action: "
 
     if (shiftHeld && ctrlHeld && altHeld)
-    action .= "ALL modifiers held!"
+        action .= "ALL modifiers held!"
     else if (shiftHeld && ctrlHeld)
-    action .= "Shift + Ctrl combo"
+        action .= "Shift + Ctrl combo"
     else if (shiftHeld && altHeld)
-    action .= "Shift + Alt combo"
+        action .= "Shift + Alt combo"
     else if (ctrlHeld && altHeld)
-    action .= "Ctrl + Alt combo"
+        action .= "Ctrl + Alt combo"
     else if (shiftHeld)
-    action .= "Shift only"
+        action .= "Shift only"
     else if (ctrlHeld)
-    action .= "Ctrl only"
+        action .= "Ctrl only"
     else if (altHeld)
-    action .= "Alt only"
+        action .= "Alt only"
     else
-    action .= "No modifiers"
+        action .= "No modifiers"
 
     MsgBox(action, "Modifier Detection")
 }
@@ -218,12 +218,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Monitors key state in real-time.
-* Shows live updates of key state.
-*
-* @description
-* Real-time monitoring demo
-*/
+ * Monitors key state in real-time.
+ * Shows live updates of key state.
+ * 
+ * @description
+ * Real-time monitoring demo
+ */
 ^F8:: {
     global monitoring := true
 
@@ -233,7 +233,7 @@ F3:: {
 
     MonitorKeys() {
         if (!monitoring)
-        return
+            return
 
         ; Check multiple keys
         spaceState := GetKeyState("Space", "P")
@@ -258,9 +258,9 @@ F3:: {
 }
 
 /**
-* Monitors toggle keys continuously
-* Real-time toggle state display
-*/
+ * Monitors toggle keys continuously
+ * Real-time toggle state display
+ */
 ^F9:: {
     global toggleMonitoring := true
 
@@ -270,7 +270,7 @@ F3:: {
 
     MonitorToggles() {
         if (!toggleMonitoring)
-        return
+            return
 
         capsState := GetKeyState("CapsLock", "T")
         numState := GetKeyState("NumLock", "T")
@@ -298,12 +298,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Waits for key to be pressed.
-* Blocks until key state changes.
-*
-* @description
-* Synchronous key waiting
-*/
+ * Waits for key to be pressed.
+ * Blocks until key state changes.
+ * 
+ * @description
+ * Synchronous key waiting
+ */
 ^F10:: {
     ToolTip("Waiting for Space to be pressed...")
 
@@ -325,9 +325,9 @@ F3:: {
 }
 
 /**
-* Waits for mouse button
-* Synchronous mouse button detection
-*/
+ * Waits for mouse button
+ * Synchronous mouse button detection
+ */
 ^F11:: {
     ToolTip("Waiting for LEFT mouse button click...")
 
@@ -353,33 +353,33 @@ F3:: {
 ; ============================================================================
 
 /**
-* Context-sensitive hotkey behavior.
-* Same hotkey, different actions based on state.
-*
-* @description
-* Dynamic hotkey behavior
-*/
+ * Context-sensitive hotkey behavior.
+ * Same hotkey, different actions based on state.
+ * 
+ * @description
+ * Dynamic hotkey behavior
+ */
 Space:: {
     ; Check if Shift is held
     if (GetKeyState("Shift", "P"))
-    SendText("UPPERCASE TEXT MODE!")
+        SendText("UPPERCASE TEXT MODE!")
     else if (GetKeyState("Ctrl", "P"))
-    SendText("Control mode activated")
+        SendText("Control mode activated")
     else
-    Send("{Space}")  ; Normal space
+        Send("{Space}")  ; Normal space
 }
 
 /**
-* Toggle-aware hotkey
-* Behavior changes based on CapsLock
-*/
+ * Toggle-aware hotkey
+ * Behavior changes based on CapsLock
+ */
 ^Space:: {
     capsOn := GetKeyState("CapsLock", "T")
 
     if (capsOn)
-    MsgBox("CapsLock is ON - using UPPERCASE mode", "Mode")
+        MsgBox("CapsLock is ON - using UPPERCASE mode", "Mode")
     else
-    MsgBox("CapsLock is OFF - using lowercase mode", "Mode")
+        MsgBox("CapsLock is OFF - using lowercase mode", "Mode")
 }
 
 ; ============================================================================
@@ -387,10 +387,10 @@ Space:: {
 ; ============================================================================
 
 /**
-* Gets state of all modifier keys
-*
-* @returns {Object} Modifier states
-*/
+ * Gets state of all modifier keys
+ * 
+ * @returns {Object} Modifier states
+ */
 GetModifierStates() {
     return {
         shift: GetKeyState("Shift", "P"),
@@ -401,10 +401,10 @@ GetModifierStates() {
 }
 
 /**
-* Gets state of all toggle keys
-*
-* @returns {Object} Toggle states
-*/
+ * Gets state of all toggle keys
+ * 
+ * @returns {Object} Toggle states
+ */
 GetToggleStates() {
     return {
         capsLock: GetKeyState("CapsLock", "T"),
@@ -415,30 +415,30 @@ GetToggleStates() {
 }
 
 /**
-* Checks if any modifier is held
-*
-* @returns {Boolean} True if any modifier held
-*/
+ * Checks if any modifier is held
+ * 
+ * @returns {Boolean} True if any modifier held
+ */
 IsAnyModifierHeld() {
     return (GetKeyState("Shift", "P") ||
-    GetKeyState("Ctrl", "P") ||
-    GetKeyState("Alt", "P") ||
-    GetKeyState("LWin", "P") ||
-    GetKeyState("RWin", "P"))
+        GetKeyState("Ctrl", "P") ||
+        GetKeyState("Alt", "P") ||
+        GetKeyState("LWin", "P") ||
+        GetKeyState("RWin", "P"))
 }
 
 /**
-* Waits for all keys to be released
-*
-* @param {Number} timeout - Max wait time in ms
-* @returns {Boolean} True if all released
-*/
+ * Waits for all keys to be released
+ * 
+ * @param {Number} timeout - Max wait time in ms
+ * @returns {Boolean} True if all released
+ */
 WaitForKeyRelease(timeout := 5000) {
     startTime := A_TickCount
 
     while (IsAnyModifierHeld()) {
         if (A_TickCount - startTime > timeout)
-        return false
+            return false
 
         Sleep(50)
     }
@@ -483,7 +483,7 @@ WaitForKeyRelease(timeout := 5000) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Class_05_ThisKeyword.ahk
-*
-* DESCRIPTION:
-* Demonstrates the 'this' keyword in AutoHotkey v2 classes. The 'this' keyword
-* refers to the current instance and is essential for accessing instance members,
-* method chaining, and distinguishing between parameters and properties.
-*
-* FEATURES:
-* - Basic 'this' keyword usage
-* - Accessing instance properties with 'this'
-* - Calling instance methods with 'this'
-* - Method chaining with 'this' return
-* - Resolving name conflicts with 'this'
-* - 'this' in nested contexts
-* - Passing 'this' as parameter
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - this.PropertyName for property access
-* - this.MethodName() for method calls
-* - Returning 'this' for method chaining
-* - this in closures and callbacks
-* - Dynamic property access with this.%varName%
-* - this in property getters/setters
-*
-* LEARNING POINTS:
-* 1. 'this' refers to the current instance
-* 2. 'this' is required to access instance members
-* 3. 'this' disambiguates between parameters and properties
-* 4. Returning 'this' enables method chaining
-* 5. 'this' context can change in nested functions
-* 6. 'this' is implicit in property methods
-* 7. 'this' can be passed to other functions/methods
-*/
+ * BuiltIn_OOP_Class_05_ThisKeyword.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the 'this' keyword in AutoHotkey v2 classes. The 'this' keyword
+ * refers to the current instance and is essential for accessing instance members,
+ * method chaining, and distinguishing between parameters and properties.
+ * 
+ * FEATURES:
+ * - Basic 'this' keyword usage
+ * - Accessing instance properties with 'this'
+ * - Calling instance methods with 'this'
+ * - Method chaining with 'this' return
+ * - Resolving name conflicts with 'this'
+ * - 'this' in nested contexts
+ * - Passing 'this' as parameter
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - this.PropertyName for property access
+ * - this.MethodName() for method calls
+ * - Returning 'this' for method chaining
+ * - this in closures and callbacks
+ * - Dynamic property access with this.%varName%
+ * - this in property getters/setters
+ * 
+ * LEARNING POINTS:
+ * 1. 'this' refers to the current instance
+ * 2. 'this' is required to access instance members
+ * 3. 'this' disambiguates between parameters and properties
+ * 4. Returning 'this' enables method chaining
+ * 5. 'this' context can change in nested functions
+ * 6. 'this' is implicit in property methods
+ * 7. 'this' can be passed to other functions/methods
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic 'this' Usage
@@ -159,22 +159,22 @@ class StringBuilder {
 
 ; Method chaining - each method returns 'this'
 result := StringBuilder()
-.Append("Hello")
-.Append(" ")
-.Append("World")
-.AppendLine("!")
-.Append("This is ")
-.Append("method chaining")
-.ToString()
+    .Append("Hello")
+    .Append(" ")
+    .Append("World")
+    .AppendLine("!")
+    .Append("This is ")
+    .Append("method chaining")
+    .ToString()
 
 MsgBox(result)
 
 ; More complex chaining
 formatted := StringBuilder("original text")
-.ToUpper()
-.Replace("ORIGINAL", "NEW")
-.Append(" - MODIFIED")
-.ToString()
+    .ToUpper()
+    .Replace("ORIGINAL", "NEW")
+    .Append(" - MODIFIED")
+    .ToString()
 
 MsgBox(formatted)
 
@@ -217,7 +217,7 @@ class BankAccount {
 
     Transfer(amount, toAccount) {
         if (amount > this.Balance)
-        return "Insufficient funds"
+            return "Insufficient funds"
 
         ; 'this' refers to the source account
         this.Balance -= amount
@@ -276,7 +276,7 @@ class EventHandler {
     FormatEvent(event, index) {
         ; 'this' still refers to the EventHandler instance
         return Format("#{} - {} at {} (Handler: {})",
-        index, event.name, event.time, this.Name)
+            index, event.name, event.time, this.Name)
     }
 
     CreateCallback() {
@@ -352,7 +352,7 @@ class Node {
         for value in path {
             result .= value
             if (A_Index < path.Length)
-            result .= " > "
+                result .= " > "
         }
 
         return result
@@ -362,7 +362,7 @@ class Node {
     IsSiblingOf(otherNode) {
         ; 'this' is current node, otherNode is parameter
         if (this.Parent = "" || otherNode.Parent = "")
-        return false
+            return false
 
         return this.Parent = otherNode.Parent
     }
@@ -385,10 +385,10 @@ MsgBox("Path to child2: " child2.GetPath())
 
 ; Check siblings
 MsgBox("Are grandchild1 and grandchild2 siblings? "
-. (grandchild1.IsSiblingOf(grandchild2) ? "Yes" : "No"))
+    . (grandchild1.IsSiblingOf(grandchild2) ? "Yes" : "No"))
 
 MsgBox("Are child1 and grandchild1 siblings? "
-. (child1.IsSiblingOf(grandchild1) ? "Yes" : "No"))
+    . (child1.IsSiblingOf(grandchild1) ? "Yes" : "No"))
 
 ; ========================================
 ; EXAMPLE 6: 'this' in Property Getters/Setters
@@ -412,11 +412,11 @@ class Temperature {
     Fahrenheit {
         get {
             ; 'this' to access other property
-            return (this._celsius * 9/5) + 32
+            return (this._celsius * 9 / 5) + 32
         }
         set {
             ; 'this' to set related property
-            this._celsius := (value - 32) * 5/9
+            this._celsius := (value - 32) * 5 / 9
         }
     }
 
@@ -432,7 +432,7 @@ class Temperature {
     ; Method using 'this' to access properties
     ToString() {
         return Format("{:.1f}°C = {:.1f}°F = {:.1f}K",
-        this.Celsius, this.Fahrenheit, this.Kelvin)
+            this.Celsius, this.Fahrenheit, this.Kelvin)
     }
 
     ; Method chaining with 'this'
@@ -477,25 +477,25 @@ class FluentValidator {
     ; Each validation returns 'this' for chaining
     Required() {
         if (Trim(this._value) = "")
-        this._AddError("is required")
+            this._AddError("is required")
         return this
     }
 
     MinLength(length) {
         if (StrLen(this._value) < length)
-        this._AddError("must be at least " length " characters")
+            this._AddError("must be at least " length " characters")
         return this
     }
 
     MaxLength(length) {
         if (StrLen(this._value) > length)
-        this._AddError("must be no more than " length " characters")
+            this._AddError("must be no more than " length " characters")
         return this
     }
 
     Pattern(regex, message := "has invalid format") {
         if (!RegExMatch(this._value, regex))
-        this._AddError(message)
+            this._AddError(message)
         return this
     }
 
@@ -505,14 +505,14 @@ class FluentValidator {
 
     Numeric() {
         if (!IsNumber(this._value))
-        this._AddError("must be numeric")
+            this._AddError("must be numeric")
         return this
     }
 
     Range(min, max) {
         val := Number(this._value)
         if (val < min || val > max)
-        this._AddError("must be between " min " and " max)
+            this._AddError("must be between " min " and " max)
         return this
     }
 
@@ -544,9 +544,9 @@ class FluentValidator {
 
 ; Validate email with chaining
 emailValidator := FluentValidator.For("Email", "test@example.com")
-.Required()
-.Email()
-.MaxLength(100)
+    .Required()
+    .Email()
+    .MaxLength(100)
 
 if (emailValidator.IsValid()) {
     MsgBox("Email is valid!")
@@ -554,35 +554,35 @@ if (emailValidator.IsValid()) {
     errors := emailValidator.GetErrors()
     msg := "Validation errors:`n"
     for error in errors
-    msg .= "- " error "`n"
+        msg .= "- " error "`n"
     MsgBox(msg)
 }
 
 ; Validate age
 ageValidator := FluentValidator.For("Age", "25")
-.Required()
-.Numeric()
-.Range(18, 100)
+    .Required()
+    .Numeric()
+    .Range(18, 100)
 
 MsgBox("Age is " (ageValidator.IsValid() ? "valid" : "invalid"))
 
 ; Invalid username
 usernameValidator := FluentValidator.For("Username", "ab")
-.Required()
-.MinLength(3)
-.MaxLength(20)
-.Pattern("^[a-zA-Z0-9_]+$", "can only contain letters, numbers, and underscores")
+    .Required()
+    .MinLength(3)
+    .MaxLength(20)
+    .Pattern("^[a-zA-Z0-9_]+$", "can only contain letters, numbers, and underscores")
 
 if (!usernameValidator.IsValid()) {
     MsgBox("Error: " usernameValidator.GetFirstError())
 }
 
 MsgBox("=== OOP 'this' Keyword Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic 'this' usage for instance access`n"
-. "- Method chaining with 'this' return`n"
-. "- Resolving name conflicts with 'this'`n"
-. "- 'this' in nested contexts and closures`n"
-. "- Passing 'this' as parameter`n"
-. "- 'this' in property getters/setters`n"
-. "- Complex fluent interface patterns")
+    . "This file demonstrated:`n"
+    . "- Basic 'this' usage for instance access`n"
+    . "- Method chaining with 'this' return`n"
+    . "- Resolving name conflicts with 'this'`n"
+    . "- 'this' in nested contexts and closures`n"
+    . "- Passing 'this' as parameter`n"
+    . "- 'this' in property getters/setters`n"
+    . "- Complex fluent interface patterns")

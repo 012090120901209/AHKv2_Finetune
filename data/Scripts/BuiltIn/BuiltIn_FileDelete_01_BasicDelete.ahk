@@ -1,23 +1,23 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileDelete - Basic File Deletion Operations
-* ============================================================================
-*
-* Demonstrates fundamental FileDelete usage patterns including:
-* - Single file deletion
-* - Multiple file deletion
-* - Checking file existence before deletion
-* - Error handling for deletion operations
-* - Deletion with confirmation
-* - Deletion logging
-*
-* @description Basic FileDelete operation examples
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileDelete.htm
-*/
+ * ============================================================================
+ * FileDelete - Basic File Deletion Operations
+ * ============================================================================
+ * 
+ * Demonstrates fundamental FileDelete usage patterns including:
+ * - Single file deletion
+ * - Multiple file deletion
+ * - Checking file existence before deletion
+ * - Error handling for deletion operations
+ * - Deletion with confirmation
+ * - Deletion logging
+ * 
+ * @description Basic FileDelete operation examples
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileDelete.htm
+ */
 
 ; ============================================================================
 ; Example 1: Simple File Deletion
@@ -32,16 +32,16 @@ Example1_SimpleDelete() {
 
         ; Verify file exists
         if FileExist(testFile)
-        MsgBox("File created: " testFile, "Before Deletion")
+            MsgBox("File created: " testFile, "Before Deletion")
 
         ; Delete the file
         FileDelete(testFile)
 
         ; Verify deletion
         if !FileExist(testFile)
-        MsgBox("File successfully deleted!", "After Deletion")
+            MsgBox("File successfully deleted!", "After Deletion")
         else
-        MsgBox("File still exists!", "Error", 16)
+            MsgBox("File still exists!", "Error", 16)
 
     } catch as err {
         MsgBox("Error: " err.Message, "Error", 16)
@@ -63,9 +63,9 @@ Example2_ConditionalDelete() {
         SafeDelete := (filePath) {
             if FileExist(filePath) {
                 FileDelete(filePath)
-                return {success: true, message: "File deleted"}
+                return { success: true, message: "File deleted" }
             } else {
-                return {success: false, message: "File does not exist"}
+                return { success: false, message: "File does not exist" }
             }
         }
 
@@ -92,17 +92,17 @@ Example3_MultipleFiles() {
     try {
         ; Create test directory and files
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         files := ["file1.txt", "file2.txt", "file3.txt", "file4.txt"]
 
         for fileName in files
-        FileAppend("Test content", testDir "\" fileName)
+            FileAppend("Test content", testDir "\" fileName)
 
         ; Show files before deletion
         output := "Files Before Deletion:`n`n"
         Loop Files, testDir "\*.txt"
-        output .= A_LoopFileName "`n"
+            output .= A_LoopFileName "`n"
 
         MsgBox(output, "Before Deletion")
 
@@ -110,7 +110,7 @@ Example3_MultipleFiles() {
         for fileName in files {
             filePath := testDir "\" fileName
             if FileExist(filePath)
-            FileDelete(filePath)
+                FileDelete(filePath)
         }
 
         ; Verify deletion
@@ -122,7 +122,7 @@ Example3_MultipleFiles() {
         }
 
         if count = 0
-        output .= "(No files remaining)"
+            output .= "(No files remaining)"
 
         MsgBox(output, "After Deletion")
 
@@ -130,7 +130,7 @@ Example3_MultipleFiles() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -154,10 +154,10 @@ Example4_ConfirmDelete() {
 
             fileSize := FileGetSize(filePath)
             result := MsgBox("Delete file?`n`n" .
-            "File: " filePath "`n" .
-            "Size: " fileSize " bytes`n`n" .
-            "This action cannot be undone.",
-            "Confirm Deletion", 4 + 48)
+                "File: " filePath "`n" .
+                "Size: " fileSize " bytes`n`n" .
+                "This action cannot be undone.",
+                "Confirm Deletion", 4 + 48)
 
             if result = "Yes" {
                 FileDelete(filePath)
@@ -177,7 +177,7 @@ Example4_ConfirmDelete() {
     } finally {
         ; Cleanup if not deleted
         if FileExist(testFile)
-        FileDelete(testFile)
+            FileDelete(testFile)
     }
 }
 
@@ -249,14 +249,14 @@ Example6_BatchDeleteStats() {
     try {
         ; Create test directory and files
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create files of different sizes
         Loop 10 {
             fileName := testDir "\file_" A_Index ".txt"
             content := ""
             Loop Random(10, 100)
-            content .= "Data line " A_Index "`n"
+                content .= "Data line " A_Index "`n"
             FileAppend(content, fileName)
         }
 
@@ -294,7 +294,7 @@ Example6_BatchDeleteStats() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -308,12 +308,12 @@ Example7_ErrorRecovery() {
     try {
         ; Create test directory
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create test files
         files := ["file1.txt", "file2.txt", "file3.txt"]
         for fileName in files
-        FileAppend("Content", testDir "\" fileName)
+            FileAppend("Content", testDir "\" fileName)
 
         ; Delete with error tracking
         DeleteWithTracking := (directory, pattern := "*.txt") {
@@ -354,7 +354,7 @@ Example7_ErrorRecovery() {
         if results.errors.Length > 0 {
             output .= "`nErrors:`n"
             for error in results.errors
-            output .= "- " error.file ": " error.error "`n"
+                output .= "- " error.file ": " error.error "`n"
         }
 
         MsgBox(output, "Error Recovery")
@@ -363,7 +363,7 @@ Example7_ErrorRecovery() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -372,27 +372,20 @@ Example7_ErrorRecovery() {
 ; ============================================================================
 
 RunAllExamples() {
-    examples := [
-    {
-        name: "Simple Delete", func: Example1_SimpleDelete},
-        {
-            name: "Conditional Delete", func: Example2_ConditionalDelete},
-            {
-                name: "Multiple Files", func: Example3_MultipleFiles},
-                {
-                    name: "Confirm Delete", func: Example4_ConfirmDelete},
-                    {
-                        name: "Logged Deletion", func: Example5_LoggedDeletion},
-                        {
-                            name: "Batch Delete Stats", func: Example6_BatchDeleteStats},
-                            {
+    examples := [{
+        name: "Simple Delete", func: Example1_SimpleDelete }, {
+            name: "Conditional Delete", func: Example2_ConditionalDelete }, {
+                name: "Multiple Files", func: Example3_MultipleFiles }, {
+                    name: "Confirm Delete", func: Example4_ConfirmDelete }, {
+                        name: "Logged Deletion", func: Example5_LoggedDeletion }, {
+                            name: "Batch Delete Stats", func: Example6_BatchDeleteStats }, {
                                 name: "Error Recovery", func: Example7_ErrorRecovery
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "FileDelete Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "FileDelete Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}

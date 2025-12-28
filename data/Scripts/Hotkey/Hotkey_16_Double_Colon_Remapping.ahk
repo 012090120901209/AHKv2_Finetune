@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Key Remapping with ::
-* Simple remapping of one key to another
-*/
+ * Key Remapping with ::
+ * Simple remapping of one key to another
+ */
 
 ; Remap Caps Lock to Escape (useful for Vim users)
 CapsLock::Esc
@@ -18,3 +18,4 @@ RAlt::Enter
 
 ; Note: For complete key swaps, you might need to use Send
 ; to avoid conflicts
+

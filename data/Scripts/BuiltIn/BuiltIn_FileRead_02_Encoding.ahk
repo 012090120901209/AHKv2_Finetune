@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileRead - Advanced Encoding and Character Set Handling
-* ============================================================================
-*
-* Demonstrates advanced encoding operations including:
-* - Multiple character encoding formats
-* - BOM (Byte Order Mark) detection
-* - Encoding conversion
-* - Multi-language text support
-* - Binary vs text mode reading
-*
-* @description Advanced encoding examples for FileRead function
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
-*/
+ * ============================================================================
+ * FileRead - Advanced Encoding and Character Set Handling
+ * ============================================================================
+ * 
+ * Demonstrates advanced encoding operations including:
+ * - Multiple character encoding formats
+ * - BOM (Byte Order Mark) detection
+ * - Encoding conversion
+ * - Multi-language text support
+ * - Binary vs text mode reading
+ * 
+ * @description Advanced encoding examples for FileRead function
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
+ */
 
 ; ============================================================================
 ; Example 1: UTF-8 with BOM vs without BOM
@@ -74,22 +74,22 @@ Example2_MultiEncoding() {
 
     ; Define test encodings
     encodings := [
-    "UTF-8",
-    "UTF-16",
-    "CP1252",     ; Western European
-    "CP1251",     ; Cyrillic
-    "CP932",      ; Japanese Shift-JIS
-    "CP936"       ; Simplified Chinese GBK
+        "UTF-8",
+        "UTF-16",
+        "CP1252",     ; Western European
+        "CP1251",     ; Cyrillic
+        "CP932",      ; Japanese Shift-JIS
+        "CP936"       ; Simplified Chinese GBK
     ]
 
     ; Test strings for different languages
     testStrings := Map(
-    "UTF-8", "English: Hello! French: Bonjour! Spanish: ¡Hola!",
-    "UTF-16", "Greek: Γειά σου! Russian: Привет! Arabic: مرحبا",
-    "CP1252", "German: Größe, Price: €100",
-    "CP1251", "Russian: Привет Мир!",
-    "CP932", "Japanese: こんにちは世界",
-    "CP936", "Chinese: 你好世界"
+        "UTF-8", "English: Hello! French: Bonjour! Spanish: ¡Hola!",
+        "UTF-16", "Greek: Γειά σου! Russian: Привет! Arabic: مرحبا",
+        "CP1252", "German: Größe, Price: €100",
+        "CP1251", "Russian: Привет Мир!",
+        "CP932", "Japanese: こんにちは世界",
+        "CP936", "Chinese: 你好世界"
     )
 
     results := Map()
@@ -114,18 +114,18 @@ Example2_MultiEncoding() {
                 match := (content = testText) ? "✓ Match" : "✗ Mismatch"
 
                 results[encoding] := Map(
-                "success", true,
-                "content", content,
-                "size", FileGetSize(fileName),
-                "match", match
+                    "success", true,
+                    "content", content,
+                    "size", FileGetSize(fileName),
+                    "match", match
                 )
 
                 FileDelete(fileName)
 
             } catch as err {
                 results[encoding] := Map(
-                "success", false,
-                "error", err.Message
+                    "success", false,
+                    "error", err.Message
                 )
             }
         }
@@ -141,7 +141,7 @@ Example2_MultiEncoding() {
                 output .= "  Size: " result["size"] " bytes`n"
                 output .= "  Content: " SubStr(result["content"], 1, 40)
                 if StrLen(result["content"]) > 40
-                output .= "..."
+                    output .= "..."
                 output .= "`n`n"
             } else {
                 output .= "  Error: " result["error"] "`n`n"
@@ -200,7 +200,7 @@ Example3_EncodingDetection() {
         file := FileOpen(filePath, "r")
 
         if !file
-        throw Error("Cannot open file")
+            throw Error("Cannot open file")
 
         ; Read first 4 bytes
         bom := file.RawRead(Buffer(4), 4)
@@ -210,9 +210,9 @@ Example3_EncodingDetection() {
         bomData := FileRead(filePath, "RAW")
 
         result := Map(
-        "encoding", "UTF-8",  ; Default
-        "bom", false,
-        "confidence", "Low"
+            "encoding", "UTF-8",  ; Default
+            "bom", false,
+            "confidence", "Low"
         )
 
         ; Check UTF-8 BOM (EF BB BF)
@@ -223,8 +223,8 @@ Example3_EncodingDetection() {
             file.Close()
 
             if (NumGet(b, 0, "UChar") = 0xEF &&
-            NumGet(b, 1, "UChar") = 0xBB &&
-            NumGet(b, 2, "UChar") = 0xBF) {
+                NumGet(b, 1, "UChar") = 0xBB &&
+                NumGet(b, 2, "UChar") = 0xBF) {
                 result["encoding"] := "UTF-8"
                 result["bom"] := true
                 result["confidence"] := "High"
@@ -240,7 +240,7 @@ Example3_EncodingDetection() {
             file.Close()
 
             if (NumGet(b, 0, "UChar") = 0xFF &&
-            NumGet(b, 1, "UChar") = 0xFE) {
+                NumGet(b, 1, "UChar") = 0xFE) {
                 result["encoding"] := "UTF-16"
                 result["bom"] := true
                 result["confidence"] := "High"
@@ -322,9 +322,9 @@ Example4_MultiLanguageConfig() {
         if languages.Has("Japanese") {
             japanese := languages["Japanese"]
             MsgBox("日本語テスト:`n`n" .
-            "Title: " japanese["title"] "`n" .
-            "Message: " japanese["message"],
-            "Japanese Text")
+                "Title: " japanese["title"] "`n" .
+                "Message: " japanese["message"],
+                "Japanese Text")
         }
 
     } catch as err {
@@ -342,7 +342,7 @@ Example4_MultiLanguageConfig() {
             line := Trim(line)
 
             if !line
-            continue
+                continue
 
             ; Check for language section
             if RegExMatch(line, "^\[(.*)\]$", &match) {
@@ -423,9 +423,9 @@ Example6_LineEndings() {
 
     ; Test different line ending styles
     endings := Map(
-    "Windows", "`r`n",
-    "Unix", "`n",
-    "Mac", "`r"
+        "Windows", "`r`n",
+        "Unix", "`n",
+        "Mac", "`r"
     )
 
     content := ["Line 1", "Line 2", "Line 3"]
@@ -439,7 +439,7 @@ Example6_LineEndings() {
             for index, line in content {
                 fileContent .= line
                 if index < content.Length
-                fileContent .= ending
+                    fileContent .= ending
             }
 
             FileAppend(fileContent, fileName, "UTF-8")
@@ -457,8 +457,8 @@ Example6_LineEndings() {
             output .= "Content:`n" readContent "`n`n"
             output .= "Line Analysis:`n"
             output .= "  CRLF (\\r\\n): " (crlfCount / 2) "`n"
-            output .= "  LF (\\n): " (lfCount - crlfCount/2) "`n"
-            output .= "  CR (\\r): " (crCount - crlfCount/2) "`n"
+            output .= "  LF (\\n): " (lfCount - crlfCount / 2) "`n"
+            output .= "  CR (\\r): " (crCount - crlfCount / 2) "`n"
 
             ; Split by lines
             lines := StrSplit(readContent, "`n", "`r")
@@ -550,30 +550,24 @@ Example7_EncodingConversion() {
 
 ; Run all examples
 RunAllExamples() {
-    examples := [
-    {
-        name: "UTF-8 BOM Comparison", func: Example1_UTF8_BOM},
-        {
-            name: "Multi-Encoding Support", func: Example2_MultiEncoding},
-            {
-                name: "Encoding Detection", func: Example3_EncodingDetection},
-                {
-                    name: "Multi-Language Config", func: Example4_MultiLanguageConfig},
-                    {
-                        name: "Binary vs Text Mode", func: Example5_BinaryVsText},
-                        {
-                            name: "Line Endings", func: Example6_LineEndings},
-                            {
+    examples := [{
+        name: "UTF-8 BOM Comparison", func: Example1_UTF8_BOM }, {
+            name: "Multi-Encoding Support", func: Example2_MultiEncoding }, {
+                name: "Encoding Detection", func: Example3_EncodingDetection }, {
+                    name: "Multi-Language Config", func: Example4_MultiLanguageConfig }, {
+                        name: "Binary vs Text Mode", func: Example5_BinaryVsText }, {
+                            name: "Line Endings", func: Example6_LineEndings }, {
                                 name: "Encoding Conversion", func: Example7_EncodingConversion
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "FileRead Encoding Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "FileRead Encoding Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
 
-                        ; Uncomment to run all examples interactively:
-                        ; RunAllExamples()
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

@@ -1,50 +1,50 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_StrSplit_03_AdvancedParsing.ahk
-*
-* DESCRIPTION:
-* Advanced parsing techniques using StrSplit() with multi-character delimiters,
-* max splits, and complex token extraction
-*
-* FEATURES:
-* - Multi-character delimiter handling
-* - MaxParts parameter to limit splits
-* - Parse file paths into components
-* - Command-line argument parsing
-* - Extract tokens from formatted text
-* - URL parsing and query string handling
-* - Log file parsing
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - StrSplit()
-* Advanced parsing patterns and techniques
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - StrSplit() with MaxParts parameter
-* - Multi-character delimiter workarounds
-* - Complex string parsing strategies
-* - Regular expression alternatives
-* - Path and URL manipulation
-*
-* LEARNING POINTS:
-* 1. MaxParts parameter limits number of array elements
-* 2. StrSplit treats each character as delimiter (no multi-char)
-* 3. Multi-char delimiters need workaround with StrReplace
-* 4. Path parsing requires careful delimiter handling
-* 5. Command-line args often use space and quote delimiters
-* 6. Token extraction combines multiple parsing techniques
-* 7. OmitChars parameter helps clean results
-*/
+ * BuiltIn_StrSplit_03_AdvancedParsing.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced parsing techniques using StrSplit() with multi-character delimiters,
+ * max splits, and complex token extraction
+ * 
+ * FEATURES:
+ * - Multi-character delimiter handling
+ * - MaxParts parameter to limit splits
+ * - Parse file paths into components
+ * - Command-line argument parsing
+ * - Extract tokens from formatted text
+ * - URL parsing and query string handling
+ * - Log file parsing
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - StrSplit()
+ * Advanced parsing patterns and techniques
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - StrSplit() with MaxParts parameter
+ * - Multi-character delimiter workarounds
+ * - Complex string parsing strategies
+ * - Regular expression alternatives
+ * - Path and URL manipulation
+ * 
+ * LEARNING POINTS:
+ * 1. MaxParts parameter limits number of array elements
+ * 2. StrSplit treats each character as delimiter (no multi-char)
+ * 3. Multi-char delimiters need workaround with StrReplace
+ * 4. Path parsing requires careful delimiter handling
+ * 5. Command-line args often use space and quote delimiters
+ * 6. Token extraction combines multiple parsing techniques
+ * 7. OmitChars parameter helps clean results
+ */
 
 ; ============================================================
 ; Example 1: MaxParts Parameter - Limit Splits
 ; ============================================================
 
 /**
-* Demonstrate MaxParts parameter to limit array size
-* Useful when you only need first N parts
-*/
+ * Demonstrate MaxParts parameter to limit array size
+ * Useful when you only need first N parts
+ */
 text := "one,two,three,four,five,six,seven"
 
 split2 := StrSplit(text, ",", , 2)  ; Only first 2 parts
@@ -77,27 +77,27 @@ MsgBox(output, "MaxParts Parameter", "Icon!")
 ; ============================================================
 
 /**
-* Parse key=value pairs where value might contain delimiter
-* MaxParts ensures only first = is used as delimiter
-*/
+ * Parse key=value pairs where value might contain delimiter
+ * MaxParts ensures only first = is used as delimiter
+ */
 ParseKeyValue(line, delimiter := "=") {
     parts := StrSplit(line, delimiter, , 2)
 
     if (parts.Length < 2)
-    return Map("key", line, "value", "")
+        return Map("key", line, "value", "")
 
     return Map(
-    "key", Trim(parts[1]),
-    "value", Trim(parts[2])
+        "key", Trim(parts[1]),
+        "value", Trim(parts[2])
     )
 }
 
 ; Test cases where value contains =
 testLines := [
-"username=john_doe",
-"password=secret=123=abc",
-"formula=a+b=c",
-"url=https://example.com?param=value"
+    "username=john_doe",
+    "password=secret=123=abc",
+    "formula=a+b=c",
+    "url=https://example.com?param=value"
 ]
 
 output := "KEY-VALUE PARSING (MaxParts=2):`n`n"
@@ -116,13 +116,13 @@ MsgBox(output, "Key-Value with MaxParts", "Icon!")
 ; ============================================================
 
 /**
-* StrSplit treats each character as separate delimiter
-* To use multi-character delimiter, replace it first
-*
-* @param {String} text - Text to split
-* @param {String} delimiter - Multi-character delimiter
-* @returns {Array} - Split array
-*/
+ * StrSplit treats each character as separate delimiter
+ * To use multi-character delimiter, replace it first
+ * 
+ * @param {String} text - Text to split
+ * @param {String} delimiter - Multi-character delimiter
+ * @returns {Array} - Split array
+ */
 SplitByMultiChar(text, delimiter) {
     ; Use a unique placeholder
     placeholder := Chr(0x1F)  ; Unit Separator (unlikely in normal text)
@@ -173,12 +173,12 @@ MsgBox(output, "Multi-Character Delimiters", "Icon!")
 ; ============================================================
 
 /**
-* Parse file path into components
-* Works with Windows and Unix paths
-*
-* @param {String} path - File path
-* @returns {Object} - Map with path components
-*/
+ * Parse file path into components
+ * Works with Windows and Unix paths
+ * 
+ * @param {String} path - File path
+ * @returns {Object} - Map with path components
+ */
 ParsePath(path) {
     result := Map()
     result["original"] := path
@@ -191,7 +191,7 @@ ParsePath(path) {
     cleanParts := []
     for part in parts {
         if (part != "")
-        cleanParts.Push(part)
+            cleanParts.Push(part)
     }
 
     if (cleanParts.Length = 0) {
@@ -242,11 +242,11 @@ ParsePath(path) {
 
 ; Test various paths
 paths := [
-"C:\Users\John\Documents\report.pdf",
-"/home/user/scripts/automation.ahk",
-"D:\Projects\MyApp\src\main.js",
-"/var/log/system.log",
-"README.md"
+    "C:\Users\John\Documents\report.pdf",
+    "/home/user/scripts/automation.ahk",
+    "D:\Projects\MyApp\src\main.js",
+    "/var/log/system.log",
+    "README.md"
 ]
 
 output := "FILE PATH PARSING:`n`n"
@@ -255,14 +255,14 @@ for path in paths {
     parsed := ParsePath(path)
     output .= "Path: " path "`n"
     if (parsed["drive"] != "")
-    output .= "  Drive: " parsed["drive"] "`n"
+        output .= "  Drive: " parsed["drive"] "`n"
     if (parsed["directory"] != "")
-    output .= "  Directory: " parsed["directory"] "`n"
+        output .= "  Directory: " parsed["directory"] "`n"
     output .= "  Filename: " parsed["filename"] "`n"
     if (parsed["basename"] != "")
-    output .= "  Basename: " parsed["basename"] "`n"
+        output .= "  Basename: " parsed["basename"] "`n"
     if (parsed["extension"] != "")
-    output .= "  Extension: " parsed["extension"] "`n"
+        output .= "  Extension: " parsed["extension"] "`n"
     output .= "`n"
 }
 
@@ -273,12 +273,12 @@ MsgBox(output, "Path Parser", "Icon!")
 ; ============================================================
 
 /**
-* Parse command-line style arguments
-* Handles flags, options with values, and positional args
-*
-* @param {String} commandLine - Command line string
-* @returns {Object} - Parsed arguments
-*/
+ * Parse command-line style arguments
+ * Handles flags, options with values, and positional args
+ * 
+ * @param {String} commandLine - Command line string
+ * @returns {Object} - Parsed arguments
+ */
 ParseCommandLine(commandLine) {
     result := Map()
     result["command"] := ""
@@ -334,9 +334,9 @@ ParseCommandLine(commandLine) {
 
 ; Test command lines
 commands := [
-"myapp --verbose --output results.txt input.dat",
-"git commit -m message --author John",
-"convert image.png --resize 800x600 --quality 90 output.jpg"
+    "myapp --verbose --output results.txt input.dat",
+    "git commit -m message --author John",
+    "convert image.png --resize 800x600 --quality 90 output.jpg"
 ]
 
 output := "COMMAND-LINE PARSING:`n`n"
@@ -378,11 +378,11 @@ MsgBox(output, "Command-Line Parser", "Icon!")
 ; ============================================================
 
 /**
-* Parse URL into components
-*
-* @param {String} url - URL to parse
-* @returns {Object} - URL components
-*/
+ * Parse URL into components
+ * 
+ * @param {String} url - URL to parse
+ * @returns {Object} - URL components
+ */
 ParseURL(url) {
     result := Map()
     result["original"] := url
@@ -437,9 +437,9 @@ ParseURL(url) {
 
 ; Test URLs
 urls := [
-"https://www.example.com/path/to/page",
-"http://localhost:8080/api/users?id=123&name=John",
-"ftp://files.company.com:21/documents/report.pdf?download=true"
+    "https://www.example.com/path/to/page",
+    "http://localhost:8080/api/users?id=123&name=John",
+    "ftp://files.company.com:21/documents/report.pdf?download=true"
 ]
 
 output := "URL PARSING:`n`n"
@@ -450,11 +450,11 @@ for url in urls {
     output .= "  Protocol: " parsed["protocol"] "`n"
     output .= "  Host: " parsed["host"] "`n"
     if (parsed["port"] != "")
-    output .= "  Port: " parsed["port"] "`n"
+        output .= "  Port: " parsed["port"] "`n"
     if (parsed["path"] != "")
-    output .= "  Path: " parsed["path"] "`n"
+        output .= "  Path: " parsed["path"] "`n"
     if (parsed["query"] != "")
-    output .= "  Query: " parsed["query"] "`n"
+        output .= "  Query: " parsed["query"] "`n"
     if (parsed["params"].Count > 0) {
         output .= "  Parameters:`n"
         for key, value in parsed["params"] {
@@ -471,16 +471,16 @@ MsgBox(output, "URL Parser", "Icon!")
 ; ============================================================
 
 /**
-* Parse structured log entries
-* Format: [TIMESTAMP] LEVEL: Message
-*/
+ * Parse structured log entries
+ * Format: [TIMESTAMP] LEVEL: Message
+ */
 class LogParser {
     /**
-    * Parse log entry
-    *
-    * @param {String} logLine - Log line to parse
-    * @returns {Object} - Parsed log entry
-    */
+     * Parse log entry
+     * 
+     * @param {String} logLine - Log line to parse
+     * @returns {Object} - Parsed log entry
+     */
     static ParseLine(logLine) {
         entry := Map()
         entry["original"] := logLine
@@ -510,8 +510,8 @@ class LogParser {
     }
 
     /**
-    * Parse multiple log lines
-    */
+     * Parse multiple log lines
+     */
     static ParseLog(logData) {
         entries := []
         lines := StrSplit(logData, "`n", "`r")
@@ -519,7 +519,7 @@ class LogParser {
         for line in lines {
             line := Trim(line)
             if (line = "")
-            continue
+                continue
 
             entries.Push(this.ParseLine(line))
         }
@@ -528,13 +528,13 @@ class LogParser {
     }
 
     /**
-    * Filter logs by level
-    */
+     * Filter logs by level
+     */
     static FilterByLevel(entries, level) {
         filtered := []
         for entry in entries {
             if (entry["level"] = level)
-            filtered.Push(entry)
+                filtered.Push(entry)
         }
         return filtered
     }
@@ -568,13 +568,13 @@ for entry in entries {
 levels := Map("INFO", 0, "DEBUG", 0, "WARNING", 0, "ERROR", 0)
 for entry in entries {
     if (levels.Has(entry["level"]))
-    levels[entry["level"]]++
+        levels[entry["level"]]++
 }
 
 output .= "`nSUMMARY BY LEVEL:`n"
 for level, count in levels {
     if (count > 0)
-    output .= level ": " count "`n"
+        output .= level ": " count "`n"
 }
 
 ; Show errors only

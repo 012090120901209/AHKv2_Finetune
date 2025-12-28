@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_IE_02_DOM.ahk
-*
-* DESCRIPTION:
-* DOM manipulation in Internet Explorer using COM.
-*
-* FEATURES:
-* - Accessing elements
-* - Reading content
-* - Modifying HTML
-* - Element properties
-* - DOM traversal
-*/
+ * BuiltIn_COM_IE_02_DOM.ahk
+ * 
+ * DESCRIPTION:
+ * DOM manipulation in Internet Explorer using COM.
+ * 
+ * FEATURES:
+ * - Accessing elements
+ * - Reading content
+ * - Modifying HTML
+ * - Element properties
+ * - DOM traversal
+ */
 
 Example1_GetElement() {
     MsgBox("Example 1: Get Element by ID")
@@ -149,6 +149,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

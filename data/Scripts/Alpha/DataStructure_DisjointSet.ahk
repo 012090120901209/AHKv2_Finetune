@@ -9,7 +9,7 @@ class DisjointSet {
         this.parent := Map()
         this.rank := Map()
         this.count := 0
-        
+
         if n > 0 {
             Loop n
                 this.MakeSet(A_Index)
@@ -28,21 +28,21 @@ class DisjointSet {
     Find(x) {
         if !this.parent.Has(x)
             return ""
-        
+
         ; Path compression
         if this.parent[x] != x
             this.parent[x] := this.Find(this.parent[x])
-        
+
         return this.parent[x]
     }
 
     Union(x, y) {
         rootX := this.Find(x)
         rootY := this.Find(y)
-        
+
         if rootX = "" || rootY = "" || rootX = rootY
             return false
-        
+
         ; Union by rank
         if this.rank[rootX] < this.rank[rootY]
             this.parent[rootX] := rootY
@@ -52,7 +52,7 @@ class DisjointSet {
             this.parent[rootY] := rootX
             this.rank[rootX]++
         }
-        
+
         this.count--
         return true
     }
@@ -85,7 +85,7 @@ Loop 10
     ds.MakeSet(A_Index)
 
 ; Connect some nodes (edges)
-edges := [[1,2], [2,3], [4,5], [6,7], [7,8], [8,9], [1,4]]
+edges := [[1, 2], [2, 3], [4, 5], [6, 7], [7, 8], [8, 9], [1, 4]]
 
 result := "Adding edges:`n"
 for edge in edges {

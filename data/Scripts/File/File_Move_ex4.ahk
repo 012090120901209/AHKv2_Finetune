@@ -4,7 +4,7 @@
 
 ErrorCount := MoveFilesAndFolders("C:\a\*.*", "C:\b")
 if (ErrorCount != 0)
-MsgBox(ErrorCount " files/folders could not be moved.")
+    MsgBox(ErrorCount " files/folders could not be moved.")
 
 MoveFilesAndFolders(SourcePattern, DestinationFolder, DoOverwrite := false)
 ; Moves all files and folders matching SourcePattern into the folder named DestinationFolder and
@@ -12,7 +12,7 @@ MoveFilesAndFolders(SourcePattern, DestinationFolder, DoOverwrite := false)
 ; because it uses FileMoveDir's mode 2.
 {
     if (DoOverwrite = 1)
-    DoOverwrite := 2 ; See FileMoveDir for description of mode 2 vs. 1.
+        DoOverwrite := 2 ; See FileMoveDir for description of mode 2 vs. 1.
 
     ; First move all the files (but not the folders):
     try {
@@ -25,11 +25,11 @@ MoveFilesAndFolders(SourcePattern, DestinationFolder, DoOverwrite := false)
 
     ; Now move all the folders:
     loop files, SourcePattern, "D" ; 2 means "retrieve folders only".
- {
+    {
         DirMove(A_LoopFilePath, DestinationFolder "\" A_LoopFileName, DoOverwrite)
         ErrorCount += ErrorLevel
         if ErrorLevel ; Report each problem folder by name.
-        MsgBox("Could not move " A_LoopFilePath " into " DestinationFolder ".")
+            MsgBox("Could not move " A_LoopFilePath " into " DestinationFolder ".")
     }
     return ErrorCount
 }

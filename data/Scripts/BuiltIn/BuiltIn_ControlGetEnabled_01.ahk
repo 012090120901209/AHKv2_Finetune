@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlGetEnabled - Check Control Enabled State
-* ============================================================================
-*
-* Demonstrates checking if controls are enabled or disabled.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ============================================================================
+ * ControlGetEnabled - Check Control Enabled State
+ * ============================================================================
+ * 
+ * Demonstrates checking if controls are enabled or disabled.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -18,8 +18,8 @@
 ;==============================================================================
 
 /**
-* Check if control is enabled
-*/
+ * Check if control is enabled
+ */
 Example1() {
     MyGui := Gui("+Resize", "Example 1: Basic Enabled Check")
     MyGui.Add("Text", "w500", "Check control enabled state:")
@@ -58,15 +58,15 @@ Example1() {
 ;==============================================================================
 
 /**
-* Check multiple controls
-*/
+ * Check multiple controls
+ */
 Example2() {
     MyGui := Gui("+Resize", "Example 2: Multiple Control Check")
     MyGui.Add("Text", "w500", "Check multiple controls:")
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
 
     BtnDisableOdd := MyGui.Add("Button", "xm y+20 w180", "Disable Odd")
     BtnDisableOdd.OnEvent("Click", DisableOdd)
@@ -78,8 +78,8 @@ Example2() {
 
     DisableOdd(*) {
         for i, ctrl in controls
-        if (Mod(i, 2) = 1)
-        ctrl.Enabled := false
+            if (Mod(i, 2) = 1)
+                ctrl.Enabled := false
     }
 
     CheckAll(*) {
@@ -99,8 +99,8 @@ Example2() {
 ;==============================================================================
 
 /**
-* Validate enabled states
-*/
+ * Validate enabled states
+ */
 Example3() {
     MyGui := Gui("+Resize", "Example 3: Validation Check")
     MyGui.Add("Text", "w500", "Validate control states:")
@@ -132,8 +132,8 @@ Example3() {
 ;==============================================================================
 
 /**
-* Perform actions based on state
-*/
+ * Perform actions based on state
+ */
 Example4() {
     MyGui := Gui("+Resize", "Example 4: Conditional Actions")
     MyGui.Add("Text", "w500", "Conditional actions:")
@@ -164,8 +164,8 @@ Example4() {
 ;==============================================================================
 
 /**
-* Monitor state changes
-*/
+ * Monitor state changes
+ */
 Example5() {
     MyGui := Gui("+Resize", "Example 5: State Monitoring")
     MyGui.Add("Text", "w500", "Monitor enabled state:")
@@ -201,7 +201,7 @@ Example5() {
 
     CheckState() {
         if (!monitoring)
-        return
+            return
         currentState := ControlGetEnabled(TestEdit)
         if (currentState != lastState) {
             ResultsEdit.Value := "State changed: " . (currentState ? "Enabled" : "Disabled") . "\n" . ResultsEdit.Value
@@ -217,8 +217,8 @@ Example5() {
 ;==============================================================================
 
 /**
-* Generate state report
-*/
+ * Generate state report
+ */
 Example6() {
     MyGui := Gui("+Resize", "Example 6: Form State Report")
     MyGui.Add("Text", "w500", "Generate form state report:")
@@ -245,7 +245,7 @@ Example6() {
             enabled := ControlGetEnabled(ctrl)
             report .= name . ": " . (enabled ? "✓ Enabled" : "✗ Disabled") . "\n"
             if (enabled)
-            enabledCount++
+                enabledCount++
         }
 
         report .= "\nSummary: " . enabledCount . "/" . controls.Count . " enabled\n"
@@ -254,7 +254,7 @@ Example6() {
 
     ToggleAll(*) {
         for name, ctrl in controls
-        ctrl.Enabled := !ctrl.Enabled
+            ctrl.Enabled := !ctrl.Enabled
     }
 
     MyGui.Show()
@@ -265,15 +265,15 @@ Example6() {
 ;==============================================================================
 
 /**
-* Check accessibility
-*/
+ * Check accessibility
+ */
 Example7() {
     MyGui := Gui("+Resize", "Example 7: Accessibility Checker")
     MyGui.Add("Text", "w500", "Check control accessibility:")
 
     controls := []
     loop 4
-    controls.Push(MyGui.Add("Edit", "w250 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w250 y+10", "Field " . A_Index))
 
     ; Disable some for testing
     controls[2].Enabled := false
@@ -313,13 +313,13 @@ MainGui := Gui("+Resize", "Examples - Main Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Enabled Check",
-"Example 2: Multiple Control Check",
-"Example 3: Validation Check",
-"Example 4: Conditional Actions",
-"Example 5: State Monitoring",
-"Example 6: Form State Report",
-"Example 7: Accessibility Checker"
+    "Example 1: Basic Enabled Check",
+    "Example 2: Multiple Control Check",
+    "Example 3: Validation Check",
+    "Example 4: Conditional Actions",
+    "Example 5: State Monitoring",
+    "Example 6: Form State Report",
+    "Example 7: Accessibility Checker"
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

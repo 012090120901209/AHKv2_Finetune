@@ -8,7 +8,7 @@ class Snapshot {
     ; Create snapshot of object state
     static Create(obj, options := "") {
         depth := options.Has("depth") ? options["depth"] : 10
-        
+
         return Map(
             "data", this._serialize(obj, depth),
             "timestamp", A_TickCount,
@@ -19,19 +19,19 @@ class Snapshot {
     static _serialize(value, depth, seen := "") {
         if depth <= 0
             return "[max depth]"
-        
+
         if !seen
             seen := Map()
-        
+
         ; Primitive types
         if !IsObject(value)
             return value
-        
+
         ; Circular reference check
         if seen.Has(ObjPtr(value))
             return "[circular]"
         seen[ObjPtr(value)] := true
-        
+
         ; Array
         if value is Array {
             result := []
@@ -39,7 +39,7 @@ class Snapshot {
                 result.Push(this._serialize(item, depth - 1, seen))
             return result
         }
-        
+
         ; Map
         if value is Map {
             result := Map("__type__", "Map")
@@ -47,12 +47,12 @@ class Snapshot {
                 result[k] := this._serialize(v, depth - 1, seen)
             return result
         }
-        
+
         ; Object with properties
         result := Map("__type__", "Object")
         for prop in value.OwnProps()
             result[prop] := this._serialize(value.%prop%, depth - 1, seen)
-        
+
         return result
     }
 
@@ -64,18 +64,18 @@ class Snapshot {
     static _deserialize(value) {
         if !IsObject(value)
             return value
-        
+
         if value is Array {
             result := []
             for item in value
                 result.Push(this._deserialize(item))
             return result
         }
-        
+
         ; Check type marker
         if value is Map && value.Has("__type__") {
             typ := value["__type__"]
-            
+
             if typ = "Map" {
                 result := Map()
                 for k, v in value
@@ -83,7 +83,7 @@ class Snapshot {
                         result[k] := this._deserialize(v)
                 return result
             }
-            
+
             if typ = "Object" {
                 result := {}
                 for k, v in value
@@ -92,7 +92,7 @@ class Snapshot {
                 return result
             }
         }
-        
+
         return value
     }
 
@@ -103,20 +103,20 @@ class Snapshot {
 
     static _diffValues(v1, v2, path) {
         diffs := []
-        
+
         ; Type mismatch
         if Type(v1) != Type(v2) {
             diffs.Push(Map("path", path, "type", "type_change", "old", v1, "new", v2))
             return diffs
         }
-        
+
         ; Primitive comparison
         if !IsObject(v1) {
             if v1 != v2
                 diffs.Push(Map("path", path, "type", "value_change", "old", v1, "new", v2))
             return diffs
         }
-        
+
         ; Array comparison
         if v1 is Array && v2 is Array {
             maxLen := Max(v1.Length, v2.Length)
@@ -131,7 +131,7 @@ class Snapshot {
             }
             return diffs
         }
-        
+
         ; Map/Object comparison
         if v1 is Map && v2 is Map {
             keys := Map()
@@ -139,14 +139,14 @@ class Snapshot {
                 keys[k] := true
             for k, _ in v2
                 keys[k] := true
-            
+
             for k, _ in keys {
                 if k = "__type__"
                     continue
-                    
+
                 has1 := v1.Has(k)
                 has2 := v2.Has(k)
-                
+
                 if has1 && !has2
                     diffs.Push(Map("path", path "." k, "type", "removed", "value", v1[k]))
                 else if !has1 && has2
@@ -155,7 +155,7 @@ class Snapshot {
                     diffs.Push(this._diffValues(v1[k], v2[k], path "." k)*)
             }
         }
-        
+
         return diffs
     }
 }
@@ -171,34 +171,34 @@ class SnapshotManager {
     Save(obj, description := "") {
         snap := Snapshot.Create(obj)
         snap["description"] := description
-        
+
         this.history.Push(snap)
         this.redoStack := []  ; Clear redo on new save
-        
+
         ; Limit history size
         while this.history.Length > this.maxSnapshots
             this.history.RemoveAt(1)
-        
+
         return snap
     }
 
     Undo() {
         if this.history.Length < 2
             return ""
-        
+
         current := this.history.Pop()
         this.redoStack.Push(current)
-        
+
         return Snapshot.Restore(this.history[this.history.Length])
     }
 
     Redo() {
         if !this.redoStack.Length
             return ""
-        
+
         snap := this.redoStack.Pop()
         this.history.Push(snap)
-        
+
         return Snapshot.Restore(snap)
     }
 
@@ -252,9 +252,9 @@ result .= "  Title: " snap2["data"]["title"] "`n`n"
 diffs := Snapshot.Diff(snap1, snap2)
 result .= "Differences:`n"
 for diff in diffs
-    result .= "  " diff["path"] " [" diff["type"] "]: " 
-             . (diff.Has("old") ? diff["old"] : "") " -> " 
-             . (diff.Has("new") ? diff["new"] : (diff.Has("value") ? diff["value"] : "")) "`n"
+    result .= "  " diff["path"] " [" diff["type"] "]: "
+        . (diff.Has("old") ? diff["old"] : "") " -> "
+        . (diff.Has("new") ? diff["new"] : (diff.Has("value") ? diff["value"] : "")) "`n"
 
 MsgBox(result)
 

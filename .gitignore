@@ -11,3 +11,4 @@ Lib/
 .local-history/
 logs/mcp-debug.log
 logs/mcp-debug.log
+.cache/

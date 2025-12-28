@@ -74,14 +74,14 @@ ProcessShapes(shapes) {
 
 ; Demonstrate polymorphism
 animals := [
-Dog("Buddy", "Golden Retriever"),
-Cat("Whiskers", true),
-Bird("Tweety", true),
-Bird("Penguin", false)
+    Dog("Buddy", "Golden Retriever"),
+    Cat("Whiskers", true),
+    Bird("Tweety", true),
+    Bird("Penguin", false)
 ]
 
 for animal in animals
-ProcessAnimal(animal)
+    ProcessAnimal(animal)
 
 ; Dog-specific method
 animals[1].Fetch()

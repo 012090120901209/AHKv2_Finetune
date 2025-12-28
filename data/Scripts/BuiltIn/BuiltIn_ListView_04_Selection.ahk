@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_04_Selection.ahk
-*
-* DESCRIPTION:
-* Comprehensive guide to selection handling in ListView controls including single/multi
-* selection modes, programmatic selection, selection events, and focused items.
-*
-* FEATURES:
-* - Single and multi-selection modes
-* - Programmatic selection/deselection
-* - Getting selected items and their data
-* - Focus management
-* - Selection events and callbacks
-* - Select all/none operations
-* - Range selection
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - GetNext() for iteration through selected items
-* - Modify() with Select/Focus options
-* - ItemSelect event handling
-* - GetCount("Selected") method
-* - Single selection mode (-Multi option)
-*
-* LEARNING POINTS:
-* 1. Default ListView allows multiple selection
-* 2. GetNext() returns 0 when no more selected items
-* 3. Selection != Focus (can have focus without selection)
-* 4. ItemSelect event fires for each item selection change
-* 5. Use GetNext() in loop to process all selected items
-* 6. -Multi option restricts to single selection only
-* 7. Selection persists across sorting and filtering
-*/
+ * BuiltIn_ListView_04_Selection.ahk
+ * 
+ * DESCRIPTION:
+ * Comprehensive guide to selection handling in ListView controls including single/multi
+ * selection modes, programmatic selection, selection events, and focused items.
+ * 
+ * FEATURES:
+ * - Single and multi-selection modes
+ * - Programmatic selection/deselection
+ * - Getting selected items and their data
+ * - Focus management
+ * - Selection events and callbacks
+ * - Select all/none operations
+ * - Range selection
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - GetNext() for iteration through selected items
+ * - Modify() with Select/Focus options
+ * - ItemSelect event handling
+ * - GetCount("Selected") method
+ * - Single selection mode (-Multi option)
+ * 
+ * LEARNING POINTS:
+ * 1. Default ListView allows multiple selection
+ * 2. GetNext() returns 0 when no more selected items
+ * 3. Selection != Focus (can have focus without selection)
+ * 4. ItemSelect event fires for each item selection change
+ * 5. Use GetNext() in loop to process all selected items
+ * 6. -Multi option restricts to single selection only
+ * 7. Selection persists across sorting and filtering
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Single vs Multi-Selection Modes
@@ -68,13 +68,13 @@ Example1_SelectionModes() {
     CountMulti(*) {
         count := LV1.GetCount("Selected")
         MsgBox("Multi-Select ListView has " count " items selected.`n`n"
-        . "Try Ctrl+Click or Shift+Click to select multiple items!")
+            . "Try Ctrl+Click or Shift+Click to select multiple items!")
     }
 
     CountSingle(*) {
         count := LV2.GetCount("Selected")
         MsgBox("Single-Select ListView has " count " items selected.`n`n"
-        . "This ListView only allows one selection at a time.")
+            . "This ListView only allows one selection at a time.")
     }
 
     TryMultiple(*) {
@@ -88,8 +88,8 @@ Example1_SelectionModes() {
         LV2.Modify(8, "Select")  ; This will deselect item 5
 
         MsgBox("Attempted to select items 2, 5, and 8 in both ListViews.`n`n"
-        . "Multi-Select: All three selected`n"
-        . "Single-Select: Only last one (8) remains selected")
+            . "Multi-Select: All three selected`n"
+            . "Single-Select: Only last one (8) remains selected")
     }
 
     MyGui.Show()
@@ -105,16 +105,16 @@ Example2_GettingSelection() {
 
     ; Add products
     products := [
-    ["P001", "Laptop", "$999", "5"],
-    ["P002", "Mouse", "$25", "50"],
-    ["P003", "Keyboard", "$75", "30"],
-    ["P004", "Monitor", "$299", "15"],
-    ["P005", "Headphones", "$149", "25"],
-    ["P006", "Webcam", "$89", "40"],
-    ["P007", "Microphone", "$129", "12"],
-    ["P008", "USB Hub", "$35", "60"],
-    ["P009", "Laptop Stand", "$49", "20"],
-    ["P010", "Mouse Pad", "$15", "100"]
+        ["P001", "Laptop", "$999", "5"],
+        ["P002", "Mouse", "$25", "50"],
+        ["P003", "Keyboard", "$75", "30"],
+        ["P004", "Monitor", "$299", "15"],
+        ["P005", "Headphones", "$149", "25"],
+        ["P006", "Webcam", "$89", "40"],
+        ["P007", "Microphone", "$129", "12"],
+        ["P008", "USB Hub", "$35", "60"],
+        ["P009", "Laptop Stand", "$49", "20"],
+        ["P010", "Mouse Pad", "$15", "100"]
     ]
 
     for product in products {
@@ -140,14 +140,14 @@ Example2_GettingSelection() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
             ids .= LV.GetText(rowNum, 1) ", "
         }
 
         if ids = ""
-        resultEdit.Value := "No items selected!"
+            resultEdit.Value := "No items selected!"
         else
-        resultEdit.Value := "Selected IDs: " SubStr(ids, 1, -2)
+            resultEdit.Value := "Selected IDs: " SubStr(ids, 1, -2)
     }
 
     CalcTotal(*) {
@@ -158,7 +158,7 @@ Example2_GettingSelection() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             ; Extract price (remove $ and convert to number)
             priceText := LV.GetText(rowNum, 3)
@@ -172,10 +172,10 @@ Example2_GettingSelection() {
         }
 
         if totalItems = 0
-        resultEdit.Value := "No items selected!"
+            resultEdit.Value := "No items selected!"
         else
-        resultEdit.Value := "Selected Items: " totalItems "`n"
-        . "Total Value: $" Format("{:,.2f}", totalValue)
+            resultEdit.Value := "Selected Items: " totalItems "`n"
+                . "Total Value: $" Format("{:,.2f}", totalValue)
     }
 
     ListProducts(*) {
@@ -186,7 +186,7 @@ Example2_GettingSelection() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             count++
             product := LV.GetText(rowNum, 2)
@@ -197,9 +197,9 @@ Example2_GettingSelection() {
         }
 
         if count = 0
-        resultEdit.Value := "No items selected!"
+            resultEdit.Value := "No items selected!"
         else
-        resultEdit.Value := list
+            resultEdit.Value := list
     }
 
     ExportSelected(*) {
@@ -212,7 +212,7 @@ Example2_GettingSelection() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             count++
             id := LV.GetText(rowNum, 1)
@@ -227,7 +227,7 @@ Example2_GettingSelection() {
         }
 
         if count = 0
-        resultEdit.Value := "No items selected!"
+            resultEdit.Value := "No items selected!"
         else {
             resultEdit.Value := output . "Total: " count " items exported"
             MsgBox(output, "Export Complete")
@@ -296,9 +296,9 @@ Example3_ProgrammaticSelection() {
             ; Check if currently selected
             LV.Modify(A_Index, "Focus")  ; Temporarily focus to check
             if LV.GetNext(A_Index - 1) = A_Index
-            LV.Modify(A_Index, "-Select")
+                LV.Modify(A_Index, "-Select")
             else
-            LV.Modify(A_Index, "Select")
+                LV.Modify(A_Index, "Select")
         }
     }
 
@@ -306,7 +306,7 @@ Example3_ProgrammaticSelection() {
         DeselectAll()
         Loop LV.GetCount() {
             if Mod(A_Index, 2) = 0
-            LV.Modify(A_Index, "Select")
+                LV.Modify(A_Index, "Select")
         }
     }
 
@@ -314,7 +314,7 @@ Example3_ProgrammaticSelection() {
         DeselectAll()
         Loop LV.GetCount() {
             if Mod(A_Index, 2) = 1
-            LV.Modify(A_Index, "Select")
+                LV.Modify(A_Index, "Select")
         }
     }
 
@@ -329,7 +329,7 @@ Example3_ProgrammaticSelection() {
         DeselectAll()
         Loop LV.GetCount() {
             if LV.GetText(A_Index, 2) = "Active"
-            LV.Modify(A_Index, "Select")
+                LV.Modify(A_Index, "Select")
         }
     }
 
@@ -337,18 +337,18 @@ Example3_ProgrammaticSelection() {
         DeselectAll()
         Loop LV.GetCount() {
             if LV.GetText(A_Index, 4) = "A"
-            LV.Modify(A_Index, "Select")
+                LV.Modify(A_Index, "Select")
         }
     }
 
     SelectRange(*) {
         DeselectAll()
         Loop 5 {  ; Rows 3-7 (5 rows)
-        LV.Modify(A_Index + 2, "Select")
+            LV.Modify(A_Index + 2, "Select")
+        }
     }
-}
 
-MyGui.Show()
+    MyGui.Show()
 }
 
 ; ============================================================================
@@ -381,31 +381,31 @@ Example4_FocusVsSelection() {
         LV.Modify(5, "Focus")
         UpdateDisplay()
         infoEdit.Value := "Row 5 now has keyboard focus (dotted border).`n"
-        . "Focus does not mean selected!"
+            . "Focus does not mean selected!"
     }
 
     SelectRow3(*) {
         LV.Modify(3, "Select")
         UpdateDisplay()
         infoEdit.Value := "Row 3 is now selected (highlighted).`n"
-        . "Selection does not automatically give focus!"
+            . "Selection does not automatically give focus!"
     }
 
     FocusSelectRow7(*) {
         LV.Modify(7, "Focus Select")
         UpdateDisplay()
         infoEdit.Value := "Row 7 now has both focus AND selection.`n"
-        . "This is the most common combination."
+            . "This is the most common combination."
     }
 
     ShowFocused(*) {
         ; Find focused row using GetNext with "Focused" parameter
         focusedRow := LV.GetNext(0, "Focused")
         if focusedRow
-        infoEdit.Value := "Focused row: " focusedRow "`n"
-        . "Item: " LV.GetText(focusedRow, 1)
+            infoEdit.Value := "Focused row: " focusedRow "`n"
+                . "Item: " LV.GetText(focusedRow, 1)
         else
-        infoEdit.Value := "No row has focus."
+            infoEdit.Value := "No row has focus."
     }
 
     ShowSelected(*) {
@@ -415,15 +415,15 @@ Example4_FocusVsSelection() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
             selected.Push(rowNum)
         }
 
         if selected.Length = 0
-        infoEdit.Value := "No rows selected."
+            infoEdit.Value := "No rows selected."
         else
-        infoEdit.Value := "Selected rows: " selected.Length "`n"
-        . "Row numbers: " ArrayToString(selected)
+            infoEdit.Value := "Selected rows: " selected.Length "`n"
+                . "Row numbers: " ArrayToString(selected)
     }
 
     UpdateDisplay(*) {
@@ -437,7 +437,7 @@ Example4_FocusVsSelection() {
             Loop {
                 checkRow := LV.GetNext(checkRow)
                 if !checkRow
-                break
+                    break
                 if checkRow = row {
                     isSelected := true
                     break
@@ -457,7 +457,7 @@ Example4_FocusVsSelection() {
     ArrayToString(arr) {
         result := ""
         for item in arr
-        result .= item ", "
+            result .= item ", "
         return SubStr(result, 1, -2)
     }
 
@@ -473,11 +473,11 @@ Example5_SelectionEvents() {
     LV := MyGui.Add("ListView", "r10 w700", ["Name", "Type", "Size"])
 
     files := [
-    ["document.txt", "Text", "5 KB"],
-    ["image.jpg", "Image", "1.2 MB"],
-    ["video.mp4", "Video", "45 MB"],
-    ["script.ahk", "Script", "8 KB"],
-    ["data.csv", "Data", "125 KB"]
+        ["document.txt", "Text", "5 KB"],
+        ["image.jpg", "Image", "1.2 MB"],
+        ["video.mp4", "Video", "45 MB"],
+        ["script.ahk", "Script", "8 KB"],
+        ["data.csv", "Data", "125 KB"]
     ]
 
     for file in files {
@@ -532,14 +532,14 @@ Example6_SelectionActions() {
     LV := MyGui.Add("ListView", "r12 w750", ["Task", "Status", "Priority", "Assignee"])
 
     tasks := [
-    ["Update Documentation", "Pending", "Low", "Alice"],
-    ["Fix Login Bug", "In Progress", "Critical", "Bob"],
-    ["Add Dark Mode", "Pending", "Medium", "Charlie"],
-    ["Optimize Database", "Completed", "High", "Diana"],
-    ["Write Tests", "Pending", "Medium", "Edward"],
-    ["Code Review", "In Progress", "High", "Fiona"],
-    ["Deploy to Staging", "Pending", "High", "George"],
-    ["Update Dependencies", "Completed", "Low", "Hannah"]
+        ["Update Documentation", "Pending", "Low", "Alice"],
+        ["Fix Login Bug", "In Progress", "Critical", "Bob"],
+        ["Add Dark Mode", "Pending", "Medium", "Charlie"],
+        ["Optimize Database", "Completed", "High", "Diana"],
+        ["Write Tests", "Pending", "Medium", "Edward"],
+        ["Code Review", "In Progress", "High", "Fiona"],
+        ["Deploy to Staging", "Pending", "High", "George"],
+        ["Update Dependencies", "Completed", "Low", "Hannah"]
     ]
 
     for task in tasks {
@@ -590,7 +590,7 @@ Example6_SelectionActions() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             LV.Modify(rowNum, , , "Completed")
             count++
@@ -606,7 +606,7 @@ Example6_SelectionActions() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             LV.Modify(rowNum, , , , "Critical")
             count++
@@ -618,7 +618,7 @@ Example6_SelectionActions() {
     ReassignTask(*) {
         newAssignee := InputBox("Reassign selected tasks to:", "Reassign Tasks", "w300 h100")
         if newAssignee.Result = "Cancel"
-        return
+            return
 
         rowNum := 0
         count := 0
@@ -626,7 +626,7 @@ Example6_SelectionActions() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             LV.Modify(rowNum, , , , , newAssignee.Value)
             count++
@@ -640,13 +640,13 @@ Example6_SelectionActions() {
         result := MsgBox("Delete " count " selected task(s)?", "Confirm Delete", "YesNo Icon!")
 
         if result = "No"
-        return
+            return
 
         ; Delete in reverse order to maintain row numbers
         Loop LV.GetCount() {
             rowNum := LV.GetCount() - A_Index + 1
             if LV.GetNext(rowNum - 1) = rowNum
-            LV.Delete(rowNum)
+                LV.Delete(rowNum)
         }
 
         MsgBox(count " task(s) deleted!")
@@ -768,16 +768,16 @@ Example7_AdvancedSelection() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
             selectedRows.Push(rowNum)
         }
 
         ; Expand selection
         for row in selectedRows {
             if row > 1
-            LV.Modify(row - 1, "Select")
+                LV.Modify(row - 1, "Select")
             if row < LV.GetCount()
-            LV.Modify(row + 1, "Select")
+                LV.Modify(row + 1, "Select")
         }
 
         newCount := LV.GetCount("Selected")
@@ -793,7 +793,7 @@ Example7_AdvancedSelection() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -877,3 +877,4 @@ BEST PRACTICES:
 6. Handle ItemSelect events for real-time updates
 7. Store row numbers before deletion if needed later
 */
+

@@ -17,12 +17,12 @@ class Department {
         this.name := name
         this.members := []
     }
-    
+
     Add(emp) {
         this.members.Push(emp)
         return this
     }
-    
+
     Accept(visitor) => visitor.VisitDepartment(this)
 }
 

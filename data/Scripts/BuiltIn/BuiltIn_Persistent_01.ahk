@@ -1,20 +1,20 @@
 /**
-* @file BuiltIn_Persistent_01.ahk
-* @description Keeping scripts running persistently in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Persistent keeps a script running even when it has no hotkeys, timers, or
-* GUI windows. Essential for daemon scripts, background services, monitoring
-* applications, and server-like functionality.
-*
-* @syntax Persistent [NewValue]
-* @param NewValue - true (persistent), false (not persistent), or omit (toggle)
-*
-* @see https://www.autohotkey.com/docs/v2/lib/Persistent.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_Persistent_01.ahk
+ * @description Keeping scripts running persistently in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Persistent keeps a script running even when it has no hotkeys, timers, or
+ * GUI windows. Essential for daemon scripts, background services, monitoring
+ * applications, and server-like functionality.
+ * 
+ * @syntax Persistent [NewValue]
+ * @param NewValue - true (persistent), false (not persistent), or omit (toggle)
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/Persistent.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -23,9 +23,9 @@
 ; EXAMPLE 1: Basic Persistent Daemon
 ; ============================================================================
 /**
-* Demonstrates a basic persistent daemon script
-* Runs continuously in the background monitoring system
-*/
+ * Demonstrates a basic persistent daemon script
+ * Runs continuously in the background monitoring system
+ */
 Example1_BasicDaemon() {
     ; Make script persistent
     Persistent(true)
@@ -55,7 +55,7 @@ Example1_BasicDaemon() {
 
         ; Keep only last 100 events
         if (activityLog.Length > 100)
-        activityLog.RemoveAt(1)
+            activityLog.RemoveAt(1)
 
         eventCount++
     }
@@ -125,9 +125,9 @@ Example1_BasicDaemon() {
 ; EXAMPLE 2: Background File Watcher
 ; ============================================================================
 /**
-* Implements a persistent file monitoring daemon
-* Watches directory for changes and logs them
-*/
+ * Implements a persistent file monitoring daemon
+ * Watches directory for changes and logs them
+ */
 Example2_FileWatcher() {
     Persistent(true)
 
@@ -195,7 +195,7 @@ Example2_FileWatcher() {
 
         ; Keep only last 100 changes
         if (changes.Length > 100)
-        changes.RemoveAt(1)
+            changes.RemoveAt(1)
 
         ; Show notification
         TrayTip("File Change Detected", change, "Icon!")
@@ -264,9 +264,9 @@ Example2_FileWatcher() {
 ; EXAMPLE 3: Periodic Task Scheduler
 ; ============================================================================
 /**
-* Implements a persistent task scheduler daemon
-* Executes scheduled tasks at specified intervals
-*/
+ * Implements a persistent task scheduler daemon
+ * Executes scheduled tasks at specified intervals
+ */
 Example3_TaskScheduler() {
     Persistent(true)
 
@@ -293,7 +293,7 @@ Example3_TaskScheduler() {
         taskHistory.Push(timestamp . " - " . taskName . " - " . result)
 
         if (taskHistory.Length > 100)
-        taskHistory.RemoveAt(1)
+            taskHistory.RemoveAt(1)
     }
 
     ; Task checker (runs frequently)
@@ -380,9 +380,9 @@ Example3_TaskScheduler() {
 ; EXAMPLE 4: System Monitor Daemon
 ; ============================================================================
 /**
-* Implements persistent system monitoring
-* Continuously monitors and logs system metrics
-*/
+ * Implements persistent system monitoring
+ * Continuously monitors and logs system metrics
+ */
 Example4_SystemMonitor() {
     Persistent(true)
 
@@ -390,10 +390,10 @@ Example4_SystemMonitor() {
 
     ; Metrics storage
     static metrics := Map(
-    "samples", 0,
-    "startTime", A_TickCount,
-    "windowChanges", 0,
-    "mouseMovement", 0
+        "samples", 0,
+        "startTime", A_TickCount,
+        "windowChanges", 0,
+        "mouseMovement", 0
     )
 
     static metricHistory := []
@@ -427,7 +427,7 @@ Example4_SystemMonitor() {
         ; Mouse movement tracking
         MouseGetPos(&currentX, &currentY)
         if (currentX != lastMouseX || currentY != lastMouseY) {
-            distance := Sqrt((currentX - lastMouseX)**2 + (currentY - lastMouseY)**2)
+            distance := Sqrt((currentX - lastMouseX) ** 2 + (currentY - lastMouseY) ** 2)
             metrics["mouseMovement"] += distance
             lastMouseX := currentX
             lastMouseY := currentY
@@ -435,112 +435,112 @@ Example4_SystemMonitor() {
 
         ; Periodic metric snapshot
         if (Mod(metrics["samples"], 60) = 0) {  ; Every 60 samples
-        TakeSnapshot()
-    }
-}
-
-; Take metric snapshot
-TakeSnapshot() {
-    uptime := Round((A_TickCount - metrics["startTime"]) / 1000)
-
-    snapshot := {
-        timestamp: FormatTime(, "HH:mm:ss"),
-        uptime: uptime,
-        samples: metrics["samples"],
-        windowChanges: metrics["windowChanges"],
-        mouseMovement: Round(metrics["mouseMovement"])
+            TakeSnapshot()
+        }
     }
 
-    metricHistory.Push(snapshot)
+    ; Take metric snapshot
+    TakeSnapshot() {
+        uptime := Round((A_TickCount - metrics["startTime"]) / 1000)
 
-    if (metricHistory.Length > 100)
-    metricHistory.RemoveAt(1)
-}
+        snapshot := {
+            timestamp: FormatTime(, "HH:mm:ss"),
+            uptime: uptime,
+            samples: metrics["samples"],
+            windowChanges: metrics["windowChanges"],
+            mouseMovement: Round(metrics["mouseMovement"])
+        }
 
-; Log metric event
-LogMetric(event) {
-    ; Could log to file or database
-    ; For demo, we'll just use TrayTip occasionally
-    if (Mod(metrics["samples"], 100) = 0) {
-        TrayTip("Monitor Active", "Collected " metrics["samples"] " samples", "Icon!")
-    }
-}
+        metricHistory.Push(snapshot)
 
-; Start monitoring
-SetTimer(CollectMetrics, 1000)  ; Every second
-
-; Show dashboard
-ShowDashboard() {
-    uptime := Round((A_TickCount - metrics["startTime"]) / 1000)
-    hours := uptime // 3600
-    minutes := Mod(uptime // 60, 60)
-    seconds := Mod(uptime, 60)
-
-    dashGui := Gui("+AlwaysOnTop", "System Monitor Dashboard")
-    dashGui.SetFont("s10")
-    dashGui.Add("Text", "w400 Center", "System Monitoring Dashboard")
-
-    dashGui.Add("Text", "xm Section", "System Metrics:")
-    dashGui.Add("Text", "xs", "Uptime: " Format("{:02d}:{:02d}:{:02d}", hours, minutes, seconds))
-    dashGui.Add("Text", "xs", "Samples Collected: " metrics["samples"])
-    dashGui.Add("Text", "xs", "Window Changes: " metrics["windowChanges"])
-    dashGui.Add("Text", "xs", "Mouse Movement: " Round(metrics["mouseMovement"]) " pixels")
-    dashGui.Add("Text", "xs", "Snapshots Saved: " metricHistory.Length)
-
-    dashGui.Add("Button", "xs w400", "Close").OnEvent("Click", (*) => dashGui.Destroy())
-
-    dashGui.Show()
-}
-
-; View metrics history
-ViewMetrics() {
-    metricsGui := Gui("+AlwaysOnTop +Resize", "Metrics History")
-    metricsGui.SetFont("s10")
-    metricsGui.Add("Text", "w600 Center", "Metric Snapshots")
-
-    metricsGui.Add("Text", "xm", "Recent Snapshots:")
-    listView := metricsGui.Add("ListView", "w600 h300",
-    ["Time", "Uptime", "Samples", "Windows", "Mouse Px"])
-
-    for snapshot in metricHistory {
-        listView.Add("",
-        snapshot.timestamp,
-        snapshot.uptime . "s",
-        snapshot.samples,
-        snapshot.windowChanges,
-        snapshot.mouseMovement)
+        if (metricHistory.Length > 100)
+            metricHistory.RemoveAt(1)
     }
 
-    metricsGui.Add("Button", "xm w600", "Close").OnEvent("Click", (*) => metricsGui.Destroy())
-
-    metricsGui.Show()
-}
-
-; Reset metrics
-ResetMetrics() {
-    result := MsgBox("Reset all metrics?", "Confirm Reset", "YesNo Icon?")
-
-    if (result = "Yes") {
-        metrics["samples"] := 0
-        metrics["startTime"] := A_TickCount
-        metrics["windowChanges"] := 0
-        metrics["mouseMovement"] := 0
-        metricHistory := []
-
-        TrayTip("Metrics Reset", "All metrics have been reset", "Icon!")
+    ; Log metric event
+    LogMetric(event) {
+        ; Could log to file or database
+        ; For demo, we'll just use TrayTip occasionally
+        if (Mod(metrics["samples"], 100) = 0) {
+            TrayTip("Monitor Active", "Collected " metrics["samples"] " samples", "Icon!")
+        }
     }
-}
 
-TrayTip("System Monitor Started", "Now monitoring system activity", "Icon!")
+    ; Start monitoring
+    SetTimer(CollectMetrics, 1000)  ; Every second
+
+    ; Show dashboard
+    ShowDashboard() {
+        uptime := Round((A_TickCount - metrics["startTime"]) / 1000)
+        hours := uptime // 3600
+        minutes := Mod(uptime // 60, 60)
+        seconds := Mod(uptime, 60)
+
+        dashGui := Gui("+AlwaysOnTop", "System Monitor Dashboard")
+        dashGui.SetFont("s10")
+        dashGui.Add("Text", "w400 Center", "System Monitoring Dashboard")
+
+        dashGui.Add("Text", "xm Section", "System Metrics:")
+        dashGui.Add("Text", "xs", "Uptime: " Format("{:02d}:{:02d}:{:02d}", hours, minutes, seconds))
+        dashGui.Add("Text", "xs", "Samples Collected: " metrics["samples"])
+        dashGui.Add("Text", "xs", "Window Changes: " metrics["windowChanges"])
+        dashGui.Add("Text", "xs", "Mouse Movement: " Round(metrics["mouseMovement"]) " pixels")
+        dashGui.Add("Text", "xs", "Snapshots Saved: " metricHistory.Length)
+
+        dashGui.Add("Button", "xs w400", "Close").OnEvent("Click", (*) => dashGui.Destroy())
+
+        dashGui.Show()
+    }
+
+    ; View metrics history
+    ViewMetrics() {
+        metricsGui := Gui("+AlwaysOnTop +Resize", "Metrics History")
+        metricsGui.SetFont("s10")
+        metricsGui.Add("Text", "w600 Center", "Metric Snapshots")
+
+        metricsGui.Add("Text", "xm", "Recent Snapshots:")
+        listView := metricsGui.Add("ListView", "w600 h300",
+            ["Time", "Uptime", "Samples", "Windows", "Mouse Px"])
+
+        for snapshot in metricHistory {
+            listView.Add("",
+                snapshot.timestamp,
+                snapshot.uptime . "s",
+                snapshot.samples,
+                snapshot.windowChanges,
+                snapshot.mouseMovement)
+        }
+
+        metricsGui.Add("Button", "xm w600", "Close").OnEvent("Click", (*) => metricsGui.Destroy())
+
+        metricsGui.Show()
+    }
+
+    ; Reset metrics
+    ResetMetrics() {
+        result := MsgBox("Reset all metrics?", "Confirm Reset", "YesNo Icon?")
+
+        if (result = "Yes") {
+            metrics["samples"] := 0
+            metrics["startTime"] := A_TickCount
+            metrics["windowChanges"] := 0
+            metrics["mouseMovement"] := 0
+            metricHistory := []
+
+            TrayTip("Metrics Reset", "All metrics have been reset", "Icon!")
+        }
+    }
+
+    TrayTip("System Monitor Started", "Now monitoring system activity", "Icon!")
 }
 
 ; ============================================================================
 ; EXAMPLE 5: Auto-Restart Persistent Service
 ; ============================================================================
 /**
-* Implements a self-healing persistent service
-* Monitors its own health and restarts if needed
-*/
+ * Implements a self-healing persistent service
+ * Monitors its own health and restarts if needed
+ */
 Example5_SelfHealing() {
     Persistent(true)
 
@@ -548,11 +548,11 @@ Example5_SelfHealing() {
 
     ; Health tracking
     static healthStatus := Map(
-    "healthy", true,
-    "lastHealthCheck", A_TickCount,
-    "errorCount", 0,
-    "restartCount", 0,
-    "startTime", A_TickCount
+        "healthy", true,
+        "lastHealthCheck", A_TickCount,
+        "errorCount", 0,
+        "restartCount", 0,
+        "startTime", A_TickCount
     )
 
     static healthLog := []
@@ -625,7 +625,7 @@ Example5_SelfHealing() {
         healthLog.Push(timestamp . " - " . event)
 
         if (healthLog.Length > 100)
-        healthLog.RemoveAt(1)
+            healthLog.RemoveAt(1)
     }
 
     ; Periodic health checks
@@ -643,7 +643,7 @@ Example5_SelfHealing() {
         ; Health indicator
         statusGui.SetFont("s16 Bold")
         healthText := statusGui.Add("Text", "w400 Center Border",
-        healthStatus["healthy"] ? "● HEALTHY" : "⚠ UNHEALTHY")
+            healthStatus["healthy"] ? "● HEALTHY" : "⚠ UNHEALTHY")
 
         if (healthStatus["healthy"]) {
             healthText.SetFont("cGreen")
@@ -703,7 +703,7 @@ Example5_SelfHealing() {
     PerformHealthCheck()  ; Initial health check
 
     TrayTip("Self-Healing Service Started",
-    "Persistent service with auto-recovery is active", "Icon!")
+        "Persistent service with auto-recovery is active", "Icon!")
 }
 
 ; ============================================================================
@@ -738,10 +738,10 @@ class ScheduledTask {
 
     ShouldRun() {
         if (!this.enabled)
-        return false
+            return false
 
         if (this.lastRun = 0)
-        return true
+            return true
 
         return (A_TickCount - this.lastRun) >= this.interval
     }

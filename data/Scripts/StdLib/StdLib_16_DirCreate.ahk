@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* DirCreate() - Create directory
-*
-* Creates a folder.
-*/
+ * DirCreate() - Create directory
+ * 
+ * Creates a folder.
+ */
 
 newDir := A_ScriptDir "\newfolder"
 
 if DirExist(newDir)
-DirDelete(newDir)
+    DirDelete(newDir)
 
 DirCreate(newDir)
 MsgBox("Directory created: " newDir)

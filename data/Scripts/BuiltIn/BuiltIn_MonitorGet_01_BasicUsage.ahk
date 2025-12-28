@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGet_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates basic usage of MonitorGet function for retrieving monitor boundaries
-* and working area coordinates in AutoHotkey v2. Shows how to identify monitor
-* positions, dimensions, and available desktop space.
-*
-* FEATURES:
-* - Retrieving monitor boundaries (full screen area)
-* - Getting working area (excluding taskbar)
-* - Calculating monitor dimensions
-* - Identifying monitor positions
-* - Determining available desktop space
-* - Monitor information display
-* - Error handling for invalid monitors
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - MonitorGet function with output variables
-* - Fat arrow function syntax (=>)
-* - GUI v2 syntax and controls
-* - Try-catch error handling
-* - String interpolation
-* - Modern parameter passing
-*
-* LEARNING POINTS:
-* 1. MonitorGet retrieves both full monitor bounds and working area
-* 2. Left, Top, Right, Bottom define the monitor's screen coordinates
-* 3. Working area excludes taskbar and other system UI elements
-* 4. Monitor numbers start at 1, not 0
-* 5. Coordinates can be negative in multi-monitor setups
-* 6. Width = Right - Left, Height = Bottom - Top
-* 7. Invalid monitor numbers return empty values
-*/
+ * BuiltIn_MonitorGet_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates basic usage of MonitorGet function for retrieving monitor boundaries
+ * and working area coordinates in AutoHotkey v2. Shows how to identify monitor
+ * positions, dimensions, and available desktop space.
+ * 
+ * FEATURES:
+ * - Retrieving monitor boundaries (full screen area)
+ * - Getting working area (excluding taskbar)
+ * - Calculating monitor dimensions
+ * - Identifying monitor positions
+ * - Determining available desktop space
+ * - Monitor information display
+ * - Error handling for invalid monitors
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - MonitorGet function with output variables
+ * - Fat arrow function syntax (=>)
+ * - GUI v2 syntax and controls
+ * - Try-catch error handling
+ * - String interpolation
+ * - Modern parameter passing
+ * 
+ * LEARNING POINTS:
+ * 1. MonitorGet retrieves both full monitor bounds and working area
+ * 2. Left, Top, Right, Bottom define the monitor's screen coordinates
+ * 3. Working area excludes taskbar and other system UI elements
+ * 4. Monitor numbers start at 1, not 0
+ * 5. Coordinates can be negative in multi-monitor setups
+ * 6. Width = Right - Left, Height = Bottom - Top
+ * 7. Invalid monitor numbers return empty values
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Monitor Information Retrieval
@@ -132,8 +132,8 @@ Example3_AllMonitorsGUI() {
 
     ; Add ListView with columns
     lv := g.Add("ListView", "w800 h400", [
-    "Monitor", "Left", "Top", "Right", "Bottom",
-    "Width", "Height", "Aspect Ratio"
+        "Monitor", "Left", "Top", "Right", "Bottom",
+        "Width", "Height", "Aspect Ratio"
     ])
 
     ; Get monitor count
@@ -157,7 +157,7 @@ Example3_AllMonitorsGUI() {
 
     ; Auto-size columns
     Loop lv.GetCount("Column")
-    lv.ModifyCol(A_Index, "AutoHdr")
+        lv.ModifyCol(A_Index, "AutoHdr")
 
     ; Add refresh button
     g.Add("Button", "w100", "Refresh").OnEvent("Click", (*) => RefreshMonitors(lv))
@@ -183,7 +183,7 @@ Example3_AllMonitorsGUI() {
         }
 
         Loop lvControl.GetCount("Column")
-        lvControl.ModifyCol(A_Index, "AutoHdr")
+            lvControl.ModifyCol(A_Index, "AutoHdr")
     }
 }
 
@@ -296,13 +296,13 @@ Example5_BoundaryValidator() {
                 result .= "✗ OUTSIDE MONITOR BOUNDS`n`n"
                 result .= "Overflow:`n"
                 if TestX < Left
-                result .= "Left:   " Abs(DistLeft) " pixels`n"
+                    result .= "Left:   " Abs(DistLeft) " pixels`n"
                 else if TestX > Right
-                result .= "Right:  " Abs(DistRight) " pixels`n"
+                    result .= "Right:  " Abs(DistRight) " pixels`n"
                 if TestY < Top
-                result .= "Top:    " Abs(DistTop) " pixels`n"
+                    result .= "Top:    " Abs(DistTop) " pixels`n"
                 else if TestY > Bottom
-                result .= "Bottom: " Abs(DistBottom) " pixels"
+                    result .= "Bottom: " Abs(DistBottom) " pixels"
             }
 
             txtResult.Value := result
@@ -341,7 +341,7 @@ Example6_DimensionReporter() {
         Width := Right - Left
         Height := Bottom - Top
         Area := Width * Height
-        Diagonal := Round(Sqrt(Width**2 + Height**2), 2)
+        Diagonal := Round(Sqrt(Width ** 2 + Height ** 2), 2)
 
         TotalWidth += Width
         TotalHeight := Max(TotalHeight, Height)
@@ -352,7 +352,7 @@ Example6_DimensionReporter() {
         report .= "  Dimensions: " Width " x " Height "`n"
         report .= "  Area: " Format("{:,}", Area) " pixels²`n"
         report .= "  Diagonal: " Diagonal " pixels`n"
-        report .= "  Aspect: " Round(Width/Height, 2) ":1`n`n"
+        report .= "  Aspect: " Round(Width / Height, 2) ":1`n`n"
     }
 
     report .= "SUMMARY:`n"
@@ -360,7 +360,7 @@ Example6_DimensionReporter() {
     report .= "  Combined Width: " TotalWidth " pixels`n"
     report .= "  Max Height: " TotalHeight " pixels`n"
     report .= "  Total Area: " Format("{:,}", TotalArea) " pixels²`n"
-    report .= "  Avg Area/Monitor: " Format("{:,}", Round(TotalArea/MonCount)) " pixels²"
+    report .= "  Avg Area/Monitor: " Format("{:,}", Round(TotalArea / MonCount)) " pixels²"
 
     MsgBox(report, "Example 6: Dimension Reporter", "Icon!")
 }
@@ -388,19 +388,19 @@ Example7_CornerHighlighter() {
     ; Top-Right
     g2 := Gui("+AlwaysOnTop -Caption +ToolWindow", "TR")
     g2.BackColor := "Green"
-    g2.Show("x" (Right-cornerSize) " y" Top " w" cornerSize " h" cornerSize " NA")
+    g2.Show("x" (Right - cornerSize) " y" Top " w" cornerSize " h" cornerSize " NA")
     corners.Push(g2)
 
     ; Bottom-Left
     g3 := Gui("+AlwaysOnTop -Caption +ToolWindow", "BL")
     g3.BackColor := "Blue"
-    g3.Show("x" Left " y" (Bottom-cornerSize) " w" cornerSize " h" cornerSize " NA")
+    g3.Show("x" Left " y" (Bottom - cornerSize) " w" cornerSize " h" cornerSize " NA")
     corners.Push(g3)
 
     ; Bottom-Right
     g4 := Gui("+AlwaysOnTop -Caption +ToolWindow", "BR")
     g4.BackColor := "Yellow"
-    g4.Show("x" (Right-cornerSize) " y" (Bottom-cornerSize) " w" cornerSize " h" cornerSize " NA")
+    g4.Show("x" (Right - cornerSize) " y" (Bottom - cornerSize) " w" cornerSize " h" cornerSize " NA")
     corners.Push(g4)
 
     ; Info message
@@ -418,7 +418,7 @@ Example7_CornerHighlighter() {
 
     ; Clean up
     for corner in corners
-    corner.Destroy()
+        corner.Destroy()
 }
 
 ;=============================================================================

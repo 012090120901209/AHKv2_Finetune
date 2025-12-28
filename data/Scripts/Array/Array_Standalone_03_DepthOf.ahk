@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* DepthOf() - Get array depth (Standalone Implementation)
-*
-* Recursively explores the array and returns the maximum depth.
-*/
+ * DepthOf() - Get array depth (Standalone Implementation)
+ * 
+ * Recursively explores the array and returns the maximum depth.
+ */
 
 DepthOf(array, currentDepth := 1) {
     maxDepth := currentDepth
@@ -37,6 +37,6 @@ depth4 := DepthOf([1, [2, [3, [4]], 5]])
 ; => 4
 
 MsgBox("Depth of [1]: " depth1 "`n"
-. "Depth of [1, [2]]: " depth2 "`n"
-. "Depth of [1, [[2]]]: " depth3 "`n"
-. "Depth of [1, [2, [3, [4]], 5]]: " depth4)
+    . "Depth of [1, [2]]: " depth2 "`n"
+    . "Depth of [1, [[2]]]: " depth3 "`n"
+    . "Depth of [1, [2, [3, [4]], 5]]: " depth4)

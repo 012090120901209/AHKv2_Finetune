@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Win Modifier (#)
-* # represents the Windows key
-*/
+ * Win Modifier (#)
+ * # represents the Windows key
+ */
 
 ; Win+E is already used by Windows, so let's use Win+D for demo
 ; Win+N for a custom notepad launcher

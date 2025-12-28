@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_NumGet_03_Pointers.ahk
-*
-* DESCRIPTION:
-* Advanced NumGet usage for reading and dereferencing pointers from buffers.
-* Covers pointer arithmetic, pointer chains, and indirect memory access.
-*
-* FEATURES:
-* - Reading pointer values from buffers
-* - Pointer dereferencing techniques
-* - Pointer chains and indirect access
-* - Platform-aware pointer handling (32-bit vs 64-bit)
-* - Null pointer handling
-* - Practical pointer-based data structures
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - NumGet, Pointers
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - NumGet with "Ptr" type (platform-dependent size)
-* - NumGet with "UPtr" type (unsigned pointer)
-* - A_PtrSize for platform detection
-* - Multi-level pointer dereferencing
-* - Pointer validation
-*
-* LEARNING POINTS:
-* 1. Ptr type is 4 bytes on 32-bit, 8 bytes on 64-bit systems
-* 2. Pointers store memory addresses, not values directly
-* 3. Dereferencing means reading from the address stored in pointer
-* 4. Pointer chains enable complex data structures
-* 5. Always validate pointers before dereferencing
-*/
+ * BuiltIn_NumGet_03_Pointers.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced NumGet usage for reading and dereferencing pointers from buffers.
+ * Covers pointer arithmetic, pointer chains, and indirect memory access.
+ * 
+ * FEATURES:
+ * - Reading pointer values from buffers
+ * - Pointer dereferencing techniques
+ * - Pointer chains and indirect access
+ * - Platform-aware pointer handling (32-bit vs 64-bit)
+ * - Null pointer handling
+ * - Practical pointer-based data structures
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - NumGet, Pointers
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - NumGet with "Ptr" type (platform-dependent size)
+ * - NumGet with "UPtr" type (unsigned pointer)
+ * - A_PtrSize for platform detection
+ * - Multi-level pointer dereferencing
+ * - Pointer validation
+ * 
+ * LEARNING POINTS:
+ * 1. Ptr type is 4 bytes on 32-bit, 8 bytes on 64-bit systems
+ * 2. Pointers store memory addresses, not values directly
+ * 3. Dereferencing means reading from the address stored in pointer
+ * 4. Pointer chains enable complex data structures
+ * 5. Always validate pointers before dereferencing
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Basic Pointer Reading
@@ -191,11 +191,11 @@ Example3_PointerChains() {
     result .= "Following the Chain:`n"
     result .= "  1. Read ptr3Buf: 0x" . Format("{:X}", level3Ptr) . " (address of ptr2Buf)`n"
     result .= "  2. Read from 0x" . Format("{:X}", level3Ptr) . ": 0x"
-    . Format("{:X}", level2Ptr) . " (address of ptr1Buf)`n"
+        . Format("{:X}", level2Ptr) . " (address of ptr1Buf)`n"
     result .= "  3. Read from 0x" . Format("{:X}", level2Ptr) . ": 0x"
-    . Format("{:X}", level1Ptr) . " (address of dataBuf)`n"
+        . Format("{:X}", level1Ptr) . " (address of dataBuf)`n"
     result .= "  4. Read from 0x" . Format("{:X}", level1Ptr) . ": "
-    . finalValue . " (final value)`n`n"
+        . finalValue . " (final value)`n`n"
 
     result .= "Verification:`n"
     result .= "  Step-by-step result: " . finalValue . "`n"
@@ -233,7 +233,7 @@ Example4_NullPointers() {
     ; Safe pointer dereferencing function
     SafeDeref(ptr, default := 0) {
         if ptr = 0 || ptr = ""
-        return default
+            return default
         try {
             return NumGet(ptr, "Int")
         } catch {
@@ -251,11 +251,11 @@ Example4_NullPointers() {
         ptr := NumGet(ptrBuf, offset, "Ptr")
 
         if ptr = 0 {
-            results.Push({index: A_Index - 1, ptr: 0, value: "NULL", valid: false})
+            results.Push({ index: A_Index - 1, ptr: 0, value: "NULL", valid: false })
             nullCount++
         } else {
             value := SafeDeref(ptr, -1)
-            results.Push({index: A_Index - 1, ptr: ptr, value: value, valid: true})
+            results.Push({ index: A_Index - 1, ptr: ptr, value: value, valid: true })
             validCount++
         }
     }
@@ -334,7 +334,7 @@ Example5_LinkedList() {
 
         ; Safety limit
         if nodeCount > 100
-        break
+            break
     }
 
     ; Calculate sum
@@ -352,9 +352,9 @@ Example5_LinkedList() {
         result .= "  Node " . A_Index . ": value=" . values[A_Index]
 
         if A_Index < values.Length
-        result .= " -> "
+            result .= " -> "
         else
-        result .= " -> NULL"
+            result .= " -> NULL"
 
         result .= "`n"
     }
@@ -444,7 +444,7 @@ ShowMenu() {
     choice := InputBox(menu, "NumGet Pointer Examples", "w450 h320")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicPointerReading()

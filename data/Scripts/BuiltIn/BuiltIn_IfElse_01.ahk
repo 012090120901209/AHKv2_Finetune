@@ -1,47 +1,47 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Basic If/Else Statements
-* ============================================================================
-*
-* This script demonstrates basic if/else statement usage in AutoHotkey v2.
-* It covers simple conditions, else clauses, else if chains, and common
-* comparison operators.
-*
-* @file BuiltIn_IfElse_01.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Simple if statements with single conditions
-* 2. If/else dual branching
-* 3. If/else if/else chains for multiple conditions
-* 4. Comparison operators (=, !=, <, >, <=, >=)
-* 5. Logical operators (and, or, not)
-* 6. String comparisons and case sensitivity
-* 7. Numeric vs string comparison behaviors
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Basic If/Else Statements
+ * ============================================================================
+ * 
+ * This script demonstrates basic if/else statement usage in AutoHotkey v2.
+ * It covers simple conditions, else clauses, else if chains, and common
+ * comparison operators.
+ * 
+ * @file BuiltIn_IfElse_01.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Simple if statements with single conditions
+ * 2. If/else dual branching
+ * 3. If/else if/else chains for multiple conditions
+ * 4. Comparison operators (=, !=, <, >, <=, >=)
+ * 5. Logical operators (and, or, not)
+ * 6. String comparisons and case sensitivity
+ * 7. Numeric vs string comparison behaviors
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Simple If Statements
 ; ============================================================================
 
 /**
-* Demonstrates basic if statement syntax with single conditions.
-* Shows both single-line and block formats.
-*/
+ * Demonstrates basic if statement syntax with single conditions.
+ * Shows both single-line and block formats.
+ */
 Example1_SimpleIf() {
     OutputDebug("=== Example 1: Simple If Statements ===`n")
 
     ; Simple if with single statement
     temperature := 75
     if (temperature > 70)
-    OutputDebug("It's warm outside!`n")
+        OutputDebug("It's warm outside!`n")
 
     ; If with block (recommended for clarity)
     age := 25
@@ -82,9 +82,9 @@ Example1_SimpleIf() {
 ; ============================================================================
 
 /**
-* Demonstrates if/else statements for binary decision making.
-* Shows how to handle true and false cases.
-*/
+ * Demonstrates if/else statements for binary decision making.
+ * Shows how to handle true and false cases.
+ */
 Example2_IfElse() {
     OutputDebug("=== Example 2: If/Else Dual Branching ===`n")
 
@@ -135,9 +135,9 @@ Example2_IfElse() {
 ; ============================================================================
 
 /**
-* Demonstrates chained if/else if/else statements for multiple conditions.
-* Shows how to handle more than two possible outcomes.
-*/
+ * Demonstrates chained if/else if/else statements for multiple conditions.
+ * Shows how to handle more than two possible outcomes.
+ */
 Example3_IfElseIfChains() {
     OutputDebug("=== Example 3: If/Else If/Else Chains ===`n")
 
@@ -215,9 +215,9 @@ Example3_IfElseIfChains() {
 ; ============================================================================
 
 /**
-* Demonstrates all comparison operators in AHK v2.
-* Shows equality, inequality, and relational comparisons.
-*/
+ * Demonstrates all comparison operators in AHK v2.
+ * Shows equality, inequality, and relational comparisons.
+ */
 Example4_ComparisonOperators() {
     OutputDebug("=== Example 4: Comparison Operators ===`n")
 
@@ -276,9 +276,9 @@ Example4_ComparisonOperators() {
 ; ============================================================================
 
 /**
-* Demonstrates logical operators for combining conditions.
-* Shows AND, OR, and NOT operations.
-*/
+ * Demonstrates logical operators for combining conditions.
+ * Shows AND, OR, and NOT operations.
+ */
 Example5_LogicalOperators() {
     OutputDebug("=== Example 5: Logical Operators ===`n")
 
@@ -298,7 +298,7 @@ Example5_LogicalOperators() {
 
     ; NOT operator - inverts condition
     isRaining := false
-    if (not isRaining) {
+    if ( not isRaining) {
         OutputDebug("Go for a walk! No rain.`n")
     }
 
@@ -350,9 +350,9 @@ Example5_LogicalOperators() {
 ; ============================================================================
 
 /**
-* Demonstrates string comparison behaviors in AHK v2.
-* Shows case sensitivity, substring checks, and string validation.
-*/
+ * Demonstrates string comparison behaviors in AHK v2.
+ * Shows case sensitivity, substring checks, and string validation.
+ */
 Example6_StringComparisons() {
     OutputDebug("=== Example 6: String Comparisons ===`n")
 
@@ -420,9 +420,9 @@ Example6_StringComparisons() {
 ; ============================================================================
 
 /**
-* Demonstrates the differences between numeric and string comparisons.
-* Shows type coercion and best practices.
-*/
+ * Demonstrates the differences between numeric and string comparisons.
+ * Shows type coercion and best practices.
+ */
 Example7_NumericVsStringComparison() {
     OutputDebug("=== Example 7: Numeric vs String Comparison ===`n")
 
@@ -503,8 +503,8 @@ Example7_NumericVsStringComparison() {
 ; ============================================================================
 
 /**
-* Runs all examples in sequence.
-*/
+ * Runs all examples in sequence.
+ */
 Main() {
     OutputDebug("`n" Format("{:=<70}", "") "`n")
     OutputDebug("AutoHotkey v2 - Basic If/Else Statements Examples`n")

@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Push() - Data Collection Patterns
-* ============================================================================
-*
-* This file demonstrates how to use Push() for collecting various types of
-* data from user input, system information, and external sources.
-*
-* @description Data collection techniques using Array.Push()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Push() - Data Collection Patterns
+ * ============================================================================
+ * 
+ * This file demonstrates how to use Push() for collecting various types of
+ * data from user input, system information, and external sources.
+ * 
+ * @description Data collection techniques using Array.Push()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Collecting Window Information
@@ -104,7 +104,7 @@ Example2_SystemInfoCollection() {
     ; Collect environment variables
     envVars := []
     importantVars := ["COMPUTERNAME", "USERNAME", "USERPROFILE",
-    "TEMP", "OS", "PROCESSOR_ARCHITECTURE"]
+        "TEMP", "OS", "PROCESSOR_ARCHITECTURE"]
 
     for varName in importantVars {
         value := EnvGet(varName)
@@ -223,9 +223,9 @@ Example4_FormDataCollection() {
         stepName: "Personal Information",
         fields: []
     }
-    step1Data.fields.Push({name: "firstName", value: "John", valid: true})
-    step1Data.fields.Push({name: "lastName", value: "Doe", valid: true})
-    step1Data.fields.Push({name: "email", value: "john@example.com", valid: true})
+    step1Data.fields.Push({ name: "firstName", value: "John", valid: true })
+    step1Data.fields.Push({ name: "lastName", value: "Doe", valid: true })
+    step1Data.fields.Push({ name: "email", value: "john@example.com", valid: true })
     formData.Push(step1Data)
 
     ; Step 2: Address Information
@@ -234,9 +234,9 @@ Example4_FormDataCollection() {
         stepName: "Address",
         fields: []
     }
-    step2Data.fields.Push({name: "street", value: "123 Main St", valid: true})
-    step2Data.fields.Push({name: "city", value: "Springfield", valid: true})
-    step2Data.fields.Push({name: "zip", value: "12345", valid: true})
+    step2Data.fields.Push({ name: "street", value: "123 Main St", valid: true })
+    step2Data.fields.Push({ name: "city", value: "Springfield", valid: true })
+    step2Data.fields.Push({ name: "zip", value: "12345", valid: true })
     formData.Push(step2Data)
 
     ; Step 3: Preferences
@@ -245,15 +245,15 @@ Example4_FormDataCollection() {
         stepName: "Preferences",
         fields: []
     }
-    step3Data.fields.Push({name: "newsletter", value: true, valid: true})
-    step3Data.fields.Push({name: "notifications", value: false, valid: true})
+    step3Data.fields.Push({ name: "newsletter", value: true, valid: true })
+    step3Data.fields.Push({ name: "notifications", value: false, valid: true })
     formData.Push(step3Data)
 
     OutputDebug("Form steps collected: " formData.Length "`n")
 
     for stepData in formData {
         OutputDebug("  Step " stepData.step ": " stepData.stepName
-        " (" stepData.fields.Length " fields)`n")
+            " (" stepData.fields.Length " fields)`n")
     }
 
     ; Collect validation errors
@@ -425,11 +425,11 @@ Example7_ConfigurationCollection() {
     ; Collect application settings
     appSettings := []
 
-    appSettings.Push({key: "theme", value: "dark", type: "string"})
-    appSettings.Push({key: "autoSave", value: true, type: "boolean"})
-    appSettings.Push({key: "fontSize", value: 14, type: "number"})
-    appSettings.Push({key: "language", value: "en-US", type: "string"})
-    appSettings.Push({key: "maxRecentFiles", value: 10, type: "number"})
+    appSettings.Push({ key: "theme", value: "dark", type: "string" })
+    appSettings.Push({ key: "autoSave", value: true, type: "boolean" })
+    appSettings.Push({ key: "fontSize", value: 14, type: "number" })
+    appSettings.Push({ key: "language", value: "en-US", type: "string" })
+    appSettings.Push({ key: "maxRecentFiles", value: 10, type: "number" })
 
     OutputDebug("Application settings: " appSettings.Length "`n")
 
@@ -437,10 +437,10 @@ Example7_ConfigurationCollection() {
     userPrefs := []
 
     preferences := Map(
-    "notifications", true,
-    "soundEnabled", false,
-    "animationsEnabled", true,
-    "autoUpdate", true
+        "notifications", true,
+        "soundEnabled", false,
+        "animationsEnabled", true,
+        "autoUpdate", true
     )
 
     for prefName, prefValue in preferences {
@@ -456,154 +456,149 @@ Example7_ConfigurationCollection() {
     ; Collect default configurations
     defaults := []
 
-    defaultConfigs := [
-    {
-        section: "Display", key: "resolution", value: "1920x1080"},
-        {
-            section: "Display", key: "fullscreen", value: false},
-            {
-                section: "Audio", key: "volume", value: 75},
-                {
-                    section: "Audio", key: "muted", value: false},
-                    {
+    defaultConfigs := [{
+        section: "Display", key: "resolution", value: "1920x1080" }, {
+            section: "Display", key: "fullscreen", value: false }, {
+                section: "Audio", key: "volume", value: 75 }, {
+                    section: "Audio", key: "muted", value: false }, {
                         section: "Network", key: "timeout", value: 30000
                     }
-                    ]
+    ]
 
-                    for config in defaultConfigs {
-                        defaults.Push(config)
-                    }
+    for config in defaultConfigs {
+        defaults.Push(config)
+    }
 
-                    OutputDebug("Default configurations: " defaults.Length "`n")
+    OutputDebug("Default configurations: " defaults.Length "`n")
 
-                    ; Collect changed settings (compared to defaults)
-                    changedSettings := []
+    ; Collect changed settings (compared to defaults)
+    changedSettings := []
 
-                    ; Simulate some changes
-                    changedSettings.Push({
-                        key: "theme",
-                        oldValue: "light",
-                        newValue: "dark",
-                        changedAt: A_Now
-                    })
+    ; Simulate some changes
+    changedSettings.Push({
+        key: "theme",
+        oldValue: "light",
+        newValue: "dark",
+        changedAt: A_Now
+    })
 
-                    changedSettings.Push({
-                        key: "fontSize",
-                        oldValue: 12,
-                        newValue: 14,
-                        changedAt: A_Now
-                    })
+    changedSettings.Push({
+        key: "fontSize",
+        oldValue: 12,
+        newValue: 14,
+        changedAt: A_Now
+    })
 
-                    OutputDebug("Changed settings: " changedSettings.Length "`n")
+    OutputDebug("Changed settings: " changedSettings.Length "`n")
 
-                    OutputDebug("`n")
-                }
+    OutputDebug("`n")
+}
 
-                ; ============================================================================
-                ; Helper Functions
-                ; ============================================================================
+; ============================================================================
+; Helper Functions
+; ============================================================================
 
-                /**
-                * Logs an event to the global event log
-                * @param {String} message - The event message
-                * @param {String} category - The event category
-                */
-                LogEvent(message, category) {
-                    global eventLog
+/**
+ * Logs an event to the global event log
+ * @param {String} message - The event message
+ * @param {String} category - The event category
+ */
+LogEvent(message, category) {
+    global eventLog
 
-                    event := {
-                        timestamp: A_Now,
-                        message: message,
-                        category: category
-                    }
+    event := {
+        timestamp: A_Now,
+        message: message,
+        category: category
+    }
 
-                    eventLog.Push(event)
-                }
+    eventLog.Push(event)
+}
 
-                /**
-                * Records an error to the error log
-                * @param {Array} log - The error log array
-                * @param {String} severity - Error severity level
-                * @param {String} message - Error message
-                * @param {String} component - Component where error occurred
-                * @param {Integer} code - Error code
-                */
-                RecordError(log, severity, message, component, code) {
-                    error := {
-                        timestamp: A_Now,
-                        severity: severity,
-                        message: message,
-                        component: component,
-                        code: code
-                    }
+/**
+ * Records an error to the error log
+ * @param {Array} log - The error log array
+ * @param {String} severity - Error severity level
+ * @param {String} message - Error message
+ * @param {String} component - Component where error occurred
+ * @param {Integer} code - Error code
+ */
+RecordError(log, severity, message, component, code) {
+    error := {
+        timestamp: A_Now,
+        severity: severity,
+        message: message,
+        component: component,
+        code: code
+    }
 
-                    log.Push(error)
-                }
+    log.Push(error)
+}
 
-                /**
-                * Simulates function execution for debug tracing
-                */
-                SimulateFunction1(trace) {
-                    trace.Push({
-                        function: "SimulateFunction1",
-                        line: 100,
-                        timestamp: A_TickCount
-                    })
-                }
+/**
+ * Simulates function execution for debug tracing
+ */
+SimulateFunction1(trace) {
+    trace.Push({
+        function: "SimulateFunction1",
+        line: 100,
+        timestamp: A_TickCount
+    })
+}
 
-                SimulateFunction2(trace) {
-                    trace.Push({
-                        function: "SimulateFunction2",
-                        line: 200,
-                        timestamp: A_TickCount
-                    })
-                }
+SimulateFunction2(trace) {
+    trace.Push({
+        function: "SimulateFunction2",
+        line: 200,
+        timestamp: A_TickCount
+    })
+}
 
-                /**
-                * Validates email format
-                * @param {String} email - Email to validate
-                * @returns {Boolean} True if valid
-                */
-                ValidateEmail(email) {
-                    return RegExMatch(email, "^[\w\.-]+@[\w\.-]+\.\w+$")
-                }
+/**
+ * Validates email format
+ * @param {String} email - Email to validate
+ * @returns {Boolean} True if valid
+ */
+ValidateEmail(email) {
+    return RegExMatch(email, "^[\w\.-]+@[\w\.-]+\.\w+$")
+}
 
-                /**
-                * Validates ZIP code
-                * @param {String} zip - ZIP code to validate
-                * @returns {Boolean} True if valid
-                */
-                ValidateZip(zip) {
-                    return RegExMatch(zip, "^\d{5}$")
-                }
+/**
+ * Validates ZIP code
+ * @param {String} zip - ZIP code to validate
+ * @returns {Boolean} True if valid
+ */
+ValidateZip(zip) {
+    return RegExMatch(zip, "^\d{5}$")
+}
 
-                ; ============================================================================
-                ; Main Execution
-                ; ============================================================================
+; ============================================================================
+; Main Execution
+; ============================================================================
 
-                Main() {
-                    ; Clear debug output
-                    OutputDebug("`n" String.Repeat("=", 80) "`n")
-                    OutputDebug("Array.Push() - Data Collection Examples`n")
-                    OutputDebug(String.Repeat("=", 80) "`n`n")
+Main() {
+    ; Clear debug output
+    OutputDebug("`n" String.Repeat("=", 80) "`n")
+    OutputDebug("Array.Push() - Data Collection Examples`n")
+    OutputDebug(String.Repeat("=", 80) "`n`n")
 
-                    ; Run all examples
-                    Example1_WindowDataCollection()
-                    Example2_SystemInfoCollection()
-                    Example3_UserEventCollection()
-                    Example4_FormDataCollection()
-                    Example5_TimeSeriesCollection()
-                    Example6_ErrorDataCollection()
-                    Example7_ConfigurationCollection()
+    ; Run all examples
+    Example1_WindowDataCollection()
+    Example2_SystemInfoCollection()
+    Example3_UserEventCollection()
+    Example4_FormDataCollection()
+    Example5_TimeSeriesCollection()
+    Example6_ErrorDataCollection()
+    Example7_ConfigurationCollection()
 
-                    OutputDebug(StrReplace(Format("{:80}", ""), " ", "=") "`n")
-                    OutputDebug("All examples completed!`n")
-                    OutputDebug(StrReplace(Format("{:80}", ""), " ", "=") "`n")
+    OutputDebug(StrReplace(Format("{:80}", ""), " ", "=") "`n")
+    OutputDebug("All examples completed!`n")
+    OutputDebug(StrReplace(Format("{:80}", ""), " ", "=") "`n")
 
-                    ; MsgBox("Array.Push() data collection examples completed!`nCheck DebugView for output.",
-                    ;        "Examples Complete", "Icon!")
-                    ExitApp
-                }
+    ; MsgBox("Array.Push() data collection examples completed!`nCheck DebugView for output.",
+    ;        "Examples Complete", "Icon!")
+    ExitApp
+}
 
-                ; Run the examples
-                Main()
+; Run the examples
+Main()

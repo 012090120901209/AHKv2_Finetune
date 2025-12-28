@@ -1,53 +1,53 @@
 #Requires AutoHotkey v2.0
 
 /**
-* GitHub_DllCall_01_CreateGUID.ahk
-*
-* DESCRIPTION:
-* Creates a Globally Unique Identifier (GUID) using Windows COM API
-*
-* FEATURES:
-* - Uses DllCall to call Windows ole32.dll
-* - Demonstrates Buffer management
-* - Shows string conversion from GUID
-* - Static variable usage for constants
-*
-* SOURCE:
-* Repository: jNizM/ahk-scripts-v2
-* File: src/Others/CreateGUID.ahk
-* URL: https://github.com/jNizM/ahk-scripts-v2
-* Author: jNizM
-* License: MIT
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall syntax with explicit types
-* - Buffer() for memory allocation
-* - VarSetStrCapacity for string buffers
-* - Static variables in functions
-* - Error handling with return values
-*
-* USAGE:
-* guid := CreateGUID()
-* MsgBox(guid)  ; Shows something like: {550e8400-e29b-41d4-a716-446655440000}
-*
-* LEARNING POINTS:
-* 1. DllCall requires explicit type specifications (Ptr, Str, Int)
-* 2. Buffer() replaces VarSetCapacity from v1
-* 3. CoCreateGuid creates new GUID, StringFromGUID2 converts to string
-* 4. GUIDs are 16 bytes (128 bits) in binary form
-* 5. String representation needs 38 characters (with braces and hyphens)
-*/
+ * GitHub_DllCall_01_CreateGUID.ahk
+ * 
+ * DESCRIPTION:
+ * Creates a Globally Unique Identifier (GUID) using Windows COM API
+ * 
+ * FEATURES:
+ * - Uses DllCall to call Windows ole32.dll
+ * - Demonstrates Buffer management
+ * - Shows string conversion from GUID
+ * - Static variable usage for constants
+ * 
+ * SOURCE:
+ * Repository: jNizM/ahk-scripts-v2
+ * File: src/Others/CreateGUID.ahk
+ * URL: https://github.com/jNizM/ahk-scripts-v2
+ * Author: jNizM
+ * License: MIT
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall syntax with explicit types
+ * - Buffer() for memory allocation
+ * - VarSetStrCapacity for string buffers
+ * - Static variables in functions
+ * - Error handling with return values
+ * 
+ * USAGE:
+ * guid := CreateGUID()
+ * MsgBox(guid)  ; Shows something like: {550e8400-e29b-41d4-a716-446655440000}
+ * 
+ * LEARNING POINTS:
+ * 1. DllCall requires explicit type specifications (Ptr, Str, Int)
+ * 2. Buffer() replaces VarSetCapacity from v1
+ * 3. CoCreateGuid creates new GUID, StringFromGUID2 converts to string
+ * 4. GUIDs are 16 bytes (128 bits) in binary form
+ * 5. String representation needs 38 characters (with braces and hyphens)
+ */
 
 /**
-* Create a new GUID (Globally Unique Identifier)
-*
-* @returns {String} - GUID in format: {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}
-* @throws {Error} - Returns empty string if GUID creation fails
-*
-* @example
-* guid := CreateGUID()
-* MsgBox("New GUID: " guid)
-*/
+ * Create a new GUID (Globally Unique Identifier)
+ * 
+ * @returns {String} - GUID in format: {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}
+ * @throws {Error} - Returns empty string if GUID creation fails
+ * 
+ * @example
+ * guid := CreateGUID()
+ * MsgBox("New GUID: " guid)
+ */
 CreateGUID() {
     ; Windows API success code
     static S_OK := 0
@@ -86,11 +86,11 @@ MsgBox("Generated GUID:`n" guid1, "GUID Example 1", "Icon!")
 ; Generate multiple GUIDs (they should all be unique)
 guids := []
 Loop 5
-guids.Push(CreateGUID())
+    guids.Push(CreateGUID())
 
 output := "Generated 5 Unique GUIDs:`n`n"
 for index, guid in guids
-output .= index ". " guid "`n"
+    output .= index ". " guid "`n"
 
 MsgBox(output, "GUID Example 2 - Multiple GUIDs", "Icon!")
 
@@ -99,8 +99,8 @@ MsgBox(output, "GUID Example 2 - Multiple GUIDs", "Icon!")
 ; ============================================================
 
 /**
-* Example: Generate unique file names
-*/
+ * Example: Generate unique file names
+ */
 CreateUniqueFileName(extension := "txt") {
     guid := CreateGUID()
     ; Remove braces and dashes for filename
@@ -113,8 +113,8 @@ filename := CreateUniqueFileName("log")
 MsgBox("Unique filename: " filename, "Practical Example", "Icon!")
 
 /**
-* Example: Create database-friendly GUID (no braces)
-*/
+ * Example: Create database-friendly GUID (no braces)
+ */
 CreateGuidNoBraces() {
     guid := CreateGUID()
     return SubStr(guid, 2, 36)  ; Remove { and }
@@ -153,4 +153,4 @@ Structure:
     - License keys
     )"
 
-    MsgBox(info, "GUID Information", "Icon!")
+MsgBox(info, "GUID Information", "Icon!")

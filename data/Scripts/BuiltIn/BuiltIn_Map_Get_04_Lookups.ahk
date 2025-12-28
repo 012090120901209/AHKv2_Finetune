@@ -2,26 +2,26 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Get_04_Lookups.ahk
-*
-* @description Dictionary lookup patterns using Map.Get()
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Demonstrates using Maps for dictionary lookups, translation tables,
-* code mappings, lookup tables, and reference data access.
-*/
+ * BuiltIn_Map_Get_04_Lookups.ahk
+ * 
+ * @description Dictionary lookup patterns using Map.Get()
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Demonstrates using Maps for dictionary lookups, translation tables,
+ * code mappings, lookup tables, and reference data access.
+ */
 
 ;=============================================================================
 ; Example 1: Translation Dictionary
 ;=============================================================================
 
 /**
-* @class Translator
-* @description Multi-language translation system
-*/
+ * @class Translator
+ * @description Multi-language translation system
+ */
 class Translator {
     translations := Map()
     currentLang := "en"
@@ -33,77 +33,77 @@ class Translator {
     InitializeTranslations() {
         ; English
         this.translations.Set("en", Map(
-        "hello", "Hello",
-        "goodbye", "Goodbye",
-        "yes", "Yes",
-        "no", "No",
-        "thank_you", "Thank you",
-        "welcome", "Welcome",
-        "error", "Error",
-        "success", "Success"
+            "hello", "Hello",
+            "goodbye", "Goodbye",
+            "yes", "Yes",
+            "no", "No",
+            "thank_you", "Thank you",
+            "welcome", "Welcome",
+            "error", "Error",
+            "success", "Success"
         ))
 
         ; Spanish
         this.translations.Set("es", Map(
-        "hello", "Hola",
-        "goodbye", "Adiós",
-        "yes", "Sí",
-        "no", "No",
-        "thank_you", "Gracias",
-        "welcome", "Bienvenido",
-        "error", "Error",
-        "success", "Éxito"
+            "hello", "Hola",
+            "goodbye", "Adiós",
+            "yes", "Sí",
+            "no", "No",
+            "thank_you", "Gracias",
+            "welcome", "Bienvenido",
+            "error", "Error",
+            "success", "Éxito"
         ))
 
         ; French
         this.translations.Set("fr", Map(
-        "hello", "Bonjour",
-        "goodbye", "Au revoir",
-        "yes", "Oui",
-        "no", "Non",
-        "thank_you", "Merci",
-        "welcome", "Bienvenue",
-        "error", "Erreur",
-        "success", "Succès"
+            "hello", "Bonjour",
+            "goodbye", "Au revoir",
+            "yes", "Oui",
+            "no", "Non",
+            "thank_you", "Merci",
+            "welcome", "Bienvenue",
+            "error", "Erreur",
+            "success", "Succès"
         ))
 
         ; German
         this.translations.Set("de", Map(
-        "hello", "Hallo",
-        "goodbye", "Auf Wiedersehen",
-        "yes", "Ja",
-        "no", "Nein",
-        "thank_you", "Danke",
-        "welcome", "Willkommen",
-        "error", "Fehler",
-        "success", "Erfolg"
+            "hello", "Hallo",
+            "goodbye", "Auf Wiedersehen",
+            "yes", "Ja",
+            "no", "Nein",
+            "thank_you", "Danke",
+            "welcome", "Willkommen",
+            "error", "Fehler",
+            "success", "Erfolg"
         ))
     }
 
     /**
-    * @method Translate
-    * @description Get translation for current language
-    */
+     * @method Translate
+     * @description Get translation for current language
+     */
     Translate(key, fallback := "") {
         if (!this.translations.Has(this.currentLang))
-        return fallback != "" ? fallback : key
+            return fallback != "" ? fallback : key
 
         langMap := this.translations.Get(this.currentLang)
         return langMap.Get(key, fallback != "" ? fallback : key)
     }
 
     /**
-    * @method SetLanguage
-    * @description Set current language
-    */
+     * @method SetLanguage
+     * @description Set current language
+     */
     SetLanguage(lang) {
         this.currentLang := lang
     }
 
     /**
-    * @method GetAvailableLanguages
-    * @description Get list of available languages
-    */
+     * @method GetAvailableLanguages
+     * @description Get list of available languages
+     */
     GetAvailableLanguages() {
         langs := []
         for lang in this.translations {
@@ -139,9 +139,9 @@ Example1_Translation() {
 ;=============================================================================
 
 /**
-* @class ErrorCodeLookup
-* @description Error code to message mapping
-*/
+ * @class ErrorCodeLookup
+ * @description Error code to message mapping
+ */
 class ErrorCodeLookup {
     errorMessages := Map()
     errorSeverity := Map()
@@ -179,40 +179,40 @@ class ErrorCodeLookup {
     }
 
     /**
-    * @method GetMessage
-    * @description Get error message by code
-    */
+     * @method GetMessage
+     * @description Get error message by code
+     */
     GetMessage(errorCode) {
         return this.errorMessages.Get(errorCode, "Unknown error (Code: " errorCode ")")
     }
 
     /**
-    * @method GetSeverity
-    * @description Get error severity
-    */
+     * @method GetSeverity
+     * @description Get error severity
+     */
     GetSeverity(errorCode) {
         return this.errorSeverity.Get(errorCode, "Unknown")
     }
 
     /**
-    * @method FormatError
-    * @description Format complete error message
-    */
+     * @method FormatError
+     * @description Format complete error message
+     */
     FormatError(errorCode) {
         return "[" this.GetSeverity(errorCode) "] Error "
-        . errorCode ": " this.GetMessage(errorCode)
+            . errorCode ": " this.GetMessage(errorCode)
     }
 
     /**
-    * @method GetErrorsByCategory
-    * @description Get errors by category (first digit)
-    */
+     * @method GetErrorsByCategory
+     * @description Get errors by category (first digit)
+     */
     GetErrorsByCategory(category) {
         results := []
 
         for code, message in this.errorMessages {
             if (Integer(code / 1000) = category) {
-                results.Push({code: code, message: message})
+                results.Push({ code: code, message: message })
             }
         }
 
@@ -249,68 +249,68 @@ Example2_ErrorCodeLookup() {
 ;=============================================================================
 
 /**
-* @class HTTPStatusCodes
-* @description HTTP status code reference
-*/
+ * @class HTTPStatusCodes
+ * @description HTTP status code reference
+ */
 class HTTPStatusCodes {
     static codes := Map(
-    200, "OK",
-    201, "Created",
-    204, "No Content",
-    301, "Moved Permanently",
-    302, "Found",
-    304, "Not Modified",
-    400, "Bad Request",
-    401, "Unauthorized",
-    403, "Forbidden",
-    404, "Not Found",
-    405, "Method Not Allowed",
-    408, "Request Timeout",
-    429, "Too Many Requests",
-    500, "Internal Server Error",
-    502, "Bad Gateway",
-    503, "Service Unavailable",
-    504, "Gateway Timeout"
+        200, "OK",
+        201, "Created",
+        204, "No Content",
+        301, "Moved Permanently",
+        302, "Found",
+        304, "Not Modified",
+        400, "Bad Request",
+        401, "Unauthorized",
+        403, "Forbidden",
+        404, "Not Found",
+        405, "Method Not Allowed",
+        408, "Request Timeout",
+        429, "Too Many Requests",
+        500, "Internal Server Error",
+        502, "Bad Gateway",
+        503, "Service Unavailable",
+        504, "Gateway Timeout"
     )
 
     /**
-    * @method GetStatus
-    * @description Get status message
-    */
+     * @method GetStatus
+     * @description Get status message
+     */
     static GetStatus(code) {
         return this.codes.Get(code, "Unknown Status")
     }
 
     /**
-    * @method GetStatusType
-    * @description Get status type category
-    */
+     * @method GetStatusType
+     * @description Get status type category
+     */
     static GetStatusType(code) {
         category := Integer(code / 100)
 
         types := Map(
-        1, "Informational",
-        2, "Success",
-        3, "Redirection",
-        4, "Client Error",
-        5, "Server Error"
+            1, "Informational",
+            2, "Success",
+            3, "Redirection",
+            4, "Client Error",
+            5, "Server Error"
         )
 
         return types.Get(category, "Unknown")
     }
 
     /**
-    * @method IsSuccess
-    * @description Check if status is success (2xx)
-    */
+     * @method IsSuccess
+     * @description Check if status is success (2xx)
+     */
     static IsSuccess(code) {
         return code >= 200 && code < 300
     }
 
     /**
-    * @method IsError
-    * @description Check if status is error (4xx or 5xx)
-    */
+     * @method IsError
+     * @description Check if status is error (4xx or 5xx)
+     */
     static IsError(code) {
         return code >= 400
     }
@@ -325,7 +325,7 @@ Example3_HTTPStatusLookup() {
         output .= code " - " HTTPStatusCodes.GetStatus(code)
         output .= " (" HTTPStatusCodes.GetStatusType(code) ")"
         output .= " - " (HTTPStatusCodes.IsSuccess(code) ? "Success" :
-        HTTPStatusCodes.IsError(code) ? "Error" : "Other")
+            HTTPStatusCodes.IsError(code) ? "Error" : "Other")
         output .= "`n"
     }
 
@@ -337,9 +337,9 @@ Example3_HTTPStatusLookup() {
 ;=============================================================================
 
 /**
-* @class CountryData
-* @description Country and currency reference data
-*/
+ * @class CountryData
+ * @description Country and currency reference data
+ */
 class CountryData {
     countries := Map()
 
@@ -348,49 +348,49 @@ class CountryData {
     }
 
     InitializeData() {
-        this.countries.Set("US", {name: "United States", currency: "USD", symbol: "$", code: "+1"})
-        this.countries.Set("GB", {name: "United Kingdom", currency: "GBP", symbol: "£", code: "+44"})
-        this.countries.Set("JP", {name: "Japan", currency: "JPY", symbol: "¥", code: "+81"})
-        this.countries.Set("DE", {name: "Germany", currency: "EUR", symbol: "€", code: "+49"})
-        this.countries.Set("FR", {name: "France", currency: "EUR", symbol: "€", code: "+33"})
-        this.countries.Set("CN", {name: "China", currency: "CNY", symbol: "¥", code: "+86"})
-        this.countries.Set("BR", {name: "Brazil", currency: "BRL", symbol: "R$", code: "+55"})
-        this.countries.Set("IN", {name: "India", currency: "INR", symbol: "₹", code: "+91"})
-        this.countries.Set("AU", {name: "Australia", currency: "AUD", symbol: "$", code: "+61"})
-        this.countries.Set("CA", {name: "Canada", currency: "CAD", symbol: "$", code: "+1"})
+        this.countries.Set("US", { name: "United States", currency: "USD", symbol: "$", code: "+1" })
+        this.countries.Set("GB", { name: "United Kingdom", currency: "GBP", symbol: "£", code: "+44" })
+        this.countries.Set("JP", { name: "Japan", currency: "JPY", symbol: "¥", code: "+81" })
+        this.countries.Set("DE", { name: "Germany", currency: "EUR", symbol: "€", code: "+49" })
+        this.countries.Set("FR", { name: "France", currency: "EUR", symbol: "€", code: "+33" })
+        this.countries.Set("CN", { name: "China", currency: "CNY", symbol: "¥", code: "+86" })
+        this.countries.Set("BR", { name: "Brazil", currency: "BRL", symbol: "R$", code: "+55" })
+        this.countries.Set("IN", { name: "India", currency: "INR", symbol: "₹", code: "+91" })
+        this.countries.Set("AU", { name: "Australia", currency: "AUD", symbol: "$", code: "+61" })
+        this.countries.Set("CA", { name: "Canada", currency: "CAD", symbol: "$", code: "+1" })
     }
 
     /**
-    * @method GetCountryName
-    * @description Get country name by code
-    */
+     * @method GetCountryName
+     * @description Get country name by code
+     */
     GetCountryName(code) {
         country := this.countries.Get(code, "")
         return country != "" ? country.name : "Unknown"
     }
 
     /**
-    * @method GetCurrency
-    * @description Get currency code
-    */
+     * @method GetCurrency
+     * @description Get currency code
+     */
     GetCurrency(code) {
         country := this.countries.Get(code, "")
         return country != "" ? country.currency : ""
     }
 
     /**
-    * @method GetCurrencySymbol
-    * @description Get currency symbol
-    */
+     * @method GetCurrencySymbol
+     * @description Get currency symbol
+     */
     GetCurrencySymbol(code) {
         country := this.countries.Get(code, "")
         return country != "" ? country.symbol : "$"
     }
 
     /**
-    * @method FormatPrice
-    * @description Format price for country
-    */
+     * @method FormatPrice
+     * @description Format price for country
+     */
     FormatPrice(code, amount) {
         symbol := this.GetCurrencySymbol(code)
         currency := this.GetCurrency(code)
@@ -424,9 +424,9 @@ Example4_CountryLookup() {
 ;=============================================================================
 
 /**
-* @class ShortcutRegistry
-* @description Keyboard shortcut reference
-*/
+ * @class ShortcutRegistry
+ * @description Keyboard shortcut reference
+ */
 class ShortcutRegistry {
     shortcuts := Map()
     reverseMap := Map()  ; Action -> Shortcut
@@ -451,34 +451,34 @@ class ShortcutRegistry {
     }
 
     /**
-    * @method Register
-    * @description Register shortcut
-    */
+     * @method Register
+     * @description Register shortcut
+     */
     Register(shortcut, action) {
         this.shortcuts.Set(shortcut, action)
         this.reverseMap.Set(action, shortcut)
     }
 
     /**
-    * @method GetAction
-    * @description Get action for shortcut
-    */
+     * @method GetAction
+     * @description Get action for shortcut
+     */
     GetAction(shortcut) {
         return this.shortcuts.Get(shortcut, "Unassigned")
     }
 
     /**
-    * @method GetShortcut
-    * @description Get shortcut for action
-    */
+     * @method GetShortcut
+     * @description Get shortcut for action
+     */
     GetShortcut(action) {
         return this.reverseMap.Get(action, "No shortcut")
     }
 
     /**
-    * @method FormatShortcut
-    * @description Format shortcut for display
-    */
+     * @method FormatShortcut
+     * @description Format shortcut for display
+     */
     FormatShortcut(shortcut) {
         display := StrReplace(shortcut, "^", "Ctrl+")
         display := StrReplace(display, "!", "Alt+")
@@ -488,9 +488,9 @@ class ShortcutRegistry {
     }
 
     /**
-    * @method ListAll
-    * @description List all shortcuts
-    */
+     * @method ListAll
+     * @description List all shortcuts
+     */
     ListAll() {
         output := "Registered shortcuts:`n`n"
 
@@ -527,38 +527,38 @@ Example5_ShortcutLookup() {
 ;=============================================================================
 
 /**
-* @class MIMETypes
-* @description File extension to MIME type mapping
-*/
+ * @class MIMETypes
+ * @description File extension to MIME type mapping
+ */
 class MIMETypes {
     static types := Map(
-    "txt", "text/plain",
-    "html", "text/html",
-    "htm", "text/html",
-    "css", "text/css",
-    "js", "text/javascript",
-    "json", "application/json",
-    "xml", "application/xml",
-    "pdf", "application/pdf",
-    "zip", "application/zip",
-    "jpg", "image/jpeg",
-    "jpeg", "image/jpeg",
-    "png", "image/png",
-    "gif", "image/gif",
-    "svg", "image/svg+xml",
-    "mp3", "audio/mpeg",
-    "mp4", "video/mp4",
-    "avi", "video/x-msvideo",
-    "doc", "application/msword",
-    "docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "xls", "application/vnd.ms-excel",
-    "xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "txt", "text/plain",
+        "html", "text/html",
+        "htm", "text/html",
+        "css", "text/css",
+        "js", "text/javascript",
+        "json", "application/json",
+        "xml", "application/xml",
+        "pdf", "application/pdf",
+        "zip", "application/zip",
+        "jpg", "image/jpeg",
+        "jpeg", "image/jpeg",
+        "png", "image/png",
+        "gif", "image/gif",
+        "svg", "image/svg+xml",
+        "mp3", "audio/mpeg",
+        "mp4", "video/mp4",
+        "avi", "video/x-msvideo",
+        "doc", "application/msword",
+        "docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "xls", "application/vnd.ms-excel",
+        "xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
     /**
-    * @method GetMIMEType
-    * @description Get MIME type for extension
-    */
+     * @method GetMIMEType
+     * @description Get MIME type for extension
+     */
     static GetMIMEType(extension) {
         ; Remove leading dot if present
         ext := LTrim(extension, ".")
@@ -568,23 +568,23 @@ class MIMETypes {
     }
 
     /**
-    * @method GetMIMETypeFromFilename
-    * @description Get MIME type from filename
-    */
+     * @method GetMIMETypeFromFilename
+     * @description Get MIME type from filename
+     */
     static GetMIMETypeFromFilename(filename) {
         ; Extract extension
         pos := InStrRev(filename, ".")
         if (pos = 0)
-        return "application/octet-stream"
+            return "application/octet-stream"
 
         ext := SubStr(filename, pos + 1)
         return this.GetMIMEType(ext)
     }
 
     /**
-    * @method GetCategory
-    * @description Get MIME category (text, image, etc.)
-    */
+     * @method GetCategory
+     * @description Get MIME category (text, image, etc.)
+     */
     static GetCategory(mimeType) {
         pos := InStr(mimeType, "/")
         return pos > 0 ? SubStr(mimeType, 1, pos - 1) : "unknown"
@@ -596,9 +596,9 @@ InStrRev(haystack, needle) {
     lastPos := 0
 
     Loop {
-        pos := InStr(haystack, needle,, pos + 1)
+        pos := InStr(haystack, needle, , pos + 1)
         if (pos = 0)
-        break
+            break
         lastPos := pos
     }
 
@@ -627,9 +627,9 @@ Example6_MIMETypeLookup() {
 ;=============================================================================
 
 /**
-* @class ConfigLookup
-* @description Multi-environment configuration lookup
-*/
+ * @class ConfigLookup
+ * @description Multi-environment configuration lookup
+ */
 class ConfigLookup {
     configs := Map()
 
@@ -640,51 +640,51 @@ class ConfigLookup {
     InitializeConfigs() {
         ; Development
         this.configs.Set("dev", Map(
-        "db.host", "localhost",
-        "db.port", 3306,
-        "api.url", "http://localhost:3000",
-        "debug", true,
-        "cache", false,
-        "log.level", "debug"
+            "db.host", "localhost",
+            "db.port", 3306,
+            "api.url", "http://localhost:3000",
+            "debug", true,
+            "cache", false,
+            "log.level", "debug"
         ))
 
         ; Staging
         this.configs.Set("staging", Map(
-        "db.host", "staging-db.example.com",
-        "db.port", 3306,
-        "api.url", "https://staging.example.com",
-        "debug", true,
-        "cache", true,
-        "log.level", "info"
+            "db.host", "staging-db.example.com",
+            "db.port", 3306,
+            "api.url", "https://staging.example.com",
+            "debug", true,
+            "cache", true,
+            "log.level", "info"
         ))
 
         ; Production
         this.configs.Set("prod", Map(
-        "db.host", "prod-db.example.com",
-        "db.port", 3306,
-        "api.url", "https://api.example.com",
-        "debug", false,
-        "cache", true,
-        "log.level", "error"
+            "db.host", "prod-db.example.com",
+            "db.port", 3306,
+            "api.url", "https://api.example.com",
+            "debug", false,
+            "cache", true,
+            "log.level", "error"
         ))
     }
 
     /**
-    * @method Get
-    * @description Get config value for environment
-    */
+     * @method Get
+     * @description Get config value for environment
+     */
     Get(environment, key, defaultValue := "") {
         if (!this.configs.Has(environment))
-        return defaultValue
+            return defaultValue
 
         envConfig := this.configs.Get(environment)
         return envConfig.Get(key, defaultValue)
     }
 
     /**
-    * @method CompareEnvs
-    * @description Compare config across environments
-    */
+     * @method CompareEnvs
+     * @description Compare config across environments
+     */
     CompareEnvs(key) {
         output := "Config key '" key "':`n`n"
 
@@ -723,28 +723,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Dictionary Lookup Patterns")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Translation")
-    .OnEvent("Click", (*) => Example1_Translation())
+        .OnEvent("Click", (*) => Example1_Translation())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Error Codes")
-    .OnEvent("Click", (*) => Example2_ErrorCodeLookup())
+        .OnEvent("Click", (*) => Example2_ErrorCodeLookup())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: HTTP Status")
-    .OnEvent("Click", (*) => Example3_HTTPStatusLookup())
+        .OnEvent("Click", (*) => Example3_HTTPStatusLookup())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Country Data")
-    .OnEvent("Click", (*) => Example4_CountryLookup())
+        .OnEvent("Click", (*) => Example4_CountryLookup())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Shortcuts")
-    .OnEvent("Click", (*) => Example5_ShortcutLookup())
+        .OnEvent("Click", (*) => Example5_ShortcutLookup())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: MIME Types")
-    .OnEvent("Click", (*) => Example6_MIMETypeLookup())
+        .OnEvent("Click", (*) => Example6_MIMETypeLookup())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Config Lookup")
-    .OnEvent("Click", (*) => Example7_ConfigLookup())
+        .OnEvent("Click", (*) => Example7_ConfigLookup())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_Translation()

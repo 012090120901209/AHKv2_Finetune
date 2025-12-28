@@ -1,68 +1,68 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Log_03_DataAnalysis.ahk
-*
-* DESCRIPTION:
-* Data analysis applications using Log() for transformations, regression, and statistical analysis
-*
-* FEATURES:
-* - Logarithmic data transformations
-* - Log-log and semi-log plots
-* - Power law detection
-* - Exponential growth analysis
-* - Data normalization with logs
-* - Geometric mean calculations
-*
-* SOURCE:
-* AutoHotkey v2 Documentation & Statistical Analysis
-* https://www.autohotkey.com/docs/v2/lib/Math.htm#Log
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Log() for data transformation
-* - Array manipulation and analysis
-* - Statistical calculations
-* - Regression analysis
-* - Data visualization preparation
-*
-* LEARNING POINTS:
-* 1. Log transforms can linearize exponential data
-* 2. Geometric mean uses logarithms
-* 3. Log transformation reduces skewness
-* 4. Power laws appear linear on log-log plots
-* 5. Logarithms handle wide data ranges
-*/
+ * BuiltIn_Log_03_DataAnalysis.ahk
+ * 
+ * DESCRIPTION:
+ * Data analysis applications using Log() for transformations, regression, and statistical analysis
+ * 
+ * FEATURES:
+ * - Logarithmic data transformations
+ * - Log-log and semi-log plots
+ * - Power law detection
+ * - Exponential growth analysis
+ * - Data normalization with logs
+ * - Geometric mean calculations
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation & Statistical Analysis
+ * https://www.autohotkey.com/docs/v2/lib/Math.htm#Log
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Log() for data transformation
+ * - Array manipulation and analysis
+ * - Statistical calculations
+ * - Regression analysis
+ * - Data visualization preparation
+ * 
+ * LEARNING POINTS:
+ * 1. Log transforms can linearize exponential data
+ * 2. Geometric mean uses logarithms
+ * 3. Log transformation reduces skewness
+ * 4. Power laws appear linear on log-log plots
+ * 5. Logarithms handle wide data ranges
+ */
 
 ; ============================================================
 ; Example 1: Logarithmic Data Transformation
 ; ============================================================
 
 /**
-* Transform data using logarithms
-*/
+ * Transform data using logarithms
+ */
 class DataTransformation {
     /**
-    * Apply log transformation to dataset
-    */
+     * Apply log transformation to dataset
+     */
     static LogTransform(data) {
         transformed := []
         for value in data {
             if (value > 0)
-            transformed.Push(Log(value))
+                transformed.Push(Log(value))
         }
         return transformed
     }
 
     /**
-    * Apply log10 transformation (for positive data)
-    */
+     * Apply log10 transformation (for positive data)
+     */
     static Log10Transform(data) {
         return DataTransformation.LogTransform(data)
     }
 
     /**
-    * Inverse transformation
-    */
+     * Inverse transformation
+     */
     static InverseLogTransform(logData) {
         original := []
         for logValue in logData {
@@ -72,8 +72,8 @@ class DataTransformation {
     }
 
     /**
-    * Calculate statistics before and after transformation
-    */
+     * Calculate statistics before and after transformation
+     */
     static CompareTransformation(data) {
         ; Original data statistics
         origMean := DataTransformation._Mean(data)
@@ -91,15 +91,15 @@ class DataTransformation {
         logMax := DataTransformation._Max(logData)
 
         return {
-            original: {mean: origMean, stdDev: origStdDev, min: origMin, max: origMax, range: origMax - origMin},
-            transformed: {mean: logMean, stdDev: logStdDev, min: logMin, max: logMax, range: logMax - logMin}
+            original: { mean: origMean, stdDev: origStdDev, min: origMin, max: origMax, range: origMax - origMin },
+            transformed: { mean: logMean, stdDev: logStdDev, min: logMin, max: logMax, range: logMax - logMin }
         }
     }
 
     static _Mean(arr) {
         sum := 0
         for val in arr
-        sum += val
+            sum += val
         return sum / arr.Length
     }
 
@@ -107,23 +107,23 @@ class DataTransformation {
         mean := DataTransformation._Mean(arr)
         sumSq := 0
         for val in arr
-        sumSq += (val - mean) ** 2
+            sumSq += (val - mean) ** 2
         return Sqrt(sumSq / (arr.Length - 1))
     }
 
     static _Min(arr) {
         min := arr[1]
         for val in arr
-        if (val < min)
-        min := val
+            if (val < min)
+                min := val
         return min
     }
 
     static _Max(arr) {
         max := arr[1]
         for val in arr
-        if (val > max)
-        max := val
+            if (val > max)
+                max := val
         return max
     }
 }
@@ -160,22 +160,22 @@ MsgBox(output, "Data Transformation", "Icon!")
 ; ============================================================
 
 /**
-* Calculate geometric mean using logarithms
-* GM = exp(mean(log(x)))  or  GM = 10^(mean(log₁₀(x)))
-*/
+ * Calculate geometric mean using logarithms
+ * GM = exp(mean(log(x)))  or  GM = 10^(mean(log₁₀(x)))
+ */
 class GeometricMean {
     /**
-    * Calculate geometric mean
-    */
+     * Calculate geometric mean
+     */
     static Calculate(data) {
         if (data.Length = 0)
-        return 0
+            return 0
 
         ; Take log of each value
         sumLog := 0
         for value in data {
             if (value <= 0)
-            throw ValueError("Geometric mean requires positive values")
+                throw ValueError("Geometric mean requires positive values")
             sumLog += Log(value)
         }
 
@@ -187,23 +187,23 @@ class GeometricMean {
     }
 
     /**
-    * Calculate arithmetic mean for comparison
-    */
+     * Calculate arithmetic mean for comparison
+     */
     static ArithmeticMean(data) {
         sum := 0
         for value in data
-        sum += value
+            sum += value
         return sum / data.Length
     }
 
     /**
-    * Calculate harmonic mean
-    */
+     * Calculate harmonic mean
+     */
     static HarmonicMean(data) {
         sumReciprocals := 0
         for value in data {
             if (value = 0)
-            throw ValueError("Harmonic mean undefined for zero values")
+                throw ValueError("Harmonic mean undefined for zero values")
             sumReciprocals += 1 / value
         }
         return data.Length / sumReciprocals
@@ -231,7 +231,7 @@ output .= " (" Format("{:.2f}", (geometricMean - 1) * 100) "%)`n`n"
 ; Verify with direct calculation
 product := 1
 for ret in returns
-product *= ret
+    product *= ret
 directGM := product ** (1 / returns.Length)
 
 output .= "Verification (direct): " Format("{:.6f}", directGM) "`n`n"
@@ -245,17 +245,17 @@ MsgBox(output, "Geometric Mean", "Icon!")
 ; ============================================================
 
 /**
-* Detect and analyze power law relationships
-* y = a × x^b  →  log(y) = log(a) + b × log(x)
-*/
+ * Detect and analyze power law relationships
+ * y = a × x^b  →  log(y) = log(a) + b × log(x)
+ */
 class PowerLaw {
     /**
-    * Fit power law to data
-    * Returns parameters a and b where y = a × x^b
-    */
+     * Fit power law to data
+     * Returns parameters a and b where y = a × x^b
+     */
     static Fit(xData, yData) {
         if (xData.Length != yData.Length)
-        throw ValueError("Arrays must have same length")
+            throw ValueError("Arrays must have same length")
 
         ; Transform to log-log
         logX := []
@@ -276,12 +276,12 @@ class PowerLaw {
         a := 10 ** regression.intercept
         b := regression.slope
 
-        return {a: a, b: b, r2: regression.r2}
+        return { a: a, b: b, r2: regression.r2 }
     }
 
     /**
-    * Simple linear regression
-    */
+     * Simple linear regression
+     */
     static _LinearRegression(x, y) {
         n := x.Length
 
@@ -313,12 +313,12 @@ class PowerLaw {
 
         r2 := 1 - (ssResidual / ssTotal)
 
-        return {slope: slope, intercept: intercept, r2: r2}
+        return { slope: slope, intercept: intercept, r2: r2 }
     }
 
     /**
-    * Predict y value
-    */
+     * Predict y value
+     */
     static Predict(x, a, b) {
         return a * (x ** b)
     }
@@ -365,17 +365,17 @@ MsgBox(output, "Power Law Analysis", "Icon!")
 ; ============================================================
 
 /**
-* Detect exponential growth using semi-log transformation
-* y = a × e^(bx)  →  ln(y) = ln(a) + bx
-*/
+ * Detect exponential growth using semi-log transformation
+ * y = a × e^(bx)  →  ln(y) = ln(a) + bx
+ */
 class ExponentialFit {
     /**
-    * Fit exponential model to data
-    * Returns a and b where y = a × 10^(bx)
-    */
+     * Fit exponential model to data
+     * Returns a and b where y = a × 10^(bx)
+     */
     static Fit(xData, yData) {
         if (xData.Length != yData.Length)
-        throw ValueError("Arrays must have same length")
+            throw ValueError("Arrays must have same length")
 
         ; Transform y to log
         logY := []
@@ -396,19 +396,19 @@ class ExponentialFit {
         a := 10 ** regression.intercept
         b := regression.slope
 
-        return {a: a, b: b, r2: regression.r2, growthRate: (10 ** b - 1) * 100}
+        return { a: a, b: b, r2: regression.r2, growthRate: (10 ** b - 1) * 100 }
     }
 
     /**
-    * Predict y value
-    */
+     * Predict y value
+     */
     static Predict(x, a, b) {
         return a * (10 ** (b * x))
     }
 
     /**
-    * Doubling time
-    */
+     * Doubling time
+     */
     static DoublingTime(b) {
         return Log(2) / b
     }
@@ -453,24 +453,24 @@ MsgBox(output, "Exponential Growth", "Icon!")
 ; ============================================================
 
 /**
-* Normalize data using log transformation
-*/
+ * Normalize data using log transformation
+ */
 class DataNormalization {
     /**
-    * Log normalization
-    */
+     * Log normalization
+     */
     static LogNormalize(data) {
         normalized := []
         for value in data {
             if (value > 0)
-            normalized.Push(Log(value))
+                normalized.Push(Log(value))
         }
         return normalized
     }
 
     /**
-    * Z-score normalization on log-transformed data
-    */
+     * Z-score normalization on log-transformed data
+     */
     static LogZScore(data) {
         logData := DataNormalization.LogNormalize(data)
 
@@ -485,7 +485,7 @@ class DataNormalization {
             zScores.Push(zScore)
         }
 
-        return {logData: logData, zScores: zScores, mean: mean, stdDev: stdDev}
+        return { logData: logData, zScores: zScores, mean: mean, stdDev: stdDev }
     }
 }
 
@@ -524,12 +524,12 @@ MsgBox(output, "Data Normalization", "Icon!")
 ; ============================================================
 
 /**
-* Analyze data suitable for semi-log plotting
-*/
+ * Analyze data suitable for semi-log plotting
+ */
 class SemiLogAnalysis {
     /**
-    * Determine if data is better represented on semi-log scale
-    */
+     * Determine if data is better represented on semi-log scale
+     */
     static AnalyzeScale(xData, yData) {
         ; Linear fit (y vs x)
         linearFit := PowerLaw._LinearRegression(xData, yData)
@@ -538,9 +538,9 @@ class SemiLogAnalysis {
         logY := []
         for y in yData {
             if (y > 0)
-            logY.Push(Log(y))
+                logY.Push(Log(y))
             else
-            logY.Push(0)
+                logY.Push(0)
         }
         semiLogFit := PowerLaw._LinearRegression(xData, logY)
 
@@ -556,15 +556,15 @@ class SemiLogAnalysis {
         logLogFit := PowerLaw._LinearRegression(logX, validLogY)
 
         return {
-            linear: {r2: linearFit.r2, type: "Linear (y vs x)"},
-            semiLog: {r2: semiLogFit.r2, type: "Semi-log (log(y) vs x)"},
-            logLog: {r2: logLogFit.r2, type: "Log-log (log(y) vs log(x))"}
+            linear: { r2: linearFit.r2, type: "Linear (y vs x)" },
+            semiLog: { r2: semiLogFit.r2, type: "Semi-log (log(y) vs x)" },
+            logLog: { r2: logLogFit.r2, type: "Log-log (log(y) vs log(x))" }
         }
     }
 
     /**
-    * Recommend best scale
-    */
+     * Recommend best scale
+     */
     static RecommendScale(analysis) {
         best := "linear"
         bestR2 := analysis.linear.r2
@@ -603,17 +603,17 @@ for scale in scales {
 
     ; Mark the best
     if ((scale.type = "Linear (y vs x)" && recommendation = "linear")
-    || (scale.type = "Semi-log (log(y) vs x)" && recommendation = "semiLog")
-    || (scale.type = "Log-log (log(y) vs log(x))" && recommendation = "logLog"))
-    output .= "  ← Best fit"
+        || (scale.type = "Semi-log (log(y) vs x)" && recommendation = "semiLog")
+        || (scale.type = "Log-log (log(y) vs log(x))" && recommendation = "logLog"))
+        output .= "  ← Best fit"
 
     output .= "`n"
 }
 
 output .= "`nRecommendation: Use "
 output .= recommendation = "linear" ? "linear scale"
-: recommendation = "semiLog" ? "semi-log scale (exponential)"
-: "log-log scale (power law)"
+    : recommendation = "semiLog" ? "semi-log scale (exponential)"
+    : "log-log scale (power law)"
 
 MsgBox(output, "Scale Analysis", "Icon!")
 
@@ -622,42 +622,42 @@ MsgBox(output, "Scale Analysis", "Icon!")
 ; ============================================================
 
 /**
-* Analyze first digits using Benford's Law
-* P(d) = log₁₀(1 + 1/d)
-*/
+ * Analyze first digits using Benford's Law
+ * P(d) = log₁₀(1 + 1/d)
+ */
 class BenfordsLaw {
     /**
-    * Calculate expected frequency for digit d
-    */
+     * Calculate expected frequency for digit d
+     */
     static ExpectedFrequency(digit) {
         if (digit < 1 || digit > 9)
-        return 0
-        return Log(1 + 1/digit)
+            return 0
+        return Log(1 + 1 / digit)
     }
 
     /**
-    * Get first digit of a number
-    */
+     * Get first digit of a number
+     */
     static FirstDigit(number) {
         absNum := Abs(number)
         while (absNum >= 10)
-        absNum := Floor(absNum / 10)
+            absNum := Floor(absNum / 10)
         return absNum
     }
 
     /**
-    * Analyze dataset for Benford's Law compliance
-    */
+     * Analyze dataset for Benford's Law compliance
+     */
     static Analyze(data) {
         ; Count first digits
         counts := Map()
         Loop 9
-        counts[A_Index] := 0
+            counts[A_Index] := 0
 
         for value in data {
             digit := BenfordsLaw.FirstDigit(value)
             if (digit >= 1 && digit <= 9)
-            counts[digit]++
+                counts[digit]++
         }
 
         ; Calculate frequencies
@@ -685,7 +685,7 @@ class BenfordsLaw {
 
 ; Population data (should follow Benford's Law)
 populations := [1420, 331, 273, 220, 217, 206, 145, 128, 127, 126,
-84, 68, 67, 65, 60, 51, 47, 46, 45, 42]
+    84, 68, 67, 65, 60, 51, 47, 46, 45, 42]
 
 analysis := BenfordsLaw.Analyze(populations)
 

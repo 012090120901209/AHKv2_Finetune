@@ -37,7 +37,7 @@ class Debounce {
     CreateTimer(args) {
         return () => this.fn(args*)
     }
-    
+
     Cancel() {
         if this.timer
             SetTimer(this.timer, 0)
@@ -64,7 +64,7 @@ class Memoize {
             key .= String(arg) "|"
         return key
     }
-    
+
     ClearCache() => this.cache := Map()
 }
 

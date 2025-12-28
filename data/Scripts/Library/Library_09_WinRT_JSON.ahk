@@ -3,17 +3,17 @@
 #Include JSON.ahk
 
 /**
-* WinRT - JSON Manipulation
-*
-* Demonstrates using Windows.Data.Json for parsing, creating, and
-* manipulating JSON data with Windows Runtime APIs.
-*
-* Library: https://github.com/Lexikos/winrt.ahk
-*/
+ * WinRT - JSON Manipulation
+ * 
+ * Demonstrates using Windows.Data.Json for parsing, creating, and
+ * manipulating JSON data with Windows Runtime APIs.
+ * 
+ * Library: https://github.com/Lexikos/winrt.ahk
+ */
 
 MsgBox("WinRT - JSON Example`n`n"
-. "Demonstrates Windows Runtime JSON APIs`n"
-. "Requires: winrt.ahk and Windows 10+", , "T3")
+    . "Demonstrates Windows Runtime JSON APIs`n"
+    . "Requires: winrt.ahk and Windows 10+", , "T3")
 
 /*
 ; Uncomment to run (requires winrt.ahk):
@@ -167,79 +167,80 @@ complexJson := '
             . "bool: " types[boolType] "`n"
             . "null: " types[nullType], , "T5")
         }
-        */
+*/
 
-        /*
-        * Key Concepts:
-        *
-        * 1. JSON Classes:
-        *    JsonObject - Key-value pairs
-        *    JsonArray - Ordered list
-        *    JsonValue - Primitive values
-        *
-        * 2. Parsing:
-        *    JsonObject.TryParse(text, &obj)
-        *    Returns true if successful
-        *    Output to reference parameter
-        *
-        * 3. Getting Values:
-        *    GetNamedString(key) - String
-        *    GetNamedNumber(key) - Number
-        *    GetNamedBoolean(key) - Boolean
-        *    GetNamedObject(key) - Object
-        *    GetNamedArray(key) - Array
-        *
-        * 4. Setting Values:
-        *    SetNamedValue(key, JsonValue.Create...)
-        *    JsonValue.CreateStringValue(str)
-        *    JsonValue.CreateNumberValue(num)
-        *    JsonValue.CreateBooleanValue(bool)
-        *    JsonValue.CreateNullValue()
-        *
-        * 5. Array Operations:
-        *    arr.Append(value) - Add to end
-        *    arr.GetObjectAt(index) - Get by index
-        *    arr.Size - Array length
-        *
-        * 6. Stringify:
-        *    obj.Stringify() - Convert to string
-        *    Compact format (no whitespace)
-        *
-        * 7. Value Types:
-        *    0 = Null
-        *    1 = Boolean
-        *    2 = Number
-        *    3 = String
-        *    4 = Array
-        *    5 = Object
-        *
-        * 8. Use Cases:
-        *    ✅ API responses
-        *    ✅ Configuration files
-        *    ✅ Data exchange
-        *    ✅ Settings storage
-        *    ✅ Log parsing
-        *
-        * 9. Advantages:
-        *    ✅ Native Windows API
-        *    ✅ Fast performance
-        *    ✅ Type-safe access
-        *    ✅ Built-in validation
-        *
-        * 10. Best Practices:
-        *     ✅ Check TryParse result
-        *     ✅ Handle missing keys
-        *     ✅ Validate value types
-        *     ✅ Use try/catch
-        *
-        * 11. Comparison to JavaScript:
-        *     WinRT: Type-safe, verbose
-        *     JS: Dynamic, concise
-        *     WinRT: Better for large data
-        *     JS: Better for small tasks
-        *
-        * 12. Error Handling:
-        *     TryParse returns false on error
-        *     GetNamed* throws if key missing
-        *     Check HasKey() first
-        */
+/*
+* Key Concepts:
+*
+* 1. JSON Classes:
+*    JsonObject - Key-value pairs
+*    JsonArray - Ordered list
+*    JsonValue - Primitive values
+*
+* 2. Parsing:
+*    JsonObject.TryParse(text, &obj)
+*    Returns true if successful
+*    Output to reference parameter
+*
+* 3. Getting Values:
+*    GetNamedString(key) - String
+*    GetNamedNumber(key) - Number
+*    GetNamedBoolean(key) - Boolean
+*    GetNamedObject(key) - Object
+*    GetNamedArray(key) - Array
+*
+* 4. Setting Values:
+*    SetNamedValue(key, JsonValue.Create...)
+*    JsonValue.CreateStringValue(str)
+*    JsonValue.CreateNumberValue(num)
+*    JsonValue.CreateBooleanValue(bool)
+*    JsonValue.CreateNullValue()
+*
+* 5. Array Operations:
+*    arr.Append(value) - Add to end
+*    arr.GetObjectAt(index) - Get by index
+*    arr.Size - Array length
+*
+* 6. Stringify:
+*    obj.Stringify() - Convert to string
+*    Compact format (no whitespace)
+*
+* 7. Value Types:
+*    0 = Null
+*    1 = Boolean
+*    2 = Number
+*    3 = String
+*    4 = Array
+*    5 = Object
+*
+* 8. Use Cases:
+*    ✅ API responses
+*    ✅ Configuration files
+*    ✅ Data exchange
+*    ✅ Settings storage
+*    ✅ Log parsing
+*
+* 9. Advantages:
+*    ✅ Native Windows API
+*    ✅ Fast performance
+*    ✅ Type-safe access
+*    ✅ Built-in validation
+*
+* 10. Best Practices:
+*     ✅ Check TryParse result
+*     ✅ Handle missing keys
+*     ✅ Validate value types
+*     ✅ Use try/catch
+*
+* 11. Comparison to JavaScript:
+*     WinRT: Type-safe, verbose
+*     JS: Dynamic, concise
+*     WinRT: Better for large data
+*     JS: Better for small tasks
+*
+* 12. Error Handling:
+*     TryParse returns false on error
+*     GetNamed* throws if key missing
+*     Check HasKey() first
+*/
+

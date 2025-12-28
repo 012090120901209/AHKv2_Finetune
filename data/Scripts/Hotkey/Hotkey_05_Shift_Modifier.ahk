@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Shift Modifier (+)
-* + represents the Shift key
-*/
+ * Shift Modifier (+)
+ * + represents the Shift key
+ */
 
 ; Shift+F5 to refresh with cache clear
 +F5:: {

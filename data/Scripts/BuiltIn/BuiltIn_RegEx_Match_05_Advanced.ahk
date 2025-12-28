@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_Match_05_Advanced.ahk
-*
-* DESCRIPTION:
-* Advanced RegExMatch techniques including lookaheads, lookbehinds, backreferences,
-* atomic groups, recursion, conditional patterns, and performance optimization.
-* Covers complex real-world scenarios and edge cases.
-*
-* FEATURES:
-* - Positive and negative lookaheads (?=...) (?!...)
-* - Positive and negative lookbehinds (?<=...) (?<!...)
-* - Backreferences \1, \2, etc.
-* - Named backreferences
-* - Atomic groups (?>...)
-* - Conditional patterns (?(condition)yes|no)
-* - Performance optimization techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced PCRE features
-* - Complex pattern composition
-* - Performance considerations
-* - Memory-efficient matching
-* - Error handling for complex patterns
-*
-* LEARNING POINTS:
-* 1. Lookaheads check ahead without consuming characters
-* 2. Lookbehinds check behind the current position
-* 3. Backreferences match the same text as a previous group
-* 4. Atomic groups prevent backtracking for performance
-* 5. Conditionals allow if-then-else logic in patterns
-* 6. Pattern complexity affects performance significantly
-* 7. Sometimes multiple simple matches are faster than one complex match
-*/
+ * BuiltIn_RegEx_Match_05_Advanced.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced RegExMatch techniques including lookaheads, lookbehinds, backreferences,
+ * atomic groups, recursion, conditional patterns, and performance optimization.
+ * Covers complex real-world scenarios and edge cases.
+ * 
+ * FEATURES:
+ * - Positive and negative lookaheads (?=...) (?!...)
+ * - Positive and negative lookbehinds (?<=...) (?<!...)
+ * - Backreferences \1, \2, etc.
+ * - Named backreferences
+ * - Atomic groups (?>...)
+ * - Conditional patterns (?(condition)yes|no)
+ * - Performance optimization techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced PCRE features
+ * - Complex pattern composition
+ * - Performance considerations
+ * - Memory-efficient matching
+ * - Error handling for complex patterns
+ * 
+ * LEARNING POINTS:
+ * 1. Lookaheads check ahead without consuming characters
+ * 2. Lookbehinds check behind the current position
+ * 3. Backreferences match the same text as a previous group
+ * 4. Atomic groups prevent backtracking for performance
+ * 5. Conditionals allow if-then-else logic in patterns
+ * 6. Pattern complexity affects performance significantly
+ * 7. Sometimes multiple simple matches are faster than one complex match
+ */
 
 ; ========================================
 ; EXAMPLE 1: Lookahead Assertions
@@ -43,7 +43,7 @@
 ; Using (?=...) and (?!...) for lookahead
 Example1_Lookaheads() {
     MsgBox "EXAMPLE 1: Lookahead Assertions`n" .
-    "================================"
+        "================================"
 
     ; Positive lookahead (?=...)
     ; Match "window" only if followed by "s"
@@ -57,10 +57,10 @@ Example1_Lookaheads() {
     }
 
     MsgBox "Positive lookahead (?=...):`n" .
-    "Pattern: window(?=s)`n" .
-    "Matches 'window' only if followed by 's':`n" .
-    StrJoin(matches, ", ") . "`n" .
-    "(Note: 's' is not included in match)"
+        "Pattern: window(?=s)`n" .
+        "Matches 'window' only if followed by 's':`n" .
+        StrJoin(matches, ", ") . "`n" .
+        "(Note: 's' is not included in match)"
 
     ; Negative lookahead (?!...)
     ; Match "window" only if NOT followed by "s"
@@ -72,9 +72,9 @@ Example1_Lookaheads() {
     }
 
     MsgBox "Negative lookahead (?!...):`n" .
-    "Pattern: window(?!s)`n" .
-    "Matches 'window' NOT followed by 's':`n" .
-    StrJoin(matches, ", ")
+        "Pattern: window(?!s)`n" .
+        "Matches 'window' NOT followed by 's':`n" .
+        StrJoin(matches, ", ")
 
     ; Password validation with lookaheads
     ValidatePassword(pass) {
@@ -86,12 +86,12 @@ Example1_Lookaheads() {
         hasSpecial := RegExMatch(pass, "(?=.*[!@#$%^&*])")
 
         return Map(
-        "valid", hasLength && hasUpper && hasLower && hasDigit && hasSpecial,
-        "length", hasLength,
-        "upper", hasUpper,
-        "lower", hasLower,
-        "digit", hasDigit,
-        "special", hasSpecial
+            "valid", hasLength && hasUpper && hasLower && hasDigit && hasSpecial,
+            "length", hasLength,
+            "upper", hasUpper,
+            "lower", hasLower,
+            "digit", hasDigit,
+            "special", hasSpecial
         )
     }
 
@@ -104,11 +104,11 @@ Example1_Lookaheads() {
         if !v["valid"] {
             missing := []
             if !v["length"], missing.Push("length")
-            if !v["upper"], missing.Push("uppercase")
-            if !v["lower"], missing.Push("lowercase")
-            if !v["digit"], missing.Push("digit")
-            if !v["special"], missing.Push("special")
-            result .= "  Missing: " . StrJoin(missing, ", ") . "`n"
+                if !v["upper"], missing.Push("uppercase")
+                    if !v["lower"], missing.Push("lowercase")
+                        if !v["digit"], missing.Push("digit")
+                            if !v["special"], missing.Push("special")
+                                result .= "  Missing: " . StrJoin(missing, ", ") . "`n"
         }
     }
     MsgBox result
@@ -130,8 +130,8 @@ Example1_Lookaheads() {
     pattern := "^(?=.*[a-z])(?=.*\d)[a-z\d]+$"
 
     MsgBox "String: " . text3 . "`n" .
-    "Pattern requires both letters AND digits:`n" .
-    (RegExMatch(text3, pattern) ? "Valid" : "Invalid")
+        "Pattern requires both letters AND digits:`n" .
+        (RegExMatch(text3, pattern) ? "Valid" : "Invalid")
 }
 
 ; ========================================
@@ -140,7 +140,7 @@ Example1_Lookaheads() {
 ; Using (?<=...) and (?<!...) for lookbehind
 Example2_Lookbehinds() {
     MsgBox "EXAMPLE 2: Lookbehind Assertions`n" .
-    "================================="
+        "================================="
 
     ; Positive lookbehind (?<=...)
     ; Match currency amounts (number after $)
@@ -154,9 +154,9 @@ Example2_Lookbehinds() {
     }
 
     MsgBox "Positive lookbehind (?<=...):`n" .
-    "Pattern: (?<=\\$)\\d+\\.\\d+`n" .
-    "Matches numbers preceded by $:`n" .
-    StrJoin(prices, ", ")
+        "Pattern: (?<=\\$)\\d+\\.\\d+`n" .
+        "Matches numbers preceded by $:`n" .
+        StrJoin(prices, ", ")
 
     ; Negative lookbehind (?<!...)
     ; Match words NOT preceded by "not "
@@ -170,21 +170,21 @@ Example2_Lookbehinds() {
     }
 
     MsgBox "Negative lookbehind (?<!...):`n" .
-    "Pattern: (?<!not )(apples|oranges|bananas)`n" .
-    "Fruits NOT preceded by 'not ':`n" .
-    StrJoin(liked, ", ")
+        "Pattern: (?<!not )(apples|oranges|bananas)`n" .
+        "Fruits NOT preceded by 'not ':`n" .
+        StrJoin(liked, ", ")
 
     ; Extract file names without path
     paths := [
-    "C:\Folder\file.txt",
-    "/home/user/document.pdf",
-    ".\local\image.jpg"
+        "C:\Folder\file.txt",
+        "/home/user/document.pdf",
+        ".\local\image.jpg"
     ]
 
     result := "Filenames (lookbehind removes path):`n"
     for path in paths {
         if RegExMatch(path, "(?<=[/\\])[^/\\]+$", &match)
-        result .= match[0] . "`n"
+            result .= match[0] . "`n"
     }
     MsgBox result
 
@@ -200,9 +200,9 @@ Example2_Lookbehinds() {
     }
 
     MsgBox "Combined lookahead + lookbehind:`n" .
-    "Pattern: (?<=\\[)\\w+(?=\\])`n" .
-    "Words between brackets:`n" .
-    StrJoin(bracketed, ", ")
+        "Pattern: (?<=\\[)\\w+(?=\\])`n" .
+        "Words between brackets:`n" .
+        StrJoin(bracketed, ", ")
 
     ; Extract @mentions but not email addresses
     text4 := "Contact @john or email john@example.com or @jane"
@@ -235,7 +235,7 @@ Example2_Lookbehinds() {
 ; Using \1, \2 to match previously captured text
 Example3_Backreferences() {
     MsgBox "EXAMPLE 3: Backreferences`n" .
-    "========================="
+        "========================="
 
     ; Find repeated words
     text1 := "This is is a test test of repeated repeated words words"
@@ -248,9 +248,9 @@ Example3_Backreferences() {
     }
 
     MsgBox "Backreference \\1:`n" .
-    "Pattern: \\b(\\w+)\\s+\\1\\b`n" .
-    "Finds repeated words:`n" .
-    StrJoin(repeated, ", ")
+        "Pattern: \\b(\\w+)\\s+\\1\\b`n" .
+        "Finds repeated words:`n" .
+        StrJoin(repeated, ", ")
 
     ; Match HTML-like tags
     html := "<div>Content</div> <span>Text</span> <div>Wrong</span>"
@@ -264,20 +264,19 @@ Example3_Backreferences() {
     }
 
     MsgBox "Matching HTML tags (backreference):`n" .
-    StrJoin(validTags, "`n")
+        StrJoin(validTags, "`n")
 
     ; Find quoted strings (same quote type)
     text2 := "He said 'Hello' and she said `"World`""
 
     quotes := []
     pos := 1
-    while (pos := RegExMatch(text2, "(['\"`]).*?\1", &match, pos)) {
+    while (pos := RegExMatch(text2, "(['\"`]). * ? \1 ", &match, pos)) {
         quotes.Push(match[0])
         pos := match.Pos + match.Len
-    }
-
-    MsgBox "Quoted strings (matching quotes):`n" .
-    StrJoin(quotes, "`n")
+            }
+        MsgBox "Quoted strings (matching quotes):`n" .
+            StrJoin(quotes, "`n")
 
     ; Named backreferences
     text3 := "<b>Bold</b> <i>Italic</i> <b>Wrong</i>"
@@ -292,28 +291,28 @@ Example3_Backreferences() {
     }
 
     MsgBox "Named backreferences (?P=tag):`n" .
-    StrJoin(validTags, "`n")
+        StrJoin(validTags, "`n")
 
     ; Palindrome detection (simplified)
     DetectPalindrome(word) {
         len := StrLen(word)
         if len <= 1
-        return true
+            return true
 
         ; Build pattern dynamically for short words
         if len <= 5 {
             pattern := "^(\w)"
             if len >= 3
-            pattern .= "(\w)"
+                pattern .= "(\w)"
             if len >= 5
-            pattern .= "(\w)"
+                pattern .= "(\w)"
 
             pattern .= "\w?"  ; Middle char (odd length)
 
             if len >= 5
-            pattern .= "\3"
+                pattern .= "\3"
             if len >= 3
-            pattern .= "\2"
+                pattern .= "\2"
             pattern .= "\1$"
 
             return RegExMatch(word, pattern) ? true : false
@@ -339,7 +338,7 @@ Example3_Backreferences() {
     }
 
     MsgBox "Duplicate consecutive characters:`n" .
-    StrJoin(duplicates, ", ")
+        StrJoin(duplicates, ", ")
 }
 
 ; ========================================
@@ -348,7 +347,7 @@ Example3_Backreferences() {
 ; Using (?>...) to prevent backtracking
 Example4_AtomicGroups() {
     MsgBox "EXAMPLE 4: Atomic Groups`n" .
-    "========================="
+        "========================="
 
     ; Performance comparison: with and without atomic groups
     text := "aaaaaaaaaaaaaaaaaaaaab"  ; Many 'a's followed by 'b'
@@ -366,9 +365,9 @@ Example4_AtomicGroups() {
     time2 := A_TickCount - start
 
     MsgBox "Performance Test:`n" .
-    "Pattern a+b: " . time1 . "ms (Result: " . result1 . ")`n" .
-    "Pattern (?>a+)b: " . time2 . "ms (Result: " . result2 . ")`n`n" .
-    "Atomic groups can improve performance!"
+        "Pattern a+b: " . time1 . "ms (Result: " . result1 . ")`n" .
+        "Pattern (?>a+)b: " . time2 . "ms (Result: " . result2 . ")`n`n" .
+        "Atomic groups can improve performance!"
 
     ; Practical use: efficient word boundaries
     text2 := "The quick brown fox jumps"
@@ -387,18 +386,18 @@ Example4_AtomicGroups() {
     }
 
     MsgBox "Words extracted with atomic group:`n" .
-    StrJoin(words, ", ")
+        StrJoin(words, ", ")
 
     ; Atomic groups prevent unwanted matches
     text3 := "test123abc"
 
     ; Regular group might backtrack
     if RegExMatch(text3, "(\w+)\d+", &match)
-    MsgBox "Regular group: " . match[0] . " (captured: " . match[1] . ")"
+        MsgBox "Regular group: " . match[0] . " (captured: " . match[1] . ")"
 
     ; Atomic group commits immediately
     if RegExMatch(text3, "(?>test)\d+", &match)
-    MsgBox "Atomic group: " . match[0]
+        MsgBox "Atomic group: " . match[0]
 
     ; Efficient number parsing
     numbers := "123.456.789"
@@ -419,23 +418,23 @@ Example4_AtomicGroups() {
 ; Using (?(condition)yes|no) for if-then-else
 Example5_ConditionalPatterns() {
     MsgBox "EXAMPLE 5: Conditional Patterns`n" .
-    "================================"
+        "================================"
 
     ; Match optional area code in phone numbers
     ; If starts with (, must end with )
     pattern := "^(\()?\d{3}(?(1)\))\s?\d{3}-\d{4}$"
 
     phones := [
-    "(555) 123-4567",  ; Valid: has both parens
-    "555 123-4567",    ; Valid: no parens
-    "(555 123-4567",   ; Invalid: opening paren only
-    "555) 123-4567"    ; Invalid: closing paren only
+        "(555) 123-4567",  ; Valid: has both parens
+        "555 123-4567",    ; Valid: no parens
+        "(555 123-4567",   ; Invalid: opening paren only
+        "555) 123-4567"    ; Invalid: closing paren only
     ]
 
     result := "Phone Number Validation (conditional):`n"
     for phone in phones {
         result .= phone . ": " .
-        (RegExMatch(phone, pattern) ? "Valid" : "Invalid") . "`n"
+            (RegExMatch(phone, pattern) ? "Valid" : "Invalid") . "`n"
     }
     MsgBox result
 
@@ -444,30 +443,30 @@ Example5_ConditionalPatterns() {
     pattern := "^(https?://)?(?(1)[\w.-]+|[\w.-]+)$"
 
     urls := [
-    "https://example.com",
-    "example.com",
-    "http://",
-    "://example.com"
+        "https://example.com",
+        "example.com",
+        "http://",
+        "://example.com"
     ]
 
     result := "URL Validation (conditional):`n"
     for url in urls {
         result .= url . ": " .
-        (RegExMatch(url, pattern) ? "Valid" : "Invalid") . "`n"
+            (RegExMatch(url, pattern) ? "Valid" : "Invalid") . "`n"
     }
     MsgBox result
 
     ; Named group conditionals
-    pattern := "(?P<quote>['\"`"])?(?P<content>\w+)(?(quote)(?P=quote))"
+    pattern := "(?P<quote>['\"` "])?(?P<content>\w+)(?(quote)(?P=quote))"
 
     texts := ["'quoted'", "`"quoted`"", "unquoted", "'unclosed"]
 
     result := "Quote Matching (named conditional):`n"
     for text in texts {
         if RegExMatch(text, pattern, &match)
-        result .= text . ": Valid (content: " . match["content"] . ")`n"
+            result .= text . ": Valid (content: " . match["content"] . ")`n"
         else
-        result .= text . ": Invalid`n"
+            result .= text . ": Invalid`n"
     }
     MsgBox result
 
@@ -480,7 +479,7 @@ Example5_ConditionalPatterns() {
     result := "Format Validation:`n"
     for input in inputs {
         result .= input . ": " .
-        (RegExMatch(input, pattern) ? "Valid" : "Invalid") . "`n"
+            (RegExMatch(input, pattern) ? "Valid" : "Invalid") . "`n"
     }
     MsgBox result
 }
@@ -491,212 +490,194 @@ Example5_ConditionalPatterns() {
 ; Combining multiple advanced techniques
 Example6_ComplexPatterns() {
     MsgBox "EXAMPLE 6: Complex Real-World Patterns`n" .
-    "======================================"
+        "======================================"
 
     ; Advanced email validation
     EmailPattern := "
     (x)
     ^
-    (?=[a-zA-Z0-9@._%+-]{6,254}$)          # Length check via lookahead
-    (?=[a-zA-Z0-9._%+-]{1,64}@)            # Local part length check
-    [a-zA-Z0-9._%+-]+                       # Local part
-    @
-    (?=.{1,253}$)                           # Domain length check
-    (?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+
-    [a-zA-Z]{2,63}                          # TLD
-    $
-    )"
+    ( ? = [a - zA - Z0 - 9@._%+-] { 6, 254 }$)#Length check via lookahead
+        ( ? = [a - zA - Z0 - 9._%+-] { 1, 64 }@)#Local part length check
+            [a - zA - Z0 - 9._%+-] + #Local part@
+                ( ? = . { 1, 253 }$)#Domain length check
+                    ( ? : [a - zA - Z0 - 9]( ? : [a - zA - Z0 - 9 -] { 0, 61 }[a - zA - Z0 - 9]) ? \.) +
+                        [a - zA - Z] { 2, 63 }#TLD$
+                        ) "
+                        emails := [
+                            "user@example.com",
+                            "user.name+tag@example.co.uk",
+                            "invalid@",
+                            "@invalid.com",
+                            "toolong" . StrRepeat("x", 100) . "@example.com"
+                        ]
+                        result := "Advanced Email Validation:`n"
+                        for email in emails {
+                            result .= email . ": " .
+                                (RegExMatch(email, EmailPattern) ? "Valid" : "Invalid") . "`n"
+                        }
+                        MsgBox result
+                        ; Password strength meter
+                        CheckPasswordStrength(pass) {
+                            score := 0
+                            feedback := []
 
-    emails := [
-    "user@example.com",
-    "user.name+tag@example.co.uk",
-    "invalid@",
-    "@invalid.com",
-    "toolong" . StrRepeat("x", 100) . "@example.com"
-    ]
+                            ; Length points
+                            len := StrLen(pass)
+                            if len >= 8
+                                score += 1, feedback.Push("✓ Length 8+")
+                            else
+                                feedback.Push("✗ Too short")
 
-    result := "Advanced Email Validation:`n"
-    for email in emails {
-        result .= email . ": " .
-        (RegExMatch(email, EmailPattern) ? "Valid" : "Invalid") . "`n"
-    }
-    MsgBox result
+                            if len >= 12
+                                score += 1, feedback.Push("✓ Length 12+")
 
-    ; Password strength meter
-    CheckPasswordStrength(pass) {
-        score := 0
-        feedback := []
+                            ; Character variety
+                            if RegExMatch(pass, "[a-z]")
+                                score += 1, feedback.Push("✓ Lowercase")
+                            if RegExMatch(pass, "[A-Z]")
+                                score += 1, feedback.Push("✓ Uppercase")
+                            if RegExMatch(pass, "\d")
+                                score += 1, feedback.Push("✓ Numbers")
+                            if RegExMatch(pass, "[!@#$%^&*()_+\-=\[\]{};':\"\\ |, . < > / ?] ")
+                                score += 1, feedback.Push("✓ Special chars")
+                                ; Complexity patterns
+                                if RegExMatch(pass, "(?=.*[a-z])(?=.*[A-Z])(?=.*\d)")
+                                    score += 1, feedback.Push("✓ Good mix")
+                                        ; Penalties
+                                if RegExMatch(pass, "(\w)\1{2,}")
+                                    score -= 1, feedback.Push("✗ Repeated chars")
+                                if RegExMatch(pass, "i)(password|123456|qwerty)")
+                                    score -= 2, feedback.Push("✗ Common password")
+                                        strength := "Weak"
+                                if score >= 6
+                                    strength := "Strong"
+                                else if score >= 4
+                                    strength := "Medium"
+                                return Map("score", score, "strength", strength, "feedback", feedback)
+                            }
+                                passwords := ["pass", "Password1", "MyP@ssw0rd123", "Str0ng!P@ssw0rd"]
 
-        ; Length points
-        len := StrLen(pass)
-        if len >= 8
-        score += 1, feedback.Push("✓ Length 8+")
-        else
-        feedback.Push("✗ Too short")
+                            result := "Password Strength Analysis:`n`n"
+                            for pass in passwords {
+                                analysis := CheckPasswordStrength(pass)
+                                result .= pass . ": " . analysis["strength"] . " (Score: " . analysis["score"] . ")`n"
+                                for fb in analysis["feedback"] {
+                                    result .= "  " . fb . "`n"
+                                }
+                                result .= "`n"
+                            }
+                            MsgBox result
 
-        if len >= 12
-        score += 1, feedback.Push("✓ Length 12+")
+                            ; Advanced log parser
+                            logLine := '192.168.1.100 - admin [15/Jan/2024:10:30:45 +0000] "GET /api/users?id=123 HTTP/1.1" 200 1234 "https://example.com" "Mozilla/5.0"'
 
-        ; Character variety
-        if RegExMatch(pass, "[a-z]")
-        score += 1, feedback.Push("✓ Lowercase")
-        if RegExMatch(pass, "[A-Z]")
-        score += 1, feedback.Push("✓ Uppercase")
-        if RegExMatch(pass, "\d")
-        score += 1, feedback.Push("✓ Numbers")
-        if RegExMatch(pass, "[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>/?]")
-        score += 1, feedback.Push("✓ Special chars")
+                            pattern := '
+                            (x)
+                            ( ? P < ip > [\d.] +)#IP address\s - \s
+                                ( ? P < user > \w +)#Username\s\[
+                                    ( ? P < timestamp > [ ^ \]] +)#Timestamp\]\s "
+                                    ( ? P < method > \w +)#HTTP method\s
+                                        ( ? P < path > \S +)#Request path\s
+                                            ( ? P < protocol > [ ^ "]+)                     # Protocol
+                                                " \s
+                                                ( ? P < status > \d +)#Status code\s
+                                                    ( ? P < size > \d +)#Response size
+                                                        ( ? : \s "(?P<referrer>[^"]*) ")?          # Optional referrer
+                                                        ( ? : \s "(?P<agent>[^"]*) ")?             # Optional user agent
+                                                '
+                                                if RegExMatch(logLine, pattern, &match) {
+                                                    MsgBox "Log Entry Parsed:`n" .
+                                                        "IP: " . match["ip"] . "`n" .
+                                                        "User: " . match["user"] . "`n" .
+                                                        "Timestamp: " . match["timestamp"] . "`n" .
+                                                        "Method: " . match["method"] . "`n" .
+                                                        "Path: " . match["path"] . "`n" .
+                                                        "Status: " . match["status"] . "`n" .
+                                                        "Size: " . match["size"] . " bytes"
+                                                }
+                                            }
+                                                ; ========================================
+                                                ; EXAMPLE 7: Performance Optimization
+                                                ; ========================================
+                                                ; Techniques for optimizing regex performance
+                                                Example7_PerformanceOptimization() {
+                                                    MsgBox "EXAMPLE 7: Performance Optimization`n" .
+                                                        "===================================="
 
-        ; Complexity patterns
-        if RegExMatch(pass, "(?=.*[a-z])(?=.*[A-Z])(?=.*\d)")
-        score += 1, feedback.Push("✓ Good mix")
+                                                    ; 1. Use anchors when possible
+                                                    text := "test123test456test789"
 
-        ; Penalties
-        if RegExMatch(pass, "(\w)\1{2,}")
-        score -= 1, feedback.Push("✗ Repeated chars")
-        if RegExMatch(pass, "i)(password|123456|qwerty)")
-        score -= 2, feedback.Push("✗ Common password")
+                                                    MsgBox "Optimization Tip 1: Use Anchors`n" .
+                                                        "Pattern: ^\w+ (anchored) is faster than \w+ (unanchored)`n" .
+                                                        "Anchors prevent unnecessary searching"
 
-        strength := "Weak"
-        if score >= 6
-        strength := "Strong"
-        else if score >= 4
-        strength := "Medium"
+                                                    ; 2. Use atomic groups to prevent backtracking
+                                                    longText := StrRepeat("a", 50) . "b"
 
-        return Map("score", score, "strength", strength, "feedback", feedback)
-    }
+                                                    pattern1 := "a+b"       ; Can backtrack
+                                                    pattern2 := "(?>a+)b"   ; Cannot backtrack
 
-    passwords := ["pass", "Password1", "MyP@ssw0rd123", "Str0ng!P@ssw0rd"]
+                                                    MsgBox "Optimization Tip 2: Atomic Groups`n" .
+                                                        "Use (?>...) to prevent backtracking`n" .
+                                                        "Especially important with quantifiers"
 
-    result := "Password Strength Analysis:`n`n"
-    for pass in passwords {
-        analysis := CheckPasswordStrength(pass)
-        result .= pass . ": " . analysis["strength"] . " (Score: " . analysis["score"] . ")`n"
-        for fb in analysis["feedback"] {
-            result .= "  " . fb . "`n"
-        }
-        result .= "`n"
-    }
-    MsgBox result
+                                                    ; 3. Be specific instead of greedy
+                                                    html := "<div>Content 1</div><div>Content 2</div>"
 
-    ; Advanced log parser
-    logLine := '192.168.1.100 - admin [15/Jan/2024:10:30:45 +0000] "GET /api/users?id=123 HTTP/1.1" 200 1234 "https://example.com" "Mozilla/5.0"'
+                                                    pattern1 := "<div>.*</div>"      ; Greedy, matches everything
+                                                    pattern2 := "<div>.*?</div>"     ; Lazy, better
+                                                    pattern3 := "<div>[^<]*</div>"   ; Most specific, fastest
 
-    pattern := '
-    (x)
-    (?P<ip>[\d.]+)                          # IP address
-    \s - \s
-    (?P<user>\w+)                           # Username
-    \s \[
-    (?P<timestamp>[^\]]+)                   # Timestamp
-    \] \s "
-    (?P<method>\w+)                         # HTTP method
-    \s
-    (?P<path>\S+)                           # Request path
-    \s
-    (?P<protocol>[^"]+)                     # Protocol
-    " \s
-    (?P<status>\d+)                         # Status code
-    \s
-    (?P<size>\d+)                           # Response size
-    (?:\s"(?P<referrer>[^"]*)")?          # Optional referrer
-    (?:\s"(?P<agent>[^"]*)")?             # Optional user agent
-    '
+                                                    MsgBox "Optimization Tip 3: Be Specific`n" .
+                                                        "Pattern [^<]* is faster than .*?`n" .
+                                                        "Use specific character classes when possible"
 
-    if RegExMatch(logLine, pattern, &match) {
-        MsgBox "Log Entry Parsed:`n" .
-        "IP: " . match["ip"] . "`n" .
-        "User: " . match["user"] . "`n" .
-        "Timestamp: " . match["timestamp"] . "`n" .
-        "Method: " . match["method"] . "`n" .
-        "Path: " . match["path"] . "`n" .
-        "Status: " . match["status"] . "`n" .
-        "Size: " . match["size"] . " bytes"
-    }
-}
+                                                    ; 4. Limit alternation
+                                                    pattern1 := "cat|dog|bird|fish|mouse"  ; Slower
+                                                    pattern2 := "(?:cat|dog|bird|fish|mouse)"  ; Better (non-capturing)
+                                                    pattern3 := "[cdbfm](?:at|og|ird|ish|ouse)"  ; Even better if applicable
 
-; ========================================
-; EXAMPLE 7: Performance Optimization
-; ========================================
-; Techniques for optimizing regex performance
-Example7_PerformanceOptimization() {
-    MsgBox "EXAMPLE 7: Performance Optimization`n" .
-    "===================================="
+                                                    MsgBox "Optimization Tip 4: Optimize Alternation`n" .
+                                                        "Use non-capturing groups`n" .
+                                                        "Factor out common prefixes when possible"
 
-    ; 1. Use anchors when possible
-    text := "test123test456test789"
+                                                    ; 5. Use possessive quantifiers when applicable
+                                                    text2 := "test123abc"
 
-    MsgBox "Optimization Tip 1: Use Anchors`n" .
-    "Pattern: ^\w+ (anchored) is faster than \w+ (unanchored)`n" .
-    "Anchors prevent unnecessary searching"
+                                                    pattern1 := "\w+\d+"    ; Can backtrack
+                                                    pattern2 := "\w++\d+"   ; Possessive, no backtrack
 
-    ; 2. Use atomic groups to prevent backtracking
-    longText := StrRepeat("a", 50) . "b"
+                                                    MsgBox "Optimization Tip 5: Possessive Quantifiers`n" .
+                                                        "Use ++ instead of + when no backtracking needed`n" .
+                                                        "Also: *+, ?+, {n,m}+"
 
-    pattern1 := "a+b"       ; Can backtrack
-    pattern2 := "(?>a+)b"   ; Cannot backtrack
+                                                    ; 6. Compile patterns outside loops
+                                                    testData := ["test1", "test2", "test3", "test4", "test5"]
 
-    MsgBox "Optimization Tip 2: Atomic Groups`n" .
-    "Use (?>...) to prevent backtracking`n" .
-    "Especially important with quantifiers"
+                                                    MsgBox "Optimization Tip 6: Reuse Patterns`n" .
+                                                        "Define pattern once, reuse in loop`n" .
+                                                        "AutoHotkey caches patterns automatically"
 
-    ; 3. Be specific instead of greedy
-    html := "<div>Content 1</div><div>Content 2</div>"
+                                                    ; 7. Use simple tests before complex regex
+                                                    ValidateEmailOptimized(email) {
+                                                        ; Quick checks first (faster than regex)
+                                                        if !InStr(email, "@")
+                                                            return false
+                                                        if !InStr(email, ".")
+                                                            return false
+                                                        if StrLen(email) < 5
+                                                            return false
 
-    pattern1 := "<div>.*</div>"      ; Greedy, matches everything
-    pattern2 := "<div>.*?</div>"     ; Lazy, better
-    pattern3 := "<div>[^<]*</div>"   ; Most specific, fastest
+                                                        ; Now run complex regex
+                                                        return RegExMatch(email, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                                                    }
 
-    MsgBox "Optimization Tip 3: Be Specific`n" .
-    "Pattern [^<]* is faster than .*?`n" .
-    "Use specific character classes when possible"
+                                                    MsgBox "Optimization Tip 7: Pre-validate`n" .
+                                                        "Use simple string checks before complex regex`n" .
+                                                        "InStr() and StrLen() are much faster"
 
-    ; 4. Limit alternation
-    pattern1 := "cat|dog|bird|fish|mouse"  ; Slower
-    pattern2 := "(?:cat|dog|bird|fish|mouse)"  ; Better (non-capturing)
-    pattern3 := "[cdbfm](?:at|og|ird|ish|ouse)"  ; Even better if applicable
-
-    MsgBox "Optimization Tip 4: Optimize Alternation`n" .
-    "Use non-capturing groups`n" .
-    "Factor out common prefixes when possible"
-
-    ; 5. Use possessive quantifiers when applicable
-    text2 := "test123abc"
-
-    pattern1 := "\w+\d+"    ; Can backtrack
-    pattern2 := "\w++\d+"   ; Possessive, no backtrack
-
-    MsgBox "Optimization Tip 5: Possessive Quantifiers`n" .
-    "Use ++ instead of + when no backtracking needed`n" .
-    "Also: *+, ?+, {n,m}+"
-
-    ; 6. Compile patterns outside loops
-    testData := ["test1", "test2", "test3", "test4", "test5"]
-
-    MsgBox "Optimization Tip 6: Reuse Patterns`n" .
-    "Define pattern once, reuse in loop`n" .
-    "AutoHotkey caches patterns automatically"
-
-    ; 7. Use simple tests before complex regex
-    ValidateEmailOptimized(email) {
-        ; Quick checks first (faster than regex)
-        if !InStr(email, "@")
-        return false
-        if !InStr(email, ".")
-        return false
-        if StrLen(email) < 5
-        return false
-
-        ; Now run complex regex
-        return RegExMatch(email, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-    }
-
-    MsgBox "Optimization Tip 7: Pre-validate`n" .
-    "Use simple string checks before complex regex`n" .
-    "InStr() and StrLen() are much faster"
-
-    ; Performance summary
-    tips := "
+                                                    ; Performance summary
+                                                    tips := "
     (
     REGEX PERFORMANCE TIPS:
     =======================
@@ -713,37 +694,32 @@ Example7_PerformanceOptimization() {
     10. Profile and test with real data
     )"
 
-    MsgBox tips
-}
-
-; ========================================
-; Helper Functions
-; ========================================
-
-StrJoin(arr, delim := ",") {
-    result := ""
-    for index, value in arr {
-        result .= value
-        if index < arr.Length
-        result .= delim
-    }
-    return result
-}
-
-StrRepeat(str, count) {
-    result := ""
-    Loop count {
-        result .= str
-    }
-    return result
-}
-
-; ========================================
-; Main Menu
-; ========================================
-
-ShowMenu() {
-    menu := "
+                                                    MsgBox tips
+                                                }
+                                                ; ========================================
+                                                ; Helper Functions
+                                                ; ========================================
+                                                StrJoin(arr, delim := ",") {
+                                                    result := ""
+                                                    for index, value in arr {
+                                                        result .= value
+                                                        if index < arr.Length
+                                                            result .= delim
+                                                    }
+                                                    return result
+                                                }
+                                                StrRepeat(str, count) {
+                                                    result := ""
+                                                    Loop count {
+                                                        result .= str
+                                                    }
+                                                    return result
+                                                }
+                                                ; ========================================
+                                                ; Main Menu
+                                                ; ========================================
+                                                ShowMenu() {
+                                                    menu := "
     (
     RegExMatch Advanced Techniques
     ==============================
@@ -759,17 +735,14 @@ ShowMenu() {
     Press Ctrl+1-7 to run examples
     )"
 
-    MsgBox menu
-}
-
-^1::Example1_Lookaheads()
-^2::Example2_Lookbehinds()
-^3::Example3_Backreferences()
-^4::Example4_AtomicGroups()
-^5::Example5_ConditionalPatterns()
-^6::Example6_ComplexPatterns()
-^7::Example7_PerformanceOptimization()
-
-^h::ShowMenu()
-
-ShowMenu()
+                                                    MsgBox menu
+                                                }
+                                                ^1:: Example1_Lookaheads()
+                                                ^2:: Example2_Lookbehinds()
+                                                ^3:: Example3_Backreferences()
+                                                ^4:: Example4_AtomicGroups()
+                                                ^5:: Example5_ConditionalPatterns()
+                                                ^6:: Example6_ComplexPatterns()
+                                                ^7:: Example7_PerformanceOptimization()
+                                                ^h:: ShowMenu()
+                                                ShowMenu()

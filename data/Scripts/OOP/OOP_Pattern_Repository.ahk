@@ -18,7 +18,7 @@ class InMemoryRepository extends Repository {
 
     Save(entity) {
         if (!entity.HasOwnProp("id") || entity.id = 0)
-        entity.id := this.nextId++
+            entity.id := this.nextId++
         this.data[entity.id] := entity
         return entity
     }
@@ -51,7 +51,7 @@ repo.Save(found)
 ; List all
 output := "All users:`n"
 for id, user in repo.data
-output .= user.ToString() "`n"
+    output .= user.ToString() "`n"
 MsgBox(output)
 
 ; Delete

@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Slice() - Slice array (Standalone Implementation)
-*
-* Creates a slice of array from start up to end.
-*/
+ * Slice() - Slice array (Standalone Implementation)
+ * 
+ * Creates a slice of array from start up to end.
+ */
 
 Slice(array, start := 1, end := -1) {
     result := []
@@ -36,5 +36,5 @@ result3 := Slice(["a", "b", "c", "d"], 2, 3)
 ; => ["b", "c"]
 
 MsgBox("Slice 1-2: " JSON.stringify(result1) "`n"
-. "Slice from 2: " JSON.stringify(result2) "`n"
-. "Slice 2-3: " JSON.stringify(result3))
+    . "Slice from 2: " JSON.stringify(result2) "`n"
+    . "Slice 2-3: " JSON.stringify(result3))

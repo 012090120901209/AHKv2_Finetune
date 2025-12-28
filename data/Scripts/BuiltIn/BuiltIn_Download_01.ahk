@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Download_01.ahk - Basic Download Operations
-*
-* This file demonstrates fundamental file download operations in AutoHotkey v2,
-* covering basic usage of the Download function for retrieving files from URLs.
-*
-* Features Demonstrated:
-* - Simple file downloads
-* - Download to specific paths
-* - Basic URL handling
-* - File existence checking
-* - Download verification
-* - Synchronous downloads
-* - Common download patterns
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024-11-16
-*/
+ * BuiltIn_Download_01.ahk - Basic Download Operations
+ * 
+ * This file demonstrates fundamental file download operations in AutoHotkey v2,
+ * covering basic usage of the Download function for retrieving files from URLs.
+ * 
+ * Features Demonstrated:
+ * - Simple file downloads
+ * - Download to specific paths
+ * - Basic URL handling
+ * - File existence checking
+ * - Download verification
+ * - Synchronous downloads
+ * - Common download patterns
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024-11-16
+ */
 
 ; ============================================================================
 ; Example 1: Simple Text File Download
 ; ============================================================================
 
 /**
-* Downloads a simple text file from a URL
-*
-* The Download function retrieves content from a URL and saves it to a local file.
-* This is a synchronous operation that blocks until the download completes.
-*
-* @example
-* DownloadSimpleTextFile()
-*/
+ * Downloads a simple text file from a URL
+ * 
+ * The Download function retrieves content from a URL and saves it to a local file.
+ * This is a synchronous operation that blocks until the download completes.
+ * 
+ * @example
+ * DownloadSimpleTextFile()
+ */
 DownloadSimpleTextFile() {
     ; Define source URL and destination path
     sourceURL := "https://www.example.com/sample.txt"
@@ -60,14 +60,14 @@ DownloadSimpleTextFile() {
 ; ============================================================================
 
 /**
-* Downloads an image file from a URL
-*
-* Demonstrates downloading binary files such as images.
-* The Download function handles all file types transparently.
-*
-* @example
-* DownloadImageFile()
-*/
+ * Downloads an image file from a URL
+ * 
+ * Demonstrates downloading binary files such as images.
+ * The Download function handles all file types transparently.
+ * 
+ * @example
+ * DownloadImageFile()
+ */
 DownloadImageFile() {
     ; Define image URL and destination
     imageURL := "https://www.example.com/images/logo.png"
@@ -85,13 +85,13 @@ DownloadImageFile() {
 
             ; Display success with file info
             MsgBox("Image downloaded successfully!`n`n"
-            . "File: " destPath "`n"
-            . "Size: " FormatFileSize(fileSize), "Success", "Icon!")
+                . "File: " destPath "`n"
+                . "Size: " FormatFileSize(fileSize), "Success", "Icon!")
 
             ; Optional: Open the image
             result := MsgBox("Would you like to open the image?", "Open Image", "YesNo Icon?")
             if (result = "Yes")
-            Run(destPath)
+                Run(destPath)
         }
     } catch as err {
         MsgBox("Image download failed!`n`nError: " err.Message, "Error", "Icon!")
@@ -99,20 +99,20 @@ DownloadImageFile() {
 }
 
 /**
-* Formats file size for human-readable display
-*
-* @param {Integer} bytes - File size in bytes
-* @return {String} Formatted file size string
-*/
+ * Formats file size for human-readable display
+ * 
+ * @param {Integer} bytes - File size in bytes
+ * @return {String} Formatted file size string
+ */
 FormatFileSize(bytes) {
     if (bytes < 1024)
-    return bytes " bytes"
+        return bytes " bytes"
     else if (bytes < 1024 * 1024)
-    return Round(bytes / 1024, 2) " KB"
+        return Round(bytes / 1024, 2) " KB"
     else if (bytes < 1024 * 1024 * 1024)
-    return Round(bytes / (1024 * 1024), 2) " MB"
+        return Round(bytes / (1024 * 1024), 2) " MB"
     else
-    return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
+        return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
 }
 
 ; ============================================================================
@@ -120,14 +120,14 @@ FormatFileSize(bytes) {
 ; ============================================================================
 
 /**
-* Downloads a file with protection against overwriting existing files
-*
-* Checks if destination file exists before downloading and prompts user.
-* Demonstrates safe download practices.
-*
-* @example
-* DownloadWithOverwriteProtection()
-*/
+ * Downloads a file with protection against overwriting existing files
+ * 
+ * Checks if destination file exists before downloading and prompts user.
+ * Demonstrates safe download practices.
+ * 
+ * @example
+ * DownloadWithOverwriteProtection()
+ */
 DownloadWithOverwriteProtection() {
     sourceURL := "https://www.example.com/document.pdf"
     destPath := A_Desktop "\document.pdf"
@@ -140,10 +140,10 @@ DownloadWithOverwriteProtection() {
 
         ; Ask user what to do
         result := MsgBox("File already exists!`n`n"
-        . "Existing file: " destPath "`n"
-        . "Size: " FormatFileSize(existingSize) "`n"
-        . "Modified: " existingTime "`n`n"
-        . "Do you want to replace it?", "File Exists", "YesNo Icon? Default2")
+            . "Existing file: " destPath "`n"
+            . "Size: " FormatFileSize(existingSize) "`n"
+            . "Modified: " existingTime "`n`n"
+            . "Do you want to replace it?", "File Exists", "YesNo Icon? Default2")
 
         if (result = "No") {
             MsgBox("Download cancelled by user.", "Cancelled", "Icon!")
@@ -173,14 +173,14 @@ DownloadWithOverwriteProtection() {
 ; ============================================================================
 
 /**
-* Downloads files to a custom directory structure
-*
-* Demonstrates creating directories and organizing downloads.
-* Shows proper path handling and directory creation.
-*
-* @example
-* DownloadToCustomDirectory()
-*/
+ * Downloads files to a custom directory structure
+ * 
+ * Demonstrates creating directories and organizing downloads.
+ * Shows proper path handling and directory creation.
+ * 
+ * @example
+ * DownloadToCustomDirectory()
+ */
 DownloadToCustomDirectory() {
     ; Define custom download directory
     downloadDir := A_MyDocuments "\AHK_Downloads"
@@ -198,9 +198,9 @@ DownloadToCustomDirectory() {
 
     ; Define files to download
     files := Map(
-    "readme.txt", "https://www.example.com/readme.txt",
-    "config.ini", "https://www.example.com/config.ini",
-    "data.json", "https://www.example.com/data.json"
+        "readme.txt", "https://www.example.com/readme.txt",
+        "config.ini", "https://www.example.com/config.ini",
+        "data.json", "https://www.example.com/data.json"
     )
 
     ; Download each file
@@ -220,9 +220,9 @@ DownloadToCustomDirectory() {
 
     ; Display results
     MsgBox("Download Summary`n`n"
-    . "Success: " successCount " files`n"
-    . "Failed: " failCount " files`n`n"
-    . "Directory: " downloadDir, "Download Complete", "Icon!")
+        . "Success: " successCount " files`n"
+        . "Failed: " failCount " files`n`n"
+        . "Directory: " downloadDir, "Download Complete", "Icon!")
 }
 
 ; ============================================================================
@@ -230,14 +230,14 @@ DownloadToCustomDirectory() {
 ; ============================================================================
 
 /**
-* Downloads files and verifies the file extension matches expected type
-*
-* Ensures downloaded files have the correct extension.
-* Useful for validating download integrity.
-*
-* @example
-* DownloadWithExtensionCheck()
-*/
+ * Downloads files and verifies the file extension matches expected type
+ * 
+ * Ensures downloaded files have the correct extension.
+ * Useful for validating download integrity.
+ * 
+ * @example
+ * DownloadWithExtensionCheck()
+ */
 DownloadWithExtensionCheck() {
     ; Define download parameters
     url := "https://www.example.com/archive.zip"
@@ -260,14 +260,14 @@ DownloadWithExtensionCheck() {
 
         if ("." fileExt != expectedExt) {
             MsgBox("Warning: File extension mismatch!`n`n"
-            . "Expected: " expectedExt "`n"
-            . "Actual: ." fileExt, "Extension Mismatch", "Icon!")
+                . "Expected: " expectedExt "`n"
+                . "Actual: ." fileExt, "Extension Mismatch", "Icon!")
         } else {
             fileSize := FileGetSize(destPath)
             MsgBox("Download verified successfully!`n`n"
-            . "File: " fileName "`n"
-            . "Extension: ." fileExt "`n"
-            . "Size: " FormatFileSize(fileSize), "Success", "Icon!")
+                . "File: " fileName "`n"
+                . "Extension: ." fileExt "`n"
+                . "Size: " FormatFileSize(fileSize), "Success", "Icon!")
         }
     } catch as err {
         MsgBox("Download failed!`n`nError: " err.Message, "Error", "Icon!")
@@ -279,24 +279,24 @@ DownloadWithExtensionCheck() {
 ; ============================================================================
 
 /**
-* Downloads different types of resources (text, images, archives, documents)
-*
-* Demonstrates handling various file types in a single download session.
-* Shows organizing downloads by type.
-*
-* @example
-* DownloadMultipleResourceTypes()
-*/
+ * Downloads different types of resources (text, images, archives, documents)
+ * 
+ * Demonstrates handling various file types in a single download session.
+ * Shows organizing downloads by type.
+ * 
+ * @example
+ * DownloadMultipleResourceTypes()
+ */
 DownloadMultipleResourceTypes() {
     ; Create base download directory
     baseDir := A_Desktop "\Downloads"
 
     ; Define resource categories and their files
     resources := Map(
-    "documents", ["https://example.com/manual.pdf", "https://example.com/guide.docx"],
-    "images", ["https://example.com/photo1.jpg", "https://example.com/photo2.png"],
-    "archives", ["https://example.com/data.zip", "https://example.com/backup.7z"],
-    "text", ["https://example.com/notes.txt", "https://example.com/log.csv"]
+        "documents", ["https://example.com/manual.pdf", "https://example.com/guide.docx"],
+        "images", ["https://example.com/photo1.jpg", "https://example.com/photo2.png"],
+        "archives", ["https://example.com/data.zip", "https://example.com/backup.7z"],
+        "text", ["https://example.com/notes.txt", "https://example.com/log.csv"]
     )
 
     ; Track download statistics
@@ -337,10 +337,10 @@ DownloadMultipleResourceTypes() {
 
     ; Display comprehensive results
     MsgBox("Download Session Complete`n`n"
-    . "Total Files: " stats["total"] "`n"
-    . "Successful: " stats["success"] "`n"
-    . "Failed: " stats["failed"] "`n`n"
-    . "Download Log:`n" downloadLog, "Session Complete", "Icon!")
+        . "Total Files: " stats["total"] "`n"
+        . "Successful: " stats["success"] "`n"
+        . "Failed: " stats["failed"] "`n`n"
+        . "Download Log:`n" downloadLog, "Session Complete", "Icon!")
 }
 
 ; ============================================================================
@@ -348,14 +348,14 @@ DownloadMultipleResourceTypes() {
 ; ============================================================================
 
 /**
-* Downloads files to temporary location and processes them
-*
-* Demonstrates using temporary files for download operations.
-* Shows proper cleanup of temporary resources.
-*
-* @example
-* DownloadWithTempFile()
-*/
+ * Downloads files to temporary location and processes them
+ * 
+ * Demonstrates using temporary files for download operations.
+ * Shows proper cleanup of temporary resources.
+ * 
+ * @example
+ * DownloadWithTempFile()
+ */
 DownloadWithTempFile() {
     ; Generate unique temporary filename
     tempFile := A_Temp "\ahk_download_" A_TickCount ".tmp"
@@ -380,9 +380,9 @@ DownloadWithTempFile() {
 
         ; Display processing results
         MsgBox("File downloaded and processed!`n`n"
-        . "Size: " FormatFileSize(fileSize) "`n"
-        . "Lines: " lineCount "`n`n"
-        . "Temporary file will be deleted.", "Processing Complete", "Icon!")
+            . "Size: " FormatFileSize(fileSize) "`n"
+            . "Lines: " lineCount "`n`n"
+            . "Temporary file will be deleted.", "Processing Complete", "Icon!")
 
         ; Clean up temporary file
         FileDelete(tempFile)
@@ -423,3 +423,4 @@ DownloadWithTempFile() {
 
 ; Run Example 7: Download with temporary file handling
 ; DownloadWithTempFile()
+

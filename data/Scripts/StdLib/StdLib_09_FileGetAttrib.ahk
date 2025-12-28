@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileGetAttrib() - Get file attributes
-*
-* Returns a file's attributes (R=readonly, H=hidden, A=archive, etc.).
-*/
+ * FileGetAttrib() - Get file attributes
+ * 
+ * Returns a file's attributes (R=readonly, H=hidden, A=archive, etc.).
+ */
 
 testFile := A_ScriptDir "\attrtest.txt"
 FileDelete(testFile)

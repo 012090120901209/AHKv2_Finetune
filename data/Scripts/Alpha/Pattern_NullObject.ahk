@@ -25,17 +25,17 @@ class Service {
 
     DoWork() {
         this.logger.Log("Starting work...")
-        
+
         ; Simulate work
         result := "processed_data"
-        
+
         this.logger.Log("Work completed")
         return result
     }
-    
+
     DoRiskyOperation() {
         this.logger.Warn("About to do risky operation")
-        
+
         try {
             ; Simulate operation
             return "success"

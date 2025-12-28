@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Send Function - Modifiers
-* ============================================================================
-*
-* Advanced modifier key combinations, multi-modifier sequences, and complex
-* keystroke patterns for sophisticated automation tasks.
-*
-* @module BuiltIn_Send_02
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 Send Function - Modifiers
+ * ============================================================================
+ * 
+ * Advanced modifier key combinations, multi-modifier sequences, and complex
+ * keystroke patterns for sophisticated automation tasks.
+ * 
+ * @module BuiltIn_Send_02
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Ctrl Modifier Combinations
 ; ============================================================================
 
 /**
-* Standard Ctrl shortcuts for text editing.
-* Demonstrates common Ctrl+ combinations.
-*
-* @example
-* ; Press F1 for Ctrl text editing demo
-*/
+ * Standard Ctrl shortcuts for text editing.
+ * Demonstrates common Ctrl+ combinations.
+ * 
+ * @example
+ * ; Press F1 for Ctrl text editing demo
+ */
 F1:: {
     ToolTip("Ctrl text editing demo in 2 seconds...")
     Sleep(2000)
@@ -55,9 +55,9 @@ F1:: {
 }
 
 /**
-* Ctrl+Shift combinations for advanced selection
-* Shows selection extension techniques
-*/
+ * Ctrl+Shift combinations for advanced selection
+ * Shows selection extension techniques
+ */
 F2:: {
     ToolTip("Ctrl+Shift selection in 2 seconds...")
     Sleep(2000)
@@ -87,9 +87,9 @@ F2:: {
 }
 
 /**
-* Ctrl navigation shortcuts
-* Quick cursor movement with Ctrl
-*/
+ * Ctrl navigation shortcuts
+ * Quick cursor movement with Ctrl
+ */
 F3:: {
     ToolTip("Ctrl navigation in 2 seconds...")
     Sleep(2000)
@@ -125,12 +125,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Shift for text selection.
-* Basic selection with Shift+Arrows.
-*
-* @description
-* Demonstrates precise text selection
-*/
+ * Shift for text selection.
+ * Basic selection with Shift+Arrows.
+ * 
+ * @description
+ * Demonstrates precise text selection
+ */
 ^F1:: {
     ToolTip("Shift selection in 2 seconds...")
     Sleep(2000)
@@ -164,9 +164,9 @@ F3:: {
 }
 
 /**
-* Shift+Tab for reverse navigation
-* Moves backwards through form fields
-*/
+ * Shift+Tab for reverse navigation
+ * Moves backwards through form fields
+ */
 ^F2:: {
     ToolTip("Reverse Tab navigation in 2 seconds...")
     Sleep(2000)
@@ -198,12 +198,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Alt for menu access.
-* Activates menu bar and menu items.
-*
-* @description
-* Demonstrates menu navigation
-*/
+ * Alt for menu access.
+ * Activates menu bar and menu items.
+ * 
+ * @description
+ * Demonstrates menu navigation
+ */
 ^F3:: {
     ToolTip("Alt menu navigation in 2 seconds...")
     Sleep(2000)
@@ -241,9 +241,9 @@ F3:: {
 }
 
 /**
-* Alt+Tab window switching
-* Cycles through open windows
-*/
+ * Alt+Tab window switching
+ * Cycles through open windows
+ */
 ^F4:: {
     ToolTip("Alt+Tab window switching...")
 
@@ -271,12 +271,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Windows key combinations.
-* System-level shortcuts.
-*
-* @description
-* Demonstrates Win+Key shortcuts
-*/
+ * Windows key combinations.
+ * System-level shortcuts.
+ * 
+ * @description
+ * Demonstrates Win+Key shortcuts
+ */
 ^F5:: {
     ToolTip("Windows key shortcuts demo...")
     Sleep(1000)
@@ -305,9 +305,9 @@ F3:: {
 }
 
 /**
-* Win+Number taskbar shortcuts
-* Activates taskbar programs
-*/
+ * Win+Number taskbar shortcuts
+ * Activates taskbar programs
+ */
 ^F6:: {
     ToolTip("Win+Number shortcuts demo...")
     Sleep(1000)
@@ -332,12 +332,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Ctrl+Shift+Alt combinations.
-* Maximum complexity shortcuts.
-*
-* @description
-* Shows three-modifier key presses
-*/
+ * Ctrl+Shift+Alt combinations.
+ * Maximum complexity shortcuts.
+ * 
+ * @description
+ * Shows three-modifier key presses
+ */
 ^F7:: {
     ToolTip("Triple modifier demo in 2 seconds...")
     Sleep(2000)
@@ -365,9 +365,9 @@ F3:: {
 }
 
 /**
-* Sequential modifier presses
-* Multiple modifier combinations in sequence
-*/
+ * Sequential modifier presses
+ * Multiple modifier combinations in sequence
+ */
 ^F8:: {
     ToolTip("Sequential modifiers in 2 seconds...")
     Sleep(2000)
@@ -411,12 +411,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Holding modifier keys down.
-* Uses {ModDown} and {ModUp} syntax.
-*
-* @description
-* Demonstrates manual modifier control
-*/
+ * Holding modifier keys down.
+ * Uses {ModDown} and {ModUp} syntax.
+ * 
+ * @description
+ * Demonstrates manual modifier control
+ */
 ^F9:: {
     ToolTip("Modifier hold/release in 2 seconds...")
     Sleep(2000)
@@ -446,9 +446,9 @@ F3:: {
 }
 
 /**
-* Multiple simultaneous modifiers
-* Holds down multiple keys at once
-*/
+ * Multiple simultaneous modifiers
+ * Holds down multiple keys at once
+ */
 ^F10:: {
     ToolTip("Multiple modifier hold in 2 seconds...")
     Sleep(2000)
@@ -478,12 +478,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* IDE/Editor shortcuts simulation.
-* Common programming editor shortcuts.
-*
-* @description
-* Demonstrates typical IDE keyboard workflow
-*/
+ * IDE/Editor shortcuts simulation.
+ * Common programming editor shortcuts.
+ * 
+ * @description
+ * Demonstrates typical IDE keyboard workflow
+ */
 ^F11:: {
     ToolTip("IDE shortcuts simulation in 2 seconds...")
     Sleep(2000)
@@ -524,9 +524,9 @@ F3:: {
 }
 
 /**
-* Browser navigation shortcuts
-* Common web browser shortcuts
-*/
+ * Browser navigation shortcuts
+ * Common web browser shortcuts
+ */
 ^F12:: {
     ToolTip("Browser shortcuts in 2 seconds...")
     Sleep(2000)
@@ -566,21 +566,21 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends modifier combination safely
-*
-* @param {String} modifiers - Modifier keys (^, +, !, #)
-* @param {String} key - Key to press
-*/
+ * Sends modifier combination safely
+ * 
+ * @param {String} modifiers - Modifier keys (^, +, !, #)
+ * @param {String} key - Key to press
+ */
 SendModified(modifiers, key) {
     Send(modifiers . key)
 }
 
 /**
-* Holds modifier, sends keys, releases modifier
-*
-* @param {String} modifier - Modifier to hold (Ctrl, Shift, Alt, Win)
-* @param {String} keys - Keys to send while holding
-*/
+ * Holds modifier, sends keys, releases modifier
+ * 
+ * @param {String} modifier - Modifier to hold (Ctrl, Shift, Alt, Win)
+ * @param {String} keys - Keys to send while holding
+ */
 SendWithHold(modifier, keys) {
     Send("{" modifier " down}")
     Sleep(50)
@@ -613,7 +613,7 @@ SendWithHold(modifier, keys) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

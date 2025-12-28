@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* IndexOf() - Find index of value (Standalone Implementation)
-*
-* Gets the index at which the first occurrence of value is found.
-*/
+ * IndexOf() - Find index of value (Standalone Implementation)
+ * 
+ * Gets the index at which the first occurrence of value is found.
+ */
 
 IndexOf(array, searchValue, fromIndex := 1) {
     loop array.Length {
@@ -30,5 +30,5 @@ result3 := IndexOf([1, 2, 3], 99)
 ; => -1 (not found)
 
 MsgBox("IndexOf 2: " result1 "`n"
-. "IndexOf 2 from position 3: " result2 "`n"
-. "IndexOf 99 (not found): " result3)
+    . "IndexOf 2 from position 3: " result2 "`n"
+    . "IndexOf 99 (not found): " result3)

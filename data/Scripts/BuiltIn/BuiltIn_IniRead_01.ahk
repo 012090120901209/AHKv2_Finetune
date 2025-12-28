@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 INI Read Examples - Part 1
-* ============================================================================
-*
-* This file demonstrates comprehensive usage of the IniRead function in
-* AutoHotkey v2, including reading INI files, sections, and default values.
-*
-* @description Examples of reading INI configuration files
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 INI Read Examples - Part 1
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive usage of the IniRead function in
+ * AutoHotkey v2, including reading INI files, sections, and default values.
+ * 
+ * @description Examples of reading INI configuration files
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic INI Reading
 ; ============================================================================
 
 /**
-* @function Example1_BasicIniRead
-* @description Demonstrates basic INI file reading
-* @returns {void}
-*/
+ * @function Example1_BasicIniRead
+ * @description Demonstrates basic INI file reading
+ * @returns {void}
+ */
 Example1_BasicIniRead() {
     MsgBox "=== Example 1: Basic INI Reading ===`n`n" .
-    "Creating and reading an INI file..."
+        "Creating and reading an INI file..."
 
     iniFile := A_ScriptDir . "\test_config.ini"
 
@@ -69,13 +69,13 @@ Example1_BasicIniRead() {
 ; ============================================================================
 
 /**
-* @function Example2_DefaultValues
-* @description Demonstrates reading INI values with defaults
-* @returns {void}
-*/
+ * @function Example2_DefaultValues
+ * @description Demonstrates reading INI values with defaults
+ * @returns {void}
+ */
 Example2_DefaultValues() {
     MsgBox "=== Example 2: Default Values ===`n`n" .
-    "Reading INI with default fallback values..."
+        "Reading INI with default fallback values..."
 
     iniFile := A_ScriptDir . "\partial_config.ini"
 
@@ -106,13 +106,13 @@ Example2_DefaultValues() {
 ; ============================================================================
 
 /**
-* @function Example3_ReadAllSections
-* @description Demonstrates reading all sections from an INI file
-* @returns {void}
-*/
+ * @function Example3_ReadAllSections
+ * @description Demonstrates reading all sections from an INI file
+ * @returns {void}
+ */
 Example3_ReadAllSections() {
     MsgBox "=== Example 3: Read All Sections ===`n`n" .
-    "Reading all sections from INI file..."
+        "Reading all sections from INI file..."
 
     iniFile := A_ScriptDir . "\multi_section.ini"
 
@@ -140,7 +140,7 @@ Example3_ReadAllSections() {
 
     for section in sectionList {
         if (section != "")
-        result .= "  • " . section . "`n"
+            result .= "  • " . section . "`n"
     }
 
     MsgBox result, "All Sections"
@@ -151,13 +151,13 @@ Example3_ReadAllSections() {
 ; ============================================================================
 
 /**
-* @function Example4_ReadAllKeys
-* @description Demonstrates reading all keys in a section
-* @returns {void}
-*/
+ * @function Example4_ReadAllKeys
+ * @description Demonstrates reading all keys in a section
+ * @returns {void}
+ */
 Example4_ReadAllKeys() {
     MsgBox "=== Example 4: Read All Keys ===`n`n" .
-    "Reading all keys in a section..."
+        "Reading all keys in a section..."
 
     iniFile := A_ScriptDir . "\keys_config.ini"
 
@@ -194,9 +194,9 @@ Example4_ReadAllKeys() {
 ; ============================================================================
 
 /**
-* @class ConfigManager
-* @description Manages INI configuration files
-*/
+ * @class ConfigManager
+ * @description Manages INI configuration files
+ */
 class ConfigManager {
     iniFile := ""
 
@@ -205,49 +205,49 @@ class ConfigManager {
     }
 
     /**
-    * @method GetString
-    * @description Gets a string value
-    * @param {String} section - Section name
-    * @param {String} key - Key name
-    * @param {String} default - Default value
-    * @returns {String} Value
-    */
+     * @method GetString
+     * @description Gets a string value
+     * @param {String} section - Section name
+     * @param {String} key - Key name
+     * @param {String} default - Default value
+     * @returns {String} Value
+     */
     GetString(section, key, default := "") {
         return IniRead(this.iniFile, section, key, default)
     }
 
     /**
-    * @method GetInteger
-    * @description Gets an integer value
-    * @param {String} section - Section name
-    * @param {String} key - Key name
-    * @param {Integer} default - Default value
-    * @returns {Integer} Value
-    */
+     * @method GetInteger
+     * @description Gets an integer value
+     * @param {String} section - Section name
+     * @param {String} key - Key name
+     * @param {Integer} default - Default value
+     * @returns {Integer} Value
+     */
     GetInteger(section, key, default := 0) {
         value := IniRead(this.iniFile, section, key, default)
         return Integer(value)
     }
 
     /**
-    * @method GetBoolean
-    * @description Gets a boolean value
-    * @param {String} section - Section name
-    * @param {String} key - Key name
-    * @param {Boolean} default - Default value
-    * @returns {Boolean} Value
-    */
+     * @method GetBoolean
+     * @description Gets a boolean value
+     * @param {String} section - Section name
+     * @param {String} key - Key name
+     * @param {Boolean} default - Default value
+     * @returns {Boolean} Value
+     */
     GetBoolean(section, key, default := false) {
         value := IniRead(this.iniFile, section, key, default ? "true" : "false")
         return (value = "true" || value = "1" || value = "yes")
     }
 
     /**
-    * @method GetSection
-    * @description Gets all keys in a section as a Map
-    * @param {String} section - Section name
-    * @returns {Map} Section contents
-    */
+     * @method GetSection
+     * @description Gets all keys in a section as a Map
+     * @param {String} section - Section name
+     * @returns {Map} Section contents
+     */
     GetSection(section) {
         keys := IniRead(this.iniFile, section, , "")
         keyList := StrSplit(keys, "`n")
@@ -264,10 +264,10 @@ class ConfigManager {
     }
 
     /**
-    * @method GetAllSections
-    * @description Gets all section names
-    * @returns {Array} Section names
-    */
+     * @method GetAllSections
+     * @description Gets all section names
+     * @returns {Array} Section names
+     */
     GetAllSections() {
         sections := IniRead(this.iniFile, , , "")
         sectionList := StrSplit(sections, "`n")
@@ -275,7 +275,7 @@ class ConfigManager {
         result := []
         for section in sectionList {
             if (section != "")
-            result.Push(section)
+                result.Push(section)
         }
 
         return result
@@ -283,13 +283,13 @@ class ConfigManager {
 }
 
 /**
-* @function Example5_ConfigManagerClass
-* @description Demonstrates the ConfigManager class
-* @returns {void}
-*/
+ * @function Example5_ConfigManagerClass
+ * @description Demonstrates the ConfigManager class
+ * @returns {void}
+ */
 Example5_ConfigManagerClass() {
     MsgBox "=== Example 5: Config Manager Class ===`n`n" .
-    "Using ConfigManager class..."
+        "Using ConfigManager class..."
 
     iniFile := A_ScriptDir . "\app_config.ini"
 
@@ -328,13 +328,13 @@ Example5_ConfigManagerClass() {
 ; ============================================================================
 
 /**
-* @function Example6_MultiLanguage
-* @description Demonstrates multi-language INI configuration
-* @returns {void}
-*/
+ * @function Example6_MultiLanguage
+ * @description Demonstrates multi-language INI configuration
+ * @returns {void}
+ */
 Example6_MultiLanguage() {
     MsgBox "=== Example 6: Multi-Language Config ===`n`n" .
-    "Reading multi-language strings..."
+        "Reading multi-language strings..."
 
     iniFile := A_ScriptDir . "\lang_config.ini"
 
@@ -376,13 +376,13 @@ Example6_MultiLanguage() {
 ; ============================================================================
 
 /**
-* @function Example7_AppSettings
-* @description Demonstrates comprehensive application settings reading
-* @returns {void}
-*/
+ * @function Example7_AppSettings
+ * @description Demonstrates comprehensive application settings reading
+ * @returns {void}
+ */
 Example7_AppSettings() {
     MsgBox "=== Example 7: Application Settings ===`n`n" .
-    "Reading comprehensive app settings..."
+        "Reading comprehensive app settings..."
 
     iniFile := A_ScriptDir . "\full_app_config.ini"
 
@@ -467,8 +467,8 @@ ShowMenu() {
         case "7": Example7_AppSettings()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

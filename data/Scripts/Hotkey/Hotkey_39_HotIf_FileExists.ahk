@@ -2,14 +2,14 @@
 #SingleInstance Force
 
 /**
-* Context-Sensitive - File System
-* Hotkeys based on file/folder existence
-*/
+ * Context-Sensitive - File System
+ * Hotkeys based on file/folder existence
+ */
 
 ; Only works if a specific file exists
 #HotIf FileExist(A_ScriptDir "\config.txt")
 
-F7::MsgBox("Config file exists!`n`nF7 loaded config")
+F7:: MsgBox("Config file exists!`n`nF7 loaded config")
 #HotIf
 
 ; Only if config doesn't exist
@@ -33,7 +33,8 @@ F7:: {
 ; Check if a directory exists
 #HotIf DirExist(A_MyDocuments "\Projects")
 
-F8::MsgBox("Projects folder exists in Documents")
+F8:: MsgBox("Projects folder exists in Documents")
 #HotIf
 
 #HotIf  ; Reset
+

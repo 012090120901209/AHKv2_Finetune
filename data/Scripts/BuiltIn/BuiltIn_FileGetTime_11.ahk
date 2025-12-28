@@ -1,54 +1,54 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetTime_11.ahk
-*
-* DESCRIPTION:
-* Sorting files by date and timestamp-based organization
-*
-* FEATURES:
-* - Sort files by modification time
-* - Sort by creation time
-* - Find newest/oldest files
-* - Time-based file ordering
-* - Chronological file listing
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetTime() for sorting
-* - Array sorting algorithms
-* - Timestamp comparisons
-* - File organization
-* - Custom sort functions
-*
-* LEARNING POINTS:
-* 1. Use FileGetTime() to get sort keys
-* 2. Compare timestamps for ordering
-* 3. Sort arrays of file information
-* 4. Find newest and oldest files
-* 5. Create chronological listings
-* 6. Implement custom sort orders
-*/
+ * BuiltIn_FileGetTime_11.ahk
+ * 
+ * DESCRIPTION:
+ * Sorting files by date and timestamp-based organization
+ * 
+ * FEATURES:
+ * - Sort files by modification time
+ * - Sort by creation time
+ * - Find newest/oldest files
+ * - Time-based file ordering
+ * - Chronological file listing
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetTime() for sorting
+ * - Array sorting algorithms
+ * - Timestamp comparisons
+ * - File organization
+ * - Custom sort functions
+ * 
+ * LEARNING POINTS:
+ * 1. Use FileGetTime() to get sort keys
+ * 2. Compare timestamps for ordering
+ * 3. Sort arrays of file information
+ * 4. Find newest and oldest files
+ * 5. Create chronological listings
+ * 6. Implement custom sort orders
+ */
 
 ; ============================================================
 ; Example 1: Sort Files by Modification Time
 ; ============================================================
 
 /**
-* Get files sorted by modification time
-*
-* @param {String} dirPath - Directory to scan
-* @param {Boolean} newestFirst - Sort order
-* @returns {Array} - Sorted file list
-*/
+ * Get files sorted by modification time
+ * 
+ * @param {String} dirPath - Directory to scan
+ * @param {Boolean} newestFirst - Sort order
+ * @returns {Array} - Sorted file list
+ */
 GetFilesSortedByTime(dirPath, newestFirst := true) {
     files := []
 
     if (!DirExist(dirPath))
-    return files
+        return files
 
     ; Collect files with timestamps
     Loop Files, dirPath "\*.*", "F" {
@@ -66,8 +66,8 @@ GetFilesSortedByTime(dirPath, newestFirst := true) {
         Loop files.Length - outerIndex {
             innerIndex := A_Index
             shouldSwap := newestFirst
-            ? (files[innerIndex].modified < files[innerIndex + 1].modified)
-            : (files[innerIndex].modified > files[innerIndex + 1].modified)
+                ? (files[innerIndex].modified < files[innerIndex + 1].modified)
+                : (files[innerIndex].modified > files[innerIndex + 1].modified)
 
             if (shouldSwap) {
                 temp := files[innerIndex]
@@ -106,21 +106,21 @@ MsgBox(output, "Sorted Files", "Icon!")
 ; ============================================================
 
 /**
-* Find newest and oldest files in directory
-*
-* @param {String} dirPath - Directory to search
-* @param {String} timeType - Time type (M/C/A)
-* @returns {Object} - Newest and oldest files
-*/
+ * Find newest and oldest files in directory
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {String} timeType - Time type (M/C/A)
+ * @returns {Object} - Newest and oldest files
+ */
 FindNewestOldest(dirPath, timeType := "M") {
     result := {
-        newest: {name: "", timestamp: "", path: ""},
-        oldest: {name: "", timestamp: "99999999999999", path: ""},
+        newest: { name: "", timestamp: "", path: "" },
+        oldest: { name: "", timestamp: "99999999999999", path: "" },
         found: false
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "F" {
         timestamp := FileGetTime(A_LoopFilePath, timeType)
@@ -169,16 +169,16 @@ if (extremes.found) {
 ; ============================================================
 
 /**
-* Sort files by timestamp, then by name
-*
-* @param {String} dirPath - Directory to scan
-* @returns {Array} - Multi-level sorted files
-*/
+ * Sort files by timestamp, then by name
+ * 
+ * @param {String} dirPath - Directory to scan
+ * @returns {Array} - Multi-level sorted files
+ */
 SortFilesMultiLevel(dirPath) {
     files := []
 
     if (!DirExist(dirPath))
-    return files
+        return files
 
     Loop Files, dirPath "\*.*", "F" {
         files.Push({
@@ -201,10 +201,10 @@ SortFilesMultiLevel(dirPath) {
 
             ; Primary sort: by modified time (newest first)
             if (f1.modified < f2.modified)
-            shouldSwap := true
+                shouldSwap := true
             ; Secondary sort: by name (if same time)
             else if (f1.modified = f2.modified && f1.name > f2.name)
-            shouldSwap := true
+                shouldSwap := true
 
             if (shouldSwap) {
                 files[innerIndex] := f2
@@ -232,19 +232,19 @@ MsgBox(output, "Multi-Level Sort", "Icon!")
 ; ============================================================
 
 /**
-* Get top N most recently modified files
-*
-* @param {String} dirPath - Directory to search
-* @param {Integer} count - Number of files to return
-* @returns {Array} - Top N recent files
-*/
+ * Get top N most recently modified files
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {Integer} count - Number of files to return
+ * @returns {Array} - Top N recent files
+ */
 GetTopRecentFiles(dirPath, count := 5) {
     allFiles := GetFilesSortedByTime(dirPath, true)
     topFiles := []
 
     maxCount := Min(count, allFiles.Length)
     Loop maxCount
-    topFiles.Push(allFiles[A_Index])
+        topFiles.Push(allFiles[A_Index])
 
     return topFiles
 }
@@ -265,11 +265,11 @@ MsgBox(output, "Top Recent", "Icon!")
 ; ============================================================
 
 /**
-* Create chronological listing with grouping
-*
-* @param {String} dirPath - Directory to scan
-* @returns {Object} - Grouped chronological listing
-*/
+ * Create chronological listing with grouping
+ * 
+ * @param {String} dirPath - Directory to scan
+ * @returns {Object} - Grouped chronological listing
+ */
 CreateChronologicalListing(dirPath) {
     listing := {
         today: [],
@@ -280,7 +280,7 @@ CreateChronologicalListing(dirPath) {
     }
 
     if (!DirExist(dirPath))
-    return listing
+        return listing
 
     now := A_Now
     todayStart := FormatTime(now, "yyyyMMdd") . "000000"
@@ -298,15 +298,15 @@ CreateChronologicalListing(dirPath) {
         }
 
         if (modified >= todayStart)
-        listing.today.Push(fileInfo)
+            listing.today.Push(fileInfo)
         else if (modified >= yesterdayStart)
-        listing.yesterday.Push(fileInfo)
+            listing.yesterday.Push(fileInfo)
         else if (modified >= weekStart)
-        listing.thisWeek.Push(fileInfo)
+            listing.thisWeek.Push(fileInfo)
         else if (modified >= monthStart)
-        listing.thisMonth.Push(fileInfo)
+            listing.thisMonth.Push(fileInfo)
         else
-        listing.older.Push(fileInfo)
+            listing.older.Push(fileInfo)
     }
 
     return listing
@@ -320,28 +320,28 @@ output := "CHRONOLOGICAL LISTING:`n`n"
 if (chronListing.today.Length > 0) {
     output .= "TODAY:`n"
     for file in chronListing.today
-    output .= "  • " file.name " (" file.formatted ")`n"
+        output .= "  • " file.name " (" file.formatted ")`n"
     output .= "`n"
 }
 
 if (chronListing.yesterday.Length > 0) {
     output .= "YESTERDAY:`n"
     for file in chronListing.yesterday
-    output .= "  • " file.name "`n"
+        output .= "  • " file.name "`n"
     output .= "`n"
 }
 
 if (chronListing.thisWeek.Length > 0) {
     output .= "THIS WEEK:`n"
     for file in chronListing.thisWeek
-    output .= "  • " file.name "`n"
+        output .= "  • " file.name "`n"
     output .= "`n"
 }
 
 if (chronListing.older.Length > 0) {
     output .= "OLDER:`n"
     for file in chronListing.older
-    output .= "  • " file.name "`n"
+        output .= "  • " file.name "`n"
 }
 
 MsgBox(output, "Chronological", "Icon!")
@@ -351,16 +351,16 @@ MsgBox(output, "Chronological", "Icon!")
 ; ============================================================
 
 /**
-* Compare creation and modification order
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Comparison results
-*/
+ * Compare creation and modification order
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Comparison results
+ */
 CompareCreationModification(dirPath) {
     files := []
 
     if (!DirExist(dirPath))
-    return files
+        return files
 
     Loop Files, dirPath "\*.*", "F" {
         created := FileGetTime(A_LoopFilePath, "C")
@@ -388,7 +388,7 @@ for file in comparison {
     output .= "  Modified: " FormatTime(file.modified, "HH:mm:ss") "`n"
     output .= "  Status: " (file.wasModified ? "Modified" : "Unchanged") "`n"
     if (file.wasModified)
-    output .= "  Diff: " file.timeDiff " seconds`n"
+        output .= "  Diff: " file.timeDiff " seconds`n"
     output .= "`n"
 }
 
@@ -399,16 +399,16 @@ MsgBox(output, "Time Comparison", "Icon!")
 ; ============================================================
 
 /**
-* Create timeline view of file modifications
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {String} - Timeline display
-*/
+ * Create timeline view of file modifications
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {String} - Timeline display
+ */
 CreateFileTimeline(dirPath) {
     files := GetFilesSortedByTime(dirPath, false)  ; Oldest first
 
     if (files.Length = 0)
-    return "No files found"
+        return "No files found"
 
     timeline := "FILE MODIFICATION TIMELINE:`n`n"
 

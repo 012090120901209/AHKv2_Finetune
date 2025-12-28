@@ -1,28 +1,28 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinClose Examples - Part 2: Force Close
-* ============================================================================
-*
-* Demonstrates forceful window closing when normal close fails.
-* Handles unresponsive applications.
-*
-* @description Force close and kill process examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinClose Examples - Part 2: Force Close
+ * ============================================================================
+ * 
+ * Demonstrates forceful window closing when normal close fails.
+ * Handles unresponsive applications.
+ * 
+ * @description Force close and kill process examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Force Close vs Normal Close
 ; ============================================================================
 
 /**
-* Tries normal close first, then forces if needed
-*
-* @hotkey F1 - Smart force close
-*/
+ * Tries normal close first, then forces if needed
+ * 
+ * @hotkey F1 - Smart force close
+ */
 F1:: {
     SmartForceClose()
 }
@@ -61,10 +61,10 @@ SmartForceClose() {
 ; ============================================================================
 
 /**
-* Identifies and kills unresponsive windows
-*
-* @hotkey F2 - Kill unresponsive
-*/
+ * Identifies and kills unresponsive windows
+ * 
+ * @hotkey F2 - Kill unresponsive
+ */
 F2:: {
     KillUnresponsive()
 }
@@ -96,10 +96,10 @@ KillUnresponsive() {
 ; ============================================================================
 
 /**
-* Sends WM_CLOSE message to window
-*
-* @hotkey F3 - Send WM_CLOSE
-*/
+ * Sends WM_CLOSE message to window
+ * 
+ * @hotkey F3 - Send WM_CLOSE
+ */
 F3:: {
     SendWMClose()
 }
@@ -128,10 +128,10 @@ SendWMClose() {
 ; ============================================================================
 
 /**
-* Force closes multiple selected windows
-*
-* @hotkey F4 - Batch force close
-*/
+ * Force closes multiple selected windows
+ * 
+ * @hotkey F4 - Batch force close
+ */
 F4:: {
     BatchForceClose()
 }
@@ -195,10 +195,10 @@ BatchForceClose() {
 ; ============================================================================
 
 /**
-* Kills all processes by executable name
-*
-* @hotkey F5 - Kill process by name
-*/
+ * Kills all processes by executable name
+ * 
+ * @hotkey F5 - Kill process by name
+ */
 F5:: {
     KillProcessByName()
 }
@@ -239,10 +239,10 @@ KillProcessByName() {
 ; ============================================================================
 
 /**
-* Emergency function to close/kill all non-system windows
-*
-* @hotkey F6 - Emergency kill all
-*/
+ * Emergency function to close/kill all non-system windows
+ * 
+ * @hotkey F6 - Emergency kill all
+ */
 F6:: {
     EmergencyKillAll()
 }
@@ -281,10 +281,10 @@ EmergencyKillAll() {
 ; ============================================================================
 
 /**
-* Monitors and kills processes using too much resources
-*
-* @hotkey F7 - Resource monitor
-*/
+ * Monitors and kills processes using too much resources
+ * 
+ * @hotkey F7 - Resource monitor
+ */
 F7:: {
     ; Simplified version
     MsgBox("This feature would monitor CPU/Memory usage and kill resource-heavy processes.", "Info", 64)
@@ -294,7 +294,7 @@ F7:: {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

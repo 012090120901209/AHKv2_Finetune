@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_05_DragDrop.ahk
-*
-* DESCRIPTION:
-* Demonstrates drag-and-drop operations in TreeView controls, including
-* moving nodes, reordering, and cross-tree drag and drop.
-*
-* FEATURES:
-* - Internal drag and drop reordering
-* - Moving nodes between parents
-* - Visual drag feedback
-* - Drop validation
-* - Cross-TreeView drag and drop
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Mouse event handling
-* - Coordinate tracking
-* - GUI control manipulation
-* - State management during drag operations
-*
-* LEARNING POINTS:
-* 1. TreeView doesn't have built-in drag-drop (must implement manually)
-* 2. Track mouse events to detect drag operations
-* 3. Use visual feedback during dragging
-* 4. Validate drop targets before moving nodes
-* 5. Preserve node properties during moves
-*/
+ * BuiltIn_TreeView_05_DragDrop.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates drag-and-drop operations in TreeView controls, including
+ * moving nodes, reordering, and cross-tree drag and drop.
+ * 
+ * FEATURES:
+ * - Internal drag and drop reordering
+ * - Moving nodes between parents
+ * - Visual drag feedback
+ * - Drop validation
+ * - Cross-TreeView drag and drop
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Mouse event handling
+ * - Coordinate tracking
+ * - GUI control manipulation
+ * - State management during drag operations
+ * 
+ * LEARNING POINTS:
+ * 1. TreeView doesn't have built-in drag-drop (must implement manually)
+ * 2. Track mouse events to detect drag operations
+ * 3. Use visual feedback during dragging
+ * 4. Validate drop targets before moving nodes
+ * 5. Preserve node properties during moves
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Drag and Drop
@@ -60,20 +60,20 @@ Example1_BasicDragDrop() {
     TV.Modify(Root, "Expand")
 
     ; Drag state
-    dragData := {active: false, sourceID: 0, sourceText: ""}
+    dragData := { active: false, sourceID: 0, sourceText: "" }
 
     ; Instructions
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Click and hold on a task to start dragging.`n" .
-    "Release over a category to move the task.`n" .
-    "Try moving tasks between To Do, In Progress, and Done.")
+        "Click and hold on a task to start dragging.`n" .
+        "Release over a category to move the task.`n" .
+        "Try moving tasks between To Do, In Progress, and Done.")
 
     ; Mouse events
     TV.OnEvent("Click", StartDrag)
 
     StartDrag(GuiCtrl, ItemID) {
         if (!ItemID || ItemID = Root || ItemID = Todo || ItemID = InProgress || ItemID = Done)
-        return
+            return
 
         dragData.active := true
         dragData.sourceID := ItemID
@@ -161,14 +161,14 @@ Example2_VisualFeedback() {
     statusText := myGui.Add("Text", "xm y+10 w500 Border", "Ready")
 
     infoText := myGui.Add("Text", "xm y+5 w500",
-    "Drag files between folders. Valid drop targets are highlighted.")
+        "Drag files between folders. Valid drop targets are highlighted.")
 
     ; Events
     TV.OnEvent("Click", OnClick)
 
     OnClick(GuiCtrl, ItemID) {
         if (!ItemID || ItemID = Root)
-        return
+            return
 
         ; Check if it's a file (not a folder)
         if (!TV.GetChild(ItemID)) {
@@ -206,9 +206,9 @@ Example2_VisualFeedback() {
                 dragState.targetID := currentTarget
 
                 if (dragState.validDrop)
-                statusText.Value := "Drop on: " . TV.GetText(currentTarget)
+                    statusText.Value := "Drop on: " . TV.GetText(currentTarget)
                 else
-                statusText.Value := "Invalid drop target"
+                    statusText.Value := "Invalid drop target"
             }
         }
     }
@@ -241,7 +241,7 @@ Example3_ReorderSiblings() {
     TV.Modify(Root, "Expand")
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Drag items up or down to reorder priorities.")
+        "Drag items up or down to reorder priorities.")
 
     ; Reorder controls
     myGui.Add("Text", "xm y+10", "Reorder Controls:")
@@ -260,9 +260,9 @@ Example3_ReorderSiblings() {
 
     MoveUp(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = Root)
-        return
+            return
 
         ; Get previous sibling
         if (prev := TV.GetPrev(selected)) {
@@ -272,9 +272,9 @@ Example3_ReorderSiblings() {
 
     MoveDown(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = Root)
-        return
+            return
 
         ; Get next sibling
         if (next := TV.GetNext(selected)) {
@@ -284,9 +284,9 @@ Example3_ReorderSiblings() {
 
     MoveToTop(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = Root)
-        return
+            return
 
         parent := TV.GetParent(selected)
         firstChild := TV.GetChild(parent)
@@ -301,9 +301,9 @@ Example3_ReorderSiblings() {
 
     MoveToBottom(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = Root)
-        return
+            return
 
         parent := TV.GetParent(selected)
         text := TV.GetText(selected)
@@ -311,7 +311,7 @@ Example3_ReorderSiblings() {
         ; Find last sibling
         lastSibling := TV.GetChild(parent)
         while (next := TV.GetNext(lastSibling))
-        lastSibling := next
+            lastSibling := next
 
         if (selected != lastSibling) {
             TV.Delete(selected)
@@ -337,7 +337,7 @@ MoveNodeBefore(TV, sourceID, targetID) {
     child := TV.GetChild(parent)
     while (child) {
         if (child != sourceID)
-        siblings.Push({id: child, text: TV.GetText(child)})
+            siblings.Push({ id: child, text: TV.GetText(child) })
         child := TV.GetNext(child)
     }
 
@@ -345,7 +345,7 @@ MoveNodeBefore(TV, sourceID, targetID) {
     newSiblings := []
     for sibling in siblings {
         if (sibling.id = targetID)
-        newSiblings.Push({id: 0, text: sourceText})
+            newSiblings.Push({ id: 0, text: sourceText })
         newSiblings.Push(sibling)
     }
 
@@ -394,7 +394,7 @@ Example4_CrossTreeDrag() {
 
     ; Instructions
     infoText := myGui.Add("Text", "xm y+10 w530",
-    "Click items in the Source Tree to move them to the Target Tree.")
+        "Click items in the Source Tree to move them to the Target Tree.")
 
     ; Simple transfer buttons
     transferBtn := myGui.Add("Button", "xm y+10 w100", "Transfer →")
@@ -501,7 +501,7 @@ Example5_DragRestrictions() {
 
     MoveToDefpt(targetDept) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
 
         ; Validate source
         parent := TV.GetParent(selected)
@@ -583,13 +583,13 @@ Example6_DragUndo() {
 
     DoMove(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (TV.GetChild(selected))  ; Don't move folders
-        return
+            return
 
         parent := TV.GetParent(selected)
         if (parent = Category2)
-        return
+            return
 
         ; Record action
         action := {
@@ -602,7 +602,7 @@ Example6_DragUndo() {
 
         ; Remove any redo history
         if (historyPos < history.Length)
-        history.Length := historyPos
+            history.Length := historyPos
 
         history.Push(action)
         historyPos := history.Length
@@ -739,7 +739,7 @@ Example7_CompleteDragDrop() {
 
     ; Info
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Drag and drop items to reorganize. Folders can be moved with contents.")
+        "Drag and drop items to reorganize. Folders can be moved with contents.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -818,7 +818,7 @@ class DragDropManager {
 
     StartDrag(itemID) {
         if (!itemID || !this.TV.GetParent(itemID))
-        return false
+            return false
 
         this.isDragging := true
         this.sourceID := itemID
@@ -828,7 +828,7 @@ class DragDropManager {
 
     EndDrag(targetID) {
         if (!this.isDragging)
-        return false
+            return false
 
         success := false
         if (targetID && targetID != this.sourceID) {
@@ -847,11 +847,11 @@ class DragDropManager {
     ValidateDrop(sourceID, targetID) {
         ; Can't drop on self
         if (sourceID = targetID)
-        return false
+            return false
 
         ; Can't drop on descendant
         if (this.IsDescendant(sourceID, targetID))
-        return false
+            return false
 
         return true
     }
@@ -860,7 +860,7 @@ class DragDropManager {
         parent := this.TV.GetParent(nodeID)
         while (parent) {
             if (parent = ancestorID)
-            return true
+                return true
             parent := this.TV.GetParent(parent)
         }
         return false
@@ -903,7 +903,7 @@ class DragDropManager {
         for childData in children {
             newChild := this.TV.Add(childData.text, parentID)
             if (childData.children.Length > 0)
-            this.RestoreChildren(newChild, childData.children)
+                this.RestoreChildren(newChild, childData.children)
         }
     }
 }

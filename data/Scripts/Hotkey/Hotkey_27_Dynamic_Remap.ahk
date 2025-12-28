@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Dynamic Key Remapping
-* Change what keys do at runtime
-*/
+ * Dynamic Key Remapping
+ * Change what keys do at runtime
+ */
 
 ; F1 to toggle between two different behaviors for 'a' key
 mode := 1

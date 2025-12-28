@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Dwmapi_01_Desktop.ahk
-*
-* DESCRIPTION:
-* Demonstrates Desktop Window Manager operations using Windows API through DllCall.
-* Comprehensive examples showing various Desktop operations.
-*
-* FEATURES:
-* - Desktop API integration
-* - Practical Desktop examples
-* - Error handling
-* - Resource management
-* - Advanced Desktop techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Dwmapi API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Dwmapi API functions
-* 2. Working with Desktop operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Desktop techniques
-* 6. Best practices for Dwmapi API
-* 7. Real-world Desktop applications
-*/
+ * BuiltIn_DllCall_Dwmapi_01_Desktop.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Desktop Window Manager operations using Windows API through DllCall.
+ * Comprehensive examples showing various Desktop operations.
+ * 
+ * FEATURES:
+ * - Desktop API integration
+ * - Practical Desktop examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Desktop techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Dwmapi API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Dwmapi API functions
+ * 2. Working with Desktop operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Desktop techniques
+ * 6. Best practices for Dwmapi API
+ * 7. Real-world Desktop applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Desktop Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Desktop operations
-*/
+ * Helper function for Desktop operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Desktop Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

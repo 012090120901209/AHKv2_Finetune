@@ -12,7 +12,7 @@ class Optional {
 
     static Of(value) => Optional(value)
     static Empty() => Optional()
-    
+
     static FromNullable(value) {
         return (value = "" || value = 0) ? Optional.Empty() : Optional.Of(value)
     }
@@ -28,7 +28,7 @@ class Optional {
             return Optional.Empty()
         return this
     }
-    
+
     FlatMap(fn) {
         if !this.hasValue
             return Optional.Empty()
@@ -42,13 +42,13 @@ class Optional {
             action(this.value)
         return this
     }
-    
+
     IfEmpty(action) {
         if !this.hasValue
             action()
         return this
     }
-    
+
     OrElse(alternative) {
         return this.hasValue ? this : alternative
     }
@@ -60,7 +60,7 @@ class UserService {
         1, Map("name", "Alice", "email", "alice@example.com"),
         2, Map("name", "Bob", "email", "")
     )
-    
+
     static FindById(id) {
         return this.users.Has(id) ? Optional.Of(this.users[id]) : Optional.Empty()
     }

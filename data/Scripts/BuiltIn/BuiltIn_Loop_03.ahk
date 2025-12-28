@@ -1,21 +1,21 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Nested Loops
-* ============================================================================
-*
-* @file BuiltIn_Loop_03.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples of nested loop structures including 2D iteration,
-matrix operations, and multi-dimensional data processing.
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Nested Loops
+ * ============================================================================
+ * 
+ * @file BuiltIn_Loop_03.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples of nested loop structures including 2D iteration,
+ * matrix operations, and multi-dimensional data processing.
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 
 ; ============================================================================
@@ -23,8 +23,8 @@ matrix operations, and multi-dimensional data processing.
 ; ============================================================================
 
 /**
-* Demonstrates basic nested loops.
-*/
+ * Demonstrates basic nested loops.
+ */
 Example1_Basic_Nested_Loops() {
     OutputDebug("=== Example 1: Basic Nested Loops ===`n")
 
@@ -55,13 +55,13 @@ Example1_Basic_Nested_Loops() {
 ; ============================================================================
 
 /**
-* Demonstrates 2d array processing.
-*/
+ * Demonstrates 2d array processing.
+ */
 Example2_2D_Array_Processing() {
     OutputDebug("=== Example 2: 2D Array Processing ===`n")
 
     ; Create and process 2D array
-    grid := [[1,2,3], [4,5,6], [7,8,9]]
+    grid := [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
     Loop grid.Length {
         row := grid[A_Index]
@@ -89,13 +89,13 @@ Example2_2D_Array_Processing() {
 ; ============================================================================
 
 /**
-* Demonstrates matrix operations.
-*/
+ * Demonstrates matrix operations.
+ */
 Example3_Matrix_Operations() {
     OutputDebug("=== Example 3: Matrix Operations ===`n")
 
     ; Transpose matrix
-    matrix := [[1,2,3], [4,5,6]]
+    matrix := [[1, 2, 3], [4, 5, 6]]
     rows := matrix.Length
     cols := matrix[1].Length
 
@@ -116,8 +116,8 @@ Example3_Matrix_Operations() {
 ; ============================================================================
 
 /**
-* Demonstrates pattern generation.
-*/
+ * Demonstrates pattern generation.
+ */
 Example4_Pattern_Generation() {
     OutputDebug("=== Example 4: Pattern Generation ===`n")
 
@@ -137,9 +137,9 @@ Example4_Pattern_Generation() {
         stars := (A_Index * 2) - 1
         line := ""
         Loop spaces
-        line .= " "
+            line .= " "
         Loop stars
-        line .= "*"
+            line .= "*"
         OutputDebug("  " line "`n")
     }
 
@@ -151,8 +151,8 @@ Example4_Pattern_Generation() {
 ; ============================================================================
 
 /**
-* Demonstrates coordinate systems.
-*/
+ * Demonstrates coordinate systems.
+ */
 Example5_Coordinate_Systems() {
     OutputDebug("=== Example 5: Coordinate Systems ===`n")
 
@@ -174,19 +174,19 @@ Example5_Coordinate_Systems() {
 ; ============================================================================
 
 /**
-* Demonstrates search in 2d.
-*/
+ * Demonstrates search in 2d.
+ */
 Example6_Search_in_2D() {
     OutputDebug("=== Example 6: Search in 2D ===`n")
 
     ; Find value in grid
-    data := [[1,2,3], [4,5,6], [7,8,9]]
+    data := [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     target := 5
     found := false
 
     Loop data.Length {
         if (found)
-        break
+            break
         row := A_Index
         Loop data[row].Length {
             if (data[row][A_Index] = target) {
@@ -205,8 +205,8 @@ Example6_Search_in_2D() {
 ; ============================================================================
 
 /**
-* Demonstrates combined iteration.
-*/
+ * Demonstrates combined iteration.
+ */
 Example7_Combined_Iteration() {
     OutputDebug("=== Example 7: Combined Iteration ===`n")
 

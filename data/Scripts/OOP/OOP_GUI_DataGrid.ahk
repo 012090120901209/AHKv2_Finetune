@@ -27,11 +27,11 @@ class DataGrid {
 
         ; Add data
         for row in this.data
-        this.listView.Add("", row*)
+            this.listView.Add("", row*)
 
         ; Auto-size columns
         loop this.columns.Length
-        this.listView.ModifyCol(A_Index, "AutoHdr")
+            this.listView.ModifyCol(A_Index, "AutoHdr")
 
         ; Add buttons
         this.gui.Add("Button", "x10 y320 w100", "Sort").OnEvent("Click", (*) => this.Sort())
@@ -48,14 +48,14 @@ class DataGrid {
     Sort() {
         row := this.listView.GetNext()
         if (row)
-        this.listView.Modify(row, "Select")
+            this.listView.Modify(row, "Select")
         MsgBox("Sorting functionality - Click column headers to sort")
     }
 
     Filter() {
         filter := InputBox("Enter filter text:", "Filter").Value
         if (filter)
-        MsgBox("Filtering by: " . filter)
+            MsgBox("Filtering by: " . filter)
     }
 
     Export() => MsgBox("Exporting " . this.data.Length . " rows to CSV...")
@@ -65,7 +65,7 @@ class DataGrid {
         if (row && this.onRowClick) {
             rowData := []
             loop this.columns.Length
-            rowData.Push(this.listView.GetText(row, A_Index))
+                rowData.Push(this.listView.GetText(row, A_Index))
             this.onRowClick.Call(rowData)
         }
     }
@@ -75,9 +75,9 @@ class DataGrid {
 grid := DataGrid("Employee List", ["ID", "Name", "Department", "Salary"])
 
 grid.AddRow(["001", "Alice Johnson", "Engineering", "$95,000"])
-.AddRow(["002", "Bob Smith", "Sales", "$70,000"])
-.AddRow(["003", "Charlie Brown", "Marketing", "$75,000"])
-.AddRow(["004", "Diana Prince", "Engineering", "$90,000"])
+    .AddRow(["002", "Bob Smith", "Sales", "$70,000"])
+    .AddRow(["003", "Charlie Brown", "Marketing", "$75,000"])
+    .AddRow(["004", "Diana Prince", "Engineering", "$90,000"])
 
 grid.SetRowClickCallback((rowData) => MsgBox("Selected: " . rowData[2] . " - " . rowData[3]))
 

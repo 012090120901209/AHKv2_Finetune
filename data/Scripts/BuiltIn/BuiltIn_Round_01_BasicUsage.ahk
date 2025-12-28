@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Round_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of Round() function for rounding numbers to
-* specified decimal places with precision control
-*
-* FEATURES:
-* - Basic rounding operations
-* - Precision control (decimal places)
-* - Banker's rounding (round half to even)
-* - Rounding integers and decimals
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Round.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Round() function with precision parameter
-* - Negative precision for rounding to tens, hundreds, etc.
-* - Format() for number display
-* - Mathematical rounding behavior
-*
-* LEARNING POINTS:
-* 1. Round() rounds to nearest integer by default
-* 2. Second parameter controls decimal places
-* 3. Negative precision rounds to left of decimal
-* 4. Uses "banker's rounding" (round half to even)
-* 5. Essential for displaying and formatting numbers
-*/
+ * BuiltIn_Round_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of Round() function for rounding numbers to
+ * specified decimal places with precision control
+ * 
+ * FEATURES:
+ * - Basic rounding operations
+ * - Precision control (decimal places)
+ * - Banker's rounding (round half to even)
+ * - Rounding integers and decimals
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Round.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Round() function with precision parameter
+ * - Negative precision for rounding to tens, hundreds, etc.
+ * - Format() for number display
+ * - Mathematical rounding behavior
+ * 
+ * LEARNING POINTS:
+ * 1. Round() rounds to nearest integer by default
+ * 2. Second parameter controls decimal places
+ * 3. Negative precision rounds to left of decimal
+ * 4. Uses "banker's rounding" (round half to even)
+ * 5. Essential for displaying and formatting numbers
+ */
 
 ; ============================================================
 ; Example 1: Basic Rounding to Integer
@@ -41,12 +41,12 @@ num3 := 3.5
 num4 := -2.8
 
 MsgBox("Basic Rounding to Integer:`n`n"
-. "Round(" num1 ") = " Round(num1) "`n"
-. "Round(" num2 ") = " Round(num2) "`n"
-. "Round(" num3 ") = " Round(num3) "`n"
-. "Round(" num4 ") = " Round(num4) "`n`n"
-. "Default: Rounds to nearest integer",
-"Basic Round Example", "Icon!")
+    . "Round(" num1 ") = " Round(num1) "`n"
+    . "Round(" num2 ") = " Round(num2) "`n"
+    . "Round(" num3 ") = " Round(num3) "`n"
+    . "Round(" num4 ") = " Round(num4) "`n`n"
+    . "Default: Rounds to nearest integer",
+    "Basic Round Example", "Icon!")
 
 ; ============================================================
 ; Example 2: Precision Control
@@ -55,13 +55,13 @@ MsgBox("Basic Rounding to Integer:`n`n"
 value := 3.14159265359
 
 MsgBox("Rounding with Different Precision:`n`n"
-. "Original: " value "`n`n"
-. "Round(" value ", 0) = " Round(value, 0) " (integer)`n"
-. "Round(" value ", 1) = " Round(value, 1) " (1 decimal)`n"
-. "Round(" value ", 2) = " Round(value, 2) " (2 decimals)`n"
-. "Round(" value ", 3) = " Round(value, 3) " (3 decimals)`n"
-. "Round(" value ", 5) = " Round(value, 5) " (5 decimals)",
-"Precision Control", "Icon!")
+    . "Original: " value "`n`n"
+    . "Round(" value ", 0) = " Round(value, 0) " (integer)`n"
+    . "Round(" value ", 1) = " Round(value, 1) " (1 decimal)`n"
+    . "Round(" value ", 2) = " Round(value, 2) " (2 decimals)`n"
+    . "Round(" value ", 3) = " Round(value, 3) " (3 decimals)`n"
+    . "Round(" value ", 5) = " Round(value, 5) " (5 decimals)",
+    "Precision Control", "Icon!")
 
 ; ============================================================
 ; Example 3: Negative Precision (Round to Tens, Hundreds)
@@ -70,13 +70,13 @@ MsgBox("Rounding with Different Precision:`n`n"
 largeNum := 12345.67
 
 MsgBox("Negative Precision - Round to Left of Decimal:`n`n"
-. "Original: " largeNum "`n`n"
-. "Round(" largeNum ", 0) = " Round(largeNum, 0) " (ones)`n"
-. "Round(" largeNum ", -1) = " Round(largeNum, -1) " (tens)`n"
-. "Round(" largeNum ", -2) = " Round(largeNum, -2) " (hundreds)`n"
-. "Round(" largeNum ", -3) = " Round(largeNum, -3) " (thousands)`n`n"
-. "Negative precision rounds to 10s, 100s, 1000s, etc.",
-"Negative Precision", "Icon!")
+    . "Original: " largeNum "`n`n"
+    . "Round(" largeNum ", 0) = " Round(largeNum, 0) " (ones)`n"
+    . "Round(" largeNum ", -1) = " Round(largeNum, -1) " (tens)`n"
+    . "Round(" largeNum ", -2) = " Round(largeNum, -2) " (hundreds)`n"
+    . "Round(" largeNum ", -3) = " Round(largeNum, -3) " (thousands)`n`n"
+    . "Negative precision rounds to 10s, 100s, 1000s, etc.",
+    "Negative Precision", "Icon!")
 
 ; ============================================================
 ; Example 4: Banker's Rounding (Round Half to Even)
@@ -89,24 +89,24 @@ test3 := 4.5  ; Should round to 4 (even)
 test4 := 5.5  ; Should round to 6 (even)
 
 MsgBox("Banker's Rounding (Round Half to Even):`n`n"
-. "Round(" test1 ") = " Round(test1) " (to even)`n"
-. "Round(" test2 ") = " Round(test2) " (to even)`n"
-. "Round(" test3 ") = " Round(test3) " (to even)`n"
-. "Round(" test4 ") = " Round(test4) " (to even)`n`n"
-. "When exactly .5, rounds to nearest even number`n"
-. "This reduces cumulative rounding bias",
-"Banker's Rounding", "Icon!")
+    . "Round(" test1 ") = " Round(test1) " (to even)`n"
+    . "Round(" test2 ") = " Round(test2) " (to even)`n"
+    . "Round(" test3 ") = " Round(test3) " (to even)`n"
+    . "Round(" test4 ") = " Round(test4) " (to even)`n`n"
+    . "When exactly .5, rounds to nearest even number`n"
+    . "This reduces cumulative rounding bias",
+    "Banker's Rounding", "Icon!")
 
 ; ============================================================
 ; Example 5: Rounding Comparison Function
 ; ============================================================
 
 /**
-* Compare different rounding precisions
-*
-* @param {Number} value - Value to round
-* @returns {Object} - Rounded values at different precisions
-*/
+ * Compare different rounding precisions
+ * 
+ * @param {Number} value - Value to round
+ * @returns {Object} - Rounded values at different precisions
+ */
 CompareRounding(value) {
     return {
         original: value,
@@ -140,32 +140,32 @@ MsgBox(output, "Rounding Comparison", "Icon!")
 ; ============================================================
 
 /**
-* Round all values in an array to specified precision
-*
-* @param {Array} numbers - Array of numbers to round
-* @param {Number} precision - Decimal places
-* @returns {Array} - Rounded numbers
-*/
+ * Round all values in an array to specified precision
+ * 
+ * @param {Array} numbers - Array of numbers to round
+ * @param {Number} precision - Decimal places
+ * @returns {Array} - Rounded numbers
+ */
 RoundArray(numbers, precision := 0) {
     rounded := []
     for num in numbers
-    rounded.Push(Round(num, precision))
+        rounded.Push(Round(num, precision))
     return rounded
 }
 
 /**
-* Format array as string
-*/
+ * Format array as string
+ */
 FormatArray(arr, decimals := 2) {
     str := ""
     for index, value in arr {
         if (decimals = 0)
-        str .= value
+            str .= value
         else
-        str .= Format("{1:." decimals "f}", value)
+            str .= Format("{1:." decimals "f}", value)
 
         if (index < arr.Length)
-        str .= ", "
+            str .= ", "
     }
     return str
 }
@@ -186,24 +186,24 @@ MsgBox(output, "Array Rounding", "Icon!")
 ; ============================================================
 
 /**
-* Smart rounding based on magnitude of number
-*
-* @param {Number} value - Value to round
-* @returns {Object} - Value with suggested precision
-*/
+ * Smart rounding based on magnitude of number
+ * 
+ * @param {Number} value - Value to round
+ * @returns {Object} - Value with suggested precision
+ */
 SmartRound(value) {
     absValue := Abs(value)
 
     if (absValue >= 1000)
-    precision := 0  ; Large numbers: no decimals
+        precision := 0  ; Large numbers: no decimals
     else if (absValue >= 10)
-    precision := 1  ; Medium numbers: 1 decimal
+        precision := 1  ; Medium numbers: 1 decimal
     else if (absValue >= 1)
-    precision := 2  ; Small numbers: 2 decimals
+        precision := 2  ; Small numbers: 2 decimals
     else if (absValue >= 0.01)
-    precision := 3  ; Very small: 3 decimals
+        precision := 3  ; Very small: 3 decimals
     else
-    precision := 5  ; Tiny numbers: 5 decimals
+        precision := 5  ; Tiny numbers: 5 decimals
 
     return {
         original: value,
@@ -215,15 +215,15 @@ SmartRound(value) {
 
 GetPrecisionReason(absValue) {
     if (absValue >= 1000)
-    return "Large number (≥1000)"
+        return "Large number (≥1000)"
     else if (absValue >= 10)
-    return "Medium number (≥10)"
+        return "Medium number (≥10)"
     else if (absValue >= 1)
-    return "Small number (≥1)"
+        return "Small number (≥1)"
     else if (absValue >= 0.01)
-    return "Very small (≥0.01)"
+        return "Very small (≥0.01)"
     else
-    return "Tiny number (<0.01)"
+        return "Tiny number (<0.01)"
 }
 
 ; Test smart rounding with various values

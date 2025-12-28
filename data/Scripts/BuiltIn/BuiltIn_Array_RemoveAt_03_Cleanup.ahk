@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.RemoveAt() - Data Cleanup Operations
-* ============================================================================
-*
-* Demonstrates using RemoveAt() for data cleanup, validation, and
-* sanitization tasks. Essential for maintaining data quality.
-*
-* @description Data cleanup techniques using Array.RemoveAt()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.RemoveAt() - Data Cleanup Operations
+ * ============================================================================
+ * 
+ * Demonstrates using RemoveAt() for data cleanup, validation, and
+ * sanitization tasks. Essential for maintaining data quality.
+ * 
+ * @description Data cleanup techniques using Array.RemoveAt()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; Example 1: Remove Empty Values
 Example1_RemoveEmpties() {
@@ -66,17 +66,17 @@ Example3_RemoveInvalidEmails() {
     OutputDebug("=== Example 3: Remove Invalid Emails ===`n")
 
     emails := [
-    "user@example.com",
-    "invalid-email",
-    "another@test.com",
-    "bad@",
-    "@missinguser.com",
-    "good@domain.org"
+        "user@example.com",
+        "invalid-email",
+        "another@test.com",
+        "bad@",
+        "@missinguser.com",
+        "good@domain.org"
     ]
 
     OutputDebug("Email list (" emails.Length " emails):`n")
     for email in emails
-    OutputDebug("  " email "`n")
+        OutputDebug("  " email "`n")
 
     OutputDebug("`nRemoving invalid emails:`n")
     index := emails.Length
@@ -143,141 +143,131 @@ Example6_RemoveExpired() {
     OutputDebug("=== Example 6: Remove Expired Items ===`n")
 
     currentTime := A_TickCount
-    items := [
-    {
-        name: "Item1", expiry: currentTime - 1000},
-        {
-            name: "Item2", expiry: currentTime + 5000},
-            {
-                name: "Item3", expiry: currentTime - 500},
-                {
-                    name: "Item4", expiry: currentTime + 10000},
-                    {
+    items := [{
+        name: "Item1", expiry: currentTime - 1000 }, {
+            name: "Item2", expiry: currentTime + 5000 }, {
+                name: "Item3", expiry: currentTime - 500 }, {
+                    name: "Item4", expiry: currentTime + 10000 }, {
                         name: "Item5", expiry: currentTime - 2000
                     }
-                    ]
+    ]
 
-                    OutputDebug("Total items: " items.Length "`n")
-                    OutputDebug("Removing expired items:`n")
+    OutputDebug("Total items: " items.Length "`n")
+    OutputDebug("Removing expired items:`n")
 
-                    index := items.Length
-                    while (index >= 1) {
-                        if (items[index].expiry < currentTime) {
-                            removed := items.RemoveAt(index)
-                            OutputDebug("  Expired: " removed.name "`n")
-                        }
-                        index--
+    index := items.Length
+    while (index >= 1) {
+        if (items[index].expiry < currentTime) {
+            removed := items.RemoveAt(index)
+            OutputDebug("  Expired: " removed.name "`n")
+        }
+        index--
+    }
+
+    OutputDebug("Valid items remaining: " items.Length "`n`n")
+}
+
+; Example 7: Comprehensive Data Sanitization
+Example7_DataSanitization() {
+    OutputDebug("=== Example 7: Comprehensive Data Sanitization ===`n")
+
+    rawData := [{
+        id: 1, name: "Alice", email: "alice@test.com", age: 25 }, {
+            id: 2, name: "", email: "invalid", age: -5 }, {
+                id: 3, name: "Bob", email: "bob@example.com", age: 30 }, {
+                    id: 4, name: "  ", email: "charlie@test.com", age: 0 }, {
+                        id: 5, name: "David", email: "david@domain.org", age: 150
                     }
+    ]
 
-                    OutputDebug("Valid items remaining: " items.Length "`n`n")
-                }
+    OutputDebug("Raw data entries: " rawData.Length "`n")
+    OutputDebug("Applying validation rules:`n")
 
-                ; Example 7: Comprehensive Data Sanitization
-                Example7_DataSanitization() {
-                    OutputDebug("=== Example 7: Comprehensive Data Sanitization ===`n")
+    index := rawData.Length
+    invalidCount := 0
 
-                    rawData := [
-                    {
-                        id: 1, name: "Alice", email: "alice@test.com", age: 25},
-                        {
-                            id: 2, name: "", email: "invalid", age: -5},
-                            {
-                                id: 3, name: "Bob", email: "bob@example.com", age: 30},
-                                {
-                                    id: 4, name: "  ", email: "charlie@test.com", age: 0},
-                                    {
-                                        id: 5, name: "David", email: "david@domain.org", age: 150
-                                    }
-                                    ]
+    while (index >= 1) {
+        record := rawData[index]
+        isValid := true
+        reason := ""
 
-                                    OutputDebug("Raw data entries: " rawData.Length "`n")
-                                    OutputDebug("Applying validation rules:`n")
+        ; Validation rules
+        if (Trim(record.name) = "") {
+            isValid := false
+            reason := "empty name"
+        } else if (!IsValidEmail(record.email)) {
+            isValid := false
+            reason := "invalid email"
+        } else if (record.age < 1 || record.age > 120) {
+            isValid := false
+            reason := "invalid age"
+        }
 
-                                    index := rawData.Length
-                                    invalidCount := 0
+        if (!isValid) {
+            rawData.RemoveAt(index)
+            invalidCount++
+            OutputDebug("  Removed ID " record.id ": " reason "`n")
+        }
 
-                                    while (index >= 1) {
-                                        record := rawData[index]
-                                        isValid := true
-                                        reason := ""
+        index--
+    }
 
-                                        ; Validation rules
-                                        if (Trim(record.name) = "") {
-                                            isValid := false
-                                            reason := "empty name"
-                                        } else if (!IsValidEmail(record.email)) {
-                                            isValid := false
-                                            reason := "invalid email"
-                                        } else if (record.age < 1 || record.age > 120) {
-                                            isValid := false
-                                            reason := "invalid age"
-                                        }
+    OutputDebug("`nRemoved " invalidCount " invalid records`n")
+    OutputDebug("Valid records: " rawData.Length "`n")
 
-                                        if (!isValid) {
-                                            rawData.RemoveAt(index)
-                                            invalidCount++
-                                            OutputDebug("  Removed ID " record.id ": " reason "`n")
-                                        }
+    OutputDebug("Valid entries:`n")
+    for record in rawData
+        OutputDebug("  " record.name " - " record.email " (Age: " record.age ")`n")
 
-                                        index--
-                                    }
+    OutputDebug("`n")
+}
 
-                                    OutputDebug("`nRemoved " invalidCount " invalid records`n")
-                                    OutputDebug("Valid records: " rawData.Length "`n")
+; Helper Functions
+IsValidEmail(email) {
+    return RegExMatch(email, "^[\w\.-]+@[\w\.-]+\.\w+$")
+}
 
-                                    OutputDebug("Valid entries:`n")
-                                    for record in rawData
-                                    OutputDebug("  " record.name " - " record.email " (Age: " record.age ")`n")
+FormatArray(arr) {
+    if (arr.Length = 0)
+        return "[]"
 
-                                    OutputDebug("`n")
-                                }
+    result := "["
+    for index, value in arr {
+        if (index > 1)
+            result .= ", "
 
-                                ; Helper Functions
-                                IsValidEmail(email) {
-                                    return RegExMatch(email, "^[\w\.-]+@[\w\.-]+\.\w+$")
-                                }
+        valueType := Type(value)
+        if (valueType = "String")
+            result .= '"' value '"'
+        else if (valueType = "Integer" || valueType = "Float")
+            result .= value
+        else
+            result .= valueType
+    }
+    result .= "]"
 
-                                FormatArray(arr) {
-                                    if (arr.Length = 0)
-                                    return "[]"
+    return result
+}
 
-                                    result := "["
-                                    for index, value in arr {
-                                        if (index > 1)
-                                        result .= ", "
+Main() {
+    OutputDebug("`n" String.Repeat("=", 80) "`n")
+    OutputDebug("Array.RemoveAt() - Data Cleanup Examples`n")
+    OutputDebug(String.Repeat("=", 80) "`n`n")
 
-                                        valueType := Type(value)
-                                        if (valueType = "String")
-                                        result .= '"' value '"'
-                                        else if (valueType = "Integer" || valueType = "Float")
-                                        result .= value
-                                        else
-                                        result .= valueType
-                                    }
-                                    result .= "]"
+    Example1_RemoveEmpties()
+    Example2_RemoveNulls()
+    Example3_RemoveInvalidEmails()
+    Example4_RemoveDuplicates()
+    Example5_RemoveWhitespace()
+    Example6_RemoveExpired()
+    Example7_DataSanitization()
 
-                                    return result
-                                }
+    OutputDebug(String.Repeat("=", 80) "`n")
+    OutputDebug("All examples completed!`n")
+    OutputDebug(String.Repeat("=", 80) "`n")
 
-                                Main() {
-                                    OutputDebug("`n" String.Repeat("=", 80) "`n")
-                                    OutputDebug("Array.RemoveAt() - Data Cleanup Examples`n")
-                                    OutputDebug(String.Repeat("=", 80) "`n`n")
+    MsgBox("Array.RemoveAt() cleanup examples completed!`nCheck DebugView for output.",
+        "Examples Complete", "Icon!")
+}
 
-                                    Example1_RemoveEmpties()
-                                    Example2_RemoveNulls()
-                                    Example3_RemoveInvalidEmails()
-                                    Example4_RemoveDuplicates()
-                                    Example5_RemoveWhitespace()
-                                    Example6_RemoveExpired()
-                                    Example7_DataSanitization()
-
-                                    OutputDebug(String.Repeat("=", 80) "`n")
-                                    OutputDebug("All examples completed!`n")
-                                    OutputDebug(String.Repeat("=", 80) "`n")
-
-                                    MsgBox("Array.RemoveAt() cleanup examples completed!`nCheck DebugView for output.",
-                                    "Examples Complete", "Icon!")
-                                }
-
-                                Main()
+Main()

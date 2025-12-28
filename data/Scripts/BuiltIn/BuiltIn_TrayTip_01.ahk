@@ -1,34 +1,34 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* TrayTip Basic Examples - Part 1
-* ============================================================================
-*
-* Comprehensive examples demonstrating TrayTip usage in AutoHotkey v2.
-*
-* @description This file covers fundamental TrayTip functionality including:
-*              - Basic tray notifications
-*              - Icon types (info, warning, error)
-*              - Notification timeouts
-*              - Silent vs sound notifications
-*              - Removing notifications
-*
-* @author AutoHotkey Foundation
-* @version 2.0
-* @see https://www.autohotkey.com/docs/v2/lib/TrayTip.htm
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * TrayTip Basic Examples - Part 1
+ * ============================================================================
+ * 
+ * Comprehensive examples demonstrating TrayTip usage in AutoHotkey v2.
+ * 
+ * @description This file covers fundamental TrayTip functionality including:
+ *              - Basic tray notifications
+ *              - Icon types (info, warning, error)
+ *              - Notification timeouts
+ *              - Silent vs sound notifications
+ *              - Removing notifications
+ * 
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @see https://www.autohotkey.com/docs/v2/lib/TrayTip.htm
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic TrayTip Notifications
 ; ============================================================================
 /**
-* Demonstrates basic tray notification display.
-*
-* @description Shows how to display simple tray notifications.
-*/
+ * Demonstrates basic tray notification display.
+ * 
+ * @description Shows how to display simple tray notifications.
+ */
 Example1_BasicNotifications() {
     ; Simple notification
     TrayTip "Hello", "This is a basic tray notification!"
@@ -47,13 +47,13 @@ Example1_BasicNotifications() {
 
     ; Longer message
     TrayTip "System Update",
-    "A new system update is available. Click here to learn more and install the update."
+        "A new system update is available. Click here to learn more and install the update."
     Sleep 4000
     TrayTip
 
     ; Multi-line notification
     TrayTip "Backup Complete",
-    "Your files have been backed up successfully.`n`nFiles: 1,234`nSize: 2.5 GB"
+        "Your files have been backed up successfully.`n`nFiles: 1,234`nSize: 2.5 GB"
     Sleep 4000
     TrayTip
 
@@ -74,16 +74,16 @@ Example1_BasicNotifications() {
 ; EXAMPLE 2: Icon Types
 ; ============================================================================
 /**
-* Shows different notification icon types.
-*
-* @description Demonstrates all available icon types for notifications.
-*
-* Icon Options:
-* - 1: Info icon (blue i)
-* - 2: Warning icon (yellow triangle)
-* - 3: Error icon (red X)
-* - 4: No icon
-*/
+ * Shows different notification icon types.
+ * 
+ * @description Demonstrates all available icon types for notifications.
+ * 
+ * Icon Options:
+ * - 1: Info icon (blue i)
+ * - 2: Warning icon (yellow triangle)
+ * - 3: Error icon (red X)
+ * - 4: No icon
+ */
 Example2_IconTypes() {
     ; Info icon (default or 1)
     TrayTip "Information", "This is an informational message.", 1
@@ -120,20 +120,20 @@ Example2_IconTypes() {
 }
 
 /**
-* Shows notification with appropriate icon.
-*/
+ * Shows notification with appropriate icon.
+ */
 NotifyUser(title, message, type := "info") {
     Switch type {
         Case "info":
-        TrayTip title, message, 1
+            TrayTip title, message, 1
         Case "warning":
-        TrayTip title, message, 2
+            TrayTip title, message, 2
         Case "error":
-        TrayTip title, message, 3
+            TrayTip title, message, 3
         Case "none":
-        TrayTip title, message, 4
+            TrayTip title, message, 4
         Default:
-        TrayTip title, message
+            TrayTip title, message
     }
 }
 
@@ -141,14 +141,14 @@ NotifyUser(title, message, type := "info") {
 ; EXAMPLE 3: Silent Notifications
 ; ============================================================================
 /**
-* Demonstrates silent vs sound notifications.
-*
-* @description Shows how to control notification sounds.
-*
-* Options:
-* - 16: Silent notification (no sound)
-* - Combine with icon types using addition
-*/
+ * Demonstrates silent vs sound notifications.
+ * 
+ * @description Shows how to control notification sounds.
+ * 
+ * Options:
+ * - 16: Silent notification (no sound)
+ * - Combine with icon types using addition
+ */
 Example3_SilentNotifications() {
     ; Normal notification with sound
     TrayTip "New Message", "You have received a new email."
@@ -186,8 +186,8 @@ Example3_SilentNotifications() {
 }
 
 /**
-* Shows a silent notification.
-*/
+ * Shows a silent notification.
+ */
 ShowSilentNotification(title, message, type := "info") {
     iconValue := 0
 
@@ -206,13 +206,13 @@ ShowSilentNotification(title, message, type := "info") {
 ; EXAMPLE 4: Large Icon Notifications
 ; ============================================================================
 /**
-* Shows notifications with large icons.
-*
-* @description Demonstrates using larger notification icons.
-*
-* Options:
-* - 32: Use large icon version
-*/
+ * Shows notifications with large icons.
+ * 
+ * @description Demonstrates using larger notification icons.
+ * 
+ * Options:
+ * - 32: Use large icon version
+ */
 Example4_LargeIcons() {
     ; Regular size info icon
     TrayTip "Regular Icon", "This uses the standard icon size.", 1
@@ -245,8 +245,8 @@ Example4_LargeIcons() {
 }
 
 /**
-* Shows notification with options.
-*/
+ * Shows notification with options.
+ */
 ShowNotificationEx(title, message, type := "info", large := false, silent := false) {
     iconValue := 0
 
@@ -258,10 +258,10 @@ ShowNotificationEx(title, message, type := "info", large := false, silent := fal
     }
 
     if (silent)
-    iconValue += 16
+        iconValue += 16
 
     if (large)
-    iconValue += 32
+        iconValue += 32
 
     TrayTip title, message, iconValue
 }
@@ -270,10 +270,10 @@ ShowNotificationEx(title, message, type := "info", large := false, silent := fal
 ; EXAMPLE 5: Notification Management
 ; ============================================================================
 /**
-* Shows how to manage and remove notifications.
-*
-* @description Demonstrates notification lifecycle management.
-*/
+ * Shows how to manage and remove notifications.
+ * 
+ * @description Demonstrates notification lifecycle management.
+ */
 Example5_NotificationManagement() {
     ; Show and remove immediately
     TrayTip "Quick Notice", "This will disappear quickly."
@@ -300,257 +300,248 @@ Example5_NotificationManagement() {
     Sleep 4000
 
     ; Auto-removing notification sequence
-    notifications := [
-    {
-        title: "Step 1", msg: "Initializing...", duration: 1500},
-        {
-            title: "Step 2", msg: "Processing...", duration: 2000},
-            {
+    notifications := [{
+        title: "Step 1", msg: "Initializing...", duration: 1500 }, {
+            title: "Step 2", msg: "Processing...", duration: 2000 }, {
                 title: "Step 3", msg: "Complete!", duration: 1500
             }
-            ]
+    ]
 
-            for notif in notifications {
-                ShowTimedNotification(notif.title, notif.msg, notif.duration)
-                Sleep notif.duration + 500
+    for notif in notifications {
+        ShowTimedNotification(notif.title, notif.msg, notif.duration)
+        Sleep notif.duration + 500
+    }
+}
+
+/**
+ * Shows notification for specified duration.
+ */
+ShowTimedNotification(title, message, duration := 3000, options := 1) {
+    TrayTip title, message, options
+
+    ; Set timer to remove notification
+    ClearFunc := (*) => TrayTip()
+    SetTimer ClearFunc, -duration
+}
+
+; ============================================================================
+; EXAMPLE 6: Practical Notification Scenarios
+; ============================================================================
+/**
+ * Real-world notification scenarios.
+ * 
+ * @description Practical examples for common use cases.
+ */
+Example6_PracticalScenarios() {
+    ; File download complete
+    fileName := "report.pdf"
+    fileSize := "2.5 MB"
+    TrayTip "Download Complete",
+        Format("File: {1}`nSize: {2}`n`nClick to open folder.", fileName, fileSize),
+        1
+    Sleep 3000
+    TrayTip
+
+    ; Low battery warning
+    batteryLevel := 15
+    TrayTip "Low Battery",
+        Format("Battery at {1}%`n`nPlease connect charger.", batteryLevel),
+        2
+    Sleep 3000
+    TrayTip
+
+    ; Update notification
+    currentVersion := "1.0.0"
+    newVersion := "1.1.0"
+    TrayTip "Update Available",
+        Format("Version {1} is available.`nCurrent version: {2}`n`nClick to update.", newVersion, currentVersion),
+        1
+    Sleep 4000
+    TrayTip
+
+    ; Reminder notification
+    eventName := "Team Meeting"
+    eventTime := "2:00 PM"
+    TrayTip "Upcoming Event",
+        Format("{1}`nStarts at: {2}`n`n15 minutes remaining", eventName, eventTime),
+        2
+    Sleep 3000
+    TrayTip
+
+    ; Security alert
+    TrayTip "Security Alert",
+        "Suspicious activity detected on your account.`n`nClick for details.",
+        3
+    Sleep 3000
+    TrayTip
+
+    ; Backup notification
+    backupTime := FormatTime(, "HH:mm:ss")
+    filesCount := 1234
+    TrayTip "Backup Successful",
+        Format("Backup completed at {1}`n`nFiles backed up: {2}", backupTime, filesCount),
+        1
+    Sleep 3000
+    TrayTip
+
+    ; Network status
+    TrayTip "Network Connected",
+        "Connection established successfully.`n`nIP: 192.168.1.100",
+        1
+    Sleep 3000
+    TrayTip
+}
+
+; ============================================================================
+; EXAMPLE 7: Notification Patterns
+; ============================================================================
+/**
+ * Common notification patterns and workflows.
+ * 
+ * @description Shows notification design patterns.
+ */
+Example7_NotificationPatterns() {
+    ; Progress notifications
+    ShowProgressNotifications()
+
+    ; Status change notifications
+    ShowStatusChangeNotifications()
+
+    ; Error recovery workflow
+    ShowErrorRecoveryWorkflow()
+
+    ; Multi-step process notifications
+    ShowMultiStepProcess()
+}
+
+/**
+ * Shows progress through notifications.
+ */
+ShowProgressNotifications() {
+    stages := ["Starting", "Processing", "Finalizing", "Complete"]
+
+    for index, stage in stages {
+        percent := (index / stages.Length) * 100
+        TrayTip "Progress Update",
+            Format("{1}... ({2}%)", stage, Round(percent)),
+            1
+        Sleep 1500
+        TrayTip
+        Sleep 500
+    }
+}
+
+/**
+ * Shows status change notifications.
+ */
+ShowStatusChangeNotifications() {
+    statuses := [{
+        state: "Offline", icon: 2 }, {
+            state: "Connecting", icon: 1 }, {
+                state: "Online", icon: 1
             }
-        }
+    ]
 
-        /**
-        * Shows notification for specified duration.
-        */
-        ShowTimedNotification(title, message, duration := 3000, options := 1) {
-            TrayTip title, message, options
+    for status in statuses {
+        TrayTip "Connection Status",
+            "Status changed to: " . status.state,
+            status.icon
+        Sleep 2000
+        TrayTip
+        Sleep 500
+    }
+}
 
-            ; Set timer to remove notification
-            ClearFunc := (*) => TrayTip()
-            SetTimer ClearFunc, -duration
-        }
+/**
+ * Shows error recovery workflow.
+ */
+ShowErrorRecoveryWorkflow() {
+    ; Error
+    TrayTip "Connection Error",
+        "Failed to connect to server.",
+        3
+    Sleep 2000
+    TrayTip
 
-        ; ============================================================================
-        ; EXAMPLE 6: Practical Notification Scenarios
-        ; ============================================================================
-        /**
-        * Real-world notification scenarios.
-        *
-        * @description Practical examples for common use cases.
-        */
-        Example6_PracticalScenarios() {
-            ; File download complete
-            fileName := "report.pdf"
-            fileSize := "2.5 MB"
-            TrayTip "Download Complete",
-            Format("File: {1}`nSize: {2}`n`nClick to open folder.", fileName, fileSize),
-            1
-            Sleep 3000
-            TrayTip
+    ; Retry
+    TrayTip "Retrying",
+        "Attempting to reconnect...",
+        1
+    Sleep 2000
+    TrayTip
 
-            ; Low battery warning
-            batteryLevel := 15
-            TrayTip "Low Battery",
-            Format("Battery at {1}%`n`nPlease connect charger.", batteryLevel),
-            2
-            Sleep 3000
-            TrayTip
+    ; Success
+    TrayTip "Connected",
+        "Connection established successfully.",
+        1
+    Sleep 2000
+    TrayTip
+}
 
-            ; Update notification
-            currentVersion := "1.0.0"
-            newVersion := "1.1.0"
-            TrayTip "Update Available",
-            Format("Version {1} is available.`nCurrent version: {2}`n`nClick to update.", newVersion, currentVersion),
-            1
-            Sleep 4000
-            TrayTip
-
-            ; Reminder notification
-            eventName := "Team Meeting"
-            eventTime := "2:00 PM"
-            TrayTip "Upcoming Event",
-            Format("{1}`nStarts at: {2}`n`n15 minutes remaining", eventName, eventTime),
-            2
-            Sleep 3000
-            TrayTip
-
-            ; Security alert
-            TrayTip "Security Alert",
-            "Suspicious activity detected on your account.`n`nClick for details.",
-            3
-            Sleep 3000
-            TrayTip
-
-            ; Backup notification
-            backupTime := FormatTime(, "HH:mm:ss")
-            filesCount := 1234
-            TrayTip "Backup Successful",
-            Format("Backup completed at {1}`n`nFiles backed up: {2}", backupTime, filesCount),
-            1
-            Sleep 3000
-            TrayTip
-
-            ; Network status
-            TrayTip "Network Connected",
-            "Connection established successfully.`n`nIP: 192.168.1.100",
-            1
-            Sleep 3000
-            TrayTip
-        }
-
-        ; ============================================================================
-        ; EXAMPLE 7: Notification Patterns
-        ; ============================================================================
-        /**
-        * Common notification patterns and workflows.
-        *
-        * @description Shows notification design patterns.
-        */
-        Example7_NotificationPatterns() {
-            ; Progress notifications
-            ShowProgressNotifications()
-
-            ; Status change notifications
-            ShowStatusChangeNotifications()
-
-            ; Error recovery workflow
-            ShowErrorRecoveryWorkflow()
-
-            ; Multi-step process notifications
-            ShowMultiStepProcess()
-        }
-
-        /**
-        * Shows progress through notifications.
-        */
-        ShowProgressNotifications() {
-            stages := ["Starting", "Processing", "Finalizing", "Complete"]
-
-            for index, stage in stages {
-                percent := (index / stages.Length) * 100
-                TrayTip "Progress Update",
-                Format("{1}... ({2}%)", stage, Round(percent)),
-                1
-                Sleep 1500
-                TrayTip
-                Sleep 500
-            }
-        }
-
-        /**
-        * Shows status change notifications.
-        */
-        ShowStatusChangeNotifications() {
-            statuses := [
-            {
-                state: "Offline", icon: 2},
-                {
-                    state: "Connecting", icon: 1},
-                    {
-                        state: "Online", icon: 1
-                    }
-                    ]
-
-                    for status in statuses {
-                        TrayTip "Connection Status",
-                        "Status changed to: " . status.state,
-                        status.icon
-                        Sleep 2000
-                        TrayTip
-                        Sleep 500
-                    }
+/**
+ * Shows multi-step process.
+ */
+ShowMultiStepProcess() {
+    steps := [{
+        title: "Step 1/4", msg: "Validating input...", type: "info" }, {
+            title: "Step 2/4", msg: "Processing data...", type: "info" }, {
+                title: "Step 3/4", msg: "Saving results...", type: "info" }, {
+                    title: "Step 4/4", msg: "Process complete!", type: "info"
                 }
+    ]
 
-                /**
-                * Shows error recovery workflow.
-                */
-                ShowErrorRecoveryWorkflow() {
-                    ; Error
-                    TrayTip "Connection Error",
-                    "Failed to connect to server.",
-                    3
-                    Sleep 2000
-                    TrayTip
+    for step in steps {
+        iconValue := (step.type = "info") ? 1 : (step.type = "warning") ? 2 : 3
+        TrayTip step.title, step.msg, iconValue
+        Sleep 1500
+        TrayTip
+        Sleep 500
+    }
+}
 
-                    ; Retry
-                    TrayTip "Retrying",
-                    "Attempting to reconnect...",
-                    1
-                    Sleep 2000
-                    TrayTip
+; ============================================================================
+; Hotkey Triggers
+; ============================================================================
 
-                    ; Success
-                    TrayTip "Connected",
-                    "Connection established successfully.",
-                    1
-                    Sleep 2000
-                    TrayTip
-                }
+^1:: Example1_BasicNotifications()
+^2:: Example2_IconTypes()
+^3:: Example3_SilentNotifications()
+^4:: Example4_LargeIcons()
+^5:: Example5_NotificationManagement()
+^6:: Example6_PracticalScenarios()
+^7:: Example7_NotificationPatterns()
+^0:: ExitApp
 
-                /**
-                * Shows multi-step process.
-                */
-                ShowMultiStepProcess() {
-                    steps := [
-                    {
-                        title: "Step 1/4", msg: "Validating input...", type: "info"},
-                        {
-                            title: "Step 2/4", msg: "Processing data...", type: "info"},
-                            {
-                                title: "Step 3/4", msg: "Saving results...", type: "info"},
-                                {
-                                    title: "Step 4/4", msg: "Process complete!", type: "info"
-                                }
-                                ]
+/**
+ * ============================================================================
+ * SUMMARY
+ * ============================================================================
+ * 
+ * TrayTip fundamentals covered:
+ * 1. Basic tray notifications with title and message
+ * 2. Icon types (Info, Warning, Error, None)
+ * 3. Silent notifications (no sound)
+ * 4. Large icon notifications
+ * 5. Notification management and removal
+ * 6. Practical real-world scenarios
+ * 7. Common notification patterns and workflows
+ * 
+ * Key Points:
+ * - TrayTip shows balloon notifications in system tray
+ * - Options combine with + (e.g., 1 + 16 + 32 for large silent info)
+ * - Call TrayTip with no parameters to remove notification
+ * - New notifications automatically replace existing ones
+ * - Use SetTimer for auto-removing notifications
+ * - Choose appropriate icons based on message severity
+ * 
+ * Option Values:
+ * - 1: Info icon
+ * - 2: Warning icon
+ * - 3: Error icon
+ * - 4: No icon
+ * - 16: Silent (add to icon value)
+ * - 32: Large icon (add to icon value)
+ * 
+ * ============================================================================
+ */
 
-                                for step in steps {
-                                    iconValue := (step.type = "info") ? 1 : (step.type = "warning") ? 2 : 3
-                                    TrayTip step.title, step.msg, iconValue
-                                    Sleep 1500
-                                    TrayTip
-                                    Sleep 500
-                                }
-                            }
-
-                            ; ============================================================================
-                            ; Hotkey Triggers
-                            ; ============================================================================
-
-                            ^1::Example1_BasicNotifications()
-                            ^2::Example2_IconTypes()
-                            ^3::Example3_SilentNotifications()
-                            ^4::Example4_LargeIcons()
-                            ^5::Example5_NotificationManagement()
-                            ^6::Example6_PracticalScenarios()
-                            ^7::Example7_NotificationPatterns()
-                            ^0::ExitApp
-
-                            /**
-                            * ============================================================================
-                            * SUMMARY
-                            * ============================================================================
-                            *
-                            * TrayTip fundamentals covered:
-                            * 1. Basic tray notifications with title and message
-                            * 2. Icon types (Info, Warning, Error, None)
-                            * 3. Silent notifications (no sound)
-                            * 4. Large icon notifications
-                            * 5. Notification management and removal
-                            * 6. Practical real-world scenarios
-                            * 7. Common notification patterns and workflows
-                            *
-                            * Key Points:
-                            * - TrayTip shows balloon notifications in system tray
-                            * - Options combine with + (e.g., 1 + 16 + 32 for large silent info)
-                            * - Call TrayTip with no parameters to remove notification
-                            * - New notifications automatically replace existing ones
-                            * - Use SetTimer for auto-removing notifications
-                            * - Choose appropriate icons based on message severity
-                            *
-                            * Option Values:
-                            * - 1: Info icon
-                            * - 2: Warning icon
-                            * - 3: Error icon
-                            * - 4: No icon
-                            * - 16: Silent (add to icon value)
-                            * - 32: Large icon (add to icon value)
-                            *
-                            * ============================================================================
-                            */

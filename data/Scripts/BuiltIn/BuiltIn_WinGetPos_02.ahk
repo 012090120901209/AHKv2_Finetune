@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinGetPos_02.ahk
-* @description Advanced window monitoring and position management examples using WinGetPos in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Window position change monitor
-* Example 2: Window size change detector
-* Example 3: Automatic window organizer
-* Example 4: Window collision detector
-* Example 5: Dynamic window grid layout
-* Example 6: Window position history with playback
-*
-* @section FEATURES
-* - Real-time position monitoring
-* - Change detection
-* - Automatic organization
-* - Collision detection
-* - Grid layouts
-* - Position history
-*/
+ * @file BuiltIn_WinGetPos_02.ahk
+ * @description Advanced window monitoring and position management examples using WinGetPos in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Window position change monitor
+ * Example 2: Window size change detector
+ * Example 3: Automatic window organizer
+ * Example 4: Window collision detector
+ * Example 5: Dynamic window grid layout
+ * Example 6: Window position history with playback
+ * 
+ * @section FEATURES
+ * - Real-time position monitoring
+ * - Change detection
+ * - Automatic organization
+ * - Collision detection
+ * - Grid layouts
+ * - Position history
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -29,19 +29,19 @@
 ; ========================================
 
 /**
-* @class WindowChangeMonitor
-* @description Monitor windows for position and size changes
-*/
+ * @class WindowChangeMonitor
+ * @description Monitor windows for position and size changes
+ */
 class WindowChangeMonitor {
     static monitors := Map()
     static checkInterval := 500
 
     /**
-    * @method StartMonitoring
-    * @description Begin monitoring a window for changes
-    * @param WinTitle Window to monitor
-    * @param callback Function to call on change
-    */
+     * @method StartMonitoring
+     * @description Begin monitoring a window for changes
+     * @param WinTitle Window to monitor
+     * @param callback Function to call on change
+     */
     static StartMonitoring(WinTitle, callback) {
         try {
             ; Get initial position
@@ -73,10 +73,10 @@ class WindowChangeMonitor {
     }
 
     /**
-    * @method StopMonitoring
-    * @description Stop monitoring a window
-    * @param WinTitle Window identifier
-    */
+     * @method StopMonitoring
+     * @description Stop monitoring a window
+     * @param WinTitle Window identifier
+     */
     static StopMonitoring(WinTitle) {
         this.monitors.Delete(WinTitle)
 
@@ -86,9 +86,9 @@ class WindowChangeMonitor {
     }
 
     /**
-    * @method CheckAllWindows
-    * @description Check all monitored windows for changes
-    */
+     * @method CheckAllWindows
+     * @description Check all monitored windows for changes
+     */
     static CheckAllWindows() {
         for winTitle, data in this.monitors {
             this.CheckWindow(winTitle, data)
@@ -96,11 +96,11 @@ class WindowChangeMonitor {
     }
 
     /**
-    * @method CheckWindow
-    * @description Check a specific window for changes
-    * @param WinTitle Window identifier
-    * @param data Monitor data
-    */
+     * @method CheckWindow
+     * @description Check a specific window for changes
+     * @param WinTitle Window identifier
+     * @param data Monitor data
+     */
     static CheckWindow(WinTitle, data) {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -138,8 +138,8 @@ class WindowChangeMonitor {
                 ; Call callback
                 data.Callback({
                     WinTitle: WinTitle,
-                    Old: {X: data.LastX, Y: data.LastY, Width: data.LastWidth, Height: data.LastHeight},
-                    New: {X: x, Y: y, Width: width, Height: height},
+                    Old: { X: data.LastX, Y: data.LastY, Width: data.LastWidth, Height: data.LastHeight },
+                    New: { X: x, Y: y, Width: width, Height: height },
                     Changes: changes,
                     ChangeCount: data.ChangeCount
                 })
@@ -190,17 +190,17 @@ OnWindowChange(changeData) {
 ; ========================================
 
 /**
-* @class SizeChangeDetector
-* @description Specialized detector for window size changes with history
-*/
+ * @class SizeChangeDetector
+ * @description Specialized detector for window size changes with history
+ */
 class SizeChangeDetector {
     static sizeHistory := Map()
 
     /**
-    * @method RecordSize
-    * @description Record current window size
-    * @param WinTitle Window identifier
-    */
+     * @method RecordSize
+     * @description Record current window size
+     * @param WinTitle Window identifier
+     */
     static RecordSize(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -229,14 +229,14 @@ class SizeChangeDetector {
     }
 
     /**
-    * @method GetSizeStatistics
-    * @description Get statistics about size changes
-    * @param WinTitle Window identifier
-    * @returns {Object} Size statistics
-    */
+     * @method GetSizeStatistics
+     * @description Get statistics about size changes
+     * @param WinTitle Window identifier
+     * @returns {Object} Size statistics
+     */
     static GetSizeStatistics(WinTitle) {
         if !this.sizeHistory.Has(WinTitle) || this.sizeHistory[WinTitle].Length = 0 {
-            return {Error: "No size history available"}
+            return { Error: "No size history available" }
         }
 
         history := this.sizeHistory[WinTitle]
@@ -257,9 +257,9 @@ class SizeChangeDetector {
 
         return {
             Current: current,
-            MinSize: {Width: minWidth, Height: minHeight},
-            MaxSize: {Width: maxWidth, Height: maxHeight},
-            Range: {Width: maxWidth - minWidth, Height: maxHeight - minHeight},
+            MinSize: { Width: minWidth, Height: minHeight },
+            MaxSize: { Width: maxWidth, Height: maxHeight },
+            Range: { Width: maxWidth - minWidth, Height: maxHeight - minHeight },
             AverageArea: Round(totalArea / history.Length),
             SampleCount: history.Length,
             ChangeCount: history.Length - 1
@@ -267,14 +267,14 @@ class SizeChangeDetector {
     }
 
     /**
-    * @method DetectPattern
-    * @description Detect resize patterns (e.g., repeated sizes)
-    * @param WinTitle Window identifier
-    * @returns {Object} Pattern analysis
-    */
+     * @method DetectPattern
+     * @description Detect resize patterns (e.g., repeated sizes)
+     * @param WinTitle Window identifier
+     * @returns {Object} Pattern analysis
+     */
     static DetectPattern(WinTitle) {
         if !this.sizeHistory.Has(WinTitle) {
-            return {Error: "No history available"}
+            return { Error: "No history available" }
         }
 
         history := this.sizeHistory[WinTitle]
@@ -284,13 +284,13 @@ class SizeChangeDetector {
         for entry in history {
             key := entry.Width "x" entry.Height
             if !sizeFrequency.Has(key) {
-                sizeFrequency[key] := {Count: 0, Width: entry.Width, Height: entry.Height}
+                sizeFrequency[key] := { Count: 0, Width: entry.Width, Height: entry.Height }
             }
             sizeFrequency[key].Count++
         }
 
         ; Find most common size
-        mostCommon := {Count: 0}
+        mostCommon := { Count: 0 }
         for key, data in sizeFrequency {
             if data.Count > mostCommon.Count {
                 mostCommon := data
@@ -333,18 +333,18 @@ class SizeChangeDetector {
 ; ========================================
 
 /**
-* @class WindowOrganizer
-* @description Automatically organize windows on screen
-*/
+ * @class WindowOrganizer
+ * @description Automatically organize windows on screen
+ */
 class WindowOrganizer {
     /**
-    * @method OrganizeTiled
-    * @description Organize windows in a tile layout
-    * @param windowList Array of window titles
-    */
+     * @method OrganizeTiled
+     * @description Organize windows in a tile layout
+     * @param windowList Array of window titles
+     */
     static OrganizeTiled(windowList) {
         if windowList.Length = 0
-        return
+            return
 
         ; Get work area
         MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
@@ -373,13 +373,13 @@ class WindowOrganizer {
     }
 
     /**
-    * @method OrganizeCascade
-    * @description Organize windows in cascade layout
-    * @param windowList Array of window titles
-    */
+     * @method OrganizeCascade
+     * @description Organize windows in cascade layout
+     * @param windowList Array of window titles
+     */
     static OrganizeCascade(windowList) {
         if windowList.Length = 0
-        return
+            return
 
         MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
 
@@ -401,13 +401,13 @@ class WindowOrganizer {
     }
 
     /**
-    * @method OrganizeBySize
-    * @description Organize windows by size (largest to smallest)
-    * @param windowList Array of window titles
-    */
+     * @method OrganizeBySize
+     * @description Organize windows by size (largest to smallest)
+     * @param windowList Array of window titles
+     */
     static OrganizeBySize(windowList) {
         if windowList.Length = 0
-        return
+            return
 
         ; Get window sizes
         windowData := []
@@ -463,15 +463,15 @@ SortArray(arr, compareFunc) {
         if WinExist("ahk_id " id) {
             style := WinGetStyle("ahk_id " id)
             if (style & 0x10000000) && !(style & 0x08000000) {  ; WS_VISIBLE and not WS_DISABLED
-            titles.Push("ahk_id " id)
+                titles.Push("ahk_id " id)
+            }
         }
     }
-}
 
-if titles.Length > 0 {
-    WindowOrganizer.OrganizeTiled(titles)
-    TrayTip("Organized " titles.Length " windows", "Organization Complete", "Icon!")
-}
+    if titles.Length > 0 {
+        WindowOrganizer.OrganizeTiled(titles)
+        TrayTip("Organized " titles.Length " windows", "Organization Complete", "Icon!")
+    }
 }
 
 ; ========================================
@@ -479,17 +479,17 @@ if titles.Length > 0 {
 ; ========================================
 
 /**
-* @class CollisionDetector
-* @description Detect and handle window collisions/overlaps
-*/
+ * @class CollisionDetector
+ * @description Detect and handle window collisions/overlaps
+ */
 class CollisionDetector {
     /**
-    * @method CheckCollision
-    * @description Check if two windows overlap
-    * @param WinTitle1 First window
-    * @param WinTitle2 Second window
-    * @returns {Object} Collision information
-    */
+     * @method CheckCollision
+     * @description Check if two windows overlap
+     * @param WinTitle1 First window
+     * @param WinTitle2 Second window
+     * @returns {Object} Collision information
+     */
     static CheckCollision(WinTitle1, WinTitle2) {
         try {
             WinGetPos(&x1, &y1, &w1, &h1, WinTitle1)
@@ -511,8 +511,8 @@ class CollisionDetector {
 
             result := {
                 Overlapping: overlapping,
-                Window1: {X: x1, Y: y1, Width: w1, Height: h1},
-                Window2: {X: x2, Y: y2, Width: w2, Height: h2}
+                Window1: { X: x1, Y: y1, Width: w1, Height: h1 },
+                Window2: { X: x2, Y: y2, Width: w2, Height: h2 }
             }
 
             if overlapping {
@@ -539,15 +539,15 @@ class CollisionDetector {
             return result
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method FindAllCollisions
-    * @description Find all overlapping windows
-    * @returns {Array} List of collisions
-    */
+     * @method FindAllCollisions
+     * @description Find all overlapping windows
+     * @returns {Array} List of collisions
+     */
     static FindAllCollisions() {
         windows := WinGetList()
         collisions := []
@@ -556,7 +556,7 @@ class CollisionDetector {
         for i, id1 in windows {
             for j, id2 in windows {
                 if i >= j
-                continue
+                    continue
 
                 result := this.CheckCollision("ahk_id " id1, "ahk_id " id2)
                 if result.HasOwnProp("Overlapping") && result.Overlapping {
@@ -574,11 +574,11 @@ class CollisionDetector {
     }
 
     /**
-    * @method ResolveCollision
-    * @description Automatically resolve collision by moving windows
-    * @param WinTitle1 First window
-    * @param WinTitle2 Second window
-    */
+     * @method ResolveCollision
+     * @description Automatically resolve collision by moving windows
+     * @param WinTitle1 First window
+     * @param WinTitle2 Second window
+     */
     static ResolveCollision(WinTitle1, WinTitle2) {
         try {
             WinGetPos(&x1, &y1, &w1, &h1, WinTitle1)
@@ -605,7 +605,7 @@ class CollisionDetector {
 
         for index, collision in collisions {
             if index > 5  ; Limit output
-            break
+                break
 
             title1 := WinGetTitle("ahk_id " collision.Win1)
             title2 := WinGetTitle("ahk_id " collision.Win2)
@@ -623,32 +623,32 @@ class CollisionDetector {
 ; ========================================
 
 /**
-* @class GridLayoutManager
-* @description Manage windows in a dynamic grid layout
-*/
+ * @class GridLayoutManager
+ * @description Manage windows in a dynamic grid layout
+ */
 class GridLayoutManager {
     static grid := Map()
     static columns := 3
     static rows := 2
 
     /**
-    * @method SetGridSize
-    * @description Set grid dimensions
-    * @param cols Number of columns
-    * @param rows Number of rows
-    */
+     * @method SetGridSize
+     * @description Set grid dimensions
+     * @param cols Number of columns
+     * @param rows Number of rows
+     */
     static SetGridSize(cols, rows) {
         this.columns := cols
         this.rows := rows
     }
 
     /**
-    * @method AssignToCell
-    * @description Assign window to specific grid cell
-    * @param WinTitle Window identifier
-    * @param col Column (1-based)
-    * @param row Row (1-based)
-    */
+     * @method AssignToCell
+     * @description Assign window to specific grid cell
+     * @param WinTitle Window identifier
+     * @param col Column (1-based)
+     * @param row Row (1-based)
+     */
     static AssignToCell(WinTitle, col, row) {
         if col < 1 || col > this.columns || row < 1 || row > this.rows {
             throw Error("Invalid grid position")
@@ -676,9 +676,9 @@ class GridLayoutManager {
     }
 
     /**
-    * @method ShowGrid
-    * @description Display grid overlay
-    */
+     * @method ShowGrid
+     * @description Display grid overlay
+     */
     static ShowGrid() {
         MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
         workWidth := right - left
@@ -709,10 +709,10 @@ class GridLayoutManager {
     }
 
     /**
-    * @method SnapToGrid
-    * @description Snap window to nearest grid cell
-    * @param WinTitle Window identifier
-    */
+     * @method SnapToGrid
+     * @description Snap window to nearest grid cell
+     * @param WinTitle Window identifier
+     */
     static SnapToGrid(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -760,9 +760,9 @@ class GridLayoutManager {
 ; ========================================
 
 /**
-* @class PositionHistory
-* @description Record and playback window position changes
-*/
+ * @class PositionHistory
+ * @description Record and playback window position changes
+ */
 class PositionHistory {
     static recordings := Map()
     static isRecording := false
@@ -770,11 +770,11 @@ class PositionHistory {
     static recordTimer := 0
 
     /**
-    * @method StartRecording
-    * @description Begin recording window positions
-    * @param WinTitle Window to record
-    * @param name Recording name
-    */
+     * @method StartRecording
+     * @description Begin recording window positions
+     * @param WinTitle Window to record
+     * @param name Recording name
+     */
     static StartRecording(WinTitle, name := "Recording") {
         this.currentRecording := name
         this.recordings[name] := {
@@ -790,12 +790,12 @@ class PositionHistory {
     }
 
     /**
-    * @method StopRecording
-    * @description Stop recording
-    */
+     * @method StopRecording
+     * @description Stop recording
+     */
     static StopRecording() {
         if !this.isRecording
-        return
+            return
 
         this.isRecording := false
         if this.recordTimer {
@@ -810,11 +810,11 @@ class PositionHistory {
     }
 
     /**
-    * @method RecordFrame
-    * @description Record a single frame
-    * @param WinTitle Window identifier
-    * @param name Recording name
-    */
+     * @method RecordFrame
+     * @description Record a single frame
+     * @param WinTitle Window identifier
+     * @param name Recording name
+     */
     static RecordFrame(WinTitle, name) {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -835,12 +835,12 @@ class PositionHistory {
     }
 
     /**
-    * @method PlaybackRecording
-    * @description Playback recorded positions
-    * @param name Recording name
-    * @param WinTitle Target window
-    * @param speed Playback speed (1.0 = normal)
-    */
+     * @method PlaybackRecording
+     * @description Playback recorded positions
+     * @param name Recording name
+     * @param WinTitle Target window
+     * @param speed Playback speed (1.0 = normal)
+     */
     static PlaybackRecording(name, WinTitle := "A", speed := 1.0) {
         if !this.recordings.Has(name) {
             MsgBox("Recording '" name "' not found", "Error", "IconX")
@@ -851,7 +851,7 @@ class PositionHistory {
         frames := recording.Frames
 
         if frames.Length = 0
-        return
+            return
 
         TrayTip("Playing back: " name, "Position Playback", "Icon!")
 

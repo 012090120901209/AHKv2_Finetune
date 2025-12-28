@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 MouseMove Function - Basic Cursor Movement
-* ============================================================================
-*
-* The MouseMove function moves the mouse cursor to specified coordinates.
-* Essential for automation, UI testing, and cursor positioning.
-*
-* Syntax: MouseMove(X, Y [, Speed])
-*
-* @module BuiltIn_MouseMove_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 MouseMove Function - Basic Cursor Movement
+ * ============================================================================
+ * 
+ * The MouseMove function moves the mouse cursor to specified coordinates.
+ * Essential for automation, UI testing, and cursor positioning.
+ * 
+ * Syntax: MouseMove(X, Y [, Speed])
+ * 
+ * @module BuiltIn_MouseMove_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Mouse Movement
 ; ============================================================================
 
 /**
-* Moves cursor to absolute screen coordinates.
-* Speed parameter controls movement velocity (0 = instant, 100 = slow).
-*
-* @example
-* ; Press F1 to move cursor to (500, 500)
-*/
+ * Moves cursor to absolute screen coordinates.
+ * Speed parameter controls movement velocity (0 = instant, 100 = slow).
+ * 
+ * @example
+ * ; Press F1 to move cursor to (500, 500)
+ */
 F1:: {
     ToolTip("Moving cursor to (500, 500)...")
     MouseMove(500, 500)  ; Instant movement (default speed)
@@ -34,9 +34,9 @@ F1:: {
 }
 
 /**
-* Slow cursor movement
-* Visible movement for user-friendly automation
-*/
+ * Slow cursor movement
+ * Visible movement for user-friendly automation
+ */
 F2:: {
     ToolTip("Slow movement to (300, 300)...")
     MouseMove(300, 300, 50)  ; Speed 50 = medium slow
@@ -45,9 +45,9 @@ F2:: {
 }
 
 /**
-* Very slow cursor movement
-* Maximum visibility for demonstrations
-*/
+ * Very slow cursor movement
+ * Maximum visibility for demonstrations
+ */
 F3:: {
     ToolTip("Very slow movement to (700, 400)...")
     MouseMove(700, 400, 100)  ; Speed 100 = very slow
@@ -56,9 +56,9 @@ F3:: {
 }
 
 /**
-* Fast cursor movement
-* Quick but still visible
-*/
+ * Fast cursor movement
+ * Quick but still visible
+ */
 F4:: {
     ToolTip("Fast movement to (200, 600)...")
     MouseMove(200, 600, 10)  ; Speed 10 = fast
@@ -71,12 +71,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Moves cursor to screen corners.
-* Uses built-in variables for screen dimensions.
-*
-* @description
-* Demonstrates using A_ScreenWidth and A_ScreenHeight
-*/
+ * Moves cursor to screen corners.
+ * Uses built-in variables for screen dimensions.
+ * 
+ * @description
+ * Demonstrates using A_ScreenWidth and A_ScreenHeight
+ */
 ^F1:: {
     ToolTip("Moving to top-left corner...")
     MouseMove(0, 0, 30)
@@ -101,9 +101,9 @@ F4:: {
 }
 
 /**
-* Edge midpoint navigation
-* Moves to center of each screen edge
-*/
+ * Edge midpoint navigation
+ * Moves to center of each screen edge
+ */
 ^F2:: {
     centerX := A_ScreenWidth // 2
     centerY := A_ScreenHeight // 2
@@ -135,12 +135,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Horizontal line movement pattern.
-* Moves cursor along a horizontal line.
-*
-* @description
-* Creates smooth horizontal movement across screen
-*/
+ * Horizontal line movement pattern.
+ * Moves cursor along a horizontal line.
+ * 
+ * @description
+ * Creates smooth horizontal movement across screen
+ */
 ^F3:: {
     y := A_ScreenHeight // 2
     startX := 100
@@ -164,9 +164,9 @@ F4:: {
 }
 
 /**
-* Vertical line movement pattern
-* Moves cursor along a vertical line
-*/
+ * Vertical line movement pattern
+ * Moves cursor along a vertical line
+ */
 ^F4:: {
     x := A_ScreenWidth // 2
     startY := 100
@@ -190,9 +190,9 @@ F4:: {
 }
 
 /**
-* Diagonal movement pattern
-* Moves from corner to corner diagonally
-*/
+ * Diagonal movement pattern
+ * Moves from corner to corner diagonally
+ */
 ^F5:: {
     ToolTip("Diagonal movement pattern...")
 
@@ -220,12 +220,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Simulates navigating through a menu bar.
-* Moves cursor to typical menu positions.
-*
-* @description
-* Demonstrates positioning for UI automation
-*/
+ * Simulates navigating through a menu bar.
+ * Moves cursor to typical menu positions.
+ * 
+ * @description
+ * Demonstrates positioning for UI automation
+ */
 ^F6:: {
     ToolTip("Simulating menu navigation...")
 
@@ -244,17 +244,17 @@ F4:: {
 
     ; View menu
     ToolTip("View menu...")
-    MouseMove(50 + spacing*2, menuY, 20)
+    MouseMove(50 + spacing * 2, menuY, 20)
     Sleep(500)
 
     ; Tools menu
     ToolTip("Tools menu...")
-    MouseMove(50 + spacing*3, menuY, 20)
+    MouseMove(50 + spacing * 3, menuY, 20)
     Sleep(500)
 
     ; Help menu
     ToolTip("Help menu...")
-    MouseMove(50 + spacing*4, menuY, 20)
+    MouseMove(50 + spacing * 4, menuY, 20)
     Sleep(500)
 
     ToolTip("Menu navigation complete!")
@@ -263,9 +263,9 @@ F4:: {
 }
 
 /**
-* Form field navigation simulation
-* Moves cursor through typical form layout
-*/
+ * Form field navigation simulation
+ * Moves cursor through typical form layout
+ */
 ^F7:: {
     ToolTip("Form field navigation...")
 
@@ -293,12 +293,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Creates smooth curved path movement.
-* Demonstrates advanced cursor animation.
-*
-* @description
-* Uses mathematical curves for smooth motion
-*/
+ * Creates smooth curved path movement.
+ * Demonstrates advanced cursor animation.
+ * 
+ * @description
+ * Uses mathematical curves for smooth motion
+ */
 ^F8:: {
     ToolTip("Smooth curve animation...")
 
@@ -326,9 +326,9 @@ F4:: {
 }
 
 /**
-* Circular motion pattern
-* Moves cursor in a circle
-*/
+ * Circular motion pattern
+ * Moves cursor in a circle
+ */
 ^F9:: {
     ToolTip("Circular motion...")
 
@@ -352,9 +352,9 @@ F4:: {
 }
 
 /**
-* Figure-8 motion pattern
-* Creates infinity symbol motion
-*/
+ * Figure-8 motion pattern
+ * Creates infinity symbol motion
+ */
 ^F10:: {
     ToolTip("Figure-8 motion...")
 
@@ -385,12 +385,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Moves cursor across multiple monitors.
-* Uses SysGet to detect monitor configurations.
-*
-* @description
-* Demonstrates multi-monitor cursor movement
-*/
+ * Moves cursor across multiple monitors.
+ * Uses SysGet to detect monitor configurations.
+ * 
+ * @description
+ * Demonstrates multi-monitor cursor movement
+ */
 ^F11:: {
     monitorCount := MonitorGetCount()
 
@@ -422,12 +422,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Positions cursor relative to active window.
-* Uses window coordinates instead of screen coordinates.
-*
-* @description
-* Demonstrates window-relative cursor movement
-*/
+ * Positions cursor relative to active window.
+ * Uses window coordinates instead of screen coordinates.
+ * 
+ * @description
+ * Demonstrates window-relative cursor movement
+ */
 ^F12:: {
     ToolTip("Opening Notepad for window-relative positioning...")
 
@@ -476,12 +476,12 @@ F4:: {
 ; ============================================================================
 
 /**
-* Smooth movement to target with easing
-*
-* @param {Number} targetX - Target X coordinate
-* @param {Number} targetY - Target Y coordinate
-* @param {Number} steps - Number of steps (default: 30)
-*/
+ * Smooth movement to target with easing
+ * 
+ * @param {Number} targetX - Target X coordinate
+ * @param {Number} targetY - Target Y coordinate
+ * @param {Number} steps - Number of steps (default: 30)
+ */
 SmoothMoveTo(targetX, targetY, steps := 30) {
     MouseGetPos(&currentX, &currentY)
 
@@ -490,8 +490,8 @@ SmoothMoveTo(targetX, targetY, steps := 30) {
 
         ; Ease-in-out formula
         easeProgress := progress < 0.5
-        ? 2 * progress * progress
-        : 1 - (-2 * progress + 2) ** 2 / 2
+            ? 2 * progress * progress
+            : 1 - (-2 * progress + 2) ** 2 / 2
 
         x := currentX + (targetX - currentX) * easeProgress
         y := currentY + (targetY - currentY) * easeProgress
@@ -505,14 +505,14 @@ SmoothMoveTo(targetX, targetY, steps := 30) {
 }
 
 /**
-* Move cursor in grid pattern
-*
-* @param {Number} startX - Grid start X
-* @param {Number} startY - Grid start Y
-* @param {Number} cols - Number of columns
-* @param {Number} rows - Number of rows
-* @param {Number} spacing - Spacing between points
-*/
+ * Move cursor in grid pattern
+ * 
+ * @param {Number} startX - Grid start X
+ * @param {Number} startY - Grid start Y
+ * @param {Number} cols - Number of columns
+ * @param {Number} rows - Number of rows
+ * @param {Number} spacing - Spacing between points
+ */
 MoveInGrid(startX, startY, cols, rows, spacing) {
     Loop rows {
         rowIndex := A_Index
@@ -547,7 +547,7 @@ MoveInGrid(startX, startY, cols, rows, spacing) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

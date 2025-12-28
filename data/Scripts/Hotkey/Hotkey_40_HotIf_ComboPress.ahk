@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Context-Sensitive - Combination Detection
-* Hotkeys that fire based on recent key presses
-*/
+ * Context-Sensitive - Combination Detection
+ * Hotkeys that fire based on recent key presses
+ */
 
 global lastKey := ""
 global lastKeyTime := 0
@@ -20,13 +20,13 @@ global lastKeyTime := 0
 ; Context: Only if 'a' was pressed recently (within 1 second)
 #HotIf (lastKey = "a" and (A_TickCount - lastKeyTime) < 1000)
 
-b::MsgBox("Pressed 'b' shortly after 'a'!`n`nSequence detected: a→b")
+b:: MsgBox("Pressed 'b' shortly after 'a'!`n`nSequence detected: a→b")
 #HotIf
 
 ; Context: Only if 'b' was pressed recently
 #HotIf (lastKey = "b" and (A_TickCount - lastKeyTime) < 1000)
 
-c::MsgBox("Pressed 'c' shortly after 'b'!`n`nSequence: b→c")
+c:: MsgBox("Pressed 'c' shortly after 'b'!`n`nSequence: b→c")
 #HotIf
 
 ; Reset context

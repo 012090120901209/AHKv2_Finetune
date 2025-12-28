@@ -1,54 +1,54 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetAttrib_14.ahk
-*
-* DESCRIPTION:
-* Advanced attribute filtering and file categorization
-*
-* FEATURES:
-* - Filter files by attributes
-* - Attribute-based categorization
-* - Complex attribute queries
-* - Attribute combinations
-* - File classification
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetAttrib() with filtering
-* - Attribute pattern matching
-* - Multi-criteria filtering
-* - File classification systems
-* - Attribute-based organization
-*
-* LEARNING POINTS:
-* 1. Filter files by specific attributes
-* 2. Combine multiple attribute criteria
-* 3. Categorize files by attributes
-* 4. Create complex attribute queries
-* 5. Organize files by characteristics
-* 6. Implement attribute-based rules
-*/
+ * BuiltIn_FileGetAttrib_14.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced attribute filtering and file categorization
+ * 
+ * FEATURES:
+ * - Filter files by attributes
+ * - Attribute-based categorization
+ * - Complex attribute queries
+ * - Attribute combinations
+ * - File classification
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetAttrib() with filtering
+ * - Attribute pattern matching
+ * - Multi-criteria filtering
+ * - File classification systems
+ * - Attribute-based organization
+ * 
+ * LEARNING POINTS:
+ * 1. Filter files by specific attributes
+ * 2. Combine multiple attribute criteria
+ * 3. Categorize files by attributes
+ * 4. Create complex attribute queries
+ * 5. Organize files by characteristics
+ * 6. Implement attribute-based rules
+ */
 
 ; ============================================================
 ; Example 1: Filter Files by Attribute
 ; ============================================================
 
 /**
-* Filter files by required attributes
-*
-* @param {String} dirPath - Directory to search
-* @param {String} requiredAttribs - Required attributes (e.g., "R", "RH")
-* @returns {Array} - Matching files
-*/
+ * Filter files by required attributes
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {String} requiredAttribs - Required attributes (e.g., "R", "RH")
+ * @returns {Array} - Matching files
+ */
 FilterByAttributes(dirPath, requiredAttribs) {
     matches := []
 
     if (!DirExist(dirPath))
-    return matches
+        return matches
 
     Loop Files, dirPath "\*.*", "FH" {
         attrs := FileGetAttrib(A_LoopFilePath)
@@ -93,7 +93,7 @@ readOnlyFiles := FilterByAttributes(testDir, "R")
 output := "FILES WITH READ-ONLY ATTRIBUTE:`n`n"
 output .= "Found: " readOnlyFiles.Length " files`n`n"
 for file in readOnlyFiles
-output .= "• " file.name " (" file.attributes ")`n"
+    output .= "• " file.name " (" file.attributes ")`n"
 
 MsgBox(output, "Attribute Filter", "Icon!")
 
@@ -102,17 +102,17 @@ MsgBox(output, "Attribute Filter", "Icon!")
 ; ============================================================
 
 /**
-* Get files that DON'T have specific attributes
-*
-* @param {String} dirPath - Directory to search
-* @param {String} excludeAttribs - Attributes to exclude
-* @returns {Array} - Non-matching files
-*/
+ * Get files that DON'T have specific attributes
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {String} excludeAttribs - Attributes to exclude
+ * @returns {Array} - Non-matching files
+ */
 ExcludeByAttributes(dirPath, excludeAttribs) {
     matches := []
 
     if (!DirExist(dirPath))
-    return matches
+        return matches
 
     Loop Files, dirPath "\*.*", "FH" {
         attrs := FileGetAttrib(A_LoopFilePath)
@@ -144,7 +144,7 @@ normalFiles := ExcludeByAttributes(testDir, "HR")
 output := "FILES WITHOUT H OR R ATTRIBUTES:`n`n"
 output .= "Found: " normalFiles.Length " files`n`n"
 for file in normalFiles
-output .= "• " file.name " (" file.attributes ")`n"
+    output .= "• " file.name " (" file.attributes ")`n"
 
 MsgBox(output, "Exclude Filter", "Icon!")
 
@@ -153,23 +153,23 @@ MsgBox(output, "Exclude Filter", "Icon!")
 ; ============================================================
 
 /**
-* Categorize files by attribute patterns
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Categorized files
-*/
+ * Categorize files by attribute patterns
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Categorized files
+ */
 CategorizeByAttributes(dirPath) {
     categories := Map(
-    "Normal", [],
-    "ReadOnly", [],
-    "Hidden", [],
-    "System", [],
-    "Protected", [],  ; R+H
-    "Special", []     ; Has S or R+H+S
+        "Normal", [],
+        "ReadOnly", [],
+        "Hidden", [],
+        "System", [],
+        "Protected", [],  ; R+H
+        "Special", []     ; Has S or R+H+S
     )
 
     if (!DirExist(dirPath))
-    return categories
+        return categories
 
     Loop Files, dirPath "\*.*", "FH" {
         attrs := FileGetAttrib(A_LoopFilePath)
@@ -203,7 +203,7 @@ for categoryName, files in categories {
     if (files.Length > 0) {
         output .= categoryName " (" files.Length "):`n"
         for file in files
-        output .= "  • " file.name "`n"
+            output .= "  • " file.name "`n"
         output .= "`n"
     }
 }
@@ -215,17 +215,17 @@ MsgBox(output, "Categorization", "Icon!")
 ; ============================================================
 
 /**
-* Execute complex attribute query
-*
-* @param {String} dirPath - Directory to search
-* @param {Object} query - Query criteria
-* @returns {Array} - Query results
-*/
+ * Execute complex attribute query
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {Object} query - Query criteria
+ * @returns {Array} - Query results
+ */
 QueryByAttributes(dirPath, query) {
     results := []
 
     if (!DirExist(dirPath))
-    return results
+        return results
 
     Loop Files, dirPath "\*.*", "FH" {
         attrs := FileGetAttrib(A_LoopFilePath)
@@ -275,7 +275,7 @@ output := "COMPLEX QUERY RESULTS:`n`n"
 output .= "Query: ReadOnly=Yes, Hidden=No`n"
 output .= "Found: " queryResults.Length " files`n`n"
 for file in queryResults
-output .= "• " file.name " (" file.attributes ")`n"
+    output .= "• " file.name " (" file.attributes ")`n"
 
 MsgBox(output, "Query Results", "Icon!")
 
@@ -284,11 +284,11 @@ MsgBox(output, "Query Results", "Icon!")
 ; ============================================================
 
 /**
-* Classify file security level based on attributes
-*
-* @param {String} filePath - File to classify
-* @returns {Object} - Classification result
-*/
+ * Classify file security level based on attributes
+ * 
+ * @param {String} filePath - File to classify
+ * @returns {Object} - Classification result
+ */
 ClassifyFileSecurity(filePath) {
     classification := {
         level: "Unknown",
@@ -297,7 +297,7 @@ ClassifyFileSecurity(filePath) {
     }
 
     if (!FileExist(filePath))
-    return classification
+        return classification
 
     attrs := FileGetAttrib(filePath)
 
@@ -319,13 +319,13 @@ ClassifyFileSecurity(filePath) {
 
     ; Determine level
     if (classification.score >= 10)
-    classification.level := "Critical"
+        classification.level := "Critical"
     else if (classification.score >= 5)
-    classification.level := "Protected"
+        classification.level := "Protected"
     else if (classification.score > 0)
-    classification.level := "Restricted"
+        classification.level := "Restricted"
     else
-    classification.level := "Normal"
+        classification.level := "Normal"
 
     return classification
 }
@@ -334,10 +334,10 @@ ClassifyFileSecurity(filePath) {
 output := "SECURITY CLASSIFICATION:`n`n"
 
 testFiles := [
-testDir "\normal.txt",
-testDir "\readonly.txt",
-testDir "\hidden.txt",
-testDir "\both.txt"
+    testDir "\normal.txt",
+    testDir "\readonly.txt",
+    testDir "\hidden.txt",
+    testDir "\both.txt"
 ]
 
 for filePath in testFiles {
@@ -350,7 +350,7 @@ for filePath in testFiles {
     if (classification.details.Length > 0) {
         output .= "  Features: "
         for detail in classification.details
-        output .= detail (A_Index < classification.details.Length ? ", " : "")
+            output .= detail (A_Index < classification.details.Length ? ", " : "")
     }
     output .= "`n`n"
 }
@@ -362,17 +362,17 @@ MsgBox(output, "Security Classification", "Icon!")
 ; ============================================================
 
 /**
-* Find files matching attribute pattern
-*
-* @param {String} dirPath - Directory to search
-* @param {String} pattern - Pattern (e.g., "R*H" = R and H, "*" = anything between)
-* @returns {Array} - Matching files
-*/
+ * Find files matching attribute pattern
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {String} pattern - Pattern (e.g., "R*H" = R and H, "*" = anything between)
+ * @returns {Array} - Matching files
+ */
 MatchAttributePattern(dirPath, pattern) {
     matches := []
 
     if (!DirExist(dirPath))
-    return matches
+        return matches
 
     Loop Files, dirPath "\*.*", "FH" {
         attrs := FileGetAttrib(A_LoopFilePath)
@@ -406,7 +406,7 @@ output := "ATTRIBUTE PATTERN MATCH:`n`n"
 output .= "Pattern: Must have 'R' attribute`n"
 output .= "Matches: " patternMatches.Length "`n`n"
 for file in patternMatches
-output .= "• " file.name " (" file.attributes ")`n"
+    output .= "• " file.name " (" file.attributes ")`n"
 
 MsgBox(output, "Pattern Match", "Icon!")
 
@@ -415,24 +415,24 @@ MsgBox(output, "Pattern Match", "Icon!")
 ; ============================================================
 
 /**
-* Calculate attribute statistics for directory
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Attribute statistics
-*/
+ * Calculate attribute statistics for directory
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Attribute statistics
+ */
 CalculateAttributeStats(dirPath) {
     stats := Map(
-    "R", {count: 0, name: "Read-Only"},
-    "A", {count: 0, name: "Archive"},
-    "S", {count: 0, name: "System"},
-    "H", {count: 0, name: "Hidden"},
-    "N", {count: 0, name: "Normal"}
+        "R", { count: 0, name: "Read-Only" },
+        "A", { count: 0, name: "Archive" },
+        "S", { count: 0, name: "System" },
+        "H", { count: 0, name: "Hidden" },
+        "N", { count: 0, name: "Normal" }
     )
 
     totalFiles := 0
 
     if (!DirExist(dirPath))
-    return {stats: stats, total: 0}
+        return { stats: stats, total: 0 }
 
     Loop Files, dirPath "\*.*", "FH" {
         totalFiles++
@@ -440,11 +440,11 @@ CalculateAttributeStats(dirPath) {
 
         for attrib, info in stats {
             if (InStr(attrs, attrib))
-            info.count++
+                info.count++
         }
     }
 
-    return {stats: stats, total: totalFiles}
+    return { stats: stats, total: totalFiles }
 }
 
 ; Calculate stats

@@ -2,42 +2,42 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Get_01_BasicUsage.ahk
-*
-* @description Comprehensive examples of Map.Get() method for basic usage
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* The Map.Get() method retrieves values from a Map object.
-* Syntax: MapObject.Get(Key [, DefaultValue])
-* Returns: The value associated with the key, or default value if key doesn't exist
-*
-* Key Features:
-* - Retrieve values by key
-* - Provide default values for missing keys
-* - Safe value retrieval without exceptions
-* - Type-safe data access
-*/
+ * BuiltIn_Map_Get_01_BasicUsage.ahk
+ * 
+ * @description Comprehensive examples of Map.Get() method for basic usage
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * The Map.Get() method retrieves values from a Map object.
+ * Syntax: MapObject.Get(Key [, DefaultValue])
+ * Returns: The value associated with the key, or default value if key doesn't exist
+ * 
+ * Key Features:
+ * - Retrieve values by key
+ * - Provide default values for missing keys
+ * - Safe value retrieval without exceptions
+ * - Type-safe data access
+ */
 
 ;=============================================================================
 ; Example 1: Basic Value Retrieval
 ;=============================================================================
 
 /**
-* @function Example1_BasicGet
-* @description Demonstrates fundamental Map.Get() operations
-* @returns {void}
-*/
+ * @function Example1_BasicGet
+ * @description Demonstrates fundamental Map.Get() operations
+ * @returns {void}
+ */
 Example1_BasicGet() {
     ; Create and populate a map
     userInfo := Map(
-    "firstName", "John",
-    "lastName", "Doe",
-    "age", 30,
-    "email", "john.doe@example.com",
-    "active", true
+        "firstName", "John",
+        "lastName", "Doe",
+        "age", 30,
+        "email", "john.doe@example.com",
+        "active", true
     )
 
     output := "=== Example 1: Basic Get Operations ===`n`n"
@@ -61,14 +61,14 @@ Example1_BasicGet() {
 ;=============================================================================
 
 /**
-* @function Example2_DefaultValues
-* @description Shows how to use default values with Get()
-* @returns {void}
-*/
+ * @function Example2_DefaultValues
+ * @description Shows how to use default values with Get()
+ * @returns {void}
+ */
 Example2_DefaultValues() {
     config := Map(
-    "theme", "dark",
-    "fontSize", 12
+        "theme", "dark",
+        "fontSize", 12
     )
 
     output := "=== Example 2: Default Values ===`n`n"
@@ -94,16 +94,16 @@ Example2_DefaultValues() {
 ;=============================================================================
 
 /**
-* @function Example3_SafeAccess
-* @description Demonstrates safe data access patterns
-* @returns {void}
-*/
+ * @function Example3_SafeAccess
+ * @description Demonstrates safe data access patterns
+ * @returns {void}
+ */
 Example3_SafeAccess() {
     ; Simulate incomplete user data
     users := Map(
-    "user1", Map("name", "Alice", "email", "alice@example.com", "phone", "555-1234"),
-    "user2", Map("name", "Bob", "email", "bob@example.com"),  ; No phone
-    "user3", Map("name", "Carol")  ; Only name
+        "user1", Map("name", "Alice", "email", "alice@example.com", "phone", "555-1234"),
+        "user2", Map("name", "Bob", "email", "bob@example.com"),  ; No phone
+        "user3", Map("name", "Carol")  ; Only name
     )
 
     output := "=== Example 3: Safe Access ===`n`n"
@@ -124,9 +124,9 @@ Example3_SafeAccess() {
 ;=============================================================================
 
 /**
-* @class TypedMapReader
-* @description Helper class for type-safe Map reading
-*/
+ * @class TypedMapReader
+ * @description Helper class for type-safe Map reading
+ */
 class TypedMapReader {
     data := Map()
 
@@ -139,45 +139,45 @@ class TypedMapReader {
     }
 
     /**
-    * @method GetString
-    * @description Get value as string with default
-    */
+     * @method GetString
+     * @description Get value as string with default
+     */
     GetString(key, defaultValue := "") {
         value := this.data.Get(key, defaultValue)
         return String(value)
     }
 
     /**
-    * @method GetInteger
-    * @description Get value as integer with default
-    */
+     * @method GetInteger
+     * @description Get value as integer with default
+     */
     GetInteger(key, defaultValue := 0) {
         value := this.data.Get(key, defaultValue)
         return Integer(value)
     }
 
     /**
-    * @method GetFloat
-    * @description Get value as float with default
-    */
+     * @method GetFloat
+     * @description Get value as float with default
+     */
     GetFloat(key, defaultValue := 0.0) {
         value := this.data.Get(key, defaultValue)
         return Float(value)
     }
 
     /**
-    * @method GetBool
-    * @description Get value as boolean with default
-    */
+     * @method GetBool
+     * @description Get value as boolean with default
+     */
     GetBool(key, defaultValue := false) {
         value := this.data.Get(key, defaultValue)
         return value ? true : false
     }
 
     /**
-    * @method GetArray
-    * @description Get value as array with default
-    */
+     * @method GetArray
+     * @description Get value as array with default
+     */
     GetArray(key, defaultValue := "") {
         value := this.data.Get(key, defaultValue)
         return IsObject(value) ? value : (defaultValue != "" ? defaultValue : [])
@@ -186,10 +186,10 @@ class TypedMapReader {
 
 Example4_TypedGetters() {
     reader := TypedMapReader(Map(
-    "count", "42",
-    "price", "19.99",
-    "enabled", 1,
-    "tags", ["red", "blue", "green"]
+        "count", "42",
+        "price", "19.99",
+        "enabled", 1,
+        "tags", ["red", "blue", "green"]
     ))
 
     output := "=== Example 4: Type-Specific Getters ===`n`n"
@@ -210,12 +210,12 @@ Example4_TypedGetters() {
 }
 
 /**
-* @function ArrayToString
-* @description Convert array to string representation
-*/
+ * @function ArrayToString
+ * @description Convert array to string representation
+ */
 ArrayToString(arr) {
     if (!IsObject(arr) || arr.Length = 0)
-    return "[]"
+        return "[]"
 
     result := ""
     for item in arr {
@@ -229,25 +229,25 @@ ArrayToString(arr) {
 ;=============================================================================
 
 /**
-* @function Example5_NestedAccess
-* @description Accessing nested Map structures safely
-* @returns {void}
-*/
+ * @function Example5_NestedAccess
+ * @description Accessing nested Map structures safely
+ * @returns {void}
+ */
 Example5_NestedAccess() {
     ; Create nested structure
     database := Map(
-    "users", Map(
-    "john", Map(
-    "profile", Map(
-    "name", "John Doe",
-    "age", 30
-    ),
-    "settings", Map(
-    "theme", "dark",
-    "notifications", true
-    )
-    )
-    )
+        "users", Map(
+            "john", Map(
+                "profile", Map(
+                    "name", "John Doe",
+                    "age", 30
+                ),
+                "settings", Map(
+                    "theme", "dark",
+                    "notifications", true
+                )
+            )
+        )
     )
 
     output := "=== Example 5: Nested Access ===`n`n"
@@ -277,9 +277,9 @@ Example5_NestedAccess() {
 ;=============================================================================
 
 /**
-* @class ComputedMapReader
-* @description Map reader with computed defaults
-*/
+ * @class ComputedMapReader
+ * @description Map reader with computed defaults
+ */
 class ComputedMapReader {
     data := Map()
 
@@ -288,9 +288,9 @@ class ComputedMapReader {
     }
 
     /**
-    * @method GetOrCompute
-    * @description Get value or compute it if missing
-    */
+     * @method GetOrCompute
+     * @description Get value or compute it if missing
+     */
     GetOrCompute(key, computeFunc) {
         if (this.data.Has(key)) {
             return this.data.Get(key)
@@ -304,9 +304,9 @@ class ComputedMapReader {
     }
 
     /**
-    * @method GetWithFallback
-    * @description Try multiple keys, return first found
-    */
+     * @method GetWithFallback
+     * @description Try multiple keys, return first found
+     */
     GetWithFallback(keys, defaultValue := "") {
         for key in keys {
             if (this.data.Has(key)) {
@@ -319,8 +319,8 @@ class ComputedMapReader {
 
 Example6_ComputedGet() {
     reader := ComputedMapReader(Map(
-    "width", 800,
-    "height", 600
+        "width", 800,
+        "height", 600
     ))
 
     output := "=== Example 6: Get with Computation ===`n`n"
@@ -339,7 +339,7 @@ Example6_ComputedGet() {
 
     ; Fallback example
     reader2 := ComputedMapReader(Map(
-    "colour", "red"  ; British spelling
+        "colour", "red"  ; British spelling
     ))
 
     color := reader2.GetWithFallback(["color", "colour"], "black")
@@ -353,24 +353,24 @@ Example6_ComputedGet() {
 ;=============================================================================
 
 /**
-* @function Example7_BatchGet
-* @description Retrieve multiple values at once
-* @returns {void}
-*/
+ * @function Example7_BatchGet
+ * @description Retrieve multiple values at once
+ * @returns {void}
+ */
 Example7_BatchGet() {
     settings := Map(
-    "app.name", "MyApp",
-    "app.version", "1.0.0",
-    "window.width", 1024,
-    "window.height", 768,
-    "theme.primary", "#0078D7",
-    "theme.secondary", "#005A9E"
+        "app.name", "MyApp",
+        "app.version", "1.0.0",
+        "window.width", 1024,
+        "window.height", 768,
+        "theme.primary", "#0078D7",
+        "theme.secondary", "#005A9E"
     )
 
     /**
-    * @function GetMultiple
-    * @description Get multiple values and return as Map
-    */
+     * @function GetMultiple
+     * @description Get multiple values and return as Map
+     */
     GetMultiple(sourceMap, keys) {
         result := Map()
         for key in keys {
@@ -380,9 +380,9 @@ Example7_BatchGet() {
     }
 
     /**
-    * @function GetByPrefix
-    * @description Get all keys with specific prefix
-    */
+     * @function GetByPrefix
+     * @description Get all keys with specific prefix
+     */
     GetByPrefix(sourceMap, prefix) {
         result := Map()
         for key, value in sourceMap {
@@ -422,28 +422,28 @@ CreateDemoGUI() {
     demoGui.Title := "Map.Get() Method - Basic Usage Examples"
 
     demoGui.Add("Text", "x10 y10 w480 +Center",
-    "Click buttons to see different Map.Get() examples")
+        "Click buttons to see different Map.Get() examples")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Basic Get")
-    .OnEvent("Click", (*) => Example1_BasicGet())
+        .OnEvent("Click", (*) => Example1_BasicGet())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Default Values")
-    .OnEvent("Click", (*) => Example2_DefaultValues())
+        .OnEvent("Click", (*) => Example2_DefaultValues())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Safe Access")
-    .OnEvent("Click", (*) => Example3_SafeAccess())
+        .OnEvent("Click", (*) => Example3_SafeAccess())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Typed Getters")
-    .OnEvent("Click", (*) => Example4_TypedGetters())
+        .OnEvent("Click", (*) => Example4_TypedGetters())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Nested Access")
-    .OnEvent("Click", (*) => Example5_NestedAccess())
+        .OnEvent("Click", (*) => Example5_NestedAccess())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Computed Get")
-    .OnEvent("Click", (*) => Example6_ComputedGet())
+        .OnEvent("Click", (*) => Example6_ComputedGet())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Batch Get")
-    .OnEvent("Click", (*) => Example7_BatchGet())
+        .OnEvent("Click", (*) => Example7_BatchGet())
 
     ; Interactive section
     demoGui.Add("GroupBox", "x10 y200 w470 h110", "Interactive Get Tester")
@@ -455,7 +455,7 @@ CreateDemoGUI() {
     defaultInput := demoGui.Add("Edit", "x300 y222 w170")
 
     demoGui.Add("Button", "x20 y255 w200 h25", "Get Value")
-    .OnEvent("Click", GetValue)
+        .OnEvent("Click", GetValue)
 
     resultDisplay := demoGui.Add("Edit", "x20 y285 w450 h20 ReadOnly")
 
@@ -464,9 +464,9 @@ CreateDemoGUI() {
     demoGui.defaultInput := defaultInput
     demoGui.resultDisplay := resultDisplay
     demoGui.testMap := Map(
-    "name", "John Doe",
-    "age", 30,
-    "city", "New York"
+        "name", "John Doe",
+        "age", 30,
+        "city", "New York"
     )
 
     GetValue(*) {
@@ -483,7 +483,7 @@ CreateDemoGUI() {
     }
 
     demoGui.Add("Button", "x230 y255 w240 h25", "Show Available Keys")
-    .OnEvent("Click", ShowKeys)
+        .OnEvent("Click", ShowKeys)
 
     ShowKeys(*) {
         keys := ""
@@ -494,7 +494,7 @@ CreateDemoGUI() {
     }
 
     demoGui.Add("Button", "x10 y320 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_BasicGet()

@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* String() - Convert to string
-*
-* Converts various types to string representation.
-*/
+ * String() - Convert to string
+ * 
+ * Converts various types to string representation.
+ */
 
 num := 123
 float := 45.67
@@ -16,5 +16,5 @@ str2 := String(float)
 str3 := String(bool)
 
 MsgBox("Integer to string: '" str1 "'`n"
-. "Float to string: '" str2 "'`n"
-. "Boolean to string: '" str3 "'")
+    . "Float to string: '" str2 "'`n"
+    . "Boolean to string: '" str3 "'")

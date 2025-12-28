@@ -20,7 +20,7 @@ class HtmlBuilder {
     Class(cls) => this.Attr("class", cls)
     Id(id) => this.Attr("id", id)
     Style(style) => this.Attr("style", style)
-    
+
     Data(name, value) => this.Attr("data-" name, value)
 
     Text(content) {
@@ -32,7 +32,7 @@ class HtmlBuilder {
         this.children.Push(builder)
         return this
     }
-    
+
     Children(builders*) {
         for b in builders
             this.children.Push(b)
@@ -43,29 +43,29 @@ class HtmlBuilder {
         pad := ""
         Loop indent
             pad .= "  "
-        
+
         html := pad "<" this.tag
-        
+
         for name, value in this.attributes
             html .= ' ' name '="' value '"'
-        
+
         if !this.children.Length && !this.text {
             html .= " />"
             return html
         }
-        
+
         html .= ">"
-        
+
         if this.text
             html .= this.text
-        
+
         if this.children.Length {
             html .= "`n"
             for child in this.children
                 html .= child.Build(indent + 1) "`n"
             html .= pad
         }
-        
+
         html .= "</" this.tag ">"
         return html
     }
@@ -87,23 +87,23 @@ card := Div("card")
     .Style("padding: 1rem; border: 1px solid #ccc")
     .Child(
         Div("card-header")
-            .Child(H("h2").Class("title").Text("John Doe"))
-            .Child(Span("Premium Member").Class("badge"))
+        .Child(H("h2").Class("title").Text("John Doe"))
+        .Child(Span("Premium Member").Class("badge"))
     )
     .Child(
         Div("card-body")
-            .Child(P("Software Engineer at TechCorp"))
-            .Child(
-                Ul().Class("skills")
-                    .Child(Li("JavaScript"))
-                    .Child(Li("Python"))
-                    .Child(Li("AutoHotkey"))
-            )
+        .Child(P("Software Engineer at TechCorp"))
+        .Child(
+            Ul().Class("skills")
+            .Child(Li("JavaScript"))
+            .Child(Li("Python"))
+            .Child(Li("AutoHotkey"))
+        )
     )
     .Child(
         Div("card-footer")
-            .Child(Button("Follow").Class("btn btn-primary"))
-            .Child(A("mailto:john@example.com", "Contact"))
+        .Child(Button("Follow").Class("btn btn-primary"))
+        .Child(A("mailto:john@example.com", "Contact"))
     )
 
 MsgBox(card.Build())

@@ -1,28 +1,28 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinClose Examples - Part 1: Close Gracefully
-* ============================================================================
-*
-* Demonstrates graceful window closing techniques.
-* Handles confirmation, saving, and proper shutdown.
-*
-* @description Graceful window closing examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinClose Examples - Part 1: Close Gracefully
+ * ============================================================================
+ * 
+ * Demonstrates graceful window closing techniques.
+ * Handles confirmation, saving, and proper shutdown.
+ * 
+ * @description Graceful window closing examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Close Active Window with Confirmation
 ; ============================================================================
 
 /**
-* Closes active window with user confirmation
-*
-* @hotkey F1 - Close with confirmation
-*/
+ * Closes active window with user confirmation
+ * 
+ * @hotkey F1 - Close with confirmation
+ */
 F1:: {
     CloseWithConfirmation()
 }
@@ -49,10 +49,10 @@ CloseWithConfirmation() {
 ; ============================================================================
 
 /**
-* Closes all windows of a specific application
-*
-* @hotkey F2 - Close all of app
-*/
+ * Closes all windows of a specific application
+ * 
+ * @hotkey F2 - Close all of app
+ */
 F2:: {
     CloseAllOfApp()
 }
@@ -86,10 +86,10 @@ CloseAllOfApp() {
 ; ============================================================================
 
 /**
-* Closes window after specified delay
-*
-* @hotkey F3 - Close with timer
-*/
+ * Closes window after specified delay
+ * 
+ * @hotkey F3 - Close with timer
+ */
 F3:: {
     CloseWithDelay()
 }
@@ -137,10 +137,10 @@ CloseWithDelay() {
 ; ============================================================================
 
 /**
-* Intelligently closes window, handling unsaved changes
-*
-* @hotkey F4 - Smart close
-*/
+ * Intelligently closes window, handling unsaved changes
+ * 
+ * @hotkey F4 - Smart close
+ */
 F4:: {
     SmartClose()
 }
@@ -172,10 +172,10 @@ SmartClose() {
 ; ============================================================================
 
 /**
-* Closes all windows except the active one
-*
-* @hotkey F5 - Close all except active
-*/
+ * Closes all windows except the active one
+ * 
+ * @hotkey F5 - Close all except active
+ */
 F5:: {
     CloseAllExceptActive()
 }
@@ -217,10 +217,10 @@ CloseAllExceptActive() {
 ; ============================================================================
 
 /**
-* Closes windows that have been open for specified time
-*
-* @hotkey F6 - Close old windows
-*/
+ * Closes windows that have been open for specified time
+ * 
+ * @hotkey F6 - Close old windows
+ */
 F6:: {
     ; This is a simplified version
     ; Real implementation would track window creation times
@@ -232,10 +232,10 @@ F6:: {
 ; ============================================================================
 
 /**
-* Closes windows with no title (blank windows)
-*
-* @hotkey F7 - Close blank windows
-*/
+ * Closes windows with no title (blank windows)
+ * 
+ * @hotkey F7 - Close blank windows
+ */
 F7:: {
     CloseBlankWindows()
 }
@@ -261,7 +261,7 @@ CloseBlankWindows() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

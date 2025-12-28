@@ -1,23 +1,23 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileAppend - Error Handling and Validation
-* ============================================================================
-*
-* Demonstrates error handling for file append operations:
-* - Permission errors
-* - Disk space issues
-* - Path validation
-* - Atomic writes
-* - Backup and recovery
-* - Transaction-like operations
-*
-* @description Error handling examples for FileAppend
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileAppend.htm
-*/
+ * ============================================================================
+ * FileAppend - Error Handling and Validation
+ * ============================================================================
+ * 
+ * Demonstrates error handling for file append operations:
+ * - Permission errors
+ * - Disk space issues
+ * - Path validation
+ * - Atomic writes
+ * - Backup and recovery
+ * - Transaction-like operations
+ * 
+ * @description Error handling examples for FileAppend
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileAppend.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Error Handling
@@ -125,10 +125,10 @@ Example3_RetryLogic() {
             Loop maxRetries {
                 try {
                     FileAppend(content, filePath)
-                    return {success: true, attempts: attempt}
+                    return { success: true, attempts: attempt }
                 } catch as err {
                     if attempt >= maxRetries {
-                        return {success: false, error: err.Message, attempts: attempt}
+                        return { success: false, error: err.Message, attempts: attempt }
                     }
                     Sleep(delayMs)
                     attempt++
@@ -144,7 +144,7 @@ Example3_RetryLogic() {
         output .= "Attempts: " result.attempts "`n"
 
         if !result.success
-        output .= "Error: " result.error
+            output .= "Error: " result.error
 
         MsgBox(output, "Retry Logic")
 
@@ -179,12 +179,12 @@ Example4_AtomicWrite() {
                 ; Atomic rename/replace
                 FileMove(tempFile, filePath, 1)
 
-                return {success: true}
+                return { success: true }
 
             } catch as err {
                 ; Cleanup temp file on error
                 FileDelete(tempFile)
-                return {success: false, error: err.Message}
+                return { success: false, error: err.Message }
             }
         }
 
@@ -236,7 +236,7 @@ Example5_BackupBeforeAppend() {
                 ; Attempt append
                 FileAppend(content, filePath)
 
-                return {success: true, backup: backupPath}
+                return { success: true, backup: backupPath }
 
             } catch as err {
                 ; Restore from backup if append failed
@@ -244,7 +244,7 @@ Example5_BackupBeforeAppend() {
                     FileCopy(backupPath, filePath, 1)
                 }
 
-                return {success: false, error: err.Message}
+                return { success: false, error: err.Message }
             }
         }
 
@@ -283,7 +283,7 @@ Example6_DiskSpaceCheck() {
                 ; Get drive from path
                 SplitPath(filePath, , , , &drive)
                 if !drive
-                drive := SubStr(A_Temp, 1, 2)
+                    drive := SubStr(A_Temp, 1, 2)
 
                 ; Check free space
                 freeSpace := DriveGetSpaceFree(drive)
@@ -295,10 +295,10 @@ Example6_DiskSpaceCheck() {
                 ; Append content
                 FileAppend(content, filePath)
 
-                return {success: true, freeSpace: freeSpace}
+                return { success: true, freeSpace: freeSpace }
 
             } catch as err {
-                return {success: false, error: err.Message}
+                return { success: false, error: err.Message }
             }
         }
 
@@ -308,7 +308,7 @@ Example6_DiskSpaceCheck() {
         output .= "Success: " (result1.success ? "Yes" : "No") "`n"
 
         if result1.success
-        output .= "Free Space: " Round(result1.freeSpace) " MB`n"
+            output .= "Free Space: " Round(result1.freeSpace) " MB`n"
 
         MsgBox(output, "Disk Space Check")
 
@@ -342,14 +342,14 @@ Example7_LoggedAppend() {
                 logEntry := timestamp " [SUCCESS] Appended to " filePath "`n"
                 FileAppend(logEntry, logPath)
 
-                return {success: true}
+                return { success: true }
 
             } catch as err {
                 ; Log error
                 logEntry := timestamp " [ERROR] Failed to append to " filePath ": " err.Message "`n"
                 FileAppend(logEntry, logPath)
 
-                return {success: false, error: err.Message}
+                return { success: false, error: err.Message }
             }
         }
 
@@ -377,27 +377,20 @@ Example7_LoggedAppend() {
 ; ============================================================================
 
 RunAllExamples() {
-    examples := [
-    {
-        name: "Basic Error Handling", func: Example1_BasicErrorHandling},
-        {
-            name: "Safe Append", func: Example2_SafeAppend},
-            {
-                name: "Retry Logic", func: Example3_RetryLogic},
-                {
-                    name: "Atomic Write", func: Example4_AtomicWrite},
-                    {
-                        name: "Backup Before Append", func: Example5_BackupBeforeAppend},
-                        {
-                            name: "Disk Space Check", func: Example6_DiskSpaceCheck},
-                            {
+    examples := [{
+        name: "Basic Error Handling", func: Example1_BasicErrorHandling }, {
+            name: "Safe Append", func: Example2_SafeAppend }, {
+                name: "Retry Logic", func: Example3_RetryLogic }, {
+                    name: "Atomic Write", func: Example4_AtomicWrite }, {
+                        name: "Backup Before Append", func: Example5_BackupBeforeAppend }, {
+                            name: "Disk Space Check", func: Example6_DiskSpaceCheck }, {
                                 name: "Logged Append", func: Example7_LoggedAppend
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "Error Handling Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "Error Handling Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}

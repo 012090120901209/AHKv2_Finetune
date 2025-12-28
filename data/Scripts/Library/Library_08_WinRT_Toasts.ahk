@@ -2,19 +2,19 @@
 #SingleInstance Force
 
 /**
-* WinRT - Toast Notifications
-*
-* Demonstrates creating modern Windows 10/11 toast notifications
-* using Windows Runtime APIs.
-*
-* Library: https://github.com/Lexikos/winrt.ahk
-* Note: Requires Windows 10+ and proper app registration
-*/
+ * WinRT - Toast Notifications
+ * 
+ * Demonstrates creating modern Windows 10/11 toast notifications
+ * using Windows Runtime APIs.
+ * 
+ * Library: https://github.com/Lexikos/winrt.ahk
+ * Note: Requires Windows 10+ and proper app registration
+ */
 
 MsgBox("WinRT - Toast Notifications Example`n`n"
-. "Demonstrates Windows 10+ toast notifications`n"
-. "Requires: winrt.ahk and Windows 10+`n`n"
-. "Note: Some features require app registration", , "T5")
+    . "Demonstrates Windows 10+ toast notifications`n"
+    . "Requires: winrt.ahk and Windows 10+`n`n"
+    . "Note: Some features require app registration", , "T5")
 
 /*
 ; Uncomment to run (requires winrt.ahk):
@@ -213,3 +213,4 @@ MsgBox("Toast XML with progress:`n`n" xmlWithProgress, , "T5")
 *     ⚠ May not work in scripts
 *     ⚠ User can disable
 */
+

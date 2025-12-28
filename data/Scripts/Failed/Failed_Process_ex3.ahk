@@ -30,7 +30,7 @@ GuiEscape(GuiObj) {
 
 HandleListBox(GuiObj, A_GuiEvent := "", Info := "") {
     if (A_GuiEvent != "DoubleClick")
-    ButtonOKClick()
+        ButtonOKClick()
 }
 
 ButtonOKClick() {
@@ -38,7 +38,7 @@ ButtonOKClick() {
     oGui5.Destroy()
     ErrorLevel := ProcessSetPriority(priority, active_pid)
     if (ErrorLevel)
-    MsgBox("Success: Priority was changed to " priority)
+        MsgBox("Success: Priority was changed to " priority)
     else
-    MsgBox("Error: Priority could not be changed")
+        MsgBox("Error: Priority could not be changed")
 }

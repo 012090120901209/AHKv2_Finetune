@@ -14,9 +14,9 @@ MsgBox "This is the message.", "Title"
 ; Message box with options (Yes/No buttons)
 result := MsgBox("Do you want to continue?", "Confirm", "YesNo")
 if result = "Yes"
-MsgBox "You clicked Yes"
+    MsgBox "You clicked Yes"
 else
-MsgBox "You clicked No"
+    MsgBox "You clicked No"
 
 ; Message box with icon and default button
 MsgBox "An error occurred!", "Error", "Icon! Default2"

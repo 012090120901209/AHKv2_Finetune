@@ -1,5 +1,8 @@
+#Requires AutoHotkey v2.0
+#SingleInstance Force
+#Include <JSON>
 
-(array, depth := 1) {
+FlattenDepth(array, depth := 1) {
     if (depth <= 0) {
         return array
     }
@@ -29,4 +32,4 @@ result2 := FlattenDepth([1, [2, [3, [4]], 5]], 2)
 ; => [1, 2, 3, [4], 5]
 
 MsgBox("Flatten depth 1: " JSON.stringify(result1) "`n`n"
-. "Flatten depth 2: " JSON.stringify(result2))
+    . "Flatten depth 2: " JSON.stringify(result2))

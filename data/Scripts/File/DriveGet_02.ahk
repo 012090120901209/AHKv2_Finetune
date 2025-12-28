@@ -1,19 +1,19 @@
 /**
-* @file DriveGet_02.ahk
-* @description Advanced examples of drive space monitoring, tracking, and management using DriveGet functions
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Real-time drive space monitoring
-* - Historical space usage tracking
-* - Automated backup based on available space
-* - Drive space trend analysis
-* - Multi-drive load balancing
-* - Predictive space warnings
-* - Custom threshold management
-*/
+ * @file DriveGet_02.ahk
+ * @description Advanced examples of drive space monitoring, tracking, and management using DriveGet functions
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Real-time drive space monitoring
+ * - Historical space usage tracking
+ * - Automated backup based on available space
+ * - Drive space trend analysis
+ * - Multi-drive load balancing
+ * - Predictive space warnings
+ * - Custom threshold management
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,17 +22,17 @@
 ; ===================================================================================================
 
 /**
-* @class DriveSpaceTrackerGUI
-* @description Real-time GUI-based drive space tracker with visual indicators
-*/
+ * @class DriveSpaceTrackerGUI
+ * @description Real-time GUI-based drive space tracker with visual indicators
+ */
 class DriveSpaceTrackerGUI {
     gui := ""
     driveControls := Map()
     updateInterval := 5000  ; Update every 5 seconds
 
     /**
-    * @constructor
-    */
+     * @constructor
+     */
     __New() {
         this.CreateGUI()
         this.UpdateDriveInfo()
@@ -40,9 +40,9 @@ class DriveSpaceTrackerGUI {
     }
 
     /**
-    * @method CreateGUI
-    * @description Creates the tracker GUI
-    */
+     * @method CreateGUI
+     * @description Creates the tracker GUI
+     */
     CreateGUI() {
         this.gui := Gui("+Resize", "Drive Space Tracker")
         this.gui.SetFont("s10", "Segoe UI")
@@ -74,10 +74,10 @@ class DriveSpaceTrackerGUI {
     }
 
     /**
-    * @method GetReadyDrives
-    * @description Gets all ready drives
-    * @returns {Array} Array of ready drive letters
-    */
+     * @method GetReadyDrives
+     * @description Gets all ready drives
+     * @returns {Array} Array of ready drive letters
+     */
     GetReadyDrives() {
         readyDrives := []
         driveList := DriveGetList()
@@ -85,17 +85,17 @@ class DriveSpaceTrackerGUI {
         for index, driveLetter in StrSplit(driveList) {
             drive := driveLetter . ":"
             if (DriveGetStatus(drive) = "Ready")
-            readyDrives.Push(drive)
+                readyDrives.Push(drive)
         }
 
         return readyDrives
     }
 
     /**
-    * @method CreateDrivePanel
-    * @description Creates a panel for a single drive
-    * @param {String} drive - Drive letter
-    */
+     * @method CreateDrivePanel
+     * @description Creates a panel for a single drive
+     * @param {String} drive - Drive letter
+     */
     CreateDrivePanel(drive) {
         ; Add separator
         this.gui.AddText("w600 0x10")  ; Horizontal line
@@ -127,9 +127,9 @@ class DriveSpaceTrackerGUI {
     }
 
     /**
-    * @method UpdateDriveInfo
-    * @description Updates all drive information
-    */
+     * @method UpdateDriveInfo
+     * @description Updates all drive information
+     */
     UpdateDriveInfo() {
         for drive, controls in this.driveControls {
             try {
@@ -171,9 +171,9 @@ class DriveSpaceTrackerGUI {
     }
 
     /**
-    * @method Close
-    * @description Closes the GUI and stops updates
-    */
+     * @method Close
+     * @description Closes the GUI and stops updates
+     */
     Close() {
         SetTimer(() => this.UpdateDriveInfo(), 0)
         this.gui.Destroy()
@@ -191,18 +191,18 @@ Example1_RealTimeTracker() {
 ; ===================================================================================================
 
 /**
-* @class DriveSpaceHistory
-* @description Tracks drive space usage over time
-*/
+ * @class DriveSpaceHistory
+ * @description Tracks drive space usage over time
+ */
 class DriveSpaceHistory {
     historyFile := A_ScriptDir . "\drive_space_history.csv"
     maxRecords := 1000
 
     /**
-    * @method RecordCurrentState
-    * @description Records current drive space state
-    * @param {String} drive - Drive to record (optional, records all if omitted)
-    */
+     * @method RecordCurrentState
+     * @description Records current drive space state
+     * @param {String} drive - Drive to record (optional, records all if omitted)
+     */
     RecordCurrentState(drive := "") {
         timestamp := FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss")
 
@@ -212,7 +212,7 @@ class DriveSpaceHistory {
             for driveLetter in drives {
                 drv := driveLetter . ":"
                 if (DriveGetStatus(drv) = "Ready")
-                this.RecordDrive(drv, timestamp)
+                    this.RecordDrive(drv, timestamp)
             }
         } else {
             this.RecordDrive(drive, timestamp)
@@ -220,11 +220,11 @@ class DriveSpaceHistory {
     }
 
     /**
-    * @method RecordDrive
-    * @description Records a single drive's information
-    * @param {String} drive - Drive letter
-    * @param {String} timestamp - Timestamp string
-    */
+     * @method RecordDrive
+     * @description Records a single drive's information
+     * @param {String} drive - Drive letter
+     * @param {String} timestamp - Timestamp string
+     */
     RecordDrive(drive, timestamp) {
         try {
             capacity := DriveGetCapacity(drive)
@@ -234,12 +234,12 @@ class DriveSpaceHistory {
 
             ; Format: Timestamp,Drive,CapacityMB,UsedMB,FreeMB,UsagePercent
             record := Format("{1},{2},{3},{4},{5},{6}`n",
-            timestamp,
-            drive,
-            capacity,
-            usedSpace,
-            freeSpace,
-            usagePercent
+                timestamp,
+                drive,
+                capacity,
+                usedSpace,
+                freeSpace,
+                usagePercent
             )
 
             ; Create file with header if it doesn't exist
@@ -255,12 +255,12 @@ class DriveSpaceHistory {
     }
 
     /**
-    * @method TrimHistory
-    * @description Keeps only the most recent records
-    */
+     * @method TrimHistory
+     * @description Keeps only the most recent records
+     */
     TrimHistory() {
         if !FileExist(this.historyFile)
-        return
+            return
 
         content := FileRead(this.historyFile)
         lines := StrSplit(content, "`n", "`r")
@@ -272,7 +272,7 @@ class DriveSpaceHistory {
 
             for i, line in lines {
                 if (i >= startIndex && line != "")
-                newContent .= line . "`n"
+                    newContent .= line . "`n"
             }
 
             FileDelete(this.historyFile)
@@ -281,15 +281,15 @@ class DriveSpaceHistory {
     }
 
     /**
-    * @method GetHistory
-    * @description Retrieves history for a drive
-    * @param {String} drive - Drive letter
-    * @param {Number} hours - Number of hours to retrieve (default: 24)
-    * @returns {Array} Array of history records
-    */
+     * @method GetHistory
+     * @description Retrieves history for a drive
+     * @param {String} drive - Drive letter
+     * @param {Number} hours - Number of hours to retrieve (default: 24)
+     * @returns {Array} Array of history records
+     */
     GetHistory(drive, hours := 24) {
         if !FileExist(this.historyFile)
-        return []
+            return []
 
         content := FileRead(this.historyFile)
         lines := StrSplit(content, "`n", "`r")
@@ -299,10 +299,10 @@ class DriveSpaceHistory {
 
         for index, line in lines {
             if (index = 1)  ; Skip header
-            continue
+                continue
 
             if (line = "")
-            continue
+                continue
 
             fields := StrSplit(line, ",")
             if (fields.Length >= 6) {
@@ -329,17 +329,17 @@ class DriveSpaceHistory {
     }
 
     /**
-    * @method GetUsageTrend
-    * @description Analyzes usage trend
-    * @param {String} drive - Drive letter
-    * @param {Number} hours - Hours to analyze
-    * @returns {Object} Trend analysis
-    */
+     * @method GetUsageTrend
+     * @description Analyzes usage trend
+     * @param {String} drive - Drive letter
+     * @param {Number} hours - Hours to analyze
+     * @returns {Object} Trend analysis
+     */
     GetUsageTrend(drive, hours := 24) {
         history := this.GetHistory(drive, hours)
 
         if (history.Length < 2)
-        return {Trend: "Insufficient data", Rate: 0}
+            return { Trend: "Insufficient data", Rate: 0 }
 
         ; Calculate average change rate
         firstRecord := history[1]
@@ -350,11 +350,11 @@ class DriveSpaceHistory {
         ; Determine trend
         trend := ""
         if (usageChange > 1)
-        trend := "Increasing"
+            trend := "Increasing"
         else if (usageChange < -1)
-        trend := "Decreasing"
+            trend := "Decreasing"
         else
-        trend := "Stable"
+            trend := "Stable"
 
         return {
             Trend: trend,
@@ -386,9 +386,9 @@ Example2_HistoricalTracking() {
     Change Rate: {2}%
     Records Analyzed: {3}
     )",
-    trend.Trend,
-    trend.Rate,
-    trend.RecordCount
+        trend.Trend,
+        trend.Rate,
+        trend.RecordCount
     )
 
     MsgBox(message, "Trend Analysis", "Icon!")
@@ -401,18 +401,18 @@ Example2_HistoricalTracking() {
 ; ===================================================================================================
 
 /**
-* @class BackupSpaceValidator
-* @description Validates sufficient space before backup operations
-*/
+ * @class BackupSpaceValidator
+ * @description Validates sufficient space before backup operations
+ */
 class BackupSpaceValidator {
     /**
-    * @method CanBackup
-    * @description Checks if there's enough space for backup
-    * @param {String} sourcePath - Source directory to backup
-    * @param {String} targetDrive - Target drive for backup
-    * @param {Number} safetyMarginGB - Additional safety margin in GB (default: 5)
-    * @returns {Object} Validation result
-    */
+     * @method CanBackup
+     * @description Checks if there's enough space for backup
+     * @param {String} sourcePath - Source directory to backup
+     * @param {String} targetDrive - Target drive for backup
+     * @param {Number} safetyMarginGB - Additional safety margin in GB (default: 5)
+     * @returns {Object} Validation result
+     */
     CanBackup(sourcePath, targetDrive, safetyMarginGB := 5) {
         ; Calculate source size
         sourceSize := this.GetDirectorySize(sourcePath)
@@ -420,7 +420,7 @@ class BackupSpaceValidator {
 
         ; Get target drive free space
         if !InStr(targetDrive, ":")
-        targetDrive .= ":"
+            targetDrive .= ":"
 
         if (DriveGetStatus(targetDrive) != "Ready") {
             return {
@@ -450,11 +450,11 @@ class BackupSpaceValidator {
     }
 
     /**
-    * @method GetDirectorySize
-    * @description Calculates directory size in MB
-    * @param {String} path - Directory path
-    * @returns {Number} Size in MB
-    */
+     * @method GetDirectorySize
+     * @description Calculates directory size in MB
+     * @param {String} path - Directory path
+     * @returns {Number} Size in MB
+     */
     GetDirectorySize(path) {
         totalSize := 0
 
@@ -470,12 +470,12 @@ class BackupSpaceValidator {
     }
 
     /**
-    * @method FindBestBackupDrive
-    * @description Finds the best drive for backup
-    * @param {Number} requiredSpaceGB - Required space in GB
-    * @param {String} excludeDrive - Drive to exclude (typically source drive)
-    * @returns {Object} Best drive information
-    */
+     * @method FindBestBackupDrive
+     * @description Finds the best drive for backup
+     * @param {Number} requiredSpaceGB - Required space in GB
+     * @param {String} excludeDrive - Drive to exclude (typically source drive)
+     * @returns {Object} Best drive information
+     */
     FindBestBackupDrive(requiredSpaceGB, excludeDrive := "") {
         drives := StrSplit(DriveGetList("FIXED"))
         bestDrive := ""
@@ -486,7 +486,7 @@ class BackupSpaceValidator {
 
             ; Skip excluded drive
             if (drive = excludeDrive)
-            continue
+                continue
 
             if (DriveGetStatus(drive) = "Ready") {
                 try {
@@ -537,14 +537,14 @@ Example3_BackupValidator() {
     Can Backup: {7}
     Status: {8}
     )",
-    sourcePath,
-    result.SourceSizeGB,
-    targetDrive,
-    result.TargetFreeGB,
-    result.RequiredGB,
-    result.SafetyMarginGB,
-    result.CanBackup ? "YES" : "NO",
-    result.Reason
+        sourcePath,
+        result.SourceSizeGB,
+        targetDrive,
+        result.TargetFreeGB,
+        result.RequiredGB,
+        result.SafetyMarginGB,
+        result.CanBackup ? "YES" : "NO",
+        result.Reason
     )
 
     MsgBox(message, "Backup Validation", result.CanBackup ? "Iconi" : "Icon!")
@@ -557,25 +557,25 @@ Example3_BackupValidator() {
 ; ===================================================================================================
 
 /**
-* @class DriveLoadBalancer
-* @description Balances data across multiple drives
-*/
+ * @class DriveLoadBalancer
+ * @description Balances data across multiple drives
+ */
 class DriveLoadBalancer {
     drives := []
 
     /**
-    * @constructor
-    * @param {Array} driveList - Array of drive letters to balance across
-    */
+     * @constructor
+     * @param {Array} driveList - Array of drive letters to balance across
+     */
     __New(driveList := []) {
         this.drives := driveList.Length > 0 ? driveList : this.GetAllFixedDrives()
     }
 
     /**
-    * @method GetAllFixedDrives
-    * @description Gets all ready fixed drives
-    * @returns {Array} Array of drive letters
-    */
+     * @method GetAllFixedDrives
+     * @description Gets all ready fixed drives
+     * @returns {Array} Array of drive letters
+     */
     GetAllFixedDrives() {
         fixedDrives := []
         driveList := DriveGetList("FIXED")
@@ -583,25 +583,25 @@ class DriveLoadBalancer {
         for index, driveLetter in StrSplit(driveList) {
             drive := driveLetter . ":"
             if (DriveGetStatus(drive) = "Ready")
-            fixedDrives.Push(drive)
+                fixedDrives.Push(drive)
         }
 
         return fixedDrives
     }
 
     /**
-    * @method GetBestDriveForSize
-    * @description Finds the best drive for a file of given size
-    * @param {Number} fileSizeMB - File size in MB
-    * @returns {String} Best drive letter
-    */
+     * @method GetBestDriveForSize
+     * @description Finds the best drive for a file of given size
+     * @param {Number} fileSizeMB - File size in MB
+     * @returns {String} Best drive letter
+     */
     GetBestDriveForSize(fileSizeMB) {
         bestDrive := ""
         bestScore := -1
 
         for drive in this.drives {
             if (DriveGetStatus(drive) != "Ready")
-            continue
+                continue
 
             try {
                 freeSpace := DriveGetSpaceFree(drive)
@@ -610,7 +610,7 @@ class DriveLoadBalancer {
 
                 ; Can the drive fit the file?
                 if (freeSpace < fileSizeMB)
-                continue
+                    continue
 
                 ; Score based on: lower usage = better score
                 score := 100 - usagePercent
@@ -626,10 +626,10 @@ class DriveLoadBalancer {
     }
 
     /**
-    * @method GetLoadBalanceReport
-    * @description Gets a load balance report
-    * @returns {String} Formatted report
-    */
+     * @method GetLoadBalanceReport
+     * @description Gets a load balance report
+     * @returns {String} Formatted report
+     */
     GetLoadBalanceReport() {
         report := "Drive Load Balance Report`n"
         report .= "═══════════════════════════════════════════════════════`n`n"
@@ -641,7 +641,7 @@ class DriveLoadBalancer {
 
         for drive in this.drives {
             if (DriveGetStatus(drive) != "Ready")
-            continue
+                continue
 
             try {
                 capacity := DriveGetCapacity(drive)
@@ -659,9 +659,9 @@ class DriveLoadBalancer {
                 })
 
                 report .= Format("{1}: {2}% used, {3} GB free`n",
-                drive,
-                Round(usagePercent, 1),
-                Round(freeSpace / 1024, 2)
+                    drive,
+                    Round(usagePercent, 1),
+                    Round(freeSpace / 1024, 2)
                 )
             }
         }
@@ -683,13 +683,13 @@ class DriveLoadBalancer {
             report .= Format("Balance Score: {1} (lower is better)`n", balanceScore)
 
             if (balanceScore < 5)
-            report .= "Status: Excellent balance`n"
+                report .= "Status: Excellent balance`n"
             else if (balanceScore < 15)
-            report .= "Status: Good balance`n"
+                report .= "Status: Good balance`n"
             else if (balanceScore < 25)
-            report .= "Status: Fair balance`n"
+                report .= "Status: Fair balance`n"
             else
-            report .= "Status: Poor balance - consider redistributing files`n"
+                report .= "Status: Poor balance - consider redistributing files`n"
         }
 
         return report
@@ -710,19 +710,19 @@ Example4_LoadBalancer() {
 ; ===================================================================================================
 
 /**
-* @class PredictiveSpaceWarning
-* @description Predicts when drive will run out of space based on usage trends
-*/
+ * @class PredictiveSpaceWarning
+ * @description Predicts when drive will run out of space based on usage trends
+ */
 class PredictiveSpaceWarning {
     history := DriveSpaceHistory()
 
     /**
-    * @method PredictDaysUntilFull
-    * @description Predicts days until drive is full
-    * @param {String} drive - Drive letter
-    * @param {Number} threshold - Full threshold percentage (default: 95)
-    * @returns {Object} Prediction result
-    */
+     * @method PredictDaysUntilFull
+     * @description Predicts days until drive is full
+     * @param {String} drive - Drive letter
+     * @param {Number} threshold - Full threshold percentage (default: 95)
+     * @returns {Object} Prediction result
+     */
     PredictDaysUntilFull(drive, threshold := 95) {
         ; Get historical data
         histData := this.history.GetHistory(drive, 168)  ; 7 days
@@ -777,10 +777,10 @@ class PredictiveSpaceWarning {
     }
 
     /**
-    * @method ShowPrediction
-    * @description Shows prediction for a drive
-    * @param {String} drive - Drive letter
-    */
+     * @method ShowPrediction
+     * @description Shows prediction for a drive
+     * @param {String} drive - Drive letter
+     */
     ShowPrediction(drive) {
         prediction := this.PredictDaysUntilFull(drive)
 
@@ -795,11 +795,11 @@ class PredictiveSpaceWarning {
                 message .= Format("Trend: {1}`n`n", prediction.Trend)
 
                 if (prediction.DaysUntilFull < 7)
-                message .= "⚠️ WARNING: Drive will be full within a week!"
+                    message .= "⚠️ WARNING: Drive will be full within a week!"
                 else if (prediction.DaysUntilFull < 30)
-                message .= "⚠️ CAUTION: Drive will be full within a month."
+                    message .= "⚠️ CAUTION: Drive will be full within a month."
                 else
-                message .= "✓ Drive has sufficient space for now."
+                    message .= "✓ Drive has sufficient space for now."
             } else {
                 message .= Format("Status: {1}`n", prediction.Reason)
                 message .= "✓ No immediate space concerns."
@@ -825,25 +825,25 @@ Example5_PredictiveWarning() {
 ; ===================================================================================================
 
 /**
-* @function CleanupTemporaryFiles
-* @description Cleans up temporary files to free space
-* @param {String} drive - Drive to clean (optional)
-* @returns {Object} Cleanup results
-*/
+ * @function CleanupTemporaryFiles
+ * @description Cleans up temporary files to free space
+ * @param {String} drive - Drive to clean (optional)
+ * @returns {Object} Cleanup results
+ */
 CleanupTemporaryFiles(drive := "") {
     freedSpace := 0
     filesDeleted := 0
 
     ; Temp directories to clean
     tempDirs := [
-    A_Temp,
-    "C:\Windows\Temp"
+        A_Temp,
+        "C:\Windows\Temp"
     ]
 
     for tempDir in tempDirs {
         ; Skip if drive specified and doesn't match
         if (drive != "" && !InStr(tempDir, drive))
-        continue
+            continue
 
         try {
             Loop Files, tempDir . "\*.*", "R" {
@@ -879,9 +879,9 @@ Example6_AutoCleanup() {
     Files Deleted: {1}
     Space Freed: {2} GB ({3} MB)
     )",
-    result.FilesDeleted,
-    result.SpaceFreedGB,
-    result.SpaceFreedMB
+        result.FilesDeleted,
+        result.SpaceFreedGB,
+        result.SpaceFreedMB
     )
 
     MsgBox(message, "Cleanup Complete", "Iconi")
@@ -892,9 +892,9 @@ Example6_AutoCleanup() {
 ; ===================================================================================================
 
 /**
-* @function CreateDriveHealthDashboard
-* @description Creates a comprehensive drive health dashboard
-*/
+ * @function CreateDriveHealthDashboard
+ * @description Creates a comprehensive drive health dashboard
+ */
 CreateDriveHealthDashboard() {
     drives := StrSplit(DriveGetList("FIXED"))
 
@@ -906,7 +906,7 @@ CreateDriveHealthDashboard() {
         drive := driveLetter . ":"
 
         if (DriveGetStatus(drive) != "Ready")
-        continue
+            continue
 
         try {
             capacity := DriveGetCapacity(drive)
@@ -917,13 +917,13 @@ CreateDriveHealthDashboard() {
             ; Health status
             health := ""
             if (usagePercent < 70)
-            health := "✓ HEALTHY"
+                health := "✓ HEALTHY"
             else if (usagePercent < 85)
-            health := "⚠ CAUTION"
+                health := "⚠ CAUTION"
             else if (usagePercent < 95)
-            health := "⚠ WARNING"
+                health := "⚠ WARNING"
             else
-            health := "✗ CRITICAL"
+                health := "✗ CRITICAL"
 
             dashboard .= Format("Drive {1} - {2}`n", drive, health)
             dashboard .= Format("  Capacity: {1} GB`n", Round(capacity / 1024, 2))
@@ -958,3 +958,4 @@ Example7_HealthDashboard() {
 
 ; Press Ctrl+Alt+C to cleanup temp files
 ; ^!c::Example6_AutoCleanup()
+

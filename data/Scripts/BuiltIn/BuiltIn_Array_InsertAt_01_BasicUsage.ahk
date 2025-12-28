@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.InsertAt() - Basic Usage Examples
-* ============================================================================
-*
-* The InsertAt() method inserts one or more values at the specified index.
-* Existing elements at and after that position are shifted to higher indices.
-*
-* Syntax: array.InsertAt(index, value1, value2, ..., valueN)
-*
-* @description Comprehensive examples demonstrating basic InsertAt() operations
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.InsertAt() - Basic Usage Examples
+ * ============================================================================
+ * 
+ * The InsertAt() method inserts one or more values at the specified index.
+ * Existing elements at and after that position are shifted to higher indices.
+ * 
+ * Syntax: array.InsertAt(index, value1, value2, ..., valueN)
+ * 
+ * @description Comprehensive examples demonstrating basic InsertAt() operations
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Single Element Insertion
@@ -115,7 +115,7 @@ Example4_DifferentDataTypes() {
     OutputDebug("After inserting boolean: Length = " mixed.Length "`n")
 
     ; Insert object
-    mixed.InsertAt(4, {key: "value", num: 100})
+    mixed.InsertAt(4, { key: "value", num: 100 })
     OutputDebug("After inserting object: Length = " mixed.Length "`n")
 
     ; Insert array
@@ -196,148 +196,144 @@ Example7_PracticalUseCases() {
     OutputDebug("=== Example 7: Practical Use Cases ===`n")
 
     ; Use Case 1: Insert priority item in task list
-    tasks := [
-    {
-        name: "Task 1", priority: 3},
-        {
+    tasks := [{
+        name: "Task 1", priority: 3 }, {
             name: "Task 3", priority: 1
         }
-        ]
+    ]
 
-        OutputDebug("Initial tasks: " tasks.Length "`n")
-        for task in tasks {
-            OutputDebug("  - " task.name " (Priority: " task.priority ")`n")
-        }
-
-        ; Insert medium priority task
-        newTask := {name: "Task 2", priority: 2}
-        position := FindTaskPosition(tasks, newTask.priority)
-        tasks.InsertAt(position, newTask)
-
-        OutputDebug("`nAfter inserting Task 2:`n")
-        for task in tasks {
-            OutputDebug("  - " task.name " (Priority: " task.priority ")`n")
-        }
-
-        ; Use Case 2: Insert timestamp in log
-        logEntries := [
-        {
-            time: 1000, message: "Start"},
-            {
-                time: 3000, message: "End"
-            }
-            ]
-
-            OutputDebug("`nLog entries: " logEntries.Length "`n")
-
-            newEntry := {time: 2000, message: "Middle"}
-            logPosition := FindLogPosition(logEntries, newEntry.time)
-            logEntries.InsertAt(logPosition, newEntry)
-
-            OutputDebug("After inserting middle entry:`n")
-            for entry in logEntries {
-                OutputDebug("  - " entry.message " (" entry.time ")`n")
-            }
-            OutputDebug("`n")
-        }
-
-        /**
-        * Find position for task based on priority (higher priority = lower number = earlier position)
-        * @param {Array} tasks - Task array
-        * @param {Integer} priority - Priority level
-        * @returns {Integer} Insert position
-        */
-        FindTaskPosition(tasks, priority) {
-            position := 1
-
-            for task in tasks {
-                if (priority > task.priority) {  ; Higher priority number = lower priority
-                break
-            }
-            position++
-        }
-
-        return position
+    OutputDebug("Initial tasks: " tasks.Length "`n")
+    for task in tasks {
+        OutputDebug("  - " task.name " (Priority: " task.priority ")`n")
     }
 
-    /**
-    * Find position for log entry based on timestamp
-    * @param {Array} log - Log entries
-    * @param {Integer} timestamp - Entry timestamp
-    * @returns {Integer} Insert position
-    */
-    FindLogPosition(log, timestamp) {
-        position := 1
+    ; Insert medium priority task
+    newTask := { name: "Task 2", priority: 2 }
+    position := FindTaskPosition(tasks, newTask.priority)
+    tasks.InsertAt(position, newTask)
 
-        for entry in log {
-            if (timestamp < entry.time) {
-                break
-            }
-            position++
-        }
-
-        return position
+    OutputDebug("`nAfter inserting Task 2:`n")
+    for task in tasks {
+        OutputDebug("  - " task.name " (Priority: " task.priority ")`n")
     }
 
-    /**
-    * Formats an array for display
-    */
-    FormatArray(arr) {
-        if (arr.Length = 0) {
-            return "[]"
+    ; Use Case 2: Insert timestamp in log
+    logEntries := [{
+        time: 1000, message: "Start" }, {
+            time: 3000, message: "End"
         }
+    ]
 
-        result := "["
-        for index, value in arr {
-            if (index > 1) {
-                result .= ", "
-            }
+    OutputDebug("`nLog entries: " logEntries.Length "`n")
 
-            valueType := Type(value)
-            if (valueType = "String") {
-                result .= '"' value '"'
-            } else if (valueType = "Integer" || valueType = "Float") {
-                result .= value
-            } else if (valueType = "Array") {
-                result .= "[Array]"
-            } else if (valueType = "Object") {
-                result .= "{Object}"
-            } else {
-                result .= valueType
-            }
+    newEntry := { time: 2000, message: "Middle" }
+    logPosition := FindLogPosition(logEntries, newEntry.time)
+    logEntries.InsertAt(logPosition, newEntry)
+
+    OutputDebug("After inserting middle entry:`n")
+    for entry in logEntries {
+        OutputDebug("  - " entry.message " (" entry.time ")`n")
+    }
+    OutputDebug("`n")
+}
+
+/**
+ * Find position for task based on priority (higher priority = lower number = earlier position)
+ * @param {Array} tasks - Task array
+ * @param {Integer} priority - Priority level
+ * @returns {Integer} Insert position
+ */
+FindTaskPosition(tasks, priority) {
+    position := 1
+
+    for task in tasks {
+        if (priority > task.priority) {  ; Higher priority number = lower priority
+            break
         }
-        result .= "]"
-
-        return result
+        position++
     }
 
-    ; ============================================================================
-    ; Main Execution
-    ; ============================================================================
+    return position
+}
 
-    Main() {
-        ; Clear debug output
-        OutputDebug("`n" String.Repeat("=", 80) "`n")
-        OutputDebug("Array.InsertAt() - Basic Usage Examples`n")
-        OutputDebug(String.Repeat("=", 80) "`n`n")
+/**
+ * Find position for log entry based on timestamp
+ * @param {Array} log - Log entries
+ * @param {Integer} timestamp - Entry timestamp
+ * @returns {Integer} Insert position
+ */
+FindLogPosition(log, timestamp) {
+    position := 1
 
-        ; Run all examples
-        Example1_SingleInsertion()
-        Example2_MultipleInsertion()
-        Example3_PositionBasedInsertion()
-        Example4_DifferentDataTypes()
-        Example5_OrderedInsertion()
-        Example6_ValidatedInsertion()
-        Example7_PracticalUseCases()
-
-        OutputDebug(String.Repeat("=", 80) "`n")
-        OutputDebug("All examples completed!`n")
-        OutputDebug(String.Repeat("=", 80) "`n")
-
-        ; MsgBox("Array.InsertAt() examples completed!`nCheck DebugView for output.",
-        ;        "Examples Complete", "Icon!")
-        ExitApp
+    for entry in log {
+        if (timestamp < entry.time) {
+            break
+        }
+        position++
     }
 
-    ; Run the examples
-    Main()
+    return position
+}
+
+/**
+ * Formats an array for display
+ */
+FormatArray(arr) {
+    if (arr.Length = 0) {
+        return "[]"
+    }
+
+    result := "["
+    for index, value in arr {
+        if (index > 1) {
+            result .= ", "
+        }
+
+        valueType := Type(value)
+        if (valueType = "String") {
+            result .= '"' value '"'
+        } else if (valueType = "Integer" || valueType = "Float") {
+            result .= value
+        } else if (valueType = "Array") {
+            result .= "[Array]"
+        } else if (valueType = "Object") {
+            result .= "{Object}"
+        } else {
+            result .= valueType
+        }
+    }
+    result .= "]"
+
+    return result
+}
+
+; ============================================================================
+; Main Execution
+; ============================================================================
+
+Main() {
+    ; Clear debug output
+    OutputDebug("`n" String.Repeat("=", 80) "`n")
+    OutputDebug("Array.InsertAt() - Basic Usage Examples`n")
+    OutputDebug(String.Repeat("=", 80) "`n`n")
+
+    ; Run all examples
+    Example1_SingleInsertion()
+    Example2_MultipleInsertion()
+    Example3_PositionBasedInsertion()
+    Example4_DifferentDataTypes()
+    Example5_OrderedInsertion()
+    Example6_ValidatedInsertion()
+    Example7_PracticalUseCases()
+
+    OutputDebug(String.Repeat("=", 80) "`n")
+    OutputDebug("All examples completed!`n")
+    OutputDebug(String.Repeat("=", 80) "`n")
+
+    ; MsgBox("Array.InsertAt() examples completed!`nCheck DebugView for output.",
+    ;        "Examples Complete", "Icon!")
+    ExitApp
+}
+
+; Run the examples
+Main()

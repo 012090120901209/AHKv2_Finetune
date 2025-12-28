@@ -2,8 +2,8 @@
 #SingleInstance Force ; Source: String_ContinuationWithVar2.ah2
 
 user := "defaultuser0"
-script := ( "document.querySelector('#userId').value = '" user "'"
+script := ("document.querySelector('#userId').value = '" user "'"
 )
 MsgBox(script) MyVar := "Test"
-MySection := ( "This is a " MyVar
+MySection := ("This is a " MyVar
 ) MsgBox(MySection)

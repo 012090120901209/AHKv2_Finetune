@@ -1,17 +1,17 @@
 /**
-* @file BuiltIn_Sleep_03.ahk
-* @description Animations and visual effects with Sleep in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Creative use of Sleep for animations, smooth transitions, visual effects,
-* progress indicators, and interactive UI animations.
-*
-* @syntax Sleep Delay
-* @see https://www.autohotkey.com/docs/v2/lib/Sleep.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_Sleep_03.ahk
+ * @description Animations and visual effects with Sleep in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Creative use of Sleep for animations, smooth transitions, visual effects,
+ * progress indicators, and interactive UI animations.
+ * 
+ * @syntax Sleep Delay
+ * @see https://www.autohotkey.com/docs/v2/lib/Sleep.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -20,9 +20,9 @@
 ; EXAMPLE 1: Progress Bar Animations
 ; ============================================================================
 /**
-* Demonstrates smooth progress bar animations with Sleep
-* Shows different animation speeds and patterns
-*/
+ * Demonstrates smooth progress bar animations with Sleep
+ * Shows different animation speeds and patterns
+ */
 Example1_ProgressAnimations() {
     myGui := Gui("+AlwaysOnTop", "Example 1: Progress Bar Animations")
     myGui.SetFont("s10")
@@ -173,9 +173,9 @@ Example1_ProgressAnimations() {
 ; EXAMPLE 2: Text Typing Animation
 ; ============================================================================
 /**
-* Creates typewriter effect animations
-* Simulates text appearing character by character
-*/
+ * Creates typewriter effect animations
+ * Simulates text appearing character by character
+ */
 Example2_TypewriterEffect() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Typewriter Effect")
     myGui.SetFont("s10")
@@ -188,10 +188,10 @@ Example2_TypewriterEffect() {
 
     ; Preset texts
     presetTexts := [
-    "Hello, World! This is a typewriter animation.",
-    "AutoHotkey v2 makes automation easy and powerful.",
-    "Watch as each character appears one at a time...",
-    "Creating engaging user interfaces with smooth animations!"
+        "Hello, World! This is a typewriter animation.",
+        "AutoHotkey v2 makes automation easy and powerful.",
+        "Watch as each character appears one at a time...",
+        "Creating engaging user interfaces with smooth animations!"
     ]
 
     ; Controls
@@ -220,14 +220,14 @@ Example2_TypewriterEffect() {
     ; Typewriter animation function
     TypewriterAnimate(text, delay) {
         if (isTyping)
-        return
+            return
 
         isTyping := true
         displayText.Value := ""
 
         Loop Parse text {
             if (!isTyping)
-            break
+                break
 
             displayText.Value .= A_LoopField
             Sleep(delay)
@@ -265,9 +265,9 @@ Example2_TypewriterEffect() {
 ; EXAMPLE 3: Fade In/Out Effects
 ; ============================================================================
 /**
-* Creates fade animations by changing window transparency
-* Demonstrates smooth visual transitions
-*/
+ * Creates fade animations by changing window transparency
+ * Demonstrates smooth visual transitions
+ */
 Example3_FadeEffects() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Fade Effects")
     myGui.SetFont("s10")
@@ -348,57 +348,57 @@ Example3_FadeEffects() {
         demoGui.Show("NA")
 
         Loop 3 {  ; 3 pulses
-        ; Fade to 50%
-        Loop 128 {
-            opacity := 255 - A_Index
-            WinSetTransparent(opacity, demoGui)
-            Sleep(10)
+            ; Fade to 50%
+            Loop 128 {
+                opacity := 255 - A_Index
+                WinSetTransparent(opacity, demoGui)
+                Sleep(10)
+            }
+
+            ; Fade back to 100%
+            Loop 128 {
+                opacity := 127 + A_Index
+                WinSetTransparent(opacity, demoGui)
+                Sleep(10)
+            }
         }
 
-        ; Fade back to 100%
-        Loop 128 {
-            opacity := 127 + A_Index
-            WinSetTransparent(opacity, demoGui)
-            Sleep(10)
-        }
+        WinSetTransparent("Off", demoGui)
+        statusText.Value := "Pulse complete"
     }
 
-    WinSetTransparent("Off", demoGui)
-    statusText.Value := "Pulse complete"
-}
+    ; Show/hide demo window
+    showDemoBtn.OnEvent("Click", (*) => ShowDemo())
+    ShowDemo() {
+        WinSetTransparent("Off", demoGui)
+        demoGui.Show()
+        statusText.Value := "Demo window shown"
+    }
 
-; Show/hide demo window
-showDemoBtn.OnEvent("Click", (*) => ShowDemo())
-ShowDemo() {
-    WinSetTransparent("Off", demoGui)
+    hideDemoBtn.OnEvent("Click", (*) => HideDemo())
+    HideDemo() {
+        demoGui.Hide()
+        statusText.Value := "Demo window hidden"
+    }
+
+    ; Cleanup
+    myGui.OnEvent("Close", (*) => Cleanup())
+    Cleanup() {
+        demoGui.Destroy()
+        myGui.Destroy()
+    }
+
+    myGui.Show()
     demoGui.Show()
-    statusText.Value := "Demo window shown"
-}
-
-hideDemoBtn.OnEvent("Click", (*) => HideDemo())
-HideDemo() {
-    demoGui.Hide()
-    statusText.Value := "Demo window hidden"
-}
-
-; Cleanup
-myGui.OnEvent("Close", (*) => Cleanup())
-Cleanup() {
-    demoGui.Destroy()
-    myGui.Destroy()
-}
-
-myGui.Show()
-demoGui.Show()
 }
 
 ; ============================================================================
 ; EXAMPLE 4: Smooth Scrolling Animation
 ; ============================================================================
 /**
-* Creates smooth scrolling effects in list boxes
-* Demonstrates animated content navigation
-*/
+ * Creates smooth scrolling effects in list boxes
+ * Demonstrates animated content navigation
+ */
 Example4_SmoothScrolling() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Smooth Scrolling")
     myGui.SetFont("s10")
@@ -429,7 +429,7 @@ Example4_SmoothScrolling() {
         currentPos := contentList.Value
 
         if (currentPos = targetPos)
-        return
+            return
 
         statusText.Value := "Scrolling from " currentPos " to " targetPos "..."
 
@@ -460,7 +460,7 @@ Example4_SmoothScrolling() {
     GoToItem() {
         target := Integer(gotoEdit.Value)
         if (target >= 1 && target <= 100)
-        SmoothScroll(target)
+            SmoothScroll(target)
     }
 
     myGui.OnEvent("Close", (*) => myGui.Destroy())
@@ -472,9 +472,9 @@ Example4_SmoothScrolling() {
 ; EXAMPLE 5: Spinning/Rotating Loading Indicator
 ; ============================================================================
 /**
-* Creates rotating loading indicators using text characters
-* Simulates spinner animations
-*/
+ * Creates rotating loading indicators using text characters
+ * Simulates spinner animations
+ */
 Example5_LoadingSpinner() {
     myGui := Gui("+AlwaysOnTop", "Example 5: Loading Spinners")
     myGui.SetFont("s10")
@@ -495,11 +495,11 @@ Example5_LoadingSpinner() {
 
     ; Spinner patterns
     static spinners := Map(
-    "dots", ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
-    "line", ["|", "/", "-", "\"],
-    "arrows", ["←", "↖", "↑", "↗", "→", "↘", "↓", "↙"],
-    "dots2", ["⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"],
-    "blocks", ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█", "▇", "▆", "▅", "▄", "▃", "▂"]
+        "dots", ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
+        "line", ["|", "/", "-", "\"],
+        "arrows", ["←", "↖", "↑", "↗", "→", "↘", "↓", "↙"],
+        "dots2", ["⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"],
+        "blocks", ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█", "▇", "▆", "▅", "▄", "▃", "▂"]
     )
 
     static isAnimating := false
@@ -507,7 +507,7 @@ Example5_LoadingSpinner() {
     ; Animate spinners
     AnimateSpinners() {
         if (!isAnimating)
-        return
+            return
 
         static frame := 0
         frame++
@@ -540,7 +540,7 @@ Example5_LoadingSpinner() {
     startBtn.OnEvent("Click", (*) => StartAnimation())
     StartAnimation() {
         if (isAnimating)
-        return
+            return
 
         isAnimating := true
         SetTimer(AnimateSpinners, 100)  ; Update every 100ms
@@ -554,7 +554,7 @@ Example5_LoadingSpinner() {
     stopBtn.OnEvent("Click", (*) => StopAnimation())
     StopAnimation() {
         if (!isAnimating)
-        return
+            return
 
         isAnimating := false
         SetTimer(AnimateSpinners, 0)
@@ -597,9 +597,9 @@ Example5_LoadingSpinner() {
 ; EXAMPLE 6: Slide In/Out Animations
 ; ============================================================================
 /**
-* Creates sliding window animations
-* Windows move smoothly into and out of view
-*/
+ * Creates sliding window animations
+ * Windows move smoothly into and out of view
+ */
 Example6_SlideAnimations() {
     myGui := Gui("+AlwaysOnTop", "Example 6: Slide Animations")
     myGui.SetFont("s10")

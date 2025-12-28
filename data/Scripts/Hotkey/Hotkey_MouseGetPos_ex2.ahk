@@ -4,5 +4,6 @@
 Persistent
 SetTimer(WatchCursor, 100)
 WatchCursor()
-WatchCursor() { MouseGetPos(, , &id, &control) title := WinGetTitle("ahk_id " id) class := WinGetClass("ahk_id " id) ToolTip("ahk_id " id "`nahk_class " class "`n" title "`nControl: " control)
+WatchCursor() {
+    MouseGetPos(, , &id, &control) title := WinGetTitle("ahk_id " id) class := WinGetClass("ahk_id " id) ToolTip("ahk_id " id "`nahk_class " class "`n" title "`nControl: " control)
 }

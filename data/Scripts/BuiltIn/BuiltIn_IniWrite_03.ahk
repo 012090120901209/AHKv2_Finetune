@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 INI Write Examples - Part 3
-* ============================================================================
-*
-* Comprehensive INI writing for enterprise configuration management,
-* deployment automation, and advanced config patterns.
-*
-* @description Enterprise configuration management with INI files
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 INI Write Examples - Part 3
+ * ============================================================================
+ * 
+ * Comprehensive INI writing for enterprise configuration management,
+ * deployment automation, and advanced config patterns.
+ * 
+ * @description Enterprise configuration management with INI files
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Configuration Deployment System
@@ -34,11 +34,11 @@ class ConfigDeployment {
         ; Environment-specific deployment
         switch env {
             case "Development":
-            this.DeployDev(configFile)
+                this.DeployDev(configFile)
             case "Staging":
-            this.DeployStaging(configFile)
+                this.DeployStaging(configFile)
             case "Production":
-            this.DeployProduction(configFile)
+                this.DeployProduction(configFile)
         }
 
         IniWrite A_Now, configFile, "Deployment", "DeployedAt"
@@ -68,7 +68,7 @@ class ConfigDeployment {
 
 Example1_Deployment() {
     MsgBox "=== Example 1: Configuration Deployment ===`n`n" .
-    "Deploying configurations to environments..."
+        "Deploying configurations to environments..."
 
     envs := ["Development", "Staging", "Production"]
     deployed := []
@@ -94,7 +94,7 @@ Example1_Deployment() {
 
 Example2_FeatureFlags() {
     MsgBox "=== Example 2: Feature Flag Config ===`n`n" .
-    "Configuring feature flags..."
+        "Configuring feature flags..."
 
     iniFile := A_ScriptDir . "\feature_flags.ini"
 
@@ -104,10 +104,10 @@ Example2_FeatureFlags() {
 
     ; Feature flags with rollout percentages
     features := [
-    Map("name", "DarkMode", "enabled", true, "rollout", 100),
-    Map("name", "BetaSearch", "enabled", true, "rollout", 50),
-    Map("name", "NewDashboard", "enabled", false, "rollout", 0),
-    Map("name", "AIAssistant", "enabled", true, "rollout", 25)
+        Map("name", "DarkMode", "enabled", true, "rollout", 100),
+        Map("name", "BetaSearch", "enabled", true, "rollout", 50),
+        Map("name", "NewDashboard", "enabled", false, "rollout", 0),
+        Map("name", "AIAssistant", "enabled", true, "rollout", 25)
     ]
 
     for feature in features {
@@ -143,13 +143,13 @@ class TemplateEngine {
 
         for section in StrSplit(sections, "`n") {
             if (section = "")
-            continue
+                continue
 
             keys := IniRead(templateFile, section)
 
             for key in StrSplit(keys, "`n") {
                 if (key = "")
-                continue
+                    continue
 
                 value := IniRead(templateFile, section, key)
 
@@ -166,7 +166,7 @@ class TemplateEngine {
 
 Example3_TemplateEngine() {
     MsgBox "=== Example 3: Template Engine ===`n`n" .
-    "Processing configuration template..."
+        "Processing configuration template..."
 
     templateFile := A_ScriptDir . "\template.ini"
     outputFile := A_ScriptDir . "\processed.ini"
@@ -183,10 +183,10 @@ Example3_TemplateEngine() {
 
     ; Process template
     vars := Map(
-    "{{APP_NAME}}", "ProductionApp",
-    "{{VERSION}}", "3.0.1",
-    "{{DB_HOST}}", "prod-server.example.com",
-    "{{DB_PORT}}", "5432"
+        "{{APP_NAME}}", "ProductionApp",
+        "{{VERSION}}", "3.0.1",
+        "{{DB_HOST}}", "prod-server.example.com",
+        "{{DB_PORT}}", "5432"
     )
 
     TemplateEngine.Process(templateFile, outputFile, vars)
@@ -205,7 +205,7 @@ Example3_TemplateEngine() {
 
 Example4_ConfigVersioning() {
     MsgBox "=== Example 4: Configuration Versioning ===`n`n" .
-    "Creating versioned configurations..."
+        "Creating versioned configurations..."
 
     baseFile := A_ScriptDir . "\app_config.ini"
     versionFile := A_ScriptDir . "\app_config_v2.ini"
@@ -246,7 +246,7 @@ Example4_ConfigVersioning() {
 
 Example5_MultiTenant() {
     MsgBox "=== Example 5: Multi-Tenant Config ===`n`n" .
-    "Creating multi-tenant configurations..."
+        "Creating multi-tenant configurations..."
 
     iniFile := A_ScriptDir . "\multitenant.ini"
 
@@ -255,9 +255,9 @@ Example5_MultiTenant() {
     }
 
     tenants := [
-    Map("id", "tenant1", "name", "Acme Corp", "db", "db1.example.com"),
-    Map("id", "tenant2", "name", "TechStart", "db", "db2.example.com"),
-    Map("id", "tenant3", "name", "GlobalInc", "db", "db3.example.com")
+        Map("id", "tenant1", "name", "Acme Corp", "db", "db1.example.com"),
+        Map("id", "tenant2", "name", "TechStart", "db", "db2.example.com"),
+        Map("id", "tenant3", "name", "GlobalInc", "db", "db3.example.com")
     ]
 
     for tenant in tenants {
@@ -287,7 +287,7 @@ Example5_MultiTenant() {
 
 Example6_EncryptionMeta() {
     MsgBox "=== Example 6: Encryption Metadata ===`n`n" .
-    "Storing encryption metadata..."
+        "Storing encryption metadata..."
 
     iniFile := A_ScriptDir . "\encrypted.ini"
 
@@ -323,7 +323,7 @@ Example6_EncryptionMeta() {
 
 Example7_AppInstaller() {
     MsgBox "=== Example 7: Application Installer ===`n`n" .
-    "Creating complete installation configuration..."
+        "Creating complete installation configuration..."
 
     iniFile := A_ScriptDir . "\install_config.ini"
 
@@ -407,8 +407,8 @@ ShowMenu() {
         case "7": Example7_AppInstaller()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     SetTimer(() => ShowMenu(), -1000)

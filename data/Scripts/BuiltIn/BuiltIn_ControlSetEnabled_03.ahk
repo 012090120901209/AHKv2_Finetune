@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlSetEnabled - Professional Applications
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlSetEnabled - Professional Applications
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -85,7 +85,7 @@ Example3() {
     loop 3 {
         page := []
         loop 2
-        page.Push(MyGui.Add("Edit", "w200 " . (A_Index = 1 ? "xm" : "x+10") . " y" . (A_Index = 1 ? "+20" : "+0"), "Page" . A_Index-1 . " Field" . A_Index))
+            page.Push(MyGui.Add("Edit", "w200 " . (A_Index = 1 ? "xm" : "x+10") . " y" . (A_Index = 1 ? "+20" : "+0"), "Page" . A_Index - 1 . " Field" . A_Index))
         pages.Push(page)
     }
     currentPage := 1
@@ -109,7 +109,7 @@ Example3() {
     ShowPage(page) {
         for i, p in pages {
             for ctrl in p
-            ControlSetEnabled(i = page, ctrl)
+                ControlSetEnabled(i = page, ctrl)
         }
     }
 
@@ -131,10 +131,10 @@ Example4() {
     Feature1.OnEvent("Click", Update)
     Update(*) {
         for opt in Feature1Opts
-        ControlSetEnabled(Feature1.Value, opt)
+            ControlSetEnabled(Feature1.Value, opt)
     }
     for opt in Feature1Opts
-    ControlSetEnabled(false, opt)
+        ControlSetEnabled(false, opt)
 
     MyGui.Show()
 }
@@ -205,19 +205,19 @@ Example7() {
 
     controls := []
     loop 3
-    controls.Push(MyGui.Add("Edit", "w250 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w250 y+10", "Field " . A_Index))
     BtnLoad := MyGui.Add("Button", "xm y+20 w200", "Load Data")
     BtnLoad.OnEvent("Click", LoadData)
     StatusText := MyGui.Add("Text", "xm y+10 w300", "")
     LoadData(*) {
         for ctrl in controls
-        ControlSetEnabled(false, ctrl)
+            ControlSetEnabled(false, ctrl)
         StatusText.Value := "Loading..."
         SetTimer(Loaded, -1500)
     }
     Loaded() {
         for ctrl in controls
-        ControlSetEnabled(true, ctrl)
+            ControlSetEnabled(true, ctrl)
         StatusText.Value := "Ready"
     }
 
@@ -233,13 +233,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Workflow States",
-"Example 2: Permission System",
-"Example 3: Form Wizard",
-"Example 4: Conditional UI",
-"Example 5: Error Recovery",
-"Example 6: Access Control",
-"Example 7: Loading States",
+    "Example 1: Workflow States",
+    "Example 2: Permission System",
+    "Example 3: Form Wizard",
+    "Example 4: Conditional UI",
+    "Example 5: Error Recovery",
+    "Example 6: Access Control",
+    "Example 7: Loading States",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Write Examples - Part 2
-* ============================================================================
-*
-* This file demonstrates advanced registry writing scenarios including
-* version control, setting profiles, and configuration synchronization.
-*
-* @description Advanced registry writing techniques
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Write Examples - Part 2
+ * ============================================================================
+ * 
+ * This file demonstrates advanced registry writing scenarios including
+ * version control, setting profiles, and configuration synchronization.
+ * 
+ * @description Advanced registry writing techniques
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Configuration Version Control
 ; ============================================================================
 
 /**
-* @class ConfigVersionControl
-* @description Manages configuration versions in registry
-*/
+ * @class ConfigVersionControl
+ * @description Manages configuration versions in registry
+ */
 class ConfigVersionControl {
     baseKey := ""
     currentVersion := 1
@@ -32,9 +32,9 @@ class ConfigVersionControl {
     }
 
     /**
-    * @method LoadCurrentVersion
-    * @description Loads the current version number
-    */
+     * @method LoadCurrentVersion
+     * @description Loads the current version number
+     */
     LoadCurrentVersion() {
         try {
             this.currentVersion := RegRead(this.baseKey, "ConfigVersion")
@@ -44,11 +44,11 @@ class ConfigVersionControl {
     }
 
     /**
-    * @method SaveConfig
-    * @description Saves configuration with version tracking
-    * @param {Map} config - Configuration data
-    * @returns {Boolean} Success status
-    */
+     * @method SaveConfig
+     * @description Saves configuration with version tracking
+     * @param {Map} config - Configuration data
+     * @returns {Boolean} Success status
+     */
     SaveConfig(config) {
         try {
             ; Increment version
@@ -63,9 +63,9 @@ class ConfigVersionControl {
             ; Save configuration values
             for key, value in config {
                 if (value is Integer)
-                RegWrite value, "REG_DWORD", this.baseKey, key
+                    RegWrite value, "REG_DWORD", this.baseKey, key
                 else
-                RegWrite value, "REG_SZ", this.baseKey, key
+                    RegWrite value, "REG_SZ", this.baseKey, key
             }
 
             ; Archive this version
@@ -78,19 +78,19 @@ class ConfigVersionControl {
     }
 
     /**
-    * @method ArchiveVersion
-    * @description Archives a configuration version
-    * @param {Map} config - Configuration to archive
-    */
+     * @method ArchiveVersion
+     * @description Archives a configuration version
+     * @param {Map} config - Configuration to archive
+     */
     ArchiveVersion(config) {
         archiveKey := this.baseKey . "\Archive\v" . this.currentVersion
 
         try {
             for key, value in config {
                 if (value is Integer)
-                RegWrite value, "REG_DWORD", archiveKey, key
+                    RegWrite value, "REG_DWORD", archiveKey, key
                 else
-                RegWrite value, "REG_SZ", archiveKey, key
+                    RegWrite value, "REG_SZ", archiveKey, key
             }
 
             RegWrite A_Now, "REG_SZ", archiveKey, "ArchivedAt"
@@ -98,10 +98,10 @@ class ConfigVersionControl {
     }
 
     /**
-    * @method GetVersionHistory
-    * @description Gets version history report
-    * @returns {String} Formatted history
-    */
+     * @method GetVersionHistory
+     * @description Gets version history report
+     * @returns {String} Formatted history
+     */
     GetVersionHistory() {
         history := "Configuration Version History:`n"
         history .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -109,7 +109,7 @@ class ConfigVersionControl {
 
         try {
             Loop Reg, this.baseKey . "\Archive", "K"
- {
+            {
                 versionKey := this.baseKey . "\Archive\" . A_LoopRegName
                 try {
                     timestamp := RegRead(versionKey, "ArchivedAt")
@@ -125,13 +125,13 @@ class ConfigVersionControl {
 }
 
 /**
-* @function Example1_VersionControl
-* @description Demonstrates configuration version control
-* @returns {void}
-*/
+ * @function Example1_VersionControl
+ * @description Demonstrates configuration version control
+ * @returns {void}
+ */
 Example1_VersionControl() {
     MsgBox "=== Example 1: Configuration Version Control ===`n`n" .
-    "Managing configuration versions..."
+        "Managing configuration versions..."
 
     vcs := ConfigVersionControl("HKCU\Software\AHKv2Examples\VersionedConfig")
 
@@ -160,9 +160,9 @@ Example1_VersionControl() {
 ; ============================================================================
 
 /**
-* @class ProfileManager
-* @description Manages multiple configuration profiles
-*/
+ * @class ProfileManager
+ * @description Manages multiple configuration profiles
+ */
 class ProfileManager {
     baseKey := ""
     activeProfile := "Default"
@@ -173,9 +173,9 @@ class ProfileManager {
     }
 
     /**
-    * @method LoadActiveProfile
-    * @description Loads the active profile name
-    */
+     * @method LoadActiveProfile
+     * @description Loads the active profile name
+     */
     LoadActiveProfile() {
         try {
             this.activeProfile := RegRead(this.baseKey, "ActiveProfile")
@@ -185,12 +185,12 @@ class ProfileManager {
     }
 
     /**
-    * @method CreateProfile
-    * @description Creates a new profile
-    * @param {String} profileName - Profile name
-    * @param {Map} settings - Profile settings
-    * @returns {Boolean} Success status
-    */
+     * @method CreateProfile
+     * @description Creates a new profile
+     * @param {String} profileName - Profile name
+     * @param {Map} settings - Profile settings
+     * @returns {Boolean} Success status
+     */
     CreateProfile(profileName, settings) {
         profileKey := this.baseKey . "\Profiles\" . profileName
 
@@ -202,9 +202,9 @@ class ProfileManager {
             ; Save settings
             for key, value in settings {
                 if (value is Integer)
-                RegWrite value, "REG_DWORD", profileKey, key
+                    RegWrite value, "REG_DWORD", profileKey, key
                 else
-                RegWrite value, "REG_SZ", profileKey, key
+                    RegWrite value, "REG_SZ", profileKey, key
             }
 
             return true
@@ -214,11 +214,11 @@ class ProfileManager {
     }
 
     /**
-    * @method SwitchProfile
-    * @description Switches to a different profile
-    * @param {String} profileName - Profile name
-    * @returns {Boolean} Success status
-    */
+     * @method SwitchProfile
+     * @description Switches to a different profile
+     * @param {String} profileName - Profile name
+     * @returns {Boolean} Success status
+     */
     SwitchProfile(profileName) {
         profileKey := this.baseKey . "\Profiles\" . profileName
 
@@ -239,18 +239,18 @@ class ProfileManager {
     }
 
     /**
-    * @method GetProfileSettings
-    * @description Gets settings for a specific profile
-    * @param {String} profileName - Profile name
-    * @returns {Map} Profile settings
-    */
+     * @method GetProfileSettings
+     * @description Gets settings for a specific profile
+     * @param {String} profileName - Profile name
+     * @returns {Map} Profile settings
+     */
     GetProfileSettings(profileName) {
         profileKey := this.baseKey . "\Profiles\" . profileName
         settings := Map()
 
         try {
             Loop Reg, profileKey, "V"
- {
+            {
                 try {
                     valueName := A_LoopRegName
                     if (valueName != "CreatedAt" && valueName != "ModifiedAt") {
@@ -266,16 +266,16 @@ class ProfileManager {
     }
 
     /**
-    * @method ListProfiles
-    * @description Lists all available profiles
-    * @returns {Array} Profile names
-    */
+     * @method ListProfiles
+     * @description Lists all available profiles
+     * @returns {Array} Profile names
+     */
     ListProfiles() {
         profiles := []
 
         try {
             Loop Reg, this.baseKey . "\Profiles", "K"
- {
+            {
                 profiles.Push(A_LoopRegName)
             }
         }
@@ -284,10 +284,10 @@ class ProfileManager {
     }
 
     /**
-    * @method GetReport
-    * @description Gets formatted profile report
-    * @returns {String} Formatted report
-    */
+     * @method GetReport
+     * @description Gets formatted profile report
+     * @returns {String} Formatted report
+     */
     GetReport() {
         report := "Profile Manager Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -310,13 +310,13 @@ class ProfileManager {
 }
 
 /**
-* @function Example2_ProfileManager
-* @description Demonstrates multi-profile management
-* @returns {void}
-*/
+ * @function Example2_ProfileManager
+ * @description Demonstrates multi-profile management
+ * @returns {void}
+ */
 Example2_ProfileManager() {
     MsgBox "=== Example 2: Profile Manager ===`n`n" .
-    "Managing multiple configuration profiles..."
+        "Managing multiple configuration profiles..."
 
     pm := ProfileManager("HKCU\Software\AHKv2Examples\Profiles")
 
@@ -348,9 +348,9 @@ Example2_ProfileManager() {
 ; ============================================================================
 
 /**
-* @class SettingsSync
-* @description Synchronizes settings between different locations
-*/
+ * @class SettingsSync
+ * @description Synchronizes settings between different locations
+ */
 class SettingsSync {
     sourceKey := ""
     targetKey := ""
@@ -362,11 +362,11 @@ class SettingsSync {
     }
 
     /**
-    * @method Sync
-    * @description Synchronizes settings from source to target
-    * @param {Boolean} bidirectional - Enable bidirectional sync
-    * @returns {Integer} Number of synced items
-    */
+     * @method Sync
+     * @description Synchronizes settings from source to target
+     * @param {Boolean} bidirectional - Enable bidirectional sync
+     * @returns {Integer} Number of synced items
+     */
     Sync(bidirectional := false) {
         this.syncLog := []
         syncedCount := 0
@@ -374,7 +374,7 @@ class SettingsSync {
         ; Sync from source to target
         try {
             Loop Reg, this.sourceKey, "V"
- {
+            {
                 try {
                     valueName := A_LoopRegName
                     value := RegRead(this.sourceKey, valueName)
@@ -383,19 +383,19 @@ class SettingsSync {
                     RegWrite value, "REG_SZ", this.targetKey, valueName
 
                     this.syncLog.Push(Map(
-                    "direction", "source → target",
-                    "name", valueName,
-                    "value", value,
-                    "status", "Success"
+                        "direction", "source → target",
+                        "name", valueName,
+                        "value", value,
+                        "status", "Success"
                     ))
 
                     syncedCount++
                 } catch Error as err {
                     this.syncLog.Push(Map(
-                    "direction", "source → target",
-                    "name", A_LoopRegName,
-                    "status", "Failed",
-                    "error", err.Message
+                        "direction", "source → target",
+                        "name", A_LoopRegName,
+                        "status", "Failed",
+                        "error", err.Message
                     ))
                 }
             }
@@ -405,7 +405,7 @@ class SettingsSync {
         if (bidirectional) {
             try {
                 Loop Reg, this.targetKey, "V"
- {
+                {
                     valueName := A_LoopRegName
 
                     ; Check if value exists in source
@@ -418,10 +418,10 @@ class SettingsSync {
                             RegWrite value, "REG_SZ", this.sourceKey, valueName
 
                             this.syncLog.Push(Map(
-                            "direction", "target → source",
-                            "name", valueName,
-                            "value", value,
-                            "status", "Success"
+                                "direction", "target → source",
+                                "name", valueName,
+                                "value", value,
+                                "status", "Success"
                             ))
 
                             syncedCount++
@@ -435,10 +435,10 @@ class SettingsSync {
     }
 
     /**
-    * @method GetSyncReport
-    * @description Gets synchronization report
-    * @returns {String} Formatted report
-    */
+     * @method GetSyncReport
+     * @description Gets synchronization report
+     * @returns {String} Formatted report
+     */
     GetSyncReport() {
         report := "Settings Synchronization Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -451,7 +451,7 @@ class SettingsSync {
             report .= status . " " . entry["direction"] . " " . entry["name"] . "`n"
 
             if (entry["status"] = "Failed" && entry.Has("error"))
-            report .= "  Error: " . entry["error"] . "`n"
+                report .= "  Error: " . entry["error"] . "`n"
         }
 
         return report
@@ -459,13 +459,13 @@ class SettingsSync {
 }
 
 /**
-* @function Example3_SettingsSync
-* @description Demonstrates settings synchronization
-* @returns {void}
-*/
+ * @function Example3_SettingsSync
+ * @description Demonstrates settings synchronization
+ * @returns {void}
+ */
 Example3_SettingsSync() {
     MsgBox "=== Example 3: Settings Synchronization ===`n`n" .
-    "Synchronizing settings between locations..."
+        "Synchronizing settings between locations..."
 
     sourceKey := "HKCU\Software\AHKv2Examples\SyncSource"
     targetKey := "HKCU\Software\AHKv2Examples\SyncTarget"
@@ -490,9 +490,9 @@ Example3_SettingsSync() {
 ; ============================================================================
 
 /**
-* @class FeatureFlags
-* @description Manages feature flags in registry
-*/
+ * @class FeatureFlags
+ * @description Manages feature flags in registry
+ */
 class FeatureFlags {
     flagsKey := ""
 
@@ -501,18 +501,18 @@ class FeatureFlags {
     }
 
     /**
-    * @method EnableFeature
-    * @description Enables a feature flag
-    * @param {String} featureName - Feature name
-    * @param {String} description - Feature description
-    * @returns {Boolean} Success status
-    */
+     * @method EnableFeature
+     * @description Enables a feature flag
+     * @param {String} featureName - Feature name
+     * @param {String} description - Feature description
+     * @returns {Boolean} Success status
+     */
     EnableFeature(featureName, description := "") {
         try {
             RegWrite 1, "REG_DWORD", this.flagsKey, featureName
 
             if (description != "")
-            RegWrite description, "REG_SZ", this.flagsKey, featureName . "_Description"
+                RegWrite description, "REG_SZ", this.flagsKey, featureName . "_Description"
 
             RegWrite A_Now, "REG_SZ", this.flagsKey, featureName . "_EnabledAt"
 
@@ -523,11 +523,11 @@ class FeatureFlags {
     }
 
     /**
-    * @method DisableFeature
-    * @description Disables a feature flag
-    * @param {String} featureName - Feature name
-    * @returns {Boolean} Success status
-    */
+     * @method DisableFeature
+     * @description Disables a feature flag
+     * @param {String} featureName - Feature name
+     * @returns {Boolean} Success status
+     */
     DisableFeature(featureName) {
         try {
             RegWrite 0, "REG_DWORD", this.flagsKey, featureName
@@ -539,11 +539,11 @@ class FeatureFlags {
     }
 
     /**
-    * @method IsEnabled
-    * @description Checks if a feature is enabled
-    * @param {String} featureName - Feature name
-    * @returns {Boolean} Enabled status
-    */
+     * @method IsEnabled
+     * @description Checks if a feature is enabled
+     * @param {String} featureName - Feature name
+     * @returns {Boolean} Enabled status
+     */
     IsEnabled(featureName) {
         try {
             value := RegRead(this.flagsKey, featureName)
@@ -554,15 +554,15 @@ class FeatureFlags {
     }
 
     /**
-    * @method SetFeatureRollout
-    * @description Sets feature rollout percentage
-    * @param {String} featureName - Feature name
-    * @param {Integer} percentage - Rollout percentage (0-100)
-    * @returns {Boolean} Success status
-    */
+     * @method SetFeatureRollout
+     * @description Sets feature rollout percentage
+     * @param {String} featureName - Feature name
+     * @param {Integer} percentage - Rollout percentage (0-100)
+     * @returns {Boolean} Success status
+     */
     SetFeatureRollout(featureName, percentage) {
         if (percentage < 0 || percentage > 100)
-        return false
+            return false
 
         try {
             RegWrite percentage, "REG_DWORD", this.flagsKey, featureName . "_Rollout"
@@ -573,22 +573,22 @@ class FeatureFlags {
     }
 
     /**
-    * @method GetAllFeatures
-    * @description Gets all feature flags
-    * @returns {String} Formatted feature list
-    */
+     * @method GetAllFeatures
+     * @description Gets all feature flags
+     * @returns {String} Formatted feature list
+     */
     GetAllFeatures() {
         features := Map()
 
         try {
             Loop Reg, this.flagsKey, "V"
- {
+            {
                 valueName := A_LoopRegName
 
                 ; Skip metadata fields
                 if (InStr(valueName, "_Description") || InStr(valueName, "_EnabledAt") ||
-                InStr(valueName, "_DisabledAt") || InStr(valueName, "_Rollout"))
-                continue
+                    InStr(valueName, "_DisabledAt") || InStr(valueName, "_Rollout"))
+                    continue
 
                 try {
                     enabled := RegRead(this.flagsKey, valueName)
@@ -610,7 +610,7 @@ class FeatureFlags {
             try {
                 desc := RegRead(this.flagsKey, featureName . "_Description")
                 if (desc != "")
-                report .= "  " . desc . "`n"
+                    report .= "  " . desc . "`n"
             }
 
             ; Try to get rollout
@@ -627,13 +627,13 @@ class FeatureFlags {
 }
 
 /**
-* @function Example4_FeatureFlags
-* @description Demonstrates feature flags system
-* @returns {void}
-*/
+ * @function Example4_FeatureFlags
+ * @description Demonstrates feature flags system
+ * @returns {void}
+ */
 Example4_FeatureFlags() {
     MsgBox "=== Example 4: Feature Flags ===`n`n" .
-    "Managing feature flags..."
+        "Managing feature flags..."
 
     flags := FeatureFlags("HKCU\Software\AHKv2Examples\FeatureFlags")
 
@@ -656,13 +656,13 @@ Example4_FeatureFlags() {
 ; ============================================================================
 
 /**
-* @function Example5_StatePersistence
-* @description Demonstrates persisting application state
-* @returns {void}
-*/
+ * @function Example5_StatePersistence
+ * @description Demonstrates persisting application state
+ * @returns {void}
+ */
 Example5_StatePersistence() {
     MsgBox "=== Example 5: Application State ===`n`n" .
-    "Persisting application state..."
+        "Persisting application state..."
 
     stateKey := "HKCU\Software\AHKv2Examples\AppState"
 
@@ -709,9 +709,9 @@ Example5_StatePersistence() {
 ; ============================================================================
 
 /**
-* @class RegistryCache
-* @description Implements a simple registry-based cache
-*/
+ * @class RegistryCache
+ * @description Implements a simple registry-based cache
+ */
 class RegistryCache {
     cacheKey := ""
     defaultTTL := 3600  ; 1 hour in seconds
@@ -721,16 +721,16 @@ class RegistryCache {
     }
 
     /**
-    * @method Set
-    * @description Sets a cache entry
-    * @param {String} key - Cache key
-    * @param {Any} value - Value to cache
-    * @param {Integer} ttl - Time to live in seconds
-    * @returns {Boolean} Success status
-    */
+     * @method Set
+     * @description Sets a cache entry
+     * @param {String} key - Cache key
+     * @param {Any} value - Value to cache
+     * @param {Integer} ttl - Time to live in seconds
+     * @returns {Boolean} Success status
+     */
     Set(key, value, ttl := 0) {
         if (ttl = 0)
-        ttl := this.defaultTTL
+            ttl := this.defaultTTL
 
         expiresAt := A_Now
         expiresAt := DateAdd(expiresAt, ttl, "Seconds")
@@ -745,12 +745,12 @@ class RegistryCache {
     }
 
     /**
-    * @method Get
-    * @description Gets a cache entry
-    * @param {String} key - Cache key
-    * @param {Any} default - Default value if not found/expired
-    * @returns {Any} Cached value or default
-    */
+     * @method Get
+     * @description Gets a cache entry
+     * @param {String} key - Cache key
+     * @param {Any} default - Default value if not found/expired
+     * @returns {Any} Cached value or default
+     */
     Get(key, default := "") {
         try {
             ; Check expiration
@@ -769,10 +769,10 @@ class RegistryCache {
     }
 
     /**
-    * @method Delete
-    * @description Deletes a cache entry
-    * @param {String} key - Cache key
-    */
+     * @method Delete
+     * @description Deletes a cache entry
+     * @param {String} key - Cache key
+     */
     Delete(key) {
         try {
             RegDelete this.cacheKey, key
@@ -781,9 +781,9 @@ class RegistryCache {
     }
 
     /**
-    * @method Clear
-    * @description Clears all cache entries
-    */
+     * @method Clear
+     * @description Clears all cache entries
+     */
     Clear() {
         try {
             RegDeleteKey this.cacheKey
@@ -792,13 +792,13 @@ class RegistryCache {
 }
 
 /**
-* @function Example6_CacheSystem
-* @description Demonstrates registry-based caching
-* @returns {void}
-*/
+ * @function Example6_CacheSystem
+ * @description Demonstrates registry-based caching
+ * @returns {void}
+ */
 Example6_CacheSystem() {
     MsgBox "=== Example 6: Registry Cache ===`n`n" .
-    "Demonstrating registry-based caching..."
+        "Demonstrating registry-based caching..."
 
     cache := RegistryCache("HKCU\Software\AHKv2Examples\Cache")
 
@@ -826,13 +826,13 @@ Example6_CacheSystem() {
 ; ============================================================================
 
 /**
-* @function Example7_ImportExport
-* @description Demonstrates exporting and importing settings
-* @returns {void}
-*/
+ * @function Example7_ImportExport
+ * @description Demonstrates exporting and importing settings
+ * @returns {void}
+ */
 Example7_ImportExport() {
     MsgBox "=== Example 7: Import/Export ===`n`n" .
-    "Exporting and importing settings..."
+        "Exporting and importing settings..."
 
     sourceKey := "HKCU\Software\AHKv2Examples\ExportSource"
     targetKey := "HKCU\Software\AHKv2Examples\ImportTarget"
@@ -848,7 +848,7 @@ Example7_ImportExport() {
     exportData := Map()
     try {
         Loop Reg, sourceKey, "V"
- {
+        {
             try {
                 exportData[A_LoopRegName] := RegRead(sourceKey, A_LoopRegName)
             }
@@ -904,8 +904,8 @@ ShowMenu() {
         case "7": Example7_ImportExport()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

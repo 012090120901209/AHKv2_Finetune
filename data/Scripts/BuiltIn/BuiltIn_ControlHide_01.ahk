@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlHide - Hide Controls Dynamically
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlHide - Hide Controls Dynamically
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -39,18 +39,18 @@ Example2() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
     BtnHideAll := MyGui.Add("Button", "xm y+20 w200", "Hide All")
     BtnHideAll.OnEvent("Click", HideAll)
     BtnShowAll := MyGui.Add("Button", "x+10 w200", "Show All")
     BtnShowAll.OnEvent("Click", ShowAll)
     HideAll(*) {
         for ctrl in controls
-        ControlHide(ctrl)
+            ControlHide(ctrl)
     }
     ShowAll(*) {
         for ctrl in controls
-        ControlShow(ctrl)
+            ControlShow(ctrl)
     }
 
     MyGui.Show()
@@ -70,9 +70,9 @@ Example3() {
     Input.OnEvent("Change", Check)
     Check(ctrl, *) {
         if (StrLen(ctrl.Value) > 0)
-        ControlShow(Dependent)
+            ControlShow(Dependent)
         else
-        ControlHide(Dependent)
+            ControlHide(Dependent)
     }
 
     MyGui.Show()
@@ -88,7 +88,7 @@ Example4() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
     BtnHide := MyGui.Add("Button", "xm y+20 w200", "Hide Progressively")
     BtnHide.OnEvent("Click", HideSeq)
     HideSeq(*) {
@@ -186,13 +186,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Hide",
-"Example 2: Hide Multiple",
-"Example 3: Conditional Hide",
-"Example 4: Progressive Hide",
-"Example 5: Toggle Hide",
-"Example 6: Context Menu",
-"Example 7: Animated Hide",
+    "Example 1: Basic Hide",
+    "Example 2: Hide Multiple",
+    "Example 3: Conditional Hide",
+    "Example 4: Progressive Hide",
+    "Example 5: Toggle Hide",
+    "Example 6: Context Menu",
+    "Example 7: Animated Hide",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

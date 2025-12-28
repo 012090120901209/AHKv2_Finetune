@@ -2,21 +2,21 @@
 #SingleInstance Force
 
 /**
-* Window Close Operations
-*
-* Demonstrates different ways to close windows: gentle close,
-* force close, and terminate process - with increasing urgency.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Window Close Operations
+ * 
+ * Demonstrates different ways to close windows: gentle close,
+ * force close, and terminate process - with increasing urgency.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Window Close Operations Demo`n`n"
-. "Three close methods:`n"
-. "1. Alt+RightClick - Gentle close (WM_CLOSE)`n"
-. "2. Ctrl+Alt+F4 - Force close window`n"
-. "3. Ctrl+Alt+Shift+F4 - Terminate process`n`n"
-. "We'll open Notepad to demonstrate.", , "T5")
+    . "Three close methods:`n"
+    . "1. Alt+RightClick - Gentle close (WM_CLOSE)`n"
+    . "2. Ctrl+Alt+F4 - Force close window`n"
+    . "3. Ctrl+Alt+Shift+F4 - Terminate process`n`n"
+    . "We'll open Notepad to demonstrate.", , "T5")
 
 ; Open Notepad for demo
 Run("notepad.exe")
@@ -26,22 +26,22 @@ WinActivate("ahk_exe notepad.exe")
 MsgBox("Try Alt+RightClick on the window to close it gently.", , "T3")
 
 ; Gentle close - right-click with Alt
-!RButton::GentleClose()
+!RButton:: GentleClose()
 
 ; Force close window
-^!F4::ForceCloseWindow()
+^!F4:: ForceCloseWindow()
 
 ; Terminate entire process
-^!+F4::TerminateProcess()
+^!+F4:: TerminateProcess()
 
 /**
-* Gentle close - Send WM_CLOSE message
-*/
+ * Gentle close - Send WM_CLOSE message
+ */
 GentleClose() {
     ; Get window under mouse
     MouseGetPos(, , &hwnd)
     if (!hwnd)
-    return
+        return
 
     title := WinGetTitle("ahk_id " hwnd)
 
@@ -53,18 +53,18 @@ GentleClose() {
 }
 
 /**
-* Force close - Immediate window closure
-*/
+ * Force close - Immediate window closure
+ */
 ForceCloseWindow() {
     hwnd := WinExist("A")
     if (!hwnd)
-    return
+        return
 
     title := WinGetTitle("ahk_id " hwnd)
 
     result := MsgBox("Force close window?`n`n" title, "Confirm", "YesNo Icon!")
     if (result == "No")
-    return
+        return
 
     ; Close window forcefully
     WinClose("ahk_id " hwnd)
@@ -74,27 +74,27 @@ ForceCloseWindow() {
 }
 
 /**
-* Terminate process - Kill entire application
-*/
+ * Terminate process - Kill entire application
+ */
 TerminateProcess() {
     hwnd := WinExist("A")
     if (!hwnd)
-    return
+        return
 
     title := WinGetTitle("ahk_id " hwnd)
     processName := WinGetProcessName("ahk_id " hwnd)
     pid := WinGetPID("ahk_id " hwnd)
 
     result := MsgBox("TERMINATE PROCESS?`n`n"
-    . "Window: " title "`n"
-    . "Process: " processName "`n"
-    . "PID: " pid "`n`n"
-    . "⚠ This will kill the entire application!`n"
-    . "⚠ Unsaved work will be lost!",
-    "Warning", "YesNo Icon! Default2")
+        . "Window: " title "`n"
+        . "Process: " processName "`n"
+        . "PID: " pid "`n`n"
+        . "⚠ This will kill the entire application!`n"
+        . "⚠ Unsaved work will be lost!",
+        "Warning", "YesNo Icon! Default2")
 
     if (result == "No")
-    return
+        return
 
     ; Kill process
     ProcessClose(pid)
@@ -171,3 +171,4 @@ TerminateProcess() {
 *     - Log closed windows
 *     - Blacklist protection
 */
+

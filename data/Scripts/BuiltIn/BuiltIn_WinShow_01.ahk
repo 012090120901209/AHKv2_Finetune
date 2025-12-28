@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinShow Examples - Part 1
-* ============================================================================
-*
-* Demonstrates window showing/revealing techniques.
-*
-* @description Window showing examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinShow Examples - Part 1
+ * ============================================================================
+ * 
+ * Demonstrates window showing/revealing techniques.
+ * 
+ * @description Window showing examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Show Hidden Window
 ; ============================================================================
 
 /**
-* Shows the last hidden window
-*
-* @hotkey F1 - Show hidden window
-*/
+ * Shows the last hidden window
+ * 
+ * @hotkey F1 - Show hidden window
+ */
 F1:: {
     if IsSet(lastHiddenWindow) && WinExist(lastHiddenWindow) {
         WinShow(lastHiddenWindow)
@@ -38,10 +38,10 @@ F1:: {
 ; ============================================================================
 
 /**
-* Shows all currently hidden windows
-*
-* @hotkey F2 - Show all hidden
-*/
+ * Shows all currently hidden windows
+ * 
+ * @hotkey F2 - Show all hidden
+ */
 F2:: {
     allWindows := WinGetList()
     shown := 0
@@ -51,16 +51,16 @@ F2:: {
             ; Check if window is hidden
             style := WinGetStyle(hwnd)
             if !(style & 0x10000000) {  ; Not visible
-            title := WinGetTitle(hwnd)
-            if title != "" {
-                WinShow(hwnd)
-                shown++
+                title := WinGetTitle(hwnd)
+                if title != "" {
+                    WinShow(hwnd)
+                    shown++
+                }
             }
         }
     }
-}
 
-MsgBox("Shown " shown " hidden window(s).", "Success", 64)
+    MsgBox("Shown " shown " hidden window(s).", "Success", 64)
 }
 
 ; ============================================================================
@@ -68,10 +68,10 @@ MsgBox("Shown " shown " hidden window(s).", "Success", 64)
 ; ============================================================================
 
 /**
-* Shows window and brings to front
-*
-* @hotkey F3 - Show and activate Notepad
-*/
+ * Shows window and brings to front
+ * 
+ * @hotkey F3 - Show and activate Notepad
+ */
 F3:: {
     if WinExist("ahk_class Notepad") {
         WinShow("ahk_class Notepad")
@@ -87,10 +87,10 @@ F3:: {
 ; ============================================================================
 
 /**
-* Shows windows matching criteria
-*
-* @hotkey F4 - Selective show
-*/
+ * Shows windows matching criteria
+ * 
+ * @hotkey F4 - Selective show
+ */
 F4:: {
     result := InputBox("Enter process name to show:", "Selective Show", "w300 h130", "notepad.exe")
 
@@ -116,10 +116,10 @@ F4:: {
 ; ============================================================================
 
 /**
-* Shows window with fade-in effect
-*
-* @hotkey F5 - Show with animation
-*/
+ * Shows window with fade-in effect
+ * 
+ * @hotkey F5 - Show with animation
+ */
 F5:: {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -151,10 +151,10 @@ F5:: {
 ; ============================================================================
 
 /**
-* Shows all minimized windows
-*
-* @hotkey F6 - Restore all minimized
-*/
+ * Shows all minimized windows
+ * 
+ * @hotkey F6 - Restore all minimized
+ */
 F6:: {
     allWindows := WinGetList()
     restored := 0
@@ -162,14 +162,14 @@ F6:: {
     for hwnd in allWindows {
         try {
             if WinGetMinMax(hwnd) = -1 {  ; Minimized
-            WinRestore(hwnd)
-            WinShow(hwnd)
-            restored++
+                WinRestore(hwnd)
+                WinShow(hwnd)
+                restored++
+            }
         }
     }
-}
 
-MsgBox("Restored " restored " minimized window(s).", "Success", 64)
+    MsgBox("Restored " restored " minimized window(s).", "Success", 64)
 }
 
 ; ============================================================================
@@ -177,10 +177,10 @@ MsgBox("Restored " restored " minimized window(s).", "Success", 64)
 ; ============================================================================
 
 /**
-* Shows GUI with all hidden windows
-*
-* @hotkey F7 - Show hidden window list
-*/
+ * Shows GUI with all hidden windows
+ * 
+ * @hotkey F7 - Show hidden window list
+ */
 F7:: {
     ShowHiddenWindowList()
 }
@@ -206,51 +206,51 @@ ShowHiddenWindowList() {
         try {
             style := WinGetStyle(hwnd)
             if !(style & 0x10000000) {  ; Hidden
-            title := WinGetTitle(hwnd)
-            if title != "" {
-                process := WinGetProcessName(hwnd)
-                lv.Add("", title, process)
-                hiddenWins.Push(hwnd)
+                title := WinGetTitle(hwnd)
+                if title != "" {
+                    process := WinGetProcessName(hwnd)
+                    lv.Add("", title, process)
+                    hiddenWins.Push(hwnd)
+                }
             }
         }
     }
-}
 
-if hiddenWins.Length = 0 {
-    MsgBox("No hidden windows found.", "Info", 64)
-    return
-}
-
-lv.ModifyCol(1, 250)
-lv.ModifyCol(2, "AutoHdr")
-
-listGui.Add("Button", "w195 Default", "Show Selected").OnEvent("Click", ShowSelected)
-listGui.Add("Button", "w195 x+10 yp", "Cancel").OnEvent("Click", (*) => listGui.Destroy())
-
-listGui.Show()
-
-ShowSelected(*) {
-    selectedRow := lv.GetNext()
-    if selectedRow = 0 {
-        MsgBox("Please select a window.", "Error", 16)
+    if hiddenWins.Length = 0 {
+        MsgBox("No hidden windows found.", "Info", 64)
         return
     }
 
-    hwnd := hiddenWins[selectedRow]
-    WinShow(hwnd)
-    WinActivate(hwnd)
+    lv.ModifyCol(1, 250)
+    lv.ModifyCol(2, "AutoHdr")
 
-    listGui.Destroy()
-    ToolTip("Window shown")
-    SetTimer(() => ToolTip(), -1500)
-}
+    listGui.Add("Button", "w195 Default", "Show Selected").OnEvent("Click", ShowSelected)
+    listGui.Add("Button", "w195 x+10 yp", "Cancel").OnEvent("Click", (*) => listGui.Destroy())
+
+    listGui.Show()
+
+    ShowSelected(*) {
+        selectedRow := lv.GetNext()
+        if selectedRow = 0 {
+            MsgBox("Please select a window.", "Error", 16)
+            return
+        }
+
+        hwnd := hiddenWins[selectedRow]
+        WinShow(hwnd)
+        WinActivate(hwnd)
+
+        listGui.Destroy()
+        ToolTip("Window shown")
+        SetTimer(() => ToolTip(), -1500)
+    }
 }
 
 ; ============================================================================
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

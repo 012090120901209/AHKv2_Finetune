@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Observer Pattern - Basic Implementation
-*
-* Demonstrates the Observer (Publish-Subscribe) design pattern.
-* One subject notifies multiple observers about state changes.
-*
-* Source: AHK_Notes/Patterns/observer-pattern.md
-*/
+ * Observer Pattern - Basic Implementation
+ * 
+ * Demonstrates the Observer (Publish-Subscribe) design pattern.
+ * One subject notifies multiple observers about state changes.
+ * 
+ * Source: AHK_Notes/Patterns/observer-pattern.md
+ */
 
 ; Create observable subject and observers
 subject := Observable()
@@ -19,8 +19,8 @@ observer3 := CustomObserver("Observer 3")
 
 ; Register observers
 subject.Subscribe(observer1)
-.Subscribe(observer2)
-.Subscribe(observer3)
+    .Subscribe(observer2)
+    .Subscribe(observer3)
 
 ; Trigger notification
 MsgBox("Triggering notification to all observers...")
@@ -34,9 +34,9 @@ MsgBox("Observer 2 unsubscribed. Triggering again...")
 subject.Notify("Second notification")
 
 /**
-* Observable (Subject) Class
-* Maintains list of observers and notifies them of changes
-*/
+ * Observable (Subject) Class
+ * Maintains list of observers and notifies them of changes
+ */
 class Observable {
     Observers := []
 
@@ -63,9 +63,9 @@ class Observable {
 }
 
 /**
-* Observer Base Class
-* Defines interface that concrete observers must implement
-*/
+ * Observer Base Class
+ * Defines interface that concrete observers must implement
+ */
 class Observer {
     Update(data) {
         ; Abstract method - subclasses override this
@@ -74,9 +74,9 @@ class Observer {
 }
 
 /**
-* Concrete Observer Implementation
-* Responds to notifications from Observable
-*/
+ * Concrete Observer Implementation
+ * Responds to notifications from Observable
+ */
 class CustomObserver extends Observer {
     Name := ""
 
@@ -111,3 +111,4 @@ class CustomObserver extends Observer {
 *    - Decoupled: Subject and observers are independent
 *    - Extensible: Easy to add new observer types
 */
+

@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Chr_01_CodeToCharacter.ahk
-*
-* DESCRIPTION:
-* Code point to character conversion with comprehensive examples demonstrating
-* key concepts and practical applications.
-*
-* FEATURES:
-* - Chr basic usage and syntax
-* - Error handling and validation
-* - Practical real-world examples
-* - Integration with other AutoHotkey features
-* - Performance considerations
-* - Best practices and patterns
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Chr() function syntax
-* - Return value handling
-* - Error handling with Try/Catch
-* - GUI integration
-* - Event-driven programming
-* - Map and Array usage
-*
-* LEARNING POINTS:
-* 1. Chr provides essential functionality
-* 2. Always validate inputs and outputs
-* 3. Handle errors gracefully
-* 4. Consider performance implications
-* 5. Use appropriate data structures
-* 6. Follow AutoHotkey v2 conventions
-* 7. Test edge cases thoroughly
-*/
+ * BuiltIn_Chr_01_CodeToCharacter.ahk
+ * 
+ * DESCRIPTION:
+ * Code point to character conversion with comprehensive examples demonstrating
+ * key concepts and practical applications.
+ * 
+ * FEATURES:
+ * - Chr basic usage and syntax
+ * - Error handling and validation
+ * - Practical real-world examples
+ * - Integration with other AutoHotkey features
+ * - Performance considerations
+ * - Best practices and patterns
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Chr() function syntax
+ * - Return value handling
+ * - Error handling with Try/Catch
+ * - GUI integration
+ * - Event-driven programming
+ * - Map and Array usage
+ * 
+ * LEARNING POINTS:
+ * 1. Chr provides essential functionality
+ * 2. Always validate inputs and outputs
+ * 3. Handle errors gracefully
+ * 4. Consider performance implications
+ * 5. Use appropriate data structures
+ * 6. Follow AutoHotkey v2 conventions
+ * 7. Test edge cases thoroughly
+ */
 
 ;;===============================================================================
 ; EXAMPLE 1: CodeToCharacter Example 1
@@ -488,3 +488,4 @@ Example7_Chr() {
 ; Example5_Chr()
 ; Example6_Chr()
 ; Example7_Chr()
+

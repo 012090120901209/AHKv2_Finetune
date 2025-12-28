@@ -17,13 +17,13 @@ DemoFindElement() {
     windowTitle := WinGetTitle("A")
 
     MsgBox("Demonstration of UIA FindElement`n`n"
-    "Active Window: " windowTitle "`n`n"
-    "In real usage with UIA library:`n"
-    "1. element := UIA.ElementFromHandle(hwnd)`n"
-    "2. button := element.FindElement({Name: 'OK'})`n"
-    "3. button.Click()`n`n"
-    "This would find and click the 'OK' button in the window.",
-    "UIA FindElement Demo")
+        "Active Window: " windowTitle "`n`n"
+        "In real usage with UIA library:`n"
+        "1. element := UIA.ElementFromHandle(hwnd)`n"
+        "2. button := element.FindElement({Name: 'OK'})`n"
+        "3. button.Click()`n`n"
+        "This would find and click the 'OK' button in the window.",
+        "UIA FindElement Demo")
 }
 
 ; Real implementation example (commented out, requires library):

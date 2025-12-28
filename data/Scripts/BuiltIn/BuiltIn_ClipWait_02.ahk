@@ -1,76 +1,76 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - ClipWait: Timeout Handling and Error Recovery
-* ============================================================================
-*
-* This file demonstrates advanced timeout handling, error recovery, and
-* clipboard operation monitoring using ClipWait in AutoHotkey v2.
-*
-* @file BuiltIn_ClipWait_02.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Advanced Timeout Strategies
-* 2. Error Recovery Mechanisms
-* 3. Clipboard Operation Monitoring
-* 4. Performance Optimization
-* 5. Clipboard Lock Detection
-* 6. Batch Copy Operations
-* 7. Production-Ready Copy System
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Implementing smart timeout strategies
-* - Recovering from clipboard failures
-* - Monitoring clipboard operation performance
-* - Optimizing clipboard operations
-* - Detecting and handling clipboard locks
-* - Performing batch copy operations
-* - Building production-ready systems
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - ClipWait: Timeout Handling and Error Recovery
+ * ============================================================================
+ * 
+ * This file demonstrates advanced timeout handling, error recovery, and
+ * clipboard operation monitoring using ClipWait in AutoHotkey v2.
+ * 
+ * @file BuiltIn_ClipWait_02.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Advanced Timeout Strategies
+ * 2. Error Recovery Mechanisms
+ * 3. Clipboard Operation Monitoring
+ * 4. Performance Optimization
+ * 5. Clipboard Lock Detection
+ * 6. Batch Copy Operations
+ * 7. Production-Ready Copy System
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Implementing smart timeout strategies
+ * - Recovering from clipboard failures
+ * - Monitoring clipboard operation performance
+ * - Optimizing clipboard operations
+ * - Detecting and handling clipboard locks
+ * - Performing batch copy operations
+ * - Building production-ready systems
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Advanced Timeout Strategies
 ; ============================================================================
 
 /**
-* Demonstrates advanced timeout handling strategies.
-*
-* @class TimeoutStrategies
-* @description Advanced timeout management
-*/
+ * Demonstrates advanced timeout handling strategies.
+ * 
+ * @class TimeoutStrategies
+ * @description Advanced timeout management
+ */
 
 class TimeoutStrategies {
 
     /**
-    * Adaptive timeout based on content type
-    * @param {String} contentType - Expected content type
-    * @returns {Integer} Timeout in seconds
-    */
+     * Adaptive timeout based on content type
+     * @param {String} contentType - Expected content type
+     * @returns {Integer} Timeout in seconds
+     */
     static GetAdaptiveTimeout(contentType) {
         ; Different operations need different timeouts
         timeouts := Map(
-        "text", 1,
-        "image", 3,
-        "file", 5,
-        "large", 10
+            "text", 1,
+            "image", 3,
+            "file", 5,
+            "large", 10
         )
 
         return timeouts.Has(contentType) ? timeouts[contentType] : 2
     }
 
     /**
-    * Copy with dynamic timeout adjustment
-    * @param {String} contentType - Expected content type
-    * @returns {Map} Result with timing info
-    */
+     * Copy with dynamic timeout adjustment
+     * @param {String} contentType - Expected content type
+     * @returns {Map} Result with timing info
+     */
     static CopyWithDynamicTimeout(contentType := "text") {
         result := Map()
         timeout := this.GetAdaptiveTimeout(contentType)
@@ -89,10 +89,10 @@ class TimeoutStrategies {
     }
 
     /**
-    * Progressive timeout with feedback
-    * @param {Array} timeouts - Array of timeouts to try
-    * @returns {Map} Result
-    */
+     * Progressive timeout with feedback
+     * @param {Array} timeouts - Array of timeouts to try
+     * @returns {Map} Result
+     */
     static CopyWithProgressiveTimeout(timeouts := [1, 2, 5]) {
         result := Map()
 
@@ -120,23 +120,23 @@ class TimeoutStrategies {
     }
 
     /**
-    * Timeout with user intervention option
-    * @param {Integer} initialTimeout - Initial timeout
-    * @returns {Boolean} Success
-    */
+     * Timeout with user intervention option
+     * @param {Integer} initialTimeout - Initial timeout
+     * @returns {Boolean} Success
+     */
     static CopyWithUserIntervention(initialTimeout := 2) {
         A_Clipboard := ""
         Send("^c")
 
         if (ClipWait(initialTimeout))
-        return true
+            return true
 
         ; Ask user if they want to wait longer
         response := MsgBox(
-        "Clipboard operation timed out after " . initialTimeout . " seconds.`n`n"
-        . "Wait another " . initialTimeout . " seconds?",
-        "Timeout",
-        "YesNo Icon Question"
+            "Clipboard operation timed out after " . initialTimeout . " seconds.`n`n"
+            . "Wait another " . initialTimeout . " seconds?",
+            "Timeout",
+            "YesNo Icon Question"
         )
 
         if (response = "Yes") {
@@ -154,12 +154,12 @@ F1:: {
 
     if (result["success"]) {
         MsgBox("Copy successful!`n`n"
-        . "Elapsed: " . result["elapsed"] . "ms`n"
-        . "Timeout: " . result["timeout"] . "s",
-        "Success", "Icon Info")
+            . "Elapsed: " . result["elapsed"] . "ms`n"
+            . "Timeout: " . result["timeout"] . "s",
+            "Success", "Icon Info")
     } else {
         MsgBox("Copy failed after " . result["timeout"] . "s timeout!",
-        "Failed", "Icon Warn")
+            "Failed", "Icon Warn")
     }
 }
 
@@ -169,10 +169,10 @@ F2:: {
 
     if (result["success"]) {
         MsgBox("Copy succeeded with " . result["timeout"] . "s timeout!",
-        "Success", "Icon Info")
+            "Success", "Icon Info")
     } else {
         MsgBox("Copy failed after trying all timeouts!",
-        "Failed", "Icon Error")
+            "Failed", "Icon Error")
     }
 }
 
@@ -181,19 +181,19 @@ F2:: {
 ; ============================================================================
 
 /**
-* Demonstrates error recovery for failed clipboard operations.
-*
-* @class ErrorRecovery
-* @description Handles and recovers from clipboard errors
-*/
+ * Demonstrates error recovery for failed clipboard operations.
+ * 
+ * @class ErrorRecovery
+ * @description Handles and recovers from clipboard errors
+ */
 
 class ErrorRecovery {
 
     /**
-    * Copy with automatic retry and backoff
-    * @param {Integer} maxRetries - Maximum retry attempts
-    * @returns {Map} Result
-    */
+     * Copy with automatic retry and backoff
+     * @param {Integer} maxRetries - Maximum retry attempts
+     * @returns {Map} Result
+     */
     static CopyWithExponentialBackoff(maxRetries := 3) {
         result := Map()
         baseTimeout := 1
@@ -228,9 +228,9 @@ class ErrorRecovery {
     }
 
     /**
-    * Copy with fallback methods
-    * @returns {Map} Result with method used
-    */
+     * Copy with fallback methods
+     * @returns {Map} Result with method used
+     */
     static CopyWithFallback() {
         result := Map("success", false, "method", "", "content", "")
 
@@ -269,10 +269,10 @@ class ErrorRecovery {
     }
 
     /**
-    * Copy with clipboard unlock attempt
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} Success
-    */
+     * Copy with clipboard unlock attempt
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} Success
+     */
     static CopyWithUnlock(timeout := 2) {
         ; Clear clipboard to unlock
         A_Clipboard := ""
@@ -297,10 +297,10 @@ class ErrorRecovery {
 
     if (result["success"]) {
         MsgBox("Copy succeeded on attempt " . result["attempts"] . "!",
-        "Success", "Icon Info")
+            "Success", "Icon Info")
     } else {
         MsgBox("Copy failed after " . result["attempts"] . " attempts!",
-        "Failed", "Icon Error")
+            "Failed", "Icon Error")
     }
 }
 
@@ -310,7 +310,7 @@ class ErrorRecovery {
 
     if (result["success"]) {
         MsgBox("Copy succeeded using: " . result["method"],
-        "Success", "Icon Info")
+            "Success", "Icon Info")
     } else {
         MsgBox("All copy methods failed!", "Failed", "Icon Error")
     }
@@ -321,21 +321,21 @@ class ErrorRecovery {
 ; ============================================================================
 
 /**
-* Demonstrates monitoring clipboard operation performance.
-*
-* @class ClipboardMonitor
-* @description Monitors and logs clipboard operations
-*/
+ * Demonstrates monitoring clipboard operation performance.
+ * 
+ * @class ClipboardMonitor
+ * @description Monitors and logs clipboard operations
+ */
 
 class ClipboardMonitor {
     static operationLog := []
     static maxLogSize := 50
 
     /**
-    * Monitors a copy operation
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Map} Operation details
-    */
+     * Monitors a copy operation
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Map} Operation details
+     */
     static MonitorCopy(timeout := 2) {
         operation := Map()
         operation["timestamp"] := A_Now
@@ -356,24 +356,24 @@ class ClipboardMonitor {
     }
 
     /**
-    * Logs an operation
-    * @param {Map} operation - Operation details
-    * @returns {void}
-    */
+     * Logs an operation
+     * @param {Map} operation - Operation details
+     * @returns {void}
+     */
     static LogOperation(operation) {
         this.operationLog.Push(operation)
 
         if (this.operationLog.Length > this.maxLogSize)
-        this.operationLog.RemoveAt(1)
+            this.operationLog.RemoveAt(1)
     }
 
     /**
-    * Gets operation statistics
-    * @returns {Map} Statistics
-    */
+     * Gets operation statistics
+     * @returns {Map} Statistics
+     */
     static GetStats() {
         if (this.operationLog.Length = 0)
-        return Map("count", 0)
+            return Map("count", 0)
 
         stats := Map()
         stats["count"] := this.operationLog.Length
@@ -388,15 +388,15 @@ class ClipboardMonitor {
             totalDuration += op["duration"]
 
             if (op["success"])
-            successCount++
+                successCount++
             else
-            failCount++
+                failCount++
 
             if (op["duration"] > maxDuration)
-            maxDuration := op["duration"]
+                maxDuration := op["duration"]
 
             if (op["duration"] < minDuration)
-            minDuration := op["duration"]
+                minDuration := op["duration"]
         }
 
         stats["avgDuration"] := Round(totalDuration / this.operationLog.Length, 0)
@@ -410,9 +410,9 @@ class ClipboardMonitor {
     }
 
     /**
-    * Shows statistics GUI
-    * @returns {void}
-    */
+     * Shows statistics GUI
+     * @returns {void}
+     */
     static ShowStats() {
         stats := this.GetStats()
 
@@ -460,31 +460,31 @@ class ClipboardMonitor {
 
     status := op["success"] ? "Success" : "Failed"
     MsgBox("Copy " . status . "!`n`n"
-    . "Duration: " . op["duration"] . " ms`n"
-    . "Content Size: " . op["contentSize"] . " chars",
-    "Monitored Copy", "Icon Info")
+        . "Duration: " . op["duration"] . " ms`n"
+        . "Content Size: " . op["contentSize"] . " chars",
+        "Monitored Copy", "Icon Info")
 }
 
 ; Show statistics
-^!s::ClipboardMonitor.ShowStats()
+^!s:: ClipboardMonitor.ShowStats()
 
 ; ============================================================================
 ; Example 4: Performance Optimization
 ; ============================================================================
 
 /**
-* Demonstrates optimizing clipboard operations.
-*
-* @class PerformanceOptimizer
-* @description Optimizes clipboard performance
-*/
+ * Demonstrates optimizing clipboard operations.
+ * 
+ * @class PerformanceOptimizer
+ * @description Optimizes clipboard performance
+ */
 
 class PerformanceOptimizer {
 
     /**
-    * Fast copy with minimal timeout
-    * @returns {Map} Result
-    */
+     * Fast copy with minimal timeout
+     * @returns {Map} Result
+     */
     static FastCopy() {
         result := Map()
         startTime := A_TickCount
@@ -500,26 +500,26 @@ class PerformanceOptimizer {
     }
 
     /**
-    * Batch copy with optimized delays
-    * @param {Integer} count - Number of items
-    * @returns {Array} Results
-    */
+     * Batch copy with optimized delays
+     * @param {Integer} count - Number of items
+     * @returns {Array} Results
+     */
     static BatchCopy(count) {
         results := []
 
         Loop count {
             ; Minimal delay between operations
             if (A_Index > 1)
-            Sleep(50)
+                Sleep(50)
 
             A_Clipboard := ""
             Send("^c")
 
             success := ClipWait(1)
             results.Push(Map(
-            "index", A_Index,
-            "success", success,
-            "content", success ? A_Clipboard : ""
+                "index", A_Index,
+                "success", success,
+                "content", success ? A_Clipboard : ""
             ))
         }
 
@@ -527,9 +527,9 @@ class PerformanceOptimizer {
     }
 
     /**
-    * Cached copy - reuses clipboard if unchanged
-    * @returns {String} Content
-    */
+     * Cached copy - reuses clipboard if unchanged
+     * @returns {String} Content
+     */
     static CachedCopy() {
         static lastContent := ""
         static lastTime := 0
@@ -561,7 +561,7 @@ class PerformanceOptimizer {
 
     if (result["success"]) {
         MsgBox("Fast copy completed in " . result["duration"] . "ms!",
-        "Fast Copy", "Icon Info")
+            "Fast Copy", "Icon Info")
     } else {
         MsgBox("Copy timed out!", "Failed", "Icon Warn")
     }
@@ -572,18 +572,18 @@ class PerformanceOptimizer {
 ; ============================================================================
 
 /**
-* Demonstrates detecting and handling clipboard locks.
-*
-* @class ClipboardLockDetector
-* @description Detects clipboard lock conditions
-*/
+ * Demonstrates detecting and handling clipboard locks.
+ * 
+ * @class ClipboardLockDetector
+ * @description Detects clipboard lock conditions
+ */
 
 class ClipboardLockDetector {
 
     /**
-    * Checks if clipboard is locked
-    * @returns {Boolean} True if locked
-    */
+     * Checks if clipboard is locked
+     * @returns {Boolean} True if locked
+     */
     static IsLocked() {
         ; Try to open clipboard
         if (DllCall("OpenClipboard", "Ptr", 0)) {
@@ -594,16 +594,16 @@ class ClipboardLockDetector {
     }
 
     /**
-    * Waits for clipboard to become available
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} True if became available
-    */
+     * Waits for clipboard to become available
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} True if became available
+     */
     static WaitForUnlock(timeout := 5) {
         endTime := A_TickCount + (timeout * 1000)
 
         while (A_TickCount < endTime) {
             if (!this.IsLocked())
-            return true
+                return true
 
             Sleep(100)
         }
@@ -612,10 +612,10 @@ class ClipboardLockDetector {
     }
 
     /**
-    * Copy with lock detection and handling
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Map} Result
-    */
+     * Copy with lock detection and handling
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Map} Result
+     */
     static CopyWithLockDetection(timeout := 2) {
         result := Map("success", false, "error", "")
 
@@ -637,7 +637,7 @@ class ClipboardLockDetector {
 
         result["success"] := ClipWait(timeout)
         if (!result["success"])
-        result["error"] := "Timeout"
+            result["error"] := "Timeout"
 
         return result
     }
@@ -651,7 +651,7 @@ class ClipboardLockDetector {
         MsgBox("Copy successful!", "Success", "Icon Info")
     } else {
         MsgBox("Copy failed!`n`nError: " . result["error"],
-        "Failed", "Icon Error")
+            "Failed", "Icon Error")
     }
 }
 
@@ -660,20 +660,20 @@ class ClipboardLockDetector {
 ; ============================================================================
 
 /**
-* Demonstrates efficient batch copy operations.
-*
-* @class BatchCopyOperations
-* @description Handles multiple copy operations
-*/
+ * Demonstrates efficient batch copy operations.
+ * 
+ * @class BatchCopyOperations
+ * @description Handles multiple copy operations
+ */
 
 class BatchCopyOperations {
 
     /**
-    * Copies multiple selections with progress
-    * @param {Integer} count - Number of selections
-    * @param {Integer} timeout - Timeout per copy
-    * @returns {Array} Results
-    */
+     * Copies multiple selections with progress
+     * @param {Integer} count - Number of selections
+     * @param {Integer} timeout - Timeout per copy
+     * @returns {Array} Results
+     */
     static CopyMultipleWithProgress(count, timeout := 2) {
         results := []
 
@@ -698,14 +698,14 @@ class BatchCopyOperations {
 
             success := ClipWait(timeout)
             results.Push(Map(
-            "index", index,
-            "success", success,
-            "content", success ? A_Clipboard : ""
+                "index", index,
+                "success", success,
+                "content", success ? A_Clipboard : ""
             ))
 
             ; Brief pause for next selection
             if (index < count)
-            Sleep(500)
+                Sleep(500)
         }
 
         progress.Destroy()
@@ -713,11 +713,11 @@ class BatchCopyOperations {
     }
 
     /**
-    * Copies from list of coordinates
-    * @param {Array} coordinates - Array of [x, y] coordinates
-    * @param {Integer} timeout - Timeout per copy
-    * @returns {Array} Results
-    */
+     * Copies from list of coordinates
+     * @param {Array} coordinates - Array of [x, y] coordinates
+     * @param {Integer} timeout - Timeout per copy
+     * @returns {Array} Results
+     */
     static CopyFromCoordinates(coordinates, timeout := 2) {
         results := []
 
@@ -736,10 +736,10 @@ class BatchCopyOperations {
 
             success := ClipWait(timeout)
             results.Push(Map(
-            "x", coord[1],
-            "y", coord[2],
-            "success", success,
-            "content", success ? A_Clipboard : ""
+                "x", coord[1],
+                "y", coord[2],
+                "success", success,
+                "content", success ? A_Clipboard : ""
             ))
 
             Sleep(100)
@@ -752,8 +752,8 @@ class BatchCopyOperations {
 ; Batch copy demo
 ^!+b:: {
     MsgBox("Prepare 3 text selections.`n`n"
-    . "You will have 0.5s between each copy.",
-    "Batch Copy", "Icon Info")
+        . "You will have 0.5s between each copy.",
+        "Batch Copy", "Icon Info")
 
     results := BatchCopyOperations.CopyMultipleWithProgress(3, 2)
 
@@ -761,12 +761,12 @@ class BatchCopyOperations {
     successCount := 0
     for r in results {
         if (r["success"])
-        successCount++
+            successCount++
     }
 
     MsgBox("Batch copy complete!`n`n"
-    . "Successful: " . successCount . " / " . results.Length,
-    "Results", "Icon Info")
+        . "Successful: " . successCount . " / " . results.Length,
+        "Results", "Icon Info")
 }
 
 ; ============================================================================
@@ -774,30 +774,30 @@ class BatchCopyOperations {
 ; ============================================================================
 
 /**
-* Production-ready clipboard copy system with full features.
-*
-* @class ProductionCopySystem
-* @description Complete copy system for production use
-*/
+ * Production-ready clipboard copy system with full features.
+ * 
+ * @class ProductionCopySystem
+ * @description Complete copy system for production use
+ */
 
 class ProductionCopySystem {
 
     /**
-    * Universal copy function with all features
-    * @param {Map} config - Configuration options
-    * @returns {Map} Detailed result
-    */
+     * Universal copy function with all features
+     * @param {Map} config - Configuration options
+     * @returns {Map} Detailed result
+     */
     static UniversalCopy(config := unset) {
         ; Default configuration
         cfg := Map(
-        "timeout", 2,
-        "retries", 2,
-        "preserveClipboard", true,
-        "verifyContent", false,
-        "logOperation", true,
-        "showProgress", false,
-        "detectLock", true,
-        "adaptiveTimeout", false
+            "timeout", 2,
+            "retries", 2,
+            "preserveClipboard", true,
+            "verifyContent", false,
+            "logOperation", true,
+            "showProgress", false,
+            "detectLock", true,
+            "adaptiveTimeout", false
         )
 
         ; Merge config
@@ -808,11 +808,11 @@ class ProductionCopySystem {
         }
 
         result := Map(
-        "success", false,
-        "content", "",
-        "duration", 0,
-        "attempts", 0,
-        "error", ""
+            "success", false,
+            "content", "",
+            "duration", 0,
+            "attempts", 0,
+            "error", ""
         )
 
         startTime := A_TickCount
@@ -834,7 +834,7 @@ class ProductionCopySystem {
                 result["attempts"]++
 
                 if (cfg["showProgress"])
-                ToolTip("Copying... (attempt " . A_Index . ")")
+                    ToolTip("Copying... (attempt " . A_Index . ")")
 
                 A_Clipboard := ""
                 Send("^c")
@@ -849,13 +849,13 @@ class ProductionCopySystem {
             }
 
             if (cfg["showProgress"])
-            ToolTip()
+                ToolTip()
 
             result["duration"] := A_TickCount - startTime
 
             ; Log if enabled
             if (cfg["logOperation"])
-            ClipboardMonitor.LogOperation(result)
+                ClipboardMonitor.LogOperation(result)
 
         } catch as err {
             result["error"] := err.Message
@@ -874,26 +874,26 @@ class ProductionCopySystem {
 ; Production copy
 ^!+p:: {
     config := Map(
-    "timeout", 2,
-    "retries", 3,
-    "preserveClipboard", true,
-    "showProgress", true,
-    "detectLock", true,
-    "logOperation", true
+        "timeout", 2,
+        "retries", 3,
+        "preserveClipboard", true,
+        "showProgress", true,
+        "detectLock", true,
+        "logOperation", true
     )
 
     result := ProductionCopySystem.UniversalCopy(config)
 
     if (result["success"]) {
         MsgBox("Copy successful!`n`n"
-        . "Duration: " . result["duration"] . "ms`n"
-        . "Attempts: " . result["attempts"],
-        "Success", "Icon Info")
+            . "Duration: " . result["duration"] . "ms`n"
+            . "Attempts: " . result["attempts"],
+            "Success", "Icon Info")
     } else {
         MsgBox("Copy failed!`n`n"
-        . "Error: " . (result["error"] != "" ? result["error"] : "Timeout")
-        . "`nAttempts: " . result["attempts"],
-        "Failed", "Icon Error")
+            . "Error: " . (result["error"] != "" ? result["error"] : "Timeout")
+            . "`nAttempts: " . result["attempts"],
+            "Failed", "Icon Error")
     }
 }
 

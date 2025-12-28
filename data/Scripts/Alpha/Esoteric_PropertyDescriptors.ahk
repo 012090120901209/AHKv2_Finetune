@@ -13,7 +13,7 @@ class Matrix2D {
         this.rows := rows
         this.cols := cols
         this.data := []
-        
+
         ; Initialize with zeros
         Loop rows {
             row := []
@@ -22,13 +22,13 @@ class Matrix2D {
             this.data.Push(row)
         }
     }
-    
+
     ; Enable matrix[row, col] syntax
     __Item[row, col] {
         get => this.data[row][col]
         set => this.data[row][col] := value
     }
-    
+
     ; String representation
     ToString() {
         result := ""
@@ -50,7 +50,7 @@ class DefaultDict {
         this.data := Map()
         this.factory := defaultFactory
     }
-    
+
     __Item[key] {
         get {
             if !this.data.Has(key)
@@ -59,7 +59,7 @@ class DefaultDict {
         }
         set => this.data[key] := value
     }
-    
+
     Has(key) => this.data.Has(key)
     Delete(key) => this.data.Delete(key)
     Keys() => this.data.Keys()
@@ -71,13 +71,13 @@ class DefaultDict {
 
 class Circle {
     __New(radius) => this._radius := radius
-    
+
     ; Computed property - derived from radius
     radius {
         get => this._radius
         set => this._radius := value
     }
-    
+
     ; Read-only computed properties
     diameter => this._radius * 2
     circumference => 2 * 3.14159 * this._radius
@@ -92,7 +92,7 @@ class ValidatedPerson {
     _name := ""
     _age := 0
     _email := ""
-    
+
     name {
         get => this._name
         set {
@@ -101,7 +101,7 @@ class ValidatedPerson {
             this._name := value
         }
     }
-    
+
     age {
         get => this._age
         set {
@@ -110,7 +110,7 @@ class ValidatedPerson {
             this._age := Integer(value)
         }
     }
-    
+
     email {
         get => this._email
         set {
@@ -130,26 +130,26 @@ class Observable {
         this._data := Map()
         this._observers := Map()
     }
-    
+
     ; Dynamically add observable property
     AddProperty(name, initialValue := "") {
         this._data[name] := initialValue
         this._observers[name] := []
-        
+
         this.DefineProp(name, {
             Get: (this) => this._data[name],
             Set: (this, value) => this._setWithNotify(name, value)
         })
     }
-    
+
     _setWithNotify(name, value) {
         oldValue := this._data[name]
         this._data[name] := value
-        
+
         for callback in this._observers[name]
             callback(name, oldValue, value)
     }
-    
+
     OnChange(propName, callback) {
         if this._observers.Has(propName)
             this._observers[propName].Push(callback)
@@ -164,14 +164,14 @@ class LazyProperties {
     __New() {
         this._cache := Map()
     }
-    
+
     ; Define a lazy property that computes once
     static DefineLazy(instance, name, computeFn) {
         instance.DefineProp(name, {
             Get: (this) => (
-                !this._cache.Has(name) 
+                !this._cache.Has(name)
                     ? this._cache[name] := computeFn(this)
-                    : 0,
+                : 0,
                 this._cache[name]
             )
         })
@@ -182,7 +182,7 @@ class ExpensiveData extends LazyProperties {
     __New(seed) {
         super.__New()
         this.seed := seed
-        
+
         ; Define lazy property
         LazyProperties.DefineLazy(this, "processedData", (self) => (
             Sleep(100),  ; Simulate expensive operation
@@ -200,19 +200,19 @@ class PropertyProxy {
         this._target := target
         this._handler := handler
     }
-    
+
     __Get(name, params) {
         if this._handler.Has("get")
             return this._handler["get"](this._target, name)
         return this._target.%name%
     }
-    
+
     __Set(name, params, value) {
         if this._handler.Has("set")
             return this._handler["set"](this._target, name, value)
         return this._target.%name% := value
     }
-    
+
     __Call(name, params) {
         if this._handler.Has("call")
             return this._handler["call"](this._target, name, params)
@@ -227,10 +227,10 @@ class PropertyProxy {
 class Reactive {
     static Create(data) {
         reactive := ReactiveObject()
-        
+
         for key, value in data.OwnProps()
             reactive._addProp(key, value)
-        
+
         return reactive
     }
 }
@@ -241,7 +241,7 @@ class ReactiveObject {
         this._computed := Map()
         this._deps := Map()
     }
-    
+
     _addProp(name, value) {
         if value is Func {
             ; Computed property
@@ -266,19 +266,19 @@ class ReactiveObject {
 
 class PropMeta {
     static metadata := Map()
-    
+
     ; Add metadata to a property
     static Define(cls, propName, meta) {
         key := Type(cls) "." propName
         PropMeta.metadata[key] := meta
     }
-    
+
     ; Get metadata
     static Get(cls, propName) {
         key := Type(cls) "." propName
         return PropMeta.metadata.Get(key, Map())
     }
-    
+
     ; Decorate a class with metadata
     static Decorate(cls, propMeta) {
         for prop, meta in propMeta
@@ -333,7 +333,7 @@ try {
 ; Observable properties
 observable := Observable()
 observable.AddProperty("count", 0)
-observable.OnChange("count", (name, old, new) => 
+observable.OnChange("count", (name, old, new) =>
     ToolTip("count changed: " old " -> " new))
 
 observable.count := 1
@@ -353,7 +353,7 @@ MsgBox("Lazy property:`n"
     . "Second access (cached): " expensive.processedData)
 
 ; Property proxy
-target := {x: 10, y: 20}
+target := { x: 10, y: 20 }
 logged := PropertyProxy(target, Map(
     "get", (t, name) => (OutputDebug("GET " name "`n"), t.%name%),
     "set", (t, name, val) => (OutputDebug("SET " name "=" val "`n"), t.%name% := val)

@@ -1,46 +1,46 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetSize_07.ahk
-*
-* DESCRIPTION:
-* Disk usage analysis and storage management using FileGetSize()
-*
-* FEATURES:
-* - Directory space analysis
-* - Disk usage reports
-* - Storage quota monitoring
-* - Large file detection
-* - Space optimization suggestions
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetSize() for analysis
-* - Loop Files for directory traversal
-* - Recursive size calculation
-* - Data aggregation
-* - Storage statistics
-*
-* LEARNING POINTS:
-* 1. Calculate total directory sizes recursively
-* 2. Identify space-consuming files
-* 3. Generate storage usage reports
-* 4. Implement quota systems
-* 5. Track storage trends
-* 6. Optimize disk space usage
-*/
+ * BuiltIn_FileGetSize_07.ahk
+ * 
+ * DESCRIPTION:
+ * Disk usage analysis and storage management using FileGetSize()
+ * 
+ * FEATURES:
+ * - Directory space analysis
+ * - Disk usage reports
+ * - Storage quota monitoring
+ * - Large file detection
+ * - Space optimization suggestions
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetSize() for analysis
+ * - Loop Files for directory traversal
+ * - Recursive size calculation
+ * - Data aggregation
+ * - Storage statistics
+ * 
+ * LEARNING POINTS:
+ * 1. Calculate total directory sizes recursively
+ * 2. Identify space-consuming files
+ * 3. Generate storage usage reports
+ * 4. Implement quota systems
+ * 5. Track storage trends
+ * 6. Optimize disk space usage
+ */
 
 ; Helper function for formatting
 FormatSize(bytes) {
     if (bytes < 1024)
-    return bytes " B"
+        return bytes " B"
     if (bytes < 1024 * 1024)
-    return Round(bytes / 1024, 2) " KB"
+        return Round(bytes / 1024, 2) " KB"
     if (bytes < 1024 * 1024 * 1024)
-    return Round(bytes / (1024 * 1024), 2) " MB"
+        return Round(bytes / (1024 * 1024), 2) " MB"
     return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
 }
 
@@ -49,26 +49,26 @@ FormatSize(bytes) {
 ; ============================================================
 
 /**
-* Analyze directory storage usage in detail
-*
-* @param {String} dirPath - Directory to analyze
-* @param {Boolean} recursive - Include subdirectories
-* @returns {Object} - Detailed analysis results
-*/
+ * Analyze directory storage usage in detail
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @param {Boolean} recursive - Include subdirectories
+ * @returns {Object} - Detailed analysis results
+ */
 AnalyzeDirectoryUsage(dirPath, recursive := true) {
     analysis := {
         path: dirPath,
         totalSize: 0,
         fileCount: 0,
         dirCount: 0,
-        largestFile: {path: "", size: 0},
-        smallestFile: {path: "", size: 999999999999},
+        largestFile: { path: "", size: 0 },
+        smallestFile: { path: "", size: 999999999999 },
         extensions: Map(),
         subdirs: []
     }
 
     if (!DirExist(dirPath))
-    return analysis
+        return analysis
 
     ; Analyze files
     recurseFlag := recursive ? "FR" : "F"
@@ -92,10 +92,10 @@ AnalyzeDirectoryUsage(dirPath, recursive := true) {
         ; Track by extension
         SplitPath(A_LoopFilePath, , , &ext)
         if (!ext)
-        ext := "(no extension)"
+            ext := "(no extension)"
 
         if (!analysis.extensions.Has(ext))
-        analysis.extensions[ext] := {count: 0, totalSize: 0}
+            analysis.extensions[ext] := { count: 0, totalSize: 0 }
 
         extData := analysis.extensions[ext]
         extData.count++
@@ -105,7 +105,7 @@ AnalyzeDirectoryUsage(dirPath, recursive := true) {
     ; Count subdirectories
     if (recursive) {
         Loop Files, dirPath "\*.*", "DR"
-        analysis.dirCount++
+            analysis.dirCount++
     }
 
     return analysis
@@ -122,12 +122,12 @@ FileAppend("Small file", testDir "\small.txt")
 
 mediumContent := ""
 Loop 1000
-mediumContent .= "Medium file content line " A_Index "`n"
+    mediumContent .= "Medium file content line " A_Index "`n"
 FileAppend(mediumContent, testDir "\medium.log")
 
 largeContent := ""
 Loop 5000
-largeContent .= "Large file data " A_Index "`n"
+    largeContent .= "Large file data " A_Index "`n"
 FileAppend(largeContent, testDir "\Subdir1\large.dat")
 
 FileAppend("Data", testDir "\Subdir2\data.csv")
@@ -164,18 +164,18 @@ MsgBox(output, "Disk Analysis", "Icon!")
 ; ============================================================
 
 /**
-* Find files larger than specified size
-*
-* @param {String} dirPath - Directory to search
-* @param {Integer} minSizeBytes - Minimum file size
-* @param {Integer} maxResults - Maximum results to return
-* @returns {Array} - Array of large files
-*/
+ * Find files larger than specified size
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {Integer} minSizeBytes - Minimum file size
+ * @param {Integer} maxResults - Maximum results to return
+ * @returns {Array} - Array of large files
+ */
 FindLargeFiles(dirPath, minSizeBytes := 1024 * 1024, maxResults := 10) {
     largeFiles := []
 
     if (!DirExist(dirPath))
-    return largeFiles
+        return largeFiles
 
     ; Collect all files with sizes
     allFiles := []
@@ -206,7 +206,7 @@ FindLargeFiles(dirPath, minSizeBytes := 1024 * 1024, maxResults := 10) {
     ; Return top N results
     count := Min(maxResults, allFiles.Length)
     Loop count
-    largeFiles.Push(allFiles[A_Index])
+        largeFiles.Push(allFiles[A_Index])
 
     return largeFiles
 }
@@ -232,12 +232,12 @@ MsgBox(output, "Large Files", "Icon!")
 ; ============================================================
 
 /**
-* Monitor directory size against quota
-*
-* @param {String} dirPath - Directory to monitor
-* @param {Integer} quotaBytes - Quota limit in bytes
-* @returns {Object} - Quota status
-*/
+ * Monitor directory size against quota
+ * 
+ * @param {String} dirPath - Directory to monitor
+ * @param {Integer} quotaBytes - Quota limit in bytes
+ * @returns {Object} - Quota status
+ */
 CheckStorageQuota(dirPath, quotaBytes) {
     status := {
         currentSize: 0,
@@ -249,11 +249,11 @@ CheckStorageQuota(dirPath, quotaBytes) {
     }
 
     if (!DirExist(dirPath))
-    return status
+        return status
 
     ; Calculate current usage
     Loop Files, dirPath "\*.*", "FR"
-    status.currentSize += A_LoopFileSize
+        status.currentSize += A_LoopFileSize
 
     ; Calculate metrics
     status.percentUsed := (status.currentSize / Float(quotaBytes)) * 100
@@ -262,13 +262,13 @@ CheckStorageQuota(dirPath, quotaBytes) {
 
     ; Determine status
     if (status.exceeded)
-    status.status := "EXCEEDED"
+        status.status := "EXCEEDED"
     else if (status.percentUsed > 90)
-    status.status := "CRITICAL"
+        status.status := "CRITICAL"
     else if (status.percentUsed > 75)
-    status.status := "WARNING"
+        status.status := "WARNING"
     else
-    status.status := "OK"
+        status.status := "OK"
 
     return status
 }
@@ -305,11 +305,11 @@ MsgBox(output, "Quota Monitor", quotaStatus.exceeded ? "IconX" : "Icon!")
 ; ============================================================
 
 /**
-* Compare sizes of multiple directories
-*
-* @param {Array} directories - Array of directory paths
-* @returns {Array} - Sorted directory information
-*/
+ * Compare sizes of multiple directories
+ * 
+ * @param {Array} directories - Array of directory paths
+ * @returns {Array} - Sorted directory information
+ */
 CompareDirectorySizes(directories) {
     results := []
 
@@ -351,8 +351,8 @@ CompareDirectorySizes(directories) {
 
 ; Compare subdirectories
 dirs := [
-testDir "\Subdir1",
-testDir "\Subdir2"
+    testDir "\Subdir1",
+    testDir "\Subdir2"
 ]
 
 comparison := CompareDirectorySizes(dirs)
@@ -371,17 +371,17 @@ MsgBox(output, "Size Comparison", "Icon!")
 ; ============================================================
 
 /**
-* Analyze disk usage by file type
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Array} - Usage by file type, sorted
-*/
+ * Analyze disk usage by file type
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Array} - Usage by file type, sorted
+ */
 AnalyzeSpaceByType(dirPath) {
     types := Map()
     totalSize := 0
 
     if (!DirExist(dirPath))
-    return []
+        return []
 
     ; Collect data by extension
     Loop Files, dirPath "\*.*", "FR" {
@@ -389,10 +389,10 @@ AnalyzeSpaceByType(dirPath) {
 
         SplitPath(A_LoopFilePath, , , &ext)
         if (!ext)
-        ext := "(no extension)"
+            ext := "(no extension)"
 
         if (!types.Has(ext))
-        types[ext] := {count: 0, size: 0}
+            types[ext] := { count: 0, size: 0 }
 
         extData := types[ext]
         extData.count++
@@ -445,8 +445,8 @@ MsgBox(output, "Type Analysis", "Icon!")
 ; ============================================================
 
 /**
-* Track directory size over time
-*/
+ * Track directory size over time
+ */
 class DiskUsageTracker {
     __New(dirPath) {
         this.dirPath := dirPath
@@ -473,7 +473,7 @@ class DiskUsageTracker {
 
     GetGrowthRate() {
         if (this.snapshots.Length < 2)
-        return 0
+            return 0
 
         first := this.snapshots[1]
         last := this.snapshots[this.snapshots.Length]
@@ -483,7 +483,7 @@ class DiskUsageTracker {
 
     GetReport() {
         if (this.snapshots.Length = 0)
-        return "No snapshots recorded"
+            return "No snapshots recorded"
 
         report := "DISK USAGE TREND:`n`n"
         report .= "Directory: " this.dirPath "`n`n"
@@ -522,16 +522,16 @@ MsgBox(tracker.GetReport(), "Usage Trends", "Icon!")
 ; ============================================================
 
 /**
-* Generate space optimization suggestions
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Array} - Optimization suggestions
-*/
+ * Generate space optimization suggestions
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Array} - Optimization suggestions
+ */
 GetOptimizationSuggestions(dirPath) {
     suggestions := []
 
     if (!DirExist(dirPath))
-    return suggestions
+        return suggestions
 
     ; Check for duplicate files
     fileHashes := Map()

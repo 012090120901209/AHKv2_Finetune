@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_03_Selection.ahk
-*
-* DESCRIPTION:
-* Comprehensive guide to TreeView selection handling, including single and
-* multi-selection scenarios, selection events, and programmatic selection.
-*
-* FEATURES:
-* - Single item selection handling
-* - Multi-selection simulation with checkboxes
-* - Selection change events
-* - Programmatic selection
-* - Selection state persistence
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Event-driven programming
-* - Map data structures for state tracking
-* - Array manipulation for collections
-* - Function binding and callbacks
-*
-* LEARNING POINTS:
-* 1. TreeView natively supports single selection only
-* 2. Use checkboxes to simulate multi-selection
-* 3. ItemSelect event fires when selection changes
-* 4. Selection can be changed programmatically with Select option
-* 5. Vis option ensures selected item is scrolled into view
-*/
+ * BuiltIn_TreeView_03_Selection.ahk
+ * 
+ * DESCRIPTION:
+ * Comprehensive guide to TreeView selection handling, including single and
+ * multi-selection scenarios, selection events, and programmatic selection.
+ * 
+ * FEATURES:
+ * - Single item selection handling
+ * - Multi-selection simulation with checkboxes
+ * - Selection change events
+ * - Programmatic selection
+ * - Selection state persistence
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Event-driven programming
+ * - Map data structures for state tracking
+ * - Array manipulation for collections
+ * - Function binding and callbacks
+ * 
+ * LEARNING POINTS:
+ * 1. TreeView natively supports single selection only
+ * 2. Use checkboxes to simulate multi-selection
+ * 3. ItemSelect event fires when selection changes
+ * 4. Selection can be changed programmatically with Select option
+ * 5. Vis option ensures selected item is scrolled into view
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Selection Handling
@@ -94,7 +94,7 @@ Example1_BasicSelection() {
         last := TV.GetNext()
         current := last
         while (current := TV.GetNext(current, "Full"))
-        last := current
+            last := current
         if (last) {
             TV.Modify(last, "Select Vis")
             UpdateInfo()
@@ -127,9 +127,9 @@ Example1_BasicSelection() {
 
             ; Get parent info
             if (parent := TV.GetParent(selected))
-            info .= "Parent: " . TV.GetText(parent) . "`n"
+                info .= "Parent: " . TV.GetText(parent) . "`n"
             else
-            info .= "Parent: (None - Root Level)`n"
+                info .= "Parent: (None - Root Level)`n"
 
             ; Get children info
             childCount := 0
@@ -184,7 +184,7 @@ GetNodePosition(TV, TargetID) {
     current := TV.GetNext()
     while (current) {
         if (current = TargetID)
-        return pos
+            return pos
         pos++
         current := TV.GetNext(current, "Full")
     }
@@ -259,7 +259,7 @@ Example2_MultiSelection() {
 
         list := "Checked Items (" . checked.Length . "):`n`n"
         for itemID in checked
-        list .= "• " . TV.GetText(itemID) . "`n"
+            list .= "• " . TV.GetText(itemID) . "`n"
 
         MsgBox(list, "Checked Items", 64)
     }
@@ -298,7 +298,7 @@ Example2_MultiSelection() {
 ; Check/uncheck all nodes recursively
 CheckAll(TV, NodeID, CheckState) {
     if (NodeID)
-    TV.Modify(NodeID, CheckState ? "Check" : "-Check")
+        TV.Modify(NodeID, CheckState ? "Check" : "-Check")
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -326,7 +326,7 @@ GetCheckedItems(TV, NodeID := 0) {
     checked := []
 
     if (NodeID && TV.Get(NodeID, "Check"))
-    checked.Push(NodeID)
+        checked.Push(NodeID)
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -379,14 +379,14 @@ Example3_SelectionEvents() {
         ; Track selection changes
         if (lastSelected != ItemID) {
             if (lastSelected)
-            LogEvent("Deselected", lastSelected)
+                LogEvent("Deselected", lastSelected)
             lastSelected := ItemID
         }
     }
 
     OnClick(GuiCtrl, ItemID) {
         if (ItemID)
-        LogEvent("Click", ItemID)
+            LogEvent("Click", ItemID)
     }
 
     OnDoubleClick(GuiCtrl, ItemID) {
@@ -408,7 +408,7 @@ Example3_SelectionEvents() {
 
         ; Keep only recent events
         if (events.Length > maxEvents)
-        events.RemoveAt(1)
+            events.RemoveAt(1)
 
         UpdateEventLog()
     }
@@ -416,7 +416,7 @@ Example3_SelectionEvents() {
     UpdateEventLog() {
         logText := "EVENT LOG (Total Selections: " . selectionCount . "):`n`n"
         for event in events
-        logText .= event . "`n"
+            logText .= event . "`n"
 
         eventLog.Value := logText
     }
@@ -510,17 +510,17 @@ Example4_ProgrammaticSelection() {
     SelectNextMatching(pattern) {
         current := TV.GetSelection()
         if (!current)
-        current := TV.GetNext()
+            current := TV.GetNext()
 
         ; Search forward from current
         startItem := current
         Loop {
             current := TV.GetNext(current, "Full")
             if (!current)
-            current := TV.GetNext()  ; Wrap around
+                current := TV.GetNext()  ; Wrap around
 
             if (current = startItem)
-            break
+                break
 
             if (InStr(TV.GetText(current), pattern)) {
                 TV.Modify(current, "Select Vis")
@@ -561,7 +561,7 @@ Example4_ProgrammaticSelection() {
 
     UpdateStatus(*) {
         if (selected := TV.GetSelection())
-        statusText.Value := "Selected: " . TV.GetText(selected)
+            statusText.Value := "Selected: " . TV.GetText(selected)
     }
 
     UpdateStatus()
@@ -575,12 +575,12 @@ Example4_ProgrammaticSelection() {
 ; Find node by text
 FindNodeByText(TV, NodeID, SearchText) {
     if (NodeID && InStr(TV.GetText(NodeID), SearchText))
-    return NodeID
+        return NodeID
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
         if (found := FindNodeByText(TV, ChildID, SearchText))
-        return found
+            return found
         ChildID := TV.GetNext(ChildID)
     }
     return 0
@@ -591,7 +591,7 @@ CollectAllItems(TV, NodeID := 0) {
     items := []
 
     if (NodeID)
-    items.Push(NodeID)
+        items.Push(NodeID)
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -604,13 +604,13 @@ CollectAllItems(TV, NodeID := 0) {
 
 ; Find deepest node
 FindDeepestNode(TV, NodeID, CurrentDepth := 0) {
-    deepest := {itemID: NodeID, depth: CurrentDepth}
+    deepest := { itemID: NodeID, depth: CurrentDepth }
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
         childDeepest := FindDeepestNode(TV, ChildID, CurrentDepth + 1)
         if (childDeepest.depth > deepest.depth)
-        deepest := childDeepest
+            deepest := childDeepest
         ChildID := TV.GetNext(ChildID)
     }
 
@@ -702,16 +702,16 @@ Example5_StatePersistence() {
         ; Restore expanded state
         CollapseAll(TV, Root)
         for itemID in state.expanded
-        TV.Modify(itemID, "Expand")
+            TV.Modify(itemID, "Expand")
 
         ; Restore checked state
         CheckAll(TV, Root, false)
         for itemID in state.checked
-        TV.Modify(itemID, "Check")
+            TV.Modify(itemID, "Check")
 
         ; Restore selection
         if (state.selected)
-        TV.Modify(state.selected, "Select Vis")
+            TV.Modify(state.selected, "Select Vis")
 
         currentStateName := stateName
         MsgBox("State loaded: " . stateName, "Success", 64)
@@ -728,7 +728,7 @@ Example5_StatePersistence() {
         for stateName, state in savedStates {
             list .= "• " . stateName
             if (stateName = currentStateName)
-            list .= " (current)"
+                list .= " (current)"
             list .= "`n"
         }
 
@@ -745,7 +745,7 @@ Example5_StatePersistence() {
         if (savedStates.Has(stateName)) {
             savedStates.Delete(stateName)
             if (currentStateName = stateName)
-            currentStateName := ""
+                currentStateName := ""
             MsgBox("State deleted: " . stateName, "Success", 64)
             stateNameInput.Value := ""
         } else {
@@ -777,7 +777,7 @@ Example5_StatePersistence() {
 ; Collect expanded nodes
 CollectExpandedNodes(TV, NodeID, expandedArray) {
     if (NodeID && TV.Get(NodeID, "Expand"))
-    expandedArray.Push(NodeID)
+        expandedArray.Push(NodeID)
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -893,7 +893,7 @@ Example6_AdvancedPatterns() {
 CheckLeafNodes(TV, NodeID) {
     if (NodeID) {
         if (!TV.GetChild(NodeID))
-        TV.Modify(NodeID, "Check")
+            TV.Modify(NodeID, "Check")
     }
 
     ChildID := TV.GetChild(NodeID)
@@ -907,7 +907,7 @@ CheckLeafNodes(TV, NodeID) {
 CheckParentNodes(TV, NodeID) {
     if (NodeID) {
         if (TV.GetChild(NodeID))
-        TV.Modify(NodeID, "Check")
+            TV.Modify(NodeID, "Check")
     }
 
     ChildID := TV.GetChild(NodeID)
@@ -920,7 +920,7 @@ CheckParentNodes(TV, NodeID) {
 ; Check nodes at specific level
 CheckNodesAtLevel(TV, NodeID, TargetLevel, CurrentLevel := 0) {
     if (NodeID && CurrentLevel = TargetLevel)
-    TV.Modify(NodeID, "Check")
+        TV.Modify(NodeID, "Check")
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -970,7 +970,7 @@ Example7_SelectionPerformance() {
         current := TV.GetNext()
         Loop 100 {
             if (!current)
-            current := TV.GetNext()
+                current := TV.GetNext()
             TV.Modify(current, "Select")
             current := TV.GetNext(current, "Full")
         }
@@ -989,7 +989,7 @@ Example7_SelectionPerformance() {
         results .= "Total items: " . total . "`n`n"
         results .= "Sequential selection (100): " . selectTime . " ms`n"
         results .= "Random selection (100): " . randomTime . " ms`n"
-        results .= "Avg per selection: " . Round(randomTime/100, 2) . " ms`n"
+        results .= "Avg per selection: " . Round(randomTime / 100, 2) . " ms`n"
 
         resultsEdit.Value := results
     }
@@ -1098,3 +1098,4 @@ PERFORMANCE CONSIDERATIONS:
 ; Example5_StatePersistence()
 ; Example6_AdvancedPatterns()
 ; Example7_SelectionPerformance()
+

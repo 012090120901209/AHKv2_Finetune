@@ -1,28 +1,28 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinClose Examples - Part 3: Batch Close
-* ============================================================================
-*
-* Demonstrates batch closing operations for multiple windows.
-* Advanced filtering and selection techniques.
-*
-* @description Batch window closing examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinClose Examples - Part 3: Batch Close
+ * ============================================================================
+ * 
+ * Demonstrates batch closing operations for multiple windows.
+ * Advanced filtering and selection techniques.
+ * 
+ * @description Batch window closing examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Close Windows by Process
 ; ============================================================================
 
 /**
-* Closes all windows of selected processes
-*
-* @hotkey F1 - Close by process
-*/
+ * Closes all windows of selected processes
+ * 
+ * @hotkey F1 - Close by process
+ */
 F1:: {
     CloseByProcess()
 }
@@ -98,10 +98,10 @@ CloseByProcess() {
 ; ============================================================================
 
 /**
-* Closes windows matching title pattern
-*
-* @hotkey F2 - Close by pattern
-*/
+ * Closes windows matching title pattern
+ * 
+ * @hotkey F2 - Close by pattern
+ */
 F2:: {
     CloseByPattern()
 }
@@ -141,10 +141,10 @@ CloseByPattern() {
 ; ============================================================================
 
 /**
-* Closes all windows on a specific monitor
-*
-* @hotkey F3 - Close by monitor
-*/
+ * Closes all windows on a specific monitor
+ * 
+ * @hotkey F3 - Close by monitor
+ */
 F3:: {
     CloseByMonitor()
 }
@@ -199,10 +199,10 @@ CloseByMonitor() {
 ; ============================================================================
 
 /**
-* Closes all minimized windows
-*
-* @hotkey F4 - Close minimized
-*/
+ * Closes all minimized windows
+ * 
+ * @hotkey F4 - Close minimized
+ */
 F4:: {
     CloseMinimized()
 }
@@ -217,14 +217,14 @@ CloseMinimized() {
             if title != "" {
                 minMax := WinGetMinMax(hwnd)
                 if minMax = -1 {  ; Minimized
-                WinClose(hwnd)
-                closed++
+                    WinClose(hwnd)
+                    closed++
+                }
             }
         }
     }
-}
 
-MsgBox("Closed " closed " minimized window(s).", "Success", 64)
+    MsgBox("Closed " closed " minimized window(s).", "Success", 64)
 }
 
 ; ============================================================================
@@ -232,10 +232,10 @@ MsgBox("Closed " closed " minimized window(s).", "Success", 64)
 ; ============================================================================
 
 /**
-* Schedules batch close for specified time
-*
-* @hotkey F5 - Schedule batch close
-*/
+ * Schedules batch close for specified time
+ * 
+ * @hotkey F5 - Schedule batch close
+ */
 F5:: {
     ScheduleBatchClose()
 }
@@ -276,10 +276,10 @@ ScheduleBatchClose() {
 ; ============================================================================
 
 /**
-* Closes duplicate windows (same title)
-*
-* @hotkey F6 - Close duplicates
-*/
+ * Closes duplicate windows (same title)
+ * 
+ * @hotkey F6 - Close duplicates
+ */
 F6:: {
     CloseDuplicates()
 }
@@ -323,10 +323,10 @@ CloseDuplicates() {
 ; ============================================================================
 
 /**
-* Closes windows by custom criteria
-*
-* @hotkey F7 - Custom batch close
-*/
+ * Closes windows by custom criteria
+ * 
+ * @hotkey F7 - Custom batch close
+ */
 F7:: {
     CustomBatchClose()
 }
@@ -393,7 +393,7 @@ CustomBatchClose() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

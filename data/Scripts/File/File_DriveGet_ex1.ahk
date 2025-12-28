@@ -3,7 +3,7 @@
 
 folder := DirSelect(, 3, "Pick a drive to analyze:")
 if not folder
-list := DriveGetList()
+    list := DriveGetList()
 cap := DriveGetCapacity(folder)
 free := DriveGetSpaceFree(folder)
 fs := DriveGetFileSystem(folder)

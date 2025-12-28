@@ -3,15 +3,15 @@
 #Include JSON.ahk
 
 /**
-* SortedUniq() - Remove duplicates from sorted array
-*
-* Demonstrates: State tracking (lastSet, lastVal), optimization for sorted data
-* O(n) algorithm for sorted arrays vs O(n²) for unsorted
-*/
+ * SortedUniq() - Remove duplicates from sorted array
+ * 
+ * Demonstrates: State tracking (lastSet, lastVal), optimization for sorted data
+ * O(n) algorithm for sorted arrays vs O(n²) for unsorted
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -23,7 +23,7 @@ SortedUniq(arr) {
 
     for v in arr {
         if !lastSet || v != lastVal
-        out.Push(v), lastVal := v, lastSet := true
+            out.Push(v), lastVal := v, lastSet := true
     }
 
     return out
@@ -43,6 +43,6 @@ result4 := SortedUniq([1])
 ; => [1]
 
 MsgBox("Remove dups [1,1,2]: " JSON.stringify(result1) "`n`n"
-. "Many duplicates: " JSON.stringify(result2) "`n`n"
-. "String duplicates: " JSON.stringify(result3) "`n`n"
-. "Single element: " JSON.stringify(result4))
+    . "Many duplicates: " JSON.stringify(result2) "`n`n"
+    . "String duplicates: " JSON.stringify(result3) "`n`n"
+    . "Single element: " JSON.stringify(result4))

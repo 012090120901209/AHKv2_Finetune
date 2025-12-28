@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_WMI_01_Processes.ahk
-*
-* DESCRIPTION:
-* Process information using WMI (Windows Management Instrumentation).
-*
-* FEATURES:
-* - Query running processes
-* - Get process details
-* - Process monitoring
-* - CPU and memory usage
-* - Process management
-*/
+ * BuiltIn_COM_WMI_01_Processes.ahk
+ * 
+ * DESCRIPTION:
+ * Process information using WMI (Windows Management Instrumentation).
+ * 
+ * FEATURES:
+ * - Query running processes
+ * - Get process details
+ * - Process monitoring
+ * - CPU and memory usage
+ * - Process management
+ */
 
 Example1_ListProcesses() {
     MsgBox("Example 1: List Processes")
@@ -26,7 +26,7 @@ Example1_ListProcesses() {
             output .= proc.Name "`n"
             count++
             if (count > 10)
-            break
+                break
         }
         MsgBox(output)
     } Catch as err {
@@ -73,7 +73,7 @@ Example4_ProcessCount() {
 
         count := 0
         for proc in processes
-        count++
+            count++
 
         MsgBox("Total processes: " count)
     } Catch as err {
@@ -157,6 +157,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

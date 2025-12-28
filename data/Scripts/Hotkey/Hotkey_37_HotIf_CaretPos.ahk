@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Context-Sensitive - Caret Position
-* Hotkeys based on text cursor location
-*/
+ * Context-Sensitive - Caret Position
+ * Hotkeys based on text cursor location
+ */
 
 ; Function to check if caret is in top half of screen
 CaretInTopHalf() {
@@ -38,13 +38,14 @@ TextIsSelected() {
 ; Different behavior based on caret position
 #HotIf CaretInTopHalf()
 
-^!Up::MsgBox("Caret in TOP half of screen")
+^!Up:: MsgBox("Caret in TOP half of screen")
 #HotIf
 
 ; Only when text is selected
 #HotIf TextIsSelected()
 
-^!c::MsgBox("Text is selected!`n`nCustom copy operation")
+^!c:: MsgBox("Text is selected!`n`nCustom copy operation")
 #HotIf
 
 #HotIf  ; Reset
+

@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* ZipObject() - Create object from arrays (Standalone Implementation)
-*
-* Accepts two arrays, one of property identifiers and one of corresponding values.
-*/
+ * ZipObject() - Create object from arrays (Standalone Implementation)
+ * 
+ * Accepts two arrays, one of property identifiers and one of corresponding values.
+ */
 
 ZipObject(keys, values) {
     result := {}

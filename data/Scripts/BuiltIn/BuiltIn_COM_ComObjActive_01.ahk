@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_ComObjActive_01.ahk
-*
-* DESCRIPTION:
-* Using ComObjActive to connect to existing COM objects.
-*
-* FEATURES:
-* - Getting active instances
-* - Connecting to running applications
-* - Reusing existing objects
-* - Error handling
-* - Multiple instances
-*/
+ * BuiltIn_COM_ComObjActive_01.ahk
+ * 
+ * DESCRIPTION:
+ * Using ComObjActive to connect to existing COM objects.
+ * 
+ * FEATURES:
+ * - Getting active instances
+ * - Connecting to running applications
+ * - Reusing existing objects
+ * - Error handling
+ * - Multiple instances
+ */
 
 Example1_GetActiveExcel() {
     MsgBox("Example 1: Get Active Excel")
@@ -134,6 +134,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

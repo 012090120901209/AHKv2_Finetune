@@ -14,10 +14,10 @@ class EventEmitter {
     On(event, listener) {
         if !this.listeners.Has(event)
             this.listeners[event] := []
-        
+
         if this.listeners[event].Length >= this.maxListeners
             OutputDebug("[Warning] Max listeners exceeded for event: " event "`n")
-        
+
         this.listeners[event].Push(listener)
         return this
     }
@@ -25,7 +25,7 @@ class EventEmitter {
     Once(event, listener) {
         if !this.onceListeners.Has(event)
             this.onceListeners[event] := []
-        
+
         this.onceListeners[event].Push(listener)
         return this
     }
@@ -64,7 +64,7 @@ class EventEmitter {
         if this.onceListeners.Has(event) {
             listeners := this.onceListeners[event]
             this.onceListeners.Delete(event)
-            
+
             for listener in listeners {
                 listener(data*)
                 count++
@@ -124,7 +124,7 @@ class TypedEventEmitter extends EventEmitter {
         if this.eventTypes.Count && !this.eventTypes.Has(event) {
             OutputDebug("[Warning] Emitting undefined event: " event "`n")
         }
-        
+
         return super.Emit(event, data*)
     }
 }

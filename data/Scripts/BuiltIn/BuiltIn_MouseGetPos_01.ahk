@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 MouseGetPos Function - Get Position
-* ============================================================================
-*
-* The MouseGetPos function retrieves the current mouse cursor position and
-* optionally the window/control under the cursor. Essential for position-based
-* automation and cursor tracking.
-*
-* Syntax: MouseGetPos([&OutputVarX, &OutputVarY, &OutputVarWin, &OutputVarControl, Flag])
-*
-* @module BuiltIn_MouseGetPos_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 MouseGetPos Function - Get Position
+ * ============================================================================
+ * 
+ * The MouseGetPos function retrieves the current mouse cursor position and
+ * optionally the window/control under the cursor. Essential for position-based
+ * automation and cursor tracking.
+ * 
+ * Syntax: MouseGetPos([&OutputVarX, &OutputVarY, &OutputVarWin, &OutputVarControl, Flag])
+ * 
+ * @module BuiltIn_MouseGetPos_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Position Retrieval
 ; ============================================================================
 
 /**
-* Gets current cursor coordinates.
-* Demonstrates basic X, Y position retrieval.
-*
-* @example
-* ; Press F1 to show current mouse position
-*/
+ * Gets current cursor coordinates.
+ * Demonstrates basic X, Y position retrieval.
+ * 
+ * @example
+ * ; Press F1 to show current mouse position
+ */
 F1:: {
     MouseGetPos(&xPos, &yPos)
     ToolTip("Mouse Position:`nX: " xPos "`nY: " yPos)
@@ -35,9 +35,9 @@ F1:: {
 }
 
 /**
-* Continuous position display
-* Shows real-time cursor coordinates
-*/
+ * Continuous position display
+ * Shows real-time cursor coordinates
+ */
 F2:: {
     global tracking := true
 
@@ -47,7 +47,7 @@ F2:: {
 
     ShowPosition() {
         if (!tracking)
-        return
+            return
 
         MouseGetPos(&x, &y)
         ToolTip("X: " x " | Y: " y "`nPress F2 to stop")
@@ -62,9 +62,9 @@ F2 up:: {
 }
 
 /**
-* Position in different coordinate modes
-* Shows how CoordMode affects returned values
-*/
+ * Position in different coordinate modes
+ * Shows how CoordMode affects returned values
+ */
 F3:: {
     ; Screen coordinates
     CoordMode("Mouse", "Screen")
@@ -94,12 +94,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Gets window under cursor.
-* Retrieves window ID and title.
-*
-* @description
-* Useful for window-specific automation
-*/
+ * Gets window under cursor.
+ * Retrieves window ID and title.
+ * 
+ * @description
+ * Useful for window-specific automation
+ */
 ^F1:: {
     MouseGetPos(, , &winID)
 
@@ -121,9 +121,9 @@ F3:: {
 }
 
 /**
-* Gets control under cursor
-* Identifies specific UI control
-*/
+ * Gets control under cursor
+ * Identifies specific UI control
+ */
 ^F2:: {
     MouseGetPos(&x, &y, &winID, &control)
 
@@ -146,9 +146,9 @@ F3:: {
 }
 
 /**
-* Complete cursor information
-* Gets all available data at once
-*/
+ * Complete cursor information
+ * Gets all available data at once
+ */
 ^F3:: {
     MouseGetPos(&x, &y, &winID, &control, 1)  ; Flag=1 for child window
 
@@ -177,12 +177,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Click at saved position.
-* Saves current position and clicks there later.
-*
-* @description
-* Demonstrates position memory for automation
-*/
+ * Click at saved position.
+ * Saves current position and clicks there later.
+ * 
+ * @description
+ * Demonstrates position memory for automation
+ */
 ^F4:: {
     static savedX := 0
     static savedY := 0
@@ -207,9 +207,9 @@ F3:: {
 }
 
 /**
-* Record and replay mouse path
-* Captures positions over time and replays
-*/
+ * Record and replay mouse path
+ * Captures positions over time and replays
+ */
 ^F5:: {
     static recording := false
     static positions := []
@@ -230,7 +230,7 @@ F3:: {
             }
 
             MouseGetPos(&x, &y)
-            positions.Push({x: x, y: y, time: A_TickCount})
+            positions.Push({ x: x, y: y, time: A_TickCount })
         }
     } else {
         ; Stop recording and replay
@@ -245,10 +245,10 @@ F3:: {
             startTime := A_TickCount
             for index, pos in positions {
                 if (index = 1)
-                continue
+                    continue
 
                 ; Calculate delay
-                delay := positions[index].time - positions[index-1].time
+                delay := positions[index].time - positions[index - 1].time
 
                 MouseMove(pos.x, pos.y, 0)
                 Sleep(delay)
@@ -268,12 +268,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Calculates distance from screen center.
-* Shows how far cursor is from center point.
-*
-* @description
-* Demonstrates mathematical operations with position
-*/
+ * Calculates distance from screen center.
+ * Shows how far cursor is from center point.
+ * 
+ * @description
+ * Demonstrates mathematical operations with position
+ */
 ^F6:: {
     MouseGetPos(&x, &y)
 
@@ -283,12 +283,12 @@ F3:: {
     ; Calculate distance using Pythagorean theorem
     deltaX := x - centerX
     deltaY := y - centerY
-    distance := Sqrt(deltaX**2 + deltaY**2)
+    distance := Sqrt(deltaX ** 2 + deltaY ** 2)
 
     ; Calculate angle
     angle := ATan(deltaY / deltaX) * 180 / 3.14159
     if (deltaX < 0)
-    angle += 180
+        angle += 180
 
     info := "Distance from Screen Center:`n`n"
     info .= "Current: X=" x ", Y=" y "`n"
@@ -300,9 +300,9 @@ F3:: {
 }
 
 /**
-* Monitor cursor boundaries
-* Alerts when cursor approaches screen edges
-*/
+ * Monitor cursor boundaries
+ * Alerts when cursor approaches screen edges
+ */
 ^F7:: {
     global monitoring := true
 
@@ -312,7 +312,7 @@ F3:: {
 
     CheckBoundaries() {
         if (!monitoring)
-        return
+            return
 
         MouseGetPos(&x, &y)
 
@@ -320,20 +320,20 @@ F3:: {
         warnings := []
 
         if (x < margin)
-        warnings.Push("Left edge")
+            warnings.Push("Left edge")
         if (x > A_ScreenWidth - margin)
-        warnings.Push("Right edge")
+            warnings.Push("Right edge")
         if (y < margin)
-        warnings.Push("Top edge")
+            warnings.Push("Top edge")
         if (y > A_ScreenHeight - margin)
-        warnings.Push("Bottom edge")
+            warnings.Push("Bottom edge")
 
         if (warnings.Length > 0) {
             msg := "WARNING: Near "
             for index, warning in warnings {
                 msg .= warning
                 if (index < warnings.Length)
-                msg .= ", "
+                    msg .= ", "
             }
             ToolTip(msg "`n`nPress Ctrl+F7 to stop")
         } else {
@@ -353,12 +353,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Logs cursor positions to array.
-* Creates detailed position log with timestamps.
-*
-* @description
-* Useful for analyzing cursor movement patterns
-*/
+ * Logs cursor positions to array.
+ * Creates detailed position log with timestamps.
+ * 
+ * @description
+ * Useful for analyzing cursor movement patterns
+ */
 ^F8:: {
     static log := []
     static logging := false
@@ -402,14 +402,14 @@ F3:: {
             maxShow := Min(10, log.Length)
             for index, entry in log {
                 if (index > maxShow)
-                break
+                    break
 
                 logText .= Format("{:8} | {:4} | {:4} | {:6}`n",
-                entry.time, entry.x, entry.y, entry.window)
+                    entry.time, entry.x, entry.y, entry.window)
             }
 
             if (log.Length > maxShow)
-            logText .= "`n... and " (log.Length - maxShow) " more entries"
+                logText .= "`n... and " (log.Length - maxShow) " more entries"
 
             MsgBox(logText, "Position Log")
         }
@@ -423,12 +423,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Detects which screen quadrant cursor is in.
-* Divides screen into 4 sections.
-*
-* @description
-* Useful for region-based automation
-*/
+ * Detects which screen quadrant cursor is in.
+ * Divides screen into 4 sections.
+ * 
+ * @description
+ * Useful for region-based automation
+ */
 ^F9:: {
     MouseGetPos(&x, &y)
 
@@ -437,13 +437,13 @@ F3:: {
 
     ; Determine quadrant
     if (x < centerX && y < centerY)
-    quadrant := "Top-Left"
+        quadrant := "Top-Left"
     else if (x >= centerX && y < centerY)
-    quadrant := "Top-Right"
+        quadrant := "Top-Right"
     else if (x < centerX && y >= centerY)
-    quadrant := "Bottom-Left"
+        quadrant := "Bottom-Left"
     else
-    quadrant := "Bottom-Right"
+        quadrant := "Bottom-Right"
 
     ; Calculate percentages
     percentX := Round((x / A_ScreenWidth) * 100, 1)
@@ -463,12 +463,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Different actions based on cursor position.
-* Executes different code depending on screen location.
-*
-* @description
-* Demonstrates position-aware scripting
-*/
+ * Different actions based on cursor position.
+ * Executes different code depending on screen location.
+ * 
+ * @description
+ * Demonstrates position-aware scripting
+ */
 ^F10:: {
     MouseGetPos(&x, &y)
 
@@ -496,11 +496,11 @@ F3:: {
 ; ============================================================================
 
 /**
-* Get cursor velocity
-* Calculates how fast cursor is moving
-*
-* @returns {Number} Velocity in pixels per second
-*/
+ * Get cursor velocity
+ * Calculates how fast cursor is moving
+ * 
+ * @returns {Number} Velocity in pixels per second
+ */
 GetCursorVelocity() {
     static lastX := 0
     static lastY := 0
@@ -520,7 +520,7 @@ GetCursorVelocity() {
     deltaY := y - lastY
     deltaTime := currentTime - lastTime
 
-    distance := Sqrt(deltaX**2 + deltaY**2)
+    distance := Sqrt(deltaX ** 2 + deltaY ** 2)
     velocity := (distance / deltaTime) * 1000  ; pixels per second
 
     lastX := x
@@ -559,7 +559,7 @@ GetCursorVelocity() {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

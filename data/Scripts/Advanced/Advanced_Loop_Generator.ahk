@@ -24,9 +24,9 @@ class Range {
 
     Next(&value) {
         if (this.step > 0 && this.current > this.end)
-        return false
+            return false
         if (this.step < 0 && this.current < this.end)
-        return false
+            return false
 
         value := this.current
         this.current += this.step
@@ -53,7 +53,7 @@ class FibonacciGenerator {
 
     Next(&value) {
         if (this.maxCount > 0 && this.count >= this.maxCount)
-        return false
+            return false
 
         value := this.a
         temp := this.a + this.b
@@ -85,7 +85,7 @@ class PrimeGenerator {
 
     Next(&value) {
         if (this.count >= this.maxPrimes)
-        return false
+            return false
 
         while (!this.IsPrime(this.current)) {
             this.current++
@@ -100,17 +100,17 @@ class PrimeGenerator {
 
     IsPrime(n) {
         if (n < 2)
-        return false
+            return false
         if (n = 2)
-        return true
+            return true
         if (Mod(n, 2) = 0)
-        return false
+            return false
 
         limit := Sqrt(n)
         i := 3
         while (i <= limit) {
             if (Mod(n, i) = 0)
-            return false
+                return false
             i += 2
         }
 
@@ -145,7 +145,7 @@ class FileLineGenerator {
         this.index++
 
         if (this.index > this.lines.Length)
-        return false
+            return false
 
         value := this.lines[this.index]
         return true

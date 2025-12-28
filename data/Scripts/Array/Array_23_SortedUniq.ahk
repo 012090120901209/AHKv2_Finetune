@@ -4,10 +4,10 @@
 #Include <adash>
 
 /**
-* _.sortedUniq() - Remove duplicates from sorted array
-*
-* Like _.uniq except that it's optimized for sorted arrays.
-*/
+ * _.sortedUniq() - Remove duplicates from sorted array
+ * 
+ * Like _.uniq except that it's optimized for sorted arrays.
+ */
 
 result := _.sortedUniq([1, 1, 2])
 ; => [1, 2]

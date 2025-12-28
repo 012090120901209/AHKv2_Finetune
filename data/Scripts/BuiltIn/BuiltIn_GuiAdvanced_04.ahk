@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiAdvanced_04.ahk - Menu Bar and Context Menus
-*
-* This file demonstrates menu systems including menu bars and context menus in AutoHotkey v2.
-* Topics covered:
-* - Menu bar creation
-* - Submenus
-* - Menu items
-* - Menu icons
-* - Dynamic menus
-* - Menu shortcuts
-* - Status bar
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiAdvanced_04.ahk - Menu Bar and Context Menus
+ * 
+ * This file demonstrates menu systems including menu bars and context menus in AutoHotkey v2.
+ * Topics covered:
+ * - Menu bar creation
+ * - Submenus
+ * - Menu items
+ * - Menu icons
+ * - Dynamic menus
+ * - Menu shortcuts
+ * - Status bar
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates menu bar creation
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates menu bar creation
+ * Advanced GUI techniques and patterns
+ */
 Example1_Menubarcreation() {
     myGui := Gui(, "Menu bar creation Demo")
     myGui.BackColor := "White"
@@ -67,14 +66,13 @@ Example1_Menubarcreation() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -94,15 +92,14 @@ Example1_Menubarcreation() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Submenus
 ; =============================================================================
 
 /**
-* Demonstrates submenus
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates submenus
+ * Advanced GUI techniques and patterns
+ */
 Example2_Submenus() {
     myGui := Gui(, "Submenus Demo")
     myGui.BackColor := "White"
@@ -142,14 +139,13 @@ Example2_Submenus() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -169,15 +165,14 @@ Example2_Submenus() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Menu items
 ; =============================================================================
 
 /**
-* Demonstrates menu items
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates menu items
+ * Advanced GUI techniques and patterns
+ */
 Example3_Menuitems() {
     myGui := Gui(, "Menu items Demo")
     myGui.BackColor := "White"
@@ -217,14 +212,13 @@ Example3_Menuitems() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -244,15 +238,14 @@ Example3_Menuitems() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Menu icons
 ; =============================================================================
 
 /**
-* Demonstrates menu icons
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates menu icons
+ * Advanced GUI techniques and patterns
+ */
 Example4_Menuicons() {
     myGui := Gui(, "Menu icons Demo")
     myGui.BackColor := "White"
@@ -292,14 +285,13 @@ Example4_Menuicons() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -319,15 +311,14 @@ Example4_Menuicons() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Dynamic menus
 ; =============================================================================
 
 /**
-* Demonstrates dynamic menus
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates dynamic menus
+ * Advanced GUI techniques and patterns
+ */
 Example5_Dynamicmenus() {
     myGui := Gui(, "Dynamic menus Demo")
     myGui.BackColor := "White"
@@ -367,14 +358,13 @@ Example5_Dynamicmenus() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -394,15 +384,14 @@ Example5_Dynamicmenus() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Menu shortcuts
 ; =============================================================================
 
 /**
-* Demonstrates menu shortcuts
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates menu shortcuts
+ * Advanced GUI techniques and patterns
+ */
 Example6_Menushortcuts() {
     myGui := Gui(, "Menu shortcuts Demo")
     myGui.BackColor := "White"
@@ -442,14 +431,13 @@ Example6_Menushortcuts() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -469,15 +457,14 @@ Example6_Menushortcuts() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Status bar
 ; =============================================================================
 
 /**
-* Demonstrates status bar
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates status bar
+ * Advanced GUI techniques and patterns
+ */
 Example7_Statusbar() {
     myGui := Gui(, "Status bar Demo")
     myGui.BackColor := "White"
@@ -517,14 +504,13 @@ Example7_Statusbar() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -549,8 +535,8 @@ Example7_Statusbar() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiAdvanced_04.ahk - Examples")
     menuGui.BackColor := "White"

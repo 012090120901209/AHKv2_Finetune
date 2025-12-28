@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Inherit_03_Override.ahk
-*
-* DESCRIPTION:
-* Demonstrates method overriding in AutoHotkey v2 - replacing parent class methods
-* in child classes to provide specialized behavior while maintaining the same interface.
-*
-* FEATURES:
-* - Method overriding basics
-* - Complete method replacement
-* - Partial overriding with super
-* - Overriding vs overloading
-* - Virtual method patterns
-* - Abstract method simulation
-* - Override best practices
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Method replacement in child classes
-* - Polymorphic behavior through overriding
-* - super keyword for partial overrides
-* - Same method signature requirement
-* - Dynamic dispatch of overridden methods
-* - Preserving interfaces while changing implementation
-*
-* LEARNING POINTS:
-* 1. Child classes can replace parent methods
-* 2. Overridden methods have same name as parent
-* 3. Override provides specialized behavior
-* 4. Use super to extend rather than replace
-* 5. Overriding enables polymorphism
-* 6. Method signatures should match
-* 7. Override ToString() for custom string representation
-*/
+ * BuiltIn_OOP_Inherit_03_Override.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates method overriding in AutoHotkey v2 - replacing parent class methods
+ * in child classes to provide specialized behavior while maintaining the same interface.
+ * 
+ * FEATURES:
+ * - Method overriding basics
+ * - Complete method replacement
+ * - Partial overriding with super
+ * - Overriding vs overloading
+ * - Virtual method patterns
+ * - Abstract method simulation
+ * - Override best practices
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Method replacement in child classes
+ * - Polymorphic behavior through overriding
+ * - super keyword for partial overrides
+ * - Same method signature requirement
+ * - Dynamic dispatch of overridden methods
+ * - Preserving interfaces while changing implementation
+ * 
+ * LEARNING POINTS:
+ * 1. Child classes can replace parent methods
+ * 2. Overridden methods have same name as parent
+ * 3. Override provides specialized behavior
+ * 4. Use super to extend rather than replace
+ * 5. Overriding enables polymorphism
+ * 6. Method signatures should match
+ * 7. Override ToString() for custom string representation
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Method Overriding
@@ -180,7 +180,7 @@ class Circle extends Shape {
 
     ; Complete override - doesn't use parent
     Area() {
-        return 3.14159 * this.Radius**2
+        return 3.14159 * this.Radius ** 2
     }
 
     ; Partial override - extends parent
@@ -272,8 +272,8 @@ class Book extends Product {
 
     GetDetails() {
         return "Book: " this.ToString()
-        . "`nID: " this.ID
-        . "`nISBN: " this.ISBN
+            . "`nID: " this.ID
+            . "`nISBN: " this.ISBN
     }
 }
 
@@ -555,7 +555,7 @@ class NumberFormatter extends Formatter {
     ; Override with same parameter pattern
     Format(value) {
         if (!IsNumber(value))
-        return "NaN"
+            return "NaN"
 
         return Round(value, this.DecimalPlaces)
     }
@@ -621,8 +621,8 @@ class DataProcessor {
     Process(data) {
         this.ProcessCount++
         return this.PreProcess(data)
-        . this.MainProcess(data)
-        . this.PostProcess(data)
+            . this.MainProcess(data)
+            . this.PostProcess(data)
     }
 
     ; Template methods for overriding
@@ -691,11 +691,11 @@ MsgBox(jsonProc.Process('{"key": "value"}'))
 MsgBox(xmlProc.GetStats() "`n" jsonProc.GetStats())
 
 MsgBox("=== OOP Method Override Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic method overriding`n"
-. "- Complete vs partial overrides`n"
-. "- ToString() override pattern`n"
-. "- Polymorphic collections`n"
-. "- Abstract method simulation`n"
-. "- Override with parameters`n"
-. "- Template method pattern")
+    . "This file demonstrated:`n"
+    . "- Basic method overriding`n"
+    . "- Complete vs partial overrides`n"
+    . "- ToString() override pattern`n"
+    . "- Polymorphic collections`n"
+    . "- Abstract method simulation`n"
+    . "- Override with parameters`n"
+    . "- Template method pattern")

@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Priority Hotkey Option
-* Set thread priority for hotkeys
-*/
+ * Priority Hotkey Option
+ * Set thread priority for hotkeys
+ */
 
 ; Set high priority for this hotkey using Hotkey() function
 ; P100 = Priority 100 (higher = more important)
@@ -15,7 +15,7 @@ HighPriorityFunction(*) {
 }
 
 ; Normal priority hotkey (default is 0)
-^!n::MsgBox("Normal priority hotkey")
+^!n:: MsgBox("Normal priority hotkey")
 
 ; You can also use #MaxThreadsPerHotkey and set priority
 #HotKeyInterval 2000  ; Time window in milliseconds

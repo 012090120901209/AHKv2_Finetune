@@ -2,20 +2,20 @@
 #SingleInstance Force
 
 /**
-* Base64 and URL Encoding Utilities
-*
-* Demonstrates encoding and decoding text using Base64 and URL encoding
-* for data transmission and storage.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Base64 and URL Encoding Utilities
+ * 
+ * Demonstrates encoding and decoding text using Base64 and URL encoding
+ * for data transmission and storage.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Encoding Utilities Demo`n`n"
-. "Functions:`n"
-. "- Base64 Encode/Decode`n"
-. "- URL Encode/Decode`n`n"
-. "Running demonstrations...", , "T3")
+    . "Functions:`n"
+    . "- Base64 Encode/Decode`n"
+    . "- URL Encode/Decode`n`n"
+    . "Running demonstrations...", , "T3")
 
 ; Example 1: Base64 encoding
 text1 := "Hello, World! 你好世界"
@@ -23,10 +23,10 @@ encoded1 := Base64_Encode(text1)
 decoded1 := Base64_Decode(encoded1)
 
 MsgBox("Base64 Encoding:`n`n"
-. "Original: " text1 "`n`n"
-. "Encoded: " encoded1 "`n`n"
-. "Decoded: " decoded1 "`n`n"
-. "Match: " (text1 == decoded1 ? "✓" : "✗"), , "T8")
+    . "Original: " text1 "`n`n"
+    . "Encoded: " encoded1 "`n`n"
+    . "Decoded: " decoded1 "`n`n"
+    . "Match: " (text1 == decoded1 ? "✓" : "✗"), , "T8")
 
 ; Example 2: Base64 with binary-safe text
 text2 := "Special chars: !@#$%^&*()_+-=[]{}|;:',.<>?/~"
@@ -34,9 +34,9 @@ encoded2 := Base64_Encode(text2)
 decoded2 := Base64_Decode(encoded2)
 
 MsgBox("Base64 - Special Characters:`n`n"
-. "Original: " text2 "`n`n"
-. "Encoded: " encoded2 "`n`n"
-. "Decoded: " decoded2, , "T8")
+    . "Original: " text2 "`n`n"
+    . "Encoded: " encoded2 "`n`n"
+    . "Decoded: " decoded2, , "T8")
 
 ; Example 3: URL encoding
 url := "https://example.com/search?q=AutoHotkey v2&lang=en"
@@ -44,9 +44,9 @@ encodedURL := URL_Encode(url)
 decodedURL := URL_Decode(encodedURL)
 
 MsgBox("URL Encoding:`n`n"
-. "Original: " url "`n`n"
-. "Encoded: " encodedURL "`n`n"
-. "Decoded: " decodedURL, , "T8")
+    . "Original: " url "`n`n"
+    . "Encoded: " encodedURL "`n`n"
+    . "Decoded: " decodedURL, , "T8")
 
 ; Example 4: URL encoding with special characters
 query := "search term with spaces & symbols!"
@@ -54,15 +54,15 @@ encodedQuery := URL_Encode(query)
 decodedQuery := URL_Decode(encodedQuery)
 
 MsgBox("URL Encoding - Query String:`n`n"
-. "Original: " query "`n`n"
-. "Encoded: " encodedQuery "`n`n"
-. "Decoded: " decodedQuery, , "T8")
+    . "Original: " query "`n`n"
+    . "Encoded: " encodedQuery "`n`n"
+    . "Decoded: " decodedQuery, , "T8")
 
 /**
-* Base64_Encode - Encode text to Base64
-* @param {string} text - Text to encode
-* @return {string} Base64-encoded string
-*/
+ * Base64_Encode - Encode text to Base64
+ * @param {string} text - Text to encode
+ * @return {string} Base64-encoded string
+ */
 Base64_Encode(text) {
     ; Convert string to binary
     bufSize := StrPut(text, "UTF-8")
@@ -71,59 +71,59 @@ Base64_Encode(text) {
 
     ; Calculate required size for Base64
     DllCall("crypt32\CryptBinaryToStringW",
-    "Ptr", buf,
-    "UInt", bufSize - 1,
-    "UInt", 0x40000001,  ; CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF
-    "Ptr", 0,
-    "UInt*", &outSize := 0)
+        "Ptr", buf,
+        "UInt", bufSize - 1,
+        "UInt", 0x40000001,  ; CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF
+        "Ptr", 0,
+        "UInt*", &outSize := 0)
 
     ; Encode to Base64
     outBuf := Buffer(outSize * 2)
     DllCall("crypt32\CryptBinaryToStringW",
-    "Ptr", buf,
-    "UInt", bufSize - 1,
-    "UInt", 0x40000001,
-    "Ptr", outBuf,
-    "UInt*", &outSize)
+        "Ptr", buf,
+        "UInt", bufSize - 1,
+        "UInt", 0x40000001,
+        "Ptr", outBuf,
+        "UInt*", &outSize)
 
     return StrGet(outBuf, "UTF-16")
 }
 
 /**
-* Base64_Decode - Decode Base64 to text
-* @param {string} base64 - Base64 string
-* @return {string} Decoded text
-*/
+ * Base64_Decode - Decode Base64 to text
+ * @param {string} base64 - Base64 string
+ * @return {string} Decoded text
+ */
 Base64_Decode(base64) {
     ; Calculate required size
     DllCall("crypt32\CryptStringToBinaryW",
-    "Str", base64,
-    "UInt", 0,
-    "UInt", 0x1,  ; CRYPT_STRING_BASE64
-    "Ptr", 0,
-    "UInt*", &outSize := 0,
-    "Ptr", 0,
-    "Ptr", 0)
+        "Str", base64,
+        "UInt", 0,
+        "UInt", 0x1,  ; CRYPT_STRING_BASE64
+        "Ptr", 0,
+        "UInt*", &outSize := 0,
+        "Ptr", 0,
+        "Ptr", 0)
 
     ; Decode from Base64
     outBuf := Buffer(outSize)
     DllCall("crypt32\CryptStringToBinaryW",
-    "Str", base64,
-    "UInt", 0,
-    "UInt", 0x1,
-    "Ptr", outBuf,
-    "UInt*", &outSize,
-    "Ptr", 0,
-    "Ptr", 0)
+        "Str", base64,
+        "UInt", 0,
+        "UInt", 0x1,
+        "Ptr", outBuf,
+        "UInt*", &outSize,
+        "Ptr", 0,
+        "Ptr", 0)
 
     return StrGet(outBuf, outSize, "UTF-8")
 }
 
 /**
-* URL_Encode - Encode URL/URI components
-* @param {string} text - Text to encode
-* @return {string} URL-encoded string
-*/
+ * URL_Encode - Encode URL/URI components
+ * @param {string} text - Text to encode
+ * @return {string} URL-encoded string
+ */
 URL_Encode(text) {
     result := ""
 
@@ -152,10 +152,10 @@ URL_Encode(text) {
 }
 
 /**
-* URL_Decode - Decode URL/URI components
-* @param {string} text - URL-encoded text
-* @return {string} Decoded text
-*/
+ * URL_Decode - Decode URL/URI components
+ * @param {string} text - URL-encoded text
+ * @return {string} Decoded text
+ */
 URL_Decode(text) {
     ; Replace + with space
     text := StrReplace(text, "+", " ")
@@ -259,3 +259,4 @@ URL_Decode(text) {
 *     - Batch processing
 *     - Progress feedback
 */
+

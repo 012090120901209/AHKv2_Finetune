@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Class_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates the fundamental concepts of creating and using classes in AutoHotkey v2.
-* This file covers basic class definition, instantiation, and simple usage patterns.
-*
-* FEATURES:
-* - Basic class definition syntax
-* - Object instantiation
-* - Instance methods and properties
-* - Simple member access
-* - Multiple instances
-* - Value types vs reference types
-* - Class-based organization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Class keyword with modern syntax
-* - Constructor methods (__New)
-* - Instance property access (this.property)
-* - Method definition without function keyword
-* - Reference-based object handling
-* - Built-in Object type
-*
-* LEARNING POINTS:
-* 1. Classes are blueprints for creating objects
-* 2. Objects are instances of classes
-* 3. Each instance has its own property values
-* 4. Methods are functions defined within a class
-* 5. The 'this' keyword refers to the current instance
-* 6. Classes help organize related data and behavior
-* 7. Objects are passed by reference, not by value
-*/
+ * BuiltIn_OOP_Class_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the fundamental concepts of creating and using classes in AutoHotkey v2.
+ * This file covers basic class definition, instantiation, and simple usage patterns.
+ * 
+ * FEATURES:
+ * - Basic class definition syntax
+ * - Object instantiation
+ * - Instance methods and properties
+ * - Simple member access
+ * - Multiple instances
+ * - Value types vs reference types
+ * - Class-based organization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Class keyword with modern syntax
+ * - Constructor methods (__New)
+ * - Instance property access (this.property)
+ * - Method definition without function keyword
+ * - Reference-based object handling
+ * - Built-in Object type
+ * 
+ * LEARNING POINTS:
+ * 1. Classes are blueprints for creating objects
+ * 2. Objects are instances of classes
+ * 3. Each instance has its own property values
+ * 4. Methods are functions defined within a class
+ * 5. The 'this' keyword refers to the current instance
+ * 6. Classes help organize related data and behavior
+ * 7. Objects are passed by reference, not by value
+ */
 
 ; ========================================
 ; EXAMPLE 1: Simple Class Definition
@@ -259,13 +259,13 @@ class Contact {
         vcard .= "N:" this.LastName ";" this.FirstName "`n"
 
         if (this.HasEmail())
-        vcard .= "EMAIL:" this.Email "`n"
+            vcard .= "EMAIL:" this.Email "`n"
 
         if (this.HasPhone())
-        vcard .= "TEL:" this.Phone "`n"
+            vcard .= "TEL:" this.Phone "`n"
 
         if (this.Address != "")
-        vcard .= "ADR:" this.Address "`n"
+            vcard .= "ADR:" this.Address "`n"
 
         vcard .= "END:VCARD"
         return vcard
@@ -283,7 +283,7 @@ contactList := "=== Contact Directory ===`n`n"
 for index, contact in contacts {
     contactList .= index ". " contact.GetFullName()
     if (contact.HasEmail())
-    contactList .= " (" contact.Email ")"
+        contactList .= " (" contact.Email ")"
     contactList .= "`n"
 }
 MsgBox(contactList)
@@ -347,7 +347,7 @@ class Temperature {
 
     ; Computed property-like methods
     ToFahrenheit() {
-        return (this.Celsius * 9/5) + 32
+        return (this.Celsius * 9 / 5) + 32
     }
 
     ToKelvin() {
@@ -355,7 +355,7 @@ class Temperature {
     }
 
     FromFahrenheit(fahrenheit) {
-        this.Celsius := (fahrenheit - 32) * 5/9
+        this.Celsius := (fahrenheit - 32) * 5 / 9
         return this
     }
 
@@ -374,22 +374,22 @@ class Temperature {
 
     GetDescription() {
         if (this.Celsius < 0)
-        return "Freezing"
+            return "Freezing"
         else if (this.Celsius < 10)
-        return "Cold"
+            return "Cold"
         else if (this.Celsius < 20)
-        return "Cool"
+            return "Cool"
         else if (this.Celsius < 30)
-        return "Warm"
+            return "Warm"
         else
-        return "Hot"
+            return "Hot"
     }
 
     ToString() {
         return this.Celsius "°C = "
-        . Round(this.ToFahrenheit(), 1) "°F = "
-        . Round(this.ToKelvin(), 1) "K ("
-        . this.GetDescription() ")"
+            . Round(this.ToFahrenheit(), 1) "°F = "
+            . Round(this.ToKelvin(), 1) "K ("
+            . this.GetDescription() ")"
     }
 }
 
@@ -413,11 +413,11 @@ for temp in temperatures {
 MsgBox(tempDisplay)
 
 MsgBox("=== OOP Class Basics Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic class definition and instantiation`n"
-. "- Properties and methods`n"
-. "- Constructors`n"
-. "- Multiple instances`n"
-. "- Reference behavior`n"
-. "- Computed properties`n"
-. "- Data organization with classes")
+    . "This file demonstrated:`n"
+    . "- Basic class definition and instantiation`n"
+    . "- Properties and methods`n"
+    . "- Constructors`n"
+    . "- Multiple instances`n"
+    . "- Reference behavior`n"
+    . "- Computed properties`n"
+    . "- Data organization with classes")

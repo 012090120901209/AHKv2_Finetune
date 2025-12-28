@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Ln_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of Ln() function for natural logarithm calculations (base e)
-*
-* FEATURES:
-* - Basic natural logarithm (ln) calculations
-* - Relationship between Ln() and Exp()
-* - Natural logarithm properties
-* - Converting between different logarithm bases
-* - Euler's number (e) applications
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Math.htm#Ln
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Ln() function (natural logarithm, base e)
-* - Exp() function (e^x)
-* - Log() function (base 10)
-* - Mathematical expressions
-* - Format() for number display
-*
-* LEARNING POINTS:
-* 1. Ln(x) calculates log_e(x) where e ≈ 2.71828
-* 2. Ln() and Exp() are inverse functions
-* 3. Ln(e) = 1, Ln(1) = 0
-* 4. Natural log is the "natural" choice in calculus
-* 5. Used extensively in growth, decay, and probability
-*/
+ * BuiltIn_Ln_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of Ln() function for natural logarithm calculations (base e)
+ * 
+ * FEATURES:
+ * - Basic natural logarithm (ln) calculations
+ * - Relationship between Ln() and Exp()
+ * - Natural logarithm properties
+ * - Converting between different logarithm bases
+ * - Euler's number (e) applications
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Math.htm#Ln
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Ln() function (natural logarithm, base e)
+ * - Exp() function (e^x)
+ * - Log() function (base 10)
+ * - Mathematical expressions
+ * - Format() for number display
+ * 
+ * LEARNING POINTS:
+ * 1. Ln(x) calculates log_e(x) where e ≈ 2.71828
+ * 2. Ln() and Exp() are inverse functions
+ * 3. Ln(e) = 1, Ln(1) = 0
+ * 4. Natural log is the "natural" choice in calculus
+ * 5. Used extensively in growth, decay, and probability
+ */
 
 global E := 2.71828182845905
 
@@ -48,9 +48,9 @@ for x in values {
 
     ; Special cases
     if (x = 1)
-    output .= "  (Always equals 0)"
+        output .= "  (Always equals 0)"
     else if (Abs(x - E) < 0.0001)
-    output .= "  (ln(e) = 1)"
+        output .= "  (ln(e) = 1)"
 
     output .= "`n"
 }
@@ -62,9 +62,9 @@ MsgBox(output, "Basic Ln() Function", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrate inverse relationship
-* Ln(Exp(x)) = x and Exp(Ln(x)) = x
-*/
+ * Demonstrate inverse relationship
+ * Ln(Exp(x)) = x and Exp(Ln(x)) = x
+ */
 DemonstrateInverse() {
     testValues := [0.5, 1, 2, 3, 5, 10]
     results := []
@@ -114,8 +114,8 @@ MsgBox(output, "Inverse Functions", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrate key natural logarithm properties
-*/
+ * Demonstrate key natural logarithm properties
+ */
 DemonstrateLnProperties() {
     a := 10
     b := 5
@@ -148,13 +148,13 @@ DemonstrateLnProperties() {
     prop7_right := -Ln(a)
 
     return {
-        prop1: {left: prop1_left, right: prop1_right, a: a, b: b},
-        prop2: {left: prop2_left, right: prop2_right, a: a, b: b},
-        prop3: {left: prop3_left, right: prop3_right, a: a, power: power},
+        prop1: { left: prop1_left, right: prop1_right, a: a, b: b },
+        prop2: { left: prop2_left, right: prop2_right, a: a, b: b },
+        prop3: { left: prop3_left, right: prop3_right, a: a, power: power },
         prop4: prop4,
         prop5: prop5,
-        prop6: {left: prop6_left, right: prop6_right, a: a},
-        prop7: {left: prop7_left, right: prop7_right, a: a}
+        prop6: { left: prop6_left, right: prop6_right, a: a },
+        prop7: { left: prop7_left, right: prop7_right, a: a }
     }
 }
 
@@ -201,10 +201,10 @@ MsgBox(output, "Ln Properties", "Icon!")
 ; ============================================================
 
 /**
-* Convert between natural log and common log
-* ln(x) = log₁₀(x) × ln(10)
-* log₁₀(x) = ln(x) / ln(10)
-*/
+ * Convert between natural log and common log
+ * ln(x) = log₁₀(x) × ln(10)
+ * log₁₀(x) = ln(x) / ln(10)
+ */
 ConvertLogarithms(x) {
     naturalLog := Ln(x)
     commonLog := Log(x)
@@ -254,8 +254,8 @@ MsgBox(output, "Base Conversion", "Icon!")
 ; ============================================================
 
 /**
-* Solve exponential equations using natural logarithms
-*/
+ * Solve exponential equations using natural logarithms
+ */
 SolveExponentialEquations() {
     results := []
 
@@ -317,9 +317,9 @@ MsgBox(output, "Solving Equations", "Icon!")
 ; ============================================================
 
 /**
-* Calculate continuous growth rate
-* If P(t) = P₀ × e^(rt), then r = ln(P(t)/P₀) / t
-*/
+ * Calculate continuous growth rate
+ * If P(t) = P₀ × e^(rt), then r = ln(P(t)/P₀) / t
+ */
 ContinuousGrowthRate(initialValue, finalValue, time) {
     ratio := finalValue / initialValue
     rate := Ln(ratio) / time
@@ -327,17 +327,17 @@ ContinuousGrowthRate(initialValue, finalValue, time) {
 }
 
 /**
-* Calculate doubling time
-* t = ln(2) / r
-*/
+ * Calculate doubling time
+ * t = ln(2) / r
+ */
 DoublingTime(rate) {
     return Ln(2) / rate
 }
 
 /**
-* Calculate time to reach target
-* t = ln(target/initial) / r
-*/
+ * Calculate time to reach target
+ * t = ln(target/initial) / r
+ */
 TimeToReach(initial, target, rate) {
     return Ln(target / initial) / rate
 }
@@ -379,24 +379,24 @@ MsgBox(output, "Growth Rate", "Icon!")
 ; ============================================================
 
 /**
-* Calculate information content (Shannon information)
-* I = -ln(P)
-*/
+ * Calculate information content (Shannon information)
+ * I = -ln(P)
+ */
 InformationContent(probability) {
     if (probability <= 0 || probability > 1)
-    throw ValueError("Probability must be between 0 and 1")
+        throw ValueError("Probability must be between 0 and 1")
     return -Ln(probability)
 }
 
 /**
-* Calculate entropy (expected information)
-* H = -Σ(P(x) × ln(P(x)))
-*/
+ * Calculate entropy (expected information)
+ * H = -Σ(P(x) × ln(P(x)))
+ */
 CalculateEntropy(probabilities) {
     entropy := 0
     for p in probabilities {
         if (p > 0)
-        entropy -= p * Ln(p)
+            entropy -= p * Ln(p)
     }
     return entropy
 }
@@ -413,10 +413,10 @@ output .= "━━━━━━━━━━━━━━━━━━━━━━━
 for p in probabilities {
     info := InformationContent(p)
     interpretation := p = 1.0 ? "Certain (no surprise)"
-    : p >= 0.5 ? "Likely"
-    : p >= 0.1 ? "Somewhat unlikely"
-    : p >= 0.01 ? "Rare"
-    : "Very rare"
+        : p >= 0.5 ? "Likely"
+        : p >= 0.1 ? "Somewhat unlikely"
+        : p >= 0.01 ? "Rare"
+        : "Very rare"
 
     output .= Format("{:11.3f}", p)
     output .= Format("{:20.4f}", info)
@@ -428,7 +428,7 @@ for p in probabilities {
 output .= "`nEntropy Example:`n"
 fairCoin := [0.5, 0.5]
 biasedCoin := [0.9, 0.1]
-fairDie := [1/6, 1/6, 1/6, 1/6, 1/6, 1/6]
+fairDie := [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6]
 
 output .= "  Fair coin: H = " Format("{:.4f}", CalculateEntropy(fairCoin)) " nats`n"
 output .= "  Biased coin: H = " Format("{:.4f}", CalculateEntropy(biasedCoin)) " nats`n"

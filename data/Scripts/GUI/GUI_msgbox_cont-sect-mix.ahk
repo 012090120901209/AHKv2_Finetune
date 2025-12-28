@@ -4,19 +4,19 @@
 
 var := "val"
 if (var = "val")
-MsgBox("1p simple")
+    MsgBox("1p simple")
 
 if (var = "val")
-MsgBox(" 1p forced")
+    MsgBox(" 1p forced")
 
 if (var = "val")
-MsgBox("4p simple only text", "title", 1)
+    MsgBox("4p simple only text", "title", 1)
 
 if (var = "val")
-MsgBox(" 4p forced only text", "title", 1)
+    MsgBox(" 4p forced only text", "title", 1)
 
 if (var = "val")
-MsgBox("4p simple with timeout", "title", "T4")
+    MsgBox("4p simple with timeout", "title", "T4")
 
 if (var = "val")
-MsgBox(" 4p forced with timeout", "title", "T4")
+    MsgBox(" 4p forced with timeout", "title", "T4")

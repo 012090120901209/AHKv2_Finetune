@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Hotstring Option: T (Text mode / Raw)
-* Sends text as-is without interpreting special characters
-*/
+ * Hotstring Option: T (Text mode / Raw)
+ * Sends text as-is without interpreting special characters
+ */
 
 ; Without T, characters like {, }, ! would be interpreted
 ; With T, they're sent literally

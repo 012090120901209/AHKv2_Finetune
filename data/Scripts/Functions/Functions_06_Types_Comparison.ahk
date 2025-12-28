@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Function Types Comparison
-*
-* Demonstrates the three function types in AutoHotkey v2:
-* named functions, anonymous functions, and arrow functions.
-*
-* Source: AHK_Notes/Concepts/function-types-in-ahk-v2.md
-*/
+ * Function Types Comparison
+ * 
+ * Demonstrates the three function types in AutoHotkey v2:
+ * named functions, anonymous functions, and arrow functions.
+ * 
+ * Source: AHK_Notes/Concepts/function-types-in-ahk-v2.md
+ */
 
 ; Test 1: Named Function
 result1 := NamedMultiply(5, 3)
 MsgBox("Named Function:`n`n"
-. "NamedMultiply(5, 3) = " result1, , "T3")
+    . "NamedMultiply(5, 3) = " result1, , "T3")
 
 ; Test 2: Anonymous Function
 anonymousMultiply := func(a, b) {
@@ -21,13 +21,13 @@ anonymousMultiply := func(a, b) {
 }
 result2 := anonymousMultiply(5, 3)
 MsgBox("Anonymous Function:`n`n"
-. "anonymousMultiply(5, 3) = " result2, , "T3")
+    . "anonymousMultiply(5, 3) = " result2, , "T3")
 
 ; Test 3: Arrow Function
 arrowMultiply := (a, b) => a * b
 result3 := arrowMultiply(5, 3)
 MsgBox("Arrow Function:`n`n"
-. "arrowMultiply(5, 3) = " result3, , "T3")
+    . "arrowMultiply(5, 3) = " result3, , "T3")
 
 ; Test 4: Comparing all types in callbacks
 numbers := [1, 2, 3, 4, 5]
@@ -44,49 +44,49 @@ doubled2 := MapArray(numbers, func(x) {
 doubled3 := MapArray(numbers, (x) => x * 2)
 
 MsgBox("Callback Comparison:`n`n"
-. "Original: [" Join(numbers) "]`n`n"
-. "Named function: [" Join(doubled1) "]`n"
-. "Anonymous function: [" Join(doubled2) "]`n"
-. "Arrow function: [" Join(doubled3) "]", , "T5")
+    . "Original: [" Join(numbers) "]`n`n"
+    . "Named function: [" Join(doubled1) "]`n"
+    . "Anonymous function: [" Join(doubled2) "]`n"
+    . "Arrow function: [" Join(doubled3) "]", , "T5")
 
 ; Test 5: Closures with different types
 counter1 := CreateCounterNamed()
 counter2 := CreateCounterArrow()
 
 MsgBox("Closures:`n`n"
-. "Named closure: " counter1() ", " counter1() ", " counter1() "`n"
-. "Arrow closure: " counter2() ", " counter2() ", " counter2(), , "T5")
+    . "Named closure: " counter1() ", " counter1() ", " counter1() "`n"
+    . "Arrow closure: " counter2() ", " counter2() ", " counter2(), , "T5")
 
 /**
-* Named Function - Traditional style
-* @param {number} a - First number
-* @param {number} b - Second number
-* @return {number} Product
-*/
+ * Named Function - Traditional style
+ * @param {number} a - First number
+ * @param {number} b - Second number
+ * @return {number} Product
+ */
 NamedMultiply(a, b) {
     return a * b
 }
 
 /**
-* Named Function - Double a number
-*/
+ * Named Function - Double a number
+ */
 NamedDouble(x) {
     return x * 2
 }
 
 /**
-* MapArray - Apply function to each element
-*/
+ * MapArray - Apply function to each element
+ */
 MapArray(arr, fn) {
     result := []
     for value in arr
-    result.Push(fn(value))
+        result.Push(fn(value))
     return result
 }
 
 /**
-* CreateCounterNamed - Named function returning closure
-*/
+ * CreateCounterNamed - Named function returning closure
+ */
 CreateCounterNamed() {
     count := 0
 
@@ -97,8 +97,8 @@ CreateCounterNamed() {
 }
 
 /**
-* CreateCounterArrow - Arrow function closure
-*/
+ * CreateCounterArrow - Arrow function closure
+ */
 CreateCounterArrow() {
     count := 0
 
@@ -107,8 +107,8 @@ CreateCounterArrow() {
 }
 
 /**
-* Join - Helper to join array
-*/
+ * Join - Helper to join array
+ */
 Join(arr, delimiter := ", ") {
     result := ""
     for index, value in arr {
@@ -180,4 +180,5 @@ Join(arr, delimiter := ", ") {
         *    │ Implicit   │  ✗    │     ✗     │  ✓   │
         *    │  return    │       │           │      │
         *    └────────────┴───────┴───────────┴──────┘
-        */
+*/
+

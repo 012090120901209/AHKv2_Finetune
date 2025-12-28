@@ -2,26 +2,26 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Get_02_DefaultValues.ahk
-*
-* @description Map.Get() with default value handling patterns
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Advanced patterns for using default values with Map.Get(), including
-* fallback chains, type coercion, lazy evaluation, and configuration defaults.
-*/
+ * BuiltIn_Map_Get_02_DefaultValues.ahk
+ * 
+ * @description Map.Get() with default value handling patterns
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Advanced patterns for using default values with Map.Get(), including
+ * fallback chains, type coercion, lazy evaluation, and configuration defaults.
+ */
 
 ;=============================================================================
 ; Example 1: Multi-Level Default Fallback
 ;=============================================================================
 
 /**
-* @class FallbackConfig
-* @description Configuration with multiple fallback levels
-*/
+ * @class FallbackConfig
+ * @description Configuration with multiple fallback levels
+ */
 class FallbackConfig {
     user := Map()
     system := Map()
@@ -42,39 +42,39 @@ class FallbackConfig {
     }
 
     /**
-    * @method Get
-    * @description Get value with fallback chain: user -> system -> defaults
-    */
+     * @method Get
+     * @description Get value with fallback chain: user -> system -> defaults
+     */
     Get(key) {
         if (this.user.Has(key))
-        return this.user.Get(key)
+            return this.user.Get(key)
 
         if (this.system.Has(key))
-        return this.system.Get(key)
+            return this.system.Get(key)
 
         return this.defaults.Get(key, "")
     }
 
     /**
-    * @method SetUser
-    * @description Set user-level preference
-    */
+     * @method SetUser
+     * @description Set user-level preference
+     */
     SetUser(key, value) {
         this.user.Set(key, value)
     }
 
     /**
-    * @method SetSystem
-    * @description Set system-level configuration
-    */
+     * @method SetSystem
+     * @description Set system-level configuration
+     */
     SetSystem(key, value) {
         this.system.Set(key, value)
     }
 
     /**
-    * @method ShowHierarchy
-    * @description Display configuration hierarchy
-    */
+     * @method ShowHierarchy
+     * @description Display configuration hierarchy
+     */
     ShowHierarchy(key) {
         output := "Configuration for '" key "':`n`n"
         output .= "User: " (this.user.Has(key) ? this.user.Get(key) : "(not set)") "`n"
@@ -107,34 +107,34 @@ Example1_FallbackChain() {
 ;=============================================================================
 
 /**
-* @class TypeSafeMap
-* @description Map with type-safe default values
-*/
+ * @class TypeSafeMap
+ * @description Map with type-safe default values
+ */
 class TypeSafeMap {
     data := Map()
     typeDefaults := Map(
-    "String", "",
-    "Integer", 0,
-    "Float", 0.0,
-    "Array", () => [],
-    "Map", () => Map(),
-    "Boolean", false
+        "String", "",
+        "Integer", 0,
+        "Float", 0.0,
+        "Array", () => [],
+        "Map", () => Map(),
+        "Boolean", false
     )
 
     /**
-    * @method GetTyped
-    * @description Get value with type-appropriate default
-    */
+     * @method GetTyped
+     * @description Get value with type-appropriate default
+     */
     GetTyped(key, expectedType) {
         if (this.data.Has(key))
-        return this.data.Get(key)
+            return this.data.Get(key)
 
         if (this.typeDefaults.Has(expectedType)) {
             defaultValue := this.typeDefaults.Get(expectedType)
 
             ; Call function if it's a function (for complex types)
             if (Type(defaultValue) = "Func")
-            return defaultValue.Call()
+                return defaultValue.Call()
 
             return defaultValue
         }
@@ -143,47 +143,47 @@ class TypeSafeMap {
     }
 
     /**
-    * @method Set
-    * @description Store value
-    */
+     * @method Set
+     * @description Store value
+     */
     Set(key, value) {
         this.data.Set(key, value)
     }
 
     /**
-    * @method GetString
-    * @description Get as string with default
-    */
+     * @method GetString
+     * @description Get as string with default
+     */
     GetString(key) => this.GetTyped(key, "String")
 
     /**
-    * @method GetInteger
-    * @description Get as integer with default
-    */
+     * @method GetInteger
+     * @description Get as integer with default
+     */
     GetInteger(key) => this.GetTyped(key, "Integer")
 
     /**
-    * @method GetFloat
-    * @description Get as float with default
-    */
+     * @method GetFloat
+     * @description Get as float with default
+     */
     GetFloat(key) => this.GetTyped(key, "Float")
 
     /**
-    * @method GetArray
-    * @description Get as array with default
-    */
+     * @method GetArray
+     * @description Get as array with default
+     */
     GetArray(key) => this.GetTyped(key, "Array")
 
     /**
-    * @method GetMap
-    * @description Get as map with default
-    */
+     * @method GetMap
+     * @description Get as map with default
+     */
     GetMap(key) => this.GetTyped(key, "Map")
 
     /**
-    * @method GetBoolean
-    * @description Get as boolean with default
-    */
+     * @method GetBoolean
+     * @description Get as boolean with default
+     */
     GetBoolean(key) => this.GetTyped(key, "Boolean")
 }
 
@@ -221,28 +221,28 @@ Example2_TypeSafeDefaults() {
 ;=============================================================================
 
 /**
-* @class LazyDefaultMap
-* @description Map with lazy-evaluated defaults
-*/
+ * @class LazyDefaultMap
+ * @description Map with lazy-evaluated defaults
+ */
 class LazyDefaultMap {
     data := Map()
     defaultGenerators := Map()
 
     /**
-    * @method SetDefaultGenerator
-    * @description Set a function to generate default for missing keys
-    */
+     * @method SetDefaultGenerator
+     * @description Set a function to generate default for missing keys
+     */
     SetDefaultGenerator(key, generatorFunc) {
         this.defaultGenerators.Set(key, generatorFunc)
     }
 
     /**
-    * @method Get
-    * @description Get value, using lazy generator if needed
-    */
+     * @method Get
+     * @description Get value, using lazy generator if needed
+     */
     Get(key, defaultValue := "") {
         if (this.data.Has(key))
-        return this.data.Get(key)
+            return this.data.Get(key)
 
         ; Check if we have a generator for this key
         if (this.defaultGenerators.Has(key)) {
@@ -259,9 +259,9 @@ class LazyDefaultMap {
     }
 
     /**
-    * @method Set
-    * @description Store value
-    */
+     * @method Set
+     * @description Store value
+     */
     Set(key, value) {
         this.data.Set(key, value)
     }
@@ -301,36 +301,36 @@ Random(min, max) {
 ;=============================================================================
 
 /**
-* @class EnvConfig
-* @description Configuration with environment variable fallbacks
-*/
+ * @class EnvConfig
+ * @description Configuration with environment variable fallbacks
+ */
 class EnvConfig {
     config := Map()
     envMappings := Map()
 
     /**
-    * @method MapToEnv
-    * @description Map config key to environment variable
-    */
+     * @method MapToEnv
+     * @description Map config key to environment variable
+     */
     MapToEnv(key, envVar) {
         this.envMappings.Set(key, envVar)
     }
 
     /**
-    * @method Get
-    * @description Get value with env var fallback
-    */
+     * @method Get
+     * @description Get value with env var fallback
+     */
     Get(key, defaultValue := "") {
         ; Check config first
         if (this.config.Has(key))
-        return this.config.Get(key)
+            return this.config.Get(key)
 
         ; Check environment variable
         if (this.envMappings.Has(key)) {
             envVar := this.envMappings.Get(key)
             envValue := EnvGet(envVar)
             if (envValue != "")
-            return envValue
+                return envValue
         }
 
         ; Return default
@@ -338,9 +338,9 @@ class EnvConfig {
     }
 
     /**
-    * @method Set
-    * @description Set configuration value
-    */
+     * @method Set
+     * @description Set configuration value
+     */
     Set(key, value) {
         this.config.Set(key, value)
     }
@@ -373,9 +373,9 @@ Example4_EnvDefaults() {
 ;=============================================================================
 
 /**
-* @class TemplateDefaults
-* @description Map with templated default values
-*/
+ * @class TemplateDefaults
+ * @description Map with templated default values
+ */
 class TemplateDefaults {
     data := Map()
     templates := Map()
@@ -383,34 +383,34 @@ class TemplateDefaults {
     __New() {
         ; Define templates for different entity types
         this.templates.Set("user", Map(
-        "name", "New User",
-        "role", "guest",
-        "active", true,
-        "created", () => A_Now
+            "name", "New User",
+            "role", "guest",
+            "active", true,
+            "created", () => A_Now
         ))
 
         this.templates.Set("product", Map(
-        "name", "New Product",
-        "price", 0.00,
-        "stock", 0,
-        "category", "uncategorized"
+            "name", "New Product",
+            "price", 0.00,
+            "stock", 0,
+            "category", "uncategorized"
         ))
 
         this.templates.Set("order", Map(
-        "id", () => "ORD-" Random(10000, 99999),
-        "status", "pending",
-        "total", 0.00,
-        "items", () => []
+            "id", () => "ORD-" Random(10000, 99999),
+            "status", "pending",
+            "total", 0.00,
+            "items", () => []
         ))
     }
 
     /**
-    * @method CreateFromTemplate
-    * @description Create new entity from template
-    */
+     * @method CreateFromTemplate
+     * @description Create new entity from template
+     */
     CreateFromTemplate(templateName, overrides := "") {
         if (!this.templates.Has(templateName))
-        return Map()
+            return Map()
 
         template := this.templates.Get(templateName)
         entity := Map()
@@ -419,9 +419,9 @@ class TemplateDefaults {
         for key, defaultValue in template {
             ; Evaluate functions
             if (Type(defaultValue) = "Func")
-            entity.Set(key, defaultValue.Call())
+                entity.Set(key, defaultValue.Call())
             else
-            entity.Set(key, defaultValue)
+                entity.Set(key, defaultValue)
         }
 
         ; Apply overrides
@@ -435,14 +435,14 @@ class TemplateDefaults {
     }
 
     /**
-    * @method GetWithTemplate
-    * @description Get value with template field default
-    */
+     * @method GetWithTemplate
+     * @description Get value with template field default
+     */
     GetWithTemplate(id, field, templateName) {
         if (this.data.Has(id)) {
             entity := this.data.Get(id)
             if (entity.Has(field))
-            return entity.Get(field)
+                return entity.Get(field)
         }
 
         ; Get template default
@@ -473,9 +473,9 @@ Example5_TemplateDefaults() {
 
     ; Create product with overrides
     product := templates.CreateFromTemplate("product", Map(
-    "name", "Gaming Mouse",
-    "price", 59.99,
-    "stock", 100
+        "name", "Gaming Mouse",
+        "price", 59.99,
+        "stock", 100
     ))
     output .= "Product created from template:`n"
     for key, value in product {
@@ -490,49 +490,49 @@ Example5_TemplateDefaults() {
 ;=============================================================================
 
 /**
-* @class ContextualMap
-* @description Map with context-aware defaults
-*/
+ * @class ContextualMap
+ * @description Map with context-aware defaults
+ */
 class ContextualMap {
     data := Map()
     context := ""
 
     /**
-    * @method SetContext
-    * @description Set current context
-    */
+     * @method SetContext
+     * @description Set current context
+     */
     SetContext(ctx) {
         this.context := ctx
     }
 
     /**
-    * @method Get
-    * @description Get value with context-aware default
-    */
+     * @method Get
+     * @description Get value with context-aware default
+     */
     Get(key, defaults := "") {
         ; Try exact key first
         if (this.data.Has(key))
-        return this.data.Get(key)
+            return this.data.Get(key)
 
         ; Try context-specific key
         if (this.context != "") {
             contextKey := this.context "." key
             if (this.data.Has(contextKey))
-            return this.data.Get(contextKey)
+                return this.data.Get(contextKey)
         }
 
         ; Use provided defaults map
         if (IsObject(defaults) && defaults.Has(key))
-        return defaults.Get(key)
+            return defaults.Get(key)
 
         ; Return empty string
         return ""
     }
 
     /**
-    * @method Set
-    * @description Set value
-    */
+     * @method Set
+     * @description Set value
+     */
     Set(key, value) {
         this.data.Set(key, value)
     }
@@ -576,28 +576,28 @@ Example6_ContextualDefaults() {
 ;=============================================================================
 
 /**
-* @class ComputedDefaultMap
-* @description Map with computed default values
-*/
+ * @class ComputedDefaultMap
+ * @description Map with computed default values
+ */
 class ComputedDefaultMap {
     data := Map()
     computers := Map()
 
     /**
-    * @method RegisterComputer
-    * @description Register a computer function for a key
-    */
+     * @method RegisterComputer
+     * @description Register a computer function for a key
+     */
     RegisterComputer(key, computerFunc) {
         this.computers.Set(key, computerFunc)
     }
 
     /**
-    * @method Get
-    * @description Get value, computing default if needed
-    */
+     * @method Get
+     * @description Get value, computing default if needed
+     */
     Get(key, staticDefault := "") {
         if (this.data.Has(key))
-        return this.data.Get(key)
+            return this.data.Get(key)
 
         if (this.computers.Has(key)) {
             computer := this.computers.Get(key)
@@ -608,9 +608,9 @@ class ComputedDefaultMap {
     }
 
     /**
-    * @method Set
-    * @description Set value
-    */
+     * @method Set
+     * @description Set value
+     */
     Set(key, value) {
         this.data.Set(key, value)
     }
@@ -657,28 +657,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Default Value Patterns with Map.Get()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Fallback Chain")
-    .OnEvent("Click", (*) => Example1_FallbackChain())
+        .OnEvent("Click", (*) => Example1_FallbackChain())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Type-Safe")
-    .OnEvent("Click", (*) => Example2_TypeSafeDefaults())
+        .OnEvent("Click", (*) => Example2_TypeSafeDefaults())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Lazy Defaults")
-    .OnEvent("Click", (*) => Example3_LazyDefaults())
+        .OnEvent("Click", (*) => Example3_LazyDefaults())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Env Defaults")
-    .OnEvent("Click", (*) => Example4_EnvDefaults())
+        .OnEvent("Click", (*) => Example4_EnvDefaults())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Templates")
-    .OnEvent("Click", (*) => Example5_TemplateDefaults())
+        .OnEvent("Click", (*) => Example5_TemplateDefaults())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Contextual")
-    .OnEvent("Click", (*) => Example6_ContextualDefaults())
+        .OnEvent("Click", (*) => Example6_ContextualDefaults())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Computed")
-    .OnEvent("Click", (*) => Example7_ComputedDefaults())
+        .OnEvent("Click", (*) => Example7_ComputedDefaults())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_FallbackChain()

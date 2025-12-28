@@ -1,48 +1,48 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileSetAttrib_18.ahk
-*
-* DESCRIPTION:
-* File protection and security using attributes
-*
-* FEATURES:
-* - Lock files for protection
-* - Create write-protected files
-* - Implement file security
-* - Protect against deletion
-* - Secure sensitive files
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileSetAttrib() for security
-* - Read-only protection
-* - Attribute-based access control
-* - File locking mechanisms
-* - Security implementations
-*
-* LEARNING POINTS:
-* 1. Use read-only to prevent modifications
-* 2. Combine attributes for better protection
-* 3. Implement file locking systems
-* 4. Protect against accidental deletion
-* 5. Create tamper-resistant files
-* 6. Build security layers
-*/
+ * BuiltIn_FileSetAttrib_18.ahk
+ * 
+ * DESCRIPTION:
+ * File protection and security using attributes
+ * 
+ * FEATURES:
+ * - Lock files for protection
+ * - Create write-protected files
+ * - Implement file security
+ * - Protect against deletion
+ * - Secure sensitive files
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileSetAttrib() for security
+ * - Read-only protection
+ * - Attribute-based access control
+ * - File locking mechanisms
+ * - Security implementations
+ * 
+ * LEARNING POINTS:
+ * 1. Use read-only to prevent modifications
+ * 2. Combine attributes for better protection
+ * 3. Implement file locking systems
+ * 4. Protect against accidental deletion
+ * 5. Create tamper-resistant files
+ * 6. Build security layers
+ */
 
 ; ============================================================
 ; Example 1: Lock File (Read-Only Protection)
 ; ============================================================
 
 /**
-* Lock file to prevent modification
-*
-* @param {String} filePath - File to lock
-* @returns {Object} - Lock result
-*/
+ * Lock file to prevent modification
+ * 
+ * @param {String} filePath - File to lock
+ * @returns {Object} - Lock result
+ */
 LockFile(filePath) {
     result := {
         success: false,
@@ -66,11 +66,11 @@ LockFile(filePath) {
 }
 
 /**
-* Unlock file to allow modification
-*
-* @param {String} filePath - File to unlock
-* @returns {Object} - Unlock result
-*/
+ * Unlock file to allow modification
+ * 
+ * @param {String} filePath - File to unlock
+ * @returns {Object} - Unlock result
+ */
 UnlockFile(filePath) {
     result := {
         success: false,
@@ -115,12 +115,12 @@ UnlockFile(testFile)
 ; ============================================================
 
 /**
-* Apply multi-layer protection to file
-*
-* @param {String} filePath - File to protect
-* @param {Integer} level - Protection level (1-3)
-* @returns {Object} - Protection result
-*/
+ * Apply multi-layer protection to file
+ * 
+ * @param {String} filePath - File to protect
+ * @param {Integer} level - Protection level (1-3)
+ * @returns {Object} - Protection result
+ */
 ApplyProtection(filePath, level := 2) {
     result := {
         success: false,
@@ -137,17 +137,17 @@ ApplyProtection(filePath, level := 2) {
     try {
         switch level {
             case 1:  ; Basic - Read-only
-            FileSetAttrib("+R", filePath)
-            result.description := "Basic protection (Read-only)"
+                FileSetAttrib("+R", filePath)
+                result.description := "Basic protection (Read-only)"
             case 2:  ; Medium - Read-only + Hidden
-            FileSetAttrib("+RH", filePath)
-            result.description := "Medium protection (Read-only + Hidden)"
+                FileSetAttrib("+RH", filePath)
+                result.description := "Medium protection (Read-only + Hidden)"
             case 3:  ; High - Read-only + Hidden + System
-            FileSetAttrib("+RHS", filePath)
-            result.description := "High protection (Read-only + Hidden + System)"
+                FileSetAttrib("+RHS", filePath)
+                result.description := "High protection (Read-only + Hidden + System)"
             default:
-            result.description := "Invalid protection level"
-            return result
+                result.description := "Invalid protection level"
+                return result
         }
 
         result.success := true
@@ -169,10 +169,10 @@ Loop 3 {
     protection := ApplyProtection(file, level)
 
     MsgBox("PROTECTION LEVEL " level "`n`n"
-    . "Success: " (protection.success ? "YES" : "NO") "`n"
-    . "Attributes: " protection.attributes "`n"
-    . "Description: " protection.description,
-    "Level " level " Protection", protection.success ? "Icon!" : "IconX")
+        . "Success: " (protection.success ? "YES" : "NO") "`n"
+        . "Attributes: " protection.attributes "`n"
+        . "Description: " protection.description,
+        "Level " level " Protection", protection.success ? "Icon!" : "IconX")
 
     ; Clean up
     FileSetAttrib("-RHS", file)
@@ -184,13 +184,13 @@ Loop 3 {
 ; ============================================================
 
 /**
-* Create file with immediate protection
-*
-* @param {String} filePath - Path for new file
-* @param {String} content - File content
-* @param {Boolean} protect - Apply protection immediately
-* @returns {Object} - Creation result
-*/
+ * Create file with immediate protection
+ * 
+ * @param {String} filePath - Path for new file
+ * @param {String} content - File content
+ * @param {Boolean} protect - Apply protection immediately
+ * @returns {Object} - Creation result
+ */
 CreateSecureFile(filePath, content, protect := true) {
     result := {
         success: false,
@@ -239,12 +239,12 @@ FileDelete(secureFile)
 ; ============================================================
 
 /**
-* Temporarily unlock file, modify, then re-lock
-*
-* @param {String} filePath - File to modify
-* @param {String} content - Content to append
-* @returns {Object} - Operation result
-*/
+ * Temporarily unlock file, modify, then re-lock
+ * 
+ * @param {String} filePath - File to modify
+ * @param {String} content - Content to append
+ * @returns {Object} - Operation result
+ */
 ModifyProtectedFile(filePath, content) {
     result := {
         success: false,
@@ -264,21 +264,21 @@ ModifyProtectedFile(filePath, content) {
     try {
         ; Unlock if needed
         if (result.wasProtected)
-        FileSetAttrib("-R", filePath)
+            FileSetAttrib("-R", filePath)
 
         ; Modify
         FileAppend(content, filePath)
 
         ; Re-lock if was protected
         if (result.wasProtected)
-        FileSetAttrib("+R", filePath)
+            FileSetAttrib("+R", filePath)
 
         result.success := true
         result.message := "File modified successfully"
     } catch Error as err {
         ; Try to restore protection even if modify failed
         if (result.wasProtected)
-        FileSetAttrib("+R", filePath)
+            FileSetAttrib("+R", filePath)
 
         result.message := "Modification failed: " err.Message
     }
@@ -312,11 +312,11 @@ FileDelete(protectedFile)
 ; ============================================================
 
 /**
-* Check protection status of file
-*
-* @param {String} filePath - File to check
-* @returns {Object} - Protection status
-*/
+ * Check protection status of file
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Object} - Protection status
+ */
 GetProtectionStatus(filePath) {
     status := {
         exists: false,
@@ -328,7 +328,7 @@ GetProtectionStatus(filePath) {
     }
 
     if (!FileExist(filePath))
-    return status
+        return status
 
     status.exists := true
     attrs := FileGetAttrib(filePath)
@@ -339,15 +339,15 @@ GetProtectionStatus(filePath) {
 
     ; Determine protection level
     if (status.system)
-    status.level := "Critical (System)"
+        status.level := "Critical (System)"
     else if (status.protected && status.hidden)
-    status.level := "High (Protected + Hidden)"
+        status.level := "High (Protected + Hidden)"
     else if (status.protected)
-    status.level := "Medium (Protected)"
+        status.level := "Medium (Protected)"
     else if (status.hidden)
-    status.level := "Low (Hidden)"
+        status.level := "Low (Hidden)"
     else
-    status.level := "None"
+        status.level := "None"
 
     status.canModify := !status.protected
 

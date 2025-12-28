@@ -51,12 +51,12 @@ class IntervalTree {
     QueryRange(low, high) {
         query := Interval(low, high)
         results := []
-        
+
         for interval in this.intervals {
             if interval.Overlaps(query)
                 results.Push(interval)
         }
-        
+
         return results
     }
 
@@ -64,12 +64,12 @@ class IntervalTree {
     QueryContained(low, high) {
         container := Interval(low, high)
         results := []
-        
+
         for interval in this.intervals {
             if container.ContainsInterval(interval)
                 results.Push(interval)
         }
-        
+
         return results
     }
 
@@ -170,14 +170,14 @@ result .= "`nConflicts:`n"
 for i, evt in events {
     ; Find overlapping events
     conflicts := timeline.QueryRange(evt["start"], evt["end"])
-    
+
     ; Filter out self
     conflicting := []
     for c in conflicts {
         if c.data != evt["name"]
             conflicting.Push(c.data)
     }
-    
+
     if conflicting.Length {
         result .= "  " evt["name"] " conflicts with: "
         for j, name in conflicting

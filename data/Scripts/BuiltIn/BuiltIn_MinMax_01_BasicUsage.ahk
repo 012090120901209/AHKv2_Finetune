@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MinMax_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of Min() and Max() functions for finding minimum and
-* maximum values in sets, comparing numbers, and basic operations
-*
-* FEATURES:
-* - Find minimum and maximum values
-* - Compare two or more numbers
-* - Array min/max operations
-* - Variadic parameter usage
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Min.htm
-* https://www.autohotkey.com/docs/v2/lib/Max.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Min() and Max() functions
-* - Variadic parameters
-* - Array unpacking with *
-* - Comparison operations
-*
-* LEARNING POINTS:
-* 1. Min() returns smallest value from arguments
-* 2. Max() returns largest value from arguments
-* 3. Can accept 2 or more arguments
-* 4. Use * operator to unpack arrays
-* 5. Essential for range and bounds checking
-*/
+ * BuiltIn_MinMax_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of Min() and Max() functions for finding minimum and
+ * maximum values in sets, comparing numbers, and basic operations
+ * 
+ * FEATURES:
+ * - Find minimum and maximum values
+ * - Compare two or more numbers
+ * - Array min/max operations
+ * - Variadic parameter usage
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Min.htm
+ * https://www.autohotkey.com/docs/v2/lib/Max.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Min() and Max() functions
+ * - Variadic parameters
+ * - Array unpacking with *
+ * - Comparison operations
+ * 
+ * LEARNING POINTS:
+ * 1. Min() returns smallest value from arguments
+ * 2. Max() returns largest value from arguments
+ * 3. Can accept 2 or more arguments
+ * 4. Use * operator to unpack arrays
+ * 5. Essential for range and bounds checking
+ */
 
 ; ============================================================
 ; Example 1: Basic Min and Max
@@ -44,12 +44,12 @@ minValue := Min(num1, num2, num3)
 maxValue := Max(num1, num2, num3)
 
 MsgBox("Finding Min and Max:`n`n"
-. "Numbers: " num1 ", " num2 ", " num3 "`n`n"
-. "Min(" num1 ", " num2 ", " num3 ") = " minValue "`n"
-. "Max(" num1 ", " num2 ", " num3 ") = " maxValue "`n`n"
-. "Min finds the smallest value`n"
-. "Max finds the largest value",
-"Basic Min/Max", "Icon!")
+    . "Numbers: " num1 ", " num2 ", " num3 "`n`n"
+    . "Min(" num1 ", " num2 ", " num3 ") = " minValue "`n"
+    . "Max(" num1 ", " num2 ", " num3 ") = " maxValue "`n`n"
+    . "Min finds the smallest value`n"
+    . "Max finds the largest value",
+    "Basic Min/Max", "Icon!")
 
 ; ============================================================
 ; Example 2: Comparing Two Values
@@ -63,27 +63,27 @@ higherTemp := Max(temp1, temp2)
 tempDifference := higherTemp - lowerTemp
 
 MsgBox("Temperature Comparison:`n`n"
-. "Temperature 1: " temp1 "°F`n"
-. "Temperature 2: " temp2 "°F`n`n"
-. "Lower: " lowerTemp "°F`n"
-. "Higher: " higherTemp "°F`n"
-. "Difference: " Round(tempDifference, 1) "°F`n`n"
-. "Min() and Max() work great for comparing pairs",
-"Two Value Comparison", "Icon!")
+    . "Temperature 1: " temp1 "°F`n"
+    . "Temperature 2: " temp2 "°F`n`n"
+    . "Lower: " lowerTemp "°F`n"
+    . "Higher: " higherTemp "°F`n"
+    . "Difference: " Round(tempDifference, 1) "°F`n`n"
+    . "Min() and Max() work great for comparing pairs",
+    "Two Value Comparison", "Icon!")
 
 ; ============================================================
 ; Example 3: Array Min and Max
 ; ============================================================
 
 /**
-* Find min and max in an array
-*
-* @param {Array} numbers - Array of numbers
-* @returns {Object} - Min, max, and range
-*/
+ * Find min and max in an array
+ * 
+ * @param {Array} numbers - Array of numbers
+ * @returns {Object} - Min, max, and range
+ */
 FindMinMax(numbers) {
     if (numbers.Length = 0)
-    return {error: "Empty array"}
+        return { error: "Empty array" }
 
     minValue := Min(numbers*)  ; Unpack array with *
     maxValue := Max(numbers*)
@@ -104,7 +104,7 @@ result := FindMinMax(testArray)
 output := "Array Min/Max Analysis:`n`n"
 output .= "Values: "
 for num in testArray
-output .= num " "
+    output .= num " "
 output .= "`n`n"
 output .= "Minimum: " result.min "`n"
 output .= "Maximum: " result.max "`n"
@@ -129,12 +129,12 @@ minVal2 := Min(values*)
 maxVal2 := Max(values*)
 
 MsgBox("Variadic Parameters:`n`n"
-. "Direct: Min(5, 12, 3, ...) = " minVal "`n"
-. "Array: Min(values*) = " minVal2 "`n`n"
-. "Direct: Max(5, 12, 3, ...) = " maxVal "`n"
-. "Array: Max(values*) = " maxVal2 "`n`n"
-. "Both methods give same result!",
-"Variadic Usage", "Icon!")
+    . "Direct: Min(5, 12, 3, ...) = " minVal "`n"
+    . "Array: Min(values*) = " minVal2 "`n`n"
+    . "Direct: Max(5, 12, 3, ...) = " maxVal "`n"
+    . "Array: Max(values*) = " maxVal2 "`n`n"
+    . "Both methods give same result!",
+    "Variadic Usage", "Icon!")
 
 ; ============================================================
 ; Example 5: Negative Numbers
@@ -146,7 +146,7 @@ result := FindMinMax(negativeNumbers)
 output := "Negative Numbers:`n`n"
 output .= "Values: "
 for num in negativeNumbers
-output .= num " "
+    output .= num " "
 output .= "`n`n"
 output .= "Minimum (most negative): " result.min "`n"
 output .= "Maximum (least negative): " result.max "`n"
@@ -166,7 +166,7 @@ result := FindMinMax(mixedNumbers)
 output := "Mixed Positive/Negative:`n`n"
 output .= "Values: "
 for num in mixedNumbers
-output .= num " "
+    output .= num " "
 output .= "`n`n"
 output .= "Minimum: " result.min "`n"
 output .= "Maximum: " result.max "`n"
@@ -180,11 +180,11 @@ MsgBox(output, "Mixed Numbers", "Icon!")
 ; ============================================================
 
 /**
-* Get best and worst scores
-*
-* @param {Array} scores - Player scores
-* @returns {Object} - Best and worst performance
-*/
+ * Get best and worst scores
+ * 
+ * @param {Array} scores - Player scores
+ * @returns {Object} - Best and worst performance
+ */
 GetBestWorst(scores) {
     return {
         best: Max(scores*),
@@ -194,13 +194,13 @@ GetBestWorst(scores) {
 }
 
 /**
-* Compare measurements
-*
-* @param {Number} measurement1 - First measurement
-* @param {Number} measurement2 - Second measurement
-* @param {Number} measurement3 - Third measurement
-* @returns {Object} - Comparison results
-*/
+ * Compare measurements
+ * 
+ * @param {Number} measurement1 - First measurement
+ * @param {Number} measurement2 - Second measurement
+ * @param {Number} measurement3 - Third measurement
+ * @returns {Object} - Comparison results
+ */
 CompareMeasurements(measurement1, measurement2, measurement3) {
     minMeasure := Min(measurement1, measurement2, measurement3)
     maxMeasure := Max(measurement1, measurement2, measurement3)
@@ -220,7 +220,7 @@ scoreStats := GetBestWorst(playerScores)
 output := "Game Scores:`n"
 output .= "Scores: "
 for score in playerScores
-output .= score " "
+    output .= score " "
 output .= "`n`n"
 output .= "Best Score: " scoreStats.best "`n"
 output .= "Worst Score: " scoreStats.worst "`n"

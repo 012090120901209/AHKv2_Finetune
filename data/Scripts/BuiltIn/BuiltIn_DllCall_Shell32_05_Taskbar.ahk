@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Shell32_05_Taskbar.ahk
-*
-* DESCRIPTION:
-* Demonstrates Taskbar operations using Windows API through DllCall.
-* Comprehensive examples showing various Taskbar operations.
-*
-* FEATURES:
-* - Taskbar API integration
-* - Practical Taskbar examples
-* - Error handling
-* - Resource management
-* - Advanced Taskbar techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Shell32 API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Shell32 API functions
-* 2. Working with Taskbar operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Taskbar techniques
-* 6. Best practices for Shell32 API
-* 7. Real-world Taskbar applications
-*/
+ * BuiltIn_DllCall_Shell32_05_Taskbar.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Taskbar operations using Windows API through DllCall.
+ * Comprehensive examples showing various Taskbar operations.
+ * 
+ * FEATURES:
+ * - Taskbar API integration
+ * - Practical Taskbar examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Taskbar techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Shell32 API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Shell32 API functions
+ * 2. Working with Taskbar operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Taskbar techniques
+ * 6. Best practices for Shell32 API
+ * 7. Real-world Taskbar applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Taskbar Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Taskbar operations
-*/
+ * Helper function for Taskbar operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Taskbar Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Inherit_02_Super.ahk
-*
-* DESCRIPTION:
-* Demonstrates the 'super' keyword in AutoHotkey v2 for accessing parent class
-* members from child classes. Shows how to call parent constructors, override
-* methods while preserving parent functionality, and properly initialize inheritance chains.
-*
-* FEATURES:
-* - super keyword syntax
-* - Calling parent constructors with super.__New()
-* - Calling parent methods with super.Method()
-* - Extending parent functionality
-* - Preserving parent behavior in overrides
-* - Super in multi-level inheritance
-* - Initialization order with super
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - super keyword for parent access
-* - super.__New() for parent constructor
-* - super.MethodName() for parent methods
-* - Proper initialization chains
-* - Method extension vs replacement
-* - Constructor chaining
-*
-* LEARNING POINTS:
-* 1. super refers to the parent class
-* 2. super.__New() calls parent constructor
-* 3. Always call super.__New() if parent has constructor
-* 4. super allows extending parent functionality
-* 5. super preserves parent behavior in overrides
-* 6. Initialization flows from parent to child
-* 7. super works through multiple inheritance levels
-*/
+ * BuiltIn_OOP_Inherit_02_Super.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the 'super' keyword in AutoHotkey v2 for accessing parent class
+ * members from child classes. Shows how to call parent constructors, override
+ * methods while preserving parent functionality, and properly initialize inheritance chains.
+ * 
+ * FEATURES:
+ * - super keyword syntax
+ * - Calling parent constructors with super.__New()
+ * - Calling parent methods with super.Method()
+ * - Extending parent functionality
+ * - Preserving parent behavior in overrides
+ * - Super in multi-level inheritance
+ * - Initialization order with super
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - super keyword for parent access
+ * - super.__New() for parent constructor
+ * - super.MethodName() for parent methods
+ * - Proper initialization chains
+ * - Method extension vs replacement
+ * - Constructor chaining
+ * 
+ * LEARNING POINTS:
+ * 1. super refers to the parent class
+ * 2. super.__New() calls parent constructor
+ * 3. Always call super.__New() if parent has constructor
+ * 4. super allows extending parent functionality
+ * 5. super preserves parent behavior in overrides
+ * 6. Initialization flows from parent to child
+ * 7. super works through multiple inheritance levels
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic super.__New() Usage
@@ -89,9 +89,9 @@ class Student extends Person {
 
     GetInfo() {
         return this.GetFullName()
-        . "`nStudent ID: " this.StudentID
-        . "`nMajor: " this.Major
-        . "`nGPA: " this.GPA
+            . "`nStudent ID: " this.StudentID
+            . "`nMajor: " this.Major
+            . "`nGPA: " this.GPA
     }
 }
 
@@ -154,8 +154,8 @@ class FileLogger extends Logger {
         ; Get parent stats and extend them
         parentStats := super.GetStats()
         return parentStats
-        . "`nFile: " this.FilePath
-        . "`nWrites: " this.WriteCount
+            . "`nFile: " this.FilePath
+            . "`nWrites: " this.WriteCount
     }
 }
 
@@ -183,8 +183,8 @@ class DatabaseLogger extends Logger {
     GetStats() {
         parentStats := super.GetStats()
         return parentStats
-        . "`nTable: " this.TableName
-        . "`nDB Writes: " this.DBWrites
+            . "`nTable: " this.TableName
+            . "`nDB Writes: " this.DBWrites
     }
 }
 
@@ -263,8 +263,8 @@ class ElectricCar extends Car {
 
     GetDescription() {
         return super.GetDescription()
-        . "`nElectric: " this.BatteryCapacity "kWh battery"
-        . "`nRange: " this.Range " miles"
+            . "`nElectric: " this.BatteryCapacity "kWh battery"
+            . "`nRange: " this.Range " miles"
     }
 }
 
@@ -293,7 +293,7 @@ class BankAccount {
 
     Deposit(amount) {
         if (amount <= 0)
-        throw ValueError("Deposit amount must be positive")
+            throw ValueError("Deposit amount must be positive")
 
         this.Balance += amount
         this.TransactionHistory.Push({
@@ -308,10 +308,10 @@ class BankAccount {
 
     Withdraw(amount) {
         if (amount <= 0)
-        throw ValueError("Withdrawal amount must be positive")
+            throw ValueError("Withdrawal amount must be positive")
 
         if (amount > this.Balance)
-        throw ValueError("Insufficient funds")
+            throw ValueError("Insufficient funds")
 
         this.Balance -= amount
         this.TransactionHistory.Push({
@@ -339,7 +339,7 @@ class SavingsAccount extends BankAccount {
     Withdraw(amount) {
         ; Additional validation
         if ((this.Balance - amount) < this.MinimumBalance)
-        throw ValueError("Withdrawal would go below minimum balance of $" this.MinimumBalance)
+            throw ValueError("Withdrawal would go below minimum balance of $" this.MinimumBalance)
 
         ; Call parent Withdraw to preserve its logic
         return super.Withdraw(amount)
@@ -513,7 +513,7 @@ class CelsiusTemperature extends Temperature {
         set {
             ; Add validation before calling parent setter
             if (value < -273.15)
-            throw ValueError("Temperature below absolute zero")
+                throw ValueError("Temperature below absolute zero")
 
             ; Call parent setter
             super.Value := value
@@ -521,7 +521,7 @@ class CelsiusTemperature extends Temperature {
     }
 
     ToFahrenheit() {
-        return (this.Value * 9/5) + 32
+        return (this.Value * 9 / 5) + 32
     }
 
     ToString() {
@@ -565,7 +565,7 @@ class DataValidator {
 
         for rule in this.Rules {
             if (!rule.Check(value))
-            errors.Push(rule.Message)
+                errors.Push(rule.Message)
         }
 
         return errors
@@ -610,7 +610,7 @@ class StringValidator extends DataValidator {
 
         ; Add string-specific validation
         if (!IsString(value))
-        errors.InsertAt(1, "Value must be a string")
+            errors.InsertAt(1, "Value must be a string")
 
         return errors
     }
@@ -641,7 +641,7 @@ class EmailValidator extends StringValidator {
         if (errors.Length = 0) {
             parts := StrSplit(value, "@")
             if (parts.Length = 2 && StrLen(parts[1]) > 64)
-            errors.Push("Local part too long (max 64 characters)")
+                errors.Push("Local part too long (max 64 characters)")
         }
 
         return errors
@@ -653,10 +653,10 @@ emailValidator := EmailValidator()
 
 ; Test validation
 testEmails := [
-"valid@example.com",
-"invalid",
-"ab@c.d",
-"toolonglocalpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaart@example.com"
+    "valid@example.com",
+    "invalid",
+    "ab@c.d",
+    "toolonglocalpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaart@example.com"
 ]
 
 for email in testEmails {
@@ -667,17 +667,17 @@ for email in testEmails {
     } else {
         msg := email " is invalid:`n"
         for error in errors
-        msg .= "- " error "`n"
+            msg .= "- " error "`n"
         MsgBox(msg)
     }
 }
 
 MsgBox("=== OOP Super Keyword Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic super.__New() usage`n"
-. "- Extending parent methods with super`n"
-. "- Multi-level super calls`n"
-. "- Preserving parent logic`n"
-. "- Proper initialization order`n"
-. "- Super in property methods`n"
-. "- Advanced super patterns")
+    . "This file demonstrated:`n"
+    . "- Basic super.__New() usage`n"
+    . "- Extending parent methods with super`n"
+    . "- Multi-level super calls`n"
+    . "- Preserving parent logic`n"
+    . "- Proper initialization order`n"
+    . "- Super in property methods`n"
+    . "- Advanced super patterns")

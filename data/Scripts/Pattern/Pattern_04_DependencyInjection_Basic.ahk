@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* Dependency Injection Pattern - Basic Concepts
-*
-* Demonstrates three types of dependency injection:
-* 1. Constructor Injection (most common)
-* 2. Method Injection
-* 3. Property Injection
-*
-* Source: AHK_Notes/Patterns/dependency-injection.md
-*/
+ * Dependency Injection Pattern - Basic Concepts
+ * 
+ * Demonstrates three types of dependency injection:
+ * 1. Constructor Injection (most common)
+ * 2. Method Injection
+ * 3. Property Injection
+ * 
+ * Source: AHK_Notes/Patterns/dependency-injection.md
+ */
 
 ; Example 1: Constructor Injection (Recommended)
 logger1 := ConsoleLogger()
@@ -28,8 +28,8 @@ service3.Logger := ConsoleLogger()
 service3.CreateUser("bob.smith")
 
 /**
-* Logger Interface (Base Class)
-*/
+ * Logger Interface (Base Class)
+ */
 class LoggerBase {
     Log(message) {
         throw Error("Method not implemented")
@@ -37,8 +37,8 @@ class LoggerBase {
 }
 
 /**
-* Console Logger Implementation
-*/
+ * Console Logger Implementation
+ */
 class ConsoleLogger extends LoggerBase {
     Log(message) {
         ; Log to stdout (console)
@@ -48,8 +48,8 @@ class ConsoleLogger extends LoggerBase {
 }
 
 /**
-* File Logger Implementation
-*/
+ * File Logger Implementation
+ */
 class FileLogger extends LoggerBase {
     FilePath := ""
 
@@ -65,9 +65,9 @@ class FileLogger extends LoggerBase {
 }
 
 /**
-* Example 1: Constructor Injection
-* Dependencies passed via constructor (best practice)
-*/
+ * Example 1: Constructor Injection
+ * Dependencies passed via constructor (best practice)
+ */
 class UserService {
     Logger := ""
 
@@ -82,9 +82,9 @@ class UserService {
 }
 
 /**
-* Example 2: Method Injection
-* Dependencies passed as method parameters
-*/
+ * Example 2: Method Injection
+ * Dependencies passed as method parameters
+ */
 class UserServiceMethodInjection {
     CreateUser(username, logger) {
         logger.Log("User created: " username)
@@ -93,15 +93,15 @@ class UserServiceMethodInjection {
 }
 
 /**
-* Example 3: Property Injection
-* Dependencies set as properties after construction
-*/
+ * Example 3: Property Injection
+ * Dependencies set as properties after construction
+ */
 class UserServicePropertyInjection {
     Logger := ""
 
     CreateUser(username) {
         if (!this.Logger)
-        throw Error("Logger not set!")
+            throw Error("Logger not set!")
 
         this.Logger.Log("User created: " username)
         return true
@@ -138,3 +138,4 @@ class UserServicePropertyInjection {
 *    (Console, File, Network, Database, etc.)
 *    without knowing the implementation details
 */
+

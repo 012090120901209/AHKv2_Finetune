@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Delete_03_Cache.ahk
-*
-* @description Map.Delete() for cache invalidation and management
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Using Map.Delete() for cache invalidation patterns, TTL management,
-* selective cache clearing, and cache consistency maintenance.
-*/
+ * BuiltIn_Map_Delete_03_Cache.ahk
+ * 
+ * @description Map.Delete() for cache invalidation and management
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Using Map.Delete() for cache invalidation patterns, TTL management,
+ * selective cache clearing, and cache consistency maintenance.
+ */
 
 ;=============================================================================
 ; Example 1: TTL Cache with Auto-Expiration
@@ -23,14 +23,14 @@ Example1_TTLCache() {
 
     Set(key, value, ttl := 5000) {
         cache.Set(key, Map(
-        "value", value,
-        "expires", A_TickCount + ttl
+            "value", value,
+            "expires", A_TickCount + ttl
         ))
     }
 
     Get(key) {
         if (!cache.Has(key))
-        return ""
+            return ""
 
         item := cache[key]
         if (A_TickCount > item["expires"]) {
@@ -45,7 +45,7 @@ Example1_TTLCache() {
         toDelete := []
         for key, item in cache {
             if (A_TickCount > item["expires"])
-            toDelete.Push(key)
+                toDelete.Push(key)
         }
 
         for key in toDelete {
@@ -87,21 +87,21 @@ Example2_TagBasedInvalidation() {
 
         for tag in tagList {
             if (!tags.Has(tag))
-            tags.Set(tag, [])
+                tags.Set(tag, [])
             tags[tag].Push(key)
         }
     }
 
     InvalidateTag(tag) {
         if (!tags.Has(tag))
-        return 0
+            return 0
 
         keys := tags[tag]
         count := 0
 
         for key in keys {
             if (cache.Delete(key) != "")
-            count++
+                count++
         }
 
         tags.Delete(tag)
@@ -134,11 +134,11 @@ Example2_TagBasedInvalidation() {
 
 Example3_PatternInvalidation() {
     cache := Map(
-    "user:1:profile", "Profile 1",
-    "user:1:settings", "Settings 1",
-    "user:2:profile", "Profile 2",
-    "user:2:settings", "Settings 2",
-    "product:100", "Product 100"
+        "user:1:profile", "Profile 1",
+        "user:1:settings", "Settings 1",
+        "user:2:profile", "Profile 2",
+        "user:2:settings", "Settings 2",
+        "product:100", "Product 100"
     )
 
     InvalidatePattern(pattern) {
@@ -146,7 +146,7 @@ Example3_PatternInvalidation() {
 
         for key in cache {
             if (InStr(key, pattern))
-            toDelete.Push(key)
+                toDelete.Push(key)
         }
 
         for key in toDelete {
@@ -184,7 +184,7 @@ Example4_DependencyInvalidation() {
 
         for dep in deps {
             if (!dependencies.Has(dep))
-            dependencies.Set(dep, [])
+                dependencies.Set(dep, [])
             dependencies[dep].Push(key)
         }
     }
@@ -197,7 +197,7 @@ Example4_DependencyInvalidation() {
             current := toDelete.RemoveAt(1)
 
             if (cache.Delete(current) != "")
-            deleted.Push(current)
+                deleted.Push(current)
 
             ; Add dependent keys
             if (dependencies.Has(current)) {
@@ -237,10 +237,10 @@ Example4_DependencyInvalidation() {
 
 Example5_ConditionalInvalidation() {
     cache := Map(
-    "item1", Map("value", "Data 1", "hits", 100, "size", 1024),
-    "item2", Map("value", "Data 2", "hits", 5, "size", 2048),
-    "item3", Map("value", "Data 3", "hits", 50, "size", 512),
-    "item4", Map("value", "Data 4", "hits", 2, "size", 4096)
+        "item1", Map("value", "Data 1", "hits", 100, "size", 1024),
+        "item2", Map("value", "Data 2", "hits", 5, "size", 2048),
+        "item3", Map("value", "Data 3", "hits", 50, "size", 512),
+        "item4", Map("value", "Data 4", "hits", 2, "size", 4096)
     )
 
     InvalidateWhere(condition) {
@@ -248,7 +248,7 @@ Example5_ConditionalInvalidation() {
 
         for key, item in cache {
             if (condition.Call(item))
-            toDelete.Push(key)
+                toDelete.Push(key)
         }
 
         for key in toDelete {
@@ -288,11 +288,11 @@ Example6_WriteThroughInvalidation() {
     Read(key) {
         ; Check cache
         if (cache.Has(key))
-        return cache[key]
+            return cache[key]
 
         ; Read from storage
         if (!storage.Has(key))
-        return ""
+            return ""
 
         value := storage[key]
         cache.Set(key, value)
@@ -334,7 +334,7 @@ Example7_CacheWarming() {
     WarmCache(keys) {
         for key in keys {
             if (storage.Has(key))
-            cache.Set(key, storage[key])
+                cache.Set(key, storage[key])
         }
     }
 
@@ -384,28 +384,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Cache Invalidation with Map.Delete()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: TTL Cache")
-    .OnEvent("Click", (*) => Example1_TTLCache())
+        .OnEvent("Click", (*) => Example1_TTLCache())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Tag-Based")
-    .OnEvent("Click", (*) => Example2_TagBasedInvalidation())
+        .OnEvent("Click", (*) => Example2_TagBasedInvalidation())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Pattern-Based")
-    .OnEvent("Click", (*) => Example3_PatternInvalidation())
+        .OnEvent("Click", (*) => Example3_PatternInvalidation())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Dependency")
-    .OnEvent("Click", (*) => Example4_DependencyInvalidation())
+        .OnEvent("Click", (*) => Example4_DependencyInvalidation())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Conditional")
-    .OnEvent("Click", (*) => Example5_ConditionalInvalidation())
+        .OnEvent("Click", (*) => Example5_ConditionalInvalidation())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Write-Through")
-    .OnEvent("Click", (*) => Example6_WriteThroughInvalidation())
+        .OnEvent("Click", (*) => Example6_WriteThroughInvalidation())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Cache Warming")
-    .OnEvent("Click", (*) => Example7_CacheWarming())
+        .OnEvent("Click", (*) => Example7_CacheWarming())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_TTLCache()

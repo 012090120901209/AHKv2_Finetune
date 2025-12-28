@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinMove() - Move and resize window
-*
-* Changes window position and size.
-*/
+ * WinMove() - Move and resize window
+ * 
+ * Changes window position and size.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

@@ -2,12 +2,12 @@
 #SingleInstance Force
 
 /**
-* Advanced Hotstring Techniques
-* Complex replacements, calculations, and interactive hotstrings
-*/
+ * Advanced Hotstring Techniques
+ * Complex replacements, calculations, and interactive hotstrings
+ */
 
 ; Math calculations
-::calc::{
+::calc:: {
     result := InputBox("Enter calculation (e.g., 5*8):", "Calculator").Value
     try {
         ; Evaluate the expression
@@ -25,24 +25,24 @@ Eval(expr) {
 }
 
 ; Interactive date picker
-::pickdate::{
+::pickdate:: {
     dateStr := InputBox("Enter date (YYYY-MM-DD) or leave blank for today:", "Date").Value
     if (dateStr = "")
-    dateStr := FormatTime(, "yyyy-MM-dd")
+        dateStr := FormatTime(, "yyyy-MM-dd")
     Send(dateStr)
 }
 
 ; Multi-choice expansion
-::greet::{
+::greet:: {
     choice := MsgBox("Choose greeting:`n`nYes = Formal`nNo = Casual", , "YesNo")
     if (choice = "Yes")
-    Send("Dear Sir/Madam,")
+        Send("Dear Sir/Madam,")
     else
-    Send("Hey there!")
+        Send("Hey there!")
 }
 
 ; Smart quotes based on context
-::quote::{
+::quote:: {
     clipSaved := A_Clipboard
     A_Clipboard := ""
     Send("^c")
@@ -56,7 +56,7 @@ Eval(expr) {
 }
 
 ; Table generator
-::table3x3::{
+::table3x3:: {
     table := ""
     Loop 3 {
         row := A_Index
@@ -70,7 +70,7 @@ Eval(expr) {
 }
 
 ; UUID generator
-::uuid::{
+::uuid:: {
     uuid := CreateGUID()
     Send(uuid)
 }

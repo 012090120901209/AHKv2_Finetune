@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinSetAlwaysOnTop_02.ahk
-* @description Advanced always-on-top features, smart pinning, and context-aware pin management using WinSetAlwaysOnTop in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Smart pin based on window state
-* Example 2: Conditional auto-pinning
-* Example 3: Pin profiles
-* Example 4: Multi-monitor pin management
-* Example 5: Pin with visual feedback
-* Example 6: Pin scheduler
-*
-* @section FEATURES
-* - Smart state-based pinning
-* - Conditional pinning
-* - Profile management
-* - Multi-monitor support
-* - Visual feedback
-* - Scheduling
-*/
+ * @file BuiltIn_WinSetAlwaysOnTop_02.ahk
+ * @description Advanced always-on-top features, smart pinning, and context-aware pin management using WinSetAlwaysOnTop in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Smart pin based on window state
+ * Example 2: Conditional auto-pinning
+ * Example 3: Pin profiles
+ * Example 4: Multi-monitor pin management
+ * Example 5: Pin with visual feedback
+ * Example 6: Pin scheduler
+ * 
+ * @section FEATURES
+ * - Smart state-based pinning
+ * - Conditional pinning
+ * - Profile management
+ * - Multi-monitor support
+ * - Visual feedback
+ * - Scheduling
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -105,13 +105,13 @@ class ConditionalPin {
 
 ; Example: Pin Calculator when it appears
 ConditionalPin.AddCondition(
-() => WinExist("Calculator"),
-() => {
-    if !(WinGetExStyle("Calculator") & 0x8) {
+    () => WinExist("Calculator"),
+    () => {
+        if !(WinGetExStyle("Calculator") & 0x8) {
         WinSetAlwaysOnTop(1, "Calculator")
         TrayTip("Calculator auto-pinned", "Conditional Pin", "Icon!")
     }
-}
+    }
 )
 
 ; ========================================
@@ -130,66 +130,66 @@ class PinProfiles {
             try {
                 exStyle := WinGetExStyle("ahk_id " winId)
                 if exStyle & 0x8 {  ; Is pinned
-                pinnedWindows.Push({
-                    Title: WinGetTitle("ahk_id " winId),
-                    Class: WinGetClass("ahk_id " winId),
-                    Process: WinGetProcessName("ahk_id " winId)
-                })
-            }
-        }
-    }
-
-    this.profiles[name] := pinnedWindows
-    TrayTip("Profile created: " name, pinnedWindows.Length " windows", "Icon!")
-}
-
-static LoadProfile(name) {
-    if !this.profiles.Has(name) {
-        MsgBox("Profile not found: " name, "Error", "IconX")
-        return
-    }
-
-    ; First, unpin all
-    windowList := WinGetList()
-    for winId in windowList {
-        try {
-            WinSetAlwaysOnTop(0, "ahk_id " winId)
-        }
-    }
-
-    ; Then apply profile
-    profile := this.profiles[name]
-    pinned := 0
-
-    for winData in profile {
-        windowList := WinGetList()
-
-        for winId in windowList {
-            try {
-                if WinGetClass("ahk_id " winId) = winData.Class && WinGetProcessName("ahk_id " winId) = winData.Process {
-                    WinSetAlwaysOnTop(1, "ahk_id " winId)
-                    pinned++
-                    break
+                    pinnedWindows.Push({
+                        Title: WinGetTitle("ahk_id " winId),
+                        Class: WinGetClass("ahk_id " winId),
+                        Process: WinGetProcessName("ahk_id " winId)
+                    })
                 }
             }
         }
+
+        this.profiles[name] := pinnedWindows
+        TrayTip("Profile created: " name, pinnedWindows.Length " windows", "Icon!")
     }
 
-    this.currentProfile := name
-    TrayTip("Profile loaded: " name, "Pinned " pinned " windows", "Icon!")
-}
+    static LoadProfile(name) {
+        if !this.profiles.Has(name) {
+            MsgBox("Profile not found: " name, "Error", "IconX")
+            return
+        }
+
+        ; First, unpin all
+        windowList := WinGetList()
+        for winId in windowList {
+            try {
+                WinSetAlwaysOnTop(0, "ahk_id " winId)
+            }
+        }
+
+        ; Then apply profile
+        profile := this.profiles[name]
+        pinned := 0
+
+        for winData in profile {
+            windowList := WinGetList()
+
+            for winId in windowList {
+                try {
+                    if WinGetClass("ahk_id " winId) = winData.Class && WinGetProcessName("ahk_id " winId) = winData.Process {
+                        WinSetAlwaysOnTop(1, "ahk_id " winId)
+                        pinned++
+                        break
+                    }
+                }
+            }
+        }
+
+        this.currentProfile := name
+        TrayTip("Profile loaded: " name, "Pinned " pinned " windows", "Icon!")
+    }
 }
 
 ^+3:: {
     name := InputBox("Enter profile name:", "Create Profile").Value
     if name != ""
-    PinProfiles.CreateProfile(name)
+        PinProfiles.CreateProfile(name)
 }
 
 ^+4:: {
     name := InputBox("Enter profile name to load:", "Load Profile").Value
     if name != ""
-    PinProfiles.LoadProfile(name)
+        PinProfiles.LoadProfile(name)
 }
 
 ; ========================================

@@ -9,15 +9,15 @@ if (MyVar = "") {
     ErrorLevel := 0
 }
 if not ErrorLevel
-MsgBox(MyVar)
+    MsgBox(MyVar)
 MsgBox(ErrorLevel)
 
 oMyVar := FileSelect("M")
 MyVar := ""
 for FileName in oMyVar
- {
+{
     MyVar .= A_Index = 1 ? RegExReplace(FileName, "(.+)\\(.*)", "$1`r`n$2`r`n") : RegExReplace(FileName, ".+\\(.*)",
-    "$1`r`n")
+        "$1`r`n")
 }
 if (MyVar = "") {
     ErrorLevel := 1
@@ -25,5 +25,5 @@ if (MyVar = "") {
     ErrorLevel := 0
 }
 if not ErrorLevel
-MsgBox(MyVar)
+    MsgBox(MyVar)
 MsgBox(ErrorLevel)

@@ -2,32 +2,32 @@
 #Include JSON.ahk
 
 /**
-* ============================================================================
-* AutoHotkey v2 SendText Function - Literal Text
-* ============================================================================
-*
-* SendText sends keystrokes literally without interpreting special characters
-* or modifiers. Perfect for sending text that contains special characters,
-* code snippets, passwords, or any content that should be sent verbatim.
-*
-* Syntax: SendText(Keys)
-*
-* @module BuiltIn_SendText_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 SendText Function - Literal Text
+ * ============================================================================
+ * 
+ * SendText sends keystrokes literally without interpreting special characters
+ * or modifiers. Perfect for sending text that contains special characters,
+ * code snippets, passwords, or any content that should be sent verbatim.
+ * 
+ * Syntax: SendText(Keys)
+ * 
+ * @module BuiltIn_SendText_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Literal Text
 ; ============================================================================
 
 /**
-* Sends text without special character interpretation.
-* All characters sent exactly as written.
-*
-* @example
-* ; Press F1 to send literal text
-*/
+ * Sends text without special character interpretation.
+ * All characters sent exactly as written.
+ * 
+ * @example
+ * ; Press F1 to send literal text
+ */
 F1:: {
     ToolTip("Sending literal text in 2 seconds...")
     Sleep(2000)
@@ -41,9 +41,9 @@ F1:: {
 }
 
 /**
-* Sends text with special characters
-* Characters like ^+!# sent as-is
-*/
+ * Sends text with special characters
+ * Characters like ^+!# sent as-is
+ */
 F2:: {
     ToolTip("Sending text with special chars in 2 seconds...")
     Sleep(2000)
@@ -58,9 +58,9 @@ F2:: {
 }
 
 /**
-* Sends braces and curly brackets
-* No need to escape {} characters
-*/
+ * Sends braces and curly brackets
+ * No need to escape {} characters
+ */
 F3:: {
     ToolTip("Sending braces in 2 seconds...")
     Sleep(2000)
@@ -80,12 +80,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends programming code literally.
-* Perfect for code snippets with special characters.
-*
-* @description
-* Demonstrates code template insertion
-*/
+ * Sends programming code literally.
+ * Perfect for code snippets with special characters.
+ * 
+ * @description
+ * Demonstrates code template insertion
+ */
 ^F1:: {
     ToolTip("Sending code snippet in 2 seconds...")
     Sleep(2000)
@@ -110,9 +110,9 @@ F3:: {
 }
 
 /**
-* Sends HTML code
-* Preserves all HTML special characters
-*/
+ * Sends HTML code
+ * Preserves all HTML special characters
+ */
 ^F2:: {
     ToolTip("Sending HTML code in 2 seconds...")
     Sleep(2000)
@@ -135,9 +135,9 @@ F3:: {
 }
 
 /**
-* Sends CSS code
-* Maintains all CSS syntax
-*/
+ * Sends CSS code
+ * Maintains all CSS syntax
+ */
 ^F3:: {
     ToolTip("Sending CSS code in 2 seconds...")
     Sleep(2000)
@@ -169,22 +169,22 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends mathematical expressions.
-* All operators sent literally.
-*
-* @description
-* Demonstrates math formula insertion
-*/
+ * Sends mathematical expressions.
+ * All operators sent literally.
+ * 
+ * @description
+ * Demonstrates math formula insertion
+ */
 ^F4:: {
     ToolTip("Sending math expressions in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     mathExpressions := [
-    "x = (-b ± √(b²-4ac)) / 2a",
-    "E = mc²",
-    "∫(x² + 2x + 1)dx = x³/3 + x² + x + C",
-    "a² + b² = c²"
+        "x = (-b ± √(b²-4ac)) / 2a",
+        "E = mc²",
+        "∫(x² + 2x + 1)dx = x³/3 + x² + x + C",
+        "a² + b² = c²"
     ]
 
     for index, expr in mathExpressions {
@@ -199,21 +199,21 @@ F3:: {
 }
 
 /**
-* Sends currency and financial data
-* Preserves all currency symbols
-*/
+ * Sends currency and financial data
+ * Preserves all currency symbols
+ */
 ^F5:: {
     ToolTip("Sending financial data in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     financialData := [
-    "Price: $1,234.56",
-    "Tax: $123.45 (10%)",
-    "Total: $1,358.01",
-    "Euro: €1,050.00",
-    "Pounds: £890.25",
-    "Yen: ¥125,000"
+        "Price: $1,234.56",
+        "Tax: $123.45 (10%)",
+        "Total: $1,358.01",
+        "Euro: €1,050.00",
+        "Pounds: £890.25",
+        "Yen: ¥125,000"
     ]
 
     for index, data in financialData {
@@ -232,22 +232,22 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends URLs literally.
-* Preserves all URL special characters.
-*
-* @description
-* URL insertion without corruption
-*/
+ * Sends URLs literally.
+ * Preserves all URL special characters.
+ * 
+ * @description
+ * URL insertion without corruption
+ */
 ^F6:: {
     ToolTip("Sending URLs in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     urls := [
-    "https://example.com/path?param1=value&param2=value#section",
-    "https://api.example.com/v2/users/{id}/posts?sort=desc&limit=10",
-    "mailto:user@example.com?subject=Hello&body=Test%20Message",
-    "ftp://files.example.com:21/downloads/file.zip"
+        "https://example.com/path?param1=value&param2=value#section",
+        "https://api.example.com/v2/users/{id}/posts?sort=desc&limit=10",
+        "mailto:user@example.com?subject=Hello&body=Test%20Message",
+        "ftp://files.example.com:21/downloads/file.zip"
     ]
 
     for index, url in urls {
@@ -262,19 +262,19 @@ F3:: {
 }
 
 /**
-* Sends email addresses and formats
-* Maintains all email syntax
-*/
+ * Sends email addresses and formats
+ * Maintains all email syntax
+ */
 ^F7:: {
     ToolTip("Sending email addresses in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     emails := [
-    "john.doe+tag@example.com",
-    "user_name@sub-domain.example.co.uk",
-    "contact@example.com (John Doe)",
-    '"Display Name" <email@example.com>'
+        "john.doe+tag@example.com",
+        "user_name@sub-domain.example.co.uk",
+        "contact@example.com (John Doe)",
+        '"Display Name" <email@example.com>'
     ]
 
     for index, email in emails {
@@ -293,12 +293,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends passwords safely.
-* No character interpretation or hotkey triggering.
-*
-* @description
-* Secure password entry
-*/
+ * Sends passwords safely.
+ * No character interpretation or hotkey triggering.
+ * 
+ * @description
+ * Secure password entry
+ */
 ^F8:: {
     ToolTip("Entering password in 2 seconds...")
     Sleep(2000)
@@ -315,9 +315,9 @@ F3:: {
 }
 
 /**
-* Sends API keys and tokens
-* Maintains exact format
-*/
+ * Sends API keys and tokens
+ * Maintains exact format
+ */
 ^F9:: {
     ToolTip("Entering API key in 2 seconds...")
     Sleep(2000)
@@ -338,12 +338,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends JSON data literally.
-* Preserves all JSON syntax.
-*
-* @description
-* JSON data insertion
-*/
+ * Sends JSON data literally.
+ * Preserves all JSON syntax.
+ * 
+ * @description
+ * JSON data insertion
+ */
 ^F10:: {
     ToolTip("Sending JSON in 2 seconds...")
     Sleep(2000)
@@ -372,9 +372,9 @@ F3:: {
 }
 
 /**
-* Sends XML data
-* Maintains XML structure
-*/
+ * Sends XML data
+ * Maintains XML structure
+ */
 ^F11:: {
     ToolTip("Sending XML in 2 seconds...")
     Sleep(2000)
@@ -403,9 +403,9 @@ F3:: {
 }
 
 /**
-* Sends CSV data
-* Preserves comma and quote formatting
-*/
+ * Sends CSV data
+ * Preserves comma and quote formatting
+ */
 ^F12:: {
     ToolTip("Sending CSV in 2 seconds...")
     Sleep(2000)
@@ -431,12 +431,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends large text blocks.
-* Maintains all formatting and characters.
-*
-* @description
-* Bulk text insertion
-*/
+ * Sends large text blocks.
+ * Maintains all formatting and characters.
+ * 
+ * @description
+ * Bulk text insertion
+ */
 !F1:: {
     ToolTip("Sending text block in 2 seconds...")
     Sleep(2000)
@@ -468,8 +468,8 @@ F3:: {
 ; ============================================================================
 
 /**
-* Sends text from clipboard literally
-*/
+ * Sends text from clipboard literally
+ */
 SendClipboardAsText() {
     if (A_Clipboard != "") {
         SendText(A_Clipboard)
@@ -479,24 +479,24 @@ SendClipboardAsText() {
 }
 
 /**
-* Sends multi-line text with line breaks
-*
-* @param {Array} lines - Array of text lines
-*/
+ * Sends multi-line text with line breaks
+ * 
+ * @param {Array} lines - Array of text lines
+ */
 SendTextLines(lines) {
     for index, line in lines {
         SendText(line)
         if (index < lines.Length)
-        SendText("`n")
+            SendText("`n")
     }
 }
 
 /**
-* Safely sends any text content
-*
-* @param {String} text - Text to send
-* @returns {Boolean} Success status
-*/
+ * Safely sends any text content
+ * 
+ * @param {String} text - Text to send
+ * @returns {Boolean} Success status
+ */
 SafeSendText(text) {
     try {
         SendText(text)
@@ -529,9 +529,9 @@ SafeSendText(text) {
     ToolTip()
 
     lines := [
-    "Line 1: Special chars ^+!",
-    "Line 2: Braces {}[]",
-    "Line 3: Symbols @#$%"
+        "Line 1: Special chars ^+!",
+        "Line 2: Braces {}[]",
+        "Line 3: Symbols @#$%"
     ]
 
     SendTextLines(lines)
@@ -545,7 +545,7 @@ SafeSendText(text) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

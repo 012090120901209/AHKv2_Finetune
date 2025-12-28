@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Module Tier 1 Example 04: DataStructures Consumer
-*
-* This example demonstrates:
-* - Importing and using module classes
-* - Creating instances from exported classes
-* - Using class methods
-* - Error handling with module classes
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Tier1_03_DataStructures_Module.ahk
-*/
+ * Module Tier 1 Example 04: DataStructures Consumer
+ * 
+ * This example demonstrates:
+ * - Importing and using module classes
+ * - Creating instances from exported classes
+ * - Using class methods
+ * - Error handling with module classes
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Tier1_03_DataStructures_Module.ahk
+ */
 
-#SingleInstance Force
 
 ; Import DataStructures module with alias
 Import DataStructures as DS
@@ -31,8 +31,8 @@ stack.Push("Second")
 stack.Push("Third")
 
 MsgBox("Stack size: " stack.Size()
-. "`nPeek (top): " stack.Peek(),
-"Stack - After Pushing", "Icon!")
+    . "`nPeek (top): " stack.Peek(),
+    "Stack - After Pushing", "Icon!")
 
 ; Pop items (LIFO - Last In, First Out)
 result := "Popping items:`n"
@@ -55,8 +55,8 @@ queue.Enqueue("Second")
 queue.Enqueue("Third")
 
 MsgBox("Queue size: " queue.Size()
-. "`nPeek (front): " queue.Peek(),
-"Queue - After Enqueuing", "Icon!")
+    . "`nPeek (front): " queue.Peek(),
+    "Queue - After Enqueuing", "Icon!")
 
 ; Dequeue items (FIFO - First In, First Out)
 result := "Dequeuing items:`n"
@@ -79,21 +79,21 @@ cache.Set("user2", "Bob")
 cache.Set("user3", "Charlie")
 
 MsgBox("Cache size: " cache.Size()
-. "`nuser1: " cache.Get("user1")
-. "`nuser2: " cache.Get("user2")
-. "`nuser3: " cache.Get("user3"),
-"Cache - Initial Data", "Icon!")
+    . "`nuser1: " cache.Get("user1")
+    . "`nuser2: " cache.Get("user2")
+    . "`nuser3: " cache.Get("user3"),
+    "Cache - Initial Data", "Icon!")
 
 ; Add 4th item (should evict oldest)
 cache.Set("user4", "David")
 
 MsgBox("After adding user4:`n"
-. "Cache size: " cache.Size()
-. "`nuser1: " (cache.Has("user1") ? cache.Get("user1") : "EVICTED")
-. "`nuser2: " cache.Get("user2")
-. "`nuser3: " cache.Get("user3")
-. "`nuser4: " cache.Get("user4"),
-"Cache - LRU Behavior", "Icon!")
+    . "Cache size: " cache.Size()
+    . "`nuser1: " (cache.Has("user1") ? cache.Get("user1") : "EVICTED")
+    . "`nuser2: " cache.Get("user2")
+    . "`nuser3: " cache.Get("user3")
+    . "`nuser4: " cache.Get("user4"),
+    "Cache - LRU Behavior", "Icon!")
 
 ; ============================================================
 ; Example 4: Counter
@@ -107,25 +107,25 @@ counter.Increment(5)
 counter.Increment(3)
 
 MsgBox("After increments:`n"
-. "Count: " counter.Value()
-. " (should be: 9)",
-"Counter - Increment", "Icon!")
+    . "Count: " counter.Value()
+    . " (should be: 9)",
+    "Counter - Increment", "Icon!")
 
 ; Decrement
 counter.Decrement(2)
 
 MsgBox("After decrement by 2:`n"
-. "Count: " counter.Value()
-. " (should be: 7)",
-"Counter - Decrement", "Icon!")
+    . "Count: " counter.Value()
+    . " (should be: 7)",
+    "Counter - Decrement", "Icon!")
 
 ; Reset
 counter.Reset()
 
 MsgBox("After reset:`n"
-. "Count: " counter.Value()
-. " (should be: 0)",
-"Counter - Reset", "Icon!")
+    . "Count: " counter.Value()
+    . " (should be: 0)",
+    "Counter - Reset", "Icon!")
 
 ; ============================================================
 ; Example 5: Error Handling
@@ -138,7 +138,7 @@ try {
     MsgBox("No error thrown?", "Error", "Icon!")
 } catch as err {
     MsgBox("Successfully caught error:`n" err.Message,
-    "Error Handling - Stack", "Icon!")
+        "Error Handling - Stack", "Icon!")
 }
 
 emptyQueue := DS.Queue()
@@ -148,7 +148,7 @@ try {
     MsgBox("No error thrown?", "Error", "Icon!")
 } catch as err {
     MsgBox("Successfully caught error:`n" err.Message,
-    "Error Handling - Queue", "Icon!")
+        "Error Handling - Queue", "Icon!")
 }
 
 ; ============================================================
@@ -177,7 +177,7 @@ class TextEditor {
 
     Undo() {
         if this.undoStack.IsEmpty()
-        return false
+            return false
         ; Save current to redo
         this.redoStack.Push(this.text)
         ; Restore previous
@@ -187,7 +187,7 @@ class TextEditor {
 
     Redo() {
         if this.redoStack.IsEmpty()
-        return false
+            return false
         ; Save current to undo
         this.undoStack.Push(this.text)
         ; Restore next

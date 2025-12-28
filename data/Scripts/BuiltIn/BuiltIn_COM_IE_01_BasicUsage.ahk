@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_IE_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic Internet Explorer automation using COM objects.
-*
-* FEATURES:
-* - Creating IE instances
-* - Navigation
-* - Page loading
-* - Document access
-* - Window control
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*/
+ * BuiltIn_COM_IE_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic Internet Explorer automation using COM objects.
+ * 
+ * FEATURES:
+ * - Creating IE instances
+ * - Navigation
+ * - Page loading
+ * - Document access
+ * - Window control
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ */
 
 Example1_OpenIE() {
     MsgBox("Example 1: Open IE")
@@ -25,7 +25,7 @@ Example1_OpenIE() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy or ie.ReadyState != 4
-        Sleep(100)
+            Sleep(100)
         MsgBox("IE opened!")
     }
     Catch as err {
@@ -40,7 +40,7 @@ Example2_NavigateURL() {
         ie.Visible := true
         ie.Navigate("https://www.example.com")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         MsgBox("Navigated!")
     }
     Catch as err {
@@ -55,7 +55,7 @@ Example3_GetTitle() {
         ie.Visible := true
         ie.Navigate("https://www.example.com")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         MsgBox("Title: " ie.Document.title)
     }
     Catch as err {
@@ -70,7 +70,7 @@ Example4_GetURL() {
         ie.Visible := true
         ie.Navigate("https://www.example.com")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         MsgBox("URL: " ie.LocationURL)
     }
     Catch as err {
@@ -153,6 +153,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

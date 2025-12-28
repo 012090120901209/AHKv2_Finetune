@@ -1,19 +1,19 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Pop() - LIFO (Last-In-First-Out) Processing
-* ============================================================================
-*
-* This file demonstrates LIFO processing patterns using Pop(). LIFO is
-* fundamental to stack-based operations where the most recently added
-* item is processed first.
-*
-* @description LIFO processing techniques using Array.Pop()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Pop() - LIFO (Last-In-First-Out) Processing
+ * ============================================================================
+ * 
+ * This file demonstrates LIFO processing patterns using Pop(). LIFO is
+ * fundamental to stack-based operations where the most recently added
+ * item is processed first.
+ * 
+ * @description LIFO processing techniques using Array.Pop()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Basic LIFO Task Processing
@@ -26,10 +26,10 @@ Example1_BasicLIFOTasks() {
     taskQueue := []
 
     ; Add tasks
-    taskQueue.Push({id: 1, name: "Initialize system", priority: "low"})
-    taskQueue.Push({id: 2, name: "Load configuration", priority: "medium"})
-    taskQueue.Push({id: 3, name: "Connect to database", priority: "high"})
-    taskQueue.Push({id: 4, name: "Start services", priority: "critical"})
+    taskQueue.Push({ id: 1, name: "Initialize system", priority: "low" })
+    taskQueue.Push({ id: 2, name: "Load configuration", priority: "medium" })
+    taskQueue.Push({ id: 3, name: "Connect to database", priority: "high" })
+    taskQueue.Push({ id: 4, name: "Start services", priority: "critical" })
 
     OutputDebug("Tasks added (LIFO order): " taskQueue.Length "`n`n")
 
@@ -136,19 +136,19 @@ Example4_StackTrace() {
     ; Simulate nested function calls
     OutputDebug("Building call stack:`n")
 
-    callStack.Push({function: "main", file: "app.ahk", line: 1})
+    callStack.Push({ function: "main", file: "app.ahk", line: 1 })
     OutputDebug("  CALL: main() at app.ahk:1`n")
 
-    callStack.Push({function: "processRequest", file: "app.ahk", line: 45})
+    callStack.Push({ function: "processRequest", file: "app.ahk", line: 45 })
     OutputDebug("  CALL: processRequest() at app.ahk:45`n")
 
-    callStack.Push({function: "validateData", file: "validator.ahk", line: 12})
+    callStack.Push({ function: "validateData", file: "validator.ahk", line: 12 })
     OutputDebug("  CALL: validateData() at validator.ahk:12`n")
 
-    callStack.Push({function: "checkSchema", file: "validator.ahk", line: 78})
+    callStack.Push({ function: "checkSchema", file: "validator.ahk", line: 78 })
     OutputDebug("  CALL: checkSchema() at validator.ahk:78`n")
 
-    callStack.Push({function: "parseJSON", file: "parser.ahk", line: 23})
+    callStack.Push({ function: "parseJSON", file: "parser.ahk", line: 23 })
     OutputDebug("  CALL: parseJSON() at parser.ahk:23`n")
 
     ; Simulate error and stack unwinding
@@ -157,7 +157,7 @@ Example4_StackTrace() {
     while (callStack.Length > 0) {
         frame := callStack.Pop()
         OutputDebug("  RETURN from: " frame.function "() at "
-        frame.file ":" frame.line "`n")
+            frame.file ":" frame.line "`n")
     }
 
     OutputDebug("`nStack unwound completely.`n`n")
@@ -294,10 +294,10 @@ Example7_RecursiveUnwinding() {
     OutputDebug("Navigating up (LIFO):`n")
 
     while (pathStack.Length > 1) {  ; Keep root
-    folder := pathStack.Pop()
-    OutputDebug("  Left: " folder "`n")
-    OutputDebug("  Now at: " Join(pathStack, "\") "`n`n")
-}
+        folder := pathStack.Pop()
+        OutputDebug("  Left: " folder "`n")
+        OutputDebug("  Now at: " Join(pathStack, "\") "`n`n")
+    }
 }
 
 ; ============================================================================
@@ -305,31 +305,31 @@ Example7_RecursiveUnwinding() {
 ; ============================================================================
 
 /**
-* Execute a command and add to history
-* @param {Array} history - Command history array
-* @param {String} command - Command to execute
-*/
+ * Execute a command and add to history
+ * @param {Array} history - Command history array
+ * @param {String} command - Command to execute
+ */
 ExecuteCommand(history, command) {
     history.Push(command)
     OutputDebug("Executed: " command "`n")
 }
 
 /**
-* Visit a new page
-* @param {Array} history - Page history
-* @param {String} from - Current page
-* @param {String} to - New page
-*/
+ * Visit a new page
+ * @param {Array} history - Page history
+ * @param {String} from - Current page
+ * @param {String} to - New page
+ */
 VisitPage(history, from, to) {
     history.Push(from)
     OutputDebug("  " from " -> " to "`n")
 }
 
 /**
-* Begin a transaction
-* @param {Array} transactions - Transaction stack
-* @param {String} sql - SQL statement
-*/
+ * Begin a transaction
+ * @param {Array} transactions - Transaction stack
+ * @param {String} sql - SQL statement
+ */
 BeginTransaction(transactions, sql) {
     transaction := {
         sql: sql,
@@ -342,11 +342,11 @@ BeginTransaction(transactions, sql) {
 }
 
 /**
-* Join array elements with delimiter
-* @param {Array} arr - Array to join
-* @param {String} delimiter - Delimiter
-* @returns {String} Joined string
-*/
+ * Join array elements with delimiter
+ * @param {Array} arr - Array to join
+ * @param {String} delimiter - Delimiter
+ * @returns {String} Joined string
+ */
 Join(arr, delimiter) {
     result := ""
 
@@ -361,8 +361,8 @@ Join(arr, delimiter) {
 }
 
 /**
-* Formats an array for display
-*/
+ * Formats an array for display
+ */
 FormatArray(arr) {
     if (arr.Length = 0) {
         return "[]"
@@ -404,7 +404,7 @@ Main() {
     OutputDebug(String.Repeat("=", 80) "`n")
 
     MsgBox("Array.Pop() LIFO processing examples completed!`nCheck DebugView for output.",
-    "Examples Complete", "Icon!")
+        "Examples Complete", "Icon!")
 }
 
 ; Run the examples

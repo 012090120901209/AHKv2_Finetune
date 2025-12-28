@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Word_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates basic Microsoft Word automation using COM objects in AutoHotkey v2.
-* Covers fundamental operations like opening Word, creating documents, saving, and closing.
-*
-* FEATURES:
-* - Creating Word COM objects
-* - Opening and creating documents
-* - Saving documents in various formats
-* - Closing Word properly
-* - Error handling for COM operations
-* - Visibility control and user interaction
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() function for creating COM instances
-* - COM method calls and property access
-* - Try/Catch error handling for COM operations
-* - Proper cleanup with object := ""
-*
-* LEARNING POINTS:
-* 1. How to create and connect to Word using ComObject()
-* 2. Making Word visible or hidden for background operations
-* 3. Creating new documents and opening existing ones
-* 4. Saving documents with different file formats
-* 5. Proper cleanup to prevent Word processes from staying in memory
-* 6. Error handling for COM operations that might fail
-* 7. Controlling Word's display alerts and screen updating
-*/
+ * BuiltIn_COM_Word_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates basic Microsoft Word automation using COM objects in AutoHotkey v2.
+ * Covers fundamental operations like opening Word, creating documents, saving, and closing.
+ * 
+ * FEATURES:
+ * - Creating Word COM objects
+ * - Opening and creating documents
+ * - Saving documents in various formats
+ * - Closing Word properly
+ * - Error handling for COM operations
+ * - Visibility control and user interaction
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() function for creating COM instances
+ * - COM method calls and property access
+ * - Try/Catch error handling for COM operations
+ * - Proper cleanup with object := ""
+ * 
+ * LEARNING POINTS:
+ * 1. How to create and connect to Word using ComObject()
+ * 2. Making Word visible or hidden for background operations
+ * 3. Creating new documents and opening existing ones
+ * 4. Saving documents with different file formats
+ * 5. Proper cleanup to prevent Word processes from staying in memory
+ * 6. Error handling for COM operations that might fail
+ * 7. Controlling Word's display alerts and screen updating
+ */
 
 ;===============================================================================
 ; Example 1: Creating Word Instance and Making it Visible
@@ -94,7 +94,7 @@ Example2_CreateDocument() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -142,7 +142,7 @@ Example3_OpenDocument() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -173,7 +173,7 @@ Example4_SaveFormats() {
         ; Create output directory
         outputDir := A_Temp "\AHK_Word_Formats"
         if !DirExist(outputDir)
-        DirCreate(outputDir)
+            DirCreate(outputDir)
 
         ; Save as DOCX (wdFormatXMLDocument = 16)
         docxFile := outputDir "\test_document.docx"
@@ -353,7 +353,7 @@ Example7_MultipleDocuments() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -390,14 +390,14 @@ ShowMenu() {
         case "7": Example7_MultipleDocuments()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     ; Ask if user wants to see another example
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ; Run the menu

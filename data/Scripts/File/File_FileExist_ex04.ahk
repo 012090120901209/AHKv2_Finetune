@@ -3,4 +3,4 @@
 
 Basic AHK v2 example demonstrating variable assignment and control flow
 if FileExist("C:\")
-MsgBox("the drive exists")
+    MsgBox("the drive exists")

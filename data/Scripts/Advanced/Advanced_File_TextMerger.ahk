@@ -14,10 +14,10 @@ global files := []
 AddFile(*) {
     selected := FileSelect("M3", , "Select Files", "Text Files (*.txt)")
     if (!selected)
-    return
+        return
     for file in selected {
         if (A_Index = 1)
-        continue
+            continue
         lines := StrSplit(FileRead(file), "`n").Length
         LV.Add(, file, lines)
         files.Push(file)
@@ -35,7 +35,7 @@ RemoveFile(*) {
 
 MergeFiles(*) {
     if (files.Length = 0)
-    return MsgBox("Add files first!", "Error")
+        return MsgBox("Add files first!", "Error")
 
     output := ""
     for file in files {

@@ -3,28 +3,28 @@
 #Include JSON.ahk
 
 /**
-* Fill() - Mutating array operation with by-reference parameter
-*
-* Demonstrates: &arr (by-reference), mutating arrays, Min/Max bounds
-* This is the proper way to modify an array in-place in AHK v2
-*/
+ * Fill() - Mutating array operation with by-reference parameter
+ * 
+ * Demonstrates: &arr (by-reference), mutating arrays, Min/Max bounds
+ * This is the proper way to modify an array in-place in AHK v2
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
 Fill(&arr, value, start := 1, end := "") {
     arr := ToArray(arr)
     if (end = "")
-    end := arr.Length
+        end := arr.Length
     ; Clamp to valid bounds
     start := Max(1, start)
     end := Min(end, arr.Length)
 
     Loop end - start + 1
-    arr[start + A_Index - 1] := value
+        arr[start + A_Index - 1] := value
     return arr
 }
 
@@ -42,5 +42,5 @@ Fill(&c, 0, 3)
 ; c is now [1, 2, 0, 0, 0]
 
 MsgBox("Fill all with 'a': " JSON.stringify(a) "`n"
-. "Fill positions 2-4 with '*': " JSON.stringify(b) "`n"
-. "Fill from position 3 with 0: " JSON.stringify(c))
+    . "Fill positions 2-4 with '*': " JSON.stringify(b) "`n"
+    . "Fill from position 3 with 0: " JSON.stringify(c))

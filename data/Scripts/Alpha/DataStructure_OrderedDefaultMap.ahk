@@ -48,7 +48,7 @@ class OrderedMap {
     Count() => this.keys.Length
 
     GetKeys() => this.keys.Clone()
-    
+
     GetValues() {
         result := []
         for key in this.keys
@@ -60,7 +60,7 @@ class OrderedMap {
         idx := 0
         keys := this.keys
         values := this.values
-        
+
         if varCount = 1
             return (&key) => ++idx <= keys.Length ? (key := keys[idx], true) : false
         else
@@ -120,7 +120,7 @@ class Counter {
         items := []
         for item, count in this.counts
             items.Push(Map("item", item, "count", count))
-        
+
         ; Sort descending
         Loop items.Length - 1 {
             i := A_Index
@@ -133,7 +133,7 @@ class Counter {
                 }
             }
         }
-        
+
         return n > 0 && n < items.Length ? items.RemoveAt(n + 1, items.Length - n) : items
     }
 

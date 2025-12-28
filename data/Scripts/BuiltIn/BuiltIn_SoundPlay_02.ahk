@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_SoundPlay_02.ahk
-*
-* DESCRIPTION:
-* Advanced usage of SoundPlay() for complex audio notification systems and automation
-*
-* FEATURES:
-* - Multi-sound sequences and patterns
-* - Audio feedback for hotkeys and automation
-* - Background music and ambient sounds
-* - Event-driven sound systems
-* - Custom sound libraries and managers
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced SoundPlay() patterns
-* - Class-based sound management
-* - Hotkey integration with audio
-* - Asynchronous sound playback
-* - Sound queuing systems
-*
-* LEARNING POINTS:
-* 1. Create complex sound sequences for rich feedback
-* 2. Integrate sounds with hotkeys and automation
-* 3. Build reusable sound management systems
-* 4. Queue sounds for organized playback
-* 5. Combine visual and audio feedback
-* 6. Create accessible user interfaces with sound
-*/
+ * BuiltIn_SoundPlay_02.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced usage of SoundPlay() for complex audio notification systems and automation
+ * 
+ * FEATURES:
+ * - Multi-sound sequences and patterns
+ * - Audio feedback for hotkeys and automation
+ * - Background music and ambient sounds
+ * - Event-driven sound systems
+ * - Custom sound libraries and managers
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced SoundPlay() patterns
+ * - Class-based sound management
+ * - Hotkey integration with audio
+ * - Asynchronous sound playback
+ * - Sound queuing systems
+ * 
+ * LEARNING POINTS:
+ * 1. Create complex sound sequences for rich feedback
+ * 2. Integrate sounds with hotkeys and automation
+ * 3. Build reusable sound management systems
+ * 4. Queue sounds for organized playback
+ * 5. Combine visual and audio feedback
+ * 6. Create accessible user interfaces with sound
+ */
 
 ; ============================================================
 ; Example 1: Sound Sequence Generator
 ; ============================================================
 
 /**
-* Generate various sound patterns and sequences
-*/
+ * Generate various sound patterns and sequences
+ */
 class SoundSequencer {
     /**
-    * Play ascending alert pattern
-    */
+     * Play ascending alert pattern
+     */
     static Ascending() {
         sounds := ["*64", "*32", "*48", "*16"]
         delays := [300, 300, 300, 300]
@@ -57,8 +57,8 @@ class SoundSequencer {
     }
 
     /**
-    * Play descending pattern
-    */
+     * Play descending pattern
+     */
     static Descending() {
         sounds := ["*16", "*48", "*32", "*64"]
         delays := [300, 300, 300, 300]
@@ -72,8 +72,8 @@ class SoundSequencer {
     }
 
     /**
-    * Play urgent alert pattern
-    */
+     * Play urgent alert pattern
+     */
     static UrgentAlert() {
         MsgBox("Playing URGENT alert pattern!", "URGENT", "Icon! T1")
 
@@ -86,8 +86,8 @@ class SoundSequencer {
     }
 
     /**
-    * Play success jingle
-    */
+     * Play success jingle
+     */
     static SuccessJingle() {
         MsgBox("Playing success jingle", "Success", "Iconi T1")
 
@@ -101,8 +101,8 @@ class SoundSequencer {
     }
 
     /**
-    * Play attention grabber
-    */
+     * Play attention grabber
+     */
     static AttentionGrabber() {
         MsgBox("Getting your attention!", "Attention", "T1")
 
@@ -125,19 +125,19 @@ class SoundSequencer {
 ; ============================================================
 
 /**
-* Add audio feedback to hotkeys for better UX
-*/
+ * Add audio feedback to hotkeys for better UX
+ */
 class HotkeyWithSound {
     /**
-    * Initialize hotkey sound system
-    */
+     * Initialize hotkey sound system
+     */
     static __New() {
         this.enabled := true
     }
 
     /**
-    * Example: Clipboard operations with sound
-    */
+     * Example: Clipboard operations with sound
+     */
     static SetupClipboardHotkeys() {
         ; Ctrl+C - Copy with sound
         ^c:: {
@@ -171,8 +171,8 @@ class HotkeyWithSound {
     }
 
     /**
-    * Window management with audio feedback
-    */
+     * Window management with audio feedback
+     */
     static SetupWindowHotkeys() {
         ; Win+Up - Maximize with sound
         #Up:: {
@@ -198,8 +198,8 @@ class HotkeyWithSound {
     }
 
     /**
-    * Toggle audio feedback
-    */
+     * Toggle audio feedback
+     */
     static Toggle() {
         this.enabled := !this.enabled
         status := this.enabled ? "enabled" : "disabled"
@@ -221,12 +221,12 @@ class HotkeyWithSound {
 ; ============================================================
 
 /**
-* Comprehensive notification system with sound categories
-*/
+ * Comprehensive notification system with sound categories
+ */
 class NotificationManager {
     /**
-    * Initialize notification manager
-    */
+     * Initialize notification manager
+     */
     __New() {
         this.soundEnabled := true
         this.visualEnabled := true
@@ -234,13 +234,13 @@ class NotificationManager {
     }
 
     /**
-    * Send notification with sound and visual feedback
-    *
-    * @param {String} title - Notification title
-    * @param {String} message - Notification message
-    * @param {String} type - Type: info, success, warning, error, critical
-    * @param {Integer} duration - Display duration in seconds (0 = must close)
-    */
+     * Send notification with sound and visual feedback
+     * 
+     * @param {String} title - Notification title
+     * @param {String} message - Notification message
+     * @param {String} type - Type: info, success, warning, error, critical
+     * @param {Integer} duration - Display duration in seconds (0 = must close)
+     */
     Notify(title, message, type := "info", duration := 3) {
         ; Log notification
         this.notificationLog.Push({
@@ -264,47 +264,47 @@ class NotificationManager {
     }
 
     /**
-    * Play appropriate sound for notification type
-    *
-    * @param {String} type - Notification type
-    */
+     * Play appropriate sound for notification type
+     * 
+     * @param {String} type - Notification type
+     */
     PlayNotificationSound(type) {
         switch type {
             case "info":
-            SoundPlay("*64")
+                SoundPlay("*64")
 
             case "success":
-            Loop 2 {
-                SoundPlay("*64")
-                Sleep(100)
-            }
+                Loop 2 {
+                    SoundPlay("*64")
+                    Sleep(100)
+                }
 
             case "warning":
-            SoundPlay("*48")
+                SoundPlay("*48")
 
             case "error":
-            Loop 2 {
-                SoundPlay("*16")
-                Sleep(200)
-            }
+                Loop 2 {
+                    SoundPlay("*16")
+                    Sleep(200)
+                }
 
             case "critical":
-            Loop 4 {
-                SoundPlay("*16")
-                Sleep(150)
-            }
+                Loop 4 {
+                    SoundPlay("*16")
+                    Sleep(150)
+                }
 
             default:
-            SoundPlay("*64")
+                SoundPlay("*64")
         }
     }
 
     /**
-    * Get appropriate icon for message box
-    *
-    * @param {String} type - Notification type
-    * @returns {String} - Icon code
-    */
+     * Get appropriate icon for message box
+     * 
+     * @param {String} type - Notification type
+     * @returns {String} - Icon code
+     */
     GetIcon(type) {
         switch type {
             case "info": return "Iconi"
@@ -317,8 +317,8 @@ class NotificationManager {
     }
 
     /**
-    * Show notification history
-    */
+     * Show notification history
+     */
     ShowHistory() {
         if this.notificationLog.Length = 0 {
             MsgBox("No notifications in history", "History", "Iconi")
@@ -341,8 +341,8 @@ class NotificationManager {
     }
 
     /**
-    * Clear notification history
-    */
+     * Clear notification history
+     */
     ClearHistory() {
         this.notificationLog := []
         SoundPlay("*64")
@@ -366,20 +366,20 @@ nm := NotificationManager()
 ; ============================================================
 
 /**
-* Provide audio feedback for long-running tasks
-*/
+ * Provide audio feedback for long-running tasks
+ */
 class TaskRunner {
     /**
-    * Run a task with progress sounds
-    *
-    * @param {String} taskName - Name of the task
-    * @param {Integer} steps - Number of steps in task
-    */
+     * Run a task with progress sounds
+     * 
+     * @param {String} taskName - Name of the task
+     * @param {Integer} steps - Number of steps in task
+     */
     static RunWithAudio(taskName, steps := 5) {
         MsgBox("Starting task: " taskName "`n"
-        . "Steps: " steps "`n`n"
-        . "You'll hear sounds as progress is made",
-        "Task Starting", "Iconi T2")
+            . "Steps: " steps "`n`n"
+            . "You'll hear sounds as progress is made",
+            "Task Starting", "Iconi T2")
 
         ; Start sound
         SoundPlay("*64")
@@ -388,7 +388,7 @@ class TaskRunner {
         Loop steps {
             ; Simulate work
             MsgBox("Processing step " A_Index " of " steps "...",
-            taskName, "T1")
+                taskName, "T1")
             Sleep(1000)
 
             ; Progress sound
@@ -404,17 +404,17 @@ class TaskRunner {
         }
 
         MsgBox("Task completed successfully!`n`n"
-        . "Task: " taskName "`n"
-        . "Steps completed: " steps,
-        "Task Complete", "Iconi")
+            . "Task: " taskName "`n"
+            . "Steps completed: " steps,
+            "Task Complete", "Iconi")
     }
 
     /**
-    * Run task with error handling and audio
-    *
-    * @param {String} taskName - Name of the task
-    * @param {Boolean} simulateError - Whether to simulate an error
-    */
+     * Run task with error handling and audio
+     * 
+     * @param {String} taskName - Name of the task
+     * @param {Boolean} simulateError - Whether to simulate an error
+     */
     static RunWithErrorHandling(taskName, simulateError := false) {
         try {
             SoundPlay("*64")  ; Start sound
@@ -442,8 +442,8 @@ class TaskRunner {
                 Sleep(200)
             }
             MsgBox("Error in task: " taskName "`n`n"
-            . "Error: " err.Message,
-            "Task Failed", "Iconx")
+                . "Error: " err.Message,
+                "Task Failed", "Iconx")
         }
     }
 }
@@ -458,12 +458,12 @@ class TaskRunner {
 ; ============================================================
 
 /**
-* Manage a library of custom sounds for application
-*/
+ * Manage a library of custom sounds for application
+ */
 class SoundLibrary {
     /**
-    * Initialize sound library
-    */
+     * Initialize sound library
+     */
     __New() {
         this.sounds := Map()
         this.basePath := A_ScriptDir "\Sounds\"
@@ -471,8 +471,8 @@ class SoundLibrary {
     }
 
     /**
-    * Setup default sound mappings
-    */
+     * Setup default sound mappings
+     */
     InitializeDefaultSounds() {
         ; Map friendly names to system sounds
         this.sounds["click"] := "*64"
@@ -487,23 +487,23 @@ class SoundLibrary {
     }
 
     /**
-    * Register a custom sound
-    *
-    * @param {String} name - Sound name/alias
-    * @param {String} path - File path or system sound code
-    */
+     * Register a custom sound
+     * 
+     * @param {String} name - Sound name/alias
+     * @param {String} path - File path or system sound code
+     */
     Register(name, path) {
         this.sounds[name] := path
         MsgBox("Registered sound: " name, "Sound Library", "Iconi T1")
     }
 
     /**
-    * Play a sound by name
-    *
-    * @param {String} name - Name of sound to play
-    * @param {Integer} wait - Whether to wait for completion
-    * @returns {Boolean} - Success status
-    */
+     * Play a sound by name
+     * 
+     * @param {String} name - Name of sound to play
+     * @param {Integer} wait - Whether to wait for completion
+     * @returns {Boolean} - Success status
+     */
     Play(name, wait := 0) {
         if !this.sounds.Has(name) {
             MsgBox("Sound not found in library: " name, "Error", "Iconx T2")
@@ -517,14 +517,14 @@ class SoundLibrary {
             return true
         } catch as err {
             MsgBox("Error playing sound: " name "`n" err.Message,
-            "Playback Error", "Iconx")
+                "Playback Error", "Iconx")
             return false
         }
     }
 
     /**
-    * List all available sounds
-    */
+     * List all available sounds
+     */
     ListSounds() {
         output := "AVAILABLE SOUNDS:`n`n"
 
@@ -536,11 +536,11 @@ class SoundLibrary {
     }
 
     /**
-    * Play a sequence of sounds by name
-    *
-    * @param {Array} soundNames - Array of sound names
-    * @param {Integer} delay - Delay between sounds in ms
-    */
+     * Play a sequence of sounds by name
+     * 
+     * @param {Array} soundNames - Array of sound names
+     * @param {Integer} delay - Delay between sounds in ms
+     */
     PlaySequence(soundNames, delay := 500) {
         for name in soundNames {
             this.Play(name)
@@ -572,12 +572,12 @@ soundLib := SoundLibrary()
 ; ============================================================
 
 /**
-* Audio feedback for automation events
-*/
+ * Audio feedback for automation events
+ */
 class AutomationSounds {
     /**
-    * Play sound when automation starts
-    */
+     * Play sound when automation starts
+     */
     static OnStart() {
         SoundPlay("*64")
         ToolTip("Automation Started")
@@ -585,8 +585,8 @@ class AutomationSounds {
     }
 
     /**
-    * Play sound when automation completes
-    */
+     * Play sound when automation completes
+     */
     static OnComplete() {
         Loop 2 {
             SoundPlay("*64")
@@ -597,8 +597,8 @@ class AutomationSounds {
     }
 
     /**
-    * Play sound on automation error
-    */
+     * Play sound on automation error
+     */
     static OnError() {
         Loop 2 {
             SoundPlay("*16")
@@ -609,8 +609,8 @@ class AutomationSounds {
     }
 
     /**
-    * Play sound on automation pause
-    */
+     * Play sound on automation pause
+     */
     static OnPause() {
         SoundPlay("*48")
         ToolTip("Automation Paused")
@@ -618,8 +618,8 @@ class AutomationSounds {
     }
 
     /**
-    * Play sound on automation resume
-    */
+     * Play sound on automation resume
+     */
     static OnResume() {
         SoundPlay("*32")
         ToolTip("Automation Resumed")
@@ -627,8 +627,8 @@ class AutomationSounds {
     }
 
     /**
-    * Example automation workflow with sounds
-    */
+     * Example automation workflow with sounds
+     */
     static DemoWorkflow() {
         this.OnStart()
         Sleep(2000)
@@ -655,22 +655,22 @@ class AutomationSounds {
 ; ============================================================
 
 /**
-* Audio cues for accessibility and user guidance
-*/
+ * Audio cues for accessibility and user guidance
+ */
 class AccessibilityAudio {
     /**
-    * Provide audio guidance for navigation
-    *
-    * @param {String} location - Current location/section
-    */
+     * Provide audio guidance for navigation
+     * 
+     * @param {String} location - Current location/section
+     */
     static AnnounceLocation(location) {
         SoundPlay("*64")
         MsgBox("Now at: " location, "Navigation", "Iconi T2")
     }
 
     /**
-    * Indicate successful action
-    */
+     * Indicate successful action
+     */
     static ConfirmAction() {
         SoundPlay("*64")
         Sleep(100)
@@ -678,18 +678,18 @@ class AccessibilityAudio {
     }
 
     /**
-    * Indicate invalid action
-    */
+     * Indicate invalid action
+     */
     static InvalidAction() {
         SoundPlay("*48")
         MsgBox("That action is not available", "Invalid", "Icon! T2")
     }
 
     /**
-    * Provide counting audio cues
-    *
-    * @param {Integer} count - Number to count
-    */
+     * Provide counting audio cues
+     * 
+     * @param {Integer} count - Number to count
+     */
     static CountWithSound(count) {
         Loop count {
             SoundPlay("*32")
@@ -706,10 +706,10 @@ class AccessibilityAudio {
     }
 
     /**
-    * Timer countdown with audio
-    *
-    * @param {Integer} seconds - Seconds to count down
-    */
+     * Timer countdown with audio
+     * 
+     * @param {Integer} seconds - Seconds to count down
+     */
     static CountdownTimer(seconds) {
         Loop seconds {
             remaining := seconds - A_Index + 1

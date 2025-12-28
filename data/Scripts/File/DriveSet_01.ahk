@@ -1,19 +1,19 @@
 /**
-* @file DriveSet_01.ahk
-* @description Comprehensive examples of DriveSetLabel, DriveLock, and DriveUnlock functions in AutoHotkey v2
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Setting and changing drive volume labels
-* - Locking drives to prevent removal
-* - Unlocking drives for safe removal
-* - Automated drive label management
-* - Safe drive lock/unlock procedures
-* - Drive label validation and sanitization
-* - Batch label operations
-*/
+ * @file DriveSet_01.ahk
+ * @description Comprehensive examples of DriveSetLabel, DriveLock, and DriveUnlock functions in AutoHotkey v2
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Setting and changing drive volume labels
+ * - Locking drives to prevent removal
+ * - Unlocking drives for safe removal
+ * - Automated drive label management
+ * - Safe drive lock/unlock procedures
+ * - Drive label validation and sanitization
+ * - Batch label operations
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,19 +22,19 @@
 ; ===================================================================================================
 
 /**
-* @function SetDriveLabel
-* @description Sets a volume label for a drive with validation
-* @param {String} driveLetter - The drive letter
-* @param {String} newLabel - The new label (max 32 characters for NTFS, 11 for FAT32)
-* @returns {Object} Result object with success status
-*
-* @example
-* result := SetDriveLabel("D:", "MyData")
-* MsgBox(result.Success ? "Label set" : "Failed")
-*/
+ * @function SetDriveLabel
+ * @description Sets a volume label for a drive with validation
+ * @param {String} driveLetter - The drive letter
+ * @param {String} newLabel - The new label (max 32 characters for NTFS, 11 for FAT32)
+ * @returns {Object} Result object with success status
+ * 
+ * @example
+ * result := SetDriveLabel("D:", "MyData")
+ * MsgBox(result.Success ? "Label set" : "Failed")
+ */
 SetDriveLabel(driveLetter, newLabel) {
     if !InStr(driveLetter, ":")
-    driveLetter .= ":"
+        driveLetter .= ":"
 
     ; Validate drive exists and is ready
     if (DriveGetStatus(driveLetter) != "Ready") {
@@ -57,7 +57,7 @@ SetDriveLabel(driveLetter, newLabel) {
         }
 
         ; Sanitize label (remove invalid characters)
-        sanitizedLabel := RegExReplace(newLabel, "[<>:""/\\|?*]", "")
+        sanitizedLabel := RegExReplace(newLabel, "[<>:" "/\\|?*]", "")
 
         ; Set the label
         oldLabel := DriveGetLabel(driveLetter)
@@ -84,12 +84,12 @@ Example1_BasicLabelSet() {
     drive := InputBox("Enter drive letter (e.g., D:):", "Set Drive Label").Value
 
     if (drive = "")
-    return
+        return
 
     newLabel := InputBox("Enter new label:", "Set Drive Label").Value
 
     if (newLabel = "")
-    return
+        return
 
     result := SetDriveLabel(drive, newLabel)
 
@@ -104,10 +104,10 @@ Example1_BasicLabelSet() {
         Old Label:   {3}
         New Label:   {4}
         )",
-        result.Drive,
-        result.FileSystem,
-        result.OldLabel != "" ? result.OldLabel : "(No Label)",
-        result.NewLabel
+            result.Drive,
+            result.FileSystem,
+            result.OldLabel != "" ? result.OldLabel : "(No Label)",
+            result.NewLabel
         )
         MsgBox(message, "Success", "Iconi")
     } else {
@@ -122,19 +122,19 @@ Example1_BasicLabelSet() {
 ; ===================================================================================================
 
 /**
-* @class DriveLockManager
-* @description Manages drive lock and unlock operations
-*/
+ * @class DriveLockManager
+ * @description Manages drive lock and unlock operations
+ */
 class DriveLockManager {
     /**
-    * @method LockDrive
-    * @description Locks a drive to prevent removal
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Result object
-    */
+     * @method LockDrive
+     * @description Locks a drive to prevent removal
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Result object
+     */
     static LockDrive(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         ; Check if drive is removable
         driveType := DriveGetType(driveLetter)
@@ -172,14 +172,14 @@ class DriveLockManager {
     }
 
     /**
-    * @method UnlockDrive
-    * @description Unlocks a drive for safe removal
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Result object
-    */
+     * @method UnlockDrive
+     * @description Unlocks a drive for safe removal
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Result object
+     */
     static UnlockDrive(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         try {
             DriveUnlock(driveLetter)
@@ -198,14 +198,14 @@ class DriveLockManager {
     }
 
     /**
-    * @method SafeRemoveDrive
-    * @description Safely prepares a drive for removal
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Result object
-    */
+     * @method SafeRemoveDrive
+     * @description Safely prepares a drive for removal
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Result object
+     */
     static SafeRemoveDrive(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         ; Step 1: Unlock the drive
         unlockResult := DriveLockManager.UnlockDrive(driveLetter)
@@ -225,13 +225,13 @@ class DriveLockManager {
     }
 
     /**
-    * @method ShowLockStatus
-    * @description Shows lock status information
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method ShowLockStatus
+     * @description Shows lock status information
+     * @param {String} driveLetter - Drive letter
+     */
     static ShowLockStatus(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         driveType := DriveGetType(driveLetter)
         status := DriveGetStatus(driveLetter)
@@ -289,26 +289,26 @@ Example2_DriveLock() {
 ; ===================================================================================================
 
 /**
-* @class AutoLabelManager
-* @description Automatically manages drive labels based on rules
-*/
+ * @class AutoLabelManager
+ * @description Automatically manages drive labels based on rules
+ */
 class AutoLabelManager {
     /**
-    * @method GenerateLabel
-    * @description Generates a label based on drive properties and date
-    * @param {String} driveLetter - Drive letter
-    * @param {String} template - Label template
-    * @returns {String} Generated label
-    *
-    * Template variables:
-    * - {TYPE} = Drive type
-    * - {LETTER} = Drive letter
-    * - {DATE} = Current date (YYYYMMDD)
-    * - {COMPUTER} = Computer name
-    */
+     * @method GenerateLabel
+     * @description Generates a label based on drive properties and date
+     * @param {String} driveLetter - Drive letter
+     * @param {String} template - Label template
+     * @returns {String} Generated label
+     * 
+     * Template variables:
+     * - {TYPE} = Drive type
+     * - {LETTER} = Drive letter
+     * - {DATE} = Current date (YYYYMMDD)
+     * - {COMPUTER} = Computer name
+     */
     static GenerateLabel(driveLetter, template := "{TYPE}_{LETTER}_{DATE}") {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         driveType := DriveGetType(driveLetter)
         letter := SubStr(driveLetter, 1, 1)
@@ -324,39 +324,39 @@ class AutoLabelManager {
 
         ; Trim to safe length
         if (StrLen(label) > 32)
-        label := SubStr(label, 1, 32)
+            label := SubStr(label, 1, 32)
 
         return label
     }
 
     /**
-    * @method ApplyLabelingScheme
-    * @description Applies a labeling scheme to multiple drives
-    * @param {Array} drives - Array of drive letters
-    * @param {String} scheme - Labeling scheme name
-    * @returns {Array} Results array
-    */
+     * @method ApplyLabelingScheme
+     * @description Applies a labeling scheme to multiple drives
+     * @param {Array} drives - Array of drive letters
+     * @param {String} scheme - Labeling scheme name
+     * @returns {Array} Results array
+     */
     static ApplyLabelingScheme(drives, scheme := "standard") {
         results := []
 
         for drive in drives {
             if !InStr(drive, ":")
-            drive .= ":"
+                drive .= ":"
 
             if (DriveGetStatus(drive) != "Ready")
-            continue
+                continue
 
             template := ""
 
             switch scheme {
                 case "standard":
-                template := "{TYPE}_{LETTER}"
+                    template := "{TYPE}_{LETTER}"
                 case "dated":
-                template := "{TYPE}_{DATE}"
+                    template := "{TYPE}_{DATE}"
                 case "detailed":
-                template := "{COMPUTER}_{TYPE}_{LETTER}"
+                    template := "{COMPUTER}_{TYPE}_{LETTER}"
                 default:
-                template := "{TYPE}_{LETTER}"
+                    template := "{TYPE}_{LETTER}"
             }
 
             newLabel := AutoLabelManager.GenerateLabel(drive, template)
@@ -368,9 +368,9 @@ class AutoLabelManager {
     }
 
     /**
-    * @method AutoLabelRemovableDrives
-    * @description Automatically labels all removable drives
-    */
+     * @method AutoLabelRemovableDrives
+     * @description Automatically labels all removable drives
+     */
     static AutoLabelRemovableDrives() {
         removables := []
         driveList := DriveGetList("Removable")
@@ -392,9 +392,9 @@ class AutoLabelManager {
         for result in results {
             if (result.Success) {
                 report .= Format("{1}: {2} → {3}`n",
-                result.Drive,
-                result.OldLabel != "" ? result.OldLabel : "(No Label)",
-                result.NewLabel
+                    result.Drive,
+                    result.OldLabel != "" ? result.OldLabel : "(No Label)",
+                    result.NewLabel
                 )
             } else {
                 report .= Format("{1}: ERROR - {2}`n", result.Drive, result.Error)
@@ -415,17 +415,17 @@ Example3_AutoLabel() {
 ; ===================================================================================================
 
 /**
-* @class LabelValidator
-* @description Validates and sanitizes drive labels
-*/
+ * @class LabelValidator
+ * @description Validates and sanitizes drive labels
+ */
 class LabelValidator {
     /**
-    * @method ValidateLabel
-    * @description Validates a drive label
-    * @param {String} label - Label to validate
-    * @param {String} fileSystem - File system type
-    * @returns {Object} Validation result
-    */
+     * @method ValidateLabel
+     * @description Validates a drive label
+     * @param {String} label - Label to validate
+     * @param {String} fileSystem - File system type
+     * @returns {Object} Validation result
+     */
     static ValidateLabel(label, fileSystem := "NTFS") {
         issues := []
         sanitized := label
@@ -440,9 +440,9 @@ class LabelValidator {
 
         ; Check for invalid characters
         invalidChars := []
-        if (RegExMatch(label, "[<>:""/\\|?*]", &match)) {
-            issues.Push("Contains invalid characters: < > : "" / \ | ? *")
-            sanitized := RegExReplace(sanitized, "[<>:""/\\|?*]", "")
+        if (RegExMatch(label, "[<>:" "/\\|?*]", &match)) {
+            issues.Push("Contains invalid characters: < > : " " / \ | ? *")
+            sanitized := RegExReplace(sanitized, "[<>:" "/\\|?*]", "")
         }
 
         ; Check for trailing spaces or periods
@@ -461,10 +461,10 @@ class LabelValidator {
     }
 
     /**
-    * @method ShowValidation
-    * @description Shows validation results
-    * @param {String} label - Label to validate
-    */
+     * @method ShowValidation
+     * @description Shows validation results
+     * @param {String} label - Label to validate
+     */
     static ShowValidation(label) {
         result := LabelValidator.ValidateLabel(label)
 
@@ -489,11 +489,11 @@ class LabelValidator {
 ; Example usage
 Example4_LabelValidation() {
     testLabels := [
-    "ValidLabel",
-    "This Label Is Too Long For FAT32 Drives",
-    "Invalid<>Label",
-    "Trailing Space ",
-    "Good_Label_123"
+        "ValidLabel",
+        "This Label Is Too Long For FAT32 Drives",
+        "Invalid<>Label",
+        "Trailing Space ",
+        "Good_Label_123"
     ]
 
     report := "Label Validation Tests`n"
@@ -519,19 +519,19 @@ Example4_LabelValidation() {
 ; ===================================================================================================
 
 /**
-* @class BatchLabelManager
-* @description Manages batch label operations
-*/
+ * @class BatchLabelManager
+ * @description Manages batch label operations
+ */
 class BatchLabelManager {
     /**
-    * @method BackupLabels
-    * @description Backs up current drive labels
-    * @param {String} backupFile - File to save backup
-    * @returns {Boolean} Success status
-    */
+     * @method BackupLabels
+     * @description Backs up current drive labels
+     * @param {String} backupFile - File to save backup
+     * @returns {Boolean} Success status
+     */
     static BackupLabels(backupFile := "") {
         if (backupFile = "")
-        backupFile := A_ScriptDir . "\drive_labels_backup.txt"
+            backupFile := A_ScriptDir . "\drive_labels_backup.txt"
 
         content := "Drive Label Backup - " . FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss") . "`n"
         content .= "═══════════════════════════════════════════════════════`n`n"
@@ -564,14 +564,14 @@ class BatchLabelManager {
     }
 
     /**
-    * @method RestoreLabels
-    * @description Restores drive labels from backup
-    * @param {String} backupFile - Backup file to restore from
-    * @returns {Object} Restore results
-    */
+     * @method RestoreLabels
+     * @description Restores drive labels from backup
+     * @param {String} backupFile - Backup file to restore from
+     * @returns {Object} Restore results
+     */
     static RestoreLabels(backupFile := "") {
         if (backupFile = "")
-        backupFile := A_ScriptDir . "\drive_labels_backup.txt"
+            backupFile := A_ScriptDir . "\drive_labels_backup.txt"
 
         if !FileExist(backupFile) {
             return {
@@ -589,11 +589,11 @@ class BatchLabelManager {
 
         for line in lines {
             if (InStr(line, "|") = 0)
-            continue
+                continue
 
             parts := StrSplit(line, "|")
             if (parts.Length < 4)
-            continue
+                continue
 
             drive := parts[1]
             label := parts[2]
@@ -627,12 +627,12 @@ class BatchLabelManager {
     }
 
     /**
-    * @method ShowBackupRestore
-    * @description Shows backup and restore interface
-    */
+     * @method ShowBackupRestore
+     * @description Shows backup and restore interface
+     */
     static ShowBackupRestore() {
         choice := MsgBox("Backup or Restore drive labels?`n`nYes = Backup`nNo = Restore`nCancel = Exit",
-        "Batch Label Manager", "YesNoCancel Icon?")
+            "Batch Label Manager", "YesNoCancel Icon?")
 
         if (choice = "Yes") {
             ; Backup
@@ -655,9 +655,9 @@ class BatchLabelManager {
                 Skipped: {2}
                 Errors: {3}
                 )",
-                result.Restored,
-                result.Skipped,
-                result.Errors.Length
+                    result.Restored,
+                    result.Skipped,
+                    result.Errors.Length
                 )
                 MsgBox(message, "Restore Complete", "Iconi")
             } else {
@@ -677,25 +677,25 @@ Example5_BatchLabels() {
 ; ===================================================================================================
 
 /**
-* @class USBAutoLabeler
-* @description Automatically labels USB drives when connected
-*/
+ * @class USBAutoLabeler
+ * @description Automatically labels USB drives when connected
+ */
 class USBAutoLabeler {
     knownDrives := Map()
     labelTemplate := "USB_{DATE}_{LETTER}"
     isMonitoring := false
 
     /**
-    * @constructor
-    */
+     * @constructor
+     */
     __New() {
         this.UpdateKnownDrives()
     }
 
     /**
-    * @method UpdateKnownDrives
-    * @description Updates known drives list
-    */
+     * @method UpdateKnownDrives
+     * @description Updates known drives list
+     */
     UpdateKnownDrives() {
         driveList := DriveGetList()
 
@@ -705,9 +705,9 @@ class USBAutoLabeler {
     }
 
     /**
-    * @method CheckForNewDrives
-    * @description Checks for new drives and auto-labels them
-    */
+     * @method CheckForNewDrives
+     * @description Checks for new drives and auto-labels them
+     */
     CheckForNewDrives() {
         currentDrives := DriveGetList("Removable")
 
@@ -726,10 +726,10 @@ class USBAutoLabeler {
     }
 
     /**
-    * @method AutoLabelDrive
-    * @description Auto-labels a drive
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method AutoLabelDrive
+     * @description Auto-labels a drive
+     * @param {String} driveLetter - Drive letter
+     */
     AutoLabelDrive(driveLetter) {
         try {
             currentLabel := DriveGetLabel(driveLetter)
@@ -740,33 +740,33 @@ class USBAutoLabeler {
                 DriveSetLabel(driveLetter, newLabel)
 
                 MsgBox(Format("USB drive {1} auto-labeled as: {2}", driveLetter, newLabel),
-                "Auto-Labeled", "Iconi 1")
+                    "Auto-Labeled", "Iconi 1")
             }
         }
     }
 
     /**
-    * @method StartMonitoring
-    * @description Starts monitoring for new USB drives
-    */
+     * @method StartMonitoring
+     * @description Starts monitoring for new USB drives
+     */
     StartMonitoring() {
         if (this.isMonitoring)
-        return
+            return
 
         this.isMonitoring := true
         SetTimer(() => this.CheckForNewDrives(), 2000)
 
         MsgBox("USB auto-labeling started.`nNew USB drives will be automatically labeled.",
-        "Monitoring Started", "Iconi")
+            "Monitoring Started", "Iconi")
     }
 
     /**
-    * @method StopMonitoring
-    * @description Stops monitoring
-    */
+     * @method StopMonitoring
+     * @description Stops monitoring
+     */
     StopMonitoring() {
         if (!this.isMonitoring)
-        return
+            return
 
         this.isMonitoring := false
         SetTimer(() => this.CheckForNewDrives(), 0)
@@ -798,24 +798,24 @@ Example6_USBAutoLabeler() {
 ; ===================================================================================================
 
 /**
-* @class LabelHistoryTracker
-* @description Tracks history of label changes
-*/
+ * @class LabelHistoryTracker
+ * @description Tracks history of label changes
+ */
 class LabelHistoryTracker {
     historyFile := A_ScriptDir . "\label_history.csv"
 
     /**
-    * @method RecordLabelChange
-    * @description Records a label change
-    * @param {String} drive - Drive letter
-    * @param {String} oldLabel - Old label
-    * @param {String} newLabel - New label
-    */
+     * @method RecordLabelChange
+     * @description Records a label change
+     * @param {String} drive - Drive letter
+     * @param {String} oldLabel - Old label
+     * @param {String} newLabel - New label
+     */
     RecordLabelChange(drive, oldLabel, newLabel) {
         timestamp := FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss")
 
         record := Format("{1},{2},{3},{4},{5}`n",
-        timestamp, drive, oldLabel, newLabel, A_ComputerName)
+            timestamp, drive, oldLabel, newLabel, A_ComputerName)
 
         ; Create file with header if needed
         if !FileExist(this.historyFile) {
@@ -826,18 +826,18 @@ class LabelHistoryTracker {
     }
 
     /**
-    * @method SetLabelWithHistory
-    * @description Sets a label and records the change
-    * @param {String} drive - Drive letter
-    * @param {String} newLabel - New label
-    * @returns {Object} Result object
-    */
+     * @method SetLabelWithHistory
+     * @description Sets a label and records the change
+     * @param {String} drive - Drive letter
+     * @param {String} newLabel - New label
+     * @returns {Object} Result object
+     */
     SetLabelWithHistory(drive, newLabel) {
         if !InStr(drive, ":")
-        drive .= ":"
+            drive .= ":"
 
         if (DriveGetStatus(drive) != "Ready") {
-            return {Success: false, Error: "Drive not ready"}
+            return { Success: false, Error: "Drive not ready" }
         }
 
         try {
@@ -860,14 +860,14 @@ class LabelHistoryTracker {
     }
 
     /**
-    * @method GetHistory
-    * @description Gets label change history
-    * @param {String} drive - Drive letter (optional)
-    * @returns {Array} History records
-    */
+     * @method GetHistory
+     * @description Gets label change history
+     * @param {String} drive - Drive letter (optional)
+     * @returns {Array} History records
+     */
     GetHistory(drive := "") {
         if !FileExist(this.historyFile)
-        return []
+            return []
 
         content := FileRead(this.historyFile)
         lines := StrSplit(content, "`n", "`r")
@@ -875,10 +875,10 @@ class LabelHistoryTracker {
 
         for index, line in lines {
             if (index = 1)  ; Skip header
-            continue
+                continue
 
             if (line = "")
-            continue
+                continue
 
             fields := StrSplit(line, ",")
             if (fields.Length >= 5) {
@@ -898,9 +898,9 @@ class LabelHistoryTracker {
     }
 
     /**
-    * @method ShowHistory
-    * @description Shows label change history
-    */
+     * @method ShowHistory
+     * @description Shows label change history
+     */
     ShowHistory() {
         history := this.GetHistory()
 
@@ -946,3 +946,4 @@ Example7_LabelHistory() {
 
 ; Press Ctrl+Alt+B to backup/restore labels
 ; ^!b::Example5_BatchLabels()
+

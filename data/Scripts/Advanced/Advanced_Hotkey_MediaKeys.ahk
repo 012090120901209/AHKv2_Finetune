@@ -8,7 +8,7 @@ ShowOSD(text, duration := 1000) {
     static osd := ""
 
     if (osd != "")
-    try osd.Destroy()
+        try osd.Destroy()
 
     osd := Gui("-Caption +AlwaysOnTop +ToolWindow +E0x20")
     osd.BackColor := "0x1a1a1a"
@@ -79,8 +79,8 @@ ShowOSD(text, duration := 1000) {
 {
     ; Increase brightness
     Run(
-    'powershell.exe -Command "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,100)"', ,
-    "Hide")
+        'powershell.exe -Command "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,100)"', ,
+        "Hide")
     ShowOSD("☀ Brightness: Max")
 }
 
@@ -89,8 +89,8 @@ ShowOSD(text, duration := 1000) {
 {
     ; Decrease brightness
     Run(
-    'powershell.exe -Command "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,30)"', ,
-    "Hide")
+        'powershell.exe -Command "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,30)"', ,
+        "Hide")
     ShowOSD("☀ Brightness: Low")
 }
 
@@ -131,12 +131,12 @@ ShowOSD(text, duration := 1000) {
     if (soundsEnabled) {
         ; Disable system sounds
         Run('powershell.exe -Command "Set-ItemProperty -Path ' 'HKCU:\AppEvents\Schemes' ' -Name ' '(Default)' ' -Value ' '.None' '"', ,
-        "Hide")
+            "Hide")
         soundsEnabled := false
         ShowOSD("🔕 System Sounds OFF")
     } else {
         ; Enable system sounds (Windows default scheme)
-        Run("powershell.exe -Command ""Set-ItemProperty -Path 'HKCU:\AppEvents\Schemes' -Name '(Default)' -Value '.Default'""", , "Hide")
+        Run("powershell.exe -Command " "Set-ItemProperty -Path 'HKCU:\AppEvents\Schemes' -Name '(Default)' -Value '.Default'" "", , "Hide")
         soundsEnabled := true
         ShowOSD("🔔 System Sounds ON")
     }

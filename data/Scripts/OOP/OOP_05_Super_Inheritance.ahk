@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Super Operator - Calling Parent Methods
-*
-* Demonstrates using super to access parent class implementations
-* in overridden methods and properties.
-*
-* Source: AHK_Notes/Concepts/super-operator.md
-*/
+ * Super Operator - Calling Parent Methods
+ * 
+ * Demonstrates using super to access parent class implementations
+ * in overridden methods and properties.
+ * 
+ * Source: AHK_Notes/Concepts/super-operator.md
+ */
 
 ; Create instances
 dog := Dog("Buddy")
@@ -25,8 +25,8 @@ car.Speed := 200
 MsgBox("Set speed to 200: Actual = " car.Speed " (capped at max)")
 
 /**
-* Animal - Base Class
-*/
+ * Animal - Base Class
+ */
 class Animal {
     name := ""
 
@@ -40,12 +40,12 @@ class Animal {
 }
 
 /**
-* Dog - Derived Class using super
-*/
+ * Dog - Derived Class using super
+ */
 class Dog extends Animal {
     /**
-    * Override Speak but call parent implementation first
-    */
+     * Override Speak but call parent implementation first
+     */
     Speak() {
         super.Speak()  ; Call parent method
         MsgBox(this.name " barks: Woof! Woof!", , "T3")
@@ -53,8 +53,8 @@ class Dog extends Animal {
 }
 
 /**
-* Calculator - Base Class
-*/
+ * Calculator - Base Class
+ */
 class Calculator {
     static Calculate(a, b, op) {
         switch op {
@@ -68,8 +68,8 @@ class Calculator {
 }
 
 /**
-* AdvancedCalculator - Adds logging to parent
-*/
+ * AdvancedCalculator - Adds logging to parent
+ */
 class AdvancedCalculator extends Calculator {
     static Calculate(a, b, op) {
         result := super.Calculate(a, b, op)  ; Call parent
@@ -79,8 +79,8 @@ class AdvancedCalculator extends Calculator {
 }
 
 /**
-* Vehicle - Base Class with property
-*/
+ * Vehicle - Base Class with property
+ */
 class Vehicle {
     _speed := 0
 
@@ -91,8 +91,8 @@ class Vehicle {
 }
 
 /**
-* Car - Constrains speed using super
-*/
+ * Car - Constrains speed using super
+ */
 class Car extends Vehicle {
     maxSpeed := 120
 
@@ -143,4 +143,5 @@ class Car extends Vehicle {
             *    ✅ Extend behavior without duplication
             *    ✅ Maintain parent functionality
             *    ✅ Clear inheritance chain
-            */
+*/
+

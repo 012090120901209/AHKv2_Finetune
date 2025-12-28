@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlSetEnabled - Basic Enable/Disable
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlSetEnabled - Basic Enable/Disable
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -59,18 +59,18 @@ Example3() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
     BtnEnableAll := MyGui.Add("Button", "xm y+20 w140", "Enable All")
     BtnEnableAll.OnEvent("Click", EnableAll)
     BtnDisableAll := MyGui.Add("Button", "x+10 w140", "Disable All")
     BtnDisableAll.OnEvent("Click", DisableAll)
     EnableAll(*) {
         for ctrl in controls
-        ControlSetEnabled(true, ctrl)
+            ControlSetEnabled(true, ctrl)
     }
     DisableAll(*) {
         for ctrl in controls
-        ControlSetEnabled(false, ctrl)
+            ControlSetEnabled(false, ctrl)
     }
 
     MyGui.Show()
@@ -90,9 +90,9 @@ Example4() {
     Input.OnEvent("Change", Check)
     Check(ctrl, *) {
         if (StrLen(ctrl.Value) > 0)
-        ControlSetEnabled(true, Dependent)
+            ControlSetEnabled(true, Dependent)
         else
-        ControlSetEnabled(false, Dependent)
+            ControlSetEnabled(false, Dependent)
     }
 
     MyGui.Show()
@@ -116,7 +116,7 @@ Example5() {
     BtnUnlock.OnEvent("Click", (*) => LockForm(false))
     LockForm(lock) {
         for ctrl in controls
-        ControlSetEnabled(!lock, ctrl)
+            ControlSetEnabled(!lock, ctrl)
     }
 
     MyGui.Show()
@@ -132,10 +132,10 @@ Example6() {
 
     steps := []
     loop 4
-    steps.Push(MyGui.Add("Edit", "w250 y+10", "Step " . A_Index))
+        steps.Push(MyGui.Add("Edit", "w250 y+10", "Step " . A_Index))
     for i, step in steps
-    if (i > 1)
-    ControlSetEnabled(false, step)
+        if (i > 1)
+            ControlSetEnabled(false, step)
     current := 1
     BtnNext := MyGui.Add("Button", "xm y+20 w200", "Next Step")
     BtnNext.OnEvent("Click", Next)
@@ -181,13 +181,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Enable/Disable",
-"Example 2: Toggle Enable",
-"Example 3: Batch Enable",
-"Example 4: Conditional Enable",
-"Example 5: Form Lock",
-"Example 6: Step by Step",
-"Example 7: State Management",
+    "Example 1: Basic Enable/Disable",
+    "Example 2: Toggle Enable",
+    "Example 3: Batch Enable",
+    "Example 4: Conditional Enable",
+    "Example 5: Form Lock",
+    "Example 6: Step by Step",
+    "Example 7: State Management",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

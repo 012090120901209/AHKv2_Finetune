@@ -40,7 +40,7 @@ class NetworkError extends AppError {
     __New(message, statusCode := 0) {
         super.__New(message, statusCode)
     }
-    
+
     IsRetryable => this.code >= 500 || this.code = 408
 }
 
@@ -94,15 +94,15 @@ NestedTry() {
 ; Catch specific types
 HandleError(fn) {
     try {
-        return {success: true, value: fn()}
+        return { success: true, value: fn() }
     } catch TypeError as e {
-        return {success: false, type: "type", error: e}
+        return { success: false, type: "type", error: e }
     } catch ValueError as e {
-        return {success: false, type: "value", error: e}
+        return { success: false, type: "value", error: e }
     } catch OSError as e {
-        return {success: false, type: "os", error: e}
+        return { success: false, type: "os", error: e }
     } catch Error as e {
-        return {success: false, type: "generic", error: e}
+        return { success: false, type: "generic", error: e }
     }
 }
 
@@ -136,20 +136,20 @@ class StackTrace {
         err := Error()
         return err.Stack
     }
-    
+
     static Parse(stack) {
         lines := StrSplit(stack, "`n")
         frames := []
-        
+
         for line in lines {
             if line = ""
                 continue
-            
+
             ; Parse format: "► FuncName @ File.ahk (123) : code"
             if RegExMatch(line, "► (\w+)\s*@\s*(.+?)\s*\((\d+)\)", &m)
-                frames.Push({func: m[1], file: m[2], line: m[3]})
+                frames.Push({ func: m[1], file: m[2], line: m[3] })
         }
-        
+
         return frames
     }
 }
@@ -162,7 +162,7 @@ class ContextualError extends Error {
         this.timestamp := A_Now
         this.stackFrames := StackTrace.Parse(this.Stack)
     }
-    
+
     ToString() {
         s := this.Message "`n`nContext:`n"
         for key, value in this.context
@@ -179,7 +179,7 @@ class ContextualError extends Error {
 ; Retry with exponential backoff
 Retry(fn, maxAttempts := 3, baseDelay := 100) {
     lastError := ""
-    
+
     loop maxAttempts {
         try {
             return fn()
@@ -189,14 +189,14 @@ Retry(fn, maxAttempts := 3, baseDelay := 100) {
                 Sleep(baseDelay * (2 ** (A_Index - 1)))
         }
     }
-    
+
     throw Error("Max retries exceeded", lastError.Message)
 }
 
 ; Fallback chain
 Fallback(fns*) {
     errors := []
-    
+
     for fn in fns {
         try {
             return fn()
@@ -204,7 +204,7 @@ Fallback(fns*) {
             errors.Push(e)
         }
     }
-    
+
     ; All failed
     messages := []
     for e in errors
@@ -228,7 +228,7 @@ class CircuitBreaker {
         this.state := "closed"  ; closed, open, half-open
         this.openedAt := 0
     }
-    
+
     Execute(fn) {
         if this.state = "open" {
             if A_TickCount - this.openedAt > this.resetTimeout {
@@ -237,7 +237,7 @@ class CircuitBreaker {
                 throw Error("Circuit breaker is open")
             }
         }
-        
+
         try {
             result := fn()
             this._onSuccess()
@@ -247,12 +247,12 @@ class CircuitBreaker {
             throw e
         }
     }
-    
+
     _onSuccess() {
         this.failures := 0
         this.state := "closed"
     }
-    
+
     _onFailure() {
         this.failures++
         if this.failures >= this.threshold {
@@ -260,7 +260,7 @@ class CircuitBreaker {
             this.openedAt := A_TickCount
         }
     }
-    
+
     State => this.state
 }
 
@@ -280,7 +280,7 @@ class Using {
                 resource.Close()
         }
     }
-    
+
     ; Multiple resources
     static RunAll(resources, fn) {
         try {
@@ -307,13 +307,13 @@ class ManagedResource {
         this.isOpen := true
         FileAppend("Opened: " name "`n", "*")
     }
-    
+
     DoWork() {
         if !this.isOpen
             throw Error("Resource is closed")
         return "Working with " this.name
     }
-    
+
     Dispose() {
         if this.isOpen {
             this.isOpen := false
@@ -331,38 +331,38 @@ class Result {
         this._isOk := isOk
         this._value := value
     }
-    
+
     static Ok(value) => Result(true, value)
     static Err(error) => Result(false, error)
-    
+
     IsOk => this._isOk
     IsErr => !this._isOk
-    
+
     ; Unwrap or throw
     Unwrap() {
         if !this._isOk
             throw this._value is Error ? this._value : Error(String(this._value))
         return this._value
     }
-    
+
     ; Unwrap with default
     UnwrapOr(default) => this._isOk ? this._value : default
-    
+
     ; Map success value
     Map(fn) {
         return this._isOk ? Result.Ok(fn(this._value)) : this
     }
-    
+
     ; Map error value
     MapErr(fn) {
         return this._isOk ? this : Result.Err(fn(this._value))
     }
-    
+
     ; Chain operations
     AndThen(fn) {
         return this._isOk ? fn(this._value) : this
     }
-    
+
     ; Handle both cases
     Match(onOk, onErr) {
         return this._isOk ? onOk(this._value) : onErr(this._value)
@@ -387,9 +387,9 @@ class AggregateError extends Error {
         super.__New(message)
         this.errors := errors
     }
-    
+
     Count => this.errors.Length
-    
+
     ToString() {
         s := this.Message "`n"
         for i, e in this.errors
@@ -402,7 +402,7 @@ class AggregateError extends Error {
 RunAll(fns*) {
     results := []
     errors := []
-    
+
     for fn in fns {
         try {
             results.Push(fn())
@@ -410,10 +410,10 @@ RunAll(fns*) {
             errors.Push(e)
         }
     }
-    
+
     if errors.Length > 0
         throw AggregateError("Multiple operations failed", errors)
-    
+
     return results
 }
 
@@ -428,7 +428,7 @@ class AsyncResult {
         this._value := ""
         this._handlers := []
     }
-    
+
     Resolve(value) {
         if this._state != "pending"
             return
@@ -436,7 +436,7 @@ class AsyncResult {
         this._value := value
         this._notify()
     }
-    
+
     Reject(error) {
         if this._state != "pending"
             return
@@ -444,19 +444,19 @@ class AsyncResult {
         this._value := error
         this._notify()
     }
-    
+
     Then(onFulfilled, onRejected := "") {
-        handler := {fulfill: onFulfilled, reject: onRejected}
+        handler := { fulfill: onFulfilled, reject: onRejected }
         this._handlers.Push(handler)
-        
+
         if this._state != "pending"
             this._notify()
-        
+
         return this
     }
-    
+
     Catch(onRejected) => this.Then("", onRejected)
-    
+
     _notify() {
         for handler in this._handlers {
             if this._state = "fulfilled" && handler.fulfill
@@ -465,7 +465,7 @@ class AsyncResult {
                 handler.reject(this._value)
         }
     }
-    
+
     State => this._state
 }
 

@@ -12,9 +12,9 @@
 MultiLineFuncDemo() {
     ; This calls TestFunc with result of b assignment
     result := TestFunc
-        "arg1"
-        "arg2"
-    
+    "arg1"
+    "arg2"
+
     MsgBox(result)
 }
 
@@ -28,27 +28,27 @@ class DanglingElse {
     ; Classic ambiguity - else binds to nearest if
     static Demonstrate(a, b) {
         result := ""
-        
+
         if a > 0
             if b > 0
                 result := "Both positive"
             else
                 result := "A positive, B not"  ; Binds to inner if!
-        
+
         return result
     }
-    
+
     ; Explicit bracing removes ambiguity
     static DemonstrateExplicit(a, b) {
         result := ""
-        
+
         if a > 0 {
             if b > 0
                 result := "Both positive"
         } else {
             result := "A not positive"  ; Now binds to outer if
         }
-        
+
         return result
     }
 }
@@ -59,27 +59,27 @@ class DanglingElse {
 
 class LabelSwitchCollision {
     static labels := Map()
-    
+
     ; Demonstrates label/switch ambiguity
     static Demo() {
         result := []
         d := 1
         counter := 0
-        
+
         ; In real code, this creates interesting control flow
         ; goto target: jumps to label
         ; switch case target: matches value
-        
+
         switch d {
             case 1:
                 result.Push("Matched case 1")
                 ; A label INSIDE switch is valid!
-            innerLabel:
+innerLabel:
                 result.Push("At inner label")
             default:
                 result.Push("Default case")
         }
-        
+
         return result
     }
 }
@@ -96,33 +96,33 @@ class OperatorPrecedence {
         ; = (false && 2) ? 0 : "12"
         ; = false ? 0 : "12"
         ; = "12"
-        
+
         result := not 1 && 2 ? 0 : 1 . 2
         return result  ; "12"
     }
-    
+
     ; Concatenation with space is lowest precedence
     static Demo2() {
         a := 1
         b := 2
-        
+
         ; Space concatenation
         result := a b  ; "12"
-        
+
         ; Explicit concatenation
         result2 := a . b  ; "12"
-        
+
         return [result, result2]
     }
-    
+
     ; Ternary chains
     static Demo3(n) {
         ; Right-associative ternary
-        return n < 0 ? "negative" 
-             : n = 0 ? "zero"
-             : n < 10 ? "small"
-             : n < 100 ? "medium"
-             : "large"
+        return n < 0 ? "negative"
+            : n = 0 ? "zero"
+            : n < 10 ? "small"
+            : n < 100 ? "medium"
+            : "large"
     }
 }
 
@@ -134,8 +134,8 @@ class InlineObjectAccess {
     ; Create and access object in one expression
     static Demo() {
         ; Single level
-        value1 := {a: "hello"}.a
-        
+        value1 := { a: "hello" }.a
+
         ; Nested
         value2 := {
             outer: {
@@ -144,16 +144,16 @@ class InlineObjectAccess {
                 }
             }
         }.outer.inner.deep
-        
+
         ; With method
         value3 := {
             getValue: (*) => 42,
             data: "test"
         }.getValue()
-        
+
         ; Array literal access
         value4 := [10, 20, 30][2]  ; 20
-        
+
         return Map(
             "value1", value1,
             "value2", value2,
@@ -177,16 +177,16 @@ AmbiguousFunc(a := 1) {
 ; The space before ( matters!
 LoopVsCall() {
     results := []
-    
+
     ; Loop statement - space before (
     x := 3
     Loop (x) {
         results.Push("Loop iteration " A_Index)
     }
-    
+
     ; Function call - no space (or space doesn't matter here)
     y := SomeFunc(3)
-    
+
     return results
 }
 
@@ -206,10 +206,10 @@ class CommaOperator {
             z := x + y,
             z * 2  ; This is returned
         )
-        
+
         return result  ; 6
     }
-    
+
     ; Useful in fat arrow functions for multi-statement
     static CreateCounter() {
         count := 0
@@ -225,26 +225,26 @@ class VarRefEdgeCases {
     ; Reference to reference
     static Demo() {
         a := 10
-        
+
         ; Create reference
         ref := &a
-        
+
         ; Dereference
         value := %ref%
-        
+
         ; Modify through reference
         %ref% := 20
-        
+
         return [a, value]  ; [20, 10]
     }
-    
+
     ; Swap using references
     static Swap(&a, &b) {
         temp := a
         a := b
         b := temp
     }
-    
+
     ; Out parameters
     static TryParse(str, &result) {
         if RegExMatch(str, "^\d+$") {
@@ -278,7 +278,7 @@ MsgBox("Inline Object Access:`n`n"
 ; Comma operator
 MsgBox("Comma Operator:`n`n"
     . "Expression result: " CommaOperator.Demo() "`n"
-    . "Counter: " (counter := CommaOperator.CreateCounter(), 
+    . "Counter: " (counter := CommaOperator.CreateCounter(),
         counter() ", " counter() ", " counter()))
 
 ; VarRef

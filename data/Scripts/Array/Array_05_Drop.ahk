@@ -4,10 +4,10 @@
 #Include <adash>
 
 /**
-* _.drop() - Drop elements from beginning
-*
-* Creates a slice of array with n elements dropped from the beginning.
-*/
+ * _.drop() - Drop elements from beginning
+ * 
+ * Creates a slice of array with n elements dropped from the beginning.
+ */
 
 result1 := _.drop([1, 2, 3])
 ; => [2, 3]
@@ -22,6 +22,6 @@ result4 := _.drop([1, 2, 3], 0)
 ; => [1, 2, 3]
 
 MsgBox("Drop 1: " JSON.stringify(result1) "`n"
-. "Drop 2: " JSON.stringify(result2) "`n"
-. "Drop 5: " JSON.stringify(result3) "`n"
-. "Drop 0: " JSON.stringify(result4))
+    . "Drop 2: " JSON.stringify(result2) "`n"
+    . "Drop 5: " JSON.stringify(result3) "`n"
+    . "Drop 0: " JSON.stringify(result4))

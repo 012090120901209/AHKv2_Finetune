@@ -3,7 +3,7 @@
 
 var := 9
 MsgBox(
-(
-var "
+    (
+        var "
 line2"
-))
+    ))

@@ -11,19 +11,19 @@ class Editor {
         this.content .= text
         return this
     }
-    
+
     Clear() {
         this.content := ""
         return this
     }
 
     Save() => Memento(this.content)
-    
+
     Restore(memento) {
         this.content := memento.state
         return this
     }
-    
+
     GetContent() => this.content
 }
 
@@ -47,7 +47,7 @@ class History {
             return this.snapshots.Pop()
         return ""
     }
-    
+
     Count() => this.snapshots.Length
 }
 

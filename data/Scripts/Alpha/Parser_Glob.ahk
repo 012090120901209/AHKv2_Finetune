@@ -79,7 +79,7 @@ class Glob {
         }
         return result
     }
-    
+
     static JoinArray(arr, sep) {
         result := ""
         for i, v in arr

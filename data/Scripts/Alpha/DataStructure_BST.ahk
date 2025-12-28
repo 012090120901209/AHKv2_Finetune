@@ -63,13 +63,13 @@ class BST {
         result.Push(node.value)
         this.InOrderTraverse(node.right, result)
     }
-    
+
     PreOrder() {
         result := []
         this.PreOrderTraverse(this.root, result)
         return result
     }
-    
+
     PreOrderTraverse(node, result) {
         if !node
             return
@@ -77,7 +77,7 @@ class BST {
         this.PreOrderTraverse(node.left, result)
         this.PreOrderTraverse(node.right, result)
     }
-    
+
     Min() {
         if !this.root
             return ""
@@ -86,7 +86,7 @@ class BST {
             node := node.left
         return node.value
     }
-    
+
     Max() {
         if !this.root
             return ""

@@ -1,30 +1,30 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinActivate Examples - Part 3: Activate by Process ID (PID)
-* ============================================================================
-*
-* This script demonstrates how to use WinActivate with Process IDs.
-* Using PIDs provides the most precise window identification, especially
-* when dealing with multiple instances of the same application.
-*
-* @description Advanced window activation using Process IDs and process management
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinActivate Examples - Part 3: Activate by Process ID (PID)
+ * ============================================================================
+ * 
+ * This script demonstrates how to use WinActivate with Process IDs.
+ * Using PIDs provides the most precise window identification, especially
+ * when dealing with multiple instances of the same application.
+ * 
+ * @description Advanced window activation using Process IDs and process management
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Activate Window by Process ID
 ; ============================================================================
 
 /**
-* Activates a window using its Process ID
-* Most precise method for window identification
-*
-* @hotkey F1 - Activate window by PID
-*/
+ * Activates a window using its Process ID
+ * Most precise method for window identification
+ * 
+ * @hotkey F1 - Activate window by PID
+ */
 F1:: {
     try {
         ; Get active window's PID
@@ -53,18 +53,18 @@ F1:: {
 ; ============================================================================
 
 /**
-* Creates a process manager that tracks and activates windows by PID
-* Useful for managing multiple instances of the same application
-*
-* @hotkey F2 - Show process manager
-*/
+ * Creates a process manager that tracks and activates windows by PID
+ * Useful for managing multiple instances of the same application
+ * 
+ * @hotkey F2 - Show process manager
+ */
 F2:: {
     ShowProcessManager()
 }
 
 /**
-* Displays a GUI to manage processes and their windows
-*/
+ * Displays a GUI to manage processes and their windows
+ */
 ShowProcessManager() {
     static pmGui := ""
 
@@ -79,7 +79,7 @@ ShowProcessManager() {
 
     ; Create ListView
     lv := pmGui.Add("ListView", "w600 h300 vProcessList",
-    ["Process Name", "PID", "Window Title", "Window Count"])
+        ["Process Name", "PID", "Window Title", "Window Count"])
 
     ; Collect process information
     processMap := Map()
@@ -103,7 +103,7 @@ ShowProcessManager() {
                     }
                 }
 
-                processMap[key].windows.Push({hwnd: hwnd, title: title})
+                processMap[key].windows.Push({ hwnd: hwnd, title: title })
             }
         }
     }
@@ -151,10 +151,10 @@ ShowProcessManager() {
 }
 
 /**
-* Shows all windows for a specific PID
-*
-* @param {Integer} pid - Process ID
-*/
+ * Shows all windows for a specific PID
+ * 
+ * @param {Integer} pid - Process ID
+ */
 ShowWindowsForPID(pid) {
     static winGui := ""
 
@@ -177,7 +177,7 @@ ShowWindowsForPID(pid) {
                 if procName = "" {
                     procName := WinGetProcessName(hwnd)
                 }
-                windows.Push({hwnd: hwnd, title: title})
+                windows.Push({ hwnd: hwnd, title: title })
             }
         }
     }
@@ -214,11 +214,11 @@ ShowWindowsForPID(pid) {
 ; ============================================================================
 
 /**
-* Launches applications and tracks them by PID for later activation
-* Demonstrates PID-based application management
-*
-* @hotkey F3 - Launch and track Notepad
-*/
+ * Launches applications and tracks them by PID for later activation
+ * Demonstrates PID-based application management
+ * 
+ * @hotkey F3 - Launch and track Notepad
+ */
 F3:: {
     LaunchAndTrack()
 }
@@ -227,8 +227,8 @@ F3:: {
 global launchedApps := Map()
 
 /**
-* Launches an application and stores its PID
-*/
+ * Launches an application and stores its PID
+ */
 LaunchAndTrack() {
     try {
         ; Launch Notepad
@@ -259,18 +259,18 @@ LaunchAndTrack() {
 ; ============================================================================
 
 /**
-* Switches between multiple instances of the same application
-* Uses PID to distinguish between instances
-*
-* @hotkey F4 - Cycle through Notepad instances
-*/
+ * Switches between multiple instances of the same application
+ * Uses PID to distinguish between instances
+ * 
+ * @hotkey F4 - Cycle through Notepad instances
+ */
 F4:: {
     CycleNotepadInstances()
 }
 
 /**
-* Cycles through all Notepad instances using PID
-*/
+ * Cycles through all Notepad instances using PID
+ */
 CycleNotepadInstances() {
     static lastPID := 0
 
@@ -316,10 +316,10 @@ CycleNotepadInstances() {
 ; ============================================================================
 
 /**
-* Creates window groups based on PIDs for batch operations
-*
-* @hotkey F5 - Create PID-based window group
-*/
+ * Creates window groups based on PIDs for batch operations
+ * 
+ * @hotkey F5 - Create PID-based window group
+ */
 F5:: {
     CreatePIDGroup()
 }
@@ -328,8 +328,8 @@ F5:: {
 global windowGroups := Map()
 
 /**
-* Creates a named group of windows by PID
-*/
+ * Creates a named group of windows by PID
+ */
 CreatePIDGroup() {
     static groupGui := ""
 
@@ -358,7 +358,7 @@ CreatePIDGroup() {
                 pid := WinGetPID(hwnd)
                 procName := WinGetProcessName(hwnd)
                 displayText := title " [" procName " - PID: " pid "]"
-                windows.Push({hwnd: hwnd, pid: pid, display: displayText})
+                windows.Push({ hwnd: hwnd, pid: pid, display: displayText })
                 winList.Add([displayText])
             }
         }
@@ -399,17 +399,17 @@ CreatePIDGroup() {
 ; ============================================================================
 
 /**
-* Activates all windows in a PID-based group
-*
-* @hotkey F6 - Activate window group
-*/
+ * Activates all windows in a PID-based group
+ * 
+ * @hotkey F6 - Activate window group
+ */
 F6:: {
     ActivateWindowGroup()
 }
 
 /**
-* Shows GUI to select and activate window groups
-*/
+ * Shows GUI to select and activate window groups
+ */
 ActivateWindowGroup() {
     static groupGui := ""
 
@@ -468,18 +468,18 @@ ActivateWindowGroup() {
 ; ============================================================================
 
 /**
-* Activates windows based on process parent-child relationships
-* Useful for activating all windows spawned by a parent process
-*
-* @hotkey F7 - Show process tree
-*/
+ * Activates windows based on process parent-child relationships
+ * Useful for activating all windows spawned by a parent process
+ * 
+ * @hotkey F7 - Show process tree
+ */
 F7:: {
     ShowProcessTree()
 }
 
 /**
-* Displays process tree and allows activation of child windows
-*/
+ * Displays process tree and allows activation of child windows
+ */
 ShowProcessTree() {
     static treeGui := ""
 
@@ -512,7 +512,7 @@ ShowProcessTree() {
                     }
                 }
 
-                processes[pid].windows.Push({hwnd: hwnd, title: title})
+                processes[pid].windows.Push({ hwnd: hwnd, title: title })
             }
         }
     }
@@ -552,17 +552,17 @@ ShowProcessTree() {
 ; ============================================================================
 
 /**
-* Shows all applications tracked by PID
-*
-* @hotkey F8 - View tracked applications
-*/
+ * Shows all applications tracked by PID
+ * 
+ * @hotkey F8 - View tracked applications
+ */
 F8:: {
     ViewTrackedApps()
 }
 
 /**
-* Displays GUI with all tracked applications
-*/
+ * Displays GUI with all tracked applications
+ */
 ViewTrackedApps() {
     if launchedApps.Count = 0 {
         MsgBox("No tracked applications. Press F3 to launch and track an application.", "Info", 64)
@@ -627,7 +627,7 @@ ViewTrackedApps() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

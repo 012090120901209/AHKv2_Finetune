@@ -2,60 +2,60 @@
 #SingleInstance Force
 
 /**
-* __Enum Meta-Function - Range Iterator
-*
-* Demonstrates custom enumeration with the __Enum meta-function.
-* Creates a Range function similar to Python's range().
-*
-* Source: AHK_Notes/Concepts/CustomEnumeratorsIterators.md
-*/
+ * __Enum Meta-Function - Range Iterator
+ * 
+ * Demonstrates custom enumeration with the __Enum meta-function.
+ * Creates a Range function similar to Python's range().
+ * 
+ * Source: AHK_Notes/Concepts/CustomEnumeratorsIterators.md
+ */
 
 ; Example 1: Simple Range (1 to 10)
 MsgBox("Example 1: Range(1, 10)", , "T2")
 result1 := []
 for n in Range(1, 10)
-result1.Push(n)
+    result1.Push(n)
 
 MsgBox("Results: " result1.Length " numbers`n"
-. "First 5: " result1[1] ", " result1[2] ", " result1[3] ", "
-. result1[4] ", " result1[5], , "T5")
+    . "First 5: " result1[1] ", " result1[2] ", " result1[3] ", "
+    . result1[4] ", " result1[5], , "T5")
 
 ; Example 2: Reverse Range (10 to 1)
 MsgBox("Example 2: Range(10, 1, -1)", , "T2")
 result2 := []
 for n in Range(10, 1, -1)
-result2.Push(n)
+    result2.Push(n)
 
 MsgBox("Reverse Results: " result2.Length " numbers`n"
-. "First 5: " result2[1] ", " result2[2] ", " result2[3] ", "
-. result2[4] ", " result2[5], , "T5")
+    . "First 5: " result2[1] ", " result2[2] ", " result2[3] ", "
+    . result2[4] ", " result2[5], , "T5")
 
 ; Example 3: Range with Custom Step
 MsgBox("Example 3: Range(0, 20, 3)", , "T2")
 result3 := []
 for n in Range(0, 20, 3)
-result3.Push(n)
+    result3.Push(n)
 
 MsgBox("Step 3 Results: " result3.Length " numbers`n"
-. "Values: " result3[1] ", " result3[2] ", " result3[3] ", "
-. result3[4] ", " result3[5] ", " result3[6] ", " result3[7], , "T5")
+    . "Values: " result3[1] ", " result3[2] ", " result3[3] ", "
+    . result3[4] ", " result3[5] ", " result3[6] ", " result3[7], , "T5")
 
 /**
-* Range Function
-*
-* Returns an enumerator that yields numbers in a range.
-*
-* @param Start - Starting value
-* @param Stop - Ending value (inclusive)
-* @param Step - Increment (default 1, can be negative)
-* @return Enumerator function
-*/
+ * Range Function
+ * 
+ * Returns an enumerator that yields numbers in a range.
+ * 
+ * @param Start - Starting value
+ * @param Stop - Ending value (inclusive)
+ * @param Step - Increment (default 1, can be negative)
+ * @return Enumerator function
+ */
 Range(Start, Stop, Step := 1) {
     ; Return a closure that implements the enumerator
     return (&n) => (
-    n := Start,
-    Start += Step,
-    Step > 0 ? n <= Stop : n >= Stop
+        n := Start,
+        Start += Step,
+        Step > 0 ? n <= Stop : n >= Stop
     )
 }
 
@@ -134,4 +134,5 @@ Range(Start, Stop, Step := 1) {
         *            break
         *        MsgBox(n)
         *    }
-        */
+*/
+

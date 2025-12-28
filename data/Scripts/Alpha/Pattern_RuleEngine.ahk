@@ -135,9 +135,9 @@ newCustomerRule := Rule("New Customer Bonus", Map("priority", 60))
     .Then((facts, ctx) => Map("bonus", 10, "message", "New customer $10 bonus"))
 
 engine.AddRule(vipRule)
-       .AddRule(largeOrderRule)
-       .AddRule(holidayRule)
-       .AddRule(newCustomerRule)
+    .AddRule(largeOrderRule)
+    .AddRule(holidayRule)
+    .AddRule(newCustomerRule)
 
 ; Test cases
 testCases := [

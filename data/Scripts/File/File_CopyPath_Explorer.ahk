@@ -2,25 +2,25 @@
 #SingleInstance Force
 
 /**
-* File and Folder Operations
-*
-* Demonstrates Explorer integration for copying file paths,
-* filenames, and accessing the Recycle Bin.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * File and Folder Operations
+ * 
+ * Demonstrates Explorer integration for copying file paths,
+ * filenames, and accessing the Recycle Bin.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("File Operations Demo`n`n"
-. "Features:`n"
-. "1. Copy full path of selected file(s)`n"
-. "2. Copy filename(s) only`n"
-. "3. Quick access to Recycle Bin`n`n"
-. "Hotkeys:`n"
-. "Ctrl+Shift+C - Copy full path`n"
-. "Ctrl+Shift+N - Copy filename`n"
-. "Ctrl+Delete - Open Recycle Bin`n`n"
-. "Opening Explorer for demo...", , "T5")
+    . "Features:`n"
+    . "1. Copy full path of selected file(s)`n"
+    . "2. Copy filename(s) only`n"
+    . "3. Quick access to Recycle Bin`n`n"
+    . "Hotkeys:`n"
+    . "Ctrl+Shift+C - Copy full path`n"
+    . "Ctrl+Shift+N - Copy filename`n"
+    . "Ctrl+Delete - Open Recycle Bin`n`n"
+    . "Opening Explorer for demo...", , "T5")
 
 ; Open Explorer to demonstrate
 Run("explorer.exe " A_ScriptDir)
@@ -28,21 +28,21 @@ WinWait("ahk_class CabinetWClass", , 3)
 WinActivate("ahk_class CabinetWClass")
 
 MsgBox("Select a file in Explorer and try:`n"
-. "Ctrl+Shift+C to copy its path!", , "T3")
+    . "Ctrl+Shift+C to copy its path!", , "T3")
 
 ; Copy full path (Explorer context)
 #HotIf WinActive("ahk_class CabinetWClass") || WinActive("ahk_class #32770")
 
-^+c::CopySelectedPaths()
-^+n::CopySelectedFilenames()
+^+c:: CopySelectedPaths()
+^+n:: CopySelectedFilenames()
 #HotIf
 
 ; Quick Recycle Bin access
-^Delete::OpenRecycleBin()
+^Delete:: OpenRecycleBin()
 
 /**
-* Copy full paths of selected files
-*/
+ * Copy full paths of selected files
+ */
 CopySelectedPaths() {
     paths := GetSelectedFilePaths()
 
@@ -55,7 +55,7 @@ CopySelectedPaths() {
     ; Join paths with newline
     pathText := ""
     for path in paths
-    pathText .= path "`n"
+        pathText .= path "`n"
     pathText := RTrim(pathText, "`n")
 
     ; Copy to clipboard
@@ -65,15 +65,15 @@ CopySelectedPaths() {
     count := paths.Length
     preview := paths[1]
     if (StrLen(preview) > 60)
-    preview := SubStr(preview, 1, 60) "..."
+        preview := SubStr(preview, 1, 60) "..."
 
     ToolTip("Copied " count " path(s):`n" preview)
     SetTimer(() => ToolTip(), -2000)
 }
 
 /**
-* Copy filenames only (no path)
-*/
+ * Copy filenames only (no path)
+ */
 CopySelectedFilenames() {
     paths := GetSelectedFilePaths()
 
@@ -93,7 +93,7 @@ CopySelectedFilenames() {
     ; Join with newline
     filenameText := ""
     for name in filenames
-    filenameText .= name "`n"
+        filenameText .= name "`n"
     filenameText := RTrim(filenameText, "`n")
 
     ; Copy to clipboard
@@ -105,8 +105,8 @@ CopySelectedFilenames() {
 }
 
 /**
-* Get selected file paths from Explorer
-*/
+ * Get selected file paths from Explorer
+ */
 GetSelectedFilePaths() {
     paths := []
 
@@ -130,8 +130,8 @@ GetSelectedFilePaths() {
 }
 
 /**
-* Open Recycle Bin
-*/
+ * Open Recycle Bin
+ */
 OpenRecycleBin() {
     ; Open Recycle Bin using shell command
     Run("explorer.exe shell:RecycleBinFolder")
@@ -217,3 +217,4 @@ OpenRecycleBin() {
 *     - Export to various formats
 *     - Right-click menu integration
 */
+

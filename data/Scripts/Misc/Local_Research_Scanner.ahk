@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
-* Local Script Research Scanner
-*
-* Scans local AHK scripts from a source directory and extracts
-* AutoHotkey v2 examples for training purposes.
-*
-* SOURCE: C:\Users\uphol\Documents\Design\Coding\AHK\!Running\
-* OUTPUT: C:\Users\uphol\Documents\Design\Coding\AHK\!Running\Training\
-*
-* FEATURES:
-* - Recursively scans source directory for .ahk files
-* - Detects v1 vs v2 syntax automatically
-* - Analyzes code quality and size
-* - Generates comprehensive research report
-* - Creates organized inventory of all scripts
-*
-* USAGE:
-* 1. Update SOURCE_DIR and OUTPUT_DIR if needed
-* 2. Run this script
-* 3. Review generated RESEARCH_REPORT.md
-* 4. Manually extract valuable examples to Training folder
-*/
+ * Local Script Research Scanner
+ * 
+ * Scans local AHK scripts from a source directory and extracts
+ * AutoHotkey v2 examples for training purposes.
+ * 
+ * SOURCE: C:\Users\uphol\Documents\Design\Coding\AHK\!Running\
+ * OUTPUT: C:\Users\uphol\Documents\Design\Coding\AHK\!Running\Training\
+ * 
+ * FEATURES:
+ * - Recursively scans source directory for .ahk files
+ * - Detects v1 vs v2 syntax automatically
+ * - Analyzes code quality and size
+ * - Generates comprehensive research report
+ * - Creates organized inventory of all scripts
+ * 
+ * USAGE:
+ * 1. Update SOURCE_DIR and OUTPUT_DIR if needed
+ * 2. Run this script
+ * 3. Review generated RESEARCH_REPORT.md
+ * 4. Manually extract valuable examples to Training folder
+ */
 
-#SingleInstance Force
 
 ; ============================================================
 ; Configuration
@@ -48,14 +48,14 @@ if !DirExist(OUTPUT_DIR) {
 
 ; Show initial message
 result := MsgBox("Local AutoHotkey Script Scanner`n`n"
-. "Source: " SOURCE_DIR "`n"
-. "Output: " OUTPUT_DIR "`n`n"
-. "This will scan all .ahk files recursively.`n"
-. "Continue?",
-"Script Scanner", "YesNo Icon?")
+    . "Source: " SOURCE_DIR "`n"
+    . "Output: " OUTPUT_DIR "`n`n"
+    . "This will scan all .ahk files recursively.`n"
+    . "Continue?",
+    "Script Scanner", "YesNo Icon?")
 
 if result = "No"
-ExitApp
+    ExitApp
 
 ; Create progress GUI
 progressGui := Gui("+AlwaysOnTop", "Scanning Scripts...")
@@ -77,7 +77,7 @@ statusText.Value := "Counting files..."
 fileList := []
 
 Loop Files, SOURCE_DIR "*.ahk", "R"
- {
+{
     fileList.Push({
         path: A_LoopFileFullPath,
         name: A_LoopFileName,
@@ -120,16 +120,16 @@ for index, file in fileList {
 
     ; Track version counts
     if analysis.version = "v2"
-    v2Files++
+        v2Files++
     else if analysis.version = "v1"
-    v1Files++
+        v1Files++
     else
-    unknownFiles++
+        unknownFiles++
 
     ; Track categories
     for feature in analysis.features {
         if !categories.Has(feature)
-        categories[feature] := 0
+            categories[feature] := 0
         categories[feature] := categories[feature] + 1
     }
 }
@@ -144,7 +144,7 @@ report := GenerateReport()
 reportPath := OUTPUT_DIR "RESEARCH_REPORT.md"
 try {
     if FileExist(reportPath)
-    FileDelete(reportPath)
+        FileDelete(reportPath)
     FileAppend(report, reportPath)
 } catch as err {
     MsgBox("Error saving report:`n" err.Message, "Error", "Icon!")
@@ -155,12 +155,12 @@ progressGui.Destroy()
 
 ; Show results
 MsgBox("Scan Complete!`n`n"
-. "Total files: " totalFiles "`n"
-. "V2 scripts: " v2Files "`n"
-. "V1 scripts: " v1Files "`n"
-. "Unknown: " unknownFiles "`n`n"
-. "Report saved to:`n" reportPath,
-"Scan Results", "Icon!")
+    . "Total files: " totalFiles "`n"
+    . "V2 scripts: " v2Files "`n"
+    . "V1 scripts: " v1Files "`n"
+    . "Unknown: " unknownFiles "`n`n"
+    . "Report saved to:`n" reportPath,
+    "Scan Results", "Icon!")
 
 ; Ask if user wants to open report
 result := MsgBox("Open research report now?", "Open Report", "YesNo Icon?")
@@ -179,8 +179,8 @@ ExitApp
 ; ============================================================
 
 /**
-* Analyze script content and detect features
-*/
+ * Analyze script content and detect features
+ */
 AnalyzeScript(content, filepath) {
     analysis := {
         path: filepath,
@@ -217,12 +217,12 @@ AnalyzeScript(content, filepath) {
 }
 
 /**
-* Detect AutoHotkey version
-*/
+ * Detect AutoHotkey version
+ */
 DetectVersion(content) {
     ; Strong v2 indicators
     if InStr(content, "#Requires AutoHotkey v2")
-    return "v2"
+        return "v2"
 
     ; Check for v2 syntax patterns
     v2Score := 0
@@ -230,140 +230,140 @@ DetectVersion(content) {
 
     ; V2 indicators
     if RegExMatch(content, "i)\bGui\(")
-    v2Score += 2
+        v2Score += 2
     if RegExMatch(content, "i)\bMap\(")
-    v2Score += 2
+        v2Score += 2
     if RegExMatch(content, "i)\bMsgBox\(")
-    v2Score += 1
+        v2Score += 1
     if InStr(content, "#HotIf")
-    v2Score += 2
+        v2Score += 2
     if InStr(content, "=>")
-    v2Score += 1
+        v2Score += 1
 
     ; V1 indicators
     if RegExMatch(content, "i)\bGui,\s*Add,")
-    v1Score += 2
+        v1Score += 2
     if RegExMatch(content, "i)\bMsgBox,")
-    v1Score += 1
+        v1Score += 1
     if RegExMatch(content, "i)\bStringSplit,")
-    v1Score += 2
+        v1Score += 2
     if InStr(content, "#If ")
-    v1Score += 2
+        v1Score += 2
     if RegExMatch(content, "i)\b(IfEqual|IfNotEqual|SetEnv)\b")
-    v1Score += 2
+        v1Score += 2
 
     ; Determine version based on scores
     if v2Score > v1Score && v2Score >= 2
-    return "v2"
+        return "v2"
     if v1Score > v2Score && v1Score >= 2
-    return "v1"
+        return "v1"
 
     return "unknown"
 }
 
 /**
-* Detect features used in script
-*/
+ * Detect features used in script
+ */
 DetectFeatures(content) {
     features := []
 
     ; GUI
     if RegExMatch(content, "i)\bGui\(|Gui,\s*Add,")
-    features.Push("GUI")
+        features.Push("GUI")
 
     ; Hotkeys
     if InStr(content, "::")
-    features.Push("Hotkeys")
+        features.Push("Hotkeys")
 
     ; Hotstrings
     if RegExMatch(content, "i)^::.*::", "m")
-    features.Push("Hotstrings")
+        features.Push("Hotstrings")
 
     ; File operations
     if RegExMatch(content, "i)\b(FileRead|FileAppend|FileOpen|DirCreate|Loop\s+Files)\b")
-    features.Push("Files")
+        features.Push("Files")
 
     ; Window management
     if RegExMatch(content, "i)\b(WinActivate|WinWait|WinMove|WinGetPos)\b")
-    features.Push("Windows")
+        features.Push("Windows")
 
     ; COM
     if RegExMatch(content, "i)\bComObject\(|ComObjCreate\(")
-    features.Push("COM")
+        features.Push("COM")
 
     ; DllCall
     if InStr(content, "DllCall(")
-    features.Push("DllCall")
+        features.Push("DllCall")
 
     ; Classes
     if RegExMatch(content, "i)^\s*class\s+\w+", "m")
-    features.Push("OOP")
+        features.Push("OOP")
 
     ; HTTP/Web
     if RegExMatch(content, "i)\b(WinHttpRequest|Download|UrlDownloadToFile)\b")
-    features.Push("HTTP")
+        features.Push("HTTP")
 
     ; Clipboard
     if RegExMatch(content, "i)\bA_Clipboard\b|ClipboardAll")
-    features.Push("Clipboard")
+        features.Push("Clipboard")
 
     ; RegEx
     if RegExMatch(content, "i)\bRegExMatch\(|RegExReplace\(")
-    features.Push("RegEx")
+        features.Push("RegEx")
 
     ; Module system
     if RegExMatch(content, "i)^#Module\b|^Import\b|^Export\b", "m")
-    features.Push("Modules")
+        features.Push("Modules")
 
     return features
 }
 
 /**
-* Assess code quality (1-5 stars)
-*/
+ * Assess code quality (1-5 stars)
+ */
 AssessQuality(content, analysis) {
     quality := 3  ; Start at average
 
     ; Positive factors
     if analysis.hasComments
-    quality += 1
+        quality += 1
     if RegExMatch(content, "/\*\*")  ; JSDoc comments
-    quality += 1
+        quality += 1
     if analysis.size >= 50 && analysis.size <= 300  ; Good size
-    quality += 1
+        quality += 1
     if analysis.hasClasses
-    quality += 0.5
+        quality += 0.5
 
     ; Negative factors
     if analysis.size < 10
-    quality -= 1
+        quality -= 1
     if analysis.size > 1000
-    quality -= 1
+        quality -= 1
     if !analysis.hasComments
-    quality -= 1
+        quality -= 1
 
     ; Clamp to 1-5
     if quality > 5
-    quality := 5
+        quality := 5
     if quality < 1
-    quality := 1
+        quality := 1
 
     return Round(quality)
 }
 
 /**
-* Count lines in text
-*/
+ * Count lines in text
+ */
 CountLines(text) {
     count := 1
     Loop Parse, text, "`n", "`r"
-    count++
+        count++
     return count
 }
 
 /**
-* Generate research report
-*/
+ * Generate research report
+ */
 GenerateReport() {
     report := ""
     report .= "# Local AutoHotkey Script Research Report`n`n"
@@ -409,7 +409,7 @@ GenerateReport() {
     for result in results {
         q := result.quality
         if qualityCount.Has(q)
-        qualityCount[q] := qualityCount[q] + 1
+            qualityCount[q] := qualityCount[q] + 1
     }
 
     report .= "| Quality Rating | Count | Percentage |`n"
@@ -420,7 +420,7 @@ GenerateReport() {
         pct := totalFiles > 0 ? Round((count / totalFiles) * 100, 1) : 0
         stars := ""
         Loop rating
-        stars .= "⭐"
+            stars .= "⭐"
         report .= "| " stars " | " count " | " pct "% |`n"
     }
 
@@ -434,18 +434,18 @@ GenerateReport() {
     for result in results {
         stars := ""
         Loop result.quality
-        stars .= "⭐"
+            stars .= "⭐"
 
         featureStr := result.features.Length > 0 ? result.features[1] : ""
         if result.features.Length > 1
-        featureStr .= ", " result.features[2]
+            featureStr .= ", " result.features[2]
         if result.features.Length > 2
-        featureStr .= "..."
+            featureStr .= "..."
 
         ; Truncate long paths
         displayPath := result.path
         if StrLen(displayPath) > 60
-        displayPath := "..." SubStr(displayPath, -57)
+            displayPath := "..." SubStr(displayPath, -57)
 
         report .= "| " displayPath " | " result.size " | " result.version " | " stars " | " featureStr " |`n"
     }
@@ -464,11 +464,11 @@ GenerateReport() {
             report .= "Features: " (result.features.Length > 0 ? result.features.Join(", ") : "none detected") "`n"
             goodV2Count++
             if goodV2Count >= 10
-            break
+                break
         }
     }
     if goodV2Count = 0
-    report .= "*No high-quality v2 scripts found*`n"
+        report .= "*No high-quality v2 scripts found*`n"
 
     report .= "`n"
 
@@ -481,11 +481,11 @@ GenerateReport() {
             report .= "Features: " (result.features.Length > 0 ? result.features.Join(", ") : "none detected") "`n"
             convertCount++
             if convertCount >= 10
-            break
+                break
         }
     }
     if convertCount = 0
-    report .= "*No good conversion candidates found*`n"
+        report .= "*No good conversion candidates found*`n"
 
     report .= "`n---`n`n"
 

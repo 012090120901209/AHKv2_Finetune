@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinSetTitle Examples - Part 3: Dynamic Titles
-* ============================================================================
-*
-* This script demonstrates dynamic title updates and real-time modifications.
-* Focuses on live updates, progress indicators, and status displays.
-*
-* @description Dynamic and real-time window title manipulation
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinSetTitle Examples - Part 3: Dynamic Titles
+ * ============================================================================
+ * 
+ * This script demonstrates dynamic title updates and real-time modifications.
+ * Focuses on live updates, progress indicators, and status displays.
+ * 
+ * @description Dynamic and real-time window title manipulation
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Real-Time Clock in Title
 ; ============================================================================
 
 /**
-* Displays a real-time clock in the window title
-* Updates every second
-*
-* @hotkey F1 - Start/stop title clock
-*/
+ * Displays a real-time clock in the window title
+ * Updates every second
+ * 
+ * @hotkey F1 - Start/stop title clock
+ */
 F1:: {
     static clockRunning := false
 
@@ -36,8 +36,8 @@ F1:: {
 }
 
 /**
-* Shows live clock in window title
-*/
+ * Shows live clock in window title
+ */
 StartTitleClock() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -82,18 +82,18 @@ StartTitleClock() {
 ; ============================================================================
 
 /**
-* Shows a progress bar in the window title
-* Simulates a long-running operation
-*
-* @hotkey F2 - Show progress in title
-*/
+ * Shows a progress bar in the window title
+ * Simulates a long-running operation
+ * 
+ * @hotkey F2 - Show progress in title
+ */
 F2:: {
     ShowProgressInTitle()
 }
 
 /**
-* Demonstrates progress indication in title
-*/
+ * Demonstrates progress indication in title
+ */
 ShowProgressInTitle() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -125,8 +125,8 @@ ShowProgressInTitle() {
 }
 
 /**
-* Helper function
-*/
+ * Helper function
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count {
@@ -140,11 +140,11 @@ StrRepeat(str, count) {
 ; ============================================================================
 
 /**
-* Displays system resource usage in window title
-* Updates in real-time
-*
-* @hotkey F3 - Show system stats in title
-*/
+ * Displays system resource usage in window title
+ * Updates in real-time
+ * 
+ * @hotkey F3 - Show system stats in title
+ */
 F3:: {
     static statsRunning := false
 
@@ -157,8 +157,8 @@ F3:: {
 }
 
 /**
-* Shows system statistics in title
-*/
+ * Shows system statistics in title
+ */
 StartSystemStats() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -206,18 +206,18 @@ StartSystemStats() {
 ; ============================================================================
 
 /**
-* Runs a countdown timer in the window title
-* Useful for time-boxed tasks
-*
-* @hotkey F4 - Start countdown timer
-*/
+ * Runs a countdown timer in the window title
+ * Useful for time-boxed tasks
+ * 
+ * @hotkey F4 - Start countdown timer
+ */
 F4:: {
     StartCountdown()
 }
 
 /**
-* Countdown timer in window title
-*/
+ * Countdown timer in window title
+ */
 StartCountdown() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -263,11 +263,11 @@ StartCountdown() {
 ; ============================================================================
 
 /**
-* Displays a notification/message counter in title
-* Simulates unread message count
-*
-* @hotkey F5 - Start notification counter
-*/
+ * Displays a notification/message counter in title
+ * Simulates unread message count
+ * 
+ * @hotkey F5 - Start notification counter
+ */
 F5:: {
     StartNotificationCounter()
 }
@@ -276,8 +276,8 @@ F5:: {
 global notificationCount := 0
 
 /**
-* Shows notification counter in title
-*/
+ * Shows notification counter in title
+ */
 StartNotificationCounter() {
     static counterGui := ""
 
@@ -337,11 +337,11 @@ StartNotificationCounter() {
 ; ============================================================================
 
 /**
-* Animates the window title with rotating status
-* Creates visual activity indicator
-*
-* @hotkey F6 - Start status animation
-*/
+ * Animates the window title with rotating status
+ * Creates visual activity indicator
+ * 
+ * @hotkey F6 - Start status animation
+ */
 F6:: {
     static animating := false
 
@@ -354,8 +354,8 @@ F6:: {
 }
 
 /**
-* Animates status in title
-*/
+ * Animates status in title
+ */
 StartStatusAnimation() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -388,18 +388,18 @@ StartStatusAnimation() {
 ; ============================================================================
 
 /**
-* Synchronizes titles across multiple windows
-* Updates all selected windows simultaneously
-*
-* @hotkey F7 - Synchronize window titles
-*/
+ * Synchronizes titles across multiple windows
+ * Updates all selected windows simultaneously
+ * 
+ * @hotkey F7 - Synchronize window titles
+ */
 F7:: {
     SynchronizeWindowTitles()
 }
 
 /**
-* Syncs titles across windows
-*/
+ * Syncs titles across windows
+ */
 SynchronizeWindowTitles() {
     static syncGui := ""
 
@@ -467,7 +467,7 @@ SynchronizeWindowTitles() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

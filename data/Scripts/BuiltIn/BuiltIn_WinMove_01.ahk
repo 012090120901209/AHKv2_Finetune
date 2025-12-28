@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinMove Examples - Part 1: Position Window
-* ============================================================================
-*
-* This script demonstrates how to move windows to specific positions.
-* Essential for window organization, multi-monitor setups, and layouts.
-*
-* @description Comprehensive window positioning examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinMove Examples - Part 1: Position Window
+ * ============================================================================
+ * 
+ * This script demonstrates how to move windows to specific positions.
+ * Essential for window organization, multi-monitor setups, and layouts.
+ * 
+ * @description Comprehensive window positioning examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Move Window to Specific Position
 ; ============================================================================
 
 /**
-* Moves the active window to specific coordinates
-* Basic positioning example
-*
-* @hotkey F1 - Move to top-left corner
-*/
+ * Moves the active window to specific coordinates
+ * Basic positioning example
+ * 
+ * @hotkey F1 - Move to top-left corner
+ */
 F1:: {
     try {
         if !WinExist("A") {
@@ -45,18 +45,18 @@ F1:: {
 ; ============================================================================
 
 /**
-* Centers the active window on the current monitor
-* Useful for focusing attention
-*
-* @hotkey F2 - Center window
-*/
+ * Centers the active window on the current monitor
+ * Useful for focusing attention
+ * 
+ * @hotkey F2 - Center window
+ */
 F2:: {
     CenterWindow()
 }
 
 /**
-* Centers active window on screen
-*/
+ * Centers active window on screen
+ */
 CenterWindow() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -82,8 +82,8 @@ CenterWindow() {
 }
 
 /**
-* Gets monitor number containing most of window
-*/
+ * Gets monitor number containing most of window
+ */
 GetMonitorUnderWindow() {
     WinGetPos(&x, &y, &w, &h, "A")
     centerX := x + (w // 2)
@@ -104,18 +104,18 @@ GetMonitorUnderWindow() {
 ; ============================================================================
 
 /**
-* Moves window to screen corners
-* Quick window organization
-*
-* @hotkey F3 - Show corner menu
-*/
+ * Moves window to screen corners
+ * Quick window organization
+ * 
+ * @hotkey F3 - Show corner menu
+ */
 F3:: {
     PositionAtCorner()
 }
 
 /**
-* GUI for corner positioning
-*/
+ * GUI for corner positioning
+ */
 PositionAtCorner() {
     static cornerGui := ""
 
@@ -129,11 +129,11 @@ PositionAtCorner() {
     cornerGui.Add("Text", "w300", "Select corner:")
 
     corners := [
-    "Top-Left",
-    "Top-Right",
-    "Bottom-Left",
-    "Bottom-Right",
-    "Center"
+        "Top-Left",
+        "Top-Right",
+        "Bottom-Left",
+        "Bottom-Right",
+        "Center"
     ]
 
     cornerList := cornerGui.Add("ListBox", "w300 h120 vCorner")
@@ -162,15 +162,15 @@ PositionAtCorner() {
 
         switch submitted.Corner {
             case 1:  ; Top-Left
-            WinMove(left + margin, top + margin, , , "A")
+                WinMove(left + margin, top + margin, , , "A")
             case 2:  ; Top-Right
-            WinMove(right - w - margin, top + margin, , , "A")
+                WinMove(right - w - margin, top + margin, , , "A")
             case 3:  ; Bottom-Left
-            WinMove(left + margin, bottom - h - margin, , , "A")
+                WinMove(left + margin, bottom - h - margin, , , "A")
             case 4:  ; Bottom-Right
-            WinMove(right - w - margin, bottom - h - margin, , , "A")
+                WinMove(right - w - margin, bottom - h - margin, , , "A")
             case 5:  ; Center
-            WinMove(left + ((right - left - w) // 2), top + ((bottom - top - h) // 2), , , "A")
+                WinMove(left + ((right - left - w) // 2), top + ((bottom - top - h) // 2), , , "A")
         }
 
         cornerGui.Destroy()
@@ -184,18 +184,18 @@ PositionAtCorner() {
 ; ============================================================================
 
 /**
-* Arranges multiple windows in a cascade pattern
-* Classic window management
-*
-* @hotkey F4 - Cascade windows
-*/
+ * Arranges multiple windows in a cascade pattern
+ * Classic window management
+ * 
+ * @hotkey F4 - Cascade windows
+ */
 F4:: {
     CascadeWindows()
 }
 
 /**
-* Cascades all windows
-*/
+ * Cascades all windows
+ */
 CascadeWindows() {
     MonitorGetWorkArea(1, &left, &top, &right, &bottom)
 
@@ -238,18 +238,18 @@ CascadeWindows() {
 ; ============================================================================
 
 /**
-* Moves windows between monitors
-* Essential for multi-monitor setups
-*
-* @hotkey F5 - Move to next monitor
-*/
+ * Moves windows between monitors
+ * Essential for multi-monitor setups
+ * 
+ * @hotkey F5 - Move to next monitor
+ */
 F5:: {
     MoveToNextMonitor()
 }
 
 /**
-* Moves active window to next monitor
-*/
+ * Moves active window to next monitor
+ */
 MoveToNextMonitor() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -304,18 +304,18 @@ MoveToNextMonitor() {
 ; ============================================================================
 
 /**
-* Allows precise positioning via input
-* For exact window placement
-*
-* @hotkey F6 - Precise position input
-*/
+ * Allows precise positioning via input
+ * For exact window placement
+ * 
+ * @hotkey F6 - Precise position input
+ */
 F6:: {
     PrecisePosition()
 }
 
 /**
-* GUI for precise positioning
-*/
+ * GUI for precise positioning
+ */
 PrecisePosition() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -360,11 +360,11 @@ PrecisePosition() {
 ; ============================================================================
 
 /**
-* Saves and restores window positions
-* Layout management
-*
-* @hotkey F7 - Save/restore positions
-*/
+ * Saves and restores window positions
+ * Layout management
+ * 
+ * @hotkey F7 - Save/restore positions
+ */
 F7:: {
     ManagePositions()
 }
@@ -373,8 +373,8 @@ F7:: {
 global savedPositions := Map()
 
 /**
-* Position management GUI
-*/
+ * Position management GUI
+ */
 ManagePositions() {
     static posGui := ""
 
@@ -406,7 +406,7 @@ ManagePositions() {
                 title := WinGetTitle(hwnd)
                 if title != "" {
                     WinGetPos(&x, &y, &w, &h, hwnd)
-                    savedPositions[hwnd] := {title: title, x: x, y: y, w: w, h: h}
+                    savedPositions[hwnd] := { title: title, x: x, y: y, w: w, h: h }
                 }
             }
         }
@@ -452,7 +452,7 @@ ManagePositions() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

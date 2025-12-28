@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_09_Searching.ahk
-*
-* DESCRIPTION:
-* Demonstrates searching, filtering, and finding nodes in TreeView controls
-* with various search algorithms and highlighting techniques.
-*
-* FEATURES:
-* - Text-based search in tree
-* - Incremental/live search
-* - Search result highlighting
-* - Filter tree by criteria
-* - Find and replace in tree
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - String matching functions
-* - Tree traversal algorithms
-* - Dynamic tree filtering
-* - Result highlighting
-*
-* LEARNING POINTS:
-* 1. Search requires traversing entire tree
-* 2. Bold/Select properties highlight results
-* 3. Filter creates new filtered view
-* 4. Track search results for navigation
-* 5. Case-sensitive vs case-insensitive search
-*/
+ * BuiltIn_TreeView_09_Searching.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates searching, filtering, and finding nodes in TreeView controls
+ * with various search algorithms and highlighting techniques.
+ * 
+ * FEATURES:
+ * - Text-based search in tree
+ * - Incremental/live search
+ * - Search result highlighting
+ * - Filter tree by criteria
+ * - Find and replace in tree
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - String matching functions
+ * - Tree traversal algorithms
+ * - Dynamic tree filtering
+ * - Result highlighting
+ * 
+ * LEARNING POINTS:
+ * 1. Search requires traversing entire tree
+ * 2. Bold/Select properties highlight results
+ * 3. Filter creates new filtered view
+ * 4. Track search results for navigation
+ * 5. Case-sensitive vs case-insensitive search
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Text Search
@@ -83,7 +83,7 @@ Example1_BasicSearch() {
 
         ; Highlight results
         for itemID in searchResults
-        TV.Modify(itemID, "Bold")
+            TV.Modify(itemID, "Bold")
 
         if (searchResults.Length > 0) {
             currentResult := 1
@@ -96,11 +96,11 @@ Example1_BasicSearch() {
 
     FindNext(*) {
         if (searchResults.Length = 0)
-        return DoSearch()
+            return DoSearch()
 
         currentResult++
         if (currentResult > searchResults.Length)
-        currentResult := 1
+            currentResult := 1
 
         TV.Modify(searchResults[currentResult], "Select Vis")
         UpdateStatus()
@@ -110,7 +110,7 @@ Example1_BasicSearch() {
         if (nodeID) {
             text := TV.GetText(nodeID)
             if (InStr(text, searchTerm))
-            results.Push(nodeID)
+                results.Push(nodeID)
         }
 
         child := TV.GetChild(nodeID)
@@ -122,7 +122,7 @@ Example1_BasicSearch() {
 
     ClearHighlights(TV, nodeID) {
         if (nodeID)
-        TV.Modify(nodeID, "-Bold")
+            TV.Modify(nodeID, "-Bold")
 
         child := TV.GetChild(nodeID)
         while (child) {
@@ -136,9 +136,9 @@ Example1_BasicSearch() {
 
     UpdateStatus() {
         if (searchResults.Length > 0)
-        statusText.Value := "Found " . searchResults.Length . " results | Showing: " . currentResult
+            statusText.Value := "Found " . searchResults.Length . " results | Showing: " . currentResult
         else
-        statusText.Value := "No results"
+            statusText.Value := "No results"
     }
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
@@ -191,7 +191,7 @@ Example2_LiveSearch() {
         ClearAllBold(TV, Root)
 
         if (!searchTerm)
-        return
+            return
 
         ; Highlight matches
         count := HighlightMatches(TV, Root, searchTerm, caseSensitive)
@@ -223,7 +223,7 @@ Example2_LiveSearch() {
 
     ClearAllBold(TV, nodeID) {
         if (nodeID)
-        TV.Modify(nodeID, "-Bold")
+            TV.Modify(nodeID, "-Bold")
         child := TV.GetChild(nodeID)
         while (child) {
             ClearAllBold(TV, child)
@@ -266,22 +266,22 @@ Example3_TreeFilter() {
         Root := TV.Add("Products")
 
         Electronics := TV.Add("Electronics", Root)
-        treeData.Push({text: "Laptop Computer", parent: Electronics})
-        treeData.Push({text: "Desktop Computer", parent: Electronics})
-        treeData.Push({text: "Tablet Device", parent: Electronics})
+        treeData.Push({ text: "Laptop Computer", parent: Electronics })
+        treeData.Push({ text: "Desktop Computer", parent: Electronics })
+        treeData.Push({ text: "Tablet Device", parent: Electronics })
 
         Clothing := TV.Add("Clothing", Root)
-        treeData.Push({text: "T-Shirt", parent: Clothing})
-        treeData.Push({text: "Jeans", parent: Clothing})
-        treeData.Push({text: "Jacket", parent: Clothing})
+        treeData.Push({ text: "T-Shirt", parent: Clothing })
+        treeData.Push({ text: "Jeans", parent: Clothing })
+        treeData.Push({ text: "Jacket", parent: Clothing })
 
         Books := TV.Add("Books", Root)
-        treeData.Push({text: "Fiction Novel", parent: Books})
-        treeData.Push({text: "Computer Science Textbook", parent: Books})
-        treeData.Push({text: "History Book", parent: Books})
+        treeData.Push({ text: "Fiction Novel", parent: Books })
+        treeData.Push({ text: "Computer Science Textbook", parent: Books })
+        treeData.Push({ text: "History Book", parent: Books })
 
         for item in treeData
-        item.nodeID := TV.Add(item.text, item.parent)
+            item.nodeID := TV.Add(item.text, item.parent)
 
         TV.Modify(Root, "Expand")
     }
@@ -301,7 +301,7 @@ Example3_TreeFilter() {
     ApplyFilter(*) {
         filterText := filterInput.Value
         if (!filterText)
-        return ClearFilter()
+            return ClearFilter()
 
         TV.Delete()
         Root := TV.Add("Filtered Results")
@@ -315,7 +315,7 @@ Example3_TreeFilter() {
         }
 
         if (count = 0)
-        TV.Add("No matches found", Root)
+            TV.Add("No matches found", Root)
 
         TV.Modify(Root, "Expand")
         UpdateStatus(count)
@@ -376,7 +376,7 @@ Example4_AdvancedSearch() {
         searchType := searchTypeDD.Text
 
         if (!pattern)
-        return
+            return
 
         ; Clear highlights
         ClearBold(TV, Root)
@@ -395,13 +395,13 @@ Example4_AdvancedSearch() {
 
             switch searchType {
                 case "Contains":
-                match := InStr(text, pattern)
+                    match := InStr(text, pattern)
                 case "Starts With":
-                match := SubStr(text, 1, StrLen(pattern)) = pattern
+                    match := SubStr(text, 1, StrLen(pattern)) = pattern
                 case "Ends With":
-                match := SubStr(text, -(StrLen(pattern)-1)) = pattern
+                    match := SubStr(text, -(StrLen(pattern) - 1)) = pattern
                 case "Regex":
-                match := RegExMatch(text, pattern)
+                    match := RegExMatch(text, pattern)
             }
 
             if (match) {
@@ -419,7 +419,7 @@ Example4_AdvancedSearch() {
 
     ClearBold(TV, nodeID) {
         if (nodeID)
-        TV.Modify(nodeID, "-Bold")
+            TV.Modify(nodeID, "-Bold")
         child := TV.GetChild(nodeID)
         while (child) {
             ClearBold(TV, child)
@@ -485,7 +485,7 @@ Example5_FindReplace() {
         replaceText := replaceInput.Value
 
         if (!findText)
-        return
+            return
 
         ; Save current state
         SaveState()
@@ -521,14 +521,14 @@ Example5_FindReplace() {
         replaceText := replaceInput.Value
 
         if (!findText)
-        return
+            return
 
         preview := "Preview of changes:`n`n"
         count := 0
         PreviewTree(TV, Root, findText, replaceText, &preview, &count)
 
         if (count = 0)
-        preview .= "No matches found"
+            preview .= "No matches found"
 
         MsgBox(preview, "Preview", 64)
     }
@@ -558,7 +558,7 @@ Example5_FindReplace() {
 
     SaveTreeState(TV, nodeID, &state) {
         if (nodeID)
-        state.Push({id: nodeID, text: TV.GetText(nodeID)})
+            state.Push({ id: nodeID, text: TV.GetText(nodeID) })
 
         child := TV.GetChild(nodeID)
         while (child) {
@@ -575,7 +575,7 @@ Example5_FindReplace() {
 
         state := history.Pop()
         for item in state
-        TV.Modify(item.id, item.text)
+            TV.Modify(item.id, item.text)
 
         MsgBox("Changes undone", "Undo", 64)
     }
@@ -621,7 +621,7 @@ Example6_SearchWithPath() {
     DoSearch(*) {
         searchTerm := searchInput.Value
         if (!searchTerm)
-        return
+            return
 
         results := "Search Results:`n`n"
         count := 0
@@ -629,9 +629,9 @@ Example6_SearchWithPath() {
         SearchWithPath(TV, Root, searchTerm, &results, &count)
 
         if (count = 0)
-        results .= "No matches found"
+            results .= "No matches found"
         else
-        results := "Found " . count . " matches:`n`n" . results
+            results := "Found " . count . " matches:`n`n" . results
 
         resultsEdit.Value := results
     }
@@ -720,7 +720,7 @@ Example7_CompleteSearch() {
     DoSearch(*) {
         term := searchInput.Value
         if (!term)
-        return
+            return
 
         searchType := typeDD.Text
         matchCase := caseCheck.Value
@@ -735,7 +735,7 @@ Example7_CompleteSearch() {
 
         ; Highlight all results
         for itemID in searchResults
-        TV.Modify(itemID, "Bold")
+            TV.Modify(itemID, "Bold")
 
         ; Select first
         if (searchResults.Length > 0) {
@@ -755,15 +755,15 @@ Example7_CompleteSearch() {
             match := false
             switch searchType {
                 case "Contains":
-                match := InStr(searchText, searchTerm)
+                    match := InStr(searchText, searchTerm)
                 case "Exact":
-                match := (searchText = searchTerm)
+                    match := (searchText = searchTerm)
                 case "Regex":
-                match := RegExMatch(text, term)
+                    match := RegExMatch(text, term)
             }
 
             if (match)
-            results.Push(nodeID)
+                results.Push(nodeID)
         }
 
         child := TV.GetChild(nodeID)
@@ -775,11 +775,11 @@ Example7_CompleteSearch() {
 
     GoNext(*) {
         if (searchResults.Length = 0)
-        return
+            return
 
         currentIndex++
         if (currentIndex > searchResults.Length)
-        currentIndex := 1
+            currentIndex := 1
 
         TV.Modify(searchResults[currentIndex], "Select Vis")
         UpdateStatus()
@@ -787,11 +787,11 @@ Example7_CompleteSearch() {
 
     GoPrevious(*) {
         if (searchResults.Length = 0)
-        return
+            return
 
         currentIndex--
         if (currentIndex < 1)
-        currentIndex := searchResults.Length
+            currentIndex := searchResults.Length
 
         TV.Modify(searchResults[currentIndex], "Select Vis")
         UpdateStatus()
@@ -807,7 +807,7 @@ Example7_CompleteSearch() {
 
     ClearHighlights(TV, nodeID) {
         if (nodeID)
-        TV.Modify(nodeID, "-Bold")
+            TV.Modify(nodeID, "-Bold")
         child := TV.GetChild(nodeID)
         while (child) {
             ClearHighlights(TV, child)
@@ -820,9 +820,9 @@ Example7_CompleteSearch() {
 
     UpdateStatus() {
         if (searchResults.Length > 0)
-        statusText.Value := "Result " . currentIndex . " of " . searchResults.Length
+            statusText.Value := "Result " . currentIndex . " of " . searchResults.Length
         else
-        statusText.Value := "No results found"
+            statusText.Value := "No results found"
     }
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
@@ -897,3 +897,4 @@ FIND AND REPLACE:
 ; Example5_FindReplace()
 ; Example6_SearchWithPath()
 ; Example7_CompleteSearch()
+

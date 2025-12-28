@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Advanced Callback Patterns
-*
-* Demonstrates different callback types: traditional functions,
-* bound methods, arrow functions, and error handling.
-*
-* Source: AHK_Notes/Concepts/callback-functions.md
-*/
+ * Advanced Callback Patterns
+ * 
+ * Demonstrates different callback types: traditional functions,
+ * bound methods, arrow functions, and error handling.
+ * 
+ * Source: AHK_Notes/Concepts/callback-functions.md
+ */
 
 ; Test 1: Traditional function callback
 MsgBox("Test 1: Traditional Function Callback", , "T2")
@@ -29,8 +29,8 @@ eventSys := CustomEventSystem()
 eventSys.Demo()
 
 /**
-* Execute function with callback
-*/
+ * Execute function with callback
+ */
 ExecuteWithCallback(callback, data) {
     try {
         callback(data)
@@ -40,22 +40,22 @@ ExecuteWithCallback(callback, data) {
 }
 
 /**
-* Traditional callback function
-*/
+ * Traditional callback function
+ */
 TraditionalCallback(msg) {
     MsgBox("Traditional: " msg, , "T2")
 }
 
 /**
-* CallbackDemo - Class demonstrating method callbacks
-*/
+ * CallbackDemo - Class demonstrating method callbacks
+ */
 class CallbackDemo {
     name := "Demo Object"
 
     /**
-    * Test bound method as callback
-    * ObjBindMethod preserves 'this' context
-    */
+     * Test bound method as callback
+     * ObjBindMethod preserves 'this' context
+     */
     TestBoundMethod() {
         ; Without ObjBindMethod, 'this' would be undefined
         boundMethod := ObjBindMethod(this, "HandleCallback")
@@ -70,27 +70,27 @@ class CallbackDemo {
 }
 
 /**
-* CustomEventSystem - Pub/Sub with multiple callbacks
-*/
+ * CustomEventSystem - Pub/Sub with multiple callbacks
+ */
 class CustomEventSystem {
     events := Map()
 
     /**
-    * Subscribe callback to event
-    */
+     * Subscribe callback to event
+     */
     Subscribe(eventName, callback) {
         if (!this.events.Has(eventName))
-        this.events[eventName] := []
+            this.events[eventName] := []
 
         this.events[eventName].Push(callback)
     }
 
     /**
-    * Unsubscribe callback from event
-    */
+     * Unsubscribe callback from event
+     */
     Unsubscribe(eventName, callback) {
         if (!this.events.Has(eventName))
-        return
+            return
 
         callbacks := this.events[eventName]
         for index, cb in callbacks {
@@ -102,11 +102,11 @@ class CustomEventSystem {
     }
 
     /**
-    * Trigger event, calling all subscribed callbacks
-    */
+     * Trigger event, calling all subscribed callbacks
+     */
     Trigger(eventName, data := "") {
         if (!this.events.Has(eventName))
-        return
+            return
 
         errors := []
         for callback in this.events[eventName] {
@@ -118,12 +118,12 @@ class CustomEventSystem {
         }
 
         if (errors.Length > 0)
-        MsgBox("Callback errors: " errors.Join("`n"))
+            MsgBox("Callback errors: " errors.Join("`n"))
     }
 
     /**
-    * Demonstration of event system
-    */
+     * Demonstration of event system
+     */
     Demo() {
         ; Subscribe multiple callbacks to same event
         this.Subscribe("userLogin", (data) => MsgBox("Logger: User " data " logged in", , "T2"))
@@ -171,3 +171,4 @@ class CustomEventSystem {
 *    ⚠ ObjBindMethod has overhead
 *    ✅ Direct function refs fastest
 */
+

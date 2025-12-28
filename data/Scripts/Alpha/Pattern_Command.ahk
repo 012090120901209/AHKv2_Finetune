@@ -46,7 +46,7 @@ class MultiplyCommand {
 }
 
 ; Demo
-calc := {total: 10}
+calc := { total: 10 }
 invoker := CommandInvoker()
 
 invoker.Execute(AddCommand(calc, 5))      ; 15

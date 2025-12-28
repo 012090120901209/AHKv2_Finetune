@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_EnvGet_03_UserEnvironment.ahk
-*
-* DESCRIPTION:
-* Working with user-specific environment variables for cross-platform
-* and multi-user script compatibility and configuration management.
-*
-* FEATURES:
-* - User vs system environment variables
-* - AppData and LocalAppData directory usage
-* - User profile path construction
-* - Portable configuration file storage
-* - Multi-user script awareness
-* - Roaming vs local data management
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - EnvGet() for retrieving user variables
-* - String concatenation for dynamic paths
-* - File operations with environment-based paths
-* - DirExist and FileExist validation
-* - IniRead/IniWrite with portable paths
-*
-* LEARNING POINTS:
-* 1. User variables are specific to each Windows user
-* 2. APPDATA stores roaming profile data
-* 3. LOCALAPPDATA stores machine-specific data
-* 4. Build portable paths using EnvGet
-* 5. Always validate paths retrieved from environment
-* 6. Use USERPROFILE for user-specific files
-* 7. Configuration should use appropriate data folders
-*/
+ * BuiltIn_EnvGet_03_UserEnvironment.ahk
+ * 
+ * DESCRIPTION:
+ * Working with user-specific environment variables for cross-platform
+ * and multi-user script compatibility and configuration management.
+ * 
+ * FEATURES:
+ * - User vs system environment variables
+ * - AppData and LocalAppData directory usage
+ * - User profile path construction
+ * - Portable configuration file storage
+ * - Multi-user script awareness
+ * - Roaming vs local data management
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - EnvGet() for retrieving user variables
+ * - String concatenation for dynamic paths
+ * - File operations with environment-based paths
+ * - DirExist and FileExist validation
+ * - IniRead/IniWrite with portable paths
+ * 
+ * LEARNING POINTS:
+ * 1. User variables are specific to each Windows user
+ * 2. APPDATA stores roaming profile data
+ * 3. LOCALAPPDATA stores machine-specific data
+ * 4. Build portable paths using EnvGet
+ * 5. Always validate paths retrieved from environment
+ * 6. Use USERPROFILE for user-specific files
+ * 7. Configuration should use appropriate data folders
+ */
 
 ;===============================================================================
 ; EXAMPLE 1: User-Specific Configuration Manager
@@ -108,9 +108,9 @@ Example1_ConfigManager() {
 
     OpenFolder(*) {
         if DirExist(configDir)
-        Run(configDir)
+            Run(configDir)
         else
-        MsgBox("Config folder not found!", "Error")
+            MsgBox("Config folder not found!", "Error")
     }
 
     btnSave.OnEvent("Click", SaveSettings)
@@ -138,13 +138,13 @@ Example2_DataLocationDemo() {
 
     ; Explanation
     gui.Add("Text", "x10 y190 w480 h120",
-    "APPDATA (Roaming):`n"
-    "- Syncs across domain computers`n"
-    "- Use for: Settings, preferences, user documents`n"
-    "`n"
-    "LOCALAPPDATA:`n"
-    "- Machine-specific, doesn't roam`n"
-    "- Use for: Cache, temporary files, large data")
+        "APPDATA (Roaming):`n"
+        "- Syncs across domain computers`n"
+        "- Use for: Settings, preferences, user documents`n"
+        "`n"
+        "LOCALAPPDATA:`n"
+        "- Machine-specific, doesn't roam`n"
+        "- Use for: Cache, temporary files, large data")
 
     ; Demonstrate file creation in both
     btnRoaming := gui.Add("Button", "x10 y320 w230 h30", "Create Test File in Roaming")
@@ -155,7 +155,7 @@ Example2_DataLocationDemo() {
     CreateRoamingFile(*) {
         testDir := appData "\AHKTest"
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         testFile := testDir "\roaming_test.txt"
         FileAppend("This file syncs across computers`nCreated: " A_Now, testFile)
@@ -167,7 +167,7 @@ Example2_DataLocationDemo() {
     CreateLocalFile(*) {
         testDir := localAppData "\AHKTest"
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         testFile := testDir "\local_test.txt"
         FileAppend("This file stays on this computer`nCreated: " A_Now, testFile)
@@ -218,7 +218,7 @@ Example3_MultiUserDataManager() {
         fileList.Delete()
 
         if !DirExist(dataDir)
-        return
+            return
 
         files := []
         Loop Files, dataDir "\*.*" {
@@ -226,20 +226,20 @@ Example3_MultiUserDataManager() {
         }
 
         if files.Length > 0
-        fileList.Add(files)
+            fileList.Add(files)
         else
-        fileList.Add(["(No files yet)"])
+            fileList.Add(["(No files yet)"])
     }
 
     CreateNewFile(*) {
         fileName := InputBox("Enter filename:", "Create File", "w300 h100")
         if fileName.Result = "Cancel"
-        return
+            return
 
         fullPath := dataDir "\" fileName.Value
 
         if !InStr(fullPath, ".txt")
-        fullPath .= ".txt"
+            fullPath .= ".txt"
 
         content := "File created by: " username "`n"
         content .= "Date: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n"
@@ -263,16 +263,16 @@ Example3_MultiUserDataManager() {
 
         fileName := fileList.GetText(selected)
         if fileName = "(No files yet)"
-        return
+            return
 
         fullPath := dataDir "\" fileName
         if FileExist(fullPath)
-        Run(fullPath)
+            Run(fullPath)
     }
 
     OpenDataFolder(*) {
         if DirExist(dataDir)
-        Run(dataDir)
+            Run(dataDir)
     }
 
     btnRefresh.OnEvent("Click", RefreshFileList)
@@ -340,7 +340,7 @@ Example5_EnvironmentExplorer() {
     folderList := []
     for varName, value in userVars {
         if DirExist(value)
-        folderList.Push(varName ": " value)
+            folderList.Push(varName ": " value)
     }
     folders.Add(folderList)
 
@@ -349,21 +349,21 @@ Example5_EnvironmentExplorer() {
     ; Tools tab
     tabs.UseTab("Tools")
     gui.Add("Button", "x20 y40 w200 h30", "Show Desktop Path").OnEvent("Click",
-    (*) => MsgBox(EnvGet("USERPROFILE") "\Desktop"))
+        (*) => MsgBox(EnvGet("USERPROFILE") "\Desktop"))
     gui.Add("Button", "x20 y80 w200 h30", "Show Documents Path").OnEvent("Click",
-    (*) => MsgBox(EnvGet("USERPROFILE") "\Documents"))
+        (*) => MsgBox(EnvGet("USERPROFILE") "\Documents"))
     gui.Add("Button", "x20 y120 w200 h30", "Show Temp Path").OnEvent("Click",
-    (*) => MsgBox(EnvGet("TEMP")))
+        (*) => MsgBox(EnvGet("TEMP")))
     gui.Add("Button", "x20 y160 w200 h30", "Clear Temp Files").OnEvent("Click",
-    (*) => MsgBox("This would clear: " EnvGet("TEMP")))
+        (*) => MsgBox("This would clear: " EnvGet("TEMP")))
 
     tabs.UseTab()
 
     gui.Add("Button", "x190 y370 w100 h30", "Close").OnEvent("Click", (*) => gui.Destroy())
 
     btnOpenFolder.OnEvent("Click", (*) => (
-    selected := folders.GetNext(),
-    selected ? Run(StrSplit(folders.GetText(selected), ": ")[2]) : ""
+        selected := folders.GetNext(),
+        selected ? Run(StrSplit(folders.GetText(selected), ": ")[2]) : ""
     ))
 
     gui.Show("w500 h420")
@@ -381,7 +381,7 @@ Example6_CrossPlatformPaths() {
 
     gui.Add("Text", "x10 y10", "Path Type:")
     pathType := gui.Add("DropDownList", "x100 y5 w200 Choose1",
-    ["User Profile", "AppData", "LocalAppData", "Desktop", "Documents"])
+        ["User Profile", "AppData", "LocalAppData", "Desktop", "Documents"])
 
     gui.Add("Text", "x10 y40", "Subpath:")
     subPath := gui.Add("Edit", "x100 y35 w300", "MyApp\Data")
@@ -433,9 +433,9 @@ Example6_CrossPlatformPaths() {
         path := StrSplit(result.Value, "`n")[1]
 
         if DirExist(path)
-        Run(path)
+            Run(path)
         else
-        MsgBox("Directory does not exist!", "Error")
+            MsgBox("Directory does not exist!", "Error")
     }
 
     btnBuild.OnEvent("Click", BuildPath)
@@ -484,9 +484,9 @@ class PortableApp {
 
         ; Create directories
         if !DirExist(this.dataDir)
-        DirCreate(this.dataDir)
+            DirCreate(this.dataDir)
         if !DirExist(this.configDir)
-        DirCreate(this.configDir)
+            DirCreate(this.configDir)
 
         this.configFile := this.configDir "\settings.ini"
     }
@@ -515,7 +515,7 @@ class PortableApp {
         gui.Add("Edit", "x10 y10 w480 h250 ReadOnly Multi", info)
 
         btnToggle := gui.Add("Button", "x10 y270 w230 h30",
-        this.isPortable ? "Switch to Installed" : "Switch to Portable")
+            this.isPortable ? "Switch to Installed" : "Switch to Portable")
         btnClose := gui.Add("Button", "x260 y270 w230 h30", "Close")
 
         gui.Show("w500 h320")
@@ -530,7 +530,7 @@ class PortableApp {
         if this.isPortable {
             ; Switch to installed
             if FileExist(portableMarker)
-            FileDelete(portableMarker)
+                FileDelete(portableMarker)
             MsgBox("Switched to INSTALLED mode`nPlease restart the script.", "Mode Changed")
         } else {
             ; Switch to portable

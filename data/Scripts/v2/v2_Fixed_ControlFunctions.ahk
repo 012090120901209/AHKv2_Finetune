@@ -61,7 +61,7 @@ controlGetText2(winTitle := "A", control := "", winText := "", excludeTitle := "
 ControlSetTextExample() {
     ; Open Notepad if not open
     if (!WinExist("ahk_class Notepad"))
-    Run("notepad.exe")
+        Run("notepad.exe")
 
     WinWait("ahk_class Notepad", , 3)
 
@@ -80,7 +80,7 @@ ControlSetTextExample() {
 ControlClickExample() {
     ; Click a button in Calculator
     if (WinExist("ahk_class ApplicationFrameWindow ahk_exe Calculator.exe")
-    || WinExist("ahk_class CalcFrame")) {
+        || WinExist("ahk_class CalcFrame")) {
 
         try {
             ; Click the "1" button
@@ -102,7 +102,7 @@ ControlClickExample() {
 ; ============================================================================
 ControlSendExample() {
     if (!WinExist("ahk_class Notepad"))
-    Run("notepad.exe")
+        Run("notepad.exe")
 
     WinWait("ahk_class Notepad", , 3)
 
@@ -210,7 +210,7 @@ ControlGetItemsExample() {
         items := ControlGetItems("ListBox1", testGui)
         itemText := ""
         for item in items
-        itemText .= item "`n"
+            itemText .= item "`n"
         MsgBox("ListBox items:`n" itemText)
     } catch Error as e {
         MsgBox("Error: " e.Message)
@@ -359,3 +359,4 @@ MsgBox("Control Functions Loaded`n`nThese examples work with Notepad and other w
 ; ControlGetItemsExample()
 ; ControlGetChoiceExample()
 ; ControlHideShowExample()
+

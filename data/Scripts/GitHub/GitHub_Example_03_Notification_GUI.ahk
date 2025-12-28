@@ -2,16 +2,16 @@
 #SingleInstance Force
 
 /**
-* Custom Notification System
-* Source: github.com/pa-0/workingexamples-ah2
-*
-* Demonstrates:
-* - GUI creation with custom styling
-* - AlwaysOnTop, borderless windows (+ToolWindow -Caption)
-* - SetTimer for delayed execution
-* - WinMove for precise positioning
-* - GUI.Destroy() for cleanup
-*/
+ * Custom Notification System
+ * Source: github.com/pa-0/workingexamples-ah2
+ * 
+ * Demonstrates:
+ * - GUI creation with custom styling
+ * - AlwaysOnTop, borderless windows (+ToolWindow -Caption)
+ * - SetTimer for delayed execution
+ * - WinMove for precise positioning
+ * - GUI.Destroy() for cleanup
+ */
 
 ShowNotification(text, duration := 3000, xPos := 1650, yPos := 985) {
     ; Create borderless, always-on-top window

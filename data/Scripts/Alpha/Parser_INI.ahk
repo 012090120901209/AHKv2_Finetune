@@ -25,11 +25,11 @@ class INI {
             else if RegExMatch(line, "^([^=]+)=(.*)$", &m) {
                 key := Trim(m[1])
                 value := Trim(m[2])
-                
+
                 ; Handle quoted values
                 if RegExMatch(value, '^"(.*)"$', &q)
                     value := q[1]
-                
+
                 if currentSection
                     result[currentSection][key] := value
             }
@@ -54,7 +54,7 @@ class INI {
 
         return RTrim(result, "`n")
     }
-    
+
     ; Get nested value with default
     static Get(data, section, key, defaultVal := "") {
         if !data.Has(section)
@@ -63,7 +63,7 @@ class INI {
             return defaultVal
         return data[section][key]
     }
-    
+
     ; Set nested value (creates section if needed)
     static Set(data, section, key, value) {
         if !data.Has(section)

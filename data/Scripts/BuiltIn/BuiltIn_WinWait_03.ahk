@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinWait_03.ahk
-* @description Window waiting patterns for complex scenarios, state machines, and event-driven waiting using WinWait in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: State machine waiter
-* Example 2: Event-driven waiting
-* Example 3: Composite window waiter
-* Example 4: Wait scheduling system
-* Example 5: Dependent window waiter
-* Example 6: Pattern-based waiter
-* Example 7: Wait profiler
-*
-* @section FEATURES
-* - State machines
-* - Event-driven patterns
-* - Composite waiting
-* - Scheduling
-* - Dependencies
-* - Pattern matching
-* - Profiling
-*/
+ * @file BuiltIn_WinWait_03.ahk
+ * @description Window waiting patterns for complex scenarios, state machines, and event-driven waiting using WinWait in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: State machine waiter
+ * Example 2: Event-driven waiting
+ * Example 3: Composite window waiter
+ * Example 4: Wait scheduling system
+ * Example 5: Dependent window waiter
+ * Example 6: Pattern-based waiter
+ * Example 7: Wait profiler
+ * 
+ * @section FEATURES
+ * - State machines
+ * - Event-driven patterns
+ * - Composite waiting
+ * - Scheduling
+ * - Dependencies
+ * - Pattern matching
+ * - Profiling
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -58,7 +58,7 @@ class StateMachineWaiter {
 
             ; Enter state
             if state.OnEnter != "" && IsObject(state.OnEnter)
-            state.OnEnter()
+                state.OnEnter()
 
             TrayTip("State: " this.currentState, "Waiting for window", "Icon!")
 
@@ -71,12 +71,12 @@ class StateMachineWaiter {
 
                 if nextState = "Complete" {
                     if state.OnExit != "" && IsObject(state.OnExit)
-                    state.OnExit()
+                        state.OnExit()
                     return true
                 }
 
                 if state.OnExit != "" && IsObject(state.OnExit)
-                state.OnExit()
+                    state.OnExit()
 
                 this.currentState := nextState
             } else {
@@ -111,14 +111,12 @@ class StateMachineWaiter {
 
 ^+1:: {
     ; Define states
-    StateMachineWaiter.DefineState("Start", "ahk_class Notepad", [
-    {
+    StateMachineWaiter.DefineState("Start", "ahk_class Notepad", [{
         NextState: "Process", Condition: () => WinExist("ahk_class Notepad")
     }
     ], () => TrayTip("Entering Start state", "State", "Icon!"))
 
-    StateMachineWaiter.DefineState("Process", "ahk_class Notepad", [
-    {
+    StateMachineWaiter.DefineState("Process", "ahk_class Notepad", [{
         NextState: "Complete"
     }
     ], () => TrayTip("Processing...", "State", "Icon!"))
@@ -141,7 +139,7 @@ class EventDrivenWaiter {
 
     static On(eventName, handler) {
         if !this.handlers.Has(eventName)
-        this.handlers[eventName] := []
+            this.handlers[eventName] := []
 
         this.handlers[eventName].Push(handler)
     }
@@ -155,7 +153,7 @@ class EventDrivenWaiter {
     }
 
     static WaitForEvent(eventName, timeout := 30) {
-        this.events.Push({Name: eventName, Triggered: false, Data: ""})
+        this.events.Push({ Name: eventName, Triggered: false, Data: "" })
         eventIndex := this.events.Length
 
         startTime := A_TickCount
@@ -227,7 +225,7 @@ class CompositeWaiter {
                     TrayTip("Component found: " component.Title, "Composite Wait", "Icon!")
 
                     if component.HasOwnProp("Action")
-                    component.Action()
+                        component.Action()
                 }
             }
 
@@ -235,377 +233,374 @@ class CompositeWaiter {
             if logic = "OR" {
                 for title, isFound in found {
                     if isFound
-                    return {Success: true, Logic: "OR"}
+                        return { Success: true, Logic: "OR" }
                 }
             } else {  ; AND logic
-            allFound := true
-            for title, isFound in found {
-                if !isFound {
-                    allFound := false
-                    break
+                allFound := true
+                for title, isFound in found {
+                    if !isFound {
+                        allFound := false
+                        break
+                    }
                 }
+
+                if allFound
+                    return { Success: true, Logic: "AND" }
             }
 
-            if allFound
-            return {Success: true, Logic: "AND"}
+            if (A_TickCount - startTime) > (timeout * 1000)
+                break
+
+            Sleep(200)
         }
 
-        if (A_TickCount - startTime) > (timeout * 1000)
-        break
-
-        Sleep(200)
+        return { Success: false }
     }
-
-    return {Success: false}
-}
 }
 
 ^+3:: {
-    components := [
-    {
-        Title: "Notepad", Action: () => TrayTip("Notepad ready", "Component", "Icon!")},
-        {
+    components := [{
+        Title: "Notepad", Action: () => TrayTip("Notepad ready", "Component", "Icon!") }, {
             Title: "Calculator", Action: () => TrayTip("Calculator ready", "Component", "Icon!")
         }
-        ]
+    ]
 
-        result := CompositeWaiter.WaitForComposite(components, "OR", 20)
+    result := CompositeWaiter.WaitForComposite(components, "OR", 20)
 
-        if result.Success {
-            MsgBox("Composite wait succeeded (" result.Logic " logic)", "Success", "Icon!")
-        } else {
-            MsgBox("Composite wait failed", "Failed", "IconX")
+    if result.Success {
+        MsgBox("Composite wait succeeded (" result.Logic " logic)", "Success", "Icon!")
+    } else {
+        MsgBox("Composite wait failed", "Failed", "IconX")
+    }
+}
+
+; ========================================
+; Example 4: Wait Scheduling System
+; ========================================
+
+class WaitScheduler {
+    static schedule := []
+    static running := false
+
+    static ScheduleWait(winTitle, startDelay, priority := 5, action := "") {
+        this.schedule.Push({
+            WinTitle: winTitle,
+            StartTime: A_TickCount + startDelay,
+            Priority: priority,
+            Action: action,
+            Status: "Scheduled"
+        })
+
+        this.SortSchedule()
+
+        if !this.running {
+            this.StartScheduler()
         }
     }
 
-    ; ========================================
-    ; Example 4: Wait Scheduling System
-    ; ========================================
-
-    class WaitScheduler {
-        static schedule := []
-        static running := false
-
-        static ScheduleWait(winTitle, startDelay, priority := 5, action := "") {
-            this.schedule.Push({
-                WinTitle: winTitle,
-                StartTime: A_TickCount + startDelay,
-                Priority: priority,
-                Action: action,
-                Status: "Scheduled"
-            })
-
-            this.SortSchedule()
-
-            if !this.running {
-                this.StartScheduler()
-            }
-        }
-
-        static SortSchedule() {
-            ; Sort by start time, then priority
-            n := this.schedule.Length
-            Loop n - 1 {
-                i := A_Index
-                Loop n - i {
-                    j := A_Index
-                    if this.schedule[j].StartTime > this.schedule[j + 1].StartTime {
-                        temp := this.schedule[j]
-                        this.schedule[j] := this.schedule[j + 1]
-                        this.schedule[j + 1] := temp
-                    }
+    static SortSchedule() {
+        ; Sort by start time, then priority
+        n := this.schedule.Length
+        Loop n - 1 {
+            i := A_Index
+            Loop n - i {
+                j := A_Index
+                if this.schedule[j].StartTime > this.schedule[j + 1].StartTime {
+                    temp := this.schedule[j]
+                    this.schedule[j] := this.schedule[j + 1]
+                    this.schedule[j + 1] := temp
                 }
             }
-        }
-
-        static StartScheduler() {
-            this.running := true
-            SetTimer(() => this.ProcessSchedule(), 500)
-        }
-
-        static ProcessSchedule() {
-            if this.schedule.Length = 0 {
-                this.running := false
-                SetTimer(() => this.ProcessSchedule(), 0)
-                return
-            }
-
-            currentTime := A_TickCount
-
-            for index, task in this.schedule {
-                if task.Status = "Scheduled" && currentTime >= task.StartTime {
-                    task.Status := "Running"
-
-                    TrayTip("Starting scheduled wait: " task.WinTitle, "Scheduler", "Icon!")
-
-                    ; Start async wait
-                    AsyncWaiter.WaitAsync(task.WinTitle, (success, title) => {
-                        if success && task.Action != "" && IsObject(task.Action) {
-                            task.Action()
-                        }
-                        task.Status := success ? "Complete" : "Failed"
-                    }, 10)
-                }
-            }
-
-            ; Remove completed tasks
-            newSchedule := []
-            for task in this.schedule {
-                if task.Status = "Scheduled" || task.Status = "Running" {
-                    newSchedule.Push(task)
-                }
-            }
-            this.schedule := newSchedule
         }
     }
 
-    ^+4:: {
-        WaitScheduler.ScheduleWait("Notepad", 2000, 1, () => TrayTip("Notepad action", "Scheduled"))
-        WaitScheduler.ScheduleWait("Calculator", 5000, 2, () => TrayTip("Calc action", "Scheduled"))
-
-        TrayTip("Scheduled 2 waits", "Scheduler", "Icon!")
+    static StartScheduler() {
+        this.running := true
+        SetTimer(() => this.ProcessSchedule(), 500)
     }
 
-    ; ========================================
-    ; Example 5: Dependent Window Waiter
-    ; ========================================
+    static ProcessSchedule() {
+        if this.schedule.Length = 0 {
+            this.running := false
+            SetTimer(() => this.ProcessSchedule(), 0)
+            return
+        }
 
-    class DependentWaiter {
-        static WaitWithDependencies(rootWindow, dependencies, timeout := 30) {
-            ; Wait for root window first
-            if !WinWait(rootWindow.Title, , timeout) {
-                return {Success: false, Stage: "Root"}
+        currentTime := A_TickCount
+
+        for index, task in this.schedule {
+            if task.Status = "Scheduled" && currentTime >= task.StartTime {
+                task.Status := "Running"
+
+                TrayTip("Starting scheduled wait: " task.WinTitle, "Scheduler", "Icon!")
+
+                ; Start async wait
+                AsyncWaiter.WaitAsync(task.WinTitle, (success, title) => {
+                    if success && task.Action != "" && IsObject(task.Action) {
+                    task.Action()
+                }
+                    task.Status := success ? "Complete" : "Failed"
+                }, 10)
             }
+        }
 
-            TrayTip("Root window appeared: " rootWindow.Title, "Dependent Wait", "Icon!")
+        ; Remove completed tasks
+        newSchedule := []
+        for task in this.schedule {
+            if task.Status = "Scheduled" || task.Status = "Running" {
+                newSchedule.Push(task)
+            }
+        }
+        this.schedule := newSchedule
+    }
+}
 
-            if rootWindow.HasOwnProp("Action")
+^+4:: {
+    WaitScheduler.ScheduleWait("Notepad", 2000, 1, () => TrayTip("Notepad action", "Scheduled"))
+    WaitScheduler.ScheduleWait("Calculator", 5000, 2, () => TrayTip("Calc action", "Scheduled"))
+
+    TrayTip("Scheduled 2 waits", "Scheduler", "Icon!")
+}
+
+; ========================================
+; Example 5: Dependent Window Waiter
+; ========================================
+
+class DependentWaiter {
+    static WaitWithDependencies(rootWindow, dependencies, timeout := 30) {
+        ; Wait for root window first
+        if !WinWait(rootWindow.Title, , timeout) {
+            return { Success: false, Stage: "Root" }
+        }
+
+        TrayTip("Root window appeared: " rootWindow.Title, "Dependent Wait", "Icon!")
+
+        if rootWindow.HasOwnProp("Action")
             rootWindow.Action()
 
-            ; Wait for dependencies
-            for index, dep in dependencies {
-                if !WinWait(dep.Title, , dep.HasOwnProp("Timeout") ? dep.Timeout : 10) {
-                    return {Success: false, Stage: "Dependency " index}
-                }
-
-                TrayTip("Dependency met: " dep.Title, "Dependent Wait", "Icon!")
-
-                if dep.HasOwnProp("Action")
-                dep.Action()
-
-                if dep.HasOwnProp("Delay")
-                Sleep(dep.Delay)
+        ; Wait for dependencies
+        for index, dep in dependencies {
+            if !WinWait(dep.Title, , dep.HasOwnProp("Timeout") ? dep.Timeout : 10) {
+                return { Success: false, Stage: "Dependency " index }
             }
 
-            return {Success: true, Stage: "Complete"}
+            TrayTip("Dependency met: " dep.Title, "Dependent Wait", "Icon!")
+
+            if dep.HasOwnProp("Action")
+                dep.Action()
+
+            if dep.HasOwnProp("Delay")
+                Sleep(dep.Delay)
         }
+
+        return { Success: true, Stage: "Complete" }
+    }
+}
+
+^+5:: {
+    root := {
+        Title: "ahk_class Notepad",
+        Action: () => Send("Hello from dependency system")
     }
 
-    ^+5:: {
-        root := {
-            Title: "ahk_class Notepad",
-            Action: () => Send("Hello from dependency system")
-        }
-
-        deps := [
-        {
-            Title: "ahk_class Notepad", Timeout: 5, Delay: 500
-        }
-        ]
-
-        result := DependentWaiter.WaitWithDependencies(root, deps, 30)
-
-        if result.Success {
-            MsgBox("All dependencies met!", "Success", "Icon!")
-        } else {
-            MsgBox("Failed at: " result.Stage, "Failed", "IconX")
-        }
+    deps := [{
+        Title: "ahk_class Notepad", Timeout: 5, Delay: 500
     }
+    ]
 
-    ; ========================================
-    ; Example 6: Pattern-Based Waiter
-    ; ========================================
+    result := DependentWaiter.WaitWithDependencies(root, deps, 30)
 
-    class PatternWaiter {
-        static WaitForPattern(pattern, timeout := 30) {
-            startTime := A_TickCount
-            allWindows := []
+    if result.Success {
+        MsgBox("All dependencies met!", "Success", "Icon!")
+    } else {
+        MsgBox("Failed at: " result.Stage, "Failed", "IconX")
+    }
+}
 
-            Loop {
-                currentWindows := WinGetList()
+; ========================================
+; Example 6: Pattern-Based Waiter
+; ========================================
 
-                for winId in currentWindows {
-                    try {
-                        title := WinGetTitle("ahk_id " winId)
-                        className := WinGetClass("ahk_id " winId)
+class PatternWaiter {
+    static WaitForPattern(pattern, timeout := 30) {
+        startTime := A_TickCount
+        allWindows := []
 
-                        if this.MatchesPattern(title, className, pattern) {
-                            return {
-                                Found: true,
-                                WinID: winId,
-                                Title: title,
-                                Class: className
-                            }
+        Loop {
+            currentWindows := WinGetList()
+
+            for winId in currentWindows {
+                try {
+                    title := WinGetTitle("ahk_id " winId)
+                    className := WinGetClass("ahk_id " winId)
+
+                    if this.MatchesPattern(title, className, pattern) {
+                        return {
+                            Found: true,
+                            WinID: winId,
+                            Title: title,
+                            Class: className
                         }
                     }
                 }
+            }
 
-                if (A_TickCount - startTime) > (timeout * 1000)
+            if (A_TickCount - startTime) > (timeout * 1000)
                 break
 
-                Sleep(200)
-            }
-
-            return {Found: false}
+            Sleep(200)
         }
 
-        static MatchesPattern(title, className, pattern) {
-            if pattern.HasOwnProp("TitleRegex") && !(title ~= pattern.TitleRegex)
-            return false
-
-            if pattern.HasOwnProp("ClassRegex") && !(className ~= pattern.ClassRegex)
-            return false
-
-            if pattern.HasOwnProp("TitleContains") && !InStr(title, pattern.TitleContains)
-            return false
-
-            if pattern.HasOwnProp("ClassContains") && !InStr(className, pattern.ClassContains)
-            return false
-
-            return true
-        }
+        return { Found: false }
     }
 
-    ^+6:: {
-        pattern := {
-            ClassContains: "Notepad",
-            TitleRegex: ".*\.txt"
-        }
+    static MatchesPattern(title, className, pattern) {
+        if pattern.HasOwnProp("TitleRegex") && !(title ~= pattern.TitleRegex)
+            return false
 
-        result := PatternWaiter.WaitForPattern(pattern, 20)
+        if pattern.HasOwnProp("ClassRegex") && !(className ~= pattern.ClassRegex)
+            return false
 
-        if result.Found {
-            MsgBox("Pattern matched:`n" result.Title "`n" result.Class, "Success", "Icon!")
-        } else {
-            MsgBox("No window matched pattern", "Failed", "IconX")
-        }
+        if pattern.HasOwnProp("TitleContains") && !InStr(title, pattern.TitleContains)
+            return false
+
+        if pattern.HasOwnProp("ClassContains") && !InStr(className, pattern.ClassContains)
+            return false
+
+        return true
+    }
+}
+
+^+6:: {
+    pattern := {
+        ClassContains: "Notepad",
+        TitleRegex: ".*\.txt"
     }
 
-    ; ========================================
-    ; Example 7: Wait Profiler
-    ; ========================================
+    result := PatternWaiter.WaitForPattern(pattern, 20)
 
-    class WaitProfiler {
-        static profiles := []
+    if result.Found {
+        MsgBox("Pattern matched:`n" result.Title "`n" result.Class, "Success", "Icon!")
+    } else {
+        MsgBox("No window matched pattern", "Failed", "IconX")
+    }
+}
 
-        static ProfiledWait(name, winTitle, timeout := 30) {
-            profile := {
-                Name: name,
-                WinTitle: winTitle,
-                StartTime: A_TickCount,
-                EndTime: 0,
-                Duration: 0,
-                Success: false,
-                Checks: 0
+; ========================================
+; Example 7: Wait Profiler
+; ========================================
+
+class WaitProfiler {
+    static profiles := []
+
+    static ProfiledWait(name, winTitle, timeout := 30) {
+        profile := {
+            Name: name,
+            WinTitle: winTitle,
+            StartTime: A_TickCount,
+            EndTime: 0,
+            Duration: 0,
+            Success: false,
+            Checks: 0
+        }
+
+        startTime := A_TickCount
+        endTime := startTime + (timeout * 1000)
+
+        Loop {
+            profile.Checks++
+
+            if WinExist(winTitle) {
+                profile.Success := true
+                profile.EndTime := A_TickCount
+                profile.Duration := profile.EndTime - profile.StartTime
+                this.profiles.Push(profile)
+                return true
             }
 
-            startTime := A_TickCount
-            endTime := startTime + (timeout * 1000)
-
-            Loop {
-                profile.Checks++
-
-                if WinExist(winTitle) {
-                    profile.Success := true
-                    profile.EndTime := A_TickCount
-                    profile.Duration := profile.EndTime - profile.StartTime
-                    this.profiles.Push(profile)
-                    return true
-                }
-
-                if A_TickCount >= endTime
+            if A_TickCount >= endTime
                 break
 
-                Sleep(100)
-            }
-
-            profile.EndTime := A_TickCount
-            profile.Duration := profile.EndTime - profile.StartTime
-            this.profiles.Push(profile)
-
-            return false
+            Sleep(100)
         }
 
-        static GetStats() {
-            if this.profiles.Length = 0
+        profile.EndTime := A_TickCount
+        profile.Duration := profile.EndTime - profile.StartTime
+        this.profiles.Push(profile)
+
+        return false
+    }
+
+    static GetStats() {
+        if this.profiles.Length = 0
             return "No profiles collected"
 
-            totalDuration := 0
-            successful := 0
-            totalChecks := 0
+        totalDuration := 0
+        successful := 0
+        totalChecks := 0
 
-            for profile in this.profiles {
-                totalDuration += profile.Duration
-                if profile.Success
+        for profile in this.profiles {
+            totalDuration += profile.Duration
+            if profile.Success
                 successful++
-                totalChecks += profile.Checks
-            }
-
-            avgDuration := totalDuration / this.profiles.Length
-            successRate := (successful / this.profiles.Length) * 100
-
-            return {
-                TotalProfiles: this.profiles.Length,
-                Successful: successful,
-                SuccessRate: Round(successRate, 1),
-                AvgDuration: Round(avgDuration, 0),
-                TotalChecks: totalChecks
-            }
+            totalChecks += profile.Checks
         }
 
-        static ExportProfiles() {
-            output := "Wait Profiling Results:`n`n"
+        avgDuration := totalDuration / this.profiles.Length
+        successRate := (successful / this.profiles.Length) * 100
 
-            for profile in this.profiles {
-                output .= profile.Name ": "
-                output .= profile.Success ? "Success" : "Failed"
-                output .= " (" profile.Duration "ms, " profile.Checks " checks)`n"
-            }
-
-            stats := this.GetStats()
-            output .= "`nStatistics:`n"
-            output .= "Total: " stats.TotalProfiles "`n"
-            output .= "Success Rate: " stats.SuccessRate "%`n"
-            output .= "Avg Duration: " stats.AvgDuration "ms`n"
-            output .= "Total Checks: " stats.TotalChecks
-
-            return output
+        return {
+            TotalProfiles: this.profiles.Length,
+            Successful: successful,
+            SuccessRate: Round(successRate, 1),
+            AvgDuration: Round(avgDuration, 0),
+            TotalChecks: totalChecks
         }
     }
 
-    ^+7:: {
-        WaitProfiler.ProfiledWait("Test1", "Notepad", 10)
-        WaitProfiler.ProfiledWait("Test2", "Calculator", 10)
+    static ExportProfiles() {
+        output := "Wait Profiling Results:`n`n"
 
-        output := WaitProfiler.ExportProfiles()
-        MsgBox(output, "Wait Profile", "Icon!")
-    }
-
-    ; Helper for async waiter (minimal version)
-    class AsyncWaiter {
-        static WaitAsync(winTitle, callback, timeout) {
-            SetTimer(() => {
-                if WinExist(winTitle) {
-                    callback(true, winTitle)
-                }
-            }, -timeout * 1000)
+        for profile in this.profiles {
+            output .= profile.Name ": "
+            output .= profile.Success ? "Success" : "Failed"
+            output .= " (" profile.Duration "ms, " profile.Checks " checks)`n"
         }
-    }
 
-    ; ========================================
-    ; Script Initialization
-    ; ========================================
+        stats := this.GetStats()
+        output .= "`nStatistics:`n"
+        output .= "Total: " stats.TotalProfiles "`n"
+        output .= "Success Rate: " stats.SuccessRate "%`n"
+        output .= "Avg Duration: " stats.AvgDuration "ms`n"
+        output .= "Total Checks: " stats.TotalChecks
 
-    if A_Args.Length = 0 && !A_IsCompiled {
-        TrayTip("WinWait Complex Patterns Ready", "Advanced scenarios available", "Icon!")
+        return output
     }
+}
+
+^+7:: {
+    WaitProfiler.ProfiledWait("Test1", "Notepad", 10)
+    WaitProfiler.ProfiledWait("Test2", "Calculator", 10)
+
+    output := WaitProfiler.ExportProfiles()
+    MsgBox(output, "Wait Profile", "Icon!")
+}
+
+; Helper for async waiter (minimal version)
+class AsyncWaiter {
+    static WaitAsync(winTitle, callback, timeout) {
+        SetTimer(() => {
+            if WinExist(winTitle) {
+            callback(true, winTitle)
+        }
+        }, -timeout * 1000)
+    }
+}
+
+; ========================================
+; Script Initialization
+; ========================================
+
+if A_Args.Length = 0 && !A_IsCompiled {
+    TrayTip("WinWait Complex Patterns Ready", "Advanced scenarios available", "Icon!")
+}

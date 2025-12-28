@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiListView_02.ahk - ListView Columns and Sorting
-*
-* This file demonstrates ListView column management and sorting in AutoHotkey v2.
-* Topics covered:
-* - Column management
-* - Column resizing
-* - Sort by column
-* - Multi-sort
-* - Custom sorting
-* - Column reorder
-* - Column visibility
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiListView_02.ahk - ListView Columns and Sorting
+ * 
+ * This file demonstrates ListView column management and sorting in AutoHotkey v2.
+ * Topics covered:
+ * - Column management
+ * - Column resizing
+ * - Sort by column
+ * - Multi-sort
+ * - Custom sorting
+ * - Column reorder
+ * - Column visibility
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates column management
-* Complete ListView example with data management
-*/
+ * Demonstrates column management
+ * Complete ListView example with data management
+ */
 Example1_Columnmanagement() {
     myGui := Gui(, "Column management Demo")
     myGui.BackColor := "White"
@@ -48,14 +47,14 @@ Example1_Columnmanagement() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -76,7 +75,7 @@ Example1_Columnmanagement() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -125,15 +124,14 @@ Example1_Columnmanagement() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Column resizing
 ; =============================================================================
 
 /**
-* Demonstrates column resizing
-* Complete ListView example with data management
-*/
+ * Demonstrates column resizing
+ * Complete ListView example with data management
+ */
 Example2_Columnresizing() {
     myGui := Gui(, "Column resizing Demo")
     myGui.BackColor := "White"
@@ -154,14 +152,14 @@ Example2_Columnresizing() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -182,7 +180,7 @@ Example2_Columnresizing() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -231,15 +229,14 @@ Example2_Columnresizing() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Sort by column
 ; =============================================================================
 
 /**
-* Demonstrates sort by column
-* Complete ListView example with data management
-*/
+ * Demonstrates sort by column
+ * Complete ListView example with data management
+ */
 Example3_Sortbycolumn() {
     myGui := Gui(, "Sort by column Demo")
     myGui.BackColor := "White"
@@ -260,14 +257,14 @@ Example3_Sortbycolumn() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -288,7 +285,7 @@ Example3_Sortbycolumn() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -337,15 +334,14 @@ Example3_Sortbycolumn() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Multi-sort
 ; =============================================================================
 
 /**
-* Demonstrates multi-sort
-* Complete ListView example with data management
-*/
+ * Demonstrates multi-sort
+ * Complete ListView example with data management
+ */
 Example4_Multisort() {
     myGui := Gui(, "Multi-sort Demo")
     myGui.BackColor := "White"
@@ -366,14 +362,14 @@ Example4_Multisort() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -394,7 +390,7 @@ Example4_Multisort() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -443,15 +439,14 @@ Example4_Multisort() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Custom sorting
 ; =============================================================================
 
 /**
-* Demonstrates custom sorting
-* Complete ListView example with data management
-*/
+ * Demonstrates custom sorting
+ * Complete ListView example with data management
+ */
 Example5_Customsorting() {
     myGui := Gui(, "Custom sorting Demo")
     myGui.BackColor := "White"
@@ -472,14 +467,14 @@ Example5_Customsorting() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -500,7 +495,7 @@ Example5_Customsorting() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -549,15 +544,14 @@ Example5_Customsorting() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Column reorder
 ; =============================================================================
 
 /**
-* Demonstrates column reorder
-* Complete ListView example with data management
-*/
+ * Demonstrates column reorder
+ * Complete ListView example with data management
+ */
 Example6_Columnreorder() {
     myGui := Gui(, "Column reorder Demo")
     myGui.BackColor := "White"
@@ -578,14 +572,14 @@ Example6_Columnreorder() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -606,7 +600,7 @@ Example6_Columnreorder() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -655,15 +649,14 @@ Example6_Columnreorder() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Column visibility
 ; =============================================================================
 
 /**
-* Demonstrates column visibility
-* Complete ListView example with data management
-*/
+ * Demonstrates column visibility
+ * Complete ListView example with data management
+ */
 Example7_Columnvisibility() {
     myGui := Gui(, "Column visibility Demo")
     myGui.BackColor := "White"
@@ -684,14 +677,14 @@ Example7_Columnvisibility() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -712,7 +705,7 @@ Example7_Columnvisibility() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -766,8 +759,8 @@ Example7_Columnvisibility() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiListView_02.ahk - Examples")
     menuGui.BackColor := "White"

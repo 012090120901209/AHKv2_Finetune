@@ -1,19 +1,19 @@
 /**
-* @file DriveSet_02.ahk
-* @description Advanced drive management with DriveSetLabel, DriveLock, and DriveUnlock for automation and organization
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Advanced label management strategies
-* - Automated drive organization systems
-* - Smart lock/unlock automation
-* - Drive access control
-* - Label-based file organization
-* - Conditional labeling rules
-* - Enterprise drive management
-*/
+ * @file DriveSet_02.ahk
+ * @description Advanced drive management with DriveSetLabel, DriveLock, and DriveUnlock for automation and organization
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Advanced label management strategies
+ * - Automated drive organization systems
+ * - Smart lock/unlock automation
+ * - Drive access control
+ * - Label-based file organization
+ * - Conditional labeling rules
+ * - Enterprise drive management
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,19 +22,19 @@
 ; ===================================================================================================
 
 /**
-* @class SmartLabeler
-* @description Intelligent drive labeling based on content analysis
-*/
+ * @class SmartLabeler
+ * @description Intelligent drive labeling based on content analysis
+ */
 class SmartLabeler {
     /**
-    * @method AnalyzeDriveContent
-    * @description Analyzes drive content to suggest appropriate label
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Analysis results with suggested label
-    */
+     * @method AnalyzeDriveContent
+     * @description Analyzes drive content to suggest appropriate label
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Analysis results with suggested label
+     */
     static AnalyzeDriveContent(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetStatus(driveLetter) != "Ready") {
             return {
@@ -142,12 +142,12 @@ class SmartLabeler {
     }
 
     /**
-    * @method ApplySmartLabel
-    * @description Applies smart labeling to a drive
-    * @param {String} driveLetter - Drive letter
-    * @param {Boolean} prompt - Whether to prompt user before applying
-    * @returns {Object} Result object
-    */
+     * @method ApplySmartLabel
+     * @description Applies smart labeling to a drive
+     * @param {String} driveLetter - Drive letter
+     * @param {Boolean} prompt - Whether to prompt user before applying
+     * @returns {Object} Result object
+     */
     static ApplySmartLabel(driveLetter, prompt := true) {
         analysis := SmartLabeler.AnalyzeDriveContent(driveLetter)
 
@@ -174,18 +174,18 @@ class SmartLabeler {
 
             Apply this label?
             )",
-            analysis.Drive,
-            analysis.PrimaryType,
-            analysis.SuggestedLabel,
-            analysis.ImageCount,
-            analysis.VideoCount,
-            analysis.AudioCount,
-            analysis.DocumentCount,
-            analysis.CodeCount
+                analysis.Drive,
+                analysis.PrimaryType,
+                analysis.SuggestedLabel,
+                analysis.ImageCount,
+                analysis.VideoCount,
+                analysis.AudioCount,
+                analysis.DocumentCount,
+                analysis.CodeCount
             )
 
             if (MsgBox(message, "Smart Label", "YesNo Icon?") = "No") {
-                return {Success: false, Cancelled: true}
+                return { Success: false, Cancelled: true }
             }
         }
 
@@ -234,19 +234,19 @@ Example1_SmartLabeling() {
 ; ===================================================================================================
 
 /**
-* @class ConditionalLocker
-* @description Locks/unlocks drives based on conditions
-*/
+ * @class ConditionalLocker
+ * @description Locks/unlocks drives based on conditions
+ */
 class ConditionalLocker {
     /**
-    * @method LockIfInUse
-    * @description Locks a drive if files are currently being accessed
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Result object
-    */
+     * @method LockIfInUse
+     * @description Locks a drive if files are currently being accessed
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Result object
+     */
     static LockIfInUse(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         driveType := DriveGetType(driveLetter)
 
@@ -286,11 +286,11 @@ class ConditionalLocker {
     }
 
     /**
-    * @method IsDriveInUse
-    * @description Checks if a drive is currently being accessed
-    * @param {String} driveLetter - Drive letter
-    * @returns {Boolean} True if in use
-    */
+     * @method IsDriveInUse
+     * @description Checks if a drive is currently being accessed
+     * @param {String} driveLetter - Drive letter
+     * @returns {Boolean} True if in use
+     */
     static IsDriveInUse(driveLetter) {
         ; Try to create a test file
         testFile := driveLetter . "\access_test.tmp"
@@ -305,14 +305,14 @@ class ConditionalLocker {
     }
 
     /**
-    * @method AutoLockOnWrite
-    * @description Automatically locks drive when write operations occur
-    * @param {String} driveLetter - Drive letter
-    * @param {Number} duration - Lock duration in milliseconds
-    */
+     * @method AutoLockOnWrite
+     * @description Automatically locks drive when write operations occur
+     * @param {String} driveLetter - Drive letter
+     * @param {Number} duration - Lock duration in milliseconds
+     */
     static AutoLockOnWrite(driveLetter, duration := 5000) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         ; Lock the drive
         try {
@@ -335,10 +335,10 @@ class ConditionalLocker {
     }
 
     /**
-    * @method SafeUnlock
-    * @description Safely unlocks a drive
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method SafeUnlock
+     * @description Safely unlocks a drive
+     * @param {String} driveLetter - Drive letter
+     */
     static SafeUnlock(driveLetter) {
         try {
             DriveUnlock(driveLetter)
@@ -367,9 +367,9 @@ Example2_ConditionalLocking() {
     Locked: {2}
     Reason: {3}
     )",
-    result.Drive,
-    result.HasOwnProp("Locked") ? (result.Locked ? "Yes" : "No") : "Error",
-    result.HasOwnProp("Reason") ? result.Reason : result.Error
+        result.Drive,
+        result.HasOwnProp("Locked") ? (result.Locked ? "Yes" : "No") : "Error",
+        result.HasOwnProp("Reason") ? result.Reason : result.Error
     )
 
     MsgBox(message, "Conditional Lock", "Iconi")
@@ -380,29 +380,29 @@ Example2_ConditionalLocking() {
 ; ===================================================================================================
 
 /**
-* @class EnterpriseLabelPolicy
-* @description Enforces enterprise labeling policies
-*/
+ * @class EnterpriseLabelPolicy
+ * @description Enforces enterprise labeling policies
+ */
 class EnterpriseLabelPolicy {
     static policies := Map()
 
     /**
-    * @method DefinePolicy
-    * @description Defines a labeling policy
-    * @param {String} name - Policy name
-    * @param {Object} rules - Policy rules
-    */
+     * @method DefinePolicy
+     * @description Defines a labeling policy
+     * @param {String} name - Policy name
+     * @param {Object} rules - Policy rules
+     */
     static DefinePolicy(name, rules) {
         EnterpriseLabelPolicy.policies[name] := rules
     }
 
     /**
-    * @method ApplyPolicy
-    * @description Applies a policy to a drive
-    * @param {String} driveLetter - Drive letter
-    * @param {String} policyName - Policy to apply
-    * @returns {Object} Result object
-    */
+     * @method ApplyPolicy
+     * @description Applies a policy to a drive
+     * @param {String} driveLetter - Drive letter
+     * @param {String} policyName - Policy to apply
+     * @returns {Object} Result object
+     */
     static ApplyPolicy(driveLetter, policyName) {
         if !EnterpriseLabelPolicy.policies.Has(policyName) {
             return {
@@ -412,7 +412,7 @@ class EnterpriseLabelPolicy {
         }
 
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetStatus(driveLetter) != "Ready") {
             return {
@@ -427,13 +427,13 @@ class EnterpriseLabelPolicy {
         label := policy.Prefix
 
         if policy.HasOwnProp("IncludeDrive") && policy.IncludeDrive
-        label .= SubStr(driveLetter, 1, 1)
+            label .= SubStr(driveLetter, 1, 1)
 
         if policy.HasOwnProp("IncludeComputer") && policy.IncludeComputer
-        label .= "_" . A_ComputerName
+            label .= "_" . A_ComputerName
 
         if policy.HasOwnProp("IncludeDate") && policy.IncludeDate
-        label .= "_" . FormatTime(A_Now, "yyyyMMdd")
+            label .= "_" . FormatTime(A_Now, "yyyyMMdd")
 
         if policy.HasOwnProp("IncludeSerial") && policy.IncludeSerial {
             try {
@@ -444,7 +444,7 @@ class EnterpriseLabelPolicy {
 
         ; Ensure label meets length requirements
         if (StrLen(label) > 32)
-        label := SubStr(label, 1, 32)
+            label := SubStr(label, 1, 32)
 
         try {
             oldLabel := DriveGetLabel(driveLetter)
@@ -466,12 +466,12 @@ class EnterpriseLabelPolicy {
     }
 
     /**
-    * @method ValidateCompliance
-    * @description Validates if a drive complies with policy
-    * @param {String} driveLetter - Drive letter
-    * @param {String} policyName - Policy name
-    * @returns {Object} Validation result
-    */
+     * @method ValidateCompliance
+     * @description Validates if a drive complies with policy
+     * @param {String} driveLetter - Drive letter
+     * @param {String} policyName - Policy name
+     * @returns {Object} Validation result
+     */
     static ValidateCompliance(driveLetter, policyName) {
         if !EnterpriseLabelPolicy.policies.Has(policyName) {
             return {
@@ -481,7 +481,7 @@ class EnterpriseLabelPolicy {
         }
 
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetStatus(driveLetter) != "Ready") {
             return {
@@ -574,9 +574,9 @@ Example3_EnterprisePolicy() {
 
         if (result.Success) {
             report .= Format("{1}: {2} → {3}`n",
-            result.Drive,
-            result.OldLabel != "" ? result.OldLabel : "(No Label)",
-            result.NewLabel
+                result.Drive,
+                result.OldLabel != "" ? result.OldLabel : "(No Label)",
+                result.NewLabel
             )
         } else {
             report .= Format("{1}: ERROR - {2}`n", drive, result.Error)
@@ -591,20 +591,20 @@ Example3_EnterprisePolicy() {
 ; ===================================================================================================
 
 /**
-* @class BackupDrivePrep
-* @description Prepares drives for backup operations
-*/
+ * @class BackupDrivePrep
+ * @description Prepares drives for backup operations
+ */
 class BackupDrivePrep {
     /**
-    * @method PrepareBackupDrive
-    * @description Prepares a drive for backup with appropriate label and lock
-    * @param {String} driveLetter - Drive letter
-    * @param {String} backupType - Type of backup (Daily, Weekly, Monthly)
-    * @returns {Object} Result object
-    */
+     * @method PrepareBackupDrive
+     * @description Prepares a drive for backup with appropriate label and lock
+     * @param {String} driveLetter - Drive letter
+     * @param {String} backupType - Type of backup (Daily, Weekly, Monthly)
+     * @returns {Object} Result object
+     */
     static PrepareBackupDrive(driveLetter, backupType := "Daily") {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetStatus(driveLetter) != "Ready") {
             return {
@@ -653,15 +653,15 @@ class BackupDrivePrep {
     }
 
     /**
-    * @method FinishBackupDrive
-    * @description Finalizes a backup drive after backup completion
-    * @param {String} driveLetter - Drive letter
-    * @param {Boolean} success - Whether backup was successful
-    * @returns {Object} Result object
-    */
+     * @method FinishBackupDrive
+     * @description Finalizes a backup drive after backup completion
+     * @param {String} driveLetter - Drive letter
+     * @param {Boolean} success - Whether backup was successful
+     * @returns {Object} Result object
+     */
     static FinishBackupDrive(driveLetter, success := true) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         try {
             ; Update label to indicate completion
@@ -670,7 +670,7 @@ class BackupDrivePrep {
 
             ; Trim if too long
             if (StrLen(newLabel) > 32)
-            newLabel := SubStr(currentLabel, 1, 28) . (success ? "_OK" : "_ERR")
+                newLabel := SubStr(currentLabel, 1, 28) . (success ? "_OK" : "_ERR")
 
             DriveSetLabel(driveLetter, newLabel)
 
@@ -730,10 +730,10 @@ Example4_BackupPrep() {
 
         Simulate backup completion?
         )",
-        result.Drive,
-        result.NewLabel,
-        result.BackupType,
-        result.Locked ? "Yes" : "No"
+            result.Drive,
+            result.NewLabel,
+            result.BackupType,
+            result.Locked ? "Yes" : "No"
         )
 
         if (MsgBox(message, "Backup Prep", "YesNo Icon?") = "Yes") {
@@ -744,9 +744,9 @@ Example4_BackupPrep() {
 
             if (finishResult.Success) {
                 MsgBox(Format("Backup completed!`n`nDrive: {1}`nLabel: {2}`nSafe to remove: {3}",
-                finishResult.Drive,
-                finishResult.Label,
-                finishResult.SafeToRemove ? "Yes" : "No"
+                    finishResult.Drive,
+                    finishResult.Label,
+                    finishResult.SafeToRemove ? "Yes" : "No"
                 ), "Backup Complete", "Iconi")
             }
         }
@@ -760,21 +760,21 @@ Example4_BackupPrep() {
 ; ===================================================================================================
 
 /**
-* @class ProjectDriveOrganizer
-* @description Organizes drives based on project naming conventions
-*/
+ * @class ProjectDriveOrganizer
+ * @description Organizes drives based on project naming conventions
+ */
 class ProjectDriveOrganizer {
     /**
-    * @method CreateProjectDrive
-    * @description Creates a project-labeled drive
-    * @param {String} driveLetter - Drive letter
-    * @param {String} projectName - Project name
-    * @param {String} projectCode - Project code (optional)
-    * @returns {Object} Result object
-    */
+     * @method CreateProjectDrive
+     * @description Creates a project-labeled drive
+     * @param {String} driveLetter - Drive letter
+     * @param {String} projectName - Project name
+     * @param {String} projectCode - Project code (optional)
+     * @returns {Object} Result object
+     */
     static CreateProjectDrive(driveLetter, projectName, projectCode := "") {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetStatus(driveLetter) != "Ready") {
             return {
@@ -787,7 +787,7 @@ class ProjectDriveOrganizer {
         label := "PRJ"
 
         if (projectCode != "")
-        label .= "_" . projectCode
+            label .= "_" . projectCode
 
         ; Sanitize project name
         safeName := RegExReplace(projectName, "[^a-zA-Z0-9_-]", "")
@@ -797,7 +797,7 @@ class ProjectDriveOrganizer {
 
         ; Ensure total length is acceptable
         if (StrLen(label) > 32)
-        label := SubStr(label, 1, 32)
+            label := SubStr(label, 1, 32)
 
         try {
             oldLabel := DriveGetLabel(driveLetter)
@@ -823,18 +823,18 @@ class ProjectDriveOrganizer {
     }
 
     /**
-    * @method CreateProjectStructure
-    * @description Creates standard project folder structure
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method CreateProjectStructure
+     * @description Creates standard project folder structure
+     * @param {String} driveLetter - Drive letter
+     */
     static CreateProjectStructure(driveLetter) {
         folders := [
-        "Documents",
-        "Source",
-        "Assets",
-        "Output",
-        "Archive",
-        "References"
+            "Documents",
+            "Source",
+            "Assets",
+            "Output",
+            "Archive",
+            "References"
         ]
 
         for folder in folders {
@@ -851,10 +851,10 @@ class ProjectDriveOrganizer {
     }
 
     /**
-    * @method ListProjectDrives
-    * @description Lists all drives with project labels
-    * @returns {Array} Array of project drive information
-    */
+     * @method ListProjectDrives
+     * @description Lists all drives with project labels
+     * @returns {Array} Array of project drive information
+     */
     static ListProjectDrives() {
         projectDrives := []
         driveList := DriveGetList()
@@ -898,7 +898,7 @@ Example5_ProjectOrganization() {
     ; Get project details
     projectName := InputBox("Enter project name:", "Project Drive Setup").Value
     if (projectName = "")
-    return
+        return
 
     projectCode := InputBox("Enter project code (optional):", "Project Drive Setup").Value
 
@@ -924,10 +924,10 @@ Example5_ProjectOrganization() {
         • Archive
         • References
         )",
-        result.Drive,
-        result.NewLabel,
-        result.ProjectName,
-        result.ProjectCode != "" ? result.ProjectCode : "(None)"
+            result.Drive,
+            result.NewLabel,
+            result.ProjectName,
+            result.ProjectCode != "" ? result.ProjectCode : "(None)"
         )
 
         MsgBox(message, "Project Drive Ready", "Iconi")
@@ -941,21 +941,21 @@ Example5_ProjectOrganization() {
 ; ===================================================================================================
 
 /**
-* @class TimeBasedUnlock
-* @description Automatically unlocks drives at specific times
-*/
+ * @class TimeBasedUnlock
+ * @description Automatically unlocks drives at specific times
+ */
 class TimeBasedUnlock {
     schedules := Map()
 
     /**
-    * @method ScheduleUnlock
-    * @description Schedules a drive to unlock at a specific time
-    * @param {String} driveLetter - Drive letter
-    * @param {String} unlockTime - Time to unlock (HHmm format, e.g., "0900")
-    */
+     * @method ScheduleUnlock
+     * @description Schedules a drive to unlock at a specific time
+     * @param {String} driveLetter - Drive letter
+     * @param {String} unlockTime - Time to unlock (HHmm format, e.g., "0900")
+     */
     ScheduleUnlock(driveLetter, unlockTime) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         this.schedules[driveLetter] := unlockTime
 
@@ -964,9 +964,9 @@ class TimeBasedUnlock {
     }
 
     /**
-    * @method CheckSchedules
-    * @description Checks if any drives should be unlocked
-    */
+     * @method CheckSchedules
+     * @description Checks if any drives should be unlocked
+     */
     CheckSchedules() {
         currentTime := FormatTime(A_Now, "HHmm")
 
@@ -978,16 +978,16 @@ class TimeBasedUnlock {
     }
 
     /**
-    * @method UnlockDrive
-    * @description Unlocks a drive
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method UnlockDrive
+     * @description Unlocks a drive
+     * @param {String} driveLetter - Drive letter
+     */
     UnlockDrive(driveLetter) {
         try {
             DriveUnlock(driveLetter)
             MsgBox(Format("Drive {1} auto-unlocked at {2}",
-            driveLetter,
-            FormatTime(A_Now, "HH:mm")
+                driveLetter,
+                FormatTime(A_Now, "HH:mm")
             ), "Auto-Unlock", "Iconi 2")
         } catch as err {
             ; Unlock may fail if drive is not locked
@@ -1008,7 +1008,7 @@ Example6_TimeBasedUnlock() {
     unlockTime := InputBox(message, "Schedule Unlock").Value
 
     if (unlockTime = "" || StrLen(unlockTime) != 4)
-    return
+        return
 
     removables := DriveGetList("Removable")
     if (StrLen(removables) = 0) {
@@ -1020,9 +1020,9 @@ Example6_TimeBasedUnlock() {
     unlocker.ScheduleUnlock(firstDrive, unlockTime)
 
     MsgBox(Format("Drive {1} scheduled to unlock at {2}:{3}",
-    firstDrive,
-    SubStr(unlockTime, 1, 2),
-    SubStr(unlockTime, 3, 2)
+        firstDrive,
+        SubStr(unlockTime, 1, 2),
+        SubStr(unlockTime, 3, 2)
     ), "Schedule Set", "Iconi")
 
     return unlocker
@@ -1033,23 +1033,23 @@ Example6_TimeBasedUnlock() {
 ; ===================================================================================================
 
 /**
-* @class LabelSync
-* @description Synchronizes labels across multiple drives
-*/
+ * @class LabelSync
+ * @description Synchronizes labels across multiple drives
+ */
 class LabelSync {
     /**
-    * @method SyncLabels
-    * @description Synchronizes labels to match a pattern
-    * @param {Array} drives - Drives to synchronize
-    * @param {String} pattern - Label pattern to apply
-    * @returns {Array} Results for each drive
-    */
+     * @method SyncLabels
+     * @description Synchronizes labels to match a pattern
+     * @param {Array} drives - Drives to synchronize
+     * @param {String} pattern - Label pattern to apply
+     * @returns {Array} Results for each drive
+     */
     static SyncLabels(drives, pattern) {
         results := []
 
         for index, driveLetter in drives {
             if !InStr(driveLetter, ":")
-            driveLetter .= ":"
+                driveLetter .= ":"
 
             ; Replace pattern variables
             label := StrReplace(pattern, "{INDEX}", index)
@@ -1079,10 +1079,10 @@ class LabelSync {
     }
 
     /**
-    * @method ShowSyncResults
-    * @description Shows synchronization results
-    * @param {Array} results - Sync results
-    */
+     * @method ShowSyncResults
+     * @description Shows synchronization results
+     * @param {Array} results - Sync results
+     */
     static ShowSyncResults(results) {
         report := "Label Synchronization Results`n"
         report .= "═══════════════════════════════════════════════════════`n`n"
@@ -1090,9 +1090,9 @@ class LabelSync {
         for result in results {
             if (result.Success) {
                 report .= Format("{1}: {2} → {3}`n",
-                result.Drive,
-                result.OldLabel != "" ? result.OldLabel : "(No Label)",
-                result.NewLabel
+                    result.Drive,
+                    result.OldLabel != "" ? result.OldLabel : "(No Label)",
+                    result.NewLabel
                 )
             } else {
                 report .= Format("{1}: ERROR - {2}`n", result.Drive, result.Error)
@@ -1142,3 +1142,4 @@ Example7_LabelSync() {
 
 ; Press Ctrl+Alt+P to create project drive
 ; ^!p::Example5_ProjectOrganization()
+

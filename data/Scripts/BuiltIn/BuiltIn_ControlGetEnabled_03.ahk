@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetEnabled - Real-World Applications
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetEnabled - Real-World Applications
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -47,7 +47,7 @@ Example2() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
     BtnValidate := MyGui.Add("Button", "xm y+20 w200", "Validate Form")
     BtnValidate.OnEvent("Click", Validate)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h250 ReadOnly Multi")
@@ -55,7 +55,7 @@ Example2() {
         result := "Checking form...\n"
         for i, ctrl in controls {
             if (!ControlGetEnabled(ctrl))
-            result .= "Field " . i . " is disabled\n"
+                result .= "Field " . i . " is disabled\n"
         }
         ResultsEdit.Value := result
     }
@@ -131,10 +131,10 @@ Example5() {
 
     steps := []
     loop 3
-    steps.Push(MyGui.Add("Edit", "w300 y+10", "Step " . A_Index))
+        steps.Push(MyGui.Add("Edit", "w300 y+10", "Step " . A_Index))
     for i, step in steps
-    if (i > 1)
-    step.Enabled := false
+        if (i > 1)
+            step.Enabled := false
     currentStep := 1
     BtnNext := MyGui.Add("Button", "xm y+20 w200", "Next Step")
     BtnNext.OnEvent("Click", NextStep)
@@ -187,7 +187,7 @@ Example7() {
 
     controls := []
     loop 4
-    controls.Push(MyGui.Add("Edit", "w150 " . (Mod(A_Index, 2) = 1 ? "xm" : "x+10") . " y" . (Mod(A_Index, 2) = 1 ? "+20" : "+0"), A_Index))
+        controls.Push(MyGui.Add("Edit", "w150 " . (Mod(A_Index, 2) = 1 ? "xm" : "x+10") . " y" . (Mod(A_Index, 2) = 1 ? "+20" : "+0"), A_Index))
     BtnDebug := MyGui.Add("Button", "xm y+20 w200", "Debug States")
     BtnDebug.OnEvent("Click", Debug)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h300 ReadOnly Multi")
@@ -212,13 +212,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: External Window Check",
-"Example 2: Form Validation",
-"Example 3: State-Based Actions",
-"Example 4: Accessibility Report",
-"Example 5: Wizard Step Control",
-"Example 6: Conditional Enable",
-"Example 7: State Debugger",
+    "Example 1: External Window Check",
+    "Example 2: Form Validation",
+    "Example 3: State-Based Actions",
+    "Example 4: Accessibility Report",
+    "Example 5: Wizard Step Control",
+    "Example 6: Conditional Enable",
+    "Example 7: State Debugger",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

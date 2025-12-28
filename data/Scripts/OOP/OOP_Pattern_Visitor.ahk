@@ -41,10 +41,10 @@ elements := [ConcreteElementA(), ConcreteElementB()]
 
 exportVisitor := ExportVisitor()
 for element in elements
-element.Accept(exportVisitor)
+    element.Accept(exportVisitor)
 MsgBox(exportVisitor.GetResult())
 
 renderVisitor := RenderVisitor()
 for element in elements
-element.Accept(renderVisitor)
+    element.Accept(renderVisitor)
 MsgBox(renderVisitor.GetResult())

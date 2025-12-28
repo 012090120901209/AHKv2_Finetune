@@ -42,7 +42,7 @@ class Member {
     PayFine(amount) => (this.fines := Max(0, this.fines - amount), this)
 
     ToString() => Format("#{1}: {2} ({3} books, ${4:.2f} fines)",
-    this.memberId, this.name, this.borrowedBooks.Length, this.fines)
+        this.memberId, this.name, this.borrowedBooks.Length, this.fines)
 }
 
 class Loan {
@@ -64,26 +64,26 @@ class Loan {
 
     IsOverdue() {
         if (this.returnDate)
-        return false
+            return false
         return DateDiff(A_Now, this.dueDate, "Days") > 0
     }
 
     GetDaysOverdue() {
         if (!this.IsOverdue())
-        return 0
+            return 0
         return DateDiff(A_Now, this.dueDate, "Days")
     }
 
     CalculateFine() {
         if (!this.IsOverdue())
-        return 0
+            return 0
         return this.GetDaysOverdue() * Loan.FINE_PER_DAY
     }
 
     ToString() => Format("{1} - Due: {2}{3}",
-    this.book.title,
-    FormatTime(this.dueDate, "yyyy-MM-dd"),
-    this.IsOverdue() ? Format(" (OVERDUE: {1} days, ${2:.2f} fine)", this.GetDaysOverdue(), this.CalculateFine()) : "")
+        this.book.title,
+        FormatTime(this.dueDate, "yyyy-MM-dd"),
+        this.IsOverdue() ? Format(" (OVERDUE: {1} days, ${2:.2f} fine)", this.GetDaysOverdue(), this.CalculateFine()) : "")
 }
 
 class Library {
@@ -94,8 +94,8 @@ class Library {
 
     FindBookByTitle(title) {
         for id, book in this.books
-        if (InStr(book.title, title))
-        return book
+            if (InStr(book.title, title))
+                return book
         return ""
     }
 
@@ -104,13 +104,13 @@ class Library {
         book := this.books.Has(bookId) ? this.books[bookId] : ""
 
         if (!member)
-        return MsgBox("Member not found!", "Error")
+            return MsgBox("Member not found!", "Error")
         if (!book)
-        return MsgBox("Book not found!", "Error")
+            return MsgBox("Book not found!", "Error")
         if (!member.CanBorrow())
-        return MsgBox("Member cannot borrow: " . (member.fines > 0 ? "outstanding fines" : "max books reached"), "Error")
+            return MsgBox("Member cannot borrow: " . (member.fines > 0 ? "outstanding fines" : "max books reached"), "Error")
         if (!book.IsAvailable())
-        return MsgBox("Book not available!", "Error")
+            return MsgBox("Book not available!", "Error")
 
         loan := Loan(book, member)
         this.loans.Push(loan)
@@ -118,16 +118,16 @@ class Library {
         book.Borrow()
 
         MsgBox(Format("{1} borrowed '{2}'`nDue: {3}",
-        member.name,
-        book.title,
-        FormatTime(loan.dueDate, "yyyy-MM-dd")))
+            member.name,
+            book.title,
+            FormatTime(loan.dueDate, "yyyy-MM-dd")))
         return true
     }
 
     ReturnBook(memberId, bookId) {
         member := this.members.Has(memberId) ? this.members[memberId] : ""
         if (!member)
-        return MsgBox("Member not found!", "Error")
+            return MsgBox("Member not found!", "Error")
 
         for index, loan in member.borrowedBooks {
             if (loan.book.bookId = bookId) {
@@ -154,16 +154,16 @@ class Library {
     GetMemberLoans(memberId) {
         member := this.members.Has(memberId) ? this.members[memberId] : ""
         if (!member)
-        return []
+            return []
         return member.borrowedBooks
     }
 
     GetOverdueLoans() {
         overdue := []
         for member in this.members
-        for loan in member.borrowedBooks
-        if (loan.IsOverdue())
-        overdue.Push(loan)
+            for loan in member.borrowedBooks
+                if (loan.IsOverdue())
+                    overdue.Push(loan)
         return overdue
     }
 
@@ -175,9 +175,9 @@ class Library {
 
         overdueCount := 0
         for member in this.members
-        for loan in member.borrowedBooks
-        if (loan.IsOverdue())
-        overdueCount++
+            for loan in member.borrowedBooks
+                if (loan.IsOverdue())
+                    overdueCount++
 
         summary .= Format("Overdue loans: {1}`n", overdueCount)
         return summary
@@ -225,5 +225,5 @@ MsgBox(library.GetLibrarySummary())
 ; Show catalog
 catalog := ""
 for id, book in library.books
-catalog .= book.ToString() . "`n"
+    catalog .= book.ToString() . "`n"
 MsgBox("Library Catalog:`n" . catalog)

@@ -12,24 +12,24 @@
 
 DemoSQLite() {
     MsgBox("SQLite Database Demo`n`n"
-    "Local database operations:`n`n"
-    "Basic usage:`n"
-    "db := SQLite('mydb.db')`n"
-    "db.Exec('CREATE TABLE users (id, name)')`n"
-    "db.Exec('INSERT INTO users VALUES (1, 'John')')`n"
-    "result := db.Query('SELECT * FROM users')`n`n"
-    "Features:`n"
-    "- Lightweight file-based database`n"
-    "- Full SQL support`n"
-    "- Transactions`n"
-    "- Prepared statements`n`n"
-    "Use cases:`n"
-    "- App settings storage`n"
-    "- Data caching`n"
-    "- Log management`n"
-    "- Structured data processing`n`n"
-    "Install: Download from RaptorX/SQLite",
-    "SQLite Demo")
+        "Local database operations:`n`n"
+        "Basic usage:`n"
+        "db := SQLite('mydb.db')`n"
+        "db.Exec('CREATE TABLE users (id, name)')`n"
+        "db.Exec('INSERT INTO users VALUES (1, 'John')')`n"
+        "result := db.Query('SELECT * FROM users')`n`n"
+        "Features:`n"
+        "- Lightweight file-based database`n"
+        "- Full SQL support`n"
+        "- Transactions`n"
+        "- Prepared statements`n`n"
+        "Use cases:`n"
+        "- App settings storage`n"
+        "- Data caching`n"
+        "- Log management`n"
+        "- Structured data processing`n`n"
+        "Install: Download from RaptorX/SQLite",
+        "SQLite Demo")
 }
 
 ; Real implementation example (commented out, requires library):

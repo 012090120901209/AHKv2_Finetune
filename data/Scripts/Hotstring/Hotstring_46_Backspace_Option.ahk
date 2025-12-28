@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Hotstring Option: B0 (No Backspacing)
-* Don't erase the trigger text before replacement
-*/
+ * Hotstring Option: B0 (No Backspacing)
+ * Don't erase the trigger text before replacement
+ */
 
 ; Default behavior: erases "btw" and types "by the way"
 ::btw::by the way

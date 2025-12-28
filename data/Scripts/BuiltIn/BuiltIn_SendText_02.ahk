@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 SendText Function - Form Filling
-* ============================================================================
-*
-* Demonstrates using SendText for reliable form filling, data entry,
-* and text input where special characters must not be interpreted.
-*
-* @module BuiltIn_SendText_02
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 SendText Function - Form Filling
+ * ============================================================================
+ * 
+ * Demonstrates using SendText for reliable form filling, data entry,
+ * and text input where special characters must not be interpreted.
+ * 
+ * @module BuiltIn_SendText_02
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Form Fields
 ; ============================================================================
 
 /**
-* Fills text input fields safely.
-* All characters sent literally regardless of content.
-*
-* @example
-* ; Press F1 for basic form filling
-*/
+ * Fills text input fields safely.
+ * All characters sent literally regardless of content.
+ * 
+ * @example
+ * ; Press F1 for basic form filling
+ */
 F1:: {
     ToolTip("Basic form filling in 2 seconds...")
     Sleep(2000)
@@ -48,9 +48,9 @@ F1:: {
 }
 
 /**
-* Fills form with special character data
-* Demonstrates safe handling of special chars
-*/
+ * Fills form with special character data
+ * Demonstrates safe handling of special chars
+ */
 F2:: {
     ToolTip("Special character form in 2 seconds...")
     Sleep(2000)
@@ -79,12 +79,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Fills multi-field registration form.
-* Complete user registration workflow.
-*
-* @description
-* Demonstrates comprehensive form automation
-*/
+ * Fills multi-field registration form.
+ * Complete user registration workflow.
+ * 
+ * @description
+ * Demonstrates comprehensive form automation
+ */
 ^F1:: {
     ToolTip("Registration form in 2 seconds...")
     Sleep(2000)
@@ -118,20 +118,20 @@ F2:: {
 }
 
 /**
-* Fills survey form
-* Multiple choice and text responses
-*/
+ * Fills survey form
+ * Multiple choice and text responses
+ */
 ^F2:: {
     ToolTip("Survey form in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     surveyResponses := [
-    "Very satisfied with the service!",
-    "The product quality is excellent & pricing is fair.",
-    "Delivery was on time (2-3 days).",
-    "Customer support: 5/5 stars!",
-    "Will recommend to friends & family."
+        "Very satisfied with the service!",
+        "The product quality is excellent & pricing is fair.",
+        "Delivery was on time (2-3 days).",
+        "Customer support: 5/5 stars!",
+        "Will recommend to friends & family."
     ]
 
     for index, response in surveyResponses {
@@ -153,12 +153,12 @@ F2:: {
 ; ============================================================================
 
 /**
-* Fills shipping address form.
-* Complete address with special formatting.
-*
-* @description
-* Address entry automation
-*/
+ * Fills shipping address form.
+ * Complete address with special formatting.
+ * 
+ * @description
+ * Address entry automation
+ */
 ^F3:: {
     ToolTip("Address form in 2 seconds...")
     Sleep(2000)
@@ -207,154 +207,144 @@ F2:: {
 }
 
 /**
-* Fills contact information form
-* Multiple contact methods
-*/
+ * Fills contact information form
+ * Multiple contact methods
+ */
 ^F4:: {
     ToolTip("Contact form in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
-    contact := [
-    {
-        field: "Primary Phone", value: "(555) 123-4567 ext. 100"},
-        {
-            field: "Mobile", value: "+1 (555) 987-6543"},
-            {
-                field: "Email", value: "contact@example.com"},
-                {
-                    field: "Website", value: "https://www.example.com/contact?ref=form"},
-                    {
+    contact := [{
+        field: "Primary Phone", value: "(555) 123-4567 ext. 100" }, {
+            field: "Mobile", value: "+1 (555) 987-6543" }, {
+                field: "Email", value: "contact@example.com" }, {
+                    field: "Website", value: "https://www.example.com/contact?ref=form" }, {
                         field: "Fax", value: "(555) 123-4568"
                     }
-                    ]
+    ]
 
-                    for index, item in contact {
-                        ToolTip("Filling: " item.field)
+    for index, item in contact {
+        ToolTip("Filling: " item.field)
 
-                        SendText(item.value)
-                        Send("{Tab}")
+        SendText(item.value)
+        Send("{Tab}")
 
-                        Sleep(250)
+        Sleep(250)
+    }
+
+    ToolTip("Contact form complete!")
+    Sleep(2000)
+    ToolTip()
+}
+
+; ============================================================================
+; Example 4: Financial and Payment Forms
+; ============================================================================
+
+/**
+ * Fills payment information form.
+ * Credit card and billing details.
+ * 
+ * @description
+ * Secure payment form filling
+ */
+^F5:: {
+    ToolTip("Payment form in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
+
+    payment := {
+        cardNumber: "4532 1234 5678 9010",
+        expiry: "12/25",
+        cvv: "123",
+        cardName: "John Q. Doe",
+        billingAddress: "123 Main St., Apt. #4B",
+        billingZip: "62701"
+    }
+
+    ; Card number
+    SendText(payment.cardNumber)
+    Send("{Tab}")
+    Sleep(200)
+
+    ; Expiry
+    SendText(payment.expiry)
+    Send("{Tab}")
+    Sleep(200)
+
+    ; CVV
+    SendText(payment.cvv)
+    Send("{Tab}")
+    Sleep(200)
+
+    ; Name on card
+    SendText(payment.cardName)
+    Send("{Tab}")
+    Sleep(200)
+
+    ; Billing address
+    SendText(payment.billingAddress)
+    Send("{Tab}")
+    Sleep(200)
+
+    ; ZIP
+    SendText(payment.zip)
+
+    ToolTip("Payment form complete!")
+    Sleep(2000)
+    ToolTip()
+}
+
+/**
+ * Fills tax/invoice form
+ * Financial data with symbols
+ */
+^F6:: {
+    ToolTip("Invoice form in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
+
+    invoice := [{
+        field: "Invoice #", value: "INV-2024-001" }, {
+            field: "Amount", value: "$1,234.56" }, {
+                field: "Tax", value: "$123.46 (10%)" }, {
+                    field: "Total", value: "$1,358.02" }, {
+                        field: "Notes", value: "Payment due in 30 days; 2% discount if paid within 10 days"
                     }
+    ]
 
-                    ToolTip("Contact form complete!")
-                    Sleep(2000)
-                    ToolTip()
-                }
+    for index, item in invoice {
+        ToolTip("Field: " item.field)
 
-                ; ============================================================================
-                ; Example 4: Financial and Payment Forms
-                ; ============================================================================
+        SendText(item.value)
+        Send("{Tab}")
 
-                /**
-                * Fills payment information form.
-                * Credit card and billing details.
-                *
-                * @description
-                * Secure payment form filling
-                */
-                ^F5:: {
-                    ToolTip("Payment form in 2 seconds...")
-                    Sleep(2000)
-                    ToolTip()
+        Sleep(250)
+    }
 
-                    payment := {
-                        cardNumber: "4532 1234 5678 9010",
-                        expiry: "12/25",
-                        cvv: "123",
-                        cardName: "John Q. Doe",
-                        billingAddress: "123 Main St., Apt. #4B",
-                        billingZip: "62701"
-                    }
+    ToolTip("Invoice form complete!")
+    Sleep(2000)
+    ToolTip()
+}
 
-                    ; Card number
-                    SendText(payment.cardNumber)
-                    Send("{Tab}")
-                    Sleep(200)
+; ============================================================================
+; Example 5: Comment and Feedback Forms
+; ============================================================================
 
-                    ; Expiry
-                    SendText(payment.expiry)
-                    Send("{Tab}")
-                    Sleep(200)
+/**
+ * Fills comment/feedback forms.
+ * Multi-line text with special characters.
+ * 
+ * @description
+ * Feedback form automation
+ */
+^F7:: {
+    ToolTip("Feedback form in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
 
-                    ; CVV
-                    SendText(payment.cvv)
-                    Send("{Tab}")
-                    Sleep(200)
-
-                    ; Name on card
-                    SendText(payment.cardName)
-                    Send("{Tab}")
-                    Sleep(200)
-
-                    ; Billing address
-                    SendText(payment.billingAddress)
-                    Send("{Tab}")
-                    Sleep(200)
-
-                    ; ZIP
-                    SendText(payment.zip)
-
-                    ToolTip("Payment form complete!")
-                    Sleep(2000)
-                    ToolTip()
-                }
-
-                /**
-                * Fills tax/invoice form
-                * Financial data with symbols
-                */
-                ^F6:: {
-                    ToolTip("Invoice form in 2 seconds...")
-                    Sleep(2000)
-                    ToolTip()
-
-                    invoice := [
-                    {
-                        field: "Invoice #", value: "INV-2024-001"},
-                        {
-                            field: "Amount", value: "$1,234.56"},
-                            {
-                                field: "Tax", value: "$123.46 (10%)"},
-                                {
-                                    field: "Total", value: "$1,358.02"},
-                                    {
-                                        field: "Notes", value: "Payment due in 30 days; 2% discount if paid within 10 days"
-                                    }
-                                    ]
-
-                                    for index, item in invoice {
-                                        ToolTip("Field: " item.field)
-
-                                        SendText(item.value)
-                                        Send("{Tab}")
-
-                                        Sleep(250)
-                                    }
-
-                                    ToolTip("Invoice form complete!")
-                                    Sleep(2000)
-                                    ToolTip()
-                                }
-
-                                ; ============================================================================
-                                ; Example 5: Comment and Feedback Forms
-                                ; ============================================================================
-
-                                /**
-                                * Fills comment/feedback forms.
-                                * Multi-line text with special characters.
-                                *
-                                * @description
-                                * Feedback form automation
-                                */
-                                ^F7:: {
-                                    ToolTip("Feedback form in 2 seconds...")
-                                    Sleep(2000)
-                                    ToolTip()
-
-                                    feedback := "
+    feedback := "
                                     (
                                     Great product! Very satisfied.
 
@@ -372,23 +362,23 @@ F2:: {
                                     Questions? Contact: support@example.com
                                     )"
 
-                                    SendText(StrReplace(feedback, "`n    ", "`n"))
+    SendText(StrReplace(feedback, "`n    ", "`n"))
 
-                                    ToolTip("Feedback submitted!")
-                                    Sleep(2000)
-                                    ToolTip()
-                                }
+    ToolTip("Feedback submitted!")
+    Sleep(2000)
+    ToolTip()
+}
 
-                                /**
-                                * Fills bug report form
-                                * Technical details with special characters
-                                */
-                                ^F8:: {
-                                    ToolTip("Bug report form in 2 seconds...")
-                                    Sleep(2000)
-                                    ToolTip()
+/**
+ * Fills bug report form
+ * Technical details with special characters
+ */
+^F8:: {
+    ToolTip("Bug report form in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
 
-                                    bugReport := "
+    bugReport := "
                                     (
                                     BUG REPORT
 
@@ -411,181 +401,178 @@ F2:: {
                                     - User: admin@localhost
                                     )"
 
-                                    SendText(StrReplace(bugReport, "`n    ", "`n"))
+    SendText(StrReplace(bugReport, "`n    ", "`n"))
 
-                                    ToolTip("Bug report submitted!")
-                                    Sleep(2000)
-                                    ToolTip()
-                                }
+    ToolTip("Bug report submitted!")
+    Sleep(2000)
+    ToolTip()
+}
 
-                                ; ============================================================================
-                                ; Example 6: Profile and Bio Forms
-                                ; ============================================================================
+; ============================================================================
+; Example 6: Profile and Bio Forms
+; ============================================================================
 
-                                /**
-                                * Fills user profile form.
-                                * Personal information and bio.
-                                *
-                                * @description
-                                * Profile creation automation
-                                */
-                                ^F9:: {
-                                    ToolTip("Profile form in 2 seconds...")
-                                    Sleep(2000)
-                                    ToolTip()
+/**
+ * Fills user profile form.
+ * Personal information and bio.
+ * 
+ * @description
+ * Profile creation automation
+ */
+^F9:: {
+    ToolTip("Profile form in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
 
-                                    profile := {
-                                        displayName: "John Doe (JD)",
-                                        tagline: "Software Engineer @ Tech Corp",
-                                        bio: "Full-stack developer with 10+ years experience. Interested in AI & ML. Contact: john@example.com",
-                                        website: "https://johndoe.dev/?ref=profile",
-                                        location: "San Francisco, CA, USA",
-                                        languages: "English, Spanish, French"
-                                    }
+    profile := {
+        displayName: "John Doe (JD)",
+        tagline: "Software Engineer @ Tech Corp",
+        bio: "Full-stack developer with 10+ years experience. Interested in AI & ML. Contact: john@example.com",
+        website: "https://johndoe.dev/?ref=profile",
+        location: "San Francisco, CA, USA",
+        languages: "English, Spanish, French"
+    }
 
-                                    ; Display name
-                                    SendText(profile.displayName)
-                                    Send("{Tab}")
-                                    Sleep(200)
+    ; Display name
+    SendText(profile.displayName)
+    Send("{Tab}")
+    Sleep(200)
 
-                                    ; Tagline
-                                    SendText(profile.tagline)
-                                    Send("{Tab}")
-                                    Sleep(200)
+    ; Tagline
+    SendText(profile.tagline)
+    Send("{Tab}")
+    Sleep(200)
 
-                                    ; Bio
-                                    SendText(profile.bio)
-                                    Send("{Tab}")
-                                    Sleep(200)
+    ; Bio
+    SendText(profile.bio)
+    Send("{Tab}")
+    Sleep(200)
 
-                                    ; Website
-                                    SendText(profile.website)
-                                    Send("{Tab}")
-                                    Sleep(200)
+    ; Website
+    SendText(profile.website)
+    Send("{Tab}")
+    Sleep(200)
 
-                                    ; Location
-                                    SendText(profile.location)
-                                    Send("{Tab}")
-                                    Sleep(200)
+    ; Location
+    SendText(profile.location)
+    Send("{Tab}")
+    Sleep(200)
 
-                                    ; Languages
-                                    SendText(profile.languages)
+    ; Languages
+    SendText(profile.languages)
 
-                                    ToolTip("Profile complete!")
-                                    Sleep(2000)
-                                    ToolTip()
-                                }
+    ToolTip("Profile complete!")
+    Sleep(2000)
+    ToolTip()
+}
 
-                                ; ============================================================================
-                                ; Example 7: Batch Form Filling
-                                ; ============================================================================
+; ============================================================================
+; Example 7: Batch Form Filling
+; ============================================================================
 
-                                /**
-                                * Fills multiple forms in sequence.
-                                * Bulk data entry automation.
-                                *
-                                * @description
-                                * Batch processing demonstration
-                                */
-                                ^F10:: {
-                                    ToolTip("Batch form filling in 2 seconds...")
-                                    Sleep(2000)
-                                    ToolTip()
+/**
+ * Fills multiple forms in sequence.
+ * Bulk data entry automation.
+ * 
+ * @description
+ * Batch processing demonstration
+ */
+^F10:: {
+    ToolTip("Batch form filling in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
 
-                                    records := [
-                                    {
-                                        name: "Alice Smith", email: "alice@example.com", company: "ABC Corp."},
-                                        {
-                                            name: "Bob Johnson", email: "bob@example.com", company: "XYZ Inc. & Partners"},
-                                            {
-                                                name: "Carol White", email: "carol@example.com", company: "Tech Solutions, LLC"
-                                            }
-                                            ]
+    records := [{
+        name: "Alice Smith", email: "alice@example.com", company: "ABC Corp." }, {
+            name: "Bob Johnson", email: "bob@example.com", company: "XYZ Inc. & Partners" }, {
+                name: "Carol White", email: "carol@example.com", company: "Tech Solutions, LLC"
+            }
+    ]
 
-                                            for index, record in records {
-                                                ToolTip("Record " index " of " records.Length)
+    for index, record in records {
+        ToolTip("Record " index " of " records.Length)
 
-                                                ; Name
-                                                SendText(record.name)
-                                                Send("{Tab}")
-                                                Sleep(100)
+        ; Name
+        SendText(record.name)
+        Send("{Tab}")
+        Sleep(100)
 
-                                                ; Email
-                                                SendText(record.email)
-                                                Send("{Tab}")
-                                                Sleep(100)
+        ; Email
+        SendText(record.email)
+        Send("{Tab}")
+        Sleep(100)
 
-                                                ; Company
-                                                SendText(record.company)
-                                                Send("{Enter}")  ; Submit form
-                                                Sleep(500)
-                                            }
+        ; Company
+        SendText(record.company)
+        Send("{Enter}")  ; Submit form
+        Sleep(500)
+    }
 
-                                            ToolTip("Batch filling complete!")
-                                            Sleep(2000)
-                                            ToolTip()
-                                        }
+    ToolTip("Batch filling complete!")
+    Sleep(2000)
+    ToolTip()
+}
 
-                                        ; ============================================================================
-                                        ; Utility Functions
-                                        ; ============================================================================
+; ============================================================================
+; Utility Functions
+; ============================================================================
 
-                                        /**
-                                        * Fills form from data object
-                                        *
-                                        * @param {Object} data - Form data
-                                        * @param {Number} delay - Delay between fields (ms)
-                                        */
-                                        FillForm(data, delay := 200) {
-                                            for fieldName, value in data.OwnProps() {
-                                                SendText(value)
-                                                Send("{Tab}")
-                                                Sleep(delay)
-                                            }
-                                        }
+/**
+ * Fills form from data object
+ * 
+ * @param {Object} data - Form data
+ * @param {Number} delay - Delay between fields (ms)
+ */
+FillForm(data, delay := 200) {
+    for fieldName, value in data.OwnProps() {
+        SendText(value)
+        Send("{Tab}")
+        Sleep(delay)
+    }
+}
 
-                                        /**
-                                        * Fills form from array
-                                        *
-                                        * @param {Array} fields - Array of field values
-                                        * @param {Number} delay - Delay between fields (ms)
-                                        */
-                                        FillFormArray(fields, delay := 200) {
-                                            for index, value in fields {
-                                                SendText(value)
-                                                if (index < fields.Length)
-                                                Send("{Tab}")
-                                                Sleep(delay)
-                                            }
-                                        }
+/**
+ * Fills form from array
+ * 
+ * @param {Array} fields - Array of field values
+ * @param {Number} delay - Delay between fields (ms)
+ */
+FillFormArray(fields, delay := 200) {
+    for index, value in fields {
+        SendText(value)
+        if (index < fields.Length)
+            Send("{Tab}")
+        Sleep(delay)
+    }
+}
 
-                                        ; Test utilities
-                                        !F1:: {
-                                            ToolTip("Testing FillForm in 2 seconds...")
-                                            Sleep(2000)
-                                            ToolTip()
+; Test utilities
+!F1:: {
+    ToolTip("Testing FillForm in 2 seconds...")
+    Sleep(2000)
+    ToolTip()
 
-                                            testData := {
-                                                field1: "Test & Value",
-                                                field2: "Special chars: ^+!@#",
-                                                field3: "Email: test@example.com"
-                                            }
+    testData := {
+        field1: "Test & Value",
+        field2: "Special chars: ^+!@#",
+        field3: "Email: test@example.com"
+    }
 
-                                            FillForm(testData, 300)
+    FillForm(testData, 300)
 
-                                            ToolTip("FillForm complete!")
-                                            Sleep(1500)
-                                            ToolTip()
-                                        }
+    ToolTip("FillForm complete!")
+    Sleep(1500)
+    ToolTip()
+}
 
-                                        ; ============================================================================
-                                        ; Exit and Help
-                                        ; ============================================================================
+; ============================================================================
+; Exit and Help
+; ============================================================================
 
-                                        Esc::ExitApp()
+Esc:: ExitApp()
 
-                                        F12:: {
-                                            helpText := "
+F12:: {
+    helpText := "
                                             (
                                             SendText - Form Filling
                                             =======================
@@ -613,5 +600,5 @@ F2:: {
                                             SendText handles special characters safely.
                                             )"
 
-                                            MsgBox(helpText, "Form Filling Help")
-                                        }
+    MsgBox(helpText, "Form Filling Help")
+}

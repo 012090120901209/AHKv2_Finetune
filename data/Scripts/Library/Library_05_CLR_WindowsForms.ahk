@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* CLR - Windows Forms GUI Application
-*
-* Demonstrates creating a rich Windows Forms GUI with buttons, textboxes,
-* listboxes, and event handling using .NET Framework.
-*
-* Library: https://github.com/Lexikos/CLR.ahk
-*/
+ * CLR - Windows Forms GUI Application
+ * 
+ * Demonstrates creating a rich Windows Forms GUI with buttons, textboxes,
+ * listboxes, and event handling using .NET Framework.
+ * 
+ * Library: https://github.com/Lexikos/CLR.ahk
+ */
 
 MsgBox("CLR - Windows Forms Example`n`n"
-. "Demonstrates rich GUI with .NET`n"
-. "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
+    . "Demonstrates rich GUI with .NET`n"
+    . "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
 
 /*
 ; Uncomment to run (requires CLR.ahk):
@@ -190,3 +190,4 @@ Form.ShowDialog()
 *     ✅ Handle exceptions
 *     ✅ Use appropriate control types
 */
+

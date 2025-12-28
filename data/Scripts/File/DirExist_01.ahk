@@ -1,19 +1,19 @@
 /**
-* @file DirExist_01.ahk
-* @description Comprehensive examples of DirExist folder validation and verification
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Folder existence checking
-* - Validation before operations
-* - Path verification
-* - Access rights checking
-* - Folder monitoring
-* - Dependency verification
-* - Structure validation
-*/
+ * @file DirExist_01.ahk
+ * @description Comprehensive examples of DirExist folder validation and verification
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Folder existence checking
+ * - Validation before operations
+ * - Path verification
+ * - Access rights checking
+ * - Folder monitoring
+ * - Dependency verification
+ * - Structure validation
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,17 +22,17 @@
 ; ===================================================================================================
 
 /**
-* @function BasicDirExistOperation
-* @description Demonstrates basic DirExist usage
-* @param {String} path - Path to operate on
-* @returns {Object} Result object
-*/
+ * @function BasicDirExistOperation
+ * @description Demonstrates basic DirExist usage
+ * @param {String} path - Path to operate on
+ * @returns {Object} Result object
+ */
 BasicDirExistOperation(path) {
     try {
         ; Example operation implementation
-        return {Success: true, Path: path}
+        return { Success: true, Path: path }
     } catch as err {
-        return {Success: false, Error: err.Message}
+        return { Success: false, Error: err.Message }
     }
 }
 
@@ -53,9 +53,9 @@ Example1_Basic() {
 ; ===================================================================================================
 
 /**
-* @class DirExistManager
-* @description Manages direxist operations with comprehensive error handling
-*/
+ * @class DirExistManager
+ * @description Manages direxist operations with comprehensive error handling
+ */
 class DirExistManager {
     lastError := ""
 
@@ -66,7 +66,7 @@ class DirExistManager {
             ; Validate inputs
             if (sourcePath = "") {
                 this.lastError := "Source path is required"
-                return {Success: false, Error: this.lastError}
+                return { Success: false, Error: this.lastError }
             }
 
             ; Perform operation based on file type
@@ -82,7 +82,7 @@ class DirExistManager {
 
         } catch as err {
             this.lastError := err.Message
-            return {Success: false, Error: err.Message}
+            return { Success: false, Error: err.Message }
         }
     }
 
@@ -101,7 +101,7 @@ Example2_Advanced() {
         message := "Advanced operation completed!`n`n"
         for key, value in result.OwnProps() {
             if (key != "Success")
-            message .= key . ": " . value . "`n"
+                message .= key . ": " . value . "`n"
         }
         MsgBox(message, "Success", "Iconi")
     } else {
@@ -116,9 +116,9 @@ Example2_Advanced() {
 ; ===================================================================================================
 
 /**
-* @class BatchDirExistManager
-* @description Handles batch direxist operations
-*/
+ * @class BatchDirExistManager
+ * @description Handles batch direxist operations
+ */
 class BatchDirExistManager {
     static ProcessMultiple(paths) {
         results := []
@@ -130,9 +130,9 @@ class BatchDirExistManager {
             result := manager.Execute(path)
 
             if (result.Success)
-            successCount++
+                successCount++
             else
-            failCount++
+                failCount++
 
             results.Push(result)
         }
@@ -173,14 +173,14 @@ Example3_Batch() {
 ; ===================================================================================================
 
 /**
-* @function InteractiveDirExist
-* @description Interactive direxist operation with user prompts
-*/
+ * @function InteractiveDirExist
+ * @description Interactive direxist operation with user prompts
+ */
 InteractiveDirExist() {
     sourcePath := InputBox("Enter source path:", "DirExist Operation").Value
 
     if (sourcePath = "")
-    return
+        return
 
     manager := DirExistManager()
     result := manager.Execute(sourcePath)
@@ -203,9 +203,9 @@ Example4_Interactive() {
 ; ===================================================================================================
 
 /**
-* @class DirExistLogger
-* @description Logs all direxist operations
-*/
+ * @class DirExistLogger
+ * @description Logs all direxist operations
+ */
 class DirExistLogger {
     logFile := A_ScriptDir . "\direxist_operations.log"
 
@@ -216,7 +216,7 @@ class DirExistLogger {
         logEntry := Format("[{1}] {2} - {3}", timestamp, status, path)
 
         if (details != "")
-        logEntry .= " - " . details
+            logEntry .= " - " . details
 
         logEntry .= "`n"
 
@@ -252,7 +252,7 @@ class DirExistLogger {
 
         for i, line in allLines {
             if (i >= startIndex && line != "")
-            report .= line . "`n"
+                report .= line . "`n"
         }
 
         MsgBox(report, "Operation Log", "Iconi")
@@ -277,9 +277,9 @@ Example5_Logging() {
 ; ===================================================================================================
 
 /**
-* @class ScheduledDirExist
-* @description Schedules direxist operations
-*/
+ * @class ScheduledDirExist
+ * @description Schedules direxist operations
+ */
 class ScheduledDirExist {
     schedules := Map()
 
@@ -298,7 +298,7 @@ class ScheduledDirExist {
 
                 if (result.Success) {
                     MsgBox(Format("Scheduled operation completed for: {1}", path),
-                    "Scheduled DirExist", "Iconi")
+                        "Scheduled DirExist", "Iconi")
                 }
 
                 this.schedules.Delete(path)
@@ -316,9 +316,9 @@ Example6_Scheduled() {
     if (scheduleTime != "" && StrLen(scheduleTime) = 4) {
         scheduler.Schedule(testPath, scheduleTime)
         MsgBox(Format("Operation scheduled for {1}:{2}",
-        SubStr(scheduleTime, 1, 2),
-        SubStr(scheduleTime, 3, 2)),
-        "Scheduled", "Iconi")
+            SubStr(scheduleTime, 1, 2),
+            SubStr(scheduleTime, 3, 2)),
+            "Scheduled", "Iconi")
     }
 
     return scheduler
@@ -329,9 +329,9 @@ Example6_Scheduled() {
 ; ===================================================================================================
 
 /**
-* @class DirExistStatistics
-* @description Tracks statistics for direxist operations
-*/
+ * @class DirExistStatistics
+ * @description Tracks statistics for direxist operations
+ */
 class DirExistStatistics {
     totalOperations := 0
     successfulOperations := 0
@@ -341,15 +341,15 @@ class DirExistStatistics {
         this.totalOperations++
 
         if (result.Success)
-        this.successfulOperations++
+            this.successfulOperations++
         else
-        this.failedOperations++
+            this.failedOperations++
     }
 
     GetStatistics() {
         successRate := this.totalOperations > 0
-        ? Round((this.successfulOperations / this.totalOperations) * 100, 2)
-        : 0
+            ? Round((this.successfulOperations / this.totalOperations) * 100, 2)
+            : 0
 
         return {
             Total: this.totalOperations,
@@ -409,3 +409,4 @@ Example7_Statistics() {
 
 ; Press Ctrl+Alt+5 for logged operation
 ; ^!5::Example5_Logging()
+

@@ -1,44 +1,44 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_User32_05_SystemMetrics.ahk
-*
-* DESCRIPTION:
-* Demonstrates retrieving system metrics and parameters using Windows API.
-* Shows how to get screen dimensions, window sizes, system colors, UI metrics,
-* and various system configuration values.
-*
-* FEATURES:
-* - Screen and display metrics
-* - Window sizing metrics (title bar, borders, scrollbars)
-* - System colors and UI element colors
-* - Mouse and keyboard metrics
-* - Icon and cursor sizes
-* - System parameters (animation, focus, etc.)
-* - Multi-monitor information
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft GetSystemMetrics API
-* https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmetrics
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with GetSystemMetrics
-* - GetSysColor for system colors
-* - SystemParametersInfo for advanced settings
-* - EnumDisplayMonitors for multi-monitor setups
-* - Structure handling for NONCLIENTMETRICS
-*
-* LEARNING POINTS:
-* 1. How to query system metrics using GetSystemMetrics
-* 2. Retrieving system colors with GetSysColor
-* 3. Getting advanced parameters with SystemParametersInfo
-* 4. Working with multi-monitor configurations
-* 5. Understanding non-client area metrics
-* 6. Detecting system capabilities and features
-* 7. Querying UI animation and visual effects settings
-*/
+ * BuiltIn_DllCall_User32_05_SystemMetrics.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates retrieving system metrics and parameters using Windows API.
+ * Shows how to get screen dimensions, window sizes, system colors, UI metrics,
+ * and various system configuration values.
+ * 
+ * FEATURES:
+ * - Screen and display metrics
+ * - Window sizing metrics (title bar, borders, scrollbars)
+ * - System colors and UI element colors
+ * - Mouse and keyboard metrics
+ * - Icon and cursor sizes
+ * - System parameters (animation, focus, etc.)
+ * - Multi-monitor information
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft GetSystemMetrics API
+ * https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmetrics
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with GetSystemMetrics
+ * - GetSysColor for system colors
+ * - SystemParametersInfo for advanced settings
+ * - EnumDisplayMonitors for multi-monitor setups
+ * - Structure handling for NONCLIENTMETRICS
+ * 
+ * LEARNING POINTS:
+ * 1. How to query system metrics using GetSystemMetrics
+ * 2. Retrieving system colors with GetSysColor
+ * 3. Getting advanced parameters with SystemParametersInfo
+ * 4. Working with multi-monitor configurations
+ * 5. Understanding non-client area metrics
+ * 6. Detecting system capabilities and features
+ * 7. Querying UI animation and visual effects settings
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Screen and Display Metrics
@@ -87,9 +87,9 @@ Example1_ScreenMetrics() {
     - Monitor Count: {}
     - Same Display Format: {}
     )",
-    screenWidth, screenHeight, screenWidth, screenHeight,
-    virtualWidth, virtualHeight, virtualLeft, virtualTop, virtualWidth, virtualHeight,
-    monitorCount, sameFormat ? "Yes" : "No")
+        screenWidth, screenHeight, screenWidth, screenHeight,
+        virtualWidth, virtualHeight, virtualLeft, virtualTop, virtualWidth, virtualHeight,
+        monitorCount, sameFormat ? "Yes" : "No")
 
     MsgBox(info, "Screen Metrics")
 
@@ -155,8 +155,8 @@ Example2_WindowMetrics() {
     - Vertical Scrollbar Width: {} px
     - Horizontal Scrollbar Height: {} px
     )",
-    borderWidth, borderHeight, dlgFrameWidth, dlgFrameHeight, frameWidth, frameHeight,
-    captionHeight, vScrollWidth, hScrollHeight)
+        borderWidth, borderHeight, dlgFrameWidth, dlgFrameHeight, frameWidth, frameHeight,
+        captionHeight, vScrollWidth, hScrollHeight)
 
     MsgBox(info, "Window Metrics")
 }
@@ -197,18 +197,18 @@ Example3_SystemColors() {
 
     ; Get various system colors
     colors := Map(
-    "Window Background", COLOR_WINDOW,
-    "Window Text", COLOR_WINDOWTEXT,
-    "Active Caption", COLOR_ACTIVECAPTION,
-    "Active Caption Text", COLOR_CAPTIONTEXT,
-    "Inactive Caption", COLOR_INACTIVECAPTION,
-    "Menu Background", COLOR_MENU,
-    "Menu Text", COLOR_MENUTEXT,
-    "Button Face", COLOR_BTNFACE,
-    "Button Text", COLOR_BTNTEXT,
-    "Highlight", COLOR_HIGHLIGHT,
-    "Highlight Text", COLOR_HIGHLIGHTTEXT,
-    "Desktop Background", COLOR_BACKGROUND
+        "Window Background", COLOR_WINDOW,
+        "Window Text", COLOR_WINDOWTEXT,
+        "Active Caption", COLOR_ACTIVECAPTION,
+        "Active Caption Text", COLOR_CAPTIONTEXT,
+        "Inactive Caption", COLOR_INACTIVECAPTION,
+        "Menu Background", COLOR_MENU,
+        "Menu Text", COLOR_MENUTEXT,
+        "Button Face", COLOR_BTNFACE,
+        "Button Text", COLOR_BTNTEXT,
+        "Highlight", COLOR_HIGHLIGHT,
+        "Highlight Text", COLOR_HIGHLIGHTTEXT,
+        "Desktop Background", COLOR_BACKGROUND
     )
 
     info := "System Colors:`n" . "=" . StrRepeat("=", 40) . "`n`n"
@@ -253,7 +253,7 @@ ShowColorDemo() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -299,22 +299,22 @@ Example4_InputMetrics() {
 
     Mouse Speed Settings:
     )",
-    mouseButtons,
-    swappedButtons ? "Yes (Left-handed)" : "No",
-    doubleClickX, doubleClickY,
-    mousePresent ? "Yes" : "No",
-    wheelPresent ? "Yes" : "No",
-    hWheelPresent ? "Yes" : "No")
+        mouseButtons,
+        swappedButtons ? "Yes (Left-handed)" : "No",
+        doubleClickX, doubleClickY,
+        mousePresent ? "Yes" : "No",
+        wheelPresent ? "Yes" : "No",
+        hWheelPresent ? "Yes" : "No")
 
     ; Get additional mouse parameters
     SPI_GETMOUSESPEED := 0x0070
     mouseSpeed := Buffer(4, 0)
     DllCall("User32.dll\SystemParametersInfoW"
-    , "UInt", SPI_GETMOUSESPEED
-    , "UInt", 0
-    , "Ptr", mouseSpeed.Ptr
-    , "UInt", 0
-    , "Int")
+        , "UInt", SPI_GETMOUSESPEED
+        , "UInt", 0
+        , "Ptr", mouseSpeed.Ptr
+        , "UInt", 0
+        , "Int")
     speed := NumGet(mouseSpeed, 0, "Int")
 
     info .= "`n- Mouse Speed: " . speed . " (1-20 scale)"
@@ -355,9 +355,9 @@ Example5_IconMetrics() {
     Cursors:
     - Cursor Size: {} x {} pixels
     )",
-    iconWidth, iconHeight,
-    smallIconWidth, smallIconHeight,
-    cursorWidth, cursorHeight)
+        iconWidth, iconHeight,
+        smallIconWidth, smallIconHeight,
+        cursorWidth, cursorHeight)
 
     MsgBox(info, "Icon Metrics")
 
@@ -412,12 +412,12 @@ Example6_SystemCapabilities() {
     - Starter Edition: {}
     - Remote Desktop Session: {}
     )",
-    network ? "Yes" : "No",
-    cleanBoot ? "Yes (Safe Mode)" : "No",
-    tabletPC ? "Yes" : "No",
-    mediaCenter ? "Yes" : "No",
-    starter ? "Yes" : "No",
-    remote ? "Yes" : "No")
+        network ? "Yes" : "No",
+        cleanBoot ? "Yes (Safe Mode)" : "No",
+        tabletPC ? "Yes" : "No",
+        mediaCenter ? "Yes" : "No",
+        starter ? "Yes" : "No",
+        remote ? "Yes" : "No")
 
     MsgBox(info, "System Capabilities")
 
@@ -438,11 +438,11 @@ Example7_AdvancedParameters() {
     SPI_GETDESKWALLPAPER := 0x0073
     wallpaperBuf := Buffer(520, 0)
     DllCall("User32.dll\SystemParametersInfoW"
-    , "UInt", SPI_GETDESKWALLPAPER
-    , "UInt", 260
-    , "Ptr", wallpaperBuf.Ptr
-    , "UInt", 0
-    , "Int")
+        , "UInt", SPI_GETDESKWALLPAPER
+        , "UInt", 260
+        , "Ptr", wallpaperBuf.Ptr
+        , "UInt", 0
+        , "Int")
     wallpaper := StrGet(wallpaperBuf.Ptr, "UTF-16")
 
     ; Get screensaver info
@@ -495,12 +495,12 @@ Example7_AdvancedParameters() {
     - Right: {}, Bottom: {}
     - Size: {} x {}
     )",
-    wallpaper ? wallpaper : "None",
-    active ? "Yes" : "No",
-    timeout,
-    minAnimate ? "Enabled" : "Disabled",
-    waLeft, waTop, waRight, waBottom,
-    waRight - waLeft, waBottom - waTop)
+        wallpaper ? wallpaper : "None",
+        active ? "Yes" : "No",
+        timeout,
+        minAnimate ? "Enabled" : "Disabled",
+        waLeft, waTop, waRight, waBottom,
+        waRight - waLeft, waBottom - waTop)
 
     MsgBox(info, "Advanced Parameters")
 
@@ -521,9 +521,9 @@ Example7_AdvancedParameters() {
     typeName := typeNames.Has(smoothType) ? typeNames[smoothType] : "Unknown"
 
     MsgBox(Format("Font Smoothing:`n`nEnabled: {}`nType: {} ({})",
-    smoothing ? "Yes" : "No",
-    smoothType,
-    typeName), "Font Settings")
+        smoothing ? "Yes" : "No",
+        smoothType,
+        typeName), "Font Settings")
 }
 
 ;==============================================================================
@@ -551,7 +551,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "System Metrics Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_ScreenMetrics()

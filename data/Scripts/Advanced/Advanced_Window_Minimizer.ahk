@@ -5,20 +5,20 @@ Persistent
 global hiddenWindows := Map()
 
 ; Win+H to hide active window to tray
-#h::HideWindow()
+#h:: HideWindow()
 
 ; Win+Shift+H to show hidden windows menu
-#+h::ShowHiddenMenu()
+#+h:: ShowHiddenMenu()
 
 HideWindow() {
     winId := WinExist("A")
     if (!winId)
-    return
+        return
 
     title := WinGetTitle("ahk_id " winId)
 
     if (title = "")
-    return
+        return
 
     WinHide("ahk_id " winId)
     hiddenWindows[winId] := title
@@ -28,7 +28,7 @@ HideWindow() {
 
 ShowHiddenMenu() {
     if (hiddenWindows.Count = 0)
-    return MsgBox("No hidden windows", "Info")
+        return MsgBox("No hidden windows", "Info")
 
     hideMenu := Menu()
 

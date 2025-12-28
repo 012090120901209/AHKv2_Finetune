@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Inherit_05_Polymorphism.ahk
-*
-* DESCRIPTION:
-* Demonstrates polymorphism in AutoHotkey v2 - the ability of objects of different
-* classes to respond to the same method calls in different ways. Shows how inheritance
-* and method overriding enable polymorphic behavior.
-*
-* FEATURES:
-* - Polymorphic method calls
-* - Interface compatibility
-* - Duck typing in collections
-* - Polymorphic parameters
-* - Strategy pattern with polymorphism
-* - Polymorphic return types
-* - Runtime type decisions
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Method overriding for polymorphism
-* - Dynamic dispatch
-* - Heterogeneous collections
-* - Type checking with HasBase()
-* - Polymorphic function parameters
-* - Runtime behavior selection
-*
-* LEARNING POINTS:
-* 1. Polymorphism means "many forms"
-* 2. Same method name, different implementations
-* 3. Enables writing generic code
-* 4. Collections can hold different types
-* 5. Method resolution happens at runtime
-* 6. Interface matters more than type
-* 7. Reduces code duplication through abstraction
-*/
+ * BuiltIn_OOP_Inherit_05_Polymorphism.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates polymorphism in AutoHotkey v2 - the ability of objects of different
+ * classes to respond to the same method calls in different ways. Shows how inheritance
+ * and method overriding enable polymorphic behavior.
+ * 
+ * FEATURES:
+ * - Polymorphic method calls
+ * - Interface compatibility
+ * - Duck typing in collections
+ * - Polymorphic parameters
+ * - Strategy pattern with polymorphism
+ * - Polymorphic return types
+ * - Runtime type decisions
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Method overriding for polymorphism
+ * - Dynamic dispatch
+ * - Heterogeneous collections
+ * - Type checking with HasBase()
+ * - Polymorphic function parameters
+ * - Runtime behavior selection
+ * 
+ * LEARNING POINTS:
+ * 1. Polymorphism means "many forms"
+ * 2. Same method name, different implementations
+ * 3. Enables writing generic code
+ * 4. Collections can hold different types
+ * 5. Method resolution happens at runtime
+ * 6. Interface matters more than type
+ * 7. Reduces code duplication through abstraction
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Polymorphism
@@ -227,7 +227,7 @@ class PushNotification extends Notification {
 
     Send() {
         return "Sending push notification to device " this.DeviceID
-        . "`nPriority: " this.Priority "`n" this.GetInfo()
+            . "`nPriority: " this.Priority "`n" this.GetInfo()
     }
 }
 
@@ -326,7 +326,7 @@ class QuickSort extends SortStrategy {
 
     Sort(arr) {
         if (arr.Length <= 1)
-        return arr
+            return arr
 
         pivot := arr[1]
         less := []
@@ -334,17 +334,17 @@ class QuickSort extends SortStrategy {
 
         Loop arr.Length - 1 {
             if (arr[A_Index + 1] <= pivot)
-            less.Push(arr[A_Index + 1])
+                less.Push(arr[A_Index + 1])
             else
-            greater.Push(arr[A_Index + 1])
+                greater.Push(arr[A_Index + 1])
         }
 
         result := []
         for item in this.Sort(less)
-        result.Push(item)
+            result.Push(item)
         result.Push(pivot)
         for item in this.Sort(greater)
-        result.Push(item)
+            result.Push(item)
 
         return result
     }
@@ -419,7 +419,7 @@ ArrayToString(arr) {
     for item in arr {
         str .= item
         if (A_Index < arr.Length)
-        str .= ", "
+            str .= ", "
     }
     str .= "]"
     return str
@@ -451,8 +451,8 @@ class CreditCard extends PaymentMethod {
 
     ProcessPayment(amount) {
         return "Processing credit card payment of $" amount
-        . "`nCard: ****" SubStr(this.CardNumber, -4)
-        . "`nExpiry: " this.ExpiryDate
+            . "`nCard: ****" SubStr(this.CardNumber, -4)
+            . "`nExpiry: " this.ExpiryDate
     }
 
     GetName() {
@@ -469,7 +469,7 @@ class PayPal extends PaymentMethod {
 
     ProcessPayment(amount) {
         return "Processing PayPal payment of $" amount
-        . "`nAccount: " this.Email
+            . "`nAccount: " this.Email
     }
 
     GetName() {
@@ -488,8 +488,8 @@ class BankTransfer extends PaymentMethod {
 
     ProcessPayment(amount) {
         return "Processing bank transfer of $" amount
-        . "`nAccount: ****" SubStr(this.AccountNumber, -4)
-        . "`nRouting: " this.RoutingNumber
+            . "`nAccount: ****" SubStr(this.AccountNumber, -4)
+            . "`nRouting: " this.RoutingNumber
     }
 
     GetName() {
@@ -508,7 +508,7 @@ class Cryptocurrency extends PaymentMethod {
 
     ProcessPayment(amount) {
         return "Processing " this.CurrencyType " payment of $" amount
-        . "`nWallet: " SubStr(this.WalletAddress, 1, 10) "..."
+            . "`nWallet: " SubStr(this.WalletAddress, 1, 10) "..."
     }
 
     GetName() {
@@ -527,7 +527,7 @@ class Checkout {
     }
 
     AddItem(name, price) {
-        this.Items.Push({Name: name, Price: price})
+        this.Items.Push({ Name: name, Price: price })
         this.Total += price
     }
 
@@ -591,12 +591,12 @@ class FileHandler {
 class TextFileHandler extends FileHandler {
     Read() {
         return "Reading text from: " this.FilePath
-        . "`n(Plain text content)"
+            . "`n(Plain text content)"
     }
 
     Write(content) {
         return "Writing text to: " this.FilePath
-        . "`nContent: " content
+            . "`nContent: " content
     }
 
     GetFileType() {
@@ -607,12 +607,12 @@ class TextFileHandler extends FileHandler {
 class JSONFileHandler extends FileHandler {
     Read() {
         return "Parsing JSON from: " this.FilePath
-        . "`n(Structured JSON data)"
+            . "`n(Structured JSON data)"
     }
 
     Write(content) {
         return "Writing JSON to: " this.FilePath
-        . "`nSerializing object: " content
+            . "`nSerializing object: " content
     }
 
     GetFileType() {
@@ -623,12 +623,12 @@ class JSONFileHandler extends FileHandler {
 class XMLFileHandler extends FileHandler {
     Read() {
         return "Parsing XML from: " this.FilePath
-        . "`n(XML document tree)"
+            . "`n(XML document tree)"
     }
 
     Write(content) {
         return "Writing XML to: " this.FilePath
-        . "`nFormatting XML: " content
+            . "`nFormatting XML: " content
     }
 
     GetFileType() {
@@ -639,12 +639,12 @@ class XMLFileHandler extends FileHandler {
 class CSVFileHandler extends FileHandler {
     Read() {
         return "Parsing CSV from: " this.FilePath
-        . "`n(Tabular data)"
+            . "`n(Tabular data)"
     }
 
     Write(content) {
         return "Writing CSV to: " this.FilePath
-        . "`nFormatting rows: " content
+            . "`nFormatting rows: " content
     }
 
     GetFileType() {
@@ -665,7 +665,7 @@ class FileManager {
         extension := SubStr(filePath, InStr(filePath, ".", , -1))
 
         if (this.Handlers.Has(extension))
-        return this.Handlers[extension]
+            return this.Handlers[extension]
 
         throw Error("No handler registered for " extension)
     }
@@ -677,9 +677,9 @@ class FileManager {
         result .= "Path: " filePath "`n`n"
 
         if (operation = "read")
-        result .= handler.Read()
+            result .= handler.Read()
         else if (operation = "write")
-        result .= handler.Write(content)
+            result .= handler.Write(content)
 
         return result
     }
@@ -738,8 +738,8 @@ class EmailEventHandler extends EventHandler {
 
     Handle(event) {
         return "Sending email to " this.EmailAddress
-        . "`nSubject: " event.Type
-        . "`nBody: " event.Message
+            . "`nSubject: " event.Type
+            . "`nBody: " event.Message
     }
 }
 
@@ -792,10 +792,10 @@ dispatcher.AddHandler(AlertEventHandler())
 dispatcher.AddHandler(MetricsEventHandler())
 
 ; Dispatch different events
-errorEvent := {Type: "ERROR", Message: "Database connection failed"}
+errorEvent := { Type: "ERROR", Message: "Database connection failed" }
 MsgBox(dispatcher.Dispatch(errorEvent))
 
-warningEvent := {Type: "WARNING", Message: "High memory usage detected"}
+warningEvent := { Type: "WARNING", Message: "High memory usage detected" }
 MsgBox(dispatcher.Dispatch(warningEvent))
 
 ; ========================================
@@ -812,13 +812,13 @@ class Renderer {
 class HTMLRenderer extends Renderer {
     Render(element) {
         if (element.HasBase(Button.Prototype))
-        return this.RenderButton(element)
+            return this.RenderButton(element)
         else if (element.HasBase(TextInput.Prototype))
-        return this.RenderTextInput(element)
+            return this.RenderTextInput(element)
         else if (element.HasBase(Label.Prototype))
-        return this.RenderLabel(element)
+            return this.RenderLabel(element)
         else
-        return "<div>Unknown element</div>"
+            return "<div>Unknown element</div>"
     }
 
     RenderButton(button) {
@@ -837,13 +837,13 @@ class HTMLRenderer extends Renderer {
 class MarkdownRenderer extends Renderer {
     Render(element) {
         if (element.HasBase(Button.Prototype))
-        return this.RenderButton(element)
+            return this.RenderButton(element)
         else if (element.HasBase(TextInput.Prototype))
-        return this.RenderTextInput(element)
+            return this.RenderTextInput(element)
         else if (element.HasBase(Label.Prototype))
-        return this.RenderLabel(element)
+            return this.RenderLabel(element)
         else
-        return "Unknown element"
+            return "Unknown element"
     }
 
     RenderButton(button) {
@@ -913,11 +913,11 @@ for element in elements {
 MsgBox(mdOutput)
 
 MsgBox("=== OOP Polymorphism Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic polymorphic behavior`n"
-. "- Polymorphic collections`n"
-. "- Strategy pattern with polymorphism`n"
-. "- Polymorphic parameters`n"
-. "- Polymorphic file handlers`n"
-. "- Polymorphic event handlers`n"
-. "- Advanced polymorphism with type checking")
+    . "This file demonstrated:`n"
+    . "- Basic polymorphic behavior`n"
+    . "- Polymorphic collections`n"
+    . "- Strategy pattern with polymorphism`n"
+    . "- Polymorphic parameters`n"
+    . "- Polymorphic file handlers`n"
+    . "- Polymorphic event handlers`n"
+    . "- Advanced polymorphism with type checking")

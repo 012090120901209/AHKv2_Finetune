@@ -2,40 +2,40 @@
 #SingleInstance Force
 
 /**
-* Range Iterator - Memory-Efficient Sequences
-*
-* Demonstrates creating a Range iterator that generates numeric sequences
-* without storing values in memory, using closure-based iterators.
-*
-* Source: AHK_Notes/Snippets/Range.md
-*/
+ * Range Iterator - Memory-Efficient Sequences
+ * 
+ * Demonstrates creating a Range iterator that generates numeric sequences
+ * without storing values in memory, using closure-based iterators.
+ * 
+ * Source: AHK_Notes/Snippets/Range.md
+ */
 
 ; Test 1: Basic ascending range
 MsgBox("Range(1, 5) - Ascending:", , "T1")
 result := ""
 for n in Range(1, 5)
-result .= n " "
+    result .= n " "
 MsgBox("Values: " result, "Ascending Range", "T3")
 
 ; Test 2: Range with step
 MsgBox("Range(0, 10, 2) - Even numbers:", , "T1")
 result := ""
 for n in Range(0, 10, 2)
-result .= n " "
+    result .= n " "
 MsgBox("Values: " result, "Step Range", "T3")
 
 ; Test 3: Descending range
 MsgBox("Range(10, 1, -1) - Descending:", , "T1")
 result := ""
 for n in Range(10, 1, -1)
-result .= n " "
+    result .= n " "
 MsgBox("Values: " result, "Descending Range", "T3")
 
 ; Test 4: Range in array operations
 MsgBox("Building array from Range(1, 5):", , "T1")
 numbers := []
 for n in Range(1, 5)
-numbers.Push(n * n)  ; Square each number
+    numbers.Push(n * n)  ; Square each number
 MsgBox("Squared: [" Join(numbers) "]", "Array Building", "T3")
 
 ; Test 5: Large range (memory efficient)
@@ -45,46 +45,46 @@ count := 0
 for n in Range(1, 1000000) {
     sum += n
     if (++count >= 100)
-    break
+        break
 }
 MsgBox("Sum of first 100: " sum, "Large Range", "T3")
 
 /**
-* Range - Generate numeric sequence iterator
-* @param {int} start - Starting value
-* @param {int} stop - Ending value (inclusive)
-* @param {int} step - Step increment (default: 1)
-* @return {func} Iterator function
-*/
+ * Range - Generate numeric sequence iterator
+ * @param {int} start - Starting value
+ * @param {int} stop - Ending value (inclusive)
+ * @param {int} step - Step increment (default: 1)
+ * @return {func} Iterator function
+ */
 Range(start, stop, step := 1) {
     ; Return closure that maintains state
     return (&n) => (
-    n := start,
-    start += step,
-    step > 0 ? n <= stop : n >= stop
+        n := start,
+        start += step,
+        step > 0 ? n <= stop : n >= stop
     )
 }
 
 /**
-* RangeWithCount - Range that also provides index
-* @param {int} start - Starting value
-* @param {int} stop - Ending value
-* @param {int} step - Step increment
-* @return {func} Iterator function with index
-*/
+ * RangeWithCount - Range that also provides index
+ * @param {int} start - Starting value
+ * @param {int} stop - Ending value
+ * @param {int} step - Step increment
+ * @return {func} Iterator function with index
+ */
 RangeWithCount(start, stop, step := 1) {
     index := 0
     return (&n, &i) => (
-    n := start,
-    i := ++index,
-    start += step,
-    step > 0 ? n <= stop : n >= stop
+        n := start,
+        i := ++index,
+        start += step,
+        step > 0 ? n <= stop : n >= stop
     )
 }
 
 /**
-* Join - Helper to join array
-*/
+ * Join - Helper to join array
+ */
 Join(arr, delimiter := ", ") {
     result := ""
     for index, value in arr {
@@ -162,4 +162,5 @@ Join(arr, delimiter := ", ") {
     *     ✅ Lazy evaluation
     *     ✅ Functional programming style
     *     ✅ Clean syntax
-    */
+*/
+

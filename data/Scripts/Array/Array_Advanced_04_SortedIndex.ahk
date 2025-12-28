@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* SortedIndex() - Binary search implementation
-*
-* Demonstrates: Binary search algorithm, bit shift (>>), efficient search
-* Professional pattern for finding insertion point in sorted array
-*/
+ * SortedIndex() - Binary search implementation
+ * 
+ * Demonstrates: Binary search algorithm, bit shift (>>), efficient search
+ * Professional pattern for finding insertion point in sorted array
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -24,9 +24,9 @@ SortedIndex(arr, value) {
         mid := (lo + hi) >> 1  ; Bit shift right = divide by 2 (faster)
 
         if (arr.Length >= mid && arr[mid] < value)
-        lo := mid + 1
+            lo := mid + 1
         else
-        hi := mid
+            hi := mid
     }
     return lo
 }
@@ -45,6 +45,6 @@ result4 := SortedIndex([10, 20, 30, 40, 50], 35)
 ; => 4 (insert 35 between 30 and 40)
 
 MsgBox("Insert 40 in [30,50] at index: " result1 "`n"
-. "Insert 20 in [30,50] at index: " result2 "`n"
-. "Insert 99 in [30,50] at index: " result3 "`n"
-. "Insert 35 in [10,20,30,40,50] at index: " result4)
+    . "Insert 20 in [30,50] at index: " result2 "`n"
+    . "Insert 99 in [30,50] at index: " result3 "`n"
+    . "Insert 35 in [10,20,30,40,50] at index: " result4)

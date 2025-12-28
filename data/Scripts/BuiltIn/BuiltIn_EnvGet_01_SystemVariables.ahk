@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_EnvGet_01_SystemVariables.ahk
-*
-* DESCRIPTION:
-* Demonstrates how to retrieve and use system environment variables
-* with EnvGet, essential for cross-platform scripting and system integration.
-*
-* FEATURES:
-* - Retrieving common system variables (PATH, TEMP, USERNAME, etc.)
-* - Environment variable validation and error handling
-* - Dynamic path construction using env vars
-* - System information gathering
-* - Cross-user compatible scripting
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - EnvGet() function syntax
-* - Return value handling (empty string if not found)
-* - String concatenation with env vars
-* - Map/Object storage of env vars
-* - Error handling for missing variables
-*
-* LEARNING POINTS:
-* 1. EnvGet retrieves environment variable values
-* 2. Returns empty string if variable doesn't exist
-* 3. Variable names are case-insensitive on Windows
-* 4. Use for portable, user-independent paths
-* 5. PATH variable contains multiple directories
-* 6. System vs User environment variables
-* 7. Always validate retrieved values before use
-*/
+ * BuiltIn_EnvGet_01_SystemVariables.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates how to retrieve and use system environment variables
+ * with EnvGet, essential for cross-platform scripting and system integration.
+ * 
+ * FEATURES:
+ * - Retrieving common system variables (PATH, TEMP, USERNAME, etc.)
+ * - Environment variable validation and error handling
+ * - Dynamic path construction using env vars
+ * - System information gathering
+ * - Cross-user compatible scripting
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - EnvGet() function syntax
+ * - Return value handling (empty string if not found)
+ * - String concatenation with env vars
+ * - Map/Object storage of env vars
+ * - Error handling for missing variables
+ * 
+ * LEARNING POINTS:
+ * 1. EnvGet retrieves environment variable values
+ * 2. Returns empty string if variable doesn't exist
+ * 3. Variable names are case-insensitive on Windows
+ * 4. Use for portable, user-independent paths
+ * 5. PATH variable contains multiple directories
+ * 6. System vs User environment variables
+ * 7. Always validate retrieved values before use
+ */
 
 ;===============================================================================
 ; EXAMPLE 1: Basic Environment Variable Retrieval
@@ -106,7 +106,7 @@ Example2_PathVariableAnalysis() {
     for index, path in paths {
         path := Trim(path)
         if path = ""
-        continue
+            continue
 
         exists := DirExist(path) ? "Yes" : "No"
         lv.Add(, index, path, exists)
@@ -124,12 +124,12 @@ Example2_PathVariableAnalysis() {
     for index, path in paths {
         path := Trim(path)
         if path = ""
-        continue
+            continue
 
         if DirExist(path)
-        validCount++
+            validCount++
         else
-        invalidCount++
+            invalidCount++
     }
 
     stats := "Valid Paths: " validCount " | Invalid/Missing: " invalidCount
@@ -370,7 +370,7 @@ Example5_SystemInfoCollector() {
     userInfo := ""
     for key in ["Username", "User Domain", "User Profile", "Home Drive", "Home Path"] {
         if sysInfo.Has(key)
-        userInfo .= key ": " sysInfo[key] "`n"
+            userInfo .= key ": " sysInfo[key] "`n"
     }
     infoGui.Add("Edit", "x20 y70 w460 h300 ReadOnly Multi", userInfo)
 
@@ -379,7 +379,7 @@ Example5_SystemInfoCollector() {
     compInfo := ""
     for key in ["Computer Name", "Processor", "Processor Architecture", "Number of Processors", "OS"] {
         if sysInfo.Has(key)
-        compInfo .= key ": " sysInfo[key] "`n"
+            compInfo .= key ": " sysInfo[key] "`n"
     }
     infoGui.Add("Edit", "x20 y70 w460 h300 ReadOnly Multi", compInfo)
 
@@ -387,9 +387,9 @@ Example5_SystemInfoCollector() {
     tabs.UseTab("Directories")
     dirInfo := ""
     for key in ["Windows Directory", "System Root", "System Drive", "Program Files",
-    "Program Files (x86)", "AppData", "Local AppData", "Temp"] {
+        "Program Files (x86)", "AppData", "Local AppData", "Temp"] {
         if sysInfo.Has(key) && sysInfo[key] != ""
-        dirInfo .= key ": " sysInfo[key] "`n"
+            dirInfo .= key ": " sysInfo[key] "`n"
     }
     infoGui.Add("Edit", "x20 y70 w460 h300 ReadOnly Multi", dirInfo)
 
@@ -398,7 +398,7 @@ Example5_SystemInfoCollector() {
     allInfo := ""
     for key, value in sysInfo {
         if value != ""
-        allInfo .= key ": " value "`n"
+            allInfo .= key ": " value "`n"
     }
     infoGui.Add("Edit", "x20 y70 w460 h300 ReadOnly Multi", allInfo)
 
@@ -419,7 +419,7 @@ Example5_SystemInfoCollector() {
 
         for key, value in sysInfo {
             if value != ""
-            exportText .= key ": " value "`n"
+                exportText .= key ": " value "`n"
         }
 
         ; Save to file
@@ -433,7 +433,7 @@ Example5_SystemInfoCollector() {
         allText := ""
         for key, value in sysInfo {
             if value != ""
-            allText .= key ": " value "`n"
+                allText .= key ": " value "`n"
         }
 
         A_Clipboard := allText
@@ -469,12 +469,12 @@ Example6_EnvVarSearchTool() {
 
     ; Common environment variables to search
     commonVars := [
-    "PATH", "PATHEXT", "TEMP", "TMP", "USERNAME", "USERPROFILE",
-    "COMPUTERNAME", "USERDOMAIN", "HOMEDRIVE", "HOMEPATH",
-    "WINDIR", "SYSTEMROOT", "SYSTEMDRIVE", "PROGRAMFILES",
-    "PROGRAMFILES(X86)", "APPDATA", "LOCALAPPDATA", "COMMONPROGRAMFILES",
-    "PROCESSOR_IDENTIFIER", "PROCESSOR_ARCHITECTURE", "NUMBER_OF_PROCESSORS",
-    "OS", "COMSPEC", "ALLUSERSPROFILE", "PUBLIC", "PROGRAMDATA"
+        "PATH", "PATHEXT", "TEMP", "TMP", "USERNAME", "USERPROFILE",
+        "COMPUTERNAME", "USERDOMAIN", "HOMEDRIVE", "HOMEPATH",
+        "WINDIR", "SYSTEMROOT", "SYSTEMDRIVE", "PROGRAMFILES",
+        "PROGRAMFILES(X86)", "APPDATA", "LOCALAPPDATA", "COMMONPROGRAMFILES",
+        "PROCESSOR_IDENTIFIER", "PROCESSOR_ARCHITECTURE", "NUMBER_OF_PROCESSORS",
+        "OS", "COMSPEC", "ALLUSERSPROFILE", "PUBLIC", "PROGRAMDATA"
     ]
 
     PerformSearch(*) {
@@ -488,16 +488,16 @@ Example6_EnvVarSearchTool() {
 
             ; Skip if not found
             if value = ""
-            continue
+                continue
 
             ; Check if search term matches (case-insensitive)
             if searchTerm = "" ||
-            InStr(varName, searchTerm, false) ||
-            InStr(value, searchTerm, false) {
+                InStr(varName, searchTerm, false) ||
+                InStr(value, searchTerm, false) {
                 ; Truncate long values for display
                 displayValue := value
                 if StrLen(displayValue) > 80
-                displayValue := SubStr(displayValue, 1, 77) "..."
+                    displayValue := SubStr(displayValue, 1, 77) "..."
 
                 resultsLV.Add(, varName, displayValue)
                 foundCount++
@@ -511,7 +511,7 @@ Example6_EnvVarSearchTool() {
         statsText.Value := "Found: " foundCount " variables"
 
         if foundCount = 0 && searchTerm != ""
-        MsgBox("No variables found matching: " searchTerm, "No Results")
+            MsgBox("No variables found matching: " searchTerm, "No Results")
     }
 
     RefreshAll(*) {
@@ -537,12 +537,12 @@ Example7_PortablePathBuilder() {
     builderGui := Gui(, "Portable Path Builder")
 
     builderGui.Add("Text", "x10 y10 w480",
-    "Build portable paths that work on any user's computer")
+        "Build portable paths that work on any user's computer")
 
     ; Base path selector
     builderGui.Add("Text", "x10 y40", "Base Path:")
     baseSelect := builderGui.Add("DropDownList", "x80 y35 w200 Choose1",
-    ["USERPROFILE", "APPDATA", "LOCALAPPDATA", "TEMP", "PROGRAMFILES"])
+        ["USERPROFILE", "APPDATA", "LOCALAPPDATA", "TEMP", "PROGRAMFILES"])
 
     ; Relative path
     builderGui.Add("Text", "x10 y70", "Relative Path:")
@@ -652,3 +652,4 @@ Example7_PortablePathBuilder() {
 ; Example5_SystemInfoCollector()
 ; Example6_EnvVarSearchTool()
 ; Example7_PortablePathBuilder()
+

@@ -2,24 +2,24 @@
 #SingleInstance Force
 
 /**
-* Adjacent Character Swap
-*
-* Demonstrates swapping adjacent characters to fix common
-* typing mistakes (transpositions).
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Adjacent Character Swap
+ * 
+ * Demonstrates swapping adjacent characters to fix common
+ * typing mistakes (transpositions).
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Character Swap Demo`n`n"
-. "Hotkey: Alt+L`n`n"
-. "Place cursor between two characters and press Alt+L`n"
-. "to swap them.`n`n"
-. "Examples:`n"
-. "- 'teh' → 'the'`n"
-. "- 'recieve' → 'receive'`n"
-. "- 'seperate' → 'separate'`n`n"
-. "Opening Notepad for demo...", , "T5")
+    . "Hotkey: Alt+L`n`n"
+    . "Place cursor between two characters and press Alt+L`n"
+    . "to swap them.`n`n"
+    . "Examples:`n"
+    . "- 'teh' → 'the'`n"
+    . "- 'recieve' → 'receive'`n"
+    . "- 'seperate' → 'separate'`n`n"
+    . "Opening Notepad for demo...", , "T5")
 
 ; Open Notepad for demo
 Run("notepad.exe")
@@ -32,14 +32,14 @@ Send("teh quick brown fox")
 Send("{Left 16}")  ; Position cursor after "teh"
 
 MsgBox("Cursor is after 'teh'`n`n"
-. "Press Alt+L to swap 'e' and 'h' to make 'the'!", , "T3")
+    . "Press Alt+L to swap 'e' and 'h' to make 'the'!", , "T3")
 
 ; Hotkey to swap adjacent characters
-!l::SwapAdjacentCharacters()
+!l:: SwapAdjacentCharacters()
 
 /**
-* Swap the two characters adjacent to cursor
-*/
+ * Swap the two characters adjacent to cursor
+ */
 SwapAdjacentCharacters() {
     ; Save clipboard
     clipSaved := ClipboardAll()
@@ -166,3 +166,4 @@ SwapAdjacentCharacters() {
 *    SetTimer for delayed restore
 *    Works in most text editors
 */
+

@@ -1,30 +1,30 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Click Function - Drag Operations
-* ============================================================================
-*
-* This module demonstrates mouse drag operations using Click down/up states.
-* Covers drag-and-drop, window dragging, selection dragging, and painting
-* applications.
-*
-* @module BuiltIn_Click_03
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 Click Function - Drag Operations
+ * ============================================================================
+ * 
+ * This module demonstrates mouse drag operations using Click down/up states.
+ * Covers drag-and-drop, window dragging, selection dragging, and painting
+ * applications.
+ * 
+ * @module BuiltIn_Click_03
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Drag Operations
 ; ============================================================================
 
 /**
-* Simple drag from one point to another.
-* Uses Click Down, MouseMove, and Click Up sequence.
-*
-* @example
-* ; Press F1 to perform basic drag
-*/
+ * Simple drag from one point to another.
+ * Uses Click Down, MouseMove, and Click Up sequence.
+ * 
+ * @example
+ * ; Press F1 to perform basic drag
+ */
 F1:: {
     ToolTip("Dragging from (100,100) to (300,300)...")
 
@@ -45,9 +45,9 @@ F1:: {
 }
 
 /**
-* Right-button drag operation
-* Some applications use right-drag for special functions
-*/
+ * Right-button drag operation
+ * Some applications use right-drag for special functions
+ */
 F2:: {
     ToolTip("Right-button drag operation...")
 
@@ -63,9 +63,9 @@ F2:: {
 }
 
 /**
-* Slow, smooth drag operation
-* Useful for precise movements
-*/
+ * Slow, smooth drag operation
+ * Useful for precise movements
+ */
 F3:: {
     ToolTip("Slow, smooth drag...")
 
@@ -88,12 +88,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Simulates dragging files in Windows Explorer.
-* Demonstrates practical file management automation.
-*
-* @description
-* Opens Explorer and simulates drag-and-drop between folders
-*/
+ * Simulates dragging files in Windows Explorer.
+ * Demonstrates practical file management automation.
+ * 
+ * @description
+ * Opens Explorer and simulates drag-and-drop between folders
+ */
 ^F1:: {
     ToolTip("Starting file drag-and-drop simulation...")
 
@@ -130,9 +130,9 @@ F3:: {
 }
 
 /**
-* Desktop icon rearrangement
-* Drags desktop icons to new positions
-*/
+ * Desktop icon rearrangement
+ * Drags desktop icons to new positions
+ */
 ^F2:: {
     ; Show desktop
     Send("#d")
@@ -165,12 +165,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Drags application windows to new positions.
-* Useful for window management automation.
-*
-* @description
-* Demonstrates dragging windows by their title bars
-*/
+ * Drags application windows to new positions.
+ * Useful for window management automation.
+ * 
+ * @description
+ * Demonstrates dragging windows by their title bars
+ */
 ^F3:: {
     ToolTip("Opening Notepad to demonstrate window dragging...")
 
@@ -218,9 +218,9 @@ F3:: {
 }
 
 /**
-* Multiple window arrangement via dragging
-* Organizes windows into specific positions
-*/
+ * Multiple window arrangement via dragging
+ * Organizes windows into specific positions
+ */
 ^F4:: {
     ToolTip("Arranging multiple windows...")
 
@@ -281,12 +281,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Creates selection boxes by dragging.
-* Common in image editors, desktop selection, etc.
-*
-* @description
-* Simulates creating selection rectangles
-*/
+ * Creates selection boxes by dragging.
+ * Common in image editors, desktop selection, etc.
+ * 
+ * @description
+ * Simulates creating selection rectangles
+ */
 ^F5:: {
     ToolTip("Creating selection box on desktop...")
 
@@ -320,9 +320,9 @@ F3:: {
 }
 
 /**
-* Multi-item selection via drag
-* Selects multiple items with selection box
-*/
+ * Multi-item selection via drag
+ * Selects multiple items with selection box
+ */
 ^F6:: {
     ToolTip("Opening Explorer for multi-select demo...")
 
@@ -358,12 +358,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Simulates drawing in Paint or similar applications.
-* Demonstrates continuous dragging for artistic applications.
-*
-* @description
-* Opens Paint and draws shapes via dragging
-*/
+ * Simulates drawing in Paint or similar applications.
+ * Demonstrates continuous dragging for artistic applications.
+ * 
+ * @description
+ * Opens Paint and draws shapes via dragging
+ */
 ^F7:: {
     ToolTip("Opening Paint for drawing demo...")
 
@@ -446,9 +446,9 @@ F3:: {
 }
 
 /**
-* Freehand drawing demonstration
-* Creates curved lines and shapes
-*/
+ * Freehand drawing demonstration
+ * Creates curved lines and shapes
+ */
 ^F8:: {
     ToolTip("Freehand drawing demo...")
 
@@ -500,12 +500,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Drags slider controls to specific values.
-* Useful for UI automation and testing.
-*
-* @description
-* Demonstrates precise slider manipulation
-*/
+ * Drags slider controls to specific values.
+ * Useful for UI automation and testing.
+ * 
+ * @description
+ * Demonstrates precise slider manipulation
+ */
 ^F9:: {
     ToolTip("Creating slider test GUI...")
 
@@ -572,12 +572,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Complex drag patterns for various applications.
-* Demonstrates circular, zigzag, and spiral dragging.
-*
-* @description
-* Useful for testing drag behavior and creating complex interactions
-*/
+ * Complex drag patterns for various applications.
+ * Demonstrates circular, zigzag, and spiral dragging.
+ * 
+ * @description
+ * Useful for testing drag behavior and creating complex interactions
+ */
 ^F10:: {
     ToolTip("Circular drag pattern...")
 
@@ -612,9 +612,9 @@ F3:: {
 }
 
 /**
-* Zigzag drag pattern
-* Creates back-and-forth dragging motion
-*/
+ * Zigzag drag pattern
+ * Creates back-and-forth dragging motion
+ */
 ^F11:: {
     ToolTip("Zigzag drag pattern...")
 
@@ -645,9 +645,9 @@ F3:: {
 }
 
 /**
-* Spiral drag pattern
-* Creates expanding spiral motion
-*/
+ * Spiral drag pattern
+ * Creates expanding spiral motion
+ */
 ^F12:: {
     ToolTip("Spiral drag pattern...")
 
@@ -688,14 +688,14 @@ F3:: {
 ; ============================================================================
 
 /**
-* Smooth drag function with acceleration
-*
-* @param {Number} x1 - Start X
-* @param {Number} y1 - Start Y
-* @param {Number} x2 - End X
-* @param {Number} y2 - End Y
-* @param {Number} steps - Number of intermediate steps
-*/
+ * Smooth drag function with acceleration
+ * 
+ * @param {Number} x1 - Start X
+ * @param {Number} y1 - Start Y
+ * @param {Number} x2 - End X
+ * @param {Number} y2 - End Y
+ * @param {Number} steps - Number of intermediate steps
+ */
 SmoothDrag(x1, y1, x2, y2, steps := 20) {
     Click(x1, y1, "Down")
     Sleep(50)
@@ -716,7 +716,7 @@ SmoothDrag(x1, y1, x2, y2, steps := 20) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

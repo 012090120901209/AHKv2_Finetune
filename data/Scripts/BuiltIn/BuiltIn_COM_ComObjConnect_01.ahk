@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_ComObjConnect_01.ahk
-*
-* DESCRIPTION:
-* Event handling with ComObjConnect.
-*
-* FEATURES:
-* - Connecting to COM events
-* - Event handlers
-* - Disconnecting events
-* - IE events
-* - Application events
-*/
+ * BuiltIn_COM_ComObjConnect_01.ahk
+ * 
+ * DESCRIPTION:
+ * Event handling with ComObjConnect.
+ * 
+ * FEATURES:
+ * - Connecting to COM events
+ * - Event handlers
+ * - Disconnecting events
+ * - IE events
+ * - Application events
+ */
 
 Example1_BasicConnect() {
     MsgBox("Example 1: Basic Event Connection")
@@ -115,6 +115,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

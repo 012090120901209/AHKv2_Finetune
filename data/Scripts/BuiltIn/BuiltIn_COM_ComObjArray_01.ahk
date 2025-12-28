@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_ComObjArray_01.ahk
-*
-* DESCRIPTION:
-* Working with COM arrays (SafeArrays).
-*
-* FEATURES:
-* - Creating COM arrays
-* - Array indexing
-* - Multi-dimensional arrays
-* - Array conversion
-* - VT types
-*/
+ * BuiltIn_COM_ComObjArray_01.ahk
+ * 
+ * DESCRIPTION:
+ * Working with COM arrays (SafeArrays).
+ * 
+ * FEATURES:
+ * - Creating COM arrays
+ * - Array indexing
+ * - Multi-dimensional arrays
+ * - Array conversion
+ * - VT types
+ */
 
 Example1_CreateArray() {
     MsgBox("Example 1: Create COM Array")
@@ -32,7 +32,7 @@ Example2_IntegerArray() {
     Try {
         arr := ComObjArray(3, 5)  ; VT_I4, 5 elements
         Loop 5
-        arr[A_Index-1] := A_Index * 10
+            arr[A_Index - 1] := A_Index * 10
         MsgBox("Array filled!`nElement 2: " arr[2])
     } Catch as err {
         MsgBox("Error: " err.Message)
@@ -49,7 +49,7 @@ Example3_StringArray() {
 
         output := "Array contents:`n"
         Loop 3
-        output .= arr[A_Index-1] "`n"
+            output .= arr[A_Index - 1] "`n"
         MsgBox(output)
     } Catch as err {
         MsgBox("Error: " err.Message)
@@ -64,7 +64,7 @@ Example4_2DArray() {
         arr[0, 1] := "A2"
         arr[1, 0] := "B1"
         arr[1, 1] := "B2"
-        MsgBox("2D Array created!`n[1,1]: " arr[1,1])
+        MsgBox("2D Array created!`n[1,1]: " arr[1, 1])
     } Catch as err {
         MsgBox("Error: " err.Message)
     }
@@ -75,7 +75,7 @@ Example5_ArrayToExcel() {
     Try {
         arr := ComObjArray(12, 5)
         Loop 5
-        arr[A_Index-1] := "Item " A_Index
+            arr[A_Index - 1] := "Item " A_Index
 
         xl := ComObject("Excel.Application")
         xl.Visible := true
@@ -112,7 +112,7 @@ Example7_ArrayClone() {
     Try {
         arr1 := ComObjArray(12, 5)
         Loop 5
-        arr1[A_Index-1] := "Value " A_Index
+            arr1[A_Index - 1] := "Value " A_Index
 
         MsgBox("Original array created!`nElement 2: " arr1[2])
     } Catch as err {
@@ -148,6 +148,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

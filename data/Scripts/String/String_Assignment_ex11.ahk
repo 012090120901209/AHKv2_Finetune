@@ -12,4 +12,4 @@ v%a% := "abc"
 MsgBox(var1)
 
 if (var2 = "")
-MsgBox("empty")
+    MsgBox("empty")

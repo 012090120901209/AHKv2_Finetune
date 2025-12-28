@@ -23,15 +23,15 @@ class Matrix2x2 {
     __New(a, b, c, d) => (this.a := a, this.b := b, this.c := c, this.d := d)
 
     Mul(other) => Matrix2x2(
-    this.a * other.a + this.b * other.c,
-    this.a * other.b + this.b * other.d,
-    this.c * other.a + this.d * other.c,
-    this.c * other.b + this.d * other.d
+        this.a * other.a + this.b * other.c,
+        this.a * other.b + this.b * other.d,
+        this.c * other.a + this.d * other.c,
+        this.c * other.b + this.d * other.d
     )
 
     Transform(vec) => Vector(
-    this.a * vec.x + this.b * vec.y,
-    this.c * vec.x + this.d * vec.y
+        this.a * vec.x + this.b * vec.y,
+        this.c * vec.x + this.d * vec.y
     )
 
     static Identity() => Matrix2x2(1, 0, 0, 1)

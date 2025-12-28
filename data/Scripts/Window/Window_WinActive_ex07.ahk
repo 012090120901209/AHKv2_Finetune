@@ -2,6 +2,6 @@
 #SingleInstance Force
 
 if !WinActive("ahk_class Notepad")
-MsgBox("notepad is not Active")
+    MsgBox("notepad is not Active")
 else
-MsgBox("notepad is Active")
+    MsgBox("notepad is Active")

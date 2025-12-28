@@ -23,27 +23,27 @@ class TTLCache {
     Get(key, defaultValue := "") {
         if !this.cache.Has(key)
             return defaultValue
-        
+
         entry := this.cache[key]
-        
+
         ; Check expiration
         if A_TickCount > entry["expires"] {
             this.cache.Delete(key)
             return defaultValue
         }
-        
+
         return entry["value"]
     }
 
     Has(key) {
         if !this.cache.Has(key)
             return false
-        
+
         if A_TickCount > this.cache[key]["expires"] {
             this.cache.Delete(key)
             return false
         }
-        
+
         return true
     }
 
@@ -71,14 +71,14 @@ class TTLCache {
     Prune() {
         now := A_TickCount
         expired := []
-        
+
         for key, entry in this.cache
             if now > entry["expires"]
                 expired.Push(key)
-        
+
         for key in expired
             this.cache.Delete(key)
-        
+
         return expired.Length
     }
 
@@ -86,14 +86,14 @@ class TTLCache {
         valid := 0
         expired := 0
         now := A_TickCount
-        
+
         for key, entry in this.cache {
             if now > entry["expires"]
                 expired++
             else
                 valid++
         }
-        
+
         return Map(
             "total", this.cache.Count,
             "valid", valid,
@@ -119,10 +119,10 @@ class MemoizeTTL {
 
     Call(args*) {
         key := this._makeKey(args)
-        
+
         if this.cache.Has(key)
             return this.cache.Get(key)
-        
+
         result := this.fn(args*)
         this.cache.Set(key, result)
         return result

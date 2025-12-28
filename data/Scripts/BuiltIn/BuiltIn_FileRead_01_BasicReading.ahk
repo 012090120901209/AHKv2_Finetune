@@ -2,22 +2,22 @@
 #Include JSON.ahk
 
 /**
-* ============================================================================
-* FileRead - Basic Reading Operations
-* ============================================================================
-*
-* Demonstrates fundamental FileRead usage patterns including:
-* - Basic text file reading
-* - Reading binary data
-* - Memory-efficient reading techniques
-* - Error handling and validation
-* - Performance considerations
-*
-* @description Basic examples of reading files with FileRead function
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
-*/
+ * ============================================================================
+ * FileRead - Basic Reading Operations
+ * ============================================================================
+ * 
+ * Demonstrates fundamental FileRead usage patterns including:
+ * - Basic text file reading
+ * - Reading binary data
+ * - Memory-efficient reading techniques
+ * - Error handling and validation
+ * - Performance considerations
+ * 
+ * @description Basic examples of reading files with FileRead function
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
+ */
 
 ; ============================================================================
 ; Example 1: Simple Text File Reading
@@ -51,7 +51,7 @@ Example1_SimpleRead() {
 
         for index, line in lines {
             if Trim(line)  ; Skip empty lines
-            result .= "Line " index ": " Trim(line) "`n"
+                result .= "Line " index ": " Trim(line) "`n"
         }
 
         MsgBox(result, "Line by Line Processing")
@@ -61,7 +61,7 @@ Example1_SimpleRead() {
     } finally {
         ; Cleanup
         if FileExist(testFile)
-        FileDelete(testFile)
+            FileDelete(testFile)
     }
 }
 
@@ -106,7 +106,7 @@ Example2_EncodingRead() {
 
     ; Cleanup
     if FileExist(testFile)
-    FileDelete(testFile)
+        FileDelete(testFile)
 }
 
 ; ============================================================================
@@ -169,7 +169,7 @@ Example3_ConfigFileRead() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if FileExist(configFile)
-        FileDelete(configFile)
+            FileDelete(configFile)
     }
 
     ; Helper function to parse INI-style config
@@ -182,7 +182,7 @@ Example3_ConfigFileRead() {
 
             ; Skip empty lines and comments
             if !line || SubStr(line, 1, 1) = ";"
-            continue
+                continue
 
             ; Check for section header
             if RegExMatch(line, "^\[(.*)\]$", &match) {
@@ -267,7 +267,7 @@ Example4_JSONRead() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if FileExist(jsonFile)
-        FileDelete(jsonFile)
+            FileDelete(jsonFile)
     }
 
     ; Simple JSON parser (basic implementation)
@@ -295,13 +295,13 @@ Example4_JSONRead() {
 
                 ; Extract fields
                 if RegExMatch(userStr, '"id"\s*:\s*(\d+)', &m)
-                user["id"] := Integer(m[1])
+                    user["id"] := Integer(m[1])
                 if RegExMatch(userStr, '"name"\s*:\s*"([^"]+)"', &m)
-                user["name"] := m[1]
+                    user["name"] := m[1]
                 if RegExMatch(userStr, '"email"\s*:\s*"([^"]+)"', &m)
-                user["email"] := m[1]
+                    user["email"] := m[1]
                 if RegExMatch(userStr, '"active"\s*:\s*(true|false)', &m)
-                user["active"] := (m[1] = "true")
+                    user["active"] := (m[1] = "true")
 
                 users.Push(user)
                 pos += StrLen(userMatch[0])
@@ -315,11 +315,11 @@ Example4_JSONRead() {
             settings := Map()
 
             if RegExMatch(settingsStr, '"maxUsers"\s*:\s*(\d+)', &m)
-            settings["maxUsers"] := Integer(m[1])
+                settings["maxUsers"] := Integer(m[1])
             if RegExMatch(settingsStr, '"timeout"\s*:\s*(\d+)', &m)
-            settings["timeout"] := Integer(m[1])
+                settings["timeout"] := Integer(m[1])
             if RegExMatch(settingsStr, '"debugMode"\s*:\s*(true|false)', &m)
-            settings["debugMode"] := (m[1] = "true")
+                settings["debugMode"] := (m[1] = "true")
 
             obj["settings"] := settings
         }
@@ -362,16 +362,16 @@ Example5_CSVRead() {
 
         ; Header
         output .= Format("{:-20} {:-6} {:-15} {:-10}`n",
-        "Name", "Age", "Department", "Salary")
+            "Name", "Age", "Department", "Salary")
         output .= StrReplace(Format("{:-63}", ""), " ", "-") "`n"
 
         ; Data rows (skip header)
         for index, row in data {
             if index = 1
-            continue  ; Skip header row
+                continue  ; Skip header row
 
             output .= Format("{:-20} {:-6} {:-15} ${:-9}`n",
-            row[1], row[2], row[3], row[4])
+                row[1], row[2], row[3], row[4])
         }
 
         MsgBox(output, "CSV File Reader")
@@ -382,11 +382,11 @@ Example5_CSVRead() {
 
         for index, row in data {
             if index = 1
-            continue
+                continue
 
             totalSalary += row[4]
             if row[3] = "Engineering"
-            engineeringCount++
+                engineeringCount++
         }
 
         avgSalary := Round(totalSalary / (data.Length - 1))
@@ -402,7 +402,7 @@ Example5_CSVRead() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if FileExist(csvFile)
-        FileDelete(csvFile)
+            FileDelete(csvFile)
     }
 
     ; CSV parser helper function
@@ -412,7 +412,7 @@ Example5_CSVRead() {
         for line in StrSplit(content, "`n", "`r") {
             line := Trim(line)
             if !line
-            continue
+                continue
 
             ; Split by comma
             fields := StrSplit(line, ",")
@@ -482,7 +482,7 @@ Example6_LogFileRead() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if FileExist(logFile)
-        FileDelete(logFile)
+            FileDelete(logFile)
     }
 
     ; Parse log entries
@@ -492,7 +492,7 @@ Example6_LogFileRead() {
         for line in StrSplit(content, "`n", "`r") {
             line := Trim(line)
             if !line
-            continue
+                continue
 
             ; Parse log entry
             if RegExMatch(line, "^(\S+ \S+) \[(\w+)\] (.+)$", &match) {
@@ -530,7 +530,7 @@ Example6_LogFileRead() {
         for log in logs {
             level := log["level"]
             if stats.Has(level)
-            stats[level]++
+                stats[level]++
         }
 
         summary := "Log File Summary:`n`n"
@@ -567,21 +567,21 @@ Example7_SafeFileRead() {
 
     ; Cleanup
     if FileExist(testFile)
-    FileDelete(testFile)
+        FileDelete(testFile)
 
     ; Safe file reading function with validation
     SafeFileRead(filePath, encoding := "UTF-8") {
         ; Validate file path
         if !filePath
-        return "Error: No file path provided"
+            return "Error: No file path provided"
 
         ; Check if file exists
         if !FileExist(filePath)
-        return "Error: File does not exist - " filePath
+            return "Error: File does not exist - " filePath
 
         ; Check if it's a file (not directory)
         if InStr(FileExist(filePath), "D")
-        return "Error: Path is a directory, not a file"
+            return "Error: Path is a directory, not a file"
 
         ; Try to read the file
         try {
@@ -589,7 +589,7 @@ Example7_SafeFileRead() {
 
             ; Validate content
             if !content
-            return "Warning: File is empty"
+                return "Warning: File is empty"
 
             return content
 
@@ -614,30 +614,24 @@ Example7_SafeFileRead() {
 
 ; Run all examples
 RunAllExamples() {
-    examples := [
-    {
-        name: "Simple Text Reading", func: Example1_SimpleRead},
-        {
-            name: "Encoding Specification", func: Example2_EncodingRead},
-            {
-                name: "Config File Reading", func: Example3_ConfigFileRead},
-                {
-                    name: "JSON Data Reading", func: Example4_JSONRead},
-                    {
-                        name: "CSV Data Reading", func: Example5_CSVRead},
-                        {
-                            name: "Log File Reading", func: Example6_LogFileRead},
-                            {
+    examples := [{
+        name: "Simple Text Reading", func: Example1_SimpleRead }, {
+            name: "Encoding Specification", func: Example2_EncodingRead }, {
+                name: "Config File Reading", func: Example3_ConfigFileRead }, {
+                    name: "JSON Data Reading", func: Example4_JSONRead }, {
+                        name: "CSV Data Reading", func: Example5_CSVRead }, {
+                            name: "Log File Reading", func: Example6_LogFileRead }, {
                                 name: "Safe File Reading", func: Example7_SafeFileRead
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "FileRead Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "FileRead Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
 
-                        ; Uncomment to run all examples interactively:
-                        ; RunAllExamples()
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

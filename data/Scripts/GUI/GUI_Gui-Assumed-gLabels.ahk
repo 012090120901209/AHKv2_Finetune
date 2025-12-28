@@ -13,12 +13,16 @@ ogcButtonButton4 := myGui1.Add("Button", "ys", "Button 4")
 ogcButtonButton4.OnEvent("Click", ButtonButton4.Bind("Normal"))
 ogcButtonButton5 := myGui1.Add("Button", "ys", "Button 5")
 myGui1.Show()
-ButtonButton1(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("First Button Pressed")
+ButtonButton1(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("First Button Pressed")
 } ButtonButton2()
 ButtonButton3()
-ButtonButton4(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("Fourth Button Pressed via " A_GuiEvent)
+ButtonButton4(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("Fourth Button Pressed via " A_GuiEvent)
 }
-ButtonButton2(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("Second Button Pressed")
+ButtonButton2(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("Second Button Pressed")
 }
-ButtonButton3(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("Third Button Pressed")
+ButtonButton3(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("Third Button Pressed")
 }

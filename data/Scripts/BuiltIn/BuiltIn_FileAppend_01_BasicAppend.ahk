@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileAppend - Basic Append Operations
-* ============================================================================
-*
-* Demonstrates fundamental FileAppend usage patterns including:
-* - Basic text appending
-* - Creating new files
-* - Appending with different encodings
-* - Line-by-line appending
-* - Error handling for append operations
-*
-* @description Basic FileAppend operation examples
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileAppend.htm
-*/
+ * ============================================================================
+ * FileAppend - Basic Append Operations
+ * ============================================================================
+ * 
+ * Demonstrates fundamental FileAppend usage patterns including:
+ * - Basic text appending
+ * - Creating new files
+ * - Appending with different encodings
+ * - Line-by-line appending
+ * - Error handling for append operations
+ * 
+ * @description Basic FileAppend operation examples
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileAppend.htm
+ */
 
 ; ============================================================================
 ; Example 1: Simple Text Appending
@@ -65,316 +65,313 @@ Example2_CreateFiles() {
     try {
         ; Create directory if needed
         if !DirExist(baseDir)
-        DirCreate(baseDir)
+            DirCreate(baseDir)
 
         ; Create multiple files with content
-        files := [
-        {
-            name: "readme.txt", content: "This is a README file`nCreated by FileAppend"},
-            {
-                name: "config.ini", content: "[Settings]`nDebug=true`nPort=8080"},
-                {
+        files := [{
+            name: "readme.txt", content: "This is a README file`nCreated by FileAppend" }, {
+                name: "config.ini", content: "[Settings]`nDebug=true`nPort=8080" }, {
                     name: "data.csv", content: "Name,Age,City`nJohn,30,NYC`nJane,25,LA"
                 }
-                ]
+        ]
 
-                for file in files {
-                    filePath := baseDir "\" file.name
+        for file in files {
+            filePath := baseDir "\" file.name
 
-                    ; Delete if exists
-                    FileDelete(filePath)
+            ; Delete if exists
+            FileDelete(filePath)
 
-                    ; Create with content
-                    FileAppend(file.content, filePath)
-                }
-
-                ; Verify files were created
-                output := "Files Created:`n`n"
-
-                Loop Files, baseDir "\*.*" {
-                    output .= A_LoopFileName "`n"
-                    output .= "  Size: " A_LoopFileSize " bytes`n"
-                    output .= "  Created: " A_LoopFileTimeCreated "`n`n"
-                }
-
-                MsgBox(output, "File Creation")
-
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                ; Cleanup
-                if DirExist(baseDir)
-                DirDelete(baseDir, true)
-            }
+            ; Create with content
+            FileAppend(file.content, filePath)
         }
 
-        ; ============================================================================
-        ; Example 3: Appending with Different Encodings
-        ; ============================================================================
+        ; Verify files were created
+        output := "Files Created:`n`n"
 
-        Example3_EncodingAppend() {
-            baseFile := A_Temp "\encoding_append_"
-
-            ; Test different encodings
-            encodings := ["UTF-8", "UTF-16", "CP1252"]
-            testText := "Hello World! Special chars: é ñ ü ö"
-
-            try {
-                for encoding in encodings {
-                    filePath := baseFile . encoding . ".txt"
-
-                    ; Delete existing
-                    FileDelete(filePath)
-
-                    ; Append with specific encoding
-                    FileAppend("File created with " encoding "`n", filePath, encoding)
-                    FileAppend(testText "`n", filePath, encoding)
-                    FileAppend("End of file`n", filePath, encoding)
-
-                    ; Read back
-                    content := FileRead(filePath, encoding)
-                    size := FileGetSize(filePath)
-
-                    MsgBox("Encoding: " encoding "`n" .
-                    "Size: " size " bytes`n`n" .
-                    "Content:`n" content,
-                    "Encoding Test - " encoding)
-
-                    FileDelete(filePath)
-                }
-
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            }
+        Loop Files, baseDir "\*.*" {
+            output .= A_LoopFileName "`n"
+            output .= "  Size: " A_LoopFileSize " bytes`n"
+            output .= "  Created: " A_LoopFileTimeCreated "`n`n"
         }
 
-        ; ============================================================================
-        ; Example 4: Building Files Line by Line
-        ; ============================================================================
+        MsgBox(output, "File Creation")
 
-        Example4_LineByLine() {
-            reportFile := A_Temp "\report.txt"
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        ; Cleanup
+        if DirExist(baseDir)
+            DirDelete(baseDir, true)
+    }
+}
 
-            try {
-                ; Clear file
-                FileDelete(reportFile)
+; ============================================================================
+; Example 3: Appending with Different Encodings
+; ============================================================================
 
-                ; Build a report line by line
-                FileAppend("=" . StrReplace(Format("{:60}", ""), " ", "=") . "`n", reportFile)
-                FileAppend("System Report`n", reportFile)
-                FileAppend("=" . StrReplace(Format("{:60}", ""), " ", "=") . "`n`n", reportFile)
+Example3_EncodingAppend() {
+    baseFile := A_Temp "\encoding_append_"
 
-                ; Add system information
-                FileAppend("Computer Name: " A_ComputerName "`n", reportFile)
-                FileAppend("User Name: " A_UserName "`n", reportFile)
-                FileAppend("OS Version: " A_OSVersion "`n", reportFile)
-                FileAppend("AHK Version: " A_AhkVersion "`n`n", reportFile)
+    ; Test different encodings
+    encodings := ["UTF-8", "UTF-16", "CP1252"]
+    testText := "Hello World! Special chars: é ñ ü ö"
 
-                ; Add timestamp
-                FileAppend("Report Generated: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n`n", reportFile)
+    try {
+        for encoding in encodings {
+            filePath := baseFile . encoding . ".txt"
 
-                ; Add directory information
-                FileAppend("Working Directory: " A_WorkingDir "`n", reportFile)
-                FileAppend("Script Directory: " A_ScriptDir "`n", reportFile)
-                FileAppend("Temp Directory: " A_Temp "`n`n", reportFile)
+            ; Delete existing
+            FileDelete(filePath)
 
-                ; Add separator
-                FileAppend("=" . StrReplace(Format("{:60}", ""), " ", "=") . "`n", reportFile)
+            ; Append with specific encoding
+            FileAppend("File created with " encoding "`n", filePath, encoding)
+            FileAppend(testText "`n", filePath, encoding)
+            FileAppend("End of file`n", filePath, encoding)
 
-                ; Read and display
-                content := FileRead(reportFile)
-                MsgBox(content, "Generated Report")
+            ; Read back
+            content := FileRead(filePath, encoding)
+            size := FileGetSize(filePath)
 
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(reportFile)
-            }
+            MsgBox("Encoding: " encoding "`n" .
+                "Size: " size " bytes`n`n" .
+                "Content:`n" content,
+                "Encoding Test - " encoding)
+
+            FileDelete(filePath)
         }
 
-        ; ============================================================================
-        ; Example 5: Appending Data from Arrays
-        ; ============================================================================
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    }
+}
 
-        Example5_ArrayData() {
-            dataFile := A_Temp "\array_data.txt"
+; ============================================================================
+; Example 4: Building Files Line by Line
+; ============================================================================
 
-            try {
-                ; Sample data arrays
-                names := ["John Doe", "Jane Smith", "Bob Johnson", "Alice Brown"]
-                scores := [85, 92, 78, 95]
-                grades := ["B", "A", "C", "A"]
+Example4_LineByLine() {
+    reportFile := A_Temp "\report.txt"
 
-                ; Clear file
-                FileDelete(dataFile)
+    try {
+        ; Clear file
+        FileDelete(reportFile)
 
-                ; Write header
-                FileAppend("Student Score Report`n", dataFile)
-                FileAppend(StrReplace(Format("{:50}", ""), " ", "-") . "`n`n", dataFile)
+        ; Build a report line by line
+        FileAppend("=" . StrReplace(Format("{:60}", ""), " ", "=") . "`n", reportFile)
+        FileAppend("System Report`n", reportFile)
+        FileAppend("=" . StrReplace(Format("{:60}", ""), " ", "=") . "`n`n", reportFile)
 
-                ; Write data from arrays
-                FileAppend(Format("{:-25} {:>10} {:>10}`n", "Name", "Score", "Grade"), dataFile)
-                FileAppend(StrReplace(Format("{:50}", ""), " ", "-") . "`n", dataFile)
+        ; Add system information
+        FileAppend("Computer Name: " A_ComputerName "`n", reportFile)
+        FileAppend("User Name: " A_UserName "`n", reportFile)
+        FileAppend("OS Version: " A_OSVersion "`n", reportFile)
+        FileAppend("AHK Version: " A_AhkVersion "`n`n", reportFile)
 
-                Loop names.Length {
-                    line := Format("{:-25} {:>10} {:>10}`n",
-                    names[A_Index],
-                    scores[A_Index],
-                    grades[A_Index])
-                    FileAppend(line, dataFile)
-                }
+        ; Add timestamp
+        FileAppend("Report Generated: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n`n", reportFile)
 
-                ; Calculate and append summary
-                total := 0
-                for score in scores
-                total += score
+        ; Add directory information
+        FileAppend("Working Directory: " A_WorkingDir "`n", reportFile)
+        FileAppend("Script Directory: " A_ScriptDir "`n", reportFile)
+        FileAppend("Temp Directory: " A_Temp "`n`n", reportFile)
 
-                average := Round(total / scores.Length, 2)
+        ; Add separator
+        FileAppend("=" . StrReplace(Format("{:60}", ""), " ", "=") . "`n", reportFile)
 
-                FileAppend("`n" . StrReplace(Format("{:50}", ""), " ", "-") . "`n", dataFile)
-                FileAppend("Summary:`n", dataFile)
-                FileAppend("  Total Students: " names.Length "`n", dataFile)
-                FileAppend("  Average Score: " average "`n", dataFile)
+        ; Read and display
+        content := FileRead(reportFile)
+        MsgBox(content, "Generated Report")
 
-                ; Display result
-                content := FileRead(dataFile)
-                MsgBox(content, "Array Data Report")
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(reportFile)
+    }
+}
 
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(dataFile)
-            }
+; ============================================================================
+; Example 5: Appending Data from Arrays
+; ============================================================================
+
+Example5_ArrayData() {
+    dataFile := A_Temp "\array_data.txt"
+
+    try {
+        ; Sample data arrays
+        names := ["John Doe", "Jane Smith", "Bob Johnson", "Alice Brown"]
+        scores := [85, 92, 78, 95]
+        grades := ["B", "A", "C", "A"]
+
+        ; Clear file
+        FileDelete(dataFile)
+
+        ; Write header
+        FileAppend("Student Score Report`n", dataFile)
+        FileAppend(StrReplace(Format("{:50}", ""), " ", "-") . "`n`n", dataFile)
+
+        ; Write data from arrays
+        FileAppend(Format("{:-25} {:>10} {:>10}`n", "Name", "Score", "Grade"), dataFile)
+        FileAppend(StrReplace(Format("{:50}", ""), " ", "-") . "`n", dataFile)
+
+        Loop names.Length {
+            line := Format("{:-25} {:>10} {:>10}`n",
+                names[A_Index],
+                scores[A_Index],
+                grades[A_Index])
+            FileAppend(line, dataFile)
         }
 
-        ; ============================================================================
-        ; Example 6: Appending with Timestamps
-        ; ============================================================================
+        ; Calculate and append summary
+        total := 0
+        for score in scores
+            total += score
 
-        Example6_TimestampedAppend() {
-            logFile := A_Temp "\timestamped.txt"
+        average := Round(total / scores.Length, 2)
 
-            try {
-                ; Clear file
-                FileDelete(logFile)
+        FileAppend("`n" . StrReplace(Format("{:50}", ""), " ", "-") . "`n", dataFile)
+        FileAppend("Summary:`n", dataFile)
+        FileAppend("  Total Students: " names.Length "`n", dataFile)
+        FileAppend("  Average Score: " average "`n", dataFile)
 
-                ; Append entries with timestamps
-                events := [
-                "Application started",
-                "Loading configuration",
-                "Connecting to database",
-                "Database connection established",
-                "User interface initialized",
-                "Application ready"
-                ]
+        ; Display result
+        content := FileRead(dataFile)
+        MsgBox(content, "Array Data Report")
 
-                FileAppend("Event Log`n", logFile)
-                FileAppend(StrReplace(Format("{:70}", ""), " ", "=") . "`n`n", logFile)
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(dataFile)
+    }
+}
 
-                for event in events {
-                    timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
-                    FileAppend(timestamp " - " event "`n", logFile)
+; ============================================================================
+; Example 6: Appending with Timestamps
+; ============================================================================
 
-                    ; Small delay to show different timestamps
-                    Sleep(100)
-                }
+Example6_TimestampedAppend() {
+    logFile := A_Temp "\timestamped.txt"
 
-                FileAppend("`n" . StrReplace(Format("{:70}", ""), " ", "=") . "`n", logFile)
-                FileAppend("Log completed at: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n", logFile)
+    try {
+        ; Clear file
+        FileDelete(logFile)
 
-                ; Display log
-                content := FileRead(logFile)
-                MsgBox(content, "Timestamped Log")
+        ; Append entries with timestamps
+        events := [
+            "Application started",
+            "Loading configuration",
+            "Connecting to database",
+            "Database connection established",
+            "User interface initialized",
+            "Application ready"
+        ]
 
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(logFile)
-            }
+        FileAppend("Event Log`n", logFile)
+        FileAppend(StrReplace(Format("{:70}", ""), " ", "=") . "`n`n", logFile)
+
+        for event in events {
+            timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
+            FileAppend(timestamp " - " event "`n", logFile)
+
+            ; Small delay to show different timestamps
+            Sleep(100)
         }
 
-        ; ============================================================================
-        ; Example 7: Safe Append with Error Handling
-        ; ============================================================================
+        FileAppend("`n" . StrReplace(Format("{:70}", ""), " ", "=") . "`n", logFile)
+        FileAppend("Log completed at: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n", logFile)
 
-        Example7_SafeAppend() {
-            testFile := A_Temp "\safe_append.txt"
+        ; Display log
+        content := FileRead(logFile)
+        MsgBox(content, "Timestamped Log")
 
-            try {
-                ; Demonstrate safe append function
-                result1 := SafeAppend("First line`n", testFile)
-                MsgBox("Append 1: " (result1 ? "Success" : "Failed"), "Safe Append")
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(logFile)
+    }
+}
 
-                result2 := SafeAppend("Second line`n", testFile)
-                MsgBox("Append 2: " (result2 ? "Success" : "Failed"), "Safe Append")
+; ============================================================================
+; Example 7: Safe Append with Error Handling
+; ============================================================================
 
-                ; Try to append to invalid path
-                result3 := SafeAppend("Test", "Z:\invalid\path\file.txt")
-                MsgBox("Append 3 (invalid path): " (result3 ? "Success" : "Failed"), "Safe Append")
+Example7_SafeAppend() {
+    testFile := A_Temp "\safe_append.txt"
 
-                ; Display final content
-                if FileExist(testFile) {
-                    content := FileRead(testFile)
-                    MsgBox("Final Content:`n`n" content, "Safe Append Result")
-                }
+    try {
+        ; Demonstrate safe append function
+        result1 := SafeAppend("First line`n", testFile)
+        MsgBox("Append 1: " (result1 ? "Success" : "Failed"), "Safe Append")
 
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(testFile)
-            }
+        result2 := SafeAppend("Second line`n", testFile)
+        MsgBox("Append 2: " (result2 ? "Success" : "Failed"), "Safe Append")
 
-            ; Safe append function with error handling
-            SafeAppend(text, filePath, encoding := "UTF-8") {
-                try {
-                    ; Validate parameters
-                    if !text
-                    throw Error("No text provided")
+        ; Try to append to invalid path
+        result3 := SafeAppend("Test", "Z:\invalid\path\file.txt")
+        MsgBox("Append 3 (invalid path): " (result3 ? "Success" : "Failed"), "Safe Append")
 
-                    if !filePath
-                    throw Error("No file path provided")
-
-                    ; Check if directory exists (for new files)
-                    SplitPath(filePath, , &dir)
-                    if dir && !DirExist(dir)
-                    DirCreate(dir)
-
-                    ; Append to file
-                    FileAppend(text, filePath, encoding)
-
-                    return true
-
-                } catch as err {
-                    ; Log error (in real app, you might log to a file)
-                    MsgBox("Append Error: " err.Message, "Error", 48)
-                    return false
-                }
-            }
+        ; Display final content
+        if FileExist(testFile) {
+            content := FileRead(testFile)
+            MsgBox("Final Content:`n`n" content, "Safe Append Result")
         }
 
-        ; ============================================================================
-        ; Example 8: Appending Multi-line Blocks
-        ; ============================================================================
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(testFile)
+    }
 
-        Example8_MultilineBlocks() {
-            outputFile := A_Temp "\multiline.txt"
+    ; Safe append function with error handling
+    SafeAppend(text, filePath, encoding := "UTF-8") {
+        try {
+            ; Validate parameters
+            if !text
+                throw Error("No text provided")
 
-            try {
-                ; Clear file
-                FileDelete(outputFile)
+            if !filePath
+                throw Error("No file path provided")
 
-                ; Append multi-line block using continuation section
-                block1 := "
+            ; Check if directory exists (for new files)
+            SplitPath(filePath, , &dir)
+            if dir && !DirExist(dir)
+                DirCreate(dir)
+
+            ; Append to file
+            FileAppend(text, filePath, encoding)
+
+            return true
+
+        } catch as err {
+            ; Log error (in real app, you might log to a file)
+            MsgBox("Append Error: " err.Message, "Error", 48)
+            return false
+        }
+    }
+}
+
+; ============================================================================
+; Example 8: Appending Multi-line Blocks
+; ============================================================================
+
+Example8_MultilineBlocks() {
+    outputFile := A_Temp "\multiline.txt"
+
+    try {
+        ; Clear file
+        FileDelete(outputFile)
+
+        ; Append multi-line block using continuation section
+        block1 := "
                 (
                 This is a multi-line block of text.
                 It can span multiple lines.
                 Each line is preserved in the output.
                 )"
 
-                FileAppend(block1 . "`n`n", outputFile)
+        FileAppend(block1 . "`n`n", outputFile)
 
-                ; Append formatted multi-line content
-                block2 := "
+        ; Append formatted multi-line content
+        block2 := "
                 (
                 Function List:
                 - Function1(): Does something
@@ -382,10 +379,10 @@ Example2_CreateFiles() {
                 - Function3(): Does another thing
                 )"
 
-                FileAppend(block2 . "`n`n", outputFile)
+        FileAppend(block2 . "`n`n", outputFile)
 
-                ; Append code block
-                codeBlock := "
+        ; Append code block
+        codeBlock := "
                 (
                 Example Code:
                 Loop 10 {
@@ -393,165 +390,156 @@ Example2_CreateFiles() {
                 }
                 )"
 
-                FileAppend(codeBlock . "`n", outputFile)
+        FileAppend(codeBlock . "`n", outputFile)
 
-                ; Display result
-                content := FileRead(outputFile)
-                MsgBox(content, "Multi-line Blocks")
+        ; Display result
+        content := FileRead(outputFile)
+        MsgBox(content, "Multi-line Blocks")
 
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(outputFile)
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(outputFile)
+    }
+}
+
+; ============================================================================
+; Example 9: Conditional Appending
+; ============================================================================
+
+Example9_ConditionalAppend() {
+    logFile := A_Temp "\conditional.txt"
+
+    try {
+        ; Clear file
+        FileDelete(logFile)
+
+        ; Configuration
+        debugMode := true
+        verboseMode := false
+        logLevel := "INFO"
+
+        ; Conditional append function
+        AppendLog := (message, level := "INFO") {
+            ; Only log if level matches or debug mode is on
+            if (debugMode || level = logLevel) {
+                timestamp := FormatTime(, "HH:mm:ss")
+                FileAppend(timestamp " [" level "] " message "`n", logFile)
             }
         }
 
-        ; ============================================================================
-        ; Example 9: Conditional Appending
-        ; ============================================================================
+        ; Test logging with different levels
+        AppendLog("Application starting", "INFO")
+        AppendLog("Debug information: Variable X = 42", "DEBUG")
+        AppendLog("Warning: Low disk space", "WARNING")
+        AppendLog("Processing user input", "INFO")
+        AppendLog("Detailed state information", "DEBUG")
+        AppendLog("Error: File not found", "ERROR")
 
-        Example9_ConditionalAppend() {
-            logFile := A_Temp "\conditional.txt"
-
-            try {
-                ; Clear file
-                FileDelete(logFile)
-
-                ; Configuration
-                debugMode := true
-                verboseMode := false
-                logLevel := "INFO"
-
-                ; Conditional append function
-                AppendLog := (message, level := "INFO") {
-                    ; Only log if level matches or debug mode is on
-                    if (debugMode || level = logLevel) {
-                        timestamp := FormatTime(, "HH:mm:ss")
-                        FileAppend(timestamp " [" level "] " message "`n", logFile)
-                    }
-                }
-
-                ; Test logging with different levels
-                AppendLog("Application starting", "INFO")
-                AppendLog("Debug information: Variable X = 42", "DEBUG")
-                AppendLog("Warning: Low disk space", "WARNING")
-                AppendLog("Processing user input", "INFO")
-                AppendLog("Detailed state information", "DEBUG")
-                AppendLog("Error: File not found", "ERROR")
-
-                ; Display log
-                if FileExist(logFile) {
-                    content := FileRead(logFile)
-                    MsgBox("Debug Mode: " (debugMode ? "ON" : "OFF") "`n" .
-                    "Log Level: " logLevel "`n`n" .
-                    "Log Contents:`n" content,
-                    "Conditional Logging")
-                }
-
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(logFile)
-            }
+        ; Display log
+        if FileExist(logFile) {
+            content := FileRead(logFile)
+            MsgBox("Debug Mode: " (debugMode ? "ON" : "OFF") "`n" .
+                "Log Level: " logLevel "`n`n" .
+                "Log Contents:`n" content,
+                "Conditional Logging")
         }
 
-        ; ============================================================================
-        ; Example 10: Performance - Bulk Appending
-        ; ============================================================================
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(logFile)
+    }
+}
 
-        Example10_BulkAppending() {
-            testFile := A_Temp "\bulk_append.txt"
+; ============================================================================
+; Example 10: Performance - Bulk Appending
+; ============================================================================
 
-            try {
-                ; Method 1: Multiple FileAppend calls
-                FileDelete(testFile)
-                startTime := A_TickCount
+Example10_BulkAppending() {
+    testFile := A_Temp "\bulk_append.txt"
 
-                Loop 1000
-                FileAppend("Line " A_Index "`n", testFile)
+    try {
+        ; Method 1: Multiple FileAppend calls
+        FileDelete(testFile)
+        startTime := A_TickCount
 
-                time1 := A_TickCount - startTime
+        Loop 1000
+            FileAppend("Line " A_Index "`n", testFile)
 
-                ; Method 2: Build string first, then single append
-                FileDelete(testFile)
-                startTime := A_TickCount
+        time1 := A_TickCount - startTime
 
-                content := ""
-                Loop 1000
-                content .= "Line " A_Index "`n"
+        ; Method 2: Build string first, then single append
+        FileDelete(testFile)
+        startTime := A_TickCount
 
-                FileAppend(content, testFile)
-                time2 := A_TickCount - startTime
+        content := ""
+        Loop 1000
+            content .= "Line " A_Index "`n"
 
-                ; Display comparison
-                output := "Performance Comparison:`n`n"
-                output .= "Method 1 (1000 individual appends):`n"
-                output .= "  Time: " time1 " ms`n`n"
+        FileAppend(content, testFile)
+        time2 := A_TickCount - startTime
 
-                output .= "Method 2 (build string, single append):`n"
-                output .= "  Time: " time2 " ms`n`n"
+        ; Display comparison
+        output := "Performance Comparison:`n`n"
+        output .= "Method 1 (1000 individual appends):`n"
+        output .= "  Time: " time1 " ms`n`n"
 
-                output .= "Winner: Method 2 is " Round(time1 / time2, 2) "x faster`n`n"
-                output .= "Recommendation: Build content in memory first,`n"
-                output .= "then append once for better performance."
+        output .= "Method 2 (build string, single append):`n"
+        output .= "  Time: " time2 " ms`n`n"
 
-                MsgBox(output, "Performance Comparison")
+        output .= "Winner: Method 2 is " Round(time1 / time2, 2) "x faster`n`n"
+        output .= "Recommendation: Build content in memory first,`n"
+        output .= "then append once for better performance."
 
-            } catch as err {
-                MsgBox("Error: " err.Message, "Error", 16)
-            } finally {
-                FileDelete(testFile)
-            }
-        }
+        MsgBox(output, "Performance Comparison")
 
-        ; ============================================================================
-        ; Run Examples
-        ; ============================================================================
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(testFile)
+    }
+}
 
-        ; Uncomment to run individual examples:
-        ; Example1_SimpleAppend()
-        ; Example2_CreateFiles()
-        ; Example3_EncodingAppend()
-        ; Example4_LineByLine()
-        ; Example5_ArrayData()
-        ; Example6_TimestampedAppend()
-        ; Example7_SafeAppend()
-        ; Example8_MultilineBlocks()
-        ; Example9_ConditionalAppend()
-        ; Example10_BulkAppending()
+; ============================================================================
+; Run Examples
+; ============================================================================
 
-        ; Run all examples
-        RunAllExamples() {
-            examples := [
-            {
-                name: "Simple Append", func: Example1_SimpleAppend},
-                {
-                    name: "Create Files", func: Example2_CreateFiles},
-                    {
-                        name: "Encoding Append", func: Example3_EncodingAppend},
-                        {
-                            name: "Line by Line", func: Example4_LineByLine},
-                            {
-                                name: "Array Data", func: Example5_ArrayData},
-                                {
-                                    name: "Timestamped Append", func: Example6_TimestampedAppend},
-                                    {
-                                        name: "Safe Append", func: Example7_SafeAppend},
-                                        {
-                                            name: "Multi-line Blocks", func: Example8_MultilineBlocks},
-                                            {
-                                                name: "Conditional Append", func: Example9_ConditionalAppend},
-                                                {
-                                                    name: "Bulk Appending", func: Example10_BulkAppending
-                                                }
-                                                ]
+; Uncomment to run individual examples:
+; Example1_SimpleAppend()
+; Example2_CreateFiles()
+; Example3_EncodingAppend()
+; Example4_LineByLine()
+; Example5_ArrayData()
+; Example6_TimestampedAppend()
+; Example7_SafeAppend()
+; Example8_MultilineBlocks()
+; Example9_ConditionalAppend()
+; Example10_BulkAppending()
 
-                                                for example in examples {
-                                                    result := MsgBox("Run: " example.name "?", "FileAppend Examples", 4)
-                                                    if result = "Yes"
-                                                    example.func.Call()
-                                                }
-                                            }
+; Run all examples
+RunAllExamples() {
+    examples := [{
+        name: "Simple Append", func: Example1_SimpleAppend }, {
+            name: "Create Files", func: Example2_CreateFiles }, {
+                name: "Encoding Append", func: Example3_EncodingAppend }, {
+                    name: "Line by Line", func: Example4_LineByLine }, {
+                        name: "Array Data", func: Example5_ArrayData }, {
+                            name: "Timestamped Append", func: Example6_TimestampedAppend }, {
+                                name: "Safe Append", func: Example7_SafeAppend }, {
+                                    name: "Multi-line Blocks", func: Example8_MultilineBlocks }, {
+                                        name: "Conditional Append", func: Example9_ConditionalAppend }, {
+                                            name: "Bulk Appending", func: Example10_BulkAppending
+                                        }
+    ]
 
-                                            ; Uncomment to run all examples interactively:
-                                            ; RunAllExamples()
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "FileAppend Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
+
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

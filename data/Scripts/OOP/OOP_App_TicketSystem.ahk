@@ -34,7 +34,7 @@ class Ticket {
     AddTag(tag) => (this.tags.Push(tag), this)
 
     AddComment(author, text) {
-        this.comments.Push({author: author, text: text, timestamp: A_Now})
+        this.comments.Push({ author: author, text: text, timestamp: A_Now })
         return this
     }
 
@@ -49,14 +49,14 @@ class Ticket {
 
     GetResolutionTime() {
         if (!this.resolvedAt)
-        return 0
+            return 0
         return DateDiff(this.resolvedAt, this.createdAt, "Hours")
     }
 
     ToString() => Format("Ticket #{1} [{2}] [{3}]`n{4}`nReported by: {5}{6}`nStatus: {7}",
-    this.ticketId, this.priority, this.category, this.title, this.reportedBy,
-    this.assignedTo ? " | Assigned to: " . this.assignedTo : "",
-    this.status)
+        this.ticketId, this.priority, this.category, this.title, this.reportedBy,
+        this.assignedTo ? " | Assigned to: " . this.assignedTo : "",
+        this.status)
 }
 
 class SupportAgent {
@@ -65,15 +65,15 @@ class SupportAgent {
     GetActiveTickets() {
         active := []
         for ticket in this.assignedTickets
-        if (ticket.status != Ticket.STATUS_RESOLVED && ticket.status != Ticket.STATUS_CLOSED)
-        active.Push(ticket)
+            if (ticket.status != Ticket.STATUS_RESOLVED && ticket.status != Ticket.STATUS_CLOSED)
+                active.Push(ticket)
         return active
     }
 
     GetWorkload() => this.GetActiveTickets().Length
 
     ToString() => Format("{1} - {2} active tickets, {3} resolved | Specialties: {4}",
-    this.name, this.GetWorkload(), this.resolvedCount, this.specialties.Join(", "))
+        this.name, this.GetWorkload(), this.resolvedCount, this.specialties.Join(", "))
 }
 
 class SupportQueue {
@@ -91,7 +91,7 @@ class SupportQueue {
     AutoAssignTicket(ticketId) {
         ticket := this._FindTicket(ticketId)
         if (!ticket)
-        return MsgBox("Ticket not found!", "Error")
+            return MsgBox("Ticket not found!", "Error")
 
         ; Find agent with lowest workload
         bestAgent := ""
@@ -117,26 +117,26 @@ class SupportQueue {
     GetTicketsByStatus(status) {
         filtered := []
         for ticket in this.tickets
-        if (ticket.status = status)
-        filtered.Push(ticket)
+            if (ticket.status = status)
+                filtered.Push(ticket)
         return filtered
     }
 
     GetTicketsByPriority(priority) {
         filtered := []
         for ticket in this.tickets
-        if (ticket.priority = priority)
-        filtered.Push(ticket)
+            if (ticket.priority = priority)
+                filtered.Push(ticket)
         return filtered
     }
 
     GetAverageResolutionTime() {
         resolved := this.GetTicketsByStatus(Ticket.STATUS_RESOLVED)
         if (resolved.Length = 0)
-        return 0
+            return 0
         total := 0
         for ticket in resolved
-        total += ticket.GetResolutionTime()
+            total += ticket.GetResolutionTime()
         return Round(total / resolved.Length, 1)
     }
 
@@ -144,23 +144,23 @@ class SupportQueue {
         stats := this.name . " - Queue Statistics`n" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n"
         stats .= Format("Total tickets: {1}`n", this.tickets.Length)
         stats .= Format("Open: {1} | In Progress: {2} | Resolved: {3} | Closed: {4}`n",
-        this.GetTicketsByStatus(Ticket.STATUS_OPEN).Length,
-        this.GetTicketsByStatus(Ticket.STATUS_IN_PROGRESS).Length,
-        this.GetTicketsByStatus(Ticket.STATUS_RESOLVED).Length,
-        this.GetTicketsByStatus(Ticket.STATUS_CLOSED).Length)
+            this.GetTicketsByStatus(Ticket.STATUS_OPEN).Length,
+            this.GetTicketsByStatus(Ticket.STATUS_IN_PROGRESS).Length,
+            this.GetTicketsByStatus(Ticket.STATUS_RESOLVED).Length,
+            this.GetTicketsByStatus(Ticket.STATUS_CLOSED).Length)
         stats .= Format("Critical: {1} | High: {2} | Medium: {3} | Low: {4}`n",
-        this.GetTicketsByPriority(Ticket.PRIORITY_CRITICAL).Length,
-        this.GetTicketsByPriority(Ticket.PRIORITY_HIGH).Length,
-        this.GetTicketsByPriority(Ticket.PRIORITY_MEDIUM).Length,
-        this.GetTicketsByPriority(Ticket.PRIORITY_LOW).Length)
+            this.GetTicketsByPriority(Ticket.PRIORITY_CRITICAL).Length,
+            this.GetTicketsByPriority(Ticket.PRIORITY_HIGH).Length,
+            this.GetTicketsByPriority(Ticket.PRIORITY_MEDIUM).Length,
+            this.GetTicketsByPriority(Ticket.PRIORITY_LOW).Length)
         stats .= Format("Avg resolution time: {1} hours", this.GetAverageResolutionTime())
         return stats
     }
 
     _FindTicket(ticketId) {
         for ticket in this.tickets
-        if (ticket.ticketId = ticketId)
-        return ticket
+            if (ticket.ticketId = ticketId)
+                return ticket
         return ""
     }
 }
@@ -170,8 +170,8 @@ queue := SupportQueue("IT Helpdesk")
 
 ; Add agents
 queue.AddAgent(SupportAgent("Alice", "Hardware", "Networking"))
-.AddAgent(SupportAgent("Bob", "Software", "Database"))
-.AddAgent(SupportAgent("Charlie", "Security", "Cloud"))
+    .AddAgent(SupportAgent("Bob", "Software", "Database"))
+    .AddAgent(SupportAgent("Charlie", "Security", "Cloud"))
 
 ; Create tickets
 t1 := queue.CreateTicket("Cannot access email", "User unable to login to Outlook", "john@company.com", Ticket.PRIORITY_HIGH)
@@ -202,7 +202,7 @@ MsgBox(t1.ToString() . "`n`nComments:`n" . t1.comments.Map((c) => Format("[{1}] 
 
 ; Agent workload
 for agent in queue.agents
-MsgBox(agent.ToString())
+    MsgBox(agent.ToString())
 
 ; Queue stats
 MsgBox(queue.GetQueueStats())

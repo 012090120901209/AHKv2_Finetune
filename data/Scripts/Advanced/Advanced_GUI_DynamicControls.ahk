@@ -26,7 +26,7 @@ AddTextField(*) {
     global controls, yPos, fieldCount
 
     if (yPos > 340)
-    return MsgBox("Form is full!", "Warning")
+        return MsgBox("Form is full!", "Warning")
 
     fieldCount++
     labelText := "Field " fieldCount ":"
@@ -43,7 +43,7 @@ AddTextField(*) {
     removeBtn.OnEvent("Click", (*) => RemoveField(removeIdx))
 
     ; Store controls
-    controls.Push({type: "text", label: label, control: edit, button: removeBtn})
+    controls.Push({ type: "text", label: label, control: edit, button: removeBtn })
 
     yPos += 35
 }
@@ -52,7 +52,7 @@ AddCheckbox(*) {
     global controls, yPos, fieldCount
 
     if (yPos > 340)
-    return MsgBox("Form is full!", "Warning")
+        return MsgBox("Form is full!", "Warning")
 
     fieldCount++
 
@@ -65,7 +65,7 @@ AddCheckbox(*) {
     removeBtn.OnEvent("Click", (*) => RemoveField(removeIdx))
 
     ; Store controls
-    controls.Push({type: "checkbox", label: "", control: checkbox, button: removeBtn})
+    controls.Push({ type: "checkbox", label: "", control: checkbox, button: removeBtn })
 
     yPos += 35
 }
@@ -74,7 +74,7 @@ AddDropdown(*) {
     global controls, yPos, fieldCount
 
     if (yPos > 340)
-    return MsgBox("Form is full!", "Warning")
+        return MsgBox("Form is full!", "Warning")
 
     fieldCount++
     labelText := "Select " fieldCount ":"
@@ -92,7 +92,7 @@ AddDropdown(*) {
     removeBtn.OnEvent("Click", (*) => RemoveField(removeIdx))
 
     ; Store controls
-    controls.Push({type: "dropdown", label: label, control: ddl, button: removeBtn})
+    controls.Push({ type: "dropdown", label: label, control: ddl, button: removeBtn })
 
     yPos += 35
 }
@@ -101,13 +101,13 @@ RemoveField(index) {
     global controls, yPos
 
     if (index < 1 || index > controls.Length)
-    return
+        return
 
     field := controls[index]
 
     ; Destroy controls
     if (field.label != "")
-    field.label.Destroy()
+        field.label.Destroy()
     field.control.Destroy()
     field.button.Destroy()
 
@@ -124,7 +124,7 @@ ClearAll(*) {
     ; Destroy all controls
     for field in controls {
         if (field.label != "")
-        field.label.Destroy()
+            field.label.Destroy()
         field.control.Destroy()
         field.button.Destroy()
     }
@@ -142,7 +142,7 @@ RebuildLayout() {
     for field in controls {
         ; Reposition label
         if (field.label != "")
-        field.label.Move(20, yPos)
+            field.label.Move(20, yPos)
 
         ; Reposition control
         field.control.Move(100, yPos - 3)
@@ -158,7 +158,7 @@ SubmitForm(*) {
     global controls
 
     if (controls.Length = 0)
-    return MsgBox("No fields to submit!", "Warning")
+        return MsgBox("No fields to submit!", "Warning")
 
     output := "Form Data:`n`n"
 
@@ -167,11 +167,11 @@ SubmitForm(*) {
 
         Switch field.type {
             case "text":
-            output .= field.control.Value
+                output .= field.control.Value
             case "checkbox":
-            output .= field.control.Value ? "Checked" : "Unchecked"
+                output .= field.control.Value ? "Checked" : "Unchecked"
             case "dropdown":
-            output .= field.control.Text
+                output .= field.control.Text
         }
 
         output .= "`n"

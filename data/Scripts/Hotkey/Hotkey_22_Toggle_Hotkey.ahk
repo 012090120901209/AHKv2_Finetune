@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Toggle Hotkeys On/Off
-* Enable and disable hotkeys dynamically
-*/
+ * Toggle Hotkeys On/Off
+ * Enable and disable hotkeys dynamically
+ */
 
 hotkeyEnabled := true
 
@@ -23,4 +23,4 @@ F1:: {
 }
 
 ; F9 hotkey that can be toggled
-F9::MsgBox("F9 is active!`n`nPress F1 to toggle this hotkey")
+F9:: MsgBox("F9 is active!`n`nPress F1 to toggle this hotkey")

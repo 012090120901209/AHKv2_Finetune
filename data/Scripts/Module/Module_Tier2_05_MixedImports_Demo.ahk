@@ -1,21 +1,21 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Module Tier 2 Example 05: Mixed Imports Demo
-*
-* This example demonstrates:
-* - Using both module namespace AND selective imports
-* - When to use each approach
-* - Calling setup functions
-* - Combining import strategies
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Tier2_01_StringHelpers_Module.ahk
-* @requires Module_Tier2_04_ArrayHelpers_Module.ahk
-*/
+ * Module Tier 2 Example 05: Mixed Imports Demo
+ * 
+ * This example demonstrates:
+ * - Using both module namespace AND selective imports
+ * - When to use each approach
+ * - Calling setup functions
+ * - Combining import strategies
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Tier2_01_StringHelpers_Module.ahk
+ * @requires Module_Tier2_04_ArrayHelpers_Module.ahk
+ */
 
-#SingleInstance Force
 
 ; ============================================================
 ; Mixed Import Strategy
@@ -45,10 +45,10 @@ cleaned := StringHelpers.CollapseWhitespace(text)
 title := StringHelpers.ToTitleCase(cleaned)
 
 MsgBox("String Operations (namespace):`n`n"
-. "Original: '" text "'`n"
-. "Cleaned: '" cleaned "'`n"
-. "Title: '" title "'",
-"StringHelpers Namespace", "Icon!")
+    . "Original: '" text "'`n"
+    . "Cleaned: '" cleaned "'`n"
+    . "Title: '" title "'",
+    "StringHelpers Namespace", "Icon!")
 
 ; Use ArrayHelpers without namespace (selective import)
 numbers := [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -56,7 +56,7 @@ chunks := Chunk(numbers, 3)
 
 chunksText := "Chunks:`n"
 for chunkIndex, chunk in chunks
-chunksText .= "Chunk " chunkIndex ": " JoinArray(chunk, ", ") "`n"
+    chunksText .= "Chunk " chunkIndex ": " JoinArray(chunk, ", ") "`n"
 
 MsgBox(chunksText, "ArrayHelpers Direct", "Icon!")
 
@@ -116,11 +116,11 @@ class DataProcessor {
         for line in lines {
             line := StringHelpers.CollapseWhitespace(line)
             if line = ""
-            continue
+                continue
 
             parts := StrSplit(line, ",")
             if parts.Length < 3
-            continue
+                continue
 
             user := {
                 name: StringHelpers.ToTitleCase(parts[1]),
@@ -169,18 +169,18 @@ MsgBox(userOutput, "User Data Processing", "Icon!")
 
 ; Process number data
 rawNumbers := [
-[1, 2, 3],
-[4, 5],
-[6, 7, 8, 9],
-[1, 2]  ; duplicates
+    [1, 2, 3],
+    [4, 5],
+    [6, 7, 8, 9],
+    [1, 2]  ; duplicates
 ]
 
 numberResult := processor.ProcessNumbers(rawNumbers)
 
 MsgBox("Number Processing:`n`n"
-. "Summary: " numberResult.summary "`n`n"
-. "Chunks: " numberResult.chunks.Length,
-"Number Data Processing", "Icon!")
+    . "Summary: " numberResult.summary "`n`n"
+    . "Chunks: " numberResult.chunks.Length,
+    "Number Data Processing", "Icon!")
 
 ; ============================================================
 ; Example 4: Using Prototype Extensions
@@ -204,9 +204,9 @@ data.ForEach((item, index) => {
 })
 
 MsgBox(output "`n"
-. "Uppercased: " uppercased.Join(", ") "`n"
-. "Long items: " filtered.Join(", "),
-"Prototype Methods", "Icon!")
+    . "Uppercased: " uppercased.Join(", ") "`n"
+    . "Long items: " filtered.Join(", "),
+    "Prototype Methods", "Icon!")
 
 ; ============================================================
 ; Example 5: Combining Both for Complex Operations
@@ -249,7 +249,7 @@ class TextAnalyzer {
 
         report .= "Word Chunks:`n"
         for chunkIndex, chunk in analysis.chunks
-        report .= "  " chunkIndex ": " JoinArray(chunk, " ") "`n"
+            report .= "  " chunkIndex ": " JoinArray(chunk, " ") "`n"
 
         return report
     }

@@ -2,14 +2,14 @@
 #SingleInstance Force
 
 /**
-* Base64 Encoding/Decoding Examples - thqby/ahk2_lib
-*
-* Practical examples for Base64 encoding and decoding
-* Library: https://github.com/thqby/ahk2_lib/blob/master/Base64.ahk
-*
-* To use these examples:
-* ; #Include <Base64>
-*/
+ * Base64 Encoding/Decoding Examples - thqby/ahk2_lib
+ * 
+ * Practical examples for Base64 encoding and decoding
+ * Library: https://github.com/thqby/ahk2_lib/blob/master/Base64.ahk
+ * 
+ * To use these examples:
+ * ; #Include <Base64>
+ */
 
 ; Provide a minimal Base64 helper when the library is not included.
 if !IsSet(Base64) {
@@ -41,8 +41,8 @@ if !IsSet(Base64) {
 }
 
 /**
-* Example 1: Basic String Encoding
-*/
+ * Example 1: Basic String Encoding
+ */
 BasicStringEncodingExample() {
     text := "Hello, World! This is a test message."
 
@@ -53,8 +53,8 @@ BasicStringEncodingExample() {
 }
 
 /**
-* Example 2: Basic String Decoding
-*/
+ * Example 2: Basic String Decoding
+ */
 BasicStringDecodingExample() {
     ; Base64 encoded string
     encoded := "SGVsbG8sIFdvcmxkISBUaGlzIGlzIGEgdGVzdCBtZXNzYWdlLg=="
@@ -66,8 +66,8 @@ BasicStringDecodingExample() {
 }
 
 /**
-* Example 3: Encode/Decode UTF-8 Text
-*/
+ * Example 3: Encode/Decode UTF-8 Text
+ */
 UTF8EncodingExample() {
     ; UTF-8 text with special characters
     text := "Hello 世界! Привет мир! مرحبا بالعالم"
@@ -88,8 +88,8 @@ UTF8EncodingExample() {
 }
 
 /**
-* Example 4: Encode Binary File
-*/
+ * Example 4: Encode Binary File
+ */
 EncodeBinaryFileExample() {
     ; Create a small test file
     testFile := A_ScriptDir "\test_binary.dat"
@@ -122,8 +122,8 @@ EncodeBinaryFileExample() {
 }
 
 /**
-* Example 5: Decode Base64 to File
-*/
+ * Example 5: Decode Base64 to File
+ */
 DecodeToFileExample() {
     ; Base64 encoded data (small image or binary data)
     encoded := "VGhpcyBpcyBhIHRlc3QgZmlsZSB3aXRoIGJpbmFyeSBkYXRhIQ=="
@@ -144,9 +144,9 @@ DecodeToFileExample() {
 }
 
 /**
-* Example 6: Email Attachment Encoding
-* Simulates how email attachments are encoded
-*/
+ * Example 6: Email Attachment Encoding
+ * Simulates how email attachments are encoded
+ */
 EmailAttachmentExample() {
     ; Create simulated attachment data
     attachmentName := "document.txt"
@@ -170,9 +170,9 @@ EmailAttachmentExample() {
 }
 
 /**
-* Example 7: URL-Safe Base64
-* Useful for URLs and filenames
-*/
+ * Example 7: URL-Safe Base64
+ * Useful for URLs and filenames
+ */
 URLSafeBase64Example() {
     text := "https://example.com/api?param=value&token=abc123"
 
@@ -193,8 +193,8 @@ URLSafeBase64Example() {
 }
 
 /**
-* Example 8: Encode Credentials (Basic Auth)
-*/
+ * Example 8: Encode Credentials (Basic Auth)
+ */
 BasicAuthExample() {
     username := "admin"
     password := "secretP@ssw0rd"
@@ -220,9 +220,9 @@ BasicAuthExample() {
 }
 
 /**
-* Example 9: Data URI Scheme
-* Embed small images/files in HTML/CSS
-*/
+ * Example 9: Data URI Scheme
+ * Embed small images/files in HTML/CSS
+ */
 DataURIExample() {
     ; Create small SVG image
     svgContent := '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>'
@@ -242,8 +242,8 @@ DataURIExample() {
 }
 
 /**
-* Example 10: Secure Token Generation
-*/
+ * Example 10: Secure Token Generation
+ */
 SecureTokenExample() {
     ; Generate random token data
     GenerateRandomBytes(size) {
@@ -320,3 +320,4 @@ ExitApp
 ; BasicAuthExample()
 ; DataURIExample()
 ; SecureTokenExample()
+

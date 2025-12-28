@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Outlook_05_Folders.ahk
-*
-* DESCRIPTION:
-* Folder operations in Outlook using COM automation.
-*
-* FEATURES:
-* - Creating folders
-* - Moving emails
-* - Folder organization
-* - Search folders
-* - Inbox management
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*/
+ * BuiltIn_COM_Outlook_05_Folders.ahk
+ * 
+ * DESCRIPTION:
+ * Folder operations in Outlook using COM automation.
+ * 
+ * FEATURES:
+ * - Creating folders
+ * - Moving emails
+ * - Folder organization
+ * - Search folders
+ * - Inbox management
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ */
 
 Example1_CreateFolder() {
     MsgBox("Example 1: Create Folder")
@@ -97,9 +97,9 @@ Example5_SearchFolder() {
 
         found := inbox.Items.Find("[Subject] = 'Test'")
         if (found)
-        MsgBox("Found: " found.Subject)
+            MsgBox("Found: " found.Subject)
         else
-        MsgBox("No matching emails found")
+            MsgBox("No matching emails found")
     }
     Catch as err {
         MsgBox("Error: " err.Message)
@@ -168,7 +168,7 @@ ShowMenu() {
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

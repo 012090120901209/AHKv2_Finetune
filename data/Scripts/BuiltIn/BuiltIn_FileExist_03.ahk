@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileExist_03.ahk
-*
-* DESCRIPTION:
-* Conditional processing examples using FileExist() for workflow control
-*
-* FEATURES:
-* - Conditional workflow execution
-* - File dependency checking
-* - Batch file validation
-* - Pre-execution validation
-* - Dynamic path resolution
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileExist.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileExist() in conditional logic
-* - Guard clauses and early returns
-* - Dependency validation
-* - Error prevention patterns
-* - Array and Map for tracking
-*
-* LEARNING POINTS:
-* 1. Use FileExist() to prevent runtime errors
-* 2. Validate dependencies before processing
-* 3. Implement guard clauses for robustness
-* 4. Chain file existence checks for workflows
-* 5. Build conditional processing pipelines
-* 6. Track file states in collections
-*/
+ * BuiltIn_FileExist_03.ahk
+ * 
+ * DESCRIPTION:
+ * Conditional processing examples using FileExist() for workflow control
+ * 
+ * FEATURES:
+ * - Conditional workflow execution
+ * - File dependency checking
+ * - Batch file validation
+ * - Pre-execution validation
+ * - Dynamic path resolution
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileExist.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileExist() in conditional logic
+ * - Guard clauses and early returns
+ * - Dependency validation
+ * - Error prevention patterns
+ * - Array and Map for tracking
+ * 
+ * LEARNING POINTS:
+ * 1. Use FileExist() to prevent runtime errors
+ * 2. Validate dependencies before processing
+ * 3. Implement guard clauses for robustness
+ * 4. Chain file existence checks for workflows
+ * 5. Build conditional processing pipelines
+ * 6. Track file states in collections
+ */
 
 ; ============================================================
 ; Example 1: Conditional File Processing Pipeline
 ; ============================================================
 
 /**
-* Process file through multiple stages with validation
-*
-* @param {String} inputFile - Input file path
-* @param {String} outputFile - Output file path
-* @returns {Object} - Processing result
-*/
+ * Process file through multiple stages with validation
+ * 
+ * @param {String} inputFile - Input file path
+ * @param {String} outputFile - Output file path
+ * @returns {Object} - Processing result
+ */
 ProcessFilePipeline(inputFile, outputFile) {
     result := {
         success: false,
@@ -130,11 +130,11 @@ MsgBox(output, "Pipeline Result", pipelineResult.success ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Check if all file dependencies are met before execution
-*
-* @param {Map} dependencies - Map of dependency name to file path
-* @returns {Object} - Dependency check result
-*/
+ * Check if all file dependencies are met before execution
+ * 
+ * @param {Map} dependencies - Map of dependency name to file path
+ * @returns {Object} - Dependency check result
+ */
 CheckDependencies(dependencies) {
     result := {
         allMet: true,
@@ -145,13 +145,13 @@ CheckDependencies(dependencies) {
 
     for name, path in dependencies {
         if (!FileExist(path)) {
-            result.missing.Push({name: name, path: path})
+            result.missing.Push({ name: name, path: path })
             result.allMet := false
         } else if (InStr(FileExist(path), "D")) {
-            result.invalid.Push({name: name, path: path, reason: "Is a directory"})
+            result.invalid.Push({ name: name, path: path, reason: "Is a directory" })
             result.allMet := false
         } else {
-            result.met.Push({name: name, path: path})
+            result.met.Push({ name: name, path: path })
         }
     }
 
@@ -177,19 +177,19 @@ output .= "Status: " (depResult.allMet ? "ALL MET ✓" : "INCOMPLETE ✗") "`n`n
 if (depResult.met.Length > 0) {
     output .= "MET (" depResult.met.Length "):`n"
     for dep in depResult.met
-    output .= "  ✓ " dep.name ": " dep.path "`n"
+        output .= "  ✓ " dep.name ": " dep.path "`n"
 }
 
 if (depResult.missing.Length > 0) {
     output .= "`nMISSING (" depResult.missing.Length "):`n"
     for dep in depResult.missing
-    output .= "  ✗ " dep.name ": " dep.path "`n"
+        output .= "  ✗ " dep.name ": " dep.path "`n"
 }
 
 if (depResult.invalid.Length > 0) {
     output .= "`nINVALID (" depResult.invalid.Length "):`n"
     for dep in depResult.invalid
-    output .= "  ⚠ " dep.name ": " dep.reason "`n"
+        output .= "  ⚠ " dep.name ": " dep.reason "`n"
 }
 
 MsgBox(output, "Dependencies", depResult.allMet ? "Icon!" : "IconX")
@@ -199,15 +199,15 @@ MsgBox(output, "Dependencies", depResult.allMet ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Validate batch of files meet criteria
-*
-* @param {Array} fileList - Array of file paths
-* @param {Object} criteria - Validation criteria
-* @returns {Object} - Validation result
-*/
+ * Validate batch of files meet criteria
+ * 
+ * @param {Array} fileList - Array of file paths
+ * @param {Object} criteria - Validation criteria
+ * @returns {Object} - Validation result
+ */
 ValidateBatch(fileList, criteria := "") {
     if (!criteria)
-    criteria := {requireAll: true, allowDirectories: false}
+        criteria := { requireAll: true, allowDirectories: false }
 
     result := {
         valid: true,
@@ -242,20 +242,20 @@ ValidateBatch(fileList, criteria := "") {
 
     ; Check if all required
     if (criteria.requireAll && result.validated != result.totalFiles)
-    result.valid := false
+        result.valid := false
 
     return result
 }
 
 ; Test batch validation
 batchFiles := [
-A_ScriptDir "\config.ini",
-A_ScriptDir "\data.csv",
-A_ScriptDir "\missing.txt",
-A_ScriptDir "\output"  ; This is a directory
+    A_ScriptDir "\config.ini",
+    A_ScriptDir "\data.csv",
+    A_ScriptDir "\missing.txt",
+    A_ScriptDir "\output"  ; This is a directory
 ]
 
-batchResult := ValidateBatch(batchFiles, {requireAll: true, allowDirectories: false})
+batchResult := ValidateBatch(batchFiles, { requireAll: true, allowDirectories: false })
 
 output := "BATCH VALIDATION:`n`n"
 output .= "Total Files: " batchResult.totalFiles "`n"
@@ -266,7 +266,7 @@ output .= "Status: " (batchResult.valid ? "VALID ✓" : "INVALID ✗") "`n`n"
 if (batchResult.failed.Length > 0) {
     output .= "FAILURES:`n"
     for failure in batchResult.failed
-    output .= "  ✗ " failure.file "`n    " failure.reason "`n"
+        output .= "  ✗ " failure.file "`n    " failure.reason "`n"
 }
 
 MsgBox(output, "Batch Validation", batchResult.valid ? "Icon!" : "IconX")
@@ -276,30 +276,30 @@ MsgBox(output, "Batch Validation", batchResult.valid ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Select first available file from alternatives
-*
-* @param {Array} alternatives - Array of file paths to try
-* @returns {String} - First existing file path or empty string
-*/
+ * Select first available file from alternatives
+ * 
+ * @param {Array} alternatives - Array of file paths to try
+ * @returns {String} - First existing file path or empty string
+ */
 SelectFirstAvailable(alternatives) {
     for filePath in alternatives {
         if (FileExist(filePath) && !InStr(FileExist(filePath), "D"))
-        return filePath
+            return filePath
     }
     return ""
 }
 
 /**
-* Load configuration from first available source
-*
-* @returns {Object} - Configuration object
-*/
+ * Load configuration from first available source
+ * 
+ * @returns {Object} - Configuration object
+ */
 LoadConfiguration() {
     configSources := [
-    A_ScriptDir "\config.local.ini",     ; Local override
-    A_ScriptDir "\config.user.ini",      ; User config
-    A_ScriptDir "\config.ini",           ; Default config
-    A_AppData "\MyApp\config.ini"        ; Fallback
+        A_ScriptDir "\config.local.ini",     ; Local override
+        A_ScriptDir "\config.user.ini",      ; User config
+        A_ScriptDir "\config.ini",           ; Default config
+        A_AppData "\MyApp\config.ini"        ; Fallback
     ]
 
     selectedConfig := SelectFirstAvailable(configSources)
@@ -344,15 +344,15 @@ MsgBox(output, "Config Loader", configResult.success ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Create backup only if conditions are met
-*
-* @param {String} filePath - File to backup
-* @param {Object} options - Backup options
-* @returns {Object} - Backup result
-*/
+ * Create backup only if conditions are met
+ * 
+ * @param {String} filePath - File to backup
+ * @param {Object} options - Backup options
+ * @returns {Object} - Backup result
+ */
 ConditionalBackup(filePath, options := "") {
     if (!options)
-    options := {onlyIfExists: true, skipIfRecent: 0, createDir: true}
+        options := { onlyIfExists: true, skipIfRecent: 0, createDir: true }
 
     result := {
         created: false,
@@ -423,11 +423,11 @@ MsgBox(output, "Backup System", backupResult.created ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Execute workflow with comprehensive validation guards
-*
-* @param {Object} workflow - Workflow configuration
-* @returns {Object} - Execution result
-*/
+ * Execute workflow with comprehensive validation guards
+ * 
+ * @param {Object} workflow - Workflow configuration
+ * @returns {Object} - Execution result
+ */
 ExecuteWorkflow(workflow) {
     result := {
         executed: false,
@@ -510,21 +510,21 @@ MsgBox(output, "Workflow Guards", workflowResult.executed ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Monitor file availability and execute when ready
-*
-* @param {String} filePath - File to monitor
-* @param {Integer} timeout - Timeout in milliseconds
-* @returns {Boolean} - True if file became available
-*/
+ * Monitor file availability and execute when ready
+ * 
+ * @param {String} filePath - File to monitor
+ * @param {Integer} timeout - Timeout in milliseconds
+ * @returns {Boolean} - True if file became available
+ */
 WaitForFile(filePath, timeout := 5000) {
     startTime := A_TickCount
 
     Loop {
         if (FileExist(filePath) && !InStr(FileExist(filePath), "D"))
-        return true
+            return true
 
         if (A_TickCount - startTime >= timeout)
-        return false
+            return false
 
         Sleep(100)
     }
@@ -545,12 +545,12 @@ MsgBox(output, "File Monitor", "Icon! T1")
 ; Wait for file
 if (WaitForFile(monitorPath, 5000)) {
     MsgBox("File appeared! ✓`n"
-    . "File: " monitorPath "`n"
-    . "Attributes: " FileExist(monitorPath),
-    "File Available", "Icon!")
+        . "File: " monitorPath "`n"
+        . "Attributes: " FileExist(monitorPath),
+        "File Available", "Icon!")
 } else {
     MsgBox("Timeout: File did not appear ✗",
-    "File Not Available", "IconX")
+        "File Not Available", "IconX")
 }
 
 ; ============================================================

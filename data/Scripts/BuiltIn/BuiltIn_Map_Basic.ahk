@@ -13,9 +13,9 @@ person["city"] := "New York"
 
 ; Alternative creation syntax
 settings := Map(
-"theme", "dark",
-"fontSize", 14,
-"autoSave", true
+    "theme", "dark",
+    "fontSize", 14,
+    "autoSave", true
 )
 
 ; Access values
@@ -23,11 +23,11 @@ MsgBox person["name"]  ; "John Doe"
 
 ; Check if key exists
 if settings.Has("theme")
-MsgBox "Theme: " settings["theme"]
+    MsgBox "Theme: " settings["theme"]
 
 ; Iterate through map
 for key, value in person
-MsgBox key ": " value
+    MsgBox key ": " value
 
 ; Remove items
 person.Delete("city")
@@ -37,14 +37,14 @@ MsgBox "Count: " person.Count
 
 ; Nested maps
 config := Map(
-"database", Map(
-"host", "localhost",
-"port", 3306
-),
-"server", Map(
-"host", "0.0.0.0",
-"port", 8080
-)
+    "database", Map(
+        "host", "localhost",
+        "port", 3306
+    ),
+    "server", Map(
+        "host", "0.0.0.0",
+        "port", 8080
+    )
 )
 
 MsgBox "DB Host: " config["database"]["host"]

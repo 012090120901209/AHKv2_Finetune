@@ -1,19 +1,19 @@
 /**
-* @file DriveList_02.ahk
-* @description Advanced drive listing with custom filtering, analytics, and system integration
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Advanced drive filtering and search
-* - Drive analytics and statistics
-* - Custom drive organization schemes
-* - Drive health monitoring
-* - System integration utilities
-* - Multi-criteria drive selection
-* - Automated drive discovery
-*/
+ * @file DriveList_02.ahk
+ * @description Advanced drive listing with custom filtering, analytics, and system integration
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Advanced drive filtering and search
+ * - Drive analytics and statistics
+ * - Custom drive organization schemes
+ * - Drive health monitoring
+ * - System integration utilities
+ * - Multi-criteria drive selection
+ * - Automated drive discovery
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,9 +22,9 @@
 ; ===================================================================================================
 
 /**
-* @class AdvancedDriveSearch
-* @description Advanced drive search with multiple criteria
-*/
+ * @class AdvancedDriveSearch
+ * @description Advanced drive search with multiple criteria
+ */
 class AdvancedDriveSearch {
     static FindDrives(criteria) {
         allDrives := DriveGetList()
@@ -34,7 +34,7 @@ class AdvancedDriveSearch {
             drive := letter . ":"
 
             if (AdvancedDriveSearch.MatchesCriteria(drive, criteria))
-            matches.Push(drive)
+                matches.Push(drive)
         }
 
         return matches
@@ -44,13 +44,13 @@ class AdvancedDriveSearch {
         ; Check type filter
         if criteria.HasOwnProp("Type") {
             if (DriveGetType(drive) != criteria.Type)
-            return false
+                return false
         }
 
         ; Check status filter
         if criteria.HasOwnProp("Status") {
             if (DriveGetStatus(drive) != criteria.Status)
-            return false
+                return false
         }
 
         ; Check minimum free space
@@ -59,7 +59,7 @@ class AdvancedDriveSearch {
                 try {
                     freeGB := Round(DriveGetSpaceFree(drive) / 1024, 2)
                     if (freeGB < criteria.MinFreeGB)
-                    return false
+                        return false
                 } catch {
                     return false
                 }
@@ -73,7 +73,7 @@ class AdvancedDriveSearch {
             if (DriveGetStatus(drive) = "Ready") {
                 try {
                     if (DriveGetFileSystem(drive) != criteria.FileSystem)
-                    return false
+                        return false
                 } catch {
                     return false
                 }
@@ -88,7 +88,7 @@ class AdvancedDriveSearch {
                 try {
                     label := DriveGetLabel(drive)
                     if !InStr(label, criteria.LabelPattern)
-                    return false
+                        return false
                 } catch {
                     return false
                 }
@@ -125,9 +125,9 @@ Example1_AdvancedSearch() {
             freeGB := Round(DriveGetSpaceFree(drive) / 1024, 2)
             label := DriveGetLabel(drive)
             report .= Format("{1} - {2} ({3} GB free)`n",
-            drive,
-            label != "" ? label : "(No Label)",
-            freeGB)
+                drive,
+                label != "" ? label : "(No Label)",
+                freeGB)
         }
     } else {
         report .= "No matching drives found."
@@ -141,9 +141,9 @@ Example1_AdvancedSearch() {
 ; ===================================================================================================
 
 /**
-* @class DriveAnalytics
-* @description Provides analytics on system drives
-*/
+ * @class DriveAnalytics
+ * @description Provides analytics on system drives
+ */
 class DriveAnalytics {
     static GetStatistics() {
         allDrives := DriveGetList()
@@ -167,7 +167,7 @@ class DriveAnalytics {
 
             ; Count by type
             if !stats.ByType.Has(driveType)
-            stats.ByType[driveType] := 0
+                stats.ByType[driveType] := 0
             stats.ByType[driveType] := stats.ByType[driveType] + 1
 
             if (DriveGetStatus(drive) = "Ready") {
@@ -184,7 +184,7 @@ class DriveAnalytics {
                     ; Count by file system
                     fs := DriveGetFileSystem(drive)
                     if !stats.ByFileSystem.Has(fs)
-                    stats.ByFileSystem[fs] := 0
+                        stats.ByFileSystem[fs] := 0
                     stats.ByFileSystem[fs] := stats.ByFileSystem[fs] + 1
                 }
             }
@@ -238,9 +238,9 @@ Example2_Analytics() {
 ; ===================================================================================================
 
 /**
-* @class BestDriveSelector
-* @description Selects the best drive based on various criteria
-*/
+ * @class BestDriveSelector
+ * @description Selects the best drive based on various criteria
+ */
 class BestDriveSelector {
     static FindBestForBackup(requiredSpaceGB) {
         allDrives := DriveGetList("Fixed,Removable")
@@ -251,7 +251,7 @@ class BestDriveSelector {
             drive := letter . ":"
 
             if (DriveGetStatus(drive) != "Ready")
-            continue
+                continue
 
             try {
                 freeGB := Round(DriveGetSpaceFree(drive) / 1024, 2)
@@ -259,7 +259,7 @@ class BestDriveSelector {
 
                 ; Check if enough space
                 if (freeGB < requiredSpaceGB)
-                continue
+                    continue
 
                 ; Score based on: free space percentage and total free space
                 usagePercent := ((capacityGB - freeGB) / capacityGB) * 100
@@ -275,7 +275,7 @@ class BestDriveSelector {
         }
 
         if (bestDrive = "")
-        return {Found: false, Message: "No suitable drive found"}
+            return { Found: false, Message: "No suitable drive found" }
 
         return {
             Found: true,
@@ -294,7 +294,7 @@ class BestDriveSelector {
             drive := letter . ":"
 
             if (DriveGetStatus(drive) != "Ready")
-            continue
+                continue
 
             ; Test write speed
             testFile := drive . "\speed_test.tmp"
@@ -316,7 +316,7 @@ class BestDriveSelector {
         }
 
         if (fastestDrive = "")
-        return {Found: false}
+            return { Found: false }
 
         return {
             Found: true,
@@ -345,10 +345,10 @@ Example3_BestDrive() {
         • Optimal space-to-usage ratio
         • Drive health
         )",
-        result.Drive,
-        result.Label != "" ? result.Label : "(No Label)",
-        result.FreeGB,
-        requiredGB
+            result.Drive,
+            result.Label != "" ? result.Label : "(No Label)",
+            result.FreeGB,
+            requiredGB
         )
 
         MsgBox(message, "Best Drive", "Iconi")
@@ -362,13 +362,13 @@ Example3_BestDrive() {
 ; ===================================================================================================
 
 /**
-* @class DriveHealthMonitor
-* @description Monitors drive health based on various metrics
-*/
+ * @class DriveHealthMonitor
+ * @description Monitors drive health based on various metrics
+ */
 class DriveHealthMonitor {
     static CheckHealth(drive) {
         if !InStr(drive, ":")
-        drive .= ":"
+            drive .= ":"
 
         health := {
             Drive: drive,
@@ -414,16 +414,16 @@ class DriveHealthMonitor {
 
             ; Determine overall status
             if (health.Score >= 80)
-            health.Status := "Healthy"
+                health.Status := "Healthy"
             else if (health.Score >= 60)
-            health.Status := "Good"
+                health.Status := "Good"
             else if (health.Score >= 40)
-            health.Status := "Fair"
+                health.Status := "Fair"
             else
-            health.Status := "Poor"
+                health.Status := "Poor"
 
             if (health.Issues.Length = 0)
-            health.Issues.Push("No issues detected")
+                health.Issues.Push("No issues detected")
         } catch as err {
             health.Status := "Error"
             health.Score := 0
@@ -454,19 +454,19 @@ class DriveHealthMonitor {
         for health in results {
             statusIcon := ""
             if (health.Status = "Healthy")
-            statusIcon := "✓"
+                statusIcon := "✓"
             else if (health.Status = "Good")
-            statusIcon := "√"
+                statusIcon := "√"
             else if (health.Status = "Fair")
-            statusIcon := "~"
+                statusIcon := "~"
             else
-            statusIcon := "✗"
+                statusIcon := "✗"
 
             report .= Format("{1} {2} - {3} (Score: {4}/100)`n",
-            statusIcon,
-            health.Drive,
-            health.Status,
-            health.Score)
+                statusIcon,
+                health.Drive,
+                health.Status,
+                health.Score)
 
             for issue in health.Issues {
                 report .= "   • " . issue . "`n"
@@ -488,9 +488,9 @@ Example4_HealthMonitor() {
 ; ===================================================================================================
 
 /**
-* @class CustomOrganization
-* @description Custom drive organization schemes
-*/
+ * @class CustomOrganization
+ * @description Custom drive organization schemes
+ */
 class CustomOrganization {
     static OrganizeByPurpose() {
         allDrives := DriveGetList()
@@ -517,13 +517,13 @@ class CustomOrganization {
                     label := StrUpper(DriveGetLabel(drive))
 
                     if InStr(label, "BACKUP")
-                    category := "Backup"
+                        category := "Backup"
                     else if InStr(label, "MEDIA") || InStr(label, "PHOTO") || InStr(label, "VIDEO")
-                    category := "Media"
+                        category := "Media"
                     else if InStr(label, "TEMP") || InStr(label, "TMP")
-                    category := "Temporary"
+                        category := "Temporary"
                     else if (driveType = "Fixed")
-                    category := "Data"
+                        category := "Data"
                 }
             }
 
@@ -541,7 +541,7 @@ class CustomOrganization {
 
         for category, driveList in organized {
             if (driveList.Length = 0)
-            continue
+                continue
 
             report .= Format("▶ {1} ({2})`n", category, driveList.Length)
 
@@ -554,8 +554,8 @@ class CustomOrganization {
                 }
 
                 report .= Format("  {1} - {2}`n",
-                drive,
-                label != "" ? label : "(No Label)")
+                    drive,
+                    label != "" ? label : "(No Label)")
             }
 
             report .= "`n"
@@ -574,9 +574,9 @@ Example5_CustomOrganization() {
 ; ===================================================================================================
 
 /**
-* @class DriveDiscovery
-* @description Interactive drive discovery wizard
-*/
+ * @class DriveDiscovery
+ * @description Interactive drive discovery wizard
+ */
 class DriveDiscovery {
     static RunWizard() {
         ; Step 1: Discover all drives
@@ -588,7 +588,7 @@ class DriveDiscovery {
         message .= "Proceed with detailed scan?"
 
         if (MsgBox(message, "Discovery Wizard", "YesNo Icon?") = "No")
-        return
+            return
 
         ; Step 2: Detailed scan
         driveInfo := []
@@ -651,14 +651,14 @@ Example6_DiscoveryWizard() {
 ; ===================================================================================================
 
 /**
-* @function ExportDriveListToCSV
-* @description Exports drive list to CSV format
-* @param {String} outputPath - Output file path
-* @returns {Boolean} Success status
-*/
+ * @function ExportDriveListToCSV
+ * @description Exports drive list to CSV format
+ * @param {String} outputPath - Output file path
+ * @returns {Boolean} Success status
+ */
 ExportDriveListToCSV(outputPath := "") {
     if (outputPath = "")
-    outputPath := A_Desktop . "\DriveList_" . FormatTime(A_Now, "yyyyMMdd_HHmmss") . ".csv"
+        outputPath := A_Desktop . "\DriveList_" . FormatTime(A_Now, "yyyyMMdd_HHmmss") . ".csv"
 
     allDrives := DriveGetList()
 
@@ -680,11 +680,11 @@ ExportDriveListToCSV(outputPath := "") {
                 usagePercent := Round(((capacityGB - freeGB) / capacityGB) * 100, 2)
 
                 line .= Format(",{1},{2},{3},{4},{5}",
-                label,
-                fs,
-                capacityGB,
-                freeGB,
-                usagePercent)
+                    label,
+                    fs,
+                    capacityGB,
+                    freeGB,
+                    usagePercent)
             } catch {
                 line .= ",,,,,"
             }
@@ -709,7 +709,7 @@ Example7_ExportCSV() {
 
     if (ExportDriveListToCSV(outputPath)) {
         MsgBox("Drive list exported successfully!`n`nSaved to:`n" . outputPath,
-        "Export Complete", "Iconi")
+            "Export Complete", "Iconi")
         Run(outputPath)
     } else {
         MsgBox("Failed to export drive list.", "Error", "Icon!")
@@ -734,3 +734,4 @@ Example7_ExportCSV() {
 
 ; Press Ctrl+Alt+W to run discovery wizard
 ; ^!w::Example6_DiscoveryWizard()
+

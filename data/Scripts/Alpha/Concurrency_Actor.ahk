@@ -27,7 +27,7 @@ class Actor {
             return false
 
         message := this.mailbox.RemoveAt(1)
-        
+
         try {
             result := this.behavior(this, message)
             return result ?? true
@@ -194,8 +194,8 @@ counter.Send(Map("type", "get"))
 finalValue := counter.Process()
 
 MsgBox("Counter Actor Demo:`n`n"
-     . "Sent: +1, +1, +1, -1`n"
-     . "Final value: " counter.state["count"])
+    . "Sent: +1, +1, +1, -1`n"
+    . "Final value: " counter.state["count"])
 
 ; Demo - Worker actor pool
 system2 := ActorSystem()

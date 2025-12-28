@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Complex Conditions
-* ============================================================================
-*
-* This script demonstrates complex conditional expressions in AutoHotkey v2.
-* It covers advanced boolean logic, multiple condition combinations, and
-* optimization techniques for complex decision making.
-*
-* @file BuiltIn_IfElse_03.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Complex boolean expressions with multiple operators
-* 2. Parentheses for precedence control
-* 3. De Morgan's laws and logical simplification
-* 4. Short-circuit evaluation
-* 5. Complex range checks and boundaries
-* 6. Multi-condition validation patterns
-* 7. Performance optimization for complex conditions
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Complex Conditions
+ * ============================================================================
+ * 
+ * This script demonstrates complex conditional expressions in AutoHotkey v2.
+ * It covers advanced boolean logic, multiple condition combinations, and
+ * optimization techniques for complex decision making.
+ * 
+ * @file BuiltIn_IfElse_03.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Complex boolean expressions with multiple operators
+ * 2. Parentheses for precedence control
+ * 3. De Morgan's laws and logical simplification
+ * 4. Short-circuit evaluation
+ * 5. Complex range checks and boundaries
+ * 6. Multi-condition validation patterns
+ * 7. Performance optimization for complex conditions
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Complex Boolean Expressions
 ; ============================================================================
 
 /**
-* Demonstrates complex boolean expressions combining multiple operators.
-* Shows AND, OR, NOT in various combinations.
-*/
+ * Demonstrates complex boolean expressions combining multiple operators.
+ * Shows AND, OR, NOT in various combinations.
+ */
 Example1_ComplexBooleanExpressions() {
     OutputDebug("=== Example 1: Complex Boolean Expressions ===`n")
 
@@ -60,8 +60,8 @@ Example1_ComplexBooleanExpressions() {
     employmentYears := 3
 
     eligible := (age >= 21 and age <= 65) and
-    (income >= 30000 or hasCoSigner) and
-    (creditScore >= 650 or (creditScore >= 600 and employmentYears >= 2))
+        (income >= 30000 or hasCoSigner) and
+        (creditScore >= 650 or (creditScore >= 600 and employmentYears >= 2))
 
     if (eligible) {
         OutputDebug("Loan eligible: Age=" age ", Income=$" income ", Score=" creditScore "`n")
@@ -77,8 +77,8 @@ Example1_ComplexBooleanExpressions() {
     isTrustedDevice := false
 
     mfaPassed := hasPassword and
-    ((hasBiometric or hasToken) or
-    (hasBackupCodes and isTrustedDevice))
+        ((hasBiometric or hasToken) or
+            (hasBackupCodes and isTrustedDevice))
 
     if (mfaPassed) {
         OutputDebug("MFA authentication successful`n")
@@ -95,8 +95,8 @@ Example1_ComplexBooleanExpressions() {
     destination := "domestic"
 
     freeShipping := (orderValue >= 50 and !isFragile) or
-    (isPrimeM and destination = "domestic") or
-    (quantity >= 5 and weightPerItem <= 5)
+        (isPrimeM and destination = "domestic") or
+        (quantity >= 5 and weightPerItem <= 5)
 
     if (freeShipping) {
         OutputDebug("Qualifies for free shipping!`n")
@@ -112,9 +112,9 @@ Example1_ComplexBooleanExpressions() {
 ; ============================================================================
 
 /**
-* Demonstrates using parentheses to control evaluation order.
-* Shows how precedence affects boolean logic results.
-*/
+ * Demonstrates using parentheses to control evaluation order.
+ * Shows how precedence affects boolean logic results.
+ */
 Example2_PrecedenceControl() {
     OutputDebug("=== Example 2: Parentheses for Precedence ===`n")
 
@@ -153,8 +153,8 @@ Example2_PrecedenceControl() {
     precipitation := 0
 
     goodWeather := ((temperature >= 65 and temperature <= 85) and
-    (humidity >= 30 and humidity <= 70)) and
-    ((windSpeed < 15) and (precipitation = 0))
+        (humidity >= 30 and humidity <= 70)) and
+        ((windSpeed < 15) and (precipitation = 0))
 
     OutputDebug("Weather conditions: Temp=" temperature "°F, Humidity=" humidity "%`n")
     OutputDebug("Wind=" windSpeed "mph, Rain=" precipitation "in`n")
@@ -168,7 +168,7 @@ Example2_PrecedenceControl() {
     violations := 0
 
     canRentCar := (userAge >= 21 and hasLicense and hasInsurance) and
-    ((carAge <= 5 and violations = 0) or userAge >= 25)
+        ((carAge <= 5 and violations = 0) or userAge >= 25)
 
     OutputDebug("Rental eligibility: " canRentCar "`n")
 
@@ -180,9 +180,9 @@ Example2_PrecedenceControl() {
 ; ============================================================================
 
 /**
-* Demonstrates De Morgan's laws for simplifying complex conditions.
-* Shows equivalent expressions and optimization opportunities.
-*/
+ * Demonstrates De Morgan's laws for simplifying complex conditions.
+ * Shows equivalent expressions and optimization opportunities.
+ */
 Example3_DeMorganLaws() {
     OutputDebug("=== Example 3: De Morgan's Laws ===`n")
 
@@ -246,9 +246,9 @@ Example3_DeMorganLaws() {
 ; ============================================================================
 
 /**
-* Demonstrates short-circuit evaluation in boolean expressions.
-* Shows performance benefits and safe access patterns.
-*/
+ * Demonstrates short-circuit evaluation in boolean expressions.
+ * Shows performance benefits and safe access patterns.
+ */
 Example4_ShortCircuitEvaluation() {
     OutputDebug("=== Example 4: Short-Circuit Evaluation ===`n")
 
@@ -317,9 +317,9 @@ Example4_ShortCircuitEvaluation() {
 ; ============================================================================
 
 /**
-* Demonstrates complex range validation and boundary checking.
-* Shows inclusive/exclusive ranges and multi-dimensional bounds.
-*/
+ * Demonstrates complex range validation and boundary checking.
+ * Shows inclusive/exclusive ranges and multi-dimensional bounds.
+ */
 Example5_RangeChecks() {
     OutputDebug("=== Example 5: Complex Range Checks ===`n")
 
@@ -415,9 +415,9 @@ Example5_RangeChecks() {
 ; ============================================================================
 
 /**
-* Demonstrates comprehensive validation patterns for complex scenarios.
-* Shows real-world multi-factor validation.
-*/
+ * Demonstrates comprehensive validation patterns for complex scenarios.
+ * Shows real-world multi-factor validation.
+ */
 Example6_ValidationPatterns() {
     OutputDebug("=== Example 6: Multi-Condition Validation ===`n")
 
@@ -431,12 +431,11 @@ Example6_ValidationPatterns() {
 
     strength := 0
     if (hasLength) strength++
-    if (hasUpper) strength++
-    if (hasLower) strength++
-    if (hasDigit) strength++
-    if (hasSpecial) strength++
-
-    OutputDebug("Password validation:`n")
+        if (hasUpper) strength++
+            if (hasLower) strength++
+                if (hasDigit) strength++
+                    if (hasSpecial) strength++
+                        OutputDebug("Password validation:`n")
     OutputDebug("  Length OK: " hasLength "`n")
     OutputDebug("  Uppercase: " hasUpper "`n")
     OutputDebug("  Lowercase: " hasLower "`n")
@@ -472,7 +471,7 @@ Example6_ValidationPatterns() {
 
     OutputDebug("`nFile upload validation:`n")
     OutputDebug("  Name: " fileName "`n")
-    OutputDebug("  Size: " Round(fileSize/1024/1024, 2) " MB`n")
+    OutputDebug("  Size: " Round(fileSize / 1024 / 1024, 2) " MB`n")
     OutputDebug("  Valid name: " validName "`n")
     OutputDebug("  Valid size: " validSize "`n")
     OutputDebug("  Allowed type: " isAllowedType "`n")
@@ -524,9 +523,9 @@ Example6_ValidationPatterns() {
 ; ============================================================================
 
 /**
-* Demonstrates optimization techniques for complex conditions.
-* Shows caching, reordering, and efficient evaluation patterns.
-*/
+ * Demonstrates optimization techniques for complex conditions.
+ * Shows caching, reordering, and efficient evaluation patterns.
+ */
 Example7_PerformanceOptimization() {
     OutputDebug("=== Example 7: Performance Optimization ===`n")
 
@@ -603,32 +602,32 @@ Example7_PerformanceOptimization() {
 ; ============================================================================
 
 /**
-* Simulates a complex check that should be avoided via short-circuit.
-*/
+ * Simulates a complex check that should be avoided via short-circuit.
+ */
 PerformComplexCheck() {
     OutputDebug("  [This expensive check should not execute]`n")
     return true
 }
 
 /**
-* Simulates loading data from database (expensive operation).
-*/
+ * Simulates loading data from database (expensive operation).
+ */
 LoadFromDatabase() {
     OutputDebug("  [Database access avoided via short-circuit]`n")
     return false
 }
 
 /**
-* Simulates an expensive operation.
-*/
+ * Simulates an expensive operation.
+ */
 PerformExpensiveOperation() {
     OutputDebug("  [Expensive operation avoided]`n")
     return true
 }
 
 /**
-* Demonstrates early return pattern for better performance.
-*/
+ * Demonstrates early return pattern for better performance.
+ */
 ProcessRequest(email, isValid, amount) {
     ; Early returns avoid deep nesting
     if (!InStr(email, "@")) {

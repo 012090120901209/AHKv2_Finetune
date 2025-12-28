@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetVisible - Check Visibility State
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetVisible - Check Visibility State
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -70,7 +70,7 @@ Example3() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
     controls[2].Visible := false
     controls[4].Visible := false
     BtnCheck := MyGui.Add("Button", "xm y+20 w200", "Check All")
@@ -104,9 +104,9 @@ Example4() {
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h250 ReadOnly Multi")
     Action(*) {
         if (ControlGetVisible(TestEdit))
-        ResultsEdit.Value := "Action: Control is visible\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Action: Control is visible\n" . ResultsEdit.Value
         else
-        ResultsEdit.Value := "Action: Control is hidden\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Action: Control is hidden\n" . ResultsEdit.Value
     }
 
     MyGui.Show()
@@ -143,7 +143,7 @@ Example5() {
     }
     Check() {
         if (!monitoring)
-        return
+            return
         current := ControlGetVisible(TestEdit)
         if (current != lastState) {
             ResultsEdit.Value := "Changed: " . (current ? "Visible" : "Hidden") . "\n" . ResultsEdit.Value
@@ -196,7 +196,7 @@ Example7() {
 
     controls := []
     loop 6
-    controls.Push(MyGui.Add("Edit", "w150 " . (Mod(A_Index, 3) = 1 ? "xm" : "x+10") . " y" . (Mod(A_Index-1, 3) = 0 ? "+20" : "+0"), A_Index))
+        controls.Push(MyGui.Add("Edit", "w150 " . (Mod(A_Index, 3) = 1 ? "xm" : "x+10") . " y" . (Mod(A_Index - 1, 3) = 0 ? "+20" : "+0"), A_Index))
     controls[2].Visible := false
     controls[4].Visible := false
     controls[6].Visible := false
@@ -210,7 +210,7 @@ Example7() {
             vis := ControlGetVisible(ctrl)
             reportText .= "Control " . i . ": " . (vis ? "Visible" : "Hidden") . "\n"
             if (vis)
-            visCount++
+                visCount++
         }
         reportText .= "\nSummary: " . visCount . "/" . controls.Length . " visible\n"
         ResultsEdit.Value := reportText
@@ -228,13 +228,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Visibility Check",
-"Example 2: Toggle and Check",
-"Example 3: Multiple Controls",
-"Example 4: Conditional Display",
-"Example 5: State Monitor",
-"Example 6: Form Validation",
-"Example 7: UI State Report",
+    "Example 1: Basic Visibility Check",
+    "Example 2: Toggle and Check",
+    "Example 3: Multiple Controls",
+    "Example 4: Conditional Display",
+    "Example 5: State Monitor",
+    "Example 6: Form Validation",
+    "Example 7: UI State Report",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

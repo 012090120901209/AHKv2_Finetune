@@ -21,16 +21,16 @@ class BankAccount {
     ; Formatted property
     FormattedBalance => Format("${:.2f}", this._balance)
 
-    Deposit(amount) => amount > 0 ? (this._balance += amount, this._transactions.Push({type: "deposit", amount: amount}), true) : false
+    Deposit(amount) => amount > 0 ? (this._balance += amount, this._transactions.Push({ type: "deposit", amount: amount }), true) : false
 
-    Withdraw(amount) => (amount > 0 && amount <= this._balance) ? (this._balance -= amount, this._transactions.Push({type: "withdraw", amount: amount}), true) : false
+    Withdraw(amount) => (amount > 0 && amount <= this._balance) ? (this._balance -= amount, this._transactions.Push({ type: "withdraw", amount: amount }), true) : false
 
     Statement() {
         result := "Account Statement for " this.Owner "`n"
         result .= "Balance: " this.FormattedBalance "`n"
         result .= "Transactions: " this.TransactionCount "`n"
         for trans in this._transactions
-        result .= "  " trans.type ": $" trans.amount "`n"
+            result .= "  " trans.type ": $" trans.amount "`n"
         return result
     }
 }

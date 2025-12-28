@@ -12,7 +12,7 @@ class ServiceLocator {
         this.services[name] := service
         return this
     }
-    
+
     static RegisterFactory(name, factory) {
         this.factories[name] := factory
         return this
@@ -22,19 +22,19 @@ class ServiceLocator {
         ; Check cached instances first
         if this.services.Has(name)
             return this.services[name]
-        
+
         ; Try factory
         if this.factories.Has(name) {
             instance := this.factories[name]()
             this.services[name] := instance
             return instance
         }
-        
+
         throw Error("Service not found: " name)
     }
-    
+
     static Has(name) => this.services.Has(name) || this.factories.Has(name)
-    
+
     static Clear() {
         this.services := Map()
         this.factories := Map()
@@ -55,7 +55,7 @@ class NotificationService {
         this.email := ServiceLocator.Get("email")
         this.sms := ServiceLocator.Get("sms")
     }
-    
+
     NotifyAll(to, msg) {
         return this.email.Send(to, msg) "`n" this.sms.Send(to, msg)
     }

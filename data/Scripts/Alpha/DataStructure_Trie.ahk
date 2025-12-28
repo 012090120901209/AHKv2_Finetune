@@ -40,22 +40,22 @@ class Trie {
         }
         return node
     }
-    
+
     ; Get all words with given prefix (autocomplete)
     GetWordsWithPrefix(prefix) {
         node := this.FindNode(prefix)
         if !node
             return []
-        
+
         results := []
         this.CollectWords(node, prefix, results)
         return results
     }
-    
+
     CollectWords(node, prefix, results) {
         if node.isEnd
             results.Push(prefix)
-        
+
         for char, childNode in node.children
             this.CollectWords(childNode, prefix char, results)
     }
@@ -71,8 +71,8 @@ for word in words
 
 ; Search
 MsgBox("Search 'apple': " myTrie.Search("apple") "`n"
-     . "Search 'app': " myTrie.Search("app") "`n"
-     . "StartsWith 'app': " myTrie.StartsWith("app"))
+    . "Search 'app': " myTrie.Search("app") "`n"
+    . "StartsWith 'app': " myTrie.StartsWith("app"))
 
 ; Autocomplete
 suggestions := trie.GetWordsWithPrefix("app")
@@ -81,6 +81,6 @@ for word in suggestions
     result .= "- " word "`n"
 
 MsgBox(result)
-    result .= "- " word "`n"
+result .= "- " word "`n"
 
 MsgBox(result)

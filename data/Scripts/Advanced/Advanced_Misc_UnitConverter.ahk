@@ -35,13 +35,13 @@ UpdateUnits(*) {
 
     Switch category {
         case "Length":
-        units := ["Meters", "Kilometers", "Miles", "Feet", "Inches"]
+            units := ["Meters", "Kilometers", "Miles", "Feet", "Inches"]
         case "Weight":
-        units := ["Kilograms", "Pounds", "Ounces", "Grams"]
+            units := ["Kilograms", "Pounds", "Ounces", "Grams"]
         case "Temperature":
-        units := ["Celsius", "Fahrenheit", "Kelvin"]
+            units := ["Celsius", "Fahrenheit", "Kelvin"]
         case "Speed":
-        units := ["km/h", "mph", "m/s"]
+            units := ["km/h", "mph", "m/s"]
     }
 
     for unit in units {
@@ -72,35 +72,35 @@ ConvertValue(value, category, from, to) {
     ; Simplified conversion - in real app would have comprehensive tables
     Switch category {
         case "Length":
-        ; Convert to meters first
-        Switch from {
-            case "Meters": base := value
-            case "Kilometers": base := value * 1000
-            case "Miles": base := value * 1609.34
-            case "Feet": base := value * 0.3048
-            case "Inches": base := value * 0.0254
-        }
-        ; Then convert from meters
-        Switch to {
-            case "Meters": return base
-            case "Kilometers": return base / 1000
-            case "Miles": return base / 1609.34
-            case "Feet": return base / 0.3048
-            case "Inches": return base / 0.0254
-        }
+            ; Convert to meters first
+            Switch from {
+                case "Meters": base := value
+                case "Kilometers": base := value * 1000
+                case "Miles": base := value * 1609.34
+                case "Feet": base := value * 0.3048
+                case "Inches": base := value * 0.0254
+            }
+            ; Then convert from meters
+            Switch to {
+                case "Meters": return base
+                case "Kilometers": return base / 1000
+                case "Miles": return base / 1609.34
+                case "Feet": return base / 0.3048
+                case "Inches": return base / 0.0254
+            }
         case "Temperature":
-        ; Convert to Celsius
-        Switch from {
-            case "Celsius": base := value
-            case "Fahrenheit": base := (value - 32) * 5/9
-            case "Kelvin": base := value - 273.15
-        }
-        ; Convert from Celsius
-        Switch to {
-            case "Celsius": return base
-            case "Fahrenheit": return base * 9/5 + 32
-            case "Kelvin": return base + 273.15
-        }
+            ; Convert to Celsius
+            Switch from {
+                case "Celsius": base := value
+                case "Fahrenheit": base := (value - 32) * 5 / 9
+                case "Kelvin": base := value - 273.15
+            }
+            ; Convert from Celsius
+            Switch to {
+                case "Celsius": return base
+                case "Fahrenheit": return base * 9 / 5 + 32
+                case "Kelvin": return base + 273.15
+            }
     }
     return value
 }

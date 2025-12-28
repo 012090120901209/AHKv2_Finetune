@@ -2,36 +2,36 @@
 #Include JSON.ahk
 
 /**
-* ============================================================================
-* FileSelect Basic Examples - Part 1
-* ============================================================================
-*
-* Comprehensive examples demonstrating FileSelect usage in AutoHotkey v2.
-*
-* @description This file covers fundamental FileSelect functionality including:
-*              - Basic file selection
-*              - File type filters
-*              - Multi-file selection
-*              - Save dialogs
-*              - Initial directories
-*              - Dialog options
-*
-* @author AutoHotkey Foundation
-* @version 2.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileSelect.htm
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * FileSelect Basic Examples - Part 1
+ * ============================================================================
+ * 
+ * Comprehensive examples demonstrating FileSelect usage in AutoHotkey v2.
+ * 
+ * @description This file covers fundamental FileSelect functionality including:
+ *              - Basic file selection
+ *              - File type filters
+ *              - Multi-file selection
+ *              - Save dialogs
+ *              - Initial directories
+ *              - Dialog options
+ * 
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileSelect.htm
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic File Selection
 ; ============================================================================
 /**
-* Demonstrates basic file selection dialog.
-*
-* @description Shows how to open file selection dialogs and
-*              handle selected files.
-*/
+ * Demonstrates basic file selection dialog.
+ * 
+ * @description Shows how to open file selection dialogs and
+ *              handle selected files.
+ */
 Example1_BasicFileSelection() {
     ; Simple file open dialog
     selectedFile := FileSelect()
@@ -66,8 +66,8 @@ Example1_BasicFileSelection() {
 }
 
 /**
-* Shows file information.
-*/
+ * Shows file information.
+ */
 ShowFileInfo(filePath) {
     if (FileExist(filePath)) {
         SplitPath filePath, &fileName, &fileDir, &fileExt, &fileNameNoExt
@@ -76,19 +76,19 @@ ShowFileInfo(filePath) {
         fileSizeKB := Round(fileSize / 1024, 2)
 
         MsgBox Format("═══ File Information ═══`n`n"
-        . "Full Path: {1}`n`n"
-        . "Directory: {2}`n"
-        . "File Name: {3}`n"
-        . "Extension: {4}`n"
-        . "Name (no ext): {5}`n"
-        . "Size: {6} bytes ({7} KB)",
-        filePath,
-        fileDir,
-        fileName,
-        fileExt,
-        fileNameNoExt,
-        fileSize,
-        fileSizeKB)
+            . "Full Path: {1}`n`n"
+            . "Directory: {2}`n"
+            . "File Name: {3}`n"
+            . "Extension: {4}`n"
+            . "Name (no ext): {5}`n"
+            . "Size: {6} bytes ({7} KB)",
+            filePath,
+            fileDir,
+            fileName,
+            fileExt,
+            fileNameNoExt,
+            fileSize,
+            fileSizeKB)
     }
 }
 
@@ -96,12 +96,12 @@ ShowFileInfo(filePath) {
 ; EXAMPLE 2: File Type Filters
 ; ============================================================================
 /**
-* Shows file selection with type filters.
-*
-* @description Demonstrates filtering files by extension.
-*
-* Filter Format: "Description (*.ext1;*.ext2)"
-*/
+ * Shows file selection with type filters.
+ * 
+ * @description Demonstrates filtering files by extension.
+ * 
+ * Filter Format: "Description (*.ext1;*.ext2)"
+ */
 Example2_FileTypeFilters() {
     ; Text files only
     selectedFile := FileSelect(, , "Select a text file", "Text Files (*.txt)")
@@ -112,8 +112,8 @@ Example2_FileTypeFilters() {
 
     ; Image files
     selectedFile := FileSelect(, ,
-    "Select an image",
-    "Images (*.png;*.jpg;*.jpeg;*.gif;*.bmp)")
+        "Select an image",
+        "Images (*.png;*.jpg;*.jpeg;*.gif;*.bmp)")
 
     if (selectedFile != "") {
         MsgBox "Image file selected:`n`n" . selectedFile
@@ -121,8 +121,8 @@ Example2_FileTypeFilters() {
 
     ; Document files
     selectedFile := FileSelect(, ,
-    "Select a document",
-    "Documents (*.doc;*.docx;*.pdf;*.txt)")
+        "Select a document",
+        "Documents (*.doc;*.docx;*.pdf;*.txt)")
 
     if (selectedFile != "") {
         MsgBox "Document selected:`n`n" . selectedFile
@@ -130,8 +130,8 @@ Example2_FileTypeFilters() {
 
     ; Excel files
     selectedFile := FileSelect(, ,
-    "Select a spreadsheet",
-    "Excel Files (*.xlsx;*.xls)")
+        "Select a spreadsheet",
+        "Excel Files (*.xlsx;*.xls)")
 
     if (selectedFile != "") {
         MsgBox "Spreadsheet selected:`n`n" . selectedFile
@@ -139,8 +139,8 @@ Example2_FileTypeFilters() {
 
     ; Multiple filter options
     selectedFile := FileSelect(, ,
-    "Select a media file",
-    "Video Files (*.mp4;*.avi;*.mkv)|Audio Files (*.mp3;*.wav;*.flac)")
+        "Select a media file",
+        "Video Files (*.mp4;*.avi;*.mkv)|Audio Files (*.mp3;*.wav;*.flac)")
 
     if (selectedFile != "") {
         MsgBox "Media file selected:`n`n" . selectedFile
@@ -148,8 +148,8 @@ Example2_FileTypeFilters() {
 
     ; All files with specific types highlighted
     selectedFile := FileSelect(, ,
-    "Select any file",
-    "Common Files (*.txt;*.pdf;*.doc)|All Files (*.*)")
+        "Select any file",
+        "Common Files (*.txt;*.pdf;*.doc)|All Files (*.*)")
 
     if (selectedFile != "") {
         MsgBox "File selected:`n`n" . selectedFile
@@ -157,8 +157,8 @@ Example2_FileTypeFilters() {
 
     ; Script files
     selectedFile := FileSelect(, ,
-    "Select a script",
-    "Scripts (*.ahk;*.ahk2;*.py;*.js)")
+        "Select a script",
+        "Scripts (*.ahk;*.ahk2;*.py;*.js)")
 
     if (selectedFile != "") {
         MsgBox "Script selected:`n`n" . selectedFile
@@ -169,12 +169,12 @@ Example2_FileTypeFilters() {
 ; EXAMPLE 3: Multi-File Selection
 ; ============================================================================
 /**
-* Demonstrates selecting multiple files.
-*
-* @description Shows how to select and process multiple files.
-*
-* Option M: Enable multi-select
-*/
+ * Demonstrates selecting multiple files.
+ * 
+ * @description Shows how to select and process multiple files.
+ * 
+ * Option M: Enable multi-select
+ */
 Example3_MultiFileSelection() {
     ; Select multiple files
     selectedFiles := FileSelect("M", , "Select one or more files")
@@ -194,8 +194,8 @@ Example3_MultiFileSelection() {
 
     ; Multi-select with filter
     selectedFiles := FileSelect("M", ,
-    "Select multiple images",
-    "Images (*.png;*.jpg;*.jpeg)")
+        "Select multiple images",
+        "Images (*.png;*.jpg;*.jpeg)")
 
     if (selectedFiles.Length > 0) {
         MsgBox Format("Selected {1} image(s)", selectedFiles.Length)
@@ -204,8 +204,8 @@ Example3_MultiFileSelection() {
 
     ; Multi-select from specific folder
     selectedFiles := FileSelect("M", A_MyDocuments,
-    "Select documents",
-    "Documents (*.txt;*.pdf;*.doc;*.docx)")
+        "Select documents",
+        "Documents (*.txt;*.pdf;*.doc;*.docx)")
 
     if (selectedFiles.Length > 0) {
         ; Calculate total size
@@ -217,14 +217,14 @@ Example3_MultiFileSelection() {
         totalSizeMB := Round(totalSize / 1048576, 2)
 
         MsgBox Format("Selected {1} documents`n`nTotal size: {2} MB",
-        selectedFiles.Length,
-        totalSizeMB)
+            selectedFiles.Length,
+            totalSizeMB)
     }
 }
 
 /**
-* Processes multiple files.
-*/
+ * Processes multiple files.
+ */
 ProcessMultipleFiles(files) {
     MsgBox "Processing " . files.Length . " files..."
 
@@ -233,27 +233,27 @@ ProcessMultipleFiles(files) {
 
         ; Show progress
         if (Mod(index, 5) = 0) {  ; Every 5 files
-        ToolTip Format("Processing: {1}/{2}`n{3}",
-        index,
-        files.Length,
-        fileName)
+            ToolTip Format("Processing: {1}/{2}`n{3}",
+                index,
+                files.Length,
+                fileName)
+        }
     }
-}
 
-ToolTip
-MsgBox "Processing complete!"
+    ToolTip
+    MsgBox "Processing complete!"
 }
 
 ; ============================================================================
 ; EXAMPLE 4: Save File Dialogs
 ; ============================================================================
 /**
-* Shows save file dialog variations.
-*
-* @description Demonstrates save dialogs for file creation.
-*
-* Option S: Show save dialog (instead of open)
-*/
+ * Shows save file dialog variations.
+ * 
+ * @description Demonstrates save dialogs for file creation.
+ * 
+ * Option S: Show save dialog (instead of open)
+ */
 Example4_SaveFileDialogs() {
     ; Simple save dialog
     savePath := FileSelect("S", , "Save your file")
@@ -276,15 +276,15 @@ Example4_SaveFileDialogs() {
     if (savePath != "") {
         ; Auto-add extension if missing
         if (!RegExMatch(savePath, "\.txt$"))
-        savePath .= ".txt"
+            savePath .= ".txt"
 
         MsgBox "Text file will be saved as:`n`n" . savePath
     }
 
     ; Save image
     savePath := FileSelect("S", ,
-    "Save image",
-    "PNG Image (*.png)|JPEG Image (*.jpg)")
+        "Save image",
+        "PNG Image (*.png)|JPEG Image (*.jpg)")
 
     if (savePath != "") {
         MsgBox "Image will be saved as:`n`n" . savePath
@@ -297,17 +297,17 @@ Example4_SaveFileDialogs() {
 }
 
 /**
-* Saves file with automatic extension handling.
-*/
+ * Saves file with automatic extension handling.
+ */
 SaveWithExtension(defaultName, filter) {
     savePath := FileSelect("S", A_MyDocuments . "\" . defaultName,
-    "Save file", filter)
+        "Save file", filter)
 
     if (savePath != "") {
         ; Extract extension from filter
         RegExMatch(filter, "\*\.(\w+)", &match)
         if (match && !RegExMatch(savePath, "\." . match[1] . "$"))
-        savePath .= "." . match[1]
+            savePath .= "." . match[1]
 
         MsgBox "File will be saved as:`n`n" . savePath
     }
@@ -317,27 +317,27 @@ SaveWithExtension(defaultName, filter) {
 ; EXAMPLE 5: Dialog Options
 ; ============================================================================
 /**
-* Demonstrates various dialog options.
-*
-* @description Shows different FileSelect option combinations.
-*
-* Options:
-* - M: Multi-select
-* - S: Save dialog
-* - D: Select directory (folder)
-* - 1: File must exist
-* - 2: Path must exist
-* - 8: Prompt to create new file
-* - 16: Prompt to overwrite
-* - 32: Follow shortcuts
-*/
+ * Demonstrates various dialog options.
+ * 
+ * @description Shows different FileSelect option combinations.
+ * 
+ * Options:
+ * - M: Multi-select
+ * - S: Save dialog
+ * - D: Select directory (folder)
+ * - 1: File must exist
+ * - 2: Path must exist
+ * - 8: Prompt to create new file
+ * - 16: Prompt to overwrite
+ * - 32: Follow shortcuts
+ */
 Example5_DialogOptions() {
     ; File must exist (Option 1)
     selectedFile := FileSelect("1", , "Select an existing file")
 
     if (selectedFile != "") {
         if (FileExist(selectedFile))
-        MsgBox "Existing file selected:`n`n" . selectedFile
+            MsgBox "Existing file selected:`n`n" . selectedFile
     }
 
     ; Path must exist (Option 2)
@@ -346,8 +346,8 @@ Example5_DialogOptions() {
     if (selectedFile != "") {
         SplitPath selectedFile, , &dir
         MsgBox Format("File: {1}`n`nDirectory exists: {2}",
-        selectedFile,
-        DirExist(dir) ? "Yes" : "No")
+            selectedFile,
+            DirExist(dir) ? "Yes" : "No")
     }
 
     ; Prompt to create (Option 8)
@@ -355,9 +355,9 @@ Example5_DialogOptions() {
 
     if (savePath != "") {
         if (FileExist(savePath))
-        MsgBox "Overwriting existing file"
+            MsgBox "Overwriting existing file"
         else
-        MsgBox "Creating new file"
+            MsgBox "Creating new file"
     }
 
     ; Prompt to overwrite (Option 16)
@@ -369,8 +369,8 @@ Example5_DialogOptions() {
 
     ; Combined options: Save with overwrite confirmation
     savePath := FileSelect("S16", ,
-    "Save with protection",
-    "All Files (*.*)")
+        "Save with protection",
+        "All Files (*.*)")
 
     if (savePath != "") {
         MsgBox "Protected save to:`n`n" . savePath
@@ -388,42 +388,42 @@ Example5_DialogOptions() {
 ; EXAMPLE 6: Initial Directory Customization
 ; ============================================================================
 /**
-* Shows different initial directory options.
-*
-* @description Demonstrates starting the dialog in specific folders.
-*/
+ * Shows different initial directory options.
+ * 
+ * @description Demonstrates starting the dialog in specific folders.
+ */
 Example6_InitialDirectories() {
     ; Start in Desktop
     selectedFile := FileSelect(, A_Desktop, "Select from Desktop")
     if (selectedFile != "")
-    MsgBox "Selected from Desktop"
+        MsgBox "Selected from Desktop"
 
     ; Start in Documents
     selectedFile := FileSelect(, A_MyDocuments, "Select from Documents")
     if (selectedFile != "")
-    MsgBox "Selected from Documents"
+        MsgBox "Selected from Documents"
 
     ; Start in user folder
     selectedFile := FileSelect(, A_UserProfile, "Select from User folder")
     if (selectedFile != "")
-    MsgBox "Selected from User folder"
+        MsgBox "Selected from User folder"
 
     ; Start in program directory
     selectedFile := FileSelect(, A_ScriptDir, "Select from Script folder")
     if (selectedFile != "")
-    MsgBox "Selected from Script folder"
+        MsgBox "Selected from Script folder"
 
     ; Start in temp folder
     selectedFile := FileSelect(, A_Temp, "Select from Temp")
     if (selectedFile != "")
-    MsgBox "Selected from Temp folder"
+        MsgBox "Selected from Temp folder"
 
     ; Custom path
     customPath := "C:\Projects"
     if (DirExist(customPath)) {
         selectedFile := FileSelect(, customPath, "Select from Projects")
         if (selectedFile != "")
-        MsgBox "Selected from custom path"
+            MsgBox "Selected from custom path"
     }
 
     ; Remember last used directory
@@ -431,8 +431,8 @@ Example6_InitialDirectories() {
 }
 
 /**
-* File select that remembers last directory.
-*/
+ * File select that remembers last directory.
+ */
 SelectWithMemory() {
     static lastDir := A_MyDocuments
 
@@ -452,10 +452,10 @@ SelectWithMemory() {
 ; EXAMPLE 7: Practical File Selection Scenarios
 ; ============================================================================
 /**
-* Real-world file selection scenarios.
-*
-* @description Practical examples for common use cases.
-*/
+ * Real-world file selection scenarios.
+ * 
+ * @description Practical examples for common use cases.
+ */
 Example7_PracticalScenarios() {
     ; Image batch processor
     BatchImageSelector()
@@ -474,58 +474,58 @@ Example7_PracticalScenarios() {
 }
 
 /**
-* Batch image selector.
-*/
+ * Batch image selector.
+ */
 BatchImageSelector() {
     images := FileSelect("M", ,
-    "Select images to process",
-    "Images (*.png;*.jpg;*.jpeg;*.gif;*.bmp)")
+        "Select images to process",
+        "Images (*.png;*.jpg;*.jpeg;*.gif;*.bmp)")
 
     if (images.Length > 0) {
         MsgBox Format("Ready to process {1} images`n`n"
-        . "Operations available:`n"
-        . "- Resize`n"
-        . "- Convert format`n"
-        . "- Apply filters",
-        images.Length)
+            . "Operations available:`n"
+            . "- Resize`n"
+            . "- Convert format`n"
+            . "- Apply filters",
+            images.Length)
     }
 }
 
 /**
-* Document converter selector.
-*/
+ * Document converter selector.
+ */
 DocumentConverterSelector() {
     sourceFile := FileSelect(, ,
-    "Select document to convert",
-    "Documents (*.doc;*.docx;*.txt;*.rtf)")
+        "Select document to convert",
+        "Documents (*.doc;*.docx;*.txt;*.rtf)")
 
     if (sourceFile = "")
-    return
+        return
 
     SplitPath sourceFile, &fileName, &fileDir, &fileExt, &nameNoExt
 
     outputPath := FileSelect("S",
-    fileDir . "\" . nameNoExt . ".pdf",
-    "Save as PDF",
-    "PDF Files (*.pdf)")
+        fileDir . "\" . nameNoExt . ".pdf",
+        "Save as PDF",
+        "PDF Files (*.pdf)")
 
     if (outputPath != "") {
         MsgBox Format("Convert:`n{1}`n`nTo:`n{2}",
-        sourceFile,
-        outputPath)
+            sourceFile,
+            outputPath)
     }
 }
 
 /**
-* Backup file selector.
-*/
+ * Backup file selector.
+ */
 BackupFileSelector() {
     filesToBackup := FileSelect("M", ,
-    "Select files to backup",
-    "All Files (*.*)")
+        "Select files to backup",
+        "All Files (*.*)")
 
     if (filesToBackup.Length = 0)
-    return
+        return
 
     backupDir := FileSelect("D", , "Select backup destination")
 
@@ -536,21 +536,21 @@ BackupFileSelector() {
         }
 
         MsgBox Format("Backup {1} files to:`n{2}`n`n"
-        . "Total size: {3} MB",
-        filesToBackup.Length,
-        backupDir,
-        Round(totalSize / 1048576, 2))
+            . "Total size: {3} MB",
+            filesToBackup.Length,
+            backupDir,
+            Round(totalSize / 1048576, 2))
     }
 }
 
 /**
-* Import/Export selector.
-*/
+ * Import/Export selector.
+ */
 ImportExportSelector() {
     ; Import
     importFile := FileSelect(, ,
-    "Import data file",
-    "Data Files (*.csv;*.json;*.xml)")
+        "Import data file",
+        "Data Files (*.csv;*.json;*.xml)")
 
     if (importFile != "") {
         MsgBox "Importing data from:`n`n" . importFile
@@ -558,38 +558,38 @@ ImportExportSelector() {
 
     ; Export
     exportPath := FileSelect("S", A_MyDocuments . "\export.csv",
-    "Export data",
-    "CSV Files (*.csv)")
+        "Export data",
+        "CSV Files (*.csv)")
 
     if (exportPath != "") {
         if (!RegExMatch(exportPath, "\.csv$"))
-        exportPath .= ".csv"
+            exportPath .= ".csv"
 
         MsgBox "Exporting data to:`n`n" . exportPath
     }
 }
 
 /**
-* Project file selector.
-*/
+ * Project file selector.
+ */
 ProjectFileSelector() {
     projectFile := FileSelect(, ,
-    "Open project file",
-    "Project Files (*.aproj;*.project)|All Files (*.*)")
+        "Open project file",
+        "Project Files (*.aproj;*.project)|All Files (*.*)")
 
     if (projectFile = "")
-    return
+        return
 
     ; Check if valid project file
     if (FileExist(projectFile)) {
         SplitPath projectFile, &fileName, &projDir
 
         MsgBox Format("Opening project:`n`n"
-        . "File: {1}`n"
-        . "Location: {2}`n`n"
-        . "Loading project resources...",
-        fileName,
-        projDir)
+            . "File: {1}`n"
+            . "Location: {2}`n`n"
+            . "Loading project resources...",
+            fileName,
+            projDir)
 
         ; Load recent files from same directory
         ; Show project structure
@@ -601,46 +601,47 @@ ProjectFileSelector() {
 ; Hotkey Triggers
 ; ============================================================================
 
-^1::Example1_BasicFileSelection()
-^2::Example2_FileTypeFilters()
-^3::Example3_MultiFileSelection()
-^4::Example4_SaveFileDialogs()
-^5::Example5_DialogOptions()
-^6::Example6_InitialDirectories()
-^7::Example7_PracticalScenarios()
-^0::ExitApp
+^1:: Example1_BasicFileSelection()
+^2:: Example2_FileTypeFilters()
+^3:: Example3_MultiFileSelection()
+^4:: Example4_SaveFileDialogs()
+^5:: Example5_DialogOptions()
+^6:: Example6_InitialDirectories()
+^7:: Example7_PracticalScenarios()
+^0:: ExitApp
 
 /**
-* ============================================================================
-* SUMMARY
-* ============================================================================
-*
-* FileSelect fundamentals covered:
-* 1. Basic file selection with prompts
-* 2. File type filters for specific extensions
-* 3. Multi-file selection (Option M)
-* 4. Save file dialogs (Option S)
-* 5. Dialog options (exist checks, overwrite prompts)
-* 6. Initial directory customization
-* 7. Practical scenarios (batch processing, conversion, backup)
-*
-* Key Points:
-* - FileSelect returns empty string if cancelled
-* - Use "M" option for multi-select (returns array)
-* - Use "S" option for save dialogs
-* - Filters format: "Description (*.ext1;*.ext2)"
-* - Options can be combined (e.g., "MS" for multi-select save)
-* - Always validate returned paths
-* - Handle cancellation gracefully
-*
-* Common Options:
-* - M: Multi-select
-* - S: Save dialog
-* - D: Select folders (not files)
-* - 1: File must exist
-* - 2: Path must exist
-* - 8: Prompt to create
-* - 16: Prompt to overwrite
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * SUMMARY
+ * ============================================================================
+ * 
+ * FileSelect fundamentals covered:
+ * 1. Basic file selection with prompts
+ * 2. File type filters for specific extensions
+ * 3. Multi-file selection (Option M)
+ * 4. Save file dialogs (Option S)
+ * 5. Dialog options (exist checks, overwrite prompts)
+ * 6. Initial directory customization
+ * 7. Practical scenarios (batch processing, conversion, backup)
+ * 
+ * Key Points:
+ * - FileSelect returns empty string if cancelled
+ * - Use "M" option for multi-select (returns array)
+ * - Use "S" option for save dialogs
+ * - Filters format: "Description (*.ext1;*.ext2)"
+ * - Options can be combined (e.g., "MS" for multi-select save)
+ * - Always validate returned paths
+ * - Handle cancellation gracefully
+ * 
+ * Common Options:
+ * - M: Multi-select
+ * - S: Save dialog
+ * - D: Select folders (not files)
+ * - 1: File must exist
+ * - 2: Path must exist
+ * - 8: Prompt to create
+ * - 16: Prompt to overwrite
+ * 
+ * ============================================================================
+ */
+

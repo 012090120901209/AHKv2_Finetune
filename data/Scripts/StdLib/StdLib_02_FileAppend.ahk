@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileAppend() - Append to file
-*
-* Appends text to the end of a file (creates it if it doesn't exist).
-*/
+ * FileAppend() - Append to file
+ * 
+ * Appends text to the end of a file (creates it if it doesn't exist).
+ */
 
 logFile := A_ScriptDir "\log.txt"
 FileDelete(logFile)

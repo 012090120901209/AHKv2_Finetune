@@ -12,15 +12,15 @@
 
 DemoOCRFromRect() {
     MsgBox("OCR FromRect Demonstration`n`n"
-    "This function extracts text from a screen region.`n`n"
-    "Usage with OCR library:`n"
-    "result := OCR.FromRect(x, y, width, height)`n"
-    "text := result.Text`n"
-    "result.Highlight()  ; Highlight detected text`n`n"
-    "Requirements:`n"
-    "- Windows 10+ with language pack installed`n"
-    "- Descolada/OCR library",
-    "OCR FromRect Demo")
+        "This function extracts text from a screen region.`n`n"
+        "Usage with OCR library:`n"
+        "result := OCR.FromRect(x, y, width, height)`n"
+        "text := result.Text`n"
+        "result.Highlight()  ; Highlight detected text`n`n"
+        "Requirements:`n"
+        "- Windows 10+ with language pack installed`n"
+        "- Descolada/OCR library",
+        "OCR FromRect Demo")
 }
 
 ; Real implementation example (commented out, requires library):

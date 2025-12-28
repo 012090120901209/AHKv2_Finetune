@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetVisible - Advanced Detection
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetVisible - Advanced Detection
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -46,7 +46,7 @@ Example2() {
 
     controls := []
     loop 10
-    controls.Push(MyGui.Add("Edit", "w100 " . (Mod(A_Index, 5) = 1 ? "xm" : "x+5") . " y" . (Mod(A_Index-1, 5) = 0 ? "+20" : "+0"), A_Index))
+        controls.Push(MyGui.Add("Edit", "w100 " . (Mod(A_Index, 5) = 1 ? "xm" : "x+5") . " y" . (Mod(A_Index - 1, 5) = 0 ? "+20" : "+0"), A_Index))
     BtnPattern1 := MyGui.Add("Button", "xm y+60 w150", "Odd Visible")
     BtnPattern1.OnEvent("Click", (*) => ApplyPattern(1))
     BtnPattern2 := MyGui.Add("Button", "x+10 w150", "Even Visible")
@@ -56,12 +56,12 @@ Example2() {
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w600 h180 ReadOnly Multi")
     ApplyPattern(type) {
         for i, ctrl in controls
-        ctrl.Visible := (type = 1) ? (Mod(i, 2) = 1) : (Mod(i, 2) = 0)
+            ctrl.Visible := (type = 1) ? (Mod(i, 2) = 1) : (Mod(i, 2) = 0)
     }
     Detect(*) {
         pattern := ""
         for i, ctrl in controls
-        pattern .= ControlGetVisible(ctrl) ? "V" : "H"
+            pattern .= ControlGetVisible(ctrl) ? "V" : "H"
         ResultsEdit.Value := "Pattern: " . pattern . "\n" . ResultsEdit.Value
     }
 
@@ -80,10 +80,10 @@ Example3() {
     set2 := []
     MyGui.Add("Text", "xm y+20", "Set 1:")
     loop 3
-    set1.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "A" . A_Index))
+        set1.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "A" . A_Index))
     MyGui.Add("Text", "xm y+40", "Set 2:")
     loop 3
-    set2.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "B" . A_Index))
+        set2.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "B" . A_Index))
     set1[2].Visible := false
     set2[2].Visible := false
     BtnCompare := MyGui.Add("Button", "xm y+40 w200", "Compare")
@@ -112,13 +112,13 @@ Example4() {
 
     controls := []
     loop 4
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
     ShowAdvanced := MyGui.Add("Checkbox", "xm y+20", "Show Advanced")
     ShowAdvanced.OnEvent("Click", Update)
     Update(*) {
         for i, ctrl in controls {
             if (i > 2)
-            ctrl.Visible := ShowAdvanced.Value
+                ctrl.Visible := ShowAdvanced.Value
         }
     }
     BtnCheck := MyGui.Add("Button", "xm y+10 w200", "Check Visibility")
@@ -128,7 +128,7 @@ Example4() {
     Check(*) {
         result := ""
         for i, ctrl in controls
-        result .= "Field " . i . ": " . (ControlGetVisible(ctrl) ? "Visible" : "Hidden") . "\n"
+            result .= "Field " . i . ": " . (ControlGetVisible(ctrl) ? "Visible" : "Hidden") . "\n"
         ResultsEdit.Value := result
     }
 
@@ -174,7 +174,7 @@ Example6() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
     controls[2].Visible := false
     controls[4].Visible := false
     BtnValidate := MyGui.Add("Button", "xm y+20 w200", "Validate States")
@@ -189,7 +189,7 @@ Example6() {
             match := (actual = expected[i])
             result .= "Field " . i . ": " . (match ? "✓ PASS" : "✗ FAIL") . "\n"
             if (match)
-            passed++
+                passed++
         }
         result .= "\nResult: " . passed . "/" . controls.Length . " correct\n"
         ResultsEdit.Value := result
@@ -224,7 +224,7 @@ Example7() {
             vis := ControlGetVisible(ctrl)
             result .= Format("{:<15} {:>10}", name . ":", vis ? "Visible" : "Hidden") . "\n"
             if (vis)
-            visCount++
+                visCount++
         }
         result .= "\n" . visCount . "/" . controls.Count . " visible\n"
         ResultsEdit.Value := result
@@ -242,13 +242,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Parent Visibility",
-"Example 2: Visibility Patterns",
-"Example 3: State Comparison",
-"Example 4: Dynamic UI Check",
-"Example 5: Visibility Tracker",
-"Example 6: Visibility Validator",
-"Example 7: Batch Query",
+    "Example 1: Parent Visibility",
+    "Example 2: Visibility Patterns",
+    "Example 3: State Comparison",
+    "Example 4: Dynamic UI Check",
+    "Example 5: Visibility Tracker",
+    "Example 6: Visibility Validator",
+    "Example 7: Batch Query",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_PLACEHOLDER.ahk
-*
-* DESCRIPTION:
-* Practical regex applications for real-world scenarios including validation,
-* parsing, data cleaning, extraction, and text transformation tasks.
-*
-* FEATURES:
-* - Input validation
-* - Data parsing
-* - Text cleaning
-* - Information extraction
-* - Format transformation
-* - Error handling
-* - Production-ready examples
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Practical regex usage
-* - Data validation techniques
-* - Text processing pipelines
-* - Error-resistant patterns
-* - Real-world applications
-*
-* LEARNING POINTS:
-* 1. Validate before processing
-* 2. Handle edge cases gracefully
-* 3. Chain operations for complex tasks
-* 4. Test with real-world data
-* 5. Provide meaningful error messages
-* 6. Optimize for performance
-* 7. Document patterns clearly
-*/
+ * BuiltIn_RegEx_PLACEHOLDER.ahk
+ * 
+ * DESCRIPTION:
+ * Practical regex applications for real-world scenarios including validation,
+ * parsing, data cleaning, extraction, and text transformation tasks.
+ * 
+ * FEATURES:
+ * - Input validation
+ * - Data parsing
+ * - Text cleaning
+ * - Information extraction
+ * - Format transformation
+ * - Error handling
+ * - Production-ready examples
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Practical regex usage
+ * - Data validation techniques
+ * - Text processing pipelines
+ * - Error-resistant patterns
+ * - Real-world applications
+ * 
+ * LEARNING POINTS:
+ * 1. Validate before processing
+ * 2. Handle edge cases gracefully
+ * 3. Chain operations for complex tasks
+ * 4. Test with real-world data
+ * 5. Provide meaningful error messages
+ * 6. Optimize for performance
+ * 7. Document patterns clearly
+ */
 
 ; Practical examples for common tasks
 Example1() {
@@ -83,13 +83,13 @@ ShowMenu() {
     )"
 }
 
-^1::Example1()
-^2::Example2()
-^3::Example3()
-^4::Example4()
-^5::Example5()
-^6::Example6()
-^7::Example7()
-^h::ShowMenu()
+^1:: Example1()
+^2:: Example2()
+^3:: Example3()
+^4:: Example4()
+^5:: Example5()
+^6:: Example6()
+^7:: Example7()
+^h:: ShowMenu()
 
 ShowMenu()

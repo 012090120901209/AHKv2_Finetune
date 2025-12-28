@@ -27,7 +27,7 @@ class ElectricCar extends Car {
 
     Start() {
         if (this.charge < 20)
-        return MsgBox("Warning: Low battery (" this.charge "%)!", "Warning")
+            return MsgBox("Warning: Low battery (" this.charge "%)!", "Warning")
         super.Start()
         MsgBox("Electric Car: Battery at " this.charge "%")
     }

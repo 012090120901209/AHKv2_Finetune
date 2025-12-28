@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Hotstring Option: ? (Question mark)
-* Triggers even when inside another word
-*/
+ * Hotstring Option: ? (Question mark)
+ * Triggers even when inside another word
+ */
 
 ; Without ?, "btw" only triggers as a whole word
 ; With ?, it triggers even in the middle of words
@@ -26,3 +26,4 @@
 ; Useful for corrections mid-word
 :?*:toin::tion  ; Changes "information" while typing
 :?*:laer::lear  ; Changes "clear" from "claer"
+

@@ -49,7 +49,7 @@ class CallbackManager {
             callback()
 
             if (!keepAlive)
-            this.callbacks.Delete(id)
+                this.callbacks.Delete(id)
         }
     }
 }
@@ -203,7 +203,7 @@ Log(message) {
         Loop Min(50, lines.Length) {
             idx := lines.Length - 50 + A_Index
             if (idx > 0 && idx <= lines.Length)
-            logText .= lines[idx] "`n"
+                logText .= lines[idx] "`n"
         }
     }
 

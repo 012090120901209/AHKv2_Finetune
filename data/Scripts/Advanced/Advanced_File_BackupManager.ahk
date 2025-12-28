@@ -27,13 +27,13 @@ global isRunning := false
 BrowseSrc(*) {
     selected := DirSelect(, 3, "Select source folder")
     if (selected)
-    sourceInput.Value := selected
+        sourceInput.Value := selected
 }
 
 BrowseDest(*) {
     selected := DirSelect(, 3, "Select backup destination")
     if (selected)
-    destInput.Value := selected
+        destInput.Value := selected
 }
 
 StartBackup(*) {
@@ -56,7 +56,7 @@ BackupNow(*) {
     dest := destInput.Value
 
     if (!DirExist(src) || !DirExist(dest))
-    return Log("Error: Invalid source or destination")
+        return Log("Error: Invalid source or destination")
 
     timestamp := FormatTime(, "yyyyMMdd_HHmmss")
     backupFolder := dest "\Backup_" timestamp

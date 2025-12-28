@@ -1,47 +1,47 @@
 /**
-* ============================================================================
-* AutoHotkey v2 #Requires Directive - Version Requirements
-* ============================================================================
-*
-* @description Comprehensive examples demonstrating #Requires directive for
-*              version requirements in AutoHotkey v2 scripts
-*
-* @author AHK v2 Documentation Team
-* @version 2.0.0
-* @date 2025-01-15
-*
-* DIRECTIVE: #Requires
-* PURPOSE: Specifies minimum AutoHotkey version required to run the script
-* SYNTAX: #Requires AutoHotkey v2.0
-*         #Requires AutoHotkey >=v2.0-beta.1
-*         #Requires AutoHotkey v2.0.2
-*
-* @example
-* Basic Usage:
-*   #Requires AutoHotkey v2.0
-*   ; Script will only run on AHK v2.0 or later
-*
-* @reference https://www.autohotkey.com/docs/v2/lib/_Requires.htm
-*/
+ * ============================================================================
+ * AutoHotkey v2 #Requires Directive - Version Requirements
+ * ============================================================================
+ * 
+ * @description Comprehensive examples demonstrating #Requires directive for
+ *              version requirements in AutoHotkey v2 scripts
+ * 
+ * @author AHK v2 Documentation Team
+ * @version 2.0.0
+ * @date 2025-01-15
+ * 
+ * DIRECTIVE: #Requires
+ * PURPOSE: Specifies minimum AutoHotkey version required to run the script
+ * SYNTAX: #Requires AutoHotkey v2.0
+ *         #Requires AutoHotkey >=v2.0-beta.1
+ *         #Requires AutoHotkey v2.0.2
+ * 
+ * @example
+ * Basic Usage:
+ *   #Requires AutoHotkey v2.0
+ *   ; Script will only run on AHK v2.0 or later
+ * 
+ * @reference https://www.autohotkey.com/docs/v2/lib/_Requires.htm
+ */
 
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Example 1: Basic Version Requirement
-* ============================================================================
-*
-* @description Simple version requirement ensuring script runs on v2.0+
-* @concept Version enforcement, compatibility checking
-*/
+ * ============================================================================
+ * Example 1: Basic Version Requirement
+ * ============================================================================
+ * 
+ * @description Simple version requirement ensuring script runs on v2.0+
+ * @concept Version enforcement, compatibility checking
+ */
 
 ; This ensures the script only runs on AutoHotkey v2.0 or later
 #Requires AutoHotkey v2.0
 
 /**
-* Displays version information
-* @returns {void}
-*/
+ * Displays version information
+ * @returns {void}
+ */
 ShowVersionInfo() {
     versionInfo := "AutoHotkey Version Information`n"
     versionInfo .= "================================`n`n"
@@ -54,25 +54,25 @@ ShowVersionInfo() {
 }
 
 ; Hotkey to display version info
-^!v::ShowVersionInfo()
+^!v:: ShowVersionInfo()
 
 /**
-* ============================================================================
-* Example 2: Specific Version Requirement
-* ============================================================================
-*
-* @description Require exact version or higher with specific release
-* @concept Precise version targeting, feature compatibility
-*/
+ * ============================================================================
+ * Example 2: Specific Version Requirement
+ * ============================================================================
+ * 
+ * @description Require exact version or higher with specific release
+ * @concept Precise version targeting, feature compatibility
+ */
 
 ; Require AutoHotkey 2.0.2 or later (for specific bug fixes or features)
 ; #Requires AutoHotkey v2.0.2
 
 /**
-* Version comparison utility
-* @param {String} required - Required version string
-* @returns {Boolean} True if current version meets requirement
-*/
+ * Version comparison utility
+ * @param {String} required - Required version string
+ * @returns {Boolean} True if current version meets requirement
+ */
 CheckVersion(required) {
     current := A_AhkVersion
 
@@ -91,66 +91,66 @@ CheckVersion(required) {
 
     ; Compare versions
     if (cur.major != req.major)
-    return cur.major > req.major
+        return cur.major > req.major
     if (cur.minor != req.minor)
-    return cur.minor > req.minor
+        return cur.minor > req.minor
     return cur.patch >= req.patch
 }
 
 /**
-* Validate version requirements
-* @param {String} minVersion - Minimum required version
-* @returns {void}
-*/
+ * Validate version requirements
+ * @param {String} minVersion - Minimum required version
+ * @returns {void}
+ */
 ValidateVersion(minVersion) {
     if (!CheckVersion(minVersion)) {
         MsgBox(
-        "This script requires AutoHotkey v" minVersion " or later.`n"
-        "Current version: " A_AhkVersion "`n`n"
-        "Please update your AutoHotkey installation.",
-        "Version Error",
-        "Icon! 16"
+            "This script requires AutoHotkey v" minVersion " or later.`n"
+            "Current version: " A_AhkVersion "`n`n"
+            "Please update your AutoHotkey installation.",
+            "Version Error",
+            "Icon! 16"
         )
         ExitApp()
     }
 }
 
 ; Test version validation
-^!t::ValidateVersion("2.0.0")
+^!t:: ValidateVersion("2.0.0")
 
 /**
-* ============================================================================
-* Example 3: Beta/Pre-release Version Requirements
-* ============================================================================
-*
-* @description Handle beta and pre-release version requirements
-* @concept Pre-release testing, early feature adoption
-*/
+ * ============================================================================
+ * Example 3: Beta/Pre-release Version Requirements
+ * ============================================================================
+ * 
+ * @description Handle beta and pre-release version requirements
+ * @concept Pre-release testing, early feature adoption
+ */
 
 ; For scripts using beta features
 ; #Requires AutoHotkey >=v2.0-beta.1
 
 /**
-* Version type detector
-* @returns {String} Version type (release, beta, alpha, rc)
-*/
+ * Version type detector
+ * @returns {String} Version type (release, beta, alpha, rc)
+ */
 GetVersionType() {
     version := A_AhkVersion
 
     if InStr(version, "alpha")
-    return "Alpha"
+        return "Alpha"
     else if InStr(version, "beta")
-    return "Beta"
+        return "Beta"
     else if InStr(version, "rc")
-    return "Release Candidate"
+        return "Release Candidate"
     else
-    return "Release"
+        return "Release"
 }
 
 /**
-* Display detailed version analysis
-* @returns {void}
-*/
+ * Display detailed version analysis
+ * @returns {void}
+ */
 AnalyzeVersion() {
     info := "Detailed Version Analysis`n"
     info .= "=========================`n`n"
@@ -171,51 +171,51 @@ AnalyzeVersion() {
     MsgBox(info, "Version Analysis", "Iconi")
 }
 
-^!a::AnalyzeVersion()
+^!a:: AnalyzeVersion()
 
 /**
-* ============================================================================
-* Example 4: Multiple Requirement Handling
-* ============================================================================
-*
-* @description Handle multiple version requirements and compatibility
-* @concept Version ranges, compatibility matrices
-*/
+ * ============================================================================
+ * Example 4: Multiple Requirement Handling
+ * ============================================================================
+ * 
+ * @description Handle multiple version requirements and compatibility
+ * @concept Version ranges, compatibility matrices
+ */
 
 /**
-* Version compatibility checker
-* @class
-*/
+ * Version compatibility checker
+ * @class
+ */
 class VersionChecker {
     /**
-    * Minimum supported versions for different features
-    */
+     * Minimum supported versions for different features
+     */
     static Requirements := Map(
-    "CoreFeatures", "2.0.0",
-    "AdvancedGUI", "2.0.2",
-    "ImprovedHotkeys", "2.0.3",
-    "OptimizedMemory", "2.0.4"
+        "CoreFeatures", "2.0.0",
+        "AdvancedGUI", "2.0.2",
+        "ImprovedHotkeys", "2.0.3",
+        "OptimizedMemory", "2.0.4"
     )
 
     /**
-    * Check if feature is supported
-    * @param {String} feature - Feature name
-    * @returns {Boolean} True if supported
-    */
+     * Check if feature is supported
+     * @param {String} feature - Feature name
+     * @returns {Boolean} True if supported
+     */
     static IsFeatureSupported(feature) {
         if (!this.Requirements.Has(feature))
-        return false
+            return false
 
         required := this.Requirements[feature]
         return this.CompareVersions(A_AhkVersion, required) >= 0
     }
 
     /**
-    * Compare two version strings
-    * @param {String} v1 - First version
-    * @param {String} v2 - Second version
-    * @returns {Integer} -1 if v1 < v2, 0 if equal, 1 if v1 > v2
-    */
+     * Compare two version strings
+     * @param {String} v1 - First version
+     * @param {String} v2 - Second version
+     * @returns {Integer} -1 if v1 < v2, 0 if equal, 1 if v1 > v2
+     */
     static CompareVersions(v1, v2) {
         ; Parse version components
         parts1 := StrSplit(RegExReplace(v1, "[^\d.]", ""), ".")
@@ -227,29 +227,29 @@ class VersionChecker {
             num2 := Integer(parts2[A_Index] ?? 0)
 
             if (num1 != num2)
-            return (num1 > num2) ? 1 : -1
+                return (num1 > num2) ? 1 : -1
         }
 
         return 0
     }
 
     /**
-    * Get all supported features
-    * @returns {Array} List of supported feature names
-    */
+     * Get all supported features
+     * @returns {Array} List of supported feature names
+     */
     static GetSupportedFeatures() {
         supported := []
         for feature, version in this.Requirements {
             if this.IsFeatureSupported(feature)
-            supported.Push(feature)
+                supported.Push(feature)
         }
         return supported
     }
 
     /**
-    * Display compatibility report
-    * @returns {void}
-    */
+     * Display compatibility report
+     * @returns {void}
+     */
     static ShowCompatibilityReport() {
         report := "Feature Compatibility Report`n"
         report .= "============================`n"
@@ -266,31 +266,31 @@ class VersionChecker {
 }
 
 ; Show compatibility report
-^!c::VersionChecker.ShowCompatibilityReport()
+^!c:: VersionChecker.ShowCompatibilityReport()
 
 /**
-* ============================================================================
-* Example 5: Version-Dependent Feature Loading
-* ============================================================================
-*
-* @description Conditionally load features based on version
-* @concept Feature flags, graceful degradation
-*/
+ * ============================================================================
+ * Example 5: Version-Dependent Feature Loading
+ * ============================================================================
+ * 
+ * @description Conditionally load features based on version
+ * @concept Feature flags, graceful degradation
+ */
 
 /**
-* Feature loader with version checking
-* @class
-*/
+ * Feature loader with version checking
+ * @class
+ */
 class FeatureLoader {
     static LoadedFeatures := Map()
 
     /**
-    * Load feature if version supports it
-    * @param {String} featureName - Feature identifier
-    * @param {String} minVersion - Minimum required version
-    * @param {Func} loader - Function to load feature
-    * @returns {Boolean} True if loaded successfully
-    */
+     * Load feature if version supports it
+     * @param {String} featureName - Feature identifier
+     * @param {String} minVersion - Minimum required version
+     * @param {Func} loader - Function to load feature
+     * @returns {Boolean} True if loaded successfully
+     */
     static LoadFeature(featureName, minVersion, loader) {
         if (VersionChecker.CompareVersions(A_AhkVersion, minVersion) >= 0) {
             try {
@@ -308,18 +308,18 @@ class FeatureLoader {
     }
 
     /**
-    * Check if feature is loaded
-    * @param {String} featureName - Feature identifier
-    * @returns {Boolean} True if loaded
-    */
+     * Check if feature is loaded
+     * @param {String} featureName - Feature identifier
+     * @returns {Boolean} True if loaded
+     */
     static IsLoaded(featureName) {
         return this.LoadedFeatures.Get(featureName, false)
     }
 
     /**
-    * Initialize all features
-    * @returns {void}
-    */
+     * Initialize all features
+     * @returns {void}
+     */
     static Initialize() {
         ; Load core features
         this.LoadFeature("BasicHotkeys", "2.0.0", () => this.LoadBasicHotkeys())
@@ -331,36 +331,36 @@ class FeatureLoader {
     }
 
     /**
-    * Load basic hotkey features
-    * @returns {void}
-    */
+     * Load basic hotkey features
+     * @returns {void}
+     */
     static LoadBasicHotkeys() {
         ; Basic hotkey setup
         OutputDebug("Loading basic hotkeys...")
     }
 
     /**
-    * Load advanced GUI features
-    * @returns {void}
-    */
+     * Load advanced GUI features
+     * @returns {void}
+     */
     static LoadAdvancedGUI() {
         ; Advanced GUI initialization
         OutputDebug("Loading advanced GUI features...")
     }
 
     /**
-    * Load performance optimization features
-    * @returns {void}
-    */
+     * Load performance optimization features
+     * @returns {void}
+     */
     static LoadPerformanceFeatures() {
         ; Performance optimizations
         OutputDebug("Loading performance features...")
     }
 
     /**
-    * Display feature load report
-    * @returns {void}
-    */
+     * Display feature load report
+     * @returns {void}
+     */
     static ShowLoadReport() {
         report := "Feature Load Report`n"
         report .= "===================`n`n"
@@ -378,24 +378,24 @@ class FeatureLoader {
 FeatureLoader.Initialize()
 
 /**
-* ============================================================================
-* Example 6: Version Upgrade Migration Helper
-* ============================================================================
-*
-* @description Help users migrate from v1 to v2 with version detection
-* @concept Migration assistance, compatibility warnings
-*/
+ * ============================================================================
+ * Example 6: Version Upgrade Migration Helper
+ * ============================================================================
+ * 
+ * @description Help users migrate from v1 to v2 with version detection
+ * @concept Migration assistance, compatibility warnings
+ */
 
 /**
-* Migration helper for v1 to v2 transition
-* @class
-*/
+ * Migration helper for v1 to v2 transition
+ * @class
+ */
 class MigrationHelper {
     /**
-    * Check for v1 syntax patterns
-    * @param {String} scriptPath - Path to script file
-    * @returns {Array} List of potential issues
-    */
+     * Check for v1 syntax patterns
+     * @param {String} scriptPath - Path to script file
+     * @returns {Array} List of potential issues
+     */
     static DetectV1Patterns(scriptPath := A_ScriptFullPath) {
         issues := []
 
@@ -404,16 +404,16 @@ class MigrationHelper {
 
             ; Common v1 patterns
             patterns := Map(
-            "Command syntax", "i)^\s*(MsgBox|FileAppend|FileRead)\s+[^,(]",
-            "Expression assignment", ":=\s*%\w+%",
-            "Legacy if statement", "i)^\s*if\s+\w+\s*=",
-            "Old string concat", "\.=",
-            "Function comma syntax", "i)^\s*\w+\(.*,\s*,.*\)"
+                "Command syntax", "i)^\s*(MsgBox|FileAppend|FileRead)\s+[^,(]",
+                "Expression assignment", ":=\s*%\w+%",
+                "Legacy if statement", "i)^\s*if\s+\w+\s*=",
+                "Old string concat", "\.=",
+                "Function comma syntax", "i)^\s*\w+\(.*,\s*,.*\)"
             )
 
             for issue, pattern in patterns {
                 if RegExMatch(content, pattern)
-                issues.Push(issue)
+                    issues.Push(issue)
             }
         }
 
@@ -421,9 +421,9 @@ class MigrationHelper {
     }
 
     /**
-    * Show migration report
-    * @returns {void}
-    */
+     * Show migration report
+     * @returns {void}
+     */
     static ShowMigrationReport() {
         issues := this.DetectV1Patterns()
 
@@ -448,30 +448,30 @@ class MigrationHelper {
 }
 
 ; Run migration check
-^!m::MigrationHelper.ShowMigrationReport()
+^!m:: MigrationHelper.ShowMigrationReport()
 
 /**
-* ============================================================================
-* Example 7: Runtime Version Enforcement
-* ============================================================================
-*
-* @description Enforce version requirements at runtime with detailed errors
-* @concept Runtime validation, user-friendly error messages
-*/
+ * ============================================================================
+ * Example 7: Runtime Version Enforcement
+ * ============================================================================
+ * 
+ * @description Enforce version requirements at runtime with detailed errors
+ * @concept Runtime validation, user-friendly error messages
+ */
 
 /**
-* Runtime version enforcement system
-* @class
-*/
+ * Runtime version enforcement system
+ * @class
+ */
 class VersionEnforcer {
     static MinimumVersion := "2.0.0"
     static RecommendedVersion := "2.0.2"
 
     /**
-    * Enforce version requirements
-    * @param {Boolean} strict - Exit if requirement not met
-    * @returns {Boolean} True if requirements met
-    */
+     * Enforce version requirements
+     * @param {Boolean} strict - Exit if requirement not met
+     * @returns {Boolean} True if requirements met
+     */
     static Enforce(strict := true) {
         current := A_AhkVersion
 
@@ -479,7 +479,7 @@ class VersionEnforcer {
         if (VersionChecker.CompareVersions(current, this.MinimumVersion) < 0) {
             this.ShowVersionError(current, this.MinimumVersion)
             if strict
-            ExitApp(1)
+                ExitApp(1)
             return false
         }
 
@@ -492,11 +492,11 @@ class VersionEnforcer {
     }
 
     /**
-    * Display version error
-    * @param {String} current - Current version
-    * @param {String} required - Required version
-    * @returns {void}
-    */
+     * Display version error
+     * @param {String} current - Current version
+     * @param {String} required - Required version
+     * @returns {void}
+     */
     static ShowVersionError(current, required) {
         msg := "Version Requirement Not Met`n"
         msg .= "===========================`n`n"
@@ -511,11 +511,11 @@ class VersionEnforcer {
     }
 
     /**
-    * Display version warning
-    * @param {String} current - Current version
-    * @param {String} recommended - Recommended version
-    * @returns {void}
-    */
+     * Display version warning
+     * @param {String} current - Current version
+     * @param {String} recommended - Recommended version
+     * @returns {void}
+     */
     static ShowVersionWarning(current, recommended) {
         msg := "Version Update Recommended`n"
         msg .= "==========================`n`n"
@@ -528,7 +528,7 @@ class VersionEnforcer {
         result := MsgBox(msg, "Update Available", "Icon! YesNo")
 
         if (result = "Yes")
-        Run("https://www.autohotkey.com/download/")
+            Run("https://www.autohotkey.com/download/")
     }
 }
 
@@ -536,18 +536,18 @@ class VersionEnforcer {
 VersionEnforcer.Enforce(false)
 
 ; Manual version check hotkey
-^!e::VersionEnforcer.Enforce(false)
+^!e:: VersionEnforcer.Enforce(false)
 
 /**
-* ============================================================================
-* UTILITY FUNCTIONS
-* ============================================================================
-*/
+ * ============================================================================
+ * UTILITY FUNCTIONS
+ * ============================================================================
+ */
 
 /**
-* Show comprehensive version information
-* @returns {void}
-*/
+ * Show comprehensive version information
+ * @returns {void}
+ */
 ShowCompleteVersionInfo() {
     info := "Complete AutoHotkey Information`n"
     info .= "================================`n`n"
@@ -572,13 +572,13 @@ ShowCompleteVersionInfo() {
 }
 
 ; Hotkey for complete info
-^!i::ShowCompleteVersionInfo()
+^!i:: ShowCompleteVersionInfo()
 
 /**
-* ============================================================================
-* MAIN SCRIPT EXECUTION
-* ============================================================================
-*/
+ * ============================================================================
+ * MAIN SCRIPT EXECUTION
+ * ============================================================================
+ */
 
 ; Display startup message
 TrayTip("AHK Version: " A_AhkVersion, "Script Started", "Iconi Mute")
@@ -589,8 +589,8 @@ if (VersionChecker.CompareVersions(A_AhkVersion, "2.0.0") >= 0) {
 }
 
 /**
-* Exit handler
-*/
+ * Exit handler
+ */
 OnExit(ExitHandler)
 ExitHandler(ExitReason, ExitCode) {
     OutputDebug("Script exiting: " ExitReason " (Code: " ExitCode ")")

@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Psapi_01_Performance.ahk
-*
-* DESCRIPTION:
-* Demonstrates Process performance monitoring using Windows API through DllCall.
-* Comprehensive examples showing various Performance operations.
-*
-* FEATURES:
-* - Performance API integration
-* - Practical Performance examples
-* - Error handling
-* - Resource management
-* - Advanced Performance techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Psapi API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Psapi API functions
-* 2. Working with Performance operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Performance techniques
-* 6. Best practices for Psapi API
-* 7. Real-world Performance applications
-*/
+ * BuiltIn_DllCall_Psapi_01_Performance.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Process performance monitoring using Windows API through DllCall.
+ * Comprehensive examples showing various Performance operations.
+ * 
+ * FEATURES:
+ * - Performance API integration
+ * - Practical Performance examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Performance techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Psapi API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Psapi API functions
+ * 2. Working with Performance operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Performance techniques
+ * 6. Best practices for Psapi API
+ * 7. Real-world Performance applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Performance Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Performance operations
-*/
+ * Helper function for Performance operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Performance Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

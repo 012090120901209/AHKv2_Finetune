@@ -1,44 +1,44 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Kernel32_02_Files.ahk
-*
-* DESCRIPTION:
-* Demonstrates file operations using Windows API through DllCall.
-* Shows how to create, open, read, write, and manipulate files using low-level
-* Windows API functions for maximum control and performance.
-*
-* FEATURES:
-* - Creating and opening files with CreateFile
-* - Reading and writing files with ReadFile and WriteFile
-* - File pointer manipulation (SetFilePointer)
-* - Getting and setting file attributes
-* - File locking mechanisms
-* - Asynchronous file I/O
-* - File mapping for fast access
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft File Management API
-* https://docs.microsoft.com/en-us/windows/win32/fileio/file-management-functions
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with file handling functions
-* - Handle management and cleanup
-* - Buffer operations for file I/O
-* - Error handling with GetLastError
-* - Working with file attributes and times
-*
-* LEARNING POINTS:
-* 1. Using CreateFile for different access modes
-* 2. Reading and writing data with Windows API
-* 3. File pointer positioning and seeking
-* 4. Setting file attributes (hidden, readonly, etc.)
-* 5. Locking files and regions
-* 6. Getting file size and information
-* 7. Memory-mapped file I/O
-*/
+ * BuiltIn_DllCall_Kernel32_02_Files.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates file operations using Windows API through DllCall.
+ * Shows how to create, open, read, write, and manipulate files using low-level
+ * Windows API functions for maximum control and performance.
+ * 
+ * FEATURES:
+ * - Creating and opening files with CreateFile
+ * - Reading and writing files with ReadFile and WriteFile
+ * - File pointer manipulation (SetFilePointer)
+ * - Getting and setting file attributes
+ * - File locking mechanisms
+ * - Asynchronous file I/O
+ * - File mapping for fast access
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft File Management API
+ * https://docs.microsoft.com/en-us/windows/win32/fileio/file-management-functions
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with file handling functions
+ * - Handle management and cleanup
+ * - Buffer operations for file I/O
+ * - Error handling with GetLastError
+ * - Working with file attributes and times
+ * 
+ * LEARNING POINTS:
+ * 1. Using CreateFile for different access modes
+ * 2. Reading and writing data with Windows API
+ * 3. File pointer positioning and seeking
+ * 4. Setting file attributes (hidden, readonly, etc.)
+ * 5. Locking files and regions
+ * 6. Getting file size and information
+ * 7. Memory-mapped file I/O
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Creating and Opening Files
@@ -71,14 +71,14 @@ Example1_CreateOpenFiles() {
 
     ; Create new file for writing
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile                    ; lpFileName
-    , "UInt", GENERIC_WRITE              ; dwDesiredAccess
-    , "UInt", 0                          ; dwShareMode (exclusive)
-    , "Ptr", 0                           ; lpSecurityAttributes
-    , "UInt", CREATE_ALWAYS              ; dwCreationDisposition
-    , "UInt", FILE_ATTRIBUTE_NORMAL      ; dwFlagsAndAttributes
-    , "Ptr", 0                           ; hTemplateFile
-    , "Ptr")                             ; Return: file handle
+        , "Str", testFile                    ; lpFileName
+        , "UInt", GENERIC_WRITE              ; dwDesiredAccess
+        , "UInt", 0                          ; dwShareMode (exclusive)
+        , "Ptr", 0                           ; lpSecurityAttributes
+        , "UInt", CREATE_ALWAYS              ; dwCreationDisposition
+        , "UInt", FILE_ATTRIBUTE_NORMAL      ; dwFlagsAndAttributes
+        , "Ptr", 0                           ; hTemplateFile
+        , "Ptr")                             ; Return: file handle
 
     if (hFile = INVALID_HANDLE_VALUE) {
         MsgBox("Failed to create file!`nError: " . DllCall("Kernel32.dll\GetLastError", "UInt"), "Error")
@@ -92,14 +92,14 @@ Example1_CreateOpenFiles() {
 
     ; Now open for reading
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ
-    , "UInt", FILE_SHARE_READ
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ
+        , "UInt", FILE_SHARE_READ
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     if (hFile != INVALID_HANDLE_VALUE) {
         MsgBox("Opened file for reading successfully!", "Success")
@@ -108,14 +108,14 @@ Example1_CreateOpenFiles() {
 
     ; Open for both reading and writing
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ | GENERIC_WRITE
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ | GENERIC_WRITE
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     if (hFile != INVALID_HANDLE_VALUE) {
         MsgBox("Opened file for read/write successfully!", "Success")
@@ -143,14 +143,14 @@ Example2_ReadWriteFiles() {
 
     ; Create and write to file
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_WRITE
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", CREATE_ALWAYS
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_WRITE
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", CREATE_ALWAYS
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     if (hFile = INVALID_HANDLE_VALUE) {
         MsgBox("Failed to create file!", "Error")
@@ -167,31 +167,31 @@ Example2_ReadWriteFiles() {
     ; Write to file
     bytesWritten := Buffer(4, 0)
     success := DllCall("Kernel32.dll\WriteFile"
-    , "Ptr", hFile                   ; hFile
-    , "Ptr", dataBuffer.Ptr          ; lpBuffer
-    , "UInt", bytesToWrite           ; nNumberOfBytesToWrite
-    , "Ptr", bytesWritten.Ptr        ; lpNumberOfBytesWritten
-    , "Ptr", 0                       ; lpOverlapped
-    , "Int")                         ; Return: success
+        , "Ptr", hFile                   ; hFile
+        , "Ptr", dataBuffer.Ptr          ; lpBuffer
+        , "UInt", bytesToWrite           ; nNumberOfBytesToWrite
+        , "Ptr", bytesWritten.Ptr        ; lpNumberOfBytesWritten
+        , "Ptr", 0                       ; lpOverlapped
+        , "Int")                         ; Return: success
 
     written := NumGet(bytesWritten, 0, "UInt")
 
     if (success)
-    MsgBox(Format("Wrote {} bytes to file", written), "Write Success")
+        MsgBox(Format("Wrote {} bytes to file", written), "Write Success")
 
     ; Close file
     DllCall("Kernel32.dll\CloseHandle", "Ptr", hFile, "Int")
 
     ; Now read the file
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     if (hFile = INVALID_HANDLE_VALUE) {
         MsgBox("Failed to open file for reading!", "Error")
@@ -200,21 +200,21 @@ Example2_ReadWriteFiles() {
 
     ; Get file size
     fileSize := DllCall("Kernel32.dll\GetFileSize"
-    , "Ptr", hFile
-    , "Ptr", 0
-    , "UInt")
+        , "Ptr", hFile
+        , "Ptr", 0
+        , "UInt")
 
     ; Read the file
     readBuffer := Buffer(fileSize + 1, 0)
     bytesRead := Buffer(4, 0)
 
     success := DllCall("Kernel32.dll\ReadFile"
-    , "Ptr", hFile
-    , "Ptr", readBuffer.Ptr
-    , "UInt", fileSize
-    , "Ptr", bytesRead.Ptr
-    , "Ptr", 0
-    , "Int")
+        , "Ptr", hFile
+        , "Ptr", readBuffer.Ptr
+        , "UInt", fileSize
+        , "Ptr", bytesRead.Ptr
+        , "Ptr", 0
+        , "Int")
 
     read := NumGet(bytesRead, 0, "UInt")
 
@@ -250,14 +250,14 @@ Example3_FilePointer() {
 
     ; Create file and write numbered data
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_WRITE
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", CREATE_ALWAYS
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_WRITE
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", CREATE_ALWAYS
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     ; Write numbers 1-100
     bytesWritten := Buffer(4, 0)
@@ -265,26 +265,26 @@ Example3_FilePointer() {
         numBuffer := Buffer(4, 0)
         NumPut("Int", A_Index, numBuffer, 0)
         DllCall("Kernel32.dll\WriteFile"
-        , "Ptr", hFile
-        , "Ptr", numBuffer.Ptr
-        , "UInt", 4
-        , "Ptr", bytesWritten.Ptr
-        , "Ptr", 0
-        , "Int")
+            , "Ptr", hFile
+            , "Ptr", numBuffer.Ptr
+            , "UInt", 4
+            , "Ptr", bytesWritten.Ptr
+            , "Ptr", 0
+            , "Int")
     }
 
     DllCall("Kernel32.dll\CloseHandle", "Ptr", hFile, "Int")
 
     ; Open for reading
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     ; Read number at position 0 (first number)
     numBuffer := Buffer(4, 0)
@@ -294,22 +294,22 @@ Example3_FilePointer() {
 
     ; Seek to middle (50th number - position 49 * 4 = 196)
     newPos := DllCall("Kernel32.dll\SetFilePointer"
-    , "Ptr", hFile
-    , "Int", 49 * 4
-    , "Ptr", 0
-    , "UInt", FILE_BEGIN
-    , "UInt")
+        , "Ptr", hFile
+        , "Int", 49 * 4
+        , "Ptr", 0
+        , "UInt", FILE_BEGIN
+        , "UInt")
 
     DllCall("Kernel32.dll\ReadFile", "Ptr", hFile, "Ptr", numBuffer.Ptr, "UInt", 4, "Ptr", bytesRead.Ptr, "Ptr", 0, "Int")
     num50 := NumGet(numBuffer, 0, "Int")
 
     ; Seek to end
     endPos := DllCall("Kernel32.dll\SetFilePointer"
-    , "Ptr", hFile
-    , "Int", 0
-    , "Ptr", 0
-    , "UInt", FILE_END
-    , "UInt")
+        , "Ptr", hFile
+        , "Int", 0
+        , "Ptr", 0
+        , "UInt", FILE_END
+        , "UInt")
 
     ; Seek back 4 bytes from end (last number)
     DllCall("Kernel32.dll\SetFilePointer", "Ptr", hFile, "Int", -4, "Ptr", 0, "UInt", FILE_END, "UInt")
@@ -317,7 +317,7 @@ Example3_FilePointer() {
     num100 := NumGet(numBuffer, 0, "Int")
 
     MsgBox(Format("File pointer positioning:`n`nFirst number: {}`n50th number: {}`nLast number: {}`n`nFile size: {} bytes",
-    num1, num50, num100, endPos), "Results")
+        num1, num50, num100, endPos), "Results")
 
     DllCall("Kernel32.dll\CloseHandle", "Ptr", hFile, "Int")
     FileDelete(testFile)
@@ -344,19 +344,19 @@ Example4_FileAttributes() {
 
     ; Get current attributes
     attrs := DllCall("Kernel32.dll\GetFileAttributesW"
-    , "Str", testFile
-    , "UInt")
+        , "Str", testFile
+        , "UInt")
 
     if (attrs != 0xFFFFFFFF) {
         attrNames := []
         if (attrs & FILE_ATTRIBUTE_READONLY)
-        attrNames.Push("ReadOnly")
+            attrNames.Push("ReadOnly")
         if (attrs & FILE_ATTRIBUTE_HIDDEN)
-        attrNames.Push("Hidden")
+            attrNames.Push("Hidden")
         if (attrs & FILE_ATTRIBUTE_SYSTEM)
-        attrNames.Push("System")
+            attrNames.Push("System")
         if (attrs & FILE_ATTRIBUTE_ARCHIVE)
-        attrNames.Push("Archive")
+            attrNames.Push("Archive")
 
         MsgBox(Format("Current attributes: 0x{:X}`n`n{}", attrs, StrJoin(attrNames, ", ")), "Attributes")
     }
@@ -365,21 +365,21 @@ Example4_FileAttributes() {
     newAttrs := FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_READONLY
 
     success := DllCall("Kernel32.dll\SetFileAttributesW"
-    , "Str", testFile
-    , "UInt", newAttrs
-    , "Int")
+        , "Str", testFile
+        , "UInt", newAttrs
+        , "Int")
 
     if (success)
-    MsgBox("Set file to Hidden and ReadOnly", "Success")
+        MsgBox("Set file to Hidden and ReadOnly", "Success")
 
     Sleep(1000)
 
     ; Verify
     attrs := DllCall("Kernel32.dll\GetFileAttributesW", "Str", testFile, "UInt")
     MsgBox(Format("New attributes: 0x{:X}`nHidden: {}`nReadOnly: {}",
-    attrs,
-    attrs & FILE_ATTRIBUTE_HIDDEN ? "Yes" : "No",
-    attrs & FILE_ATTRIBUTE_READONLY ? "Yes" : "No"), "Verification")
+        attrs,
+        attrs & FILE_ATTRIBUTE_HIDDEN ? "Yes" : "No",
+        attrs & FILE_ATTRIBUTE_READONLY ? "Yes" : "No"), "Verification")
 
     ; Remove attributes
     DllCall("Kernel32.dll\SetFileAttributesW", "Str", testFile, "UInt", FILE_ATTRIBUTE_NORMAL, "Int")
@@ -405,14 +405,14 @@ Example5_FileTimes() {
 
     ; Open file
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ | GENERIC_WRITE
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ | GENERIC_WRITE
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     if (hFile = INVALID_HANDLE_VALUE) {
         MsgBox("Failed to open file!", "Error")
@@ -425,11 +425,11 @@ Example5_FileTimes() {
     lastWriteTime := Buffer(8, 0)
 
     success := DllCall("Kernel32.dll\GetFileTime"
-    , "Ptr", hFile
-    , "Ptr", creationTime.Ptr
-    , "Ptr", lastAccessTime.Ptr
-    , "Ptr", lastWriteTime.Ptr
-    , "Int")
+        , "Ptr", hFile
+        , "Ptr", creationTime.Ptr
+        , "Ptr", lastAccessTime.Ptr
+        , "Ptr", lastWriteTime.Ptr
+        , "Int")
 
     if (success) {
         ; Convert FILETIME to SYSTEMTIME for display
@@ -467,7 +467,7 @@ StrJoin(arr, delimiter) {
     result := ""
     for item in arr {
         if (result != "")
-        result .= delimiter
+            result .= delimiter
         result .= item
     }
     return result
@@ -489,14 +489,14 @@ Example6_FileLocking() {
 
     ; Create and open file
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ | GENERIC_WRITE
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", CREATE_ALWAYS
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ | GENERIC_WRITE
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", CREATE_ALWAYS
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     ; Write data
     data := "This is locked data"
@@ -507,27 +507,27 @@ Example6_FileLocking() {
 
     ; Lock first 10 bytes
     success := DllCall("Kernel32.dll\LockFile"
-    , "Ptr", hFile
-    , "UInt", 0          ; dwFileOffsetLow
-    , "UInt", 0          ; dwFileOffsetHigh
-    , "UInt", 10         ; nNumberOfBytesToLockLow
-    , "UInt", 0          ; nNumberOfBytesToLockHigh
-    , "Int")
+        , "Ptr", hFile
+        , "UInt", 0          ; dwFileOffsetLow
+        , "UInt", 0          ; dwFileOffsetHigh
+        , "UInt", 10         ; nNumberOfBytesToLockLow
+        , "UInt", 0          ; nNumberOfBytesToLockHigh
+        , "Int")
 
     if (success)
-    MsgBox("Locked first 10 bytes of file", "Success")
+        MsgBox("Locked first 10 bytes of file", "Success")
 
     ; Try to open file from another handle (should fail or have limited access)
     MsgBox("File region is locked.`nTrying to access it from another handle would fail.", "Info")
 
     ; Unlock the region
     DllCall("Kernel32.dll\UnlockFile"
-    , "Ptr", hFile
-    , "UInt", 0
-    , "UInt", 0
-    , "UInt", 10
-    , "UInt", 0
-    , "Int")
+        , "Ptr", hFile
+        , "UInt", 0
+        , "UInt", 0
+        , "UInt", 10
+        , "UInt", 0
+        , "Int")
 
     MsgBox("Unlocked file region", "Success")
 
@@ -554,14 +554,14 @@ Example7_AdvancedOperations() {
 
     ; Create binary file
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_WRITE
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", CREATE_ALWAYS
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_WRITE
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", CREATE_ALWAYS
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     ; Write structured binary data
     bytesWritten := Buffer(4, 0)
@@ -590,14 +590,14 @@ Example7_AdvancedOperations() {
 
     ; Read and parse the file
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     bytesRead := Buffer(4, 0)
 
@@ -653,7 +653,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "File Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_CreateOpenFiles()

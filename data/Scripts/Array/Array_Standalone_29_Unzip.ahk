@@ -3,11 +3,11 @@
 #Include JSON.ahk
 
 /**
-* Unzip() - Unzip grouped elements (Standalone Implementation)
-*
-* The inverse of Zip; accepts an array of grouped elements and creates
-* an array regrouping the elements to their pre-zip configuration.
-*/
+ * Unzip() - Unzip grouped elements (Standalone Implementation)
+ * 
+ * The inverse of Zip; accepts an array of grouped elements and creates
+ * an array regrouping the elements to their pre-zip configuration.
+ */
 
 Unzip(zippedArray) {
     if (zippedArray.Length = 0) {

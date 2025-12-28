@@ -149,44 +149,44 @@ ExecuteChord(chord) {
 
     Switch chord {
         case "f+j":
-        Send("^c")  ; Copy
+            Send("^c")  ; Copy
 
         case "d+k":
-        Send("^v")  ; Paste
+            Send("^v")  ; Paste
 
         case "s+l":
-        Send("^s")  ; Save
+            Send("^s")  ; Save
 
         case "a+;":
-        Send("^a")  ; Select All
+            Send("^a")  ; Select All
 
         case "1+2":
-        Run("calc.exe")
+            Run("calc.exe")
 
         case "3+4":
-        Run("notepad.exe")
+            Run("notepad.exe")
 
         case "7+8":
-        SoundSetVolume("+5")
-        vol := Round(SoundGetVolume())
-        ShowChordFeedback("Volume: " vol "%")
+            SoundSetVolume("+5")
+            vol := Round(SoundGetVolume())
+            ShowChordFeedback("Volume: " vol "%")
 
         case "9+0":
-        SoundSetVolume("-5")
-        vol := Round(SoundGetVolume())
-        ShowChordFeedback("Volume: " vol "%")
+            SoundSetVolume("-5")
+            vol := Round(SoundGetVolume())
+            ShowChordFeedback("Volume: " vol "%")
 
         case "Left+Right":
-        Send("{Home}")
+            Send("{Home}")
 
         case "Up+Down":
-        Send("{End}")
+            Send("{End}")
 
         case "q+w+e":
-        WinClose("A")
+            WinClose("A")
 
         default:
-        ShowChordFeedback("Unknown chord")
+            ShowChordFeedback("Unknown chord")
     }
 }
 

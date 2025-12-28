@@ -4,10 +4,10 @@
 #Include <adash>
 
 /**
-* _.union() - Create array union
-*
-* Creates an array of unique values, in order, from all given arrays.
-*/
+ * _.union() - Create array union
+ * 
+ * Creates an array of unique values, in order, from all given arrays.
+ */
 
 result := _.union([2], [1, 2])
 ; => [2, 1]

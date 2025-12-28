@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Buffer_04_Advanced.ahk
-*
-* DESCRIPTION:
-* Advanced Buffer techniques including circular buffers, ring buffers, memory-mapped
-* patterns, and high-performance data processing scenarios.
-*
-* FEATURES:
-* - Circular/ring buffer implementation
-* - Double buffering for rendering
-* - Memory-mapped file simulation
-* - Bit manipulation in buffers
-* - Custom allocator patterns
-* - Zero-copy techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Advanced Buffer Techniques
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced pointer arithmetic
-* - Efficient memory reuse strategies
-* - Bit-level buffer operations
-* - Performance optimization patterns
-* - Thread-safe buffer concepts
-*
-* LEARNING POINTS:
-* 1. Circular buffers enable efficient FIFO without memory reallocation
-* 2. Double buffering prevents tearing in rendering scenarios
-* 3. Bit manipulation allows compact data storage
-* 4. Memory reuse patterns reduce allocation overhead
-* 5. Understanding buffer internals enables advanced optimizations
-*/
+ * BuiltIn_Buffer_04_Advanced.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced Buffer techniques including circular buffers, ring buffers, memory-mapped
+ * patterns, and high-performance data processing scenarios.
+ * 
+ * FEATURES:
+ * - Circular/ring buffer implementation
+ * - Double buffering for rendering
+ * - Memory-mapped file simulation
+ * - Bit manipulation in buffers
+ * - Custom allocator patterns
+ * - Zero-copy techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Advanced Buffer Techniques
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced pointer arithmetic
+ * - Efficient memory reuse strategies
+ * - Bit-level buffer operations
+ * - Performance optimization patterns
+ * - Thread-safe buffer concepts
+ * 
+ * LEARNING POINTS:
+ * 1. Circular buffers enable efficient FIFO without memory reallocation
+ * 2. Double buffering prevents tearing in rendering scenarios
+ * 3. Bit manipulation allows compact data storage
+ * 4. Memory reuse patterns reduce allocation overhead
+ * 5. Understanding buffer internals enables advanced optimizations
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Circular/Ring Buffer
@@ -296,9 +296,9 @@ Example5_HighPerformance() {
     result .= "  Batch processing (4x): " . time2 . "ms`n"
 
     if time1 > 0
-    result .= "  Speedup: " . Round(time1 / time2, 2) . "x`n`n"
+        result .= "  Speedup: " . Round(time1 / time2, 2) . "x`n`n"
     else
-    result .= "`n"
+        result .= "`n"
 
     result .= "Sample Results (first 10):`n"
     result .= "  Input:  "
@@ -339,7 +339,7 @@ ShowMenu() {
     choice := InputBox(menu, "Advanced Buffer Examples", "w400 h300")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_CircularBuffer()
@@ -368,7 +368,7 @@ class CircularBuffer {
     ; Add element to buffer
     Enqueue(value) {
         if this.IsFull()
-        throw Error("Buffer is full")
+            throw Error("Buffer is full")
 
         NumPut("Int", value, this.buffer, this.head * 4)
         this.head := Mod(this.head + 1, this.capacity)
@@ -379,7 +379,7 @@ class CircularBuffer {
     ; Remove and return element from buffer
     Dequeue() {
         if this.IsEmpty()
-        throw Error("Buffer is empty")
+            throw Error("Buffer is empty")
 
         value := NumGet(this.buffer, this.tail * 4, "Int")
         this.tail := Mod(this.tail + 1, this.capacity)
@@ -390,7 +390,7 @@ class CircularBuffer {
     ; Peek at next element without removing
     Peek() {
         if this.IsEmpty()
-        throw Error("Buffer is empty")
+            throw Error("Buffer is empty")
         return NumGet(this.buffer, this.tail * 4, "Int")
     }
 
@@ -447,7 +447,7 @@ class DoubleBuffer {
     ; Set pixel in back buffer (RGBA)
     SetPixel(x, y, r, g, b, a := 255) {
         if x < 0 || x >= this.width || y < 0 || y >= this.height
-        return false
+            return false
 
         offset := (y * this.width + x) * this.pixelSize
         NumPut("UChar", r, this.backBuffer, offset)
@@ -462,7 +462,7 @@ class DoubleBuffer {
     ; Get pixel from front buffer
     GetPixel(x, y) {
         if x < 0 || x >= this.width || y < 0 || y >= this.height
-        return {r: 0, g: 0, b: 0, a: 0}
+            return { r: 0, g: 0, b: 0, a: 0 }
 
         offset := (y * this.width + x) * this.pixelSize
         return {
@@ -476,14 +476,14 @@ class DoubleBuffer {
     ; Swap buffers (present back buffer to front)
     Swap() {
         if !this.isBackBufferDirty
-        return false
+            return false
 
         ; Fast memory copy
         bufferSize := this.width * this.height * this.pixelSize
         DllCall("RtlMoveMemory"
-        , "Ptr", this.frontBuffer.Ptr
-        , "Ptr", this.backBuffer.Ptr
-        , "UPtr", bufferSize)
+            , "Ptr", this.frontBuffer.Ptr
+            , "Ptr", this.backBuffer.Ptr
+            , "UPtr", bufferSize)
 
         this.isBackBufferDirty := false
         return true
@@ -513,7 +513,7 @@ class DoubleBuffer {
             this.SetPixel(x1, y1, r, g, b)
 
             if x1 = x2 && y1 = y2
-            break
+                break
 
             e2 := 2 * err
             if e2 > -dy {
@@ -540,7 +540,7 @@ class BitArray {
     ; Set bit at index
     SetBit(index) {
         if index < 0 || index >= this.numBits
-        return false
+            return false
 
         byteIndex := index >> 3  ; Divide by 8
         bitIndex := index & 7    ; Modulo 8
@@ -554,7 +554,7 @@ class BitArray {
     ; Clear bit at index
     ClearBit(index) {
         if index < 0 || index >= this.numBits
-        return false
+            return false
 
         byteIndex := index >> 3
         bitIndex := index & 7
@@ -568,7 +568,7 @@ class BitArray {
     ; Get bit at index
     GetBit(index) {
         if index < 0 || index >= this.numBits
-        return false
+            return false
 
         byteIndex := index >> 3
         bitIndex := index & 7
@@ -580,7 +580,7 @@ class BitArray {
     ; Toggle bit at index
     ToggleBit(index) {
         if index < 0 || index >= this.numBits
-        return false
+            return false
 
         byteIndex := index >> 3
         bitIndex := index & 7
@@ -612,10 +612,10 @@ class BitArray {
         loop limit {
             str .= this.GetBit(A_Index - 1) ? "1" : "0"
             if Mod(A_Index, 8) = 0 && A_Index < limit
-            str .= " "
+                str .= " "
         }
         if this.numBits > maxBits
-        str .= "..."
+            str .= "..."
         return str
     }
 }
@@ -634,12 +634,12 @@ class MemoryMappedFile {
     ; Write data at offset
     Write(offset, data, dataSize) {
         if offset < 0 || offset + dataSize > this.size
-        return false
+            return false
 
         DllCall("RtlMoveMemory"
-        , "Ptr", this.buffer.Ptr + offset
-        , "Ptr", data.Ptr
-        , "UPtr", dataSize)
+            , "Ptr", this.buffer.Ptr + offset
+            , "Ptr", data.Ptr
+            , "UPtr", dataSize)
 
         this.dirty := true
         return true
@@ -648,13 +648,13 @@ class MemoryMappedFile {
     ; Read data from offset
     Read(offset, size) {
         if offset < 0 || offset + size > this.size
-        return Buffer(0)
+            return Buffer(0)
 
         result := Buffer(size)
         DllCall("RtlMoveMemory"
-        , "Ptr", result.Ptr
-        , "Ptr", this.buffer.Ptr + offset
-        , "UPtr", size)
+            , "Ptr", result.Ptr
+            , "Ptr", this.buffer.Ptr + offset
+            , "UPtr", size)
 
         return result
     }
@@ -662,7 +662,7 @@ class MemoryMappedFile {
     ; Write integer at offset
     WriteInt(offset, value) {
         if offset < 0 || offset + 4 > this.size
-        return false
+            return false
 
         NumPut("Int", value, this.buffer, offset)
         this.dirty := true
@@ -672,14 +672,14 @@ class MemoryMappedFile {
     ; Read integer from offset
     ReadInt(offset) {
         if offset < 0 || offset + 4 > this.size
-        return 0
+            return 0
         return NumGet(this.buffer, offset, "Int")
     }
 
     ; Flush changes (simulate writing to disk)
     Flush() {
         if !this.dirty
-        return 0
+            return 0
 
         ; In real implementation, would write to file
         bytesWritten := this.size
@@ -727,7 +727,7 @@ class DataProcessor {
     ; Get results
     GetResults() {
         if this.processCount = 0
-        return []
+            return []
 
         results := []
         loop this.processCount {

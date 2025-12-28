@@ -33,7 +33,7 @@ class Hash {
         }
         return hash
     }
-    
+
     ; Jenkins One-at-a-time
     static Jenkins(str) {
         hash := 0
@@ -71,7 +71,7 @@ class StringDistance {
         Loop m {
             i := A_Index
             curr := [i]
-            
+
             Loop n {
                 j := A_Index
                 cost := SubStr(s1, i, 1) = SubStr(s2, j, 1) ? 0 : 1
@@ -94,12 +94,12 @@ class StringDistance {
             return 1
         return 1 - this.Levenshtein(s1, s2) / maxLen
     }
-    
+
     ; Hamming distance (equal length strings)
     static Hamming(s1, s2) {
         if StrLen(s1) != StrLen(s2)
             throw Error("Strings must be same length")
-        
+
         distance := 0
         Loop StrLen(s1)
             if SubStr(s1, A_Index, 1) != SubStr(s2, A_Index, 1)

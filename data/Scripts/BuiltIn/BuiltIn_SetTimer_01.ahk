@@ -1,22 +1,22 @@
 /**
-* @file BuiltIn_SetTimer_01.ahk
-* @description Comprehensive examples of basic SetTimer functionality in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* SetTimer creates, modifies, enables, or disables a timer that calls a function
-* at a specified time interval. Timers are useful for repeating tasks, monitoring
-* system states, and creating time-based automation.
-*
-* @syntax SetTimer [Function, Period, Priority]
-* @param {Function} Function - The function to call
-* @param {Integer} Period - Interval in milliseconds (0 to disable, negative for run-once)
-* @param {Integer} Priority - Thread priority (-2147483648 to 2147483647)
-*
-* @see https://www.autohotkey.com/docs/v2/lib/SetTimer.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_SetTimer_01.ahk
+ * @description Comprehensive examples of basic SetTimer functionality in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * SetTimer creates, modifies, enables, or disables a timer that calls a function
+ * at a specified time interval. Timers are useful for repeating tasks, monitoring
+ * system states, and creating time-based automation.
+ * 
+ * @syntax SetTimer [Function, Period, Priority]
+ * @param {Function} Function - The function to call
+ * @param {Integer} Period - Interval in milliseconds (0 to disable, negative for run-once)
+ * @param {Integer} Priority - Thread priority (-2147483648 to 2147483647)
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/SetTimer.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -25,9 +25,9 @@
 ; EXAMPLE 1: Basic Timer with Toggle Control
 ; ============================================================================
 /**
-* Demonstrates a simple timer that displays elapsed time
-* Shows how to start, stop, and toggle timers
-*/
+ * Demonstrates a simple timer that displays elapsed time
+ * Shows how to start, stop, and toggle timers
+ */
 Example1_BasicTimer() {
     static counter := 0
     static isRunning := false
@@ -83,16 +83,16 @@ Example1_BasicTimer() {
         counter := 0
         counterText.Value := "Counter: 0"
         if (!isRunning)
-        elapsedText.Value := "Elapsed: 0.0s"
+            elapsedText.Value := "Elapsed: 0.0s"
     }
 
     ; Toggle button handler
     toggleBtn.OnEvent("Click", (*) => ToggleTimer())
     ToggleTimer() {
         if (isRunning)
-        StopTimer()
+            StopTimer()
         else
-        StartTimer()
+            StartTimer()
     }
 
     ; Cleanup on close
@@ -110,9 +110,9 @@ Example1_BasicTimer() {
 ; EXAMPLE 2: Multiple Timers with Different Intervals
 ; ============================================================================
 /**
-* Demonstrates running multiple timers simultaneously
-* Each timer operates independently with different intervals
-*/
+ * Demonstrates running multiple timers simultaneously
+ * Each timer operates independently with different intervals
+ */
 Example2_MultipleTimers() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Multiple Timers")
     myGui.SetFont("s10")
@@ -176,7 +176,7 @@ Example2_MultipleTimers() {
     resetBtn.OnEvent("Click", (*) => ResetAll())
     ResetAll() {
         for key in counters
-        counters[key] := 0
+            counters[key] := 0
         fast.Value := "Fast (100ms): 0"
         medium.Value := "Medium (500ms): 0"
         slow.Value := "Slow (1000ms): 0"
@@ -197,9 +197,9 @@ Example2_MultipleTimers() {
 ; EXAMPLE 3: Run-Once Timer (Negative Period)
 ; ============================================================================
 /**
-* Demonstrates single-execution timers using negative periods
-* Useful for delayed execution without repetition
-*/
+ * Demonstrates single-execution timers using negative periods
+ * Useful for delayed execution without repetition
+ */
 Example3_RunOnceTimer() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Run-Once Timers")
     myGui.SetFont("s10")
@@ -267,9 +267,9 @@ Example3_RunOnceTimer() {
 ; EXAMPLE 4: Dynamic Timer Interval Adjustment
 ; ============================================================================
 /**
-* Shows how to dynamically change timer intervals
-* Useful for adaptive timing based on system state
-*/
+ * Shows how to dynamically change timer intervals
+ * Useful for adaptive timing based on system state
+ */
 Example4_DynamicInterval() {
     static currentInterval := 1000
     static counter := 0
@@ -346,9 +346,9 @@ Example4_DynamicInterval() {
 ; EXAMPLE 5: Auto-Saving Document Timer
 ; ============================================================================
 /**
-* Simulates an auto-save feature for a text editor
-* Demonstrates practical timer usage for periodic saves
-*/
+ * Simulates an auto-save feature for a text editor
+ * Demonstrates practical timer usage for periodic saves
+ */
 Example5_AutoSave() {
     static lastSaveTime := A_TickCount
     static saveInterval := 30000  ; 30 seconds
@@ -424,11 +424,11 @@ Example5_AutoSave() {
     ChangeInterval() {
         choice := intervalCombo.Text
         if (InStr(choice, "10"))
-        saveInterval := 10000
+            saveInterval := 10000
         else if (InStr(choice, "30"))
-        saveInterval := 30000
+            saveInterval := 30000
         else if (InStr(choice, "60"))
-        saveInterval := 60000
+            saveInterval := 60000
 
         lastSaveTime := A_TickCount  ; Reset timer
     }
@@ -450,9 +450,9 @@ Example5_AutoSave() {
 ; EXAMPLE 6: System Monitor Timer
 ; ============================================================================
 /**
-* Monitors system resources using timers
-* Demonstrates practical system monitoring application
-*/
+ * Monitors system resources using timers
+ * Demonstrates practical system monitoring application
+ */
 Example6_SystemMonitor() {
     myGui := Gui("+AlwaysOnTop", "Example 6: System Monitor")
     myGui.SetFont("s10")
@@ -497,9 +497,9 @@ Example6_SystemMonitor() {
         try {
             activeTitle := WinGetTitle("A")
             if (activeTitle != "")
-            windowDisplay.Value := "Window: " SubStr(activeTitle, 1, 40)
+                windowDisplay.Value := "Window: " SubStr(activeTitle, 1, 40)
             else
-            windowDisplay.Value := "No window detected"
+                windowDisplay.Value := "No window detected"
         } catch {
             windowDisplay.Value := "Error detecting window"
         }
@@ -517,7 +517,7 @@ Example6_SystemMonitor() {
             lines.RemoveAt(1)
             currentLog := ""
             for line in lines
-            currentLog .= line . "`r`n"
+                currentLog .= line . "`r`n"
         }
 
         logBox.Value := currentLog . newLog
@@ -564,9 +564,9 @@ Example6_SystemMonitor() {
 ; EXAMPLE 7: Timer Priority Demonstration
 ; ============================================================================
 /**
-* Demonstrates timer priority levels
-* Shows how priority affects timer execution order
-*/
+ * Demonstrates timer priority levels
+ * Shows how priority affects timer execution order
+ */
 Example7_TimerPriority() {
     myGui := Gui("+AlwaysOnTop", "Example 7: Timer Priority")
     myGui.SetFont("s10")

@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* GitHub_DllCall_03_ClipboardHTML.ahk
-*
-* DESCRIPTION:
-* Copy HTML content to clipboard with proper formatting
-*
-* FEATURES:
-* - Custom clipboard formats
-* - HTML clipboard format
-* - Buffer management for clipboard data
-* - GlobalAlloc/GlobalLock usage
-*
-* SOURCE:
-* Based on common clipboard HTML patterns from AHK community
-* Reference: Windows Clipboard API
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall for Windows clipboard API
-* - Buffer() for memory management
-* - StrPut for writing strings to buffer
-* - RegisterClipboardFormat for custom formats
-* - Proper cleanup with try/finally
-*
-* USAGE:
-* SetClipboardHTML("<b>Bold text</b>")
-*
-* LEARNING POINTS:
-* 1. HTML clipboard format requires special header
-* 2. GlobalAlloc allocates memory, GlobalLock gets pointer
-* 3. OpenClipboard must be paired with CloseClipboard
-* 4. EmptyClipboard clears existing content
-* 5. SetClipboardData places data in clipboard
-*/
+ * GitHub_DllCall_03_ClipboardHTML.ahk
+ * 
+ * DESCRIPTION:
+ * Copy HTML content to clipboard with proper formatting
+ * 
+ * FEATURES:
+ * - Custom clipboard formats
+ * - HTML clipboard format
+ * - Buffer management for clipboard data
+ * - GlobalAlloc/GlobalLock usage
+ * 
+ * SOURCE:
+ * Based on common clipboard HTML patterns from AHK community
+ * Reference: Windows Clipboard API
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall for Windows clipboard API
+ * - Buffer() for memory management
+ * - StrPut for writing strings to buffer
+ * - RegisterClipboardFormat for custom formats
+ * - Proper cleanup with try/finally
+ * 
+ * USAGE:
+ * SetClipboardHTML("<b>Bold text</b>")
+ * 
+ * LEARNING POINTS:
+ * 1. HTML clipboard format requires special header
+ * 2. GlobalAlloc allocates memory, GlobalLock gets pointer
+ * 3. OpenClipboard must be paired with CloseClipboard
+ * 4. EmptyClipboard clears existing content
+ * 5. SetClipboardData places data in clipboard
+ */
 
 /**
-* Set clipboard content as HTML
-*
-* @param {String} html - HTML content to copy
-* @returns {Boolean} - Success status
-*
-* @example
-* SetClipboardHTML("<h1>Title</h1><p>Paragraph</p>")
-* ; Now you can paste rich HTML into Word, Outlook, etc.
-*/
+ * Set clipboard content as HTML
+ * 
+ * @param {String} html - HTML content to copy
+ * @returns {Boolean} - Success status
+ * 
+ * @example
+ * SetClipboardHTML("<h1>Title</h1><p>Paragraph</p>")
+ * ; Now you can paste rich HTML into Word, Outlook, etc.
+ */
 SetClipboardHTML(html) {
     ; HTML clipboard format template
     ; StartHTML/EndHTML are byte offsets in UTF-8
@@ -76,11 +76,11 @@ SetClipboardHTML(html) {
 
     ; Create final HTML with correct offsets
     htmlClipboard := Format(htmlTemplate,
-    97,  ; StartHTML offset (approximate)
-    endHTML,
-    startFragment + 97,
-    endFragment + 97,
-    html)
+        97,  ; StartHTML offset (approximate)
+        endHTML,
+        startFragment + 97,
+        endFragment + 97,
+        html)
 
     ; Register HTML clipboard format
     cfHTML := DllCall("RegisterClipboardFormat", "Str", "HTML Format", "UInt")
@@ -91,7 +91,7 @@ SetClipboardHTML(html) {
     hMem := DllCall("GlobalAlloc", "UInt", 0x0002, "UPtr", size, "Ptr")
 
     if (!hMem)
-    return false
+        return false
 
     ; Lock memory and get pointer
     pMem := DllCall("GlobalLock", "Ptr", hMem, "Ptr")
@@ -124,15 +124,15 @@ SetClipboardHTML(html) {
 }
 
 /**
-* Simplified version using A_Clipboard for plain text backup
-*
-* @param {String} html - HTML content
-* @param {String} plainText - Plain text fallback
-*/
+ * Simplified version using A_Clipboard for plain text backup
+ * 
+ * @param {String} html - HTML content
+ * @param {String} plainText - Plain text fallback
+ */
 SetClipboardHTMLSimple(html, plainText := "") {
     ; Set plain text first (for apps that don't support HTML)
     if (plainText = "")
-    plainText := RegExReplace(html, "<[^>]+>", "")  ; Strip tags
+        plainText := RegExReplace(html, "<[^>]+>", "")  ; Strip tags
 
     A_Clipboard := plainText
 
@@ -148,13 +148,13 @@ result := SetClipboardHTML("<b>This is bold text</b>")
 
 if (result) {
     MsgBox("HTML copied to clipboard!`n`n"
-    . "Try pasting into:`n"
-    . "- Microsoft Word`n"
-    . "- Outlook`n"
-    . "- Gmail compose`n"
-    . "- Any rich text editor`n`n"
-    . "The text should appear BOLD.",
-    "Clipboard HTML", "Icon!")
+        . "Try pasting into:`n"
+        . "- Microsoft Word`n"
+        . "- Outlook`n"
+        . "- Gmail compose`n"
+        . "- Any rich text editor`n`n"
+        . "The text should appear BOLD.",
+        "Clipboard HTML", "Icon!")
 }
 
 ; ============================================================
@@ -187,7 +187,7 @@ result2 := MsgBox("Copy formatted table to clipboard?", "Table Example", "YesNo 
 if (result2 = "Yes") {
     SetClipboardHTML(tableHTML)
     MsgBox("Table copied! Paste into Word or Outlook to see formatting.",
-    "Success", "Icon!")
+        "Success", "Icon!")
 }
 
 ; ============================================================
@@ -210,7 +210,7 @@ result3 := MsgBox("Copy colored shopping list to clipboard?", "List Example", "Y
 if (result3 = "Yes") {
     SetClipboardHTML(listHTML)
     MsgBox("List copied! Paste to see colored items.",
-    "Success", "Icon!")
+        "Success", "Icon!")
 }
 
 ; ============================================================
@@ -218,21 +218,21 @@ if (result3 = "Yes") {
 ; ============================================================
 
 codeHTML := '
-<div style="background-color: #f4f4f4; padding: 10px; font-family: Consolas, monospace;">
-<pre style="margin: 0;">
-<span style="color: #0000FF;">function</span> <span style="color: #795E26;">greet</span>(<span style="color: #001080;">name</span>) {
-    <span style="color: #0000FF;">return</span> <span style="color: #A31515;">"Hello, "</span> + <span style="color: #001080;">name</span>;
+    < div style = "background-color: #f4f4f4; padding: 10px; font-family: Consolas, monospace;" >
+    < pre style = "margin: 0;" >
+    < span style = "color: #0000FF;" > function < / span > < span style = "color: #795E26;" > greet < / span > ( < span style = "color: #001080;" > name < / span >) {
+    < span style = "color: #0000FF;" > return < / span > < span style = "color: #A31515;" > "Hello, " < / span > + < span style = "color: #001080;" > name < / span >;
 }
-</pre>
-</div>
-'
+    < / pre >
+    < / div >
+    '
 
 result4 := MsgBox("Copy syntax-highlighted code to clipboard?", "Code Example", "YesNo Icon?")
 
 if (result4 = "Yes") {
     SetClipboardHTML(codeHTML)
     MsgBox("Code copied! Paste to see syntax highlighting.",
-    "Success", "Icon!")
+        "Success", "Icon!")
 }
 
 ; ============================================================
@@ -240,11 +240,11 @@ if (result4 = "Yes") {
 ; ============================================================
 
 /**
-* Convert plain text to formatted HTML
-*
-* @param {String} text - Plain text
-* @returns {String} - HTML
-*/
+ * Convert plain text to formatted HTML
+ * 
+ * @param {String} text - Plain text
+ * @returns {String} - HTML
+ */
 TextToHTML(text) {
     ; Replace line breaks with <br>
     html := StrReplace(text, "`r`n", "<br>")
@@ -270,7 +270,7 @@ result5 := MsgBox("Copy plain text as HTML (with line breaks)?", "Text Conversio
 if (result5 = "Yes") {
     SetClipboardHTML(htmlFromText)
     MsgBox("Text copied as HTML!",
-    "Success", "Icon!")
+        "Success", "Icon!")
 }
 
 ; ============================================================
@@ -278,13 +278,13 @@ if (result5 = "Yes") {
 ; ============================================================
 
 /**
-* Generate email template HTML
-*
-* @param {String} subject - Email subject
-* @param {String} body - Email body
-* @param {String} signature - Email signature
-* @returns {String} - Formatted HTML
-*/
+ * Generate email template HTML
+ * 
+ * @param {String} subject - Email subject
+ * @param {String} body - Email body
+ * @param {String} signature - Email signature
+ * @returns {String} - Formatted HTML
+ */
 GenerateEmailHTML(subject, body, signature) {
     html := "
     (
@@ -300,9 +300,9 @@ GenerateEmailHTML(subject, body, signature) {
 }
 
 emailHTML := GenerateEmailHTML(
-"Meeting Reminder",
-"This is a reminder about our meeting tomorrow at 2 PM.",
-"Best regards,`nYour Name`nCompany Name"
+    "Meeting Reminder",
+    "This is a reminder about our meeting tomorrow at 2 PM.",
+    "Best regards,`nYour Name`nCompany Name"
 )
 
 result6 := MsgBox("Copy email template to clipboard?", "Email Template", "YesNo Icon?")
@@ -310,7 +310,7 @@ result6 := MsgBox("Copy email template to clipboard?", "Email Template", "YesNo 
 if (result6 = "Yes") {
     SetClipboardHTML(emailHTML)
     MsgBox("Email template copied! Paste into Outlook or Gmail.",
-    "Success", "Icon!")
+        "Success", "Icon!")
 }
 
 ; ============================================================

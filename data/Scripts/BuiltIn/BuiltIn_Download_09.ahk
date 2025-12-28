@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Download_09.ahk - File Synchronization Systems
-*
-* This file demonstrates file synchronization and mirroring systems in AutoHotkey v2,
-* showing how to sync files between local and remote locations.
-*
-* Features Demonstrated:
-* - Bidirectional sync
-* - Change detection
-* - Conflict resolution
-* - Sync scheduling
-* - Incremental sync
-* - Mirror mode
-* - Sync profiles
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024-11-16
-*/
+ * BuiltIn_Download_09.ahk - File Synchronization Systems
+ * 
+ * This file demonstrates file synchronization and mirroring systems in AutoHotkey v2,
+ * showing how to sync files between local and remote locations.
+ * 
+ * Features Demonstrated:
+ * - Bidirectional sync
+ * - Change detection
+ * - Conflict resolution
+ * - Sync scheduling
+ * - Incremental sync
+ * - Mirror mode
+ * - Sync profiles
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024-11-16
+ */
 
 ; ============================================================================
 ; File Sync Manager Class
 ; ============================================================================
 
 /**
-* Manages file synchronization operations
-*/
+ * Manages file synchronization operations
+ */
 class FileSyncManager {
     syncPairs := []
     syncHistory := []
     conflictPolicy := "ask"  ; ask, newer, local, remote
 
     /**
-    * Adds sync pair
-    */
+     * Adds sync pair
+     */
     AddSyncPair(local, remote, bidirectional := true) {
         this.syncPairs.Push({
             local: local,
@@ -46,36 +46,36 @@ class FileSyncManager {
     }
 
     /**
-    * Compares file timestamps
-    */
+     * Compares file timestamps
+     */
     CompareFiles(file1, file2) {
         if !FileExist(file1) && !FileExist(file2)
-        return 0  ; Both missing
+            return 0  ; Both missing
 
         if !FileExist(file1)
-        return -1  ; File1 missing
+            return -1  ; File1 missing
 
         if !FileExist(file2)
-        return 1   ; File2 missing
+            return 1   ; File2 missing
 
         time1 := FileGetTime(file1)
         time2 := FileGetTime(file2)
 
         if (time1 > time2)
-        return 1   ; File1 newer
+            return 1   ; File1 newer
         if (time1 < time2)
-        return -1  ; File2 newer
+            return -1  ; File2 newer
 
         return 0  ; Same timestamp
     }
 
     /**
-    * Gets file hash for comparison
-    */
+     * Gets file hash for comparison
+     */
     GetFileHash(filePath) {
         ; Simplified hash - in production use proper hashing
         if !FileExist(filePath)
-        return ""
+            return ""
 
         size := FileGetSize(filePath)
         time := FileGetTime(filePath)
@@ -88,23 +88,23 @@ class FileSyncManager {
 ; ============================================================================
 
 /**
-* Synchronizes files between two directories
-*
-* Demonstrates basic sync functionality.
-* Shows one-way file synchronization.
-*
-* @example
-* BasicFileSync()
-*/
+ * Synchronizes files between two directories
+ * 
+ * Demonstrates basic sync functionality.
+ * Shows one-way file synchronization.
+ * 
+ * @example
+ * BasicFileSync()
+ */
 BasicFileSync() {
     localDir := A_Desktop "\LocalFiles"
     remoteDir := A_Desktop "\RemoteFiles"
 
     ; Create directories if they don't exist
     if !FileExist(localDir)
-    DirCreate(localDir)
+        DirCreate(localDir)
     if !FileExist(remoteDir)
-    DirCreate(remoteDir)
+        DirCreate(remoteDir)
 
     ; Create sync GUI
     syncGui := Gui("+Resize +AlwaysOnTop", "Basic File Synchronization")
@@ -143,7 +143,7 @@ BasicFileSync() {
 
             if !FileExist(remoteFile) {
                 action := "Copy to destination"
-                filesToSync.Push({local: localFile, remote: remoteFile, action: "copy"})
+                filesToSync.Push({ local: localFile, remote: remoteFile, action: "copy" })
                 syncGui["SyncList"].Add("", fileName, action, "Pending")
             } else {
                 ; Compare timestamps
@@ -152,7 +152,7 @@ BasicFileSync() {
 
                 if (localTime > remoteTime) {
                     action := "Update destination"
-                    filesToSync.Push({local: localFile, remote: remoteFile, action: "update"})
+                    filesToSync.Push({ local: localFile, remote: remoteFile, action: "update" })
                     syncGui["SyncList"].Add("", fileName, action, "Pending")
                 }
             }
@@ -161,9 +161,9 @@ BasicFileSync() {
         syncGui["SyncStatus"].Text := "Found " filesToSync.Length " files to sync"
 
         if (filesToSync.Length > 0)
-        syncGui["SyncBtn"].Enabled := true
+            syncGui["SyncBtn"].Enabled := true
         else
-        MsgBox("All files are up to date!", "Sync", "Icon!")
+            MsgBox("All files are up to date!", "Sync", "Icon!")
     }
 
     DoSync(*) {
@@ -199,23 +199,23 @@ BasicFileSync() {
 ; ============================================================================
 
 /**
-* Two-way file synchronization with conflict detection
-*
-* Syncs files in both directions.
-* Demonstrates bidirectional sync and conflict handling.
-*
-* @example
-* BidirectionalSync()
-*/
+ * Two-way file synchronization with conflict detection
+ * 
+ * Syncs files in both directions.
+ * Demonstrates bidirectional sync and conflict handling.
+ * 
+ * @example
+ * BidirectionalSync()
+ */
 BidirectionalSync() {
     dir1 := A_Desktop "\Folder1"
     dir2 := A_Desktop "\Folder2"
 
     ; Create directories
     if !FileExist(dir1)
-    DirCreate(dir1)
+        DirCreate(dir1)
     if !FileExist(dir2)
-    DirCreate(dir2)
+        DirCreate(dir2)
 
     ; Create bidirectional sync GUI
     biGui := Gui("+Resize", "Bidirectional Synchronization")
@@ -228,7 +228,7 @@ BidirectionalSync() {
     biGui.Add("Edit", "x100 y57 w420 vFolder2 ReadOnly", dir2)
 
     biGui.Add("ListView", "w550 h220 vBiList",
-    ["File", "Folder 1", "Folder 2", "Action", "Status"])
+        ["File", "Folder 1", "Folder 2", "Action", "Status"])
 
     biGui.Add("Text", , "Conflict Resolution:")
     biGui.Add("DropDownList", "w150 vConflictPolicy", ["Ask Each Time", "Newest Wins", "Keep Both"])
@@ -267,10 +267,10 @@ BidirectionalSync() {
                 time2 := FileGetTime(file2)
 
                 if (time1 > time2) {
-                    syncActions.Push({file: fileName, action: "Update 2", source: file1, dest: file2})
+                    syncActions.Push({ file: fileName, action: "Update 2", source: file1, dest: file2 })
                     biGui["BiList"].Add("", fileName, FormatTime(time1), FormatTime(time2), "Update 2", "Pending")
                 } else if (time2 > time1) {
-                    syncActions.Push({file: fileName, action: "Update 1", source: file2, dest: file1})
+                    syncActions.Push({ file: fileName, action: "Update 1", source: file2, dest: file1 })
                     biGui["BiList"].Add("", fileName, FormatTime(time1), FormatTime(time2), "Update 1", "Pending")
                 } else {
                     biGui["BiList"].Add("", fileName, FormatTime(time1), FormatTime(time2), "In Sync", "OK")
@@ -296,9 +296,9 @@ BidirectionalSync() {
         }
 
         if (syncActions.Length > 0)
-        biGui["BiSyncBtn"].Enabled := true
+            biGui["BiSyncBtn"].Enabled := true
         else
-        MsgBox("Folders are already in sync!", "In Sync", "Icon!")
+            MsgBox("Folders are already in sync!", "In Sync", "Icon!")
     }
 
     DoBiSync(*) {
@@ -330,14 +330,14 @@ BidirectionalSync() {
 ; ============================================================================
 
 /**
-* Incremental synchronization (only changed files)
-*
-* Syncs only files that have changed since last sync.
-* Demonstrates efficient incremental sync.
-*
-* @example
-* IncrementalSync()
-*/
+ * Incremental synchronization (only changed files)
+ * 
+ * Syncs only files that have changed since last sync.
+ * Demonstrates efficient incremental sync.
+ * 
+ * @example
+ * IncrementalSync()
+ */
 IncrementalSync() {
     sourceDir := A_Desktop "\Source"
     targetDir := A_Desktop "\Target"
@@ -370,7 +370,7 @@ IncrementalSync() {
             content := FileRead(stateFile)
             lines := StrSplit(content, "`n")
             if (lines.Length > 0)
-            return lines[1]
+                return lines[1]
         }
         return "Never"
     }
@@ -379,19 +379,19 @@ IncrementalSync() {
         lastSyncState := Map()
 
         if !FileExist(stateFile)
-        return
+            return
 
         content := FileRead(stateFile)
         loop parse, content, "`n", "`r" {
             if (A_Index = 1)  ; Skip timestamp line
-            continue
+                continue
 
             if (A_LoopField = "")
-            continue
+                continue
 
             parts := StrSplit(A_LoopField, "|")
             if (parts.Length >= 2)
-            lastSyncState[parts[1]] := parts[2]
+                lastSyncState[parts[1]] := parts[2]
         }
     }
 
@@ -401,7 +401,7 @@ IncrementalSync() {
         totalFiles := 0
 
         if !FileExist(sourceDir)
-        DirCreate(sourceDir)
+            DirCreate(sourceDir)
 
         incGui["IncList"].Delete()
 
@@ -414,10 +414,10 @@ IncrementalSync() {
 
             ; Check if file is new or modified
             if !lastSyncState.Has(relativePath) {
-                changedFiles.Push({path: relativePath, type: "New", time: modTime})
+                changedFiles.Push({ path: relativePath, type: "New", time: modTime })
                 incGui["IncList"].Add("", relativePath, "New", FormatTime(modTime))
             } else if (lastSyncState[relativePath] != modTime) {
-                changedFiles.Push({path: relativePath, type: "Modified", time: modTime})
+                changedFiles.Push({ path: relativePath, type: "Modified", time: modTime })
                 incGui["IncList"].Add("", relativePath, "Modified", FormatTime(modTime))
             }
         }
@@ -426,14 +426,14 @@ IncrementalSync() {
         incGui["TotalCount"].Value := totalFiles
 
         if (changedFiles.Length > 0)
-        incGui["IncSyncBtn"].Enabled := true
+            incGui["IncSyncBtn"].Enabled := true
         else
-        MsgBox("No changes detected!", "Up to Date", "Icon!")
+            MsgBox("No changes detected!", "Up to Date", "Icon!")
     }
 
     SyncChanges(*) {
         if !FileExist(targetDir)
-        DirCreate(targetDir)
+            DirCreate(targetDir)
 
         for file in changedFiles {
             sourcePath := sourceDir "\" file.path
@@ -442,7 +442,7 @@ IncrementalSync() {
             ; Create target directory if needed
             SplitPath(targetPath, , &targetFolder)
             if !FileExist(targetFolder)
-            DirCreate(targetFolder)
+                DirCreate(targetFolder)
 
             try {
                 FileCopy(sourcePath, targetPath, 1)
@@ -453,7 +453,7 @@ IncrementalSync() {
         SaveSyncState()
 
         MsgBox("Incremental sync complete!`n`nSynced " changedFiles.Length " changed files",
-        "Complete", "Icon!")
+            "Complete", "Icon!")
 
         incGui["LastSync"].Value := FormatTime(, "yyyy-MM-dd HH:mm:ss")
     }
@@ -477,19 +477,19 @@ IncrementalSync() {
 ; ============================================================================
 
 /**
-* Manages multiple sync profiles
-*
-* Saves and loads different sync configurations.
-* Demonstrates profile-based synchronization.
-*
-* @example
-* SyncProfilesManager()
-*/
+ * Manages multiple sync profiles
+ * 
+ * Saves and loads different sync configurations.
+ * Demonstrates profile-based synchronization.
+ * 
+ * @example
+ * SyncProfilesManager()
+ */
 SyncProfilesManager() {
     profiles := Map(
-    "Documents", {source: A_MyDocuments, target: "\\server\backup\docs", enabled: true},
-    "Pictures", {source: A_MyDocuments "\Pictures", target: "\\server\backup\pics", enabled: true},
-    "Projects", {source: "C:\Projects", target: "D:\Backup\Projects", enabled: false}
+        "Documents", { source: A_MyDocuments, target: "\\server\backup\docs", enabled: true },
+        "Pictures", { source: A_MyDocuments "\Pictures", target: "\\server\backup\pics", enabled: true },
+        "Projects", { source: "C:\Projects", target: "D:\Backup\Projects", enabled: false }
     )
 
     ; Create profiles GUI
@@ -497,13 +497,13 @@ SyncProfilesManager() {
     profilesGui.Add("Text", "w600", "Manage Synchronization Profiles")
 
     profilesGui.Add("ListView", "w600 h200 vProfileList Checked",
-    ["Profile", "Source", "Target", "Enabled"])
+        ["Profile", "Source", "Target", "Enabled"])
 
     for name, profile in profiles {
         row := profilesGui["ProfileList"].Add("", name, profile.source, profile.target,
-        profile.enabled ? "Yes" : "No")
+            profile.enabled ? "Yes" : "No")
         if profile.enabled
-        profilesGui["ProfileList"].Modify(row, "Check")
+            profilesGui["ProfileList"].Modify(row, "Check")
     }
 
     profilesGui.Add("Button", "w100", "New Profile").OnEvent("Click", NewProfile)
@@ -530,7 +530,7 @@ SyncProfilesManager() {
         if (row > 0) {
             result := MsgBox("Delete this profile?", "Confirm", "YesNo Icon?")
             if (result = "Yes")
-            profilesGui["ProfileList"].Delete(row)
+                profilesGui["ProfileList"].Delete(row)
         }
     }
 
@@ -551,22 +551,22 @@ SyncProfilesManager() {
 ; ============================================================================
 
 /**
-* Monitors folder for changes and auto-syncs
-*
-* Watches folder for changes and triggers sync.
-* Demonstrates real-time monitoring.
-*
-* @example
-* RealTimeFolderMonitor()
-*/
+ * Monitors folder for changes and auto-syncs
+ * 
+ * Watches folder for changes and triggers sync.
+ * Demonstrates real-time monitoring.
+ * 
+ * @example
+ * RealTimeFolderMonitor()
+ */
 RealTimeFolderMonitor() {
     watchedFolder := A_Desktop "\Watched"
     syncTarget := A_Desktop "\Synced"
 
     if !FileExist(watchedFolder)
-    DirCreate(watchedFolder)
+        DirCreate(watchedFolder)
     if !FileExist(syncTarget)
-    DirCreate(syncTarget)
+        DirCreate(syncTarget)
 
     ; Create monitor GUI
     monitorGui := Gui("+AlwaysOnTop", "Real-Time Folder Monitor")
@@ -595,7 +595,7 @@ RealTimeFolderMonitor() {
 
         logText := ""
         for event in eventLog
-        logText .= event "`n"
+            logText .= event "`n"
 
         monitorGui["EventLog"].Value := logText
     }
@@ -617,7 +617,7 @@ RealTimeFolderMonitor() {
 
     CheckForChanges() {
         if !isMonitoring
-        return
+            return
 
         ; Simplified change detection
         static lastCheck := A_Now
@@ -644,14 +644,14 @@ RealTimeFolderMonitor() {
 ; ============================================================================
 
 /**
-* Displays sync statistics and history
-*
-* Shows detailed sync metrics and history.
-* Demonstrates analytics for sync operations.
-*
-* @example
-* SyncStatisticsDashboard()
-*/
+ * Displays sync statistics and history
+ * 
+ * Shows detailed sync metrics and history.
+ * Demonstrates analytics for sync operations.
+ * 
+ * @example
+ * SyncStatisticsDashboard()
+ */
 SyncStatisticsDashboard() {
     ; Create stats GUI
     statsGui := Gui("+Resize", "Sync Statistics Dashboard")
@@ -696,7 +696,7 @@ SyncStatisticsDashboard() {
     ClearHistory(*) {
         result := MsgBox("Clear sync history?", "Confirm", "YesNo Icon?")
         if (result = "Yes")
-        MsgBox("History cleared!", "Cleared", "Icon!")
+            MsgBox("History cleared!", "Cleared", "Icon!")
     }
 }
 
@@ -705,14 +705,14 @@ SyncStatisticsDashboard() {
 ; ============================================================================
 
 /**
-* Synchronizes with cloud storage services
-*
-* Integrates with cloud providers for sync.
-* Demonstrates cloud synchronization.
-*
-* @example
-* CloudSyncManager()
-*/
+ * Synchronizes with cloud storage services
+ * 
+ * Integrates with cloud providers for sync.
+ * Demonstrates cloud synchronization.
+ * 
+ * @example
+ * CloudSyncManager()
+ */
 CloudSyncManager() {
     ; Create cloud sync GUI
     cloudGui := Gui("+Resize", "Cloud Sync Manager")
@@ -720,7 +720,7 @@ CloudSyncManager() {
 
     ; Cloud services
     cloudGui.Add("ListView", "w600 h150 vCloudList",
-    ["Service", "Status", "Last Sync", "Files", "Size"])
+        ["Service", "Status", "Last Sync", "Files", "Size"])
 
     cloudGui["CloudList"].Add("", "Dropbox", "Connected", "2024-11-16 14:30", "523", "1.2 GB")
     cloudGui["CloudList"].Add("", "Google Drive", "Connected", "2024-11-16 12:00", "892", "3.4 GB")
@@ -781,3 +781,4 @@ CloudSyncManager() {
 
 ; Run Example 7: Cloud sync manager
 ; CloudSyncManager()
+

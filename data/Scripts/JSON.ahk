@@ -2,10 +2,10 @@
 
 class JSON {
     /**
-    * Parses a JSON string into an AutoHotkey object (Map or Array)
-    * @param str The JSON string to parse
-    * @returns {Map|Array}
-    */
+     * Parses a JSON string into an AutoHotkey object (Map or Array)
+     * @param str The JSON string to parse
+     * @returns {Map|Array}
+     */
     static Parse(str) {
         html := ComObject("htmlfile")
         html.write("<meta http-equiv='X-UA-Compatible' content='IE=9'>")
@@ -19,17 +19,17 @@ class JSON {
     }
 
     /**
-    * Converts an AutoHotkey object into a JSON string
-    * @param obj The object to stringify
-    * @param indent (Optional) The indentation string or number of spaces
-    * @returns {String}
-    */
+     * Converts an AutoHotkey object into a JSON string
+     * @param obj The object to stringify
+     * @param indent (Optional) The indentation string or number of spaces
+     * @returns {String}
+     */
     static Stringify(obj, indent := "") {
         if IsInteger(indent) {
             if (indent > 0)
-            indent := Format("{:" indent "}", "")
+                indent := Format("{:" indent "}", "")
             else
-            indent := ""
+                indent := ""
         }
 
         return this._StringifyValue(obj, indent, "")
@@ -39,33 +39,33 @@ class JSON {
         if IsObject(val) {
             if val is Array {
                 if (val.Length = 0)
-                return "[]"
+                    return "[]"
 
                 res := "["
                 isMultiLine := (indent != "")
 
                 for i, v in val {
                     res .= (isMultiLine ? "`n" prefix indent : "")
-                    . this._StringifyValue(v, indent, prefix indent)
-                    . (i < val.Length ? "," : "")
+                        . this._StringifyValue(v, indent, prefix indent)
+                        . (i < val.Length ? "," : "")
                 }
 
                 return res . (isMultiLine ? "`n" prefix : "") . "]"
             } else if val is Map {
                 if (val.Count = 0)
-                return "{}"
+                    return "{}"
 
                 res := "{"
                 isMultiLine := (indent != "")
                 keys := []
                 for k in val
-                keys.Push(k)
+                    keys.Push(k)
 
                 for i, k in keys {
                     res .= (isMultiLine ? "`n" prefix indent : "")
-                    . this._StringifyValue(k, indent, prefix indent)
-                    . ": " . this._StringifyValue(val[k], indent, prefix indent)
-                    . (i < keys.Length ? "," : "")
+                        . this._StringifyValue(k, indent, prefix indent)
+                        . ": " . this._StringifyValue(val[k], indent, prefix indent)
+                        . (i < keys.Length ? "," : "")
                 }
 
                 return res . (isMultiLine ? "`n" prefix : "") . "}"
@@ -89,27 +89,27 @@ class JSON {
 
     static _ConvertJStoAHK(jsObj) {
         if (ComObjType(jsObj) & 0x2000) { ; SafeArray
-        return jsObj ; Treat as is or convert?
-    }
-
-    try {
-        ; Check if array
-        if (jsObj.constructor.name == "Array") {
-            arr := []
-            loop jsObj.length
-            arr.Push(this._ConvertJStoAHK(jsObj.%A_Index-1%))
-            return arr
+            return jsObj ; Treat as is or convert?
         }
-    }
 
-    try {
-        ; Assume object
-        mapObj := Map()
-        for k in jsObj
-        mapObj[k] := this._ConvertJStoAHK(jsObj.%k%)
-        return mapObj
-    }
+        try {
+            ; Check if array
+            if (jsObj.constructor.name == "Array") {
+                arr := []
+                loop jsObj.length
+                    arr.Push(this._ConvertJStoAHK(jsObj.%A_Index - 1%))
+                return arr
+            }
+        }
 
-    return jsObj ; Primitive value
-}
+        try {
+            ; Assume object
+            mapObj := Map()
+            for k in jsObj
+                mapObj[k] := this._ConvertJStoAHK(jsObj.%k%)
+            return mapObj
+        }
+
+        return jsObj ; Primitive value
+    }
 }

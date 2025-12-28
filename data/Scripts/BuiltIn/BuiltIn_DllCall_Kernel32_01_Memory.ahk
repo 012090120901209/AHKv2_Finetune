@@ -1,44 +1,44 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Kernel32_01_Memory.ahk
-*
-* DESCRIPTION:
-* Demonstrates memory management operations using Windows API through DllCall.
-* Shows how to allocate, lock, unlock, free memory, and work with virtual memory,
-* heaps, and memory-mapped files.
-*
-* FEATURES:
-* - Global memory allocation (GlobalAlloc, GlobalLock, GlobalFree)
-* - Local memory allocation (LocalAlloc, LocalLock, LocalFree)
-* - Virtual memory management (VirtualAlloc, VirtualFree)
-* - Heap operations (HeapCreate, HeapAlloc, HeapFree)
-* - Memory copying and comparison
-* - Memory-mapped files
-* - Memory information and statistics
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Memory Management API
-* https://docs.microsoft.com/en-us/windows/win32/memory/memory-management-functions
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with Kernel32 memory functions
-* - Pointer arithmetic and manipulation
-* - Memory buffer handling
-* - NumGet/NumPut for memory access
-* - Structure packing and alignment
-*
-* LEARNING POINTS:
-* 1. Difference between Global, Local, and Virtual memory
-* 2. Proper memory allocation and deallocation
-* 3. Locking and unlocking memory handles
-* 4. Using heaps for efficient memory management
-* 5. Memory copying with different functions
-* 6. Working with memory-mapped files
-* 7. Getting memory status and statistics
-*/
+ * BuiltIn_DllCall_Kernel32_01_Memory.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates memory management operations using Windows API through DllCall.
+ * Shows how to allocate, lock, unlock, free memory, and work with virtual memory,
+ * heaps, and memory-mapped files.
+ * 
+ * FEATURES:
+ * - Global memory allocation (GlobalAlloc, GlobalLock, GlobalFree)
+ * - Local memory allocation (LocalAlloc, LocalLock, LocalFree)
+ * - Virtual memory management (VirtualAlloc, VirtualFree)
+ * - Heap operations (HeapCreate, HeapAlloc, HeapFree)
+ * - Memory copying and comparison
+ * - Memory-mapped files
+ * - Memory information and statistics
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Memory Management API
+ * https://docs.microsoft.com/en-us/windows/win32/memory/memory-management-functions
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with Kernel32 memory functions
+ * - Pointer arithmetic and manipulation
+ * - Memory buffer handling
+ * - NumGet/NumPut for memory access
+ * - Structure packing and alignment
+ * 
+ * LEARNING POINTS:
+ * 1. Difference between Global, Local, and Virtual memory
+ * 2. Proper memory allocation and deallocation
+ * 3. Locking and unlocking memory handles
+ * 4. Using heaps for efficient memory management
+ * 5. Memory copying with different functions
+ * 6. Working with memory-mapped files
+ * 7. Getting memory status and statistics
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Global Memory Allocation
@@ -56,9 +56,9 @@ Example1_GlobalMemory() {
     ; Allocate 1KB of moveable, zero-initialized memory
     size := 1024
     hMem := DllCall("Kernel32.dll\GlobalAlloc"
-    , "UInt", GHND           ; uFlags
-    , "UPtr", size           ; dwBytes
-    , "Ptr")                 ; Return: handle
+        , "UInt", GHND           ; uFlags
+        , "UPtr", size           ; dwBytes
+        , "Ptr")                 ; Return: handle
 
     if (!hMem) {
         MsgBox("Failed to allocate global memory!", "Error")
@@ -69,8 +69,8 @@ Example1_GlobalMemory() {
 
     ; Lock the memory to get a pointer
     pMem := DllCall("Kernel32.dll\GlobalLock"
-    , "Ptr", hMem            ; hMem
-    , "Ptr")                 ; Return: pointer
+        , "Ptr", hMem            ; hMem
+        , "Ptr")                 ; Return: pointer
 
     if (!pMem) {
         DllCall("Kernel32.dll\GlobalFree", "Ptr", hMem, "Ptr")
@@ -92,35 +92,35 @@ Example1_GlobalMemory() {
     readNum2 := NumGet(pMem, 104, "Int")
 
     MsgBox(Format("Data written and read:`n`nString: {}`nNumber 1: {}`nNumber 2: {}",
-    readString, readNum1, readNum2), "Memory Contents")
+        readString, readNum1, readNum2), "Memory Contents")
 
     ; Get memory size
     memSize := DllCall("Kernel32.dll\GlobalSize"
-    , "Ptr", hMem            ; hMem
-    , "UPtr")                ; Return: size
+        , "Ptr", hMem            ; hMem
+        , "UPtr")                ; Return: size
 
     ; Get lock count
     ; Unlock the memory
     DllCall("Kernel32.dll\GlobalUnlock"
-    , "Ptr", hMem            ; hMem
-    , "Int")                 ; Return: lock count
+        , "Ptr", hMem            ; hMem
+        , "Int")                 ; Return: lock count
 
     ; Get memory flags
     flags := DllCall("Kernel32.dll\GlobalFlags"
-    , "Ptr", hMem            ; hMem
-    , "UInt")                ; Return: flags
+        , "Ptr", hMem            ; hMem
+        , "UInt")                ; Return: flags
 
     MsgBox(Format("Memory Info:`n`nSize: {} bytes`nFlags: 0x{:X}", memSize, flags), "Memory Info")
 
     ; Free the memory
     result := DllCall("Kernel32.dll\GlobalFree"
-    , "Ptr", hMem            ; hMem
-    , "Ptr")                 ; Return: NULL if success
+        , "Ptr", hMem            ; hMem
+        , "Ptr")                 ; Return: NULL if success
 
     if (result = 0)
-    MsgBox("Global memory freed successfully!", "Success")
+        MsgBox("Global memory freed successfully!", "Success")
     else
-    MsgBox("Failed to free global memory!", "Error")
+        MsgBox("Failed to free global memory!", "Error")
 }
 
 ;==============================================================================
@@ -138,9 +138,9 @@ Example2_LocalMemory() {
     ; Allocate local memory for a structure
     structSize := 64
     hLocal := DllCall("Kernel32.dll\LocalAlloc"
-    , "UInt", LHND
-    , "UPtr", structSize
-    , "Ptr")
+        , "UInt", LHND
+        , "UPtr", structSize
+        , "Ptr")
 
     if (!hLocal) {
         MsgBox("Failed to allocate local memory!", "Error")
@@ -149,8 +149,8 @@ Example2_LocalMemory() {
 
     ; Lock and get pointer
     pLocal := DllCall("Kernel32.dll\LocalLock"
-    , "Ptr", hLocal
-    , "Ptr")
+        , "Ptr", hLocal
+        , "Ptr")
 
     ; Create a simple structure: POINT {x: Int, y: Int}
     NumPut("Int", 100, pLocal, 0)   ; x = 100
@@ -173,8 +173,8 @@ Example2_LocalMemory() {
 
     ; Get local memory size
     localSize := DllCall("Kernel32.dll\LocalSize"
-    , "Ptr", hLocal
-    , "UPtr")
+        , "Ptr", hLocal
+        , "UPtr")
 
     MsgBox("Local memory size: " . localSize . " bytes", "Info")
 
@@ -203,11 +203,11 @@ Example3_VirtualMemory() {
     size := 1024 * 1024  ; 1 MB
 
     pVirtual := DllCall("Kernel32.dll\VirtualAlloc"
-    , "Ptr", 0               ; lpAddress (0 = let system choose)
-    , "UPtr", size           ; dwSize
-    , "UInt", MEM_COMMIT | MEM_RESERVE  ; flAllocationType
-    , "UInt", PAGE_READWRITE ; flProtect
-    , "Ptr")                 ; Return: pointer
+        , "Ptr", 0               ; lpAddress (0 = let system choose)
+        , "UPtr", size           ; dwSize
+        , "UInt", MEM_COMMIT | MEM_RESERVE  ; flAllocationType
+        , "UInt", PAGE_READWRITE ; flProtect
+        , "Ptr")                 ; Return: pointer
 
     if (!pVirtual) {
         MsgBox("Failed to allocate virtual memory!", "Error")
@@ -215,7 +215,7 @@ Example3_VirtualMemory() {
     }
 
     MsgBox(Format("Allocated virtual memory:`nAddress: 0x{:X}`nSize: {} bytes ({} KB)",
-    pVirtual, size, size // 1024), "Success")
+        pVirtual, size, size // 1024), "Success")
 
     ; Write pattern to memory
     Loop 1000 {
@@ -228,16 +228,16 @@ Example3_VirtualMemory() {
     val1000 := NumGet(pVirtual, 999 * 4, "Int")
 
     MsgBox(Format("Values written:`n`nFirst: {}`nMiddle (500): {}`nLast (1000): {}",
-    val1, val500, val1000), "Virtual Memory Contents")
+        val1, val500, val1000), "Virtual Memory Contents")
 
     ; Query memory information
     memInfo := Buffer(48, 0)  ; MEMORY_BASIC_INFORMATION structure
 
     bytesReturned := DllCall("Kernel32.dll\VirtualQuery"
-    , "Ptr", pVirtual        ; lpAddress
-    , "Ptr", memInfo.Ptr     ; lpBuffer
-    , "UPtr", 48             ; dwLength
-    , "UPtr")                ; Return: bytes returned
+        , "Ptr", pVirtual        ; lpAddress
+        , "Ptr", memInfo.Ptr     ; lpBuffer
+        , "UPtr", 48             ; dwLength
+        , "UPtr")                ; Return: bytes returned
 
     if (bytesReturned > 0) {
         baseAddress := NumGet(memInfo, 0, "Ptr")
@@ -262,15 +262,15 @@ Example3_VirtualMemory() {
 
     ; Free virtual memory
     result := DllCall("Kernel32.dll\VirtualFree"
-    , "Ptr", pVirtual        ; lpAddress
-    , "UPtr", 0              ; dwSize (0 when using MEM_RELEASE)
-    , "UInt", MEM_RELEASE    ; dwFreeType
-    , "Int")                 ; Return: success
+        , "Ptr", pVirtual        ; lpAddress
+        , "UPtr", 0              ; dwSize (0 when using MEM_RELEASE)
+        , "UInt", MEM_RELEASE    ; dwFreeType
+        , "Int")                 ; Return: success
 
     if (result)
-    MsgBox("Virtual memory freed successfully!", "Success")
+        MsgBox("Virtual memory freed successfully!", "Success")
     else
-    MsgBox("Failed to free virtual memory!", "Error")
+        MsgBox("Failed to free virtual memory!", "Error")
 }
 
 ;==============================================================================
@@ -285,10 +285,10 @@ Example4_HeapOperations() {
 
     ; Create a private heap (initial 4KB, max 64KB)
     hHeap := DllCall("Kernel32.dll\HeapCreate"
-    , "UInt", 0              ; flOptions
-    , "UPtr", 4096           ; dwInitialSize (4KB)
-    , "UPtr", 65536          ; dwMaximumSize (64KB, 0 = growable)
-    , "Ptr")                 ; Return: heap handle
+        , "UInt", 0              ; flOptions
+        , "UPtr", 4096           ; dwInitialSize (4KB)
+        , "UPtr", 65536          ; dwMaximumSize (64KB, 0 = growable)
+        , "Ptr")                 ; Return: heap handle
 
     if (!hHeap) {
         MsgBox("Failed to create heap!", "Error")
@@ -304,15 +304,15 @@ Example4_HeapOperations() {
         size := A_Index * 128  ; Variable sizes
 
         pBlock := DllCall("Kernel32.dll\HeapAlloc"
-        , "Ptr", hHeap                      ; hHeap
-        , "UInt", HEAP_ZERO_MEMORY         ; dwFlags
-        , "UPtr", size                      ; dwBytes
-        , "Ptr")                            ; Return: pointer
+            , "Ptr", hHeap                      ; hHeap
+            , "UInt", HEAP_ZERO_MEMORY         ; dwFlags
+            , "UPtr", size                      ; dwBytes
+            , "Ptr")                            ; Return: pointer
 
         if (pBlock) {
             ; Write identifier to each block
             NumPut("Int", A_Index * 1000, pBlock, 0)
-            allocations.Push({ptr: pBlock, size: size, id: A_Index})
+            allocations.Push({ ptr: pBlock, size: size, id: A_Index })
         }
     }
 
@@ -331,10 +331,10 @@ Example4_HeapOperations() {
     totalSize := 0
     for block in allocations {
         blockSize := DllCall("Kernel32.dll\HeapSize"
-        , "Ptr", hHeap
-        , "UInt", 0
-        , "Ptr", block.ptr
-        , "UPtr")
+            , "Ptr", hHeap
+            , "UInt", 0
+            , "Ptr", block.ptr
+            , "UPtr")
         totalSize += blockSize
     }
 
@@ -343,19 +343,19 @@ Example4_HeapOperations() {
     ; Free all allocations
     for block in allocations {
         DllCall("Kernel32.dll\HeapFree"
-        , "Ptr", hHeap
-        , "UInt", 0
-        , "Ptr", block.ptr
-        , "Int")
+            , "Ptr", hHeap
+            , "UInt", 0
+            , "Ptr", block.ptr
+            , "Int")
     }
 
     ; Destroy the heap
     result := DllCall("Kernel32.dll\HeapDestroy"
-    , "Ptr", hHeap
-    , "Int")
+        , "Ptr", hHeap
+        , "Int")
 
     if (result)
-    MsgBox("Heap destroyed successfully!", "Success")
+        MsgBox("Heap destroyed successfully!", "Success")
 }
 
 ;==============================================================================
@@ -379,19 +379,19 @@ Example5_MemoryCopyCompare() {
 
     ; Copy memory using RtlMoveMemory (same as CopyMemory)
     DllCall("Kernel32.dll\RtlMoveMemory"
-    , "Ptr", pDest           ; Destination
-    , "Ptr", pSource         ; Source
-    , "UPtr", 128            ; Length (copy first 128 bytes)
-    , "Ptr")
+        , "Ptr", pDest           ; Destination
+        , "Ptr", pSource         ; Source
+        , "UPtr", 128            ; Length (copy first 128 bytes)
+        , "Ptr")
 
     MsgBox("Copied 128 bytes from source to destination", "Memory Copy")
 
     ; Compare the copied portion
     result := DllCall("msvcrt.dll\memcmp"
-    , "Ptr", pSource         ; buf1
-    , "Ptr", pDest           ; buf2
-    , "UPtr", 128            ; count
-    , "Int")                 ; Return: 0 if equal
+        , "Ptr", pSource         ; buf1
+        , "Ptr", pDest           ; buf2
+        , "UPtr", 128            ; count
+        , "Int")                 ; Return: 0 if equal
 
     MsgBox("Memory comparison result: " . (result = 0 ? "EQUAL" : "DIFFERENT"), "Comparison")
 
@@ -402,13 +402,13 @@ Example5_MemoryCopyCompare() {
     dstVal10 := NumGet(pDest, 36, "Int")
 
     MsgBox(Format("Value verification:`n`nSource[0]: {}, Dest[0]: {}`nSource[10]: {}, Dest[10]: {}",
-    srcVal1, dstVal1, srcVal10, dstVal10), "Verification")
+        srcVal1, dstVal1, srcVal10, dstVal10), "Verification")
 
     ; Fill destination with zeros
     DllCall("Kernel32.dll\RtlZeroMemory"
-    , "Ptr", pDest
-    , "UPtr", sourceSize
-    , "Ptr")
+        , "Ptr", pDest
+        , "UPtr", sourceSize
+        , "Ptr")
 
     MsgBox("Destination memory zeroed", "Zero Memory")
 
@@ -443,8 +443,8 @@ Example6_MemoryStatus() {
     NumPut("UInt", 64, memStatus, 0)  ; dwLength
 
     success := DllCall("Kernel32.dll\GlobalMemoryStatusEx"
-    , "Ptr", memStatus.Ptr
-    , "Int")
+        , "Ptr", memStatus.Ptr
+        , "Int")
 
     if (!success) {
         MsgBox("Failed to get memory status!", "Error")
@@ -486,14 +486,14 @@ Example6_MemoryStatus() {
     - Total: {} MB
     - Available: {} MB
     )",
-    memoryLoad,
-    totalPhysMB, Round(totalPhysMB / 1024, 2),
-    availPhysMB, Round(availPhysMB / 1024, 2),
-    totalPhysMB - availPhysMB,
-    totalVirtualMB, Round(totalVirtualMB / 1024, 2),
-    availVirtualMB, Round(availVirtualMB / 1024, 2),
-    Round(totalPageFile / 1048576, 2),
-    Round(availPageFile / 1048576, 2))
+        memoryLoad,
+        totalPhysMB, Round(totalPhysMB / 1024, 2),
+        availPhysMB, Round(availPhysMB / 1024, 2),
+        totalPhysMB - availPhysMB,
+        totalVirtualMB, Round(totalVirtualMB / 1024, 2),
+        availVirtualMB, Round(availVirtualMB / 1024, 2),
+        Round(totalPageFile / 1048576, 2),
+        Round(availPageFile / 1048576, 2))
 
     MsgBox(info, "Memory Status")
 }
@@ -507,11 +507,11 @@ Example7_AdvancedMemory() {
     ; Allocate memory
     size := 4096
     pMem := DllCall("Kernel32.dll\VirtualAlloc"
-    , "Ptr", 0
-    , "UPtr", size
-    , "UInt", 0x3000  ; MEM_COMMIT | MEM_RESERVE
-    , "UInt", 0x04    ; PAGE_READWRITE
-    , "Ptr")
+        , "Ptr", 0
+        , "UPtr", size
+        , "UInt", 0x3000  ; MEM_COMMIT | MEM_RESERVE
+        , "UInt", 0x04    ; PAGE_READWRITE
+        , "Ptr")
 
     if (!pMem) {
         MsgBox("Failed to allocate memory!", "Error")
@@ -524,11 +524,11 @@ Example7_AdvancedMemory() {
     ; Change protection to read-only
     oldProtect := Buffer(4, 0)
     success := DllCall("Kernel32.dll\VirtualProtect"
-    , "Ptr", pMem
-    , "UPtr", size
-    , "UInt", 0x02      ; PAGE_READONLY
-    , "Ptr", oldProtect.Ptr
-    , "Int")
+        , "Ptr", pMem
+        , "UPtr", size
+        , "UInt", 0x02      ; PAGE_READONLY
+        , "Ptr", oldProtect.Ptr
+        , "Int")
 
     if (success) {
         oldProt := NumGet(oldProtect, 0, "UInt")
@@ -540,29 +540,29 @@ Example7_AdvancedMemory() {
 
         ; Restore write access
         DllCall("Kernel32.dll\VirtualProtect"
-        , "Ptr", pMem
-        , "UPtr", size
-        , "UInt", 0x04  ; PAGE_READWRITE
-        , "Ptr", oldProtect.Ptr
-        , "Int")
+            , "Ptr", pMem
+            , "UPtr", size
+            , "UInt", 0x04  ; PAGE_READWRITE
+            , "Ptr", oldProtect.Ptr
+            , "Int")
 
         MsgBox("Protection restored to read-write", "Success")
     }
 
     ; Lock pages in memory (may require admin rights)
     locked := DllCall("Kernel32.dll\VirtualLock"
-    , "Ptr", pMem
-    , "UPtr", size
-    , "Int")
+        , "Ptr", pMem
+        , "UPtr", size
+        , "Int")
 
     if (locked) {
         MsgBox("Pages locked in physical memory", "Success")
 
         ; Unlock
         DllCall("Kernel32.dll\VirtualUnlock"
-        , "Ptr", pMem
-        , "UPtr", size
-        , "Int")
+            , "Ptr", pMem
+            , "UPtr", size
+            , "Int")
     } else {
         MsgBox("Could not lock pages (may require admin rights)", "Info")
     }
@@ -598,7 +598,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Memory Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_GlobalMemory()

@@ -1,26 +1,26 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Examples - Run Function (Part 2: Parameters and Working Dir)
-* ============================================================================
-*
-* Advanced usage of Run with command-line parameters and working directories.
-*
-* @description Examples for parameters, arguments, and working directory control
-* @author AHK v2 Documentation Team
-* @date 2024
-* @version 2.0.0
-*
-* WORKING DIRECTORY:
-*   The WorkingDir parameter sets the initial current directory for the program.
-*   This is important for programs that load files relative to their working directory.
-*
-* PARAMETER ESCAPING:
-*   - Use quotes for paths with spaces: "C:\Program Files\..."
-*   - Escape quotes in parameters: `"
-*   - Build complex command lines carefully
-*/
+ * ============================================================================
+ * AutoHotkey v2 Examples - Run Function (Part 2: Parameters and Working Dir)
+ * ============================================================================
+ * 
+ * Advanced usage of Run with command-line parameters and working directories.
+ * 
+ * @description Examples for parameters, arguments, and working directory control
+ * @author AHK v2 Documentation Team
+ * @date 2024
+ * @version 2.0.0
+ * 
+ * WORKING DIRECTORY:
+ *   The WorkingDir parameter sets the initial current directory for the program.
+ *   This is important for programs that load files relative to their working directory.
+ * 
+ * PARAMETER ESCAPING:
+ *   - Use quotes for paths with spaces: "C:\Program Files\..."
+ *   - Escape quotes in parameters: `"
+ *   - Build complex command lines carefully
+ */
 
 ; ============================================================================
 ; Example 1: Working Directory Control
@@ -29,8 +29,8 @@
 
 Example1_WorkingDirectory() {
     MsgBox("Example 1: Working Directory Control`n`n" .
-    "See how different working directories affect program behavior:",
-    "Run - Example 1", "Icon!")
+        "See how different working directories affect program behavior:",
+        "Run - Example 1", "Icon!")
 
     ; Create test structure
     baseDir := A_Temp . "\ahk_workdir_test"
@@ -40,44 +40,44 @@ Example1_WorkingDirectory() {
     try {
         ; Create directories
         if !DirExist(baseDir)
-        DirCreate(baseDir)
+            DirCreate(baseDir)
         if !DirExist(dir1)
-        DirCreate(dir1)
+            DirCreate(dir1)
         if !DirExist(dir2)
-        DirCreate(dir2)
+            DirCreate(dir2)
 
         ; Create test files in each directory
         FileAppend("This file is in Directory1", dir1 . "\file1.txt")
         FileAppend("This file is in Directory2", dir2 . "\file2.txt")
 
         MsgBox("Created test structure:`n" .
-        "Base: " . baseDir . "`n" .
-        "Dir1: " . dir1 . "\file1.txt`n" .
-        "Dir2: " . dir2 . "\file2.txt",
-        "Structure Created", "T3")
+            "Base: " . baseDir . "`n" .
+            "Dir1: " . dir1 . "\file1.txt`n" .
+            "Dir2: " . dir2 . "\file2.txt",
+            "Structure Created", "T3")
 
         ; Open CMD in Directory1
         Run("cmd.exe /k dir", dir1, , &pid1)
         MsgBox("Opened CMD in Directory1 (PID: " . pid1 . ")`n" .
-        "Notice the current directory in CMD.", "Working Dir 1", "T3")
+            "Notice the current directory in CMD.", "Working Dir 1", "T3")
 
         Sleep(2000)
 
         ; Open CMD in Directory2
         Run("cmd.exe /k dir", dir2, , &pid2)
         MsgBox("Opened CMD in Directory2 (PID: " . pid2 . ")`n" .
-        "Notice how the directory differs from the first one.", "Working Dir 2", "T3")
+            "Notice how the directory differs from the first one.", "Working Dir 2", "T3")
 
         Sleep(2000)
 
         ; Cleanup
         if ProcessExist(pid1)
-        ProcessClose(pid1)
+            ProcessClose(pid1)
         if ProcessExist(pid2)
-        ProcessClose(pid2)
+            ProcessClose(pid2)
 
         MsgBox("Test complete. The working directory determines where the program starts.`n`n" .
-        "Test files are in: " . baseDir, "Complete", "Icon!")
+            "Test files are in: " . baseDir, "Complete", "Icon!")
 
     } catch Error as err {
         MsgBox("Error: " . err.Message, "Error")
@@ -91,21 +91,21 @@ Example1_WorkingDirectory() {
 
 Example2_ComplexCommands() {
     MsgBox("Example 2: Complex Command Lines`n`n" .
-    "Build and execute complex commands with parameters:",
-    "Run - Example 2", "Icon!")
+        "Build and execute complex commands with parameters:",
+        "Run - Example 2", "Icon!")
 
     ; Example 1: PowerShell with complex command
     psCommand := 'powershell.exe -NoProfile -Command "Get-Process | Where-Object {$_.WorkingSet -gt 100MB} | Select-Object -First 5 Name,WorkingSet | Format-Table"'
 
     result := MsgBox("Execute PowerShell command to show top 5 processes by memory?`n`n" .
-    "Command: " . psCommand,
-    "PowerShell Example", "YesNo Icon?")
+        "Command: " . psCommand,
+        "PowerShell Example", "YesNo Icon?")
 
     if result = "Yes" {
         try {
             Run(psCommand, , , &psPID)
             MsgBox("Launched PowerShell command (PID: " . psPID . ")`n" .
-            "Window will close automatically after showing results.", "Launched", "T3")
+                "Window will close automatically after showing results.", "Launched", "T3")
         } catch Error as err {
             MsgBox("Error: " . err.Message, "Error")
         }
@@ -117,18 +117,18 @@ Example2_ComplexCommands() {
     cmdCommand := 'cmd.exe /k "echo Current System Info & echo. & systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type" & echo. & pause"'
 
     result := MsgBox("Execute CMD command to show system information?`n`n" .
-    "This demonstrates command chaining with &",
-    "CMD Example", "YesNo Icon?")
+        "This demonstrates command chaining with &",
+        "CMD Example", "YesNo Icon?")
 
     if result = "Yes" {
         try {
             Run(cmdCommand, , , &cmdPID)
             MsgBox("Launched CMD command (PID: " . cmdPID . ")`n" .
-            "Press any key in the CMD window to close it.", "Launched", "T3")
+                "Press any key in the CMD window to close it.", "Launched", "T3")
 
             Sleep(5000)
             if ProcessExist(cmdPID)
-            ProcessClose(cmdPID)
+                ProcessClose(cmdPID)
 
         } catch Error as err {
             MsgBox("Error: " . err.Message, "Error")
@@ -143,15 +143,15 @@ Example2_ComplexCommands() {
 
 Example3_MultipleParameters() {
     MsgBox("Example 3: Multiple Parameters`n`n" .
-    "Pass multiple parameters and switches to programs:",
-    "Run - Example 3", "Icon!")
+        "Pass multiple parameters and switches to programs:",
+        "Run - Example 3", "Icon!")
 
     ; Create test directory and files
     testDir := A_Temp . "\ahk_params_test"
 
     try {
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create several test files
         testFiles := []
@@ -162,7 +162,7 @@ Example3_MultipleParameters() {
         }
 
         MsgBox("Created " . testFiles.Length . " test files in:`n" . testDir,
-        "Files Created", "T2")
+            "Files Created", "T2")
 
         ; Example 1: Open Explorer with specific folder selected
         if testFiles.Length > 0 {
@@ -170,15 +170,15 @@ Example3_MultipleParameters() {
 
             Run(explorerCmd)
             MsgBox("Opened Explorer with first file selected using /select parameter",
-            "Explorer Parameters", "T3")
+                "Explorer Parameters", "T3")
         }
 
         Sleep(2000)
 
         ; Example 2: Open multiple Notepad instances with different files
         result := MsgBox("Open multiple Notepad windows with different files?`n`n" .
-        "This will open " . Min(3, testFiles.Length) . " Notepad instances.",
-        "Multiple Notepads", "YesNo Icon?")
+            "This will open " . Min(3, testFiles.Length) . " Notepad instances.",
+            "Multiple Notepads", "YesNo Icon?")
 
         if result = "Yes" {
             pids := []
@@ -190,19 +190,19 @@ Example3_MultipleParameters() {
             }
 
             MsgBox("Opened " . pids.Length . " Notepad instances.`n" .
-            "PIDs: " . pids.Join(", "), "Opened", "T3")
+                "PIDs: " . pids.Join(", "), "Opened", "T3")
 
             Sleep(3000)
 
             ; Close all opened Notepads
             for pid in pids {
                 if ProcessExist(pid)
-                ProcessClose(pid)
+                    ProcessClose(pid)
             }
         }
 
         MsgBox("Test files remain in: " . testDir . "`n" .
-        "You can delete this folder when done.", "Complete", "Icon!")
+            "You can delete this folder when done.", "Complete", "Icon!")
 
     } catch Error as err {
         MsgBox("Error: " . err.Message, "Error")
@@ -216,8 +216,8 @@ Example3_MultipleParameters() {
 
 Example4_EnvironmentVariables() {
     MsgBox("Example 4: Environment Variables`n`n" .
-    "Use environment variables in Run commands:",
-    "Run - Example 4", "Icon!")
+        "Use environment variables in Run commands:",
+        "Run - Example 4", "Icon!")
 
     ; Get some common environment variables
     userProfile := EnvGet("USERPROFILE")
@@ -225,9 +225,9 @@ Example4_EnvironmentVariables() {
     programFiles := EnvGet("ProgramFiles")
 
     envInfo := "Current Environment Variables:`n`n" .
-    "USERPROFILE: " . userProfile . "`n" .
-    "SystemRoot: " . systemRoot . "`n" .
-    "ProgramFiles: " . programFiles
+        "USERPROFILE: " . userProfile . "`n" .
+        "SystemRoot: " . systemRoot . "`n" .
+        "ProgramFiles: " . programFiles
 
     MsgBox(envInfo, "Environment", "Icon!")
 
@@ -254,11 +254,11 @@ Example4_EnvironmentVariables() {
     try {
         Run(cmdLine, , , &pid)
         MsgBox("Launched CMD showing environment variables (PID: " . pid . ")`n" .
-        "CMD can access environment variables directly with %VAR% syntax.", "CMD Env Vars", "T3")
+            "CMD can access environment variables directly with %VAR% syntax.", "CMD Env Vars", "T3")
 
         Sleep(4000)
         if ProcessExist(pid)
-        ProcessClose(pid)
+            ProcessClose(pid)
     }
 }
 
@@ -269,15 +269,15 @@ Example4_EnvironmentVariables() {
 
 Example5_BatchExecutor() {
     MsgBox("Example 5: Batch File Executor`n`n" .
-    "Create and execute batch files with parameters:",
-    "Run - Example 5", "Icon!")
+        "Create and execute batch files with parameters:",
+        "Run - Example 5", "Icon!")
 
     batchDir := A_Temp . "\ahk_batch_test"
 
     try {
         ; Create directory
         if !DirExist(batchDir)
-        DirCreate(batchDir)
+            DirCreate(batchDir)
 
         ; Create a batch file that accepts parameters
         batchFile := batchDir . "\test_batch.bat"
@@ -303,7 +303,7 @@ Example5_BatchExecutor() {
         FileAppend(batchContent, batchFile)
 
         MsgBox("Created batch file:`n" . batchFile . "`n`n" .
-        "The batch file will display parameters passed to it.", "Batch Created", "T3")
+            "The batch file will display parameters passed to it.", "Batch Created", "T3")
 
         ; Execute batch file with parameters
         param1 := "Hello"
@@ -316,18 +316,18 @@ Example5_BatchExecutor() {
         Run('cmd.exe /k ' . batchCmd, batchDir, , &pid)
 
         MsgBox("Executed batch file with parameters:`n" .
-        "Param1: " . param1 . "`n" .
-        "Param2: " . param2 . "`n" .
-        "Param3: " . param3 . "`n`n" .
-        "Working Directory: " . batchDir, "Batch Executed", "T4")
+            "Param1: " . param1 . "`n" .
+            "Param2: " . param2 . "`n" .
+            "Param3: " . param3 . "`n`n" .
+            "Working Directory: " . batchDir, "Batch Executed", "T4")
 
         Sleep(5000)
 
         if ProcessExist(pid)
-        ProcessClose(pid)
+            ProcessClose(pid)
 
         MsgBox("Batch file test complete.`n" .
-        "Files remain in: " . batchDir, "Complete", "Icon!")
+            "Files remain in: " . batchDir, "Complete", "Icon!")
 
     } catch Error as err {
         MsgBox("Error: " . err.Message, "Error")
@@ -341,12 +341,12 @@ Example5_BatchExecutor() {
 
 Example6_AdvancedLauncher() {
     /**
-    * Creates an advanced launcher that allows specifying:
-    * - Target program
-    * - Command-line parameters
-    * - Working directory
-    * - Window state
-    */
+     * Creates an advanced launcher that allows specifying:
+     * - Target program
+     * - Command-line parameters
+     * - Working directory
+     * - Window state
+     */
 
     launcher := Gui("+Resize", "Advanced Program Launcher")
     launcher.SetFont("s10")
@@ -387,14 +387,14 @@ Example6_AdvancedLauncher() {
     BrowseProgram(*) {
         selected := FileSelect(3, , "Select Program or File", "Programs (*.exe; *.bat; *.cmd)")
         if selected
-        programEdit.Value := selected
+            programEdit.Value := selected
     }
 
     ; Browse for working directory
     BrowseWorkDir(*) {
         selected := DirSelect(, 3, "Select Working Directory")
         if selected
-        workdirEdit.Value := selected
+            workdirEdit.Value := selected
     }
 
     ; Clear all fields
@@ -423,7 +423,7 @@ Example6_AdvancedLauncher() {
         ; Build command
         command := program
         if params != ""
-        command .= " " . params
+            command .= " " . params
 
         ; Use working directory if specified
         useWorkDir := (workdir != "") ? workdir : ""
@@ -444,14 +444,14 @@ Example6_AdvancedLauncher() {
     launcher.Show()
 
     MsgBox("Advanced Program Launcher Created!`n`n" .
-    "Features:`n" .
-    "• Specify program/file to run`n" .
-    "• Add command-line parameters`n" .
-    "• Set working directory`n" .
-    "• Choose window state`n" .
-    "• Capture process ID`n`n" .
-    "Try launching different programs with various options!",
-    "Example 6", "Icon!")
+        "Features:`n" .
+        "• Specify program/file to run`n" .
+        "• Add command-line parameters`n" .
+        "• Set working directory`n" .
+        "• Choose window state`n" .
+        "• Capture process ID`n`n" .
+        "Try launching different programs with various options!",
+        "Example 6", "Icon!")
 }
 
 ; ============================================================================
@@ -461,13 +461,13 @@ Example6_AdvancedLauncher() {
 
 Example7_RunAsAdmin() {
     MsgBox("Example 7: Run with Administrator Privileges`n`n" .
-    "Some programs require administrator privileges to run properly.`n" .
-    "We'll use the 'RunAs' verb to request elevation.",
-    "Run - Example 7", "Icon!")
+        "Some programs require administrator privileges to run properly.`n" .
+        "We'll use the 'RunAs' verb to request elevation.",
+        "Run - Example 7", "Icon!")
 
     result := MsgBox("Attempt to open Registry Editor with admin privileges?`n`n" .
-    "You may see a UAC prompt if UAC is enabled.",
-    "RunAs Example", "YesNo Icon?")
+        "You may see a UAC prompt if UAC is enabled.",
+        "RunAs Example", "YesNo Icon?")
 
     if result = "Yes" {
         try {
@@ -475,8 +475,8 @@ Example7_RunAsAdmin() {
             Run("*RunAs regedit.exe", , , &pid)
 
             MsgBox("Launched Registry Editor with admin request (PID: " . pid . ")`n`n" .
-            "Note: The *RunAs prefix triggers a UAC prompt on Vista+.",
-            "Launched", "Icon! T3")
+                "Note: The *RunAs prefix triggers a UAC prompt on Vista+.",
+                "Launched", "Icon! T3")
 
             Sleep(2000)
 
@@ -484,20 +484,20 @@ Example7_RunAsAdmin() {
             if ProcessExist(pid) {
                 result2 := MsgBox("Close Registry Editor now?", "Close?", "YesNo")
                 if result2 = "Yes"
-                ProcessClose(pid)
+                    ProcessClose(pid)
             }
 
         } catch Error as err {
             MsgBox("Error: " . err.Message . "`n`n" .
-            "This might occur if UAC was cancelled or if there are permission issues.",
-            "Error")
+                "This might occur if UAC was cancelled or if there are permission issues.",
+                "Error")
         }
     }
 
     MsgBox("RunAs demonstration complete.`n`n" .
-    "Remember: Always use *RunAs prefix when elevation is needed.`n" .
-    "Example: Run('*RunAs notepad.exe')",
-    "Complete", "Icon!")
+        "Remember: Always use *RunAs prefix when elevation is needed.`n" .
+        "Example: Run('*RunAs notepad.exe')",
+        "Complete", "Icon!")
 }
 
 ; ============================================================================

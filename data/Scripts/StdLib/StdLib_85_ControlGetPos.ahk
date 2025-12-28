@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* ControlGetPos() - Get control position
-*
-* Retrieves control coordinates and size.
-*/
+ * ControlGetPos() - Get control position
+ * 
+ * Retrieves control coordinates and size.
+ */
 
 if WinExist("ahk_class Notepad") {
     ControlGetPos(&x, &y, &w, &h, "Edit1")

@@ -15,12 +15,12 @@ RefreshProc()
 
 RefreshProc(*) {
     if (!procGui["AutoRefresh"].Value)
-    return
+        return
 
     LV.Delete()
 
     for proc in ComObjGet("winmgmts:").ExecQuery("SELECT * FROM Win32_Process") {
-        try LV.Add(, proc.Name, proc.ProcessId, Round(proc.WorkingSetSize/1024))
+        try LV.Add(, proc.Name, proc.ProcessId, Round(proc.WorkingSetSize / 1024))
     }
 
     LV.ModifyCol()
@@ -29,7 +29,7 @@ RefreshProc(*) {
 KillProc(*) {
     row := LV.GetNext()
     if (!row)
-    return
+        return
 
     pid := LV.GetText(row, 2)
     name := LV.GetText(row, 1)

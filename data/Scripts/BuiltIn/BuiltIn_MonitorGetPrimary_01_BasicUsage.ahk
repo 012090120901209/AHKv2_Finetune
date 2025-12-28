@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGetPrimary_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates basic usage of MonitorGetPrimary function for identifying
-* the primary monitor in multi-monitor setups. Shows how to query, validate,
-* and use the primary monitor designation.
-*
-* FEATURES:
-* - Identifying primary monitor
-* - Primary vs secondary distinction
-* - Primary monitor properties
-* - Default placement strategies
-* - Primary monitor validation
-* - Centering on primary display
-* - Primary-aware window management
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGetPrimary.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - MonitorGetPrimary function
-* - Integration with MonitorGet
-* - Conditional logic based on primary
-* - Modern GUI positioning
-* - Property-based window management
-*
-* LEARNING POINTS:
-* 1. Primary monitor is designated in Windows display settings
-* 2. MonitorGetPrimary returns monitor number (1-based)
-* 3. Primary monitor typically has coordinates starting at 0,0
-* 4. Task bar is usually on primary monitor
-* 5. New windows often default to primary monitor
-* 6. Only one monitor can be primary at a time
-* 7. Primary monitor is where notifications appear
-*/
+ * BuiltIn_MonitorGetPrimary_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates basic usage of MonitorGetPrimary function for identifying
+ * the primary monitor in multi-monitor setups. Shows how to query, validate,
+ * and use the primary monitor designation.
+ * 
+ * FEATURES:
+ * - Identifying primary monitor
+ * - Primary vs secondary distinction
+ * - Primary monitor properties
+ * - Default placement strategies
+ * - Primary monitor validation
+ * - Centering on primary display
+ * - Primary-aware window management
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGetPrimary.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - MonitorGetPrimary function
+ * - Integration with MonitorGet
+ * - Conditional logic based on primary
+ * - Modern GUI positioning
+ * - Property-based window management
+ * 
+ * LEARNING POINTS:
+ * 1. Primary monitor is designated in Windows display settings
+ * 2. MonitorGetPrimary returns monitor number (1-based)
+ * 3. Primary monitor typically has coordinates starting at 0,0
+ * 4. Task bar is usually on primary monitor
+ * 5. New windows often default to primary monitor
+ * 6. Only one monitor can be primary at a time
+ * 7. Primary monitor is where notifications appear
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Primary Monitor Identification
@@ -68,9 +68,9 @@ Example1_BasicIdentification() {
 
     info .= "Position:`n"
     if (Left = 0 && Top = 0)
-    info .= "  ✓ At origin (0, 0) - typical for primary`n"
+        info .= "  ✓ At origin (0, 0) - typical for primary`n"
     else
-    info .= "  ⚠ Not at origin - unusual configuration`n"
+        info .= "  ⚠ Not at origin - unusual configuration`n"
 
     info .= "`nThe primary monitor is where:`n"
     info .= "  • The taskbar typically appears`n"
@@ -97,7 +97,7 @@ Example2_PrimaryVsSecondary() {
 
     ; Create ListView
     lv := g.Add("ListView", "w750 h300", [
-    "Monitor", "Type", "Resolution", "Position", "Area (px²)", "At Origin"
+        "Monitor", "Type", "Resolution", "Position", "Area (px²)", "At Origin"
     ])
 
     ; Populate data
@@ -117,12 +117,12 @@ Example2_PrimaryVsSecondary() {
 
         ; Highlight primary row
         if MonNum = PrimaryNum
-        lv.Modify(MonNum, "Select")
+            lv.Modify(MonNum, "Select")
     }
 
     ; Auto-size columns
     Loop lv.GetCount("Column")
-    lv.ModifyCol(A_Index, "AutoHdr")
+        lv.ModifyCol(A_Index, "AutoHdr")
 
     ; Add summary
     g.Add("Text", "xm Section", "Summary:")
@@ -344,7 +344,7 @@ Example5_PrimaryValidator() {
                 WinCenterX := X + W // 2
                 WinCenterY := Y + H // 2
 
-                distance := Round(Sqrt((WinCenterX - PCenterX)**2 + (WinCenterY - PCenterY)**2))
+                distance := Round(Sqrt((WinCenterX - PCenterX) ** 2 + (WinCenterY - PCenterY) ** 2))
                 result .= "`n`nDistance from primary: " distance " pixels"
             }
 
@@ -448,11 +448,11 @@ Example7_WindowLauncher() {
 
             ; Parse size
             if InStr(radioText, "Small")
-            Width := 400, Height := 300
+                Width := 400, Height := 300
             else if InStr(radioText, "Medium")
-            Width := 800, Height := 600
+                Width := 800, Height := 600
             else
-            Width := 1200, Height := 800
+                Width := 1200, Height := 800
         }
 
         ; Get primary monitor working area

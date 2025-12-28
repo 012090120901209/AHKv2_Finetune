@@ -1,34 +1,34 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* DateAdd Function - Advanced Date Calculations and Business Logic
-* ============================================================================
-*
-* This script demonstrates advanced DateAdd() operations including business
-* day calculations, complex date arithmetic, and calendar-aware operations.
-*
-* @description Advanced DateAdd() for business and calendar calculations
-* @author AHK v2 Documentation Team
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Advanced Operations:
-* - Business day calculations
-* - Calendar-aware date math
-* - Complex period calculations
-* - Date range generation
-* - Chained date operations
-*/
+ * ============================================================================
+ * DateAdd Function - Advanced Date Calculations and Business Logic
+ * ============================================================================
+ * 
+ * This script demonstrates advanced DateAdd() operations including business
+ * day calculations, complex date arithmetic, and calendar-aware operations.
+ * 
+ * @description Advanced DateAdd() for business and calendar calculations
+ * @author AHK v2 Documentation Team
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Advanced Operations:
+ * - Business day calculations
+ * - Calendar-aware date math
+ * - Complex period calculations
+ * - Date range generation
+ * - Chained date operations
+ */
 
 ; ============================================================================
 ; Example 1: Business Day Addition
 ; ============================================================================
 
 /**
-* Adds business days (excluding weekends).
-* Common use: Project planning, SLA calculations, delivery estimates
-*/
+ * Adds business days (excluding weekends).
+ * Common use: Project planning, SLA calculations, delivery estimates
+ */
 Example1_BusinessDayAddition() {
     ; Add business days
     AddBusinessDays(startDate, businessDays) {
@@ -62,9 +62,9 @@ Example1_BusinessDayAddition() {
         calendarDays := DateDiff(resultDate, startDate, "days")
 
         output .= Format("  +{:2d} business days: {:s} ({:d} calendar days)",
-        days,
-        FormatTime(resultDate, "ddd, MMM dd, yyyy"),
-        calendarDays) . "`n"
+            days,
+            FormatTime(resultDate, "ddd, MMM dd, yyyy"),
+            calendarDays) . "`n"
     }
 
     ; SLA response times
@@ -78,8 +78,8 @@ Example1_BusinessDayAddition() {
         responseDate := AddBusinessDays(ticketCreated, businessDays)
 
         output .= Format("  {:2d} business hours: {:s}",
-        hours,
-        FormatTime(responseDate, "ddd, MMM dd 'at' 5:00 PM")) . "`n"
+            hours,
+            FormatTime(responseDate, "ddd, MMM dd 'at' 5:00 PM")) . "`n"
     }
 
     ; Project timeline
@@ -101,9 +101,9 @@ Example1_BusinessDayAddition() {
 ; ============================================================================
 
 /**
-* Calculates month-end and quarter-end dates.
-* Common use: Financial reporting, billing cycles, period closings
-*/
+ * Calculates month-end and quarter-end dates.
+ * Common use: Financial reporting, billing cycles, period closings
+ */
 Example2_PeriodEndCalculations() {
     ; Get last day of month
     GetMonthEnd(timestamp) {
@@ -145,8 +145,8 @@ Example2_PeriodEndCalculations() {
         monthEnd := GetMonthEnd(futureMonth)
 
         output .= Format("  {:-12s}: {:s}",
-        FormatTime(futureMonth, "MMMM yyyy"),
-        FormatTime(monthEnd, "ddd, MMM dd")) . "`n"
+            FormatTime(futureMonth, "MMMM yyyy"),
+            FormatTime(monthEnd, "ddd, MMM dd")) . "`n"
     }
 
     ; Quarter-ends
@@ -163,9 +163,9 @@ Example2_PeriodEndCalculations() {
         qEnd := GetMonthEnd(quarterDate)
 
         output .= Format("  Q{:d} {:d}: {:s}",
-        q,
-        year,
-        FormatTime(qEnd, "MMM dd, yyyy")) . "`n"
+            q,
+            year,
+            FormatTime(qEnd, "MMM dd, yyyy")) . "`n"
     }
 
     ; Fiscal year-end (assuming June 30)
@@ -174,7 +174,7 @@ Example2_PeriodEndCalculations() {
     fyEnd := currentYear . "0630000000"
 
     if (today > fyEnd)
-    fyEnd := DateAdd(fyEnd, 1, "years")
+        fyEnd := DateAdd(fyEnd, 1, "years")
 
     output .= "  FY End: " . FormatTime(fyEnd, "MMMM dd, yyyy") . "`n"
     output .= "  Days Until: " . DateDiff(fyEnd, today, "days") . " days`n"
@@ -187,9 +187,9 @@ Example2_PeriodEndCalculations() {
 ; ============================================================================
 
 /**
-* Demonstrates chaining multiple DateAdd operations.
-* Common use: Complex calculations, business logic, time series
-*/
+ * Demonstrates chaining multiple DateAdd operations.
+ * Common use: Complex calculations, business logic, time series
+ */
 Example3_ChainedOperations() {
     output := "=== Example 3: Chained Date Operations ===`n`n"
     startDate := A_Now
@@ -248,9 +248,9 @@ Example3_ChainedOperations() {
 ; ============================================================================
 
 /**
-* Generates date ranges for reports and queries.
-* Common use: Report generation, data analysis, date pickers
-*/
+ * Generates date ranges for reports and queries.
+ * Common use: Report generation, data analysis, date pickers
+ */
 Example4_DateRangeGenerator() {
     ; Generate date range
     GenerateRange(startDate, endDate, intervalDays := 1) {
@@ -312,7 +312,7 @@ Example4_DateRangeGenerator() {
     dayOfWeek := FormatTime(payDate, "w")
     daysUntilFriday := Mod(6 - dayOfWeek + 7, 7)
     if (daysUntilFriday = 0)
-    daysUntilFriday := 7
+        daysUntilFriday := 7
 
     nextPayDay := DateAdd(payDate, daysUntilFriday, "days")
 
@@ -329,9 +329,9 @@ Example4_DateRangeGenerator() {
 ; ============================================================================
 
 /**
-* Handles time adjustments for time zones and daylight saving time.
-* Common use: International scheduling, time zone conversions
-*/
+ * Handles time adjustments for time zones and daylight saving time.
+ * Common use: International scheduling, time zone conversions
+ */
 Example5_TimeZoneAdjustments() {
     output := "=== Example 5: Time Zone Adjustments ===`n`n"
     localTime := A_Now
@@ -343,255 +343,235 @@ Example5_TimeZoneAdjustments() {
 
     ; Time zone offsets (conceptual - actual offsets vary)
     output .= "Time Zone Conversions (Conceptual):`n"
-    zones := [
-    {
-        name: "UTC", offset: 0},
-        {
-            name: "EST (UTC-5)", offset: -5},
-            {
-                name: "CST (UTC-6)", offset: -6},
-                {
-                    name: "MST (UTC-7)", offset: -7},
-                    {
-                        name: "PST (UTC-8)", offset: -8},
-                        {
-                            name: "GMT (UTC+0)", offset: 0},
-                            {
-                                name: "CET (UTC+1)", offset: 1},
-                                {
+    zones := [{
+        name: "UTC", offset: 0 }, {
+            name: "EST (UTC-5)", offset: -5 }, {
+                name: "CST (UTC-6)", offset: -6 }, {
+                    name: "MST (UTC-7)", offset: -7 }, {
+                        name: "PST (UTC-8)", offset: -8 }, {
+                            name: "GMT (UTC+0)", offset: 0 }, {
+                                name: "CET (UTC+1)", offset: 1 }, {
                                     name: "JST (UTC+9)", offset: 9
                                 }
-                                ]
+    ]
 
-                                for zone in zones {
-                                    zoneTime := DateAdd(utcTime, zone.offset, "hours")
-                                    output .= Format("  {:-15s}: {:s}",
-                                    zone.name,
-                                    FormatTime(zoneTime, "HH:mm")) . "`n"
-                                }
+    for zone in zones {
+        zoneTime := DateAdd(utcTime, zone.offset, "hours")
+        output .= Format("  {:-15s}: {:s}",
+            zone.name,
+            FormatTime(zoneTime, "HH:mm")) . "`n"
+    }
 
-                                ; Meeting across time zones
-                                output .= "`n`nInternational Meeting Time:`n"
-                                meetingUTC := FormatTime(A_Now, "yyyyMMdd") . "140000"  ; 2:00 PM UTC
+    ; Meeting across time zones
+    output .= "`n`nInternational Meeting Time:`n"
+    meetingUTC := FormatTime(A_Now, "yyyyMMdd") . "140000"  ; 2:00 PM UTC
 
-                                output .= "  Meeting at 14:00 UTC:`n"
+    output .= "  Meeting at 14:00 UTC:`n"
 
-                                meetingLocal := DateAdd(meetingUTC, -5, "hours")  ; EST
-                                output .= "    New York (EST): " . FormatTime(meetingLocal, "h:mm tt") . "`n"
+    meetingLocal := DateAdd(meetingUTC, -5, "hours")  ; EST
+    output .= "    New York (EST): " . FormatTime(meetingLocal, "h:mm tt") . "`n"
 
-                                meetingLondon := meetingUTC  ; GMT = UTC
-                                output .= "    London (GMT): " . FormatTime(meetingLondon, "HH:mm") . "`n"
+    meetingLondon := meetingUTC  ; GMT = UTC
+    output .= "    London (GMT): " . FormatTime(meetingLondon, "HH:mm") . "`n"
 
-                                meetingTokyo := DateAdd(meetingUTC, 9, "hours")  ; JST
-                                output .= "    Tokyo (JST): " . FormatTime(meetingTokyo, "HH:mm") . "`n"
+    meetingTokyo := DateAdd(meetingUTC, 9, "hours")  ; JST
+    output .= "    Tokyo (JST): " . FormatTime(meetingTokyo, "HH:mm") . "`n"
 
-                                ; Flight duration with time zones
-                                output .= "`n`nFlight Times (NYC to London):`n"
-                                departNYC := FormatTime(A_Now, "yyyyMMdd") . "200000"  ; 8:00 PM
-                                flightDuration := 7  ; 7 hours
+    ; Flight duration with time zones
+    output .= "`n`nFlight Times (NYC to London):`n"
+    departNYC := FormatTime(A_Now, "yyyyMMdd") . "200000"  ; 8:00 PM
+    flightDuration := 7  ; 7 hours
 
-                                arriveLocal := DateAdd(departNYC, flightDuration, "hours")
-                                arriveLocal := DateAdd(arriveLocal, 5, "hours")  ; +5 hours time zone difference
+    arriveLocal := DateAdd(departNYC, flightDuration, "hours")
+    arriveLocal := DateAdd(arriveLocal, 5, "hours")  ; +5 hours time zone difference
 
-                                output .= "  Depart NYC: " . FormatTime(departNYC, "h:mm tt (EST)") . "`n"
-                                output .= "  Flight Time: " . flightDuration . " hours`n"
-                                output .= "  Arrive London: " . FormatTime(arriveLocal, "HH:mm '(GMT)'") . "`n"
+    output .= "  Depart NYC: " . FormatTime(departNYC, "h:mm tt (EST)") . "`n"
+    output .= "  Flight Time: " . flightDuration . " hours`n"
+    output .= "  Arrive London: " . FormatTime(arriveLocal, "HH:mm '(GMT)'") . "`n"
 
-                                MsgBox(output, "Time Zone Adjustments", 262144)
-                            }
+    MsgBox(output, "Time Zone Adjustments", 262144)
+}
 
-                            ; ============================================================================
-                            ; Example 6: Aging and Maturity Calculations
-                            ; ============================================================================
+; ============================================================================
+; Example 6: Aging and Maturity Calculations
+; ============================================================================
 
-                            /**
-                            * Calculates aging periods and maturity dates.
-                            * Common use: Accounts receivable, inventory aging, financial instruments
-                            */
-                            Example6_AgingCalculations() {
-                                output := "=== Example 6: Aging Calculations ===`n`n"
-                                today := A_Now
+/**
+ * Calculates aging periods and maturity dates.
+ * Common use: Accounts receivable, inventory aging, financial instruments
+ */
+Example6_AgingCalculations() {
+    output := "=== Example 6: Aging Calculations ===`n`n"
+    today := A_Now
 
-                                ; Invoice aging
-                                output .= "Invoice Aging Report:`n"
-                                invoices := [
-                                {
-                                    id: "INV-001", date: DateAdd(today, -15, "days"), amount: 1500},
-                                    {
-                                        id: "INV-002", date: DateAdd(today, -35, "days"), amount: 2300},
-                                        {
-                                            id: "INV-003", date: DateAdd(today, -65, "days"), amount: 890},
-                                            {
-                                                id: "INV-004", date: DateAdd(today, -95, "days"), amount: 3400
-                                            }
-                                            ]
+    ; Invoice aging
+    output .= "Invoice Aging Report:`n"
+    invoices := [{
+        id: "INV-001", date: DateAdd(today, -15, "days"), amount: 1500 }, {
+            id: "INV-002", date: DateAdd(today, -35, "days"), amount: 2300 }, {
+                id: "INV-003", date: DateAdd(today, -65, "days"), amount: 890 }, {
+                    id: "INV-004", date: DateAdd(today, -95, "days"), amount: 3400
+                }
+    ]
 
-                                            for invoice in invoices {
-                                                age := DateDiff(today, invoice.date, "days")
-                                                agingCategory := ""
+    for invoice in invoices {
+        age := DateDiff(today, invoice.date, "days")
+        agingCategory := ""
 
-                                                if (age <= 30)
-                                                agingCategory := "Current"
-                                                else if (age <= 60)
-                                                agingCategory := "31-60 days"
-                                                else if (age <= 90)
-                                                agingCategory := "61-90 days"
-                                                else
-                                                agingCategory := "90+ days (Overdue)"
+        if (age <= 30)
+            agingCategory := "Current"
+        else if (age <= 60)
+            agingCategory := "31-60 days"
+        else if (age <= 90)
+            agingCategory := "61-90 days"
+        else
+            agingCategory := "90+ days (Overdue)"
 
-                                                output .= Format("  {:s}: ${:,.2f} - {:d} days ({:s})",
-                                                invoice.id,
-                                                invoice.amount,
-                                                age,
-                                                agingCategory) . "`n"
-                                            }
+        output .= Format("  {:s}: ${:,.2f} - {:d} days ({:s})",
+            invoice.id,
+            invoice.amount,
+            age,
+            agingCategory) . "`n"
+    }
 
-                                            ; Product expiration
-                                            output .= "`n`nProduct Expiration Dates:`n"
-                                            products := [
-                                            {
-                                                name: "Product A", expiry: DateAdd(today, 7, "days")},
-                                                {
-                                                    name: "Product B", expiry: DateAdd(today, 30, "days")},
-                                                    {
-                                                        name: "Product C", expiry: DateAdd(today, -5, "days")},
-                                                        {
-                                                            name: "Product D", expiry: DateAdd(today, 90, "days")
-                                                        }
-                                                        ]
+    ; Product expiration
+    output .= "`n`nProduct Expiration Dates:`n"
+    products := [{
+        name: "Product A", expiry: DateAdd(today, 7, "days") }, {
+            name: "Product B", expiry: DateAdd(today, 30, "days") }, {
+                name: "Product C", expiry: DateAdd(today, -5, "days") }, {
+                    name: "Product D", expiry: DateAdd(today, 90, "days")
+                }
+    ]
 
-                                                        for product in products {
-                                                            daysUntil := DateDiff(product.expiry, today, "days")
-                                                            status := ""
+    for product in products {
+        daysUntil := DateDiff(product.expiry, today, "days")
+        status := ""
 
-                                                            if (daysUntil < 0)
-                                                            status := "EXPIRED"
-                                                            else if (daysUntil <= 7)
-                                                            status := "URGENT"
-                                                            else if (daysUntil <= 30)
-                                                            status := "Warning"
-                                                            else
-                                                            status := "OK"
+        if (daysUntil < 0)
+            status := "EXPIRED"
+        else if (daysUntil <= 7)
+            status := "URGENT"
+        else if (daysUntil <= 30)
+            status := "Warning"
+        else
+            status := "OK"
 
-                                                            output .= Format("  {:-15s}: {:s} ({:s})",
-                                                            product.name,
-                                                            FormatTime(product.expiry, "MMM dd"),
-                                                            status) . "`n"
-                                                        }
+        output .= Format("  {:-15s}: {:s} ({:s})",
+            product.name,
+            FormatTime(product.expiry, "MMM dd"),
+            status) . "`n"
+    }
 
-                                                        ; Bond maturity
-                                                        output .= "`n`nFinancial Instrument Maturity:`n"
-                                                        bonds := [
-                                                        {
-                                                            type: "3-Month T-Bill", months: 3},
-                                                            {
-                                                                type: "6-Month T-Bill", months: 6},
-                                                                {
-                                                                    type: "1-Year Note", months: 12},
-                                                                    {
-                                                                        type: "5-Year Bond", months: 60
-                                                                    }
-                                                                    ]
+    ; Bond maturity
+    output .= "`n`nFinancial Instrument Maturity:`n"
+    bonds := [{
+        type: "3-Month T-Bill", months: 3 }, {
+            type: "6-Month T-Bill", months: 6 }, {
+                type: "1-Year Note", months: 12 }, {
+                    type: "5-Year Bond", months: 60
+                }
+    ]
 
-                                                                    issueDate := today
+    issueDate := today
 
-                                                                    for bond in bonds {
-                                                                        maturity := DateAdd(issueDate, bond.months, "months")
-                                                                        daysUntil := DateDiff(maturity, today, "days")
+    for bond in bonds {
+        maturity := DateAdd(issueDate, bond.months, "months")
+        daysUntil := DateDiff(maturity, today, "days")
 
-                                                                        output .= Format("  {:-18s}: {:s} ({:d} days)",
-                                                                        bond.type,
-                                                                        FormatTime(maturity, "MMM dd, yyyy"),
-                                                                        daysUntil) . "`n"
-                                                                    }
+        output .= Format("  {:-18s}: {:s} ({:d} days)",
+            bond.type,
+            FormatTime(maturity, "MMM dd, yyyy"),
+            daysUntil) . "`n"
+    }
 
-                                                                    MsgBox(output, "Aging Calculations", 262144)
-                                                                }
+    MsgBox(output, "Aging Calculations", 262144)
+}
 
-                                                                ; ============================================================================
-                                                                ; Example 7: Shift and Rotation Scheduling
-                                                                ; ============================================================================
+; ============================================================================
+; Example 7: Shift and Rotation Scheduling
+; ============================================================================
 
-                                                                /**
-                                                                * Calculates shift schedules and rotation patterns.
-                                                                * Common use: Workforce management, scheduling systems, shift planning
-                                                                */
-                                                                Example7_ShiftScheduling() {
-                                                                    output := "=== Example 7: Shift Scheduling ===`n`n"
-                                                                    today := A_Now
+/**
+ * Calculates shift schedules and rotation patterns.
+ * Common use: Workforce management, scheduling systems, shift planning
+ */
+Example7_ShiftScheduling() {
+    output := "=== Example 7: Shift Scheduling ===`n`n"
+    today := A_Now
 
-                                                                    ; 3-shift rotation (Day/Evening/Night)
-                                                                    output .= "3-Shift Rotation Schedule (7-Day Cycle):`n"
-                                                                    shifts := ["Day (8am-4pm)", "Evening (4pm-12am)", "Night (12am-8am)"]
-                                                                    employees := ["Alice", "Bob", "Carol"]
+    ; 3-shift rotation (Day/Evening/Night)
+    output .= "3-Shift Rotation Schedule (7-Day Cycle):`n"
+    shifts := ["Day (8am-4pm)", "Evening (4pm-12am)", "Night (12am-8am)"]
+    employees := ["Alice", "Bob", "Carol"]
 
-                                                                    startDate := today
+    startDate := today
 
-                                                                    output .= Format("{:-12s} {:-15s} {:-15s} {:-15s}",
-                                                                    "Date",
-                                                                    employees[1],
-                                                                    employees[2],
-                                                                    employees[3]) . "`n"
-                                                                    output .= StrReplace(Format("{:60s}", ""), " ", "─") . "`n"
+    output .= Format("{:-12s} {:-15s} {:-15s} {:-15s}",
+        "Date",
+        employees[1],
+        employees[2],
+        employees[3]) . "`n"
+    output .= StrReplace(Format("{:60s}", ""), " ", "─") . "`n"
 
-                                                                    loop 7 {
-                                                                        day := DateAdd(startDate, A_Index - 1, "days")
-                                                                        dayStr := FormatTime(day, "ddd, MMM dd")
+    loop 7 {
+        day := DateAdd(startDate, A_Index - 1, "days")
+        dayStr := FormatTime(day, "ddd, MMM dd")
 
-                                                                        ; Rotate shifts
-                                                                        shift1 := shifts[Mod(A_Index - 1, 3) + 1]
-                                                                        shift2 := shifts[Mod(A_Index, 3) + 1]
-                                                                        shift3 := shifts[Mod(A_Index + 1, 3) + 1]
+        ; Rotate shifts
+        shift1 := shifts[Mod(A_Index - 1, 3) + 1]
+        shift2 := shifts[Mod(A_Index, 3) + 1]
+        shift3 := shifts[Mod(A_Index + 1, 3) + 1]
 
-                                                                        output .= Format("{:-12s} {:-15s} {:-15s} {:-15s}",
-                                                                        dayStr,
-                                                                        shift1,
-                                                                        shift2,
-                                                                        shift3) . "`n"
-                                                                    }
+        output .= Format("{:-12s} {:-15s} {:-15s} {:-15s}",
+            dayStr,
+            shift1,
+            shift2,
+            shift3) . "`n"
+    }
 
-                                                                    ; On-call rotation
-                                                                    output .= "`n`nOn-Call Rotation (Weekly):`n"
-                                                                    onCallStart := today
-                                                                    onCallPeople := ["Alex", "Blake", "Casey", "Dana"]
+    ; On-call rotation
+    output .= "`n`nOn-Call Rotation (Weekly):`n"
+    onCallStart := today
+    onCallPeople := ["Alex", "Blake", "Casey", "Dana"]
 
-                                                                    loop 4 {
-                                                                        weekStart := DateAdd(onCallStart, (A_Index - 1) * 7, "days")
-                                                                        weekEnd := DateAdd(weekStart, 6, "days")
-                                                                        person := onCallPeople[A_Index]
+    loop 4 {
+        weekStart := DateAdd(onCallStart, (A_Index - 1) * 7, "days")
+        weekEnd := DateAdd(weekStart, 6, "days")
+        person := onCallPeople[A_Index]
 
-                                                                        output .= Format("  Week {:d}: {:s} - {:s} ({:s})",
-                                                                        A_Index,
-                                                                        FormatTime(weekStart, "MMM dd"),
-                                                                        FormatTime(weekEnd, "MMM dd"),
-                                                                        person) . "`n"
-                                                                    }
+        output .= Format("  Week {:d}: {:s} - {:s} ({:s})",
+            A_Index,
+            FormatTime(weekStart, "MMM dd"),
+            FormatTime(weekEnd, "MMM dd"),
+            person) . "`n"
+    }
 
-                                                                    ; 2-2-3 Schedule (common in 24/7 operations)
-                                                                    output .= "`n`n2-2-3 Schedule Pattern (14 Days):`n"
-                                                                    output .= "  (2 days on, 2 days off, 3 days on, 2 days off, 2 days on, 3 days off)`n`n"
+    ; 2-2-3 Schedule (common in 24/7 operations)
+    output .= "`n`n2-2-3 Schedule Pattern (14 Days):`n"
+    output .= "  (2 days on, 2 days off, 3 days on, 2 days off, 2 days on, 3 days off)`n`n"
 
-                                                                    pattern := [1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]  ; 1=working, 0=off
-                                                                    scheduleStart := today
+    pattern := [1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]  ; 1=working, 0=off
+    scheduleStart := today
 
-                                                                    loop 14 {
-                                                                        day := DateAdd(scheduleStart, A_Index - 1, "days")
-                                                                        status := pattern[A_Index] ? "Working" : "Off"
+    loop 14 {
+        day := DateAdd(scheduleStart, A_Index - 1, "days")
+        status := pattern[A_Index] ? "Working" : "Off"
 
-                                                                        output .= Format("  {:s}: {:s}",
-                                                                        FormatTime(day, "ddd, MMM dd"),
-                                                                        status) . "`n"
-                                                                    }
+        output .= Format("  {:s}: {:s}",
+            FormatTime(day, "ddd, MMM dd"),
+            status) . "`n"
+    }
 
-                                                                    MsgBox(output, "Shift Scheduling", 262144)
-                                                                }
+    MsgBox(output, "Shift Scheduling", 262144)
+}
 
-                                                                ; ============================================================================
-                                                                ; Main Menu and Hotkeys
-                                                                ; ============================================================================
+; ============================================================================
+; Main Menu and Hotkeys
+; ============================================================================
 
-                                                                ShowMenu() {
-                                                                    menu := "
+ShowMenu() {
+    menu := "
                                                                     (
                                                                     DateAdd() - Advanced Calculations
 
@@ -606,16 +586,16 @@ Example5_TimeZoneAdjustments() {
 
                                                                     Press Ctrl+1-7 to run examples
                                                                     )"
-                                                                    MsgBox(menu, "DateAdd Advanced", 4096)
-                                                                }
+    MsgBox(menu, "DateAdd Advanced", 4096)
+}
 
-                                                                ^1::Example1_BusinessDayAddition()
-                                                                ^2::Example2_PeriodEndCalculations()
-                                                                ^3::Example3_ChainedOperations()
-                                                                ^4::Example4_DateRangeGenerator()
-                                                                ^5::Example5_TimeZoneAdjustments()
-                                                                ^6::Example6_AgingCalculations()
-                                                                ^7::Example7_ShiftScheduling()
-                                                                ^m::ShowMenu()
+^1:: Example1_BusinessDayAddition()
+^2:: Example2_PeriodEndCalculations()
+^3:: Example3_ChainedOperations()
+^4:: Example4_DateRangeGenerator()
+^5:: Example5_TimeZoneAdjustments()
+^6:: Example6_AgingCalculations()
+^7:: Example7_ShiftScheduling()
+^m:: ShowMenu()
 
-                                                                ShowMenu()
+ShowMenu()

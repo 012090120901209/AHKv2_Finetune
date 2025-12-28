@@ -1,51 +1,51 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlSend_01 - Basic Control Send to Controls
-* ============================================================================
-*
-* Demonstrates basic ControlSend functionality for sending keystrokes
-* directly to controls without requiring window focus.
-*
-* @description
-* ControlSend sends keystrokes directly to a control within a window,
-* enabling background automation and multi-window operations without
-* disrupting user interaction.
-*
-* Key Features:
-* - Send text to controls in background
-* - No window activation required
-* - Support for special keys and modifiers
-* - Control-specific targeting
-* - Reliable text input automation
-*
-* @syntax ControlSend Keys, Control, WinTitle, WinText
-*
-* @author AutoHotkey Community
-* @version 1.0.0
-* @since 2024-01-16
-*
-* @example
-* ; Send text to Notepad
-* ControlSend "Hello World", "Edit1", "Untitled - Notepad"
-*
-* @see https://www.autohotkey.com/docs/v2/lib/ControlSend.htm
-*/
+ * ============================================================================
+ * ControlSend_01 - Basic Control Send to Controls
+ * ============================================================================
+ * 
+ * Demonstrates basic ControlSend functionality for sending keystrokes
+ * directly to controls without requiring window focus.
+ * 
+ * @description
+ * ControlSend sends keystrokes directly to a control within a window,
+ * enabling background automation and multi-window operations without
+ * disrupting user interaction.
+ * 
+ * Key Features:
+ * - Send text to controls in background
+ * - No window activation required
+ * - Support for special keys and modifiers
+ * - Control-specific targeting
+ * - Reliable text input automation
+ * 
+ * @syntax ControlSend Keys, Control, WinTitle, WinText
+ * 
+ * @author AutoHotkey Community
+ * @version 1.0.0
+ * @since 2024-01-16
+ * 
+ * @example
+ * ; Send text to Notepad
+ * ControlSend "Hello World", "Edit1", "Untitled - Notepad"
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/ControlSend.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Text Sending
 ; ============================================================================
 
 /**
-* @function Example1_BasicSend
-* @description Demonstrates basic ControlSend text input
-* Shows how to send simple text to controls
-*/
+ * @function Example1_BasicSend
+ * @description Demonstrates basic ControlSend text input
+ * Shows how to send simple text to controls
+ */
 Example1_BasicSend() {
     MsgBox("Example 1: Basic Text Sending`n`n" .
-    "Send text to controls using ControlSend.",
-    "Basic Send", "OK Icon!")
+        "Send text to controls using ControlSend.",
+        "Basic Send", "OK Icon!")
 
     ; Launch Notepad
     Run("notepad.exe")
@@ -91,14 +91,14 @@ Example1_BasicSend() {
 ; ============================================================================
 
 /**
-* @function Example2_MultiWindow
-* @description Send text to multiple windows in background
-* Demonstrates ControlSend's ability to work without activation
-*/
+ * @function Example2_MultiWindow
+ * @description Send text to multiple windows in background
+ * Demonstrates ControlSend's ability to work without activation
+ */
 Example2_MultiWindow() {
     MsgBox("Example 2: Multiple Window Sending`n`n" .
-    "Send text to multiple Notepad windows in background.",
-    "Multi-Window", "OK Icon!")
+        "Send text to multiple Notepad windows in background.",
+        "Multi-Window", "OK Icon!")
 
     ; Launch multiple Notepad instances
     windows := []
@@ -122,8 +122,8 @@ Example2_MultiWindow() {
     }
 
     MsgBox("Launched " . windows.Length . " Notepad windows.`n`n" .
-    "Now sending different text to each...",
-    "Info", "OK Icon! T2")
+        "Now sending different text to each...",
+        "Info", "OK Icon! T2")
 
     ; Send different text to each window
     for win in windows {
@@ -141,7 +141,7 @@ Example2_MultiWindow() {
 
         } catch Error as err {
             MsgBox("Error sending to window " . win.number . ": " . err.Message,
-            "Error", "OK IconX")
+                "Error", "OK IconX")
         }
     }
 
@@ -167,14 +167,14 @@ Example2_MultiWindow() {
 ; ============================================================================
 
 /**
-* @function Example3_FormFilling
-* @description Automate form filling using ControlSend
-* Shows practical use case for data entry automation
-*/
+ * @function Example3_FormFilling
+ * @description Automate form filling using ControlSend
+ * Shows practical use case for data entry automation
+ */
 Example3_FormFilling() {
     MsgBox("Example 3: Form Filling Automation`n`n" .
-    "Automatically fill forms using ControlSend.",
-    "Form Filling", "OK Icon!")
+        "Automatically fill forms using ControlSend.",
+        "Form Filling", "OK Icon!")
 
     ; Create a sample form
     formGui := Gui(, "Registration Form")
@@ -211,24 +211,21 @@ Example3_FormFilling() {
     controlGui.Add("Text", "w350", "Form Auto-Fill Options:")
 
     ; Sample data sets
-    sampleData := [
-    {
+    sampleData := [{
         firstName: "John",
         lastName: "Doe",
         email: "john.doe@example.com",
         phone: "(555) 123-4567",
         address: "123 Main St`nApt 4B`nNew York, NY 10001",
         comments: "Please contact me via email.`nBest time: 9 AM - 5 PM"
-    },
-    {
+    }, {
         firstName: "Jane",
         lastName: "Smith",
         email: "jane.smith@example.com",
         phone: "(555) 987-6543",
         address: "456 Oak Avenue`nSuite 200`nLos Angeles, CA 90001",
         comments: "Interested in premium membership.`nRefer to account #12345"
-    },
-    {
+    }, {
         firstName: "Bob",
         lastName: "Johnson",
         email: "bob.j@example.com",
@@ -344,14 +341,14 @@ Example3_FormFilling() {
     ; Close demo
     CloseDemo() {
         if WinExist("Registration Form")
-        formGui.Destroy()
+            formGui.Destroy()
         if WinExist("Auto-Fill Control")
-        controlGui.Destroy()
+            controlGui.Destroy()
     }
 
     MsgBox("Form filling demo started!`n`n" .
-    "Use the control panel to auto-fill the registration form.",
-    "Info", "OK Icon! T3")
+        "Use the control panel to auto-fill the registration form.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -359,14 +356,14 @@ Example3_FormFilling() {
 ; ============================================================================
 
 /**
-* @function Example4_TypingSimulation
-* @description Simulate realistic typing with character delays
-* Shows how to send text character-by-character
-*/
+ * @function Example4_TypingSimulation
+ * @description Simulate realistic typing with character delays
+ * Shows how to send text character-by-character
+ */
 Example4_TypingSimulation() {
     MsgBox("Example 4: Typing Simulation`n`n" .
-    "Simulate realistic typing with delays between characters.",
-    "Typing Simulation", "OK Icon!")
+        "Simulate realistic typing with delays between characters.",
+        "Typing Simulation", "OK Icon!")
 
     ; Create demo GUI
     myGui := Gui("+AlwaysOnTop", "Typing Simulation Demo")
@@ -385,15 +382,15 @@ Example4_TypingSimulation() {
 
     sample1Btn := myGui.Add("Button", "w140 y+10", "Quote")
     sample1Btn.OnEvent("Click", (*) => TypeText(
-    "To be or not to be, that is the question."))
+        "To be or not to be, that is the question."))
 
     sample2Btn := myGui.Add("Button", "w140 x+10", "Lorem Ipsum")
     sample2Btn.OnEvent("Click", (*) => TypeText(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."))
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."))
 
     sample3Btn := myGui.Add("Button", "w140 x+10", "Multi-Line")
     sample3Btn.OnEvent("Click", (*) => TypeText(
-    "First line of text`nSecond line of text`nThird line of text"))
+        "First line of text`nSecond line of text`nThird line of text"))
 
     clearBtn := myGui.Add("Button", "w220 y+20", "Clear Output")
     clearBtn.OnEvent("Click", (*) => outputEdit.Value := "")
@@ -446,8 +443,8 @@ Example4_TypingSimulation() {
     }
 
     MsgBox("Typing simulation demo started!`n`n" .
-    "Adjust speed and watch realistic typing simulation.",
-    "Info", "OK Icon! T3")
+        "Adjust speed and watch realistic typing simulation.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -455,14 +452,14 @@ Example4_TypingSimulation() {
 ; ============================================================================
 
 /**
-* @function Example5_InputValidation
-* @description Demonstrates input validation when using ControlSend
-* Shows error handling and verification techniques
-*/
+ * @function Example5_InputValidation
+ * @description Demonstrates input validation when using ControlSend
+ * Shows error handling and verification techniques
+ */
 Example5_InputValidation() {
     MsgBox("Example 5: Input Validation`n`n" .
-    "Validate and verify text sent to controls.",
-    "Input Validation", "OK Icon!")
+        "Validate and verify text sent to controls.",
+        "Input Validation", "OK Icon!")
 
     ; Create form with validation
     formGui := Gui(, "Validated Form")
@@ -498,15 +495,15 @@ Example5_InputValidation() {
     ctrlGui.Add("Text", "w400 y+20 BackgroundRed cWhite", "Invalid Data Tests")
 
     invalidNumBtn := ctrlGui.Add("Button", "w390 y+10",
-    "Test: Invalid Number (150)")
+        "Test: Invalid Number (150)")
     invalidNumBtn.OnEvent("Click", (*) => TestInvalidNum())
 
     invalidEmailBtn := ctrlGui.Add("Button", "w390 y+10",
-    "Test: Invalid Email (no@)")
+        "Test: Invalid Email (no@)")
     invalidEmailBtn.OnEvent("Click", (*) => TestInvalidEmail())
 
     invalidPhoneBtn := ctrlGui.Add("Button", "w390 y+10",
-    "Test: Invalid Phone (wrong format)")
+        "Test: Invalid Phone (wrong format)")
     invalidPhoneBtn.OnEvent("Click", (*) => TestInvalidPhone())
 
     ; Results log
@@ -532,7 +529,7 @@ Example5_InputValidation() {
     ; Validation functions
     ValidateNumber(value) {
         if !IsNumber(value)
-        return false
+            return false
         num := Integer(value)
         return (num >= 1 && num <= 100)
     }
@@ -598,9 +595,9 @@ Example5_InputValidation() {
         allValid &= SendAndValidate("Edit4", "2024-01-15", ValidateDate, "Date")
 
         if allValid
-        LogResult("All validations passed!`n")
+            LogResult("All validations passed!`n")
         else
-        LogResult("Some validations failed!`n", true)
+            LogResult("Some validations failed!`n", true)
     }
 
     ; Test invalid number
@@ -633,14 +630,14 @@ Example5_InputValidation() {
     ; Close all
     CloseAll() {
         if WinExist("Validated Form")
-        formGui.Destroy()
+            formGui.Destroy()
         if WinExist("Validation Control")
-        ctrlGui.Destroy()
+            ctrlGui.Destroy()
     }
 
     MsgBox("Input validation demo started!`n`n" .
-    "Test sending and validating different data types.",
-    "Info", "OK Icon! T3")
+        "Test sending and validating different data types.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -665,7 +662,7 @@ ShowMainMenu() {
     choice := InputBox(menuText, "ControlSend Examples", "w400 h280")
 
     if (choice.Result = "Cancel")
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicSend()
@@ -674,7 +671,7 @@ ShowMainMenu() {
         case "4": Example4_TypingSimulation()
         case "5": Example5_InputValidation()
         default:
-        MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
+            MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
     }
 
     ; Show menu again

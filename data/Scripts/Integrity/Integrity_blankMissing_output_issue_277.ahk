@@ -1,5 +1,6 @@
 #Requires AutoHotkey v2.0 ; Source: Code Integrity/blankMissing_output_issue_277.ah2 #Requires Autohotkey v2.0
-#SingleInstance Force esc:: ExitApp()
+#SingleInstance Force
+esc:: ExitApp()
 
 F11::
 F12::

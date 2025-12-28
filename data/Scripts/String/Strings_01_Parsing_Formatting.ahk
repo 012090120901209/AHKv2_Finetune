@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* String Handling - Parsing and Formatting
-*
-* Demonstrates common string operations: parsing, formatting,
-* extraction, transformation, and validation.
-*
-* Source: AHK_Notes/Concepts/string-handling-in-ahk-v2.md
-*/
+ * String Handling - Parsing and Formatting
+ * 
+ * Demonstrates common string operations: parsing, formatting,
+ * extraction, transformation, and validation.
+ * 
+ * Source: AHK_Notes/Concepts/string-handling-in-ahk-v2.md
+ */
 
 ; Test 1: String concatenation
 firstName := "John"
@@ -16,52 +16,52 @@ lastName := "Doe"
 fullName := firstName " " lastName  ; Implicit concatenation
 
 MsgBox("Concatenation:`n`n"
-. "First: " firstName "`n"
-. "Last: " lastName "`n"
-. "Full: " fullName, , "T3")
+    . "First: " firstName "`n"
+    . "Last: " lastName "`n"
+    . "Full: " fullName, , "T3")
 
 ; Test 2: String parsing
 csvLine := "Alice,30,Engineer,New York"
 parts := ParseCSV(csvLine)
 
 MsgBox("CSV Parsing:`n`n"
-. "Input: " csvLine "`n`n"
-. "Name: " parts[1] "`n"
-. "Age: " parts[2] "`n"
-. "Job: " parts[3] "`n"
-. "City: " parts[4], , "T3")
+    . "Input: " csvLine "`n`n"
+    . "Name: " parts[1] "`n"
+    . "Age: " parts[2] "`n"
+    . "Job: " parts[3] "`n"
+    . "City: " parts[4], , "T3")
 
 ; Test 3: Email extraction with RegEx
 text := "Contact us at support@example.com or sales@company.org for help."
 emails := ExtractEmails(text)
 
 MsgBox("Email Extraction:`n`n"
-. "Found " emails.Length " emails:`n"
-. emails.Join("`n"), , "T3")
+    . "Found " emails.Length " emails:`n"
+    . emails.Join("`n"), , "T3")
 
 ; Test 4: String formatting
 template := "Hello {name}, you have {count} new messages."
 formatted := FormatString(template, Map("name", "Alice", "count", 5))
 
 MsgBox("String Formatting:`n`n"
-. "Template: " template "`n`n"
-. "Result: " formatted, , "T3")
+    . "Template: " template "`n`n"
+    . "Result: " formatted, , "T3")
 
 ; Test 5: Case transformation and manipulation
 original := "  Hello World!  "
 MsgBox("String Manipulation:`n`n"
-. "Original: '" original "'`n"
-. "Trim: '" Trim(original) "'`n"
-. "Upper: '" StrUpper(original) "'`n"
-. "Lower: '" StrLower(original) "'`n"
-. "Length: " StrLen(original) "`n"
-. "Reverse: '" ReverseString(Trim(original)) "'", , "T5")
+    . "Original: '" original "'`n"
+    . "Trim: '" Trim(original) "'`n"
+    . "Upper: '" StrUpper(original) "'`n"
+    . "Lower: '" StrLower(original) "'`n"
+    . "Length: " StrLen(original) "`n"
+    . "Reverse: '" ReverseString(Trim(original)) "'", , "T5")
 
 /**
-* ParseCSV - Split CSV line into array
-* @param {string} line - CSV line to parse
-* @return {array} Array of values
-*/
+ * ParseCSV - Split CSV line into array
+ * @param {string} line - CSV line to parse
+ * @return {array} Array of values
+ */
 ParseCSV(line) {
     parts := []
     Loop Parse, line, "," {
@@ -71,10 +71,10 @@ ParseCSV(line) {
 }
 
 /**
-* ExtractEmails - Find all email addresses in text
-* @param {string} text - Text to search
-* @return {array} Array of email addresses
-*/
+ * ExtractEmails - Find all email addresses in text
+ * @param {string} text - Text to search
+ * @return {array} Array of email addresses
+ */
 ExtractEmails(text) {
     emails := []
     pattern := "i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
@@ -89,11 +89,11 @@ ExtractEmails(text) {
 }
 
 /**
-* FormatString - Replace {key} with values from map
-* @param {string} template - Template string with {placeholders}
-* @param {map} values - Map of placeholder values
-* @return {string} Formatted string
-*/
+ * FormatString - Replace {key} with values from map
+ * @param {string} template - Template string with {placeholders}
+ * @param {map} values - Map of placeholder values
+ * @return {string} Formatted string
+ */
 FormatString(template, values) {
     result := template
 
@@ -106,27 +106,27 @@ FormatString(template, values) {
 }
 
 /**
-* ReverseString - Reverse a string
-* @param {string} str - String to reverse
-* @return {string} Reversed string
-*/
+ * ReverseString - Reverse a string
+ * @param {string} str - String to reverse
+ * @return {string} Reversed string
+ */
 ReverseString(str) {
     reversed := ""
     Loop Parse, str
-    reversed := A_LoopField reversed
+        reversed := A_LoopField reversed
     return reversed
 }
 
 /**
-* WordCount - Count words in text
-* @param {string} text - Text to analyze
-* @return {int} Word count
-*/
+ * WordCount - Count words in text
+ * @param {string} text - Text to analyze
+ * @return {int} Word count
+ */
 WordCount(text) {
     count := 0
     Loop Parse, text, " `t`n`r"
-    if (StrLen(Trim(A_LoopField)) > 0)
-    count++
+        if (StrLen(Trim(A_LoopField)) > 0)
+            count++
     return count
 }
 
@@ -180,4 +180,5 @@ WordCount(text) {
     *    ⚠ Use array.Join() for multiple parts
     *    ✅ RegEx is fast for complex patterns
     *    ✅ Loop Parse is efficient for splitting
-    */
+*/
+

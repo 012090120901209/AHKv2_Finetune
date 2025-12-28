@@ -1,55 +1,55 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_InStr_02_Parsing.ahk
-*
-* DESCRIPTION:
-* Using InStr() for string parsing and text extraction
-*
-* FEATURES:
-* - Extract text between delimiters
-* - Parse structured data
-* - Find and replace preparation
-* - Token extraction
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - InStr()
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - InStr() combined with SubStr()
-* - Multiple delimiter handling
-* - Iterative parsing with InStr()
-* - Position-based extraction
-*
-* LEARNING POINTS:
-* 1. InStr() is essential for parsing
-* 2. Combine with SubStr() for extraction
-* 3. Use in loops for multiple delimiters
-* 4. Handle nested structures carefully
-*/
+ * BuiltIn_InStr_02_Parsing.ahk
+ * 
+ * DESCRIPTION:
+ * Using InStr() for string parsing and text extraction
+ * 
+ * FEATURES:
+ * - Extract text between delimiters
+ * - Parse structured data
+ * - Find and replace preparation
+ * - Token extraction
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - InStr()
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - InStr() combined with SubStr()
+ * - Multiple delimiter handling
+ * - Iterative parsing with InStr()
+ * - Position-based extraction
+ * 
+ * LEARNING POINTS:
+ * 1. InStr() is essential for parsing
+ * 2. Combine with SubStr() for extraction
+ * 3. Use in loops for multiple delimiters
+ * 4. Handle nested structures carefully
+ */
 
 ; ============================================================
 ; Example 1: Extract Text Between Delimiters
 ; ============================================================
 
 /**
-* Extract text between two delimiters
-*
-* @param {String} text - Source text
-* @param {String} startDel - Start delimiter
-* @param {String} endDel - End delimiter
-* @returns {String} - Extracted text
-*/
+ * Extract text between two delimiters
+ * 
+ * @param {String} text - Source text
+ * @param {String} startDel - Start delimiter
+ * @param {String} endDel - End delimiter
+ * @returns {String} - Extracted text
+ */
 ExtractBetween(text, startDel, endDel) {
     startPos := InStr(text, startDel)
     if (startPos = 0)
-    return ""
+        return ""
 
     startPos += StrLen(startDel)
 
     endPos := InStr(text, endDel, , startPos)
     if (endPos = 0)
-    return ""
+        return ""
 
     return SubStr(text, startPos, endPos - startPos)
 }
@@ -62,20 +62,20 @@ json := '{"name": "John Doe"}'
 name := ExtractBetween(json, '"name": "', '"')
 
 MsgBox("HTML: " html "`nExtracted: '" content "'`n`n"
-. "JSON: " json "`nName: '" name "'",
-"Extract Between Delimiters", "Icon!")
+    . "JSON: " json "`nName: '" name "'",
+    "Extract Between Delimiters", "Icon!")
 
 ; ============================================================
 ; Example 2: Split String Manually
 ; ============================================================
 
 /**
-* Split string by delimiter using InStr()
-*
-* @param {String} text - Text to split
-* @param {String} delimiter - Delimiter
-* @returns {Array} - Array of parts
-*/
+ * Split string by delimiter using InStr()
+ * 
+ * @param {String} text - Text to split
+ * @param {String} delimiter - Delimiter
+ * @returns {Array} - Array of parts
+ */
 ManualSplit(text, delimiter) {
     parts := []
     startPos := 1
@@ -86,7 +86,7 @@ ManualSplit(text, delimiter) {
         if (pos = 0) {
             ; Last part
             if (startPos <= StrLen(text))
-            parts.Push(SubStr(text, startPos))
+                parts.Push(SubStr(text, startPos))
             break
         }
 
@@ -103,7 +103,7 @@ parts := ManualSplit(path, "\")
 
 output := "Path: " path "`n`nParts:`n"
 for part in parts
-output .= A_Index ". " part "`n"
+    output .= A_Index ". " part "`n"
 
 MsgBox(output, "Manual Split", "Icon!")
 
@@ -112,8 +112,8 @@ MsgBox(output, "Manual Split", "Icon!")
 ; ============================================================
 
 /**
-* Parse key=value format
-*/
+ * Parse key=value format
+ */
 class KeyValueParser {
     static Parse(text, pairDelimiter := "&", kvDelimiter := "=") {
         data := Map()
@@ -137,7 +137,7 @@ params := KeyValueParser.Parse(queryString)
 
 output := "Query String: " queryString "`n`nParsed:`n"
 for key, value in params
-output .= key " = " value "`n"
+    output .= key " = " value "`n"
 
 MsgBox(output, "Key-Value Parser", "Icon!")
 
@@ -146,37 +146,37 @@ MsgBox(output, "Key-Value Parser", "Icon!")
 ; ============================================================
 
 /**
-* Get file extension from filename
-*
-* @param {String} filename - Filename
-* @returns {String} - Extension without dot
-*/
+ * Get file extension from filename
+ * 
+ * @param {String} filename - Filename
+ * @returns {String} - Extension without dot
+ */
 GetExtension(filename) {
     dotPos := InStr(filename, ".", , -1)  ; Last dot
 
     if (dotPos = 0)
-    return ""
+        return ""
 
     return SubStr(filename, dotPos + 1)
 }
 
 /**
-* Get filename without extension
-*/
+ * Get filename without extension
+ */
 GetFilenameWithoutExt(filename) {
     dotPos := InStr(filename, ".", , -1)
 
     if (dotPos = 0)
-    return filename
+        return filename
 
     return SubStr(filename, 1, dotPos - 1)
 }
 
 files := [
-"document.txt",
-"archive.tar.gz",
-"script.ahk",
-"README"
+    "document.txt",
+    "archive.tar.gz",
+    "script.ahk",
+    "README"
 ]
 
 output := "FILE EXTENSIONS:`n`n"
@@ -193,12 +193,12 @@ MsgBox(output, "Extension Extraction", "Icon!")
 ; ============================================================
 
 /**
-* Count how many times substring appears
-*
-* @param {String} text - Text to search
-* @param {String} substring - Substring to count
-* @returns {Integer} - Count
-*/
+ * Count how many times substring appears
+ * 
+ * @param {String} text - Text to search
+ * @param {String} substring - Substring to count
+ * @returns {Integer} - Count
+ */
 CountOccurrences(text, substring) {
     count := 0
     startPos := 1
@@ -206,7 +206,7 @@ CountOccurrences(text, substring) {
     Loop {
         pos := InStr(text, substring, , startPos)
         if (pos = 0)
-        break
+            break
 
         count++
         startPos := pos + 1
@@ -222,10 +222,10 @@ countChuck := CountOccurrences(text, "chuck")
 countThe := CountOccurrences(text, "the")
 
 MsgBox("Text: " text "`n`n"
-. "'wood' appears: " countWood " times`n"
-. "'chuck' appears: " countChuck " times`n"
-. "'the' appears: " countThe " times",
-"Count Occurrences", "Icon!")
+    . "'wood' appears: " countWood " times`n"
+    . "'chuck' appears: " countChuck " times`n"
+    . "'the' appears: " countThe " times",
+    "Count Occurrences", "Icon!")
 
 ; ============================================================
 ; Reference Information

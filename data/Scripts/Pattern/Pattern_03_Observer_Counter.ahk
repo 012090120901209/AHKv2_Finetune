@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Observer Pattern - Counter Application
-*
-* Demonstrates Observer pattern with a practical counter application.
-* Multiple observers (GUI display, logger) react to counter changes.
-*
-* Source: AHK_Notes/Patterns/observer-pattern.md
-*/
+ * Observer Pattern - Counter Application
+ * 
+ * Demonstrates Observer pattern with a practical counter application.
+ * Multiple observers (GUI display, logger) react to counter changes.
+ * 
+ * Source: AHK_Notes/Patterns/observer-pattern.md
+ */
 
 ; Initialize application
 app := CreateCounterApp()
@@ -32,17 +32,17 @@ CreateCounterApp() {
 
     ; Register observers with the subject
     counter.Subscribe(display)
-    .Subscribe(logger)
+        .Subscribe(logger)
 
     ; Show the GUI
     myGui.Show("w340 h100")
 
-    return {Counter: counter, Gui: myGui}
+    return { Counter: counter, Gui: myGui }
 }
 
 /**
-* Observable Base Class
-*/
+ * Observable Base Class
+ */
 class Observable {
     Observers := []
 
@@ -69,9 +69,9 @@ class Observable {
 }
 
 /**
-* Counter Subject
-* Extends Observable to notify observers of value changes
-*/
+ * Counter Subject
+ * Extends Observable to notify observers of value changes
+ */
 class Counter extends Observable {
     Value := 0
 
@@ -95,8 +95,8 @@ class Counter extends Observable {
 }
 
 /**
-* Observer Base Class
-*/
+ * Observer Base Class
+ */
 class Observer {
     Update(data) {
         ; Abstract method
@@ -104,9 +104,9 @@ class Observer {
 }
 
 /**
-* GUI Display Observer
-* Updates GUI when counter changes
-*/
+ * GUI Display Observer
+ * Updates GUI when counter changes
+ */
 class CounterDisplay extends Observer {
     Gui := ""
     ControlID := ""
@@ -122,9 +122,9 @@ class CounterDisplay extends Observer {
 }
 
 /**
-* Logger Observer
-* Logs counter changes to debug output
-*/
+ * Logger Observer
+ * Logs counter changes to debug output
+ */
 class CounterLogger extends Observer {
     Update(newValue) {
         OutputDebug("Counter changed to: " newValue)
@@ -155,3 +155,4 @@ class CounterLogger extends Observer {
 *    - Logging happens transparently
 *    - Easy to add features (metrics, alerts, etc.)
 */
+

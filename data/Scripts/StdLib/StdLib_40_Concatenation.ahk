@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* String concatenation techniques
-*
-* Multiple ways to combine strings in AHK v2.
-*/
+ * String concatenation techniques
+ * 
+ * Multiple ways to combine strings in AHK v2.
+ */
 
 ; Method 1: Dot operator
 result1 := "Hello" . " " . "World"
@@ -19,5 +19,5 @@ result2 := word1 " " word2
 result3 := Format("{1} {2}", word1, word2)
 
 MsgBox("Method 1 (dot): " result1
-. "`nMethod 2 (substitution): " result2
-. "`nMethod 3 (Format): " result3)
+    . "`nMethod 2 (substitution): " result2
+    . "`nMethod 3 (Format): " result3)

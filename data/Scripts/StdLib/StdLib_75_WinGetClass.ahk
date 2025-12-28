@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinGetClass() - Get window class
-*
-* Returns the window class name.
-*/
+ * WinGetClass() - Get window class
+ * 
+ * Returns the window class name.
+ */
 
 class := WinGetClass("A")
 MsgBox("Active window class: " class)

@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlShow - Show Controls Dynamically
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlShow - Show Controls Dynamically
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -47,7 +47,7 @@ Example2() {
     BtnShowAll.OnEvent("Click", ShowAll)
     ShowAll(*) {
         for ctrl in controls
-        ControlShow(ctrl)
+            ControlShow(ctrl)
     }
 
     MyGui.Show()
@@ -65,7 +65,7 @@ Example3() {
     loop 4 {
         step := MyGui.Add("Edit", "w250 y+10", "Step " . A_Index)
         if (A_Index > 1)
-        ControlHide(step)
+            ControlHide(step)
         steps.Push(step)
     }
     current := 1
@@ -97,9 +97,9 @@ Example4() {
     Input.OnEvent("Change", Check)
     Check(ctrl, *) {
         if (StrLen(ctrl.Value) > 3)
-        ControlShow(Dependent)
+            ControlShow(Dependent)
         else
-        ControlHide(Dependent)
+            ControlHide(Dependent)
     }
 
     MyGui.Show()
@@ -191,13 +191,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Show",
-"Example 2: Show Multiple",
-"Example 3: Progressive Disclosure",
-"Example 4: Conditional Show",
-"Example 5: Timed Show",
-"Example 6: Menu-Based Show",
-"Example 7: Reveal Animation",
+    "Example 1: Basic Show",
+    "Example 2: Show Multiple",
+    "Example 3: Progressive Disclosure",
+    "Example 4: Conditional Show",
+    "Example 5: Timed Show",
+    "Example 6: Menu-Based Show",
+    "Example 7: Reveal Animation",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

@@ -3,11 +3,11 @@
 #Include JSON.ahk
 
 /**
-* Uniq() - Remove duplicates (Standalone Implementation)
-*
-* Creates a duplicate-free version of an array.
-* Keeps only the first occurrence of each element.
-*/
+ * Uniq() - Remove duplicates (Standalone Implementation)
+ * 
+ * Creates a duplicate-free version of an array.
+ * Keeps only the first occurrence of each element.
+ */
 
 Uniq(array) {
     result := []

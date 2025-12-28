@@ -9,7 +9,7 @@ class Shape {
     Perimeter() => throw Error("Abstract method - must override")
     Draw() => MsgBox(this.ToString())
     ToString() => Format("{} at ({}, {}): Area={:.2f}, Perimeter={:.2f}",
-    Type(this), this.x, this.y, this.Area(), this.Perimeter())
+        Type(this), this.x, this.y, this.Area(), this.Perimeter())
 }
 
 class Circle extends Shape {
@@ -32,4 +32,4 @@ class Triangle extends Shape {
 
 shapes := [Circle(0, 0, 5), Rectangle(10, 10, 4, 6), Triangle(20, 20, 3, 4, 3, 4, 5)]
 for shape in shapes
-shape.Draw()
+    shape.Draw()

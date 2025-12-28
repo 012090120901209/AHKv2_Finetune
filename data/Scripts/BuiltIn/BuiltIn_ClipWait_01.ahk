@@ -1,61 +1,61 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - ClipWait: Waiting for Clipboard Operations
-* ============================================================================
-*
-* This file demonstrates using ClipWait to wait for clipboard operations
-* to complete, ensuring reliable clipboard automation.
-*
-* ClipWait pauses script execution until the clipboard contains data,
-* which is essential when automating copy operations.
-*
-* @file BuiltIn_ClipWait_01.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Basic ClipWait Usage
-* 2. ClipWait with Timeout Handling
-* 3. Safe Copy Operations
-* 4. Multiple Copy Operations
-* 5. Clipboard Verification
-* 6. Advanced Copy Automation
-* 7. Robust Clipboard Utilities
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Basic ClipWait usage and syntax
-* - Handling timeouts gracefully
-* - Creating safe copy operations
-* - Chaining multiple copy operations
-* - Verifying clipboard content after copy
-* - Building automation with ClipWait
-* - Creating robust clipboard utilities
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - ClipWait: Waiting for Clipboard Operations
+ * ============================================================================
+ * 
+ * This file demonstrates using ClipWait to wait for clipboard operations
+ * to complete, ensuring reliable clipboard automation.
+ * 
+ * ClipWait pauses script execution until the clipboard contains data,
+ * which is essential when automating copy operations.
+ * 
+ * @file BuiltIn_ClipWait_01.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Basic ClipWait Usage
+ * 2. ClipWait with Timeout Handling
+ * 3. Safe Copy Operations
+ * 4. Multiple Copy Operations
+ * 5. Clipboard Verification
+ * 6. Advanced Copy Automation
+ * 7. Robust Clipboard Utilities
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Basic ClipWait usage and syntax
+ * - Handling timeouts gracefully
+ * - Creating safe copy operations
+ * - Chaining multiple copy operations
+ * - Verifying clipboard content after copy
+ * - Building automation with ClipWait
+ * - Creating robust clipboard utilities
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Basic ClipWait Usage
 ; ============================================================================
 
 /**
-* Demonstrates basic ClipWait usage.
-*
-* @class BasicClipWait
-* @description Shows fundamental ClipWait operations
-*/
+ * Demonstrates basic ClipWait usage.
+ * 
+ * @class BasicClipWait
+ * @description Shows fundamental ClipWait operations
+ */
 
 class BasicClipWait {
 
     /**
-    * Simple copy with ClipWait
-    * @returns {Boolean} Success status
-    */
+     * Simple copy with ClipWait
+     * @returns {Boolean} Success status
+     */
     static SimpleCopy() {
         ; Clear clipboard first
         A_Clipboard := ""
@@ -66,53 +66,53 @@ class BasicClipWait {
         ; Wait for clipboard to contain data (default 1 second timeout)
         if (ClipWait(1)) {
             MsgBox("Copy successful!`n`nClipboard: " . A_Clipboard,
-            "Success", "Icon Info")
+                "Success", "Icon Info")
             return true
         } else {
             MsgBox("Copy failed - clipboard did not receive data!",
-            "Failed", "Icon Warn")
+                "Failed", "Icon Warn")
             return false
         }
     }
 
     /**
-    * Copy with longer timeout
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * Copy with longer timeout
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static CopyWithTimeout(timeout := 3) {
         A_Clipboard := ""
         Send("^c")
 
         if (ClipWait(timeout)) {
             TrayTip("Copy Successful",
-            "Data copied to clipboard",
-            "Icon Info")
+                "Data copied to clipboard",
+                "Icon Info")
             return true
         } else {
             TrayTip("Copy Failed",
-            "Timeout waiting for clipboard",
-            "Icon Warn")
+                "Timeout waiting for clipboard",
+                "Icon Warn")
             return false
         }
     }
 
     /**
-    * Wait for any clipboard change
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * Wait for any clipboard change
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static WaitForClipboard(timeout := 2) {
         ; ClipWait returns true if clipboard receives ANY data
         return ClipWait(timeout)
     }
 
     /**
-    * Wait for specific type of data
-    * @param {Integer} dataType - 0=any, 1=text only
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * Wait for specific type of data
+     * @param {Integer} dataType - 0=any, 1=text only
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static WaitForDataType(dataType := 0, timeout := 2) {
         ; ClipWait's second parameter:
         ; 0 or omitted = wait for any data
@@ -125,14 +125,14 @@ class BasicClipWait {
 ; Simple copy demonstration
 F1:: {
     MsgBox("Select some text, then press OK to test ClipWait.",
-    "Basic ClipWait Demo", "Icon Info")
+        "Basic ClipWait Demo", "Icon Info")
     BasicClipWait.SimpleCopy()
 }
 
 ; Copy with extended timeout
 F2:: {
     MsgBox("Select some text, then press OK.`nYou have 3 seconds.",
-    "Extended Timeout Demo", "Icon Info")
+        "Extended Timeout Demo", "Icon Info")
     BasicClipWait.CopyWithTimeout(3)
 }
 
@@ -141,20 +141,20 @@ F2:: {
 ; ============================================================================
 
 /**
-* Demonstrates proper timeout handling with ClipWait.
-*
-* @class TimeoutHandler
-* @description Handles ClipWait timeouts gracefully
-*/
+ * Demonstrates proper timeout handling with ClipWait.
+ * 
+ * @class TimeoutHandler
+ * @description Handles ClipWait timeouts gracefully
+ */
 
 class TimeoutHandler {
 
     /**
-    * Copy with retry on timeout
-    * @param {Integer} maxRetries - Maximum retry attempts
-    * @param {Integer} timeout - Timeout per attempt
-    * @returns {Boolean} Success status
-    */
+     * Copy with retry on timeout
+     * @param {Integer} maxRetries - Maximum retry attempts
+     * @param {Integer} timeout - Timeout per attempt
+     * @returns {Boolean} Success status
+     */
     static CopyWithRetry(maxRetries := 3, timeout := 1) {
         Loop maxRetries {
             attempt := A_Index
@@ -166,8 +166,8 @@ class TimeoutHandler {
             ; Wait for clipboard
             if (ClipWait(timeout)) {
                 TrayTip("Copy Successful",
-                "Succeeded on attempt " . attempt,
-                "Icon Info")
+                    "Succeeded on attempt " . attempt,
+                    "Icon Info")
                 return true
             }
 
@@ -179,16 +179,16 @@ class TimeoutHandler {
 
         ; All attempts failed
         MsgBox("Copy failed after " . maxRetries . " attempts!",
-        "Copy Failed", "Icon Error")
+            "Copy Failed", "Icon Error")
         return false
     }
 
     /**
-    * Copy with custom error handling
-    * @param {Func} errorCallback - Function to call on error
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * Copy with custom error handling
+     * @param {Func} errorCallback - Function to call on error
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static CopyWithErrorHandler(errorCallback, timeout := 2) {
         A_Clipboard := ""
         Send("^c")
@@ -203,10 +203,10 @@ class TimeoutHandler {
     }
 
     /**
-    * Copy with progress indication
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * Copy with progress indication
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static CopyWithProgress(timeout := 3) {
         A_Clipboard := ""
 
@@ -223,7 +223,7 @@ class TimeoutHandler {
             TrayTip("Copy Complete", "", "Icon Info")
         } else {
             MsgBox("Copy operation timed out after " . timeout . " seconds!",
-            "Timeout", "Icon Warn")
+                "Timeout", "Icon Warn")
         }
 
         return result
@@ -231,20 +231,20 @@ class TimeoutHandler {
 }
 
 ; Copy with retry
-^!c::TimeoutHandler.CopyWithRetry(3, 1)
+^!c:: TimeoutHandler.CopyWithRetry(3, 1)
 
 ; Copy with progress
-^!p::TimeoutHandler.CopyWithProgress(3)
+^!p:: TimeoutHandler.CopyWithProgress(3)
 
 ; Copy with custom error handler
 ^!e:: {
     errorHandler := (timeout) {
         MsgBox("Copy failed! Timed out after " . timeout . " seconds.`n`n"
-        . "Possible causes:`n"
-        . "• No text was selected`n"
-        . "• Application doesn't support copying`n"
-        . "• Clipboard is locked by another process",
-        "Copy Error", "Icon Error")
+            . "Possible causes:`n"
+            . "• No text was selected`n"
+            . "• Application doesn't support copying`n"
+            . "• Clipboard is locked by another process",
+            "Copy Error", "Icon Error")
     }
 
     TimeoutHandler.CopyWithErrorHandler(errorHandler, 2)
@@ -255,18 +255,18 @@ class TimeoutHandler {
 ; ============================================================================
 
 /**
-* Demonstrates safe clipboard copy operations.
-*
-* @class SafeCopy
-* @description Performs safe clipboard operations
-*/
+ * Demonstrates safe clipboard copy operations.
+ * 
+ * @class SafeCopy
+ * @description Performs safe clipboard operations
+ */
 
 class SafeCopy {
 
     /**
-    * Safely copies text without losing clipboard
-    * @returns {String} Copied text or empty string on failure
-    */
+     * Safely copies text without losing clipboard
+     * @returns {String} Copied text or empty string on failure
+     */
     static SafeCopyText() {
         ; Save current clipboard
         savedClip := ClipboardAll()
@@ -300,10 +300,10 @@ class SafeCopy {
     }
 
     /**
-    * Copies selected text and returns it
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {String} Copied text
-    */
+     * Copies selected text and returns it
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {String} Copied text
+     */
     static GetSelectedText(timeout := 2) {
         savedClip := ClipboardAll()
 
@@ -323,10 +323,10 @@ class SafeCopy {
     }
 
     /**
-    * Copies and processes text without affecting clipboard
-    * @param {Func} processor - Function to process text
-    * @returns {Any} Result from processor
-    */
+     * Copies and processes text without affecting clipboard
+     * @param {Func} processor - Function to process text
+     * @returns {Any} Result from processor
+     */
     static CopyAndProcess(processor) {
         savedClip := ClipboardAll()
 
@@ -358,10 +358,10 @@ class SafeCopy {
 
     if (text != "") {
         MsgBox("Selected text:`n`n" . text,
-        "Selection", "Icon Info")
+            "Selection", "Icon Info")
     } else {
         MsgBox("No text was copied!",
-        "No Selection", "Icon Warn")
+            "No Selection", "Icon Warn")
     }
 }
 
@@ -371,7 +371,7 @@ class SafeCopy {
         count := 0
         Loop Parse, text, " `t`n`r" {
             if (A_LoopField != "")
-            count++
+                count++
         }
         return count
     })
@@ -388,20 +388,20 @@ class SafeCopy {
 ; ============================================================================
 
 /**
-* Demonstrates chaining multiple copy operations.
-*
-* @class MultiCopy
-* @description Handles multiple sequential copies
-*/
+ * Demonstrates chaining multiple copy operations.
+ * 
+ * @class MultiCopy
+ * @description Handles multiple sequential copies
+ */
 
 class MultiCopy {
 
     /**
-    * Copies multiple selections sequentially
-    * @param {Integer} count - Number of selections to copy
-    * @param {Integer} timeout - Timeout per copy
-    * @returns {Array} Array of copied texts
-    */
+     * Copies multiple selections sequentially
+     * @param {Integer} count - Number of selections to copy
+     * @param {Integer} timeout - Timeout per copy
+     * @returns {Array} Array of copied texts
+     */
     static CopyMultiple(count, timeout := 2) {
         results := []
 
@@ -410,7 +410,7 @@ class MultiCopy {
 
             ; Prompt user
             MsgBox("Select text #" . index . " and press OK",
-            "Multi-Copy", "Icon Info")
+                "Multi-Copy", "Icon Info")
 
             ; Copy
             A_Clipboard := ""
@@ -420,7 +420,7 @@ class MultiCopy {
                 results.Push(A_Clipboard)
             } else {
                 MsgBox("Copy #" . index . " failed!",
-                "Copy Failed", "Icon Warn")
+                    "Copy Failed", "Icon Warn")
                 return results  ; Return what we have so far
             }
         }
@@ -429,11 +429,11 @@ class MultiCopy {
     }
 
     /**
-    * Copies from multiple windows
-    * @param {Array} windowTitles - Array of window titles
-    * @param {Integer} timeout - Timeout per copy
-    * @returns {Map} Map of window title to copied text
-    */
+     * Copies from multiple windows
+     * @param {Array} windowTitles - Array of window titles
+     * @param {Integer} timeout - Timeout per copy
+     * @returns {Map} Map of window title to copied text
+     */
     static CopyFromWindows(windowTitles, timeout := 2) {
         results := Map()
 
@@ -464,11 +464,11 @@ class MultiCopy {
     }
 
     /**
-    * Collects multiple copies into single result
-    * @param {Integer} count - Number of items to copy
-    * @param {String} separator - Separator between items
-    * @returns {String} Combined result
-    */
+     * Collects multiple copies into single result
+     * @param {Integer} count - Number of items to copy
+     * @param {String} separator - Separator between items
+     * @returns {String} Combined result
+     */
     static CollectMultiple(count, separator := "`n") {
         collected := []
 
@@ -476,7 +476,7 @@ class MultiCopy {
             index := A_Index
 
             MsgBox("Select item #" . index . " and press OK",
-            "Collect Items", "Icon Info")
+                "Collect Items", "Icon Info")
 
             A_Clipboard := ""
             Send("^c")
@@ -490,7 +490,7 @@ class MultiCopy {
         result := ""
         for item in collected {
             if (result != "")
-            result .= separator
+                result .= separator
             result .= item
         }
 
@@ -518,8 +518,8 @@ class MultiCopy {
 
     A_Clipboard := collected
     MsgBox("Collected items copied to clipboard!`n`nPreview:`n`n"
-    . SubStr(collected, 1, 200),
-    "Collected", "Icon Info")
+        . SubStr(collected, 1, 200),
+        "Collected", "Icon Info")
 }
 
 ; ============================================================================
@@ -527,67 +527,67 @@ class MultiCopy {
 ; ============================================================================
 
 /**
-* Demonstrates verifying clipboard content after copy.
-*
-* @class ClipboardVerifier
-* @description Verifies clipboard operations
-*/
+ * Demonstrates verifying clipboard content after copy.
+ * 
+ * @class ClipboardVerifier
+ * @description Verifies clipboard operations
+ */
 
 class ClipboardVerifier {
 
     /**
-    * Copies and verifies content is not empty
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} True if copy succeeded and has content
-    */
+     * Copies and verifies content is not empty
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} True if copy succeeded and has content
+     */
     static CopyAndVerifyNotEmpty(timeout := 2) {
         A_Clipboard := ""
         Send("^c")
 
         if (!ClipWait(timeout))
-        return false
+            return false
 
         return (A_Clipboard != "")
     }
 
     /**
-    * Copies and verifies minimum length
-    * @param {Integer} minLength - Minimum required length
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} True if meets minimum length
-    */
+     * Copies and verifies minimum length
+     * @param {Integer} minLength - Minimum required length
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} True if meets minimum length
+     */
     static CopyAndVerifyLength(minLength, timeout := 2) {
         A_Clipboard := ""
         Send("^c")
 
         if (!ClipWait(timeout))
-        return false
+            return false
 
         return (StrLen(A_Clipboard) >= minLength)
     }
 
     /**
-    * Copies and verifies against pattern
-    * @param {String} pattern - Regex pattern to match
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Boolean} True if matches pattern
-    */
+     * Copies and verifies against pattern
+     * @param {String} pattern - Regex pattern to match
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Boolean} True if matches pattern
+     */
     static CopyAndVerifyPattern(pattern, timeout := 2) {
         A_Clipboard := ""
         Send("^c")
 
         if (!ClipWait(timeout))
-        return false
+            return false
 
         return RegExMatch(A_Clipboard, pattern)
     }
 
     /**
-    * Copies and validates content
-    * @param {Func} validator - Validation function
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {Map} Validation result
-    */
+     * Copies and validates content
+     * @param {Func} validator - Validation function
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {Map} Validation result
+     */
     static CopyAndValidate(validator, timeout := 2) {
         result := Map()
 
@@ -631,19 +631,19 @@ class ClipboardVerifier {
 ; ============================================================================
 
 /**
-* Demonstrates advanced copy automation techniques.
-*
-* @class AdvancedCopyAutomation
-* @description Advanced clipboard automation
-*/
+ * Demonstrates advanced copy automation techniques.
+ * 
+ * @class AdvancedCopyAutomation
+ * @description Advanced clipboard automation
+ */
 
 class AdvancedCopyAutomation {
 
     /**
-    * Copies entire document/page
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {String} Copied content
-    */
+     * Copies entire document/page
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {String} Copied content
+     */
     static CopyAll(timeout := 3) {
         savedClip := ClipboardAll()
 
@@ -667,10 +667,10 @@ class AdvancedCopyAutomation {
     }
 
     /**
-    * Copies current line
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {String} Copied line
-    */
+     * Copies current line
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {String} Copied line
+     */
     static CopyCurrentLine(timeout := 2) {
         savedClip := ClipboardAll()
 
@@ -696,10 +696,10 @@ class AdvancedCopyAutomation {
     }
 
     /**
-    * Copies word at cursor
-    * @param {Integer} timeout - Timeout in seconds
-    * @returns {String} Copied word
-    */
+     * Copies word at cursor
+     * @param {Integer} timeout - Timeout in seconds
+     * @returns {String} Copied word
+     */
     static CopyCurrentWord(timeout := 2) {
         savedClip := ClipboardAll()
 
@@ -731,9 +731,9 @@ class AdvancedCopyAutomation {
         lines := StrSplit(content, "`n").Length
         chars := StrLen(content)
         MsgBox("Copied entire document:`n`n"
-        . "Lines: " . lines . "`n"
-        . "Characters: " . chars,
-        "Copy All", "Icon Info")
+            . "Lines: " . lines . "`n"
+            . "Characters: " . chars,
+            "Copy All", "Icon Info")
     }
 }
 
@@ -743,7 +743,7 @@ class AdvancedCopyAutomation {
 
     if (line != "") {
         MsgBox("Current line:`n`n" . line,
-        "Line Copy", "Icon Info")
+            "Line Copy", "Icon Info")
     }
 }
 
@@ -753,7 +753,7 @@ class AdvancedCopyAutomation {
 
     if (word != "") {
         MsgBox("Current word: " . word,
-        "Word Copy", "Icon Info")
+            "Word Copy", "Icon Info")
     }
 }
 
@@ -762,27 +762,27 @@ class AdvancedCopyAutomation {
 ; ============================================================================
 
 /**
-* Robust clipboard utility functions using ClipWait.
-*
-* @class RobustClipboard
-* @description Production-ready clipboard utilities
-*/
+ * Robust clipboard utility functions using ClipWait.
+ * 
+ * @class RobustClipboard
+ * @description Production-ready clipboard utilities
+ */
 
 class RobustClipboard {
 
     /**
-    * Performs copy with full error handling
-    * @param {Map} options - Configuration options
-    * @returns {Map} Result with status and data
-    */
+     * Performs copy with full error handling
+     * @param {Map} options - Configuration options
+     * @returns {Map} Result with status and data
+     */
     static Copy(options := unset) {
         ; Default options
         opts := Map(
-        "timeout", 2,
-        "retries", 1,
-        "preserveClip", true,
-        "clearFirst", true,
-        "verify", false
+            "timeout", 2,
+            "retries", 1,
+            "preserveClip", true,
+            "clearFirst", true,
+            "verify", false
         )
 
         ; Merge provided options
@@ -801,7 +801,7 @@ class RobustClipboard {
             ; Attempt copy with retries
             Loop opts["retries"] {
                 if (opts["clearFirst"])
-                A_Clipboard := ""
+                    A_Clipboard := ""
 
                 Send("^c")
 
@@ -819,7 +819,7 @@ class RobustClipboard {
             }
 
             if (!result["success"])
-            result["error"] := "Timeout after " . opts["retries"] . " attempt(s)"
+                result["error"] := "Timeout after " . opts["retries"] . " attempt(s)"
 
         } catch as err {
             result["error"] := err.Message
@@ -837,19 +837,19 @@ class RobustClipboard {
 ; Robust copy demo
 ^!r:: {
     options := Map(
-    "timeout", 2,
-    "retries", 3,
-    "preserveClip", true
+        "timeout", 2,
+        "retries", 3,
+        "preserveClip", true
     )
 
     result := RobustClipboard.Copy(options)
 
     if (result["success"]) {
         MsgBox("Copy successful!`n`nContent: " . SubStr(result["content"], 1, 100),
-        "Success", "Icon Info")
+            "Success", "Icon Info")
     } else {
         MsgBox("Copy failed!`n`nError: " . result["error"],
-        "Failed", "Icon Error")
+            "Failed", "Icon Error")
     }
 }
 

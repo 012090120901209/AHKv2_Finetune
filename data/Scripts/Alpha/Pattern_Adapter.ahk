@@ -13,7 +13,7 @@ class JsonAdapter {
 
     GetJson() {
         xml := this.api.GetXml()
-        
+
         ; Parse XML to extract values
         result := Map()
         pos := 1
@@ -21,7 +21,7 @@ class JsonAdapter {
             result[m[1]] := m[2]
             pos := m.Pos + m.Len
         }
-        
+
         ; Build JSON string
         json := "{"
         first := true
@@ -32,7 +32,7 @@ class JsonAdapter {
             first := false
         }
         json .= "}"
-        
+
         return json
     }
 }

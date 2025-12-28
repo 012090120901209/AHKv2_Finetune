@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Deep Clone - Object Deep Cloning
-*
-* Demonstrates deep cloning of objects with nested properties
-* and circular reference handling.
-*
-* Source: AHK_Notes/Snippets/deep-cloning-objects.md
-*/
+ * Deep Clone - Object Deep Cloning
+ * 
+ * Demonstrates deep cloning of objects with nested properties
+ * and circular reference handling.
+ * 
+ * Source: AHK_Notes/Snippets/deep-cloning-objects.md
+ */
 
 ; Test basic deep clone
 original := {
@@ -21,7 +21,7 @@ original := {
             height: 600
         }
     },
-    items: [1, 2, {nested: "value"}]
+    items: [1, 2, { nested: "value" }]
 }
 
 clone := DeepClone(original)
@@ -29,43 +29,43 @@ clone.settings.theme := "light"
 clone.settings.window.width := 1024
 
 MsgBox("Deep Clone Test:`n`n"
-. "Original theme: " original.settings.theme "`n"
-. "Clone theme: " clone.settings.theme "`n`n"
-. "Original width: " original.settings.window.width "`n"
-. "Clone width: " clone.settings.window.width "`n`n"
-. "Objects are independent: " (original != clone), , "T5")
+    . "Original theme: " original.settings.theme "`n"
+    . "Clone theme: " clone.settings.theme "`n`n"
+    . "Original width: " original.settings.window.width "`n"
+    . "Clone width: " clone.settings.window.width "`n`n"
+    . "Objects are independent: " (original != clone), , "T5")
 
 ; Test circular reference handling
-circular := {name: "Parent"}
+circular := { name: "Parent" }
 circular.self := circular  ; Circular reference
-circular.child := {name: "Child", parent: circular}  ; Back reference
+circular.child := { name: "Child", parent: circular }  ; Back reference
 
 circClone := DeepClone(circular)
 MsgBox("Circular Reference Test:`n`n"
-. "Original name: " circular.name "`n"
-. "Clone name: " circClone.name "`n`n"
-. "Original self === original: " (circular.self == circular) "`n"
-. "Clone self === clone: " (circClone.self == circClone) "`n`n"
-. "Circular refs preserved correctly", , "T5")
+    . "Original name: " circular.name "`n"
+    . "Clone name: " circClone.name "`n`n"
+    . "Original self === original: " (circular.self == circular) "`n"
+    . "Clone self === clone: " (circClone.self == circClone) "`n`n"
+    . "Circular refs preserved correctly", , "T5")
 
 /**
-* DeepClone - Create fully independent copy of object
-* @param {object} obj - Object to clone
-* @param {map} seen - Circular reference tracker (internal)
-* @return {object} Deep cloned object
-*/
+ * DeepClone - Create fully independent copy of object
+ * @param {object} obj - Object to clone
+ * @param {map} seen - Circular reference tracker (internal)
+ * @return {object} Deep cloned object
+ */
 DeepClone(obj, seen := unset) {
     ; Initialize seen map on first call
     if (!IsSet(seen))
-    seen := Map()
+        seen := Map()
 
     ; Return primitives directly
     if (!IsObject(obj))
-    return obj
+        return obj
 
     ; Handle circular references
     if (seen.Has(obj))
-    return seen[obj]
+        return seen[obj]
 
     ; Handle arrays
     if (obj is Array) {
@@ -136,3 +136,4 @@ DeepClone(obj, seen := unset) {
 *    ⚠ Doesn't preserve prototypes
 *    ⚠ May be slow for large objects
 */
+

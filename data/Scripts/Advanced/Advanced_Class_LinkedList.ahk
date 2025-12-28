@@ -39,7 +39,7 @@ class LinkedList {
 
     GetAt(index) {
         if (index < 0 || index >= this.length)
-        return ""
+            return ""
 
         current := this.head
         Loop index {

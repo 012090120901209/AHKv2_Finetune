@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 INI Read Examples - Part 3
-* ============================================================================
-*
-* Comprehensive INI reading for configuration management systems,
-* migrations, and complex data structures.
-*
-* @description Configuration management and complex INI operations
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 INI Read Examples - Part 3
+ * ============================================================================
+ * 
+ * Comprehensive INI reading for configuration management systems,
+ * migrations, and complex data structures.
+ * 
+ * @description Configuration management and complex INI operations
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Configuration Migration Reader
@@ -27,7 +27,7 @@ class ConfigMigration {
         currentVersion := this.ReadVersion(iniFile)
 
         if (currentVersion = targetVersion)
-        return "Already at target version"
+            return "Already at target version"
 
         steps := []
         v := Integer(currentVersion)
@@ -43,7 +43,7 @@ class ConfigMigration {
 
 Example1_ConfigMigration() {
     MsgBox "=== Example 1: Configuration Migration ===`n`n" .
-    "Reading and migrating configuration versions..."
+        "Reading and migrating configuration versions..."
 
     iniFile := A_ScriptDir . "\migrate_config.ini"
 
@@ -80,7 +80,7 @@ Example1_ConfigMigration() {
 
 Example2_NestedConfig() {
     MsgBox "=== Example 2: Nested Configuration ===`n`n" .
-    "Reading hierarchical configuration..."
+        "Reading hierarchical configuration..."
 
     iniFile := A_ScriptDir . "\nested_config.ini"
 
@@ -103,7 +103,7 @@ Example2_NestedConfig() {
 
     for key in keyList {
         if (key = "")
-        continue
+            continue
 
         value := IniRead(iniFile, "App", key)
         parts := StrSplit(key, ".")
@@ -113,7 +113,7 @@ Example2_NestedConfig() {
             setting := parts[2]
 
             if (!nested.Has(category))
-            nested[category] := Map()
+                nested[category] := Map()
 
             nested[category][setting] := value
         }
@@ -139,7 +139,7 @@ Example2_NestedConfig() {
 
 Example3_BackupReader() {
     MsgBox "=== Example 3: Configuration Backup ===`n`n" .
-    "Reading configuration backups..."
+        "Reading configuration backups..."
 
     mainIni := A_ScriptDir . "\main_config.ini"
     backupIni := A_ScriptDir . "\main_config.backup.ini"
@@ -182,7 +182,7 @@ class ConfigCache {
         cacheKey := iniFile . "|" . section . "|" . key
 
         if (this.cache.Has(cacheKey))
-        return this.cache[cacheKey]
+            return this.cache[cacheKey]
 
         value := IniRead(iniFile, section, key, default)
         this.cache[cacheKey] := value
@@ -197,7 +197,7 @@ class ConfigCache {
 
 Example4_CachedReading() {
     MsgBox "=== Example 4: Cached Configuration Reading ===`n`n" .
-    "Using cached configuration reads..."
+        "Using cached configuration reads..."
 
     iniFile := A_ScriptDir . "\cached_config.ini"
 
@@ -232,7 +232,7 @@ Example4_CachedReading() {
 
 Example5_LargeConfig() {
     MsgBox "=== Example 5: Large Configuration ===`n`n" .
-    "Reading large configuration files..."
+        "Reading large configuration files..."
 
     iniFile := A_ScriptDir . "\large_config.ini"
 
@@ -255,7 +255,7 @@ Example5_LargeConfig() {
     totalKeys := 0
     for section in sectionList {
         if (section = "")
-        continue
+            continue
 
         keys := IniRead(iniFile, section)
         keyList := StrSplit(keys, "`n")
@@ -276,7 +276,7 @@ Example5_LargeConfig() {
 
 Example6_AuditLog() {
     MsgBox "=== Example 6: Configuration Audit Log ===`n`n" .
-    "Reading configuration change history..."
+        "Reading configuration change history..."
 
     iniFile := A_ScriptDir . "\audit_config.ini"
 
@@ -301,16 +301,16 @@ Example6_AuditLog() {
 
     for section in sectionList {
         if (section = "" || !InStr(section, "Audit.Entry"))
-        continue
+            continue
 
         timestamp := IniRead(iniFile, section, "Timestamp")
         user := IniRead(iniFile, section, "User")
         action := IniRead(iniFile, section, "Action")
 
         auditEntries.Push(Map(
-        "timestamp", timestamp,
-        "user", user,
-        "action", action
+            "timestamp", timestamp,
+            "user", user,
+            "action", action
         ))
     }
 
@@ -331,7 +331,7 @@ Example6_AuditLog() {
 
 Example7_SchemaValidation() {
     MsgBox "=== Example 7: Schema Validation ===`n`n" .
-    "Validating configuration against schema..."
+        "Validating configuration against schema..."
 
     iniFile := A_ScriptDir . "\schema_config.ini"
     schemaFile := A_ScriptDir . "\schema.ini"
@@ -361,7 +361,7 @@ Example7_SchemaValidation() {
 
     for schemaSection in schemaSectionList {
         if (schemaSection = "" || !InStr(schemaSection, "Schema."))
-        continue
+            continue
 
         actualSection := StrReplace(schemaSection, "Schema.", "")
 
@@ -370,7 +370,7 @@ Example7_SchemaValidation() {
 
         for key in keyList {
             if (key = "")
-            continue
+                continue
 
             expectedType := IniRead(schemaFile, schemaSection, key)
             value := IniRead(iniFile, actualSection, key, "***MISSING***")
@@ -436,8 +436,8 @@ ShowMenu() {
         case "7": Example7_SchemaValidation()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     SetTimer(() => ShowMenu(), -1000)

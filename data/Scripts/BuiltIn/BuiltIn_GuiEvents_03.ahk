@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiEvents_03.ahk - Custom Event Handlers
-*
-* This file demonstrates creating and managing custom event handlers in AutoHotkey v2.
-* Topics covered:
-* - Custom events
-* - Event callbacks
-* - Event queuing
-* - Async events
-* - Event filtering
-* - Event delegation
-* - Observer pattern
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiEvents_03.ahk - Custom Event Handlers
+ * 
+ * This file demonstrates creating and managing custom event handlers in AutoHotkey v2.
+ * Topics covered:
+ * - Custom events
+ * - Event callbacks
+ * - Event queuing
+ * - Async events
+ * - Event filtering
+ * - Event delegation
+ * - Observer pattern
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates custom events with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates custom events with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example1_Customevents() {
     myGui := Gui(, "Custom events Demo")
     myGui.BackColor := "White"
@@ -87,15 +86,14 @@ Example1_Customevents() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Event callbacks
 ; =============================================================================
 
 /**
-* Demonstrates event callbacks with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates event callbacks with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example2_Eventcallbacks() {
     myGui := Gui(, "Event callbacks Demo")
     myGui.BackColor := "White"
@@ -155,15 +153,14 @@ Example2_Eventcallbacks() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Event queuing
 ; =============================================================================
 
 /**
-* Demonstrates event queuing with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates event queuing with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example3_Eventqueuing() {
     myGui := Gui(, "Event queuing Demo")
     myGui.BackColor := "White"
@@ -223,15 +220,14 @@ Example3_Eventqueuing() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Async events
 ; =============================================================================
 
 /**
-* Demonstrates async events with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates async events with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example4_Asyncevents() {
     myGui := Gui(, "Async events Demo")
     myGui.BackColor := "White"
@@ -291,15 +287,14 @@ Example4_Asyncevents() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Event filtering
 ; =============================================================================
 
 /**
-* Demonstrates event filtering with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates event filtering with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example5_Eventfiltering() {
     myGui := Gui(, "Event filtering Demo")
     myGui.BackColor := "White"
@@ -359,15 +354,14 @@ Example5_Eventfiltering() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Event delegation
 ; =============================================================================
 
 /**
-* Demonstrates event delegation with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates event delegation with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example6_Eventdelegation() {
     myGui := Gui(, "Event delegation Demo")
     myGui.BackColor := "White"
@@ -427,15 +421,14 @@ Example6_Eventdelegation() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Observer pattern
 ; =============================================================================
 
 /**
-* Demonstrates observer pattern with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates observer pattern with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example7_Observerpattern() {
     myGui := Gui(, "Observer pattern Demo")
     myGui.BackColor := "White"
@@ -500,8 +493,8 @@ Example7_Observerpattern() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiEvents_03.ahk - Examples")
     menuGui.BackColor := "White"

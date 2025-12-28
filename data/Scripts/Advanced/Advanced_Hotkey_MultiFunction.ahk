@@ -9,25 +9,25 @@ CapsLock::
     KeyWait("CapsLock", "T0.2")  ; Wait 0.2 seconds
 
     if (ErrorLevel) {  ; Key is still held
-    ; Act as Control modifier
-    KeyWait("CapsLock")  ; Wait for release
-    return
-} else {
-    ; Was a tap - send Escape
-    Send("{Escape}")
-}
+        ; Act as Control modifier
+        KeyWait("CapsLock")  ; Wait for release
+        return
+    } else {
+        ; Was a tap - send Escape
+        Send("{Escape}")
+    }
 }
 
 ; Enhanced CapsLock as Control when held with other keys
 #HotIf GetKeyState("CapsLock", "P")
 
-a::Send("^a")  ; CapsLock + a = Ctrl+A (Select All)
-c::Send("^c")  ; CapsLock + c = Ctrl+C (Copy)
-v::Send("^v")  ; CapsLock + v = Ctrl+V (Paste)
-x::Send("^x")  ; CapsLock + x = Ctrl+X (Cut)
-z::Send("^z")  ; CapsLock + z = Ctrl+Z (Undo)
-f::Send("^f")  ; CapsLock + f = Ctrl+F (Find)
-s::Send("^s")  ; CapsLock + s = Ctrl+S (Save)
+a:: Send("^a")  ; CapsLock + a = Ctrl+A (Select All)
+c:: Send("^c")  ; CapsLock + c = Ctrl+C (Copy)
+v:: Send("^v")  ; CapsLock + v = Ctrl+V (Paste)
+x:: Send("^x")  ; CapsLock + x = Ctrl+X (Cut)
+z:: Send("^z")  ; CapsLock + z = Ctrl+Z (Undo)
+f:: Send("^f")  ; CapsLock + f = Ctrl+F (Find)
+s:: Send("^s")  ; CapsLock + s = Ctrl+S (Save)
 #HotIf
 
 ; Space: Tap = Space, Hold = Show window switcher
@@ -103,19 +103,19 @@ ShowTextExpansion() {
         if (ih.EndReason = "EndKey") {
             Switch ih.Input {
                 case "h":
-                Send("{Home}")
+                    Send("{Home}")
                 case "e":
-                Send("{End}")
+                    Send("{End}")
                 case "j":
-                Send("{Down}")
+                    Send("{Down}")
                 case "k":
-                Send("{Up}")
+                    Send("{Up}")
                 case "l":
-                Send("{Right}")
+                    Send("{Right}")
                 case "h":
-                Send("{Left}")
+                    Send("{Left}")
                 default:
-                Send(";" ih.Input)
+                    Send(";" ih.Input)
             }
         }
     } else {

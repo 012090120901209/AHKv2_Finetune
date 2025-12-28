@@ -1,57 +1,57 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* BUILT-IN FUNCTION: StrReplace() - Basic Usage Examples
-* ============================================================================
-*
-* DESCRIPTION:
-*   Comprehensive examples demonstrating the fundamental usage of the
-*   StrReplace() function in AutoHotkey v2. This file covers basic string
-*   replacement operations, case sensitivity options, and counting
-*   replacements made.
-*
-* FEATURES DEMONSTRATED:
-*   - Simple string replacement (single occurrence)
-*   - Replace all occurrences of a substring
-*   - Case-sensitive vs case-insensitive replacement
-*   - Counting the number of replacements made
-*   - Using the OutputVar parameter for replacement count
-*   - Empty string handling
-*   - Replacement with identical strings
-*
-* SOURCE:
-*   AutoHotkey v2 Documentation - StrReplace()
-*   https://www.autohotkey.com/docs/v2/lib/StrReplace.html
-*
-* KEY V2 FEATURES DEMONSTRATED:
-*   - Pure function-based string manipulation (no legacy commands)
-*   - Optional OutputVar parameter for operation metadata
-*   - Consistent return value behavior
-*   - Named parameters for clarity
-*   - Modern case sensitivity control
-*
-* LEARNING POINTS:
-*   1. StrReplace() replaces all occurrences by default (unlike v1 StringReplace)
-*   2. Case sensitivity is controlled via the CaseSense parameter (default: case-sensitive)
-*   3. The function returns the modified string (original remains unchanged)
-*   4. OutputVar parameter provides count of replacements made
-*   5. Empty search string returns original string unchanged
-*   6. Replacing with empty string effectively removes the search string
-*
-* SYNTAX:
-*   NewStr := StrReplace(Haystack, Needle, ReplaceText := "", CaseSense := true, &OutputVarCount := 0, Limit := -1)
-*
-* PARAMETERS:
-*   Haystack      - The string whose content is searched and replaced
-*   Needle        - The string to search for
-*   ReplaceText   - The string to replace Needle with (default: empty string)
-*   CaseSense     - true (default) or false for case sensitivity
-*   OutputVarCount- Variable to receive count of replacements made
-*   Limit         - Maximum number of replacements (-1 = all)
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * BUILT-IN FUNCTION: StrReplace() - Basic Usage Examples
+ * ============================================================================
+ * 
+ * DESCRIPTION:
+ *   Comprehensive examples demonstrating the fundamental usage of the
+ *   StrReplace() function in AutoHotkey v2. This file covers basic string
+ *   replacement operations, case sensitivity options, and counting
+ *   replacements made.
+ * 
+ * FEATURES DEMONSTRATED:
+ *   - Simple string replacement (single occurrence)
+ *   - Replace all occurrences of a substring
+ *   - Case-sensitive vs case-insensitive replacement
+ *   - Counting the number of replacements made
+ *   - Using the OutputVar parameter for replacement count
+ *   - Empty string handling
+ *   - Replacement with identical strings
+ * 
+ * SOURCE:
+ *   AutoHotkey v2 Documentation - StrReplace()
+ *   https://www.autohotkey.com/docs/v2/lib/StrReplace.html
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ *   - Pure function-based string manipulation (no legacy commands)
+ *   - Optional OutputVar parameter for operation metadata
+ *   - Consistent return value behavior
+ *   - Named parameters for clarity
+ *   - Modern case sensitivity control
+ * 
+ * LEARNING POINTS:
+ *   1. StrReplace() replaces all occurrences by default (unlike v1 StringReplace)
+ *   2. Case sensitivity is controlled via the CaseSense parameter (default: case-sensitive)
+ *   3. The function returns the modified string (original remains unchanged)
+ *   4. OutputVar parameter provides count of replacements made
+ *   5. Empty search string returns original string unchanged
+ *   6. Replacing with empty string effectively removes the search string
+ * 
+ * SYNTAX:
+ *   NewStr := StrReplace(Haystack, Needle, ReplaceText := "", CaseSense := true, &OutputVarCount := 0, Limit := -1)
+ * 
+ * PARAMETERS:
+ *   Haystack      - The string whose content is searched and replaced
+ *   Needle        - The string to search for
+ *   ReplaceText   - The string to replace Needle with (default: empty string)
+ *   CaseSense     - true (default) or false for case sensitivity
+ *   OutputVarCount- Variable to receive count of replacements made
+ *   Limit         - Maximum number of replacements (-1 = all)
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Single Word Replacement
@@ -142,7 +142,7 @@ Example2_CaseSensitivity() {
 Example3_CountingReplacements() {
     ; Sample text with multiple occurrences
     EmailText := "Contact us at support@example.com or sales@example.com. " .
-    "For urgent matters, email admin@example.com directly."
+        "For urgent matters, email admin@example.com directly."
 
     ; Initialize counter variable
     ReplaceCount := 0
@@ -339,7 +339,7 @@ Example6_ChainedReplacements() {
         CleanText := StrReplace(CleanText, "  ", " ")
         ; If no change was made, we're done
         if (CleanText = PrevText)
-        break
+            break
     }
 
     ; Alternative: Multiple different replacements
@@ -407,7 +407,7 @@ Example7_PracticalApplications() {
         PrevInput := CleanInput
         CleanInput := StrReplace(CleanInput, "  ", " ")
         if (CleanInput = PrevInput)
-        break
+            break
     }
 
     ; Application 2: Normalize line endings
@@ -431,8 +431,8 @@ Example7_PracticalApplications() {
     ; This is simplified - real formatting would be more complex
     if (StrLen(PhoneInput) = 10) {
         FormattedPhone := SubStr(PhoneInput, 1, 3) . "-" .
-        SubStr(PhoneInput, 4, 3) . "-" .
-        SubStr(PhoneInput, 7, 4)
+            SubStr(PhoneInput, 4, 3) . "-" .
+            SubStr(PhoneInput, 7, 4)
     }
 
     ; Application 5: Count word occurrences
@@ -656,3 +656,4 @@ VERSION COMPATIBILITY:
 END OF REFERENCE
 ═══════════════════════════════════════════════════
 */
+

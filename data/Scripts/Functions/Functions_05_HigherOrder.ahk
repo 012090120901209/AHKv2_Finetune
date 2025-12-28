@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Higher-Order Functions
-*
-* Demonstrates first-class functions: functions as arguments,
-* function factories, closures, and higher-order patterns.
-*
-* Source: AHK_Notes/Concepts/First_Class_Functions.md
-*/
+ * Higher-Order Functions
+ * 
+ * Demonstrates first-class functions: functions as arguments,
+ * function factories, closures, and higher-order patterns.
+ * 
+ * Source: AHK_Notes/Concepts/First_Class_Functions.md
+ */
 
 ; Test 1: Functions as arguments (callbacks)
 numbers := [1, 2, 3, 4, 5]
@@ -16,83 +16,83 @@ doubled := Map_Array(numbers, (x) => x * 2)
 filtered := Filter_Array(numbers, (x) => x > 2)
 
 MsgBox("Higher-Order Functions:`n`n"
-. "Original: [" Join(numbers) "]`n"
-. "Doubled: [" Join(doubled) "]`n"
-. "Filtered (>2): [" Join(filtered) "]", , "T5")
+    . "Original: [" Join(numbers) "]`n"
+    . "Doubled: [" Join(doubled) "]`n"
+    . "Filtered (>2): [" Join(filtered) "]", , "T5")
 
 ; Test 2: Function factories
 multiply5 := CreateMultiplier(5)
 multiply10 := CreateMultiplier(10)
 
 MsgBox("Function Factories:`n`n"
-. "multiply5(3) = " multiply5(3) "`n"
-. "multiply10(3) = " multiply10(3), , "T3")
+    . "multiply5(3) = " multiply5(3) "`n"
+    . "multiply10(3) = " multiply10(3), , "T3")
 
 ; Test 3: Closure counters
 counter1 := CreateCounter()
 counter2 := CreateCounter(10)
 
 MsgBox("Closures:`n`n"
-. "Counter1 increment: " counter1.Increment() "`n"
-. "Counter1 increment: " counter1.Increment() "`n"
-. "Counter1 value: " counter1.GetValue() "`n`n"
-. "Counter2 (start=10) increment: " counter2.Increment() "`n"
-. "Counter2 value: " counter2.GetValue(), , "T5")
+    . "Counter1 increment: " counter1.Increment() "`n"
+    . "Counter1 increment: " counter1.Increment() "`n"
+    . "Counter1 value: " counter1.GetValue() "`n`n"
+    . "Counter2 (start=10) increment: " counter2.Increment() "`n"
+    . "Counter2 value: " counter2.GetValue(), , "T5")
 
 ; Test 4: Dynamic function selection
 operations := Map(
-"add", (a, b) => a + b,
-"subtract", (a, b) => a - b,
-"multiply", (a, b) => a * b,
-"divide", (a, b) => a / b
+    "add", (a, b) => a + b,
+    "subtract", (a, b) => a - b,
+    "multiply", (a, b) => a * b,
+    "divide", (a, b) => a / b
 )
 
 result := ExecuteOperation(operations, "multiply", 6, 7)
 MsgBox("Dynamic dispatch: 6 * 7 = " result, , "T3")
 
 /**
-* Map_Array - Apply function to each element
-* @param {array} arr - Input array
-* @param {func} fn - Transform function
-* @return {array} Transformed array
-*/
+ * Map_Array - Apply function to each element
+ * @param {array} arr - Input array
+ * @param {func} fn - Transform function
+ * @return {array} Transformed array
+ */
 Map_Array(arr, fn) {
     result := []
     for value in arr
-    result.Push(fn(value))
+        result.Push(fn(value))
     return result
 }
 
 /**
-* Filter_Array - Keep elements matching predicate
-* @param {array} arr - Input array
-* @param {func} predicate - Test function
-* @return {array} Filtered array
-*/
+ * Filter_Array - Keep elements matching predicate
+ * @param {array} arr - Input array
+ * @param {func} predicate - Test function
+ * @return {array} Filtered array
+ */
 Filter_Array(arr, predicate) {
     result := []
     for value in arr {
         if (predicate(value))
-        result.Push(value)
+            result.Push(value)
     }
     return result
 }
 
 /**
-* CreateMultiplier - Function factory
-* Returns function that multiplies by factor
-* @param {number} factor - Multiplication factor
-* @return {func} Multiplier function
-*/
+ * CreateMultiplier - Function factory
+ * Returns function that multiplies by factor
+ * @param {number} factor - Multiplication factor
+ * @return {func} Multiplier function
+ */
 CreateMultiplier(factor) {
     return (x) => x * factor  ; Closure captures 'factor'
 }
 
 /**
-* CreateCounter - Closure-based counter
-* @param {int} start - Starting value
-* @return {object} Counter with methods
-*/
+ * CreateCounter - Closure-based counter
+ * @param {int} start - Starting value
+ * @return {object} Counter with methods
+ */
 CreateCounter(start := 0) {
     current := start  ; Private variable
 
@@ -105,23 +105,23 @@ CreateCounter(start := 0) {
 }
 
 /**
-* ExecuteOperation - Dynamic function dispatch
-* @param {map} operations - Map of operation functions
-* @param {string} opName - Operation name
-* @param {any} args* - Arguments for operation
-* @return {any} Operation result
-*/
+ * ExecuteOperation - Dynamic function dispatch
+ * @param {map} operations - Map of operation functions
+ * @param {string} opName - Operation name
+ * @param {any} args* - Arguments for operation
+ * @return {any} Operation result
+ */
 ExecuteOperation(operations, opName, args*) {
     if (!operations.Has(opName))
-    throw ValueError("Unknown operation: " opName)
+        throw ValueError("Unknown operation: " opName)
 
     fn := operations[opName]
     return fn(args*)
 }
 
 /**
-* Join - Helper to join array elements
-*/
+ * Join - Helper to join array elements
+ */
 Join(arr, delimiter := ", ") {
     result := ""
     for index, value in arr {
@@ -169,3 +169,4 @@ Join(arr, delimiter := ", ") {
 *    ✅ Functional patterns
 *    ✅ Flexible composition
 */
+

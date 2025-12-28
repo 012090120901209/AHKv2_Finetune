@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Binary_01_FileHeaders.ahk
-*
-* DESCRIPTION:
-* Reading and parsing binary file headers using Buffer, NumGet, and StrGet.
-* Demonstrates practical binary data analysis with common file formats.
-*
-* FEATURES:
-* - Reading binary file headers
-* - Magic number verification
-* - Structure parsing from files
-* - File type detection
-* - Header metadata extraction
-* - Endianness handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Binary Operations
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileRead with "RAW" option
-* - Buffer object with file data
-* - NumGet for multi-field parsing
-* - Practical file format analysis
-* - Binary data interpretation
-*
-* LEARNING POINTS:
-* 1. File headers contain metadata about file contents
-* 2. Magic numbers identify file types
-* 3. Headers follow specific structure layouts
-* 4. Binary parsing requires precise offset calculation
-* 5. Different file formats use different byte orders
-*/
+ * BuiltIn_Binary_01_FileHeaders.ahk
+ * 
+ * DESCRIPTION:
+ * Reading and parsing binary file headers using Buffer, NumGet, and StrGet.
+ * Demonstrates practical binary data analysis with common file formats.
+ * 
+ * FEATURES:
+ * - Reading binary file headers
+ * - Magic number verification
+ * - Structure parsing from files
+ * - File type detection
+ * - Header metadata extraction
+ * - Endianness handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Binary Operations
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileRead with "RAW" option
+ * - Buffer object with file data
+ * - NumGet for multi-field parsing
+ * - Practical file format analysis
+ * - Binary data interpretation
+ * 
+ * LEARNING POINTS:
+ * 1. File headers contain metadata about file contents
+ * 2. Magic numbers identify file types
+ * 3. Headers follow specific structure layouts
+ * 4. Binary parsing requires precise offset calculation
+ * 5. Different file formats use different byte orders
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: PNG File Header Parsing
@@ -132,7 +132,7 @@ Example2_BMPHeader() {
 
     result := "BMP File Header Parsing:`n`n"
     result .= "Magic: 0x" . Format("{:04X}", magic) . " ('"
-    . Chr(magic & 0xFF) . Chr((magic >> 8) & 0xFF) . "')`n"
+        . Chr(magic & 0xFF) . Chr((magic >> 8) & 0xFF) . "')`n"
     result .= "Valid BMP: " . (isBMP ? "Yes ✓" : "No") . "`n`n"
 
     result .= "File Header:`n"
@@ -237,7 +237,7 @@ ShowMenu() {
     choice := InputBox(menu, "Binary File Headers", "w450 h250")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_PNGHeader()

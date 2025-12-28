@@ -6,7 +6,7 @@
 #Requires AutoHotkey v2.0
 
 ; Simple hotkey - Press Ctrl+J to trigger
-^j::MsgBox "You pressed Ctrl+J"
+^j:: MsgBox "You pressed Ctrl+J"
 
 ; Hotkey with multiple lines
 ^k:: {
@@ -35,4 +35,4 @@ NotePadHandler(*) {
 }
 
 ; Mouse hotkey
-MButton::MsgBox "You clicked the middle mouse button"
+MButton:: MsgBox "You clicked the middle mouse button"

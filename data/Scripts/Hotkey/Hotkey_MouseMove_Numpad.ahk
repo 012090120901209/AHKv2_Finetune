@@ -2,14 +2,14 @@
 #SingleInstance Force
 
 /**
-* Mouse Control with Numpad
-*
-* Demonstrates pixel-precise mouse movement using the numpad,
-* useful for accessibility and precision work.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Mouse Control with Numpad
+ * 
+ * Demonstrates pixel-precise mouse movement using the numpad,
+ * useful for accessibility and precision work.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 ; Configuration
 global MouseSpeed := 20  ; Pixels per movement
@@ -17,65 +17,65 @@ global MouseSpeedFast := 100  ; Shift for faster movement
 global MouseSpeedSlow := 5  ; Ctrl for slower movement
 
 MsgBox("Mouse Numpad Control Demo`n`n"
-. "Controls:`n"
-. "Win+Numpad1-9 - Move mouse`n"
-. "Win+Numpad5 - Click`n`n"
-. "Layout (like numpad):`n"
-. "7  8  9  (↖ ↑ ↗)`n"
-. "4  5  6  (← Click →)`n"
-. "1  2  3  (↙ ↓ ↘)`n`n"
-. "Modifiers:`n"
-. "Add Shift - Fast movement`n"
-. "Add Ctrl - Slow movement", , "T7")
+    . "Controls:`n"
+    . "Win+Numpad1-9 - Move mouse`n"
+    . "Win+Numpad5 - Click`n`n"
+    . "Layout (like numpad):`n"
+    . "7  8  9  (↖ ↑ ↗)`n"
+    . "4  5  6  (← Click →)`n"
+    . "1  2  3  (↙ ↓ ↘)`n`n"
+    . "Modifiers:`n"
+    . "Add Shift - Fast movement`n"
+    . "Add Ctrl - Slow movement", , "T7")
 
 ; Numpad movement (Win+Numpad)
-#Numpad1::MoveMouse(-1, 1)   ; Bottom-left
-#Numpad2::MoveMouse(0, 1)    ; Down
-#Numpad3::MoveMouse(1, 1)    ; Bottom-right
-#Numpad4::MoveMouse(-1, 0)   ; Left
-#Numpad5::Click()            ; Click
-#Numpad6::MoveMouse(1, 0)    ; Right
-#Numpad7::MoveMouse(-1, -1)  ; Top-left
-#Numpad8::MoveMouse(0, -1)   ; Up
-#Numpad9::MoveMouse(1, -1)   ; Top-right
+#Numpad1:: MoveMouse(-1, 1)   ; Bottom-left
+#Numpad2:: MoveMouse(0, 1)    ; Down
+#Numpad3:: MoveMouse(1, 1)    ; Bottom-right
+#Numpad4:: MoveMouse(-1, 0)   ; Left
+#Numpad5:: Click()            ; Click
+#Numpad6:: MoveMouse(1, 0)    ; Right
+#Numpad7:: MoveMouse(-1, -1)  ; Top-left
+#Numpad8:: MoveMouse(0, -1)   ; Up
+#Numpad9:: MoveMouse(1, -1)   ; Top-right
 
 ; Fast movement (Win+Shift+Numpad)
-#+Numpad1::MoveMouse(-1, 1, "fast")
-#+Numpad2::MoveMouse(0, 1, "fast")
-#+Numpad3::MoveMouse(1, 1, "fast")
-#+Numpad4::MoveMouse(-1, 0, "fast")
-#+Numpad6::MoveMouse(1, 0, "fast")
-#+Numpad7::MoveMouse(-1, -1, "fast")
-#+Numpad8::MoveMouse(0, -1, "fast")
-#+Numpad9::MoveMouse(1, -1, "fast")
+#+Numpad1:: MoveMouse(-1, 1, "fast")
+#+Numpad2:: MoveMouse(0, 1, "fast")
+#+Numpad3:: MoveMouse(1, 1, "fast")
+#+Numpad4:: MoveMouse(-1, 0, "fast")
+#+Numpad6:: MoveMouse(1, 0, "fast")
+#+Numpad7:: MoveMouse(-1, -1, "fast")
+#+Numpad8:: MoveMouse(0, -1, "fast")
+#+Numpad9:: MoveMouse(1, -1, "fast")
 
 ; Slow movement (Win+Ctrl+Numpad)
-#^Numpad1::MoveMouse(-1, 1, "slow")
-#^Numpad2::MoveMouse(0, 1, "slow")
-#^Numpad3::MoveMouse(1, 1, "slow")
-#^Numpad4::MoveMouse(-1, 0, "slow")
-#^Numpad6::MoveMouse(1, 0, "slow")
-#^Numpad7::MoveMouse(-1, -1, "slow")
-#^Numpad8::MoveMouse(0, -1, "slow")
-#^Numpad9::MoveMouse(1, -1, "slow")
+#^Numpad1:: MoveMouse(-1, 1, "slow")
+#^Numpad2:: MoveMouse(0, 1, "slow")
+#^Numpad3:: MoveMouse(1, 1, "slow")
+#^Numpad4:: MoveMouse(-1, 0, "slow")
+#^Numpad6:: MoveMouse(1, 0, "slow")
+#^Numpad7:: MoveMouse(-1, -1, "slow")
+#^Numpad8:: MoveMouse(0, -1, "slow")
+#^Numpad9:: MoveMouse(1, -1, "slow")
 
 /**
-* Move mouse by direction
-* @param {int} x - X direction (-1, 0, 1)
-* @param {int} y - Y direction (-1, 0, 1)
-* @param {string} speed - "normal", "fast", or "slow"
-*/
+ * Move mouse by direction
+ * @param {int} x - X direction (-1, 0, 1)
+ * @param {int} y - Y direction (-1, 0, 1)
+ * @param {string} speed - "normal", "fast", or "slow"
+ */
 MoveMouse(x, y, speed := "normal") {
     global MouseSpeed, MouseSpeedFast, MouseSpeedSlow
 
     ; Determine movement distance
     switch speed {
         case "fast":
-        distance := MouseSpeedFast
+            distance := MouseSpeedFast
         case "slow":
-        distance := MouseSpeedSlow
+            distance := MouseSpeedSlow
         default:
-        distance := MouseSpeed
+            distance := MouseSpeed
     }
 
     ; Calculate movement
@@ -162,3 +162,4 @@ MoveMouse(x, y, speed := "normal") {
 *     - Broken hardware
 *     - Ergonomic setups
 */
+

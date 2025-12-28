@@ -1,19 +1,19 @@
 /**
-* @file DriveInfo_01.ahk
-* @description Comprehensive examples of DriveGetType, DriveGetFileSystem, DriveGetLabel, and DriveGetSerial functions
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Getting drive type information
-* - Retrieving file system details
-* - Reading and displaying drive labels
-* - Obtaining drive serial numbers
-* - Creating drive inventory systems
-* - Identifying specific drives
-* - Generating drive documentation
-*/
+ * @file DriveInfo_01.ahk
+ * @description Comprehensive examples of DriveGetType, DriveGetFileSystem, DriveGetLabel, and DriveGetSerial functions
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Getting drive type information
+ * - Retrieving file system details
+ * - Reading and displaying drive labels
+ * - Obtaining drive serial numbers
+ * - Creating drive inventory systems
+ * - Identifying specific drives
+ * - Generating drive documentation
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,19 +22,19 @@
 ; ===================================================================================================
 
 /**
-* @function GetCompleteDriveInfo
-* @description Gets complete information about a drive
-* @param {String} DriveLetter - The drive letter to query
-* @returns {Object} Object containing all drive information
-*
-* @example
-* info := GetCompleteDriveInfo("C:")
-* MsgBox("Drive type: " . info.Type)
-*/
+ * @function GetCompleteDriveInfo
+ * @description Gets complete information about a drive
+ * @param {String} DriveLetter - The drive letter to query
+ * @returns {Object} Object containing all drive information
+ * 
+ * @example
+ * info := GetCompleteDriveInfo("C:")
+ * MsgBox("Drive type: " . info.Type)
+ */
 GetCompleteDriveInfo(DriveLetter) {
     ; Ensure drive letter has colon
     if !InStr(DriveLetter, ":")
-    DriveLetter .= ":"
+        DriveLetter .= ":"
 
     ; Get all drive information
     driveType := DriveGetType(DriveLetter)
@@ -67,27 +67,27 @@ GetCompleteDriveInfo(DriveLetter) {
 }
 
 /**
-* @function GetDriveTypeDescription
-* @description Gets a human-readable description of drive type
-* @param {String} driveType - The drive type code
-* @returns {String} Description of the drive type
-*/
+ * @function GetDriveTypeDescription
+ * @description Gets a human-readable description of drive type
+ * @param {String} driveType - The drive type code
+ * @returns {String} Description of the drive type
+ */
 GetDriveTypeDescription(driveType) {
     switch driveType {
         case "Unknown":
-        return "Unknown drive type"
+            return "Unknown drive type"
         case "Removable":
-        return "Removable drive (USB, SD card, etc.)"
+            return "Removable drive (USB, SD card, etc.)"
         case "Fixed":
-        return "Fixed hard drive"
+            return "Fixed hard drive"
         case "Network":
-        return "Network drive"
+            return "Network drive"
         case "CDROM":
-        return "CD/DVD drive"
+            return "CD/DVD drive"
         case "RAMDisk":
-        return "RAM disk"
+            return "RAM disk"
         default:
-        return "Unknown type: " . driveType
+            return "Unknown type: " . driveType
     }
 }
 
@@ -110,13 +110,13 @@ Example1_BasicDriveInfo() {
     Serial Number:  {6}
     Status:         {7}
     )",
-    info.Drive,
-    info.Type,
-    info.TypeDescription,
-    info.FileSystem != "" ? info.FileSystem : "N/A",
-    info.Label,
-    info.Serial != "" ? info.Serial : "N/A",
-    info.Status
+        info.Drive,
+        info.Type,
+        info.TypeDescription,
+        info.FileSystem != "" ? info.FileSystem : "N/A",
+        info.Label,
+        info.Serial != "" ? info.Serial : "N/A",
+        info.Status
     )
 
     MsgBox(report, "Drive Information", "Iconi")
@@ -129,16 +129,16 @@ Example1_BasicDriveInfo() {
 ; ===================================================================================================
 
 /**
-* @class DriveClassifier
-* @description Classifies and filters drives by type
-*/
+ * @class DriveClassifier
+ * @description Classifies and filters drives by type
+ */
 class DriveClassifier {
     /**
-    * @method GetDrivesByType
-    * @description Gets all drives of a specific type
-    * @param {String} driveType - Type filter (Fixed, Removable, CDROM, Network, RAMDisk)
-    * @returns {Array} Array of drive information objects
-    */
+     * @method GetDrivesByType
+     * @description Gets all drives of a specific type
+     * @param {String} driveType - Type filter (Fixed, Removable, CDROM, Network, RAMDisk)
+     * @returns {Array} Array of drive information objects
+     */
     static GetDrivesByType(driveType := "Fixed") {
         drives := []
         driveList := DriveGetList(driveType)
@@ -153,10 +153,10 @@ class DriveClassifier {
     }
 
     /**
-    * @method GetAllDrivesGrouped
-    * @description Gets all drives grouped by type
-    * @returns {Map} Map of drive types to arrays of drives
-    */
+     * @method GetAllDrivesGrouped
+     * @description Gets all drives grouped by type
+     * @returns {Map} Map of drive types to arrays of drives
+     */
     static GetAllDrivesGrouped() {
         grouped := Map()
         grouped["Fixed"] := []
@@ -173,18 +173,18 @@ class DriveClassifier {
             info := GetCompleteDriveInfo(drive)
 
             if grouped.Has(info.Type)
-            grouped[info.Type].Push(info)
+                grouped[info.Type].Push(info)
             else
-            grouped["Unknown"].Push(info)
+                grouped["Unknown"].Push(info)
         }
 
         return grouped
     }
 
     /**
-    * @method ShowDrivesByType
-    * @description Shows a categorized list of drives
-    */
+     * @method ShowDrivesByType
+     * @description Shows a categorized list of drives
+     */
     static ShowDrivesByType() {
         grouped := DriveClassifier.GetAllDrivesGrouped()
 
@@ -194,15 +194,15 @@ class DriveClassifier {
         ; Display each category
         for driveType, driveList in grouped {
             if (driveList.Length = 0)
-            continue
+                continue
 
             report .= Format("{1} DRIVES ({2}):`n", StrUpper(driveType), driveList.Length)
 
             for info in driveList {
                 report .= Format("  {1} - {2} [{3}]`n",
-                info.Drive,
-                info.Label,
-                info.FileSystem != "" ? info.FileSystem : "N/A"
+                    info.Drive,
+                    info.Label,
+                    info.FileSystem != "" ? info.FileSystem : "N/A"
                 )
             }
 
@@ -223,16 +223,16 @@ Example2_DriveClassification() {
 ; ===================================================================================================
 
 /**
-* @class DriveIdentifier
-* @description Identifies and tracks drives by serial number
-*/
+ * @class DriveIdentifier
+ * @description Identifies and tracks drives by serial number
+ */
 class DriveIdentifier {
     /**
-    * @method FindDriveBySerial
-    * @description Finds a drive by its serial number
-    * @param {String} serialNumber - Serial number to search for
-    * @returns {Object} Drive information or empty object
-    */
+     * @method FindDriveBySerial
+     * @description Finds a drive by its serial number
+     * @param {String} serialNumber - Serial number to search for
+     * @returns {Object} Drive information or empty object
+     */
     static FindDriveBySerial(serialNumber) {
         driveList := DriveGetList()
 
@@ -252,15 +252,15 @@ class DriveIdentifier {
             }
         }
 
-        return {Found: false}
+        return { Found: false }
     }
 
     /**
-    * @method FindDriveByLabel
-    * @description Finds a drive by its label
-    * @param {String} labelName - Label to search for
-    * @returns {Array} Array of matching drives
-    */
+     * @method FindDriveByLabel
+     * @description Finds a drive by its label
+     * @param {String} labelName - Label to search for
+     * @returns {Array} Array of matching drives
+     */
     static FindDriveByLabel(labelName) {
         matches := []
         driveList := DriveGetList()
@@ -285,34 +285,34 @@ class DriveIdentifier {
     }
 
     /**
-    * @method CreateDriveSignature
-    * @description Creates a unique signature for a drive
-    * @param {String} driveLetter - Drive letter
-    * @returns {String} Unique signature combining serial, label, and filesystem
-    */
+     * @method CreateDriveSignature
+     * @description Creates a unique signature for a drive
+     * @param {String} driveLetter - Drive letter
+     * @returns {String} Unique signature combining serial, label, and filesystem
+     */
     static CreateDriveSignature(driveLetter) {
         info := GetCompleteDriveInfo(driveLetter)
 
         if (!info.IsReady)
-        return ""
+            return ""
 
         ; Create signature: Type-FileSystem-Serial
         signature := Format("{1}:{2}:{3}",
-        info.Type,
-        info.FileSystem,
-        info.Serial
+            info.Type,
+            info.FileSystem,
+            info.Serial
         )
 
         return signature
     }
 
     /**
-    * @method VerifyDriveIdentity
-    * @description Verifies if a drive matches a stored signature
-    * @param {String} driveLetter - Drive letter
-    * @param {String} expectedSignature - Expected signature
-    * @returns {Boolean} True if signature matches
-    */
+     * @method VerifyDriveIdentity
+     * @description Verifies if a drive matches a stored signature
+     * @param {String} driveLetter - Drive letter
+     * @param {String} expectedSignature - Expected signature
+     * @returns {Boolean} True if signature matches
+     */
     static VerifyDriveIdentity(driveLetter, expectedSignature) {
         currentSignature := DriveIdentifier.CreateDriveSignature(driveLetter)
         return (currentSignature = expectedSignature)
@@ -335,7 +335,7 @@ Example3_DriveIdentification() {
     This signature can be used to verify the
     drive's identity in the future.
     )",
-    signature
+        signature
     )
 
     MsgBox(message, "Drive Signature", "Iconi")
@@ -357,15 +357,15 @@ Example3_DriveIdentification() {
 ; ===================================================================================================
 
 /**
-* @class FileSystemAnalyzer
-* @description Analyzes file systems across drives
-*/
+ * @class FileSystemAnalyzer
+ * @description Analyzes file systems across drives
+ */
 class FileSystemAnalyzer {
     /**
-    * @method GetFileSystemStatistics
-    * @description Gets statistics about file systems in use
-    * @returns {Object} Statistics object
-    */
+     * @method GetFileSystemStatistics
+     * @description Gets statistics about file systems in use
+     * @returns {Object} Statistics object
+     */
     static GetFileSystemStatistics() {
         stats := Map()
         stats["NTFS"] := 0
@@ -387,9 +387,9 @@ class FileSystemAnalyzer {
                     totalDrives++
 
                     if stats.Has(fs)
-                    stats[fs] := stats[fs] + 1
+                        stats[fs] := stats[fs] + 1
                     else
-                    stats["Other"] := stats["Other"] + 1
+                        stats["Other"] := stats["Other"] + 1
                 } catch {
                     continue
                 }
@@ -403,49 +403,49 @@ class FileSystemAnalyzer {
     }
 
     /**
-    * @method GetFileSystemCapabilities
-    * @description Gets capabilities of a file system
-    * @param {String} fileSystem - File system type
-    * @returns {Object} Capabilities information
-    */
+     * @method GetFileSystemCapabilities
+     * @description Gets capabilities of a file system
+     * @param {String} fileSystem - File system type
+     * @returns {Object} Capabilities information
+     */
     static GetFileSystemCapabilities(fileSystem) {
         capabilities := Map()
 
         switch fileSystem {
             case "NTFS":
-            capabilities["MaxFileSize"] := "16 TB"
-            capabilities["MaxVolumeSize"] := "256 TB"
-            capabilities["Encryption"] := "Yes (EFS)"
-            capabilities["Compression"] := "Yes"
-            capabilities["Permissions"] := "Advanced ACLs"
-            capabilities["JournalRecovery"] := "Yes"
+                capabilities["MaxFileSize"] := "16 TB"
+                capabilities["MaxVolumeSize"] := "256 TB"
+                capabilities["Encryption"] := "Yes (EFS)"
+                capabilities["Compression"] := "Yes"
+                capabilities["Permissions"] := "Advanced ACLs"
+                capabilities["JournalRecovery"] := "Yes"
 
             case "FAT32":
-            capabilities["MaxFileSize"] := "4 GB"
-            capabilities["MaxVolumeSize"] := "2 TB"
-            capabilities["Encryption"] := "No"
-            capabilities["Compression"] := "No"
-            capabilities["Permissions"] := "Basic"
-            capabilities["JournalRecovery"] := "No"
+                capabilities["MaxFileSize"] := "4 GB"
+                capabilities["MaxVolumeSize"] := "2 TB"
+                capabilities["Encryption"] := "No"
+                capabilities["Compression"] := "No"
+                capabilities["Permissions"] := "Basic"
+                capabilities["JournalRecovery"] := "No"
 
             case "exFAT":
-            capabilities["MaxFileSize"] := "16 EB"
-            capabilities["MaxVolumeSize"] := "128 PB"
-            capabilities["Encryption"] := "No"
-            capabilities["Compression"] := "No"
-            capabilities["Permissions"] := "Basic"
-            capabilities["JournalRecovery"] := "No"
+                capabilities["MaxFileSize"] := "16 EB"
+                capabilities["MaxVolumeSize"] := "128 PB"
+                capabilities["Encryption"] := "No"
+                capabilities["Compression"] := "No"
+                capabilities["Permissions"] := "Basic"
+                capabilities["JournalRecovery"] := "No"
 
             case "ReFS":
-            capabilities["MaxFileSize"] := "35 PB"
-            capabilities["MaxVolumeSize"] := "35 PB"
-            capabilities["Encryption"] := "Yes"
-            capabilities["Compression"] := "No"
-            capabilities["Permissions"] := "Advanced ACLs"
-            capabilities["JournalRecovery"] := "Yes"
+                capabilities["MaxFileSize"] := "35 PB"
+                capabilities["MaxVolumeSize"] := "35 PB"
+                capabilities["Encryption"] := "Yes"
+                capabilities["Compression"] := "No"
+                capabilities["Permissions"] := "Advanced ACLs"
+                capabilities["JournalRecovery"] := "Yes"
 
             default:
-            return {Supported: false}
+                return { Supported: false }
         }
 
         capabilities["FileSystem"] := fileSystem
@@ -455,9 +455,9 @@ class FileSystemAnalyzer {
     }
 
     /**
-    * @method ShowFileSystemReport
-    * @description Shows a comprehensive file system report
-    */
+     * @method ShowFileSystemReport
+     * @description Shows a comprehensive file system report
+     */
     static ShowFileSystemReport() {
         stats := FileSystemAnalyzer.GetFileSystemStatistics()
 
@@ -490,7 +490,7 @@ Example4_FileSystemAnalysis() {
 
         for feature, value in caps {
             if (feature != "Supported" && feature != "FileSystem")
-            message .= Format("{1}: {2}`n", feature, value)
+                message .= Format("{1}: {2}`n", feature, value)
         }
 
         MsgBox(message, "NTFS Capabilities", "Iconi")
@@ -502,15 +502,15 @@ Example4_FileSystemAnalysis() {
 ; ===================================================================================================
 
 /**
-* @class DriveLabelManager
-* @description Manages drive labels and naming conventions
-*/
+ * @class DriveLabelManager
+ * @description Manages drive labels and naming conventions
+ */
 class DriveLabelManager {
     /**
-    * @method GetAllLabels
-    * @description Gets labels for all drives
-    * @returns {Map} Map of drive letters to labels
-    */
+     * @method GetAllLabels
+     * @description Gets labels for all drives
+     * @returns {Map} Map of drive letters to labels
+     */
     static GetAllLabels() {
         labels := Map()
         driveList := DriveGetList()
@@ -534,10 +534,10 @@ class DriveLabelManager {
     }
 
     /**
-    * @method FindUnlabeledDrives
-    * @description Finds drives without labels
-    * @returns {Array} Array of unlabeled drives
-    */
+     * @method FindUnlabeledDrives
+     * @description Finds drives without labels
+     * @returns {Array} Array of unlabeled drives
+     */
     static FindUnlabeledDrives() {
         unlabeled := []
         driveList := DriveGetList()
@@ -550,7 +550,7 @@ class DriveLabelManager {
                     label := DriveGetLabel(drive)
 
                     if (label = "")
-                    unlabeled.Push(drive)
+                        unlabeled.Push(drive)
                 } catch {
                     continue
                 }
@@ -561,47 +561,47 @@ class DriveLabelManager {
     }
 
     /**
-    * @method SuggestLabel
-    * @description Suggests a label based on drive properties
-    * @param {String} driveLetter - Drive letter
-    * @returns {String} Suggested label
-    */
+     * @method SuggestLabel
+     * @description Suggests a label based on drive properties
+     * @param {String} driveLetter - Drive letter
+     * @returns {String} Suggested label
+     */
     static SuggestLabel(driveLetter) {
         info := GetCompleteDriveInfo(driveLetter)
 
         if (!info.IsReady)
-        return ""
+            return ""
 
         ; Suggest based on drive type and letter
         suggestion := ""
 
         switch info.Type {
             case "Fixed":
-            if (driveLetter = "C:")
-            suggestion := "System"
-            else
-            suggestion := "Data_" . SubStr(driveLetter, 1, 1)
+                if (driveLetter = "C:")
+                    suggestion := "System"
+                else
+                    suggestion := "Data_" . SubStr(driveLetter, 1, 1)
 
             case "Removable":
-            suggestion := "USB_" . SubStr(driveLetter, 1, 1)
+                suggestion := "USB_" . SubStr(driveLetter, 1, 1)
 
             case "Network":
-            suggestion := "Network_" . SubStr(driveLetter, 1, 1)
+                suggestion := "Network_" . SubStr(driveLetter, 1, 1)
 
             case "CDROM":
-            suggestion := "Disc_" . SubStr(driveLetter, 1, 1)
+                suggestion := "Disc_" . SubStr(driveLetter, 1, 1)
 
             default:
-            suggestion := "Drive_" . SubStr(driveLetter, 1, 1)
+                suggestion := "Drive_" . SubStr(driveLetter, 1, 1)
         }
 
         return suggestion
     }
 
     /**
-    * @method ShowLabelReport
-    * @description Shows a report of all drive labels
-    */
+     * @method ShowLabelReport
+     * @description Shows a report of all drive labels
+     */
     static ShowLabelReport() {
         labels := DriveLabelManager.GetAllLabels()
 
@@ -615,9 +615,9 @@ class DriveLabelManager {
             report .= Format("{1}: {2}`n", drive, label)
 
             if (label != "(No Label)" && !InStr(label, "not ready") && !InStr(label, "Error"))
-            labeledCount++
+                labeledCount++
             else if (label = "(No Label)")
-            unlabeledCount++
+                unlabeledCount++
         }
 
         report .= "`n═══════════════════════════════════════════════════════`n"
@@ -652,15 +652,15 @@ Example5_LabelManagement() {
 ; ===================================================================================================
 
 /**
-* @class DriveInventory
-* @description Creates and manages a complete drive inventory
-*/
+ * @class DriveInventory
+ * @description Creates and manages a complete drive inventory
+ */
 class DriveInventory {
     /**
-    * @method CreateInventory
-    * @description Creates a complete inventory of all drives
-    * @returns {Array} Array of drive inventory records
-    */
+     * @method CreateInventory
+     * @description Creates a complete inventory of all drives
+     * @returns {Array} Array of drive inventory records
+     */
     static CreateInventory() {
         inventory := []
         driveList := DriveGetList()
@@ -692,12 +692,12 @@ class DriveInventory {
     }
 
     /**
-    * @method ExportInventory
-    * @description Exports inventory to a file
-    * @param {String} outputPath - Path to save the inventory
-    * @param {String} format - Format (CSV or TXT)
-    * @returns {Boolean} Success status
-    */
+     * @method ExportInventory
+     * @description Exports inventory to a file
+     * @param {String} outputPath - Path to save the inventory
+     * @param {String} format - Format (CSV or TXT)
+     * @returns {Boolean} Success status
+     */
     static ExportInventory(outputPath, format := "CSV") {
         inventory := DriveInventory.CreateInventory()
 
@@ -709,14 +709,14 @@ class DriveInventory {
 
             for info in inventory {
                 content .= Format("{1},{2},{3},{4},{5},{6},{7},{8}`n",
-                info.Drive,
-                info.Type,
-                info.FileSystem,
-                info.Label,
-                info.Serial,
-                info.Status,
-                info.CapacityGB,
-                info.FreeSpaceGB
+                    info.Drive,
+                    info.Type,
+                    info.FileSystem,
+                    info.Label,
+                    info.Serial,
+                    info.Status,
+                    info.CapacityGB,
+                    info.FreeSpaceGB
                 )
             }
         } else {
@@ -746,9 +746,9 @@ class DriveInventory {
     }
 
     /**
-    * @method ShowInventory
-    * @description Shows a formatted inventory
-    */
+     * @method ShowInventory
+     * @description Shows a formatted inventory
+     */
     static ShowInventory() {
         inventory := DriveInventory.CreateInventory()
 
@@ -757,17 +757,17 @@ class DriveInventory {
 
         for info in inventory {
             report .= Format("{1} [{2}] - {3} - {4}`n",
-            info.Drive,
-            info.Type,
-            info.Label,
-            info.Status
+                info.Drive,
+                info.Type,
+                info.Label,
+                info.Status
             )
 
             if (info.IsReady) {
                 report .= Format("  {1} | {2} GB total | {3} GB free`n",
-                info.FileSystem,
-                info.CapacityGB,
-                info.FreeSpaceGB
+                    info.FileSystem,
+                    info.CapacityGB,
+                    info.FreeSpaceGB
                 )
             }
 
@@ -795,24 +795,24 @@ Example6_DriveInventory() {
 ; ===================================================================================================
 
 /**
-* @class USBDriveLogger
-* @description Detects and logs USB drive connections
-*/
+ * @class USBDriveLogger
+ * @description Detects and logs USB drive connections
+ */
 class USBDriveLogger {
     logFile := A_ScriptDir . "\usb_drive_log.txt"
     knownDrives := Map()
 
     /**
-    * @constructor
-    */
+     * @constructor
+     */
     __New() {
         this.UpdateKnownDrives()
     }
 
     /**
-    * @method UpdateKnownDrives
-    * @description Updates the list of known drives
-    */
+     * @method UpdateKnownDrives
+     * @description Updates the list of known drives
+     */
     UpdateKnownDrives() {
         driveList := DriveGetList("Removable")
 
@@ -823,10 +823,10 @@ class USBDriveLogger {
     }
 
     /**
-    * @method CheckForNewDrives
-    * @description Checks for newly connected drives
-    * @returns {Array} Array of new drive information
-    */
+     * @method CheckForNewDrives
+     * @description Checks for newly connected drives
+     * @returns {Array} Array of new drive information
+     */
     CheckForNewDrives() {
         newDrives := []
         currentDrives := DriveGetList("Removable")
@@ -846,10 +846,10 @@ class USBDriveLogger {
     }
 
     /**
-    * @method LogDriveConnection
-    * @description Logs a drive connection
-    * @param {Object} driveInfo - Drive information
-    */
+     * @method LogDriveConnection
+     * @description Logs a drive connection
+     * @param {Object} driveInfo - Drive information
+     */
     LogDriveConnection(driveInfo) {
         timestamp := FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss")
 
@@ -863,24 +863,24 @@ class USBDriveLogger {
     }
 
     /**
-    * @method StartMonitoring
-    * @description Starts monitoring for USB drives
-    */
+     * @method StartMonitoring
+     * @description Starts monitoring for USB drives
+     */
     StartMonitoring() {
         SetTimer(() => this.MonitorDrives(), 2000)
         MsgBox("USB drive monitoring started.", "Monitor", "Iconi")
     }
 
     /**
-    * @method MonitorDrives
-    * @description Monitor callback function
-    */
+     * @method MonitorDrives
+     * @description Monitor callback function
+     */
     MonitorDrives() {
         newDrives := this.CheckForNewDrives()
 
         for info in newDrives {
             MsgBox(Format("USB Drive Connected!`n`nDrive: {1}`nLabel: {2}",
-            info.Drive, info.Label), "New Drive", "Iconi")
+                info.Drive, info.Label), "New Drive", "Iconi")
         }
     }
 }
@@ -921,3 +921,4 @@ Example7_USBMonitor() {
 
 ; Press Ctrl+Alt+V to show inventory
 ; ^!v::Example6_DriveInventory()
+

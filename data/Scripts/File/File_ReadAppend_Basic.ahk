@@ -24,14 +24,14 @@ FileAppend "Additional line`n", "C:\Output.txt"
 
 ; Read and process line by line
 Loop Read, "C:\MyFile.txt"
- {
+{
     if InStr(A_LoopReadLine, "search term")
-    MsgBox "Found on line " A_Index ": " A_LoopReadLine
+        MsgBox "Found on line " A_Index ": " A_LoopReadLine
 }
 
 ; Write processed content to new file
 Loop Read, "C:\Input.txt", "C:\Output.txt"
- {
+{
     ; Convert to uppercase
     FileAppend StrUpper(A_LoopReadLine) "`n"
 }

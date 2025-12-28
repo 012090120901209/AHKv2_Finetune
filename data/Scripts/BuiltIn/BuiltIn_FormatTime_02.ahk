@@ -1,34 +1,34 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FormatTime Function - Custom Formats and Locale-Specific Formatting
-* ============================================================================
-*
-* This script demonstrates custom date/time formatting patterns and
-* locale-specific considerations when using FormatTime().
-*
-* @description Custom FormatTime() patterns and locale formatting
-* @author AHK v2 Documentation Team
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Advanced Format Features:
-* - Custom text literals in format strings
-* - Week numbers and day of year
-* - Quarter calculations
-* - Locale-aware formatting
-* - Special characters and escaping
-*/
+ * ============================================================================
+ * FormatTime Function - Custom Formats and Locale-Specific Formatting
+ * ============================================================================
+ * 
+ * This script demonstrates custom date/time formatting patterns and
+ * locale-specific considerations when using FormatTime().
+ * 
+ * @description Custom FormatTime() patterns and locale formatting
+ * @author AHK v2 Documentation Team
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Advanced Format Features:
+ * - Custom text literals in format strings
+ * - Week numbers and day of year
+ * - Quarter calculations
+ * - Locale-aware formatting
+ * - Special characters and escaping
+ */
 
 ; ============================================================================
 ; Example 1: Custom Format Patterns with Literals
 ; ============================================================================
 
 /**
-* Shows how to include literal text in format patterns.
-* Common use: Custom date displays, specific format requirements
-*/
+ * Shows how to include literal text in format patterns.
+ * Common use: Custom date displays, specific format requirements
+ */
 Example1_CustomPatterns() {
     output := "=== Example 1: Custom Format Patterns ===`n`n"
     now := A_Now
@@ -66,9 +66,9 @@ Example1_CustomPatterns() {
 ; ============================================================================
 
 /**
-* Demonstrates formatting with week numbers and day of year.
-* Common use: Calendar systems, ISO week dates, project planning
-*/
+ * Demonstrates formatting with week numbers and day of year.
+ * Common use: Calendar systems, ISO week dates, project planning
+ */
 Example2_WeekAndDayFormats() {
     output := "=== Example 2: Week Numbers and Day Calculations ===`n`n"
     now := A_Now
@@ -116,9 +116,9 @@ Example2_WeekAndDayFormats() {
 ; ============================================================================
 
 /**
-* Demonstrates formatting dates for different locales and regions.
-* Common use: International applications, multi-region systems
-*/
+ * Demonstrates formatting dates for different locales and regions.
+ * Common use: International applications, multi-region systems
+ */
 Example3_LocaleFormatting() {
     output := "=== Example 3: Locale-Specific Formatting ===`n`n"
     now := A_Now
@@ -162,9 +162,9 @@ Example3_LocaleFormatting() {
 ; ============================================================================
 
 /**
-* Shows formatting for business documents and applications.
-* Common use: Invoices, contracts, reports, correspondence
-*/
+ * Shows formatting for business documents and applications.
+ * Common use: Invoices, contracts, reports, correspondence
+ */
 Example4_BusinessFormats() {
     ; Generate business document header
     GenerateDocumentHeader(docType, docNum) {
@@ -215,7 +215,7 @@ Example4_BusinessFormats() {
     fiscalYear := Integer(FormatTime(now, "yyyy"))
     month := Integer(FormatTime(now, "MM"))
     if (month >= 7)
-    fiscalYear++
+        fiscalYear++
 
     output .= "Fiscal Information:`n"
     output .= "  Fiscal Year: FY" . fiscalYear . "`n"
@@ -229,9 +229,9 @@ Example4_BusinessFormats() {
 ; ============================================================================
 
 /**
-* Demonstrates formatting for different time zones.
-* Common use: Global applications, server logs, distributed systems
-*/
+ * Demonstrates formatting for different time zones.
+ * Common use: Global applications, server logs, distributed systems
+ */
 Example5_TimeZoneFormatting() {
     output := "=== Example 5: Time Zone Formatting ===`n`n"
     now := A_Now
@@ -274,9 +274,9 @@ Example5_TimeZoneFormatting() {
 ; ============================================================================
 
 /**
-* Calculates and formats ages and durations.
-* Common use: User profiles, subscription tracking, event planning
-*/
+ * Calculates and formats ages and durations.
+ * Common use: User profiles, subscription tracking, event planning
+ */
 Example6_AgeCalculator() {
     ; Calculate age from birthdate
     CalculateAge(birthDate) {
@@ -285,7 +285,7 @@ Example6_AgeCalculator() {
         birthdayThisYear := FormatTime(birthDate, "MM") . FormatTime(birthDate, "dd") . FormatTime(now, "yyyy") . "000000"
 
         if (now < birthdayThisYear)
-        years--
+            years--
 
         return years
     }
@@ -302,10 +302,10 @@ Example6_AgeCalculator() {
     ; Sample birthdates
     output .= "Age Calculations:`n"
     birthDates := [
-    "19900515120000",  ; May 15, 1990
-    "19851203080000",  ; Dec 3, 1985
-    "20000229140000",  ; Feb 29, 2000 (leap year)
-    "19750710180000"   ; July 10, 1975
+        "19900515120000",  ; May 15, 1990
+        "19851203080000",  ; Dec 3, 1985
+        "20000229140000",  ; Feb 29, 2000 (leap year)
+        "19750710180000"   ; July 10, 1975
     ]
 
     for birthDate in birthDates {
@@ -333,7 +333,7 @@ Example6_AgeCalculator() {
     ; Anniversary calculation
     nextAnniversary := FormatTime(memberSince, "MM") . FormatTime(memberSince, "dd") . FormatTime(A_Now, "yyyy") . "000000"
     if (A_Now > nextAnniversary)
-    nextAnniversary := DateAdd(nextAnniversary, 1, "years")
+        nextAnniversary := DateAdd(nextAnniversary, 1, "years")
 
     daysUntil := DateDiff(nextAnniversary, A_Now, "days")
     output .= "  Next anniversary: " . FormatTime(nextAnniversary, "MMMM dd, yyyy") . " (" . daysUntil . " days)`n"
@@ -346,9 +346,9 @@ Example6_AgeCalculator() {
 ; ============================================================================
 
 /**
-* Creates countdown displays for future events.
-* Common use: Event planning, deadlines, project milestones
-*/
+ * Creates countdown displays for future events.
+ * Common use: Event planning, deadlines, project milestones
+ */
 Example7_EventCountdown() {
     ; Create countdown display
     FormatCountdown(eventDate, eventName) {
@@ -378,60 +378,52 @@ Example7_EventCountdown() {
     output := "=== Example 7: Event Countdown ===`n`n"
 
     ; Upcoming events
-    events := [
-    {
-        name: "Project Deadline", date: DateAdd(A_Now, 7, "days")},
-        {
-            name: "Team Meeting", date: DateAdd(A_Now, 2, "days")},
-            {
-                name: "Product Launch", date: DateAdd(A_Now, 30, "days")},
-                {
+    events := [{
+        name: "Project Deadline", date: DateAdd(A_Now, 7, "days") }, {
+            name: "Team Meeting", date: DateAdd(A_Now, 2, "days") }, {
+                name: "Product Launch", date: DateAdd(A_Now, 30, "days") }, {
                     name: "Conference", date: DateAdd(A_Now, 60, "days")
                 }
-                ]
+    ]
 
-                for event in events {
-                    output .= FormatCountdown(event.date, event.name) . "`n"
+    for event in events {
+        output .= FormatCountdown(event.date, event.name) . "`n"
+    }
+
+    ; Important dates this year
+    today := A_Now
+    year := FormatTime(today, "yyyy")
+
+    output .= "`nImportant Dates This Year:`n"
+    importantDates := [{
+        name: "New Year's Day", date: year . "0101000000" }, {
+            name: "Independence Day", date: year . "0704000000" }, {
+                name: "Thanksgiving", date: year . "1128000000" },  ; Approximate
+            {
+                name: "Christmas", date: year . "1225000000" }, {
+                    name: "New Year's Eve", date: year . "1231000000"
                 }
+    ]
 
-                ; Important dates this year
-                today := A_Now
-                year := FormatTime(today, "yyyy")
+    for dateInfo in importantDates {
+        if (dateInfo.date > today) {
+            daysUntil := DateDiff(dateInfo.date, today, "days")
+            output .= "  " . Format("{:-20s} - {:s} ({:d} days)",
+                dateInfo.name,
+                FormatTime(dateInfo.date, "MMM dd"),
+                daysUntil) . "`n"
+        }
+    }
 
-                output .= "`nImportant Dates This Year:`n"
-                importantDates := [
-                {
-                    name: "New Year's Day", date: year . "0101000000"},
-                    {
-                        name: "Independence Day", date: year . "0704000000"},
-                        {
-                            name: "Thanksgiving", date: year . "1128000000"},  ; Approximate
-                            {
-                                name: "Christmas", date: year . "1225000000"},
-                                {
-                                    name: "New Year's Eve", date: year . "1231000000"
-                                }
-                                ]
+    MsgBox(output, "Event Countdown", 262144)
+}
 
-                                for dateInfo in importantDates {
-                                    if (dateInfo.date > today) {
-                                        daysUntil := DateDiff(dateInfo.date, today, "days")
-                                        output .= "  " . Format("{:-20s} - {:s} ({:d} days)",
-                                        dateInfo.name,
-                                        FormatTime(dateInfo.date, "MMM dd"),
-                                        daysUntil) . "`n"
-                                    }
-                                }
+; ============================================================================
+; Main Menu and Hotkeys
+; ============================================================================
 
-                                MsgBox(output, "Event Countdown", 262144)
-                            }
-
-                            ; ============================================================================
-                            ; Main Menu and Hotkeys
-                            ; ============================================================================
-
-                            ShowMenu() {
-                                menu := "
+ShowMenu() {
+    menu := "
                                 (
                                 FormatTime() - Custom Formats and Locales
 
@@ -446,16 +438,16 @@ Example7_EventCountdown() {
 
                                 Press Ctrl+1-7 to run examples
                                 )"
-                                MsgBox(menu, "FormatTime Custom Formats", 4096)
-                            }
+    MsgBox(menu, "FormatTime Custom Formats", 4096)
+}
 
-                            ^1::Example1_CustomPatterns()
-                            ^2::Example2_WeekAndDayFormats()
-                            ^3::Example3_LocaleFormatting()
-                            ^4::Example4_BusinessFormats()
-                            ^5::Example5_TimeZoneFormatting()
-                            ^6::Example6_AgeCalculator()
-                            ^7::Example7_EventCountdown()
-                            ^m::ShowMenu()
+^1:: Example1_CustomPatterns()
+^2:: Example2_WeekAndDayFormats()
+^3:: Example3_LocaleFormatting()
+^4:: Example4_BusinessFormats()
+^5:: Example5_TimeZoneFormatting()
+^6:: Example6_AgeCalculator()
+^7:: Example7_EventCountdown()
+^m:: ShowMenu()
 
-                            ShowMenu()
+ShowMenu()

@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_02_Columns.ahk
-*
-* DESCRIPTION:
-* Advanced column management for ListView controls including resizing,
-* alignment, sorting, reordering, and dynamic column manipulation.
-*
-* FEATURES:
-* - Column width management (fixed and auto-sizing)
-* - Text alignment (left, center, right)
-* - Column insertion and removal
-* - Column header customization
-* - Programmatic column sorting
-* - Column hiding/showing techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ModifyCol() method with various options
-* - Dynamic column configuration
-* - Column count retrieval
-* - Header text modification
-* - Sort callbacks implementation
-*
-* LEARNING POINTS:
-* 1. Columns can be auto-sized or set to specific widths
-* 2. Column 0 refers to all columns
-* 3. Text alignment is set per column
-* 4. Columns cannot be truly removed, only hidden (width 0)
-* 5. Sort functions can implement custom sorting logic
-* 6. Column options affect all items in that column
-* 7. ModifyCol returns the column's previous width
-*/
+ * BuiltIn_ListView_02_Columns.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced column management for ListView controls including resizing,
+ * alignment, sorting, reordering, and dynamic column manipulation.
+ * 
+ * FEATURES:
+ * - Column width management (fixed and auto-sizing)
+ * - Text alignment (left, center, right)
+ * - Column insertion and removal
+ * - Column header customization
+ * - Programmatic column sorting
+ * - Column hiding/showing techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ModifyCol() method with various options
+ * - Dynamic column configuration
+ * - Column count retrieval
+ * - Header text modification
+ * - Sort callbacks implementation
+ * 
+ * LEARNING POINTS:
+ * 1. Columns can be auto-sized or set to specific widths
+ * 2. Column 0 refers to all columns
+ * 3. Text alignment is set per column
+ * 4. Columns cannot be truly removed, only hidden (width 0)
+ * 5. Sort functions can implement custom sorting logic
+ * 6. Column options affect all items in that column
+ * 7. ModifyCol returns the column's previous width
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Column Width Management
@@ -47,13 +47,13 @@ Example1_ColumnWidths() {
 
     ; Add sample data
     products := [
-    ["001", "Wireless Mouse", "Electronics", "$29.99", "150"],
-    ["002", "Mechanical Keyboard", "Electronics", "$89.99", "75"],
-    ["003", "Office Desk", "Furniture", "$299.99", "20"],
-    ["004", "Ergonomic Chair", "Furniture", "$399.99", "15"],
-    ["005", "LED Monitor 27`"", "Electronics", "$249.99", "45"],
-    ["006", "USB-C Hub", "Accessories", "$39.99", "200"],
-    ["007", "Laptop Stand", "Accessories", "$49.99", "100"]
+        ["001", "Wireless Mouse", "Electronics", "$29.99", "150"],
+        ["002", "Mechanical Keyboard", "Electronics", "$89.99", "75"],
+        ["003", "Office Desk", "Furniture", "$299.99", "20"],
+        ["004", "Ergonomic Chair", "Furniture", "$399.99", "15"],
+        ["005", "LED Monitor 27`"", "Electronics", "$249.99", "45"],
+        ["006", "USB-C Hub", "Accessories", "$39.99", "200"],
+        ["007", "Laptop Stand", "Accessories", "$49.99", "100"]
     ]
 
     for product in products {
@@ -137,11 +137,11 @@ Example2_ColumnAlignment() {
     ; Information display
     MyGui.Add("Text", "w700", "Column Alignment Information:")
     infoText := MyGui.Add("Edit", "r6 w700 ReadOnly",
-    "Column 1: Left aligned (default)`n"
-    "Column 2: Center aligned`n"
-    "Column 3: Right aligned`n"
-    "Column 4: Right aligned (currency)`n`n"
-    "Alignment is set using ModifyCol() options."
+        "Column 1: Left aligned (default)`n"
+        "Column 2: Center aligned`n"
+        "Column 3: Right aligned`n"
+        "Column 4: Right aligned (currency)`n`n"
+        "Alignment is set using ModifyCol() options."
     )
 
     ; Buttons to demonstrate alignment changes
@@ -254,11 +254,11 @@ Example4_ColumnVisibility() {
 
     ; Add employee data
     employees := [
-    ["E001", "John Smith", "Engineering", "john@company.com", "555-0101", "$85,000"],
-    ["E002", "Jane Doe", "Marketing", "jane@company.com", "555-0102", "$72,000"],
-    ["E003", "Bob Wilson", "Sales", "bob@company.com", "555-0103", "$68,000"],
-    ["E004", "Alice Brown", "Engineering", "alice@company.com", "555-0104", "$92,000"],
-    ["E005", "Charlie Davis", "HR", "charlie@company.com", "555-0105", "$65,000"]
+        ["E001", "John Smith", "Engineering", "john@company.com", "555-0101", "$85,000"],
+        ["E002", "Jane Doe", "Marketing", "jane@company.com", "555-0102", "$72,000"],
+        ["E003", "Bob Wilson", "Sales", "bob@company.com", "555-0103", "$68,000"],
+        ["E004", "Alice Brown", "Engineering", "alice@company.com", "555-0104", "$92,000"],
+        ["E005", "Charlie Davis", "HR", "charlie@company.com", "555-0105", "$65,000"]
     ]
 
     for emp in employees {
@@ -374,7 +374,7 @@ Example5_AutoHeaderSizing() {
             LV.ModifyCol(A_Index, "AutoHdr")
         }
         infoEdit.Value := "AutoHdr: Sizes to fit content, ignoring header width.`n"
-        . "Good when content is more important than header."
+            . "Good when content is more important than header."
     }
 
     AutoHeader(*) {
@@ -382,13 +382,13 @@ Example5_AutoHeaderSizing() {
             LV.ModifyCol(A_Index, "Auto")
         }
         infoEdit.Value := "Auto: Sizes to fit both header and content.`n"
-        . "Ensures header is fully visible."
+            . "Ensures header is fully visible."
     }
 
     AutoBoth(*) {
         LV.ModifyCol()  ; Auto-size all
         infoEdit.Value := "ModifyCol(): Auto-sizes all columns to fit both header and content.`n"
-        . "This is the recommended approach for best visibility."
+            . "This is the recommended approach for best visibility."
     }
 
     Fixed100(*) {
@@ -396,7 +396,7 @@ Example5_AutoHeaderSizing() {
             LV.ModifyCol(A_Index, 100)
         }
         infoEdit.Value := "Fixed 100px: All columns set to exact width.`n"
-        . "Content or headers may be cut off."
+            . "Content or headers may be cut off."
     }
 
     MyGui.Show()
@@ -412,14 +412,14 @@ Example6_ColumnSorting() {
 
     ; Add employee data
     employees := [
-    ["Alice Johnson", "28", "Engineering", "85000"],
-    ["Bob Smith", "35", "Marketing", "72000"],
-    ["Charlie Brown", "42", "Sales", "68000"],
-    ["Diana Prince", "31", "Engineering", "92000"],
-    ["Edward Norton", "27", "HR", "65000"],
-    ["Fiona Apple", "38", "Marketing", "71000"],
-    ["George Wilson", "45", "Engineering", "95000"],
-    ["Hannah Baker", "29", "Sales", "70000"]
+        ["Alice Johnson", "28", "Engineering", "85000"],
+        ["Bob Smith", "35", "Marketing", "72000"],
+        ["Charlie Brown", "42", "Sales", "68000"],
+        ["Diana Prince", "31", "Engineering", "92000"],
+        ["Edward Norton", "27", "HR", "65000"],
+        ["Fiona Apple", "38", "Marketing", "71000"],
+        ["George Wilson", "45", "Engineering", "95000"],
+        ["Hannah Baker", "29", "Sales", "70000"]
     ]
 
     for emp in employees {
@@ -441,9 +441,9 @@ Example6_ColumnSorting() {
 
     SortColumn(col, direction) {
         if direction = "Asc"
-        LV.ModifyCol(col, "Sort")
+            LV.ModifyCol(col, "Sort")
         else
-        LV.ModifyCol(col, "SortDesc")
+            LV.ModifyCol(col, "SortDesc")
     }
 
     RestoreOrder(*) {
@@ -463,16 +463,16 @@ Example6_ColumnSorting() {
         static ascending := true
 
         if ColNumber = lastCol
-        ascending := !ascending
+            ascending := !ascending
         else
-        ascending := true
+            ascending := true
 
         lastCol := ColNumber
 
         if ascending
-        LV.ModifyCol(ColNumber, "Sort")
+            LV.ModifyCol(ColNumber, "Sort")
         else
-        LV.ModifyCol(ColNumber, "SortDesc")
+            LV.ModifyCol(ColNumber, "SortDesc")
     }
 
     MyGui.Show()
@@ -583,7 +583,7 @@ Example7_ColumnInformation() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -665,3 +665,4 @@ COLUMN COUNT:
 ------------
 LV.GetCount("Column")               ; Returns number of columns
 */
+

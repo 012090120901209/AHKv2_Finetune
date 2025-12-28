@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Union() - Create array union (Standalone Implementation)
-*
-* Creates an array of unique values, in order, from all given arrays.
-*/
+ * Union() - Create array union (Standalone Implementation)
+ * 
+ * Creates an array of unique values, in order, from all given arrays.
+ */
 
 Union(arrays*) {
     result := []

@@ -1,67 +1,67 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - ClipboardAll Binary Clipboard Operations
-* ============================================================================
-*
-* This file demonstrates advanced binary clipboard operations using
-* ClipboardAll, including working with images, files, and custom formats.
-*
-* @file BuiltIn_ClipboardAll_02.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Binary Data Operations
-* 2. Image Clipboard Handling
-* 3. File Clipboard Operations
-* 4. Custom Format Detection
-* 5. Clipboard Size Analysis
-* 6. Binary Clipboard Comparison
-* 7. Advanced Binary Operations
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Working with binary clipboard data
-* - Detecting and handling images
-* - Managing file clipboard operations
-* - Detecting custom clipboard formats
-* - Analyzing clipboard size and content
-* - Comparing clipboard states
-* - Performing advanced binary operations
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - ClipboardAll Binary Clipboard Operations
+ * ============================================================================
+ * 
+ * This file demonstrates advanced binary clipboard operations using
+ * ClipboardAll, including working with images, files, and custom formats.
+ * 
+ * @file BuiltIn_ClipboardAll_02.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Binary Data Operations
+ * 2. Image Clipboard Handling
+ * 3. File Clipboard Operations
+ * 4. Custom Format Detection
+ * 5. Clipboard Size Analysis
+ * 6. Binary Clipboard Comparison
+ * 7. Advanced Binary Operations
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Working with binary clipboard data
+ * - Detecting and handling images
+ * - Managing file clipboard operations
+ * - Detecting custom clipboard formats
+ * - Analyzing clipboard size and content
+ * - Comparing clipboard states
+ * - Performing advanced binary operations
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Binary Data Operations
 ; ============================================================================
 
 /**
-* Demonstrates basic binary clipboard operations.
-*
-* @class BinaryClipboardOps
-* @description Handles binary clipboard data
-*/
+ * Demonstrates basic binary clipboard operations.
+ * 
+ * @class BinaryClipboardOps
+ * @description Handles binary clipboard data
+ */
 
 class BinaryClipboardOps {
 
     /**
-    * Gets clipboard as binary data
-    * @returns {ClipboardAll}
-    */
+     * Gets clipboard as binary data
+     * @returns {ClipboardAll}
+     */
     static GetBinary() {
         return ClipboardAll()
     }
 
     /**
-    * Sets clipboard from binary data
-    * @param {ClipboardAll} binaryData - Binary clipboard data
-    * @returns {Boolean}
-    */
+     * Sets clipboard from binary data
+     * @param {ClipboardAll} binaryData - Binary clipboard data
+     * @returns {Boolean}
+     */
     static SetBinary(binaryData) {
         try {
             A_Clipboard := binaryData
@@ -73,9 +73,9 @@ class BinaryClipboardOps {
     }
 
     /**
-    * Checks if clipboard has binary data (non-text)
-    * @returns {Boolean}
-    */
+     * Checks if clipboard has binary data (non-text)
+     * @returns {Boolean}
+     */
     static HasBinaryData() {
         clipData := ClipboardAll()
         ; If ClipboardAll has data but A_Clipboard is empty, it's binary
@@ -83,9 +83,9 @@ class BinaryClipboardOps {
     }
 
     /**
-    * Gets size of clipboard data in bytes
-    * @returns {Integer}
-    */
+     * Gets size of clipboard data in bytes
+     * @returns {Integer}
+     */
     static GetSize() {
         try {
             clipData := ClipboardAll()
@@ -96,9 +96,9 @@ class BinaryClipboardOps {
     }
 
     /**
-    * Creates a clipboard info map
-    * @returns {Map}
-    */
+     * Creates a clipboard info map
+     * @returns {Map}
+     */
     static GetInfo() {
         info := Map()
         info["hasText"] := (A_Clipboard != "")
@@ -110,19 +110,19 @@ class BinaryClipboardOps {
     }
 
     /**
-    * Formats byte size to human-readable format
-    * @param {Integer} bytes - Size in bytes
-    * @returns {String}
-    */
+     * Formats byte size to human-readable format
+     * @param {Integer} bytes - Size in bytes
+     * @returns {String}
+     */
     static FormatSize(bytes) {
         if (bytes < 1024)
-        return bytes . " bytes"
+            return bytes . " bytes"
         else if (bytes < 1048576)
-        return Round(bytes / 1024, 2) . " KB"
+            return Round(bytes / 1024, 2) . " KB"
         else if (bytes < 1073741824)
-        return Round(bytes / 1048576, 2) . " MB"
+            return Round(bytes / 1048576, 2) . " MB"
         else
-        return Round(bytes / 1073741824, 2) . " GB"
+            return Round(bytes / 1073741824, 2) . " GB"
     }
 }
 
@@ -143,18 +143,18 @@ F1:: {
 ; ============================================================================
 
 /**
-* Demonstrates handling images in the clipboard.
-*
-* @class ImageClipboardHandler
-* @description Detects and manages clipboard images
-*/
+ * Demonstrates handling images in the clipboard.
+ * 
+ * @class ImageClipboardHandler
+ * @description Detects and manages clipboard images
+ */
 
 class ImageClipboardHandler {
 
     /**
-    * Checks if clipboard contains an image
-    * @returns {Boolean}
-    */
+     * Checks if clipboard contains an image
+     * @returns {Boolean}
+     */
     static HasImage() {
         ; If clipboard has binary data but no text, likely an image
         ; Could also check for specific clipboard formats
@@ -162,13 +162,13 @@ class ImageClipboardHandler {
     }
 
     /**
-    * Saves clipboard image to file
-    * @param {String} filepath - Path to save image
-    * @returns {Boolean}
-    */
+     * Saves clipboard image to file
+     * @param {String} filepath - Path to save image
+     * @returns {Boolean}
+     */
     static SaveImage(filepath) {
         if (!this.HasImage())
-        return false
+            return false
 
         try {
             clipData := ClipboardAll()
@@ -186,13 +186,13 @@ class ImageClipboardHandler {
     }
 
     /**
-    * Loads image from file to clipboard
-    * @param {String} filepath - Path to image file
-    * @returns {Boolean}
-    */
+     * Loads image from file to clipboard
+     * @param {String} filepath - Path to image file
+     * @returns {Boolean}
+     */
     static LoadImage(filepath) {
         if (!FileExist(filepath))
-        return false
+            return false
 
         try {
             ; Read binary file
@@ -213,13 +213,13 @@ class ImageClipboardHandler {
     }
 
     /**
-    * Shows image save dialog
-    * @returns {void}
-    */
+     * Shows image save dialog
+     * @returns {void}
+     */
     static ShowSaveDialog() {
         if (!this.HasImage()) {
             MsgBox("Clipboard does not contain an image!",
-            "No Image", "Icon Warn")
+                "No Image", "Icon Warn")
             return
         }
 
@@ -227,11 +227,11 @@ class ImageClipboardHandler {
         filepath := FileSelect("S", , "Save Clipboard Image", "Clipboard Files (*.clip)")
 
         if (filepath = "")
-        return
+            return
 
         ; Add extension if not present
         if (!InStr(filepath, "."))
-        filepath .= ".clip"
+            filepath .= ".clip"
 
         if (this.SaveImage(filepath)) {
             MsgBox("Image saved to:`n" . filepath, "Saved", "Icon Info T3")
@@ -240,25 +240,25 @@ class ImageClipboardHandler {
 }
 
 ; Save clipboard image
-^!i::ImageClipboardHandler.ShowSaveDialog()
+^!i:: ImageClipboardHandler.ShowSaveDialog()
 
 ; ============================================================================
 ; Example 3: File Clipboard Operations
 ; ============================================================================
 
 /**
-* Demonstrates working with file clipboard data.
-*
-* @class FileClipboardHandler
-* @description Handles files in clipboard
-*/
+ * Demonstrates working with file clipboard data.
+ * 
+ * @class FileClipboardHandler
+ * @description Handles files in clipboard
+ */
 
 class FileClipboardHandler {
 
     /**
-    * Gets list of files from clipboard
-    * @returns {Array}
-    */
+     * Gets list of files from clipboard
+     * @returns {Array}
+     */
     static GetFileList() {
         files := []
 
@@ -266,7 +266,7 @@ class FileClipboardHandler {
             ; Try to get files from clipboard
             Loop Parse, A_Clipboard, "`n", "`r" {
                 if (FileExist(A_LoopField))
-                files.Push(A_LoopField)
+                    files.Push(A_LoopField)
             }
         }
 
@@ -274,17 +274,17 @@ class FileClipboardHandler {
     }
 
     /**
-    * Checks if clipboard contains files
-    * @returns {Boolean}
-    */
+     * Checks if clipboard contains files
+     * @returns {Boolean}
+     */
     static HasFiles() {
         return this.GetFileList().Length > 0
     }
 
     /**
-    * Gets file information from clipboard
-    * @returns {Map}
-    */
+     * Gets file information from clipboard
+     * @returns {Map}
+     */
     static GetFileInfo() {
         info := Map()
         files := this.GetFileList()
@@ -295,7 +295,7 @@ class FileClipboardHandler {
 
         for filepath in files {
             if (FileExist(filepath) && !InStr(FileExist(filepath), "D"))
-            info["totalSize"] += FileGetSize(filepath)
+                info["totalSize"] += FileGetSize(filepath)
         }
 
         info["totalSizeFormatted"] := BinaryClipboardOps.FormatSize(info["totalSize"])
@@ -304,13 +304,13 @@ class FileClipboardHandler {
     }
 
     /**
-    * Shows file clipboard info
-    * @returns {void}
-    */
+     * Shows file clipboard info
+     * @returns {void}
+     */
     static ShowInfo() {
         if (!this.HasFiles()) {
             MsgBox("Clipboard does not contain files!",
-            "No Files", "Icon Info")
+                "No Files", "Icon Info")
             return
         }
 
@@ -320,8 +320,8 @@ class FileClipboardHandler {
         gui.SetFont("s10")
 
         gui.Add("Text", "w500",
-        "Files in Clipboard: " . info["count"] . "`n"
-        . "Total Size: " . info["totalSizeFormatted"])
+            "Files in Clipboard: " . info["count"] . "`n"
+            . "Total Size: " . info["totalSizeFormatted"])
 
         lv := gui.Add("ListView", "w500 h300", ["Filename", "Size", "Type"])
         lv.ModifyCol(1, 250)
@@ -344,46 +344,46 @@ class FileClipboardHandler {
 }
 
 ; Show file clipboard info
-^!f::FileClipboardHandler.ShowInfo()
+^!f:: FileClipboardHandler.ShowInfo()
 
 ; ============================================================================
 ; Example 4: Custom Format Detection
 ; ============================================================================
 
 /**
-* Demonstrates detecting clipboard formats.
-*
-* @class ClipboardFormatDetector
-* @description Detects various clipboard formats
-*/
+ * Demonstrates detecting clipboard formats.
+ * 
+ * @class ClipboardFormatDetector
+ * @description Detects various clipboard formats
+ */
 
 class ClipboardFormatDetector {
 
     /**
-    * Detects clipboard content type
-    * @returns {String}
-    */
+     * Detects clipboard content type
+     * @returns {String}
+     */
     static DetectType() {
         ; Check for text
         if (A_Clipboard != "")
-        return "Text"
+            return "Text"
 
         ; Check for files
         if (FileClipboardHandler.HasFiles())
-        return "Files"
+            return "Files"
 
         ; Check for binary/image
         if (BinaryClipboardOps.HasBinaryData())
-        return "Binary/Image"
+            return "Binary/Image"
 
         ; Empty
         return "Empty"
     }
 
     /**
-    * Gets detailed format information
-    * @returns {Map}
-    */
+     * Gets detailed format information
+     * @returns {Map}
+     */
     static GetFormatInfo() {
         info := Map()
 
@@ -435,20 +435,20 @@ F2:: {
 ; ============================================================================
 
 /**
-* Demonstrates clipboard size analysis and monitoring.
-*
-* @class ClipboardSizeAnalyzer
-* @description Analyzes clipboard memory usage
-*/
+ * Demonstrates clipboard size analysis and monitoring.
+ * 
+ * @class ClipboardSizeAnalyzer
+ * @description Analyzes clipboard memory usage
+ */
 
 class ClipboardSizeAnalyzer {
     static history := []
     static maxHistory := 20
 
     /**
-    * Records current clipboard size
-    * @returns {void}
-    */
+     * Records current clipboard size
+     * @returns {void}
+     */
     static RecordSize() {
         size := BinaryClipboardOps.GetSize()
         timestamp := A_Now
@@ -456,13 +456,13 @@ class ClipboardSizeAnalyzer {
         this.history.Push(Map("timestamp", timestamp, "size", size))
 
         if (this.history.Length > this.maxHistory)
-        this.history.RemoveAt(1)
+            this.history.RemoveAt(1)
     }
 
     /**
-    * Gets size statistics
-    * @returns {Map}
-    */
+     * Gets size statistics
+     * @returns {Map}
+     */
     static GetStats() {
         stats := Map()
 
@@ -483,10 +483,10 @@ class ClipboardSizeAnalyzer {
             totalSize += size
 
             if (size > stats["max"])
-            stats["max"] := size
+                stats["max"] := size
 
             if (size < stats["min"])
-            stats["min"] := size
+                stats["min"] := size
         }
 
         stats["average"] := totalSize / this.history.Length
@@ -501,13 +501,13 @@ class ClipboardSizeAnalyzer {
     }
 
     /**
-    * Shows size analysis GUI
-    * @returns {void}
-    */
+     * Shows size analysis GUI
+     * @returns {void}
+     */
     static ShowAnalysis() {
         if (this.history.Length = 0) {
             MsgBox("No size history available!`n`nUse Ctrl+Alt+R to record current size.",
-            "Size Analysis", "Icon Info")
+                "Size Analysis", "Icon Info")
             return
         }
 
@@ -554,48 +554,48 @@ class ClipboardSizeAnalyzer {
 }
 
 ; Record current clipboard size
-^!r::ClipboardSizeAnalyzer.RecordSize()
+^!r:: ClipboardSizeAnalyzer.RecordSize()
 
 ; Show size analysis
-^!+r::ClipboardSizeAnalyzer.ShowAnalysis()
+^!+r:: ClipboardSizeAnalyzer.ShowAnalysis()
 
 ; ============================================================================
 ; Example 6: Binary Clipboard Comparison
 ; ============================================================================
 
 /**
-* Demonstrates comparing clipboard states.
-*
-* @class ClipboardComparator
-* @description Compares clipboard contents
-*/
+ * Demonstrates comparing clipboard states.
+ * 
+ * @class ClipboardComparator
+ * @description Compares clipboard contents
+ */
 
 class ClipboardComparator {
     static snapshot1 := ""
     static snapshot2 := ""
 
     /**
-    * Takes first snapshot
-    * @returns {void}
-    */
+     * Takes first snapshot
+     * @returns {void}
+     */
     static TakeSnapshot1() {
         this.snapshot1 := ClipboardAll()
         TrayTip("Snapshot 1 Taken", "First clipboard snapshot saved", "Icon Info")
     }
 
     /**
-    * Takes second snapshot
-    * @returns {void}
-    */
+     * Takes second snapshot
+     * @returns {void}
+     */
     static TakeSnapshot2() {
         this.snapshot2 := ClipboardAll()
         TrayTip("Snapshot 2 Taken", "Second clipboard snapshot saved", "Icon Info")
     }
 
     /**
-    * Compares two snapshots
-    * @returns {Map}
-    */
+     * Compares two snapshots
+     * @returns {Map}
+     */
     static Compare() {
         result := Map()
 
@@ -618,27 +618,27 @@ class ClipboardComparator {
     }
 
     /**
-    * Shows comparison results
-    * @returns {void}
-    */
+     * Shows comparison results
+     * @returns {void}
+     */
     static ShowComparison() {
         comparison := this.Compare()
 
         if (!comparison["canCompare"]) {
             MsgBox("Please take two snapshots first!`n`n"
-            . "Ctrl+Alt+1 - Take Snapshot 1`n"
-            . "Ctrl+Alt+2 - Take Snapshot 2",
-            "Comparison", "Icon Info")
+                . "Ctrl+Alt+1 - Take Snapshot 1`n"
+                . "Ctrl+Alt+2 - Take Snapshot 2",
+                "Comparison", "Icon Info")
             return
         }
 
         infoText := "Clipboard Comparison:`n`n"
         infoText .= "Snapshot 1 Size: "
-        . BinaryClipboardOps.FormatSize(comparison["size1"]) . "`n"
+            . BinaryClipboardOps.FormatSize(comparison["size1"]) . "`n"
         infoText .= "Snapshot 2 Size: "
-        . BinaryClipboardOps.FormatSize(comparison["size2"]) . "`n"
+            . BinaryClipboardOps.FormatSize(comparison["size2"]) . "`n"
         infoText .= "Difference: "
-        . BinaryClipboardOps.FormatSize(Abs(comparison["sizeDiff"]))
+            . BinaryClipboardOps.FormatSize(Abs(comparison["sizeDiff"]))
         infoText .= " (" . (comparison["sizeDiff"] >= 0 ? "+" : "-") . ")`n`n"
         infoText .= "Sizes Equal: " . (comparison["sizeEqual"] ? "Yes" : "No")
 
@@ -647,31 +647,31 @@ class ClipboardComparator {
 }
 
 ; Take snapshots and compare
-^!1::ClipboardComparator.TakeSnapshot1()
-^!2::ClipboardComparator.TakeSnapshot2()
-^!3::ClipboardComparator.ShowComparison()
+^!1:: ClipboardComparator.TakeSnapshot1()
+^!2:: ClipboardComparator.TakeSnapshot2()
+^!3:: ClipboardComparator.ShowComparison()
 
 ; ============================================================================
 ; Example 7: Advanced Binary Operations
 ; ============================================================================
 
 /**
-* Advanced binary clipboard operations.
-*
-* @class AdvancedBinaryOps
-* @description Advanced binary clipboard utilities
-*/
+ * Advanced binary clipboard operations.
+ * 
+ * @class AdvancedBinaryOps
+ * @description Advanced binary clipboard utilities
+ */
 
 class AdvancedBinaryOps {
 
     /**
-    * Creates a clipboard checksum/hash
-    * @returns {Integer}
-    */
+     * Creates a clipboard checksum/hash
+     * @returns {Integer}
+     */
     static GetChecksum() {
         clipData := ClipboardAll()
         if (!Type(clipData) = "ClipboardAll")
-        return 0
+            return 0
 
         ; Simple checksum - sum of bytes
         checksum := 0
@@ -683,19 +683,19 @@ class AdvancedBinaryOps {
     }
 
     /**
-    * Monitors clipboard for changes
-    * @param {Func} callback - Function to call on change
-    * @returns {void}
-    */
+     * Monitors clipboard for changes
+     * @param {Func} callback - Function to call on change
+     * @returns {void}
+     */
     static StartMonitoring(callback) {
         ; Set up OnClipboardChange to call callback
         OnClipboardChange(callback)
     }
 
     /**
-    * Stops clipboard monitoring
-    * @returns {void}
-    */
+     * Stops clipboard monitoring
+     * @returns {void}
+     */
     static StopMonitoring() {
         OnClipboardChange(ClipChanged, 0)
     }
@@ -721,8 +721,8 @@ ClipChanged(DataType) {
     sizeStr := BinaryClipboardOps.FormatSize(size)
 
     TrayTip("Clipboard Changed",
-    "Type: " . DataType . "`nSize: " . sizeStr,
-    "Icon Info")
+        "Type: " . DataType . "`nSize: " . sizeStr,
+        "Icon Info")
 }
 
 ; ============================================================================

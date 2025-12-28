@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Read Examples - Part 1
-* ============================================================================
-*
-* This file demonstrates comprehensive usage of the RegRead function in
-* AutoHotkey v2, including reading registry values, checking existence,
-* and enumerating keys.
-*
-* @description Examples of reading Windows Registry values
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Read Examples - Part 1
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive usage of the RegRead function in
+ * AutoHotkey v2, including reading registry values, checking existence,
+ * and enumerating keys.
+ * 
+ * @description Examples of reading Windows Registry values
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Registry Reading
 ; ============================================================================
 
 /**
-* @function Example1_BasicRegistryRead
-* @description Demonstrates basic registry value reading
-* @returns {void}
-*/
+ * @function Example1_BasicRegistryRead
+ * @description Demonstrates basic registry value reading
+ * @returns {void}
+ */
 Example1_BasicRegistryRead() {
     MsgBox "=== Example 1: Basic Registry Reading ===`n`n" .
-    "Reading common Windows registry values..."
+        "Reading common Windows registry values..."
 
     try {
         ; Read Windows Product Name
@@ -60,13 +60,13 @@ Example1_BasicRegistryRead() {
 ; ============================================================================
 
 /**
-* @function Example2_CheckRegistryExistence
-* @description Demonstrates how to safely check if registry values exist
-* @returns {void}
-*/
+ * @function Example2_CheckRegistryExistence
+ * @description Demonstrates how to safely check if registry values exist
+ * @returns {void}
+ */
 Example2_CheckRegistryExistence() {
     MsgBox "=== Example 2: Checking Registry Existence ===`n`n" .
-    "Safely checking for registry values..."
+        "Safely checking for registry values..."
 
     ; Helper function to check if a registry value exists
     RegValueExists(keyName, valueName) {
@@ -83,26 +83,26 @@ Example2_CheckRegistryExistence() {
 
     ; Check Windows version info
     checks["Windows ProductName"] := RegValueExists(
-    "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
-    "ProductName"
+        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+        "ProductName"
     )
 
     ; Check for .NET Framework
     checks[".NET Framework 4.8"] := RegValueExists(
-    "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full",
-    "Version"
+        "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full",
+        "Version"
     )
 
     ; Check user's wallpaper setting
     checks["Desktop Wallpaper"] := RegValueExists(
-    "HKEY_CURRENT_USER\Control Panel\Desktop",
-    "Wallpaper"
+        "HKEY_CURRENT_USER\Control Panel\Desktop",
+        "Wallpaper"
     )
 
     ; Check AutoHotkey installation (example)
     checks["AutoHotkey Install"] := RegValueExists(
-    "HKEY_CURRENT_USER\Software\AutoHotkey",
-    "InstallDir"
+        "HKEY_CURRENT_USER\Software\AutoHotkey",
+        "InstallDir"
     )
 
     ; Display results
@@ -122,13 +122,13 @@ Example2_CheckRegistryExistence() {
 ; ============================================================================
 
 /**
-* @function Example3_RegistryDataTypes
-* @description Demonstrates reading different registry data types (REG_SZ, REG_DWORD, etc.)
-* @returns {void}
-*/
+ * @function Example3_RegistryDataTypes
+ * @description Demonstrates reading different registry data types (REG_SZ, REG_DWORD, etc.)
+ * @returns {void}
+ */
 Example3_RegistryDataTypes() {
     MsgBox "=== Example 3: Registry Data Types ===`n`n" .
-    "Reading various registry data types..."
+        "Reading various registry data types..."
 
     try {
         ; REG_SZ (String)
@@ -162,10 +162,10 @@ Example3_RegistryDataTypes() {
         result .= "  ErrorMode: " . errorMode . "`n`n"
 
         if (hasInstallTime)
-        result .= "REG_QWORD (64-bit):`n  InstallTime: " . installTime . "`n`n"
+            result .= "REG_QWORD (64-bit):`n  InstallTime: " . installTime . "`n`n"
 
         if (hasPathExt)
-        result .= "REG_EXPAND_SZ (Expandable):`n  PATHEXT: " . pathExt . "`n"
+            result .= "REG_EXPAND_SZ (Expandable):`n  PATHEXT: " . pathExt . "`n"
 
         MsgBox result, "Data Types"
 
@@ -179,13 +179,13 @@ Example3_RegistryDataTypes() {
 ; ============================================================================
 
 /**
-* @function Example4_EnumerateSubkeys
-* @description Demonstrates enumerating all subkeys in a registry key
-* @returns {void}
-*/
+ * @function Example4_EnumerateSubkeys
+ * @description Demonstrates enumerating all subkeys in a registry key
+ * @returns {void}
+ */
 Example4_EnumerateSubkeys() {
     MsgBox "=== Example 4: Enumerating Registry Subkeys ===`n`n" .
-    "Listing all subkeys in a registry location..."
+        "Listing all subkeys in a registry location..."
 
     ; We'll enumerate subkeys using Loop Reg
     baseKey := "HKEY_CURRENT_USER\Software"
@@ -194,12 +194,12 @@ Example4_EnumerateSubkeys() {
     try {
         ; Enumerate subkeys
         Loop Reg, baseKey, "K"
- {
+        {
             subkeys.Push(A_LoopRegName)
 
             ; Limit to first 20 for display
             if (subkeys.Length >= 20)
-            break
+                break
         }
 
         ; Build result
@@ -223,13 +223,13 @@ Example4_EnumerateSubkeys() {
 ; ============================================================================
 
 /**
-* @function Example5_UserPreferences
-* @description Reads various user preferences from the registry
-* @returns {void}
-*/
+ * @function Example5_UserPreferences
+ * @description Reads various user preferences from the registry
+ * @returns {void}
+ */
 Example5_UserPreferences() {
     MsgBox "=== Example 5: User Preferences ===`n`n" .
-    "Reading user preferences from registry..."
+        "Reading user preferences from registry..."
 
     prefs := Map()
 
@@ -307,19 +307,19 @@ Example5_UserPreferences() {
 ; ============================================================================
 
 /**
-* @class RegistryBackup
-* @description A class for backing up registry settings
-*/
+ * @class RegistryBackup
+ * @description A class for backing up registry settings
+ */
 class RegistryBackup {
     backup := Map()
 
     /**
-    * @method AddValue
-    * @description Backs up a registry value
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name to backup
-    * @returns {Boolean} Success status
-    */
+     * @method AddValue
+     * @description Backs up a registry value
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name to backup
+     * @returns {Boolean} Success status
+     */
     AddValue(keyPath, valueName) {
         try {
             value := RegRead(keyPath, valueName)
@@ -331,28 +331,28 @@ class RegistryBackup {
     }
 
     /**
-    * @method BackupKey
-    * @description Backs up all values in a registry key
-    * @param {String} keyPath - Registry key path
-    * @returns {Integer} Number of values backed up
-    */
+     * @method BackupKey
+     * @description Backs up all values in a registry key
+     * @param {String} keyPath - Registry key path
+     * @returns {Integer} Number of values backed up
+     */
     BackupKey(keyPath) {
         count := 0
         try {
             Loop Reg, keyPath, "V"
- {
+            {
                 if this.AddValue(keyPath, A_LoopRegName)
-                count++
+                    count++
             }
         }
         return count
     }
 
     /**
-    * @method GetBackupReport
-    * @description Gets a formatted report of backed up values
-    * @returns {String} Formatted report
-    */
+     * @method GetBackupReport
+     * @description Gets a formatted report of backed up values
+     * @returns {String} Formatted report
+     */
     GetBackupReport() {
         report := "Registry Backup Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -367,22 +367,22 @@ class RegistryBackup {
     }
 
     /**
-    * @method Clear
-    * @description Clears the backup
-    */
+     * @method Clear
+     * @description Clears the backup
+     */
     Clear() {
         this.backup := Map()
     }
 }
 
 /**
-* @function Example6_BackupSystem
-* @description Demonstrates a registry backup system
-* @returns {void}
-*/
+ * @function Example6_BackupSystem
+ * @description Demonstrates a registry backup system
+ * @returns {void}
+ */
 Example6_BackupSystem() {
     MsgBox "=== Example 6: Registry Backup System ===`n`n" .
-    "Creating backup of registry settings..."
+        "Creating backup of registry settings..."
 
     backup := RegistryBackup()
 
@@ -419,13 +419,13 @@ RegValueExists(keyName, valueName) {
 ; ============================================================================
 
 /**
-* @function Example7_FeatureDetection
-* @description Detects installed Windows features and components
-* @returns {void}
-*/
+ * @function Example7_FeatureDetection
+ * @description Detects installed Windows features and components
+ * @returns {void}
+ */
 Example7_FeatureDetection() {
     MsgBox "=== Example 7: Windows Feature Detection ===`n`n" .
-    "Detecting installed Windows features..."
+        "Detecting installed Windows features..."
 
     features := Map()
 
@@ -433,9 +433,9 @@ Example7_FeatureDetection() {
     DetectFeature(name, keyPath, valueName := "") {
         try {
             if (valueName = "")
-            value := RegRead(keyPath, "")
+                value := RegRead(keyPath, "")
             else
-            value := RegRead(keyPath, valueName)
+                value := RegRead(keyPath, valueName)
             return true
         } catch {
             return false
@@ -444,29 +444,29 @@ Example7_FeatureDetection() {
 
     ; Check for various features
     features["Windows Defender"] := DetectFeature(
-    "Windows Defender",
-    "HKLM\SOFTWARE\Microsoft\Windows Defender"
+        "Windows Defender",
+        "HKLM\SOFTWARE\Microsoft\Windows Defender"
     )
 
     features["Windows Media Player"] := DetectFeature(
-    "WMP",
-    "HKLM\SOFTWARE\Microsoft\MediaPlayer"
+        "WMP",
+        "HKLM\SOFTWARE\Microsoft\MediaPlayer"
     )
 
     features[".NET Framework"] := DetectFeature(
-    ".NET",
-    "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full",
-    "Version"
+        ".NET",
+        "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full",
+        "Version"
     )
 
     features["PowerShell"] := DetectFeature(
-    "PS",
-    "HKLM\SOFTWARE\Microsoft\PowerShell\1"
+        "PS",
+        "HKLM\SOFTWARE\Microsoft\PowerShell\1"
     )
 
     features["Hyper-V"] := DetectFeature(
-    "Hyper-V",
-    "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization"
+        "Hyper-V",
+        "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization"
     )
 
     ; Build result
@@ -516,8 +516,8 @@ ShowMenu() {
         case "7": Example7_FeatureDetection()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

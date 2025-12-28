@@ -40,7 +40,7 @@ class Semaphore {
         }
         return false
     }
-    
+
     GetAvailable() => this.available
     GetWaiting() => this.waiting.Length
 }
@@ -80,7 +80,7 @@ class Mutex {
         }
         return false
     }
-    
+
     IsLocked() => this.locked
 }
 
@@ -175,4 +175,4 @@ myMutex.Lock()
 MsgBox("Mutex locked: " myMutex.IsLocked() "`nTryLock again: " myMutex.TryLock())
 
 mutex.Unlock()
-MsgBox("Mutex unlocked: " !mutex.IsLocked())
+MsgBox("Mutex unlocked: "!mutex.IsLocked())

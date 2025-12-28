@@ -17,14 +17,14 @@ class Stack {
     ; Remove and return top item
     Pop() {
         if (this.IsEmpty())
-        throw Error("Stack is empty")
+            throw Error("Stack is empty")
         return this.items.Pop()
     }
 
     ; View top item without removing
     Peek() {
         if (this.IsEmpty())
-        throw Error("Stack is empty")
+            throw Error("Stack is empty")
         return this.items[this.items.Length]
     }
 
@@ -62,14 +62,14 @@ class UndoRedoManager {
 
     ; Execute an action and add to undo stack
     Do(action, data) {
-        this.undoStack.Push({action: action, data: data})
+        this.undoStack.Push({ action: action, data: data })
         this.redoStack.Clear()  ; Clear redo stack on new action
     }
 
     ; Undo last action
     Undo() {
         if (this.undoStack.IsEmpty())
-        throw Error("Nothing to undo")
+            throw Error("Nothing to undo")
 
         item := this.undoStack.Pop()
         this.redoStack.Push(item)
@@ -79,7 +79,7 @@ class UndoRedoManager {
     ; Redo last undone action
     Redo() {
         if (this.redoStack.IsEmpty())
-        throw Error("Nothing to redo")
+            throw Error("Nothing to redo")
 
         item := this.redoStack.Pop()
         this.undoStack.Push(item)
@@ -136,14 +136,14 @@ global previousText := ""
 global isUpdating := false
 
 ; Hotkeys
-^z::UndoAction()
-^y::RedoAction()
+^z:: UndoAction()
+^y:: RedoAction()
 
 TextChanged(*) {
     global previousText, isUpdating
 
     if (isUpdating)
-    return
+        return
 
     currentText := textEditor.Value
 
@@ -268,7 +268,7 @@ UpdateStackDisplay() {
     for item in undoItems {
         preview := SubStr(StrReplace(item.data, "`n", " "), 1, 30)
         if (StrLen(item.data) > 30)
-        preview .= "..."
+            preview .= "..."
         undoList.Add(, item.action, preview)
     }
     undoList.ModifyCol()
@@ -279,7 +279,7 @@ UpdateStackDisplay() {
     for item in redoItems {
         preview := SubStr(StrReplace(item.data, "`n", " "), 1, 30)
         if (StrLen(item.data) > 30)
-        preview .= "..."
+            preview .= "..."
         redoList.Add(, item.action, preview)
     }
     redoList.ModifyCol()

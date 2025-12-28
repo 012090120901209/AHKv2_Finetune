@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_NumPut_03_Pointers.ahk
-*
-* DESCRIPTION:
-* Advanced NumPut usage for writing pointer values to buffers.
-* Covers pointer storage, indirection, and pointer-based data structures.
-*
-* FEATURES:
-* - Writing pointer values to buffers
-* - Creating pointer arrays
-* - Building linked structures
-* - Platform-aware pointer handling
-* - Function pointer tables
-* - Practical pointer manipulation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - NumPut, Pointers
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - NumPut with "Ptr" type (platform-dependent size)
-* - NumPut with "UPtr" type (unsigned pointer)
-* - A_PtrSize for cross-platform compatibility
-* - Building pointer chains
-* - Pointer validation
-*
-* LEARNING POINTS:
-* 1. Ptr type is 4 bytes on 32-bit, 8 bytes on 64-bit
-* 2. NumPut stores memory addresses, not values
-* 3. Pointer arrays enable indirect data access
-* 4. Null pointers (0) can be written safely
-* 5. Pointer chains enable complex data structures
-*/
+ * BuiltIn_NumPut_03_Pointers.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced NumPut usage for writing pointer values to buffers.
+ * Covers pointer storage, indirection, and pointer-based data structures.
+ * 
+ * FEATURES:
+ * - Writing pointer values to buffers
+ * - Creating pointer arrays
+ * - Building linked structures
+ * - Platform-aware pointer handling
+ * - Function pointer tables
+ * - Practical pointer manipulation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - NumPut, Pointers
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - NumPut with "Ptr" type (platform-dependent size)
+ * - NumPut with "UPtr" type (unsigned pointer)
+ * - A_PtrSize for cross-platform compatibility
+ * - Building pointer chains
+ * - Pointer validation
+ * 
+ * LEARNING POINTS:
+ * 1. Ptr type is 4 bytes on 32-bit, 8 bytes on 64-bit
+ * 2. NumPut stores memory addresses, not values
+ * 3. Pointer arrays enable indirect data access
+ * 4. Null pointers (0) can be written safely
+ * 5. Pointer chains enable complex data structures
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Basic Pointer Writing
@@ -156,9 +156,9 @@ Example3_LinkedList() {
     for value in values {
         result .= value
         if A_Index < values.Length
-        result .= " -> "
+            result .= " -> "
         else
-        result .= " -> NULL"
+            result .= " -> NULL"
     }
 
     result .= "`n`nNodes: " . values.Length
@@ -288,7 +288,7 @@ Example6_IndexTable() {
         value := NumGet(ptr, "Int")
 
         result .= "  Index[" . (A_Index - 1) . "] -> Data["
-        . ((A_Index - 1) * 2) . "] = " . value . "`n"
+            . ((A_Index - 1) * 2) . "] = " . value . "`n"
     }
 
     MsgBox(result, "Example 6: Index Table", "Icon!")
@@ -316,7 +316,7 @@ ShowMenu() {
     choice := InputBox(menu, "NumPut Pointer Examples", "w450 h320")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicPointerWriting()

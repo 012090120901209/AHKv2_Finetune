@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_IE_03_Forms.ahk
-*
-* DESCRIPTION:
-* Form automation in Internet Explorer using COM.
-*
-* FEATURES:
-* - Fill form fields
-* - Submit forms
-* - Select options
-* - Click buttons
-* - Form validation
-*/
+ * BuiltIn_COM_IE_03_Forms.ahk
+ * 
+ * DESCRIPTION:
+ * Form automation in Internet Explorer using COM.
+ * 
+ * FEATURES:
+ * - Fill form fields
+ * - Submit forms
+ * - Select options
+ * - Click buttons
+ * - Form validation
+ */
 
 Example1_FillTextBox() {
     MsgBox("Example 1: Fill Text Box")
@@ -147,6 +147,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

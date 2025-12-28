@@ -8,6 +8,6 @@ for v in oActiveControlList {
 loop parse, ActiveControlList, "`n" {
     msgResult := MsgBox("Control #" A_Index " is `"" A_LoopField "`". Continue?", , 4)
     if (msgResult = "No")
-    break
+        break
 }
 return

@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Gdi32_04_Bitmaps.ahk
-*
-* DESCRIPTION:
-* Demonstrates Bitmap creation and manipulation using Windows API through DllCall.
-* Comprehensive examples showing various Bitmaps operations.
-*
-* FEATURES:
-* - Bitmaps API integration
-* - Practical Bitmaps examples
-* - Error handling
-* - Resource management
-* - Advanced Bitmaps techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Gdi32 API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Gdi32 API functions
-* 2. Working with Bitmaps operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Bitmaps techniques
-* 6. Best practices for Gdi32 API
-* 7. Real-world Bitmaps applications
-*/
+ * BuiltIn_DllCall_Gdi32_04_Bitmaps.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Bitmap creation and manipulation using Windows API through DllCall.
+ * Comprehensive examples showing various Bitmaps operations.
+ * 
+ * FEATURES:
+ * - Bitmaps API integration
+ * - Practical Bitmaps examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Bitmaps techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Gdi32 API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Gdi32 API functions
+ * 2. Working with Bitmaps operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Bitmaps techniques
+ * 6. Best practices for Gdi32 API
+ * 7. Real-world Bitmaps applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Bitmaps Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Bitmaps operations
-*/
+ * Helper function for Bitmaps operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Bitmaps Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

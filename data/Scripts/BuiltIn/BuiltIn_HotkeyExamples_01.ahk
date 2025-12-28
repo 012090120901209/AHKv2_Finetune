@@ -1,17 +1,17 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Practical Hotkey Systems - Real-World Applications
-* ============================================================================
-*
-* Comprehensive examples of practical hotkey systems for real-world use cases.
-* Includes window management, clipboard management, text manipulation,
-* launcher systems, and productivity tools.
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-*/
+ * ============================================================================
+ * Practical Hotkey Systems - Real-World Applications
+ * ============================================================================
+ * 
+ * Comprehensive examples of practical hotkey systems for real-world use cases.
+ * Includes window management, clipboard management, text manipulation,
+ * launcher systems, and productivity tools.
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Window Management System
@@ -19,8 +19,8 @@
 
 Example1_WindowManagement() {
     /**
-    * Snaps window to left half of screen
-    */
+     * Snaps window to left half of screen
+     */
     Hotkey("#Left", (*) {
         if WinExist("A") {
             WinGetPos(&x, &y, &w, &h, "A")
@@ -31,8 +31,8 @@ Example1_WindowManagement() {
     })
 
     /**
-    * Snaps window to right half
-    */
+     * Snaps window to right half
+     */
     Hotkey("#Right", (*) {
         if WinExist("A") {
             screenW := A_ScreenWidth
@@ -42,24 +42,24 @@ Example1_WindowManagement() {
     })
 
     /**
-    * Maximizes window
-    */
+     * Maximizes window
+     */
     Hotkey("#Up", (*) {
         if WinExist("A")
-        WinMaximize("A")
+            WinMaximize("A")
     })
 
     /**
-    * Minimizes window
-    */
+     * Minimizes window
+     */
     Hotkey("#Down", (*) {
         if WinExist("A")
-        WinMinimize("A")
+            WinMinimize("A")
     })
 
     /**
-    * Centers window
-    */
+     * Centers window
+     */
     Hotkey("#c", (*) {
         if WinExist("A") {
             WinGetPos(, , &w, &h, "A")
@@ -70,8 +70,8 @@ Example1_WindowManagement() {
     })
 
     /**
-    * Always on top toggle
-    */
+     * Always on top toggle
+     */
     Hotkey("#t", (*) {
         if WinExist("A") {
             WinSetAlwaysOnTop(-1, "A")
@@ -83,15 +83,15 @@ Example1_WindowManagement() {
     })
 
     MsgBox(
-    "Window Management System`n`n"
-    "Win+Left → Snap left`n"
-    "Win+Right → Snap right`n"
-    "Win+Up → Maximize`n"
-    "Win+Down → Minimize`n"
-    "Win+C → Center window`n"
-    "Win+T → Toggle always on top`n`n"
-    "Open some windows and try!",
-    "Example 1"
+        "Window Management System`n`n"
+        "Win+Left → Snap left`n"
+        "Win+Right → Snap right`n"
+        "Win+Up → Maximize`n"
+        "Win+Down → Minimize`n"
+        "Win+C → Center window`n"
+        "Win+T → Toggle always on top`n`n"
+        "Open some windows and try!",
+        "Example 1"
     )
 }
 
@@ -104,8 +104,8 @@ Example2_ClipboardManager() {
     global maxHistory := 10
 
     /**
-    * Saves clipboard to history
-    */
+     * Saves clipboard to history
+     */
     SaveClipboard() {
         global clipHistory, maxHistory
 
@@ -119,13 +119,13 @@ Example2_ClipboardManager() {
 
             ; Trim history
             while clipHistory.Length > maxHistory
-            clipHistory.RemoveAt(1)
+                clipHistory.RemoveAt(1)
         }
     }
 
     /**
-    * Shows clipboard history
-    */
+     * Shows clipboard history
+     */
     ShowHistory() {
         global clipHistory
 
@@ -143,7 +143,7 @@ Example2_ClipboardManager() {
         for index, item in clipHistory {
             preview := SubStr(item.content, 1, 50)
             if StrLen(item.content) > 50
-            preview .= "..."
+                preview .= "..."
             histList.Add([index . ". " . preview . " [" . item.time . "]"])
         }
 
@@ -171,12 +171,12 @@ Example2_ClipboardManager() {
     })
 
     MsgBox(
-    "Advanced Clipboard Manager`n`n"
-    "Automatically saves last 10 clipboard items`n`n"
-    "Ctrl+Alt+V → Show clipboard history`n"
-    "Ctrl+Alt+Win+C → Clear history`n`n"
-    "Copy some text and try viewing history!",
-    "Example 2"
+        "Advanced Clipboard Manager`n`n"
+        "Automatically saves last 10 clipboard items`n`n"
+        "Ctrl+Alt+V → Show clipboard history`n"
+        "Ctrl+Alt+Win+C → Clear history`n`n"
+        "Copy some text and try viewing history!",
+        "Example 2"
     )
 }
 
@@ -186,8 +186,8 @@ Example2_ClipboardManager() {
 
 Example3_TextManipulation() {
     /**
-    * Converts selected text to UPPER CASE
-    */
+     * Converts selected text to UPPER CASE
+     */
     Hotkey("^!u", (*) {
         saved := A_Clipboard
         A_Clipboard := ""
@@ -201,8 +201,8 @@ Example3_TextManipulation() {
     })
 
     /**
-    * Converts selected text to lower case
-    */
+     * Converts selected text to lower case
+     */
     Hotkey("^!l", (*) {
         saved := A_Clipboard
         A_Clipboard := ""
@@ -216,8 +216,8 @@ Example3_TextManipulation() {
     })
 
     /**
-    * Converts to Title Case
-    */
+     * Converts to Title Case
+     */
     Hotkey("^!t", (*) {
         saved := A_Clipboard
         A_Clipboard := ""
@@ -231,8 +231,8 @@ Example3_TextManipulation() {
     })
 
     /**
-    * Reverses selected text
-    */
+     * Reverses selected text
+     */
     Hotkey("^!r", (*) {
         saved := A_Clipboard
         A_Clipboard := ""
@@ -241,7 +241,7 @@ Example3_TextManipulation() {
             text := A_Clipboard
             reversed := ""
             Loop Parse text
-            reversed := A_LoopField . reversed
+                reversed := A_LoopField . reversed
             A_Clipboard := reversed
             Send("^v")
         }
@@ -250,8 +250,8 @@ Example3_TextManipulation() {
     })
 
     /**
-    * Wraps text in quotes
-    */
+     * Wraps text in quotes
+     */
     Hotkey("^!q", (*) {
         saved := A_Clipboard
         A_Clipboard := ""
@@ -265,15 +265,15 @@ Example3_TextManipulation() {
     })
 
     MsgBox(
-    "Text Manipulation Tools`n`n"
-    "Select text and press:`n"
-    "Ctrl+Alt+U → UPPER CASE`n"
-    "Ctrl+Alt+L → lower case`n"
-    "Ctrl+Alt+T → Title Case`n"
-    "Ctrl+Alt+R → Reverse text`n"
-    "Ctrl+Alt+Q → Wrap in quotes`n`n"
-    "Try selecting some text!",
-    "Example 3"
+        "Text Manipulation Tools`n`n"
+        "Select text and press:`n"
+        "Ctrl+Alt+U → UPPER CASE`n"
+        "Ctrl+Alt+L → lower case`n"
+        "Ctrl+Alt+T → Title Case`n"
+        "Ctrl+Alt+R → Reverse text`n"
+        "Ctrl+Alt+Q → Wrap in quotes`n`n"
+        "Try selecting some text!",
+        "Example 3"
     )
 }
 
@@ -283,15 +283,15 @@ Example3_TextManipulation() {
 
 Example4_LauncherSystem() {
     global apps := Map(
-    "n", {path: "notepad.exe", desc: "Notepad"},
-    "c", {path: "calc.exe", desc: "Calculator"},
-    "p", {path: "mspaint.exe", desc: "Paint"},
-    "e", {path: "explorer.exe", desc: "Explorer"}
+        "n", { path: "notepad.exe", desc: "Notepad" },
+        "c", { path: "calc.exe", desc: "Calculator" },
+        "p", { path: "mspaint.exe", desc: "Paint" },
+        "e", { path: "explorer.exe", desc: "Explorer" }
     )
 
     /**
-    * Launches or activates an application
-    */
+     * Launches or activates an application
+     */
     LaunchApp(key) {
         global apps
 
@@ -314,8 +314,8 @@ Example4_LauncherSystem() {
     }
 
     /**
-    * Shows launcher menu
-    */
+     * Shows launcher menu
+     */
     ShowLauncher() {
         global apps
 
@@ -331,7 +331,7 @@ Example4_LauncherSystem() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -352,8 +352,8 @@ Example4_LauncherSystem() {
 
 Example5_MultiMonitor() {
     /**
-    * Moves window to next monitor
-    */
+     * Moves window to next monitor
+     */
     Hotkey("^!#Right", (*) {
         if WinExist("A") {
             ; Get current window position
@@ -369,8 +369,8 @@ Example5_MultiMonitor() {
     })
 
     /**
-    * Moves window to previous monitor
-    */
+     * Moves window to previous monitor
+     */
     Hotkey("^!#Left", (*) {
         if WinExist("A") {
             WinGetPos(&x, &y, &w, &h, "A")
@@ -383,11 +383,11 @@ Example5_MultiMonitor() {
     })
 
     MsgBox(
-    "Multi-Monitor Tools`n`n"
-    "Ctrl+Alt+Win+Right → Move window right`n"
-    "Ctrl+Alt+Win+Left → Move window left`n`n"
-    "Works best with multiple monitors!",
-    "Example 5"
+        "Multi-Monitor Tools`n`n"
+        "Ctrl+Alt+Win+Right → Move window right`n"
+        "Ctrl+Alt+Win+Left → Move window left`n`n"
+        "Works best with multiple monitors!",
+        "Example 5"
     )
 }
 
@@ -399,8 +399,8 @@ Example6_QuickNotes() {
     global notes := []
 
     /**
-    * Creates a quick note
-    */
+     * Creates a quick note
+     */
     Hotkey("^!n", (*) {
         global notes
 
@@ -417,8 +417,8 @@ Example6_QuickNotes() {
     })
 
     /**
-    * Shows all notes
-    */
+     * Shows all notes
+     */
     Hotkey("^!#n", (*) {
         global notes
 
@@ -438,8 +438,8 @@ Example6_QuickNotes() {
     })
 
     /**
-    * Exports notes to clipboard
-    */
+     * Exports notes to clipboard
+     */
     Hotkey("^!#x", (*) {
         global notes
 
@@ -464,17 +464,17 @@ Example6_QuickNotes() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     MsgBox(
-    "Quick Note System`n`n"
-    "Ctrl+Alt+N → Create note`n"
-    "Ctrl+Alt+Win+N → View all notes`n"
-    "Ctrl+Alt+Win+X → Export to clipboard`n`n"
-    "Perfect for quick ideas!",
-    "Example 6"
+        "Quick Note System`n`n"
+        "Ctrl+Alt+N → Create note`n"
+        "Ctrl+Alt+Win+N → View all notes`n"
+        "Ctrl+Alt+Win+X → Export to clipboard`n`n"
+        "Perfect for quick ideas!",
+        "Example 6"
     )
 }
 
@@ -484,54 +484,54 @@ Example6_QuickNotes() {
 
 Example7_TypingBooster() {
     /**
-    * Date shortcuts
-    */
+     * Date shortcuts
+     */
     Hotkey("^!d", (*) => SendText(FormatTime(, "yyyy-MM-dd")))
     Hotkey("^!+d", (*) => SendText(FormatTime(, "MM/dd/yyyy")))
     Hotkey("^!#d", (*) => SendText(FormatTime(, "dddd, MMMM d, yyyy")))
 
     /**
-    * Time shortcuts
-    */
+     * Time shortcuts
+     */
     Hotkey("^!t", (*) => SendText(FormatTime(, "HH:mm")))
     Hotkey("^!+t", (*) => SendText(FormatTime(, "h:mm tt")))
 
     /**
-    * Email templates
-    */
+     * Email templates
+     */
     Hotkey("^!e1", (*) => SendText("Dear [Name],`n`n`n`nBest regards,`n" . A_UserName))
     Hotkey("^!e2", (*) => SendText("Hi [Name],`n`n`n`nThanks,`n" . A_UserName))
 
     /**
-    * Common phrases
-    */
+     * Common phrases
+     */
     Hotkey("^!1", (*) => SendText("Thank you for your email."))
     Hotkey("^!2", (*) => SendText("I will get back to you shortly."))
     Hotkey("^!3", (*) => SendText("Please let me know if you have any questions."))
 
     /**
-    * Symbols
-    */
+     * Symbols
+     */
     Hotkey("^!-", (*) => SendText("—")) ; Em dash
     Hotkey("^!.", (*) => SendText("…")) ; Ellipsis
     Hotkey("^!8", (*) => SendText("•")) ; Bullet
 
     MsgBox(
-    "Typing Speed Booster`n`n"
-    "Dates:`n"
-    "  Ctrl+Alt+D → ISO date`n"
-    "  Ctrl+Alt+Shift+D → US date`n`n"
-    "Time:`n"
-    "  Ctrl+Alt+T → 24h time`n"
-    "  Ctrl+Alt+Shift+T → 12h time`n`n"
-    "Templates & Phrases:`n"
-    "  Ctrl+Alt+E1/E2 → Email templates`n"
-    "  Ctrl+Alt+1/2/3 → Common phrases`n`n"
-    "Symbols:`n"
-    "  Ctrl+Alt+- → Em dash (—)`n"
-    "  Ctrl+Alt+. → Ellipsis (…)`n"
-    "  Ctrl+Alt+8 → Bullet (•)",
-    "Example 7"
+        "Typing Speed Booster`n`n"
+        "Dates:`n"
+        "  Ctrl+Alt+D → ISO date`n"
+        "  Ctrl+Alt+Shift+D → US date`n`n"
+        "Time:`n"
+        "  Ctrl+Alt+T → 24h time`n"
+        "  Ctrl+Alt+Shift+T → 12h time`n`n"
+        "Templates & Phrases:`n"
+        "  Ctrl+Alt+E1/E2 → Email templates`n"
+        "  Ctrl+Alt+1/2/3 → Common phrases`n`n"
+        "Symbols:`n"
+        "  Ctrl+Alt+- → Em dash (—)`n"
+        "  Ctrl+Alt+. → Ellipsis (…)`n"
+        "  Ctrl+Alt+8 → Bullet (•)",
+        "Example 7"
     )
 }
 

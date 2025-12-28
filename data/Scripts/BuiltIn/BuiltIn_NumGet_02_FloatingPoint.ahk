@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_NumGet_02_FloatingPoint.ahk
-*
-* DESCRIPTION:
-* Comprehensive guide to reading floating-point numbers using NumGet.
-* Covers Float (32-bit) and Double (64-bit) types with precision handling.
-*
-* FEATURES:
-* - Reading Float (single precision) values
-* - Reading Double (double precision) values
-* - Precision and rounding considerations
-* - Special floating-point values (Infinity, NaN)
-* - Scientific notation handling
-* - Practical floating-point data processing
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - NumGet Function
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - NumGet with "Float" type (4 bytes, IEEE 754 single precision)
-* - NumGet with "Double" type (8 bytes, IEEE 754 double precision)
-* - Floating-point precision handling
-* - Binary representation of floats
-* - Conversion between integer and float representations
-*
-* LEARNING POINTS:
-* 1. Float uses 4 bytes, Double uses 8 bytes
-* 2. Precision differs: Float ~7 digits, Double ~15 digits
-* 3. IEEE 754 standard defines float representation
-* 4. Special values exist: +/-Infinity, NaN, -0
-* 5. Binary floats cannot exactly represent all decimal numbers
-*/
+ * BuiltIn_NumGet_02_FloatingPoint.ahk
+ * 
+ * DESCRIPTION:
+ * Comprehensive guide to reading floating-point numbers using NumGet.
+ * Covers Float (32-bit) and Double (64-bit) types with precision handling.
+ * 
+ * FEATURES:
+ * - Reading Float (single precision) values
+ * - Reading Double (double precision) values
+ * - Precision and rounding considerations
+ * - Special floating-point values (Infinity, NaN)
+ * - Scientific notation handling
+ * - Practical floating-point data processing
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - NumGet Function
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - NumGet with "Float" type (4 bytes, IEEE 754 single precision)
+ * - NumGet with "Double" type (8 bytes, IEEE 754 double precision)
+ * - Floating-point precision handling
+ * - Binary representation of floats
+ * - Conversion between integer and float representations
+ * 
+ * LEARNING POINTS:
+ * 1. Float uses 4 bytes, Double uses 8 bytes
+ * 2. Precision differs: Float ~7 digits, Double ~15 digits
+ * 3. IEEE 754 standard defines float representation
+ * 4. Special values exist: +/-Infinity, NaN, -0
+ * 5. Binary floats cannot exactly represent all decimal numbers
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Basic Float and Double Reading
@@ -94,11 +94,11 @@ Example2_PrecisionAndRounding() {
 
     ; Test values that show precision limits
     testValues := [
-    1.0 / 3.0,              ; Repeating decimal
-    0.1 + 0.2,              ; Classic floating-point issue
-    1234567.89,             ; Near float precision limit
-    123456789012345.0,      ; Beyond float precision
-    0.123456789012345       ; Small fraction
+        1.0 / 3.0,              ; Repeating decimal
+        0.1 + 0.2,              ; Classic floating-point issue
+        1234567.89,             ; Near float precision limit
+        123456789012345.0,      ; Beyond float precision
+        0.123456789012345       ; Small fraction
     ]
 
     ; Write and read as Float
@@ -185,15 +185,15 @@ Example3_SpecialValues() {
     ; Test special properties
     CheckSpecial(value) {
         if value = ""
-        return "Empty"
+            return "Empty"
         if !IsNumber(value)
-        return "Not a number"
+            return "Not a number"
         if value > 1.0e308
-        return "+Infinity"
+            return "+Infinity"
         if value < -1.0e308
-        return "-Infinity"
+            return "-Infinity"
         if value != value  ; NaN != NaN
-        return "NaN"
+            return "NaN"
         if value = 0 {
             ; Can't easily distinguish +0 from -0 in AHK
             return "Zero"
@@ -280,9 +280,9 @@ Example4_ScientificData() {
         humiditySum += humidity
 
         if temp < tempMin
-        tempMin := temp
+            tempMin := temp
         if temp > tempMax
-        tempMax := temp
+            tempMax := temp
     }
 
     tempAvg := tempSum / recordCount
@@ -441,100 +441,95 @@ Example6_MixedIntFloat() {
     buf := Buffer(recordSize * recordCount)
 
     ; Sample game scores
-    scores := [
-    {
-        id: 1001, score: 9850.5, time: 125.3, level: 10},
-        {
-            id: 1002, score: 12400.0, time: 98.7, level: 12},
-            {
-                id: 1003, score: 8900.25, time: 145.8, level: 9},
-                {
-                    id: 1004, score: 15600.75, time: 87.2, level: 15},
-                    {
+    scores := [{
+        id: 1001, score: 9850.5, time: 125.3, level: 10 }, {
+            id: 1002, score: 12400.0, time: 98.7, level: 12 }, {
+                id: 1003, score: 8900.25, time: 145.8, level: 9 }, {
+                    id: 1004, score: 15600.75, time: 87.2, level: 15 }, {
                         id: 1005, score: 11200.5, time: 112.5, level: 11
                     }
-                    ]
+    ]
 
-                    ; Write records
-                    loop recordCount {
-                        offset := (A_Index - 1) * recordSize
-                        record := scores[A_Index]
+    ; Write records
+    loop recordCount {
+        offset := (A_Index - 1) * recordSize
+        record := scores[A_Index]
 
-                        NumPut("Int", record.id, buf, offset)
-                        NumPut("Float", record.score, buf, offset + 4)
-                        NumPut("Float", record.time, buf, offset + 8)
-                        NumPut("Int", record.level, buf, offset + 12)
-                    }
+        NumPut("Int", record.id, buf, offset)
+        NumPut("Float", record.score, buf, offset + 4)
+        NumPut("Float", record.time, buf, offset + 8)
+        NumPut("Int", record.level, buf, offset + 12)
+    }
 
-                    ; Read and find best performer
-                    bestScore := 0.0
-                    bestPlayer := 0
-                    fastestTime := 999.9
-                    fastestPlayer := 0
-                    highestLevel := 0
-                    highestPlayer := 0
+    ; Read and find best performer
+    bestScore := 0.0
+    bestPlayer := 0
+    fastestTime := 999.9
+    fastestPlayer := 0
+    highestLevel := 0
+    highestPlayer := 0
 
-                    loop recordCount {
-                        offset := (A_Index - 1) * recordSize
+    loop recordCount {
+        offset := (A_Index - 1) * recordSize
 
-                        playerId := NumGet(buf, offset, "Int")
-                        score := NumGet(buf, offset + 4, "Float")
-                        time := NumGet(buf, offset + 8, "Float")
-                        level := NumGet(buf, offset + 12, "Int")
+        playerId := NumGet(buf, offset, "Int")
+        score := NumGet(buf, offset + 4, "Float")
+        time := NumGet(buf, offset + 8, "Float")
+        level := NumGet(buf, offset + 12, "Int")
 
-                        if score > bestScore {
-                            bestScore := score
-                            bestPlayer := playerId
-                        }
-                        if time < fastestTime {
-                            fastestTime := time
-                            fastestPlayer := playerId
-                        }
-                        if level > highestLevel {
-                            highestLevel := level
-                            highestPlayer := playerId
-                        }
-                    }
+        if score > bestScore {
+            bestScore := score
+            bestPlayer := playerId
+        }
+        if time < fastestTime {
+            fastestTime := time
+            fastestPlayer := playerId
+        }
+        if level > highestLevel {
+            highestLevel := level
+            highestPlayer := playerId
+        }
+    }
 
-                    ; Read specific record for display
-                    offset := 1 * recordSize  ; Second record
-                    id := NumGet(buf, offset, "Int")
-                    score := NumGet(buf, offset + 4, "Float")
-                    time := NumGet(buf, offset + 8, "Float")
-                    level := NumGet(buf, offset + 12, "Int")
+    ; Read specific record for display
+    offset := 1 * recordSize  ; Second record
+    id := NumGet(buf, offset, "Int")
+    score := NumGet(buf, offset + 4, "Float")
+    time := NumGet(buf, offset + 8, "Float")
+    level := NumGet(buf, offset + 12, "Int")
 
-                    ; Display results
-                    result := "Mixed Integer and Float Reading:`n`n"
-                    result .= "Structure: GameScore (16 bytes)`n"
-                    result .= "  int playerId (4 bytes)`n"
-                    result .= "  float score (4 bytes)`n"
-                    result .= "  float time (4 bytes)`n"
-                    result .= "  int level (4 bytes)`n`n"
+    ; Display results
+    result := "Mixed Integer and Float Reading:`n`n"
+    result .= "Structure: GameScore (16 bytes)`n"
+    result .= "  int playerId (4 bytes)`n"
+    result .= "  float score (4 bytes)`n"
+    result .= "  float time (4 bytes)`n"
+    result .= "  int level (4 bytes)`n`n"
 
-                    result .= "Sample Record (Player " . id . "):`n"
-                    result .= "  Score: " . Format("{:.2f}", score) . "`n"
-                    result .= "  Time: " . Format("{:.1f}", time) . " seconds`n"
-                    result .= "  Level: " . level . "`n`n"
+    result .= "Sample Record (Player " . id . "):`n"
+    result .= "  Score: " . Format("{:.2f}", score) . "`n"
+    result .= "  Time: " . Format("{:.1f}", time) . " seconds`n"
+    result .= "  Level: " . level . "`n`n"
 
-                    result .= "Leaderboard:`n"
-                    result .= "  Highest Score: " . Format("{:.2f}", bestScore)
-                    . " (Player " . bestPlayer . ")`n"
-                    result .= "  Fastest Time: " . Format("{:.1f}", fastestTime)
-                    . "s (Player " . fastestPlayer . ")`n"
-                    result .= "  Highest Level: " . highestLevel
-                    . " (Player " . highestPlayer . ")`n`n"
+    result .= "Leaderboard:`n"
+    result .= "  Highest Score: " . Format("{:.2f}", bestScore)
+        . " (Player " . bestPlayer . ")`n"
+    result .= "  Fastest Time: " . Format("{:.1f}", fastestTime)
+        . "s (Player " . fastestPlayer . ")`n"
+    result .= "  Highest Level: " . highestLevel
+        . " (Player " . highestPlayer . ")`n`n"
 
-                    result .= "Total Records: " . recordCount . " (" . buf.Size . " bytes)"
+    result .= "Total Records: " . recordCount . " (" . buf.Size . " bytes)"
 
-                    MsgBox(result, "Example 6: Mixed Int/Float", "Icon!")
-                }
+    MsgBox(result, "Example 6: Mixed Int/Float", "Icon!")
+}
 
-                ; ================================================================================================
-                ; Main Menu
-                ; ================================================================================================
+; ================================================================================================
+; Main Menu
+; ================================================================================================
 
-                ShowMenu() {
-                    menu := "
+ShowMenu() {
+    menu := "
                     (
                     NumGet Floating-Point Examples
 
@@ -548,22 +543,22 @@ Example6_MixedIntFloat() {
                     Select an example (1-6) or press Cancel to exit:
                     )"
 
-                    choice := InputBox(menu, "NumGet Floating-Point Examples", "w450 h320")
+    choice := InputBox(menu, "NumGet Floating-Point Examples", "w450 h320")
 
-                    if choice.Result = "Cancel"
-                    return
+    if choice.Result = "Cancel"
+        return
 
-                    switch choice.Value {
-                        case "1": Example1_BasicFloatReading()
-                        case "2": Example2_PrecisionAndRounding()
-                        case "3": Example3_SpecialValues()
-                        case "4": Example4_ScientificData()
-                        case "5": Example5_FloatArrays()
-                        case "6": Example6_MixedIntFloat()
-                        default: MsgBox("Invalid selection. Please choose 1-6.", "Error", "Icon!")
-                    }
+    switch choice.Value {
+        case "1": Example1_BasicFloatReading()
+        case "2": Example2_PrecisionAndRounding()
+        case "3": Example3_SpecialValues()
+        case "4": Example4_ScientificData()
+        case "5": Example5_FloatArrays()
+        case "6": Example6_MixedIntFloat()
+        default: MsgBox("Invalid selection. Please choose 1-6.", "Error", "Icon!")
+    }
 
-                    SetTimer(() => ShowMenu(), -100)
-                }
+    SetTimer(() => ShowMenu(), -100)
+}
 
-                ShowMenu()
+ShowMenu()

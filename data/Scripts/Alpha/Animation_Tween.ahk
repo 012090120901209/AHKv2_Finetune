@@ -163,9 +163,9 @@ frameTime := 0.1
 
 Loop 12 {
     group.Update(frameTime)
-    result .= Format("t={:.1f}s: x={:.1f}, y={:.1f}`n", 
-                     A_Index * frameTime, obj.x, obj.y)
-    
+    result .= Format("t={:.1f}s: x={:.1f}, y={:.1f}`n",
+        A_Index * frameTime, obj.x, obj.y)
+
     if group.isComplete
         break
 }
@@ -184,8 +184,8 @@ result := "Sequential Animation:`n`n"
 Loop 15 {
     sequence.Update(frameTime)
     result .= Format("t={:.1f}s: x={:.1f}, y={:.1f}, scale={:.2f}`n",
-                     A_Index * frameTime, obj2.x, obj2.y, obj2.scale)
-    
+        A_Index * frameTime, obj2.x, obj2.y, obj2.scale)
+
     if sequence.isComplete
         break
 }

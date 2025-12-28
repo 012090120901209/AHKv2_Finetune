@@ -12,21 +12,21 @@
 
 DemoGdipCreateBitmap() {
     MsgBox("GDI+ CreateBitmap Demonstration`n`n"
-    "Create and manipulate bitmaps:`n`n"
-    "Basic workflow:`n"
-    "1. pToken := Gdip_Startup()`n"
-    "2. pBitmap := Gdip_CreateBitmap(width, height)`n"
-    "3. pGraphics := Gdip_GraphicsFromImage(pBitmap)`n"
-    "4. Gdip_FillRectangle(...) ; Draw shapes`n"
-    "5. Gdip_SaveBitmapToFile(pBitmap, 'output.png')`n"
-    "6. Gdip_DisposeImage(pBitmap)`n"
-    "7. Gdip_Shutdown(pToken)`n`n"
-    "Use cases:`n"
-    "- Custom GUI skins`n"
-    "- Image editing`n"
-    "- Data visualization`n"
-    "- Game sprites",
-    "GDI+ Demo")
+        "Create and manipulate bitmaps:`n`n"
+        "Basic workflow:`n"
+        "1. pToken := Gdip_Startup()`n"
+        "2. pBitmap := Gdip_CreateBitmap(width, height)`n"
+        "3. pGraphics := Gdip_GraphicsFromImage(pBitmap)`n"
+        "4. Gdip_FillRectangle(...) ; Draw shapes`n"
+        "5. Gdip_SaveBitmapToFile(pBitmap, 'output.png')`n"
+        "6. Gdip_DisposeImage(pBitmap)`n"
+        "7. Gdip_Shutdown(pToken)`n`n"
+        "Use cases:`n"
+        "- Custom GUI skins`n"
+        "- Image editing`n"
+        "- Data visualization`n"
+        "- Game sprites",
+        "GDI+ Demo")
 }
 
 ; Real implementation example (commented out, requires library):

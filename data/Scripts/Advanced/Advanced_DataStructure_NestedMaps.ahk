@@ -8,46 +8,46 @@ database := Map()
 
 ; Add users with nested data
 database["users"] := Map(
-"user001", Map(
-"name", "John Doe",
-"email", "john@example.com",
-"age", 30,
-"roles", ["admin", "developer"],
-"settings", Map(
-"theme", "dark",
-"notifications", true,
-"language", "en"
-)
-),
-"user002", Map(
-"name", "Jane Smith",
-"email", "jane@example.com",
-"age", 28,
-"roles", ["developer", "tester"],
-"settings", Map(
-"theme", "light",
-"notifications", false,
-"language", "en"
-)
-)
+    "user001", Map(
+        "name", "John Doe",
+        "email", "john@example.com",
+        "age", 30,
+        "roles", ["admin", "developer"],
+        "settings", Map(
+            "theme", "dark",
+            "notifications", true,
+            "language", "en"
+        )
+    ),
+    "user002", Map(
+        "name", "Jane Smith",
+        "email", "jane@example.com",
+        "age", 28,
+        "roles", ["developer", "tester"],
+        "settings", Map(
+            "theme", "light",
+            "notifications", false,
+            "language", "en"
+        )
+    )
 )
 
 ; Add projects
 database["projects"] := Map(
-"proj001", Map(
-"name", "Website Redesign",
-"status", "active",
-"members", ["user001", "user002"],
-"tasks", 15,
-"completed", 8
-),
-"proj002", Map(
-"name", "Mobile App",
-"status", "planning",
-"members", ["user001"],
-"tasks", 25,
-"completed", 0
-)
+    "proj001", Map(
+        "name", "Website Redesign",
+        "status", "active",
+        "members", ["user001", "user002"],
+        "tasks", 15,
+        "completed", 8
+    ),
+    "proj002", Map(
+        "name", "Mobile App",
+        "status", "planning",
+        "members", ["user001"],
+        "tasks", 25,
+        "completed", 0
+    )
 )
 
 ; Function to display data structure
@@ -85,7 +85,7 @@ DisplayDatabase() {
 ; Helper function to convert array to string
 ArrayToString(arr) {
     if (arr.Length = 0)
-    return "[]"
+        return "[]"
 
     result := ""
     for item in arr {
@@ -103,7 +103,7 @@ GetUserName(userId) {
 GetProjectProgress(projId) {
     global database
     if (!database["projects"].Has(projId))
-    return 0
+        return 0
 
     proj := database["projects"][projId]
     return Round((proj["completed"] / proj["tasks"]) * 100)
@@ -130,15 +130,15 @@ AddUser(userId, name, email, age) {
     global database
 
     database["users"][userId] := Map(
-    "name", name,
-    "email", email,
-    "age", age,
-    "roles", [],
-    "settings", Map(
-    "theme", "light",
-    "notifications", true,
-    "language", "en"
-    )
+        "name", name,
+        "email", email,
+        "age", age,
+        "roles", [],
+        "settings", Map(
+            "theme", "light",
+            "notifications", true,
+            "language", "en"
+        )
     )
 
     MsgBox("User added: " name, "Success")
@@ -149,7 +149,7 @@ UpdateUserSetting(userId, setting, value) {
     global database
 
     if (!database["users"].Has(userId))
-    return MsgBox("User not found!", "Error")
+        return MsgBox("User not found!", "Error")
 
     database["users"][userId]["settings"][setting] := value
     MsgBox("Updated " setting " for user " userId, "Success")

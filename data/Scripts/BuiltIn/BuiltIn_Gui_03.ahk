@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Gui_03.ahk - Window Sizing and Constraints
-*
-* This file demonstrates window sizing, constraints, and size management in AutoHotkey v2.
-* Topics covered:
-* - Fixed vs resizable windows
-* - Minimum and maximum size constraints
-* - Aspect ratio maintenance
-* - Dynamic resizing and size events
-* - Fullscreen and maximized states
-* - Size validation and control
-* - Responsive control sizing
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_Gui_03.ahk - Window Sizing and Constraints
+ * 
+ * This file demonstrates window sizing, constraints, and size management in AutoHotkey v2.
+ * Topics covered:
+ * - Fixed vs resizable windows
+ * - Minimum and maximum size constraints
+ * - Aspect ratio maintenance
+ * - Dynamic resizing and size events
+ * - Fullscreen and maximized states
+ * - Size validation and control
+ * - Responsive control sizing
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Fixed Size Window
 ; =============================================================================
 
 /**
-* Creates a fixed-size window that cannot be resized
-* Useful for dialogs and forms with fixed layout
-*/
+ * Creates a fixed-size window that cannot be resized
+ * Useful for dialogs and forms with fixed layout
+ */
 Example1_FixedSize() {
     myGui := Gui("-Resize", "Fixed Size Window")
     myGui.BackColor := "White"
@@ -51,9 +51,9 @@ Example1_FixedSize() {
 ; =============================================================================
 
 /**
-* Window with minimum and maximum size constraints
-* Allows resizing within defined bounds
-*/
+ * Window with minimum and maximum size constraints
+ * Allows resizing within defined bounds
+ */
 Example2_SizeConstraints() {
     myGui := Gui("+Resize +MinSize300x200 +MaxSize800x600", "Size Constraints Demo")
     myGui.BackColor := "0xF0F8FF"
@@ -102,9 +102,9 @@ Example2_SizeConstraints() {
 ; =============================================================================
 
 /**
-* Maintains aspect ratio when resizing
-* Demonstrates manual size constraint enforcement
-*/
+ * Maintains aspect ratio when resizing
+ * Demonstrates manual size constraint enforcement
+ */
 Example3_AspectRatio() {
     myGui := Gui("+Resize", "Aspect Ratio Locked (16:9)")
     myGui.BackColor := "0x1C1C1C"
@@ -132,7 +132,7 @@ Example3_AspectRatio() {
 
     MaintainAspectRatio(thisGui, MinMax, Width, Height) {
         if (MinMax = -1 || isResizing)  ; Skip if minimized or already resizing
-        return
+            return
 
         isResizing := true
 
@@ -163,7 +163,7 @@ Example3_AspectRatio() {
         ; Update info
         infoText.Move(20, videoHeight + 105)
         infoText.Value := Format("Window: {1}x{2} | Video Area: {3}x{4} | Ratio: {5:.2f}:1",
-        newWidth, newHeight, videoWidth, videoHeight, videoWidth / videoHeight)
+            newWidth, newHeight, videoWidth, videoHeight, videoWidth / videoHeight)
 
         ; Resize window if needed
         thisGui.GetPos(, , &currentW, &currentH)
@@ -182,9 +182,9 @@ Example3_AspectRatio() {
 ; =============================================================================
 
 /**
-* Responds to window size changes dynamically
-* Demonstrates size event handling and control adaptation
-*/
+ * Responds to window size changes dynamically
+ * Demonstrates size event handling and control adaptation
+ */
 Example4_SizeEvents() {
     myGui := Gui("+Resize", "Dynamic Size Events")
     myGui.BackColor := "White"
@@ -261,7 +261,7 @@ Example4_SizeEvents() {
 
         ; Update statistics
         statsText.Value := Format("Resize Count: {1}`nWidth Range: {2} - {3} px`nHeight Range: {4} - {5} px`nCurrent: {6}x{7} px",
-        resizeCount, minWidth, maxWidth, minHeight, maxHeight, Width, Height)
+            resizeCount, minWidth, maxWidth, minHeight, maxHeight, Width, Height)
     }
 
     myGui.Show("w600 h450")
@@ -272,9 +272,9 @@ Example4_SizeEvents() {
 ; =============================================================================
 
 /**
-* Demonstrates fullscreen mode toggle
-* Shows borderless fullscreen window creation
-*/
+ * Demonstrates fullscreen mode toggle
+ * Shows borderless fullscreen window creation
+ */
 Example5_FullscreenToggle() {
     myGui := Gui(, "Fullscreen Toggle Demo")
     myGui.BackColor := "0x2C3E50"
@@ -291,17 +291,17 @@ Example5_FullscreenToggle() {
 
     ; Fullscreen info
     infoText := myGui.Add("Edit", "x20 y160 w560 h200 ReadOnly Multi",
-    "Fullscreen Features:`n`n" .
-    "• Borderless window`n" .
-    "• Covers entire screen`n" .
-    "• No taskbar visible`n" .
-    "• Always on top`n" .
-    "• Quick toggle with F11 or ESC`n`n" .
-    "Common uses:`n" .
-    "• Video playback`n" .
-    "• Gaming`n" .
-    "• Presentations`n" .
-    "• Kiosk mode")
+        "Fullscreen Features:`n`n" .
+        "• Borderless window`n" .
+        "• Covers entire screen`n" .
+        "• No taskbar visible`n" .
+        "• Always on top`n" .
+        "• Quick toggle with F11 or ESC`n`n" .
+        "Common uses:`n" .
+        "• Video playback`n" .
+        "• Gaming`n" .
+        "• Presentations`n" .
+        "• Kiosk mode")
 
     ; Toggle button
     toggleBtn := myGui.Add("Button", "x20 y370 w560 h40", "Enter Fullscreen (F11)")
@@ -309,7 +309,7 @@ Example5_FullscreenToggle() {
     toggleBtn.OnEvent("Click", (*) => ToggleFullscreen())
 
     isFullscreen := false
-    savedPos := {x: 0, y: 0, w: 600, h: 450}
+    savedPos := { x: 0, y: 0, w: 600, h: 450 }
 
     ToggleFullscreen() {
         if (!isFullscreen) {
@@ -355,9 +355,9 @@ Example5_FullscreenToggle() {
 ; =============================================================================
 
 /**
-* Layout that adapts based on window size
-* Demonstrates responsive design principles
-*/
+ * Layout that adapts based on window size
+ * Demonstrates responsive design principles
+ */
 Example6_ResponsiveLayout() {
     myGui := Gui("+Resize +MinSize400x300", "Responsive Layout Demo")
     myGui.BackColor := "White"
@@ -379,7 +379,7 @@ Example6_ResponsiveLayout() {
 
     AdaptLayout(thisGui, MinMax, Width, Height) {
         if (MinMax = -1)  ; Minimized
-        return
+            return
 
         ; Update header
         header.Move(0, 0, Width)
@@ -417,9 +417,9 @@ Example6_ResponsiveLayout() {
 ; =============================================================================
 
 /**
-* Handles window sizing across multiple monitors
-* Demonstrates monitor-aware sizing
-*/
+ * Handles window sizing across multiple monitors
+ * Demonstrates monitor-aware sizing
+ */
 Example7_MultiMonitor() {
     myGui := Gui("+Resize", "Multi-Monitor Size Management")
     myGui.BackColor := "White"
@@ -563,7 +563,7 @@ Example7_MultiMonitor() {
         }
 
         posInfo.Value := Format("Current Monitor: {1} | Position: ({2}, {3}) | Size: {4}x{5}",
-        currentMon, x, y, w, h)
+            currentMon, x, y, w, h)
     }
 
     myGui.Show("w600 h380")
@@ -574,8 +574,8 @@ Example7_MultiMonitor() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_Gui_03 - Window Sizing Examples")
     menuGui.BackColor := "White"

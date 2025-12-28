@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Trim/LTrim/RTrim() - Remove whitespace
-*
-* Removes spaces and tabs from the beginning/end of a string.
-*/
+ * Trim/LTrim/RTrim() - Remove whitespace
+ * 
+ * Removes spaces and tabs from the beginning/end of a string.
+ */
 
 text := "   Hello World   "
 
@@ -14,6 +14,6 @@ ltrimmed := LTrim(text)
 rtrimmed := RTrim(text)
 
 MsgBox("Original: '" text "'`n"
-. "Trim: '" trimmed "'`n"
-. "LTrim: '" ltrimmed "'`n"
-. "RTrim: '" rtrimmed "'")
+    . "Trim: '" trimmed "'`n"
+    . "LTrim: '" ltrimmed "'`n"
+    . "RTrim: '" rtrimmed "'")

@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Closures Pattern - Function Multiplier Factory
-*
-* Demonstrates closures as function generators.
-* Creates specialized functions that remember configuration.
-*
-* Source: AHK_Notes/Patterns/closures-in-ahk-v2.md
-*/
+ * Closures Pattern - Function Multiplier Factory
+ * 
+ * Demonstrates closures as function generators.
+ * Creates specialized functions that remember configuration.
+ * 
+ * Source: AHK_Notes/Patterns/closures-in-ahk-v2.md
+ */
 
 ; Create specialized multiplier functions
 double := CreateMultiplier(2)
@@ -21,9 +21,9 @@ result2 := triple(5)
 result3 := tenTimes(5)
 
 MsgBox("Using function factories:`n`n"
-. "double(5) = " result1 "`n"
-. "triple(5) = " result2 "`n"
-. "tenTimes(5) = " result3, , "T5")
+    . "double(5) = " result1 "`n"
+    . "triple(5) = " result2 "`n"
+    . "tenTimes(5) = " result3, , "T5")
 
 ; Example: Create dynamic converters
 inchesToCm := CreateMultiplier(2.54)
@@ -34,39 +34,39 @@ height := 70  ; inches
 weight := 150 ; pounds
 
 MsgBox("Unit Conversions:`n`n"
-. height " inches = " Round(inchesToCm(height), 2) " cm`n"
-. weight " pounds = " Round(poundsToKg(weight), 2) " kg", , "T5")
+    . height " inches = " Round(inchesToCm(height), 2) " cm`n"
+    . weight " pounds = " Round(poundsToKg(weight), 2) " kg", , "T5")
 
 /**
-* CreateMultiplier - Function Generator
-*
-* Creates a function that multiplies by a fixed factor.
-*
-* @param factor - The multiplication factor to capture
-* @return Function that multiplies input by factor
-*/
+ * CreateMultiplier - Function Generator
+ * 
+ * Creates a function that multiplies by a fixed factor.
+ * 
+ * @param factor - The multiplication factor to capture
+ * @return Function that multiplies input by factor
+ */
 CreateMultiplier(factor) {
     ; Return arrow function that captures 'factor'
     return (x) => x * factor
 }
 
 /**
-* CreateAdder - Function Generator
-*
-* Creates a function that adds a fixed amount.
-*
-* @param amount - The amount to add
-* @return Function that adds amount to input
-*/
+ * CreateAdder - Function Generator
+ * 
+ * Creates a function that adds a fixed amount.
+ * 
+ * @param amount - The amount to add
+ * @return Function that adds amount to input
+ */
 CreateAdder(amount) {
     return (x) => x + amount
 }
 
 /**
-* CreateOperation - Generic Operation Generator
-*
-* Creates a function that applies any operation with a fixed operand.
-*/
+ * CreateOperation - Generic Operation Generator
+ * 
+ * Creates a function that applies any operation with a fixed operand.
+ */
 CreateOperation(operation, operand) {
     return (x) => operation(x, operand)
 }
@@ -160,4 +160,5 @@ CreateOperation(operation, operand) {
             *     - Higher-order functions
             *     - Function composition
             *     - Immutable state management
-            */
+*/
+

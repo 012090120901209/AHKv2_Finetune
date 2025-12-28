@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiAdvanced_03.ahk - Tab Control Management
-*
-* This file demonstrates tab controls and navigation in AutoHotkey v2.
-* Topics covered:
-* - Tab creation
-* - Adding pages
-* - Tab navigation
-* - Dynamic tabs
-* - Tab icons
-* - Nested tabs
-* - Tab validation
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiAdvanced_03.ahk - Tab Control Management
+ * 
+ * This file demonstrates tab controls and navigation in AutoHotkey v2.
+ * Topics covered:
+ * - Tab creation
+ * - Adding pages
+ * - Tab navigation
+ * - Dynamic tabs
+ * - Tab icons
+ * - Nested tabs
+ * - Tab validation
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates tab creation
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates tab creation
+ * Advanced GUI techniques and patterns
+ */
 Example1_Tabcreation() {
     myGui := Gui(, "Tab creation Demo")
     myGui.BackColor := "White"
@@ -67,14 +66,13 @@ Example1_Tabcreation() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -94,15 +92,14 @@ Example1_Tabcreation() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Adding pages
 ; =============================================================================
 
 /**
-* Demonstrates adding pages
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates adding pages
+ * Advanced GUI techniques and patterns
+ */
 Example2_Addingpages() {
     myGui := Gui(, "Adding pages Demo")
     myGui.BackColor := "White"
@@ -142,14 +139,13 @@ Example2_Addingpages() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -169,15 +165,14 @@ Example2_Addingpages() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Tab navigation
 ; =============================================================================
 
 /**
-* Demonstrates tab navigation
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates tab navigation
+ * Advanced GUI techniques and patterns
+ */
 Example3_Tabnavigation() {
     myGui := Gui(, "Tab navigation Demo")
     myGui.BackColor := "White"
@@ -217,14 +212,13 @@ Example3_Tabnavigation() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -244,15 +238,14 @@ Example3_Tabnavigation() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Dynamic tabs
 ; =============================================================================
 
 /**
-* Demonstrates dynamic tabs
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates dynamic tabs
+ * Advanced GUI techniques and patterns
+ */
 Example4_Dynamictabs() {
     myGui := Gui(, "Dynamic tabs Demo")
     myGui.BackColor := "White"
@@ -292,14 +285,13 @@ Example4_Dynamictabs() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -319,15 +311,14 @@ Example4_Dynamictabs() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Tab icons
 ; =============================================================================
 
 /**
-* Demonstrates tab icons
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates tab icons
+ * Advanced GUI techniques and patterns
+ */
 Example5_Tabicons() {
     myGui := Gui(, "Tab icons Demo")
     myGui.BackColor := "White"
@@ -367,14 +358,13 @@ Example5_Tabicons() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -394,15 +384,14 @@ Example5_Tabicons() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Nested tabs
 ; =============================================================================
 
 /**
-* Demonstrates nested tabs
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates nested tabs
+ * Advanced GUI techniques and patterns
+ */
 Example6_Nestedtabs() {
     myGui := Gui(, "Nested tabs Demo")
     myGui.BackColor := "White"
@@ -442,14 +431,13 @@ Example6_Nestedtabs() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -469,15 +457,14 @@ Example6_Nestedtabs() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Tab validation
 ; =============================================================================
 
 /**
-* Demonstrates tab validation
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates tab validation
+ * Advanced GUI techniques and patterns
+ */
 Example7_Tabvalidation() {
     myGui := Gui(, "Tab validation Demo")
     myGui.BackColor := "White"
@@ -517,14 +504,13 @@ Example7_Tabvalidation() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -549,8 +535,8 @@ Example7_Tabvalidation() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiAdvanced_03.ahk - Examples")
     menuGui.BackColor := "White"

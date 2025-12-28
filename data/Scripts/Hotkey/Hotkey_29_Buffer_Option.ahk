@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Buffering Hotkey Presses
-* Control whether keypresses are buffered during Send
-*/
+ * Buffering Hotkey Presses
+ * Control whether keypresses are buffered during Send
+ */
 
 ; By default, hotkeys are buffered (B0 = no buffer, B1 = buffer)
 ; Using Hotkey() function to set buffer option
@@ -20,3 +20,4 @@ UnbufferedAction(*) {
 }
 
 ; Test: Press F6 or F7, then press it again quickly before closing MsgBox
+

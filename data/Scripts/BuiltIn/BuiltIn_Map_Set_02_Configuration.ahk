@@ -2,34 +2,34 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Set_02_Configuration.ahk
-*
-* @description Map.Set() method for configuration management systems
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Demonstrates using Map.Set() for managing application configurations,
-* settings, and preferences. Shows hierarchical config structures,
-* validation, defaults, and persistence patterns.
-*/
+ * BuiltIn_Map_Set_02_Configuration.ahk
+ * 
+ * @description Map.Set() method for configuration management systems
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Demonstrates using Map.Set() for managing application configurations,
+ * settings, and preferences. Shows hierarchical config structures,
+ * validation, defaults, and persistence patterns.
+ */
 
 ;=============================================================================
 ; Example 1: Application Settings Management
 ;=============================================================================
 
 /**
-* @class AppConfig
-* @description Manages application configuration using Maps
-*/
+ * @class AppConfig
+ * @description Manages application configuration using Maps
+ */
 class AppConfig {
     settings := Map()
 
     /**
-    * @constructor
-    * @description Initialize configuration with default values
-    */
+     * @constructor
+     * @description Initialize configuration with default values
+     */
     __New() {
         ; Set default configuration values
         this.settings.Set("app.name", "MyApplication")
@@ -54,22 +54,22 @@ class AppConfig {
     }
 
     /**
-    * @method SetValue
-    * @description Set a configuration value with dot notation
-    * @param {String} key - Configuration key (e.g., "editor.fontSize")
-    * @param {Any} value - Configuration value
-    * @returns {Boolean} Success status
-    */
+     * @method SetValue
+     * @description Set a configuration value with dot notation
+     * @param {String} key - Configuration key (e.g., "editor.fontSize")
+     * @param {Any} value - Configuration value
+     * @returns {Boolean} Success status
+     */
     SetValue(key, value) {
         this.settings.Set(key, value)
         return true
     }
 
     /**
-    * @method SetMultiple
-    * @description Set multiple configuration values at once
-    * @param {Map} configMap - Map of key-value pairs to set
-    */
+     * @method SetMultiple
+     * @description Set multiple configuration values at once
+     * @param {Map} configMap - Map of key-value pairs to set
+     */
     SetMultiple(configMap) {
         for key, value in configMap {
             this.settings.Set(key, value)
@@ -77,21 +77,21 @@ class AppConfig {
     }
 
     /**
-    * @method GetValue
-    * @description Retrieve a configuration value
-    * @param {String} key - Configuration key
-    * @param {Any} defaultValue - Default value if key doesn't exist
-    * @returns {Any} Configuration value
-    */
+     * @method GetValue
+     * @description Retrieve a configuration value
+     * @param {String} key - Configuration key
+     * @param {Any} defaultValue - Default value if key doesn't exist
+     * @returns {Any} Configuration value
+     */
     GetValue(key, defaultValue := "") {
         return this.settings.Has(key) ? this.settings[key] : defaultValue
     }
 
     /**
-    * @method Export
-    * @description Export configuration as formatted string
-    * @returns {String} Formatted configuration string
-    */
+     * @method Export
+     * @description Export configuration as formatted string
+     * @returns {String} Formatted configuration string
+     */
     Export() {
         output := "=== Application Configuration ===`n`n"
 
@@ -103,7 +103,7 @@ class AppConfig {
             category := parts[1]
 
             if (!categories.Has(category))
-            categories.Set(category, Map())
+                categories.Set(category, Map())
 
             categories[category].Set(key, value)
         }
@@ -142,9 +142,9 @@ Example1_ConfigManagement() {
 ;=============================================================================
 
 /**
-* @class EnvironmentConfig
-* @description Manages environment-specific configurations
-*/
+ * @class EnvironmentConfig
+ * @description Manages environment-specific configurations
+ */
 class EnvironmentConfig {
     configs := Map()
     currentEnv := "development"
@@ -152,46 +152,46 @@ class EnvironmentConfig {
     __New() {
         ; Development environment
         this.configs.Set("development", Map(
-        "database.host", "localhost",
-        "database.port", 3306,
-        "database.name", "dev_db",
-        "api.endpoint", "http://localhost:8000/api",
-        "api.timeout", 30,
-        "debug.enabled", true,
-        "debug.verbosity", 3,
-        "cache.enabled", false
+            "database.host", "localhost",
+            "database.port", 3306,
+            "database.name", "dev_db",
+            "api.endpoint", "http://localhost:8000/api",
+            "api.timeout", 30,
+            "debug.enabled", true,
+            "debug.verbosity", 3,
+            "cache.enabled", false
         ))
 
         ; Staging environment
         this.configs.Set("staging", Map(
-        "database.host", "staging-db.example.com",
-        "database.port", 3306,
-        "database.name", "staging_db",
-        "api.endpoint", "https://staging-api.example.com/api",
-        "api.timeout", 60,
-        "debug.enabled", true,
-        "debug.verbosity", 2,
-        "cache.enabled", true
+            "database.host", "staging-db.example.com",
+            "database.port", 3306,
+            "database.name", "staging_db",
+            "api.endpoint", "https://staging-api.example.com/api",
+            "api.timeout", 60,
+            "debug.enabled", true,
+            "debug.verbosity", 2,
+            "cache.enabled", true
         ))
 
         ; Production environment
         this.configs.Set("production", Map(
-        "database.host", "prod-db.example.com",
-        "database.port", 3306,
-        "database.name", "production_db",
-        "api.endpoint", "https://api.example.com/api",
-        "api.timeout", 90,
-        "debug.enabled", false,
-        "debug.verbosity", 0,
-        "cache.enabled", true
+            "database.host", "prod-db.example.com",
+            "database.port", 3306,
+            "database.name", "production_db",
+            "api.endpoint", "https://api.example.com/api",
+            "api.timeout", 90,
+            "debug.enabled", false,
+            "debug.verbosity", 0,
+            "cache.enabled", true
         ))
     }
 
     /**
-    * @method SetEnvironment
-    * @description Switch to a different environment
-    * @param {String} env - Environment name
-    */
+     * @method SetEnvironment
+     * @description Switch to a different environment
+     * @param {String} env - Environment name
+     */
     SetEnvironment(env) {
         if (this.configs.Has(env)) {
             this.currentEnv := env
@@ -201,21 +201,21 @@ class EnvironmentConfig {
     }
 
     /**
-    * @method Get
-    * @description Get configuration value for current environment
-    * @param {String} key - Configuration key
-    * @returns {Any} Configuration value
-    */
+     * @method Get
+     * @description Get configuration value for current environment
+     * @param {String} key - Configuration key
+     * @returns {Any} Configuration value
+     */
     Get(key) {
         envConfig := this.configs[this.currentEnv]
         return envConfig.Has(key) ? envConfig[key] : ""
     }
 
     /**
-    * @method Display
-    * @description Display current environment configuration
-    * @returns {String} Formatted configuration
-    */
+     * @method Display
+     * @description Display current environment configuration
+     * @returns {String} Formatted configuration
+     */
     Display() {
         output := "=== " StrUpper(this.currentEnv) " Environment ===`n`n"
 
@@ -243,9 +243,9 @@ Example2_EnvironmentConfig() {
 ;=============================================================================
 
 /**
-* @class UserPreferences
-* @description Manages user preferences with validation
-*/
+ * @class UserPreferences
+ * @description Manages user preferences with validation
+ */
 class UserPreferences {
     prefs := Map()
     validators := Map()
@@ -283,31 +283,31 @@ class UserPreferences {
     }
 
     /**
-    * @method SetPreference
-    * @description Set preference with validation
-    * @param {String} key - Preference key
-    * @param {Any} value - Preference value
-    * @returns {Object} {success: Boolean, message: String}
-    */
+     * @method SetPreference
+     * @description Set preference with validation
+     * @param {String} key - Preference key
+     * @param {Any} value - Preference value
+     * @returns {Object} {success: Boolean, message: String}
+     */
     SetPreference(key, value) {
         ; Check if validator exists for this key
         if (this.validators.Has(key)) {
             validator := this.validators[key]
             if (!validator.Call(value)) {
-                return {success: false, message: "Invalid value for " key}
+                return { success: false, message: "Invalid value for " key }
             }
         }
 
         ; Set the preference
         this.prefs.Set(key, value)
-        return {success: true, message: "Preference set successfully"}
+        return { success: true, message: "Preference set successfully" }
     }
 
     /**
-    * @method GetAll
-    * @description Get all preferences
-    * @returns {Map} All preferences
-    */
+     * @method GetAll
+     * @description Get all preferences
+     * @returns {Map} All preferences
+     */
     GetAll() {
         return this.prefs
     }
@@ -348,9 +348,9 @@ Example3_ValidatedPreferences() {
 ;=============================================================================
 
 /**
-* @class HierarchicalConfig
-* @description Configuration with inheritance (defaults -> user -> runtime)
-*/
+ * @class HierarchicalConfig
+ * @description Configuration with inheritance (defaults -> user -> runtime)
+ */
 class HierarchicalConfig {
     defaults := Map()
     user := Map()
@@ -367,56 +367,56 @@ class HierarchicalConfig {
     }
 
     /**
-    * @method SetUser
-    * @description Set user-level configuration
-    */
+     * @method SetUser
+     * @description Set user-level configuration
+     */
     SetUser(key, value) {
         this.user.Set(key, value)
     }
 
     /**
-    * @method SetRuntime
-    * @description Set runtime configuration (temporary)
-    */
+     * @method SetRuntime
+     * @description Set runtime configuration (temporary)
+     */
     SetRuntime(key, value) {
         this.runtime.Set(key, value)
     }
 
     /**
-    * @method Get
-    * @description Get value with inheritance: runtime -> user -> defaults
-    */
+     * @method Get
+     * @description Get value with inheritance: runtime -> user -> defaults
+     */
     Get(key) {
         if (this.runtime.Has(key))
-        return this.runtime[key]
+            return this.runtime[key]
         if (this.user.Has(key))
-        return this.user[key]
+            return this.user[key]
         if (this.defaults.Has(key))
-        return this.defaults[key]
+            return this.defaults[key]
         return ""
     }
 
     /**
-    * @method ShowInheritance
-    * @description Display configuration inheritance
-    */
+     * @method ShowInheritance
+     * @description Display configuration inheritance
+     */
     ShowInheritance(key) {
         output := "Configuration for '" key "':`n`n"
 
         if (this.defaults.Has(key))
-        output .= "Default: " this.defaults[key] "`n"
+            output .= "Default: " this.defaults[key] "`n"
         else
-        output .= "Default: (not set)`n"
+            output .= "Default: (not set)`n"
 
         if (this.user.Has(key))
-        output .= "User: " this.user[key] "`n"
+            output .= "User: " this.user[key] "`n"
         else
-        output .= "User: (not set)`n"
+            output .= "User: (not set)`n"
 
         if (this.runtime.Has(key))
-        output .= "Runtime: " this.runtime[key] "`n"
+            output .= "Runtime: " this.runtime[key] "`n"
         else
-        output .= "Runtime: (not set)`n"
+            output .= "Runtime: (not set)`n"
 
         output .= "`nFinal value: " this.Get(key)
 
@@ -446,9 +446,9 @@ Example4_HierarchicalConfig() {
 ;=============================================================================
 
 /**
-* @class FeatureFlags
-* @description Manage feature flags for gradual rollout
-*/
+ * @class FeatureFlags
+ * @description Manage feature flags for gradual rollout
+ */
 class FeatureFlags {
     flags := Map()
     rolloutPercentages := Map()
@@ -463,33 +463,33 @@ class FeatureFlags {
     }
 
     /**
-    * @method EnableFeature
-    * @description Enable/disable a feature with rollout percentage
-    */
+     * @method EnableFeature
+     * @description Enable/disable a feature with rollout percentage
+     */
     EnableFeature(featureName, enabled, rolloutPercent := 100) {
         this.flags.Set(featureName, Map(
-        "enabled", enabled,
-        "rollout", rolloutPercent,
-        "enabledAt", A_Now
+            "enabled", enabled,
+            "rollout", rolloutPercent,
+            "enabledAt", A_Now
         ))
     }
 
     /**
-    * @method IsEnabled
-    * @description Check if feature is enabled for user
-    */
+     * @method IsEnabled
+     * @description Check if feature is enabled for user
+     */
     IsEnabled(featureName, userId := 0) {
         if (!this.flags.Has(featureName))
-        return false
+            return false
 
         feature := this.flags[featureName]
 
         if (!feature["enabled"])
-        return false
+            return false
 
         ; Check rollout percentage
         if (feature["rollout"] = 100)
-        return true
+            return true
 
         ; Simulate user-based rollout (deterministic based on userId)
         userHash := Mod(userId * 31337, 100)
@@ -497,9 +497,9 @@ class FeatureFlags {
     }
 
     /**
-    * @method ListFeatures
-    * @description List all features and their status
-    */
+     * @method ListFeatures
+     * @description List all features and their status
+     */
     ListFeatures() {
         output := "=== Feature Flags ===`n`n"
 
@@ -535,9 +535,9 @@ Example5_FeatureFlags() {
 ;=============================================================================
 
 /**
-* @class ConfigProfiles
-* @description Manage different configuration profiles
-*/
+ * @class ConfigProfiles
+ * @description Manage different configuration profiles
+ */
 class ConfigProfiles {
     profiles := Map()
     currentProfile := "default"
@@ -545,27 +545,27 @@ class ConfigProfiles {
     __New() {
         ; Create default profiles
         this.CreateProfile("default", Map(
-        "performance", "balanced",
-        "quality", "medium",
-        "effects", true
+            "performance", "balanced",
+            "quality", "medium",
+            "effects", true
         ))
 
         this.CreateProfile("performance", Map(
-        "performance", "high",
-        "quality", "low",
-        "effects", false
+            "performance", "high",
+            "quality", "low",
+            "effects", false
         ))
 
         this.CreateProfile("quality", Map(
-        "performance", "low",
-        "quality", "ultra",
-        "effects", true
+            "performance", "low",
+            "quality", "ultra",
+            "effects", true
         ))
 
         this.CreateProfile("power-saver", Map(
-        "performance", "low",
-        "quality", "low",
-        "effects", false
+            "performance", "low",
+            "quality", "low",
+            "effects", false
         ))
     }
 
@@ -616,9 +616,9 @@ Example6_ConfigProfiles() {
 ;=============================================================================
 
 /**
-* @class TrackedConfig
-* @description Configuration with change history
-*/
+ * @class TrackedConfig
+ * @description Configuration with change history
+ */
 class TrackedConfig {
     config := Map()
     history := []
@@ -629,11 +629,11 @@ class TrackedConfig {
         this.config.Set(key, value)
 
         this.history.Push(Map(
-        "key", key,
-        "oldValue", oldValue,
-        "newValue", value,
-        "reason", reason,
-        "timestamp", A_Now
+            "key", key,
+            "oldValue", oldValue,
+            "newValue", value,
+            "reason", reason,
+            "timestamp", A_Now
         ))
     }
 
@@ -644,7 +644,7 @@ class TrackedConfig {
             output .= FormatTime(change["timestamp"], "yyyy-MM-dd HH:mm:ss") ": "
             output .= change["key"] " changed from '" change["oldValue"] "' to '" change["newValue"] "'"
             if (change["reason"] != "")
-            output .= " (" change["reason"] ")"
+                output .= " (" change["reason"] ")"
             output .= "`n"
         }
 
@@ -675,28 +675,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Configuration Management with Map.Set()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: App Config")
-    .OnEvent("Click", (*) => Example1_ConfigManagement())
+        .OnEvent("Click", (*) => Example1_ConfigManagement())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Environments")
-    .OnEvent("Click", (*) => Example2_EnvironmentConfig())
+        .OnEvent("Click", (*) => Example2_EnvironmentConfig())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Validated Prefs")
-    .OnEvent("Click", (*) => Example3_ValidatedPreferences())
+        .OnEvent("Click", (*) => Example3_ValidatedPreferences())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Hierarchical")
-    .OnEvent("Click", (*) => Example4_HierarchicalConfig())
+        .OnEvent("Click", (*) => Example4_HierarchicalConfig())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Feature Flags")
-    .OnEvent("Click", (*) => Example5_FeatureFlags())
+        .OnEvent("Click", (*) => Example5_FeatureFlags())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Profiles")
-    .OnEvent("Click", (*) => Example6_ConfigProfiles())
+        .OnEvent("Click", (*) => Example6_ConfigProfiles())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Change Tracking")
-    .OnEvent("Click", (*) => Example7_ConfigTracking())
+        .OnEvent("Click", (*) => Example7_ConfigTracking())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_ConfigManagement()

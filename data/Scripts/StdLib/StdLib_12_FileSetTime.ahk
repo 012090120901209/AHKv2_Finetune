@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileSetTime() - Set file timestamp
-*
-* Changes the datetime stamp of one or more files.
-*/
+ * FileSetTime() - Set file timestamp
+ * 
+ * Changes the datetime stamp of one or more files.
+ */
 
 testFile := A_ScriptDir "\settimetest.txt"
 FileDelete(testFile)

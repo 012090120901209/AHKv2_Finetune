@@ -3,15 +3,15 @@
 #Include JSON.ahk
 
 /**
-* FlattenDeep() - Recursive deep flattening
-*
-* Demonstrates: Recursion, type checking with 'is Array', nested loops
-* Professional pattern for deep array traversal
-*/
+ * FlattenDeep() - Recursive deep flattening
+ * 
+ * Demonstrates: Recursion, type checking with 'is Array', nested loops
+ * Professional pattern for deep array traversal
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -22,7 +22,7 @@ FlattenDeep(arr) {
         if v is Array {
             ; Recursive call to flatten nested arrays
             for x in FlattenDeep(v)
-            out.Push(x)
+                out.Push(x)
         } else {
             out.Push(v)
         }
@@ -44,6 +44,6 @@ result4 := FlattenDeep([[1, 2], [[3]], [[[4, 5]]]])
 ; => [1, 2, 3, 4, 5]
 
 MsgBox("Flatten [1]: " JSON.stringify(result1) "`n"
-. "Flatten [1, [2]]: " JSON.stringify(result2) "`n"
-. "Flatten deeply nested: " JSON.stringify(result3) "`n"
-. "Flatten complex: " JSON.stringify(result4))
+    . "Flatten [1, [2]]: " JSON.stringify(result2) "`n"
+    . "Flatten deeply nested: " JSON.stringify(result3) "`n"
+    . "Flatten complex: " JSON.stringify(result4))

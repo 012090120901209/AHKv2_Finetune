@@ -1,58 +1,58 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - A_Clipboard Read/Write Operations
-* ============================================================================
-*
-* This file demonstrates comprehensive usage of the A_Clipboard built-in
-* variable for reading and writing clipboard content in AutoHotkey v2.
-*
-* A_Clipboard is a built-in variable that provides access to the Windows
-* clipboard as plain text. It can be used to read or write text content.
-*
-* @file BuiltIn_Clipboard_01.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Basic Read/Write Operations
-* 2. Clipboard Backup and Restore
-* 3. Text Appending to Clipboard
-* 4. Clipboard Clear Operations
-* 5. Multi-line Text Handling
-* 6. Clipboard Content Transformation
-* 7. Smart Clipboard Manager
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Reading current clipboard content
-* - Writing new content to clipboard
-* - Backing up and restoring clipboard
-* - Appending text to existing clipboard content
-* - Clearing clipboard content
-* - Handling multi-line clipboard data
-* - Transforming clipboard content (uppercase, lowercase, etc.)
-* - Building a simple clipboard manager with hotkeys
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - A_Clipboard Read/Write Operations
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive usage of the A_Clipboard built-in
+ * variable for reading and writing clipboard content in AutoHotkey v2.
+ * 
+ * A_Clipboard is a built-in variable that provides access to the Windows
+ * clipboard as plain text. It can be used to read or write text content.
+ * 
+ * @file BuiltIn_Clipboard_01.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Basic Read/Write Operations
+ * 2. Clipboard Backup and Restore
+ * 3. Text Appending to Clipboard
+ * 4. Clipboard Clear Operations
+ * 5. Multi-line Text Handling
+ * 6. Clipboard Content Transformation
+ * 7. Smart Clipboard Manager
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Reading current clipboard content
+ * - Writing new content to clipboard
+ * - Backing up and restoring clipboard
+ * - Appending text to existing clipboard content
+ * - Clearing clipboard content
+ * - Handling multi-line clipboard data
+ * - Transforming clipboard content (uppercase, lowercase, etc.)
+ * - Building a simple clipboard manager with hotkeys
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Basic Clipboard Read and Write
 ; ============================================================================
 
 /**
-* Demonstrates basic reading from and writing to the clipboard.
-*
-* @function Example1_BasicReadWrite
-* @description Shows how to read current clipboard content and write new content
-* @hotkey F1 - Read and display current clipboard content
-* @hotkey F2 - Write sample text to clipboard
-* @returns {void}
-*/
+ * Demonstrates basic reading from and writing to the clipboard.
+ * 
+ * @function Example1_BasicReadWrite
+ * @description Shows how to read current clipboard content and write new content
+ * @hotkey F1 - Read and display current clipboard content
+ * @hotkey F2 - Write sample text to clipboard
+ * @returns {void}
+ */
 
 ; Read clipboard content
 F1:: {
@@ -60,10 +60,10 @@ F1:: {
     if (A_Clipboard != "") {
         clipContent := A_Clipboard
         MsgBox("Current Clipboard Content:`n`n" . clipContent,
-        "Clipboard Reader", "Icon Info T5")
+            "Clipboard Reader", "Icon Info T5")
     } else {
         MsgBox("Clipboard is empty or contains non-text data.",
-        "Clipboard Reader", "Icon Warn T3")
+            "Clipboard Reader", "Icon Warn T3")
     }
 }
 
@@ -71,7 +71,7 @@ F1:: {
 F2:: {
     A_Clipboard := "This is sample text written to clipboard at " . A_Now
     TrayTip("Clipboard Updated", "New text has been written to clipboard",
-    "Icon Info")
+        "Icon Info")
 }
 
 ; ============================================================================
@@ -79,36 +79,36 @@ F2:: {
 ; ============================================================================
 
 /**
-* Demonstrates backing up clipboard content before operations and restoring it.
-*
-* @class ClipboardBackup
-* @description Manages clipboard backup and restore operations
-*/
+ * Demonstrates backing up clipboard content before operations and restoring it.
+ * 
+ * @class ClipboardBackup
+ * @description Manages clipboard backup and restore operations
+ */
 
 class ClipboardBackup {
     static backupText := ""
 
     /**
-    * Backs up current clipboard content
-    * @returns {String} The backed up content
-    */
+     * Backs up current clipboard content
+     * @returns {String} The backed up content
+     */
     static Backup() {
         this.backupText := A_Clipboard
         return this.backupText
     }
 
     /**
-    * Restores previously backed up clipboard content
-    * @returns {void}
-    */
+     * Restores previously backed up clipboard content
+     * @returns {void}
+     */
     static Restore() {
         A_Clipboard := this.backupText
     }
 
     /**
-    * Checks if backup exists
-    * @returns {Boolean}
-    */
+     * Checks if backup exists
+     * @returns {Boolean}
+     */
     static HasBackup() {
         return (this.backupText != "")
     }
@@ -118,7 +118,7 @@ class ClipboardBackup {
 F3:: {
     ClipboardBackup.Backup()
     MsgBox("Clipboard content backed up successfully!",
-    "Backup", "Icon Info T2")
+        "Backup", "Icon Info T2")
 }
 
 ; Restore clipboard
@@ -126,7 +126,7 @@ F4:: {
     if (ClipboardBackup.HasBackup()) {
         ClipboardBackup.Restore()
         MsgBox("Clipboard restored from backup!",
-        "Restore", "Icon Info T2")
+            "Restore", "Icon Info T2")
     } else {
         MsgBox("No backup available!", "Restore", "Icon Warn T2")
     }
@@ -137,14 +137,14 @@ F4:: {
 ; ============================================================================
 
 /**
-* Demonstrates appending new text to existing clipboard content.
-*
-* @function Example3_AppendToClipboard
-* @description Appends text to clipboard with various separators
-* @hotkey ^!a - Append text with newline
-* @hotkey ^!s - Append text with space
-* @returns {void}
-*/
+ * Demonstrates appending new text to existing clipboard content.
+ * 
+ * @function Example3_AppendToClipboard
+ * @description Appends text to clipboard with various separators
+ * @hotkey ^!a - Append text with newline
+ * @hotkey ^!s - Append text with space
+ * @returns {void}
+ */
 
 ; Append with newline
 ^!a:: {
@@ -152,14 +152,14 @@ F4:: {
 
     ; Get text to append
     ib := InputBox("Enter text to append to clipboard (with newline):",
-    "Append to Clipboard")
+        "Append to Clipboard")
     if (ib.Result = "Cancel")
-    return
+        return
 
     ; Append with newline
     A_Clipboard := currentText . "`n" . ib.Value
     TrayTip("Text Appended", "New text added to clipboard with newline",
-    "Icon Info")
+        "Icon Info")
 }
 
 ; Append with space
@@ -168,14 +168,14 @@ F4:: {
 
     ; Get text to append
     ib := InputBox("Enter text to append to clipboard (with space):",
-    "Append to Clipboard")
+        "Append to Clipboard")
     if (ib.Result = "Cancel")
-    return
+        return
 
     ; Append with space
     A_Clipboard := currentText . " " . ib.Value
     TrayTip("Text Appended", "New text added to clipboard with space",
-    "Icon Info")
+        "Icon Info")
 }
 
 ; ============================================================================
@@ -183,14 +183,14 @@ F4:: {
 ; ============================================================================
 
 /**
-* Demonstrates various methods to clear clipboard content.
-*
-* @function Example4_ClearClipboard
-* @description Shows different ways to empty the clipboard
-* @hotkey ^!c - Clear clipboard (set to empty string)
-* @hotkey ^!x - Clear clipboard with confirmation
-* @returns {void}
-*/
+ * Demonstrates various methods to clear clipboard content.
+ * 
+ * @function Example4_ClearClipboard
+ * @description Shows different ways to empty the clipboard
+ * @hotkey ^!c - Clear clipboard (set to empty string)
+ * @hotkey ^!x - Clear clipboard with confirmation
+ * @returns {void}
+ */
 
 ; Clear clipboard instantly
 ^!c:: {
@@ -201,7 +201,7 @@ F4:: {
 ; Clear clipboard with confirmation
 ^!x:: {
     result := MsgBox("Are you sure you want to clear the clipboard?",
-    "Confirm Clear", "YesNo Icon Question")
+        "Confirm Clear", "YesNo Icon Question")
     if (result = "Yes") {
         A_Clipboard := ""
         MsgBox("Clipboard cleared successfully!", "Cleared", "Icon Info T2")
@@ -213,14 +213,14 @@ F4:: {
 ; ============================================================================
 
 /**
-* Demonstrates handling multi-line text in clipboard.
-*
-* @function Example5_MultiLineHandling
-* @description Processes multi-line clipboard content
-* @hotkey ^!l - Count lines in clipboard
-* @hotkey ^!n - Number lines in clipboard
-* @returns {void}
-*/
+ * Demonstrates handling multi-line text in clipboard.
+ * 
+ * @function Example5_MultiLineHandling
+ * @description Processes multi-line clipboard content
+ * @hotkey ^!l - Count lines in clipboard
+ * @hotkey ^!n - Number lines in clipboard
+ * @returns {void}
+ */
 
 ; Count lines in clipboard
 ^!l:: {
@@ -237,12 +237,12 @@ F4:: {
     nonEmptyCount := 0
     for line in lines {
         if (Trim(line) != "")
-        nonEmptyCount++
+            nonEmptyCount++
     }
 
     MsgBox("Total Lines: " . lineCount . "`n"
-    . "Non-Empty Lines: " . nonEmptyCount,
-    "Line Counter", "Icon Info")
+        . "Non-Empty Lines: " . nonEmptyCount,
+        "Line Counter", "Icon Info")
 }
 
 ; Number lines in clipboard
@@ -269,7 +269,7 @@ F4:: {
     A_Clipboard := RTrim(A_Clipboard, "`n")
 
     TrayTip("Lines Numbered", "Clipboard lines have been numbered",
-    "Icon Info")
+        "Icon Info")
 }
 
 ; ============================================================================
@@ -277,18 +277,18 @@ F4:: {
 ; ============================================================================
 
 /**
-* Demonstrates transforming clipboard content.
-*
-* @class ClipboardTransformer
-* @description Provides various text transformation operations
-*/
+ * Demonstrates transforming clipboard content.
+ * 
+ * @class ClipboardTransformer
+ * @description Provides various text transformation operations
+ */
 
 class ClipboardTransformer {
 
     /**
-    * Converts clipboard text to uppercase
-    * @returns {void}
-    */
+     * Converts clipboard text to uppercase
+     * @returns {void}
+     */
     static ToUpperCase() {
         if (A_Clipboard != "") {
             A_Clipboard := StrUpper(A_Clipboard)
@@ -297,9 +297,9 @@ class ClipboardTransformer {
     }
 
     /**
-    * Converts clipboard text to lowercase
-    * @returns {void}
-    */
+     * Converts clipboard text to lowercase
+     * @returns {void}
+     */
     static ToLowerCase() {
         if (A_Clipboard != "") {
             A_Clipboard := StrLower(A_Clipboard)
@@ -308,9 +308,9 @@ class ClipboardTransformer {
     }
 
     /**
-    * Converts clipboard text to title case
-    * @returns {void}
-    */
+     * Converts clipboard text to title case
+     * @returns {void}
+     */
     static ToTitleCase() {
         if (A_Clipboard != "") {
             A_Clipboard := StrTitle(A_Clipboard)
@@ -319,9 +319,9 @@ class ClipboardTransformer {
     }
 
     /**
-    * Reverses clipboard text
-    * @returns {void}
-    */
+     * Reverses clipboard text
+     * @returns {void}
+     */
     static Reverse() {
         if (A_Clipboard != "") {
             reversed := ""
@@ -334,9 +334,9 @@ class ClipboardTransformer {
     }
 
     /**
-    * Removes extra whitespace from clipboard
-    * @returns {void}
-    */
+     * Removes extra whitespace from clipboard
+     * @returns {void}
+     */
     static TrimWhitespace() {
         if (A_Clipboard != "") {
             ; Remove leading/trailing whitespace from each line
@@ -346,7 +346,7 @@ class ClipboardTransformer {
             for line in lines {
                 trimmed := Trim(line)
                 if (trimmed != "")
-                trimmedLines.Push(trimmed)
+                    trimmedLines.Push(trimmed)
             }
 
             A_Clipboard := ""
@@ -361,31 +361,31 @@ class ClipboardTransformer {
 }
 
 ; Hotkeys for transformations
-^!u::ClipboardTransformer.ToUpperCase()      ; Ctrl+Alt+U - Uppercase
-^!j::ClipboardTransformer.ToLowerCase()      ; Ctrl+Alt+J - Lowercase
-^!t::ClipboardTransformer.ToTitleCase()      ; Ctrl+Alt+T - Title Case
-^!r::ClipboardTransformer.Reverse()          ; Ctrl+Alt+R - Reverse
-^!w::ClipboardTransformer.TrimWhitespace()   ; Ctrl+Alt+W - Trim
+^!u:: ClipboardTransformer.ToUpperCase()      ; Ctrl+Alt+U - Uppercase
+^!j:: ClipboardTransformer.ToLowerCase()      ; Ctrl+Alt+J - Lowercase
+^!t:: ClipboardTransformer.ToTitleCase()      ; Ctrl+Alt+T - Title Case
+^!r:: ClipboardTransformer.Reverse()          ; Ctrl+Alt+R - Reverse
+^!w:: ClipboardTransformer.TrimWhitespace()   ; Ctrl+Alt+W - Trim
 
 ; ============================================================================
 ; Example 7: Smart Clipboard Manager
 ; ============================================================================
 
 /**
-* Demonstrates a comprehensive clipboard manager with multiple features.
-*
-* @class SmartClipboardManager
-* @description Advanced clipboard manager with history and utilities
-*/
+ * Demonstrates a comprehensive clipboard manager with multiple features.
+ * 
+ * @class SmartClipboardManager
+ * @description Advanced clipboard manager with history and utilities
+ */
 
 class SmartClipboardManager {
     static history := []
     static maxHistory := 10
 
     /**
-    * Adds current clipboard to history
-    * @returns {void}
-    */
+     * Adds current clipboard to history
+     * @returns {void}
+     */
     static AddToHistory() {
         if (A_Clipboard != "" && !this.IsInHistory(A_Clipboard)) {
             this.history.Push(A_Clipboard)
@@ -398,26 +398,26 @@ class SmartClipboardManager {
     }
 
     /**
-    * Checks if text is already in history
-    * @param {String} text - Text to check
-    * @returns {Boolean}
-    */
+     * Checks if text is already in history
+     * @param {String} text - Text to check
+     * @returns {Boolean}
+     */
     static IsInHistory(text) {
         for item in this.history {
             if (item = text)
-            return true
+                return true
         }
         return false
     }
 
     /**
-    * Shows clipboard history in a GUI
-    * @returns {void}
-    */
+     * Shows clipboard history in a GUI
+     * @returns {void}
+     */
     static ShowHistory() {
         if (this.history.Length = 0) {
             MsgBox("No clipboard history available!",
-            "Clipboard History", "Icon Info")
+                "Clipboard History", "Icon Info")
             return
         }
 
@@ -453,16 +453,16 @@ class SmartClipboardManager {
     }
 
     /**
-    * Restores selected item from history
-    * @param {Object} lv - ListView control
-    * @param {Object} gui - GUI object
-    * @returns {void}
-    */
+     * Restores selected item from history
+     * @param {Object} lv - ListView control
+     * @param {Object} gui - GUI object
+     * @returns {void}
+     */
     static RestoreFromHistory(lv, gui) {
         rowNum := lv.GetNext()
         if (rowNum = 0) {
             MsgBox("Please select an item to restore!",
-            "No Selection", "Icon Warn")
+                "No Selection", "Icon Warn")
             return
         }
 
@@ -475,13 +475,13 @@ class SmartClipboardManager {
     }
 
     /**
-    * Clears clipboard history
-    * @param {Object} gui - GUI object
-    * @returns {void}
-    */
+     * Clears clipboard history
+     * @param {Object} gui - GUI object
+     * @returns {void}
+     */
     static ClearHistory(gui) {
         result := MsgBox("Clear all clipboard history?",
-        "Confirm", "YesNo Icon Question")
+            "Confirm", "YesNo Icon Question")
         if (result = "Yes") {
             this.history := []
             gui.Destroy()
@@ -490,9 +490,9 @@ class SmartClipboardManager {
     }
 
     /**
-    * Gets clipboard statistics
-    * @returns {String}
-    */
+     * Gets clipboard statistics
+     * @returns {String}
+     */
     static GetStats() {
         if (A_Clipboard = "") {
             return "Clipboard is empty"
@@ -505,7 +505,7 @@ class SmartClipboardManager {
         ; Count words
         Loop Parse, A_Clipboard, " `t`n`r" {
             if (A_LoopField != "")
-            wordCount++
+                wordCount++
         }
 
         ; Count lines
@@ -513,15 +513,15 @@ class SmartClipboardManager {
         lineCount := lines.Length
 
         return "Characters: " . charCount
-        . "`nWords: " . wordCount
-        . "`nLines: " . lineCount
-        . "`nHistory Items: " . this.history.Length
+            . "`nWords: " . wordCount
+            . "`nLines: " . lineCount
+            . "`nHistory Items: " . this.history.Length
     }
 }
 
 ; Hotkeys for Smart Clipboard Manager
-^!h::SmartClipboardManager.ShowHistory()     ; Ctrl+Alt+H - Show history
-^!i::SmartClipboardManager.AddToHistory()    ; Ctrl+Alt+I - Add to history
+^!h:: SmartClipboardManager.ShowHistory()     ; Ctrl+Alt+H - Show history
+^!i:: SmartClipboardManager.AddToHistory()    ; Ctrl+Alt+I - Add to history
 
 ; Show clipboard statistics
 ^!g:: {

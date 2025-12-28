@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Pop() - Data Processing and Queue Operations
-* ============================================================================
-*
-* This file demonstrates using Pop() for various data processing tasks,
-* queue operations, and batch processing scenarios.
-*
-* @description Data processing patterns using Array.Pop()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Pop() - Data Processing and Queue Operations
+ * ============================================================================
+ * 
+ * This file demonstrates using Pop() for various data processing tasks,
+ * queue operations, and batch processing scenarios.
+ * 
+ * @description Data processing patterns using Array.Pop()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Task Queue Processing
@@ -24,11 +24,11 @@ Example1_TaskQueueProcessing() {
     taskQueue := TaskQueue()
 
     ; Add tasks
-    taskQueue.Enqueue({id: 1, name: "Send Email", priority: 2})
-    taskQueue.Enqueue({id: 2, name: "Process Payment", priority: 1})
-    taskQueue.Enqueue({id: 3, name: "Update Database", priority: 3})
-    taskQueue.Enqueue({id: 4, name: "Generate Report", priority: 2})
-    taskQueue.Enqueue({id: 5, name: "Cleanup Cache", priority: 4})
+    taskQueue.Enqueue({ id: 1, name: "Send Email", priority: 2 })
+    taskQueue.Enqueue({ id: 2, name: "Process Payment", priority: 1 })
+    taskQueue.Enqueue({ id: 3, name: "Update Database", priority: 3 })
+    taskQueue.Enqueue({ id: 4, name: "Generate Report", priority: 2 })
+    taskQueue.Enqueue({ id: 5, name: "Cleanup Cache", priority: 4 })
 
     OutputDebug("Tasks in queue: " taskQueue.Size() "`n`n")
 
@@ -41,7 +41,7 @@ Example1_TaskQueueProcessing() {
         processedCount++
 
         OutputDebug("  [" processedCount "] " task.name
-        " (Priority: " task.priority ")`n")
+            " (Priority: " task.priority ")`n")
         OutputDebug("      Remaining: " taskQueue.Size() "`n")
     }
 
@@ -58,7 +58,7 @@ Example2_BatchProcessing() {
     ; Large dataset
     dataSet := []
     Loop 25 {
-        dataSet.Push({id: A_Index, value: "Item " A_Index})
+        dataSet.Push({ id: A_Index, value: "Item " A_Index })
     }
 
     OutputDebug("Total items: " dataSet.Length "`n")
@@ -102,11 +102,11 @@ Example3_MessageQueueProcessing() {
     messageQueue := []
 
     ; Add various messages
-    messageQueue.Push({type: "INFO", message: "System started"})
-    messageQueue.Push({type: "WARNING", message: "Low memory"})
-    messageQueue.Push({type: "ERROR", message: "Connection failed"})
-    messageQueue.Push({type: "INFO", message: "Task completed"})
-    messageQueue.Push({type: "CRITICAL", message: "Security breach"})
+    messageQueue.Push({ type: "INFO", message: "System started" })
+    messageQueue.Push({ type: "WARNING", message: "Low memory" })
+    messageQueue.Push({ type: "ERROR", message: "Connection failed" })
+    messageQueue.Push({ type: "INFO", message: "Task completed" })
+    messageQueue.Push({ type: "CRITICAL", message: "Security breach" })
 
     OutputDebug("Messages in queue: " messageQueue.Length "`n`n")
 
@@ -121,13 +121,13 @@ Example3_MessageQueueProcessing() {
 
         switch msg.type {
             case "CRITICAL":
-            criticalMessages.Push(msg)
+                criticalMessages.Push(msg)
             case "ERROR":
-            errors.Push(msg)
+                errors.Push(msg)
             case "WARNING":
-            warnings.Push(msg)
+                warnings.Push(msg)
             case "INFO":
-            info.Push(msg)
+                info.Push(msg)
         }
     }
 
@@ -156,11 +156,11 @@ Example4_FileProcessingQueue() {
     fileQueue := []
 
     ; Simulate files to process
-    fileQueue.Push({name: "document1.txt", size: 1024, type: "text"})
-    fileQueue.Push({name: "image1.jpg", size: 2048, type: "image"})
-    fileQueue.Push({name: "video1.mp4", size: 10240, type: "video"})
-    fileQueue.Push({name: "document2.pdf", size: 512, type: "document"})
-    fileQueue.Push({name: "archive.zip", size: 5120, type: "archive"})
+    fileQueue.Push({ name: "document1.txt", size: 1024, type: "text" })
+    fileQueue.Push({ name: "image1.jpg", size: 2048, type: "image" })
+    fileQueue.Push({ name: "video1.mp4", size: 10240, type: "video" })
+    fileQueue.Push({ name: "document2.pdf", size: 512, type: "document" })
+    fileQueue.Push({ name: "archive.zip", size: 5120, type: "archive" })
 
     OutputDebug("Files in queue: " fileQueue.Length "`n")
 
@@ -182,7 +182,7 @@ Example4_FileProcessingQueue() {
         totalProcessed += file.size
 
         OutputDebug("  [" processed "] " file.name
-        " (" file.size " KB) - " file.type "`n")
+            " (" file.size " KB) - " file.type "`n")
         OutputDebug("      Progress: " Round((totalProcessed / totalSize) * 100, 1) "%`n")
     }
 
@@ -233,7 +233,7 @@ Example6_WorkStealing() {
 
     ; Fill work queue
     Loop 15 {
-        sharedQueue.Push({workId: A_Index, data: "Work item " A_Index})
+        sharedQueue.Push({ workId: A_Index, data: "Work item " A_Index })
     }
 
     OutputDebug("Total work items: " sharedQueue.Length "`n`n")
@@ -272,12 +272,12 @@ Example7_GarbageCollection() {
     objectPool := []
 
     ; Create objects with reference counts
-    objectPool.Push({id: 1, refs: 0, data: "Object1"})
-    objectPool.Push({id: 2, refs: 2, data: "Object2"})
-    objectPool.Push({id: 3, refs: 0, data: "Object3"})
-    objectPool.Push({id: 4, refs: 1, data: "Object4"})
-    objectPool.Push({id: 5, refs: 0, data: "Object5"})
-    objectPool.Push({id: 6, refs: 3, data: "Object6"})
+    objectPool.Push({ id: 1, refs: 0, data: "Object1" })
+    objectPool.Push({ id: 2, refs: 2, data: "Object2" })
+    objectPool.Push({ id: 3, refs: 0, data: "Object3" })
+    objectPool.Push({ id: 4, refs: 1, data: "Object4" })
+    objectPool.Push({ id: 5, refs: 0, data: "Object5" })
+    objectPool.Push({ id: 6, refs: 3, data: "Object6" })
 
     OutputDebug("Objects in pool: " objectPool.Length "`n`n")
 
@@ -332,11 +332,11 @@ class TaskQueue {
 }
 
 /**
-* Logs an event with timestamp
-* @param {Array} log - Event log array
-* @param {String} type - Event type
-* @param {String} message - Event message
-*/
+ * Logs an event with timestamp
+ * @param {Array} log - Event log array
+ * @param {String} type - Event type
+ * @param {String} message - Event message
+ */
 LogEvent(log, type, message) {
     event := {
         timestamp: A_TickCount,
@@ -347,8 +347,8 @@ LogEvent(log, type, message) {
 }
 
 /**
-* Formats an array for display
-*/
+ * Formats an array for display
+ */
 FormatArray(arr) {
     if (arr.Length = 0) {
         return "[]"
@@ -395,7 +395,7 @@ Main() {
     OutputDebug(String.Repeat("=", 80) "`n")
 
     MsgBox("Array.Pop() processing examples completed!`nCheck DebugView for output.",
-    "Examples Complete", "Icon!")
+        "Examples Complete", "Icon!")
 }
 
 ; Run the examples

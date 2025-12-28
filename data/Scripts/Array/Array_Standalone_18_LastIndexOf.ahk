@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* LastIndexOf() - Find last index of value (Standalone Implementation)
-*
-* Like IndexOf except that it iterates from right to left.
-*/
+ * LastIndexOf() - Find last index of value (Standalone Implementation)
+ * 
+ * Like IndexOf except that it iterates from right to left.
+ */
 
 LastIndexOf(array, searchValue, fromIndex := -1) {
     if (fromIndex = -1) {
@@ -34,5 +34,5 @@ result3 := LastIndexOf([1, 2, 3], 99)
 ; => -1 (not found)
 
 MsgBox("LastIndexOf 2: " result1 "`n"
-. "LastIndexOf 1 from position 3: " result2 "`n"
-. "LastIndexOf 99 (not found): " result3)
+    . "LastIndexOf 1 from position 3: " result2 "`n"
+    . "LastIndexOf 99 (not found): " result3)

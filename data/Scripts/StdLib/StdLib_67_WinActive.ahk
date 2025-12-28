@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinActive() - Check if window is active
-*
-* Returns the ID of the active window.
-*/
+ * WinActive() - Check if window is active
+ * 
+ * Returns the ID of the active window.
+ */
 
 active := WinActive("A")  ; Get active window ID
 title := WinGetTitle("A")

@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Clipboard operations
-*
-* Access and manipulate the system clipboard.
-*/
+ * Clipboard operations
+ * 
+ * Access and manipulate the system clipboard.
+ */
 
 ; Save current clipboard
 oldClip := ClipboardAll()

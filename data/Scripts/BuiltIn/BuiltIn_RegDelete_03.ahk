@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Delete Examples - Part 3
-* ============================================================================
-*
-* This file demonstrates comprehensive registry cleanup strategies including
-* safe deletion, rollback capabilities, and automated cleanup workflows.
-*
-* @description Registry cleanup and safe deletion strategies
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Delete Examples - Part 3
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive registry cleanup strategies including
+ * safe deletion, rollback capabilities, and automated cleanup workflows.
+ * 
+ * @description Registry cleanup and safe deletion strategies
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Safe Deletion with Undo
 ; ============================================================================
 
 /**
-* @class UndoableDelete
-* @description Performs deletions with undo capability
-*/
+ * @class UndoableDelete
+ * @description Performs deletions with undo capability
+ */
 class UndoableDelete {
     undoStack := []
     maxUndoLevels := 10
 
     /**
-    * @method DeleteWithUndo
-    * @description Deletes a value and saves for undo
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    * @returns {Boolean} Success status
-    */
+     * @method DeleteWithUndo
+     * @description Deletes a value and saves for undo
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     * @returns {Boolean} Success status
+     */
     DeleteWithUndo(keyPath, valueName) {
         try {
             ; Save current value
@@ -43,10 +43,10 @@ class UndoableDelete {
 
             ; Add to undo stack
             this.undoStack.Push(Map(
-            "keyPath", keyPath,
-            "valueName", valueName,
-            "value", value,
-            "timestamp", A_Now
+                "keyPath", keyPath,
+                "valueName", valueName,
+                "value", value,
+                "timestamp", A_Now
             ))
 
             ; Maintain max undo levels
@@ -61,13 +61,13 @@ class UndoableDelete {
     }
 
     /**
-    * @method Undo
-    * @description Undoes the last deletion
-    * @returns {Boolean} Success status
-    */
+     * @method Undo
+     * @description Undoes the last deletion
+     * @returns {Boolean} Success status
+     */
     Undo() {
         if (this.undoStack.Length = 0)
-        return false
+            return false
 
         try {
             ; Pop last operation
@@ -83,22 +83,22 @@ class UndoableDelete {
     }
 
     /**
-    * @method CanUndo
-    * @description Checks if undo is available
-    * @returns {Boolean} Can undo status
-    */
+     * @method CanUndo
+     * @description Checks if undo is available
+     * @returns {Boolean} Can undo status
+     */
     CanUndo() {
         return this.undoStack.Length > 0
     }
 
     /**
-    * @method GetUndoInfo
-    * @description Gets information about available undos
-    * @returns {String} Undo information
-    */
+     * @method GetUndoInfo
+     * @description Gets information about available undos
+     * @returns {String} Undo information
+     */
     GetUndoInfo() {
         if (this.undoStack.Length = 0)
-        return "No undo history available"
+            return "No undo history available"
 
         info := "Undo History (" . this.undoStack.Length . " operations):`n"
         info .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -112,13 +112,13 @@ class UndoableDelete {
 }
 
 /**
-* @function Example1_UndoableDeletion
-* @description Demonstrates undoable deletion
-* @returns {void}
-*/
+ * @function Example1_UndoableDeletion
+ * @description Demonstrates undoable deletion
+ * @returns {void}
+ */
 Example1_UndoableDeletion() {
     MsgBox "=== Example 1: Undoable Deletion ===`n`n" .
-    "Testing deletion with undo capability..."
+        "Testing deletion with undo capability..."
 
     testKey := "HKCU\Software\AHKv2Examples\UndoTest"
     undo := UndoableDelete()
@@ -148,46 +148,46 @@ Example1_UndoableDeletion() {
 ; ============================================================================
 
 /**
-* @class TransactionalDelete
-* @description Performs transactional deletions with rollback
-*/
+ * @class TransactionalDelete
+ * @description Performs transactional deletions with rollback
+ */
 class TransactionalDelete {
     transaction := []
     backup := Map()
 
     /**
-    * @method BeginTransaction
-    * @description Begins a deletion transaction
-    */
+     * @method BeginTransaction
+     * @description Begins a deletion transaction
+     */
     BeginTransaction() {
         this.transaction := []
         this.backup := Map()
     }
 
     /**
-    * @method AddDeletion
-    * @description Adds a deletion to the transaction
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    */
+     * @method AddDeletion
+     * @description Adds a deletion to the transaction
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     */
     AddDeletion(keyPath, valueName) {
         this.transaction.Push(Map(
-        "keyPath", keyPath,
-        "valueName", valueName
+            "keyPath", keyPath,
+            "valueName", valueName
         ))
     }
 
     /**
-    * @method Commit
-    * @description Commits the transaction
-    * @returns {Map} Result
-    */
+     * @method Commit
+     * @description Commits the transaction
+     * @returns {Map} Result
+     */
     Commit() {
         result := Map(
-        "success", false,
-        "deleted", 0,
-        "failed", 0,
-        "errors", []
+            "success", false,
+            "deleted", 0,
+            "failed", 0,
+            "errors", []
         )
 
         ; Backup all values first
@@ -222,9 +222,9 @@ class TransactionalDelete {
     }
 
     /**
-    * @method Rollback
-    * @description Rolls back the transaction
-    */
+     * @method Rollback
+     * @description Rolls back the transaction
+     */
     Rollback() {
         for fullPath, value in this.backup {
             parts := StrSplit(fullPath, "\")
@@ -242,13 +242,13 @@ class TransactionalDelete {
 }
 
 /**
-* @function Example2_TransactionalDelete
-* @description Demonstrates transactional deletion
-* @returns {void}
-*/
+ * @function Example2_TransactionalDelete
+ * @description Demonstrates transactional deletion
+ * @returns {void}
+ */
 Example2_TransactionalDelete() {
     MsgBox "=== Example 2: Transactional Deletion ===`n`n" .
-    "Testing all-or-nothing deletion..."
+        "Testing all-or-nothing deletion..."
 
     testKey := "HKCU\Software\AHKv2Examples\TransactionTest"
 
@@ -282,13 +282,13 @@ Example2_TransactionalDelete() {
 ; ============================================================================
 
 /**
-* @function Example3_ScheduledCleanup
-* @description Demonstrates scheduled cleanup configuration
-* @returns {void}
-*/
+ * @function Example3_ScheduledCleanup
+ * @description Demonstrates scheduled cleanup configuration
+ * @returns {void}
+ */
 Example3_ScheduledCleanup() {
     MsgBox "=== Example 3: Scheduled Cleanup ===`n`n" .
-    "Configuring scheduled cleanup tasks..."
+        "Configuring scheduled cleanup tasks..."
 
     schedKey := "HKCU\Software\AHKv2Examples\ScheduledCleanup"
 
@@ -320,13 +320,13 @@ Example3_ScheduledCleanup() {
 ; ============================================================================
 
 /**
-* @function Example4_SizeBasedCleanup
-* @description Cleans up entries to maintain size limits
-* @returns {void}
-*/
+ * @function Example4_SizeBasedCleanup
+ * @description Cleans up entries to maintain size limits
+ * @returns {void}
+ */
 Example4_SizeBasedCleanup() {
     MsgBox "=== Example 4: Size-Based Cleanup ===`n`n" .
-    "Cleaning up to maintain size limits..."
+        "Cleaning up to maintain size limits..."
 
     testKey := "HKCU\Software\AHKv2Examples\SizeCleanupTest"
 
@@ -349,7 +349,7 @@ Example4_SizeBasedCleanup() {
     ; Collect all entries with timestamps
     try {
         Loop Reg, testKey, "K"
- {
+        {
             entryKey := testKey . "\" . A_LoopRegName
             try {
                 created := RegRead(entryKey, "Created")
@@ -400,21 +400,21 @@ Range(n) {
 ; ============================================================================
 
 /**
-* @class CleanupVerifier
-* @description Verifies cleanup operations
-*/
+ * @class CleanupVerifier
+ * @description Verifies cleanup operations
+ */
 class CleanupVerifier {
     /**
-    * @method VerifyDeletion
-    * @description Verifies that a value was deleted
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    * @returns {Map} Verification result
-    */
+     * @method VerifyDeletion
+     * @description Verifies that a value was deleted
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     * @returns {Map} Verification result
+     */
     static VerifyDeletion(keyPath, valueName) {
         result := Map(
-        "deleted", false,
-        "verified", false
+            "deleted", false,
+            "verified", false
         )
 
         try {
@@ -429,11 +429,11 @@ class CleanupVerifier {
     }
 
     /**
-    * @method GenerateReport
-    * @description Generates cleanup report
-    * @param {Array} deletions - List of deletions to verify
-    * @returns {String} Verification report
-    */
+     * @method GenerateReport
+     * @description Generates cleanup report
+     * @param {Array} deletions - List of deletions to verify
+     * @returns {String} Verification report
+     */
     static GenerateReport(deletions) {
         report := "Cleanup Verification Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
@@ -462,13 +462,13 @@ class CleanupVerifier {
 }
 
 /**
-* @function Example5_CleanupVerification
-* @description Demonstrates cleanup verification
-* @returns {void}
-*/
+ * @function Example5_CleanupVerification
+ * @description Demonstrates cleanup verification
+ * @returns {void}
+ */
 Example5_CleanupVerification() {
     MsgBox "=== Example 5: Cleanup Verification ===`n`n" .
-    "Verifying cleanup operations..."
+        "Verifying cleanup operations..."
 
     testKey := "HKCU\Software\AHKv2Examples\VerifyTest"
 
@@ -498,35 +498,35 @@ Example5_CleanupVerification() {
 ; ============================================================================
 
 /**
-* @class DryRunCleanup
-* @description Simulates cleanup without actually deleting
-*/
+ * @class DryRunCleanup
+ * @description Simulates cleanup without actually deleting
+ */
 class DryRunCleanup {
     dryRun := true
     operations := []
 
     /**
-    * @method SetDryRun
-    * @description Enables or disables dry run mode
-    */
+     * @method SetDryRun
+     * @description Enables or disables dry run mode
+     */
     SetDryRun(enabled) {
         this.dryRun := enabled
         this.operations := []
     }
 
     /**
-    * @method DeleteValue
-    * @description Deletes or simulates deletion of a value
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    * @returns {Boolean} Success status
-    */
+     * @method DeleteValue
+     * @description Deletes or simulates deletion of a value
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     * @returns {Boolean} Success status
+     */
     DeleteValue(keyPath, valueName) {
         this.operations.Push(Map(
-        "type", "DeleteValue",
-        "keyPath", keyPath,
-        "valueName", valueName,
-        "executed", !this.dryRun
+            "type", "DeleteValue",
+            "keyPath", keyPath,
+            "valueName", valueName,
+            "executed", !this.dryRun
         ))
 
         if (!this.dryRun) {
@@ -542,10 +542,10 @@ class DryRunCleanup {
     }
 
     /**
-    * @method GetReport
-    * @description Gets dry run report
-    * @returns {String} Report
-    */
+     * @method GetReport
+     * @description Gets dry run report
+     * @returns {String} Report
+     */
     GetReport() {
         mode := this.dryRun ? "DRY RUN" : "LIVE"
         report := mode . " Mode Report:`n"
@@ -561,13 +561,13 @@ class DryRunCleanup {
 }
 
 /**
-* @function Example6_DryRun
-* @description Demonstrates dry run cleanup
-* @returns {void}
-*/
+ * @function Example6_DryRun
+ * @description Demonstrates dry run cleanup
+ * @returns {void}
+ */
 Example6_DryRun() {
     MsgBox "=== Example 6: Dry Run Mode ===`n`n" .
-    "Testing cleanup in dry run mode..."
+        "Testing cleanup in dry run mode..."
 
     testKey := "HKCU\Software\AHKv2Examples\DryRunTest"
     cleanup := DryRunCleanup()
@@ -601,13 +601,13 @@ Example6_DryRun() {
 ; ============================================================================
 
 /**
-* @function Example7_ComprehensiveCleanup
-* @description Demonstrates complete cleanup workflow
-* @returns {void}
-*/
+ * @function Example7_ComprehensiveCleanup
+ * @description Demonstrates complete cleanup workflow
+ * @returns {void}
+ */
 Example7_ComprehensiveCleanup() {
     MsgBox "=== Example 7: Comprehensive Cleanup ===`n`n" .
-    "Running comprehensive cleanup workflow..."
+        "Running comprehensive cleanup workflow..."
 
     baseKey := "HKCU\Software\AHKv2Examples\ComprehensiveCleanup"
 
@@ -630,16 +630,16 @@ Example7_ComprehensiveCleanup() {
     }
 
     results := Map(
-    "oldEntries", 0,
-    "tempEntries", 0,
-    "expiredCache", 0
+        "oldEntries", 0,
+        "tempEntries", 0,
+        "expiredCache", 0
     )
 
     ; Clean old entries (>30 days)
     cutoff := DateAdd(A_Now, -30, "Days")
     try {
         Loop Reg, baseKey, "K"
- {
+        {
             subKey := baseKey . "\" . A_LoopRegName
             try {
                 created := RegRead(subKey, "Created")
@@ -654,7 +654,7 @@ Example7_ComprehensiveCleanup() {
     ; Clean temp entries
     try {
         Loop Reg, baseKey, "K"
- {
+        {
             if (InStr(A_LoopRegName, "Temp")) {
                 RegDeleteKey baseKey . "\" . A_LoopRegName
                 results["tempEntries"]++
@@ -665,7 +665,7 @@ Example7_ComprehensiveCleanup() {
     ; Clean expired cache
     try {
         Loop Reg, baseKey, "K"
- {
+        {
             subKey := baseKey . "\" . A_LoopRegName
             try {
                 expires := RegRead(subKey, "ExpiresAt")
@@ -723,8 +723,8 @@ ShowMenu() {
         case "7": Example7_ComprehensiveCleanup()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.InsertAt() - List Management and Priority Queues
-* ============================================================================
-*
-* Demonstrates using InsertAt() for managing lists, priority queues,
-* and ordered data structures.
-*
-* @description List management techniques using Array.InsertAt()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.InsertAt() - List Management and Priority Queues
+ * ============================================================================
+ * 
+ * Demonstrates using InsertAt() for managing lists, priority queues,
+ * and ordered data structures.
+ * 
+ * @description List management techniques using Array.InsertAt()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; Example 1: Priority Queue Implementation
 Example1_PriorityQueue() {
@@ -147,14 +147,14 @@ class PriorityQueue {
     items := []
 
     Enqueue(task, priority) {
-        newItem := {task: task, priority: priority}
+        newItem := { task: task, priority: priority }
         pos := this.FindPosition(priority)
         this.items.InsertAt(pos, newItem)
     }
 
     Dequeue() {
         if (this.IsEmpty())
-        throw Error("Queue is empty")
+            throw Error("Queue is empty")
         return this.items.RemoveAt(1)
     }
 
@@ -162,7 +162,7 @@ class PriorityQueue {
         pos := 1
         for item in this.items {
             if (priority < item.priority)
-            break
+                break
             pos++
         }
         return pos
@@ -175,14 +175,14 @@ class PriorityQueue {
 ; Helper Functions
 AddTodo(list, task, priority, dueDate) {
     priorityValue := (priority = "Critical" ? 1 : priority = "High" ? 2 : priority = "Medium" ? 3 : 4)
-    newTodo := {task: task, priority: priority, priorityValue: priorityValue, dueDate: dueDate}
+    newTodo := { task: task, priority: priority, priorityValue: priorityValue, dueDate: dueDate }
 
     pos := 1
     for todo in list {
         if (priorityValue < todo.priorityValue)
-        break
+            break
         if (priorityValue = todo.priorityValue && dueDate < todo.dueDate)
-        break
+            break
         pos++
     }
 
@@ -191,15 +191,15 @@ AddTodo(list, task, priority, dueDate) {
 
 ShowTodos(list) {
     for todo in list
-    OutputDebug("  [" todo.priority "] " todo.task " (Due: " todo.dueDate ")`n")
+        OutputDebug("  [" todo.priority "] " todo.task " (Due: " todo.dueDate ")`n")
 }
 
 AddEvent(schedule, event, time) {
-    newEvent := {event: event, time: time}
+    newEvent := { event: event, time: time }
     pos := 1
     for evt in schedule {
         if (StrCompare(time, evt.time) < 0)
-        break
+            break
         pos++
     }
     schedule.InsertAt(pos, newEvent)
@@ -207,15 +207,15 @@ AddEvent(schedule, event, time) {
 
 ShowSchedule(schedule) {
     for evt in schedule
-    OutputDebug("  " evt.time " - " evt.event "`n")
+        OutputDebug("  " evt.time " - " evt.event "`n")
 }
 
 AddPlayer(board, name, score) {
-    newPlayer := {name: name, score: score}
+    newPlayer := { name: name, score: score }
     pos := 1
     for player in board {
         if (score > player.score)
-        break
+            break
         pos++
     }
     board.InsertAt(pos, newPlayer)
@@ -242,11 +242,11 @@ ShowLeaderboard(board) {
 }
 
 AddContact(contacts, name, email, phone) {
-    newContact := {name: name, email: email, phone: phone}
+    newContact := { name: name, email: email, phone: phone }
     pos := 1
     for contact in contacts {
         if (StrCompare(name, contact.name) < 0)
-        break
+            break
         pos++
     }
     contacts.InsertAt(pos, newContact)
@@ -254,15 +254,15 @@ AddContact(contacts, name, email, phone) {
 
 ShowContacts(contacts) {
     for contact in contacts
-    OutputDebug("  " contact.name " - " contact.email " (" contact.phone ")`n")
+        OutputDebug("  " contact.name " - " contact.email " (" contact.phone ")`n")
 }
 
 AddVersion(versions, version, description) {
-    newVersion := {version: version, description: description}
+    newVersion := { version: version, description: description }
     pos := 1
     for ver in versions {
         if (CompareVersion(version, ver.version) < 0)
-        break
+            break
         pos++
     }
     versions.InsertAt(pos, newVersion)
@@ -274,24 +274,24 @@ CompareVersion(v1, v2) {
 
     Loop Min(parts1.Length, parts2.Length) {
         if (Integer(parts1[A_Index]) < Integer(parts2[A_Index]))
-        return -1
+            return -1
         if (Integer(parts1[A_Index]) > Integer(parts2[A_Index]))
-        return 1
+            return 1
     }
     return 0
 }
 
 ShowVersions(versions) {
     for ver in versions
-    OutputDebug("  v" ver.version " - " ver.description "`n")
+        OutputDebug("  v" ver.version " - " ver.description "`n")
 }
 
 AddJob(jobs, name, order, dependencies) {
-    newJob := {name: name, order: order, dependencies: dependencies}
+    newJob := { name: name, order: order, dependencies: dependencies }
     pos := 1
     for job in jobs {
         if (order < job.order)
-        break
+            break
         pos++
     }
     jobs.InsertAt(pos, newJob)
@@ -299,7 +299,7 @@ AddJob(jobs, name, order, dependencies) {
 
 ShowJobs(jobs) {
     for job in jobs
-    OutputDebug("  [" job.order "] " job.name "`n")
+        OutputDebug("  [" job.order "] " job.name "`n")
 }
 
 Main() {
@@ -320,7 +320,7 @@ Main() {
     OutputDebug(String.Repeat("=", 80) "`n")
 
     MsgBox("Array.InsertAt() list management examples completed!`nCheck DebugView for output.",
-    "Examples Complete", "Icon!")
+        "Examples Complete", "Icon!")
 }
 
 Main()

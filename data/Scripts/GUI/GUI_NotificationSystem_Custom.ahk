@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Custom Notification System
-*
-* Demonstrates creating a custom GUI-based notification system with
-* positioning, duration control, and auto-close functionality.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Custom Notification System
+ * 
+ * Demonstrates creating a custom GUI-based notification system with
+ * positioning, duration control, and auto-close functionality.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 ; Test notifications with different positions and durations
 MsgBox("Notification System Demo`n`n"
-. "Will show notifications in different positions", , "T3")
+    . "Will show notifications in different positions", , "T3")
 
 ; Example 1: Top-right notification (default)
 ShowNotification("Hello! This is a notification", 2000)
@@ -38,18 +38,18 @@ Sleep(4500)
 MsgBox("Notification demo complete!", , "T2")
 
 /**
-* ShowNotification - Display custom GUI notification
-* @param {string} text - Message to display
-* @param {int} duration - Display duration in milliseconds (default: 2000)
-* @param {string} xAxis - Horizontal position: "left", "center", "right" (default: "right")
-* @param {string} yAxis - Vertical position: "top", "center", "bottom" (default: "top")
-*/
+ * ShowNotification - Display custom GUI notification
+ * @param {string} text - Message to display
+ * @param {int} duration - Display duration in milliseconds (default: 2000)
+ * @param {string} xAxis - Horizontal position: "left", "center", "right" (default: "right")
+ * @param {string} yAxis - Vertical position: "top", "center", "bottom" (default: "top")
+ */
 ShowNotification(text, duration := 2000, xAxis := "right", yAxis := "top") {
     static notifGui := ""
 
     ; Close existing notification
     if (notifGui)
-    CloseNotification()
+        CloseNotification()
 
     ; Create GUI
     notifGui := Gui("+AlwaysOnTop -Caption +ToolWindow", "Notification")
@@ -85,8 +85,8 @@ ShowNotification(text, duration := 2000, xAxis := "right", yAxis := "top") {
 }
 
 /**
-* CalculatePosition - Calculate notification position on screen
-*/
+ * CalculatePosition - Calculate notification position on screen
+ */
 CalculatePosition(xAxis, yAxis, width, height) {
     ; Get screen dimensions
     MonitorGetWorkArea(, &left, &top, &right, &bottom)
@@ -96,28 +96,28 @@ CalculatePosition(xAxis, yAxis, width, height) {
     ; Calculate X position
     switch xAxis {
         case "left":
-        x := left + 20
+            x := left + 20
         case "center":
-        x := left + (screenWidth - width) // 2
+            x := left + (screenWidth - width) // 2
         case "right":
-        x := right - width - 20
+            x := right - width - 20
         default:
-        x := right - width - 20
+            x := right - width - 20
     }
 
     ; Calculate Y position
     switch yAxis {
         case "top":
-        y := top + 20
+            y := top + 20
         case "center":
-        y := top + (screenHeight - height) // 2
+            y := top + (screenHeight - height) // 2
         case "bottom":
-        y := bottom - height - 20
+            y := bottom - height - 20
         default:
-        y := top + 20
+            y := top + 20
     }
 
-    return {x: x, y: y}
+    return { x: x, y: y }
 }
 
 /*
@@ -193,3 +193,4 @@ CalculatePosition(xAxis, yAxis, width, height) {
 *     ShowNotification("Clipboard copied", 1500)
 *     ShowNotification("Script reloaded", 1000)
 */
+

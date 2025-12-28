@@ -1,95 +1,95 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ImageSearch_01.ahk
-*
-* DESCRIPTION:
-* Basic usage of ImageSearch() for finding images on screen
-*
-* FEATURES:
-* - Search for images on screen
-* - Basic image recognition
-* - Coordinate detection
-* - Variation tolerance
-* - Error handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ImageSearch() function
-* - Output variables with ByRef
-* - Icon/Trans variations
-* - Search region specification
-* - Image file handling
-*
-* LEARNING POINTS:
-* 1. ImageSearch() finds images on screen by visual matching
-* 2. Returns top-left coordinates of found image
-* 3. Variation parameter allows fuzzy matching (0-255)
-* 4. Icon/Trans modifiers for special matching modes
-* 5. Image files must be accessible (BMP, JPG, PNG, GIF)
-* 6. Search region can be specified to improve performance
-*/
+ * BuiltIn_ImageSearch_01.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage of ImageSearch() for finding images on screen
+ * 
+ * FEATURES:
+ * - Search for images on screen
+ * - Basic image recognition
+ * - Coordinate detection
+ * - Variation tolerance
+ * - Error handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ImageSearch() function
+ * - Output variables with ByRef
+ * - Icon/Trans variations
+ * - Search region specification
+ * - Image file handling
+ * 
+ * LEARNING POINTS:
+ * 1. ImageSearch() finds images on screen by visual matching
+ * 2. Returns top-left coordinates of found image
+ * 3. Variation parameter allows fuzzy matching (0-255)
+ * 4. Icon/Trans modifiers for special matching modes
+ * 5. Image files must be accessible (BMP, JPG, PNG, GIF)
+ * 6. Search region can be specified to improve performance
+ */
 
 ; ============================================================
 ; Example 1: Basic Image Search
 ; ============================================================
 
 /**
-* Search for an image on screen
-*
-* @param {String} imagePath - Path to image file
-* @param {Integer} x1 - Search region left (default: full screen)
-* @param {Integer} y1 - Search region top
-* @param {Integer} x2 - Search region right
-* @param {Integer} y2 - Search region bottom
-* @returns {Object} - {found: bool, x: int, y: int}
-*/
+ * Search for an image on screen
+ * 
+ * @param {String} imagePath - Path to image file
+ * @param {Integer} x1 - Search region left (default: full screen)
+ * @param {Integer} y1 - Search region top
+ * @param {Integer} x2 - Search region right
+ * @param {Integer} y2 - Search region bottom
+ * @returns {Object} - {found: bool, x: int, y: int}
+ */
 BasicImageSearch(imagePath, x1 := 0, y1 := 0, x2 := 0, y2 := 0) {
     ; Default to full screen if not specified
     if x2 = 0
-    x2 := A_ScreenWidth
+        x2 := A_ScreenWidth
     if y2 = 0
-    y2 := A_ScreenHeight
+        y2 := A_ScreenHeight
 
     ; Check if image file exists
     if !FileExist(imagePath) {
         MsgBox("Image file not found:`n" imagePath,
-        "File Error", "Iconx")
-        return {found: false, x: 0, y: 0}
+            "File Error", "Iconx")
+        return { found: false, x: 0, y: 0 }
     }
 
     MsgBox("Searching for image:`n`n"
-    . "File: " imagePath "`n"
-    . "Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
-    "Searching", "T1")
+        . "File: " imagePath "`n"
+        . "Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
+        "Searching", "T1")
 
     try {
         ; ImageSearch returns 1 if found, 0 if not found
         if ImageSearch(&foundX, &foundY, x1, y1, x2, y2, imagePath) {
             MsgBox("Image Found!`n`n"
-            . "Position: " foundX ", " foundY "`n"
-            . "Image: " imagePath,
-            "Found", "Iconi")
+                . "Position: " foundX ", " foundY "`n"
+                . "Image: " imagePath,
+                "Found", "Iconi")
 
-            return {found: true, x: foundX, y: foundY}
+            return { found: true, x: foundX, y: foundY }
         } else {
             MsgBox("Image not found on screen`n`n"
-            . "Image: " imagePath,
-            "Not Found", "Icon!")
+                . "Image: " imagePath,
+                "Not Found", "Icon!")
 
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
     } catch as err {
         MsgBox("Error during image search:`n`n"
-        . "Error: " err.Message "`n"
-        . "Image: " imagePath,
-        "Error", "Iconx")
+            . "Error: " err.Message "`n"
+            . "Image: " imagePath,
+            "Error", "Iconx")
 
-        return {found: false, x: 0, y: 0}
+        return { found: false, x: 0, y: 0 }
     }
 }
 
@@ -103,79 +103,79 @@ BasicImageSearch(imagePath, x1 := 0, y1 := 0, x2 := 0, y2 := 0) {
 ; ============================================================
 
 /**
-* Search for image with color variation tolerance
-*/
+ * Search for image with color variation tolerance
+ */
 class ImageSearchWithVariation {
     /**
-    * Search with different variation levels
-    *
-    * @param {String} imagePath - Path to image
-    * @param {Integer} variation - Color tolerance (0-255)
-    */
+     * Search with different variation levels
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {Integer} variation - Color tolerance (0-255)
+     */
     static SearchWithTolerance(imagePath, variation := 0) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
         ; Add variation to search string
         searchString := "*" variation " " imagePath
 
         MsgBox("Searching with variation:`n`n"
-        . "Image: " imagePath "`n"
-        . "Variation: " variation "`n`n"
-        . "Higher variation = more lenient matching",
-        "Searching", "T1")
+            . "Image: " imagePath "`n"
+            . "Variation: " variation "`n`n"
+            . "Higher variation = more lenient matching",
+            "Searching", "T1")
 
         try {
             if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-            searchString) {
+                searchString) {
                 MsgBox("Image found!`n`n"
-                . "Position: " x ", " y "`n"
-                . "Variation used: " variation,
-                "Found", "Iconi")
+                    . "Position: " x ", " y "`n"
+                    . "Variation used: " variation,
+                    "Found", "Iconi")
 
-                return {found: true, x: x, y: y}
+                return { found: true, x: x, y: y }
             }
 
             MsgBox("Image not found with variation " variation,
-            "Not Found", "Icon!")
-            return {found: false, x: 0, y: 0}
+                "Not Found", "Icon!")
+            return { found: false, x: 0, y: 0 }
 
         } catch as err {
             MsgBox("Error: " err.Message, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
     }
 
     /**
-    * Try increasing variations until found
-    */
+     * Try increasing variations until found
+     */
     static SearchWithAutoVariation(imagePath, maxVariation := 50) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
-            return {found: false, x: 0, y: 0, variation: 0}
+            return { found: false, x: 0, y: 0, variation: 0 }
         }
 
         MsgBox("Trying increasing variations up to " maxVariation,
-        "Auto Variation", "T1")
+            "Auto Variation", "T1")
 
         variations := [0, 10, 20, 30, 50]
 
         for variation in variations {
             if variation > maxVariation
-            break
+                break
 
             searchString := "*" variation " " imagePath
 
             if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-            searchString) {
+                searchString) {
                 MsgBox("Image found!`n`n"
-                . "Position: " x ", " y "`n"
-                . "Variation needed: " variation,
-                "Found", "Iconi")
+                    . "Position: " x ", " y "`n"
+                    . "Variation needed: " variation,
+                    "Found", "Iconi")
 
-                return {found: true, x: x, y: y, variation: variation}
+                return { found: true, x: x, y: y, variation: variation }
             }
 
             ToolTip("Variation " variation " - not found, trying higher...")
@@ -184,9 +184,9 @@ class ImageSearchWithVariation {
 
         ToolTip()
         MsgBox("Image not found with any variation up to " maxVariation,
-        "Not Found", "Icon!")
+            "Not Found", "Icon!")
 
-        return {found: false, x: 0, y: 0, variation: 0}
+        return { found: false, x: 0, y: 0, variation: 0 }
     }
 }
 
@@ -199,30 +199,30 @@ class ImageSearchWithVariation {
 ; ============================================================
 
 /**
-* Find image and click on it
-*/
+ * Find image and click on it
+ */
 class ImageClicker {
     /**
-    * Find and click on image
-    *
-    * @param {String} imagePath - Path to image
-    * @param {String} clickPosition - Where to click (center, topleft)
-    * @param {Integer} offsetX - X offset from click position
-    * @param {Integer} offsetY - Y offset from click position
-    */
+     * Find and click on image
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {String} clickPosition - Where to click (center, topleft)
+     * @param {Integer} offsetX - X offset from click position
+     * @param {Integer} offsetY - Y offset from click position
+     */
     static FindAndClick(imagePath, clickPosition := "center",
-    offsetX := 0, offsetY := 0) {
+        offsetX := 0, offsetY := 0) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
             return false
         }
 
         MsgBox("Searching for image to click...",
-        "Searching", "T1")
+            "Searching", "T1")
 
         try {
             if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-            imagePath) {
+                imagePath) {
                 ; Calculate click position
                 clickX := x
                 clickY := y
@@ -240,15 +240,15 @@ class ImageClicker {
                 Click(clickX, clickY)
 
                 MsgBox("Image found and clicked!`n`n"
-                . "Image at: " x ", " y "`n"
-                . "Clicked: " clickX ", " clickY,
-                "Clicked", "Iconi T2")
+                    . "Image at: " x ", " y "`n"
+                    . "Clicked: " clickX ", " clickY,
+                    "Clicked", "Iconi T2")
 
                 return true
             }
 
             MsgBox("Image not found - cannot click",
-            "Not Found", "Icon!")
+                "Not Found", "Icon!")
             return false
 
         } catch as err {
@@ -258,11 +258,11 @@ class ImageClicker {
     }
 
     /**
-    * Wait for image then click
-    *
-    * @param {String} imagePath - Path to image
-    * @param {Integer} timeoutSec - Timeout in seconds
-    */
+     * Wait for image then click
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {Integer} timeoutSec - Timeout in seconds
+     */
     static WaitAndClick(imagePath, timeoutSec := 10) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
@@ -270,8 +270,8 @@ class ImageClicker {
         }
 
         MsgBox("Waiting for image to appear...`n`n"
-        . "Timeout: " timeoutSec " seconds",
-        "Waiting", "T1")
+            . "Timeout: " timeoutSec " seconds",
+            "Waiting", "T1")
 
         startTime := A_TickCount
         timeout := timeoutSec * 1000
@@ -279,15 +279,15 @@ class ImageClicker {
         Loop {
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     elapsed := (A_TickCount - startTime) / 1000
 
                     Click(x, y)
 
                     MsgBox("Image appeared and clicked!`n`n"
-                    . "Time elapsed: " Round(elapsed, 1) " seconds`n"
-                    . "Position: " x ", " y,
-                    "Success", "Iconi")
+                        . "Time elapsed: " Round(elapsed, 1) " seconds`n"
+                        . "Position: " x ", " y,
+                        "Success", "Iconi")
 
                     return true
                 }
@@ -298,7 +298,7 @@ class ImageClicker {
 
             if (A_TickCount - startTime) > timeout {
                 MsgBox("Timeout - image did not appear",
-                "Timeout", "Icon!")
+                    "Timeout", "Icon!")
                 return false
             }
 
@@ -307,8 +307,8 @@ class ImageClicker {
     }
 
     /**
-    * Double-click on image
-    */
+     * Double-click on image
+     */
     static FindAndDoubleClick(imagePath, delay := 100) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
@@ -317,13 +317,13 @@ class ImageClicker {
 
         try {
             if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-            imagePath) {
+                imagePath) {
                 Click(x, y)
                 Sleep(delay)
                 Click(x, y)
 
                 MsgBox("Double-clicked image at: " x ", " y,
-                "Double-Clicked", "Iconi T2")
+                    "Double-Clicked", "Iconi T2")
 
                 return true
             }
@@ -348,19 +348,19 @@ class ImageClicker {
 ; ============================================================
 
 /**
-* Search for multiple images
-*/
+ * Search for multiple images
+ */
 class MultiImageSearch {
     /**
-    * Search for first matching image from list
-    *
-    * @param {Array} imagePaths - Array of image paths
-    * @returns {Object} - {found: bool, index: int, x: int, y: int}
-    */
+     * Search for first matching image from list
+     * 
+     * @param {Array} imagePaths - Array of image paths
+     * @returns {Object} - {found: bool, index: int, x: int, y: int}
+     */
     static FindFirst(imagePaths) {
         MsgBox("Searching for first matching image`n`n"
-        . "Images to check: " imagePaths.Length,
-        "Searching", "T1")
+            . "Images to check: " imagePaths.Length,
+            "Searching", "T1")
 
         for index, imagePath in imagePaths {
             if !FileExist(imagePath) {
@@ -371,16 +371,16 @@ class MultiImageSearch {
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     ToolTip()
 
                     MsgBox("Found image " index " of " imagePaths.Length "`n`n"
-                    . "Image: " imagePath "`n"
-                    . "Position: " x ", " y,
-                    "Found", "Iconi")
+                        . "Image: " imagePath "`n"
+                        . "Position: " x ", " y,
+                        "Found", "Iconi")
 
-                    return {found: true, index: index, x: x, y: y,
-                    path: imagePath}
+                    return { found: true, index: index, x: x, y: y,
+                        path: imagePath }
                 }
 
             } catch {
@@ -393,31 +393,31 @@ class MultiImageSearch {
 
         ToolTip()
         MsgBox("None of the images were found",
-        "Not Found", "Icon!")
+            "Not Found", "Icon!")
 
-        return {found: false, index: 0, x: 0, y: 0, path: ""}
+        return { found: false, index: 0, x: 0, y: 0, path: "" }
     }
 
     /**
-    * Find all matching images
-    *
-    * @param {Array} imagePaths - Array of image paths
-    * @returns {Array} - Array of found results
-    */
+     * Find all matching images
+     * 
+     * @param {Array} imagePaths - Array of image paths
+     * @returns {Array} - Array of found results
+     */
     static FindAll(imagePaths) {
         found := []
 
         MsgBox("Searching for all images...`n`n"
-        . "Total images: " imagePaths.Length,
-        "Searching", "T1")
+            . "Total images: " imagePaths.Length,
+            "Searching", "T1")
 
         for index, imagePath in imagePaths {
             if !FileExist(imagePath)
-            continue
+                continue
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     found.Push({
                         index: index,
                         path: imagePath,
@@ -440,7 +440,7 @@ class MultiImageSearch {
         }
 
         if found.Length = 0
-        output .= "No images found"
+            output .= "No images found"
 
         MsgBox(output, "Results", "Iconi")
 
@@ -448,23 +448,23 @@ class MultiImageSearch {
     }
 
     /**
-    * Click images in sequence
-    */
+     * Click images in sequence
+     */
     static ClickSequence(imagePaths, delayMs := 1000) {
         MsgBox("Starting click sequence`n`n"
-        . "Images: " imagePaths.Length "`n"
-        . "Delay: " delayMs "ms",
-        "Sequence", "T1")
+            . "Images: " imagePaths.Length "`n"
+            . "Delay: " delayMs "ms",
+            "Sequence", "T1")
 
         clickedCount := 0
 
         for index, imagePath in imagePaths {
             if !FileExist(imagePath)
-            continue
+                continue
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     Click(x, y)
                     clickedCount++
 
@@ -480,8 +480,8 @@ class MultiImageSearch {
         ToolTip()
 
         MsgBox("Sequence complete!`n`n"
-        . "Clicked: " clickedCount " of " imagePaths.Length,
-        "Done", "Iconi")
+            . "Clicked: " clickedCount " of " imagePaths.Length,
+            "Done", "Iconi")
     }
 }
 
@@ -496,17 +496,17 @@ class MultiImageSearch {
 ; ============================================================
 
 /**
-* Wait for image state changes
-*/
+ * Wait for image state changes
+ */
 class ImageWaiter {
     /**
-    * Wait for image to appear
-    *
-    * @param {String} imagePath - Path to image
-    * @param {Integer} timeoutSec - Timeout in seconds
-    * @param {Integer} checkInterval - Check interval in ms
-    * @returns {Boolean} - True if appeared
-    */
+     * Wait for image to appear
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {Integer} timeoutSec - Timeout in seconds
+     * @param {Integer} checkInterval - Check interval in ms
+     * @returns {Boolean} - True if appeared
+     */
     static WaitForAppear(imagePath, timeoutSec := 30, checkInterval := 500) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
@@ -514,10 +514,10 @@ class ImageWaiter {
         }
 
         MsgBox("Waiting for image to appear:`n`n"
-        . "Image: " imagePath "`n"
-        . "Timeout: " timeoutSec " seconds`n"
-        . "Check interval: " checkInterval "ms",
-        "Waiting", "T1")
+            . "Image: " imagePath "`n"
+            . "Timeout: " timeoutSec " seconds`n"
+            . "Check interval: " checkInterval "ms",
+            "Waiting", "T1")
 
         startTime := A_TickCount
         timeout := timeoutSec * 1000
@@ -525,13 +525,13 @@ class ImageWaiter {
         Loop {
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     elapsed := (A_TickCount - startTime) / 1000
 
                     MsgBox("Image appeared!`n`n"
-                    . "Position: " x ", " y "`n"
-                    . "Time elapsed: " Round(elapsed, 1) " seconds",
-                    "Appeared", "Iconi")
+                        . "Position: " x ", " y "`n"
+                        . "Time elapsed: " Round(elapsed, 1) " seconds",
+                        "Appeared", "Iconi")
 
                     return true
                 }
@@ -542,8 +542,8 @@ class ImageWaiter {
 
             if (A_TickCount - startTime) > timeout {
                 MsgBox("Timeout - image did not appear within "
-                . timeoutSec " seconds",
-                "Timeout", "Icon!")
+                    . timeoutSec " seconds",
+                    "Timeout", "Icon!")
                 return false
             }
 
@@ -555,11 +555,11 @@ class ImageWaiter {
     }
 
     /**
-    * Wait for image to disappear
-    *
-    * @param {String} imagePath - Path to image
-    * @param {Integer} timeoutSec - Timeout in seconds
-    */
+     * Wait for image to disappear
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {Integer} timeoutSec - Timeout in seconds
+     */
     static WaitForDisappear(imagePath, timeoutSec := 30) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
@@ -567,8 +567,8 @@ class ImageWaiter {
         }
 
         MsgBox("Waiting for image to disappear...`n`n"
-        . "Timeout: " timeoutSec " seconds",
-        "Waiting", "T1")
+            . "Timeout: " timeoutSec " seconds",
+            "Waiting", "T1")
 
         startTime := A_TickCount
         timeout := timeoutSec * 1000
@@ -576,12 +576,12 @@ class ImageWaiter {
         Loop {
             try {
                 if !ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     elapsed := (A_TickCount - startTime) / 1000
 
                     MsgBox("Image disappeared!`n`n"
-                    . "Time elapsed: " Round(elapsed, 1) " seconds",
-                    "Disappeared", "Iconi")
+                        . "Time elapsed: " Round(elapsed, 1) " seconds",
+                        "Disappeared", "Iconi")
 
                     return true
                 }
@@ -593,7 +593,7 @@ class ImageWaiter {
 
             if (A_TickCount - startTime) > timeout {
                 MsgBox("Timeout - image still visible",
-                "Timeout", "Icon!")
+                    "Timeout", "Icon!")
                 return false
             }
 
@@ -603,11 +603,11 @@ class ImageWaiter {
     }
 
     /**
-    * Wait for loading screen to finish
-    */
+     * Wait for loading screen to finish
+     */
     static WaitForLoadingComplete(loadingImagePath, timeoutSec := 60) {
         MsgBox("Waiting for loading to complete...",
-        "Loading", "T1")
+            "Loading", "T1")
 
         return this.WaitForDisappear(loadingImagePath, timeoutSec)
     }
@@ -623,19 +623,19 @@ class ImageWaiter {
 ; ============================================================
 
 /**
-* Search for image in specific window
-*/
+ * Search for image in specific window
+ */
 class WindowImageSearch {
     /**
-    * Search in active window only
-    *
-    * @param {String} imagePath - Path to image
-    * @returns {Object} - Search result
-    */
+     * Search in active window only
+     * 
+     * @param {String} imagePath - Path to image
+     * @returns {Object} - Search result
+     */
     static SearchInActiveWindow(imagePath) {
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
         try {
@@ -645,43 +645,43 @@ class WindowImageSearch {
             winTitle := WinGetTitle("A")
 
             MsgBox("Searching in active window:`n`n"
-            . "Window: " winTitle "`n"
-            . "Region: (" winX "," winY ") to ("
-            . (winX + winW) "," (winY + winH) ")",
-            "Searching", "T1")
+                . "Window: " winTitle "`n"
+                . "Region: (" winX "," winY ") to ("
+                . (winX + winW) "," (winY + winH) ")",
+                "Searching", "T1")
 
             ; Search in window region
             if ImageSearch(&x, &y, winX, winY, winX + winW, winY + winH,
-            imagePath) {
+                imagePath) {
                 MsgBox("Image found in window!`n`n"
-                . "Position: " x ", " y,
-                "Found", "Iconi")
+                    . "Position: " x ", " y,
+                    "Found", "Iconi")
 
-                return {found: true, x: x, y: y}
+                return { found: true, x: x, y: y }
             }
 
             MsgBox("Image not found in active window",
-            "Not Found", "Icon!")
-            return {found: false, x: 0, y: 0}
+                "Not Found", "Icon!")
+            return { found: false, x: 0, y: 0 }
 
         } catch as err {
             MsgBox("Error: " err.Message, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
     }
 
     /**
-    * Search in specific window by title
-    */
+     * Search in specific window by title
+     */
     static SearchInWindow(winTitle, imagePath) {
         if !WinExist(winTitle) {
             MsgBox("Window not found: " winTitle, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
         if !FileExist(imagePath) {
             MsgBox("Image not found: " imagePath, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
         try {
@@ -689,20 +689,20 @@ class WindowImageSearch {
 
             if ImageSearch(&foundX, &foundY, x, y, x + w, y + h, imagePath) {
                 MsgBox("Image found!`n`n"
-                . "Window: " winTitle "`n"
-                . "Position: " foundX ", " foundY,
-                "Found", "Iconi")
+                    . "Window: " winTitle "`n"
+                    . "Position: " foundX ", " foundY,
+                    "Found", "Iconi")
 
-                return {found: true, x: foundX, y: foundY}
+                return { found: true, x: foundX, y: foundY }
             }
 
             MsgBox("Image not found in window",
-            "Not Found", "Icon!")
-            return {found: false, x: 0, y: 0}
+                "Not Found", "Icon!")
+            return { found: false, x: 0, y: 0 }
 
         } catch as err {
             MsgBox("Error: " err.Message, "Error", "Iconx")
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
     }
 }
@@ -716,50 +716,50 @@ class WindowImageSearch {
 ; ============================================================
 
 /**
-* Utility functions for image searching
-*/
+ * Utility functions for image searching
+ */
 class ImageSearchHelpers {
     /**
-    * Check if image exists on screen (simple boolean)
-    */
+     * Check if image exists on screen (simple boolean)
+     */
     static ImageExists(imagePath) {
         if !FileExist(imagePath)
-        return false
+            return false
 
         try {
             return ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-            imagePath)
+                imagePath)
         } catch {
             return false
         }
     }
 
     /**
-    * Get image position without showing messages
-    */
+     * Get image position without showing messages
+     */
     static GetImagePosition(imagePath) {
         if !FileExist(imagePath)
-        return {x: -1, y: -1}
+            return { x: -1, y: -1 }
 
         try {
             if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-            imagePath)
-            return {x: x, y: y}
+                imagePath)
+                return { x: x, y: y }
         } catch {
             ; Ignore
         }
 
-        return {x: -1, y: -1}
+        return { x: -1, y: -1 }
     }
 
     /**
-    * Verify image file is valid
-    */
+     * Verify image file is valid
+     */
     static ValidateImageFile(imagePath) {
         ; Check if file exists
         if !FileExist(imagePath) {
             MsgBox("Image file not found:`n" imagePath,
-            "Validation Error", "Iconx")
+                "Validation Error", "Iconx")
             return false
         }
 
@@ -778,15 +778,15 @@ class ImageSearchHelpers {
 
         if !isValid {
             MsgBox("Invalid image format: ." ext "`n`n"
-            . "Supported: BMP, JPG, PNG, GIF",
-            "Format Error", "Iconx")
+                . "Supported: BMP, JPG, PNG, GIF",
+                "Format Error", "Iconx")
             return false
         }
 
         MsgBox("Image file is valid:`n`n"
-        . "Path: " imagePath "`n"
-        . "Format: " StrUpper(ext),
-        "Valid", "Iconi T2")
+            . "Path: " imagePath "`n"
+            . "Format: " StrUpper(ext),
+            "Valid", "Iconi T2")
 
         return true
     }

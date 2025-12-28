@@ -1,19 +1,19 @@
 /**
-* @file DriveList_01.ahk
-* @description Comprehensive examples of DriveGetList function with drive enumeration and monitoring
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Enumerating all system drives
-* - Filtering drives by type
-* - Real-time drive monitoring
-* - Drive list reporting
-* - Hot-plug detection
-* - Drive inventory management
-* - System drive mapping
-*/
+ * @file DriveList_01.ahk
+ * @description Comprehensive examples of DriveGetList function with drive enumeration and monitoring
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Enumerating all system drives
+ * - Filtering drives by type
+ * - Real-time drive monitoring
+ * - Drive list reporting
+ * - Hot-plug detection
+ * - Drive inventory management
+ * - System drive mapping
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,10 +22,10 @@
 ; ===================================================================================================
 
 /**
-* @function EnumerateAllDrives
-* @description Enumerates all drives on the system
-* @returns {Array} Array of drive information objects
-*/
+ * @function EnumerateAllDrives
+ * @description Enumerates all drives on the system
+ * @returns {Array} Array of drive information objects
+ */
 EnumerateAllDrives() {
     drives := []
     driveList := DriveGetList()
@@ -66,17 +66,17 @@ Example1_BasicEnumeration() {
 
     for drive in drives {
         report .= Format("{1}. Drive {2} [{3}] - {4}`n",
-        drive.Index,
-        drive.Letter,
-        drive.Type,
-        drive.Status)
+            drive.Index,
+            drive.Letter,
+            drive.Type,
+            drive.Status)
 
         if drive.HasOwnProp("Label")
-        report .= Format("   Label: {1} | {2} | {3} GB / {4} GB`n",
-        drive.Label,
-        drive.FileSystem,
-        drive.FreeGB,
-        drive.CapacityGB)
+            report .= Format("   Label: {1} | {2} | {3} GB / {4} GB`n",
+                drive.Label,
+                drive.FileSystem,
+                drive.FreeGB,
+                drive.CapacityGB)
 
         report .= "`n"
     }
@@ -90,13 +90,13 @@ Example1_BasicEnumeration() {
 ; ===================================================================================================
 
 /**
-* @class DriveFilter
-* @description Filters and categorizes drives by type
-*/
+ * @class DriveFilter
+ * @description Filters and categorizes drives by type
+ */
 class DriveFilter {
     static GetByType(driveType := "") {
         if (driveType = "")
-        return DriveGetList()
+            return DriveGetList()
 
         return DriveGetList(driveType)
     }
@@ -134,7 +134,7 @@ class DriveFilter {
                     }
 
                     report .= Format("  {1} - {2}`n", drivePath,
-                    label != "" ? label : "(No Label)")
+                        label != "" ? label : "(No Label)")
                 }
             } else {
                 report .= "  (None)`n"
@@ -156,9 +156,9 @@ Example2_FilteredLists() {
 ; ===================================================================================================
 
 /**
-* @class DriveMonitor
-* @description Monitors drive changes in real-time
-*/
+ * @class DriveMonitor
+ * @description Monitors drive changes in real-time
+ */
 class DriveMonitor {
     knownDrives := Map()
     isMonitoring := false
@@ -179,19 +179,19 @@ class DriveMonitor {
 
     StartMonitoring(callback := "") {
         if (this.isMonitoring)
-        return
+            return
 
         this.isMonitoring := true
         this.changeCallback := callback
         SetTimer(() => this.CheckChanges(), 2000)
 
         MsgBox("Drive monitoring started.`nWill check for changes every 2 seconds.",
-        "Monitor Started", "Iconi")
+            "Monitor Started", "Iconi")
     }
 
     StopMonitoring() {
         if (!this.isMonitoring)
-        return
+            return
 
         this.isMonitoring := false
         SetTimer(() => this.CheckChanges(), 0)
@@ -235,12 +235,12 @@ class DriveMonitor {
         }
 
         message := Format("Drive Added: {1}`nType: {2}`nLabel: {3}",
-        drive, driveType, label != "" ? label : "(No Label)")
+            drive, driveType, label != "" ? label : "(No Label)")
 
         MsgBox(message, "Drive Added", "Iconi 2")
 
         if (this.changeCallback != "")
-        this.changeCallback(drive, "added")
+            this.changeCallback(drive, "added")
     }
 
     OnDriveRemoved(drive) {
@@ -248,7 +248,7 @@ class DriveMonitor {
         MsgBox(message, "Drive Removed", "Icon! 2")
 
         if (this.changeCallback != "")
-        this.changeCallback(drive, "removed")
+            this.changeCallback(drive, "removed")
     }
 }
 
@@ -273,9 +273,9 @@ Example3_DriveMonitor() {
 ; ===================================================================================================
 
 /**
-* @class DriveComparator
-* @description Compares drive lists between different time points
-*/
+ * @class DriveComparator
+ * @description Compares drive lists between different time points
+ */
 class DriveComparator {
     static snapshot1 := ""
     static snapshot2 := ""
@@ -301,7 +301,7 @@ class DriveComparator {
                 }
             }
             if (!found)
-            added.Push(drive . ":")
+                added.Push(drive . ":")
         }
 
         ; Find removed drives
@@ -314,7 +314,7 @@ class DriveComparator {
                 }
             }
             if (!found)
-            removed.Push(drive . ":")
+                removed.Push(drive . ":")
         }
 
         return {
@@ -331,8 +331,8 @@ class DriveComparator {
         DriveComparator.snapshot2 := DriveComparator.TakeSnapshot()
 
         comparison := DriveComparator.CompareSnapshots(
-        DriveComparator.snapshot1,
-        DriveComparator.snapshot2
+            DriveComparator.snapshot1,
+            DriveComparator.snapshot2
         )
 
         report := "Drive List Comparison`n"
@@ -370,14 +370,14 @@ Example4_DriveComparison() {
 ; ===================================================================================================
 
 /**
-* @function GenerateDriveInventoryReport
-* @description Generates a comprehensive drive inventory report
-* @param {String} outputPath - Path to save the report
-* @returns {Boolean} Success status
-*/
+ * @function GenerateDriveInventoryReport
+ * @description Generates a comprehensive drive inventory report
+ * @param {String} outputPath - Path to save the report
+ * @returns {Boolean} Success status
+ */
 GenerateDriveInventoryReport(outputPath := "") {
     if (outputPath = "")
-    outputPath := A_Desktop . "\DriveInventory_" . FormatTime(A_Now, "yyyyMMdd_HHmmss") . ".txt"
+        outputPath := A_Desktop . "\DriveInventory_" . FormatTime(A_Now, "yyyyMMdd_HHmmss") . ".txt"
 
     drives := EnumerateAllDrives()
 
@@ -407,8 +407,8 @@ GenerateDriveInventoryReport(outputPath := "") {
             content .= Format("Capacity: {1} GB`n", drive.CapacityGB)
             content .= Format("Free Space: {1} GB`n", drive.FreeGB)
             content .= Format("Used Space: {1} GB ({2}%)`n",
-            Round(drive.CapacityGB - drive.FreeGB, 2),
-            Round(((drive.CapacityGB - drive.FreeGB) / drive.CapacityGB) * 100, 1))
+                Round(drive.CapacityGB - drive.FreeGB, 2),
+                Round(((drive.CapacityGB - drive.FreeGB) / drive.CapacityGB) * 100, 1))
         }
 
         content .= "`n"
@@ -428,7 +428,7 @@ Example5_InventoryReport() {
 
     if (GenerateDriveInventoryReport(outputPath)) {
         MsgBox("Drive inventory report generated successfully!`n`nSaved to:`n" . outputPath,
-        "Report Generated", "Iconi")
+            "Report Generated", "Iconi")
         Run(outputPath)
     } else {
         MsgBox("Failed to generate report.", "Error", "Icon!")
@@ -440,10 +440,10 @@ Example5_InventoryReport() {
 ; ===================================================================================================
 
 /**
-* @function CreateDriveMap
-* @description Creates a visual map of all drives
-* @returns {String} ASCII drive map
-*/
+ * @function CreateDriveMap
+ * @description Creates a visual map of all drives
+ * @returns {String} ASCII drive map
+ */
 CreateDriveMap() {
     categorized := DriveFilter.GetAllByTypes()
 
@@ -453,7 +453,7 @@ CreateDriveMap() {
 
     for driveType, driveList in categorized {
         if (driveList.Length = 0)
-        continue
+            continue
 
         map .= Format("▼ {1} ({2})`n", driveType, driveList.Length)
 
@@ -488,9 +488,9 @@ Example6_DriveMap() {
 ; ===================================================================================================
 
 /**
-* @class HotPlugLogger
-* @description Logs hot-plug events for removable drives
-*/
+ * @class HotPlugLogger
+ * @description Logs hot-plug events for removable drives
+ */
 class HotPlugLogger {
     logFile := A_ScriptDir . "\hotplug_log.txt"
     monitor := ""
@@ -513,10 +513,10 @@ class HotPlugLogger {
         driveType := DriveGetType(drive)
 
         logEntry := Format("[{1}] {2} - {3} ({4})`n",
-        timestamp,
-        StrUpper(action),
-        drive,
-        driveType)
+            timestamp,
+            StrUpper(action),
+            drive,
+            driveType)
 
         FileAppend(logEntry, this.logFile)
     }
@@ -537,7 +537,7 @@ class HotPlugLogger {
 
         for i, line in lines {
             if (i >= startIndex && line != "")
-            report .= line . "`n"
+                report .= line . "`n"
         }
 
         MsgBox(report, "Hot-Plug Log", "Iconi")
@@ -577,3 +577,4 @@ Example7_HotPlugLogger() {
 
 ; Press Ctrl+Alt+V to show drive map
 ; ^!v::Example6_DriveMap()
+

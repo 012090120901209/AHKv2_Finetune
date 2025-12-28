@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Switch Fall-Through Behavior
-* ============================================================================
-*
-* This script demonstrates fall-through behavior in switch statements.
-* In AHK v2, switch statements do NOT fall through by default (unlike C).
-* Each case block executes independently.
-*
-* @file BuiltIn_Switch_03.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. No fall-through by default in AHK v2
-* 2. Simulating fall-through with explicit logic
-* 3. Multiple cases sharing code (alternative to fall-through)
-* 4. Cumulative permissions pattern
-* 5. Range categorization
-* 6. State transitions
-* 7. Feature flags and capabilities
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Switch Fall-Through Behavior
+ * ============================================================================
+ * 
+ * This script demonstrates fall-through behavior in switch statements.
+ * In AHK v2, switch statements do NOT fall through by default (unlike C).
+ * Each case block executes independently.
+ * 
+ * @file BuiltIn_Switch_03.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. No fall-through by default in AHK v2
+ * 2. Simulating fall-through with explicit logic
+ * 3. Multiple cases sharing code (alternative to fall-through)
+ * 4. Cumulative permissions pattern
+ * 5. Range categorization
+ * 6. State transitions
+ * 7. Feature flags and capabilities
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: No Fall-Through by Default
 ; ============================================================================
 
 /**
-* Demonstrates that AHK v2 switch does NOT fall through.
-* Each case executes its block only.
-*/
+ * Demonstrates that AHK v2 switch does NOT fall through.
+ * Each case executes its block only.
+ */
 Example1_NoFallThrough() {
     OutputDebug("=== Example 1: No Fall-Through by Default ===`n")
 
@@ -44,21 +44,21 @@ Example1_NoFallThrough() {
     ; Each case only executes its own block
     switch value {
         case "A":
-        result.Push("Case A executed")
-        OutputDebug("In case A`n")
+            result.Push("Case A executed")
+            OutputDebug("In case A`n")
 
         case "B":
-        result.Push("Case B executed")
-        OutputDebug("In case B`n")
-        ; Does NOT fall through to case "C"
+            result.Push("Case B executed")
+            OutputDebug("In case B`n")
+            ; Does NOT fall through to case "C"
 
         case "C":
-        result.Push("Case C executed")
-        OutputDebug("In case C`n")
+            result.Push("Case C executed")
+            OutputDebug("In case C`n")
 
         default:
-        result.Push("Default executed")
-        OutputDebug("In default case`n")
+            result.Push("Default executed")
+            OutputDebug("In default case`n")
     }
 
     OutputDebug("Results: " result.Length " item(s)`n")
@@ -86,9 +86,9 @@ Example1_NoFallThrough() {
 ; ============================================================================
 
 /**
-* Demonstrates how to achieve fall-through-like behavior when needed.
-* Uses explicit function calls and logic.
-*/
+ * Demonstrates how to achieve fall-through-like behavior when needed.
+ * Uses explicit function calls and logic.
+ */
 Example2_SimulatingFallThrough() {
     OutputDebug("=== Example 2: Simulating Fall-Through ===`n")
 
@@ -103,8 +103,8 @@ Example2_SimulatingFallThrough() {
 }
 
 /**
-* Simulates cumulative permissions (fall-through behavior).
-*/
+ * Simulates cumulative permissions (fall-through behavior).
+ */
 ProcessPermissionLevel(level) {
     permissions := []
     OutputDebug("Permission Level: " level "`n")
@@ -137,9 +137,9 @@ ProcessPermissionLevel(level) {
 ; ============================================================================
 
 /**
-* Demonstrates the proper AHK v2 way to share code between cases.
-* Uses comma-separated case values.
-*/
+ * Demonstrates the proper AHK v2 way to share code between cases.
+ * Uses comma-separated case values.
+ */
 Example3_MultipleCasesSharedCode() {
     OutputDebug("=== Example 3: Multiple Cases Sharing Code ===`n")
 
@@ -153,33 +153,33 @@ Example3_MultipleCasesSharedCode() {
 }
 
 /**
-* Multiple cases execute the same code block.
-*/
+ * Multiple cases execute the same code block.
+ */
 ProcessCommand(cmd) {
     OutputDebug("Command: " cmd "`n")
 
     switch cmd {
         case "start", "begin", "init", "launch":
-        OutputDebug("  Action: Starting service...`n")
-        status := "running"
-        StartService()
+            OutputDebug("  Action: Starting service...`n")
+            status := "running"
+            StartService()
 
         case "stop", "end", "terminate", "quit":
-        OutputDebug("  Action: Stopping service...`n")
-        status := "stopped"
-        StopService()
+            OutputDebug("  Action: Stopping service...`n")
+            status := "stopped"
+            StopService()
 
         case "pause", "suspend":
-        OutputDebug("  Action: Pausing service...`n")
-        status := "paused"
+            OutputDebug("  Action: Pausing service...`n")
+            status := "paused"
 
         case "resume", "continue":
-        OutputDebug("  Action: Resuming service...`n")
-        status := "running"
+            OutputDebug("  Action: Resuming service...`n")
+            status := "running"
 
         default:
-        OutputDebug("  Action: Unknown command`n")
-        status := "error"
+            OutputDebug("  Action: Unknown command`n")
+            status := "error"
     }
 
     OutputDebug("  New status: " status "`n`n")
@@ -198,9 +198,9 @@ StopService() {
 ; ============================================================================
 
 /**
-* Demonstrates building cumulative permissions.
-* Shows how to handle hierarchical access levels.
-*/
+ * Demonstrates building cumulative permissions.
+ * Shows how to handle hierarchical access levels.
+ */
 Example4_CumulativePermissions() {
     OutputDebug("=== Example 4: Cumulative Permissions ===`n")
 
@@ -216,8 +216,8 @@ Example4_CumulativePermissions() {
 }
 
 /**
-* Assigns cumulative permissions based on role.
-*/
+ * Assigns cumulative permissions based on role.
+ */
 AssignPermissions(role) {
     capabilities := Map()
     capabilities["canView"] := false
@@ -231,33 +231,33 @@ AssignPermissions(role) {
     ; Use switch to set base capabilities, then enhance
     switch role {
         case "guest":
-        capabilities["canView"] := true
+            capabilities["canView"] := true
 
         case "user":
-        capabilities["canView"] := true
-        capabilities["canEdit"] := true
+            capabilities["canView"] := true
+            capabilities["canEdit"] := true
 
         case "moderator":
-        capabilities["canView"] := true
-        capabilities["canEdit"] := true
-        capabilities["canDelete"] := true
+            capabilities["canView"] := true
+            capabilities["canEdit"] := true
+            capabilities["canDelete"] := true
 
         case "admin":
-        capabilities["canView"] := true
-        capabilities["canEdit"] := true
-        capabilities["canDelete"] := true
-        capabilities["canManageUsers"] := true
+            capabilities["canView"] := true
+            capabilities["canEdit"] := true
+            capabilities["canDelete"] := true
+            capabilities["canManageUsers"] := true
 
         case "superadmin":
-        capabilities["canView"] := true
-        capabilities["canEdit"] := true
-        capabilities["canDelete"] := true
-        capabilities["canManageUsers"] := true
-        capabilities["canConfigureSystem"] := true
+            capabilities["canView"] := true
+            capabilities["canEdit"] := true
+            capabilities["canDelete"] := true
+            capabilities["canManageUsers"] := true
+            capabilities["canConfigureSystem"] := true
 
         default:
-        OutputDebug("  Unknown role - no permissions`n")
-        return capabilities
+            OutputDebug("  Unknown role - no permissions`n")
+            return capabilities
     }
 
     OutputDebug("Capabilities:`n")
@@ -275,9 +275,9 @@ AssignPermissions(role) {
 ; ============================================================================
 
 /**
-* Demonstrates categorizing values into ranges.
-* Shows bucketing and classification patterns.
-*/
+ * Demonstrates categorizing values into ranges.
+ * Shows bucketing and classification patterns.
+ */
 Example5_RangeCategorization() {
     OutputDebug("=== Example 5: Range Categorization ===`n")
 
@@ -290,8 +290,8 @@ Example5_RangeCategorization() {
 }
 
 /**
-* Categorizes a score into a grade bracket.
-*/
+ * Categorizes a score into a grade bracket.
+ */
 CategorizeScore(score) {
     ; First normalize score to a category
     if (score >= 90) {
@@ -311,34 +311,34 @@ CategorizeScore(score) {
     ; Then use switch for category-specific logic
     switch category {
         case "A":
-        message := "Excellent work!"
-        scholarshipEligible := true
-        honorRoll := true
+            message := "Excellent work!"
+            scholarshipEligible := true
+            honorRoll := true
 
         case "B":
-        message := "Good job!"
-        scholarshipEligible := true
-        honorRoll := false
+            message := "Good job!"
+            scholarshipEligible := true
+            honorRoll := false
 
         case "C":
-        message := "Satisfactory"
-        scholarshipEligible := false
-        honorRoll := false
+            message := "Satisfactory"
+            scholarshipEligible := false
+            honorRoll := false
 
         case "D":
-        message := "Needs improvement"
-        scholarshipEligible := false
-        honorRoll := false
+            message := "Needs improvement"
+            scholarshipEligible := false
+            honorRoll := false
 
         case "F":
-        message := "Failed - requires retake"
-        scholarshipEligible := false
-        honorRoll := false
+            message := "Failed - requires retake"
+            scholarshipEligible := false
+            honorRoll := false
 
         default:
-        message := "Invalid grade"
-        scholarshipEligible := false
-        honorRoll := false
+            message := "Invalid grade"
+            scholarshipEligible := false
+            honorRoll := false
     }
 
     OutputDebug("  Message: " message "`n")
@@ -351,9 +351,9 @@ CategorizeScore(score) {
 ; ============================================================================
 
 /**
-* Demonstrates state machine transitions.
-* Shows how to handle state-based logic without fall-through.
-*/
+ * Demonstrates state machine transitions.
+ * Shows how to handle state-based logic without fall-through.
+ */
 Example6_StateTransitions() {
     OutputDebug("=== Example 6: State Transitions ===`n")
 
@@ -370,8 +370,8 @@ Example6_StateTransitions() {
 }
 
 /**
-* Handles state transitions based on current state and action.
-*/
+ * Handles state transitions based on current state and action.
+ */
 TransitionState(currentState, action) {
     OutputDebug("State: " currentState " + Action: " action "`n")
 
@@ -380,59 +380,59 @@ TransitionState(currentState, action) {
 
     switch currentState {
         case "idle":
-        switch action {
-            case "start":
-            newState := "running"
-            validTransition := true
-            OutputDebug("  Transitioning to RUNNING`n")
-            default:
-            OutputDebug("  ERROR: Can only 'start' from idle`n")
-        }
+            switch action {
+                case "start":
+                    newState := "running"
+                    validTransition := true
+                    OutputDebug("  Transitioning to RUNNING`n")
+                default:
+                    OutputDebug("  ERROR: Can only 'start' from idle`n")
+            }
 
         case "running":
-        switch action {
-            case "pause":
-            newState := "paused"
-            validTransition := true
-            OutputDebug("  Transitioning to PAUSED`n")
-            case "complete":
-            newState := "completed"
-            validTransition := true
-            OutputDebug("  Transitioning to COMPLETED`n")
-            case "cancel":
-            newState := "idle"
-            validTransition := true
-            OutputDebug("  Transitioning to IDLE`n")
-            default:
-            OutputDebug("  ERROR: Invalid action for running state`n")
-        }
+            switch action {
+                case "pause":
+                    newState := "paused"
+                    validTransition := true
+                    OutputDebug("  Transitioning to PAUSED`n")
+                case "complete":
+                    newState := "completed"
+                    validTransition := true
+                    OutputDebug("  Transitioning to COMPLETED`n")
+                case "cancel":
+                    newState := "idle"
+                    validTransition := true
+                    OutputDebug("  Transitioning to IDLE`n")
+                default:
+                    OutputDebug("  ERROR: Invalid action for running state`n")
+            }
 
         case "paused":
-        switch action {
-            case "resume":
-            newState := "running"
-            validTransition := true
-            OutputDebug("  Transitioning to RUNNING`n")
-            case "cancel":
-            newState := "idle"
-            validTransition := true
-            OutputDebug("  Transitioning to IDLE`n")
-            default:
-            OutputDebug("  ERROR: Invalid action for paused state`n")
-        }
+            switch action {
+                case "resume":
+                    newState := "running"
+                    validTransition := true
+                    OutputDebug("  Transitioning to RUNNING`n")
+                case "cancel":
+                    newState := "idle"
+                    validTransition := true
+                    OutputDebug("  Transitioning to IDLE`n")
+                default:
+                    OutputDebug("  ERROR: Invalid action for paused state`n")
+            }
 
         case "completed":
-        switch action {
-            case "reset":
-            newState := "idle"
-            validTransition := true
-            OutputDebug("  Transitioning to IDLE`n")
-            default:
-            OutputDebug("  ERROR: Can only 'reset' from completed`n")
-        }
+            switch action {
+                case "reset":
+                    newState := "idle"
+                    validTransition := true
+                    OutputDebug("  Transitioning to IDLE`n")
+                default:
+                    OutputDebug("  ERROR: Can only 'reset' from completed`n")
+            }
 
         default:
-        OutputDebug("  ERROR: Unknown state`n")
+            OutputDebug("  ERROR: Unknown state`n")
     }
 
     OutputDebug("  Result: " currentState " -> " newState "`n`n")
@@ -444,9 +444,9 @@ TransitionState(currentState, action) {
 ; ============================================================================
 
 /**
-* Demonstrates managing feature flags and application capabilities.
-* Shows progressive enhancement patterns.
-*/
+ * Demonstrates managing feature flags and application capabilities.
+ * Shows progressive enhancement patterns.
+ */
 Example7_FeatureFlags() {
     OutputDebug("=== Example 7: Feature Flags ===`n")
 
@@ -460,8 +460,8 @@ Example7_FeatureFlags() {
 }
 
 /**
-* Determines available features based on subscription tier.
-*/
+ * Determines available features based on subscription tier.
+ */
 DetermineFeatures(tier) {
     features := Map()
     OutputDebug("Subscription: " tier "`n")
@@ -479,45 +479,45 @@ DetermineFeatures(tier) {
     ; Enable features based on tier
     switch tier {
         case "free":
-        features["basicAccess"] := true
-        maxProjects := 1
-        storageGB := 1
-        support := "Community"
+            features["basicAccess"] := true
+            maxProjects := 1
+            storageGB := 1
+            support := "Community"
 
         case "starter":
-        features["basicAccess"] := true
-        features["cloudSync"] := true
-        maxProjects := 5
-        storageGB := 10
-        support := "Email"
+            features["basicAccess"] := true
+            features["cloudSync"] := true
+            maxProjects := 5
+            storageGB := 10
+            support := "Email"
 
         case "pro":
-        features["basicAccess"] := true
-        features["cloudSync"] := true
-        features["advancedAnalytics"] := true
-        features["prioritySupport"] := true
-        features["apiAccess"] := true
-        maxProjects := 25
-        storageGB := 100
-        support := "Priority"
+            features["basicAccess"] := true
+            features["cloudSync"] := true
+            features["advancedAnalytics"] := true
+            features["prioritySupport"] := true
+            features["apiAccess"] := true
+            maxProjects := 25
+            storageGB := 100
+            support := "Priority"
 
         case "enterprise":
-        ; Enterprise gets all features
-        features["basicAccess"] := true
-        features["cloudSync"] := true
-        features["advancedAnalytics"] := true
-        features["prioritySupport"] := true
-        features["apiAccess"] := true
-        features["customBranding"] := true
-        features["sso"] := true
-        features["auditLogs"] := true
-        maxProjects := "Unlimited"
-        storageGB := "Unlimited"
-        support := "24/7 Dedicated"
+            ; Enterprise gets all features
+            features["basicAccess"] := true
+            features["cloudSync"] := true
+            features["advancedAnalytics"] := true
+            features["prioritySupport"] := true
+            features["apiAccess"] := true
+            features["customBranding"] := true
+            features["sso"] := true
+            features["auditLogs"] := true
+            maxProjects := "Unlimited"
+            storageGB := "Unlimited"
+            support := "24/7 Dedicated"
 
         default:
-        OutputDebug("  Unknown tier`n")
-        return features
+            OutputDebug("  Unknown tier`n")
+            return features
     }
 
     ; Display enabled features

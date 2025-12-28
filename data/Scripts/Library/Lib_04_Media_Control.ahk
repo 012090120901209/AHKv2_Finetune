@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include <Media>
 
 /**
-* Media Control - Universal Media Session Control
-*
-* Demonstrates controlling media playback across applications
-* using Windows UWP Media Control interface (Spotify, Chrome,
-* media players, etc.)
-*
-* Source: nperovic-AHK-v2-Libraries/Lib/Media.ahk
-* Inspired by: https://github.com/nperovic/AHK-v2-Libraries
-*/
+ * Media Control - Universal Media Session Control
+ * 
+ * Demonstrates controlling media playback across applications
+ * using Windows UWP Media Control interface (Spotify, Chrome,
+ * media players, etc.)
+ * 
+ * Source: nperovic-AHK-v2-Libraries/Lib/Media.ahk
+ * Inspired by: https://github.com/nperovic/AHK-v2-Libraries
+ */
 
-#Include <Media>
 
 ; Create GUI for media control
 global mediaGui := Gui()
@@ -52,8 +52,8 @@ SetTimer(UpdateDisplay, 2000)
 ; ===============================================
 
 /**
-* Get and display current media session
-*/
+ * Get and display current media session
+ */
 UpdateDisplay() {
     global titleCtrl, artistCtrl, albumCtrl, statusCtrl, sourceCtrl, sessionList
     global currentSession
@@ -99,14 +99,14 @@ UpdateDisplay() {
 }
 
 /**
-* Switch to selected session
-*/
+ * Switch to selected session
+ */
 SwitchSession() {
     global sessionList, currentSession
 
     selected := sessionList.Value
     if (selected == 0)
-    return
+        return
 
     try {
         sessions := Media.GetSessions()
@@ -122,19 +122,19 @@ SwitchSession() {
 ; ===============================================
 
 /**
-* Toggle play/pause
-*/
+ * Toggle play/pause
+ */
 DoPlayPause() {
     global currentSession
 
     if (!IsSet(currentSession) || !currentSession)
-    return UpdateDisplay()
+        return UpdateDisplay()
 
     try {
         if (currentSession.PlaybackStatus == "Playing")
-        currentSession.Pause()
+            currentSession.Pause()
         else
-        currentSession.Play()
+            currentSession.Play()
 
         Sleep(500)
         UpdateDisplay()
@@ -144,13 +144,13 @@ DoPlayPause() {
 }
 
 /**
-* Stop playback
-*/
+ * Stop playback
+ */
 DoStop() {
     global currentSession
 
     if (!IsSet(currentSession) || !currentSession)
-    return UpdateDisplay()
+        return UpdateDisplay()
 
     try {
         currentSession.Stop()
@@ -162,13 +162,13 @@ DoStop() {
 }
 
 /**
-* Previous track
-*/
+ * Previous track
+ */
 DoPrevious() {
     global currentSession
 
     if (!IsSet(currentSession) || !currentSession)
-    return UpdateDisplay()
+        return UpdateDisplay()
 
     try {
         currentSession.SkipPrevious()
@@ -180,13 +180,13 @@ DoPrevious() {
 }
 
 /**
-* Next track
-*/
+ * Next track
+ */
 DoNext() {
     global currentSession
 
     if (!IsSet(currentSession) || !currentSession)
-    return UpdateDisplay()
+        return UpdateDisplay()
 
     try {
         currentSession.SkipNext()
@@ -202,10 +202,10 @@ DoNext() {
 ; ===============================================
 
 ; Media keys
-Media_Play_Pause::DoPlayPause()
-Media_Stop::DoStop()
-Media_Prev::DoPrevious()
-Media_Next::DoNext()
+Media_Play_Pause:: DoPlayPause()
+Media_Stop:: DoStop()
+Media_Prev:: DoPrevious()
+Media_Next:: DoNext()
 
 /*
 * Key Concepts:
@@ -305,3 +305,4 @@ Media_Next::DoNext()
 *     - Smart home control
 *     - Voice commands
 */
+

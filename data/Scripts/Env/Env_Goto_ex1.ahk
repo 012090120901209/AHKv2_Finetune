@@ -3,7 +3,9 @@
 
 ^h:: HK1_h()
 Return ; Add Return for Goto Start()
-HK1_h() { Start() Return ; Add Return for Goto MsgBox("Skipped")
+HK1_h() {
+    Start() Return ; Add Return for Goto MsgBox("Skipped")
 }
-Start() { MsgBox("This MsgBox is under the start label")
+Start() {
+    MsgBox("This MsgBox is under the start label")
 }

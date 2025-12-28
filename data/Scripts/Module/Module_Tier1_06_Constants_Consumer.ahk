@@ -1,19 +1,19 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Module Tier 1 Example 06: Constants Consumer
-*
-* This example demonstrates:
-* - Using exported constants
-* - Accessing static class properties
-* - Using exported configuration classes
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Tier1_05_Constants_Module.ahk
-*/
+ * Module Tier 1 Example 06: Constants Consumer
+ * 
+ * This example demonstrates:
+ * - Using exported constants
+ * - Accessing static class properties
+ * - Using exported configuration classes
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Tier1_05_Constants_Module.ahk
+ */
 
-#SingleInstance Force
 
 Import Constants
 
@@ -26,17 +26,17 @@ area := Constants.PI * (radius ** 2)
 circumference := 2 * Constants.PI * radius
 
 MsgBox("Circle with radius " radius ":"
-. "`nArea: " Format("{:.2f}", area)
-. "`nCircumference: " Format("{:.2f}", circumference)
-. "`n`nUsing PI = " Constants.PI,
-"Math Constants - Circle", "Icon!")
+    . "`nArea: " Format("{:.2f}", area)
+    . "`nCircumference: " Format("{:.2f}", circumference)
+    . "`n`nUsing PI = " Constants.PI,
+    "Math Constants - Circle", "Icon!")
 
 ; Exponential calculation
 value := Constants.E ** 2
 
 MsgBox("e² = " Format("{:.4f}", value)
-. "`n`nUsing E = " Constants.E,
-"Math Constants - Exponential", "Icon!")
+    . "`n`nUsing E = " Constants.E,
+    "Math Constants - Exponential", "Icon!")
 
 ; ============================================================
 ; Example 2: Application Configuration
@@ -46,9 +46,9 @@ appInfo := Constants.Config.GetInfo()
 isDebug := Constants.Config.IsDebug()
 
 MsgBox(appInfo
-. "`n`nDebug Mode: " (isDebug ? "Enabled" : "Disabled")
-. "`nLog Level: " Constants.Config.LOG_LEVEL,
-"Application Configuration", "Icon!")
+    . "`n`nDebug Mode: " (isDebug ? "Enabled" : "Disabled")
+    . "`nLog Level: " Constants.Config.LOG_LEVEL,
+    "Application Configuration", "Icon!")
 
 ; ============================================================
 ; Example 3: HTTP Status Codes
@@ -81,10 +81,10 @@ redHex := Constants.Colors.RGBToHex(255, 0, 0)
 blueRGB := Constants.Colors.HexToRGB(Constants.Colors.BLUE)
 
 MsgBox("Color Utilities:`n`n"
-. "RED (RGB 255,0,0) → " redHex "`n"
-. "BLUE (0x" Format("{:06X}", Constants.Colors.BLUE) ") → RGB("
-. blueRGB.r ", " blueRGB.g ", " blueRGB.b ")",
-"Color Constants", "Icon!")
+    . "RED (RGB 255,0,0) → " redHex "`n"
+    . "BLUE (0x" Format("{:06X}", Constants.Colors.BLUE) ") → RGB("
+    . blueRGB.r ", " blueRGB.g ", " blueRGB.b ")",
+    "Color Constants", "Icon!")
 
 ; ============================================================
 ; Example 5: Keyboard Keys
@@ -95,9 +95,9 @@ combo1 := Constants.Keys.Combine("F1", Constants.Keys.CTRL)
 combo2 := Constants.Keys.Combine("S", Constants.Keys.CTRL, Constants.Keys.SHIFT)
 
 MsgBox("Keyboard Shortcuts:`n`n"
-. "Help: " combo1 " (Ctrl+F1)`n"
-. "Save All: " combo2 " (Ctrl+Shift+S)",
-"Keyboard Keys", "Icon!")
+    . "Help: " combo1 " (Ctrl+F1)`n"
+    . "Save All: " combo2 " (Ctrl+Shift+S)",
+    "Keyboard Keys", "Icon!")
 
 ; ============================================================
 ; Example 6: Time Constants
@@ -108,10 +108,10 @@ interval := Constants.Time.MinutesToMs(2)
 duration := Constants.Time.HoursToMs(1)
 
 MsgBox("Time Conversions:`n`n"
-. "5 seconds = " timeout " ms`n"
-. "2 minutes = " interval " ms`n"
-. "1 hour = " duration " ms",
-"Time Constants", "Icon!")
+    . "5 seconds = " timeout " ms`n"
+    . "2 minutes = " interval " ms`n"
+    . "1 hour = " duration " ms",
+    "Time Constants", "Icon!")
 
 ; ============================================================
 ; Example 7: File Size Constants
@@ -122,10 +122,10 @@ file2 := 5242880
 file3 := 1073741824
 
 MsgBox("File Size Formatting:`n`n"
-. file1 " bytes → " Constants.FileSize.Format(file1) "`n"
-. file2 " bytes → " Constants.FileSize.Format(file2) "`n"
-. file3 " bytes → " Constants.FileSize.Format(file3),
-"File Size Constants", "Icon!")
+    . file1 " bytes → " Constants.FileSize.Format(file1) "`n"
+    . file2 " bytes → " Constants.FileSize.Format(file2) "`n"
+    . file3 " bytes → " Constants.FileSize.Format(file3),
+    "File Size Constants", "Icon!")
 
 ; ============================================================
 ; Example 8: Practical Use Case - Configuration
@@ -147,7 +147,7 @@ class Application {
 
     GetInfo() {
         return this.name " v" this.version
-        . "`nTimeout: " this.timeout " ms"
+            . "`nTimeout: " this.timeout " ms"
     }
 
     Log(message) {

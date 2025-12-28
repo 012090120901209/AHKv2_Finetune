@@ -3,10 +3,10 @@
 #Include JSON.ahk JSON.ahk
 
 /**
-* Flatten() - Flatten array one level (Standalone Implementation)
-*
-* Flattens array a single level deep.
-*/
+ * Flatten() - Flatten array one level (Standalone Implementation)
+ * 
+ * Flattens array a single level deep.
+ */
 
 Flatten(array) {
     result := []
@@ -33,4 +33,4 @@ result2 := Flatten([[1, 2, 3], [4, 5, 6]])
 ; => [1, 2, 3, 4, 5, 6]
 
 MsgBox("Flatten nested: " JSON.stringify(result1) "`n`n"
-. "Flatten 2D: " JSON.stringify(result2))
+    . "Flatten 2D: " JSON.stringify(result2))

@@ -12,17 +12,17 @@ class Calculator {
     __New(initialValue := 0) {
         this.value := initialValue
     }
-    
+
     Add(n) {
         this.value += n
         return this
     }
-    
+
     Multiply(n) {
         this.value *= n
         return this
     }
-    
+
     GetValue() => this.value
 }
 
@@ -32,11 +32,11 @@ class Calculator {
 
 ; Bind function to context (thisArg)
 Bind(fn, thisArg, args*) {
-    return (callArgs*) => fn.Call(thisArg, args*, callArgs*)
+    return (callArgs*) => fn.Call(thisArg, args *, callArgs*)
 }
 
 ; Bind with placeholder support
-PLACEHOLDER := {__isPlaceholder: true}
+PLACEHOLDER := { __isPlaceholder: true }
 
 BindWithPlaceholders(fn, args*) {
     return (callArgs*) => (
@@ -45,9 +45,9 @@ BindWithPlaceholders(fn, args*) {
         (for arg in args {
             if IsObject(arg) && arg.HasOwnProp("__isPlaceholder")
                 mergedArgs.Push(callArgs[callIndex++])
-            else
-                mergedArgs.Push(arg)
-        }),
+                else
+                    mergedArgs.Push(arg)
+            }),
         ; Add remaining args
         (while callIndex <= callArgs.Length
             mergedArgs.Push(callArgs[callIndex++])),
@@ -61,12 +61,12 @@ BindWithPlaceholders(fn, args*) {
 
 ; Apply arguments from the left
 PartialLeft(fn, boundArgs*) {
-    return (args*) => fn(boundArgs*, args*)
+    return (args*) => fn(boundArgs *, args*)
 }
 
 ; Apply arguments from the right
 PartialRight(fn, boundArgs*) {
-    return (args*) => fn(args*, boundArgs*)
+    return (args*) => fn(args *, boundArgs*)
 }
 
 ; Example functions
@@ -81,17 +81,17 @@ Greet(greeting, name, punctuation) => greeting . ", " . name . punctuation
 Curry(fn, arity := 0) {
     ; Note: AHK doesn't expose fn.length, so we pass arity
     collected := []
-    
+
     Curried(args*) {
         for arg in args
             collected.Push(arg)
-        
+
         if collected.Length >= arity
             return fn(collected*)
-        
+
         return Curried
     }
-    
+
     return Curried
 }
 
@@ -135,7 +135,7 @@ Pipe(fns*) {
 ; Memoization decorator
 Memoize(fn) {
     cache := Map()
-    
+
     return (args*) => (
         key := _ArgsToKey(args),
         cache.Has(key) ? cache[key] : (cache[key] := fn(args*))
@@ -170,7 +170,7 @@ TimedCall(fn, &elapsed) {
 Once(fn) {
     called := false
     cachedResult := ""
-    
+
     return (args*) => (
         called ? cachedResult : (
             called := true,
@@ -182,7 +182,7 @@ Once(fn) {
 ; Debounce
 Debounce(fn, delayMs) {
     timerId := 0
-    
+
     return (args*) => (
         SetTimer((*) => 0, 0),  ; Clear any pending
         timerId := SetTimer((*) => fn(args*), -delayMs)
@@ -192,7 +192,7 @@ Debounce(fn, delayMs) {
 ; Throttle
 Throttle(fn, intervalMs) {
     lastCall := 0
-    
+
     return (args*) => (
         now := A_TickCount,
         (now - lastCall >= intervalMs) ? (
@@ -228,7 +228,7 @@ class MethodBinder {
         this.target := target
         this.boundMethods := Map()
     }
-    
+
     ; Get or create bound method
     __Item[methodName] {
         get {
@@ -240,7 +240,7 @@ class MethodBinder {
             return this.boundMethods[methodName]
         }
     }
-    
+
     ; Bind all methods at once
     BindAll(methodNames*) {
         for name in methodNames
@@ -258,13 +258,13 @@ class ChainBuilder {
         this.value := initialValue
         this.operations := []
     }
-    
+
     ; Add operation to chain
     Then(fn) {
         this.operations.Push(fn)
         return this
     }
-    
+
     ; Execute all operations
     Execute() {
         result := this.value
@@ -272,7 +272,7 @@ class ChainBuilder {
             result := op(result)
         return result
     }
-    
+
     ; Create bound chain from array of functions
     static FromFunctions(initial, fns*) {
         builder := ChainBuilder(initial)

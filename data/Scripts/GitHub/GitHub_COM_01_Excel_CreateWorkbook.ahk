@@ -1,53 +1,53 @@
 #Requires AutoHotkey v2.0
 
 /**
-* GitHub_COM_01_Excel_CreateWorkbook.ahk
-*
-* DESCRIPTION:
-* Creates and manipulates Excel workbooks using COM automation
-*
-* FEATURES:
-* - Launch Excel application
-* - Create new workbook
-* - Write data to cells
-* - Format cells and ranges
-* - Save and close workbook
-*
-* SOURCE:
-* Based on common Excel COM automation patterns
-* Reference: Microsoft Excel Object Model
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for creating COM instances
-* - COM property access (obj.Property)
-* - COM method calls (obj.Method())
-* - Nested COM objects (Excel.Workbooks.Add)
-* - Try/finally for cleanup
-*
-* REQUIREMENTS:
-* - Microsoft Excel installed
-*
-* USAGE:
-* CreateExcelReport()
-*
-* LEARNING POINTS:
-* 1. ComObject("Excel.Application") creates Excel instance
-* 2. Visible property controls if Excel window shows
-* 3. Workbooks.Add creates new workbook
-* 4. Cells(row, col) accesses individual cells
-* 5. SaveAs requires full file path
-*/
+ * GitHub_COM_01_Excel_CreateWorkbook.ahk
+ * 
+ * DESCRIPTION:
+ * Creates and manipulates Excel workbooks using COM automation
+ * 
+ * FEATURES:
+ * - Launch Excel application
+ * - Create new workbook
+ * - Write data to cells
+ * - Format cells and ranges
+ * - Save and close workbook
+ * 
+ * SOURCE:
+ * Based on common Excel COM automation patterns
+ * Reference: Microsoft Excel Object Model
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for creating COM instances
+ * - COM property access (obj.Property)
+ * - COM method calls (obj.Method())
+ * - Nested COM objects (Excel.Workbooks.Add)
+ * - Try/finally for cleanup
+ * 
+ * REQUIREMENTS:
+ * - Microsoft Excel installed
+ * 
+ * USAGE:
+ * CreateExcelReport()
+ * 
+ * LEARNING POINTS:
+ * 1. ComObject("Excel.Application") creates Excel instance
+ * 2. Visible property controls if Excel window shows
+ * 3. Workbooks.Add creates new workbook
+ * 4. Cells(row, col) accesses individual cells
+ * 5. SaveAs requires full file path
+ */
 
 /**
-* Create a simple Excel workbook with sample data
-*
-* @param {String} savePath - Full path to save workbook
-* @param {Boolean} visible - Show Excel window (default: true)
-* @returns {Boolean} - Success status
-*
-* @example
-* CreateExcelWorkbook("C:\Reports\MyReport.xlsx")
-*/
+ * Create a simple Excel workbook with sample data
+ * 
+ * @param {String} savePath - Full path to save workbook
+ * @param {Boolean} visible - Show Excel window (default: true)
+ * @returns {Boolean} - Success status
+ * 
+ * @example
+ * CreateExcelWorkbook("C:\Reports\MyReport.xlsx")
+ */
 CreateExcelWorkbook(savePath := "", visible := true) {
     try {
         ; Create Excel application instance
@@ -115,20 +115,20 @@ CreateExcelWorkbook(savePath := "", visible := true) {
 ; CreateExcelWorkbook(savePath, true)
 
 MsgBox("Example 1: Create workbook with sample data`n`n"
-. "Uncomment the code to test Excel creation",
-"Excel Example 1", "Icon!")
+    . "Uncomment the code to test Excel creation",
+    "Excel Example 1", "Icon!")
 
 ; ============================================================
 ; Example 2: Write Array Data to Excel
 ; ============================================================
 
 /**
-* Write 2D array data to Excel
-*
-* @param {Array} data - 2D array of data
-* @param {String} savePath - Path to save
-* @returns {Boolean} - Success
-*/
+ * Write 2D array data to Excel
+ * 
+ * @param {Array} data - 2D array of data
+ * @param {String} savePath - Path to save
+ * @returns {Boolean} - Success
+ */
 WriteArrayToExcel(data, savePath := "") {
     try {
         xl := ComObject("Excel.Application")
@@ -149,7 +149,7 @@ WriteArrayToExcel(data, savePath := "") {
         ws.Columns("A:Z").AutoFit()
 
         if (savePath != "")
-        wb.SaveAs(savePath)
+            wb.SaveAs(savePath)
 
         return true
 
@@ -162,10 +162,10 @@ WriteArrayToExcel(data, savePath := "") {
 
 ; Example data
 sampleData := [
-["Product", "Price", "Quantity", "Total"],
-["Widget A", 10.50, 100, 1050.00],
-["Widget B", 15.75, 75, 1181.25],
-["Widget C", 8.25, 150, 1237.50]
+    ["Product", "Price", "Quantity", "Total"],
+    ["Widget A", 10.50, 100, 1050.00],
+    ["Widget B", 15.75, 75, 1181.25],
+    ["Widget C", 8.25, 150, 1237.50]
 ]
 
 ; Uncomment to test:
@@ -176,13 +176,13 @@ sampleData := [
 ; ============================================================
 
 /**
-* Read data from Excel file
-*
-* @param {String} filePath - Path to Excel file
-* @param {String} sheetName - Worksheet name (default: first sheet)
-* @param {Number} maxRows - Maximum rows to read (default: 100)
-* @returns {Array} - 2D array of cell values
-*/
+ * Read data from Excel file
+ * 
+ * @param {String} filePath - Path to Excel file
+ * @param {String} sheetName - Worksheet name (default: first sheet)
+ * @param {Number} maxRows - Maximum rows to read (default: 100)
+ * @returns {Array} - 2D array of cell values
+ */
 ReadExcelData(filePath, sheetName := "", maxRows := 100) {
     data := []
 
@@ -194,9 +194,9 @@ ReadExcelData(filePath, sheetName := "", maxRows := 100) {
 
         ; Get worksheet
         if (sheetName = "")
-        ws := wb.Worksheets(1)
+            ws := wb.Worksheets(1)
         else
-        ws := wb.Worksheets(sheetName)
+            ws := wb.Worksheets(sheetName)
 
         ; Find last used row
         lastRow := ws.UsedRange.Rows.Count
@@ -239,10 +239,10 @@ ReadExcelData(filePath, sheetName := "", maxRows := 100) {
 ; ============================================================
 
 /**
-* Create formatted Excel report
-*
-* @param {String} savePath - Save location
-*/
+ * Create formatted Excel report
+ * 
+ * @param {String} savePath - Save location
+ */
 CreateFormattedReport(savePath) {
     try {
         xl := ComObject("Excel.Application")
@@ -295,7 +295,7 @@ CreateFormattedReport(savePath) {
         ws.Range("A3:D6").Borders.LineStyle := 1  ; Continuous
 
         if (savePath != "")
-        wb.SaveAs(savePath)
+            wb.SaveAs(savePath)
 
         return true
 

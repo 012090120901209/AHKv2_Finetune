@@ -55,16 +55,16 @@ class CSV {
 
         return RTrim(result, "`n")
     }
-    
+
     ; Parse into array of maps with headers
     static ParseWithHeaders(text, delimiter := ",") {
         rows := this.Parse(text, delimiter)
         if rows.Length < 2
             return []
-        
+
         headers := rows[1]
         result := []
-        
+
         Loop rows.Length - 1 {
             row := rows[A_Index + 1]
             record := Map()
@@ -72,7 +72,7 @@ class CSV {
                 record[header] := i <= row.Length ? row[i] : ""
             result.Push(record)
         }
-        
+
         return result
     }
 }

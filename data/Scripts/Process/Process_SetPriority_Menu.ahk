@@ -2,25 +2,25 @@
 #SingleInstance Force
 
 /**
-* Process Priority Control
-*
-* Demonstrates adjusting process priority to optimize system
-* performance and resource allocation.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Process Priority Control
+ * 
+ * Demonstrates adjusting process priority to optimize system
+ * performance and resource allocation.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Process Priority Control Demo`n`n"
-. "Hotkey: Win+P`n`n"
-. "Opens a menu to adjust the priority of the active window's process.`n`n"
-. "Priority Levels:`n"
-. "- Low: Background tasks`n"
-. "- Below Normal: Less important`n"
-. "- Normal: Default`n"
-. "- Above Normal: Important tasks`n"
-. "- High: Critical tasks`n"
-. "- Realtime: System-level (危险!)", , "T7")
+    . "Hotkey: Win+P`n`n"
+    . "Opens a menu to adjust the priority of the active window's process.`n`n"
+    . "Priority Levels:`n"
+    . "- Low: Background tasks`n"
+    . "- Below Normal: Less important`n"
+    . "- Normal: Default`n"
+    . "- Above Normal: Important tasks`n"
+    . "- High: Critical tasks`n"
+    . "- Realtime: System-level (危险!)", , "T7")
 
 ; Open Notepad for demo
 Run("notepad.exe")
@@ -30,11 +30,11 @@ WinActivate("ahk_exe notepad.exe")
 MsgBox("Press Win+P to adjust Notepad's priority!", , "T3")
 
 ; Hotkey to show priority menu
-#p::ShowPriorityMenu()
+#p:: ShowPriorityMenu()
 
 /**
-* Show process priority adjustment menu
-*/
+ * Show process priority adjustment menu
+ */
 ShowPriorityMenu() {
     ; Get active window
     hwnd := WinExist("A")
@@ -74,8 +74,8 @@ ShowPriorityMenu() {
 
     ; Show info tooltip
     ToolTip("Process: " processName "`n"
-    . "PID: " pid "`n"
-    . "Current: " currentText)
+        . "PID: " pid "`n"
+        . "Current: " currentText)
     SetTimer(() => ToolTip(), -3000)
 
     ; Show menu
@@ -83,8 +83,8 @@ ShowPriorityMenu() {
 }
 
 /**
-* Set process priority
-*/
+ * Set process priority
+ */
 SetPriority(pid, priority) {
     try {
         ProcessSetPriority(priority, pid)
@@ -100,23 +100,23 @@ SetPriority(pid, priority) {
 }
 
 /**
-* Set realtime priority with warning
-*/
+ * Set realtime priority with warning
+ */
 SetPriorityRealtime(pid) {
     result := MsgBox("⚠ WARNING ⚠`n`n"
-    . "Realtime priority can make your system unstable!`n`n"
-    . "The process will have higher priority than system processes.`n"
-    . "Your mouse/keyboard may become unresponsive.`n`n"
-    . "Continue?",
-    "Realtime Warning", "YesNo Icon! Default2")
+        . "Realtime priority can make your system unstable!`n`n"
+        . "The process will have higher priority than system processes.`n"
+        . "Your mouse/keyboard may become unresponsive.`n`n"
+        . "Continue?",
+        "Realtime Warning", "YesNo Icon! Default2")
 
     if (result == "Yes")
-    SetPriority(pid, "R")
+        SetPriority(pid, "R")
 }
 
 /**
-* Convert priority code to text
-*/
+ * Convert priority code to text
+ */
 PriorityToText(priority) {
     switch priority {
         case "L": return "Low"
@@ -205,3 +205,4 @@ PriorityToText(priority) {
 *     - Thread priority
 *     - Performance profiles
 */
+

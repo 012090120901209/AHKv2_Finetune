@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Module Tier 2 Example 03: Import Aliases Demo
-*
-* This example demonstrates:
-* - Aliasing imported functions
-* - Avoiding name collisions
-* - Creating more readable APIs
-* - Renaming for clarity
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Tier2_01_StringHelpers_Module.ahk
-*/
+ * Module Tier 2 Example 03: Import Aliases Demo
+ * 
+ * This example demonstrates:
+ * - Aliasing imported functions
+ * - Avoiding name collisions
+ * - Creating more readable APIs
+ * - Renaming for clarity
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Tier2_01_StringHelpers_Module.ahk
+ */
 
-#SingleInstance Force
 
 ; ============================================================
 ; Import with Aliases
@@ -46,19 +46,18 @@ result .= "Kebab:  " Kebab(text) "`n"
 result .= "Cap:    " Cap(text) "`n"
 
 MsgBox(result, "Import Aliases - Shorter Names", "Icon!")
+    ; ============================================================
+    ; Example 2: Avoiding Name Collisions
+    ; ============================================================
 
-; ============================================================
-; Example 2: Avoiding Name Collisions
-; ============================================================
+    ; Imagine we have multiple modules with similar function names
+    ; (We'll simulate this with a local function)
 
-; Imagine we have multiple modules with similar function names
-; (We'll simulate this with a local function)
-
-; Local Contains function (conflicts with StringHelpers.Contains)
-Contains(array, value) {
+    ; Local Contains function (conflicts with StringHelpers.Contains)
+    Contains (array, value) {
     for item in array {
         if item = value
-        return true
+            return true
     }
     return false
 }
@@ -68,14 +67,14 @@ Import { Contains as StringContains } from StringHelpers
 
 ; Now we can use both!
 myArray := [1, 2, 3, 4, 5]
-hasNumber := Contains(myArray, 3)  ; Our local function
+hasNumber := Contains (myArray, 3)  ; Our local function
 
 myText := "Hello World"
 hasWord := StringContains(myText, "World")  ; Imported function
 
 MsgBox("Array contains 3: " (hasNumber ? "Yes" : "No") "`n"
-. "Text contains 'World': " (hasWord ? "Yes" : "No"),
-"Avoiding Name Collisions", "Icon!")
+    . "Text contains 'World': " (hasWord ? "Yes" : "No"),
+    "Avoiding Name Collisions", "Icon!")
 
 ; ============================================================
 ; Example 3: Domain-Specific Aliases
@@ -107,11 +106,11 @@ class BlogPost {
 post := BlogPost("My First Blog Post")
 
 MsgBox("Blog Post:`n`n"
-. "Title: " post.title "`n"
-. "Slug:  " post.slug "`n"
-. "ID:    " post.id "`n`n"
-. "URL: " post.GetURL(),
-"Domain-Specific Aliases", "Icon!")
+    . "Title: " post.title "`n"
+    . "Slug:  " post.slug "`n"
+    . "ID:    " post.id "`n`n"
+    . "URL: " post.GetURL(),
+    "Domain-Specific Aliases", "Icon!")
 
 ; ============================================================
 ; Example 4: Multiple Modules, Same Function Name
@@ -122,7 +121,7 @@ class ArrayHelpers {
     static Join(arr, sep := ", ") {
         result := ""
         for index, value in arr
-        result .= value (index < arr.Length ? sep : "")
+            result .= value (index < arr.Length ? sep : "")
         return result
     }
 }
@@ -143,9 +142,9 @@ arrayResult := ArrayHelpers.Join(words, " ")
 stringResult := JoinString(words, " | ")
 
 MsgBox("Words: " ArrayHelpers.Join(words, ", ") "`n`n"
-. "Array Join:  " arrayResult "`n"
-. "String Join: " stringResult,
-"Multiple Modules", "Icon!")
+    . "Array Join:  " arrayResult "`n"
+    . "String Join: " stringResult,
+    "Multiple Modules", "Icon!")
 
 ; ============================================================
 ; Example 5: Chaining with Aliases
@@ -171,7 +170,7 @@ labels.Push(FormatLabel("This is a very long text that will be truncated"))
 
 output := "Formatted Labels:`n`n"
 for label in labels
-output .= label "`n"
+    output .= label "`n"
 
 MsgBox(output, "Chaining with Aliases", "Icon!")
 
@@ -236,16 +235,16 @@ class FormValidator {
         errors := []
 
         if StrLen(username) < 3
-        errors.Push("Username must be at least 3 characters")
+            errors.Push("Username must be at least 3 characters")
 
         if !RegExMatch(username, "^[a-zA-Z0-9_]+$")
-        errors.Push("Username can only contain letters, numbers, and underscores")
+            errors.Push("Username can only contain letters, numbers, and underscores")
 
         if Begins(username, "_")
-        errors.Push("Username cannot start with underscore")
+            errors.Push("Username cannot start with underscore")
 
         if Ends(username, "_")
-        errors.Push("Username cannot end with underscore")
+            errors.Push("Username cannot end with underscore")
 
         return {
             isValid: errors.Length = 0,
@@ -260,14 +259,14 @@ validator := FormValidator()
 ; Test valid username
 result1 := validator.ValidateUsername("  john_doe123  ")
 MsgBox("Username: '" result1.username "' → "
-. (result1.isValid ? "✓ Valid" : "✗ Invalid"),
-"Valid Username", "Icon!")
+    . (result1.isValid ? "✓ Valid" : "✗ Invalid"),
+    "Valid Username", "Icon!")
 
 ; Test invalid username
 result2 := validator.ValidateUsername("_invalid_username_that_is_way_too_long_")
 if !result2.isValid {
     errMsg := "Username: '" result2.username "' → ✗ Invalid`n`nErrors:`n"
     for error in result2.errors
-    errMsg .= "• " error "`n"
+        errMsg .= "• " error "`n"
     MsgBox(errMsg, "Invalid Username", "Icon!")
 }

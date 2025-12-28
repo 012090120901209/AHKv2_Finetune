@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* ControlGetText() - Get control text
-*
-* Retrieves text from a control.
-*/
+ * ControlGetText() - Get control text
+ * 
+ * Retrieves text from a control.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiEvents_04.ahk - Input Validation Events
-*
-* This file demonstrates input validation using events in AutoHotkey v2.
-* Topics covered:
-* - Real-time validation
-* - Form validation
-* - Custom validators
-* - Error display
-* - Validation messages
-* - Multi-field validation
-* - Validation rules
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiEvents_04.ahk - Input Validation Events
+ * 
+ * This file demonstrates input validation using events in AutoHotkey v2.
+ * Topics covered:
+ * - Real-time validation
+ * - Form validation
+ * - Custom validators
+ * - Error display
+ * - Validation messages
+ * - Multi-field validation
+ * - Validation rules
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates real-time validation with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates real-time validation with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example1_Realtimevalidation() {
     myGui := Gui(, "Real-time validation Demo")
     myGui.BackColor := "White"
@@ -87,15 +86,14 @@ Example1_Realtimevalidation() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Form validation
 ; =============================================================================
 
 /**
-* Demonstrates form validation with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates form validation with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example2_Formvalidation() {
     myGui := Gui(, "Form validation Demo")
     myGui.BackColor := "White"
@@ -155,15 +153,14 @@ Example2_Formvalidation() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Custom validators
 ; =============================================================================
 
 /**
-* Demonstrates custom validators with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates custom validators with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example3_Customvalidators() {
     myGui := Gui(, "Custom validators Demo")
     myGui.BackColor := "White"
@@ -223,15 +220,14 @@ Example3_Customvalidators() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Error display
 ; =============================================================================
 
 /**
-* Demonstrates error display with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates error display with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example4_Errordisplay() {
     myGui := Gui(, "Error display Demo")
     myGui.BackColor := "White"
@@ -291,15 +287,14 @@ Example4_Errordisplay() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Validation messages
 ; =============================================================================
 
 /**
-* Demonstrates validation messages with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates validation messages with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example5_Validationmessages() {
     myGui := Gui(, "Validation messages Demo")
     myGui.BackColor := "White"
@@ -359,15 +354,14 @@ Example5_Validationmessages() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Multi-field validation
 ; =============================================================================
 
 /**
-* Demonstrates multi-field validation with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates multi-field validation with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example6_Multifieldvalidation() {
     myGui := Gui(, "Multi-field validation Demo")
     myGui.BackColor := "White"
@@ -427,15 +421,14 @@ Example6_Multifieldvalidation() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Validation rules
 ; =============================================================================
 
 /**
-* Demonstrates validation rules with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates validation rules with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example7_Validationrules() {
     myGui := Gui(, "Validation rules Demo")
     myGui.BackColor := "White"
@@ -500,8 +493,8 @@ Example7_Validationrules() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiEvents_04.ahk - Examples")
     menuGui.BackColor := "White"

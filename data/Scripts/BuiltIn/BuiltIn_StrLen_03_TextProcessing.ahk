@@ -1,47 +1,47 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_StrLen_03_TextProcessing.ahk
-*
-* DESCRIPTION:
-* Advanced text processing using StrLen() for analysis and manipulation
-*
-* FEATURES:
-* - Text statistics and analysis
-* - Word count estimation
-* - Reading time calculation
-* - Text formatting and alignment
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - StrLen()
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - StrLen() in complex algorithms
-* - Loop Parse for character iteration
-* - String formatting with alignment
-* - Class-based text analyzers
-*
-* LEARNING POINTS:
-* 1. StrLen() enables sophisticated text analysis
-* 2. Combine with parsing for detailed statistics
-* 3. Use for formatting and alignment calculations
-* 4. Essential for text-based UI elements
-*/
+ * BuiltIn_StrLen_03_TextProcessing.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced text processing using StrLen() for analysis and manipulation
+ * 
+ * FEATURES:
+ * - Text statistics and analysis
+ * - Word count estimation
+ * - Reading time calculation
+ * - Text formatting and alignment
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - StrLen()
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - StrLen() in complex algorithms
+ * - Loop Parse for character iteration
+ * - String formatting with alignment
+ * - Class-based text analyzers
+ * 
+ * LEARNING POINTS:
+ * 1. StrLen() enables sophisticated text analysis
+ * 2. Combine with parsing for detailed statistics
+ * 3. Use for formatting and alignment calculations
+ * 4. Essential for text-based UI elements
+ */
 
 ; ============================================================
 ; Example 1: Text Statistics Analyzer
 ; ============================================================
 
 /**
-* Comprehensive text statistics
-*/
+ * Comprehensive text statistics
+ */
 class TextAnalyzer {
     /**
-    * Analyze text and return statistics
-    *
-    * @param {String} text - Text to analyze
-    * @returns {Map} - Statistics
-    */
+     * Analyze text and return statistics
+     * 
+     * @param {String} text - Text to analyze
+     * @returns {Map} - Statistics
+     */
     static Analyze(text) {
         stats := Map()
 
@@ -60,15 +60,15 @@ class TextAnalyzer {
             char := A_LoopField
 
             if (char = " ")
-            spaces++
+                spaces++
             else if (RegExMatch(char, "[A-Za-z]"))
-            letters++
+                letters++
             else if (RegExMatch(char, "\d"))
-            digits++
+                digits++
             else if (RegExMatch(char, "[.,!?;:'`"-]"))
-            punctuation++
+                punctuation++
             else
-            other++
+                other++
         }
 
         stats["letters"] := letters
@@ -87,36 +87,36 @@ class TextAnalyzer {
     }
 
     /**
-    * Estimate word count
-    */
+     * Estimate word count
+     */
     static EstimateWords(text) {
         ; Simple estimation: split by spaces
         if (StrLen(text) = 0)
-        return 0
+            return 0
 
         trimmed := Trim(text)
         if (StrLen(trimmed) = 0)
-        return 0
+            return 0
 
         words := StrSplit(trimmed, " ")
         return words.Length
     }
 
     /**
-    * Estimate sentence count
-    */
+     * Estimate sentence count
+     */
     static EstimateSentences(text) {
         count := 0
         Loop Parse, text {
             if (InStr(".!?", A_LoopField))
-            count++
+                count++
         }
         return count > 0 ? count : 1
     }
 
     /**
-    * Format statistics for display
-    */
+     * Format statistics for display
+     */
     static FormatStats(stats) {
         output := "TEXT STATISTICS:`n`n"
         output .= "Total Characters: " stats["totalChars"] "`n"
@@ -153,19 +153,19 @@ MsgBox(TextAnalyzer.FormatStats(stats), "Text Analysis", "Icon!")
 ; ============================================================
 
 /**
-* Pad text to specified width
-*
-* @param {String} text - Text to pad
-* @param {Integer} width - Target width
-* @param {String} align - Alignment (left, right, center)
-* @param {String} padChar - Padding character
-* @returns {String} - Padded text
-*/
+ * Pad text to specified width
+ * 
+ * @param {String} text - Text to pad
+ * @param {Integer} width - Target width
+ * @param {String} align - Alignment (left, right, center)
+ * @param {String} padChar - Padding character
+ * @returns {String} - Padded text
+ */
 PadText(text, width, align := "left", padChar := " ") {
     currentLength := StrLen(text)
 
     if (currentLength >= width)
-    return text
+        return text
 
     padding := width - currentLength
 
@@ -183,12 +183,12 @@ PadText(text, width, align := "left", padChar := " ") {
 }
 
 /**
-* Repeat string n times
-*/
+ * Repeat string n times
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -204,10 +204,10 @@ row3 := PadText("Bob Johnson", 20, "left") . PadText("35", 10, "right") . PadTex
 separator := StrRepeat("-", 45)
 
 table := header1 . header2 . header3 . "`n"
-. separator . "`n"
-. row1 . "`n"
-. row2 . "`n"
-. row3
+    . separator . "`n"
+    . row1 . "`n"
+    . row2 . "`n"
+    . row3
 
 MsgBox(table, "Aligned Table", "Icon!")
 
@@ -216,12 +216,12 @@ MsgBox(table, "Aligned Table", "Icon!")
 ; ============================================================
 
 /**
-* Create text-based progress bar
-*
-* @param {Number} percentage - Progress (0-100)
-* @param {Integer} width - Bar width in characters
-* @returns {String} - Progress bar
-*/
+ * Create text-based progress bar
+ * 
+ * @param {Number} percentage - Progress (0-100)
+ * @param {Integer} width - Bar width in characters
+ * @returns {String} - Progress bar
+ */
 CreateProgressBar(percentage, width := 30) {
     percentage := Max(0, Min(100, percentage))  ; Clamp to 0-100
 
@@ -229,10 +229,10 @@ CreateProgressBar(percentage, width := 30) {
     emptyLength := width - filledLength
 
     bar := "["
-    . StrRepeat("█", filledLength)
-    . StrRepeat("░", emptyLength)
-    . "] "
-    . Format("{:.1f}", percentage) "%"
+        . StrRepeat("█", filledLength)
+        . StrRepeat("░", emptyLength)
+        . "] "
+        . Format("{:.1f}", percentage) "%"
 
     return bar
 }
@@ -254,14 +254,14 @@ MsgBox(output, "Text Progress Bars", "Icon!")
 ; ============================================================
 
 /**
-* Calculate optimal column widths for data
-*
-* @param {Array} data - 2D array of data
-* @returns {Array} - Array of column widths
-*/
+ * Calculate optimal column widths for data
+ * 
+ * @param {Array} data - 2D array of data
+ * @returns {Array} - Array of column widths
+ */
 CalculateColumnWidths(data) {
     if (data.Length = 0)
-    return []
+        return []
 
     ; Get number of columns from first row
     columnCount := data[1].Length
@@ -269,14 +269,14 @@ CalculateColumnWidths(data) {
 
     ; Initialize widths
     Loop columnCount
-    widths.Push(0)
+        widths.Push(0)
 
     ; Find maximum width for each column
     for row in data {
         for colIndex, value in row {
             length := StrLen(String(value))
             if (length > widths[colIndex])
-            widths[colIndex] := length
+                widths[colIndex] := length
         }
     }
 
@@ -284,11 +284,11 @@ CalculateColumnWidths(data) {
 }
 
 /**
-* Format data as aligned table
-*
-* @param {Array} data - 2D array
-* @returns {String} - Formatted table
-*/
+ * Format data as aligned table
+ * 
+ * @param {Array} data - 2D array
+ * @returns {String} - Formatted table
+ */
 FormatTable(data) {
     widths := CalculateColumnWidths(data)
     output := ""
@@ -304,7 +304,7 @@ FormatTable(data) {
         if (rowIndex = 1) {
             totalWidth := 0
             for width in widths
-            totalWidth += width + 2
+                totalWidth += width + 2
             output .= StrRepeat("-", totalWidth) . "`n"
         }
     }
@@ -314,10 +314,10 @@ FormatTable(data) {
 
 ; Sample data
 tableData := [
-["Product", "Price", "Qty", "Total"],
-["Widget", "10.50", "100", "1050.00"],
-["Gadget", "25.99", "50", "1299.50"],
-["Tool", "5.25", "200", "1050.00"]
+    ["Product", "Price", "Qty", "Total"],
+    ["Widget", "10.50", "100", "1050.00"],
+    ["Gadget", "25.99", "50", "1299.50"],
+    ["Tool", "5.25", "200", "1050.00"]
 ]
 
 MsgBox(FormatTable(tableData), "Auto-Sized Table", "Icon!")
@@ -327,12 +327,12 @@ MsgBox(FormatTable(tableData), "Auto-Sized Table", "Icon!")
 ; ============================================================
 
 /**
-* Wrap text to specified line width
-*
-* @param {String} text - Text to wrap
-* @param {Integer} lineWidth - Maximum line width
-* @returns {String} - Wrapped text
-*/
+ * Wrap text to specified line width
+ * 
+ * @param {String} text - Text to wrap
+ * @param {Integer} lineWidth - Maximum line width
+ * @returns {String} - Wrapped text
+ */
 WrapText(text, lineWidth := 60) {
     words := StrSplit(text, " ")
     lines := []
@@ -345,17 +345,17 @@ WrapText(text, lineWidth := 60) {
             currentLine := testLine
         } else {
             if (currentLine != "")
-            lines.Push(currentLine)
+                lines.Push(currentLine)
             currentLine := word
         }
     }
 
     if (currentLine != "")
-    lines.Push(currentLine)
+        lines.Push(currentLine)
 
     result := ""
     for line in lines
-    result .= line . "`n"
+        result .= line . "`n"
 
     return RTrim(result, "`n")
 }
@@ -363,12 +363,12 @@ WrapText(text, lineWidth := 60) {
 longText := "This is a very long paragraph that needs to be wrapped to fit within a specified line width. The text will be automatically broken into multiple lines at word boundaries to ensure readability and proper formatting."
 
 MsgBox("Original (single line):`n"
-. longText "`n`n"
-. "Wrapped to 40 characters:`n"
-. WrapText(longText, 40) "`n`n"
-. "Wrapped to 30 characters:`n"
-. WrapText(longText, 30),
-"Text Wrapping", "Icon!")
+    . longText "`n`n"
+    . "Wrapped to 40 characters:`n"
+    . WrapText(longText, 40) "`n`n"
+    . "Wrapped to 30 characters:`n"
+    . WrapText(longText, 30),
+    "Text Wrapping", "Icon!")
 
 ; ============================================================
 ; Reference Information

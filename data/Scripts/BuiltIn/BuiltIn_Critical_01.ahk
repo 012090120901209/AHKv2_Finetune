@@ -1,20 +1,20 @@
 /**
-* @file BuiltIn_Critical_01.ahk
-* @description Thread safety and interruption control with Critical in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Critical prevents the current thread from being interrupted by other threads.
-* Essential for ensuring atomic operations, data consistency, and preventing
-* race conditions in multi-threaded automation scenarios.
-*
-* @syntax Critical [OnOffNumeric]
-* @param OnOffNumeric - "On", "Off", or period in milliseconds (default: On)
-*
-* @see https://www.autohotkey.com/docs/v2/lib/Critical.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_Critical_01.ahk
+ * @description Thread safety and interruption control with Critical in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Critical prevents the current thread from being interrupted by other threads.
+ * Essential for ensuring atomic operations, data consistency, and preventing
+ * race conditions in multi-threaded automation scenarios.
+ * 
+ * @syntax Critical [OnOffNumeric]
+ * @param OnOffNumeric - "On", "Off", or period in milliseconds (default: On)
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/Critical.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -23,9 +23,9 @@
 ; EXAMPLE 1: Basic Critical Protection
 ; ============================================================================
 /**
-* Demonstrates basic Critical usage to prevent interruptions
-* Shows difference between protected and unprotected code
-*/
+ * Demonstrates basic Critical usage to prevent interruptions
+ * Shows difference between protected and unprotected code
+ */
 Example1_BasicCritical() {
     myGui := Gui("+AlwaysOnTop", "Example 1: Basic Critical Protection")
     myGui.SetFont("s10")
@@ -48,7 +48,7 @@ Example1_BasicCritical() {
         logBox.Value := currentLog . Format("{:06d}ms", timestamp) . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 10000)
-        logBox.Value := SubStr(logBox.Value, -9000)
+            logBox.Value := SubStr(logBox.Value, -9000)
     }
 
     ; Unprotected operation (can be interrupted)
@@ -161,9 +161,9 @@ Example1_BasicCritical() {
 ; EXAMPLE 2: Race Condition Prevention
 ; ============================================================================
 /**
-* Demonstrates how Critical prevents race conditions
-* Shows data corruption without Critical and safety with it
-*/
+ * Demonstrates how Critical prevents race conditions
+ * Shows data corruption without Critical and safety with it
+ */
 Example2_RaceConditions() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Race Condition Prevention")
     myGui.SetFont("s10")
@@ -191,14 +191,14 @@ Example2_RaceConditions() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Update display
     UpdateDisplay() {
         dataText.Value := "Account Balance: $" accountBalance
-        . "`nTransactions: " transactionCount
-        . "`nErrors: " errorCount
+            . "`nTransactions: " transactionCount
+            . "`nErrors: " errorCount
     }
 
     ; Unsafe deposit (no Critical)
@@ -339,9 +339,9 @@ Example2_RaceConditions() {
 ; EXAMPLE 3: Critical with Timeout
 ; ============================================================================
 /**
-* Demonstrates Critical with timeout values
-* Shows how to limit critical section duration
-*/
+ * Demonstrates Critical with timeout values
+ * Shows how to limit critical section duration
+ */
 Example3_CriticalTimeout() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Critical with Timeout")
     myGui.SetFont("s10")
@@ -367,7 +367,7 @@ Example3_CriticalTimeout() {
         logBox.Value := currentLog . Format("{:06d}ms", timestamp) . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Long operation with Critical timeout
@@ -483,9 +483,9 @@ Example3_CriticalTimeout() {
 ; EXAMPLE 4: Message Queue Buffering
 ; ============================================================================
 /**
-* Demonstrates how Critical affects message queue
-* Shows message buffering during critical sections
-*/
+ * Demonstrates how Critical affects message queue
+ * Shows message buffering during critical sections
+ */
 Example4_MessageQueue() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Message Queue Buffering")
     myGui.SetFont("s10")
@@ -508,7 +508,7 @@ Example4_MessageQueue() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Simulated message handler
@@ -592,9 +592,9 @@ Example4_MessageQueue() {
 ; EXAMPLE 5: Nested Critical Sections
 ; ============================================================================
 /**
-* Demonstrates nested Critical calls
-* Shows how Critical nesting works
-*/
+ * Demonstrates nested Critical calls
+ * Shows how Critical nesting works
+ */
 Example5_NestedCritical() {
     myGui := Gui("+AlwaysOnTop", "Example 5: Nested Critical Sections")
     myGui.SetFont("s10")
@@ -614,14 +614,14 @@ Example5_NestedCritical() {
     LogMsg(msg) {
         indent := ""
         Loop criticalDepth
-        indent .= "  "
+            indent .= "  "
 
         timestamp := A_TickCount
         currentLog := logBox.Value
         logBox.Value := currentLog . Format("{:06d}ms", timestamp) . " " . indent . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Nested function level 1

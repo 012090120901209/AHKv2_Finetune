@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Difference() - Array difference (Standalone Implementation)
-*
-* Creates an array of values not included in the other given arrays.
-*/
+ * Difference() - Array difference (Standalone Implementation)
+ * 
+ * Creates an array of values not included in the other given arrays.
+ */
 
 Difference(array, excludeArrays*) {
     result := []
@@ -34,4 +34,4 @@ result := Difference([2, 1], [2, 3])
 ; => [1]
 
 MsgBox("Difference between [2, 1] and [2, 3]:`n"
-. JSON.stringify(result))
+    . JSON.stringify(result))

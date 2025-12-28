@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Intersection() - Array intersection (Standalone Implementation)
-*
-* Creates an array of unique values that are included in all given arrays.
-*/
+ * Intersection() - Array intersection (Standalone Implementation)
+ * 
+ * Creates an array of unique values that are included in all given arrays.
+ */
 
 Intersection(arrays*) {
     if (arrays.Length = 0) {

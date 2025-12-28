@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Delete Examples - Part 1
-* ============================================================================
-*
-* This file demonstrates comprehensive usage of the RegDelete and RegDeleteKey
-* functions in AutoHotkey v2, including deleting values, deleting keys, and
-* cleanup operations.
-*
-* @description Examples of deleting Windows Registry values and keys
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Delete Examples - Part 1
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive usage of the RegDelete and RegDeleteKey
+ * functions in AutoHotkey v2, including deleting values, deleting keys, and
+ * cleanup operations.
+ * 
+ * @description Examples of deleting Windows Registry values and keys
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Registry Value Deletion
 ; ============================================================================
 
 /**
-* @function Example1_BasicRegDelete
-* @description Demonstrates basic registry value deletion
-* @returns {void}
-*/
+ * @function Example1_BasicRegDelete
+ * @description Demonstrates basic registry value deletion
+ * @returns {void}
+ */
 Example1_BasicRegDelete() {
     MsgBox "=== Example 1: Basic Registry Deletion ===`n`n" .
-    "Creating and then deleting registry values..."
+        "Creating and then deleting registry values..."
 
     testKey := "HKCU\Software\AHKv2Examples\DeleteTest"
 
@@ -71,24 +71,24 @@ Example1_BasicRegDelete() {
 ; ============================================================================
 
 /**
-* @class SafeRegDelete
-* @description Safely deletes registry values with verification
-*/
+ * @class SafeRegDelete
+ * @description Safely deletes registry values with verification
+ */
 class SafeRegDelete {
     /**
-    * @method DeleteValue
-    * @description Safely deletes a registry value
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name to delete
-    * @param {Boolean} backup - Create backup before deletion
-    * @returns {Map} Deletion result
-    */
+     * @method DeleteValue
+     * @description Safely deletes a registry value
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name to delete
+     * @param {Boolean} backup - Create backup before deletion
+     * @returns {Map} Deletion result
+     */
     static DeleteValue(keyPath, valueName, backup := true) {
         result := Map(
-        "success", false,
-        "existed", false,
-        "backed up", false,
-        "error", ""
+            "success", false,
+            "existed", false,
+            "backed up", false,
+            "error", ""
         )
 
         ; Check if value exists
@@ -119,18 +119,18 @@ class SafeRegDelete {
     }
 
     /**
-    * @method DeleteMultipleValues
-    * @description Deletes multiple registry values
-    * @param {String} keyPath - Registry key path
-    * @param {Array} valueNames - Array of value names to delete
-    * @returns {Map} Deletion results
-    */
+     * @method DeleteMultipleValues
+     * @description Deletes multiple registry values
+     * @param {String} keyPath - Registry key path
+     * @param {Array} valueNames - Array of value names to delete
+     * @returns {Map} Deletion results
+     */
     static DeleteMultipleValues(keyPath, valueNames) {
         results := Map(
-        "total", valueNames.Length,
-        "deleted", 0,
-        "failed", 0,
-        "details", []
+            "total", valueNames.Length,
+            "deleted", 0,
+            "failed", 0,
+            "details", []
         )
 
         for valueName in valueNames {
@@ -143,9 +143,9 @@ class SafeRegDelete {
             }
 
             results["details"].Push(Map(
-            "name", valueName,
-            "success", result["success"],
-            "error", result["error"]
+                "name", valueName,
+                "success", result["success"],
+                "error", result["error"]
             ))
         }
 
@@ -154,13 +154,13 @@ class SafeRegDelete {
 }
 
 /**
-* @function Example2_SafeDeletion
-* @description Demonstrates safe registry deletion
-* @returns {void}
-*/
+ * @function Example2_SafeDeletion
+ * @description Demonstrates safe registry deletion
+ * @returns {void}
+ */
 Example2_SafeDeletion() {
     MsgBox "=== Example 2: Safe Deletion ===`n`n" .
-    "Demonstrating safe deletion with backup..."
+        "Demonstrating safe deletion with backup..."
 
     testKey := "HKCU\Software\AHKv2Examples\SafeDeleteTest"
 
@@ -180,7 +180,7 @@ Example2_SafeDeletion() {
     report .= "Deleted: " . (result["success"] ? "Yes" : "No") . "`n"
 
     if (result["error"] != "")
-    report .= "Error: " . result["error"] . "`n"
+        report .= "Error: " . result["error"] . "`n"
 
     MsgBox report, "Safe Deletion"
 }
@@ -190,13 +190,13 @@ Example2_SafeDeletion() {
 ; ============================================================================
 
 /**
-* @function Example3_KeyDeletion
-* @description Demonstrates deleting entire registry keys
-* @returns {void}
-*/
+ * @function Example3_KeyDeletion
+ * @description Demonstrates deleting entire registry keys
+ * @returns {void}
+ */
 Example3_KeyDeletion() {
     MsgBox "=== Example 3: Key Deletion ===`n`n" .
-    "Deleting entire registry keys..."
+        "Deleting entire registry keys..."
 
     baseKey := "HKCU\Software\AHKv2Examples\KeyDeleteTest"
 
@@ -242,27 +242,27 @@ Example3_KeyDeletion() {
 ; ============================================================================
 
 /**
-* @class RecursiveDelete
-* @description Recursively deletes registry keys and subkeys
-*/
+ * @class RecursiveDelete
+ * @description Recursively deletes registry keys and subkeys
+ */
 class RecursiveDelete {
     /**
-    * @method DeleteKeyRecursive
-    * @description Recursively deletes a registry key and all subkeys
-    * @param {String} keyPath - Registry key path to delete
-    * @returns {Map} Deletion result
-    */
+     * @method DeleteKeyRecursive
+     * @description Recursively deletes a registry key and all subkeys
+     * @param {String} keyPath - Registry key path to delete
+     * @returns {Map} Deletion result
+     */
     static DeleteKeyRecursive(keyPath) {
         result := Map(
-        "success", false,
-        "keysDeleted", 0,
-        "errors", []
+            "success", false,
+            "keysDeleted", 0,
+            "errors", []
         )
 
         try {
             ; First, delete all subkeys recursively
             Loop Reg, keyPath, "K"
- {
+            {
                 subKeyPath := keyPath . "\" . A_LoopRegName
 
                 ; Recursive call
@@ -282,8 +282,8 @@ class RecursiveDelete {
                 result["success"] := true
             } catch Error as err {
                 result["errors"].Push(Map(
-                "key", keyPath,
-                "error", err.Message
+                    "key", keyPath,
+                    "error", err.Message
                 ))
             }
 
@@ -295,11 +295,11 @@ class RecursiveDelete {
     }
 
     /**
-    * @method GetDeleteReport
-    * @description Formats deletion result into report
-    * @param {Map} result - Deletion result
-    * @returns {String} Formatted report
-    */
+     * @method GetDeleteReport
+     * @description Formats deletion result into report
+     * @param {Map} result - Deletion result
+     * @returns {String} Formatted report
+     */
     static GetDeleteReport(result) {
         report := "Recursive Deletion Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -319,13 +319,13 @@ class RecursiveDelete {
 }
 
 /**
-* @function Example4_RecursiveDeletion
-* @description Demonstrates recursive key deletion
-* @returns {void}
-*/
+ * @function Example4_RecursiveDeletion
+ * @description Demonstrates recursive key deletion
+ * @returns {void}
+ */
 Example4_RecursiveDeletion() {
     MsgBox "=== Example 4: Recursive Deletion ===`n`n" .
-    "Creating and recursively deleting key structure..."
+        "Creating and recursively deleting key structure..."
 
     baseKey := "HKCU\Software\AHKv2Examples\RecursiveDeleteTest"
 
@@ -354,13 +354,13 @@ Example4_RecursiveDeletion() {
 ; ============================================================================
 
 /**
-* @function Example5_ConditionalDeletion
-* @description Deletes registry values based on conditions
-* @returns {void}
-*/
+ * @function Example5_ConditionalDeletion
+ * @description Deletes registry values based on conditions
+ * @returns {void}
+ */
 Example5_ConditionalDeletion() {
     MsgBox "=== Example 5: Conditional Deletion ===`n`n" .
-    "Deleting values based on conditions..."
+        "Deleting values based on conditions..."
 
     testKey := "HKCU\Software\AHKv2Examples\ConditionalDelete"
 
@@ -380,7 +380,7 @@ Example5_ConditionalDeletion() {
     ; Delete values starting with "Temp_"
     try {
         Loop Reg, testKey, "V"
- {
+        {
             valueName := A_LoopRegName
             if (SubStr(valueName, 1, 5) = "Temp_") {
                 try {
@@ -394,7 +394,7 @@ Example5_ConditionalDeletion() {
     ; Delete DWORD values that are 0
     try {
         Loop Reg, testKey, "V"
- {
+        {
             valueName := A_LoopRegName
             try {
                 value := RegRead(testKey, valueName)
@@ -423,23 +423,23 @@ Example5_ConditionalDeletion() {
 ; ============================================================================
 
 /**
-* @class DateBasedCleanup
-* @description Cleans up old registry entries based on timestamps
-*/
+ * @class DateBasedCleanup
+ * @description Cleans up old registry entries based on timestamps
+ */
 class DateBasedCleanup {
     /**
-    * @method CleanupOldEntries
-    * @description Deletes entries older than specified days
-    * @param {String} keyPath - Registry key path
-    * @param {Integer} daysOld - Age threshold in days
-    * @returns {Map} Cleanup result
-    */
+     * @method CleanupOldEntries
+     * @description Deletes entries older than specified days
+     * @param {String} keyPath - Registry key path
+     * @param {Integer} daysOld - Age threshold in days
+     * @returns {Map} Cleanup result
+     */
     static CleanupOldEntries(keyPath, daysOld) {
         result := Map(
-        "scanned", 0,
-        "deleted", 0,
-        "kept", 0,
-        "errors", []
+            "scanned", 0,
+            "deleted", 0,
+            "kept", 0,
+            "errors", []
         )
 
         ; Calculate cutoff date
@@ -448,7 +448,7 @@ class DateBasedCleanup {
 
         try {
             Loop Reg, keyPath, "K"
- {
+            {
                 result["scanned"]++
                 subKeyPath := keyPath . "\" . A_LoopRegName
 
@@ -463,8 +463,8 @@ class DateBasedCleanup {
                             result["deleted"]++
                         } catch Error as err {
                             result["errors"].Push(Map(
-                            "key", subKeyPath,
-                            "error", err.Message
+                                "key", subKeyPath,
+                                "error", err.Message
                             ))
                         }
                     } else {
@@ -482,13 +482,13 @@ class DateBasedCleanup {
 }
 
 /**
-* @function Example6_DateCleanup
-* @description Demonstrates date-based cleanup
-* @returns {void}
-*/
+ * @function Example6_DateCleanup
+ * @description Demonstrates date-based cleanup
+ * @returns {void}
+ */
 Example6_DateCleanup() {
     MsgBox "=== Example 6: Date-Based Cleanup ===`n`n" .
-    "Cleaning up old entries..."
+        "Cleaning up old entries..."
 
     baseKey := "HKCU\Software\AHKv2Examples\DateCleanup"
 
@@ -521,7 +521,7 @@ Example6_DateCleanup() {
     report .= "Kept: " . result["kept"] . "`n"
 
     if (result["errors"].Length > 0)
-    report .= "Errors: " . result["errors"].Length . "`n"
+        report .= "Errors: " . result["errors"].Length . "`n"
 
     MsgBox report, "Cleanup Complete"
 }
@@ -531,9 +531,9 @@ Example6_DateCleanup() {
 ; ============================================================================
 
 /**
-* @class UninstallCleanup
-* @description Performs comprehensive cleanup during uninstall
-*/
+ * @class UninstallCleanup
+ * @description Performs comprehensive cleanup during uninstall
+ */
 class UninstallCleanup {
     appName := ""
 
@@ -542,16 +542,16 @@ class UninstallCleanup {
     }
 
     /**
-    * @method PerformCleanup
-    * @description Performs complete uninstall cleanup
-    * @returns {Map} Cleanup result
-    */
+     * @method PerformCleanup
+     * @description Performs complete uninstall cleanup
+     * @returns {Map} Cleanup result
+     */
     PerformCleanup() {
         result := Map(
-        "success", false,
-        "keysDeleted", 0,
-        "valuesDeleted", 0,
-        "errors", []
+            "success", false,
+            "keysDeleted", 0,
+            "valuesDeleted", 0,
+            "errors", []
         )
 
         baseKey := "HKCU\Software\" . this.appName
@@ -588,13 +588,13 @@ class UninstallCleanup {
 }
 
 /**
-* @function Example7_UninstallCleanup
-* @description Demonstrates uninstall cleanup
-* @returns {void}
-*/
+ * @function Example7_UninstallCleanup
+ * @description Demonstrates uninstall cleanup
+ * @returns {void}
+ */
 Example7_UninstallCleanup() {
     MsgBox "=== Example 7: Uninstall Cleanup ===`n`n" .
-    "Performing uninstall cleanup..."
+        "Performing uninstall cleanup..."
 
     appName := "AHKv2Examples\TestApp"
 
@@ -660,8 +660,8 @@ ShowMenu() {
         case "7": Example7_UninstallCleanup()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

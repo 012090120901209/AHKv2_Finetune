@@ -18,7 +18,7 @@ class ChatRoom {
         if this.users.Has(to)
             this.users[to].Receive(from, msg)
     }
-    
+
     Broadcast(from, msg) {
         for name, user in this.users
             if name != from
@@ -37,7 +37,7 @@ class ChatUser {
         this.room.Send(this.name, to, msg)
         return this
     }
-    
+
     Broadcast(msg) {
         this.room.Broadcast(this.name, msg)
         return this
@@ -47,7 +47,7 @@ class ChatUser {
         this.messages.Push("[" from "]: " msg)
         return this
     }
-    
+
     GetMessages() {
         result := ""
         for msg in this.messages

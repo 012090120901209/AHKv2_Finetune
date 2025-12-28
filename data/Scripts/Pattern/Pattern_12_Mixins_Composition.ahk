@@ -3,13 +3,13 @@
 #Include JSON.ahk
 
 /**
-* Mixins and Composition - Multiple Inheritance Workarounds
-*
-* Demonstrates simulating multiple inheritance through mixins and
-* composition patterns since AHK v2 only supports single inheritance.
-*
-* Source: AHK_Notes/Concepts/advanced-class-inheritance.md
-*/
+ * Mixins and Composition - Multiple Inheritance Workarounds
+ * 
+ * Demonstrates simulating multiple inheritance through mixins and
+ * composition patterns since AHK v2 only supports single inheritance.
+ * 
+ * Source: AHK_Notes/Concepts/advanced-class-inheritance.md
+ */
 
 ; Test mixin pattern
 product := Product("Widget", 29.99)
@@ -17,8 +17,8 @@ product.Log("Product created")
 json := product.Serialize()
 
 MsgBox("Mixin Pattern:`n`n"
-. product.GetInfo() "`n`n"
-. "Serialized: " json, , "T5")
+    . product.GetInfo() "`n`n"
+    . "Serialized: " json, , "T5")
 
 ; Test composition pattern
 app := Application()
@@ -26,12 +26,12 @@ app.ProcessA("DataA")
 app.ProcessB("DataB")
 
 /**
-* LoggerMixin - Reusable logging functionality
-*/
+ * LoggerMixin - Reusable logging functionality
+ */
 class LoggerMixin {
     /**
-    * Log message with timestamp
-    */
+     * Log message with timestamp
+     */
     static Log(this, message) {
         timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
         output := "[" timestamp "] " message
@@ -42,21 +42,21 @@ class LoggerMixin {
 }
 
 /**
-* SerializableMixin - Reusable serialization
-*/
+ * SerializableMixin - Reusable serialization
+ */
 class SerializableMixin {
     /**
-    * Serialize object to JSON-like string
-    */
+     * Serialize object to JSON-like string
+     */
     static Serialize(this) {
         parts := []
         for prop in this.OwnProps() {
             if (prop ~= "^_")  ; Skip private properties
-            continue
+                continue
 
             value := this.%prop%
             if (IsObject(value))
-            continue  ; Skip objects for simplicity
+                continue  ; Skip objects for simplicity
 
             parts.Push('"' prop '":"' value '"')
         }
@@ -64,8 +64,8 @@ class SerializableMixin {
     }
 
     /**
-    * Join array helper
-    */
+     * Join array helper
+     */
     static Join(arr, delimiter := ",") {
         result := ""
         for index, value in arr {
@@ -76,8 +76,8 @@ class SerializableMixin {
 }
 
 /**
-* Product - Class using mixins
-*/
+ * Product - Class using mixins
+ */
 class Product {
     name := ""
     price := 0
@@ -92,8 +92,8 @@ class Product {
     }
 
     /**
-    * Apply mixin to instance
-    */
+     * Apply mixin to instance
+     */
     ApplyMixin(mixinClass) {
         ; Add mixin methods to this instance
         for prop, value in mixinClass.OwnProps() {
@@ -112,8 +112,8 @@ class Product {
 }
 
 /**
-* LibraryA - First library/capability
-*/
+ * LibraryA - First library/capability
+ */
 class LibraryA {
     Process(data) {
         return "LibA processed: " data
@@ -121,8 +121,8 @@ class LibraryA {
 }
 
 /**
-* LibraryB - Second library/capability
-*/
+ * LibraryB - Second library/capability
+ */
 class LibraryB {
     Process(data) {
         return "LibB processed: " data
@@ -130,15 +130,15 @@ class LibraryB {
 }
 
 /**
-* Application - Uses composition to avoid conflicts
-*/
+ * Application - Uses composition to avoid conflicts
+ */
 class Application {
     _libA := LibraryA()
     _libB := LibraryB()
 
     /**
-    * Delegate to LibraryA
-    */
+     * Delegate to LibraryA
+     */
     ProcessA(data) {
         result := this._libA.Process(data)
         MsgBox(result, "Library A", "T2")
@@ -146,8 +146,8 @@ class Application {
     }
 
     /**
-    * Delegate to LibraryB
-    */
+     * Delegate to LibraryB
+     */
     ProcessB(data) {
         result := this._libB.Process(data)
         MsgBox(result, "Library B", "T2")
@@ -218,4 +218,5 @@ class Application {
             *     "Favor composition over inheritance"
             *     More maintainable
             *     More flexible
-            */
+*/
+

@@ -10,7 +10,7 @@
 
 class Adder {
     __New(amount) => this.amount := amount
-    
+
     ; The Call method makes this object callable
     Call(value) => value + this.amount
 }
@@ -21,10 +21,10 @@ class Adder {
 
 class Counter {
     __New(start := 0) => this.count := start
-    
+
     ; Each call increments and returns
     Call() => ++this.count
-    
+
     ; Reset
     Reset() => this.count := 0
 }
@@ -38,26 +38,26 @@ class Memoize {
         this.fn := fn
         this.cache := Map()
     }
-    
+
     Call(args*) {
         ; Create cache key from arguments
         key := this._makeKey(args)
-        
+
         if this.cache.Has(key)
             return this.cache[key]
-        
+
         result := this.fn(args*)
         this.cache[key] := result
         return result
     }
-    
+
     _makeKey(args) {
         parts := []
         for arg in args
             parts.Push(Type(arg) ":" String(arg))
         return parts.Length ? parts.Join("|") : "_empty_"
     }
-    
+
     ClearCache() => this.cache := Map()
     CacheSize => this.cache.Count
 }
@@ -79,7 +79,7 @@ class Partial {
         this.fn := fn
         this.boundArgs := boundArgs
     }
-    
+
     Call(args*) {
         allArgs := []
         for arg in this.boundArgs
@@ -100,17 +100,17 @@ class Curry {
         this.arity := arity
         this.args := []
     }
-    
+
     Call(arg) {
         ; Create new curry with additional argument
         newCurry := Curry(this.fn, this.arity)
         newCurry.args := this.args.Clone()
         newCurry.args.Push(arg)
-        
+
         ; If we have enough arguments, execute
         if newCurry.args.Length >= this.arity
             return this.fn(newCurry.args*)
-        
+
         return newCurry
     }
 }
@@ -126,25 +126,25 @@ class Debounce {
         this.timer := ""
         this.lastArgs := []
     }
-    
+
     Call(args*) {
         this.lastArgs := args
-        
+
         ; Cancel existing timer
         if this.timer
             SetTimer(this.timer, 0)
-        
+
         ; Create new timer
         this.timer := this._createCallback()
         SetTimer(this.timer, -this.delay)
     }
-    
+
     _createCallback() {
         fn := this.fn
         args := this.lastArgs
         return () => fn(args*)
     }
-    
+
     Cancel() {
         if this.timer {
             SetTimer(this.timer, 0)
@@ -165,15 +165,15 @@ class Throttle {
         this.pending := false
         this.lastArgs := []
     }
-    
+
     Call(args*) {
         now := A_TickCount
-        
+
         if now - this.lastCall >= this.interval {
             this.lastCall := now
             return this.fn(args*)
         }
-        
+
         ; Queue for later
         this.lastArgs := args
         if !this.pending {
@@ -182,7 +182,7 @@ class Throttle {
             SetTimer(this._createCallback(), -remaining)
         }
     }
-    
+
     _createCallback() {
         return () => (
             this.pending := false,
@@ -200,14 +200,14 @@ class Pipeline {
     __New(fns*) {
         this.functions := fns
     }
-    
+
     Call(value) {
         result := value
         for fn in this.functions
             result := fn(result)
         return result
     }
-    
+
     ; Add more functions to pipeline
     Then(fn) {
         newFns := []
@@ -228,10 +228,10 @@ class Retry {
         this.maxAttempts := maxAttempts
         this.delay := delayMs
     }
-    
+
     Call(args*) {
         lastError := ""
-        
+
         Loop this.maxAttempts {
             try {
                 return this.fn(args*)
@@ -241,7 +241,7 @@ class Retry {
                     Sleep(this.delay * A_Index)  ; Exponential backoff
             }
         }
-        
+
         throw Error("Retry failed after " this.maxAttempts " attempts: " lastError.Message)
     }
 }
@@ -252,7 +252,7 @@ class Retry {
 
 class Tap {
     __New(fn) => this.fn := fn
-    
+
     Call(value) {
         this.fn(value)
         return value  ; Pass through unchanged
@@ -269,7 +269,7 @@ class When {
         this.thenFn := thenFn
         this.elseFn := elseFn
     }
-    
+
     Call(value) {
         if this.condition(value)
             return this.thenFn(value)
@@ -289,7 +289,7 @@ class Once {
         this.called := false
         this.result := ""
     }
-    
+
     Call(args*) {
         if !this.called {
             this.called := true
@@ -297,7 +297,7 @@ class Once {
         }
         return this.result
     }
-    
+
     Reset() {
         this.called := false
         this.result := ""
@@ -310,7 +310,7 @@ class Once {
 
 ; Basic callable
 add5 := Adder(5)
-MsgBox("Adder(5):`n" 
+MsgBox("Adder(5):`n"
     . "add5(10) = " add5(10) "`n"
     . "add5(20) = " add5(20))
 

@@ -6,23 +6,23 @@
 ; Recursive file search
 SearchFiles(rootPath, pattern := "*.*", &results := "") {
     if (results = "")
-    results := []
+        results := []
 
     ; Search files in current directory
     Loop Files, rootPath "\" pattern, "F"
- {
+    {
         results.Push(Map(
-        "path", A_LoopFilePath,
-        "name", A_LoopFileName,
-        "size", A_LoopFileSize,
-        "modified", A_LoopFileTimeModified,
-        "type", "file"
+            "path", A_LoopFilePath,
+            "name", A_LoopFileName,
+            "size", A_LoopFileSize,
+            "modified", A_LoopFileTimeModified,
+            "type", "file"
         ))
     }
 
     ; Recursively search subdirectories
     Loop Files, rootPath "\*", "D"
- {
+    {
         SearchFiles(A_LoopFilePath, pattern, &results)
     }
 
@@ -40,13 +40,13 @@ BuildDirectoryTree(rootPath, indent := 0) {
 
     ; List files
     Loop Files, rootPath "\*.*", "F"
- {
+    {
         tree .= StrReplace(Format("{:" (indent + 1) * 2 "}", ""), " ", " ") "├─ 📄 " A_LoopFileName "`n"
     }
 
     ; List and recurse into subdirectories
     Loop Files, rootPath "\*", "D"
- {
+    {
         tree .= StrReplace(Format("{:" (indent + 1) * 2 "}", ""), " ", " ") "├─ 📁 " A_LoopFileName "`n"
 
         ; Recursively process subdirectory (limit depth)
@@ -61,20 +61,20 @@ BuildDirectoryTree(rootPath, indent := 0) {
 ; Fibonacci sequence (classic recursion example)
 Fibonacci(n) {
     if (n <= 1)
-    return n
+        return n
     return Fibonacci(n - 1) + Fibonacci(n - 2)
 }
 
 ; Optimized Fibonacci with memoization
 FibonacciMemo(n, &cache := "") {
     if (cache = "")
-    cache := Map()
+        cache := Map()
 
     if (n <= 1)
-    return n
+        return n
 
     if (cache.Has(n))
-    return cache[n]
+        return cache[n]
 
     result := FibonacciMemo(n - 1, &cache) + FibonacciMemo(n - 2, &cache)
     cache[n] := result
@@ -85,7 +85,7 @@ FibonacciMemo(n, &cache := "") {
 ; Factorial (recursive)
 Factorial(n) {
     if (n <= 1)
-    return 1
+        return 1
     return n * Factorial(n - 1)
 }
 
@@ -95,13 +95,13 @@ GetDirectorySize(path) {
 
     ; Add file sizes
     Loop Files, path "\*.*", "F"
- {
+    {
         totalSize += A_LoopFileSize
     }
 
     ; Recursively add subdirectory sizes
     Loop Files, path "\*", "D"
- {
+    {
         totalSize += GetDirectorySize(A_LoopFilePath)
     }
 
@@ -147,7 +147,7 @@ myGui.Show("w480 h550")
 BrowseDir(*) {
     selected := DirSelect(, 3, "Select directory to search")
     if (selected)
-    pathInput.Value := selected
+        pathInput.Value := selected
 }
 
 DoSearch(*) {

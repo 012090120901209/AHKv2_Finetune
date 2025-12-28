@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileGetSize() - Get file size
-*
-* Returns the size of a file in bytes.
-*/
+ * FileGetSize() - Get file size
+ * 
+ * Returns the size of a file in bytes.
+ */
 
 testFile := A_ScriptDir "\sizetest.txt"
 FileDelete(testFile)

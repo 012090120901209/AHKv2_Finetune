@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Gui_01.ahk - Basic GUI Creation and Window Management
-*
-* This file demonstrates fundamental GUI creation in AutoHotkey v2.
-* Topics covered:
-* - Creating simple windows
-* - Basic window properties (title, size, position)
-* - Window visibility and state management
-* - Modal vs modeless windows
-* - Window destruction and cleanup
-* - Basic message boxes and simple dialogs
-* - Window centering and screen positioning
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_Gui_01.ahk - Basic GUI Creation and Window Management
+ * 
+ * This file demonstrates fundamental GUI creation in AutoHotkey v2.
+ * Topics covered:
+ * - Creating simple windows
+ * - Basic window properties (title, size, position)
+ * - Window visibility and state management
+ * - Modal vs modeless windows
+ * - Window destruction and cleanup
+ * - Basic message boxes and simple dialogs
+ * - Window centering and screen positioning
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Simple Window Creation
 ; =============================================================================
 
 /**
-* Creates the most basic GUI window with minimal configuration
-* Demonstrates default window properties and simple show/hide
-*/
+ * Creates the most basic GUI window with minimal configuration
+ * Demonstrates default window properties and simple show/hide
+ */
 Example1_SimpleWindow() {
     ; Create a basic GUI with a title
     myGui := Gui("+AlwaysOnTop", "My First Window")
@@ -47,9 +47,9 @@ Example1_SimpleWindow() {
 ; =============================================================================
 
 /**
-* Demonstrates various window properties and options
-* Shows how to configure window appearance and behavior
-*/
+ * Demonstrates various window properties and options
+ * Shows how to configure window appearance and behavior
+ */
 Example2_WindowProperties() {
     ; Create GUI with multiple options
     myGui := Gui("+Resize +MinSize200x150 +MaxSize600x400", "Window Properties Demo")
@@ -99,9 +99,9 @@ Example2_WindowProperties() {
 ; =============================================================================
 
 /**
-* Shows different window positioning techniques
-* Demonstrates centering and custom positioning
-*/
+ * Shows different window positioning techniques
+ * Demonstrates centering and custom positioning
+ */
 Example3_WindowPositioning() {
     ; Create GUI
     myGui := Gui("+AlwaysOnTop", "Window Positioning Demo")
@@ -149,17 +149,17 @@ Example3_WindowPositioning() {
 
         switch position {
             case "center":
-            x := (screenWidth - winWidth) // 2
-            y := (screenHeight - winHeight) // 2
-            newGui.Show(Format("x{1} y{2} w{3} h{4}", x, y, winWidth, winHeight))
+                x := (screenWidth - winWidth) // 2
+                y := (screenHeight - winHeight) // 2
+                newGui.Show(Format("x{1} y{2} w{3} h{4}", x, y, winWidth, winHeight))
             case "topleft":
-            newGui.Show(Format("x{1} y{2} w{3} h{4}", 0, 0, winWidth, winHeight))
+                newGui.Show(Format("x{1} y{2} w{3} h{4}", 0, 0, winWidth, winHeight))
             case "topright":
-            newGui.Show(Format("x{1} y{2} w{3} h{4}", screenWidth - winWidth, 0, winWidth, winHeight))
+                newGui.Show(Format("x{1} y{2} w{3} h{4}", screenWidth - winWidth, 0, winWidth, winHeight))
             case "bottomright":
-            newGui.Show(Format("x{1} y{2} w{3} h{4}", screenWidth - winWidth, screenHeight - winHeight, winWidth, winHeight))
+                newGui.Show(Format("x{1} y{2} w{3} h{4}", screenWidth - winWidth, screenHeight - winHeight, winWidth, winHeight))
             case "custom":
-            newGui.Show(Format("x{1} y{2} w{3} h{4}", 100, 100, winWidth, winHeight))
+                newGui.Show(Format("x{1} y{2} w{3} h{4}", 100, 100, winWidth, winHeight))
         }
     }
 }
@@ -169,9 +169,9 @@ Example3_WindowPositioning() {
 ; =============================================================================
 
 /**
-* Demonstrates the difference between modal and modeless windows
-* Modal windows block interaction with parent window
-*/
+ * Demonstrates the difference between modal and modeless windows
+ * Modal windows block interaction with parent window
+ */
 Example4_ModalModeless() {
     ; Create main window
     mainGui := Gui(, "Modal vs Modeless Demo")
@@ -246,9 +246,9 @@ Example4_ModalModeless() {
 ; =============================================================================
 
 /**
-* Demonstrates window state management (minimize, maximize, restore)
-* Shows how to detect and respond to window state changes
-*/
+ * Demonstrates window state management (minimize, maximize, restore)
+ * Shows how to detect and respond to window state changes
+ */
 Example5_WindowState() {
     myGui := Gui("+Resize", "Window State Management")
     myGui.BackColor := "0xE8F4F8"
@@ -270,14 +270,14 @@ Example5_WindowState() {
     WindowSizeHandler(guiObj, MinMax, Width, Height) {
         switch MinMax {
             case -1:
-            stateText.Value := "Current State: Minimized"
-            LogState("Window minimized")
+                stateText.Value := "Current State: Minimized"
+                LogState("Window minimized")
             case 1:
-            stateText.Value := "Current State: Maximized"
-            LogState("Window maximized")
+                stateText.Value := "Current State: Maximized"
+                LogState("Window maximized")
             case 0:
-            stateText.Value := "Current State: Normal (Restored)"
-            LogState("Window restored to normal")
+                stateText.Value := "Current State: Normal (Restored)"
+                LogState("Window restored to normal")
         }
     }
 
@@ -298,9 +298,9 @@ Example5_WindowState() {
 ; =============================================================================
 
 /**
-* Creates simple dialog boxes for common tasks
-* Input dialogs, confirmation dialogs, about dialogs
-*/
+ * Creates simple dialog boxes for common tasks
+ * Input dialogs, confirmation dialogs, about dialogs
+ */
 Example6_SimpleDialogs() {
     mainGui := Gui(, "Dialog Box Examples")
     mainGui.BackColor := "White"
@@ -418,9 +418,9 @@ Example6_SimpleDialogs() {
 ; =============================================================================
 
 /**
-* Demonstrates proper window cleanup and destruction
-* Shows different ways to close windows and clean up resources
-*/
+ * Demonstrates proper window cleanup and destruction
+ * Shows different ways to close windows and clean up resources
+ */
 Example7_WindowCleanup() {
     mainGui := Gui(, "Window Cleanup Demo")
     mainGui.BackColor := "0xFFF0F0"
@@ -507,8 +507,8 @@ Example7_WindowCleanup() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_Gui_01 - Basic GUI Examples")
     menuGui.BackColor := "White"

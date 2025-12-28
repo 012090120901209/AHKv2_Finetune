@@ -2,33 +2,33 @@
 #SingleInstance Force
 
 /**
-* __Enum Meta-Function - Grouped Array Iterator
-*
-* Demonstrates custom __Enum implementation that groups array elements
-* into batches. Useful for batch processing.
-*
-* Source: AHK_Notes/Concepts/CustomEnumeratorsIterators.md
-*/
+ * __Enum Meta-Function - Grouped Array Iterator
+ * 
+ * Demonstrates custom __Enum implementation that groups array elements
+ * into batches. Useful for batch processing.
+ * 
+ * Source: AHK_Notes/Concepts/CustomEnumeratorsIterators.md
+ */
 
 ; Example: Process array in groups of 3
 numbers := [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 MsgBox("Original array: [1,2,3,4,5,6,7,8,9,10]`n`n"
-. "Processing in groups of 3...", , "T3")
+    . "Processing in groups of 3...", , "T3")
 
 for groupNum, group in GroupedArray(numbers, 3) {
     groupStr := ""
     for item in group
-    groupStr .= (groupStr ? ", " : "") item
+        groupStr .= (groupStr ? ", " : "") item
 
     MsgBox("Group " groupNum ": [" groupStr "]", , "T2")
 }
 
 /**
-* GroupedArray Class
-*
-* Wraps an array and provides grouped iteration.
-*/
+ * GroupedArray Class
+ * 
+ * Wraps an array and provides grouped iteration.
+ */
 class GroupedArray {
     __New(array, groupSize) {
         this.array := array
@@ -36,11 +36,11 @@ class GroupedArray {
     }
 
     /**
-    * __Enum Implementation
-    *
-    * @param arity - Number of loop variables (1 or 2)
-    * @return Enumerator function
-    */
+     * __Enum Implementation
+     * 
+     * @param arity - Number of loop variables (1 or 2)
+     * @return Enumerator function
+     */
     __Enum(arity) {
         i := 0
         array := this.array
@@ -52,22 +52,18 @@ class GroupedArray {
             ; Check if we've processed all groups
             if (++i > totalGroups)
             return 0
-
             ; Create the current group
             group := []
             startIdx := (i - 1) * groupSize + 1
             endIdx := Min(startIdx + groupSize - 1, array.Length)
-
             ; Fill the group
             Loop (endIdx - startIdx + 1)
-            group.Push(array[startIdx + A_Index - 1])
-
-            ; Set output variables based on arity
-            vars[1] := i        ; Group number
-            if (arity >= 2)
-            vars[2] := group  ; Group array
-
-            return 1  ; Continue iteration
+                group.Push(array[startIdx + A_Index - 1])
+                ; Set output variables based on arity
+                vars[1] := i        ; Group number
+                if (arity >= 2)
+                    vars[2] := group  ; Group array
+                    return 1  ; Continue iteration
         }
     }
 }
@@ -169,4 +165,5 @@ class GroupedArray {
                         *     ✅ Self-documenting intent
                         *     ✅ Encapsulated logic
                         *     ✅ Easy to test
-                        */
+*/
+

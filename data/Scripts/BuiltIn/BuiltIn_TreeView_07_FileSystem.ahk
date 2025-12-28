@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_07_FileSystem.ahk
-*
-* DESCRIPTION:
-* Demonstrates building file system browsers and explorers using TreeView,
-* including directory traversal, file filtering, and real-time updates.
-*
-* FEATURES:
-* - Browsing local file system
-* - Lazy loading of directory contents
-* - File and folder filtering
-* - Drive enumeration
-* - Real-time file system monitoring
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-* https://www.autohotkey.com/docs/v2/lib/LoopFiles.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - File system loops
-* - Directory operations
-* - Dynamic tree population
-* - Event-based expansion
-*
-* LEARNING POINTS:
-* 1. Use Loop Files to enumerate directories
-* 2. Implement lazy loading for performance
-* 3. Handle file system errors gracefully
-* 4. Use expand event for on-demand loading
-* 5. Filter files by extension or pattern
-*/
+ * BuiltIn_TreeView_07_FileSystem.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates building file system browsers and explorers using TreeView,
+ * including directory traversal, file filtering, and real-time updates.
+ * 
+ * FEATURES:
+ * - Browsing local file system
+ * - Lazy loading of directory contents
+ * - File and folder filtering
+ * - Drive enumeration
+ * - Real-time file system monitoring
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * https://www.autohotkey.com/docs/v2/lib/LoopFiles.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - File system loops
+ * - Directory operations
+ * - Dynamic tree population
+ * - Event-based expansion
+ * 
+ * LEARNING POINTS:
+ * 1. Use Loop Files to enumerate directories
+ * 2. Implement lazy loading for performance
+ * 3. Handle file system errors gracefully
+ * 4. Use expand event for on-demand loading
+ * 5. Filter files by extension or pattern
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Simple Directory Browser
@@ -59,14 +59,14 @@ Example1_SimpleBrowser() {
         ; Add folders first
         Loop Files, userProfile . "\*.*", "D" {
             if (A_LoopFileAttrib ~= "H")  ; Skip hidden
-            continue
+                continue
             TV.Add(A_LoopFileName, Root, "Icon" . FolderIcon)
         }
 
         ; Add files
         Loop Files, userProfile . "\*.*", "F" {
             if (A_LoopFileAttrib ~= "H")  ; Skip hidden
-            continue
+                continue
             TV.Add(A_LoopFileName, Root, "Icon" . FileIcon)
         }
     }
@@ -119,11 +119,11 @@ Example1_SimpleBrowser() {
 ; Format bytes to human readable
 FormatBytes(bytes) {
     if (bytes < 1024)
-    return bytes . " B"
+        return bytes . " B"
     if (bytes < 1048576)
-    return Round(bytes / 1024, 2) . " KB"
+        return Round(bytes / 1024, 2) . " KB"
     if (bytes < 1073741824)
-    return Round(bytes / 1048576, 2) . " MB"
+        return Round(bytes / 1048576, 2) . " MB"
     return Round(bytes / 1073741824, 2) . " GB"
 }
 
@@ -161,7 +161,7 @@ Example2_LazyLoading() {
     OnExpand(GuiCtrl, ItemID) {
         ; Skip if already loaded
         if (loadedNodes.Has(ItemID))
-        return
+            return
 
         loadedNodes[ItemID] := true
 
@@ -171,14 +171,14 @@ Example2_LazyLoading() {
         ; Remove dummy child
         firstChild := TV.GetChild(ItemID)
         if (firstChild && TV.GetText(firstChild) = "Loading...")
-        TV.Delete(firstChild)
+            TV.Delete(firstChild)
 
         ; Load directory contents
         try {
             ; Add subdirectories
             Loop Files, path . "\*", "D" {
                 if (A_LoopFileAttrib ~= "H|S")  ; Skip hidden and system
-                continue
+                    continue
 
                 folderNode := TV.Add(A_LoopFileName, ItemID, "Icon" . FolderIcon)
 
@@ -191,19 +191,19 @@ Example2_LazyLoading() {
 
                 ; Add dummy if has subdirectories
                 if (hasSubdirs)
-                TV.Add("Loading...", folderNode)
+                    TV.Add("Loading...", folderNode)
             }
 
             ; Add files (limit to first 100 for performance)
             count := 0
             Loop Files, path . "\*", "F" {
                 if (A_LoopFileAttrib ~= "H|S")
-                continue
+                    continue
 
                 TV.Add(A_LoopFileName, ItemID, "Icon" . FileIcon)
 
                 if (++count >= 100)
-                break
+                    break
             }
         }
         catch as err {
@@ -222,9 +222,9 @@ Example2_LazyLoading() {
         while (parent) {
             parentText := TV.GetText(parent)
             if (parentText ~= "^[A-Z]:\\?$")  ; Drive letter
-            path := parentText . path
+                path := parentText . path
             else
-            path := parentText . "\" . path
+                path := parentText . "\" . path
             parent := TV.GetParent(parent)
         }
 
@@ -237,7 +237,7 @@ Example2_LazyLoading() {
         Loop 26 {
             drive := Chr(64 + A_Index) . ":\"
             if (DriveType := DriveGetType(drive))
-            drives.Push(drive)
+                drives.Push(drive)
         }
         return drives
     }
@@ -297,7 +297,7 @@ Example3_FilteredBrowser() {
 
         filter := filterInput.Value
         if (!filter)
-        filter := "*.*"
+            filter := "*.*"
 
         Root := TV.Add(path, 0, "Icon" . FolderIcon)
 
@@ -305,21 +305,21 @@ Example3_FilteredBrowser() {
             ; Add matching files
             Loop Files, path . "\" . filter, "F" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
                 TV.Add(A_LoopFileName . " (" . FormatBytes(A_LoopFileSize) . ")", Root, "Icon" . FileIcon)
             }
 
             ; Add subdirectories
             Loop Files, path . "\*", "D" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
 
                 folderNode := TV.Add(A_LoopFileName, Root, "Icon" . FolderIcon)
 
                 ; Add files in subfolder
                 Loop Files, A_LoopFilePath . "\" . filter, "F" {
                     if (A_LoopFileAttrib ~= "H")
-                    continue
+                        continue
                     TV.Add(A_LoopFileName . " (" . FormatBytes(A_LoopFileSize) . ")", folderNode, "Icon" . FileIcon)
                 }
             }
@@ -374,7 +374,7 @@ Example4_DriveExplorer() {
 
             displayName := drive
             if (driveLabel)
-            displayName .= " (" . driveLabel . ")"
+                displayName .= " (" . driveLabel . ")"
             displayName .= " - " . driveType
 
             driveNode := TV.Add(displayName, 0, "Icon" . DriveIcon)
@@ -390,14 +390,14 @@ Example4_DriveExplorer() {
 
     OnExpand(GuiCtrl, ItemID) {
         if (expandedNodes.Has(ItemID))
-        return
+            return
 
         expandedNodes[ItemID] := true
 
         ; Remove placeholder
         child := TV.GetChild(ItemID)
         if (child && TV.GetText(child) = "...")
-        TV.Delete(child)
+            TV.Delete(child)
 
         ; Get drive path
         itemText := TV.GetText(ItemID)
@@ -405,7 +405,7 @@ Example4_DriveExplorer() {
         ; Extract drive letter
         RegExMatch(itemText, "([A-Z]):", &match)
         if (!match)
-        return
+            return
 
         drivePath := match[1] . ":\"
 
@@ -413,7 +413,7 @@ Example4_DriveExplorer() {
             ; Add top-level folders
             Loop Files, drivePath . "*", "D" {
                 if (A_LoopFileAttrib ~= "H|S")
-                continue
+                    continue
 
                 folderNode := TV.Add(A_LoopFileName, ItemID, "Icon" . FolderIcon)
 
@@ -427,7 +427,7 @@ Example4_DriveExplorer() {
                 }
 
                 if (hasSubdirs)
-                TV.Add("...", folderNode)
+                    TV.Add("...", folderNode)
             }
         }
         catch as err {
@@ -463,7 +463,7 @@ Example4_DriveExplorer() {
                 info .= "Used: " . FormatBytes(usedSpace * 1048576) . "`n"
 
                 if (capacity > 0)
-                info .= "Usage: " . Round((usedSpace / capacity) * 100, 1) . "%"
+                    info .= "Usage: " . Round((usedSpace / capacity) * 100, 1) . "%"
 
                 infoText.Value := info
             }
@@ -490,18 +490,18 @@ Example5_IconsByType() {
 
     ; Add icons for different file types
     Icons := Map(
-    "folder", IL_Add(ImageListID, "shell32.dll", 4),
-    "txt", IL_Add(ImageListID, "shell32.dll", 70),
-    "ahk", IL_Add(ImageListID, "shell32.dll", 2),
-    "exe", IL_Add(ImageListID, "shell32.dll", 2),
-    "dll", IL_Add(ImageListID, "shell32.dll", 154),
-    "jpg", IL_Add(ImageListID, "shell32.dll", 72),
-    "png", IL_Add(ImageListID, "shell32.dll", 72),
-    "mp3", IL_Add(ImageListID, "shell32.dll", 108),
-    "mp4", IL_Add(ImageListID, "shell32.dll", 238),
-    "zip", IL_Add(ImageListID, "shell32.dll", 165),
-    "pdf", IL_Add(ImageListID, "shell32.dll", 71),
-    "default", IL_Add(ImageListID, "shell32.dll", 1)
+        "folder", IL_Add(ImageListID, "shell32.dll", 4),
+        "txt", IL_Add(ImageListID, "shell32.dll", 70),
+        "ahk", IL_Add(ImageListID, "shell32.dll", 2),
+        "exe", IL_Add(ImageListID, "shell32.dll", 2),
+        "dll", IL_Add(ImageListID, "shell32.dll", 154),
+        "jpg", IL_Add(ImageListID, "shell32.dll", 72),
+        "png", IL_Add(ImageListID, "shell32.dll", 72),
+        "mp3", IL_Add(ImageListID, "shell32.dll", 108),
+        "mp4", IL_Add(ImageListID, "shell32.dll", 238),
+        "zip", IL_Add(ImageListID, "shell32.dll", 165),
+        "pdf", IL_Add(ImageListID, "shell32.dll", 71),
+        "default", IL_Add(ImageListID, "shell32.dll", 1)
     )
 
     TV := myGui.Add("TreeView", "w600 h450 ImageList" . ImageListID)
@@ -529,14 +529,14 @@ Example5_IconsByType() {
             ; Add folders
             Loop Files, path . "\*", "D" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
                 TV.Add(A_LoopFileName, Root, "Icon" . Icons["folder"])
             }
 
             ; Add files with appropriate icons
             Loop Files, path . "\*", "F" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
 
                 ; Get extension
                 SplitPath(A_LoopFileName, , , &ext)
@@ -554,7 +554,7 @@ Example5_IconsByType() {
 
     ; Instructions
     infoText := myGui.Add("Text", "xm y+10 w600",
-    "Different file types display different icons. Select a folder to browse.")
+        "Different file types display different icons. Select a folder to browse.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => (IL_Destroy(ImageListID), myGui.Destroy()))
@@ -592,7 +592,7 @@ Example6_FileSearch() {
     BrowseFolder(*) {
         folder := DirSelect("*" . folderInput.Value, 3)
         if (folder)
-        folderInput.Value := folder
+            folderInput.Value := folder
     }
 
     SearchFiles(*) {
@@ -612,28 +612,28 @@ Example6_FileSearch() {
         try {
             Loop Files, baseFolder . "\*" . searchTerm . "*", "FR" {
                 if (A_LoopFileAttrib ~= "H|S")
-                continue
+                    continue
 
                 ; Get relative path
                 relPath := StrReplace(A_LoopFileDir, baseFolder, "")
                 if (relPath)
-                relPath := LTrim(relPath, "\")
+                    relPath := LTrim(relPath, "\")
 
                 displayText := (relPath ? relPath . "\" : "") . A_LoopFileName
                 TV.Add(displayText, Root, "Icon" . FileIcon)
 
                 results++
                 if (results >= 1000)  ; Limit results
-                break
+                    break
             }
         }
 
         TV.Modify(Root, "Expand")
 
         if (results = 0)
-        TV.Add("No results found", Root)
+            TV.Add("No results found", Root)
         else if (results >= 1000)
-        TV.Add("... (showing first 1000 results)", Root)
+            TV.Add("... (showing first 1000 results)", Root)
     }
 
     ; Results status
@@ -708,14 +708,14 @@ Example7_FileManager() {
             ; Add folders
             Loop Files, path . "\*", "D" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
                 TV.Add(A_LoopFileName, Root, "Icon" . FolderIcon)
             }
 
             ; Add files
             Loop Files, path . "\*", "F" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
                 TV.Add(A_LoopFileName, Root, "Icon" . FileIcon)
             }
         }
@@ -727,7 +727,7 @@ Example7_FileManager() {
     GoUp(*) {
         SplitPath(currentPath, , &parentDir)
         if (parentDir)
-        LoadDirectory(parentDir)
+            LoadDirectory(parentDir)
     }
 
     CreateNewFolder(*) {
@@ -746,9 +746,9 @@ Example7_FileManager() {
 
     DeleteSelected(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = TV.GetNext())  ; Don't delete root
-        return
+            return
 
         itemText := TV.GetText(selected)
         result := MsgBox("Delete " . itemText . "?", "Confirm Delete", "YesNo 48")
@@ -757,9 +757,9 @@ Example7_FileManager() {
             fullPath := currentPath . "\" . itemText
             try {
                 if (FileExist(fullPath) & "D")
-                DirDelete(fullPath)
+                    DirDelete(fullPath)
                 else
-                FileDelete(fullPath)
+                    FileDelete(fullPath)
                 LoadDirectory(currentPath)
             }
             catch as err {
@@ -770,9 +770,9 @@ Example7_FileManager() {
 
     RenameSelected(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = TV.GetNext())  ; Don't rename root
-        return
+            return
 
         oldName := TV.GetText(selected)
         newName := InputBox("Enter new name:", "Rename", "w300", oldName)
@@ -793,9 +793,9 @@ Example7_FileManager() {
 
     OpenSelected(*) {
         if (!(selected := TV.GetSelection()))
-        return
+            return
         if (selected = TV.GetNext())  ; Root - do nothing
-        return
+            return
 
         itemText := TV.GetText(selected)
         fullPath := currentPath . "\" . itemText
@@ -825,13 +825,13 @@ Example7_FileManager() {
         try {
             Loop Files, currentPath . "\*", "D" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
                 folderCount++
             }
 
             Loop Files, currentPath . "\*", "F" {
                 if (A_LoopFileAttrib ~= "H")
-                continue
+                    continue
                 fileCount++
             }
         }
@@ -909,3 +909,4 @@ ERROR HANDLING:
 ; Example5_IconsByType()
 ; Example6_FileSearch()
 ; Example7_FileManager()
+

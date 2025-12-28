@@ -2,23 +2,23 @@
 #Include JSON.ahk
 
 /**
-* ============================================================================
-* FileRead - Structured Data Reading and Parsing
-* ============================================================================
-*
-* Demonstrates reading and parsing structured data formats:
-* - INI configuration files
-* - CSV/TSV data files
-* - XML data structures
-* - JSON data formats
-* - Custom delimited formats
-* - Database export files
-*
-* @description Structured data reading examples for FileRead
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
-*/
+ * ============================================================================
+ * FileRead - Structured Data Reading and Parsing
+ * ============================================================================
+ * 
+ * Demonstrates reading and parsing structured data formats:
+ * - INI configuration files
+ * - CSV/TSV data files
+ * - XML data structures
+ * - JSON data formats
+ * - Custom delimited formats
+ * - Database export files
+ * 
+ * @description Structured data reading examples for FileRead
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
+ */
 
 ; ============================================================================
 ; Example 1: Advanced INI File Reading and Parsing
@@ -92,7 +92,7 @@ Example1_AdvancedINI() {
             for key, value in values {
                 displayValue := value
                 if StrLen(value) > 30
-                displayValue := SubStr(value, 1, 30) . "..."
+                    displayValue := SubStr(value, 1, 30) . "..."
                 output .= "  " key " = " displayValue "`n"
             }
             output .= "`n"
@@ -106,9 +106,9 @@ Example1_AdvancedINI() {
         logEnabled := config["Logging"]["Enabled"]
 
         MsgBox("Database Host: " dbHost "`n" .
-        "UI Theme: " uiTheme "`n" .
-        "Logging: " (logEnabled = "true" ? "Enabled" : "Disabled"),
-        "Configuration Values")
+            "UI Theme: " uiTheme "`n" .
+            "Logging: " (logEnabled = "true" ? "Enabled" : "Disabled"),
+            "Configuration Values")
 
     } catch as err {
         MsgBox("Error: " err.Message, "Error", 16)
@@ -126,15 +126,15 @@ Example1_AdvancedINI() {
 
             ; Skip empty lines and comments
             if !line || SubStr(line, 1, 1) = ";"
-            continue
+                continue
 
             ; Remove inline comments
             if pos := InStr(line, ";") {
                 beforeComment := Trim(SubStr(line, 1, pos - 1))
                 if beforeComment
-                line := beforeComment
+                    line := beforeComment
                 else
-                continue
+                    continue
             }
 
             ; Section header
@@ -190,17 +190,17 @@ Example2_AdvancedCSV() {
 
         ; Display formatted table
         output .= Format("{:^6} {:^15} {:^18} {:^10} {:^12} {:^7}`n",
-        "ID", "Name", "Department", "Salary", "Hire Date", "Active")
+            "ID", "Name", "Department", "Salary", "Hire Date", "Active")
         output .= StrReplace(Format("{:-80}", ""), " ", "-") "`n"
 
         for record in data.records {
             output .= Format("{:^6} {:^15} {:^18} ${:>9} {:^12} {:^7}`n",
-            record["ID"],
-            record["Name"],
-            record["Department"],
-            record["Salary"],
-            record["HireDate"],
-            record["Active"])
+                record["ID"],
+                record["Name"],
+                record["Department"],
+                record["Salary"],
+                record["HireDate"],
+                record["Active"])
         }
 
         MsgBox(output, "CSV Parser")
@@ -218,7 +218,7 @@ Example2_AdvancedCSV() {
         output .= "By Department:`n"
 
         for dept, count in stats.byDepartment
-        output .= "  " dept ": " count "`n"
+            output .= "  " dept ": " count "`n"
 
         MsgBox(output, "CSV Data Analysis")
 
@@ -236,7 +236,7 @@ Example2_AdvancedCSV() {
         for line in StrSplit(content, "`n", "`r") {
             line := Trim(line)
             if !line
-            continue
+                continue
 
             ; Parse CSV line (handles quoted values)
             fields := ParseCSVLine(line)
@@ -255,14 +255,14 @@ Example2_AdvancedCSV() {
                 record := Map()
                 for index, value in row {
                     if index <= headers.Length
-                    record[headers[index]] := value
+                        record[headers[index]] := value
                 }
                 records.Push(record)
             }
-            return {headers: headers, records: records}
+            return { headers: headers, records: records }
         }
 
-        return {headers: [], records: rows}
+        return { headers: [], records: rows }
     }
 
     ; Parse CSV line with quoted value support
@@ -286,7 +286,7 @@ Example2_AdvancedCSV() {
 
         ; Add last field
         if field != "" || SubStr(line, -1) = ","
-        fields.Push(Trim(field))
+            fields.Push(Trim(field))
 
         return fields
     }
@@ -306,9 +306,9 @@ Example2_AdvancedCSV() {
         for record in data.records {
             ; Count active/inactive
             if record["Active"] = "true"
-            stats["active"]++
+                stats["active"]++
             else
-            stats["inactive"]++
+                stats["inactive"]++
 
             ; Department count
             dept := record["Department"]
@@ -333,7 +333,7 @@ Example2_AdvancedCSV() {
         for item in arr {
             result .= item
             if A_Index < arr.Length
-            result .= delimiter
+                result .= delimiter
         }
         return result
     }
@@ -405,7 +405,7 @@ Example3_XMLParsing() {
 
         output := "Programming Books:`n`n"
         for book in programmingBooks
-        output .= book["title"] " by " book["author"] " - $" book["price"] "`n"
+            output .= book["title"] " by " book["author"] " - $" book["price"] "`n"
 
         MsgBox(output, "Filtered Results")
 
@@ -431,7 +431,7 @@ Example3_XMLParsing() {
             fields := ["title", "author", "year", "price", "category"]
             for field in fields {
                 if RegExMatch(bookContent, "<" field ">(.*?)</" field ">", &fieldMatch)
-                book[field] := fieldMatch[1]
+                    book[field] := fieldMatch[1]
             }
 
             books.Push(book)
@@ -446,7 +446,7 @@ Example3_XMLParsing() {
         filtered := []
         for book in books {
             if book["category"] = category
-            filtered.Push(book)
+                filtered.Push(book)
         }
         return filtered
     }
@@ -481,12 +481,12 @@ Example4_TSVParsing() {
         output .= "Records: " data.records.Length "`n`n"
 
         output .= Format("{:-15} {:-5} {:-15} {:-15} {:-15}`n",
-        "Name", "Age", "City", "Country", "Occupation")
+            "Name", "Age", "City", "Country", "Occupation")
         output .= StrReplace(Format("{:-70}", ""), " ", "-") "`n"
 
         for record in data.records {
             output .= Format("{:-15} {:-5} {:-15} {:-15} {:-15}`n",
-            record[0], record[1], record[2], record[3], record[4])
+                record[0], record[1], record[2], record[3], record[4])
         }
 
         MsgBox(output, "TSV Parser")
@@ -505,17 +505,17 @@ Example4_TSVParsing() {
         for line in StrSplit(content, "`n", "`r") {
             line := Trim(line)
             if !line
-            continue
+                continue
 
             fields := StrSplit(line, "`t")
 
             if headers.Length = 0
-            headers := fields
+                headers := fields
             else
-            rows.Push(fields)
+                rows.Push(fields)
         }
 
-        return {headers: headers, records: rows}
+        return { headers: headers, records: rows }
     }
 }
 
@@ -566,7 +566,7 @@ Example5_CustomDelimited() {
         for category, products in byCategory {
             output .= category " (" products.Length "):`n"
             for product in products
-            output .= "  - " product["ProductName"] "`n"
+                output .= "  - " product["ProductName"] "`n"
             output .= "`n"
         }
 
@@ -586,13 +586,13 @@ Example5_CustomDelimited() {
         for line in StrSplit(content, "`n", "`r") {
             line := Trim(line)
             if !line
-            continue
+                continue
 
             fields := StrSplit(line, delimiter)
 
             ; Trim each field
             for index, field in fields
-            fields[index] := Trim(field)
+                fields[index] := Trim(field)
 
             if headers.Length = 0 {
                 headers := fields
@@ -607,12 +607,12 @@ Example5_CustomDelimited() {
             record := Map()
             for index, value in row {
                 if index <= headers.Length
-                record[headers[index]] := value
+                    record[headers[index]] := value
             }
             records.Push(record)
         }
 
-        return {headers: headers, records: records}
+        return { headers: headers, records: records }
     }
 
     ; Group records by field
@@ -623,7 +623,7 @@ Example5_CustomDelimited() {
             value := record[fieldName]
 
             if !grouped.Has(value)
-            grouped[value] := []
+                grouped[value] := []
 
             grouped[value].Push(record)
         }
@@ -658,76 +658,71 @@ Example6_FixedWidth() {
         content := FileRead(fixedFile)
 
         ; Define column positions (start, length)
-        columns := [
-        {
-            name: "ID", start: 1, length: 6},
-            {
-                name: "Name", start: 7, length: 17},
-                {
-                    name: "Department", start: 24, length: 17},
-                    {
-                        name: "Salary", start: 41, length: 10},
-                        {
+        columns := [{
+            name: "ID", start: 1, length: 6 }, {
+                name: "Name", start: 7, length: 17 }, {
+                    name: "Department", start: 24, length: 17 }, {
+                        name: "Salary", start: 41, length: 10 }, {
                             name: "Status", start: 51, length: 10
                         }
-                        ]
+        ]
 
-                        ; Parse fixed-width data
-                        data := ParseFixedWidth(content, columns)
+        ; Parse fixed-width data
+        data := ParseFixedWidth(content, columns)
 
-                        ; Display results
-                        output := "Fixed-Width Format Parsing:`n`n"
-                        output .= "Records: " data.Length "`n`n"
+        ; Display results
+        output := "Fixed-Width Format Parsing:`n`n"
+        output .= "Records: " data.Length "`n`n"
 
-                        for record in data {
-                            output .= "ID: " record["ID"] "`n"
-                            output .= "Name: " record["Name"] "`n"
-                            output .= "Department: " record["Department"] "`n"
-                            output .= "Salary: $" record["Salary"] "`n"
-                            output .= "Status: " record["Status"] "`n`n"
-                        }
+        for record in data {
+            output .= "ID: " record["ID"] "`n"
+            output .= "Name: " record["Name"] "`n"
+            output .= "Department: " record["Department"] "`n"
+            output .= "Salary: $" record["Salary"] "`n"
+            output .= "Status: " record["Status"] "`n`n"
+        }
 
-                        MsgBox(output, "Fixed-Width Parser")
+        MsgBox(output, "Fixed-Width Parser")
 
-                    } catch as err {
-                        MsgBox("Error: " err.Message, "Error", 16)
-                    } finally {
-                        FileDelete(fixedFile)
-                    }
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(fixedFile)
+    }
 
-                    ; Fixed-width parser
-                    ParseFixedWidth(content, columns) {
-                        records := []
-                        lines := StrSplit(content, "`n", "`r")
+    ; Fixed-width parser
+    ParseFixedWidth(content, columns) {
+        records := []
+        lines := StrSplit(content, "`n", "`r")
 
-                        ; Skip header line
-                        for index, line in lines {
-                            if index = 1 || !Trim(line)
-                            continue
+        ; Skip header line
+        for index, line in lines {
+            if index = 1 || !Trim(line)
+                continue
 
-                            record := Map()
+            record := Map()
 
-                            for col in columns {
-                                value := SubStr(line, col.start, col.length)
-                                record[col.name] := Trim(value)
-                            }
+            for col in columns {
+                value := SubStr(line, col.start, col.length)
+                record[col.name] := Trim(value)
+            }
 
-                            records.Push(record)
-                        }
+            records.Push(record)
+        }
 
-                        return records
-                    }
-                }
+        return records
+    }
+}
 
-                ; ============================================================================
-                ; Example 7: Database Export File Reading
-                ; ============================================================================
+; ============================================================================
+; Example 7: Database Export File Reading
+; ============================================================================
 
-                Example7_DatabaseExport() {
-                    sqlFile := A_Temp "\database_export.sql"
+Example7_DatabaseExport() {
+    sqlFile := A_Temp "\database_export.sql"
 
-                    ; Create SQL export file
-                    sqlContent := "
+    ; Create SQL export file
+    sqlContent := "
                     (
                     -- Database Export
                     -- Generated: 2024-01-15 10:30:00
@@ -744,143 +739,137 @@ Example6_FixedWidth() {
                     (104, 3, 89.00, '2023-06-15');
                     )"
 
-                    try {
-                        ; Write SQL file
-                        FileAppend(sqlContent, sqlFile)
+    try {
+        ; Write SQL file
+        FileAppend(sqlContent, sqlFile)
 
-                        ; Read SQL file
-                        content := FileRead(sqlFile)
+        ; Read SQL file
+        content := FileRead(sqlFile)
 
-                        ; Extract INSERT statements
-                        inserts := ParseSQLInserts(content)
+        ; Extract INSERT statements
+        inserts := ParseSQLInserts(content)
 
-                        ; Display results
-                        output := "SQL Export File Analysis:`n`n"
-                        output .= "Total INSERT Statements: " inserts.Length "`n`n"
+        ; Display results
+        output := "SQL Export File Analysis:`n`n"
+        output .= "Total INSERT Statements: " inserts.Length "`n`n"
 
-                        for stmt in inserts {
-                            output .= "Table: " stmt.table "`n"
-                            output .= "Records: " stmt.records.Length "`n"
-                            output .= "Columns: " ArrayToString(stmt.columns) "`n`n"
-                        }
+        for stmt in inserts {
+            output .= "Table: " stmt.table "`n"
+            output .= "Records: " stmt.records.Length "`n"
+            output .= "Columns: " ArrayToString(stmt.columns) "`n`n"
+        }
 
-                        MsgBox(output, "SQL Parser")
+        MsgBox(output, "SQL Parser")
 
-                        ; Show user data
-                        if inserts.Length > 0 {
-                            userInsert := inserts[1]
-                            output := "Users Table Data:`n`n"
+        ; Show user data
+        if inserts.Length > 0 {
+            userInsert := inserts[1]
+            output := "Users Table Data:`n`n"
 
-                            for record in userInsert.records {
-                                output .= "ID: " record[1] "`n"
-                                output .= "Username: " record[2] "`n"
-                                output .= "Email: " record[3] "`n"
-                                output .= "Created: " record[4] "`n`n"
-                            }
+            for record in userInsert.records {
+                output .= "ID: " record[1] "`n"
+                output .= "Username: " record[2] "`n"
+                output .= "Email: " record[3] "`n"
+                output .= "Created: " record[4] "`n`n"
+            }
 
-                            MsgBox(output, "Extracted User Data")
-                        }
+            MsgBox(output, "Extracted User Data")
+        }
 
-                    } catch as err {
-                        MsgBox("Error: " err.Message, "Error", 16)
-                    } finally {
-                        FileDelete(sqlFile)
-                    }
+    } catch as err {
+        MsgBox("Error: " err.Message, "Error", 16)
+    } finally {
+        FileDelete(sqlFile)
+    }
 
-                    ; SQL INSERT parser
-                    ParseSQLInserts(sql) {
-                        inserts := []
+    ; SQL INSERT parser
+    ParseSQLInserts(sql) {
+        inserts := []
 
-                        ; Find all INSERT statements
-                        pos := 1
-                        while pos := RegExMatch(sql, "si)INSERT INTO (\w+)\s*\((.*?)\)\s*VALUES\s*(.*?);", &match, pos) {
-                            tableName := match[1]
-                            columns := []
+        ; Find all INSERT statements
+        pos := 1
+        while pos := RegExMatch(sql, "si)INSERT INTO (\w+)\s*\((.*?)\)\s*VALUES\s*(.*?);", &match, pos) {
+            tableName := match[1]
+            columns := []
 
-                            ; Parse columns
-                            for col in StrSplit(match[2], ",")
-                            columns.Push(Trim(col))
+            ; Parse columns
+            for col in StrSplit(match[2], ",")
+                columns.Push(Trim(col))
 
-                            ; Parse values
-                            values := match[3]
-                            records := []
+            ; Parse values
+            values := match[3]
+            records := []
 
-                            ; Extract each record
-                            vpos := 1
-                            while vpos := RegExMatch(values, "\((.*?)\)", &vmatch, vpos) {
-                                record := []
-                                for value in StrSplit(vmatch[1], ",") {
-                                    ; Remove quotes and trim
-                                    value := Trim(value)
-                                    value := Trim(value, "'`"")
-                                    record.Push(value)
-                                }
-                                records.Push(record)
-                                vpos += StrLen(vmatch[0])
-                            }
-
-                            inserts.Push({
-                                table: tableName,
-                                columns: columns,
-                                records: records
-                            })
-
-                            pos += StrLen(match[0])
-                        }
-
-                        return inserts
-                    }
-
-                    ArrayToString(arr, delimiter := ", ") {
-                        result := ""
-                        for item in arr {
-                            result .= item
-                            if A_Index < arr.Length
-                            result .= delimiter
-                        }
-                        return result
-                    }
+            ; Extract each record
+            vpos := 1
+            while vpos := RegExMatch(values, "\((.*?)\)", &vmatch, vpos) {
+                record := []
+                for value in StrSplit(vmatch[1], ",") {
+                    ; Remove quotes and trim
+                    value := Trim(value)
+                    value := Trim(value, "'`"")
+                    record.Push(value)
                 }
+                records.Push(record)
+                vpos += StrLen(vmatch[0])
+            }
 
-                ; ============================================================================
-                ; Run Examples
-                ; ============================================================================
+            inserts.Push({
+                table: tableName,
+                columns: columns,
+                records: records
+            })
 
-                ; Uncomment to run individual examples:
-                ; Example1_AdvancedINI()
-                ; Example2_AdvancedCSV()
-                ; Example3_XMLParsing()
-                ; Example4_TSVParsing()
-                ; Example5_CustomDelimited()
-                ; Example6_FixedWidth()
-                ; Example7_DatabaseExport()
+            pos += StrLen(match[0])
+        }
 
-                ; Run all examples
-                RunAllExamples() {
-                    examples := [
-                    {
-                        name: "Advanced INI Parsing", func: Example1_AdvancedINI},
-                        {
-                            name: "Advanced CSV Parsing", func: Example2_AdvancedCSV},
-                            {
-                                name: "XML Parsing", func: Example3_XMLParsing},
-                                {
-                                    name: "TSV Parsing", func: Example4_TSVParsing},
-                                    {
-                                        name: "Custom Delimited Format", func: Example5_CustomDelimited},
-                                        {
-                                            name: "Fixed-Width Columns", func: Example6_FixedWidth},
-                                            {
-                                                name: "Database Export File", func: Example7_DatabaseExport
-                                            }
-                                            ]
+        return inserts
+    }
 
-                                            for example in examples {
-                                                result := MsgBox("Run: " example.name "?", "Structured Data Examples", 4)
-                                                if result = "Yes"
-                                                example.func.Call()
-                                            }
-                                        }
+    ArrayToString(arr, delimiter := ", ") {
+        result := ""
+        for item in arr {
+            result .= item
+            if A_Index < arr.Length
+                result .= delimiter
+        }
+        return result
+    }
+}
 
-                                        ; Uncomment to run all examples interactively:
-                                        ; RunAllExamples()
+; ============================================================================
+; Run Examples
+; ============================================================================
+
+; Uncomment to run individual examples:
+; Example1_AdvancedINI()
+; Example2_AdvancedCSV()
+; Example3_XMLParsing()
+; Example4_TSVParsing()
+; Example5_CustomDelimited()
+; Example6_FixedWidth()
+; Example7_DatabaseExport()
+
+; Run all examples
+RunAllExamples() {
+    examples := [{
+        name: "Advanced INI Parsing", func: Example1_AdvancedINI }, {
+            name: "Advanced CSV Parsing", func: Example2_AdvancedCSV }, {
+                name: "XML Parsing", func: Example3_XMLParsing }, {
+                    name: "TSV Parsing", func: Example4_TSVParsing }, {
+                        name: "Custom Delimited Format", func: Example5_CustomDelimited }, {
+                            name: "Fixed-Width Columns", func: Example6_FixedWidth }, {
+                                name: "Database Export File", func: Example7_DatabaseExport
+                            }
+    ]
+
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "Structured Data Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
+
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

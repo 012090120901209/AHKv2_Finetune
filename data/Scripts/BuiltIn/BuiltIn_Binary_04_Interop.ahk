@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Binary_04_Interop.ahk
-*
-* DESCRIPTION:
-* DLL interoperability and Windows API integration using binary data.
-* Demonstrates calling external functions with binary structures.
-*
-* FEATURES:
-* - Windows API structure creation
-* - DllCall with binary buffers
-* - Structure marshaling
-* - API result parsing
-* - Platform-specific handling
-* - Real-world API usage
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall, Binary Operations
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall with Buffer parameters
-* - Structure passing to APIs
-* - Returned structure parsing
-* - Multi-API call sequences
-* - Error handling with binary data
-*
-* LEARNING POINTS:
-* 1. Windows APIs expect specific structure layouts
-* 2. DllCall can pass Buffer.Ptr directly
-* 3. API documentation defines structure requirements
-* 4. Some APIs modify buffers in-place
-* 5. Platform differences affect structure sizes
-*/
+ * BuiltIn_Binary_04_Interop.ahk
+ * 
+ * DESCRIPTION:
+ * DLL interoperability and Windows API integration using binary data.
+ * Demonstrates calling external functions with binary structures.
+ * 
+ * FEATURES:
+ * - Windows API structure creation
+ * - DllCall with binary buffers
+ * - Structure marshaling
+ * - API result parsing
+ * - Platform-specific handling
+ * - Real-world API usage
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall, Binary Operations
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall with Buffer parameters
+ * - Structure passing to APIs
+ * - Returned structure parsing
+ * - Multi-API call sequences
+ * - Error handling with binary data
+ * 
+ * LEARNING POINTS:
+ * 1. Windows APIs expect specific structure layouts
+ * 2. DllCall can pass Buffer.Ptr directly
+ * 3. API documentation defines structure requirements
+ * 4. Some APIs modify buffers in-place
+ * 5. Platform differences affect structure sizes
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: SYSTEMTIME Windows API
@@ -160,7 +160,7 @@ ShowMenu() {
     choice := InputBox(menu, "Binary Interop", "w450 h250")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_SYSTEMTIME()

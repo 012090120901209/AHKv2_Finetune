@@ -1,19 +1,19 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Push() - Stack Operations and Data Structures
-* ============================================================================
-*
-* The Push() method is fundamental for implementing stack data structures
-* and related algorithms. This file demonstrates various stack-based patterns
-* and advanced data structure implementations.
-*
-* @description Stack operations and data structures using Push()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Push() - Stack Operations and Data Structures
+ * ============================================================================
+ * 
+ * The Push() method is fundamental for implementing stack data structures
+ * and related algorithms. This file demonstrates various stack-based patterns
+ * and advanced data structure implementations.
+ * 
+ * @description Stack operations and data structures using Push()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Basic Stack Implementation
@@ -64,17 +64,17 @@ Example2_ParenthesesMatching() {
 
     ; Test cases
     testCases := [
-    "()",
-    "(())",
-    "((()))",
-    "()()()`n",
-    "(()",
-    "())",
-    "(()())",
-    "((())",
-    "{[()]}",
-    "{[(])}",
-    "((a + b) * (c - d))"
+        "()",
+        "(())",
+        "((()))",
+        "()()()`n",
+        "(()",
+        "())",
+        "(()())",
+        "((())",
+        "{[()]}",
+        "{[(])}",
+        "((a + b) * (c - d))"
     ]
 
     for expression in testCases {
@@ -99,19 +99,19 @@ Example3_FunctionCallStack() {
     OutputDebug("Simulating function calls:`n")
 
     ; Call main()
-    callStack.Push({name: "main", line: 1, locals: Map()})
+    callStack.Push({ name: "main", line: 1, locals: Map() })
     OutputDebug("  PUSH: main() | Stack depth: " callStack.Length "`n")
 
     ; main() calls processData()
-    callStack.Push({name: "processData", line: 10, locals: Map("data", "test")})
+    callStack.Push({ name: "processData", line: 10, locals: Map("data", "test") })
     OutputDebug("  PUSH: processData() | Stack depth: " callStack.Length "`n")
 
     ; processData() calls validateInput()
-    callStack.Push({name: "validateInput", line: 25, locals: Map("input", "test")})
+    callStack.Push({ name: "validateInput", line: 25, locals: Map("input", "test") })
     OutputDebug("  PUSH: validateInput() | Stack depth: " callStack.Length "`n")
 
     ; validateInput() calls checkFormat()
-    callStack.Push({name: "checkFormat", line: 40, locals: Map("format", "string")})
+    callStack.Push({ name: "checkFormat", line: 40, locals: Map("format", "string") })
     OutputDebug("  PUSH: checkFormat() | Stack depth: " callStack.Length "`n")
 
     ; Functions return
@@ -120,7 +120,7 @@ Example3_FunctionCallStack() {
     while (callStack.Length > 0) {
         frame := callStack.Pop()
         OutputDebug("  POP: " frame.name "() returned | Stack depth: "
-        callStack.Length "`n")
+            callStack.Length "`n")
     }
 
     OutputDebug("`n")
@@ -176,11 +176,11 @@ Example5_RPNCalculator() {
 
     ; Test RPN expressions
     expressions := [
-    "3 4 +",           ; 3 + 4 = 7
-    "15 7 1 1 + - /",  ; 15 / (7 - (1 + 1)) = 3
-    "5 1 2 + 4 * + 3 -", ; 5 + ((1 + 2) * 4) - 3 = 14
-    "2 3 ^",           ; 2 ^ 3 = 8
-    "10 2 /",          ; 10 / 2 = 5
+        "3 4 +",           ; 3 + 4 = 7
+        "15 7 1 1 + - /",  ; 15 / (7 - (1 + 1)) = 3
+        "5 1 2 + 4 * + 3 -", ; 5 + ((1 + 2) * 4) - 3 = 14
+        "2 3 ^",           ; 2 ^ 3 = 8
+        "10 2 /",          ; 10 / 2 = 5
     ]
 
     for expr in expressions {
@@ -237,12 +237,12 @@ Example7_DepthFirstSearch() {
 
     ; Create a simple graph (adjacency list)
     graph := Map(
-    "A", ["B", "C"],
-    "B", ["D", "E"],
-    "C", ["F"],
-    "D", [],
-    "E", ["F"],
-    "F", []
+        "A", ["B", "C"],
+        "B", ["D", "E"],
+        "C", ["F"],
+        "D", [],
+        "E", ["F"],
+        "F", []
     )
 
     ; Perform DFS starting from "A"
@@ -332,10 +332,10 @@ class Stack {
 ; ============================================================================
 
 /**
-* Validates balanced parentheses using stack
-* @param {String} expression - Expression to validate
-* @returns {Boolean} True if balanced
-*/
+ * Validates balanced parentheses using stack
+ * @param {String} expression - Expression to validate
+ * @returns {Boolean} True if balanced
+ */
 ValidateParentheses(expression) {
     stack := []
     pairs := Map("(", ")", "[", "]", "{", "}")
@@ -364,8 +364,8 @@ ValidateParentheses(expression) {
 }
 
 /**
-* Performs an action and updates undo stack
-*/
+ * Performs an action and updates undo stack
+ */
 PerformAction(&state, &undoStack, &redoStack, action) {
     undoStack.Push(state)
     state := action
@@ -374,8 +374,8 @@ PerformAction(&state, &undoStack, &redoStack, action) {
 }
 
 /**
-* Undo last action
-*/
+ * Undo last action
+ */
 Undo(&state, &undoStack, &redoStack) {
     if (undoStack.Length > 0) {
         redoStack.Push(state)
@@ -385,8 +385,8 @@ Undo(&state, &undoStack, &redoStack) {
 }
 
 /**
-* Redo last undone action
-*/
+ * Redo last undone action
+ */
 Redo(&state, &undoStack, &redoStack) {
     if (redoStack.Length > 0) {
         undoStack.Push(state)
@@ -396,10 +396,10 @@ Redo(&state, &undoStack, &redoStack) {
 }
 
 /**
-* Evaluates RPN expression
-* @param {String} expression - RPN expression
-* @returns {Number} Result
-*/
+ * Evaluates RPN expression
+ * @param {String} expression - RPN expression
+ * @returns {Number} Result
+ */
 EvaluateRPN(expression) {
     stack := []
 
@@ -438,8 +438,8 @@ EvaluateRPN(expression) {
 }
 
 /**
-* Navigate to a new page
-*/
+ * Navigate to a new page
+ */
 NavigateTo(&currentPage, &backStack, &forwardStack, newPage) {
     backStack.Push(currentPage)
     currentPage := newPage
@@ -448,8 +448,8 @@ NavigateTo(&currentPage, &backStack, &forwardStack, newPage) {
 }
 
 /**
-* Go back in history
-*/
+ * Go back in history
+ */
 GoBack(&currentPage, &backStack, &forwardStack) {
     if (backStack.Length > 0) {
         forwardStack.Push(currentPage)
@@ -459,8 +459,8 @@ GoBack(&currentPage, &backStack, &forwardStack) {
 }
 
 /**
-* Go forward in history
-*/
+ * Go forward in history
+ */
 GoForward(&currentPage, &backStack, &forwardStack) {
     if (forwardStack.Length > 0) {
         backStack.Push(currentPage)
@@ -470,8 +470,8 @@ GoForward(&currentPage, &backStack, &forwardStack) {
 }
 
 /**
-* Formats an array for display
-*/
+ * Formats an array for display
+ */
 FormatArray(arr) {
     if (arr.Length = 0) {
         return "[]"

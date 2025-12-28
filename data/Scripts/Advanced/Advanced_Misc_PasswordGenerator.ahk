@@ -30,13 +30,13 @@ GeneratePassword(*) {
 
     chars := ""
     if (passGui["UseUpper"].Value)
-    chars .= "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        chars .= "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     if (passGui["UseLower"].Value)
-    chars .= "abcdefghijklmnopqrstuvwxyz"
+        chars .= "abcdefghijklmnopqrstuvwxyz"
     if (passGui["UseDigits"].Value)
-    chars .= "0123456789"
+        chars .= "0123456789"
     if (passGui["UseSymbols"].Value)
-    chars .= "!@#$%^&*()-_=+[]{}|;:,.<>?"
+        chars .= "!@#$%^&*()-_=+[]{}|;:,.<>?"
 
     if (chars = "") {
         MsgBox("Select at least one character type!", "Error")
@@ -60,24 +60,24 @@ CalculateStrength(password, chars) {
     score := 0
 
     if (StrLen(password) >= 12)
-    score += 25
+        score += 25
     if (StrLen(password) >= 16)
-    score += 25
+        score += 25
     if (InStr(chars, "A"))
-    score += 15
+        score += 15
     if (InStr(chars, "a"))
-    score += 10
+        score += 10
     if (InStr(chars, "0"))
-    score += 15
+        score += 15
     if (InStr(chars, "!"))
-    score += 10
+        score += 10
 
     if (score < 40)
-    return "Weak"
+        return "Weak"
     else if (score < 70)
-    return "Medium"
+        return "Medium"
     else
-    return "Strong"
+        return "Strong"
 }
 
 CopyPassword(*) {

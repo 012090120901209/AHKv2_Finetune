@@ -1,23 +1,23 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Module Tier 3 Example 02: Using the Helpers Bundle
-*
-* This example demonstrates:
-* - Importing bundle modules
-* - Multiple ways to access bundled functionality
-* - Benefits of module bundles
-* - API convenience patterns
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Tier3_01_Helpers_Bundle.ahk
-* @requires Module_Tier2_01_StringHelpers_Module.ahk
-* @requires Module_Tier2_04_ArrayHelpers_Module.ahk
-* @requires Module_Tier1_01_MathHelpers_Module.ahk
-*/
+ * Module Tier 3 Example 02: Using the Helpers Bundle
+ * 
+ * This example demonstrates:
+ * - Importing bundle modules
+ * - Multiple ways to access bundled functionality
+ * - Benefits of module bundles
+ * - API convenience patterns
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Tier3_01_Helpers_Bundle.ahk
+ * @requires Module_Tier2_01_StringHelpers_Module.ahk
+ * @requires Module_Tier2_04_ArrayHelpers_Module.ahk
+ * @requires Module_Tier1_01_MathHelpers_Module.ahk
+ */
 
-#SingleInstance Force
 
 Import Helpers
 
@@ -36,11 +36,11 @@ chunks := H.Array.Chunk(numbers, 3)
 total := H.Array.Sum(numbers)
 
 MsgBox("Using HelpersReady() Bundle:`n`n"
-. "String: " formatted "`n"
-. "Chunks: " chunks.Length "`n"
-. "Sum: " total "`n`n"
-. "Math 5²: " H.Math.Square(5),
-"Bundle Approach 1", "Icon!")
+    . "String: " formatted "`n"
+    . "Chunks: " chunks.Length "`n"
+    . "Sum: " total "`n`n"
+    . "Math 5²: " H.Math.Square(5),
+    "Bundle Approach 1", "Icon!")
 
 ; ============================================================
 ; Approach 2: Using QuickHelpers() for Common Operations
@@ -68,10 +68,10 @@ joined := Helpers.ArrayHelpers.Join([1, 2, 3], ", ")
 squared := Helpers.MathHelpers.Square(8)
 
 MsgBox("Direct Sub-module Access:`n`n"
-. "Title: " title "`n"
-. "Joined: " joined "`n"
-. "Squared: " squared,
-"Direct Access", "Icon!")
+    . "Title: " title "`n"
+    . "Joined: " joined "`n"
+    . "Squared: " squared,
+    "Direct Access", "Icon!")
 
 ; ============================================================
 ; Approach 4: Module Info
@@ -86,7 +86,7 @@ infoText .= "Description: " info.description "`n`n"
 infoText .= "Sub-modules:`n"
 
 for submodule in info.submodules
-infoText .= "  • " submodule "`n"
+    infoText .= "  • " submodule "`n"
 
 MsgBox(infoText, "Module Info", "Icon!")
 
@@ -115,7 +115,7 @@ class DataProcessor {
         ; Format words
         formatted := []
         for word in unique
-        formatted.Push(this.helpers.String.Title(word))
+            formatted.Push(this.helpers.String.Title(word))
 
         return {
             original: rawText,
@@ -150,22 +150,22 @@ processor := DataProcessor()
 textResult := processor.ProcessData("the quick brown fox jumps over the lazy dog the quick fox")
 
 MsgBox("Text Processing with Bundle:`n`n"
-. "Words: " textResult.wordCount "`n"
-. "Unique: " textResult.uniqueCount "`n"
-. "Chunks: " textResult.chunks "`n`n"
-. "Formatted: " textResult.formatted,
-"Text Processor", "Icon!")
+    . "Words: " textResult.wordCount "`n"
+    . "Unique: " textResult.uniqueCount "`n"
+    . "Chunks: " textResult.chunks "`n`n"
+    . "Formatted: " textResult.formatted,
+    "Text Processor", "Icon!")
 
 ; Process number data
 numberResult := processor.ProcessNumbers([5, 2, 8, 2, 9, 1, 8, 5])
 
 MsgBox("Number Processing with Bundle:`n`n"
-. "Total: " numberResult.count "`n"
-. "Unique: " numberResult.unique "`n"
-. "Sum: " numberResult.sum "`n"
-. "Range: " numberResult.min " to " numberResult.max "`n"
-. "First: " numberResult.first ", Last: " numberResult.last,
-"Number Processor", "Icon!")
+    . "Total: " numberResult.count "`n"
+    . "Unique: " numberResult.unique "`n"
+    . "Sum: " numberResult.sum "`n"
+    . "Range: " numberResult.min " to " numberResult.max "`n"
+    . "First: " numberResult.first ", Last: " numberResult.last,
+    "Number Processor", "Icon!")
 
 ; ============================================================
 ; Benefits of Bundle Modules

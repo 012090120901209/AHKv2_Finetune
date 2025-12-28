@@ -21,7 +21,7 @@ class CachingProxy extends Subject {
         }
 
         if (!this.realSubject)
-        this.realSubject := RealSubject()
+            this.realSubject := RealSubject()
 
         MsgBox("Proxy: Forwarding to real subject...")
         this.realSubject.Request()
@@ -35,7 +35,7 @@ class ProtectionProxy extends Subject {
 
     Request() {
         if (!this.CheckAccess())
-        return MsgBox("Access denied!", "Error")
+            return MsgBox("Access denied!", "Error")
         this.realSubject.Request()
     }
 
@@ -52,3 +52,4 @@ proxy.Request()  ; Fast from cache
 
 protectedProxy := ProtectionProxy(RealSubject(), "secret")
 protectedProxy.Request()  ; Requires password
+

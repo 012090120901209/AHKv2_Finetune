@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlHide - Advanced Hiding Techniques
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlHide - Advanced Hiding Techniques
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -25,9 +25,9 @@ Example1() {
     ShowAdv.OnEvent("Click", Update)
     Update(*) {
         if (ShowAdv.Value)
-        ControlShow(Advanced)
+            ControlShow(Advanced)
         else
-        ControlHide(Advanced)
+            ControlHide(Advanced)
     }
     ControlHide(Advanced)
 
@@ -46,17 +46,17 @@ Example2() {
     Group2 := []
     MyGui.Add("Text", "xm y+20", "Group 1:")
     loop 2
-    Group1.Push(MyGui.Add("Edit", "xm y+10 w200", "G1-" . A_Index))
+        Group1.Push(MyGui.Add("Edit", "xm y+10 w200", "G1-" . A_Index))
     MyGui.Add("Text", "xm y+20", "Group 2:")
     loop 2
-    Group2.Push(MyGui.Add("Edit", "xm y+10 w200", "G2-" . A_Index))
+        Group2.Push(MyGui.Add("Edit", "xm y+10 w200", "G2-" . A_Index))
     Btn1 := MyGui.Add("Button", "xm y+20 w140", "Hide Group 1")
     Btn1.OnEvent("Click", (*) => HideGroup(Group1))
     Btn2 := MyGui.Add("Button", "x+10 w140", "Hide Group 2")
     Btn2.OnEvent("Click", (*) => HideGroup(Group2))
     HideGroup(grp) {
         for ctrl in grp
-        ControlHide(ctrl)
+            ControlHide(ctrl)
     }
 
     MyGui.Show()
@@ -72,7 +72,7 @@ Example3() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Level " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Level " . A_Index))
     BtnCascade := MyGui.Add("Button", "xm y+20 w200", "Cascade Hide")
     BtnCascade.OnEvent("Click", Cascade)
     Cascade(*) {
@@ -95,7 +95,7 @@ Example4() {
 
     steps := []
     loop 4
-    steps.Push(MyGui.Add("Edit", "w250 y+10", "Step " . A_Index))
+        steps.Push(MyGui.Add("Edit", "w250 y+10", "Step " . A_Index))
     current := 1
     BtnNext := MyGui.Add("Button", "xm y+20 w200", "Next Step")
     BtnNext.OnEvent("Click", Next)
@@ -179,17 +179,17 @@ Example7() {
     Section2 := []
     MyGui.Add("Text", "xm y+20", "▼ Section 1")
     loop 2
-    Section1.Push(MyGui.Add("Edit", "xm y+10 w200", "Field " . A_Index))
+        Section1.Push(MyGui.Add("Edit", "xm y+10 w200", "Field " . A_Index))
     BtnCollapse := MyGui.Add("Button", "xm y+20 w200", "Collapse Section 1")
     BtnCollapse.OnEvent("Click", Collapse)
     collapsed := false
     Collapse(*) {
         collapsed := !collapsed
         for ctrl in Section1
-        if (collapsed)
-        ControlHide(ctrl)
-        else
-        ControlShow(ctrl)
+            if (collapsed)
+                ControlHide(ctrl)
+            else
+                ControlShow(ctrl)
         BtnCollapse.Value := collapsed ? "Expand Section 1" : "Collapse Section 1"
     }
 
@@ -205,13 +205,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Smart Hide",
-"Example 2: Group Hide",
-"Example 3: Cascade Hide",
-"Example 4: Wizard Steps",
-"Example 5: Modal Dialog",
-"Example 6: Timed Hide",
-"Example 7: Smart Collapse",
+    "Example 1: Smart Hide",
+    "Example 2: Group Hide",
+    "Example 3: Cascade Hide",
+    "Example 4: Wizard Steps",
+    "Example 5: Modal Dialog",
+    "Example 6: Timed Hide",
+    "Example 7: Smart Collapse",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

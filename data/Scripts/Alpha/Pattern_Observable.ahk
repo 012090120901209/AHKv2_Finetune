@@ -16,7 +16,7 @@ class Observable {
     Set(newValue) {
         if this._value = newValue
             return this
-        
+
         oldValue := this._value
         this._value := newValue
         this._notify(oldValue, newValue)
@@ -25,7 +25,7 @@ class Observable {
 
     Subscribe(callback) {
         this._subscribers.Push(callback)
-        
+
         ; Return unsubscribe function
         return () {
             for i, sub in this._subscribers {
@@ -40,7 +40,7 @@ class Observable {
     _notify(oldValue, newValue) {
         for callback in this._subscribers
             callback(newValue, oldValue)
-        
+
         ; Notify computed dependents
         for computed in this._computedDeps
             computed._recompute()
@@ -49,11 +49,11 @@ class Observable {
     ; Create computed value
     static Computed(dependencies, computeFn) {
         computed := ComputedObservable(dependencies, computeFn)
-        
+
         ; Register as dependent
         for dep in dependencies
             dep._computedDeps.Push(computed)
-        
+
         return computed
     }
 
@@ -84,7 +84,7 @@ class ComputedObservable extends Observable {
     _recompute() {
         oldValue := this._value
         this._value := this._computeFn()
-        
+
         if oldValue != this._value
             this._notify(oldValue, this._value)
     }
@@ -106,13 +106,13 @@ class ReactiveField extends Observable {
 
     Validate() {
         this.errors := []
-        
+
         for validator in this.validators {
             error := validator(this._value)
             if error
                 this.errors.Push(error)
         }
-        
+
         return !this.errors.Length
     }
 

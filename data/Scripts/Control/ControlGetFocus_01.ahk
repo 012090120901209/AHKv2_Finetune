@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlGetFocus 01 - Get Focused Control
-* ============================================================================
-*
-* Demonstrates ControlGetFocus 01 functionality for window automation
-* and control manipulation.
-*
-* @description
-* This file provides comprehensive examples of ControlGetFocus 01 usage
-* for UI automation, testing, and window management scenarios.
-*
-* Key Features:
-* - Basic usage examples
-* - Advanced techniques
-* - Error handling
-* - Practical automation scenarios
-* - Real-world applications
-*
-* @author AutoHotkey Community
-* @version 1.0.0
-* @since 2024-01-16
-*
-* @see https://www.autohotkey.com/docs/v2/lib/
-*/
+ * ============================================================================
+ * ControlGetFocus 01 - Get Focused Control
+ * ============================================================================
+ * 
+ * Demonstrates ControlGetFocus 01 functionality for window automation
+ * and control manipulation.
+ * 
+ * @description
+ * This file provides comprehensive examples of ControlGetFocus 01 usage
+ * for UI automation, testing, and window management scenarios.
+ * 
+ * Key Features:
+ * - Basic usage examples
+ * - Advanced techniques
+ * - Error handling
+ * - Practical automation scenarios
+ * - Real-world applications
+ * 
+ * @author AutoHotkey Community
+ * @version 1.0.0
+ * @since 2024-01-16
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/
+ */
 
 ; ============================================================================
 ; Example 1: Basic Usage
 ; ============================================================================
 
 /**
-* @function Example1_BasicUsage
-* @description Demonstrates basic functionality
-*/
+ * @function Example1_BasicUsage
+ * @description Demonstrates basic functionality
+ */
 Example1_BasicUsage() {
     MsgBox("Example 1: Basic Usage`n`nDemonstrating core functionality.",
-    "Basic Usage", "OK Icon!")
+        "Basic Usage", "OK Icon!")
 
     ; Create demo GUI
     myGui := Gui("+AlwaysOnTop", "Demo Window")
@@ -64,12 +64,12 @@ Example1_BasicUsage() {
 ; ============================================================================
 
 /**
-* @function Example2_AdvancedTechniques
-* @description Shows advanced usage patterns
-*/
+ * @function Example2_AdvancedTechniques
+ * @description Shows advanced usage patterns
+ */
 Example2_AdvancedTechniques() {
     MsgBox("Example 2: Advanced Techniques`n`nDemonstrating advanced features.",
-    "Advanced", "OK Icon!")
+        "Advanced", "OK Icon!")
 
     myGui := Gui("+AlwaysOnTop", "Advanced Demo")
     myGui.Add("Text", "w450", "Advanced functionality demonstration:")
@@ -112,12 +112,12 @@ Example2_AdvancedTechniques() {
 ; ============================================================================
 
 /**
-* @function Example3_ErrorHandling
-* @description Demonstrates proper error handling
-*/
+ * @function Example3_ErrorHandling
+ * @description Demonstrates proper error handling
+ */
 Example3_ErrorHandling() {
     MsgBox("Example 3: Error Handling`n`nDemonstrating error handling techniques.",
-    "Error Handling", "OK Icon!")
+        "Error Handling", "OK Icon!")
 
     myGui := Gui("+AlwaysOnTop", "Error Handling Demo")
     myGui.Add("Text", "w400", "Error Handling Examples:")
@@ -160,12 +160,12 @@ Example3_ErrorHandling() {
 ; ============================================================================
 
 /**
-* @function Example4_PracticalScenarios
-* @description Real-world usage examples
-*/
+ * @function Example4_PracticalScenarios
+ * @description Real-world usage examples
+ */
 Example4_PracticalScenarios() {
     MsgBox("Example 4: Practical Scenarios`n`nReal-world application examples.",
-    "Practical", "OK Icon!")
+        "Practical", "OK Icon!")
 
     myGui := Gui("+AlwaysOnTop", "Practical Scenarios Demo")
     myGui.Add("Text", "w450", "Practical Application Scenarios:")
@@ -208,12 +208,12 @@ Example4_PracticalScenarios() {
 ; ============================================================================
 
 /**
-* @function Example5_Integration
-* @description Integration with other functions
-*/
+ * @function Example5_Integration
+ * @description Integration with other functions
+ */
 Example5_Integration() {
     MsgBox("Example 5: Integration`n`nDemonstrating integration techniques.",
-    "Integration", "OK Icon!")
+        "Integration", "OK Icon!")
 
     myGui := Gui("+AlwaysOnTop", "Integration Demo")
     myGui.Add("Text", "w400", "Integration Examples:")
@@ -256,12 +256,12 @@ Example5_Integration() {
 ; ============================================================================
 
 /**
-* @function Example6_Performance
-* @description Performance optimization techniques
-*/
+ * @function Example6_Performance
+ * @description Performance optimization techniques
+ */
 Example6_Performance() {
     MsgBox("Example 6: Performance`n`nDemonstrating performance optimization.",
-    "Performance", "OK Icon!")
+        "Performance", "OK Icon!")
 
     myGui := Gui("+AlwaysOnTop", "Performance Demo")
     myGui.Add("Text", "w400", "Performance Testing:")
@@ -283,7 +283,7 @@ Example6_Performance() {
 
         Loop 100 {
             if (Mod(A_Index, 10) = 0)
-            resultEdit.Value .= "Progress: " . A_Index . "%`n"
+                resultEdit.Value .= "Progress: " . A_Index . "%`n"
             Sleep(10)
         }
 
@@ -299,26 +299,26 @@ Example6_Performance() {
 ; ============================================================================
 
 /**
-* @function Example7_BestPractices
-* @description Demonstrates best practices and coding standards
-*/
+ * @function Example7_BestPractices
+ * @description Demonstrates best practices and coding standards
+ */
 Example7_BestPractices() {
     MsgBox("Example 7: Best Practices`n`nDemonstrating coding best practices.",
-    "Best Practices", "OK Icon!")
+        "Best Practices", "OK Icon!")
 
     myGui := Gui("+AlwaysOnTop", "Best Practices Demo")
     myGui.Add("Text", "w450", "Best Practices Guidelines:")
 
     guideText := myGui.Add("Edit", "w450 h300 ReadOnly Multi",
-    "Best Practices:`n`n" .
-    "1. Always validate input data`n" .
-    "2. Use proper error handling`n" .
-    "3. Document your code`n" .
-    "4. Test edge cases`n" .
-    "5. Follow naming conventions`n" .
-    "6. Optimize for performance`n" .
-    "7. Keep code maintainable`n`n" .
-    "These practices ensure reliable and efficient automation.")
+        "Best Practices:`n`n" .
+        "1. Always validate input data`n" .
+        "2. Use proper error handling`n" .
+        "3. Document your code`n" .
+        "4. Test edge cases`n" .
+        "5. Follow naming conventions`n" .
+        "6. Optimize for performance`n" .
+        "7. Keep code maintainable`n`n" .
+        "These practices ensure reliable and efficient automation.")
 
     closeBtn := myGui.Add("Button", "w450 y+20", "Close Demo")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -352,7 +352,7 @@ ShowMainMenu() {
     choice := InputBox(menuText, "ControlGetFocus 01 Examples", "w400 h320")
 
     if (choice.Result = "Cancel")
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicUsage()
@@ -363,7 +363,7 @@ ShowMainMenu() {
         case "6": Example6_Performance()
         case "7": Example7_BestPractices()
         default:
-        MsgBox("Invalid choice! Please select 1-7.", "Error", "OK IconX")
+            MsgBox("Invalid choice! Please select 1-7.", "Error", "OK IconX")
     }
 
     ; Show menu again

@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* WinRT - Cryptography and Security
-*
-* Demonstrates using Windows.Security.Cryptography for hashing,
-* random number generation, and encoding operations.
-*
-* Library: https://github.com/Lexikos/winrt.ahk
-*/
+ * WinRT - Cryptography and Security
+ * 
+ * Demonstrates using Windows.Security.Cryptography for hashing,
+ * random number generation, and encoding operations.
+ * 
+ * Library: https://github.com/Lexikos/winrt.ahk
+ */
 
 MsgBox("WinRT - Cryptography Example`n`n"
-. "Demonstrates Windows Runtime crypto APIs`n"
-. "Requires: winrt.ahk and Windows 10+", , "T3")
+    . "Demonstrates Windows Runtime crypto APIs`n"
+    . "Requires: winrt.ahk and Windows 10+", , "T3")
 
 /*
 ; Uncomment to run (requires winrt.ahk):
@@ -234,3 +234,4 @@ MsgBox("Buffer Comparison:`n`n"
 *     MacAlgorithmProvider - HMAC
 *     KeyDerivationAlgorithmProvider - PBKDF2
 */
+

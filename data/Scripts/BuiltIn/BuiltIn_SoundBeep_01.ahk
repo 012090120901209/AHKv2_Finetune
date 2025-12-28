@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_SoundBeep_01.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of SoundBeep() function for generating programmable beep tones
-*
-* FEATURES:
-* - Generate beeps at specific frequencies
-* - Control beep duration
-* - Create alert sounds and notifications
-* - Simple melodies and patterns
-* - Frequency and duration relationships
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/SoundBeep.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - SoundBeep() function
-* - Frequency and duration parameters
-* - Musical note frequencies
-* - Loop-based sound patterns
-* - Timer integration for beeps
-*
-* LEARNING POINTS:
-* 1. SoundBeep(Frequency, Duration) generates programmable tones
-* 2. Frequency: 37 to 32767 Hz (default 523 Hz)
-* 3. Duration: in milliseconds (default 150 ms)
-* 4. Can create musical notes and melodies
-* 5. Useful for alerts, notifications, and accessibility
-* 6. More portable than sound files
-*/
+ * BuiltIn_SoundBeep_01.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of SoundBeep() function for generating programmable beep tones
+ * 
+ * FEATURES:
+ * - Generate beeps at specific frequencies
+ * - Control beep duration
+ * - Create alert sounds and notifications
+ * - Simple melodies and patterns
+ * - Frequency and duration relationships
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/SoundBeep.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - SoundBeep() function
+ * - Frequency and duration parameters
+ * - Musical note frequencies
+ * - Loop-based sound patterns
+ * - Timer integration for beeps
+ * 
+ * LEARNING POINTS:
+ * 1. SoundBeep(Frequency, Duration) generates programmable tones
+ * 2. Frequency: 37 to 32767 Hz (default 523 Hz)
+ * 3. Duration: in milliseconds (default 150 ms)
+ * 4. Can create musical notes and melodies
+ * 5. Useful for alerts, notifications, and accessibility
+ * 6. More portable than sound files
+ */
 
 ; ============================================================
 ; Example 1: Basic Beep Sounds
 ; ============================================================
 
 /**
-* Demonstrates basic SoundBeep usage with different frequencies
-*/
+ * Demonstrates basic SoundBeep usage with different frequencies
+ */
 BasicBeeps() {
     MsgBox("Basic beep demonstration`n`n"
-    . "You'll hear beeps at different frequencies",
-    "Basic Beeps", "Icon!")
+        . "You'll hear beeps at different frequencies",
+        "Basic Beeps", "Icon!")
 
     ; Default beep (523 Hz, 150 ms)
     SoundBeep()
@@ -75,52 +75,52 @@ BasicBeeps() {
 ; ============================================================
 
 /**
-* Create different alert sounds using beeps
-*
-* @param {String} alertType - Type of alert (info, warning, error, success)
-*/
+ * Create different alert sounds using beeps
+ * 
+ * @param {String} alertType - Type of alert (info, warning, error, success)
+ */
 AlertBeep(alertType := "info") {
     switch alertType {
         case "info":
-        ; Single medium beep
-        SoundBeep(800, 200)
-        MsgBox("Information alert", "Info", "Iconi T2")
+            ; Single medium beep
+            SoundBeep(800, 200)
+            MsgBox("Information alert", "Info", "Iconi T2")
 
         case "warning":
-        ; Two quick beeps
-        SoundBeep(1000, 150)
-        Sleep(100)
-        SoundBeep(1000, 150)
-        MsgBox("Warning alert", "Warning", "Icon! T2")
+            ; Two quick beeps
+            SoundBeep(1000, 150)
+            Sleep(100)
+            SoundBeep(1000, 150)
+            MsgBox("Warning alert", "Warning", "Icon! T2")
 
         case "error":
-        ; Three harsh low beeps
-        Loop 3 {
-            SoundBeep(200, 200)
-            Sleep(150)
-        }
-        MsgBox("Error alert", "Error", "Iconx T2")
+            ; Three harsh low beeps
+            Loop 3 {
+                SoundBeep(200, 200)
+                Sleep(150)
+            }
+            MsgBox("Error alert", "Error", "Iconx T2")
 
         case "success":
-        ; Ascending beep pattern
-        SoundBeep(600, 100)
-        Sleep(50)
-        SoundBeep(800, 100)
-        Sleep(50)
-        SoundBeep(1000, 150)
-        MsgBox("Success alert", "Success", "Iconi T2")
+            ; Ascending beep pattern
+            SoundBeep(600, 100)
+            Sleep(50)
+            SoundBeep(800, 100)
+            Sleep(50)
+            SoundBeep(1000, 150)
+            MsgBox("Success alert", "Success", "Iconi T2")
 
         case "attention":
-        ; Rapid alternating beeps
-        Loop 5 {
-            SoundBeep(1500, 100)
-            Sleep(100)
-        }
-        MsgBox("Attention alert", "Attention", "Icon! T2")
+            ; Rapid alternating beeps
+            Loop 5 {
+                SoundBeep(1500, 100)
+                Sleep(100)
+            }
+            MsgBox("Attention alert", "Attention", "Icon! T2")
 
         default:
-        SoundBeep()
-        MsgBox("Default alert", "Alert", "T2")
+            SoundBeep()
+            MsgBox("Default alert", "Alert", "T2")
     }
 }
 
@@ -136,26 +136,26 @@ AlertBeep(alertType := "info") {
 ; ============================================================
 
 /**
-* Musical note frequency reference and playback
-*/
+ * Musical note frequency reference and playback
+ */
 class MusicalNotes {
     /**
-    * Get frequency for a musical note
-    *
-    * @param {String} note - Note name (C, D, E, F, G, A, B)
-    * @param {Integer} octave - Octave number (3-6)
-    * @returns {Integer} - Frequency in Hz
-    */
+     * Get frequency for a musical note
+     * 
+     * @param {String} note - Note name (C, D, E, F, G, A, B)
+     * @param {Integer} octave - Octave number (3-6)
+     * @returns {Integer} - Frequency in Hz
+     */
     static GetFrequency(note, octave := 4) {
         ; Base frequencies for octave 4 (Middle octave)
         static baseFrequencies := Map(
-        "C", 261.63,
-        "D", 293.66,
-        "E", 329.63,
-        "F", 349.23,
-        "G", 392.00,
-        "A", 440.00,
-        "B", 493.88
+            "C", 261.63,
+            "D", 293.66,
+            "E", 329.63,
+            "F", 349.23,
+            "G", 392.00,
+            "A", 440.00,
+            "B", 493.88
         )
 
         if !baseFrequencies.Has(note) {
@@ -172,22 +172,22 @@ class MusicalNotes {
     }
 
     /**
-    * Play a musical note
-    *
-    * @param {String} note - Note name
-    * @param {Integer} octave - Octave number
-    * @param {Integer} duration - Duration in ms
-    */
+     * Play a musical note
+     * 
+     * @param {String} note - Note name
+     * @param {Integer} octave - Octave number
+     * @param {Integer} duration - Duration in ms
+     */
     static PlayNote(note, octave := 4, duration := 300) {
         freq := this.GetFrequency(note, octave)
         SoundBeep(freq, duration)
     }
 
     /**
-    * Play a scale
-    *
-    * @param {Integer} octave - Octave to play
-    */
+     * Play a scale
+     * 
+     * @param {Integer} octave - Octave to play
+     */
     static PlayScale(octave := 4) {
         notes := ["C", "D", "E", "F", "G", "A", "B"]
 
@@ -203,8 +203,8 @@ class MusicalNotes {
     }
 
     /**
-    * Display frequency reference table
-    */
+     * Display frequency reference table
+     */
     static ShowFrequencyTable() {
         notes := ["C", "D", "E", "F", "G", "A", "B"]
         output := "MUSICAL NOTE FREQUENCIES:`n`n"
@@ -235,12 +235,12 @@ class MusicalNotes {
 ; ============================================================
 
 /**
-* Play simple melodies using SoundBeep
-*/
+ * Play simple melodies using SoundBeep
+ */
 class MelodyPlayer {
     /**
-    * Play "Mary Had a Little Lamb"
-    */
+     * Play "Mary Had a Little Lamb"
+     */
     static MaryHadALittleLamb() {
         MsgBox("Playing: Mary Had a Little Lamb", "Melody", "T1")
 
@@ -277,8 +277,8 @@ class MelodyPlayer {
     }
 
     /**
-    * Play "Twinkle Twinkle Little Star" opening
-    */
+     * Play "Twinkle Twinkle Little Star" opening
+     */
     static TwinkleTwinkle() {
         MsgBox("Playing: Twinkle Twinkle Little Star", "Melody", "T1")
 
@@ -317,8 +317,8 @@ class MelodyPlayer {
     }
 
     /**
-    * Play "Happy Birthday" opening
-    */
+     * Play "Happy Birthday" opening
+     */
     static HappyBirthday() {
         MsgBox("Playing: Happy Birthday", "Melody", "T1")
 
@@ -353,8 +353,8 @@ class MelodyPlayer {
     }
 
     /**
-    * Play startup jingle
-    */
+     * Play startup jingle
+     */
     static StartupJingle() {
         MsgBox("Playing: Startup Jingle", "Jingle", "T1")
 
@@ -368,8 +368,8 @@ class MelodyPlayer {
     }
 
     /**
-    * Play shutdown jingle
-    */
+     * Play shutdown jingle
+     */
     static ShutdownJingle() {
         MsgBox("Playing: Shutdown Jingle", "Jingle", "T1")
 
@@ -395,20 +395,20 @@ class MelodyPlayer {
 ; ============================================================
 
 /**
-* Use beeps to indicate progress
-*/
+ * Use beeps to indicate progress
+ */
 class ProgressBeeper {
     /**
-    * Beep at regular intervals to show progress
-    *
-    * @param {Integer} steps - Number of steps
-    * @param {Integer} delayMs - Delay between steps
-    */
+     * Beep at regular intervals to show progress
+     * 
+     * @param {Integer} steps - Number of steps
+     * @param {Integer} delayMs - Delay between steps
+     */
     static BeepProgress(steps := 10, delayMs := 1000) {
         MsgBox("Starting progress with beeps`n"
-        . "Steps: " steps "`n"
-        . "Interval: " delayMs "ms",
-        "Progress", "T2")
+            . "Steps: " steps "`n"
+            . "Interval: " delayMs "ms",
+            "Progress", "T2")
 
         Loop steps {
             ; Higher frequency as progress increases
@@ -434,10 +434,10 @@ class ProgressBeeper {
     }
 
     /**
-    * Countdown with beeps
-    *
-    * @param {Integer} seconds - Seconds to count down
-    */
+     * Countdown with beeps
+     * 
+     * @param {Integer} seconds - Seconds to count down
+     */
     static BeepCountdown(seconds := 10) {
         MsgBox("Starting countdown: " seconds " seconds", "Countdown", "T1")
 
@@ -464,10 +464,10 @@ class ProgressBeeper {
     }
 
     /**
-    * Loading indicator with beeps
-    *
-    * @param {Integer} duration - Total duration in seconds
-    */
+     * Loading indicator with beeps
+     * 
+     * @param {Integer} duration - Total duration in seconds
+     */
     static LoadingBeeps(duration := 5) {
         MsgBox("Loading with audio feedback", "Loading", "T1")
 
@@ -507,22 +507,22 @@ class ProgressBeeper {
 ; ============================================================
 
 /**
-* Tool to test different frequencies and durations
-*/
+ * Tool to test different frequencies and durations
+ */
 class FrequencyTester {
     /**
-    * Test a range of frequencies
-    *
-    * @param {Integer} startFreq - Starting frequency
-    * @param {Integer} endFreq - Ending frequency
-    * @param {Integer} steps - Number of steps
-    */
+     * Test a range of frequencies
+     * 
+     * @param {Integer} startFreq - Starting frequency
+     * @param {Integer} endFreq - Ending frequency
+     * @param {Integer} steps - Number of steps
+     */
     static TestRange(startFreq := 200, endFreq := 2000, steps := 10) {
         MsgBox("Testing frequency range:`n"
-        . "Start: " startFreq " Hz`n"
-        . "End: " endFreq " Hz`n"
-        . "Steps: " steps,
-        "Frequency Test", "T2")
+            . "Start: " startFreq " Hz`n"
+            . "End: " endFreq " Hz`n"
+            . "Steps: " steps,
+            "Frequency Test", "T2")
 
         increment := (endFreq - startFreq) / steps
 
@@ -539,10 +539,10 @@ class FrequencyTester {
     }
 
     /**
-    * Test different durations at same frequency
-    *
-    * @param {Integer} frequency - Frequency to test
-    */
+     * Test different durations at same frequency
+     * 
+     * @param {Integer} frequency - Frequency to test
+     */
     static TestDurations(frequency := 800) {
         durations := [50, 100, 200, 400, 800, 1600]
 
@@ -559,8 +559,8 @@ class FrequencyTester {
     }
 
     /**
-    * Play frequency spectrum demonstration
-    */
+     * Play frequency spectrum demonstration
+     */
     static SpectrumDemo() {
         MsgBox("Playing frequency spectrum demonstration", "Spectrum", "T1")
 
@@ -602,29 +602,29 @@ class FrequencyTester {
 ; ============================================================
 
 /**
-* Interactive tool to test custom frequencies and durations
-*/
+ * Interactive tool to test custom frequencies and durations
+ */
 InteractiveBeepTester() {
     result := MsgBox("Beep Tester`n`n"
-    . "Test different beep parameters?",
-    "Interactive Tester", "YesNo Icon?")
+        . "Test different beep parameters?",
+        "Interactive Tester", "YesNo Icon?")
 
     if result = "No"
-    return
+        return
 
     ; Get frequency from user
     ib := InputBox("Enter frequency (37-32767 Hz):`n"
-    . "Recommended: 200-2000`n`n"
-    . "Examples:`n"
-    . "  200  = Low bass tone`n"
-    . "  440  = A note (concert pitch)`n"
-    . "  800  = Alert tone`n"
-    . "  1500 = High tone`n"
-    . "  2000 = Very high tone",
-    "Frequency", , "800")
+        . "Recommended: 200-2000`n`n"
+        . "Examples:`n"
+        . "  200  = Low bass tone`n"
+        . "  440  = A note (concert pitch)`n"
+        . "  800  = Alert tone`n"
+        . "  1500 = High tone`n"
+        . "  2000 = Very high tone",
+        "Frequency", , "800")
 
     if ib.Result = "Cancel"
-    return
+        return
 
     frequency := Integer(ib.Value)
 
@@ -635,16 +635,16 @@ InteractiveBeepTester() {
 
     ; Get duration from user
     ib := InputBox("Enter duration (milliseconds):`n"
-    . "Recommended: 100-1000`n`n"
-    . "Examples:`n"
-    . "  100  = Very short`n"
-    . "  300  = Short`n"
-    . "  500  = Medium`n"
-    . "  1000 = Long",
-    "Duration", , "300")
+        . "Recommended: 100-1000`n`n"
+        . "Examples:`n"
+        . "  100  = Very short`n"
+        . "  300  = Short`n"
+        . "  500  = Medium`n"
+        . "  1000 = Long",
+        "Duration", , "300")
 
     if ib.Result = "Cancel"
-    return
+        return
 
     duration := Integer(ib.Value)
 
@@ -655,9 +655,9 @@ InteractiveBeepTester() {
 
     ; Play the beep
     MsgBox("Playing beep:`n"
-    . "Frequency: " frequency " Hz`n"
-    . "Duration: " duration " ms",
-    "Test", "T1")
+        . "Frequency: " frequency " Hz`n"
+        . "Duration: " duration " ms",
+        "Test", "T1")
 
     SoundBeep(frequency, duration)
 
@@ -665,7 +665,7 @@ InteractiveBeepTester() {
     result := MsgBox("Test another beep?", "Repeat", "YesNo Icon?")
 
     if result = "Yes"
-    InteractiveBeepTester()
+        InteractiveBeepTester()
 }
 
 ; Uncomment to run interactive tester:

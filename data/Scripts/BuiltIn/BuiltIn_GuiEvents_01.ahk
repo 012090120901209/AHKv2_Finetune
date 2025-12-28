@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiEvents_01.ahk - OnClick Event Handling
-*
-* This file demonstrates click event handling and management in AutoHotkey v2.
-* Topics covered:
-* - Button click events
-* - Double click handling
-* - Click parameters
-* - Event propagation
-* - Click counters
-* - Debouncing clicks
-* - Context clicks
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiEvents_01.ahk - OnClick Event Handling
+ * 
+ * This file demonstrates click event handling and management in AutoHotkey v2.
+ * Topics covered:
+ * - Button click events
+ * - Double click handling
+ * - Click parameters
+ * - Event propagation
+ * - Click counters
+ * - Debouncing clicks
+ * - Context clicks
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates button click events with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates button click events with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example1_Buttonclickevents() {
     myGui := Gui(, "Button click events Demo")
     myGui.BackColor := "White"
@@ -87,15 +86,14 @@ Example1_Buttonclickevents() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Double click handling
 ; =============================================================================
 
 /**
-* Demonstrates double click handling with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates double click handling with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example2_Doubleclickhandling() {
     myGui := Gui(, "Double click handling Demo")
     myGui.BackColor := "White"
@@ -155,15 +153,14 @@ Example2_Doubleclickhandling() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Click parameters
 ; =============================================================================
 
 /**
-* Demonstrates click parameters with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates click parameters with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example3_Clickparameters() {
     myGui := Gui(, "Click parameters Demo")
     myGui.BackColor := "White"
@@ -223,15 +220,14 @@ Example3_Clickparameters() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Event propagation
 ; =============================================================================
 
 /**
-* Demonstrates event propagation with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates event propagation with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example4_Eventpropagation() {
     myGui := Gui(, "Event propagation Demo")
     myGui.BackColor := "White"
@@ -291,15 +287,14 @@ Example4_Eventpropagation() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Click counters
 ; =============================================================================
 
 /**
-* Demonstrates click counters with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates click counters with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example5_Clickcounters() {
     myGui := Gui(, "Click counters Demo")
     myGui.BackColor := "White"
@@ -359,15 +354,14 @@ Example5_Clickcounters() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Debouncing clicks
 ; =============================================================================
 
 /**
-* Demonstrates debouncing clicks with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates debouncing clicks with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example6_Debouncingclicks() {
     myGui := Gui(, "Debouncing clicks Demo")
     myGui.BackColor := "White"
@@ -427,15 +421,14 @@ Example6_Debouncingclicks() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Context clicks
 ; =============================================================================
 
 /**
-* Demonstrates context clicks with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates context clicks with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example7_Contextclicks() {
     myGui := Gui(, "Context clicks Demo")
     myGui.BackColor := "White"
@@ -500,8 +493,8 @@ Example7_Contextclicks() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiEvents_01.ahk - Examples")
     menuGui.BackColor := "White"

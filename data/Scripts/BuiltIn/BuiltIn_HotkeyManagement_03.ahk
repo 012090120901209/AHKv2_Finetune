@@ -1,24 +1,24 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ListHotkeys - Hotkey Inspection and Debugging
-* ============================================================================
-*
-* Demonstrates using ListHotkeys command and related inspection techniques
-* to view, debug, and manage hotkeys at runtime.
-*
-* Features:
-* - Viewing all active hotkeys
-* - Hotkey statistics and metrics
-* - Debugging hotkey issues
-* - Custom hotkey listings
-* - Hotkey documentation generation
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/ListHotkeys.htm
-*/
+ * ============================================================================
+ * ListHotkeys - Hotkey Inspection and Debugging
+ * ============================================================================
+ * 
+ * Demonstrates using ListHotkeys command and related inspection techniques
+ * to view, debug, and manage hotkeys at runtime.
+ * 
+ * Features:
+ * - Viewing all active hotkeys
+ * - Hotkey statistics and metrics
+ * - Debugging hotkey issues
+ * - Custom hotkey listings
+ * - Hotkey documentation generation
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/ListHotkeys.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic ListHotkeys Usage
@@ -36,25 +36,25 @@ Example1_BasicListing() {
     Hotkey("^!l", (*) {
         ListHotkeys()
         MsgBox(
-        "The ListHotkeys window shows:`n`n"
-        "• All active hotkeys`n"
-        "• Their functions/labels`n"
-        "• Registration status`n"
-        "• Current state (on/off)`n`n"
-        "Close the window to continue.",
-        "ListHotkeys Info"
+            "The ListHotkeys window shows:`n`n"
+            "• All active hotkeys`n"
+            "• Their functions/labels`n"
+            "• Registration status`n"
+            "• Current state (on/off)`n`n"
+            "Close the window to continue.",
+            "ListHotkeys Info"
         )
     })
 
     MsgBox(
-    "Basic ListHotkeys Usage`n`n"
-    "Created hotkeys:`n"
-    "  F1, F2`n"
-    "  Ctrl+Alt+A, Ctrl+Alt+B`n"
-    "  Win+R`n`n"
-    "Press Ctrl+Alt+L to view the hotkey list`n`n"
-    "The list shows all registered hotkeys!",
-    "Example 1"
+        "Basic ListHotkeys Usage`n`n"
+        "Created hotkeys:`n"
+        "  F1, F2`n"
+        "  Ctrl+Alt+A, Ctrl+Alt+B`n"
+        "  Win+R`n`n"
+        "Press Ctrl+Alt+L to view the hotkey list`n`n"
+        "The list shows all registered hotkeys!",
+        "Example 1"
     )
 }
 
@@ -66,8 +66,8 @@ Example2_CustomRegistry() {
     global hotkeyDB := Map()
 
     /**
-    * Registers a hotkey with metadata
-    */
+     * Registers a hotkey with metadata
+     */
     RegisterHotkey(keys, callback, category := "", description := "") {
         global hotkeyDB
 
@@ -84,8 +84,8 @@ Example2_CustomRegistry() {
     }
 
     /**
-    * Wraps callback to count presses
-    */
+     * Wraps callback to count presses
+     */
     CountingCallback(keys, originalCallback) {
         global hotkeyDB
         return (*) {
@@ -95,8 +95,8 @@ Example2_CustomRegistry() {
     }
 
     /**
-    * Shows custom hotkey list
-    */
+     * Shows custom hotkey list
+     */
     ShowCustomList() {
         global hotkeyDB
 
@@ -108,7 +108,7 @@ Example2_CustomRegistry() {
         for keys, info in hotkeyDB {
             cat := info.category != "" ? info.category : "Uncategorized"
             if !categories.Has(cat)
-            categories[cat] := []
+                categories[cat] := []
             categories[cat].Push(keys)
         }
 
@@ -119,7 +119,7 @@ Example2_CustomRegistry() {
                 info := hotkeyDB[keys]
                 list .= "  " . keys
                 if info.description != ""
-                list .= " - " . info.description
+                    list .= " - " . info.description
                 list .= " (pressed: " . info.pressCount . "x)`n"
             }
             list .= "`n"
@@ -131,7 +131,7 @@ Example2_CustomRegistry() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -154,14 +154,14 @@ Example2_CustomRegistry() {
     Hotkey("^!b", (*) => ListHotkeys())
 
     MsgBox(
-    "Custom Hotkey Registry`n`n"
-    "Test hotkeys:`n"
-    "  F3, F4 (Text category)`n"
-    "  Ctrl+F3, Ctrl+F4 (Actions category)`n`n"
-    "Ctrl+Alt+R → Custom registry (with stats)`n"
-    "Ctrl+Alt+B → Built-in ListHotkeys`n`n"
-    "Try pressing hotkeys and viewing lists!",
-    "Example 2"
+        "Custom Hotkey Registry`n`n"
+        "Test hotkeys:`n"
+        "  F3, F4 (Text category)`n"
+        "  Ctrl+F3, Ctrl+F4 (Actions category)`n`n"
+        "Ctrl+Alt+R → Custom registry (with stats)`n"
+        "Ctrl+Alt+B → Built-in ListHotkeys`n`n"
+        "Try pressing hotkeys and viewing lists!",
+        "Example 2"
     )
 }
 
@@ -171,15 +171,15 @@ Example2_CustomRegistry() {
 
 Example3_Statistics() {
     global stats := Map(
-    "totalCreated", 0,
-    "totalPressed", 0,
-    "startTime", A_TickCount,
-    "pressLog", []
+        "totalCreated", 0,
+        "totalPressed", 0,
+        "startTime", A_TickCount,
+        "pressLog", []
     )
 
     /**
-    * Creates a tracked hotkey
-    */
+     * Creates a tracked hotkey
+     */
     CreateTrackedHotkey(keys, action) {
         global stats
 
@@ -198,8 +198,8 @@ Example3_Statistics() {
     }
 
     /**
-    * Shows statistics
-    */
+     * Shows statistics
+     */
     ShowStatistics() {
         global stats
 
@@ -226,8 +226,8 @@ Example3_Statistics() {
     }
 
     /**
-    * Shows hotkey frequency analysis
-    */
+     * Shows hotkey frequency analysis
+     */
     ShowFrequencyAnalysis() {
         global stats
 
@@ -236,7 +236,7 @@ Example3_Statistics() {
         for entry in stats["pressLog"] {
             key := entry.key
             if !freq.Has(key)
-            freq[key] := 0
+                freq[key] := 0
             freq[key]++
         }
 
@@ -245,7 +245,7 @@ Example3_Statistics() {
         ; Convert to array for sorting
         freqArray := []
         for key, count in freq {
-            freqArray.Push({key: key, count: count})
+            freqArray.Push({ key: key, count: count })
         }
 
         ; Simple bubble sort by count
@@ -267,7 +267,7 @@ Example3_Statistics() {
         }
 
         if freqArray.Length = 0
-        list .= "No hotkey activity yet"
+            list .= "No hotkey activity yet"
 
         MsgBox(list, "Frequency")
     }
@@ -275,7 +275,7 @@ Example3_Statistics() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -291,13 +291,13 @@ Example3_Statistics() {
     Hotkey("^!l", (*) => ListHotkeys())
 
     MsgBox(
-    "Hotkey Statistics & Analytics`n`n"
-    "Test hotkeys: F5, F6, F7, F8`n`n"
-    "Ctrl+Alt+S → Show statistics`n"
-    "Ctrl+Alt+F → Frequency analysis`n"
-    "Ctrl+Alt+L → Built-in list`n`n"
-    "Press hotkeys and check stats!",
-    "Example 3"
+        "Hotkey Statistics & Analytics`n`n"
+        "Test hotkeys: F5, F6, F7, F8`n`n"
+        "Ctrl+Alt+S → Show statistics`n"
+        "Ctrl+Alt+F → Frequency analysis`n"
+        "Ctrl+Alt+L → Built-in list`n`n"
+        "Press hotkeys and check stats!",
+        "Example 3"
     )
 }
 
@@ -309,8 +309,8 @@ Example4_DebuggingTools() {
     global debugLog := []
 
     /**
-    * Creates a debuggable hotkey
-    */
+     * Creates a debuggable hotkey
+     */
     CreateDebugHotkey(keys, action, label := "") {
         global debugLog
 
@@ -334,17 +334,17 @@ Example4_DebuggingTools() {
             duration := A_TickCount - startTime
             status := success ? "SUCCESS" : "ERROR"
             debugLog.Push(status . ": " . keys . " (" . duration . "ms)" .
-            (errorMsg != "" ? " - " . errorMsg : ""))
+                (errorMsg != "" ? " - " . errorMsg : ""))
 
             ; Trim log
             while debugLog.Length > 20
-            debugLog.RemoveAt(1)
+                debugLog.RemoveAt(1)
         })
     }
 
     /**
-    * Shows debug log
-    */
+     * Shows debug log
+     */
     ShowDebugLog() {
         global debugLog
 
@@ -362,8 +362,8 @@ Example4_DebuggingTools() {
     }
 
     /**
-    * Clears debug log
-    */
+     * Clears debug log
+     */
     ClearDebugLog() {
         global debugLog
         debugLog := []
@@ -373,29 +373,30 @@ Example4_DebuggingTools() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     ; Create debug hotkeys
     CreateDebugHotkey("F9", (*) => Sleep(100), "Slow action")
     CreateDebugHotkey("F10", (*) => MsgBox("Quick action"), "Quick action")
-    CreateDebugHotkey("F11", (*) { throw Error("Intentional error") }, "Error action")
+    CreateDebugHotkey("F11", (*) {
+        throw Error("Intentional error")}, "Error action")
 
     ; Debug tools
     Hotkey("^!d", (*) => ShowDebugLog())
     Hotkey("^!c", (*) => ClearDebugLog())
 
     MsgBox(
-    "Hotkey Debugging Tools`n`n"
-    "Test hotkeys:`n"
-    "  F9 - Slow action (100ms sleep)`n"
-    "  F10 - Quick action`n"
-    "  F11 - Error test`n`n"
-    "Ctrl+Alt+D → Show debug log`n"
-    "Ctrl+Alt+C → Clear log`n`n"
-    "Log shows timing and errors!",
-    "Example 4"
+        "Hotkey Debugging Tools`n`n"
+        "Test hotkeys:`n"
+        "  F9 - Slow action (100ms sleep)`n"
+        "  F10 - Quick action`n"
+        "  F11 - Error test`n`n"
+        "Ctrl+Alt+D → Show debug log`n"
+        "Ctrl+Alt+C → Clear log`n`n"
+        "Log shows timing and errors!",
+        "Example 4"
     )
 }
 
@@ -407,8 +408,8 @@ Example5_Documentation() {
     global docRegistry := Map()
 
     /**
-    * Registers hotkey with full documentation
-    */
+     * Registers hotkey with full documentation
+     */
     RegisterDocumentedHotkey(keys, action, doc) {
         global docRegistry
 
@@ -423,8 +424,8 @@ Example5_Documentation() {
     }
 
     /**
-    * Generates documentation
-    */
+     * Generates documentation
+     */
     GenerateDocumentation() {
         global docRegistry
 
@@ -436,7 +437,7 @@ Example5_Documentation() {
         for keys, info in docRegistry {
             cat := info.category
             if !categories.Has(cat)
-            categories[cat] := []
+                categories[cat] := []
             categories[cat].Push(keys)
         }
 
@@ -448,11 +449,11 @@ Example5_Documentation() {
                 info := docRegistry[keys]
                 doc .= "Hotkey: " . keys . "`n"
                 if info.description != ""
-                doc .= "Description: " . info.description . "`n"
+                    doc .= "Description: " . info.description . "`n"
                 if info.example != ""
-                doc .= "Example: " . info.example . "`n"
+                    doc .= "Example: " . info.example . "`n"
                 if info.notes != ""
-                doc .= "Notes: " . info.notes . "`n"
+                    doc .= "Notes: " . info.notes . "`n"
                 doc .= "`n"
             }
         }
@@ -461,50 +462,50 @@ Example5_Documentation() {
         A_Clipboard := doc
 
         MsgBox(
-        "Documentation generated and copied to clipboard!`n`n"
-        "Total hotkeys documented: " . docRegistry.Count,
-        "Documentation"
+            "Documentation generated and copied to clipboard!`n`n"
+            "Total hotkeys documented: " . docRegistry.Count,
+            "Documentation"
         )
     }
 
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     ; Register documented hotkeys
     RegisterDocumentedHotkey("^!n", (*) => SendText("New"), Map(
-    "description", "Creates a new item",
-    "category", "File Operations",
-    "example", "Press in any text field",
-    "notes", "Inserts the word 'New'"
+        "description", "Creates a new item",
+        "category", "File Operations",
+        "example", "Press in any text field",
+        "notes", "Inserts the word 'New'"
     ))
 
     RegisterDocumentedHotkey("^!o", (*) => SendText("Open"), Map(
-    "description", "Opens an item",
-    "category", "File Operations"
+        "description", "Opens an item",
+        "category", "File Operations"
     ))
 
     RegisterDocumentedHotkey("^!1", (*) => MsgBox("Tool 1"), Map(
-    "description", "Activates Tool 1",
-    "category", "Tools",
-    "example", "Quick access to Tool 1"
+        "description", "Activates Tool 1",
+        "category", "Tools",
+        "example", "Quick access to Tool 1"
     ))
 
     ; Documentation generator
     Hotkey("^!g", (*) => GenerateDocumentation())
 
     MsgBox(
-    "Hotkey Documentation Generator`n`n"
-    "Test hotkeys:`n"
-    "  Ctrl+Alt+N - New (File Operations)`n"
-    "  Ctrl+Alt+O - Open (File Operations)`n"
-    "  Ctrl+Alt+1 - Tool 1 (Tools)`n`n"
-    "Ctrl+Alt+G → Generate documentation`n`n"
-    "Documentation copied to clipboard!",
-    "Example 5"
+        "Hotkey Documentation Generator`n`n"
+        "Test hotkeys:`n"
+        "  Ctrl+Alt+N - New (File Operations)`n"
+        "  Ctrl+Alt+O - Open (File Operations)`n"
+        "  Ctrl+Alt+1 - Tool 1 (Tools)`n`n"
+        "Ctrl+Alt+G → Generate documentation`n`n"
+        "Documentation copied to clipboard!",
+        "Example 5"
     )
 }
 
@@ -514,8 +515,8 @@ Example5_Documentation() {
 
 Example6_Inspector() {
     /**
-    * Creates hotkey inspector GUI
-    */
+     * Creates hotkey inspector GUI
+     */
     CreateInspector() {
         inspectorGui := Gui("+Resize", "Hotkey Inspector")
 
@@ -562,13 +563,13 @@ Example6_Inspector() {
     Hotkey("^!i", (*) => CreateInspector())
 
     MsgBox(
-    "Interactive Hotkey Inspector`n`n"
-    "Ctrl+Alt+I → Open inspector`n`n"
-    "Test hotkeys:`n"
-    "  Ctrl+Alt+I1`n"
-    "  Ctrl+Alt+I2`n`n"
-    "Inspector shows realtime hotkey info!",
-    "Example 6"
+        "Interactive Hotkey Inspector`n`n"
+        "Ctrl+Alt+I → Open inspector`n`n"
+        "Test hotkeys:`n"
+        "  Ctrl+Alt+I1`n"
+        "  Ctrl+Alt+I2`n`n"
+        "Inspector shows realtime hotkey info!",
+        "Example 6"
     )
 }
 
@@ -580,8 +581,8 @@ Example7_ComprehensiveManager() {
     global allHotkeys := Map()
 
     /**
-    * Master registration function
-    */
+     * Master registration function
+     */
     MasterRegister(keys, action, metadata := Map()) {
         global allHotkeys
 
@@ -596,8 +597,8 @@ Example7_ComprehensiveManager() {
     }
 
     /**
-    * Shows comprehensive list
-    */
+     * Shows comprehensive list
+     */
     ShowComprehensiveList() {
         global allHotkeys
 
@@ -608,7 +609,7 @@ Example7_ComprehensiveManager() {
             list .= status . " " . keys
 
             if info.metadata.Has("desc")
-            list .= " - " . info.metadata["desc"]
+                list .= " - " . info.metadata["desc"]
 
             list .= " [" . info.pressCount . "x]`n"
         }
@@ -619,7 +620,7 @@ Example7_ComprehensiveManager() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -632,11 +633,11 @@ Example7_ComprehensiveManager() {
     Hotkey("^!#l", (*) => ListHotkeys())
 
     MsgBox(
-    "Comprehensive Hotkey Manager`n`n"
-    "Ctrl+Alt+M → Custom list`n"
-    "Ctrl+Alt+Win+L → Built-in list`n`n"
-    "Combines all management features!",
-    "Example 7"
+        "Comprehensive Hotkey Manager`n`n"
+        "Ctrl+Alt+M → Custom list`n"
+        "Ctrl+Alt+Win+L → Built-in list`n`n"
+        "Combines all management features!",
+        "Example 7"
     )
 }
 

@@ -14,18 +14,18 @@ class QueryBuilder {
     Build() {
         query := "SELECT * FROM " this.table
         if (this.conditions.Length > 0)
-        query .= " WHERE " this.Join(this.conditions, " AND ")
+            query .= " WHERE " this.Join(this.conditions, " AND ")
         if (this.orderBy)
-        query .= " ORDER BY " this.orderBy
+            query .= " ORDER BY " this.orderBy
         if (this.limitValue > 0)
-        query .= " LIMIT " this.limitValue
+            query .= " LIMIT " this.limitValue
         return query
     }
 
     Join(arr, delimiter) {
         result := ""
         for item in arr
-        result .= (result ? delimiter : "") item
+            result .= (result ? delimiter : "") item
         return result
     }
 }
@@ -41,29 +41,29 @@ class StringBuilder {
     ToString() {
         result := ""
         for text in this.buffer
-        result .= text
+            result .= text
         return result
     }
 }
 
 ; Elegant query building
 query := QueryBuilder("users")
-.Where("age", ">", 18)
-.And("status", "=", "active")
-.OrderBy("name", "ASC")
-.Limit(10)
-.Build()
+    .Where("age", ">", 18)
+    .And("status", "=", "active")
+    .OrderBy("name", "ASC")
+    .Limit(10)
+    .Build()
 
 MsgBox(query)
 
 ; Fluent string building
 html := StringBuilder()
-.AppendLine("<html>")
-.AppendLine("<body>")
-.AppendFormat("  <h1>{}</h1>`n", "Welcome")
-.AppendFormat("  <p>{}</p>`n", "This is a test")
-.AppendLine("</body>")
-.AppendLine("</html>")
-.ToString()
+    .AppendLine("<html>")
+    .AppendLine("<body>")
+    .AppendFormat("  <h1>{}</h1>`n", "Welcome")
+    .AppendFormat("  <p>{}</p>`n", "This is a test")
+    .AppendLine("</body>")
+    .AppendLine("</html>")
+    .ToString()
 
 MsgBox(html)

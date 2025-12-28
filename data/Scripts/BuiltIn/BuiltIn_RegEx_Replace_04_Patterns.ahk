@@ -1,48 +1,48 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_Replace_04_Patterns.ahk
-*
-* DESCRIPTION:
-* Common replacement patterns for text transformation including URL slugification,
-* sanitization, formatting phone numbers, emails, dates, and other practical text
-* manipulation patterns.
-*
-* FEATURES:
-* - URL slug creation
-* - Text sanitization and cleaning
-* - Phone number formatting
-* - Date/time reformatting
-* - Email obfuscation
-* - HTML entity encoding
-* - Common text transformations
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Chained RegExReplace operations
-* - Complex pattern replacements
-* - Text normalization techniques
-* - Practical regex applications
-* - Multi-step transformations
-*
-* LEARNING POINTS:
-* 1. Multiple replacements can be chained
-* 2. Order of replacements matters
-* 3. Pattern combinations solve complex problems
-* 4. Sanitization requires multiple steps
-* 5. Formatting often needs capture groups
-* 6. Case-insensitive options help normalization
-* 7. Testing edge cases is important
-*/
+ * BuiltIn_RegEx_Replace_04_Patterns.ahk
+ * 
+ * DESCRIPTION:
+ * Common replacement patterns for text transformation including URL slugification,
+ * sanitization, formatting phone numbers, emails, dates, and other practical text
+ * manipulation patterns.
+ * 
+ * FEATURES:
+ * - URL slug creation
+ * - Text sanitization and cleaning
+ * - Phone number formatting
+ * - Date/time reformatting
+ * - Email obfuscation
+ * - HTML entity encoding
+ * - Common text transformations
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Chained RegExReplace operations
+ * - Complex pattern replacements
+ * - Text normalization techniques
+ * - Practical regex applications
+ * - Multi-step transformations
+ * 
+ * LEARNING POINTS:
+ * 1. Multiple replacements can be chained
+ * 2. Order of replacements matters
+ * 3. Pattern combinations solve complex problems
+ * 4. Sanitization requires multiple steps
+ * 5. Formatting often needs capture groups
+ * 6. Case-insensitive options help normalization
+ * 7. Testing edge cases is important
+ */
 
 ; ========================================
 ; EXAMPLE 1: URL Slugification
 ; ========================================
 Example1_URLSlug() {
     MsgBox "EXAMPLE 1: URL Slugification`n" .
-    "============================="
+        "============================="
 
     CreateSlug(text) {
         slug := StrLower(text)
@@ -57,10 +57,10 @@ Example1_URLSlug() {
     }
 
     titles := [
-    "Hello World",
-    "This is a Test!",
-    "Café  Münchën",
-    "Product #123 (New!)"
+        "Hello World",
+        "This is a Test!",
+        "Café  Münchën",
+        "Product #123 (New!)"
     ]
 
     result := "URL Slugs:`n"
@@ -75,7 +75,7 @@ Example1_URLSlug() {
 ; ========================================
 Example2_Sanitization() {
     MsgBox "EXAMPLE 2: Text Sanitization`n" .
-    "============================="
+        "============================="
 
     SanitizeHTML(text) {
         text := RegExReplace(text, "<script[^>]*>.*?</script>", "", , , 1)  ; Case-insensitive
@@ -91,8 +91,8 @@ Example2_Sanitization() {
     clean := SanitizeHTML(dirty)
 
     MsgBox "HTML Sanitization:`n" .
-    "Original: " . dirty . "`n" .
-    "Sanitized: " . clean
+        "Original: " . dirty . "`n" .
+        "Sanitized: " . clean
 
     ; Sanitize filename
     SanitizeFilename(name) {
@@ -116,23 +116,23 @@ Example2_Sanitization() {
 ; ========================================
 Example3_PhoneFormatting() {
     MsgBox "EXAMPLE 3: Phone Number Formatting`n" .
-    "===================================="
+        "===================================="
 
     FormatUSPhone(phone) {
         digits := RegExReplace(phone, "\D", "")
 
         if StrLen(digits) = 10
-        return RegExReplace(digits, "(\d{3})(\d{3})(\d{4})", "($1) $2-$3")
+            return RegExReplace(digits, "(\d{3})(\d{3})(\d{4})", "($1) $2-$3")
         else if StrLen(digits) = 11 && SubStr(digits, 1, 1) = "1"
-        return RegExReplace(digits, "1(\d{3})(\d{3})(\d{4})", "+1 ($1) $2-$3")
+            return RegExReplace(digits, "1(\d{3})(\d{3})(\d{4})", "+1 ($1) $2-$3")
         return phone
     }
 
     phones := [
-    "5551234567",
-    "555-123-4567",
-    "(555) 123-4567",
-    "15551234567"
+        "5551234567",
+        "555-123-4567",
+        "(555) 123-4567",
+        "15551234567"
     ]
 
     result := "Phone Formatting:`n"
@@ -146,13 +146,13 @@ Example3_PhoneFormatting() {
         phone := RegExReplace(phone, "^\+1\s*", "")  ; Remove +1
         phone := RegExReplace(phone, "[^\d]", "")     ; Keep only digits
         if StrLen(phone) = 10
-        return RegExReplace(phone, "(\d{3})(\d{3})(\d{4})", "+1-$1-$2-$3")
+            return RegExReplace(phone, "(\d{3})(\d{3})(\d{4})", "+1-$1-$2-$3")
         return phone
     }
 
     MsgBox "International Format:`n" .
-    FormatUSPhone("5551234567") . "`n  -> " .
-    FormatInternational("5551234567")
+        FormatUSPhone("5551234567") . "`n  -> " .
+        FormatInternational("5551234567")
 }
 
 ; ========================================
@@ -160,7 +160,7 @@ Example3_PhoneFormatting() {
 ; ========================================
 Example4_DateFormatting() {
     MsgBox "EXAMPLE 4: Date Reformatting`n" .
-    "============================="
+        "============================="
 
     ; YYYY-MM-DD to MM/DD/YYYY
     ToUSDate(dateStr) {
@@ -176,14 +176,14 @@ Example4_DateFormatting() {
     usDate := "01/15/2024"
 
     MsgBox "Date Conversion:`n" .
-    "ISO: " . isoDate . " -> US: " . ToUSDate(isoDate) . "`n" .
-    "US: " . usDate . " -> ISO: " . ToISODate(usDate)
+        "ISO: " . isoDate . " -> US: " . ToUSDate(isoDate) . "`n" .
+        "US: " . usDate . " -> ISO: " . ToISODate(usDate)
 
     ; Add day suffix
     AddDaySuffix(match) {
         day := Integer(match[1])
         if day >= 11 && day <= 13
-        return day . "th"
+            return day . "th"
         switch Mod(day, 10) {
             case 1: return day . "st"
             case 2: return day . "nd"
@@ -206,7 +206,7 @@ Example4_DateFormatting() {
 ; ========================================
 Example5_EmailPatterns() {
     MsgBox "EXAMPLE 5: Email Patterns`n" .
-    "=========================="
+        "=========================="
 
     ; Obfuscate email
     ObfuscateEmail(email) {
@@ -221,7 +221,7 @@ Example5_EmailPatterns() {
     ; Extract domain
     GetDomain(email) {
         if RegExMatch(email, "@(.+)", &m)
-        return m[1]
+            return m[1]
         return ""
     }
 
@@ -230,9 +230,9 @@ Example5_EmailPatterns() {
     result := "Email Transformations:`n`n"
     for email in emails {
         result .= "Original: " . email . "`n" .
-        "Obfuscated: " . ObfuscateEmail(email) . "`n" .
-        "Domain: " . GetDomain(email) . "`n" .
-        "Link: " . EmailToLink(email) . "`n`n"
+            "Obfuscated: " . ObfuscateEmail(email) . "`n" .
+            "Domain: " . GetDomain(email) . "`n" .
+            "Link: " . EmailToLink(email) . "`n`n"
     }
     MsgBox result
 
@@ -256,7 +256,7 @@ Example5_EmailPatterns() {
 ; ========================================
 Example6_HTMLEntities() {
     MsgBox "EXAMPLE 6: HTML Entity Encoding`n" .
-    "================================="
+        "================================="
 
     EncodeHTMLEntities(text) {
         text := RegExReplace(text, "&", "&amp;")
@@ -281,18 +281,18 @@ Example6_HTMLEntities() {
     decoded := DecodeHTMLEntities(encoded)
 
     MsgBox "HTML Entities:`n" .
-    "Raw: " . raw . "`n" .
-    "Encoded: " . encoded . "`n" .
-    "Decoded: " . decoded
+        "Raw: " . raw . "`n" .
+        "Encoded: " . encoded . "`n" .
+        "Decoded: " . decoded
 
     ; Special characters
     ReplaceSpecialChars(text) {
         replacements := Map(
-        "©", "&copy;",
-        "®", "&reg;",
-        "™", "&trade;",
-        "€", "&euro;",
-        "£", "&pound;"
+            "©", "&copy;",
+            "®", "&reg;",
+            "™", "&trade;",
+            "€", "&euro;",
+            "£", "&pound;"
         )
 
         for char, entity in replacements {
@@ -303,8 +303,8 @@ Example6_HTMLEntities() {
 
     text := "Copyright © 2024, Price: £19.99"
     MsgBox "Special Characters:`n" .
-    "Original: " . text . "`n" .
-    "Encoded: " . ReplaceSpecialChars(text)
+        "Original: " . text . "`n" .
+        "Encoded: " . ReplaceSpecialChars(text)
 }
 
 ; ========================================
@@ -312,7 +312,7 @@ Example6_HTMLEntities() {
 ; ========================================
 Example7_CommonTransformations() {
     MsgBox "EXAMPLE 7: Common Transformations`n" .
-    "=================================="
+        "=================================="
 
     ; Remove extra whitespace
     NormalizeWhitespace(text) {
@@ -347,8 +347,8 @@ Example7_CommonTransformations() {
 
     html := "<p>Hello</p><br/><p>World</p>"
     MsgBox "Strip HTML:`n" .
-    "HTML: " . html . "`n" .
-    "Text: " . StripHTML(html)
+        "HTML: " . html . "`n" .
+        "Text: " . StripHTML(html)
 
     ; Convert camelCase to snake_case
     CamelToSnake(text) {
@@ -366,8 +366,8 @@ Example7_CommonTransformations() {
     snake := "user_name_value"
 
     MsgBox "Case Conversion:`n" .
-    "camelCase: " . camel . " -> " . CamelToSnake(camel) . "`n" .
-    "snake_case: " . snake . " -> " . SnakeToCamel(snake)
+        "camelCase: " . camel . " -> " . CamelToSnake(camel) . "`n" .
+        "snake_case: " . snake . " -> " . SnakeToCamel(snake)
 
     ; Extract numbers from text
     ExtractNumbers(text) {
@@ -383,8 +383,8 @@ Example7_CommonTransformations() {
     text := "Order #123, Qty: 5, Total: $67"
     nums := ExtractNumbers(text)
     MsgBox "Extract Numbers:`n" .
-    "Text: " . text . "`n" .
-    "Numbers: " . StrJoin(nums, ", ")
+        "Text: " . text . "`n" .
+        "Numbers: " . StrJoin(nums, ", ")
 
     ; Mask sensitive data
     MaskCreditCard(card) {
@@ -393,8 +393,8 @@ Example7_CommonTransformations() {
 
     card := "1234-5678-9012-3456"
     MsgBox "Mask Card:`n" .
-    "Original: " . card . "`n" .
-    "Masked: " . MaskCreditCard(card)
+        "Original: " . card . "`n" .
+        "Masked: " . MaskCreditCard(card)
 }
 
 ; Helper Functions
@@ -403,7 +403,7 @@ StrJoin(arr, delim := ",") {
     for index, value in arr {
         result .= value
         if index < arr.Length
-        result .= delim
+            result .= delim
     }
     return result
 }
@@ -427,13 +427,13 @@ ShowMenu() {
     )"
 }
 
-^1::Example1_URLSlug()
-^2::Example2_Sanitization()
-^3::Example3_PhoneFormatting()
-^4::Example4_DateFormatting()
-^5::Example5_EmailPatterns()
-^6::Example6_HTMLEntities()
-^7::Example7_CommonTransformations()
-^h::ShowMenu()
+^1:: Example1_URLSlug()
+^2:: Example2_Sanitization()
+^3:: Example3_PhoneFormatting()
+^4:: Example4_DateFormatting()
+^5:: Example5_EmailPatterns()
+^6:: Example6_HTMLEntities()
+^7:: Example7_CommonTransformations()
+^h:: ShowMenu()
 
 ShowMenu()

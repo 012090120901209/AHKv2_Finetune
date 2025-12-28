@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Winmm_03_MIDI.ahk
-*
-* DESCRIPTION:
-* Demonstrates MIDI device operations using Windows API through DllCall.
-* Comprehensive examples showing various MIDI operations.
-*
-* FEATURES:
-* - MIDI API integration
-* - Practical MIDI examples
-* - Error handling
-* - Resource management
-* - Advanced MIDI techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Winmm API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Winmm API functions
-* 2. Working with MIDI operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced MIDI techniques
-* 6. Best practices for Winmm API
-* 7. Real-world MIDI applications
-*/
+ * BuiltIn_DllCall_Winmm_03_MIDI.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates MIDI device operations using Windows API through DllCall.
+ * Comprehensive examples showing various MIDI operations.
+ * 
+ * FEATURES:
+ * - MIDI API integration
+ * - Practical MIDI examples
+ * - Error handling
+ * - Resource management
+ * - Advanced MIDI techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Winmm API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Winmm API functions
+ * 2. Working with MIDI operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced MIDI techniques
+ * 6. Best practices for Winmm API
+ * 7. Real-world MIDI applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic MIDI Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for MIDI operations
-*/
+ * Helper function for MIDI operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "MIDI Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

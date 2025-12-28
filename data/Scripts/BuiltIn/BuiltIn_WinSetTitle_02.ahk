@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinSetTitle Examples - Part 2: Rename Windows
-* ============================================================================
-*
-* This script demonstrates advanced window renaming techniques.
-* Focuses on dynamic naming, conditional renaming, and automation.
-*
-* @description Advanced window renaming and title manipulation
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinSetTitle Examples - Part 2: Rename Windows
+ * ============================================================================
+ * 
+ * This script demonstrates advanced window renaming techniques.
+ * Focuses on dynamic naming, conditional renaming, and automation.
+ * 
+ * @description Advanced window renaming and title manipulation
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Dynamic Title Based on Content
 ; ============================================================================
 
 /**
-* Changes window title based on window content or state
-* Useful for reflecting document state or content type
-*
-* @hotkey F1 - Set dynamic title
-*/
+ * Changes window title based on window content or state
+ * Useful for reflecting document state or content type
+ * 
+ * @hotkey F1 - Set dynamic title
+ */
 F1:: {
     SetDynamicTitle()
 }
 
 /**
-* Sets title dynamically based on context
-*/
+ * Sets title dynamically based on context
+ */
 SetDynamicTitle() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -46,15 +46,15 @@ SetDynamicTitle() {
 
     switch process {
         case "notepad.exe":
-        newTitle := "[TEXT EDITOR] - " currentTitle
+            newTitle := "[TEXT EDITOR] - " currentTitle
         case "chrome.exe", "firefox.exe", "msedge.exe":
-        newTitle := "[BROWSER] - " currentTitle
+            newTitle := "[BROWSER] - " currentTitle
         case "explorer.exe":
-        newTitle := "[FILE MANAGER] - " currentTitle
+            newTitle := "[FILE MANAGER] - " currentTitle
         case "Code.exe":
-        newTitle := "[IDE] - " currentTitle
+            newTitle := "[IDE] - " currentTitle
         default:
-        newTitle := "[" StrUpper(process) "] - " currentTitle
+            newTitle := "[" StrUpper(process) "] - " currentTitle
     }
 
     WinSetTitle(newTitle, hwnd)
@@ -67,18 +67,18 @@ SetDynamicTitle() {
 ; ============================================================================
 
 /**
-* Renames windows based on specific conditions
-* Demonstrates rule-based title modification
-*
-* @hotkey F2 - Conditional rename
-*/
+ * Renames windows based on specific conditions
+ * Demonstrates rule-based title modification
+ * 
+ * @hotkey F2 - Conditional rename
+ */
 F2:: {
     ConditionalRename()
 }
 
 /**
-* Applies conditional renaming rules
-*/
+ * Applies conditional renaming rules
+ */
 ConditionalRename() {
     static condGui := ""
 
@@ -140,7 +140,7 @@ ConditionalRename() {
                     if matched {
                         count++
                         newTitle := StrReplace(title, submitted.Contains, submitted.Replace, submitted.CaseSens)
-                        renameQueue.Push({hwnd: hwnd, oldTitle: title, newTitle: newTitle})
+                        renameQueue.Push({ hwnd: hwnd, oldTitle: title, newTitle: newTitle })
                         results .= count ". " title "`n   → " newTitle "`n`n"
                     }
                 }
@@ -175,8 +175,8 @@ ConditionalRename() {
 }
 
 /**
-* Helper function
-*/
+ * Helper function
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count {
@@ -190,11 +190,11 @@ StrRepeat(str, count) {
 ; ============================================================================
 
 /**
-* Monitors and automatically renames new windows
-* Demonstrates event-driven renaming
-*
-* @hotkey F3 - Start auto-rename monitor
-*/
+ * Monitors and automatically renames new windows
+ * Demonstrates event-driven renaming
+ * 
+ * @hotkey F3 - Start auto-rename monitor
+ */
 F3:: {
     static monitoring := false
 
@@ -207,8 +207,8 @@ F3:: {
 }
 
 /**
-* Automatically renames windows as they appear
-*/
+ * Automatically renames windows as they appear
+ */
 StartAutoRename() {
     static autoGui := ""
     static knownWindows := Map()
@@ -292,11 +292,11 @@ StartAutoRename() {
 ; ============================================================================
 
 /**
-* Rotates through different title variations
-* Useful for testing or cycling through states
-*
-* @hotkey F4 - Rotate window title
-*/
+ * Rotates through different title variations
+ * Useful for testing or cycling through states
+ * 
+ * @hotkey F4 - Rotate window title
+ */
 F4:: {
     RotateWindowTitle()
 }
@@ -305,8 +305,8 @@ F4:: {
 global rotationIndex := 0
 
 /**
-* Cycles through predefined title variations
-*/
+ * Cycles through predefined title variations
+ */
 RotateWindowTitle() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -318,11 +318,11 @@ RotateWindowTitle() {
 
     ; Define rotation titles
     titles := [
-    "[STATUS: Ready] " baseTitle,
-    "[STATUS: Working] " baseTitle,
-    "[STATUS: Processing] " baseTitle,
-    "[STATUS: Complete] " baseTitle,
-    baseTitle  ; Reset to original
+        "[STATUS: Ready] " baseTitle,
+        "[STATUS: Working] " baseTitle,
+        "[STATUS: Processing] " baseTitle,
+        "[STATUS: Complete] " baseTitle,
+        baseTitle  ; Reset to original
     ]
 
     rotationIndex := Mod(rotationIndex, titles.Length) + 1
@@ -337,18 +337,18 @@ RotateWindowTitle() {
 ; ============================================================================
 
 /**
-* Translates or adds multi-language support to titles
-* Demonstrates internationalization
-*
-* @hotkey F5 - Add language tag
-*/
+ * Translates or adds multi-language support to titles
+ * Demonstrates internationalization
+ * 
+ * @hotkey F5 - Add language tag
+ */
 F5:: {
     AddLanguageTag()
 }
 
 /**
-* Adds language indicators to window titles
-*/
+ * Adds language indicators to window titles
+ */
 AddLanguageTag() {
     static langGui := ""
 
@@ -371,12 +371,12 @@ AddLanguageTag() {
 
     langGui.Add("Text", "w400", "Select language:")
     langDrop := langGui.Add("DropDownList", "w400 vLang Choose1", [
-    "English [EN]",
-    "Spanish [ES]",
-    "French [FR]",
-    "German [DE]",
-    "Chinese [ZH]",
-    "Japanese [JA]"
+        "English [EN]",
+        "Spanish [ES]",
+        "French [FR]",
+        "German [DE]",
+        "Chinese [ZH]",
+        "Japanese [JA]"
     ])
 
     previewEdit := langGui.Add("Edit", "w400 ReadOnly vPreview")
@@ -411,18 +411,18 @@ AddLanguageTag() {
 ; ============================================================================
 
 /**
-* Suggests improved titles based on window content
-* Uses heuristics to generate better names
-*
-* @hotkey F6 - Suggest title
-*/
+ * Suggests improved titles based on window content
+ * Uses heuristics to generate better names
+ * 
+ * @hotkey F6 - Suggest title
+ */
 F6:: {
     SuggestTitle()
 }
 
 /**
-* Generates title suggestions
-*/
+ * Generates title suggestions
+ */
 SuggestTitle() {
     if !WinExist("A") {
         MsgBox("No active window.", "Error", 16)
@@ -468,8 +468,8 @@ SuggestTitle() {
 }
 
 /**
-* Determines category from window class
-*/
+ * Determines category from window class
+ */
 DetermineCategory(class) {
     if InStr(class, "Notepad") {
         return "TEXT"
@@ -487,11 +487,11 @@ DetermineCategory(class) {
 ; ============================================================================
 
 /**
-* Backs up and restores window titles
-* Allows reverting changes
-*
-* @hotkey F7 - Backup/restore titles
-*/
+ * Backs up and restores window titles
+ * Allows reverting changes
+ * 
+ * @hotkey F7 - Backup/restore titles
+ */
 F7:: {
     TitleBackupRestore()
 }
@@ -500,8 +500,8 @@ F7:: {
 global titleBackup := Map()
 
 /**
-* Manages title backups
-*/
+ * Manages title backups
+ */
 TitleBackupRestore() {
     static brGui := ""
 
@@ -591,7 +591,7 @@ TitleBackupRestore() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

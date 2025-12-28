@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinGetClass_01.ahk
-* @description Comprehensive examples demonstrating WinGetClass function for retrieving window class names in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic window class retrieval
-* Example 2: Window class analyzer
-* Example 3: Class-based window identification
-* Example 4: Window class database
-* Example 5: Class filtering system
-* Example 6: Multi-window class comparison
-* Example 7: Application identification by class
-*
-* @section FEATURES
-* - Get window class names
-* - Identify applications by class
-* - Filter windows by class
-* - Build class databases
-* - Compare window classes
-* - Pattern matching
-* - Application detection
-*/
+ * @file BuiltIn_WinGetClass_01.ahk
+ * @description Comprehensive examples demonstrating WinGetClass function for retrieving window class names in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic window class retrieval
+ * Example 2: Window class analyzer
+ * Example 3: Class-based window identification
+ * Example 4: Window class database
+ * Example 5: Class filtering system
+ * Example 6: Multi-window class comparison
+ * Example 7: Application identification by class
+ * 
+ * @section FEATURES
+ * - Get window class names
+ * - Identify applications by class
+ * - Filter windows by class
+ * - Build class databases
+ * - Compare window classes
+ * - Pattern matching
+ * - Application detection
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -31,11 +31,11 @@
 ; ========================================
 
 /**
-* @function GetWindowClass
-* @description Get the class name of a window
-* @param WinTitle Window identifier
-* @returns {String} Window class name
-*/
+ * @function GetWindowClass
+ * @description Get the class name of a window
+ * @param WinTitle Window identifier
+ * @returns {String} Window class name
+ */
 GetWindowClass(WinTitle := "A") {
     try {
         className := WinGetClass(WinTitle)
@@ -46,10 +46,10 @@ GetWindowClass(WinTitle := "A") {
 }
 
 /**
-* @function ShowWindowClassInfo
-* @description Display comprehensive class information for a window
-* @param WinTitle Window identifier
-*/
+ * @function ShowWindowClassInfo
+ * @description Display comprehensive class information for a window
+ * @param WinTitle Window identifier
+ */
 ShowWindowClassInfo(WinTitle := "A") {
     try {
         className := WinGetClass(WinTitle)
@@ -79,16 +79,16 @@ ShowWindowClassInfo(WinTitle := "A") {
 ; ========================================
 
 /**
-* @class WindowClassAnalyzer
-* @description Advanced analysis of window classes
-*/
+ * @class WindowClassAnalyzer
+ * @description Advanced analysis of window classes
+ */
 class WindowClassAnalyzer {
     /**
-    * @method AnalyzeClass
-    * @description Analyze window class and provide detailed information
-    * @param WinTitle Window identifier
-    * @returns {Object} Analysis data
-    */
+     * @method AnalyzeClass
+     * @description Analyze window class and provide detailed information
+     * @param WinTitle Window identifier
+     * @returns {Object} Analysis data
+     */
     static AnalyzeClass(WinTitle := "A") {
         try {
             className := WinGetClass(WinTitle)
@@ -108,128 +108,128 @@ class WindowClassAnalyzer {
             return analysis
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method DetermineClassType
-    * @description Determine the type of window class
-    * @param className Class name
-    * @returns {String} Class type
-    */
+     * @method DetermineClassType
+     * @description Determine the type of window class
+     * @param className Class name
+     * @returns {String} Class type
+     */
     static DetermineClassType(className) {
         if InStr(className, "WindowsForms") || InStr(className, "HwndWrapper")
-        return ".NET WinForms"
+            return ".NET WinForms"
         if InStr(className, "WPF") || InStr(className, "Xaml")
-        return "WPF"
+            return "WPF"
         if InStr(className, "Qt")
-        return "Qt Framework"
+            return "Qt Framework"
         if InStr(className, "Chrome") || InStr(className, "Electron")
-        return "Electron/Chrome"
+            return "Electron/Chrome"
         if InStr(className, "MozillaWindow")
-        return "Firefox/Mozilla"
+            return "Firefox/Mozilla"
         if InStr(className, "SunAwt")
-        return "Java AWT"
+            return "Java AWT"
         if className = "#32770"
-        return "Dialog"
+            return "Dialog"
         if SubStr(className, 1, 1) = "#"
-        return "System Control"
+            return "System Control"
 
         return "Custom/Unknown"
     }
 
     /**
-    * @method IsStandardClass
-    * @description Check if class is a standard Windows class
-    * @param className Class name
-    * @returns {Boolean} True if standard
-    */
+     * @method IsStandardClass
+     * @description Check if class is a standard Windows class
+     * @param className Class name
+     * @returns {Boolean} True if standard
+     */
     static IsStandardClass(className) {
         standardClasses := [
-        "#32770",  ; Dialog
-        "Button", "Edit", "Static", "ListBox", "ComboBox",
-        "ScrollBar", "SysListView32", "SysTreeView32",
-        "SysTabControl32", "SysHeader32", "ToolbarWindow32",
-        "msctls_statusbar32", "msctls_progress32",
-        "Progman", "Shell_TrayWnd", "WorkerW"
+            "#32770",  ; Dialog
+            "Button", "Edit", "Static", "ListBox", "ComboBox",
+            "ScrollBar", "SysListView32", "SysTreeView32",
+            "SysTabControl32", "SysHeader32", "ToolbarWindow32",
+            "msctls_statusbar32", "msctls_progress32",
+            "Progman", "Shell_TrayWnd", "WorkerW"
         ]
 
         for stdClass in standardClasses {
             if className = stdClass
-            return true
+                return true
         }
 
         return false
     }
 
     /**
-    * @method IsDialogClass
-    * @description Check if class is a dialog
-    * @param className Class name
-    * @returns {Boolean} True if dialog
-    */
+     * @method IsDialogClass
+     * @description Check if class is a dialog
+     * @param className Class name
+     * @returns {Boolean} True if dialog
+     */
     static IsDialogClass(className) {
         return (className = "#32770" || InStr(className, "Dialog"))
     }
 
     /**
-    * @method IsCommonControlClass
-    * @description Check if class is a common control
-    * @param className Class name
-    * @returns {Boolean} True if common control
-    */
+     * @method IsCommonControlClass
+     * @description Check if class is a common control
+     * @param className Class name
+     * @returns {Boolean} True if common control
+     */
     static IsCommonControlClass(className) {
         commonControls := [
-        "Button", "Edit", "Static", "ListBox", "ComboBox",
-        "ScrollBar", "SysListView32", "SysTreeView32",
-        "SysTabControl32", "SysHeader32"
+            "Button", "Edit", "Static", "ListBox", "ComboBox",
+            "ScrollBar", "SysListView32", "SysTreeView32",
+            "SysTabControl32", "SysHeader32"
         ]
 
         for control in commonControls {
             if InStr(className, control)
-            return true
+                return true
         }
 
         return false
     }
 
     /**
-    * @method DetectFramework
-    * @description Detect UI framework from class name
-    * @param className Class name
-    * @returns {String} Framework name
-    */
+     * @method DetectFramework
+     * @description Detect UI framework from class name
+     * @param className Class name
+     * @returns {String} Framework name
+     */
     static DetectFramework(className) {
         if InStr(className, "WindowsForms")
-        return ".NET Windows Forms"
+            return ".NET Windows Forms"
         if InStr(className, "HwndWrapper")
-        return ".NET WPF"
+            return ".NET WPF"
         if InStr(className, "Qt")
-        return "Qt"
+            return "Qt"
         if InStr(className, "Electron")
-        return "Electron"
+            return "Electron"
         if InStr(className, "Chrome")
-        return "Chromium"
+            return "Chromium"
         if InStr(className, "Mozilla")
-        return "Gecko/Mozilla"
+            return "Gecko/Mozilla"
         if InStr(className, "SunAwt")
-        return "Java Swing/AWT"
+            return "Java Swing/AWT"
         if InStr(className, "GLFW")
-        return "GLFW"
+            return "GLFW"
 
         return "Win32/Native"
     }
 
     /**
-    * @method ExtractPrefix
-    * @description Extract prefix from class name
-    * @param className Class name
-    * @returns {String} Prefix
-    */
+     * @method ExtractPrefix
+     * @description Extract prefix from class name
+     * @param className Class name
+     * @returns {String} Prefix
+     */
     static ExtractPrefix(className) {
         if SubStr(className, 1, 1) = "#"
-        return "#"
+            return "#"
 
         ; Find first capital letter sequence
         Loop Parse className {
@@ -264,7 +264,7 @@ class WindowClassAnalyzer {
     output .= "Custom: " (analysis.IsCustom ? "Yes" : "No")
 
     if analysis.Prefix != ""
-    output .= "`nPrefix: " analysis.Prefix
+        output .= "`nPrefix: " analysis.Prefix
 
     MsgBox(output, "Class Analysis", "Icon!")
 }
@@ -274,16 +274,16 @@ class WindowClassAnalyzer {
 ; ========================================
 
 /**
-* @class WindowIdentifier
-* @description Identify and categorize windows by their class
-*/
+ * @class WindowIdentifier
+ * @description Identify and categorize windows by their class
+ */
 class WindowIdentifier {
     /**
-    * @method IdentifyByClass
-    * @description Identify application/window type by class
-    * @param className Window class name
-    * @returns {Object} Identification data
-    */
+     * @method IdentifyByClass
+     * @description Identify application/window type by class
+     * @param className Window class name
+     * @returns {Object} Identification data
+     */
     static IdentifyByClass(className) {
         identification := {
             ClassName: className,
@@ -348,12 +348,12 @@ class WindowIdentifier {
     }
 
     /**
-    * @method FindWindowsByClass
-    * @description Find all windows with a specific class
-    * @param className Class name to search for
-    * @param exactMatch Require exact match (default: true)
-    * @returns {Array} Array of window IDs
-    */
+     * @method FindWindowsByClass
+     * @description Find all windows with a specific class
+     * @param className Class name to search for
+     * @param exactMatch Require exact match (default: true)
+     * @returns {Array} Array of window IDs
+     */
     static FindWindowsByClass(className, exactMatch := true) {
         matchingWindows := []
         allWindows := WinGetList()
@@ -378,11 +378,11 @@ class WindowIdentifier {
     }
 
     /**
-    * @method GetApplicationWindows
-    * @description Get all windows belonging to an application
-    * @param appIdentifier Application identifier (class pattern)
-    * @returns {Array} Window data
-    */
+     * @method GetApplicationWindows
+     * @description Get all windows belonging to an application
+     * @param appIdentifier Application identifier (class pattern)
+     * @returns {Array} Window data
+     */
     static GetApplicationWindows(appIdentifier) {
         windows := []
         allWindows := WinGetList()
@@ -427,18 +427,18 @@ class WindowIdentifier {
 ; ========================================
 
 /**
-* @class ClassDatabase
-* @description Build and maintain a database of window classes
-*/
+ * @class ClassDatabase
+ * @description Build and maintain a database of window classes
+ */
 class ClassDatabase {
     static database := Map()
     static scanCount := 0
 
     /**
-    * @method ScanAllClasses
-    * @description Scan all windows and catalog their classes
-    * @returns {Integer} Number of unique classes found
-    */
+     * @method ScanAllClasses
+     * @description Scan all windows and catalog their classes
+     * @returns {Integer} Number of unique classes found
+     */
     static ScanAllClasses() {
         this.database := Map()
         allWindows := WinGetList()
@@ -479,27 +479,27 @@ class ClassDatabase {
     }
 
     /**
-    * @method GetClassInfo
-    * @description Get information about a specific class
-    * @param className Class name
-    * @returns {Object} Class information
-    */
+     * @method GetClassInfo
+     * @description Get information about a specific class
+     * @param className Class name
+     * @returns {Object} Class information
+     */
     static GetClassInfo(className) {
         if !this.database.Has(className) {
-            return {Error: "Class not in database"}
+            return { Error: "Class not in database" }
         }
 
         return this.database[className]
     }
 
     /**
-    * @method GetStatistics
-    * @description Get database statistics
-    * @returns {Object} Statistics
-    */
+     * @method GetStatistics
+     * @description Get database statistics
+     * @returns {Object} Statistics
+     */
     static GetStatistics() {
         if this.database.Count = 0 {
-            return {Error: "Database is empty"}
+            return { Error: "Database is empty" }
         }
 
         totalWindows := 0
@@ -529,10 +529,10 @@ class ClassDatabase {
     }
 
     /**
-    * @method ExportToText
-    * @description Export database to formatted text
-    * @returns {String} Formatted database
-    */
+     * @method ExportToText
+     * @description Export database to formatted text
+     * @returns {String} Formatted database
+     */
     static ExportToText() {
         if this.database.Count = 0 {
             return "Database is empty. Run ScanAllClasses() first."
@@ -578,18 +578,18 @@ class ClassDatabase {
     }
 
     /**
-    * @method FindSimilarClasses
-    * @description Find classes with similar names
-    * @param className Reference class name
-    * @param threshold Similarity threshold (0-1)
-    * @returns {Array} Similar classes
-    */
+     * @method FindSimilarClasses
+     * @description Find classes with similar names
+     * @param className Reference class name
+     * @param threshold Similarity threshold (0-1)
+     * @returns {Array} Similar classes
+     */
     static FindSimilarClasses(className, threshold := 0.5) {
         similar := []
 
         for dbClass, data in this.database {
             if dbClass = className
-            continue
+                continue
 
             ; Calculate similarity (simple approach)
             similarity := this.CalculateSimilarity(className, dbClass)
@@ -607,19 +607,19 @@ class ClassDatabase {
     }
 
     /**
-    * @method CalculateSimilarity
-    * @description Calculate string similarity (0-1)
-    * @param str1 First string
-    * @param str2 Second string
-    * @returns {Float} Similarity score
-    */
+     * @method CalculateSimilarity
+     * @description Calculate string similarity (0-1)
+     * @param str1 First string
+     * @param str2 Second string
+     * @returns {Float} Similarity score
+     */
     static CalculateSimilarity(str1, str2) {
         ; Simple longest common substring approach
         if str1 = str2
-        return 1.0
+            return 1.0
 
         if str1 = "" || str2 = ""
-        return 0.0
+            return 0.0
 
         maxLen := Max(StrLen(str1), StrLen(str2))
         commonLength := 0
@@ -675,18 +675,18 @@ class ClassDatabase {
 ; ========================================
 
 /**
-* @class ClassFilter
-* @description Filter windows based on class criteria
-*/
+ * @class ClassFilter
+ * @description Filter windows based on class criteria
+ */
 class ClassFilter {
     static filters := []
 
     /**
-    * @method AddFilter
-    * @description Add a class filter
-    * @param pattern Class name pattern
-    * @param matchType Match type (exact, contains, starts, ends, regex)
-    */
+     * @method AddFilter
+     * @description Add a class filter
+     * @param pattern Class name pattern
+     * @param matchType Match type (exact, contains, starts, ends, regex)
+     */
     static AddFilter(pattern, matchType := "contains") {
         this.filters.Push({
             Pattern: pattern,
@@ -696,22 +696,22 @@ class ClassFilter {
     }
 
     /**
-    * @method ClearFilters
-    * @description Clear all filters
-    */
+     * @method ClearFilters
+     * @description Clear all filters
+     */
     static ClearFilters() {
         this.filters := []
     }
 
     /**
-    * @method TestClass
-    * @description Test if a class matches any filter
-    * @param className Class name to test
-    * @returns {Boolean} True if matches
-    */
+     * @method TestClass
+     * @description Test if a class matches any filter
+     * @param className Class name to test
+     * @returns {Boolean} True if matches
+     */
     static TestClass(className) {
         if this.filters.Length = 0
-        return true
+            return true
 
         for filter in this.filters {
             if this.MatchPattern(className, filter.Pattern, filter.MatchType) {
@@ -723,34 +723,34 @@ class ClassFilter {
     }
 
     /**
-    * @method MatchPattern
-    * @description Check if class matches pattern
-    * @param className Class name
-    * @param pattern Pattern to match
-    * @param matchType Type of match
-    * @returns {Boolean} True if matches
-    */
+     * @method MatchPattern
+     * @description Check if class matches pattern
+     * @param className Class name
+     * @param pattern Pattern to match
+     * @param matchType Type of match
+     * @returns {Boolean} True if matches
+     */
     static MatchPattern(className, pattern, matchType) {
         switch matchType {
             case "exact":
-            return className = pattern
+                return className = pattern
             case "contains":
-            return InStr(className, pattern) > 0
+                return InStr(className, pattern) > 0
             case "starts":
-            return SubStr(className, 1, StrLen(pattern)) = pattern
+                return SubStr(className, 1, StrLen(pattern)) = pattern
             case "ends":
-            return SubStr(className, -StrLen(pattern)) = pattern
+                return SubStr(className, -StrLen(pattern)) = pattern
             case "regex":
-            return className ~= pattern
+                return className ~= pattern
         }
         return false
     }
 
     /**
-    * @method GetFilteredWindows
-    * @description Get all windows matching filters
-    * @returns {Array} Filtered window list
-    */
+     * @method GetFilteredWindows
+     * @description Get all windows matching filters
+     * @returns {Array} Filtered window list
+     */
     static GetFilteredWindows() {
         filtered := []
         allWindows := WinGetList()
@@ -773,10 +773,10 @@ class ClassFilter {
     }
 
     /**
-    * @method CreateBlacklist
-    * @description Create a blacklist of classes to ignore
-    * @param classList Array of class names
-    */
+     * @method CreateBlacklist
+     * @description Create a blacklist of classes to ignore
+     * @param classList Array of class names
+     */
     static CreateBlacklist(classList) {
         this.ClearFilters()
 
@@ -799,10 +799,10 @@ class ClassFilter {
     }
 
     /**
-    * @method GetAllUniqueClasses
-    * @description Get all unique class names
-    * @returns {Array} Unique classes
-    */
+     * @method GetAllUniqueClasses
+     * @description Get all unique class names
+     * @returns {Array} Unique classes
+     */
     static GetAllUniqueClasses() {
         classes := Map()
         allWindows := WinGetList()
@@ -835,11 +835,11 @@ class ClassFilter {
 ; ========================================
 
 /**
-* @function CompareWindowClasses
-* @description Compare classes of multiple windows
-* @param winTitles Array of window titles
-* @returns {Object} Comparison results
-*/
+ * @function CompareWindowClasses
+ * @description Compare classes of multiple windows
+ * @param winTitles Array of window titles
+ * @returns {Object} Comparison results
+ */
 CompareWindowClasses(winTitles) {
     classes := []
 
@@ -859,7 +859,7 @@ CompareWindowClasses(winTitles) {
         firstClass := classes[1].Class
         for i, data in classes {
             if i = 1
-            continue
+                continue
             if data.Class != firstClass {
                 allSame := false
                 break
@@ -875,11 +875,11 @@ CompareWindowClasses(winTitles) {
 }
 
 /**
-* @function CountUnique
-* @description Count unique classes in array
-* @param classes Array of class data
-* @returns {Integer} Unique count
-*/
+ * @function CountUnique
+ * @description Count unique classes in array
+ * @param classes Array of class data
+ * @returns {Integer} Unique count
+ */
 CountUnique(classes) {
     unique := Map()
     for data in classes {

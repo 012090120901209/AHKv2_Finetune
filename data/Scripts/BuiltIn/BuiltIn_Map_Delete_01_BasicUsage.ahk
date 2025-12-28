@@ -2,24 +2,24 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Delete_01_BasicUsage.ahk
-*
-* @description Comprehensive examples of Map.Delete() method for basic usage
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* The Map.Delete() method removes a key-value pair from a Map.
-* Syntax: MapObject.Delete(Key)
-* Returns: The value that was removed, or empty string if key didn't exist
-*
-* Key Features:
-* - Remove specific keys
-* - Return deleted values
-* - Safe deletion (no error if key doesn't exist)
-* - Reduce map size
-*/
+ * BuiltIn_Map_Delete_01_BasicUsage.ahk
+ * 
+ * @description Comprehensive examples of Map.Delete() method for basic usage
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * The Map.Delete() method removes a key-value pair from a Map.
+ * Syntax: MapObject.Delete(Key)
+ * Returns: The value that was removed, or empty string if key didn't exist
+ * 
+ * Key Features:
+ * - Remove specific keys
+ * - Return deleted values
+ * - Safe deletion (no error if key doesn't exist)
+ * - Reduce map size
+ */
 
 ;=============================================================================
 ; Example 1: Basic Delete Operations
@@ -27,10 +27,10 @@
 
 Example1_BasicDelete() {
     data := Map(
-    "key1", "value1",
-    "key2", "value2",
-    "key3", "value3",
-    "key4", "value4"
+        "key1", "value1",
+        "key2", "value2",
+        "key3", "value3",
+        "key4", "value4"
     )
 
     output := "=== Basic Delete Example ===`n`n"
@@ -60,17 +60,17 @@ Example1_BasicDelete() {
 
 Example2_ConditionalDelete() {
     inventory := Map(
-    "item1", Map("name", "Laptop", "stock", 0),
-    "item2", Map("name", "Mouse", "stock", 50),
-    "item3", Map("name", "Keyboard", "stock", 0),
-    "item4", Map("name", "Monitor", "stock", 25)
+        "item1", Map("name", "Laptop", "stock", 0),
+        "item2", Map("name", "Mouse", "stock", 50),
+        "item3", Map("name", "Keyboard", "stock", 0),
+        "item4", Map("name", "Monitor", "stock", 25)
     )
 
     ; Remove items with zero stock
     toDelete := []
     for id, item in inventory {
         if (item["stock"] = 0)
-        toDelete.Push(id)
+            toDelete.Push(id)
     }
 
     output := "=== Conditional Delete ===`n`n"
@@ -96,10 +96,10 @@ Example2_ConditionalDelete() {
 
 Example3_DeleteAndReturn() {
     queue := Map(
-    1, "Task A",
-    2, "Task B",
-    3, "Task C",
-    4, "Task D"
+        1, "Task A",
+        2, "Task B",
+        3, "Task C",
+        4, "Task D"
     )
 
     ProcessAndRemove(key) {
@@ -142,12 +142,12 @@ Example4_BatchDelete() {
         for key in keys {
             value := mapObj.Delete(key)
             if (value != "")
-            deleted.Push(key)
+                deleted.Push(key)
             else
-            failed.Push(key)
+                failed.Push(key)
         }
 
-        return {deleted: deleted, failed: failed}
+        return { deleted: deleted, failed: failed }
     }
 
     toDelete := ["key5", "key10", "key15", "key99", "key20"]
@@ -178,7 +178,7 @@ Example5_TemporaryData() {
 
     GetTemporary(key) {
         if (!tempData.Has(key))
-        return ""
+            return ""
 
         item := tempData[key]
         if (A_TickCount > item["expires"]) {
@@ -193,7 +193,7 @@ Example5_TemporaryData() {
         toDelete := []
         for key, item in tempData {
             if (A_TickCount > item["expires"])
-            toDelete.Push(key)
+                toDelete.Push(key)
         }
 
         for key in toDelete {
@@ -237,7 +237,7 @@ Example6_UndoDelete() {
 
     UndoDelete() {
         if (deletedHistory.Length = 0)
-        return "Nothing to undo"
+            return "Nothing to undo"
 
         lastDeleted := deletedHistory.Pop()
         data.Set(lastDeleted["key"], lastDeleted["value"])
@@ -265,9 +265,9 @@ Example6_UndoDelete() {
 
 Example7_SoftDelete() {
     records := Map(
-    "R001", Map("name", "Record 1", "deleted", false),
-    "R002", Map("name", "Record 2", "deleted", false),
-    "R003", Map("name", "Record 3", "deleted", false)
+        "R001", Map("name", "Record 1", "deleted", false),
+        "R002", Map("name", "Record 2", "deleted", false),
+        "R003", Map("name", "Record 3", "deleted", false)
     )
 
     SoftDelete(id) {
@@ -287,7 +287,7 @@ Example7_SoftDelete() {
         active := []
         for id, record in records {
             if (!record["deleted"])
-            active.Push(id)
+                active.Push(id)
         }
         return active
     }
@@ -296,7 +296,7 @@ Example7_SoftDelete() {
         toRemove := []
         for id, record in records {
             if (record["deleted"])
-            toRemove.Push(id)
+                toRemove.Push(id)
         }
 
         for id in toRemove {
@@ -332,28 +332,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Delete Operations with Map.Delete()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Basic Delete")
-    .OnEvent("Click", (*) => Example1_BasicDelete())
+        .OnEvent("Click", (*) => Example1_BasicDelete())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Conditional")
-    .OnEvent("Click", (*) => Example2_ConditionalDelete())
+        .OnEvent("Click", (*) => Example2_ConditionalDelete())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Delete & Return")
-    .OnEvent("Click", (*) => Example3_DeleteAndReturn())
+        .OnEvent("Click", (*) => Example3_DeleteAndReturn())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Batch Delete")
-    .OnEvent("Click", (*) => Example4_BatchDelete())
+        .OnEvent("Click", (*) => Example4_BatchDelete())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Temporary")
-    .OnEvent("Click", (*) => Example5_TemporaryData())
+        .OnEvent("Click", (*) => Example5_TemporaryData())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Undo")
-    .OnEvent("Click", (*) => Example6_UndoDelete())
+        .OnEvent("Click", (*) => Example6_UndoDelete())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Soft Delete")
-    .OnEvent("Click", (*) => Example7_SoftDelete())
+        .OnEvent("Click", (*) => Example7_SoftDelete())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_BasicDelete()

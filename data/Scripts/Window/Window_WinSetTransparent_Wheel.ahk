@@ -2,21 +2,21 @@
 #SingleInstance Force
 
 /**
-* Window Transparency Control
-*
-* Demonstrates controlling window transparency using mouse wheel
-* with modifier keys and preset transparency levels.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Window Transparency Control
+ * 
+ * Demonstrates controlling window transparency using mouse wheel
+ * with modifier keys and preset transparency levels.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Window Transparency Demo`n`n"
-. "Hotkeys:`n"
-. "Ctrl+Shift+WheelUp/Down - Adjust transparency`n"
-. "F8 - Cycle preset transparency levels`n"
-. "Alt+Home - Reset to 100%% opaque`n`n"
-. "Try it on Notepad window...", , "T5")
+    . "Hotkeys:`n"
+    . "Ctrl+Shift+WheelUp/Down - Adjust transparency`n"
+    . "F8 - Cycle preset transparency levels`n"
+    . "Alt+Home - Reset to 100%% opaque`n`n"
+    . "Try it on Notepad window...", , "T5")
 
 ; Open test window
 Run("notepad.exe")
@@ -25,33 +25,33 @@ WinActivate("ahk_exe notepad.exe")
 Sleep(500)
 
 ; Hotkeys
-^+WheelUp::AdjustTransparency("up")
-^+WheelDown::AdjustTransparency("down")
-F8::CycleTransparency()
-!Home::ResetTransparency()
+^+WheelUp:: AdjustTransparency("up")
+^+WheelDown:: AdjustTransparency("down")
+F8:: CycleTransparency()
+!Home:: ResetTransparency()
 
 /**
-* Adjust window transparency with mouse wheel
-*/
+ * Adjust window transparency with mouse wheel
+ */
 AdjustTransparency(direction) {
     ; Get window under mouse
     MouseGetPos(, , &winID)
     if (!winID)
-    return
+        return
 
     ; Get current transparency (0-255, 255=opaque)
     currentTrans := WinGetTransparent(winID)
 
     ; If not set, default to 255 (opaque)
     if (currentTrans == "")
-    currentTrans := 255
+        currentTrans := 255
 
     ; Adjust by 15 units (about 6% per step)
     step := 15
     if (direction == "up")
-    newTrans := Min(currentTrans + step, 255)
+        newTrans := Min(currentTrans + step, 255)
     else
-    newTrans := Max(currentTrans - step, 30)  ; Minimum 30 for visibility
+        newTrans := Max(currentTrans - step, 30)  ; Minimum 30 for visibility
 
     ; Set new transparency
     WinSetTransparent(newTrans, winID)
@@ -65,8 +65,8 @@ AdjustTransparency(direction) {
 }
 
 /**
-* Cycle through preset transparency levels
-*/
+ * Cycle through preset transparency levels
+ */
 CycleTransparency() {
     ; Preset levels (as 0-255 values)
     static presets := [255, 230, 204, 178, 153, 128]  ; 100%, 90%, 80%, 70%, 60%, 50%
@@ -75,12 +75,12 @@ CycleTransparency() {
     ; Get active window
     winID := WinExist("A")
     if (!winID)
-    return
+        return
 
     ; Get window title
     winTitle := WinGetTitle(winID)
     if (winTitle == "")
-    winTitle := "Active Window"
+        winTitle := "Active Window"
 
     ; Apply preset
     transValue := presets[currentIndex]
@@ -96,17 +96,17 @@ CycleTransparency() {
     ; Move to next preset
     currentIndex++
     if (currentIndex > presets.Length)
-    currentIndex := 1
+        currentIndex := 1
 }
 
 /**
-* Reset transparency to fully opaque
-*/
+ * Reset transparency to fully opaque
+ */
 ResetTransparency() {
     ; Get active window
     winID := WinExist("A")
     if (!winID)
-    return
+        return
 
     ; Reset to opaque
     WinSetTransparent("Off", winID)
@@ -187,3 +187,4 @@ ResetTransparency() {
 *     Gaming with chat visible
 *     Monitoring multiple sources
 */
+

@@ -129,7 +129,7 @@ class ExpressionParser {
             this.Expect("(")
             arg := this.ParseExpression()
             this.Expect(")")
-            
+
             return this.EvalFunction(funcName, arg)
         }
 
@@ -161,7 +161,7 @@ class ExpressionParser {
     }
 
     Current() => this.tokens[this.pos]
-    
+
     Advance() => this.pos++
 
     Expect(type) {

@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Class_04_Static.ahk
-*
-* DESCRIPTION:
-* Demonstrates static members (properties and methods) in AutoHotkey v2 classes.
-* Static members belong to the class itself rather than instances, useful for
-* shared data, utility functions, and class-level operations.
-*
-* FEATURES:
-* - Static properties (class variables)
-* - Static methods (class methods)
-* - Static vs instance member access
-* - Instance counting and tracking
-* - Utility/helper static methods
-* - Constants using static properties
-* - Static initialization patterns
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - static keyword for class-level members
-* - Static property access via ClassName.Property
-* - Static method access via ClassName.Method()
-* - Shared state across all instances
-* - Class-level utility functions
-* - Static initialization blocks
-*
-* LEARNING POINTS:
-* 1. Static members belong to the class, not instances
-* 2. Static members are shared across all instances
-* 3. Static methods can't access instance members directly
-* 4. Static members are accessed via class name
-* 5. Useful for counters, constants, and utilities
-* 6. Static methods can be factory methods
-* 7. Instance methods can access static members
-*/
+ * BuiltIn_OOP_Class_04_Static.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates static members (properties and methods) in AutoHotkey v2 classes.
+ * Static members belong to the class itself rather than instances, useful for
+ * shared data, utility functions, and class-level operations.
+ * 
+ * FEATURES:
+ * - Static properties (class variables)
+ * - Static methods (class methods)
+ * - Static vs instance member access
+ * - Instance counting and tracking
+ * - Utility/helper static methods
+ * - Constants using static properties
+ * - Static initialization patterns
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - static keyword for class-level members
+ * - Static property access via ClassName.Property
+ * - Static method access via ClassName.Method()
+ * - Shared state across all instances
+ * - Class-level utility functions
+ * - Static initialization blocks
+ * 
+ * LEARNING POINTS:
+ * 1. Static members belong to the class, not instances
+ * 2. Static members are shared across all instances
+ * 3. Static methods can't access instance members directly
+ * 4. Static members are accessed via class name
+ * 5. Useful for counters, constants, and utilities
+ * 6. Static methods can be factory methods
+ * 7. Instance methods can access static members
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Static Properties and Methods
@@ -78,7 +78,7 @@ class Counter {
 
     GetInfo() {
         return Format("Counter '{}': Instance={}, Total={}",
-        this.Name, this.InstanceCount, Counter.TotalCount)
+            this.Name, this.InstanceCount, Counter.TotalCount)
     }
 }
 
@@ -139,7 +139,7 @@ class User {
     static FindByID(id) {
         for user in User.AllUsers {
             if (user.ID = id)
-            return user
+                return user
         }
         return ""
     }
@@ -148,7 +148,7 @@ class User {
     static FindByUsername(username) {
         for user in User.AllUsers {
             if (user.Username = username)
-            return user
+                return user
         }
         return ""
     }
@@ -225,7 +225,7 @@ class MathConstants {
 
     ; Static utility methods
     static CircleArea(radius) {
-        return MathConstants.PI * radius**2
+        return MathConstants.PI * radius ** 2
     }
 
     static CircleCircumference(radius) {
@@ -299,7 +299,7 @@ class Date {
         ; Parse "YYYY-MM-DD" format
         parts := StrSplit(dateString, "-")
         if (parts.Length != 3)
-        throw ValueError("Invalid date format. Use YYYY-MM-DD")
+            throw ValueError("Invalid date format. Use YYYY-MM-DD")
 
         return Date(Integer(parts[1]), Integer(parts[2]), Integer(parts[3]))
     }
@@ -322,7 +322,7 @@ class Date {
         ; Simple approximation
         daysInMonth := [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         if (month = 2 && this.IsLeapYear(year))
-        return Date(year, month, 29)
+            return Date(year, month, 29)
         return Date(year, month, daysInMonth[month])
     }
 
@@ -381,11 +381,11 @@ class Database {
         ; Apply configuration if provided
         if (IsObject(config)) {
             if (config.HasOwnProp("Host"))
-            Database.DefaultHost := config.Host
+                Database.DefaultHost := config.Host
             if (config.HasOwnProp("Port"))
-            Database.DefaultPort := config.Port
+                Database.DefaultPort := config.Port
             if (config.HasOwnProp("MaxConnections"))
-            Database.MaxConnections := config.MaxConnections
+                Database.MaxConnections := config.MaxConnections
         }
 
         ; Initialize connection pool
@@ -398,10 +398,10 @@ class Database {
     ; Static method to get connection from pool
     static GetConnection() {
         if (!Database.IsInitialized)
-        throw Error("Database not initialized")
+            throw Error("Database not initialized")
 
         if (Database.TotalConnections >= Database.MaxConnections)
-        throw Error("Maximum connections reached")
+            throw Error("Maximum connections reached")
 
         conn := Database(Database.DefaultHost, Database.DefaultPort)
         return conn
@@ -410,9 +410,9 @@ class Database {
     ; Static method to get statistics
     static GetStats() {
         return Format("Connections: {}/{}, Pool Size: {}",
-        Database.TotalConnections,
-        Database.MaxConnections,
-        Database.ConnectionPool.Length)
+            Database.TotalConnections,
+            Database.MaxConnections,
+            Database.ConnectionPool.Length)
     }
 
     __New(host, port) {
@@ -430,12 +430,12 @@ class Database {
     ToString() {
         status := this.IsActive ? "Active" : "Closed"
         return Format("Connection #{}: {}:{} ({})",
-        this.ConnectionID, this.Host, this.Port, status)
+            this.ConnectionID, this.Host, this.Port, status)
     }
 }
 
 ; Initialize database system
-MsgBox(Database.Initialize({MaxConnections: 5}))
+MsgBox(Database.Initialize({ MaxConnections: 5 }))
 
 ; Get connections
 conn1 := Database.GetConnection()
@@ -477,7 +477,7 @@ class Validator {
     ; Password strength
     static IsStrongPassword(password) {
         if (StrLen(password) < 8)
-        return false
+            return false
 
         hasUpper := RegExMatch(password, "[A-Z]")
         hasLower := RegExMatch(password, "[a-z]")
@@ -492,7 +492,7 @@ class Validator {
         cardNumber := RegExReplace(cardNumber, "[^0-9]", "")
 
         if (StrLen(cardNumber) < 13 || StrLen(cardNumber) > 19)
-        return false
+            return false
 
         sum := 0
         isEven := false
@@ -501,10 +501,10 @@ class Validator {
             digit := Integer(A_LoopField)
 
             if (isEven)
-            digit *= 2
+                digit *= 2
 
             if (digit > 9)
-            digit -= 9
+                digit -= 9
 
             sum += digit
             isEven := !isEven
@@ -518,13 +518,13 @@ class Validator {
         errors := []
 
         if (data.HasOwnProp("Email") && !Validator.IsValidEmail(data.Email))
-        errors.Push("Invalid email")
+            errors.Push("Invalid email")
 
         if (data.HasOwnProp("Phone") && !Validator.IsValidPhone(data.Phone))
-        errors.Push("Invalid phone")
+            errors.Push("Invalid phone")
 
         if (data.HasOwnProp("Password") && !Validator.IsStrongPassword(data.Password))
-        errors.Push("Weak password")
+            errors.Push("Weak password")
 
         return errors.Length = 0 ? "" : errors
     }
@@ -553,7 +553,7 @@ errors := Validator.ValidateAll(userData)
 if (IsObject(errors)) {
     errorMsg := "Validation errors:`n"
     for error in errors
-    errorMsg .= "- " error "`n"
+        errorMsg .= "- " error "`n"
     MsgBox(errorMsg)
 } else {
     MsgBox("All validations passed")
@@ -568,10 +568,10 @@ class Logger {
     ; Static configuration
     static GlobalLogLevel := "INFO"
     static LogLevels := Map(
-    "DEBUG", 1,
-    "INFO", 2,
-    "WARN", 3,
-    "ERROR", 4
+        "DEBUG", 1,
+        "INFO", 2,
+        "WARN", 3,
+        "ERROR", 4
     )
     static AllLoggers := []
     static GlobalLogCount := 0
@@ -595,14 +595,14 @@ class Logger {
     ; Static method to set global log level
     static SetGlobalLevel(level) {
         if (!Logger.LogLevels.Has(level))
-        throw ValueError("Invalid log level: " level)
+            throw ValueError("Invalid log level: " level)
 
         Logger.GlobalLogLevel := level
 
         ; Update all loggers that use global level
         for logger in Logger.AllLoggers {
             if (logger.InstanceLogLevel = "")
-            logger.InstanceLogLevel := level
+                logger.InstanceLogLevel := level
         }
     }
 
@@ -616,7 +616,7 @@ class Logger {
     ; Instance method
     Log(level, message) {
         if (!this.ShouldLog(level))
-        return
+            return
 
         logEntry := Format("[{}] [{}] {}", A_Now, level, message)
         this.Logs.Push(logEntry)
@@ -639,7 +639,7 @@ class Logger {
     ; Instance method to get stats
     GetStats() {
         return Format("Logger '{}': {} logs (Global: {})",
-        this.Name, this.LogCount, Logger.GlobalLogCount)
+            this.Name, this.LogCount, Logger.GlobalLogCount)
     }
 }
 
@@ -665,11 +665,11 @@ logger1.Debug("Now this will log")  ; Will log now
 MsgBox(logger1.GetStats())
 
 MsgBox("=== OOP Static Members Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Static properties and methods`n"
-. "- Instance tracking with static members`n"
-. "- Static constants and configuration`n"
-. "- Static factory methods`n"
-. "- Static initialization`n"
-. "- Static utility classes`n"
-. "- Mixing static and instance members")
+    . "This file demonstrated:`n"
+    . "- Static properties and methods`n"
+    . "- Instance tracking with static members`n"
+    . "- Static constants and configuration`n"
+    . "- Static factory methods`n"
+    . "- Static initialization`n"
+    . "- Static utility classes`n"
+    . "- Mixing static and instance members")

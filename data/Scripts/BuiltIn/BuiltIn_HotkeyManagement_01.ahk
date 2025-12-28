@@ -1,25 +1,25 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* A_ThisHotkey - Hotkey Identification and Dynamic Behavior
-* ============================================================================
-*
-* Demonstrates using the A_ThisHotkey built-in variable to identify which
-* hotkey triggered the current code, enabling smart multi-hotkey handlers
-* and dynamic behavior.
-*
-* Features:
-* - Identifying the triggering hotkey
-* - Shared handlers for multiple hotkeys
-* - Dynamic behavior based on hotkey
-* - Hotkey history tracking
-* - Context-sensitive hotkey responses
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/A_ThisHotkey.htm
-*/
+ * ============================================================================
+ * A_ThisHotkey - Hotkey Identification and Dynamic Behavior
+ * ============================================================================
+ * 
+ * Demonstrates using the A_ThisHotkey built-in variable to identify which
+ * hotkey triggered the current code, enabling smart multi-hotkey handlers
+ * and dynamic behavior.
+ * 
+ * Features:
+ * - Identifying the triggering hotkey
+ * - Shared handlers for multiple hotkeys
+ * - Dynamic behavior based on hotkey
+ * - Hotkey history tracking
+ * - Context-sensitive hotkey responses
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/A_ThisHotkey.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic A_ThisHotkey Usage
@@ -27,13 +27,13 @@
 
 Example1_BasicUsage() {
     /**
-    * Single handler for multiple hotkeys
-    */
+     * Single handler for multiple hotkeys
+     */
     SharedHandler(*) {
         MsgBox(
-        "You pressed: " . A_ThisHotkey . "`n`n"
-        "Time: " . FormatTime(, "HH:mm:ss"),
-        "Hotkey Info"
+            "You pressed: " . A_ThisHotkey . "`n`n"
+            "Time: " . FormatTime(, "HH:mm:ss"),
+            "Hotkey Info"
         )
     }
 
@@ -44,10 +44,10 @@ Example1_BasicUsage() {
     Hotkey("F4", SharedHandler)
 
     MsgBox(
-    "Basic A_ThisHotkey Usage`n`n"
-    "Press F1, F2, F3, or F4`n`n"
-    "Each shows which key was pressed using A_ThisHotkey",
-    "Example 1"
+        "Basic A_ThisHotkey Usage`n`n"
+        "Press F1, F2, F3, or F4`n`n"
+        "Each shows which key was pressed using A_ThisHotkey",
+        "Example 1"
     )
 }
 
@@ -57,22 +57,22 @@ Example1_BasicUsage() {
 
 Example2_DynamicBehavior() {
     /**
-    * Handler with different behavior per hotkey
-    */
+     * Handler with different behavior per hotkey
+     */
     NumberHandler(*) {
         switch A_ThisHotkey {
             case "^1":
-            SendText("One")
+                SendText("One")
             case "^2":
-            SendText("Two")
+                SendText("Two")
             case "^3":
-            SendText("Three")
+                SendText("Three")
             case "^4":
-            SendText("Four")
+                SendText("Four")
             case "^5":
-            SendText("Five")
+                SendText("Five")
             default:
-            SendText("Unknown")
+                SendText("Unknown")
         }
     }
 
@@ -82,18 +82,18 @@ Example2_DynamicBehavior() {
     }
 
     /**
-    * Arrow key handler with direction info
-    */
+     * Arrow key handler with direction info
+     */
     DirectionHandler(*) {
         switch A_ThisHotkey {
             case "^Up":
-            direction := "North ↑"
+                direction := "North ↑"
             case "^Down":
-            direction := "South ↓"
+                direction := "South ↓"
             case "^Left":
-            direction := "West ←"
+                direction := "West ←"
             case "^Right":
-            direction := "East →"
+                direction := "East →"
         }
 
         ToolTip("Direction: " . direction)
@@ -106,11 +106,11 @@ Example2_DynamicBehavior() {
     Hotkey("^Right", DirectionHandler)
 
     MsgBox(
-    "Dynamic Behavior Example`n`n"
-    "Ctrl+1-5 → Insert number words`n"
-    "Ctrl+Arrows → Show directions`n`n"
-    "Same handler, different behavior based on A_ThisHotkey",
-    "Example 2"
+        "Dynamic Behavior Example`n`n"
+        "Ctrl+1-5 → Insert number words`n"
+        "Ctrl+Arrows → Show directions`n`n"
+        "Same handler, different behavior based on A_ThisHotkey",
+        "Example 2"
     )
 }
 
@@ -123,8 +123,8 @@ Example3_HistoryTracker() {
     global maxHistorySize := 10
 
     /**
-    * Tracks hotkey usage
-    */
+     * Tracks hotkey usage
+     */
     TrackHotkey(*) {
         global hotkeyHistory, maxHistorySize
 
@@ -143,17 +143,17 @@ Example3_HistoryTracker() {
         ; Perform action based on hotkey
         switch A_ThisHotkey {
             case "^!h":
-            ShowHistory()
+                ShowHistory()
             case "^!c":
-            ClearHistory()
+                ClearHistory()
             default:
-            MsgBox("Hotkey pressed: " . A_ThisHotkey, "Tracked")
+                MsgBox("Hotkey pressed: " . A_ThisHotkey, "Tracked")
         }
     }
 
     /**
-    * Shows hotkey history
-    */
+     * Shows hotkey history
+     */
     ShowHistory() {
         global hotkeyHistory
 
@@ -173,8 +173,8 @@ Example3_HistoryTracker() {
     }
 
     /**
-    * Clears history
-    */
+     * Clears history
+     */
     ClearHistory() {
         global hotkeyHistory
         hotkeyHistory := []
@@ -184,7 +184,7 @@ Example3_HistoryTracker() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -196,12 +196,12 @@ Example3_HistoryTracker() {
     Hotkey("^!c", TrackHotkey) ; Clear history
 
     MsgBox(
-    "Hotkey History Tracker`n`n"
-    "Ctrl+Alt+1,2,3 → Tracked hotkeys`n"
-    "Ctrl+Alt+H → Show history`n"
-    "Ctrl+Alt+C → Clear history`n`n"
-    "Last 10 hotkey presses are remembered",
-    "Example 3"
+        "Hotkey History Tracker`n`n"
+        "Ctrl+Alt+1,2,3 → Tracked hotkeys`n"
+        "Ctrl+Alt+H → Show history`n"
+        "Ctrl+Alt+C → Clear history`n`n"
+        "Last 10 hotkey presses are remembered",
+        "Example 3"
     )
 }
 
@@ -211,8 +211,8 @@ Example3_HistoryTracker() {
 
 Example4_ModifierDetection() {
     /**
-    * Analyzes the hotkey modifiers
-    */
+     * Analyzes the hotkey modifiers
+     */
     AnalyzeHotkey(*) {
         hotkey := A_ThisHotkey
         modifiers := ""
@@ -220,18 +220,18 @@ Example4_ModifierDetection() {
 
         ; Parse modifiers
         if InStr(hotkey, "^")
-        modifiers .= "Ctrl+"
+            modifiers .= "Ctrl+"
         if InStr(hotkey, "!")
-        modifiers .= "Alt+"
+            modifiers .= "Alt+"
         if InStr(hotkey, "+")
-        modifiers .= "Shift+"
+            modifiers .= "Shift+"
         if InStr(hotkey, "#")
-        modifiers .= "Win+"
+            modifiers .= "Win+"
 
         ; Extract base key
         key := RegExReplace(hotkey, "[^!+#]+", "")
         if key = ""
-        key := hotkey
+            key := hotkey
 
         info := "Hotkey Analysis`n"
         info .= Repeat("-", 30) . "`n"
@@ -245,7 +245,7 @@ Example4_ModifierDetection() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -257,15 +257,15 @@ Example4_ModifierDetection() {
     Hotkey("#a", AnalyzeHotkey)
 
     MsgBox(
-    "Modifier Detection`n`n"
-    "Try these combinations:`n"
-    "Ctrl+Alt+Shift+A`n"
-    "Ctrl+A`n"
-    "Alt+A`n"
-    "Shift+A`n"
-    "Win+A`n`n"
-    "Each shows its modifier analysis",
-    "Example 4"
+        "Modifier Detection`n`n"
+        "Try these combinations:`n"
+        "Ctrl+Alt+Shift+A`n"
+        "Ctrl+A`n"
+        "Alt+A`n"
+        "Shift+A`n"
+        "Win+A`n`n"
+        "Each shows its modifier analysis",
+        "Example 4"
     )
 }
 
@@ -275,8 +275,8 @@ Example4_ModifierDetection() {
 
 Example5_PatternMatching() {
     /**
-    * Handles hotkeys based on patterns
-    */
+     * Handles hotkeys based on patterns
+     */
     PatternHandler(*) {
         hotkey := A_ThisHotkey
 
@@ -316,12 +316,12 @@ Example5_PatternMatching() {
     }
 
     MsgBox(
-    "Pattern Matching`n`n"
-    "F1-F12 → 'Function key X pressed'`n"
-    "Ctrl+1-9 → Multiply by 10`n"
-    "Numpad1-9 → 'Numpad X'`n`n"
-    "Single handler uses A_ThisHotkey + patterns",
-    "Example 5"
+        "Pattern Matching`n`n"
+        "F1-F12 → 'Function key X pressed'`n"
+        "Ctrl+1-9 → Multiply by 10`n"
+        "Numpad1-9 → 'Numpad X'`n`n"
+        "Single handler uses A_ThisHotkey + patterns",
+        "Example 5"
     )
 }
 
@@ -333,15 +333,15 @@ Example6_ToggleSystem() {
     global toggleStates := Map()
 
     /**
-    * Toggle handler using A_ThisHotkey as key
-    */
+     * Toggle handler using A_ThisHotkey as key
+     */
     ToggleHandler(*) {
         global toggleStates
         hotkey := A_ThisHotkey
 
         ; Initialize if not exists
         if !toggleStates.Has(hotkey)
-        toggleStates[hotkey] := false
+            toggleStates[hotkey] := false
 
         ; Toggle state
         toggleStates[hotkey] := !toggleStates[hotkey]
@@ -349,9 +349,9 @@ Example6_ToggleSystem() {
 
         ; Show state
         ToolTip(
-        hotkey . ": " . (state ? "ON" : "OFF"),
-        A_ScreenWidth - 150,
-        A_ScreenHeight - 50
+            hotkey . ": " . (state ? "ON" : "OFF"),
+            A_ScreenWidth - 150,
+            A_ScreenHeight - 50
         )
         SetTimer(() => ToolTip(), -1500)
 
@@ -364,8 +364,8 @@ Example6_ToggleSystem() {
     }
 
     /**
-    * Shows all toggle states
-    */
+     * Shows all toggle states
+     */
     ShowToggleStates() {
         global toggleStates
 
@@ -377,7 +377,7 @@ Example6_ToggleSystem() {
         }
 
         if toggleStates.Count = 0
-        list .= "No toggles activated yet"
+            list .= "No toggles activated yet"
 
         MsgBox(list, "Toggle States")
     }
@@ -385,7 +385,7 @@ Example6_ToggleSystem() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -399,11 +399,11 @@ Example6_ToggleSystem() {
     Hotkey("^F12", (*) => ShowToggleStates())
 
     MsgBox(
-    "Hotkey Toggle System`n`n"
-    "Ctrl+F1-F4 → Toggle ON/OFF`n"
-    "Ctrl+F12 → Show all states`n`n"
-    "Each hotkey maintains its own state using A_ThisHotkey",
-    "Example 6"
+        "Hotkey Toggle System`n`n"
+        "Ctrl+F1-F4 → Toggle ON/OFF`n"
+        "Ctrl+F12 → Show all states`n`n"
+        "Each hotkey maintains its own state using A_ThisHotkey",
+        "Example 6"
     )
 }
 
@@ -415,8 +415,8 @@ Example7_AdvancedRouter() {
     global hotkeyActions := Map()
 
     /**
-    * Registers an action for a hotkey
-    */
+     * Registers an action for a hotkey
+     */
     RegisterAction(hotkey, action, description := "") {
         global hotkeyActions
         hotkeyActions[hotkey] := {
@@ -427,8 +427,8 @@ Example7_AdvancedRouter() {
     }
 
     /**
-    * Main router function
-    */
+     * Main router function
+     */
     HotkeyRouter(*) {
         global hotkeyActions
         hotkey := A_ThisHotkey
@@ -446,17 +446,17 @@ Example7_AdvancedRouter() {
 
         ; Show stats
         ToolTip(
-        hotkey . " (" . info.desc . ")`n"
-        "Used: " . info.count . " times",
-        A_ScreenWidth - 200,
-        A_ScreenHeight - 80
+            hotkey . " (" . info.desc . ")`n"
+            "Used: " . info.count . " times",
+            A_ScreenWidth - 200,
+            A_ScreenHeight - 80
         )
         SetTimer(() => ToolTip(), -2000)
     }
 
     /**
-    * Shows all registered actions
-    */
+     * Shows all registered actions
+     */
     ShowActions() {
         global hotkeyActions
 
@@ -472,7 +472,7 @@ Example7_AdvancedRouter() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -491,11 +491,11 @@ Example7_AdvancedRouter() {
     Hotkey("^!s", (*) => ShowActions())
 
     MsgBox(
-    "Advanced Hotkey Router`n`n"
-    "Ctrl+Alt+A-D → Execute registered actions`n"
-    "Ctrl+Alt+S → Show all actions`n`n"
-    "Central router uses A_ThisHotkey to dispatch",
-    "Example 7"
+        "Advanced Hotkey Router`n`n"
+        "Ctrl+Alt+A-D → Execute registered actions`n"
+        "Ctrl+Alt+S → Show all actions`n`n"
+        "Central router uses A_ThisHotkey to dispatch",
+        "Example 7"
     )
 }
 

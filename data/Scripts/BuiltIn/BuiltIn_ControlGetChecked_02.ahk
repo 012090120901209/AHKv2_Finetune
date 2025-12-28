@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetChecked - Advanced State Detection
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetChecked - Advanced State Detection
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -44,10 +44,10 @@ Example2() {
     groups["Group2"] := []
     MyGui.Add("Text", "xm y+20", "Group 1:")
     loop 3
-    groups["Group1"].Push(MyGui.Add("Radio", "xm y+10", "G1-" . A_Index))
+        groups["Group1"].Push(MyGui.Add("Radio", "xm y+10", "G1-" . A_Index))
     MyGui.Add("Text", "xm y+20", "Group 2:")
     loop 3
-    groups["Group2"].Push(MyGui.Add("Radio", "xm y+10", "G2-" . A_Index))
+        groups["Group2"].Push(MyGui.Add("Radio", "xm y+10", "G2-" . A_Index))
     groups["Group1"][1].Value := 1
     groups["Group2"][1].Value := 1
     BtnCheck := MyGui.Add("Button", "xm y+20 w200", "Check Groups")
@@ -66,7 +66,7 @@ Example2() {
                 }
             }
             if (!found)
-            result .= "None selected\n"
+                result .= "None selected\n"
         }
         ResultsEdit.Value := result
     }
@@ -84,14 +84,14 @@ Example3() {
 
     checks := []
     loop 8
-    checks.Push(MyGui.Add("Checkbox", "x" . (Mod(A_Index-1, 4) = 0 ? "m" : "+10") . " y" . (Mod(A_Index-1, 4) = 0 ? "+20" : "+0"), A_Index))
+        checks.Push(MyGui.Add("Checkbox", "x" . (Mod(A_Index - 1, 4) = 0 ? "m" : "+10") . " y" . (Mod(A_Index - 1, 4) = 0 ? "+20" : "+0"), A_Index))
     BtnPattern := MyGui.Add("Button", "xm y+60 w200", "Detect Pattern")
     BtnPattern.OnEvent("Click", DetectPattern)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w500 h200 ReadOnly Multi")
     DetectPattern(*) {
         pattern := ""
         for check in checks
-        pattern .= ControlGetChecked(check) ? "1" : "0"
+            pattern .= ControlGetChecked(check) ? "1" : "0"
         ResultsEdit.Value := "Pattern: " . pattern . "\n" . ResultsEdit.Value
     }
 
@@ -109,7 +109,7 @@ Example4() {
     Parent := MyGui.Add("Checkbox", "xm y+20", "Enable all")
     Children := []
     loop 4
-    Children.Push(MyGui.Add("Checkbox", "xm y+10", "Child " . A_Index))
+        Children.Push(MyGui.Add("Checkbox", "xm y+10", "Child " . A_Index))
     BtnCheck := MyGui.Add("Button", "xm y+20 w200", "Check Consistency")
     BtnCheck.OnEvent("Click", CheckConsist)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h200 ReadOnly Multi")
@@ -121,7 +121,7 @@ Example4() {
             childState := ControlGetChecked(child)
             result .= "Child " . i . ": " . (childState ? "Checked" : "Unchecked") . "\n"
             if (!childState)
-            allChildrenChecked := false
+                allChildrenChecked := false
         }
         consistent := (parentState = allChildrenChecked)
         result .= "\nConsistent: " . (consistent ? "Yes" : "No") . "\n"
@@ -143,10 +143,10 @@ Example5() {
     set2 := []
     MyGui.Add("Text", "xm y+20", "Set 1:")
     loop 3
-    set1.Push(MyGui.Add("Checkbox", "xm y+10", "A" . A_Index))
+        set1.Push(MyGui.Add("Checkbox", "xm y+10", "A" . A_Index))
     MyGui.Add("Text", "xm y+20", "Set 2:")
     loop 3
-    set2.Push(MyGui.Add("Checkbox", "xm y+10", "B" . A_Index))
+        set2.Push(MyGui.Add("Checkbox", "xm y+10", "B" . A_Index))
     BtnCompare := MyGui.Add("Button", "xm y+20 w200", "Compare Sets")
     BtnCompare.OnEvent("Click", Compare)
     ResultsEdit := MyGui.Add("Edit", "xm y+10 w400 h200 ReadOnly Multi")
@@ -212,7 +212,7 @@ Example7() {
             state := ControlGetChecked(ctrl)
             result .= Format("{:<15} {:>10}", name . ":", state ? "Checked" : "Unchecked") . "\n"
             if (state)
-            checkedCount++
+                checkedCount++
         }
         result .= "\nTotal: " . checkedCount . "/" . controls.Count . " checked\n"
         ResultsEdit.Value := result
@@ -230,13 +230,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Three-State Checkbox",
-"Example 2: Radio Group Detection",
-"Example 3: State Patterns",
-"Example 4: Dependency Checking",
-"Example 5: State Comparison",
-"Example 6: Selection History",
-"Example 7: Batch Query",
+    "Example 1: Three-State Checkbox",
+    "Example 2: Radio Group Detection",
+    "Example 3: State Patterns",
+    "Example 4: Dependency Checking",
+    "Example 5: State Comparison",
+    "Example 6: Selection History",
+    "Example 7: Batch Query",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

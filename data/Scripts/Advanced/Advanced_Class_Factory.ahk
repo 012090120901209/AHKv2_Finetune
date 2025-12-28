@@ -40,11 +40,11 @@ class ShapeFactory {
     static Create(type, params*) {
         Switch type {
             case "circle":
-            return Circle(params*)
+                return Circle(params*)
             case "rectangle":
-            return Rectangle(params*)
+                return Rectangle(params*)
             default:
-            throw Error("Unknown shape type: " type)
+                throw Error("Unknown shape type: " type)
         }
     }
 }

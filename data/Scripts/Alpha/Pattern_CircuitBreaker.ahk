@@ -45,13 +45,13 @@ class CircuitBreaker {
     OnFailure() {
         this.failures++
         this.lastFailure := A_TickCount
-        
+
         if this.failures >= this.threshold {
             this.state := "open"
             OutputDebug("[Circuit] Threshold reached - opening circuit`n")
         }
     }
-    
+
     GetState() => this.state
     GetFailures() => this.failures
 }
@@ -84,5 +84,5 @@ Loop 8 {
 output := ""
 for r in results
     output .= r "`n"
-    
+
 MsgBox(output)

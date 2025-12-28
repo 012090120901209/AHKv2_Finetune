@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Productivity Tool Hotkeys - Workflow Enhancement
-* ============================================================================
-*
-* Advanced productivity tools using hotkeys for workflow automation,
-* task management, focus modes, and efficiency boosters.
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-*/
+ * ============================================================================
+ * Productivity Tool Hotkeys - Workflow Enhancement
+ * ============================================================================
+ * 
+ * Advanced productivity tools using hotkeys for workflow automation,
+ * task management, focus modes, and efficiency boosters.
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Pomodoro Timer with Hotkeys
@@ -23,8 +23,8 @@ Example1_PomodoroTimer() {
     global pomodoroCount := 0
 
     /**
-    * Starts a Pomodoro session
-    */
+     * Starts a Pomodoro session
+     */
     StartPomodoro() {
         global pomodoroActive, workMinutes, pomodoroCount
 
@@ -40,7 +40,7 @@ Example1_PomodoroTimer() {
             global pomodoroActive, breakMinutes, pomodoroCount
 
             if !pomodoroActive
-            return
+                return
 
             remaining := Round((endTime - A_TickCount) / 1000)
 
@@ -50,18 +50,18 @@ Example1_PomodoroTimer() {
                 pomodoroCount++
 
                 MsgBox(
-                "Pomodoro #" . pomodoroCount . " complete!`n`n"
-                "Take a " . breakMinutes . " minute break.",
-                "Pomodoro Complete"
+                    "Pomodoro #" . pomodoroCount . " complete!`n`n"
+                    "Take a " . breakMinutes . " minute break.",
+                    "Pomodoro Complete"
                 )
             } else {
                 ; Update tooltip
                 mins := remaining // 60
                 secs := Mod(remaining, 60)
                 ToolTip(
-                Format("Pomodoro: {:02d}:{:02d}", mins, secs),
-                A_ScreenWidth - 150,
-                10
+                    Format("Pomodoro: {:02d}:{:02d}", mins, secs),
+                    A_ScreenWidth - 150,
+                    10
                 )
             }
         }
@@ -70,8 +70,8 @@ Example1_PomodoroTimer() {
     }
 
     /**
-    * Stops Pomodoro
-    */
+     * Stops Pomodoro
+     */
     StopPomodoro() {
         global pomodoroActive
         pomodoroActive := false
@@ -84,12 +84,12 @@ Example1_PomodoroTimer() {
     Hotkey("^!+p", (*) => StopPomodoro())
 
     MsgBox(
-    "Pomodoro Timer`n`n"
-    "Ctrl+Alt+P → Start 25min Pomodoro`n"
-    "Ctrl+Alt+Shift+P → Stop Pomodoro`n`n"
-    "Timer shows in top-right corner`n"
-    "Notification when complete!",
-    "Example 1"
+        "Pomodoro Timer`n`n"
+        "Ctrl+Alt+P → Start 25min Pomodoro`n"
+        "Ctrl+Alt+Shift+P → Stop Pomodoro`n`n"
+        "Timer shows in top-right corner`n"
+        "Notification when complete!",
+        "Example 1"
     )
 }
 
@@ -102,8 +102,8 @@ Example2_FocusMode() {
     global distractingApps := ["chrome.exe", "firefox.exe"]
 
     /**
-    * Toggles focus mode
-    */
+     * Toggles focus mode
+     */
     ToggleFocus() {
         global focusMode, distractingApps
 
@@ -133,8 +133,8 @@ Example2_FocusMode() {
     }
 
     /**
-    * Quick web search (disabled in focus mode)
-    */
+     * Quick web search (disabled in focus mode)
+     */
     Hotkey("^!w", (*) {
         MsgBox("Web search (blocked in focus mode)", "Search")
     })
@@ -143,14 +143,14 @@ Example2_FocusMode() {
     Hotkey("^!f", (*) => ToggleFocus())
 
     MsgBox(
-    "Focus Mode Manager`n`n"
-    "Ctrl+Alt+F → Toggle focus mode`n`n"
-    "Focus mode:`n"
-    "  • Closes distracting apps`n"
-    "  • Blocks certain hotkeys`n"
-    "  • Shows indicator`n`n"
-    "Stay productive!",
-    "Example 2"
+        "Focus Mode Manager`n`n"
+        "Ctrl+Alt+F → Toggle focus mode`n`n"
+        "Focus mode:`n"
+        "  • Closes distracting apps`n"
+        "  • Blocks certain hotkeys`n"
+        "  • Shows indicator`n`n"
+        "Stay productive!",
+        "Example 2"
     )
 }
 
@@ -160,16 +160,16 @@ Example2_FocusMode() {
 
 Example3_SnippetManager() {
     global snippets := Map(
-    "meeting", "Meeting Notes:`n" . Repeat("-", 40) . "`nDate: {DATE}`nAttendees:`n`nAgenda:`n`nAction Items:`n",
-    "email", "Dear {NAME},`n`nThank you for your email. `n`nBest regards,`n{USER}",
-    "bug", "BUG REPORT`n" . Repeat("-", 40) . "`nTitle: `nReproduction Steps:`n1. `n2. `nExpected: `nActual: ",
-    "todo", "TODO: ",
-    "review", "CODE REVIEW`n" . Repeat("-", 40) . "`nFile: `nIssues:`n- `nSuggestions:`n- "
+        "meeting", "Meeting Notes:`n" . Repeat("-", 40) . "`nDate: {DATE}`nAttendees:`n`nAgenda:`n`nAction Items:`n",
+        "email", "Dear {NAME},`n`nThank you for your email. `n`nBest regards,`n{USER}",
+        "bug", "BUG REPORT`n" . Repeat("-", 40) . "`nTitle: `nReproduction Steps:`n1. `n2. `nExpected: `nActual: ",
+        "todo", "TODO: ",
+        "review", "CODE REVIEW`n" . Repeat("-", 40) . "`nFile: `nIssues:`n- `nSuggestions:`n- "
     )
 
     /**
-    * Shows snippet menu
-    */
+     * Shows snippet menu
+     */
     ShowSnippetMenu() {
         global snippets
 
@@ -188,13 +188,13 @@ Example3_SnippetManager() {
     }
 
     /**
-    * Inserts snippet with replacements
-    */
+     * Inserts snippet with replacements
+     */
     InsertSnippet(name) {
         global snippets
 
         if !snippets.Has(name)
-        return
+            return
 
         text := snippets[name]
 
@@ -207,7 +207,7 @@ Example3_SnippetManager() {
         if InStr(text, "{NAME}") {
             result := InputBox("Enter name:", "Name")
             if result.Result = "OK"
-            text := StrReplace(text, "{NAME}", result.Value)
+                text := StrReplace(text, "{NAME}", result.Value)
         }
 
         SendText(text)
@@ -216,7 +216,7 @@ Example3_SnippetManager() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -229,14 +229,14 @@ Example3_SnippetManager() {
     Hotkey("^!s3", (*) => InsertSnippet("bug"))
 
     MsgBox(
-    "Smart Snippet Manager`n`n"
-    "Ctrl+Alt+S → Show snippet menu`n`n"
-    "Quick snippets:`n"
-    "  Ctrl+Alt+S1 → Meeting notes`n"
-    "  Ctrl+Alt+S2 → Email template`n"
-    "  Ctrl+Alt+S3 → Bug report`n`n"
-    "Snippets include placeholders!",
-    "Example 3"
+        "Smart Snippet Manager`n`n"
+        "Ctrl+Alt+S → Show snippet menu`n`n"
+        "Quick snippets:`n"
+        "  Ctrl+Alt+S1 → Meeting notes`n"
+        "  Ctrl+Alt+S2 → Email template`n"
+        "  Ctrl+Alt+S3 → Bug report`n`n"
+        "Snippets include placeholders!",
+        "Example 3"
     )
 }
 
@@ -246,14 +246,14 @@ Example3_SnippetManager() {
 
 Example4_WorkspaceSwitcher() {
     global workspaces := Map(
-    "dev", ["code.exe", "cmd.exe"],
-    "design", ["photoshop.exe", "illustrator.exe"],
-    "office", ["winword.exe", "excel.exe"]
+        "dev", ["code.exe", "cmd.exe"],
+        "design", ["photoshop.exe", "illustrator.exe"],
+        "office", ["winword.exe", "excel.exe"]
     )
 
     /**
-    * Switches to a workspace
-    */
+     * Switches to a workspace
+     */
     SwitchWorkspace(name) {
         global workspaces
 
@@ -284,12 +284,12 @@ Example4_WorkspaceSwitcher() {
     Hotkey("^!#3", (*) => SwitchWorkspace("office"))
 
     MsgBox(
-    "Workspace Switcher`n`n"
-    "Ctrl+Alt+Win+1 → Dev workspace`n"
-    "Ctrl+Alt+Win+2 → Design workspace`n"
-    "Ctrl+Alt+Win+3 → Office workspace`n`n"
-    "Automatically launches/switches to apps!",
-    "Example 4"
+        "Workspace Switcher`n`n"
+        "Ctrl+Alt+Win+1 → Dev workspace`n"
+        "Ctrl+Alt+Win+2 → Design workspace`n"
+        "Ctrl+Alt+Win+3 → Office workspace`n`n"
+        "Automatically launches/switches to apps!",
+        "Example 4"
     )
 }
 
@@ -301,8 +301,8 @@ Example5_TaskManager() {
     global tasks := []
 
     /**
-    * Adds a new task
-    */
+     * Adds a new task
+     */
     AddTask() {
         global tasks
 
@@ -320,8 +320,8 @@ Example5_TaskManager() {
     }
 
     /**
-    * Shows task list
-    */
+     * Shows task list
+     */
     ShowTasks() {
         global tasks
 
@@ -355,8 +355,8 @@ Example5_TaskManager() {
     }
 
     /**
-    * Toggles task completion
-    */
+     * Toggles task completion
+     */
     ToggleTask(index) {
         global tasks
         if index > 0 && index <= tasks.Length {
@@ -369,11 +369,11 @@ Example5_TaskManager() {
     Hotkey("^!#t", (*) => ShowTasks())
 
     MsgBox(
-    "Task List Manager`n`n"
-    "Ctrl+Alt+A → Add task`n"
-    "Ctrl+Alt+Win+T → Show tasks`n`n"
-    "Click checkboxes to mark complete!",
-    "Example 5"
+        "Task List Manager`n`n"
+        "Ctrl+Alt+A → Add task`n"
+        "Ctrl+Alt+Win+T → Show tasks`n`n"
+        "Click checkboxes to mark complete!",
+        "Example 5"
     )
 }
 
@@ -386,8 +386,8 @@ Example6_ScreenTimeTracker() {
     global startTime := A_TickCount
 
     /**
-    * Tracks active window time
-    */
+     * Tracks active window time
+     */
     TrackScreenTime() {
         global screenTime
 
@@ -395,15 +395,15 @@ Example6_ScreenTimeTracker() {
             activeApp := WinGetProcessName("A")
 
             if !screenTime.Has(activeApp)
-            screenTime[activeApp] := 0
+                screenTime[activeApp] := 0
 
             screenTime[activeApp] += 1 ; 1 second increments
         }
     }
 
     /**
-    * Shows screen time report
-    */
+     * Shows screen time report
+     */
     ShowReport() {
         global screenTime, startTime
 
@@ -416,7 +416,7 @@ Example6_ScreenTimeTracker() {
         ; Sort by time
         apps := []
         for app, time in screenTime {
-            apps.Push({app: app, time: time})
+            apps.Push({ app: app, time: time })
         }
 
         ; Simple sort
@@ -448,7 +448,7 @@ Example6_ScreenTimeTracker() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -459,11 +459,11 @@ Example6_ScreenTimeTracker() {
     Hotkey("^!#r", (*) => ShowReport())
 
     MsgBox(
-    "Screen Time Tracker`n`n"
-    "Tracking started automatically!`n`n"
-    "Ctrl+Alt+Win+R → View report`n`n"
-    "See where you spend your time!",
-    "Example 6"
+        "Screen Time Tracker`n`n"
+        "Tracking started automatically!`n`n"
+        "Ctrl+Alt+Win+R → View report`n`n"
+        "See where you spend your time!",
+        "Example 6"
     )
 }
 
@@ -473,17 +473,17 @@ Example6_ScreenTimeTracker() {
 
 Example7_CommandPalette() {
     global commands := Map(
-    "reload", {action: (*) => Reload(), desc: "Reload script"},
-    "edit", {action: (*) => Edit(), desc: "Edit script"},
-    "time", {action: (*) => MsgBox(FormatTime()), desc: "Show time"},
-    "date", {action: (*) => SendText(FormatTime(, "yyyy-MM-dd")), desc: "Insert date"},
-    "calc", {action: (*) => Run("calc.exe"), desc: "Calculator"},
-    "notepad", {action: (*) => Run("notepad.exe"), desc: "Notepad"}
+        "reload", { action: (*) => Reload(), desc: "Reload script" },
+        "edit", { action: (*) => Edit(), desc: "Edit script" },
+        "time", { action: (*) => MsgBox(FormatTime()), desc: "Show time" },
+        "date", { action: (*) => SendText(FormatTime(, "yyyy-MM-dd")), desc: "Insert date" },
+        "calc", { action: (*) => Run("calc.exe"), desc: "Calculator" },
+        "notepad", { action: (*) => Run("notepad.exe"), desc: "Notepad" }
     )
 
     /**
-    * Shows command palette
-    */
+     * Shows command palette
+     */
     ShowCommandPalette() {
         global commands
 
@@ -522,7 +522,7 @@ Example7_CommandPalette() {
             sel := commandList.Text
 
             if sel = ""
-            return
+                return
 
             ; Extract command name
             name := SubStr(sel, 1, InStr(sel, " -") - 1)
@@ -540,17 +540,17 @@ Example7_CommandPalette() {
     Hotkey("^+p", (*) => ShowCommandPalette())
 
     MsgBox(
-    "Command Palette System`n`n"
-    "Ctrl+Shift+P → Open command palette`n`n"
-    "Available commands:`n"
-    "  • reload - Reload script`n"
-    "  • edit - Edit script`n"
-    "  • time - Show time`n"
-    "  • date - Insert date`n"
-    "  • calc - Calculator`n"
-    "  • notepad - Notepad`n`n"
-    "Type to search, double-click to execute!",
-    "Example 7"
+        "Command Palette System`n`n"
+        "Ctrl+Shift+P → Open command palette`n`n"
+        "Available commands:`n"
+        "  • reload - Reload script`n"
+        "  • edit - Edit script`n"
+        "  • time - Show time`n"
+        "  • date - Insert date`n"
+        "  • calc - Calculator`n"
+        "  • notepad - Notepad`n`n"
+        "Type to search, double-click to execute!",
+        "Example 7"
     )
 }
 

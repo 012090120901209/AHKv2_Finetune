@@ -2,5 +2,5 @@
 #SingleInstance Force ; Source: String_ifVar_ex6.ah2
 
 active_title := WinGetTitle("A")
-if (active_title ~ = "i)(Address List\.txt|Customer List\.txt)") MsgBox("One of the desired windows is active.")
-if ! (active_title ~ = "i)(metapad|Notepad)") MsgBox("But the file is not open in either Metapad or Notepad.")
+if (active_title~ = "i)(Address List\.txt|Customer List\.txt)") MsgBox("One of the desired windows is active.")
+    if !(active_title~ = "i)(metapad|Notepad)") MsgBox("But the file is not open in either Metapad or Notepad.")

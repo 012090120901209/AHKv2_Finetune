@@ -1,47 +1,47 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Floor_03_Binning.ahk
-*
-* DESCRIPTION:
-* Data binning and histogram creation using Floor() for grouping continuous
-* data into discrete bins, creating histograms, and statistical analysis
-*
-* FEATURES:
-* - Data binning and categorization
-* - Histogram creation and analysis
-* - Range grouping and bucketing
-* - Statistical distribution visualization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Floor.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Floor() for bin calculations
-* - Map objects for counting
-* - Statistical data processing
-* - Data visualization techniques
-*
-* LEARNING POINTS:
-* 1. Binning groups continuous data into ranges
-* 2. Bin formula: Floor(value / binSize) * binSize
-* 3. Creates histograms and distributions
-* 4. Simplifies data analysis
-* 5. Reveals patterns in data
-*/
+ * BuiltIn_Floor_03_Binning.ahk
+ * 
+ * DESCRIPTION:
+ * Data binning and histogram creation using Floor() for grouping continuous
+ * data into discrete bins, creating histograms, and statistical analysis
+ * 
+ * FEATURES:
+ * - Data binning and categorization
+ * - Histogram creation and analysis
+ * - Range grouping and bucketing
+ * - Statistical distribution visualization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Floor.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Floor() for bin calculations
+ * - Map objects for counting
+ * - Statistical data processing
+ * - Data visualization techniques
+ * 
+ * LEARNING POINTS:
+ * 1. Binning groups continuous data into ranges
+ * 2. Bin formula: Floor(value / binSize) * binSize
+ * 3. Creates histograms and distributions
+ * 4. Simplifies data analysis
+ * 5. Reveals patterns in data
+ */
 
 ; ============================================================
 ; Example 1: Basic Data Binning
 ; ============================================================
 
 /**
-* Bin a single value
-*
-* @param {Number} value - Value to bin
-* @param {Number} binSize - Bin width
-* @returns {Object} - Bin information
-*/
+ * Bin a single value
+ * 
+ * @param {Number} value - Value to bin
+ * @param {Number} binSize - Bin width
+ * @returns {Object} - Bin information
+ */
 BinValue(value, binSize) {
     binIndex := Floor(value / binSize)
     binStart := binIndex * binSize
@@ -69,7 +69,7 @@ for value in testValues {
     binned := BinValue(value, binWidth)
 
     output .= Format("{1} → Bin {2} {3}`n",
-    binned.value, binned.binIndex, binned.binRange)
+        binned.value, binned.binIndex, binned.binRange)
 }
 
 output .= "`nFormula: Floor(value / binSize) × binSize"
@@ -81,12 +81,12 @@ MsgBox(output, "Basic Binning", "Icon!")
 ; ============================================================
 
 /**
-* Create histogram from data
-*
-* @param {Array} data - Array of numeric values
-* @param {Number} binSize - Bin width
-* @returns {Object} - Histogram data
-*/
+ * Create histogram from data
+ * 
+ * @param {Array} data - Array of numeric values
+ * @param {Number} binSize - Bin width
+ * @returns {Object} - Histogram data
+ */
 CreateHistogram(data, binSize) {
     bins := Map()
 
@@ -96,7 +96,7 @@ CreateHistogram(data, binSize) {
         binStart := binIndex * binSize
 
         if (!bins.Has(binStart))
-        bins[binStart] := 0
+            bins[binStart] := 0
         bins[binStart] := bins[binStart] + 1
     }
 
@@ -138,8 +138,8 @@ SortBins(&arr) {
 }
 
 /**
-* Format histogram as text
-*/
+ * Format histogram as text
+ */
 FormatHistogram(histogram) {
     output := "Histogram:`n"
     output .= "Bin Size: " histogram.binSize "`n"
@@ -148,7 +148,7 @@ FormatHistogram(histogram) {
     maxCount := 0
     for bin in histogram.bins {
         if (bin.count > maxCount)
-        maxCount := bin.count
+            maxCount := bin.count
     }
 
     ; Display bins
@@ -157,10 +157,10 @@ FormatHistogram(histogram) {
         barLength := Round((bin.count / maxCount) * 20, 0)
         bar := ""
         Loop barLength
-        bar .= "█"
+            bar .= "█"
 
         output .= Format("{1}: {2} {3}`n",
-        bin.range, bar, bin.count)
+            bin.range, bar, bin.count)
     }
 
     return output
@@ -179,38 +179,38 @@ MsgBox(output, "Age Distribution", "Icon!")
 ; ============================================================
 
 /**
-* Bin test scores into grade ranges
-*
-* @param {Array} scores - Test scores (0-100)
-* @returns {Object} - Grade distribution
-*/
+ * Bin test scores into grade ranges
+ * 
+ * @param {Array} scores - Test scores (0-100)
+ * @returns {Object} - Grade distribution
+ */
 CreateGradeDistribution(scores) {
     gradeBins := Map(
-    "A", {min: 90, max: 100, count: 0},
-    "B", {min: 80, max: 89, count: 0},
-    "C", {min: 70, max: 79, count: 0},
-    "D", {min: 60, max: 69, count: 0},
-    "F", {min: 0, max: 59, count: 0}
+        "A", { min: 90, max: 100, count: 0 },
+        "B", { min: 80, max: 89, count: 0 },
+        "C", { min: 70, max: 79, count: 0 },
+        "D", { min: 60, max: 69, count: 0 },
+        "F", { min: 0, max: 59, count: 0 }
     )
 
     ; Bin scores
     for score in scores {
         if (score >= 90)
-        gradeBins["A"].count++
+            gradeBins["A"].count++
         else if (score >= 80)
-        gradeBins["B"].count++
+            gradeBins["B"].count++
         else if (score >= 70)
-        gradeBins["C"].count++
+            gradeBins["C"].count++
         else if (score >= 60)
-        gradeBins["D"].count++
+            gradeBins["D"].count++
         else
-        gradeBins["F"].count++
+            gradeBins["F"].count++
     }
 
     ; Calculate statistics
     sum := 0
     for score in scores
-    sum += score
+        sum += score
     average := Round(sum / scores.Length, 1)
 
     return {
@@ -233,10 +233,10 @@ for grade, bin in gradesDist.bins {
     percent := Round((bin.count / gradesDist.total) * 100, 1)
     bar := ""
     Loop Round((bin.count / gradesDist.total) * 20, 0)
-    bar .= "█"
+        bar .= "█"
 
     output .= Format("{1} ({2}-{3}): {4} {5} ({6}%)`n",
-    grade, bin.min, bin.max, bar, bin.count, percent)
+        grade, bin.min, bin.max, bar, bin.count, percent)
 }
 
 MsgBox(output, "Grade Distribution", "Icon!")
@@ -246,19 +246,19 @@ MsgBox(output, "Grade Distribution", "Icon!")
 ; ============================================================
 
 /**
-* Bucket prices into ranges
-*
-* @param {Array} prices - Product prices
-* @param {Number} bucketSize - Price bucket size
-* @returns {Object} - Price distribution
-*/
+ * Bucket prices into ranges
+ * 
+ * @param {Array} prices - Product prices
+ * @param {Number} bucketSize - Price bucket size
+ * @returns {Object} - Price distribution
+ */
 BucketPrices(prices, bucketSize) {
     buckets := Map()
 
     for price in prices {
         bucketStart := Floor(price / bucketSize) * bucketSize
         if (!buckets.Has(bucketStart))
-        buckets[bucketStart] := []
+            buckets[bucketStart] := []
         buckets[bucketStart].Push(price)
     }
 
@@ -267,7 +267,7 @@ BucketPrices(prices, bucketSize) {
     for start, items in buckets {
         avgPrice := 0
         for price in items
-        avgPrice += price
+            avgPrice += price
         avgPrice := Round(avgPrice / items.Length, 2)
 
         bucketArray.Push({
@@ -296,7 +296,7 @@ output := "Price Distribution ($" priceBuckets.bucketSize " buckets):`n`n"
 
 for bucket in priceBuckets.buckets {
     output .= Format("{1}: {2} products (Avg: ${3:.2f})`n",
-    bucket.range, bucket.count, bucket.average)
+        bucket.range, bucket.count, bucket.average)
 }
 
 MsgBox(output, "Price Ranges", "Icon!")
@@ -306,19 +306,19 @@ MsgBox(output, "Price Ranges", "Icon!")
 ; ============================================================
 
 /**
-* Bin timestamps into time intervals
-*
-* @param {Array} hours - Array of hour values (0-23.99)
-* @param {Number} intervalHours - Interval size in hours
-* @returns {Object} - Time distribution
-*/
+ * Bin timestamps into time intervals
+ * 
+ * @param {Array} hours - Array of hour values (0-23.99)
+ * @param {Number} intervalHours - Interval size in hours
+ * @returns {Object} - Time distribution
+ */
 BinTimeData(hours, intervalHours) {
     bins := Map()
 
     for hour in hours {
         binStart := Floor(hour / intervalHours) * intervalHours
         if (!bins.Has(binStart))
-        bins[binStart] := 0
+            bins[binStart] := 0
         bins[binStart] := bins[binStart] + 1
     }
 
@@ -350,7 +350,7 @@ FormatTimeRange(startHour, endHour) {
     endM := Floor((endHour - endH) * 60)
 
     return Format("{1:02d}:{2:02d}-{3:02d}:{4:02d}",
-    startH, startM, endH, endM)
+        startH, startM, endH, endM)
 }
 
 ; Website traffic hours (24-hour format)
@@ -362,13 +362,13 @@ output := "Website Traffic Distribution (2-hour intervals):`n`n"
 maxCount := 0
 for bin in timeDistribution.bins {
     if (bin.count > maxCount)
-    maxCount := bin.count
+        maxCount := bin.count
 }
 
 for bin in timeDistribution.bins {
     bar := ""
     Loop Round((bin.count / maxCount) * 15, 0)
-    bar .= "█"
+        bar .= "█"
 
     output .= Format("{1}: {2} {3}`n", bin.range, bar, bin.count)
 }
@@ -380,12 +380,12 @@ MsgBox(output, "Traffic by Time", "Icon!")
 ; ============================================================
 
 /**
-* Create detailed statistical bins
-*
-* @param {Array} data - Numeric data
-* @param {Number} numBins - Desired number of bins
-* @returns {Object} - Statistical binning
-*/
+ * Create detailed statistical bins
+ * 
+ * @param {Array} data - Numeric data
+ * @param {Number} numBins - Desired number of bins
+ * @returns {Object} - Statistical binning
+ */
 CreateStatisticalBins(data, numBins) {
     ; Find min and max
     minVal := data[1]
@@ -394,9 +394,9 @@ CreateStatisticalBins(data, numBins) {
 
     for value in data {
         if (value < minVal)
-        minVal := value
+            minVal := value
         if (value > maxVal)
-        maxVal := value
+            maxVal := value
         sum += value
     }
 
@@ -409,12 +409,12 @@ CreateStatisticalBins(data, numBins) {
     for value in data {
         binIndex := Floor((value - minVal) / binSize)
         if (binIndex = numBins)  ; Handle max value edge case
-        binIndex := numBins - 1
+            binIndex := numBins - 1
 
         binStart := minVal + (binIndex * binSize)
 
         if (!bins.Has(binStart))
-        bins[binStart] := {count: 0, values: []}
+            bins[binStart] := { count: 0, values: [] }
 
         bins[binStart].count++
         bins[binStart].values.Push(value)
@@ -457,10 +457,10 @@ output .= "Bins: " rtBins.numBins " (Size: " rtBins.binSize " ms)`n`n"
 for bin in rtBins.bins {
     bar := ""
     Loop Round(bin.frequency / 5, 0)
-    bar .= "█"
+        bar .= "█"
 
     output .= Format("[{1}, {2}): {3} {4} ({5}%)`n",
-    bin.start, bin.end, bar, bin.count, bin.frequency)
+        bin.start, bin.end, bar, bin.count, bin.frequency)
 }
 
 MsgBox(output, "Response Times", "Icon!")
@@ -470,13 +470,13 @@ MsgBox(output, "Response Times", "Icon!")
 ; ============================================================
 
 /**
-* Bin 2D data points into grid cells
-*
-* @param {Array} points - Array of {x, y} points
-* @param {Number} binSizeX - X bin size
-* @param {Number} binSizeY - Y bin size
-* @returns {Object} - 2D histogram
-*/
+ * Bin 2D data points into grid cells
+ * 
+ * @param {Array} points - Array of {x, y} points
+ * @param {Number} binSizeX - X bin size
+ * @param {Number} binSizeY - Y bin size
+ * @returns {Object} - 2D histogram
+ */
 Create2DHistogram(points, binSizeX, binSizeY) {
     bins := Map()
 
@@ -486,7 +486,7 @@ Create2DHistogram(points, binSizeX, binSizeY) {
         key := binX "," binY
 
         if (!bins.Has(key))
-        bins[key] := {x: binX, y: binY, count: 0, points: []}
+            bins[key] := { x: binX, y: binY, count: 0, points: [] }
 
         bins[key].count++
         bins[key].points.Push(point)
@@ -507,8 +507,8 @@ Create2DHistogram(points, binSizeX, binSizeY) {
 }
 
 /**
-* Find hotspots (bins with most points)
-*/
+ * Find hotspots (bins with most points)
+ */
 FindHotspots(histogram, topN := 3) {
     sorted := histogram.bins.Clone()
 
@@ -527,44 +527,40 @@ FindHotspots(histogram, topN := 3) {
 
     hotspots := []
     Loop Min(topN, sorted.Length)
-    hotspots.Push(sorted[A_Index])
+        hotspots.Push(sorted[A_Index])
 
     return hotspots
 }
 
 ; Customer locations (simplified coordinates)
-locations := [
-{
-    x: 125, y: 340}, {x: 130, y: 345}, {x: 435, y: 120},
-    {
-        x: 128, y: 342}, {x: 440, y: 125}, {x: 220, y: 580},
-        {
-            x: 122, y: 338}, {x: 225, y: 582}, {x: 438, y: 122},
-            {
-                x: 580, y: 690}, {x: 585, y: 695}, {x: 582, y: 692
-            }
-            ]
+locations := [{
+    x: 125, y: 340 }, { x: 130, y: 345 }, { x: 435, y: 120 }, {
+        x: 128, y: 342 }, { x: 440, y: 125 }, { x: 220, y: 580 }, {
+            x: 122, y: 338 }, { x: 225, y: 582 }, { x: 438, y: 122 }, {
+                x: 580, y: 690 }, { x: 585, y: 695 }, { x: 582, y: 692
+                }
+]
 
-            locationHist := Create2DHistogram(locations, 100, 100)
-            hotspots := FindHotspots(locationHist, 3)
+locationHist := Create2DHistogram(locations, 100, 100)
+hotspots := FindHotspots(locationHist, 3)
 
-            output := "Location Clustering (100×100 bins):`n`n"
-            output .= "Total Locations: " locationHist.totalPoints "`n"
-            output .= "Active Grid Cells: " locationHist.bins.Length "`n`n"
-            output .= "Top 3 Hotspots:`n"
+output := "Location Clustering (100×100 bins):`n`n"
+output .= "Total Locations: " locationHist.totalPoints "`n"
+output .= "Active Grid Cells: " locationHist.bins.Length "`n`n"
+output .= "Top 3 Hotspots:`n"
 
-            for index, hotspot in hotspots {
-                output .= Format("{1}. [{2}, {3}]: {4} locations`n",
-                index, hotspot.x, hotspot.y, hotspot.count)
-            }
+for index, hotspot in hotspots {
+    output .= Format("{1}. [{2}, {3}]: {4} locations`n",
+        index, hotspot.x, hotspot.y, hotspot.count)
+}
 
-            MsgBox(output, "Location Hotspots", "Icon!")
+MsgBox(output, "Location Hotspots", "Icon!")
 
-            ; ============================================================
-            ; Reference Information
-            ; ============================================================
+; ============================================================
+; Reference Information
+; ============================================================
 
-            info := "
+info := "
             (
             FLOOR() FOR DATA BINNING & HISTOGRAMS:
 
@@ -679,4 +675,4 @@ locations := [
             • Skewed: Asymmetric
             )"
 
-            MsgBox(info, "Binning Reference", "Icon!")
+MsgBox(info, "Binning Reference", "Icon!")

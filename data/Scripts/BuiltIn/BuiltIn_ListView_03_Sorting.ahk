@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_03_Sorting.ahk
-*
-* DESCRIPTION:
-* Comprehensive examples of ListView sorting and filtering capabilities including
-* custom sort functions, multi-level sorting, and data filtering techniques.
-*
-* FEATURES:
-* - Built-in alphabetical and numerical sorting
-* - Custom sort callback functions
-* - Case-sensitive and case-insensitive sorting
-* - Multi-column sorting with priorities
-* - Data filtering and search
-* - Sort state indicators
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Sort and SortDesc column options
-* - Custom comparison functions
-* - ColClick event handling
-* - Dynamic data manipulation
-* - Case-sensitive string comparison
-*
-* LEARNING POINTS:
-* 1. Default sorting is case-insensitive alphabetical
-* 2. Numerical sorting requires custom functions
-* 3. Sort state persists until changed
-* 4. Custom sort functions receive row numbers as parameters
-* 5. Multi-level sorting requires manual implementation
-* 6. Filtering creates a new view of data
-* 7. GetText() retrieves current sorted position data
-*/
+ * BuiltIn_ListView_03_Sorting.ahk
+ * 
+ * DESCRIPTION:
+ * Comprehensive examples of ListView sorting and filtering capabilities including
+ * custom sort functions, multi-level sorting, and data filtering techniques.
+ * 
+ * FEATURES:
+ * - Built-in alphabetical and numerical sorting
+ * - Custom sort callback functions
+ * - Case-sensitive and case-insensitive sorting
+ * - Multi-column sorting with priorities
+ * - Data filtering and search
+ * - Sort state indicators
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Sort and SortDesc column options
+ * - Custom comparison functions
+ * - ColClick event handling
+ * - Dynamic data manipulation
+ * - Case-sensitive string comparison
+ * 
+ * LEARNING POINTS:
+ * 1. Default sorting is case-insensitive alphabetical
+ * 2. Numerical sorting requires custom functions
+ * 3. Sort state persists until changed
+ * 4. Custom sort functions receive row numbers as parameters
+ * 5. Multi-level sorting requires manual implementation
+ * 6. Filtering creates a new view of data
+ * 7. GetText() retrieves current sorted position data
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Alphabetical and Numerical Sorting
@@ -46,16 +46,16 @@ Example1_BasicSorting() {
 
     ; Add student data
     students := [
-    ["Alice", "20", "95", "A"],
-    ["Bob", "19", "87", "B"],
-    ["Charlie", "21", "92", "A"],
-    ["Diana", "20", "78", "C"],
-    ["Edward", "22", "85", "B"],
-    ["Fiona", "19", "91", "A"],
-    ["George", "21", "73", "C"],
-    ["Hannah", "20", "88", "B"],
-    ["Ian", "19", "96", "A"],
-    ["Julia", "22", "82", "B"]
+        ["Alice", "20", "95", "A"],
+        ["Bob", "19", "87", "B"],
+        ["Charlie", "21", "92", "A"],
+        ["Diana", "20", "78", "C"],
+        ["Edward", "22", "85", "B"],
+        ["Fiona", "19", "91", "A"],
+        ["George", "21", "73", "C"],
+        ["Hannah", "20", "88", "B"],
+        ["Ian", "19", "96", "A"],
+        ["Julia", "22", "82", "B"]
     ]
 
     for student in students {
@@ -105,16 +105,16 @@ Example1_BasicSorting() {
         static isAsc := true
 
         if ColNum = lastCol
-        isAsc := !isAsc
+            isAsc := !isAsc
         else
-        isAsc := true
+            isAsc := true
 
         lastCol := ColNum
 
         if isAsc
-        LV.ModifyCol(ColNum, "Sort")
+            LV.ModifyCol(ColNum, "Sort")
         else
-        LV.ModifyCol(ColNum, "SortDesc")
+            LV.ModifyCol(ColNum, "SortDesc")
     }
 
     MyGui.Show()
@@ -130,15 +130,15 @@ Example2_CaseSensitiveSorting() {
 
     ; Mixed case data
     items := [
-    ["apple", "Fruit"],
-    ["Apple", "Company"],
-    ["APPLE", "Acronym"],
-    ["banana", "Fruit"],
-    ["Banana", "Proper"],
-    ["BANANA", "Loud"],
-    ["zebra", "Animal"],
-    ["Zebra", "Proper"],
-    ["ZEBRA", "Crossing"]
+        ["apple", "Fruit"],
+        ["Apple", "Company"],
+        ["APPLE", "Acronym"],
+        ["banana", "Fruit"],
+        ["Banana", "Proper"],
+        ["BANANA", "Loud"],
+        ["zebra", "Animal"],
+        ["Zebra", "Proper"],
+        ["ZEBRA", "Crossing"]
     ]
 
     for item in items {
@@ -154,10 +154,10 @@ Example2_CaseSensitiveSorting() {
 
     ; Info text
     infoEdit := MyGui.Add("Edit", "r5 w600 ReadOnly",
-    "Case-Insensitive: apple, Apple, APPLE are treated as equal`n"
-    "Case-Sensitive: Uppercase < Lowercase in ASCII ordering`n"
-    "  (Result: APPLE, Apple, apple)`n`n"
-    "Default ListView sorting is case-insensitive."
+        "Case-Insensitive: apple, Apple, APPLE are treated as equal`n"
+        "Case-Sensitive: Uppercase < Lowercase in ASCII ordering`n"
+        "  (Result: APPLE, Apple, apple)`n`n"
+        "Default ListView sorting is case-insensitive."
     )
 
     SortInsensitive(*) {
@@ -169,7 +169,7 @@ Example2_CaseSensitiveSorting() {
         ; Case-sensitive sort requires custom implementation
         LV.ModifyCol(1, "SortDesc Case")
         infoEdit.Value := "Note: True case-sensitive sorting requires custom sort functions.`n"
-        . "This demo uses SortDesc with Case option."
+            . "This demo uses SortDesc with Case option."
     }
 
     RestoreOrder(*) {
@@ -193,16 +193,16 @@ Example3_NumericalSorting() {
 
     ; File data with sizes
     files := [
-    ["document.txt", "5", "5 KB"],
-    ["image.jpg", "1500", "1.5 MB"],
-    ["video.mp4", "52000", "52 MB"],
-    ["archive.zip", "8500", "8.5 MB"],
-    ["presentation.ppt", "3200", "3.2 MB"],
-    ["spreadsheet.xlsx", "750", "750 KB"],
-    ["photo.png", "2100", "2.1 MB"],
-    ["script.ahk", "15", "15 KB"],
-    ["music.mp3", "4500", "4.5 MB"],
-    ["readme.md", "3", "3 KB"]
+        ["document.txt", "5", "5 KB"],
+        ["image.jpg", "1500", "1.5 MB"],
+        ["video.mp4", "52000", "52 MB"],
+        ["archive.zip", "8500", "8.5 MB"],
+        ["presentation.ppt", "3200", "3.2 MB"],
+        ["spreadsheet.xlsx", "750", "750 KB"],
+        ["photo.png", "2100", "2.1 MB"],
+        ["script.ahk", "15", "15 KB"],
+        ["music.mp3", "4500", "4.5 MB"],
+        ["readme.md", "3", "3 KB"]
     ]
 
     for file in files {
@@ -224,24 +224,24 @@ Example3_NumericalSorting() {
     SortName(*) {
         LV.ModifyCol(1, "Sort")
         infoEdit.Value := "Sorted by filename (alphabetical).`n"
-        . "This is standard text sorting."
+            . "This is standard text sorting."
     }
 
     SortSizeNum(*) {
         ; Sort by the KB column (column 2) which contains numbers
         LV.ModifyCol(2, "SortDesc")
         infoEdit.Value := "Sorted by Size (KB) column - numerical.`n"
-        . "Largest files first.`n"
-        . "Example: 52000 > 8500 > 4500 (correct numerical order)"
+            . "Largest files first.`n"
+            . "Example: 52000 > 8500 > 4500 (correct numerical order)"
     }
 
     SortSizeText(*) {
         ; Sort by formatted size column (text)
         LV.ModifyCol(3, "SortDesc")
         infoEdit.Value := "Sorted by formatted size (text/alphabetical).`n"
-        . "WARNING: Text sorting of numbers is incorrect!`n"
-        . "Example: '8.5 MB' comes after '52 MB' alphabetically`n"
-        . "Always use pure number columns for numerical sorting!"
+            . "WARNING: Text sorting of numbers is incorrect!`n"
+            . "Example: '8.5 MB' comes after '52 MB' alphabetically`n"
+            . "Always use pure number columns for numerical sorting!"
     }
 
     MyGui.Show()
@@ -257,18 +257,18 @@ Example4_MultiLevelSorting() {
 
     ; Employee data
     employees := [
-    ["Engineering", "Senior", "Alice", "95000"],
-    ["Engineering", "Junior", "Bob", "65000"],
-    ["Engineering", "Senior", "Charlie", "92000"],
-    ["Sales", "Manager", "Diana", "85000"],
-    ["Sales", "Junior", "Edward", "55000"],
-    ["Sales", "Senior", "Fiona", "75000"],
-    ["Marketing", "Senior", "George", "80000"],
-    ["Marketing", "Junior", "Hannah", "58000"],
-    ["Engineering", "Junior", "Ian", "62000"],
-    ["Marketing", "Manager", "Julia", "90000"],
-    ["Sales", "Junior", "Kevin", "52000"],
-    ["Engineering", "Manager", "Laura", "105000"]
+        ["Engineering", "Senior", "Alice", "95000"],
+        ["Engineering", "Junior", "Bob", "65000"],
+        ["Engineering", "Senior", "Charlie", "92000"],
+        ["Sales", "Manager", "Diana", "85000"],
+        ["Sales", "Junior", "Edward", "55000"],
+        ["Sales", "Senior", "Fiona", "75000"],
+        ["Marketing", "Senior", "George", "80000"],
+        ["Marketing", "Junior", "Hannah", "58000"],
+        ["Engineering", "Junior", "Ian", "62000"],
+        ["Marketing", "Manager", "Julia", "90000"],
+        ["Sales", "Junior", "Kevin", "52000"],
+        ["Engineering", "Manager", "Laura", "105000"]
     ]
 
     for emp in employees {
@@ -294,21 +294,21 @@ Example4_MultiLevelSorting() {
         ; This shows limitation - true multi-level sorting needs custom implementation
 
         infoEdit.Value := "Sorted by Department (primary).`n"
-        . "Note: Built-in sorting doesn't support automatic secondary keys.`n"
-        . "For true multi-level sorting, implement custom sort logic."
+            . "Note: Built-in sorting doesn't support automatic secondary keys.`n"
+            . "For true multi-level sorting, implement custom sort logic."
     }
 
     Sort_DeptSalary(*) {
         LV.ModifyCol(1, "Sort")
         infoEdit.Value := "Sorted by Department.`n"
-        . "Within each department, you'd need custom code to sort by salary."
+            . "Within each department, you'd need custom code to sort by salary."
     }
 
     Sort_PosSalName(*) {
         LV.ModifyCol(2, "Sort")
         infoEdit.Value := "Sorted by Position.`n"
-        . "Multi-level sorting beyond this requires extracting data,`n"
-        . "sorting externally, and repopulating the ListView."
+            . "Multi-level sorting beyond this requires extracting data,`n"
+            . "sorting externally, and repopulating the ListView."
     }
 
     MyGui.Show()
@@ -320,15 +320,15 @@ Example4_MultiLevelSorting() {
 Example5_DataFiltering() {
     ; Master data array
     allProducts := [
-    ["Laptop", "Electronics", "999", "15"],
-    ["Mouse", "Electronics", "25", "150"],
-    ["Desk", "Furniture", "299", "8"],
-    ["Chair", "Furniture", "199", "12"],
-    ["Monitor", "Electronics", "349", "25"],
-    ["Lamp", "Lighting", "45", "40"],
-    ["Keyboard", "Electronics", "75", "85"],
-    ["Bookshelf", "Furniture", "149", "6"],
-    ["LED Strip", "Lighting", "29", "60"]
+        ["Laptop", "Electronics", "999", "15"],
+        ["Mouse", "Electronics", "25", "150"],
+        ["Desk", "Furniture", "299", "8"],
+        ["Chair", "Furniture", "199", "12"],
+        ["Monitor", "Electronics", "349", "25"],
+        ["Lamp", "Lighting", "45", "40"],
+        ["Keyboard", "Electronics", "75", "85"],
+        ["Bookshelf", "Furniture", "149", "6"],
+        ["LED Strip", "Lighting", "29", "60"]
     ]
 
     MyGui := Gui("+Resize", "Example 5: Data Filtering")
@@ -384,7 +384,7 @@ Example5_DataFiltering() {
         filtered := []
         for product in allProducts {
             if Number(product[3]) < 50
-            filtered.Push(product)
+                filtered.Push(product)
         }
         PopulateList(filtered)
         statusText.Value := "Showing " filtered.Length " items under $50"
@@ -395,7 +395,7 @@ Example5_DataFiltering() {
         for product in allProducts {
             price := Number(product[3])
             if price >= 50 and price <= 200
-            filtered.Push(product)
+                filtered.Push(product)
         }
         PopulateList(filtered)
         statusText.Value := "Showing " filtered.Length " items $50-$200"
@@ -405,7 +405,7 @@ Example5_DataFiltering() {
         filtered := []
         for product in allProducts {
             if Number(product[3]) > 200
-            filtered.Push(product)
+                filtered.Push(product)
         }
         PopulateList(filtered)
         statusText.Value := "Showing " filtered.Length " items over $200"
@@ -415,7 +415,7 @@ Example5_DataFiltering() {
         filtered := []
         for product in allProducts {
             if product[2] = category
-            filtered.Push(product)
+                filtered.Push(product)
         }
         return filtered
     }
@@ -436,16 +436,16 @@ Example5_DataFiltering() {
 Example6_SearchFilter() {
     ; Sample contact data
     contacts := [
-    ["John Smith", "john@email.com", "Engineering", "555-0101"],
-    ["Jane Doe", "jane@email.com", "Marketing", "555-0102"],
-    ["Bob Johnson", "bob@email.com", "Sales", "555-0103"],
-    ["Alice Williams", "alice@email.com", "Engineering", "555-0104"],
-    ["Charlie Brown", "charlie@email.com", "HR", "555-0105"],
-    ["Diana Prince", "diana@email.com", "Marketing", "555-0106"],
-    ["Edward Norton", "edward@email.com", "Sales", "555-0107"],
-    ["Fiona Apple", "fiona@email.com", "Engineering", "555-0108"],
-    ["George Wilson", "george@email.com", "HR", "555-0109"],
-    ["Hannah Baker", "hannah@email.com", "Marketing", "555-0110"]
+        ["John Smith", "john@email.com", "Engineering", "555-0101"],
+        ["Jane Doe", "jane@email.com", "Marketing", "555-0102"],
+        ["Bob Johnson", "bob@email.com", "Sales", "555-0103"],
+        ["Alice Williams", "alice@email.com", "Engineering", "555-0104"],
+        ["Charlie Brown", "charlie@email.com", "HR", "555-0105"],
+        ["Diana Prince", "diana@email.com", "Marketing", "555-0106"],
+        ["Edward Norton", "edward@email.com", "Sales", "555-0107"],
+        ["Fiona Apple", "fiona@email.com", "Engineering", "555-0108"],
+        ["George Wilson", "george@email.com", "HR", "555-0109"],
+        ["Hannah Baker", "hannah@email.com", "Marketing", "555-0110"]
     ]
 
     MyGui := Gui("+Resize", "Example 6: Search and Filter")
@@ -482,9 +482,9 @@ Example6_SearchFilter() {
         for contact in contacts {
             ; Search in name, email, and department
             if InStr(contact[1], searchTerm, false)
-            or InStr(contact[2], searchTerm, false)
-            or InStr(contact[3], searchTerm, false)
-            or InStr(contact[4], searchTerm, false) {
+                or InStr(contact[2], searchTerm, false)
+                or InStr(contact[3], searchTerm, false)
+                or InStr(contact[4], searchTerm, false) {
                 filtered.Push(contact)
             }
         }
@@ -518,13 +518,13 @@ Example7_SortIndicators() {
     LV := MyGui.Add("ListView", "r12 w700", ["Product", "Price", "Rating", "Sales"])
 
     products := [
-    ["Widget A", "29.99", "4.5", "1250"],
-    ["Gadget B", "49.99", "4.8", "890"],
-    ["Tool C", "19.99", "4.2", "2100"],
-    ["Device D", "99.99", "4.9", "450"],
-    ["Item E", "39.99", "4.6", "750"],
-    ["Product F", "59.99", "4.3", "620"],
-    ["Thing G", "79.99", "4.7", "380"]
+        ["Widget A", "29.99", "4.5", "1250"],
+        ["Gadget B", "49.99", "4.8", "890"],
+        ["Tool C", "19.99", "4.2", "2100"],
+        ["Device D", "99.99", "4.9", "450"],
+        ["Item E", "39.99", "4.6", "750"],
+        ["Product F", "59.99", "4.3", "620"],
+        ["Thing G", "79.99", "4.7", "380"]
     ]
 
     for product in products {
@@ -537,7 +537,7 @@ Example7_SortIndicators() {
     LV.ModifyCol(4, 100 " Right")
 
     ; Sort state tracking
-    sortState := {col: 0, asc: true}
+    sortState := { col: 0, asc: true }
 
     ; Status display
     statusEdit := MyGui.Add("Edit", "r3 w700 ReadOnly", "Click any column header to sort")
@@ -550,23 +550,23 @@ Example7_SortIndicators() {
 
         ; Toggle direction if same column, otherwise ascending
         if ColNum = sortState.col
-        sortState.asc := !sortState.asc
+            sortState.asc := !sortState.asc
         else
-        sortState.asc := true
+            sortState.asc := true
 
         sortState.col := ColNum
 
         ; Apply sort
         if sortState.asc
-        LV.ModifyCol(ColNum, "Sort")
+            LV.ModifyCol(ColNum, "Sort")
         else
-        LV.ModifyCol(ColNum, "SortDesc")
+            LV.ModifyCol(ColNum, "SortDesc")
 
         ; Update status
         direction := sortState.asc ? "Ascending ▲" : "Descending ▼"
         statusEdit.Value := "Sorted by: " colNames[ColNum] " (" direction ")`n"
-        . "Column: " ColNum "`n"
-        . "Click again to reverse sort direction"
+            . "Column: " ColNum "`n"
+            . "Click again to reverse sort direction"
     }
 
     ; Manual sort buttons with indicators
@@ -580,9 +580,9 @@ Example7_SortIndicators() {
         colNames := ["Product", "Price", "Rating", "Sales"]
 
         if ascending
-        LV.ModifyCol(col, "Sort")
+            LV.ModifyCol(col, "Sort")
         else
-        LV.ModifyCol(col, "SortDesc")
+            LV.ModifyCol(col, "SortDesc")
 
         sortState.col := col
         sortState.asc := ascending
@@ -671,3 +671,4 @@ for item in filtered {
     LV.Add(, item.col1, item.col2, ...)
 }
 */
+

@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_09_Virtualization.ahk
-*
-* DESCRIPTION:
-* Demonstrates techniques for handling large datasets in ListView controls including
-* pagination, lazy loading, progressive loading, and performance optimization.
-*
-* FEATURES:
-* - Pagination for large datasets
-* - Lazy loading techniques
-* - Progressive/chunked loading
-* - Performance optimization with -Redraw
-* - Memory management strategies
-* - Virtual scrolling concepts
-* - Batch operations on large data
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - -Redraw option for performance
-* - Efficient bulk loading
-* - Timer-based progressive loading
-* - Memory-conscious data handling
-* - SetTimer for async operations
-*
-* LEARNING POINTS:
-* 1. ListView can slow down with 10,000+ items
-* 2. Use -Redraw during bulk operations
-* 3. Pagination improves UX for large datasets
-* 4. Progressive loading prevents UI freezing
-* 5. Consider virtual scrolling for huge datasets
-* 6. Keep only visible data in memory when possible
-* 7. Batch operations for better performance
-*/
+ * BuiltIn_ListView_09_Virtualization.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates techniques for handling large datasets in ListView controls including
+ * pagination, lazy loading, progressive loading, and performance optimization.
+ * 
+ * FEATURES:
+ * - Pagination for large datasets
+ * - Lazy loading techniques
+ * - Progressive/chunked loading
+ * - Performance optimization with -Redraw
+ * - Memory management strategies
+ * - Virtual scrolling concepts
+ * - Batch operations on large data
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - -Redraw option for performance
+ * - Efficient bulk loading
+ * - Timer-based progressive loading
+ * - Memory-conscious data handling
+ * - SetTimer for async operations
+ * 
+ * LEARNING POINTS:
+ * 1. ListView can slow down with 10,000+ items
+ * 2. Use -Redraw during bulk operations
+ * 3. Pagination improves UX for large datasets
+ * 4. Progressive loading prevents UI freezing
+ * 5. Consider virtual scrolling for huge datasets
+ * 6. Keep only visible data in memory when possible
+ * 7. Batch operations for better performance
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Pagination Pattern
@@ -245,7 +245,7 @@ Example3_OnDemandLoading() {
         Loop count {
             idx := startIdx + A_Index - 1
             if idx > TotalRecords
-            break
+                break
 
             batch.Push({
                 id: idx,
@@ -311,7 +311,7 @@ Example3_OnDemandLoading() {
         result := MsgBox("Load remaining " remaining " records?`nThis may take a moment.", "Confirm", "YesNo")
 
         if result = "No"
-        return
+            return
 
         startTime := A_TickCount
 
@@ -389,15 +389,15 @@ Example4_SearchBasedLoading() {
         for record in FullDataset {
             ; Check if search term matches any field (case-insensitive)
             if InStr(record.name, searchTerm, false)
-            or InStr(record.email, searchTerm, false)
-            or InStr(record.city, searchTerm, false) {
+                or InStr(record.email, searchTerm, false)
+                or InStr(record.city, searchTerm, false) {
 
                 LV.Add(, record.id, record.name, record.email, record.city)
                 matchCount++
 
                 ; Limit results to prevent overload
                 if matchCount >= 1000
-                break
+                    break
             }
         }
 
@@ -407,11 +407,11 @@ Example4_SearchBasedLoading() {
         elapsed := A_TickCount - startTime
 
         if matchCount = 0
-        resultText.Value := "No matches found for '" searchTerm "' (searched " FullDataset.Length " records in " elapsed " ms)"
+            resultText.Value := "No matches found for '" searchTerm "' (searched " FullDataset.Length " records in " elapsed " ms)"
         else if matchCount >= 1000
-        resultText.Value := "Showing first 1000 matches for '" searchTerm "' (more results available, refine search)"
+            resultText.Value := "Showing first 1000 matches for '" searchTerm "' (more results available, refine search)"
         else
-        resultText.Value := "Found " matchCount " matches for '" searchTerm "' in " elapsed " ms"
+            resultText.Value := "Found " matchCount " matches for '" searchTerm "' in " elapsed " ms"
     }
 
     ; Real-time search (with debounce)
@@ -467,10 +467,10 @@ Example5_PerformanceComparison() {
         elapsed := A_TickCount - startTime
 
         resultText.Value := "WITH Redraw (Slow Method):`n"
-        . "Records: " size "`n"
-        . "Time: " elapsed " ms`n"
-        . "Rate: " Round(size / elapsed * 1000) " records/second`n`n"
-        . "This method updates the display for each row added."
+            . "Records: " size "`n"
+            . "Time: " elapsed " ms`n"
+            . "Rate: " Round(size / elapsed * 1000) " records/second`n`n"
+            . "This method updates the display for each row added."
     }
 
     TestWithoutRedraw(*) {
@@ -492,11 +492,11 @@ Example5_PerformanceComparison() {
         elapsed := A_TickCount - startTime
 
         resultText.Value := "WITHOUT Redraw (Fast Method):`n"
-        . "Records: " size "`n"
-        . "Time: " elapsed " ms`n"
-        . "Rate: " Round(size / elapsed * 1000) " records/second`n`n"
-        . "This method updates the display only once at the end.`n`n"
-        . "MUCH FASTER for bulk operations!"
+            . "Records: " size "`n"
+            . "Time: " elapsed " ms`n"
+            . "Rate: " Round(size / elapsed * 1000) " records/second`n`n"
+            . "This method updates the display only once at the end.`n`n"
+            . "MUCH FASTER for bulk operations!"
     }
 
     GenerateTestData(count) {
@@ -595,7 +595,7 @@ Example6_BatchOperations() {
     BatchDelete(*) {
         result := MsgBox("Delete all processed records?", "Confirm", "YesNo")
         if result = "No"
-        return
+            return
 
         startTime := A_TickCount
         originalCount := DataSet.Length
@@ -604,7 +604,7 @@ Example6_BatchOperations() {
         newDataSet := []
         for record in DataSet {
             if !record.processed
-            newDataSet.Push(record)
+                newDataSet.Push(record)
         }
 
         DataSet := newDataSet
@@ -689,7 +689,7 @@ Example7_WindowedView() {
     JumpTo(*) {
         result := InputBox("Jump to record number (1-" TotalRecordsAvailable "):", "Jump", "w300")
         if result.Result = "Cancel"
-        return
+            return
 
         targetRecord := Number(result.Value)
         if targetRecord < 1 or targetRecord > TotalRecordsAvailable {
@@ -858,3 +858,4 @@ LoadPage(pageNum) {
     DisplayData(CurrentPageData)
 }
 */
+

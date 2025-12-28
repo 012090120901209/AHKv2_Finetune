@@ -1,28 +1,28 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinMove Examples - Part 3: Snap to Grid
-* ============================================================================
-*
-* This script demonstrates grid-based window positioning and snapping.
-* Professional window organization and tiling capabilities.
-*
-* @description Grid and snap window positioning
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinMove Examples - Part 3: Snap to Grid
+ * ============================================================================
+ * 
+ * This script demonstrates grid-based window positioning and snapping.
+ * Professional window organization and tiling capabilities.
+ * 
+ * @description Grid and snap window positioning
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Snap to Screen Edges
 ; ============================================================================
 
 /**
-* Snaps window to nearest screen edge
-*
-* @hotkey F1 - Snap to edge
-*/
+ * Snaps window to nearest screen edge
+ * 
+ * @hotkey F1 - Snap to edge
+ */
 F1:: {
     SnapToEdge()
 }
@@ -68,10 +68,10 @@ SnapToEdge() {
 ; ============================================================================
 
 /**
-* Positions windows on a grid
-*
-* @hotkey F2 - Grid layout
-*/
+ * Positions windows on a grid
+ * 
+ * @hotkey F2 - Grid layout
+ */
 F2:: {
     GridLayout()
 }
@@ -149,10 +149,10 @@ GridLayout() {
 ; ============================================================================
 
 /**
-* Enables magnetic snapping to other windows
-*
-* @hotkey F3 - Toggle magnetic edges
-*/
+ * Enables magnetic snapping to other windows
+ * 
+ * @hotkey F3 - Toggle magnetic edges
+ */
 F3:: {
     static magneticActive := false
 
@@ -193,10 +193,10 @@ CheckMagnetic() {
 ; ============================================================================
 
 /**
-* Professional tiling window manager
-*
-* @hotkey F4 - Tiling manager
-*/
+ * Professional tiling window manager
+ * 
+ * @hotkey F4 - Tiling manager
+ */
 F4:: {
     TilingManager()
 }
@@ -214,12 +214,12 @@ TilingManager() {
     tileGui.Add("Text", "w350", "Select tiling pattern:")
 
     patterns := [
-    "Two Columns (50/50)",
-    "Three Columns (33/33/33)",
-    "Main + Sidebar (70/30)",
-    "Sidebar + Main (30/70)",
-    "Top + Bottom (50/50)",
-    "Main + Two Sidebar (50/25/25)"
+        "Two Columns (50/50)",
+        "Three Columns (33/33/33)",
+        "Main + Sidebar (70/30)",
+        "Sidebar + Main (30/70)",
+        "Top + Bottom (50/50)",
+        "Main + Two Sidebar (50/25/25)"
     ]
 
     patternList := tileGui.Add("ListBox", "w350 h140 vPattern")
@@ -252,32 +252,32 @@ TilingManager() {
 
         switch submitted.Pattern {
             case 1:  ; Two Columns
-            if visibleWindows.Length >= 1 {
-                WinMove(left, top, w//2, h, visibleWindows[1])
-            }
-            if visibleWindows.Length >= 2 {
-                WinMove(left + w//2, top, w//2, h, visibleWindows[2])
-            }
+                if visibleWindows.Length >= 1 {
+                    WinMove(left, top, w // 2, h, visibleWindows[1])
+                }
+                if visibleWindows.Length >= 2 {
+                    WinMove(left + w // 2, top, w // 2, h, visibleWindows[2])
+                }
 
             case 2:  ; Three Columns
-            colW := w // 3
-            if visibleWindows.Length >= 1 {
-                WinMove(left, top, colW, h, visibleWindows[1])
-            }
-            if visibleWindows.Length >= 2 {
-                WinMove(left + colW, top, colW, h, visibleWindows[2])
-            }
-            if visibleWindows.Length >= 3 {
-                WinMove(left + colW*2, top, colW, h, visibleWindows[3])
-            }
+                colW := w // 3
+                if visibleWindows.Length >= 1 {
+                    WinMove(left, top, colW, h, visibleWindows[1])
+                }
+                if visibleWindows.Length >= 2 {
+                    WinMove(left + colW, top, colW, h, visibleWindows[2])
+                }
+                if visibleWindows.Length >= 3 {
+                    WinMove(left + colW * 2, top, colW, h, visibleWindows[3])
+                }
 
             case 3:  ; Main + Sidebar (70/30)
-            if visibleWindows.Length >= 1 {
-                WinMove(left, top, Round(w*0.7), h, visibleWindows[1])
-            }
-            if visibleWindows.Length >= 2 {
-                WinMove(left + Round(w*0.7), top, Round(w*0.3), h, visibleWindows[2])
-            }
+                if visibleWindows.Length >= 1 {
+                    WinMove(left, top, Round(w * 0.7), h, visibleWindows[1])
+                }
+                if visibleWindows.Length >= 2 {
+                    WinMove(left + Round(w * 0.7), top, Round(w * 0.3), h, visibleWindows[2])
+                }
         }
 
         tileGui.Destroy()
@@ -290,10 +290,10 @@ TilingManager() {
 ; ============================================================================
 
 /**
-* Snaps window to custom grid positions
-*
-* @hotkey F5 - Custom grid snap
-*/
+ * Snaps window to custom grid positions
+ * 
+ * @hotkey F5 - Custom grid snap
+ */
 F5:: {
     CustomGridSnap()
 }
@@ -345,10 +345,10 @@ CustomGridSnap() {
 ; ============================================================================
 
 /**
-* Divides screen into zones for quick window placement
-*
-* @hotkey F6 - Show zones
-*/
+ * Divides screen into zones for quick window placement
+ * 
+ * @hotkey F6 - Show zones
+ */
 F6:: {
     ShowZones()
 }
@@ -373,15 +373,15 @@ ShowZones() {
 }
 
 ; Hotkeys for zones 1-9
-^NumPad1::PlaceInZone(7)
-^NumPad2::PlaceInZone(8)
-^NumPad3::PlaceInZone(9)
-^NumPad4::PlaceInZone(4)
-^NumPad5::PlaceInZone(5)
-^NumPad6::PlaceInZone(6)
-^NumPad7::PlaceInZone(1)
-^NumPad8::PlaceInZone(2)
-^NumPad9::PlaceInZone(3)
+^NumPad1:: PlaceInZone(7)
+^NumPad2:: PlaceInZone(8)
+^NumPad3:: PlaceInZone(9)
+^NumPad4:: PlaceInZone(4)
+^NumPad5:: PlaceInZone(5)
+^NumPad6:: PlaceInZone(6)
+^NumPad7:: PlaceInZone(1)
+^NumPad8:: PlaceInZone(2)
+^NumPad9:: PlaceInZone(3)
 
 PlaceInZone(zone) {
     if !WinExist("A") {
@@ -409,10 +409,10 @@ PlaceInZone(zone) {
 ; ============================================================================
 
 /**
-* Automatically arranges windows intelligently
-*
-* @hotkey F7 - Smart arrange
-*/
+ * Automatically arranges windows intelligently
+ * 
+ * @hotkey F7 - Smart arrange
+ */
 F7:: {
     SmartArrange()
 }
@@ -447,13 +447,13 @@ SmartArrange() {
         WinMove(left, top, screenW, screenH, visibleWindows[1])
     } else if count = 2 {
         ; Side by side
-        WinMove(left, top, screenW//2, screenH, visibleWindows[1])
-        WinMove(left + screenW//2, top, screenW//2, screenH, visibleWindows[2])
+        WinMove(left, top, screenW // 2, screenH, visibleWindows[1])
+        WinMove(left + screenW // 2, top, screenW // 2, screenH, visibleWindows[2])
     } else if count = 3 {
         ; One large, two stacked
-        WinMove(left, top, screenW//2, screenH, visibleWindows[1])
-        WinMove(left + screenW//2, top, screenW//2, screenH//2, visibleWindows[2])
-        WinMove(left + screenW//2, top + screenH//2, screenW//2, screenH//2, visibleWindows[3])
+        WinMove(left, top, screenW // 2, screenH, visibleWindows[1])
+        WinMove(left + screenW // 2, top, screenW // 2, screenH // 2, visibleWindows[2])
+        WinMove(left + screenW // 2, top + screenH // 2, screenW // 2, screenH // 2, visibleWindows[3])
     } else {
         ; Grid layout
         cols := Ceil(Sqrt(count))
@@ -470,7 +470,7 @@ SmartArrange() {
                 if idx >= count {
                     break 2
                 }
-                WinMove(left + col*cellW, top + row*cellH, cellW, cellH, visibleWindows[++idx])
+                WinMove(left + col * cellW, top + row * cellH, cellW, cellH, visibleWindows[++idx])
             }
         }
     }
@@ -482,7 +482,7 @@ SmartArrange() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

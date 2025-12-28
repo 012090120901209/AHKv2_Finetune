@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Winspool_01_Printing.ahk
-*
-* DESCRIPTION:
-* Demonstrates Printer and spooler operations using Windows API through DllCall.
-* Comprehensive examples showing various Printing operations.
-*
-* FEATURES:
-* - Printing API integration
-* - Practical Printing examples
-* - Error handling
-* - Resource management
-* - Advanced Printing techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Winspool API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Winspool API functions
-* 2. Working with Printing operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Printing techniques
-* 6. Best practices for Winspool API
-* 7. Real-world Printing applications
-*/
+ * BuiltIn_DllCall_Winspool_01_Printing.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Printer and spooler operations using Windows API through DllCall.
+ * Comprehensive examples showing various Printing operations.
+ * 
+ * FEATURES:
+ * - Printing API integration
+ * - Practical Printing examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Printing techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Winspool API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Winspool API functions
+ * 2. Working with Printing operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Printing techniques
+ * 6. Best practices for Winspool API
+ * 7. Real-world Printing applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Printing Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Printing operations
-*/
+ * Helper function for Printing operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Printing Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

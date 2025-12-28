@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* APM Counter - Actions Per Minute Tracker
-*
-* Demonstrates real-time input tracking and APM calculation,
-* useful for competitive gaming (StarCraft, League of Legends, etc.)
-* and productivity monitoring.
-*
-* Source: jotnguyen/autohotkey-productivity-scripts - APM-Counter.ahk
-* Inspired by: https://github.com/jotnguyen/autohotkey-productivity-scripts
-*/
+ * APM Counter - Actions Per Minute Tracker
+ * 
+ * Demonstrates real-time input tracking and APM calculation,
+ * useful for competitive gaming (StarCraft, League of Legends, etc.)
+ * and productivity monitoring.
+ * 
+ * Source: jotnguyen/autohotkey-productivity-scripts - APM-Counter.ahk
+ * Inspired by: https://github.com/jotnguyen/autohotkey-productivity-scripts
+ */
 
 ; Global state
 global actionCount := 0
@@ -26,16 +26,16 @@ global peakAPM := 0
 CreateAPMGUI()
 
 MsgBox("APM Counter Active!`n`n"
-. "This will track your keyboard/mouse actions.`n`n"
-. "Metrics shown:`n"
-. "- Current APM (last 60 seconds)`n"
-. "- Total actions`n"
-. "- Average APM`n"
-. "- Peak APM`n`n"
-. "Hotkeys:`n"
-. "Win+R - Reset counter`n"
-. "Win+P - Pause/Resume`n`n"
-. "Try typing or clicking to see it work!", , "T7")
+    . "This will track your keyboard/mouse actions.`n`n"
+    . "Metrics shown:`n"
+    . "- Current APM (last 60 seconds)`n"
+    . "- Total actions`n"
+    . "- Average APM`n"
+    . "- Peak APM`n`n"
+    . "Hotkeys:`n"
+    . "Win+R - Reset counter`n"
+    . "Win+P - Pause/Resume`n`n"
+    . "Try typing or clicking to see it work!", , "T7")
 
 ; Update display every 500ms
 SetTimer(UpdateDisplay, 500)
@@ -80,30 +80,30 @@ CreateAPMGUI() {
 ; ===============================================
 
 /**
-* Track keyboard input
-*/
+ * Track keyboard input
+ */
 ~*a::
-~*b:: ~*c:: ~*d:: ~*e:: ~*f:: ~*g:: ~*h:: ~*i:: ~*j::
-~*k:: ~*l:: ~*m:: ~*n:: ~*o:: ~*p:: ~*q:: ~*r:: ~*s::
-~*t:: ~*u:: ~*v:: ~*w:: ~*x:: ~*y:: ~*z::
-~*0:: ~*1:: ~*2:: ~*3:: ~*4:: ~*5:: ~*6:: ~*7:: ~*8:: ~*9::
-~*Space:: ~*Enter:: ~*Backspace:: ~*Tab::
-RecordAction()
+~*b:: ~ * c: : ~ * d: : ~ * e: : ~ * f: : ~ * g: : ~ * h: : ~ * i: : ~ * j: :
+    ~*k:: ~ * l: : ~ * m: : ~ * n: : ~ * o: : ~ * p: : ~ * q: : ~ * r: : ~ * s: :
+    ~*t:: ~ * u: : ~ * v: : ~ * w: : ~ * x: : ~ * y: : ~ * z: :
+    ~*0:: ~ * 1: : ~ * 2: : ~ * 3: : ~ * 4: : ~ * 5: : ~ * 6: : ~ * 7: : ~ * 8: : ~ * 9: :
+    ~*Space:: ~ * Enter: : ~ * Backspace: : ~ * Tab: :
+    RecordAction()
 
 /**
-* Track mouse clicks
-*/
-~LButton::RecordAction()
-~RButton::RecordAction()
-~MButton::RecordAction()
+ * Track mouse clicks
+ */
+~LButton:: RecordAction()
+~RButton:: RecordAction()
+~MButton:: RecordAction()
 
 ; ===============================================
 ; ACTION RECORDING
 ; ===============================================
 
 /**
-* Record an action with timestamp
-*/
+ * Record an action with timestamp
+ */
 RecordAction() {
     global actionCount, actionHistory
 
@@ -113,7 +113,7 @@ RecordAction() {
     ; Keep only last 2 minutes of history
     currentTime := A_TickCount
     while (actionHistory.Length > 0 && currentTime - actionHistory[1] > 120000)
-    actionHistory.RemoveAt(1)
+        actionHistory.RemoveAt(1)
 }
 
 ; ===============================================
@@ -121,8 +121,8 @@ RecordAction() {
 ; ===============================================
 
 /**
-* Update APM display
-*/
+ * Update APM display
+ */
 UpdateDisplay() {
     global actionHistory, actionCount, startTime, peakAPM
     global apmText, totalText, avgText, peakText, timeText
@@ -134,7 +134,7 @@ UpdateDisplay() {
 
     ; Update peak
     if (currentAPM > peakAPM)
-    peakAPM := currentAPM
+        peakAPM := currentAPM
 
     ; Calculate average APM (overall)
     elapsedMinutes := (currentTime - startTime) / 60000
@@ -155,18 +155,18 @@ UpdateDisplay() {
 
     ; Color coding for current APM
     if (currentAPM >= 300)
-    apmText.SetFont("cRed")      ; Insane
+        apmText.SetFont("cRed")      ; Insane
     else if (currentAPM >= 200)
-    apmText.SetFont("cYellow")   ; Very High
+        apmText.SetFont("cYellow")   ; Very High
     else if (currentAPM >= 100)
-    apmText.SetFont("cLime")     ; High
+        apmText.SetFont("cLime")     ; High
     else
-    apmText.SetFont("cWhite")    ; Normal
+        apmText.SetFont("cWhite")    ; Normal
 }
 
 /**
-* Calculate APM for last 60 seconds
-*/
+ * Calculate APM for last 60 seconds
+ */
 CalculateCurrentAPM(currentTime) {
     global actionHistory
 
@@ -174,7 +174,7 @@ CalculateCurrentAPM(currentTime) {
     recentActions := 0
     for timestamp in actionHistory {
         if (currentTime - timestamp <= 60000)  ; 60 seconds
-        recentActions++
+            recentActions++
     }
 
     return recentActions
@@ -185,16 +185,16 @@ CalculateCurrentAPM(currentTime) {
 ; ===============================================
 
 /**
-* Reset counter
-*/
-#r::ResetCounter()
+ * Reset counter
+ */
+#r:: ResetCounter()
 
 ResetCounter() {
     global actionCount, actionHistory, startTime, peakAPM
 
     result := MsgBox("Reset APM Counter?", "Confirm Reset", "YesNo Icon?")
     if (result == "No")
-    return
+        return
 
     actionCount := 0
     actionHistory := []
@@ -207,10 +207,10 @@ ResetCounter() {
 }
 
 /**
-* Pause/Resume tracking
-*/
+ * Pause/Resume tracking
+ */
 global paused := false
-#p::TogglePause()
+#p:: TogglePause()
 
 TogglePause() {
     global paused, apmGui
@@ -323,3 +323,4 @@ TogglePause() {
 *     Compare task types
 *     Prevent overwork
 */
+

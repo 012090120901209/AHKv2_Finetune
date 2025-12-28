@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Write Examples - Part 3
-* ============================================================================
-*
-* This file demonstrates comprehensive registry writing for system
-* configuration, automated deployment, and settings validation.
-*
-* @description System configuration and automated deployment
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Write Examples - Part 3
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive registry writing for system
+ * configuration, automated deployment, and settings validation.
+ * 
+ * @description System configuration and automated deployment
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Application Deployment Configuration
 ; ============================================================================
 
 /**
-* @class DeploymentManager
-* @description Manages application deployment configurations
-*/
+ * @class DeploymentManager
+ * @description Manages application deployment configurations
+ */
 class DeploymentManager {
     deployKey := ""
 
@@ -30,11 +30,11 @@ class DeploymentManager {
     }
 
     /**
-    * @method DeployConfiguration
-    * @description Deploys complete application configuration
-    * @param {String} environment - Environment (Dev/Test/Prod)
-    * @returns {Boolean} Success status
-    */
+     * @method DeployConfiguration
+     * @description Deploys complete application configuration
+     * @param {String} environment - Environment (Dev/Test/Prod)
+     * @returns {Boolean} Success status
+     */
     DeployConfiguration(environment) {
         try {
             ; Set environment
@@ -45,13 +45,13 @@ class DeploymentManager {
             ; Environment-specific settings
             switch environment {
                 case "Dev":
-                this.DeployDevSettings()
+                    this.DeployDevSettings()
                 case "Test":
-                this.DeployTestSettings()
+                    this.DeployTestSettings()
                 case "Prod":
-                this.DeployProdSettings()
+                    this.DeployProdSettings()
                 default:
-                return false
+                    return false
             }
 
             ; Common settings
@@ -64,9 +64,9 @@ class DeploymentManager {
     }
 
     /**
-    * @method DeployDevSettings
-    * @description Deploys development environment settings
-    */
+     * @method DeployDevSettings
+     * @description Deploys development environment settings
+     */
     DeployDevSettings() {
         settingsKey := this.deployKey . "\Settings"
 
@@ -79,9 +79,9 @@ class DeploymentManager {
     }
 
     /**
-    * @method DeployTestSettings
-    * @description Deploys test environment settings
-    */
+     * @method DeployTestSettings
+     * @description Deploys test environment settings
+     */
     DeployTestSettings() {
         settingsKey := this.deployKey . "\Settings"
 
@@ -94,9 +94,9 @@ class DeploymentManager {
     }
 
     /**
-    * @method DeployProdSettings
-    * @description Deploys production environment settings
-    */
+     * @method DeployProdSettings
+     * @description Deploys production environment settings
+     */
     DeployProdSettings() {
         settingsKey := this.deployKey . "\Settings"
 
@@ -109,9 +109,9 @@ class DeploymentManager {
     }
 
     /**
-    * @method DeployCommonSettings
-    * @description Deploys settings common to all environments
-    */
+     * @method DeployCommonSettings
+     * @description Deploys settings common to all environments
+     */
     DeployCommonSettings() {
         settingsKey := this.deployKey . "\Settings"
 
@@ -122,10 +122,10 @@ class DeploymentManager {
     }
 
     /**
-    * @method GetDeploymentReport
-    * @description Gets deployment report
-    * @returns {String} Formatted report
-    */
+     * @method GetDeploymentReport
+     * @description Gets deployment report
+     * @returns {String} Formatted report
+     */
     GetDeploymentReport() {
         report := "Deployment Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━`n`n"
@@ -144,7 +144,7 @@ class DeploymentManager {
 
             try {
                 Loop Reg, settingsKey, "V"
- {
+                {
                     try {
                         value := RegRead(settingsKey, A_LoopRegName)
                         report .= "  " . A_LoopRegName . " = " . value . "`n"
@@ -160,13 +160,13 @@ class DeploymentManager {
 }
 
 /**
-* @function Example1_Deployment
-* @description Demonstrates application deployment
-* @returns {void}
-*/
+ * @function Example1_Deployment
+ * @description Demonstrates application deployment
+ * @returns {void}
+ */
 Example1_Deployment() {
     MsgBox "=== Example 1: Application Deployment ===`n`n" .
-    "Deploying application configuration..."
+        "Deploying application configuration..."
 
     dm := DeploymentManager("AHKv2Examples\MyApp")
 
@@ -188,9 +188,9 @@ Example1_Deployment() {
 ; ============================================================================
 
 /**
-* @class ConfigValidator
-* @description Validates and sanitizes configuration before writing
-*/
+ * @class ConfigValidator
+ * @description Validates and sanitizes configuration before writing
+ */
 class ConfigValidator {
     configKey := ""
     validationRules := Map()
@@ -201,48 +201,48 @@ class ConfigValidator {
     }
 
     /**
-    * @method SetupValidationRules
-    * @description Sets up validation rules
-    */
+     * @method SetupValidationRules
+     * @description Sets up validation rules
+     */
     SetupValidationRules() {
         ; Define validation rules
         this.validationRules["Port"] := Map(
-        "type", "integer",
-        "min", 1,
-        "max", 65535
+            "type", "integer",
+            "min", 1,
+            "max", 65535
         )
 
         this.validationRules["Theme"] := Map(
-        "type", "enum",
-        "values", ["Light", "Dark", "Auto"]
+            "type", "enum",
+            "values", ["Light", "Dark", "Auto"]
         )
 
         this.validationRules["FontSize"] := Map(
-        "type", "integer",
-        "min", 8,
-        "max", 72
+            "type", "integer",
+            "min", 8,
+            "max", 72
         )
 
         this.validationRules["Username"] := Map(
-        "type", "string",
-        "minLength", 3,
-        "maxLength", 32,
-        "pattern", "^[a-zA-Z0-9_]+$"
+            "type", "string",
+            "minLength", 3,
+            "maxLength", 32,
+            "pattern", "^[a-zA-Z0-9_]+$"
         )
     }
 
     /**
-    * @method Validate
-    * @description Validates a configuration value
-    * @param {String} key - Configuration key
-    * @param {Any} value - Value to validate
-    * @returns {Map} Validation result
-    */
+     * @method Validate
+     * @description Validates a configuration value
+     * @param {String} key - Configuration key
+     * @param {Any} value - Value to validate
+     * @returns {Map} Validation result
+     */
     Validate(key, value) {
         result := Map(
-        "valid", false,
-        "error", "",
-        "sanitized", value
+            "valid", false,
+            "error", "",
+            "sanitized", value
         )
 
         if (!this.validationRules.Has(key)) {
@@ -255,57 +255,57 @@ class ConfigValidator {
         ; Validate based on type
         switch rule["type"] {
             case "integer":
-            if (value is Integer) {
-                if (value < rule["min"] || value > rule["max"]) {
-                    result["error"] := "Value must be between " . rule["min"] . " and " . rule["max"]
+                if (value is Integer) {
+                    if (value < rule["min"] || value > rule["max"]) {
+                        result["error"] := "Value must be between " . rule["min"] . " and " . rule["max"]
+                    } else {
+                        result["valid"] := true
+                    }
+                } else {
+                    result["error"] := "Value must be an integer"
+                }
+
+            case "enum":
+                found := false
+                for allowed in rule["values"] {
+                    if (value = allowed) {
+                        found := true
+                        break
+                    }
+                }
+                if (found) {
+                    result["valid"] := true
+                } else {
+                    result["error"] := "Value must be one of: " . this.JoinArray(rule["values"], ", ")
+                }
+
+            case "string":
+                if (StrLen(value) < rule["minLength"]) {
+                    result["error"] := "String too short (min " . rule["minLength"] . ")"
+                } else if (StrLen(value) > rule["maxLength"]) {
+                    result["error"] := "String too long (max " . rule["maxLength"] . ")"
                 } else {
                     result["valid"] := true
                 }
-            } else {
-                result["error"] := "Value must be an integer"
-            }
-
-            case "enum":
-            found := false
-            for allowed in rule["values"] {
-                if (value = allowed) {
-                    found := true
-                    break
-                }
-            }
-            if (found) {
-                result["valid"] := true
-            } else {
-                result["error"] := "Value must be one of: " . this.JoinArray(rule["values"], ", ")
-            }
-
-            case "string":
-            if (StrLen(value) < rule["minLength"]) {
-                result["error"] := "String too short (min " . rule["minLength"] . ")"
-            } else if (StrLen(value) > rule["maxLength"]) {
-                result["error"] := "String too long (max " . rule["maxLength"] . ")"
-            } else {
-                result["valid"] := true
-            }
         }
 
         return result
     }
 
     /**
-    * @method WriteValidated
-    * @description Writes a value after validation
-    * @param {String} key - Configuration key
-    * @param {Any} value - Value to write
-    * @returns {Map} Write result
-    */
+     * @method WriteValidated
+     * @description Writes a value after validation
+     * @param {String} key - Configuration key
+     * @param {Any} value - Value to write
+     * @returns {Map} Write result
+     */
     WriteValidated(key, value) {
         ; Validate first
         validation := this.Validate(key, value)
 
         writeResult := Map(
-        "success", false,
-        "error", ""
+            "success", false,
+            "error", ""
         )
 
         if (!validation["valid"]) {
@@ -316,9 +316,9 @@ class ConfigValidator {
         ; Write to registry
         try {
             if (value is Integer)
-            RegWrite value, "REG_DWORD", this.configKey, key
+                RegWrite value, "REG_DWORD", this.configKey, key
             else
-            RegWrite value, "REG_SZ", this.configKey, key
+                RegWrite value, "REG_SZ", this.configKey, key
 
             writeResult["success"] := true
         } catch Error as err {
@@ -329,14 +329,14 @@ class ConfigValidator {
     }
 
     /**
-    * @method JoinArray
-    * @description Joins array elements
-    */
+     * @method JoinArray
+     * @description Joins array elements
+     */
     JoinArray(arr, separator) {
         result := ""
         for item in arr {
             if (result != "")
-            result .= separator
+                result .= separator
             result .= item
         }
         return result
@@ -344,13 +344,13 @@ class ConfigValidator {
 }
 
 /**
-* @function Example2_Validation
-* @description Demonstrates configuration validation
-* @returns {void}
-*/
+ * @function Example2_Validation
+ * @description Demonstrates configuration validation
+ * @returns {void}
+ */
 Example2_Validation() {
     MsgBox "=== Example 2: Configuration Validation ===`n`n" .
-    "Validating configuration before writing..."
+        "Validating configuration before writing..."
 
     validator := ConfigValidator("HKCU\Software\AHKv2Examples\ValidatedConfig")
 
@@ -384,9 +384,9 @@ Example2_Validation() {
 ; ============================================================================
 
 /**
-* @class AtomicConfig
-* @description Performs atomic configuration updates with rollback
-*/
+ * @class AtomicConfig
+ * @description Performs atomic configuration updates with rollback
+ */
 class AtomicConfig {
     configKey := ""
     backupKey := ""
@@ -398,17 +398,17 @@ class AtomicConfig {
     }
 
     /**
-    * @method BeginTransaction
-    * @description Begins a configuration transaction
-    * @returns {Boolean} Success status
-    */
+     * @method BeginTransaction
+     * @description Begins a configuration transaction
+     * @returns {Boolean} Success status
+     */
     BeginTransaction() {
         this.transaction := []
 
         ; Backup current configuration
         try {
             Loop Reg, this.configKey, "V"
- {
+            {
                 try {
                     valueName := A_LoopRegName
                     value := RegRead(this.configKey, valueName)
@@ -425,32 +425,32 @@ class AtomicConfig {
     }
 
     /**
-    * @method AddWrite
-    * @description Adds a write operation to transaction
-    * @param {String} valueName - Value name
-    * @param {Any} value - Value to write
-    * @param {String} type - Registry type
-    */
+     * @method AddWrite
+     * @description Adds a write operation to transaction
+     * @param {String} valueName - Value name
+     * @param {Any} value - Value to write
+     * @param {String} type - Registry type
+     */
     AddWrite(valueName, value, type := "REG_SZ") {
         this.transaction.Push(Map(
-        "operation", "write",
-        "valueName", valueName,
-        "value", value,
-        "type", type
+            "operation", "write",
+            "valueName", valueName,
+            "value", value,
+            "type", type
         ))
     }
 
     /**
-    * @method Commit
-    * @description Commits the transaction
-    * @returns {Map} Commit result
-    */
+     * @method Commit
+     * @description Commits the transaction
+     * @returns {Map} Commit result
+     */
     Commit() {
         result := Map(
-        "success", false,
-        "operations", this.transaction.Length,
-        "completed", 0,
-        "error", ""
+            "success", false,
+            "operations", this.transaction.Length,
+            "completed", 0,
+            "error", ""
         )
 
         try {
@@ -480,15 +480,15 @@ class AtomicConfig {
     }
 
     /**
-    * @method Rollback
-    * @description Rolls back the transaction
-    * @returns {Boolean} Success status
-    */
+     * @method Rollback
+     * @description Rolls back the transaction
+     * @returns {Boolean} Success status
+     */
     Rollback() {
         try {
             ; Restore from backup
             Loop Reg, this.backupKey, "V"
- {
+            {
                 try {
                     valueName := A_LoopRegName
                     value := RegRead(this.backupKey, valueName)
@@ -509,13 +509,13 @@ class AtomicConfig {
 }
 
 /**
-* @function Example3_AtomicUpdates
-* @description Demonstrates atomic configuration updates
-* @returns {void}
-*/
+ * @function Example3_AtomicUpdates
+ * @description Demonstrates atomic configuration updates
+ * @returns {void}
+ */
 Example3_AtomicUpdates() {
     MsgBox "=== Example 3: Atomic Updates ===`n`n" .
-    "Performing atomic configuration updates..."
+        "Performing atomic configuration updates..."
 
     atomic := AtomicConfig("HKCU\Software\AHKv2Examples\AtomicConfig")
 
@@ -538,7 +538,7 @@ Example3_AtomicUpdates() {
     report .= "Status: " . (result["success"] ? "✓ Success" : "✗ Failed") . "`n"
 
     if (!result["success"] && result["error"] != "")
-    report .= "Error: " . result["error"] . "`n"
+        report .= "Error: " . result["error"] . "`n"
 
     MsgBox report, "Transaction Complete"
 }
@@ -548,13 +548,13 @@ Example3_AtomicUpdates() {
 ; ============================================================================
 
 /**
-* @function Example4_ScheduledUpdates
-* @description Demonstrates scheduled configuration updates
-* @returns {void}
-*/
+ * @function Example4_ScheduledUpdates
+ * @description Demonstrates scheduled configuration updates
+ * @returns {void}
+ */
 Example4_ScheduledUpdates() {
     MsgBox "=== Example 4: Scheduled Updates ===`n`n" .
-    "Configuring scheduled updates..."
+        "Configuring scheduled updates..."
 
     scheduleKey := "HKCU\Software\AHKv2Examples\ScheduledUpdates"
 
@@ -595,13 +595,13 @@ Example4_ScheduledUpdates() {
 ; ============================================================================
 
 /**
-* @function Example5_MultiInstance
-* @description Demonstrates managing multiple application instances
-* @returns {void}
-*/
+ * @function Example5_MultiInstance
+ * @description Demonstrates managing multiple application instances
+ * @returns {void}
+ */
 Example5_MultiInstance() {
     MsgBox "=== Example 5: Multi-Instance Config ===`n`n" .
-    "Configuring multiple application instances..."
+        "Configuring multiple application instances..."
 
     baseKey := "HKCU\Software\AHKv2Examples\MultiInstance"
 
@@ -646,23 +646,23 @@ Example5_MultiInstance() {
 ; ============================================================================
 
 /**
-* @class ConfigMigration
-* @description Migrates configuration between versions
-*/
+ * @class ConfigMigration
+ * @description Migrates configuration between versions
+ */
 class ConfigMigration {
     /**
-    * @method Migrate
-    * @description Migrates configuration from old to new version
-    * @param {Integer} fromVersion - Source version
-    * @param {Integer} toVersion - Target version
-    * @returns {Map} Migration result
-    */
+     * @method Migrate
+     * @description Migrates configuration from old to new version
+     * @param {Integer} fromVersion - Source version
+     * @param {Integer} toVersion - Target version
+     * @returns {Map} Migration result
+     */
     static Migrate(fromVersion, toVersion) {
         result := Map(
-        "success", false,
-        "fromVersion", fromVersion,
-        "toVersion", toVersion,
-        "changes", []
+            "success", false,
+            "fromVersion", fromVersion,
+            "toVersion", toVersion,
+            "changes", []
         )
 
         try {
@@ -674,9 +674,9 @@ class ConfigMigration {
 
                 switch currentVersion {
                     case 1:
-                    this.MigrateFrom1To2(result)
+                        this.MigrateFrom1To2(result)
                     case 2:
-                    this.MigrateFrom2To3(result)
+                        this.MigrateFrom2To3(result)
                 }
 
                 currentVersion := nextVersion
@@ -691,9 +691,9 @@ class ConfigMigration {
     }
 
     /**
-    * @method MigrateFrom1To2
-    * @description Migrates from version 1 to 2
-    */
+     * @method MigrateFrom1To2
+     * @description Migrates from version 1 to 2
+     */
     static MigrateFrom1To2(result) {
         migKey := "HKCU\Software\AHKv2Examples\Migration"
 
@@ -706,9 +706,9 @@ class ConfigMigration {
     }
 
     /**
-    * @method MigrateFrom2To3
-    * @description Migrates from version 2 to 3
-    */
+     * @method MigrateFrom2To3
+     * @description Migrates from version 2 to 3
+     */
     static MigrateFrom2To3(result) {
         migKey := "HKCU\Software\AHKv2Examples\Migration"
 
@@ -731,13 +731,13 @@ class ConfigMigration {
 }
 
 /**
-* @function Example6_Migration
-* @description Demonstrates configuration migration
-* @returns {void}
-*/
+ * @function Example6_Migration
+ * @description Demonstrates configuration migration
+ * @returns {void}
+ */
 Example6_Migration() {
     MsgBox "=== Example 6: Configuration Migration ===`n`n" .
-    "Migrating configuration between versions..."
+        "Migrating configuration between versions..."
 
     ; Migrate from version 1 to 3
     result := ConfigMigration.Migrate(1, 3)
@@ -761,13 +761,13 @@ Example6_Migration() {
 ; ============================================================================
 
 /**
-* @function Example7_AuditTrail
-* @description Demonstrates configuration audit trail
-* @returns {void}
-*/
+ * @function Example7_AuditTrail
+ * @description Demonstrates configuration audit trail
+ * @returns {void}
+ */
 Example7_AuditTrail() {
     MsgBox "=== Example 7: Configuration Audit Trail ===`n`n" .
-    "Creating configuration audit trail..."
+        "Creating configuration audit trail..."
 
     auditKey := "HKCU\Software\AHKv2Examples\Audit"
 
@@ -845,8 +845,8 @@ ShowMenu() {
         case "7": Example7_AuditTrail()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

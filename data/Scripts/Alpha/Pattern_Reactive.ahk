@@ -42,7 +42,7 @@ class Computed {
     __New(dependencies, compute) {
         this.compute := compute
         this._value := compute()
-        
+
         ; Subscribe to all dependencies
         for dep in dependencies
             dep.Subscribe((*) => this._value := this.compute())
@@ -55,7 +55,7 @@ class Computed {
 class Binding {
     __New(source, target) {
         this.updating := false
-        
+
         source.Subscribe((val, *) {
             if this.updating
                 return
@@ -63,7 +63,7 @@ class Binding {
             target.Value := val
             this.updating := false
         })
-        
+
         target.Subscribe((val, *) {
             if this.updating
                 return
@@ -82,10 +82,10 @@ lastName := Reactive("Doe")
 fullName := Computed([firstName, lastName], () => firstName.Value " " lastName.Value)
 
 ; Subscribe to changes
-firstName.Subscribe((newVal, oldVal) => 
+firstName.Subscribe((newVal, oldVal) =>
     OutputDebug("firstName changed: " oldVal " -> " newVal "`n"))
 
-lastName.Subscribe((newVal, oldVal) => 
+lastName.Subscribe((newVal, oldVal) =>
     OutputDebug("lastName changed: " oldVal " -> " newVal "`n"))
 
 MsgBox("Initial: " fullName.Value)

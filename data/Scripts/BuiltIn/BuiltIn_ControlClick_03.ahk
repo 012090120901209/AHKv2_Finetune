@@ -1,52 +1,52 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* BuiltIn_ControlClick_03 - Advanced Options and Options
-* ============================================================================
-*
-* Demonstrates advanced ControlClick options including NA (NoActivate),
-* Pos positioning options, and complex clicking scenarios.
-*
-* @description
-* ControlClick supports various options that modify its behavior:
-* - NA: Don't activate the window before clicking
-* - Pos: Use positioning relative to client area vs screen
-* - D/U: Hold down/release without clicking
-*
-* Key Features:
-* - NoActivate (NA) option for true background automation
-* - Position mode options
-* - Down/Up button state control
-* - Complex multi-step clicking sequences
-* - Drag simulation using coordinates
-*
-* @syntax ControlClick Control, WinTitle, WinText, WhichButton, ClickCount, Options
-*
-* @author AutoHotkey Community
-* @version 1.0.0
-* @since 2024-01-16
-*
-* @example
-* ; Click without activating window
-* ControlClick "Button1", "Notepad",,, 1, "NA"
-*
-* @see https://www.autohotkey.com/docs/v2/lib/ControlClick.htm
-*/
+ * ============================================================================
+ * BuiltIn_ControlClick_03 - Advanced Options and Options
+ * ============================================================================
+ * 
+ * Demonstrates advanced ControlClick options including NA (NoActivate),
+ * Pos positioning options, and complex clicking scenarios.
+ * 
+ * @description
+ * ControlClick supports various options that modify its behavior:
+ * - NA: Don't activate the window before clicking
+ * - Pos: Use positioning relative to client area vs screen
+ * - D/U: Hold down/release without clicking
+ * 
+ * Key Features:
+ * - NoActivate (NA) option for true background automation
+ * - Position mode options
+ * - Down/Up button state control
+ * - Complex multi-step clicking sequences
+ * - Drag simulation using coordinates
+ * 
+ * @syntax ControlClick Control, WinTitle, WinText, WhichButton, ClickCount, Options
+ * 
+ * @author AutoHotkey Community
+ * @version 1.0.0
+ * @since 2024-01-16
+ * 
+ * @example
+ * ; Click without activating window
+ * ControlClick "Button1", "Notepad",,, 1, "NA"
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/ControlClick.htm
+ */
 
 ; ============================================================================
 ; Example 1: NoActivate (NA) Option
 ; ============================================================================
 
 /**
-* @function Example1_NoActivate
-* @description Demonstrates the NA (NoActivate) option
-* Shows how to click without bringing window to foreground
-*/
+ * @function Example1_NoActivate
+ * @description Demonstrates the NA (NoActivate) option
+ * Shows how to click without bringing window to foreground
+ */
 Example1_NoActivate() {
     MsgBox("Example 1: NoActivate Option`n`n" .
-    "Click controls without activating the window.",
-    "NoActivate Demo", "OK Icon!")
+        "Click controls without activating the window.",
+        "NoActivate Demo", "OK Icon!")
 
     ; Create target window
     targetGui := Gui(, "Target Window - NA Demo")
@@ -54,7 +54,7 @@ Example1_NoActivate() {
 
     clickCounter := 0
     statusText := targetGui.Add("Text", "w350 h80 y+20 Border",
-    "Total clicks: 0`nWith NA: 0`nWithout NA: 0")
+        "Total clicks: 0`nWith NA: 0`nWithout NA: 0")
 
     btn1 := targetGui.Add("Button", "w350 y+20", "Test Button")
     btn1.OnEvent("Click", (*) => UpdateClick("button"))
@@ -71,13 +71,13 @@ Example1_NoActivate() {
     normalClicks := 0
 
     controlGui.Add("Text", "w350 y+20 Background404040 cFFFFFF Center",
-    "WITHOUT NA Option (Activates Window)")
+        "WITHOUT NA Option (Activates Window)")
 
     normalBtn := controlGui.Add("Button", "w350 y+10", "Click Target (Normal - Activates)")
     normalBtn.OnEvent("Click", (*) => ClickNormal())
 
     controlGui.Add("Text", "w350 y+20 Background004000 cFFFFFF Center",
-    "WITH NA Option (No Activation)")
+        "WITH NA Option (No Activation)")
 
     naBtn := controlGui.Add("Button", "w350 y+10", "Click Target (NA - Background)")
     naBtn.OnEvent("Click", (*) => ClickNA())
@@ -105,9 +105,9 @@ Example1_NoActivate() {
     UpdateClick(source) {
         totalClicks++
         statusText.Value := "Total clicks: " . totalClicks .
-        "`nWith NA: " . naClicks .
-        "`nWithout NA: " . normalClicks .
-        "`nSource: " . source
+            "`nWith NA: " . naClicks .
+            "`nWithout NA: " . normalClicks .
+            "`nSource: " . source
     }
 
     ; Normal click (with activation)
@@ -128,7 +128,7 @@ Example1_NoActivate() {
     ; NA click (without activation)
     ClickNA() {
         try {
-            ControlClick("Button1", "Target Window - NA Demo",,,,  "NA")
+            ControlClick("Button1", "Target Window - NA Demo", , , , "NA")
             naClicks++
             UpdateClick("Control Panel (NA)")
 
@@ -146,17 +146,17 @@ Example1_NoActivate() {
         typeText := useNA ? "NA" : "Normal"
 
         MsgBox("Performing 10 rapid clicks (" . typeText . ")`n`n" .
-        "Watch the target window to see if it activates!",
-        "Rapid Click Test", "OK Icon! T2")
+            "Watch the target window to see if it activates!",
+            "Rapid Click Test", "OK Icon! T2")
 
         Loop 10 {
             try {
-                ControlClick("Button1", "Target Window - NA Demo",,,,  option)
+                ControlClick("Button1", "Target Window - NA Demo", , , , option)
 
                 if useNA
-                naClicks++
+                    naClicks++
                 else
-                normalClicks++
+                    normalClicks++
 
                 Sleep(100)
 
@@ -174,7 +174,7 @@ Example1_NoActivate() {
         try {
             activeWin := WinGetTitle("A")
             activeText.Value := "Currently Active: " . StrLen(activeWin) > 45 ?
-            SubStr(activeWin, 1, 45) . "..." : activeWin
+                SubStr(activeWin, 1, 45) . "..." : activeWin
         } catch {
             activeText.Value := "No active window"
         }
@@ -183,15 +183,15 @@ Example1_NoActivate() {
     ; Close all windows
     CloseAll() {
         if WinExist("Target Window - NA Demo")
-        targetGui.Destroy()
+            targetGui.Destroy()
         if WinExist("Control Panel - NA Demo")
-        controlGui.Destroy()
+            controlGui.Destroy()
     }
 
     MsgBox("NoActivate demo started!`n`n" .
-    "Compare normal clicks vs NA clicks.`n" .
-    "Notice how NA clicks don't activate the target window.",
-    "Info", "OK Icon! T4")
+        "Compare normal clicks vs NA clicks.`n" .
+        "Notice how NA clicks don't activate the target window.",
+        "Info", "OK Icon! T4")
 }
 
 ; ============================================================================
@@ -199,14 +199,14 @@ Example1_NoActivate() {
 ; ============================================================================
 
 /**
-* @function Example2_DownUpOptions
-* @description Demonstrates D (Down) and U (Up) options
-* Shows how to control button press and release separately
-*/
+ * @function Example2_DownUpOptions
+ * @description Demonstrates D (Down) and U (Up) options
+ * Shows how to control button press and release separately
+ */
 Example2_DownUpOptions() {
     MsgBox("Example 2: Button Down/Up Options`n`n" .
-    "Control button press and release separately.",
-    "Down/Up Demo", "OK Icon!")
+        "Control button press and release separately.",
+        "Down/Up Demo", "OK Icon!")
 
     ; Create demo GUI
     myGui := Gui("+AlwaysOnTop", "Down/Up Options Demo")
@@ -269,7 +269,7 @@ Example2_DownUpOptions() {
     ; Press down
     PressDown() {
         try {
-            ControlClick("Button2", "Down/Up Options Demo",,, 1, "D")
+            ControlClick("Button2", "Down/Up Options Demo", , , 1, "D")
             buttonDown := true
             pressTime := A_TickCount
             LogEvent("Button pressed DOWN (D option)")
@@ -285,7 +285,7 @@ Example2_DownUpOptions() {
     ; Release up
     ReleaseUp() {
         try {
-            ControlClick("Button2", "Down/Up Options Demo",,, 1, "U")
+            ControlClick("Button2", "Down/Up Options Demo", , , 1, "U")
 
             if buttonDown {
                 releaseTime := A_TickCount
@@ -310,14 +310,14 @@ Example2_DownUpOptions() {
 
         try {
             ; Press down
-            ControlClick("Button2", "Down/Up Options Demo",,, 1, "D")
+            ControlClick("Button2", "Down/Up Options Demo", , , 1, "D")
             LogEvent("  Button DOWN")
 
             ; Wait for duration
             Sleep(duration)
 
             ; Release up
-            ControlClick("Button2", "Down/Up Options Demo",,, 1, "U")
+            ControlClick("Button2", "Down/Up Options Demo", , , 1, "U")
             LogEvent("  Button UP after " . duration . "ms")
 
             LogEvent("✓ Timed press complete!")
@@ -328,8 +328,8 @@ Example2_DownUpOptions() {
     }
 
     MsgBox("Down/Up demo started!`n`n" .
-    "Test manual and timed button press/release.",
-    "Info", "OK Icon! T3")
+        "Test manual and timed button press/release.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -337,14 +337,14 @@ Example2_DownUpOptions() {
 ; ============================================================================
 
 /**
-* @function Example3_DragSimulation
-* @description Simulates dragging by combining Down/Up with coordinates
-* Shows how to perform drag operations on controls
-*/
+ * @function Example3_DragSimulation
+ * @description Simulates dragging by combining Down/Up with coordinates
+ * Shows how to perform drag operations on controls
+ */
 Example3_DragSimulation() {
     MsgBox("Example 3: Drag Simulation`n`n" .
-    "Simulate drag operations using Down, move, and Up.",
-    "Drag Simulation", "OK Icon!")
+        "Simulate drag operations using Down, move, and Up.",
+        "Drag Simulation", "OK Icon!")
 
     ; Create GUI
     myGui := Gui("+AlwaysOnTop", "Drag Simulation Demo")
@@ -397,7 +397,7 @@ Example3_DragSimulation() {
     PerformDrag(x1, y1, x2, y2, steps := 10) {
         try {
             ; Click down at start position
-            ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1, "D X" . x1 . " Y" . y1)
+            ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1, "D X" . x1 . " Y" . y1)
 
             ; Move through intermediate positions
             Loop steps {
@@ -405,12 +405,12 @@ Example3_DragSimulation() {
                 x := Integer(x1 + (x2 - x1) * progress)
                 y := Integer(y1 + (y2 - y1) * progress)
 
-                ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1, "X" . x . " Y" . y)
+                ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1, "X" . x . " Y" . y)
                 Sleep(20)
             }
 
             ; Release at end position
-            ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1, "U X" . x2 . " Y" . y2)
+            ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1, "U X" . x2 . " Y" . y2)
 
             ; Visualize
             marker := Format("Drag: ({:d},{:d}) → ({:d},{:d})`n", x1, y1, x2, y2)
@@ -455,8 +455,8 @@ Example3_DragSimulation() {
         startY := centerY - radius
 
         ; Click down
-        ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1,
-        "D X" . startX . " Y" . startY)
+        ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1,
+            "D X" . startX . " Y" . startY)
 
         ; Draw circle
         numPoints := 36
@@ -465,17 +465,17 @@ Example3_DragSimulation() {
             x := Integer(centerX + radius * Sin(angle))
             y := Integer(centerY - radius * Cos(angle))
 
-            ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1,
-            "X" . x . " Y" . y)
+            ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1,
+                "X" . x . " Y" . y)
             Sleep(15)
         }
 
         ; Release
-        ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1,
-        "U X" . startX . " Y" . startY)
+        ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1,
+            "U X" . startX . " Y" . startY)
 
         canvas.Value .= "Circle: center(" . centerX . "," . centerY .
-        ") radius=" . radius . "`n"
+            ") radius=" . radius . "`n"
     }
 
     ; Star pattern
@@ -503,21 +503,21 @@ Example3_DragSimulation() {
         ; Draw star
         if points.Length > 0 {
             ; Start at first point
-            ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1,
-            "D X" . points[1].x . " Y" . points[1].y)
+            ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1,
+                "D X" . points[1].x . " Y" . points[1].y)
 
             ; Connect all points
             for index, point in points {
                 if index > 1 {
-                    ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1,
-                    "X" . point.x . " Y" . point.y)
+                    ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1,
+                        "X" . point.x . " Y" . point.y)
                     Sleep(30)
                 }
             }
 
             ; Close the star
-            ControlClick("Edit1", "Drag Simulation Demo",, "Left", 1,
-            "U X" . points[1].x . " Y" . points[1].y)
+            ControlClick("Edit1", "Drag Simulation Demo", , "Left", 1,
+                "U X" . points[1].x . " Y" . points[1].y)
 
             canvas.Value .= "Star: " . numPoints . " points`n"
         }
@@ -531,8 +531,8 @@ Example3_DragSimulation() {
     }
 
     MsgBox("Drag simulation demo started!`n`n" .
-    "Test various drag patterns using coordinate-based clicking.",
-    "Info", "OK Icon! T3")
+        "Test various drag patterns using coordinate-based clicking.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -540,14 +540,14 @@ Example3_DragSimulation() {
 ; ============================================================================
 
 /**
-* @function Example4_PositionModes
-* @description Demonstrates different position modes for coordinates
-* Shows client vs screen coordinate systems
-*/
+ * @function Example4_PositionModes
+ * @description Demonstrates different position modes for coordinates
+ * Shows client vs screen coordinate systems
+ */
 Example4_PositionModes() {
     MsgBox("Example 4: Position Modes`n`n" .
-    "Understand coordinate positioning modes.",
-    "Position Modes", "OK Icon!")
+        "Understand coordinate positioning modes.",
+        "Position Modes", "OK Icon!")
 
     ; Create test GUI
     myGui := Gui("+AlwaysOnTop", "Position Mode Demo")
@@ -555,9 +555,9 @@ Example4_PositionModes() {
 
     ; Info display
     infoText := myGui.Add("Edit", "w400 h120 y+10 ReadOnly Multi",
-    "Client Mode (default): Coordinates relative to control`n" .
-    "Screen Mode: Absolute screen coordinates`n`n" .
-    "Most ControlClick operations use client-relative coordinates.")
+        "Client Mode (default): Coordinates relative to control`n" .
+        "Screen Mode: Absolute screen coordinates`n`n" .
+        "Most ControlClick operations use client-relative coordinates.")
 
     ; Test area
     myGui.Add("Text", "w400 y+10", "Test Area:")
@@ -614,10 +614,10 @@ Example4_PositionModes() {
     TestClick() {
         try {
             ; Click in center of test area using client coordinates
-            ControlClick("Edit2", "Position Mode Demo",, "Left", 1, "X200 Y100")
+            ControlClick("Edit2", "Position Mode Demo", , "Left", 1, "X200 Y100")
 
             resultArea.Value := "✓ Clicked at client coordinates (200, 100)`n" .
-            "This is relative to the control's top-left corner."
+                "This is relative to the control's top-left corner."
 
             ToolTip("Clicked at (200, 100) client coordinates")
             SetTimer(() => ToolTip(), -1500)
@@ -628,8 +628,8 @@ Example4_PositionModes() {
     }
 
     MsgBox("Position mode demo started!`n`n" .
-    "Explore coordinate positioning modes.",
-    "Info", "OK Icon! T3")
+        "Explore coordinate positioning modes.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -637,14 +637,14 @@ Example4_PositionModes() {
 ; ============================================================================
 
 /**
-* @function Example5_ComplexAutomation
-* @description Demonstrates complex multi-step automation scenarios
-* Combines various ControlClick options for advanced automation
-*/
+ * @function Example5_ComplexAutomation
+ * @description Demonstrates complex multi-step automation scenarios
+ * Combines various ControlClick options for advanced automation
+ */
 Example5_ComplexAutomation() {
     MsgBox("Example 5: Complex Multi-Step Automation`n`n" .
-    "Combine multiple ControlClick techniques.",
-    "Complex Automation", "OK Icon!")
+        "Combine multiple ControlClick techniques.",
+        "Complex Automation", "OK Icon!")
 
     ; Create application GUI
     appGui := Gui(, "Sample Application")
@@ -677,15 +677,15 @@ Example5_ComplexAutomation() {
     ctrlGui.Add("Text", "w400 y+20", "Automation Scenarios:")
 
     scenario1Btn := ctrlGui.Add("Button", "w390 y+10",
-    "Scenario 1: Fast Login (No Activation)")
+        "Scenario 1: Fast Login (No Activation)")
     scenario1Btn.OnEvent("Click", (*) => Scenario1())
 
     scenario2Btn := ctrlGui.Add("Button", "w390 y+10",
-    "Scenario 2: Step-by-Step Login (With Delays)")
+        "Scenario 2: Step-by-Step Login (With Delays)")
     scenario2Btn.OnEvent("Click", (*) => Scenario2())
 
     scenario3Btn := ctrlGui.Add("Button", "w390 y+10",
-    "Scenario 3: Multiple Login Attempts")
+        "Scenario 3: Multiple Login Attempts")
     scenario3Btn.OnEvent("Click", (*) => Scenario3())
 
     ; Execution log
@@ -719,10 +719,10 @@ Example5_ComplexAutomation() {
         }
 
         statusBar.Value := "Status: Logged in as " . username .
-        (remember ? " (Remembered)" : "")
+            (remember ? " (Remembered)" : "")
 
         MsgBox("Login successful!`n`nUsername: " . username,
-        "Login", "OK Icon! T2")
+            "Login", "OK Icon! T2")
     }
 
     ; Scenario 1: Fast login without activation
@@ -744,12 +744,12 @@ Example5_ComplexAutomation() {
 
             ; Check remember me
             Log("  Checking 'Remember me'...")
-            ControlClick("Button1", winTitle,,,,  "NA")
+            ControlClick("Button1", winTitle, , , , "NA")
             Sleep(100)
 
             ; Click login
             Log("  Clicking Login button...")
-            ControlClick("Button2", winTitle,,,,  "NA")
+            ControlClick("Button2", winTitle, , , , "NA")
 
             Log("✓ Scenario 1 complete (window not activated)")
 
@@ -805,61 +805,58 @@ Example5_ComplexAutomation() {
     Scenario3() {
         Log("Starting Scenario 3: Multiple Login Attempts")
 
-        credentials := [
-        {
-            user: "user1", pass: "pass1"},
-            {
-                user: "user2", pass: "pass2"},
-                {
+        credentials := [{
+            user: "user1", pass: "pass1" }, {
+                user: "user2", pass: "pass2" }, {
                     user: "admin", pass: "admin123"
                 }
-                ]
+        ]
 
-                for index, cred in credentials {
-                    try {
-                        Log("  Attempt " . index . ": " . cred.user)
+        for index, cred in credentials {
+            try {
+                Log("  Attempt " . index . ": " . cred.user)
 
-                        winTitle := "Sample Application"
+                winTitle := "Sample Application"
 
-                        ; Fill credentials
-                        ControlSetText(cred.user, "Edit1", winTitle)
-                        Sleep(100)
-                        ControlSetText(cred.pass, "Edit2", winTitle)
-                        Sleep(100)
+                ; Fill credentials
+                ControlSetText(cred.user, "Edit1", winTitle)
+                Sleep(100)
+                ControlSetText(cred.pass, "Edit2", winTitle)
+                Sleep(100)
 
-                        ; Click login
-                        ControlClick("Button2", winTitle,,,,  "NA")
-                        Sleep(500)
+                ; Click login
+                ControlClick("Button2", winTitle, , , , "NA")
+                Sleep(500)
 
-                        Log("    ✓ Attempt " . index . " submitted")
+                Log("    ✓ Attempt " . index . " submitted")
 
-                    } catch Error as err {
-                        Log("    ✗ Attempt " . index . " error: " . err.Message)
-                    }
-                }
-
-                Log("✓ Scenario 3 complete - " . credentials.Length . " attempts")
+            } catch Error as err {
+                Log("    ✗ Attempt " . index . " error: " . err.Message)
             }
-
-            ; Close all windows
-            CloseAll() {
-                if WinExist("Sample Application")
-                appGui.Destroy()
-                if WinExist("Automation Controller")
-                ctrlGui.Destroy()
-            }
-
-            MsgBox("Complex automation demo started!`n`n" .
-            "Run different automation scenarios to see advanced techniques.",
-            "Info", "OK Icon! T3")
         }
 
-        ; ============================================================================
-        ; Main Menu
-        ; ============================================================================
+        Log("✓ Scenario 3 complete - " . credentials.Length . " attempts")
+    }
 
-        ShowMainMenu() {
-            menuText := "
+    ; Close all windows
+    CloseAll() {
+        if WinExist("Sample Application")
+            appGui.Destroy()
+        if WinExist("Automation Controller")
+            ctrlGui.Destroy()
+    }
+
+    MsgBox("Complex automation demo started!`n`n" .
+        "Run different automation scenarios to see advanced techniques.",
+        "Info", "OK Icon! T3")
+}
+
+; ============================================================================
+; Main Menu
+; ============================================================================
+
+ShowMainMenu() {
+    menuText := "
             (
             ControlClick Examples - Advanced Options
             =========================================
@@ -873,24 +870,24 @@ Example5_ComplexAutomation() {
             Select an example (1-5) or press Esc to exit
             )"
 
-            choice := InputBox(menuText, "ControlClick Advanced Options", "w450 h280")
+    choice := InputBox(menuText, "ControlClick Advanced Options", "w450 h280")
 
-            if (choice.Result = "Cancel")
-            return
+    if (choice.Result = "Cancel")
+        return
 
-            switch choice.Value {
-                case "1": Example1_NoActivate()
-                case "2": Example2_DownUpOptions()
-                case "3": Example3_DragSimulation()
-                case "4": Example4_PositionModes()
-                case "5": Example5_ComplexAutomation()
-                default:
-                MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
-            }
+    switch choice.Value {
+        case "1": Example1_NoActivate()
+        case "2": Example2_DownUpOptions()
+        case "3": Example3_DragSimulation()
+        case "4": Example4_PositionModes()
+        case "5": Example5_ComplexAutomation()
+        default:
+            MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
+    }
 
-            ; Show menu again
-            SetTimer(() => ShowMainMenu(), -500)
-        }
+    ; Show menu again
+    SetTimer(() => ShowMainMenu(), -500)
+}
 
-        ; Start the demo
-        ShowMainMenu()
+; Start the demo
+ShowMainMenu()

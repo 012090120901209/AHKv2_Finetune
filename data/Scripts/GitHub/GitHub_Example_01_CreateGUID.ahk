@@ -2,16 +2,16 @@
 #SingleInstance Force
 
 /**
-* CreateGUID() - Generate Globally Unique Identifier
-* Source: github.com/jNizM/ahk-scripts-v2
-*
-* Demonstrates:
-* - DllCall to Windows API (ole32.dll)
-* - Buffer() for memory allocation
-* - Static variables
-* - VarSetStrCapacity for string buffers
-* - Error handling with return values
-*/
+ * CreateGUID() - Generate Globally Unique Identifier
+ * Source: github.com/jNizM/ahk-scripts-v2
+ * 
+ * Demonstrates:
+ * - DllCall to Windows API (ole32.dll)
+ * - Buffer() for memory allocation
+ * - Static variables
+ * - VarSetStrCapacity for string buffers
+ * - Error handling with return values
+ */
 
 CreateGUID() {
     static S_OK := 0
@@ -41,6 +41,6 @@ guid2 := CreateGUID()
 guid3 := CreateGUID()
 
 MsgBox("GUID 1: " guid1 "`n"
-. "GUID 2: " guid2 "`n"
-. "GUID 3: " guid3 "`n`n"
-. "Format: {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}")
+    . "GUID 2: " guid2 "`n"
+    . "GUID 3: " guid3 "`n`n"
+    . "Format: {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}")

@@ -2,19 +2,19 @@
 #SingleInstance Force
 
 /**
-* Practical JSON Library Examples - Using thqby/ahk2_lib JSON.ahk
-*
-* Real-world examples demonstrating JSON parsing and serialization
-* Library: https://github.com/thqby/ahk2_lib/blob/master/JSON.ahk
-*
-* To use these examples, you need to include the JSON library:
-* #Include <JSON>
-*/
+ * Practical JSON Library Examples - Using thqby/ahk2_lib JSON.ahk
+ * 
+ * Real-world examples demonstrating JSON parsing and serialization
+ * Library: https://github.com/thqby/ahk2_lib/blob/master/JSON.ahk
+ * 
+ * To use these examples, you need to include the JSON library:
+ * #Include <JSON>
+ */
 
 /**
-* Example 1: Parse API Response
-* Common use case: Parsing JSON response from web APIs
-*/
+ * Example 1: Parse API Response
+ * Common use case: Parsing JSON response from web APIs
+ */
 ParseAPIResponseExample() {
     apiResponse := '
     (
@@ -52,9 +52,9 @@ ParseAPIResponseExample() {
 }
 
 /**
-* Example 2: Create and Save Configuration File
-* Practical use: Application settings storage
-*/
+ * Example 2: Create and Save Configuration File
+ * Practical use: Application settings storage
+ */
 SaveConfigExample() {
     ; Create configuration object
     config := Map()
@@ -88,9 +88,9 @@ SaveConfigExample() {
 }
 
 /**
-* Example 3: Load and Validate User Data
-* Practical use: Loading user profiles with validation
-*/
+ * Example 3: Load and Validate User Data
+ * Practical use: Loading user profiles with validation
+ */
 LoadUserDataExample() {
     userJson := '
     (
@@ -141,9 +141,9 @@ LoadUserDataExample() {
 }
 
 /**
-* Example 4: Work with Arrays and Nested Objects
-* Practical use: Managing product catalog
-*/
+ * Example 4: Work with Arrays and Nested Objects
+ * Practical use: Managing product catalog
+ */
 ProductCatalogExample() {
     ; Create product catalog
     catalog := Map()
@@ -188,9 +188,9 @@ ProductCatalogExample() {
 }
 
 /**
-* Example 5: Handle Null and Boolean Values
-* Practical use: Working with optional fields
-*/
+ * Example 5: Handle Null and Boolean Values
+ * Practical use: Working with optional fields
+ */
 HandleSpecialValuesExample() {
     ; Create data with special values
     data := Map()
@@ -220,9 +220,9 @@ HandleSpecialValuesExample() {
 }
 
 /**
-* Example 6: Convert CSV to JSON
-* Practical use: Data transformation and export
-*/
+ * Example 6: Convert CSV to JSON
+ * Practical use: Data transformation and export
+ */
 CSVtoJSONExample() {
     ; Sample CSV data
     csvData := "
@@ -242,7 +242,7 @@ CSVtoJSONExample() {
     ; Process each data row
     Loop lines.Length - 1 {
         if (A_Index = 1)
-        continue
+            continue
 
         values := StrSplit(Trim(lines[A_Index + 1]), ",")
         employee := Map()
@@ -253,9 +253,9 @@ CSVtoJSONExample() {
 
             ; Convert numeric values
             if (header = "Age" || header = "Salary")
-            employee[header] := Integer(value)
+                employee[header] := Integer(value)
             else
-            employee[header] := value
+                employee[header] := value
         }
 
         employees.Push(employee)
@@ -273,9 +273,9 @@ CSVtoJSONExample() {
 }
 
 /**
-* Example 7: Merge Multiple JSON Files
-* Practical use: Combining configuration from multiple sources
-*/
+ * Example 7: Merge Multiple JSON Files
+ * Practical use: Combining configuration from multiple sources
+ */
 MergeJSONExample() {
     ; Base configuration
     baseConfig := '
@@ -315,9 +315,9 @@ MergeJSONExample() {
     DeepMerge(target, source) {
         for key, value in source {
             if (target.Has(key) && Type(target[key]) = "Map" && Type(value) = "Map")
-            DeepMerge(target[key], value)
+                DeepMerge(target[key], value)
             else
-            target[key] := value
+                target[key] := value
         }
         return target
     }
@@ -336,9 +336,9 @@ MergeJSONExample() {
 }
 
 /**
-* Example 8: Create REST API Request Body
-* Practical use: Preparing data for HTTP requests
-*/
+ * Example 8: Create REST API Request Body
+ * Practical use: Preparing data for HTTP requests
+ */
 CreateAPIRequestExample() {
     ; Create new user request body
     requestBody := Map()
@@ -370,9 +370,9 @@ CreateAPIRequestExample() {
 }
 
 /**
-* Example 9: Log Structured Data
-* Practical use: Application logging with JSON format
-*/
+ * Example 9: Log Structured Data
+ * Practical use: Application logging with JSON format
+ */
 JSONLoggingExample() {
     ; Create log entry
     CreateLogEntry(level, message, data := "") {
@@ -383,7 +383,7 @@ JSONLoggingExample() {
         logEntry["thread"] := A_ScriptName
 
         if (data != "")
-        logEntry["data"] := data
+            logEntry["data"] := data
 
         return logEntry
     }
@@ -422,9 +422,9 @@ JSONLoggingExample() {
 }
 
 /**
-* Example 10: Complex Data Structure - Game Save File
-* Practical use: Saving game state or complex application state
-*/
+ * Example 10: Complex Data Structure - Game Save File
+ * Practical use: Saving game state or complex application state
+ */
 GameSaveExample() {
     ; Create complex game save structure
     saveData := Map()
@@ -508,18 +508,18 @@ GameSaveExample() {
 
 ; Display menu
 MsgBox("JSON Practical Examples Loaded`n`n"
-. "Available Examples:`n`n"
-. "1. ParseAPIResponseExample() - Parse web API responses`n"
-. "2. SaveConfigExample() - Save app configuration`n"
-. "3. LoadUserDataExample() - Load and validate user data`n"
-. "4. ProductCatalogExample() - Work with nested arrays`n"
-. "5. HandleSpecialValuesExample() - Null and boolean handling`n"
-. "6. CSVtoJSONExample() - Convert CSV to JSON`n"
-. "7. MergeJSONExample() - Merge multiple JSON files`n"
-. "8. CreateAPIRequestExample() - Create REST API requests`n"
-. "9. JSONLoggingExample() - Structured logging`n"
-. "10. GameSaveExample() - Complex game save data`n`n"
-. "Uncomment any function call below to run examples")
+    . "Available Examples:`n`n"
+    . "1. ParseAPIResponseExample() - Parse web API responses`n"
+    . "2. SaveConfigExample() - Save app configuration`n"
+    . "3. LoadUserDataExample() - Load and validate user data`n"
+    . "4. ProductCatalogExample() - Work with nested arrays`n"
+    . "5. HandleSpecialValuesExample() - Null and boolean handling`n"
+    . "6. CSVtoJSONExample() - Convert CSV to JSON`n"
+    . "7. MergeJSONExample() - Merge multiple JSON files`n"
+    . "8. CreateAPIRequestExample() - Create REST API requests`n"
+    . "9. JSONLoggingExample() - Structured logging`n"
+    . "10. GameSaveExample() - Complex game save data`n`n"
+    . "Uncomment any function call below to run examples")
 
 ; Uncomment to run examples:
 ; ParseAPIResponseExample()
@@ -532,3 +532,4 @@ MsgBox("JSON Practical Examples Loaded`n`n"
 ; CreateAPIRequestExample()
 ; JSONLoggingExample()
 ; GameSaveExample()
+

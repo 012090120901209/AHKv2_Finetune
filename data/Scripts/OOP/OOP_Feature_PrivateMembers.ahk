@@ -20,7 +20,7 @@ class SecureWallet {
     ; Public methods with controlled access
     SetPin(newPin) {
         if (StrLen(newPin) != 4 || !this._IsNumeric(newPin))
-        return MsgBox("PIN must be exactly 4 digits!", "Error")
+            return MsgBox("PIN must be exactly 4 digits!", "Error")
         this._pin := newPin
         this._locked := false
         this._Log("PIN set successfully")
@@ -41,9 +41,9 @@ class SecureWallet {
 
     Deposit(amount) {
         if (this._locked)
-        return MsgBox("Wallet is locked!", "Error")
+            return MsgBox("Wallet is locked!", "Error")
         if (!this._ValidateAmount(amount))
-        return
+            return
         this._balance += amount
         this._Log(Format("Deposited: ${:.2f}", amount))
         MsgBox(Format("Deposited ${:.2f}`nNew balance: ${:.2f}", amount, this._balance))
@@ -51,11 +51,11 @@ class SecureWallet {
 
     Withdraw(amount) {
         if (this._locked)
-        return MsgBox("Wallet is locked!", "Error")
+            return MsgBox("Wallet is locked!", "Error")
         if (!this._ValidateAmount(amount))
-        return
+            return
         if (amount > this._balance)
-        return MsgBox("Insufficient funds!", "Error")
+            return MsgBox("Insufficient funds!", "Error")
         this._balance -= amount
         this._Log(Format("Withdrew: ${:.2f}", amount))
         MsgBox(Format("Withdrew ${:.2f}`nNew balance: ${:.2f}", amount, this._balance))
@@ -63,7 +63,7 @@ class SecureWallet {
 
     GetTransactionHistory() {
         if (this._locked)
-        return MsgBox("Wallet is locked!", "Error")
+            return MsgBox("Wallet is locked!", "Error")
         MsgBox("Transaction History:`n" this._transactions.Join("`n"))
     }
 
@@ -78,8 +78,8 @@ class SecureWallet {
 
     _IsNumeric(str) {
         loop parse str
-        if (A_LoopField < "0" || A_LoopField > "9")
-        return false
+            if (A_LoopField < "0" || A_LoopField > "9")
+                return false
         return true
     }
 

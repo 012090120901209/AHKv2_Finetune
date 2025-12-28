@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Single Key with Multiple Actions
-* Hotkeys can execute multiple lines using braces
-*/
+ * Single Key with Multiple Actions
+ * Hotkeys can execute multiple lines using braces
+ */
 
 F2:: {
     currentTime := FormatTime(, "HH:mm:ss")

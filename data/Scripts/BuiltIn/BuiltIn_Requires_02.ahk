@@ -1,43 +1,43 @@
 /**
-* ============================================================================
-* AutoHotkey v2 #Requires Directive - Operating System Requirements
-* ============================================================================
-*
-* @description Comprehensive examples demonstrating OS-specific requirements
-*              and platform detection in AutoHotkey v2
-*
-* @author AHK v2 Documentation Team
-* @version 2.0.0
-* @date 2025-01-15
-*
-* DIRECTIVE: #Requires
-* PURPOSE: Enforce OS version requirements and platform compatibility
-* SYNTAX: #Requires AutoHotkey v2.0
-*
-* OS DETECTION VARIABLES:
-*   A_OSVersion - Windows version identifier
-*   A_PtrSize - 4 for 32-bit, 8 for 64-bit
-*   A_Is64bitOS - True if running on 64-bit Windows
-*
-* @reference https://www.autohotkey.com/docs/v2/lib/_Requires.htm
-* @reference https://www.autohotkey.com/docs/v2/Variables.htm#OS
-*/
+ * ============================================================================
+ * AutoHotkey v2 #Requires Directive - Operating System Requirements
+ * ============================================================================
+ * 
+ * @description Comprehensive examples demonstrating OS-specific requirements
+ *              and platform detection in AutoHotkey v2
+ * 
+ * @author AHK v2 Documentation Team
+ * @version 2.0.0
+ * @date 2025-01-15
+ * 
+ * DIRECTIVE: #Requires
+ * PURPOSE: Enforce OS version requirements and platform compatibility
+ * SYNTAX: #Requires AutoHotkey v2.0
+ * 
+ * OS DETECTION VARIABLES:
+ *   A_OSVersion - Windows version identifier
+ *   A_PtrSize - 4 for 32-bit, 8 for 64-bit
+ *   A_Is64bitOS - True if running on 64-bit Windows
+ * 
+ * @reference https://www.autohotkey.com/docs/v2/lib/_Requires.htm
+ * @reference https://www.autohotkey.com/docs/v2/Variables.htm#OS
+ */
 
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Example 1: Basic OS Version Detection
-* ============================================================================
-*
-* @description Detect and display Windows version information
-* @concept OS detection, platform identification
-*/
+ * ============================================================================
+ * Example 1: Basic OS Version Detection
+ * ============================================================================
+ * 
+ * @description Detect and display Windows version information
+ * @concept OS detection, platform identification
+ */
 
 /**
-* Get detailed OS information
-* @returns {Object} OS information object
-*/
+ * Get detailed OS information
+ * @returns {Object} OS information object
+ */
 GetOSInfo() {
     return {
         Version: A_OSVersion,
@@ -50,33 +50,33 @@ GetOSInfo() {
 }
 
 /**
-* Get friendly OS name
-* @returns {String} Human-readable OS name
-*/
+ * Get friendly OS name
+ * @returns {String} Human-readable OS name
+ */
 GetOSName() {
     switch A_OSVersion {
         case "10.0.22000", "10.0.22621", "10.0.22631":
-        return "Windows 11"
+            return "Windows 11"
         case "10.0.19044", "10.0.19043", "10.0.19042", "10.0.19041":
-        return "Windows 10"
+            return "Windows 10"
         default:
-        if InStr(A_OSVersion, "10.0")
-        return "Windows 10/11"
-        else if InStr(A_OSVersion, "6.3")
-        return "Windows 8.1"
-        else if InStr(A_OSVersion, "6.2")
-        return "Windows 8"
-        else if InStr(A_OSVersion, "6.1")
-        return "Windows 7"
-        else
-        return "Windows (Version " A_OSVersion ")"
+            if InStr(A_OSVersion, "10.0")
+                return "Windows 10/11"
+            else if InStr(A_OSVersion, "6.3")
+                return "Windows 8.1"
+            else if InStr(A_OSVersion, "6.2")
+                return "Windows 8"
+            else if InStr(A_OSVersion, "6.1")
+                return "Windows 7"
+            else
+                return "Windows (Version " A_OSVersion ")"
     }
 }
 
 /**
-* Display OS information
-* @returns {void}
-*/
+ * Display OS information
+ * @returns {void}
+ */
 ShowOSInfo() {
     info := GetOSInfo()
 
@@ -93,30 +93,30 @@ ShowOSInfo() {
     MsgBox(msg, "OS Information", "Iconi")
 }
 
-^!o::ShowOSInfo()
+^!o:: ShowOSInfo()
 
 /**
-* ============================================================================
-* Example 2: OS Version Requirements Enforcement
-* ============================================================================
-*
-* @description Enforce minimum Windows version requirements
-* @concept Version validation, compatibility enforcement
-*/
+ * ============================================================================
+ * Example 2: OS Version Requirements Enforcement
+ * ============================================================================
+ * 
+ * @description Enforce minimum Windows version requirements
+ * @concept Version validation, compatibility enforcement
+ */
 
 /**
-* OS requirement checker
-* @class
-*/
+ * OS requirement checker
+ * @class
+ */
 class OSRequirements {
     static MinimumVersion := "10.0"  ; Windows 10
     static RecommendedVersion := "10.0.19041"  ; Windows 10 2004
 
     /**
-    * Parse Windows version string
-    * @param {String} version - Version string (e.g., "10.0.19041")
-    * @returns {Object} Parsed version components
-    */
+     * Parse Windows version string
+     * @param {String} version - Version string (e.g., "10.0.19041")
+     * @returns {Object} Parsed version components
+     */
     static ParseVersion(version) {
         parts := StrSplit(version, ".")
         return {
@@ -127,51 +127,51 @@ class OSRequirements {
     }
 
     /**
-    * Compare two OS versions
-    * @param {String} v1 - First version
-    * @param {String} v2 - Second version
-    * @returns {Integer} -1, 0, or 1
-    */
+     * Compare two OS versions
+     * @param {String} v1 - First version
+     * @param {String} v2 - Second version
+     * @returns {Integer} -1, 0, or 1
+     */
     static CompareVersions(v1, v2) {
         ver1 := this.ParseVersion(v1)
         ver2 := this.ParseVersion(v2)
 
         if (ver1.Major != ver2.Major)
-        return (ver1.Major > ver2.Major) ? 1 : -1
+            return (ver1.Major > ver2.Major) ? 1 : -1
         if (ver1.Minor != ver2.Minor)
-        return (ver1.Minor > ver2.Minor) ? 1 : -1
+            return (ver1.Minor > ver2.Minor) ? 1 : -1
         if (ver1.Build != ver2.Build)
-        return (ver1.Build > ver2.Build) ? 1 : -1
+            return (ver1.Build > ver2.Build) ? 1 : -1
 
         return 0
     }
 
     /**
-    * Check if OS meets minimum requirements
-    * @returns {Boolean} True if requirements met
-    */
+     * Check if OS meets minimum requirements
+     * @returns {Boolean} True if requirements met
+     */
     static MeetsMinimum() {
         return this.CompareVersions(A_OSVersion, this.MinimumVersion) >= 0
     }
 
     /**
-    * Check if OS meets recommended version
-    * @returns {Boolean} True if recommended or higher
-    */
+     * Check if OS meets recommended version
+     * @returns {Boolean} True if recommended or higher
+     */
     static MeetsRecommended() {
         return this.CompareVersions(A_OSVersion, this.RecommendedVersion) >= 0
     }
 
     /**
-    * Enforce OS requirements
-    * @param {Boolean} strict - Exit if not met
-    * @returns {Boolean} True if requirements met
-    */
+     * Enforce OS requirements
+     * @param {Boolean} strict - Exit if not met
+     * @returns {Boolean} True if requirements met
+     */
     static Enforce(strict := true) {
         if (!this.MeetsMinimum()) {
             this.ShowRequirementError()
             if strict
-            ExitApp(1)
+                ExitApp(1)
             return false
         }
 
@@ -183,9 +183,9 @@ class OSRequirements {
     }
 
     /**
-    * Show requirement error dialog
-    * @returns {void}
-    */
+     * Show requirement error dialog
+     * @returns {void}
+     */
     static ShowRequirementError() {
         msg := "Operating System Requirement Not Met`n"
         msg .= "====================================`n`n"
@@ -198,9 +198,9 @@ class OSRequirements {
     }
 
     /**
-    * Show recommendation warning
-    * @returns {void}
-    */
+     * Show recommendation warning
+     * @returns {void}
+     */
     static ShowRecommendationWarning() {
         msg := "OS Update Recommended`n"
         msg .= "=====================`n`n"
@@ -217,26 +217,26 @@ class OSRequirements {
 ; Check requirements on startup (non-strict for demo)
 OSRequirements.Enforce(false)
 
-^!r::OSRequirements.Enforce(false)
+^!r:: OSRequirements.Enforce(false)
 
 /**
-* ============================================================================
-* Example 3: Architecture-Specific Requirements
-* ============================================================================
-*
-* @description Handle 32-bit vs 64-bit architecture requirements
-* @concept Architecture detection, bitness validation
-*/
+ * ============================================================================
+ * Example 3: Architecture-Specific Requirements
+ * ============================================================================
+ * 
+ * @description Handle 32-bit vs 64-bit architecture requirements
+ * @concept Architecture detection, bitness validation
+ */
 
 /**
-* Architecture requirement manager
-* @class
-*/
+ * Architecture requirement manager
+ * @class
+ */
 class ArchitectureChecker {
     /**
-    * Get current architecture info
-    * @returns {Object} Architecture details
-    */
+     * Get current architecture info
+     * @returns {Object} Architecture details
+     */
     static GetArchitecture() {
         return {
             ProcessBits: A_PtrSize * 8,
@@ -248,10 +248,10 @@ class ArchitectureChecker {
     }
 
     /**
-    * Require 64-bit OS
-    * @param {Boolean} strict - Exit if requirement not met
-    * @returns {Boolean} True if 64-bit OS
-    */
+     * Require 64-bit OS
+     * @param {Boolean} strict - Exit if requirement not met
+     * @returns {Boolean} True if 64-bit OS
+     */
     static Require64BitOS(strict := true) {
         if (!A_Is64bitOS) {
             msg := "64-bit Operating System Required`n"
@@ -264,16 +264,16 @@ class ArchitectureChecker {
             MsgBox(msg, "Architecture Error", "Icon! 48")
 
             if strict
-            ExitApp(1)
+                ExitApp(1)
             return false
         }
         return true
     }
 
     /**
-    * Display architecture information
-    * @returns {void}
-    */
+     * Display architecture information
+     * @returns {void}
+     */
     static ShowArchInfo() {
         arch := this.GetArchitecture()
 
@@ -288,70 +288,70 @@ class ArchitectureChecker {
         msg .= "  Running as 64-bit: " (arch.IsProcess64 ? "Yes" : "No") "`n`n"
 
         if (!arch.IsProcess64 && arch.IsOS64)
-        msg .= "⚠ Note: Running 32-bit AHK on 64-bit OS"
+            msg .= "⚠ Note: Running 32-bit AHK on 64-bit OS"
 
         MsgBox(msg, "Architecture", "Iconi")
     }
 }
 
-^!b::ArchitectureChecker.ShowArchInfo()
+^!b:: ArchitectureChecker.ShowArchInfo()
 
 /**
-* ============================================================================
-* Example 4: Feature Availability Based on OS Version
-* ============================================================================
-*
-* @description Check and handle OS-specific feature availability
-* @concept Feature detection, graceful degradation
-*/
+ * ============================================================================
+ * Example 4: Feature Availability Based on OS Version
+ * ============================================================================
+ * 
+ * @description Check and handle OS-specific feature availability
+ * @concept Feature detection, graceful degradation
+ */
 
 /**
-* OS feature detector
-* @class
-*/
+ * OS feature detector
+ * @class
+ */
 class OSFeatureDetector {
     /**
-    * Feature requirements map
-    */
+     * Feature requirements map
+     */
     static FeatureRequirements := Map(
-    "DarkMode", "10.0.17763",          ; Windows 10 1809
-    "VirtualDesktops", "10.0.10240",   ; Windows 10 initial
-    "TimelineAPI", "10.0.17134",       ; Windows 10 1803
-    "FocusAssist", "10.0.17134",       ; Windows 10 1803
-    "CloudClipboard", "10.0.17666",    ; Windows 10 1809
-    "YourPhone", "10.0.17763"          ; Windows 10 1809
+        "DarkMode", "10.0.17763",          ; Windows 10 1809
+        "VirtualDesktops", "10.0.10240",   ; Windows 10 initial
+        "TimelineAPI", "10.0.17134",       ; Windows 10 1803
+        "FocusAssist", "10.0.17134",       ; Windows 10 1803
+        "CloudClipboard", "10.0.17666",    ; Windows 10 1809
+        "YourPhone", "10.0.17763"          ; Windows 10 1809
     )
 
     /**
-    * Check if feature is available
-    * @param {String} feature - Feature name
-    * @returns {Boolean} True if available
-    */
+     * Check if feature is available
+     * @param {String} feature - Feature name
+     * @returns {Boolean} True if available
+     */
     static IsFeatureAvailable(feature) {
         if (!this.FeatureRequirements.Has(feature))
-        return false
+            return false
 
         required := this.FeatureRequirements[feature]
         return OSRequirements.CompareVersions(A_OSVersion, required) >= 0
     }
 
     /**
-    * Get all available features
-    * @returns {Array} List of available features
-    */
+     * Get all available features
+     * @returns {Array} List of available features
+     */
     static GetAvailableFeatures() {
         available := []
         for feature, version in this.FeatureRequirements {
             if this.IsFeatureAvailable(feature)
-            available.Push(feature)
+                available.Push(feature)
         }
         return available
     }
 
     /**
-    * Display feature availability report
-    * @returns {void}
-    */
+     * Display feature availability report
+     * @returns {void}
+     */
     static ShowFeatureReport() {
         report := "OS Feature Availability Report`n"
         report .= "==============================`n"
@@ -364,7 +364,7 @@ class OSFeatureDetector {
             status := available ? "✓" : "✗"
             report .= status " " feature
             if !available
-            report .= " (requires " required ")"
+                report .= " (requires " required ")"
             report .= "`n"
         }
 
@@ -372,37 +372,37 @@ class OSFeatureDetector {
     }
 }
 
-^!f::OSFeatureDetector.ShowFeatureReport()
+^!f:: OSFeatureDetector.ShowFeatureReport()
 
 /**
-* ============================================================================
-* Example 5: Administrator Rights Detection and Requirement
-* ============================================================================
-*
-* @description Handle administrator privilege requirements
-* @concept UAC, privilege elevation, admin detection
-*/
+ * ============================================================================
+ * Example 5: Administrator Rights Detection and Requirement
+ * ============================================================================
+ * 
+ * @description Handle administrator privilege requirements
+ * @concept UAC, privilege elevation, admin detection
+ */
 
 /**
-* Administrator rights manager
-* @class
-*/
+ * Administrator rights manager
+ * @class
+ */
 class AdminManager {
     /**
-    * Check if running as administrator
-    * @returns {Boolean} True if admin
-    */
+     * Check if running as administrator
+     * @returns {Boolean} True if admin
+     */
     static IsAdmin() {
         return A_IsAdmin
     }
 
     /**
-    * Request administrator elevation
-    * @returns {void}
-    */
+     * Request administrator elevation
+     * @returns {void}
+     */
     static RequestElevation() {
         if (this.IsAdmin())
-        return
+            return
 
         msg := "Administrator Rights Required`n"
         msg .= "=============================`n`n"
@@ -422,10 +422,10 @@ class AdminManager {
     }
 
     /**
-    * Require administrator rights
-    * @param {Boolean} strict - Exit if not admin
-    * @returns {Boolean} True if admin
-    */
+     * Require administrator rights
+     * @param {Boolean} strict - Exit if not admin
+     * @returns {Boolean} True if admin
+     */
     static RequireAdmin(strict := false) {
         if (!this.IsAdmin()) {
             if strict {
@@ -440,9 +440,9 @@ class AdminManager {
     }
 
     /**
-    * Show admin warning
-    * @returns {void}
-    */
+     * Show admin warning
+     * @returns {void}
+     */
     static ShowAdminWarning() {
         msg := "Limited Functionality Warning`n"
         msg .= "=============================`n`n"
@@ -454,9 +454,9 @@ class AdminManager {
     }
 
     /**
-    * Display privilege information
-    * @returns {void}
-    */
+     * Display privilege information
+     * @returns {void}
+     */
     static ShowPrivilegeInfo() {
         msg := "Privilege Information`n"
         msg .= "=====================`n`n"
@@ -475,27 +475,27 @@ class AdminManager {
     }
 }
 
-^!p::AdminManager.ShowPrivilegeInfo()
-^!+a::AdminManager.RequestElevation()
+^!p:: AdminManager.ShowPrivilegeInfo()
+^!+a:: AdminManager.RequestElevation()
 
 /**
-* ============================================================================
-* Example 6: Regional and Language Settings
-* ============================================================================
-*
-* @description Detect and handle regional/language requirements
-* @concept Localization, regional settings, language detection
-*/
+ * ============================================================================
+ * Example 6: Regional and Language Settings
+ * ============================================================================
+ * 
+ * @description Detect and handle regional/language requirements
+ * @concept Localization, regional settings, language detection
+ */
 
 /**
-* Regional settings detector
-* @class
-*/
+ * Regional settings detector
+ * @class
+ */
 class RegionalSettings {
     /**
-    * Get regional information
-    * @returns {Object} Regional settings
-    */
+     * Get regional information
+     * @returns {Object} Regional settings
+     */
     static GetRegionalInfo() {
         return {
             Language: A_Language,
@@ -507,9 +507,9 @@ class RegionalSettings {
     }
 
     /**
-    * Get timezone information
-    * @returns {String} Timezone description
-    */
+     * Get timezone information
+     * @returns {String} Timezone description
+     */
     static GetTimezone() {
         ; Calculate UTC offset
         utc := A_NowUTC
@@ -520,34 +520,34 @@ class RegionalSettings {
     }
 
     /**
-    * Get language name
-    * @param {String} langCode - Language code
-    * @returns {String} Language name
-    */
+     * Get language name
+     * @param {String} langCode - Language code
+     * @returns {String} Language name
+     */
     static GetLanguageName(langCode := "") {
         if (langCode = "")
-        langCode := A_Language
+            langCode := A_Language
 
         languages := Map(
-        "0409", "English (United States)",
-        "0809", "English (United Kingdom)",
-        "0407", "German",
-        "040C", "French",
-        "0410", "Italian",
-        "0C0A", "Spanish",
-        "0416", "Portuguese (Brazil)",
-        "0411", "Japanese",
-        "0804", "Chinese (Simplified)",
-        "0404", "Chinese (Traditional)"
+            "0409", "English (United States)",
+            "0809", "English (United Kingdom)",
+            "0407", "German",
+            "040C", "French",
+            "0410", "Italian",
+            "0C0A", "Spanish",
+            "0416", "Portuguese (Brazil)",
+            "0411", "Japanese",
+            "0804", "Chinese (Simplified)",
+            "0404", "Chinese (Traditional)"
         )
 
         return languages.Get(langCode, "Unknown (" langCode ")")
     }
 
     /**
-    * Display regional information
-    * @returns {void}
-    */
+     * Display regional information
+     * @returns {void}
+     */
     static ShowRegionalInfo() {
         info := this.GetRegionalInfo()
 
@@ -565,21 +565,21 @@ class RegionalSettings {
     }
 }
 
-^!l::RegionalSettings.ShowRegionalInfo()
+^!l:: RegionalSettings.ShowRegionalInfo()
 
 /**
-* ============================================================================
-* Example 7: Complete System Requirements Checker
-* ============================================================================
-*
-* @description Comprehensive system requirements validation
-* @concept Complete validation, system compatibility
-*/
+ * ============================================================================
+ * Example 7: Complete System Requirements Checker
+ * ============================================================================
+ * 
+ * @description Comprehensive system requirements validation
+ * @concept Complete validation, system compatibility
+ */
 
 /**
-* Complete system requirements checker
-* @class
-*/
+ * Complete system requirements checker
+ * @class
+ */
 class SystemRequirements {
     static Requirements := {
         MinAHKVersion: "2.0.0",
@@ -591,9 +591,9 @@ class SystemRequirements {
     }
 
     /**
-    * Check all system requirements
-    * @returns {Object} Requirement check results
-    */
+     * Check all system requirements
+     * @returns {Object} Requirement check results
+     */
     static CheckAll() {
         results := {
             AHKVersion: this.CheckAHKVersion(),
@@ -604,59 +604,59 @@ class SystemRequirements {
         }
 
         results.PassedAll := results.AHKVersion
-        && results.OSVersion
-        && results.Architecture
-        && results.AdminRights
+            && results.OSVersion
+            && results.Architecture
+            && results.AdminRights
 
         return results
     }
 
     /**
-    * Check AHK version requirement
-    * @returns {Boolean} True if requirement met
-    */
+     * Check AHK version requirement
+     * @returns {Boolean} True if requirement met
+     */
     static CheckAHKVersion() {
         return VersionChecker.CompareVersions(
-        A_AhkVersion,
-        this.Requirements.MinAHKVersion
+            A_AhkVersion,
+            this.Requirements.MinAHKVersion
         ) >= 0
     }
 
     /**
-    * Check OS version requirement
-    * @returns {Boolean} True if requirement met
-    */
+     * Check OS version requirement
+     * @returns {Boolean} True if requirement met
+     */
     static CheckOSVersion() {
         return OSRequirements.CompareVersions(
-        A_OSVersion,
-        this.Requirements.MinOSVersion
+            A_OSVersion,
+            this.Requirements.MinOSVersion
         ) >= 0
     }
 
     /**
-    * Check architecture requirement
-    * @returns {Boolean} True if requirement met
-    */
+     * Check architecture requirement
+     * @returns {Boolean} True if requirement met
+     */
     static CheckArchitecture() {
         if (this.Requirements.Require64Bit)
-        return A_Is64bitOS
+            return A_Is64bitOS
         return true
     }
 
     /**
-    * Check admin rights requirement
-    * @returns {Boolean} True if requirement met
-    */
+     * Check admin rights requirement
+     * @returns {Boolean} True if requirement met
+     */
     static CheckAdminRights() {
         if (this.Requirements.RequireAdmin)
-        return A_IsAdmin
+            return A_IsAdmin
         return true
     }
 
     /**
-    * Display complete requirements report
-    * @returns {void}
-    */
+     * Display complete requirements report
+     * @returns {void}
+     */
     static ShowRequirementsReport() {
         results := this.CheckAll()
 
@@ -677,34 +677,34 @@ class SystemRequirements {
         status := results.Architecture ? "✓" : "✗"
         report .= status " Architecture: " (A_Is64bitOS ? "64-bit" : "32-bit")
         if (this.Requirements.Require64Bit)
-        report .= " (64-bit required)"
+            report .= " (64-bit required)"
         report .= "`n"
 
         ; Admin Rights
         status := results.AdminRights ? "✓" : "✗"
         report .= status " Administrator: " (A_IsAdmin ? "Yes" : "No")
         if (this.Requirements.RequireAdmin)
-        report .= " (required)"
+            report .= " (required)"
         report .= "`n`n"
 
         ; Overall result
         if (results.PassedAll)
-        report .= "✓ All requirements met!"
+            report .= "✓ All requirements met!"
         else
-        report .= "✗ Some requirements not met"
+            report .= "✗ Some requirements not met"
 
         icon := results.PassedAll ? "Iconi" : "Icon!"
         MsgBox(report, "Requirements Check", icon)
     }
 }
 
-^!s::SystemRequirements.ShowRequirementsReport()
+^!s:: SystemRequirements.ShowRequirementsReport()
 
 /**
-* ============================================================================
-* STARTUP VALIDATION
-* ============================================================================
-*/
+ * ============================================================================
+ * STARTUP VALIDATION
+ * ============================================================================
+ */
 
 ; Perform startup checks
 StartupValidation() {
@@ -730,9 +730,9 @@ StartupValidation()
 TrayTip("OS: " GetOSName(), "Script Ready", "Iconi Mute")
 
 /**
-* Help hotkey
-*/
-^!h::{
+ * Help hotkey
+ */
+^!h:: {
     help := "OS Requirements Script - Hotkeys`n"
     help .= "================================`n`n"
     help .= "^!o - Show OS Information`n"

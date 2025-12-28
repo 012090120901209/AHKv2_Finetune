@@ -12,15 +12,15 @@
 
 DemoImagePutWindow() {
     MsgBox("ImagePut Window Demonstration`n`n"
-    "Display images from various sources:`n"
-    "- Files: ImagePutWindow('photo.jpg')`n"
-    "- URLs: ImagePutWindow('https://example.com/image.png')`n"
-    "- Screenshots: ImagePutWindow([0,0,500,500])`n"
-    "- Clipboard: ImagePutWindow('clipboard')`n`n"
-    "Supported formats:`n"
-    "BMP, JPG, PNG, GIF, TIFF, WebP, AVIF, HEIC, and more`n`n"
-    "Install: Download from iseahound/ImagePut releases",
-    "ImagePut Demo")
+        "Display images from various sources:`n"
+        "- Files: ImagePutWindow('photo.jpg')`n"
+        "- URLs: ImagePutWindow('https://example.com/image.png')`n"
+        "- Screenshots: ImagePutWindow([0,0,500,500])`n"
+        "- Clipboard: ImagePutWindow('clipboard')`n`n"
+        "Supported formats:`n"
+        "BMP, JPG, PNG, GIF, TIFF, WebP, AVIF, HEIC, and more`n`n"
+        "Install: Download from iseahound/ImagePut releases",
+        "ImagePut Demo")
 }
 
 ; Real implementation examples (commented out, requires library):

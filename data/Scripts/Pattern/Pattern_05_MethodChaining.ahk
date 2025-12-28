@@ -2,36 +2,36 @@
 #SingleInstance Force
 
 /**
-* Method Chaining Pattern (Fluent Interface)
-*
-* Demonstrates how to create chainable methods by returning 'this'.
-* Enables readable, fluent API design.
-*
-* Source: AHK_Notes/Patterns/method-chaining-pattern.md
-*/
+ * Method Chaining Pattern (Fluent Interface)
+ * 
+ * Demonstrates how to create chainable methods by returning 'this'.
+ * Enables readable, fluent API design.
+ * 
+ * Source: AHK_Notes/Patterns/method-chaining-pattern.md
+ */
 
 ; Example: Configuration Builder with Method Chaining
 config := ConfigBuilder()
-.SetSize(1024, 768)
-.SetTitle("My Application")
-.SetTheme("Dark")
-.SetFontSize(12)
-.Build()
+    .SetSize(1024, 768)
+    .SetTitle("My Application")
+    .SetTheme("Dark")
+    .SetFontSize(12)
+    .Build()
 
 ; Create a GUI with the configuration
 myGui := Gui("+Resize", config.Title)
 myGui.BackColor := (config.Theme = "Dark") ? "333333" : "FFFFFF"
 myGui.SetFont("s" config.FontSize)
 myGui.AddText("c" (config.Theme = "Dark" ? "FFFFFF" : "000000"),
-"Window Size: " config.Width "x" config.Height "`n"
-. "Theme: " config.Theme "`n"
-. "Font Size: " config.FontSize)
+    "Window Size: " config.Width "x" config.Height "`n"
+    . "Theme: " config.Theme "`n"
+    . "Font Size: " config.FontSize)
 myGui.Show("w" config.Width " h" config.Height)
 
 /**
-* Configuration Builder Class
-* Demonstrates fluent interface pattern
-*/
+ * Configuration Builder Class
+ * Demonstrates fluent interface pattern
+ */
 class ConfigBuilder {
     ; Internal properties with defaults
     Width := 800
@@ -41,9 +41,9 @@ class ConfigBuilder {
     FontSize := 10
 
     /**
-    * Chainable method: Set window size
-    * Returns 'this' to enable chaining
-    */
+     * Chainable method: Set window size
+     * Returns 'this' to enable chaining
+     */
     SetSize(width, height) {
         this.Width := width
         this.Height := height
@@ -51,33 +51,33 @@ class ConfigBuilder {
     }
 
     /**
-    * Chainable method: Set window title
-    */
+     * Chainable method: Set window title
+     */
     SetTitle(title) {
         this.Title := title
         return this  ; ← Return this for chaining
     }
 
     /**
-    * Chainable method: Set theme
-    */
+     * Chainable method: Set theme
+     */
     SetTheme(theme) {
         this.Theme := theme
         return this  ; ← Return this for chaining
     }
 
     /**
-    * Chainable method: Set font size
-    */
+     * Chainable method: Set font size
+     */
     SetFontSize(size) {
         this.FontSize := size
         return this  ; ← Return this for chaining
     }
 
     /**
-    * Terminal method: Build final configuration
-    * Returns configuration object (not 'this')
-    */
+     * Terminal method: Build final configuration
+     * Returns configuration object (not 'this')
+     */
     Build() {
         return {
             Width: this.Width,
@@ -132,3 +132,4 @@ class ConfigBuilder {
 *    - Keep methods focused and simple
 *    - Document which methods are chainable
 */
+

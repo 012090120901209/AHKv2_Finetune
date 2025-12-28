@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Edit_08_UndoRedo.ahk
-*
-* DESCRIPTION:
-* Undo/redo functionality and history management
-*
-* FEATURES:
-* - 5-7 detailed practical examples
-* - Comprehensive event handling
-* - Real-world use cases
-* - Helper functions and utilities
-* - Complete reference documentation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Edit.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Modern v2 syntax
-* - Object-oriented approach
-* - Event-driven programming
-* - Method chaining
-*
-* LEARNING POINTS:
-* 1. Edit control creation and manipulation
-* 2. Event handling and callbacks
-* 3. Property management
-* 4. Best practices and patterns
-* 5. Common use cases and solutions
-*/
+ * BuiltIn_Edit_08_UndoRedo.ahk
+ * 
+ * DESCRIPTION:
+ * Undo/redo functionality and history management
+ * 
+ * FEATURES:
+ * - 5-7 detailed practical examples
+ * - Comprehensive event handling
+ * - Real-world use cases
+ * - Helper functions and utilities
+ * - Complete reference documentation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Edit.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Modern v2 syntax
+ * - Object-oriented approach
+ * - Event-driven programming
+ * - Method chaining
+ * 
+ * LEARNING POINTS:
+ * 1. Edit control creation and manipulation
+ * 2. Event handling and callbacks
+ * 3. Property management
+ * 4. Best practices and patterns
+ * 5. Common use cases and solutions
+ */
 
 
 ;=============================================================================
@@ -55,7 +55,7 @@ Example1_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 1: UndoRedo - Edit control demonstration")
+        "Example 1: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange1)
@@ -98,7 +98,7 @@ Example2_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 2: UndoRedo - Edit control demonstration")
+        "Example 2: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange2)
@@ -141,7 +141,7 @@ Example3_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 3: UndoRedo - Edit control demonstration")
+        "Example 3: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange3)
@@ -184,7 +184,7 @@ Example4_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 4: UndoRedo - Edit control demonstration")
+        "Example 4: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange4)
@@ -227,7 +227,7 @@ Example5_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 5: UndoRedo - Edit control demonstration")
+        "Example 5: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange5)
@@ -270,7 +270,7 @@ Example6_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 6: UndoRedo - Edit control demonstration")
+        "Example 6: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange6)
@@ -313,7 +313,7 @@ Example7_UndoRedo() {
 
     ; Additional features
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Example 7: UndoRedo - Edit control demonstration")
+        "Example 7: UndoRedo - Edit control demonstration")
 
     ; Event handlers
     editCtrl.OnEvent("Change", OnChange7)
@@ -392,3 +392,4 @@ PERFORMANCE TIPS:
 ; Example5_UndoRedo()
 ; Example6_UndoRedo()
 ; Example7_UndoRedo()
+

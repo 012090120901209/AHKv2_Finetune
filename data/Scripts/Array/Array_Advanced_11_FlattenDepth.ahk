@@ -3,28 +3,28 @@
 #Include JSON.ahk
 
 /**
-* FlattenDepth() - Flatten to specific depth
-*
-* Demonstrates: Controlled recursion with depth parameter
-* Professional pattern for limited depth traversal
-*/
+ * FlattenDepth() - Flatten to specific depth
+ * 
+ * Demonstrates: Controlled recursion with depth parameter
+ * Professional pattern for limited depth traversal
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
 CloneArray(arr) {
     out := []
     for v in arr
-    out.Push(v)
+        out.Push(v)
     return out
 }
 
 FlattenDepth(arr, depth := 1) {
     if depth <= 0
-    return CloneArray(arr)
+        return CloneArray(arr)
 
     arr := ToArray(arr)
     out := []
@@ -34,7 +34,7 @@ FlattenDepth(arr, depth := 1) {
             ; Recursively flatten with decremented depth
             flat := FlattenDepth(v, depth - 1)
             for x in flat
-            out.Push(x)
+                out.Push(x)
         } else {
             out.Push(v)
         }
@@ -56,6 +56,6 @@ result4 := FlattenDepth([[1], [[2]], [[[3]]]], 2)
 ; => [1, 2, [3]]
 
 MsgBox("Depth 1: " JSON.stringify(result1) "`n`n"
-. "Depth 2: " JSON.stringify(result2) "`n`n"
-. "Depth 3: " JSON.stringify(result3) "`n`n"
-. "Complex depth 2: " JSON.stringify(result4))
+    . "Depth 2: " JSON.stringify(result2) "`n`n"
+    . "Depth 3: " JSON.stringify(result3) "`n`n"
+    . "Complex depth 2: " JSON.stringify(result4))

@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlSetChecked - Set Checkbox/Radio State
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlSetChecked - Set Checkbox/Radio State
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -93,18 +93,18 @@ Example4() {
 
     checks := []
     loop 5
-    checks.Push(MyGui.Add("Checkbox", "xm y+10", "Option " . A_Index))
+        checks.Push(MyGui.Add("Checkbox", "xm y+10", "Option " . A_Index))
     BtnCheckAll := MyGui.Add("Button", "xm y+20 w140", "Check All")
     BtnCheckAll.OnEvent("Click", CheckAll)
     BtnUncheckAll := MyGui.Add("Button", "x+10 w140", "Uncheck All")
     BtnUncheckAll.OnEvent("Click", UncheckAll)
     CheckAll(*) {
         for check in checks
-        ControlSetChecked(true, check)
+            ControlSetChecked(true, check)
     }
     UncheckAll(*) {
         for check in checks
-        ControlSetChecked(false, check)
+            ControlSetChecked(false, check)
     }
 
     MyGui.Show()
@@ -123,9 +123,9 @@ Example5() {
     Input.OnEvent("Change", Validate)
     Validate(ctrl, *) {
         if (StrLen(ctrl.Value) > 5)
-        ControlSetChecked(true, AutoCheck)
+            ControlSetChecked(true, AutoCheck)
         else
-        ControlSetChecked(false, AutoCheck)
+            ControlSetChecked(false, AutoCheck)
     }
 
     MyGui.Show()
@@ -168,20 +168,20 @@ Example7() {
     Master := MyGui.Add("Checkbox", "xm y+20", "Select All")
     children := []
     loop 4
-    children.Push(MyGui.Add("Checkbox", "xm y+10", "Item " . A_Index))
+        children.Push(MyGui.Add("Checkbox", "xm y+10", "Item " . A_Index))
     Master.OnEvent("Click", UpdateChildren)
     for child in children
-    child.OnEvent("Click", UpdateMaster)
+        child.OnEvent("Click", UpdateMaster)
     UpdateChildren(*) {
         state := ControlGetChecked(Master)
         for child in children
-        ControlSetChecked(state, child)
+            ControlSetChecked(state, child)
     }
     UpdateMaster(*) {
         allChecked := true
         for child in children
-        if (!ControlGetChecked(child))
-        allChecked := false
+            if (!ControlGetChecked(child))
+                allChecked := false
         ControlSetChecked(allChecked, Master)
     }
 
@@ -197,13 +197,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Set Checked",
-"Example 2: Toggle Checked",
-"Example 3: Set Radio Selection",
-"Example 4: Check All",
-"Example 5: Conditional Check",
-"Example 6: Three-State Check",
-"Example 7: Master Checkbox",
+    "Example 1: Basic Set Checked",
+    "Example 2: Toggle Checked",
+    "Example 3: Set Radio Selection",
+    "Example 4: Check All",
+    "Example 5: Conditional Check",
+    "Example 6: Three-State Check",
+    "Example 7: Master Checkbox",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

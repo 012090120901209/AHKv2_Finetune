@@ -14,7 +14,7 @@ class Lazy {
         this._evaluated := false
         this._value := ""
     }
-    
+
     ; Force evaluation
     Value {
         get {
@@ -25,13 +25,13 @@ class Lazy {
             return this._value
         }
     }
-    
+
     ; Check without forcing
     IsEvaluated => this._evaluated
-    
+
     ; Map without forcing
     Map(fn) => Lazy(() => fn(this.Value))
-    
+
     ; FlatMap for chaining
     FlatMap(fn) => Lazy(() => fn(this.Value).Value)
 }
@@ -50,45 +50,45 @@ class LazySeq {
         this._tailEvaluated := false
         this._tail := ""
     }
-    
+
     ; Static constructors
-    static Empty() => {isEmpty: true}
-    
+    static Empty() => { isEmpty: true }
+
     static Cons(head, tail) => LazySeq(head, () => tail)
-    
+
     static From(fn, state := 0) {
         ; Infinite sequence from generator
         return LazySeq(fn(state), () => LazySeq.From(fn, state + 1))
     }
-    
+
     static Range(start, end := unset, step := 1) {
         if !IsSet(end)
             return LazySeq.From((i) => start + i * step)  ; Infinite
-        
+
         if start > end && step > 0
             return LazySeq.Empty()
         if start < end && step < 0
             return LazySeq.Empty()
         if start = end
             return LazySeq(start, () => LazySeq.Empty())
-        
+
         return LazySeq(start, () => LazySeq.Range(start + step, end, step))
     }
-    
+
     static Repeat(value) => LazySeq(value, () => LazySeq.Repeat(value))
-    
+
     static Cycle(arr) {
         iterate(idx) {
             return LazySeq(arr[idx], () => iterate(Mod(idx, arr.Length) + 1))
         }
         return iterate(1)
     }
-    
+
     ; Properties
     IsEmpty => this.HasOwnProp("isEmpty") && this.isEmpty
-    
+
     Head => this._head
-    
+
     Tail {
         get {
             if !this._tailEvaluated {
@@ -98,25 +98,25 @@ class LazySeq {
             return this._tail
         }
     }
-    
+
     ; Take n elements
     Take(n) {
         if n <= 0 || this.IsEmpty
             return []
-        
+
         result := [this.Head]
         current := this.Tail
-        
+
         loop n - 1 {
             if current.IsEmpty
                 break
             result.Push(current.Head)
             current := current.Tail
         }
-        
+
         return result
     }
-    
+
     ; Drop n elements
     Drop(n) {
         current := this
@@ -127,32 +127,32 @@ class LazySeq {
         }
         return current
     }
-    
+
     ; Map (lazy)
     Map(fn) {
         if this.IsEmpty
             return LazySeq.Empty()
         return LazySeq(fn(this.Head), () => this.Tail.Map(fn))
     }
-    
+
     ; Filter (lazy)
     Filter(pred) {
         if this.IsEmpty
             return LazySeq.Empty()
-        
+
         if pred(this.Head)
             return LazySeq(this.Head, () => this.Tail.Filter(pred))
-        
+
         return this.Tail.Filter(pred)
     }
-    
+
     ; TakeWhile (lazy)
     TakeWhile(pred) {
         if this.IsEmpty || !pred(this.Head)
             return LazySeq.Empty()
         return LazySeq(this.Head, () => this.Tail.TakeWhile(pred))
     }
-    
+
     ; DropWhile (lazy but forces until condition fails)
     DropWhile(pred) {
         current := this
@@ -160,26 +160,26 @@ class LazySeq {
             current := current.Tail
         return current
     }
-    
+
     ; Zip with another lazy sequence
     Zip(other) {
         if this.IsEmpty || other.IsEmpty
             return LazySeq.Empty()
         return LazySeq([this.Head, other.Head], () => this.Tail.Zip(other.Tail))
     }
-    
+
     ; Fold (forces entire sequence up to n elements)
     Fold(initial, fn, maxElements := 1000) {
         acc := initial
         current := this
         count := 0
-        
+
         while !current.IsEmpty && count < maxElements {
             acc := fn(acc, current.Head)
             current := current.Tail
             count++
         }
-        
+
         return acc
     }
 }
@@ -193,7 +193,7 @@ class MemoizedRec {
         this.cache := Map()
         this.fn := fn
     }
-    
+
     Call(n) {
         if !this.cache.Has(n)
             this.cache[n] := this.fn(this, n)
@@ -202,7 +202,7 @@ class MemoizedRec {
 }
 
 ; Memoized fibonacci
-MemoFib := MemoizedRec((self, n) => n <= 1 ? n : self.Call(n-1) + self.Call(n-2))
+MemoFib := MemoizedRec((self, n) => n <= 1 ? n : self.Call(n - 1) + self.Call(n - 2))
 
 ; =============================================================================
 ; 4. Lazy Property Pattern
@@ -213,7 +213,7 @@ class LazyProperties {
         this._cache := Map()
         this._initializers := Map()
     }
-    
+
     ; Define lazy property
     DefineLazy(name, initializer) {
         this._initializers[name] := initializer
@@ -221,7 +221,7 @@ class LazyProperties {
             Get: (self) => self._getLazy(name)
         })
     }
-    
+
     _getLazy(name) {
         if !this._cache.Has(name) {
             if this._initializers.Has(name)
@@ -229,7 +229,7 @@ class LazyProperties {
         }
         return this._cache.Get(name, "")
     }
-    
+
     ; Invalidate cached value
     Invalidate(name) {
         if this._cache.Has(name)
@@ -249,9 +249,9 @@ class LazyTree {
         this._childrenEvaluated := false
         this._children := []
     }
-    
+
     Value => this._value
-    
+
     Children {
         get {
             if !this._childrenEvaluated {
@@ -261,22 +261,22 @@ class LazyTree {
             return this._children
         }
     }
-    
+
     ; Breadth-first traversal with depth limit
     BFS(maxDepth := 10) {
         result := []
-        queue := [{node: this, depth: 0}]
-        
+        queue := [{ node: this, depth: 0 }]
+
         while queue.Length > 0 {
             item := queue.RemoveAt(1)
             result.Push(item.node.Value)
-            
+
             if item.depth < maxDepth {
                 for child in item.node.Children
-                    queue.Push({node: child, depth: item.depth + 1})
+                    queue.Push({ node: child, depth: item.depth + 1 })
             }
         }
-        
+
         return result
     }
 }
@@ -292,33 +292,33 @@ class Generator {
         this._done := false
         this._state := Map()
     }
-    
+
     ; Yield value (called from generator function)
     Yield(value) {
         this._yielded.Push(value)
     }
-    
+
     ; Get next value
     Next() {
         if this._yielded.Length > 0
-            return {value: this._yielded.RemoveAt(1), done: false}
-        
+            return { value: this._yielded.RemoveAt(1), done: false }
+
         if this._done
-            return {done: true}
-        
+            return { done: true }
+
         try {
             this._genFn(this, this._state)
         } catch Error {
             this._done := true
         }
-        
+
         if this._yielded.Length > 0
-            return {value: this._yielded.RemoveAt(1), done: false}
-        
+            return { value: this._yielded.RemoveAt(1), done: false }
+
         this._done := true
-        return {done: true}
+        return { done: true }
     }
-    
+
     ; Collect all (up to limit)
     ToArray(limit := 1000) {
         result := []
@@ -342,23 +342,23 @@ class LazyString {
         this._evaluated := ""
         this._isEvaluated := false
     }
-    
+
     ; Lazy concatenation
     Concat(other) {
         newParts := []
         for p in this._parts
             newParts.Push(p)
-        
+
         if other is LazyString {
             for p in other._parts
                 newParts.Push(p)
         } else {
             newParts.Push(other)
         }
-        
+
         return LazyString(newParts)
     }
-    
+
     ; Force evaluation
     ToString() {
         if !this._isEvaluated {
@@ -374,7 +374,7 @@ class LazyString {
         }
         return this._evaluated
     }
-    
+
     ; Map each part lazily
     Map(fn) {
         newParts := []
@@ -386,7 +386,7 @@ class LazyString {
         }
         return LazyString(newParts)
     }
-    
+
     Length {
         get => StrLen(this.ToString())
     }
@@ -402,37 +402,37 @@ class DemandCache {
         this._values := Map()
         this._dependencies := Map()
     }
-    
+
     ; Register computation with dependencies
     Register(name, deps, compute) {
         this._computations[name] := compute
         this._dependencies[name] := deps
     }
-    
+
     ; Get value (computes on demand)
     Get(name) {
         if this._values.Has(name)
             return this._values[name]
-        
+
         if !this._computations.Has(name)
             throw Error("Unknown computation: " name)
-        
+
         ; Compute dependencies first
         deps := this._dependencies[name]
         depValues := []
         for dep in deps
             depValues.Push(this.Get(dep))
-        
+
         ; Compute and cache
         value := this._computations[name](depValues*)
         this._values[name] := value
         return value
     }
-    
+
     ; Invalidate (cascade to dependents)
     Invalidate(name) {
         this._values.Delete(name)
-        
+
         ; Invalidate anything that depends on this
         for n, deps in this._dependencies {
             for dep in deps {
@@ -494,7 +494,7 @@ MsgBox("Memoized Fib(40): " MemoFib.Call(40))
 class ExpensiveObject extends LazyProperties {
     __New() {
         super.__New()
-        this.DefineLazy("config", () => (Sleep(50), {loaded: true}))
+        this.DefineLazy("config", () => (Sleep(50), { loaded: true }))
         this.DefineLazy("data", () => (Sleep(50), [1, 2, 3, 4, 5]))
     }
 }

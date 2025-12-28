@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Practical Module Example 02: Using Validators Module
-*
-* Demonstrates real-world form and data validation
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Practical_01_Validators.ahk
-*/
+ * Practical Module Example 02: Using Validators Module
+ * 
+ * Demonstrates real-world form and data validation
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Practical_01_Validators.ahk
+ */
 
-#SingleInstance Force
 
 Import { Validator, Validate, Rule, FormValidator, Rules } from Validators
 
@@ -19,11 +19,11 @@ Import { Validator, Validate, Rule, FormValidator, Rules } from Validators
 ; ============================================================
 
 emails := [
-"user@example.com",
-"invalid.email",
-"test@domain.co.uk",
-"@nodomain.com",
-"valid.email+tag@test.com"
+    "user@example.com",
+    "invalid.email",
+    "test@domain.co.uk",
+    "@nodomain.com",
+    "valid.email+tag@test.com"
 ]
 
 output := "Email Validation:`n`n"
@@ -39,10 +39,10 @@ MsgBox(output, "Email Validation", "Icon!")
 ; ============================================================
 
 passwords := [
-"weak",
-"Password123",
-"Str0ng!Pass",
-"VeryS3cure!@#Password"
+    "weak",
+    "Password123",
+    "Str0ng!Pass",
+    "VeryS3cure!@#Password"
 ]
 
 passOutput := "Password Strength Analysis:`n`n"
@@ -52,7 +52,7 @@ for password in passwords {
 
     if result.feedback.Length > 0 {
         for tip in result.feedback
-        passOutput .= "  • " tip "`n"
+            passOutput .= "  • " tip "`n"
     }
     passOutput .= "`n"
 }
@@ -67,9 +67,9 @@ MsgBox(passOutput, "Password Strength", "Icon!")
 username := "ab"
 
 result := Validate(username,
-Rule((v) => Validator.MinLength(v, 3), "Username must be at least 3 characters"),
-Rule((v) => Validator.MaxLength(v, 20), "Username must be no more than 20 characters"),
-Rule((v) => Validator.Matches(v, "^[a-zA-Z0-9_]+$"), "Username can only contain letters, numbers, and underscores")
+    Rule((v) => Validator.MinLength(v, 3), "Username must be at least 3 characters"),
+    Rule((v) => Validator.MaxLength(v, 20), "Username must be no more than 20 characters"),
+    Rule((v) => Validator.Matches(v, "^[a-zA-Z0-9_]+$"), "Username can only contain letters, numbers, and underscores")
 )
 
 if result.isValid {
@@ -77,7 +77,7 @@ if result.isValid {
 } else {
     errMsg := "Username '" username "' is invalid:`n`n"
     for error in result.errors
-    errMsg .= "• " error "`n"
+        errMsg .= "• " error "`n"
     MsgBox(errMsg, "Validation Failed", "Icon!")
 }
 
@@ -90,29 +90,29 @@ form := FormValidator()
 
 ; Add fields with validation rules
 form.AddField("email",
-"invalid.email",
-Rules.Required(),
-Rules.Email()
+    "invalid.email",
+    Rules.Required(),
+    Rules.Email()
 )
 
 form.AddField("password",
-"weak",
-Rules.Required(),
-Rules.MinLength(8),
-Rules.StrongPassword()
+    "weak",
+    Rules.Required(),
+    Rules.MinLength(8),
+    Rules.StrongPassword()
 )
 
 form.AddField("username",
-"validuser123",
-Rules.Required(),
-Rules.MinLength(3),
-Rules.MaxLength(20)
+    "validuser123",
+    Rules.Required(),
+    Rules.MinLength(3),
+    Rules.MaxLength(20)
 )
 
 form.AddField("age",
-"150",
-Rules.Required(),
-Rules.Range(1, 120)
+    "150",
+    Rules.Required(),
+    Rules.Range(1, 120)
 )
 
 ; Validate all fields
@@ -126,7 +126,7 @@ if isValid {
     for fieldName, errors in form.GetAllErrors() {
         formErrors .= fieldName ":`n"
         for error in errors
-        formErrors .= "  • " error "`n"
+            formErrors .= "  • " error "`n"
         formErrors .= "`n"
     }
 
@@ -149,72 +149,72 @@ class RegistrationForm {
 
         ; Email validation
         this.validator.AddField("email",
-        data.email,
-        Rules.Required(),
-        Rules.Email()
+            data.email,
+            Rules.Required(),
+            Rules.Email()
         )
 
         ; Password validation
         this.validator.AddField("password",
-        data.password,
-        Rules.Required(),
-        Rules.MinLength(8),
-        Rule(
-        (v) => Validator.Matches(v, "[A-Z]"),
-        "Password must contain uppercase letter"
-        ),
-        Rule(
-        (v) => Validator.Matches(v, "[a-z]"),
-        "Password must contain lowercase letter"
-        ),
-        Rule(
-        (v) => Validator.Matches(v, "\d"),
-        "Password must contain number"
-        )
+            data.password,
+            Rules.Required(),
+            Rules.MinLength(8),
+            Rule(
+                (v) => Validator.Matches(v, "[A-Z]"),
+                "Password must contain uppercase letter"
+            ),
+            Rule(
+                (v) => Validator.Matches(v, "[a-z]"),
+                "Password must contain lowercase letter"
+            ),
+            Rule(
+                (v) => Validator.Matches(v, "\d"),
+                "Password must contain number"
+            )
         )
 
         ; Password confirmation
         this.validator.AddField("passwordConfirm",
-        data.passwordConfirm,
-        Rules.Required(),
-        Rule(
-        (v) => v = data.password,
-        "Passwords must match"
-        )
+            data.passwordConfirm,
+            Rules.Required(),
+            Rule(
+                (v) => v = data.password,
+                "Passwords must match"
+            )
         )
 
         ; Username validation
         this.validator.AddField("username",
-        data.username,
-        Rules.Required(),
-        Rules.MinLength(3),
-        Rules.MaxLength(20),
-        Rule(
-        (v) => Validator.Matches(v, "^[a-zA-Z0-9_]+$"),
-        "Username can only contain letters, numbers, and underscores"
-        ),
-        Rule(
-        (v) => !Validator.Matches(v, "^_"),
-        "Username cannot start with underscore"
-        )
+            data.username,
+            Rules.Required(),
+            Rules.MinLength(3),
+            Rules.MaxLength(20),
+            Rule(
+                (v) => Validator.Matches(v, "^[a-zA-Z0-9_]+$"),
+                "Username can only contain letters, numbers, and underscores"
+            ),
+            Rule(
+                (v) => !Validator.Matches(v, "^_"),
+                "Username cannot start with underscore"
+            )
         )
 
         ; Age validation
         this.validator.AddField("age",
-        data.age,
-        Rules.Required(),
-        Rule(
-        (v) => Validator.IsInteger(v),
-        "Age must be a number"
-        ),
-        Rules.Range(13, 120)
+            data.age,
+            Rules.Required(),
+            Rule(
+                (v) => Validator.IsInteger(v),
+                "Age must be a number"
+            ),
+            Rules.Range(13, 120)
         )
 
         ; Phone validation (optional)
         if data.phone != "" {
             this.validator.AddField("phone",
-            data.phone,
-            Rules.Phone()
+                data.phone,
+                Rules.Phone()
             )
         }
 
@@ -248,7 +248,7 @@ if !regForm.ValidateRegistration(testData1) {
     for field, errors in regForm.GetErrors() {
         msg .= field ":`n"
         for error in errors
-        msg .= "  • " error "`n"
+            msg .= "  • " error "`n"
     }
     MsgBox(msg, "Test Case 1 - Invalid Data", "Icon!")
 }
@@ -265,7 +265,7 @@ testData2 := {
 
 if regForm.ValidateRegistration(testData2) {
     MsgBox("Registration successful!`n`nAll fields are valid.",
-    "Test Case 2 - Valid Data", "Icon!")
+        "Test Case 2 - Valid Data", "Icon!")
 }
 
 ; ============================================================
@@ -275,22 +275,22 @@ if regForm.ValidateRegistration(testData2) {
 class QuickValidation {
     static ValidateEmail(email) {
         if !Validator.IsEmail(email)
-        return {success: false, message: "Invalid email address"}
-        return {success: true, message: "Email is valid"}
+            return { success: false, message: "Invalid email address" }
+        return { success: true, message: "Email is valid" }
     }
 
     static ValidateURL(url) {
         if !Validator.IsURL(url)
-        return {success: false, message: "Invalid URL"}
-        return {success: true, message: "URL is valid"}
+            return { success: false, message: "Invalid URL" }
+        return { success: true, message: "URL is valid" }
     }
 
     static ValidateAge(age) {
         if !Validator.IsNumeric(age)
-        return {success: false, message: "Age must be a number"}
+            return { success: false, message: "Age must be a number" }
         if !Validator.IsInRange(age, 1, 120)
-        return {success: false, message: "Age must be between 1 and 120"}
-        return {success: true, message: "Age is valid"}
+            return { success: false, message: "Age must be between 1 and 120" }
+        return { success: true, message: "Age is valid" }
     }
 }
 
@@ -300,10 +300,10 @@ urlCheck := QuickValidation.ValidateURL("https://example.com")
 ageCheck := QuickValidation.ValidateAge(25)
 
 MsgBox("Quick Validations:`n`n"
-. "Email: " (emailCheck.success ? "✓" : "✗") " " emailCheck.message "`n"
-. "URL: " (urlCheck.success ? "✓" : "✗") " " urlCheck.message "`n"
-. "Age: " (ageCheck.success ? "✓" : "✗") " " ageCheck.message,
-"Quick Validation", "Icon!")
+    . "Email: " (emailCheck.success ? "✓" : "✗") " " emailCheck.message "`n"
+    . "URL: " (urlCheck.success ? "✓" : "✗") " " urlCheck.message "`n"
+    . "Age: " (ageCheck.success ? "✓" : "✗") " " ageCheck.message,
+    "Quick Validation", "Icon!")
 
 ; ============================================================
 ; Summary

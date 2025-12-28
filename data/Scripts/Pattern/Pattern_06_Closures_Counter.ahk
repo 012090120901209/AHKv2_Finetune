@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Closures Pattern - Counter Factory
-*
-* Demonstrates closures with a counter factory that creates
-* independent counter objects with private state.
-*
-* Source: AHK_Notes/Patterns/closures-in-ahk-v2.md
-*/
+ * Closures Pattern - Counter Factory
+ * 
+ * Demonstrates closures with a counter factory that creates
+ * independent counter objects with private state.
+ * 
+ * Source: AHK_Notes/Patterns/closures-in-ahk-v2.md
+ */
 
 ; Create two independent counters
 MsgBox("Creating two independent counters...`n`n"
-. "Counter A starts at 10`n"
-. "Counter B starts at 100", , "T3")
+    . "Counter A starts at 10`n"
+    . "Counter B starts at 100", , "T3")
 
 counterA := CreateCounter(10)
 counterB := CreateCounter(100)
@@ -24,16 +24,16 @@ counterA.Increment()
 valueA := counterA.GetValue()
 
 MsgBox("Counter A:`n"
-. "Incremented twice`n"
-. "Current value: " valueA, , "T3")
+    . "Incremented twice`n"
+    . "Current value: " valueA, , "T3")
 
 ; Test Counter B
 counterB.Increment()
 valueB := counterB.GetValue()
 
 MsgBox("Counter B:`n"
-. "Incremented once`n"
-. "Current value: " valueB, , "T3")
+    . "Incremented once`n"
+    . "Current value: " valueB, , "T3")
 
 ; Demonstrate independent state
 counterA.Increment()
@@ -41,18 +41,18 @@ counterB.Decrement()
 counterB.Decrement()
 
 MsgBox("After more operations:`n`n"
-. "Counter A: " counterA.GetValue() "`n"
-. "Counter B: " counterB.GetValue(), , "T3")
+    . "Counter A: " counterA.GetValue() "`n"
+    . "Counter B: " counterB.GetValue(), , "T3")
 
 /**
-* CreateCounter - Function Factory
-*
-* Creates a counter object with private state.
-* Each counter maintains independent state via closure.
-*
-* @param startValue - Initial counter value
-* @return Object with increment/decrement/get/reset methods
-*/
+ * CreateCounter - Function Factory
+ * 
+ * Creates a counter object with private state.
+ * Each counter maintains independent state via closure.
+ * 
+ * @param startValue - Initial counter value
+ * @return Object with increment/decrement/get/reset methods
+ */
 CreateCounter(startValue := 0) {
     ; Private variable (captured in closure)
     currentValue := startValue
@@ -151,4 +151,5 @@ CreateCounter(startValue := 0) {
         *     ⚠️  No instanceof checks
         *     ⚠️  Slightly more memory per instance
         *     ⚠️  Harder to debug (hidden state)
-        */
+*/
+

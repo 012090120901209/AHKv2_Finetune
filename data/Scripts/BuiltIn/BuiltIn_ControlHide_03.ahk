@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlHide - Professional UI Management
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlHide - Professional UI Management
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -24,11 +24,11 @@ Example1() {
     pages["About"] := []
     MyGui.Add("Text", "xm y+20", "Current: Home")
     loop 2
-    pages["Home"].Push(MyGui.Add("Edit", "xm y+10 w200", "Home" . A_Index))
+        pages["Home"].Push(MyGui.Add("Edit", "xm y+10 w200", "Home" . A_Index))
     loop 2
-    pages["Settings"].Push(MyGui.Add("Edit", "xm y+10 w200", "Settings" . A_Index))
+        pages["Settings"].Push(MyGui.Add("Edit", "xm y+10 w200", "Settings" . A_Index))
     loop 2
-    pages["About"].Push(MyGui.Add("Edit", "xm y+10 w200", "About" . A_Index))
+        pages["About"].Push(MyGui.Add("Edit", "xm y+10 w200", "About" . A_Index))
     BtnHome := MyGui.Add("Button", "xm y+60 w120", "Home")
     BtnHome.OnEvent("Click", (*) => ShowPage("Home"))
     BtnSettings := MyGui.Add("Button", "x+10 w120", "Settings")
@@ -39,9 +39,9 @@ Example1() {
         for page, controls in pages {
             for ctrl in controls {
                 if (page = name)
-                ControlShow(ctrl)
+                    ControlShow(ctrl)
                 else
-                ControlHide(ctrl)
+                    ControlHide(ctrl)
             }
         }
     }
@@ -69,14 +69,14 @@ Example2() {
         features[name] := !features[name]
         if (name = "beta") {
             if (features["beta"])
-            ControlShow(BetaEdit)
+                ControlShow(BetaEdit)
             else
-            ControlHide(BetaEdit)
+                ControlHide(BetaEdit)
         } else {
             if (features["experimental"])
-            ControlShow(ExpEdit)
+                ControlShow(ExpEdit)
             else
-            ControlHide(ExpEdit)
+                ControlHide(ExpEdit)
         }
     }
     ControlHide(BetaEdit)
@@ -96,24 +96,24 @@ Example3() {
     ViewMode := []
     EditMode := []
     loop 3
-    ViewMode.Push(MyGui.Add("Edit", "w200 y+10 ReadOnly", "View " . A_Index))
+        ViewMode.Push(MyGui.Add("Edit", "w200 y+10 ReadOnly", "View " . A_Index))
     loop 3
-    EditMode.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
+        EditMode.Push(MyGui.Add("Edit", "w200 y+10", "Edit " . A_Index))
     BtnEdit := MyGui.Add("Button", "xm y+40 w140", "Edit Mode")
     BtnEdit.OnEvent("Click", (*) => SetMode("edit"))
     BtnView := MyGui.Add("Button", "x+10 w140", "View Mode")
     BtnView.OnEvent("Click", (*) => SetMode("view"))
     SetMode(mode) {
         for ctrl in ViewMode
-        if (mode = "view")
-        ControlShow(ctrl)
-        else
-        ControlHide(ctrl)
+            if (mode = "view")
+                ControlShow(ctrl)
+            else
+                ControlHide(ctrl)
         for ctrl in EditMode
-        if (mode = "edit")
-        ControlShow(ctrl)
-        else
-        ControlHide(ctrl)
+            if (mode = "edit")
+                ControlShow(ctrl)
+            else
+                ControlHide(ctrl)
     }
     SetMode("view")
 
@@ -131,7 +131,7 @@ Example4() {
     Content := []
     Loader := []
     loop 3
-    Content.Push(MyGui.Add("Edit", "w250 y+10", "Content " . A_Index))
+        Content.Push(MyGui.Add("Edit", "w250 y+10", "Content " . A_Index))
     Loader.Push(MyGui.Add("Text", "xm y+10", "Loading..."))
     BtnLoad := MyGui.Add("Button", "xm y+40 w200", "Load Data")
     BtnLoad.OnEvent("Click", LoadData)
@@ -142,15 +142,15 @@ Example4() {
     }
     ShowLoader() {
         for ctrl in Content
-        ControlHide(ctrl)
+            ControlHide(ctrl)
         for ctrl in Loader
-        ControlShow(ctrl)
+            ControlShow(ctrl)
     }
     ShowContent() {
         for ctrl in Loader
-        ControlHide(ctrl)
+            ControlHide(ctrl)
         for ctrl in Content
-        ControlShow(ctrl)
+            ControlShow(ctrl)
     }
 
     MyGui.Show()
@@ -167,24 +167,24 @@ Example5() {
     FullView := []
     CompactView := []
     loop 4
-    FullView.Push(MyGui.Add("Edit", "w200 y+10", "Full " . A_Index))
+        FullView.Push(MyGui.Add("Edit", "w200 y+10", "Full " . A_Index))
     loop 2
-    CompactView.Push(MyGui.Add("Edit", "w200 y+10", "Compact " . A_Index))
+        CompactView.Push(MyGui.Add("Edit", "w200 y+10", "Compact " . A_Index))
     BtnFull := MyGui.Add("Button", "xm y+60 w140", "Full View")
     BtnFull.OnEvent("Click", (*) => SetView("full"))
     BtnCompact := MyGui.Add("Button", "x+10 w140", "Compact View")
     BtnCompact.OnEvent("Click", (*) => SetView("compact"))
     SetView(view) {
         for ctrl in FullView
-        if (view = "full")
-        ControlShow(ctrl)
-        else
-        ControlHide(ctrl)
+            if (view = "full")
+                ControlShow(ctrl)
+            else
+                ControlHide(ctrl)
         for ctrl in CompactView
-        if (view = "compact")
-        ControlShow(ctrl)
-        else
-        ControlHide(ctrl)
+            if (view = "compact")
+                ControlShow(ctrl)
+            else
+                ControlHide(ctrl)
     }
     SetView("full")
 
@@ -202,9 +202,9 @@ Example6() {
     PublicControls := []
     AdminControls := []
     loop 2
-    PublicControls.Push(MyGui.Add("Edit", "w200 y+10", "Public " . A_Index))
+        PublicControls.Push(MyGui.Add("Edit", "w200 y+10", "Public " . A_Index))
     loop 2
-    AdminControls.Push(MyGui.Add("Edit", "w200 y+10", "Admin " . A_Index))
+        AdminControls.Push(MyGui.Add("Edit", "w200 y+10", "Admin " . A_Index))
     Role := MyGui.Add("DropDownList", "xm y+20 w200", ["Guest", "User", "Admin"])
     Role.Choose(1)
     Role.OnEvent("Change", UpdateAccess)
@@ -212,10 +212,10 @@ Example6() {
         role := Role.Text
         if (role = "Admin") {
             for ctrl in AdminControls
-            ControlShow(ctrl)
+                ControlShow(ctrl)
         } else {
             for ctrl in AdminControls
-            ControlHide(ctrl)
+                ControlHide(ctrl)
         }
     }
     UpdateAccess()
@@ -237,9 +237,9 @@ Example7() {
     Input.OnEvent("Change", Validate)
     Validate(ctrl, *) {
         if (StrLen(ctrl.Value) > 0 && InStr(ctrl.Value, "@"))
-        ControlHide(ErrorMsg)
+            ControlHide(ErrorMsg)
         else if (StrLen(ctrl.Value) > 0)
-        ControlShow(ErrorMsg)
+            ControlShow(ErrorMsg)
     }
 
     MyGui.Show()
@@ -254,13 +254,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Tab-like Interface",
-"Example 2: Feature Flags",
-"Example 3: Form States",
-"Example 4: Loading States",
-"Example 5: Responsive Layout",
-"Example 6: Access Control",
-"Example 7: Error States",
+    "Example 1: Tab-like Interface",
+    "Example 2: Feature Flags",
+    "Example 3: Form States",
+    "Example 4: Loading States",
+    "Example 5: Responsive Layout",
+    "Example 6: Access Control",
+    "Example 7: Error States",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

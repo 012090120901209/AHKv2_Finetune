@@ -16,13 +16,13 @@ dupGui.Show("w590 h395")
 BrowseDir(*) {
     selected := DirSelect(, 3, "Select folder to scan")
     if (selected)
-    folderInput.Value := selected
+        folderInput.Value := selected
 }
 
 ScanDuplicates(*) {
     folder := folderInput.Value
     if (!DirExist(folder))
-    return
+        return
 
     LV.Delete()
     sizeMap := Map()

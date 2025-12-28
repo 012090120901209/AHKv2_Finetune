@@ -6,6 +6,7 @@ vTarget := Buffer(RequestedCapacity, FillByte) ; if 'vTarget' is a UTF-16 string
 (vTarget := Buffer(RequestedCapacity, FillByte)).Size - 0.1 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
 (vTarget := Buffer(RequestedCapacity, FillByte)).Size / 1 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
 (vTarget := Buffer(RequestedCapacity, FillByte)).Size // 4 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
-(vTarget := Buffer(RequestedCapacity, FillByte)).Size*.5 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
-(vTarget := Buffer(RequestedCapacity, FillByte)).Size+0 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
-(vTarget := Buffer(RequestedCapacity, FillByte)).Size-0.1 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
+(vTarget := Buffer(RequestedCapacity, FillByte)).Size * 0.5 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
+(vTarget := Buffer(RequestedCapacity, FillByte)).Size + 0 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
+(vTarget := Buffer(RequestedCapacity, FillByte)).Size - 0.1 ; if 'vTarget' is a UTF-16 string, use 'VarSetStrCapacity(&vTarget, RequestedCapacity)' and replace all instances of 'vTarget.Ptr' with 'StrPtr(vTarget)'
+

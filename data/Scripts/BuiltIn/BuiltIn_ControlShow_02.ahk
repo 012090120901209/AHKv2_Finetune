@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlShow - Advanced Display Control
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlShow - Advanced Display Control
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -30,13 +30,13 @@ Example1() {
         lvl := Level.Text
         ControlShow(Basic)
         if (lvl = "Advanced" || lvl = "Expert")
-        ControlShow(Advanced)
+            ControlShow(Advanced)
         else
-        ControlHide(Advanced)
+            ControlHide(Advanced)
         if (lvl = "Expert")
-        ControlShow(Expert)
+            ControlShow(Expert)
         else
-        ControlHide(Expert)
+            ControlHide(Expert)
     }
 
     MyGui.Show()
@@ -70,7 +70,7 @@ Example2() {
     Btn2.OnEvent("Click", (*) => ShowGroup(Group2))
     ShowGroup(grp) {
         for ctrl in grp
-        ControlShow(ctrl)
+            ControlShow(ctrl)
     }
 
     MyGui.Show()
@@ -184,10 +184,10 @@ Example6() {
     Toggle(*) {
         expanded := !expanded
         for ctrl in Content
-        if (expanded)
-        ControlShow(ctrl)
-        else
-        ControlHide(ctrl)
+            if (expanded)
+                ControlShow(ctrl)
+            else
+                ControlHide(ctrl)
         BtnToggle.Value := expanded ? "Collapse" : "Expand"
     }
 
@@ -212,7 +212,7 @@ Example7() {
     Trigger.OnEvent("Click", Reveal)
     Reveal(*) {
         for ctrl in Hidden
-        ControlShow(ctrl)
+            ControlShow(ctrl)
         Trigger.Enabled := false
     }
 
@@ -228,13 +228,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Smart Reveal",
-"Example 2: Group Reveal",
-"Example 3: Cascade Reveal",
-"Example 4: Wizard Navigation",
-"Example 5: Modal Display",
-"Example 6: Expand/Collapse",
-"Example 7: Delayed Reveal",
+    "Example 1: Smart Reveal",
+    "Example 2: Group Reveal",
+    "Example 3: Cascade Reveal",
+    "Example 4: Wizard Navigation",
+    "Example 5: Modal Display",
+    "Example 6: Expand/Collapse",
+    "Example 7: Delayed Reveal",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

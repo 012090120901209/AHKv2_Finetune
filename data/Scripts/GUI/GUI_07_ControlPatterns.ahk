@@ -2,20 +2,20 @@
 #SingleInstance Force
 
 /**
-* GUI Control Patterns
-*
-* Demonstrates common GUI control patterns: Edit, Button, ListBox, CheckBox,
-* with proper event handling and data management using Maps.
-*
-* Source: AHK_Notes/Concepts/GUI_Controls_and_Patterns.md
-*/
+ * GUI Control Patterns
+ * 
+ * Demonstrates common GUI control patterns: Edit, Button, ListBox, CheckBox,
+ * with proper event handling and data management using Maps.
+ * 
+ * Source: AHK_Notes/Concepts/GUI_Controls_and_Patterns.md
+ */
 
 app := TaskManagerApp()
 app.Show()
 
 /**
-* TaskManagerApp - Simple task manager with GUI controls
-*/
+ * TaskManagerApp - Simple task manager with GUI controls
+ */
 class TaskManagerApp {
     gui := ""
     controls := Map()  ; Store control references
@@ -51,8 +51,8 @@ class TaskManagerApp {
     }
 
     /**
-    * Add task to list
-    */
+     * Add task to list
+     */
     OnAddTask(ctrl, *) {
         taskText := this.controls["taskInput"].Value
 
@@ -75,8 +75,8 @@ class TaskManagerApp {
     }
 
     /**
-    * Remove selected task
-    */
+     * Remove selected task
+     */
     OnRemoveTask(ctrl, *) {
         selectedIndex := this.controls["taskList"].Value
 
@@ -96,8 +96,8 @@ class TaskManagerApp {
     }
 
     /**
-    * Update task list display
-    */
+     * Update task list display
+     */
     UpdateTaskList() {
         ; Clear ListBox
         this.controls["taskList"].Delete()
@@ -113,21 +113,21 @@ class TaskManagerApp {
     }
 
     /**
-    * Handle window close
-    */
+     * Handle window close
+     */
     OnClose(*) {
         if (this.tasks.Length > 0) {
             result := MsgBox("You have " this.tasks.Length " tasks. Really quit?",
-            "Confirm Exit", "YesNo Icon?")
+                "Confirm Exit", "YesNo Icon?")
             if (result == "No")
-            return
+                return
         }
         this.gui.Destroy()
     }
 
     /**
-    * Show GUI
-    */
+     * Show GUI
+     */
     Show() {
         this.gui.Show()
     }
@@ -191,4 +191,5 @@ class TaskManagerApp {
     *     }
     *     Event handlers
     *     Helper methods
-    */
+*/
+

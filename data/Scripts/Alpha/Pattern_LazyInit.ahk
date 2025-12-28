@@ -20,9 +20,9 @@ class LazyValue {
             return this.cache
         }
     }
-    
+
     IsComputed() => this.computed
-    
+
     Reset() {
         this.computed := false
         this.cache := ""
@@ -38,7 +38,7 @@ class Config {
         Sleep(50)
         return Map("theme", "dark", "lang", "en", "debug", true)
     }
-    
+
     static LoadUsers() {
         ; Simulate database query
         Sleep(50)
@@ -54,8 +54,8 @@ settings := Config.settings.Value
 elapsed := A_TickCount - start
 
 MsgBox("Theme: " settings["theme"] "`n"
-     . "Computed in: " elapsed "ms`n`n"
-     . "Second access (cached)...")
+    . "Computed in: " elapsed "ms`n`n"
+    . "Second access (cached)...")
 
 start := A_TickCount
 settings := Config.settings.Value

@@ -1,46 +1,46 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_PixelSearch_01.ahk
-*
-* DESCRIPTION:
-* Basic usage of PixelGetColor() and PixelSearch() for screen color detection
-*
-* FEATURES:
-* - Get pixel color at specific coordinates
-* - Search for pixels by color
-* - Color comparison and matching
-* - Screen region scanning
-* - Coordinate handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm
-* https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - PixelGetColor() function
-* - PixelSearch() with output variables
-* - Color format conversion (RGB/BGR)
-* - Coordinate systems
-* - Variation tolerance
-*
-* LEARNING POINTS:
-* 1. PixelGetColor(X, Y) returns color in 0xRRGGBB format
-* 2. PixelSearch() finds first pixel matching color in region
-* 3. Variation parameter allows fuzzy color matching (0-255)
-* 4. Coordinates are screen-relative by default
-* 5. Fast mode (0x2) for speed, RGB mode (0x1) for color format
-* 6. Returns coordinates via ByRef parameters
-*/
+ * BuiltIn_PixelSearch_01.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage of PixelGetColor() and PixelSearch() for screen color detection
+ * 
+ * FEATURES:
+ * - Get pixel color at specific coordinates
+ * - Search for pixels by color
+ * - Color comparison and matching
+ * - Screen region scanning
+ * - Coordinate handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/PixelGetColor.htm
+ * https://www.autohotkey.com/docs/v2/lib/PixelSearch.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - PixelGetColor() function
+ * - PixelSearch() with output variables
+ * - Color format conversion (RGB/BGR)
+ * - Coordinate systems
+ * - Variation tolerance
+ * 
+ * LEARNING POINTS:
+ * 1. PixelGetColor(X, Y) returns color in 0xRRGGBB format
+ * 2. PixelSearch() finds first pixel matching color in region
+ * 3. Variation parameter allows fuzzy color matching (0-255)
+ * 4. Coordinates are screen-relative by default
+ * 5. Fast mode (0x2) for speed, RGB mode (0x1) for color format
+ * 6. Returns coordinates via ByRef parameters
+ */
 
 ; ============================================================
 ; Example 1: Get Pixel Color at Mouse Position
 ; ============================================================
 
 /**
-* Get color of pixel under mouse cursor
-*/
+ * Get color of pixel under mouse cursor
+ */
 GetPixelUnderMouse() {
     ; Get current mouse position
     MouseGetPos(&x, &y)
@@ -54,13 +54,13 @@ GetPixelUnderMouse() {
     blue := color & 0xFF
 
     MsgBox("Pixel Color at Mouse Position`n`n"
-    . "Position: " x ", " y "`n"
-    . "Color (Hex): " Format("0x{:06X}", color) "`n"
-    . "Color (Dec): " color "`n`n"
-    . "Red: " red "`n"
-    . "Green: " green "`n"
-    . "Blue: " blue,
-    "Pixel Color", "Iconi")
+        . "Position: " x ", " y "`n"
+        . "Color (Hex): " Format("0x{:06X}", color) "`n"
+        . "Color (Dec): " color "`n`n"
+        . "Red: " red "`n"
+        . "Green: " green "`n"
+        . "Blue: " blue,
+        "Pixel Color", "Iconi")
 
     return color
 }
@@ -76,39 +76,39 @@ GetPixelUnderMouse() {
 ; ============================================================
 
 /**
-* Search for a specific color in screen region
-*
-* @param {Integer} x1 - Left coordinate
-* @param {Integer} y1 - Top coordinate
-* @param {Integer} x2 - Right coordinate
-* @param {Integer} y2 - Bottom coordinate
-* @param {Integer} color - Color to search for (0xRRGGBB)
-* @returns {Object} - {found: bool, x: int, y: int}
-*/
+ * Search for a specific color in screen region
+ * 
+ * @param {Integer} x1 - Left coordinate
+ * @param {Integer} y1 - Top coordinate
+ * @param {Integer} x2 - Right coordinate
+ * @param {Integer} y2 - Bottom coordinate
+ * @param {Integer} color - Color to search for (0xRRGGBB)
+ * @returns {Object} - {found: bool, x: int, y: int}
+ */
 SearchPixelInRegion(x1, y1, x2, y2, color) {
     try {
         ; PixelSearch returns 1 if found, 0 if not
         if PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, 0) {
             MsgBox("Pixel Found!`n`n"
-            . "Color: " Format("0x{:06X}", color) "`n"
-            . "Position: " foundX ", " foundY "`n"
-            . "Search Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
-            "Found", "Iconi")
+                . "Color: " Format("0x{:06X}", color) "`n"
+                . "Position: " foundX ", " foundY "`n"
+                . "Search Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
+                "Found", "Iconi")
 
-            return {found: true, x: foundX, y: foundY}
+            return { found: true, x: foundX, y: foundY }
         } else {
             MsgBox("Pixel Not Found`n`n"
-            . "Color: " Format("0x{:06X}", color) "`n"
-            . "Search Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
-            "Not Found", "Icon!")
+                . "Color: " Format("0x{:06X}", color) "`n"
+                . "Search Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
+                "Not Found", "Icon!")
 
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
     } catch as err {
         MsgBox("Error during pixel search:`n" err.Message,
-        "Error", "Iconx")
-        return {found: false, x: 0, y: 0}
+            "Error", "Iconx")
+        return { found: false, x: 0, y: 0 }
     }
 }
 
@@ -121,56 +121,56 @@ SearchPixelInRegion(x1, y1, x2, y2, color) {
 ; ============================================================
 
 /**
-* Search with color variation for fuzzy matching
-*/
+ * Search with color variation for fuzzy matching
+ */
 class ColorMatcher {
     /**
-    * Search with variation tolerance
-    *
-    * @param {Integer} x1 - Left coordinate
-    * @param {Integer} y1 - Top coordinate
-    * @param {Integer} x2 - Right coordinate
-    * @param {Integer} y2 - Bottom coordinate
-    * @param {Integer} color - Target color
-    * @param {Integer} variation - Tolerance (0-255)
-    */
+     * Search with variation tolerance
+     * 
+     * @param {Integer} x1 - Left coordinate
+     * @param {Integer} y1 - Top coordinate
+     * @param {Integer} x2 - Right coordinate
+     * @param {Integer} y2 - Bottom coordinate
+     * @param {Integer} color - Target color
+     * @param {Integer} variation - Tolerance (0-255)
+     */
     static SearchWithVariation(x1, y1, x2, y2, color, variation := 0) {
         MsgBox("Searching for color with variation:`n`n"
-        . "Color: " Format("0x{:06X}", color) "`n"
-        . "Variation: " variation "`n"
-        . "Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
-        "Searching", "T1")
+            . "Color: " Format("0x{:06X}", color) "`n"
+            . "Variation: " variation "`n"
+            . "Region: (" x1 "," y1 ") to (" x2 "," y2 ")",
+            "Searching", "T1")
 
         if PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, variation) {
             actualColor := PixelGetColor(foundX, foundY)
 
             MsgBox("Match Found!`n`n"
-            . "Target Color: " Format("0x{:06X}", color) "`n"
-            . "Found Color: " Format("0x{:06X}", actualColor) "`n"
-            . "Position: " foundX ", " foundY "`n"
-            . "Variation Used: " variation,
-            "Found", "Iconi")
+                . "Target Color: " Format("0x{:06X}", color) "`n"
+                . "Found Color: " Format("0x{:06X}", actualColor) "`n"
+                . "Position: " foundX ", " foundY "`n"
+                . "Variation Used: " variation,
+                "Found", "Iconi")
 
-            return {found: true, x: foundX, y: foundY}
+            return { found: true, x: foundX, y: foundY }
         }
 
         MsgBox("No match found within variation tolerance",
-        "Not Found", "Icon!")
-        return {found: false, x: 0, y: 0}
+            "Not Found", "Icon!")
+        return { found: false, x: 0, y: 0 }
     }
 
     /**
-    * Demonstrate different variation levels
-    */
+     * Demonstrate different variation levels
+     */
     static DemonstrateVariation() {
         ; Get color at mouse position
         MouseGetPos(&x, &y)
         targetColor := PixelGetColor(x, y)
 
         MsgBox("Target color captured at: " x ", " y "`n"
-        . "Color: " Format("0x{:06X}", targetColor) "`n`n"
-        . "Will search with different variations...",
-        "Demo", "Iconi T2")
+            . "Color: " Format("0x{:06X}", targetColor) "`n`n"
+            . "Will search with different variations...",
+            "Demo", "Iconi T2")
 
         ; Search region (200x200 around mouse)
         x1 := Max(0, x - 100)
@@ -182,13 +182,13 @@ class ColorMatcher {
 
         for variation in variations {
             if PixelSearch(&foundX, &foundY, x1, y1, x2, y2,
-            targetColor, variation) {
+                targetColor, variation) {
                 MsgBox("Variation " variation ": Found at "
-                . foundX ", " foundY,
-                "Result", "T1")
+                    . foundX ", " foundY,
+                    "Result", "T1")
             } else {
                 MsgBox("Variation " variation ": Not found",
-                "Result", "T1")
+                    "Result", "T1")
             }
             Sleep(500)
         }
@@ -204,26 +204,26 @@ class ColorMatcher {
 ; ============================================================
 
 /**
-* Scan screen regions and analyze colors
-*/
+ * Scan screen regions and analyze colors
+ */
 class ColorScanner {
     /**
-    * Scan a grid and report dominant colors
-    *
-    * @param {Integer} x1 - Left coordinate
-    * @param {Integer} y1 - Top coordinate
-    * @param {Integer} x2 - Right coordinate
-    * @param {Integer} y2 - Bottom coordinate
-    * @param {Integer} gridSize - Grid spacing
-    */
+     * Scan a grid and report dominant colors
+     * 
+     * @param {Integer} x1 - Left coordinate
+     * @param {Integer} y1 - Top coordinate
+     * @param {Integer} x2 - Right coordinate
+     * @param {Integer} y2 - Bottom coordinate
+     * @param {Integer} gridSize - Grid spacing
+     */
     static ScanGrid(x1, y1, x2, y2, gridSize := 50) {
         colorMap := Map()
         totalPixels := 0
 
         MsgBox("Scanning grid region:`n"
-        . "Region: (" x1 "," y1 ") to (" x2 "," y2 ")`n"
-        . "Grid size: " gridSize "px",
-        "Scanning", "T1")
+            . "Region: (" x1 "," y1 ") to (" x2 "," y2 ")`n"
+            . "Grid size: " gridSize "px",
+            "Scanning", "T1")
 
         ; Scan grid points
         y := y1
@@ -234,9 +234,9 @@ class ColorScanner {
 
                 ; Count color occurrences
                 if colorMap.Has(color)
-                colorMap[color] := colorMap[color] + 1
+                    colorMap[color] := colorMap[color] + 1
                 else
-                colorMap[color] := 1
+                    colorMap[color] := 1
 
                 totalPixels++
 
@@ -254,7 +254,7 @@ class ColorScanner {
         ; Convert map to array for sorting
         colors := []
         for color, count in colorMap {
-            colors.Push({color: color, count: count})
+            colors.Push({ color: color, count: count })
         }
 
         ; Sort by count (descending)
@@ -272,11 +272,11 @@ class ColorScanner {
     }
 
     /**
-    * Sort color array by count
-    *
-    * @param {Array} arr - Array of {color, count} objects
-    * @returns {Array} - Sorted array
-    */
+     * Sort color array by count
+     * 
+     * @param {Array} arr - Array of {color, count} objects
+     * @returns {Array} - Sorted array
+     */
     static SortByCount(arr) {
         ; Simple bubble sort (good enough for small arrays)
         n := arr.Length
@@ -295,15 +295,15 @@ class ColorScanner {
     }
 
     /**
-    * Check if region is mostly one color
-    *
-    * @param {Integer} x1 - Left coordinate
-    * @param {Integer} y1 - Top coordinate
-    * @param {Integer} x2 - Right coordinate
-    * @param {Integer} y2 - Bottom coordinate
-    * @param {Integer} targetColor - Color to check for
-    * @param {Integer} threshold - Percentage threshold (0-100)
-    */
+     * Check if region is mostly one color
+     * 
+     * @param {Integer} x1 - Left coordinate
+     * @param {Integer} y1 - Top coordinate
+     * @param {Integer} x2 - Right coordinate
+     * @param {Integer} y2 - Bottom coordinate
+     * @param {Integer} targetColor - Color to check for
+     * @param {Integer} threshold - Percentage threshold (0-100)
+     */
     static IsRegionColor(x1, y1, x2, y2, targetColor, threshold := 80) {
         sampleSize := 20
         matches := 0
@@ -319,7 +319,7 @@ class ColorScanner {
 
                 color := PixelGetColor(x, y)
                 if color = targetColor
-                matches++
+                    matches++
 
                 total++
             }
@@ -328,11 +328,11 @@ class ColorScanner {
         percentage := (matches / total) * 100
 
         MsgBox("Region Color Check:`n`n"
-        . "Target Color: " Format("0x{:06X}", targetColor) "`n"
-        . "Match Rate: " Round(percentage, 1) "%`n"
-        . "Threshold: " threshold "%`n"
-        . "Result: " (percentage >= threshold ? "MATCH" : "NO MATCH"),
-        "Region Check", "Iconi")
+            . "Target Color: " Format("0x{:06X}", targetColor) "`n"
+            . "Match Rate: " Round(percentage, 1) "%`n"
+            . "Threshold: " threshold "%`n"
+            . "Result: " (percentage >= threshold ? "MATCH" : "NO MATCH"),
+            "Region Check", "Iconi")
 
         return percentage >= threshold
     }
@@ -347,15 +347,15 @@ class ColorScanner {
 ; ============================================================
 
 /**
-* Interactive color picker with real-time display
-*/
+ * Interactive color picker with real-time display
+ */
 class ColorPicker {
     static isActive := false
     static pickedColors := []
 
     /**
-    * Start color picker mode
-    */
+     * Start color picker mode
+     */
     static Start() {
         if this.isActive {
             MsgBox("Color picker already active", "Info", "Iconi T1")
@@ -365,27 +365,27 @@ class ColorPicker {
         this.isActive := true
 
         MsgBox("Color Picker Started`n`n"
-        . "Move mouse to see colors`n"
-        . "Click to pick color`n"
-        . "Press ESC to exit",
-        "Color Picker", "Iconi")
+            . "Move mouse to see colors`n"
+            . "Click to pick color`n"
+            . "Press ESC to exit",
+            "Color Picker", "Iconi")
 
         ; Start tracking
         SetTimer(() => this.TrackMouse(), 100)
 
         ; Setup click to pick
-        ~LButton::ColorPicker.PickColor()
+        ~LButton:: ColorPicker.PickColor()
 
         ; Setup ESC to exit
-        Esc::ColorPicker.Stop()
+        Esc:: ColorPicker.Stop()
     }
 
     /**
-    * Track mouse and show color
-    */
+     * Track mouse and show color
+     */
     static TrackMouse() {
         if !this.isActive
-        return
+            return
 
         MouseGetPos(&x, &y)
         color := PixelGetColor(x, y)
@@ -395,16 +395,16 @@ class ColorPicker {
         blue := color & 0xFF
 
         ToolTip("Position: " x ", " y "`n"
-        . "Color: " Format("0x{:06X}", color) "`n"
-        . "RGB: " red ", " green ", " blue)
+            . "Color: " Format("0x{:06X}", color) "`n"
+            . "RGB: " red ", " green ", " blue)
     }
 
     /**
-    * Pick current color
-    */
+     * Pick current color
+     */
     static PickColor() {
         if !this.isActive
-        return
+            return
 
         MouseGetPos(&x, &y)
         color := PixelGetColor(x, y)
@@ -418,18 +418,18 @@ class ColorPicker {
         SoundBeep(1000, 100)
 
         MsgBox("Color Picked!`n`n"
-        . "Position: " x ", " y "`n"
-        . "Color: " Format("0x{:06X}", color) "`n`n"
-        . "Total picked: " this.pickedColors.Length,
-        "Picked", "Iconi T2")
+            . "Position: " x ", " y "`n"
+            . "Color: " Format("0x{:06X}", color) "`n`n"
+            . "Total picked: " this.pickedColors.Length,
+            "Picked", "Iconi T2")
     }
 
     /**
-    * Stop color picker
-    */
+     * Stop color picker
+     */
     static Stop() {
         if !this.isActive
-        return
+            return
 
         this.isActive := false
         SetTimer(() => this.TrackMouse(), 0)
@@ -443,8 +443,8 @@ class ColorPicker {
     }
 
     /**
-    * Show all picked colors
-    */
+     * Show all picked colors
+     */
     static ShowPicked() {
         if this.pickedColors.Length = 0 {
             MsgBox("No colors picked", "Info", "Iconi")
@@ -462,8 +462,8 @@ class ColorPicker {
     }
 
     /**
-    * Clear picked colors
-    */
+     * Clear picked colors
+     */
     static Clear() {
         this.pickedColors := []
         MsgBox("Picked colors cleared", "Cleared", "Iconi T1")
@@ -478,24 +478,24 @@ class ColorPicker {
 ; ============================================================
 
 /**
-* Wait for a specific color to appear or disappear
-*/
+ * Wait for a specific color to appear or disappear
+ */
 class PixelWaiter {
     /**
-    * Wait for color to appear at position
-    *
-    * @param {Integer} x - X coordinate
-    * @param {Integer} y - Y coordinate
-    * @param {Integer} color - Target color
-    * @param {Integer} timeoutSec - Timeout in seconds (0 = infinite)
-    * @returns {Boolean} - True if found, false if timeout
-    */
+     * Wait for color to appear at position
+     * 
+     * @param {Integer} x - X coordinate
+     * @param {Integer} y - Y coordinate
+     * @param {Integer} color - Target color
+     * @param {Integer} timeoutSec - Timeout in seconds (0 = infinite)
+     * @returns {Boolean} - True if found, false if timeout
+     */
     static WaitForColor(x, y, color, timeoutSec := 10) {
         MsgBox("Waiting for color to appear:`n`n"
-        . "Position: " x ", " y "`n"
-        . "Color: " Format("0x{:06X}", color) "`n"
-        . "Timeout: " (timeoutSec > 0 ? timeoutSec " sec" : "None"),
-        "Waiting", "T1")
+            . "Position: " x ", " y "`n"
+            . "Color: " Format("0x{:06X}", color) "`n"
+            . "Timeout: " (timeoutSec > 0 ? timeoutSec " sec" : "None"),
+            "Waiting", "T1")
 
         startTime := A_TickCount
         timeout := timeoutSec * 1000
@@ -506,16 +506,16 @@ class PixelWaiter {
             if currentColor = color {
                 elapsed := (A_TickCount - startTime) / 1000
                 MsgBox("Color appeared!`n`n"
-                . "Time elapsed: " Round(elapsed, 1) " seconds",
-                "Found", "Iconi")
+                    . "Time elapsed: " Round(elapsed, 1) " seconds",
+                    "Found", "Iconi")
                 return true
             }
 
             ; Check timeout
             if timeoutSec > 0 and (A_TickCount - startTime) > timeout {
                 MsgBox("Timeout reached`n`n"
-                . "Color did not appear within " timeoutSec " seconds",
-                "Timeout", "Icon!")
+                    . "Color did not appear within " timeoutSec " seconds",
+                    "Timeout", "Icon!")
                 return false
             }
 
@@ -524,19 +524,19 @@ class PixelWaiter {
     }
 
     /**
-    * Wait for color to disappear from position
-    *
-    * @param {Integer} x - X coordinate
-    * @param {Integer} y - Y coordinate
-    * @param {Integer} color - Color to wait for disappearance
-    * @param {Integer} timeoutSec - Timeout in seconds
-    */
+     * Wait for color to disappear from position
+     * 
+     * @param {Integer} x - X coordinate
+     * @param {Integer} y - Y coordinate
+     * @param {Integer} color - Color to wait for disappearance
+     * @param {Integer} timeoutSec - Timeout in seconds
+     */
     static WaitForColorChange(x, y, color, timeoutSec := 10) {
         MsgBox("Waiting for color to change:`n`n"
-        . "Position: " x ", " y "`n"
-        . "Current: " Format("0x{:06X}", color) "`n"
-        . "Timeout: " timeoutSec " sec",
-        "Waiting", "T1")
+            . "Position: " x ", " y "`n"
+            . "Current: " Format("0x{:06X}", color) "`n"
+            . "Timeout: " timeoutSec " sec",
+            "Waiting", "T1")
 
         startTime := A_TickCount
         timeout := timeoutSec * 1000
@@ -547,9 +547,9 @@ class PixelWaiter {
             if currentColor != color {
                 elapsed := (A_TickCount - startTime) / 1000
                 MsgBox("Color changed!`n`n"
-                . "New color: " Format("0x{:06X}", currentColor) "`n"
-                . "Time elapsed: " Round(elapsed, 1) " seconds",
-                "Changed", "Iconi")
+                    . "New color: " Format("0x{:06X}", currentColor) "`n"
+                    . "Time elapsed: " Round(elapsed, 1) " seconds",
+                    "Changed", "Iconi")
                 return true
             }
 
@@ -574,72 +574,72 @@ class PixelWaiter {
 ; ============================================================
 
 /**
-* Practical pixel detection examples
-*/
+ * Practical pixel detection examples
+ */
 class PracticalPixelExamples {
     /**
-    * Detect if button is enabled/disabled by color
-    *
-    * @param {Integer} x - Button center X
-    * @param {Integer} y - Button center Y
-    * @param {Integer} enabledColor - Color when enabled
-    */
+     * Detect if button is enabled/disabled by color
+     * 
+     * @param {Integer} x - Button center X
+     * @param {Integer} y - Button center Y
+     * @param {Integer} enabledColor - Color when enabled
+     */
     static IsButtonEnabled(x, y, enabledColor) {
         currentColor := PixelGetColor(x, y)
         isEnabled := currentColor = enabledColor
 
         MsgBox("Button Status:`n`n"
-        . "Position: " x ", " y "`n"
-        . "Current Color: " Format("0x{:06X}", currentColor) "`n"
-        . "Enabled Color: " Format("0x{:06X}", enabledColor) "`n"
-        . "Status: " (isEnabled ? "ENABLED" : "DISABLED"),
-        "Button Check", "Iconi")
+            . "Position: " x ", " y "`n"
+            . "Current Color: " Format("0x{:06X}", currentColor) "`n"
+            . "Enabled Color: " Format("0x{:06X}", enabledColor) "`n"
+            . "Status: " (isEnabled ? "ENABLED" : "DISABLED"),
+            "Button Check", "Iconi")
 
         return isEnabled
     }
 
     /**
-    * Wait for loading spinner to disappear
-    *
-    * @param {Integer} x - Spinner X position
-    * @param {Integer} y - Spinner Y position
-    * @param {Integer} spinnerColor - Color of spinner
-    * @param {Integer} timeoutSec - Maximum wait time
-    */
+     * Wait for loading spinner to disappear
+     * 
+     * @param {Integer} x - Spinner X position
+     * @param {Integer} y - Spinner Y position
+     * @param {Integer} spinnerColor - Color of spinner
+     * @param {Integer} timeoutSec - Maximum wait time
+     */
     static WaitForLoadingComplete(x, y, spinnerColor, timeoutSec := 30) {
         MsgBox("Waiting for loading to complete...",
-        "Loading", "T1")
+            "Loading", "T1")
 
         return PixelWaiter.WaitForColorChange(x, y, spinnerColor, timeoutSec)
     }
 
     /**
-    * Detect status indicator color
-    *
-    * @param {Integer} x - Indicator X position
-    * @param {Integer} y - Indicator Y position
-    */
+     * Detect status indicator color
+     * 
+     * @param {Integer} x - Indicator X position
+     * @param {Integer} y - Indicator Y position
+     */
     static GetStatusByColor(x, y) {
         color := PixelGetColor(x, y)
 
         ; Common status colors
         status := ""
         if color = 0x00FF00
-        status := "Online/Active (Green)"
+            status := "Online/Active (Green)"
         else if color = 0xFF0000
-        status := "Offline/Error (Red)"
+            status := "Offline/Error (Red)"
         else if color = 0xFFFF00
-        status := "Busy/Warning (Yellow)"
+            status := "Busy/Warning (Yellow)"
         else if color = 0x808080
-        status := "Idle/Disabled (Gray)"
+            status := "Idle/Disabled (Gray)"
         else
-        status := "Unknown (" Format("0x{:06X}", color) ")"
+            status := "Unknown (" Format("0x{:06X}", color) ")"
 
         MsgBox("Status Indicator:`n`n"
-        . "Position: " x ", " y "`n"
-        . "Color: " Format("0x{:06X}", color) "`n"
-        . "Status: " status,
-        "Status", "Iconi")
+            . "Position: " x ", " y "`n"
+            . "Color: " Format("0x{:06X}", color) "`n"
+            . "Status: " status,
+            "Status", "Iconi")
 
         return status
     }

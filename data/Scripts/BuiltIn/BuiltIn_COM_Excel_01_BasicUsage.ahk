@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Excel_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates basic Microsoft Excel automation using COM objects in AutoHotkey v2.
-* Covers fundamental operations like opening Excel, creating workbooks, saving, and closing.
-*
-* FEATURES:
-* - Creating Excel COM objects
-* - Opening and creating workbooks
-* - Saving workbooks in various formats
-* - Closing Excel properly
-* - Error handling for COM operations
-* - Visibility control and user interaction
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() function for creating COM instances
-* - COM method calls and property access
-* - Try/Catch error handling for COM operations
-* - Proper cleanup with object := ""
-*
-* LEARNING POINTS:
-* 1. How to create and connect to Excel using ComObject()
-* 2. Making Excel visible or hidden for background operations
-* 3. Creating new workbooks and opening existing ones
-* 4. Saving workbooks with different file formats
-* 5. Proper cleanup to prevent Excel processes from staying in memory
-* 6. Error handling for COM operations that might fail
-* 7. Controlling Excel's display alerts and screen updating
-*/
+ * BuiltIn_COM_Excel_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates basic Microsoft Excel automation using COM objects in AutoHotkey v2.
+ * Covers fundamental operations like opening Excel, creating workbooks, saving, and closing.
+ * 
+ * FEATURES:
+ * - Creating Excel COM objects
+ * - Opening and creating workbooks
+ * - Saving workbooks in various formats
+ * - Closing Excel properly
+ * - Error handling for COM operations
+ * - Visibility control and user interaction
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() function for creating COM instances
+ * - COM method calls and property access
+ * - Try/Catch error handling for COM operations
+ * - Proper cleanup with object := ""
+ * 
+ * LEARNING POINTS:
+ * 1. How to create and connect to Excel using ComObject()
+ * 2. Making Excel visible or hidden for background operations
+ * 3. Creating new workbooks and opening existing ones
+ * 4. Saving workbooks with different file formats
+ * 5. Proper cleanup to prevent Excel processes from staying in memory
+ * 6. Error handling for COM operations that might fail
+ * 7. Controlling Excel's display alerts and screen updating
+ */
 
 ;===============================================================================
 ; Example 1: Creating Excel Instance and Making it Visible
@@ -97,7 +97,7 @@ Example2_CreateWorkbook() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -145,7 +145,7 @@ Example3_OpenWorkbook() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -171,7 +171,7 @@ Example4_SaveFormats() {
         ; Create output directory
         outputDir := A_Temp "\AHK_Excel_Formats"
         if !DirExist(outputDir)
-        DirCreate(outputDir)
+            DirCreate(outputDir)
 
         ; Save as XLSX (Excel 2007-2019 format, FileFormat = 51)
         xlsxFile := outputDir "\test_data.xlsx"
@@ -353,7 +353,7 @@ Example7_MultipleWorkbooks() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -390,14 +390,14 @@ ShowMenu() {
         case "7": Example7_MultipleWorkbooks()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     ; Ask if user wants to see another example
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ; Run the menu

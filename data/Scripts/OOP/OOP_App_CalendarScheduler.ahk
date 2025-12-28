@@ -36,12 +36,12 @@ class Event {
     }
 
     ToString() => Format("[{1}] {2}`n{3} - {4} ({5} min){6}",
-    this.type,
-    this.title,
-    FormatTime(this.startTime, "MM/dd HH:mm"),
-    FormatTime(this.endTime, "HH:mm"),
-    this.GetDuration(),
-    this.location ? " @ " . this.location : "")
+        this.type,
+        this.title,
+        FormatTime(this.startTime, "MM/dd HH:mm"),
+        FormatTime(this.endTime, "HH:mm"),
+        this.GetDuration(),
+        this.location ? " @ " . this.location : "")
 }
 
 class RecurringEvent extends Event {
@@ -71,11 +71,11 @@ class RecurringEvent extends Event {
 
             ; Move to next occurrence
             if (this.frequency = RecurringEvent.FREQ_DAILY)
-            current := DateAdd(current, 1, "Days")
+                current := DateAdd(current, 1, "Days")
             else if (this.frequency = RecurringEvent.FREQ_WEEKLY)
-            current := DateAdd(current, 7, "Days")
+                current := DateAdd(current, 7, "Days")
             else if (this.frequency = RecurringEvent.FREQ_MONTHLY)
-            current := DateAdd(current, 1, "Months")
+                current := DateAdd(current, 1, "Months")
         }
 
         return occurrences
@@ -92,7 +92,7 @@ class Calendar {
             conflictList := conflicts.Map((e) => e.title).Join(", ")
             result := MsgBox(Format("Conflict with: {1}`n`nAdd anyway?", conflictList), "Scheduling Conflict", "YesNo")
             if (result = "No")
-            return false
+                return false
         }
 
         this.events.Push(event)
@@ -103,7 +103,7 @@ class Calendar {
     AddRecurringEvent(recurringEvent) {
         occurrences := recurringEvent.GetOccurrences()
         for occurrence in occurrences
-        this.events.Push(occurrence)
+            this.events.Push(occurrence)
         MsgBox(Format("Recurring event added: {1} ({2} occurrences)", recurringEvent.title, occurrences.Length))
         return true
     }
@@ -121,8 +121,8 @@ class Calendar {
     GetConflicts(event) {
         conflicts := []
         for existing in this.events
-        if (event.OverlapsWith(existing))
-        conflicts.Push(existing)
+            if (event.OverlapsWith(existing))
+                conflicts.Push(existing)
         return conflicts
     }
 
@@ -132,7 +132,7 @@ class Calendar {
         for event in this.events {
             eventDateStr := FormatTime(event.startTime, "yyyyMMdd")
             if (eventDateStr = dateStr)
-            filtered.Push(event)
+                filtered.Push(event)
         }
         return filtered
     }
@@ -140,8 +140,8 @@ class Calendar {
     GetEventsInRange(startDate, endDate) {
         filtered := []
         for event in this.events
-        if (event.startTime >= startDate && event.startTime <= endDate)
-        filtered.Push(event)
+            if (event.startTime >= startDate && event.startTime <= endDate)
+                filtered.Push(event)
         return filtered
     }
 
@@ -153,15 +153,15 @@ class Calendar {
     GetEventsByType(type) {
         filtered := []
         for event in this.events
-        if (event.type = type)
-        filtered.Push(event)
+            if (event.type = type)
+                filtered.Push(event)
         return filtered
     }
 
     GetDailyAgenda(date) {
         events := this.GetEventsForDate(date)
         if (events.Length = 0)
-        return Format("No events scheduled for {1}", FormatTime(date, "yyyy-MM-dd"))
+            return Format("No events scheduled for {1}", FormatTime(date, "yyyy-MM-dd"))
 
         agenda := Format("Agenda for {1}`n", FormatTime(date, "yyyy-MM-dd"))
         agenda .= "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n`n"
@@ -170,7 +170,7 @@ class Calendar {
         this._SortEventsByTime(events)
 
         for event in events
-        agenda .= event.ToString() . "`n`n"
+            agenda .= event.ToString() . "`n`n"
 
         return agenda
     }
@@ -181,9 +181,9 @@ class Calendar {
         events := this.GetEventsInRange(weekStart, weekEnd)
 
         summary := Format("{1}'s Week ({2} to {3})`n",
-        this.owner,
-        FormatTime(weekStart, "MM/dd"),
-        FormatTime(weekEnd, "MM/dd"))
+            this.owner,
+            FormatTime(weekStart, "MM/dd"),
+            FormatTime(weekEnd, "MM/dd"))
         summary .= "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n"
         summary .= Format("Total events: {1}`n", events.Length)
 
@@ -194,9 +194,9 @@ class Calendar {
         for event in events {
             totalTime += event.GetDuration()
             if (event.type = Event.TYPE_MEETING)
-            meetings++
+                meetings++
             else if (event.type = Event.TYPE_TASK)
-            tasks++
+                tasks++
         }
 
         summary .= Format("Meetings: {1}`n", meetings)
@@ -229,23 +229,23 @@ calendar := Calendar("Alice Johnson")
 ; Add single events
 meeting1 := Event("Team Standup", DateAdd(A_Now, 1, "Hours"), DateAdd(A_Now, 90, "Minutes"), Event.TYPE_MEETING)
 meeting1.SetLocation("Conference Room A")
-.AddAttendee("Bob")
-.AddAttendee("Charlie")
-.AddReminder(15)
-.AddTag("team")
+    .AddAttendee("Bob")
+    .AddAttendee("Charlie")
+    .AddReminder(15)
+    .AddTag("team")
 
 calendar.AddEvent(meeting1)
 
 task1 := Event("Code Review", DateAdd(A_Now, 3, "Hours"), DateAdd(A_Now, 240, "Minutes"), Event.TYPE_TASK)
 task1.SetDescription("Review PR #123 - New authentication system")
-.AddTag("development")
+    .AddTag("development")
 
 calendar.AddEvent(task1)
 
 appointment1 := Event("Doctor Appointment", DateAdd(A_Now, 5, "Hours"), DateAdd(A_Now, 350, "Minutes"), Event.TYPE_APPOINTMENT)
 appointment1.SetLocation("City Medical Center")
-.AddReminder(60)
-.AddReminder(30)
+    .AddReminder(60)
+    .AddReminder(30)
 
 calendar.AddEvent(appointment1)
 
@@ -255,11 +255,11 @@ calendar.AddEvent(conflict)  ; Will show conflict warning
 
 ; Add recurring event
 dailyStandup := RecurringEvent(
-"Daily Standup",
-DateAdd(A_Now, 1, "Days"),
-DateAdd(DateAdd(A_Now, 1, "Days"), 15, "Minutes"),
-RecurringEvent.FREQ_DAILY,
-DateAdd(A_Now, 7, "Days")
+    "Daily Standup",
+    DateAdd(A_Now, 1, "Days"),
+    DateAdd(DateAdd(A_Now, 1, "Days"), 15, "Minutes"),
+    RecurringEvent.FREQ_DAILY,
+    DateAdd(A_Now, 7, "Days")
 )
 dailyStandup.SetLocation("Zoom")
 calendar.AddRecurringEvent(dailyStandup)

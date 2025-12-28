@@ -2,22 +2,22 @@
 #SingleInstance Force
 
 /**
-* Text Case Converter
-*
-* Demonstrates converting selected text to different cases: lowercase,
-* UPPERCASE, Sentence case, Title Case, and iNVERT cASE.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Text Case Converter
+ * 
+ * Demonstrates converting selected text to different cases: lowercase,
+ * UPPERCASE, Sentence case, Title Case, and iNVERT cASE.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 ; Display instructions
 MsgBox("Text Case Converter Demo`n`n"
-. "Hotkey: Alt+C`n`n"
-. "1. Select some text`n"
-. "2. Press Alt+C`n"
-. "3. Choose conversion type`n`n"
-. "Try it in Notepad or any text editor!", , "T5")
+    . "Hotkey: Alt+C`n`n"
+    . "1. Select some text`n"
+    . "2. Press Alt+C`n"
+    . "3. Choose conversion type`n`n"
+    . "Try it in Notepad or any text editor!", , "T5")
 
 ; Open Notepad for testing
 Run("notepad.exe")
@@ -32,11 +32,11 @@ Send("^a")  ; Select all
 MsgBox("Text selected! Press Alt+C to see the menu", , "T3")
 
 ; Hotkey to show case conversion menu
-!c::ShowCaseMenu()
+!c:: ShowCaseMenu()
 
 /**
-* Show case conversion menu
-*/
+ * Show case conversion menu
+ */
 ShowCaseMenu() {
     ; Save clipboard
     clipSaved := ClipboardAll()
@@ -67,26 +67,26 @@ ShowCaseMenu() {
 }
 
 /**
-* Convert text case
-*/
+ * Convert text case
+ */
 ConvertCase(text, caseType) {
     result := ""
 
     switch caseType {
         case "lower":
-        result := StrLower(text)
+            result := StrLower(text)
 
         case "upper":
-        result := StrUpper(text)
+            result := StrUpper(text)
 
         case "sentence":
-        result := ConvertToSentenceCase(text)
+            result := ConvertToSentenceCase(text)
 
         case "title":
-        result := ConvertToTitleCase(text)
+            result := ConvertToTitleCase(text)
 
         case "invert":
-        result := InvertCase(text)
+            result := InvertCase(text)
     }
 
     ; Replace selection with converted text
@@ -99,9 +99,9 @@ ConvertCase(text, caseType) {
 }
 
 /**
-* Convert to Sentence case
-* First letter of each sentence is capitalized
-*/
+ * Convert to Sentence case
+ * First letter of each sentence is capitalized
+ */
 ConvertToSentenceCase(text) {
     text := StrLower(text)
     result := ""
@@ -119,16 +119,16 @@ ConvertToSentenceCase(text) {
 
         ; Capitalize after sentence-ending punctuation
         if (InStr(".!?", char))
-        capitalize := true
+            capitalize := true
     }
 
     return result
 }
 
 /**
-* Convert to Title Case
-* First letter of each word is capitalized
-*/
+ * Convert to Title Case
+ * First letter of each word is capitalized
+ */
 ConvertToTitleCase(text) {
     ; Words that should stay lowercase (articles, prepositions, conjunctions)
     smallWords := ["a", "an", "and", "as", "at", "but", "by", "for", "in", "of", "on", "or", "the", "to", "with"]
@@ -165,8 +165,8 @@ ConvertToTitleCase(text) {
 }
 
 /**
-* Invert case (upper <-> lower)
-*/
+ * Invert case (upper <-> lower)
+ */
 InvertCase(text) {
     result := ""
 
@@ -174,25 +174,25 @@ InvertCase(text) {
         char := A_LoopField
 
         if (RegExMatch(char, "[a-z]"))
-        result .= StrUpper(char)
+            result .= StrUpper(char)
         else if (RegExMatch(char, "[A-Z]"))
-        result .= StrLower(char)
+            result .= StrLower(char)
         else
-        result .= char
+            result .= char
     }
 
     return result
 }
 
 /**
-* Join array helper
-*/
+ * Join array helper
+ */
 JoinArray(arr, delimiter) {
     result := ""
     for index, value in arr {
         result .= value
         if (index < arr.Length)
-        result .= delimiter
+            result .= delimiter
     }
     return result
 }
@@ -270,3 +270,4 @@ JoinArray(arr, delimiter) {
 *     Character-by-character for invert
 *     Word-by-word for title case
 */
+

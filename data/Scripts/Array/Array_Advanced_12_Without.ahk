@@ -3,15 +3,15 @@
 #Include JSON.ahk
 
 /**
-* Without() - Filter using variadic exclusion list
-*
-* Demonstrates: Variadic parameters (values*), Map as Set
-* Efficient O(n) filtering with Map lookups
-*/
+ * Without() - Filter using variadic exclusion list
+ * 
+ * Demonstrates: Variadic parameters (values*), Map as Set
+ * Efficient O(n) filtering with Map lookups
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -23,13 +23,13 @@ Without(arr, values*) {
     ; Build exclusion set for O(1) lookups
     ban := SeenSet()
     for v in values
-    ban[v] := true
+        ban[v] := true
 
     ; Filter out banned values
     out := []
     for v in arr
-    if !ban.Has(v)
-    out.Push(v)
+        if !ban.Has(v)
+            out.Push(v)
 
     return out
 }
@@ -45,5 +45,5 @@ result3 := Without(["a", "b", "c", "a", "b"], "a", "b")
 ; => ["c"]
 
 MsgBox("Without 1,2 from [2,1,2,3]: " JSON.stringify(result1) "`n`n"
-. "Without 2,4 from [1,2,3,4,5]: " JSON.stringify(result2) "`n`n"
-. "Without 'a','b': " JSON.stringify(result3))
+    . "Without 2,4 from [1,2,3,4,5]: " JSON.stringify(result2) "`n`n"
+    . "Without 'a','b': " JSON.stringify(result3))

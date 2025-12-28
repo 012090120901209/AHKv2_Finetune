@@ -1,51 +1,51 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileSetAttrib_19.ahk
-*
-* DESCRIPTION:
-* Attribute-based file organization and management
-*
-* FEATURES:
-* - Organize files by attributes
-* - Archive file management
-* - Attribute-based sorting
-* - File categorization
-* - Automated organization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileSetAttrib() for organization
-* - Archive bit management
-* - Attribute-based workflows
-* - File classification
-* - Automated organization
-*
-* LEARNING POINTS:
-* 1. Use attributes for file organization
-* 2. Implement archive bit workflows
-* 3. Categorize files by attributes
-* 4. Automate organization tasks
-* 5. Create attribute-based systems
-* 6. Manage file collections
-*/
+ * BuiltIn_FileSetAttrib_19.ahk
+ * 
+ * DESCRIPTION:
+ * Attribute-based file organization and management
+ * 
+ * FEATURES:
+ * - Organize files by attributes
+ * - Archive file management
+ * - Attribute-based sorting
+ * - File categorization
+ * - Automated organization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileSetAttrib() for organization
+ * - Archive bit management
+ * - Attribute-based workflows
+ * - File classification
+ * - Automated organization
+ * 
+ * LEARNING POINTS:
+ * 1. Use attributes for file organization
+ * 2. Implement archive bit workflows
+ * 3. Categorize files by attributes
+ * 4. Automate organization tasks
+ * 5. Create attribute-based systems
+ * 6. Manage file collections
+ */
 
 ; ============================================================
 ; Example 1: Mark Files for Backup (Archive Bit)
 ; ============================================================
 
 /**
-* Mark file as needing backup (set archive bit)
-*
-* @param {String} filePath - File to mark
-* @returns {Boolean} - Success
-*/
+ * Mark file as needing backup (set archive bit)
+ * 
+ * @param {String} filePath - File to mark
+ * @returns {Boolean} - Success
+ */
 MarkForBackup(filePath) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     try {
         FileSetAttrib("+A", filePath)
@@ -56,14 +56,14 @@ MarkForBackup(filePath) {
 }
 
 /**
-* Clear backup mark (clear archive bit)
-*
-* @param {String} filePath - File to unmark
-* @returns {Boolean} - Success
-*/
+ * Clear backup mark (clear archive bit)
+ * 
+ * @param {String} filePath - File to unmark
+ * @returns {Boolean} - Success
+ */
 ClearBackupMark(filePath) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     try {
         FileSetAttrib("-A", filePath)
@@ -86,7 +86,7 @@ Loop 3 {
 marked := 0
 Loop Files, testDir "\*.txt", "F" {
     if (MarkForBackup(A_LoopFilePath))
-    marked++
+        marked++
 }
 
 output := "BACKUP MARKING:`n`n"
@@ -106,29 +106,29 @@ MsgBox(output, "Backup Marking", "Icon!")
 ; ============================================================
 
 /**
-* Set file status using attributes
-*
-* @param {String} filePath - File to classify
-* @param {String} status - Status (draft/final/archived)
-* @returns {Boolean} - Success
-*/
+ * Set file status using attributes
+ * 
+ * @param {String} filePath - File to classify
+ * @param {String} status - Status (draft/final/archived)
+ * @returns {Boolean} - Success
+ */
 SetFileStatus(filePath, status) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     try {
         switch status {
             case "draft":
-            ; Normal file, no special attributes
-            FileSetAttrib("^N", filePath)
+                ; Normal file, no special attributes
+                FileSetAttrib("^N", filePath)
             case "final":
-            ; Read-only to prevent changes
-            FileSetAttrib("+R", filePath)
+                ; Read-only to prevent changes
+                FileSetAttrib("+R", filePath)
             case "archived":
-            ; Hidden and read-only
-            FileSetAttrib("+RH", filePath)
+                ; Hidden and read-only
+                FileSetAttrib("+RH", filePath)
             default:
-            return false
+                return false
         }
         return true
     } catch {
@@ -137,29 +137,29 @@ SetFileStatus(filePath, status) {
 }
 
 /**
-* Get file status from attributes
-*
-* @param {String} filePath - File to check
-* @returns {String} - Status
-*/
+ * Get file status from attributes
+ * 
+ * @param {String} filePath - File to check
+ * @returns {String} - Status
+ */
 GetFileStatus(filePath) {
     if (!FileExist(filePath))
-    return "not found"
+        return "not found"
 
     attrs := FileGetAttrib(filePath)
 
     if (InStr(attrs, "R") && InStr(attrs, "H"))
-    return "archived"
+        return "archived"
     else if (InStr(attrs, "R"))
-    return "final"
+        return "final"
     else
-    return "draft"
+        return "draft"
 }
 
 ; Set different statuses
 files := []
 Loop Files, testDir "\*.txt", "F"
-files.Push(A_LoopFilePath)
+    files.Push(A_LoopFilePath)
 
 SetFileStatus(files[1], "draft")
 SetFileStatus(files[2], "final")
@@ -182,8 +182,8 @@ MsgBox(output, "Status Organization", "Icon!")
 ; ============================================================
 
 /**
-* Tag files with attribute combinations
-*/
+ * Tag files with attribute combinations
+ */
 class FileTag {
     static Important := "+R"
     static Private := "+RH"
@@ -192,18 +192,18 @@ class FileTag {
 
     static ApplyTag(filePath, tagName) {
         if (!FileExist(filePath))
-        return false
+            return false
 
         try {
             switch tagName {
                 case "Important":
-                FileSetAttrib(this.Important, filePath)
+                    FileSetAttrib(this.Important, filePath)
                 case "Private":
-                FileSetAttrib(this.Private, filePath)
+                    FileSetAttrib(this.Private, filePath)
                 case "Temporary":
-                FileSetAttrib(this.Temporary, filePath)
+                    FileSetAttrib(this.Temporary, filePath)
                 default:
-                return false
+                    return false
             }
             return true
         } catch {
@@ -213,21 +213,21 @@ class FileTag {
 
     static GetTags(filePath) {
         if (!FileExist(filePath))
-        return []
+            return []
 
         attrs := FileGetAttrib(filePath)
         tags := []
 
         if (InStr(attrs, "R") && InStr(attrs, "H"))
-        tags.Push("Private")
+            tags.Push("Private")
         else if (InStr(attrs, "R"))
-        tags.Push("Important")
+            tags.Push("Important")
 
         if (InStr(attrs, "A"))
-        tags.Push("Temporary")
+            tags.Push("Temporary")
 
         if (InStr(attrs, "S"))
-        tags.Push("System")
+            tags.Push("System")
 
         return tags
     }
@@ -245,7 +245,7 @@ for file in files {
     output .= name ":`n  Tags: "
     if (tags.Length > 0) {
         for tag in tags
-        output .= tag (A_Index < tags.Length ? ", " : "")
+            output .= tag (A_Index < tags.Length ? ", " : "")
     } else {
         output .= "None"
     }
@@ -259,12 +259,12 @@ MsgBox(output, "File Tagging", "Icon!")
 ; ============================================================
 
 /**
-* Hide all temporary files in directory
-*
-* @param {String} dirPath - Directory to process
-* @param {String} pattern - File pattern (e.g., "*.tmp")
-* @returns {Object} - Operation result
-*/
+ * Hide all temporary files in directory
+ * 
+ * @param {String} dirPath - Directory to process
+ * @param {String} pattern - File pattern (e.g., "*.tmp")
+ * @returns {Object} - Operation result
+ */
 HideTemporaryFiles(dirPath, pattern := "*.tmp") {
     result := {
         processed: 0,
@@ -273,7 +273,7 @@ HideTemporaryFiles(dirPath, pattern := "*.tmp") {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\" pattern, "F" {
         result.processed++
@@ -315,11 +315,11 @@ MsgBox(output, "Hide Temporary", "Icon!")
 ; ============================================================
 
 /**
-* Finalize document (make read-only, clear archive bit)
-*
-* @param {String} filePath - Document to finalize
-* @returns {Object} - Finalization result
-*/
+ * Finalize document (make read-only, clear archive bit)
+ * 
+ * @param {String} filePath - Document to finalize
+ * @returns {Object} - Finalization result
+ */
 FinalizeDocument(filePath) {
     result := {
         success: false,
@@ -372,12 +372,12 @@ MsgBox(output, "Finalize Document", finalizeResult.success ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Clean up files based on attributes
-*
-* @param {String} dirPath - Directory to clean
-* @param {Object} criteria - Cleanup criteria
-* @returns {Object} - Cleanup result
-*/
+ * Clean up files based on attributes
+ * 
+ * @param {String} dirPath - Directory to clean
+ * @param {Object} criteria - Cleanup criteria
+ * @returns {Object} - Cleanup result
+ */
 CleanupByAttributes(dirPath, criteria) {
     result := {
         scanned: 0,
@@ -386,7 +386,7 @@ CleanupByAttributes(dirPath, criteria) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "FH" {
         result.scanned++
@@ -402,11 +402,11 @@ CleanupByAttributes(dirPath, criteria) {
         shouldDelete := false
 
         if (criteria.HasOwnProp("hasAttribute") && InStr(attrs, criteria.hasAttribute))
-        shouldDelete := true
+            shouldDelete := true
 
         if (shouldDelete && criteria.HasOwnProp("extension")) {
             if (!InStr(A_LoopFilePath, criteria.extension))
-            shouldDelete := false
+                shouldDelete := false
         }
 
         if (shouldDelete) {

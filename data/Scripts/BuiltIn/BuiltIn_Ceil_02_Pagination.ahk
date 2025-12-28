@@ -1,52 +1,52 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Ceil_02_Pagination.ahk
-*
-* DESCRIPTION:
-* Pagination and resource allocation applications using Ceil() for calculating
-* page counts, batch sizes, and resource distribution
-*
-* FEATURES:
-* - Pagination calculations for data display
-* - Batch processing size determination
-* - Resource allocation and distribution
-* - Group and team sizing
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Ceil.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Ceil() for division rounding
-* - Array slicing and batching
-* - Object-based data structures
-* - Iterator patterns
-*
-* LEARNING POINTS:
-* 1. Ceil() essential for pagination math
-* 2. Calculate total pages: Ceil(items / pageSize)
-* 3. Ensures all items are included
-* 4. Last page may be partially filled
-* 5. Critical for UI and batch processing
-*/
+ * BuiltIn_Ceil_02_Pagination.ahk
+ * 
+ * DESCRIPTION:
+ * Pagination and resource allocation applications using Ceil() for calculating
+ * page counts, batch sizes, and resource distribution
+ * 
+ * FEATURES:
+ * - Pagination calculations for data display
+ * - Batch processing size determination
+ * - Resource allocation and distribution
+ * - Group and team sizing
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Ceil.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Ceil() for division rounding
+ * - Array slicing and batching
+ * - Object-based data structures
+ * - Iterator patterns
+ * 
+ * LEARNING POINTS:
+ * 1. Ceil() essential for pagination math
+ * 2. Calculate total pages: Ceil(items / pageSize)
+ * 3. Ensures all items are included
+ * 4. Last page may be partially filled
+ * 5. Critical for UI and batch processing
+ */
 
 ; ============================================================
 ; Example 1: Basic Pagination
 ; ============================================================
 
 /**
-* Calculate pagination information
-*
-* @param {Number} totalItems - Total number of items
-* @param {Number} itemsPerPage - Items to display per page
-* @returns {Object} - Pagination details
-*/
+ * Calculate pagination information
+ * 
+ * @param {Number} totalItems - Total number of items
+ * @param {Number} itemsPerPage - Items to display per page
+ * @returns {Object} - Pagination details
+ */
 CalculatePagination(totalItems, itemsPerPage) {
     totalPages := Ceil(totalItems / itemsPerPage)
     lastPageItems := Mod(totalItems, itemsPerPage)
     if (lastPageItems = 0)
-    lastPageItems := itemsPerPage
+        lastPageItems := itemsPerPage
 
     return {
         totalItems: totalItems,
@@ -64,32 +64,32 @@ resultsPerPage := 20
 pagination := CalculatePagination(searchResults, resultsPerPage)
 
 MsgBox("Search Results Pagination:`n`n"
-. "Total Results: " pagination.totalItems "`n"
-. "Results per Page: " pagination.itemsPerPage "`n`n"
-. "Total Pages: " pagination.totalPages "`n"
-. "Full Pages: " pagination.fullPages "`n"
-. "Items on Last Page: " pagination.lastPageItems "`n`n"
-. "Calculation: Ceil(" searchResults " / " resultsPerPage ")`n"
-. "= Ceil(12.35) = " pagination.totalPages " pages",
-"Pagination Example", "Icon!")
+    . "Total Results: " pagination.totalItems "`n"
+    . "Results per Page: " pagination.itemsPerPage "`n`n"
+    . "Total Pages: " pagination.totalPages "`n"
+    . "Full Pages: " pagination.fullPages "`n"
+    . "Items on Last Page: " pagination.lastPageItems "`n`n"
+    . "Calculation: Ceil(" searchResults " / " resultsPerPage ")`n"
+    . "= Ceil(12.35) = " pagination.totalPages " pages",
+    "Pagination Example", "Icon!")
 
 ; ============================================================
 ; Example 2: Page Range Calculator
 ; ============================================================
 
 /**
-* Get items for a specific page
-*
-* @param {Number} pageNumber - Page to retrieve (1-based)
-* @param {Number} totalItems - Total items available
-* @param {Number} pageSize - Items per page
-* @returns {Object} - Page range information
-*/
+ * Get items for a specific page
+ * 
+ * @param {Number} pageNumber - Page to retrieve (1-based)
+ * @param {Number} totalItems - Total items available
+ * @param {Number} pageSize - Items per page
+ * @returns {Object} - Page range information
+ */
 GetPageRange(pageNumber, totalItems, pageSize) {
     totalPages := Ceil(totalItems / pageSize)
 
     if (pageNumber < 1 || pageNumber > totalPages)
-    return {error: "Page out of range"}
+        return { error: "Page out of range" }
 
     startIndex := ((pageNumber - 1) * pageSize) + 1
     endIndex := Min(pageNumber * pageSize, totalItems)
@@ -120,8 +120,8 @@ for page in [1, 5, 10, 11] {
         output .= "Page " page ": " range.error "`n"
     } else {
         output .= Format("Page {1}/{2}: Items {3}-{4} ({5} items)`n",
-        range.pageNumber, range.totalPages,
-        range.startIndex, range.endIndex, range.itemsOnPage)
+            range.pageNumber, range.totalPages,
+            range.startIndex, range.endIndex, range.itemsOnPage)
     }
 }
 
@@ -132,12 +132,12 @@ MsgBox(output, "Page Ranges", "Icon!")
 ; ============================================================
 
 /**
-* Calculate batch processing requirements
-*
-* @param {Number} totalJobs - Total jobs to process
-* @param {Number} batchSize - Jobs per batch
-* @returns {Object} - Batch processing plan
-*/
+ * Calculate batch processing requirements
+ * 
+ * @param {Number} totalJobs - Total jobs to process
+ * @param {Number} batchSize - Jobs per batch
+ * @returns {Object} - Batch processing plan
+ */
 PlanBatchProcessing(totalJobs, batchSize) {
     totalBatches := Ceil(totalJobs / batchSize)
     batches := []
@@ -179,11 +179,11 @@ output .= "Total Batches: " batchPlan.totalBatches "`n`n"
 for i, batch in batchPlan.batches {
     if (i <= 3 || i = batchPlan.batches.Length) {
         output .= Format("Batch {1}: Emails {2}-{3} ({4} emails)`n",
-        batch.batchNumber, batch.startJob,
-        batch.endJob, batch.jobCount)
+            batch.batchNumber, batch.startJob,
+            batch.endJob, batch.jobCount)
 
         if (i = 3 && batchPlan.batches.Length > 4)
-        output .= "...`n"
+            output .= "...`n"
     }
 }
 
@@ -194,12 +194,12 @@ MsgBox(output, "Batch Processing", "Icon!")
 ; ============================================================
 
 /**
-* Distribute people into teams
-*
-* @param {Number} totalPeople - Number of people
-* @param {Number} maxPerTeam - Maximum people per team
-* @returns {Object} - Team assignment
-*/
+ * Distribute people into teams
+ * 
+ * @param {Number} totalPeople - Number of people
+ * @param {Number} maxPerTeam - Maximum people per team
+ * @returns {Object} - Team assignment
+ */
 AssignToTeams(totalPeople, maxPerTeam) {
     numTeams := Ceil(totalPeople / maxPerTeam)
     baseSize := Floor(totalPeople / numTeams)
@@ -243,7 +243,7 @@ output .= "Workshops Needed: " teamAssignment.numTeams "`n`n"
 
 for team in teamAssignment.teams {
     output .= Format("Workshop {1}: {2} people (#{3})`n",
-    team.teamNumber, team.size, team.members)
+        team.teamNumber, team.size, team.members)
 }
 
 MsgBox(output, "Team Assignment", "Icon!")
@@ -253,13 +253,13 @@ MsgBox(output, "Team Assignment", "Icon!")
 ; ============================================================
 
 /**
-* Create pagination controls
-*
-* @param {Number} currentPage - Current page number
-* @param {Number} totalItems - Total items
-* @param {Number} pageSize - Items per page
-* @returns {Object} - Pagination controls
-*/
+ * Create pagination controls
+ * 
+ * @param {Number} currentPage - Current page number
+ * @param {Number} totalItems - Total items
+ * @param {Number} pageSize - Items per page
+ * @returns {Object} - Pagination controls
+ */
 CreatePaginationControls(currentPage, totalItems, pageSize) {
     totalPages := Ceil(totalItems / pageSize)
 
@@ -277,34 +277,34 @@ CreatePaginationControls(currentPage, totalItems, pageSize) {
 }
 
 /**
-* Generate visible page numbers (with ellipsis for large sets)
-*
-* @param {Number} current - Current page
-* @param {Number} total - Total pages
-* @returns {Array} - Page numbers to display
-*/
+ * Generate visible page numbers (with ellipsis for large sets)
+ * 
+ * @param {Number} current - Current page
+ * @param {Number} total - Total pages
+ * @returns {Array} - Page numbers to display
+ */
 GeneratePageNumbers(current, total) {
     if (total <= 7)
-    return Range(1, total)
+        return Range(1, total)
 
     ; Show: 1 ... n-1 n n+1 ... total
     pages := [1]
 
     if (current > 3)
-    pages.Push("...")
+        pages.Push("...")
 
     ; Show pages around current
     startPage := Max(2, current - 1)
     endPage := Min(total - 1, current + 1)
 
     Loop endPage - startPage + 1
-    pages.Push(startPage + A_Index - 1)
+        pages.Push(startPage + A_Index - 1)
 
     if (current < total - 2)
-    pages.Push("...")
+        pages.Push("...")
 
     if (total > 1)
-    pages.Push(total)
+        pages.Push(total)
 
     return pages
 }
@@ -312,7 +312,7 @@ GeneratePageNumbers(current, total) {
 Range(start, end) {
     arr := []
     Loop end - start + 1
-    arr.Push(start + A_Index - 1)
+        arr.Push(start + A_Index - 1)
     return arr
 }
 
@@ -329,9 +329,9 @@ output .= "Page " controls.currentPage " of " controls.totalPages "`n`n"
 output .= "Pages: "
 for pageNum in controls.pageNumbers {
     if (pageNum = controls.currentPage)
-    output .= "[" pageNum "] "
+        output .= "[" pageNum "] "
     else
-    output .= pageNum " "
+        output .= pageNum " "
 }
 
 output .= "`n`n"
@@ -345,12 +345,12 @@ MsgBox(output, "Pagination UI", "Icon!")
 ; ============================================================
 
 /**
-* Calculate file upload chunks
-*
-* @param {Number} fileSizeBytes - Total file size
-* @param {Number} chunkSizeBytes - Chunk size
-* @returns {Object} - Upload plan
-*/
+ * Calculate file upload chunks
+ * 
+ * @param {Number} fileSizeBytes - Total file size
+ * @param {Number} chunkSizeBytes - Chunk size
+ * @returns {Object} - Upload plan
+ */
 PlanFileUpload(fileSizeBytes, chunkSizeBytes) {
     totalChunks := Ceil(fileSizeBytes / chunkSizeBytes)
     chunks := []
@@ -395,11 +395,11 @@ output .= "Total Chunks: " uploadPlan.totalChunks "`n`n"
 for i, chunk in uploadPlan.chunks {
     if (i <= 3 || i = uploadPlan.chunks.Length) {
         output .= Format("Chunk {1}: Bytes {2}-{3} ({4} MB)`n",
-        chunk.chunkNumber, chunk.startByte,
-        chunk.endByte, chunk.sizeMB)
+            chunk.chunkNumber, chunk.startByte,
+            chunk.endByte, chunk.sizeMB)
 
         if (i = 3 && uploadPlan.chunks.Length > 4)
-        output .= "...`n"
+            output .= "...`n"
     }
 }
 
@@ -410,13 +410,13 @@ MsgBox(output, "Upload Chunks", "Icon!")
 ; ============================================================
 
 /**
-* Calculate print job requirements
-*
-* @param {Number} totalPages - Document pages
-* @param {Number} sheetsPerPage - Pages per sheet (1, 2, 4, etc.)
-* @param {Number} duplex - Print both sides (true/false)
-* @returns {Object} - Print requirements
-*/
+ * Calculate print job requirements
+ * 
+ * @param {Number} totalPages - Document pages
+ * @param {Number} sheetsPerPage - Pages per sheet (1, 2, 4, etc.)
+ * @param {Number} duplex - Print both sides (true/false)
+ * @returns {Object} - Print requirements
+ */
 CalculatePrintJob(totalPages, sheetsPerPage := 1, duplex := false) {
     pagesPerSheet := sheetsPerPage * (duplex ? 2 : 1)
     sheetsNeeded := Ceil(totalPages / pagesPerSheet)
@@ -433,40 +433,36 @@ CalculatePrintJob(totalPages, sheetsPerPage := 1, duplex := false) {
 }
 
 ; Print job scenarios
-printJobs := [
-{
-    name: "Simple (1-sided)", pages: 47, perSheet: 1, duplex: false},
-    {
-        name: "Duplex (2-sided)", pages: 47, perSheet: 1, duplex: true},
-        {
-            name: "2-up Duplex", pages: 47, perSheet: 2, duplex: true},
-            {
+printJobs := [{
+    name: "Simple (1-sided)", pages: 47, perSheet: 1, duplex: false }, {
+        name: "Duplex (2-sided)", pages: 47, perSheet: 1, duplex: true }, {
+            name: "2-up Duplex", pages: 47, perSheet: 2, duplex: true }, {
                 name: "4-up Single", pages: 47, perSheet: 4, duplex: false
             }
-            ]
+]
 
-            output := "Print Job Calculations:`n`n"
+output := "Print Job Calculations:`n`n"
 
-            for job in printJobs {
-                calc := CalculatePrintJob(job.pages, job.perSheet, job.duplex)
+for job in printJobs {
+    calc := CalculatePrintJob(job.pages, job.perSheet, job.duplex)
 
-                output .= job.name . ":`n"
-                output .= "  " calc.totalPages " pages → "
-                output .= calc.sheetsNeeded " sheets"
+    output .= job.name . ":`n"
+    output .= "  " calc.totalPages " pages → "
+    output .= calc.sheetsNeeded " sheets"
 
-                if (calc.blankPages > 0)
-                output .= " (" calc.blankPages " blank)"
+    if (calc.blankPages > 0)
+        output .= " (" calc.blankPages " blank)"
 
-                output .= "`n`n"
-            }
+    output .= "`n`n"
+}
 
-            MsgBox(output, "Print Planning", "Icon!")
+MsgBox(output, "Print Planning", "Icon!")
 
-            ; ============================================================
-            ; Reference Information
-            ; ============================================================
+; ============================================================
+; Reference Information
+; ============================================================
 
-            info := "
+info := "
             (
             CEIL() FOR PAGINATION & RESOURCE ALLOCATION:
 
@@ -554,4 +550,4 @@ printJobs := [
             • Items per page selector
             )"
 
-            MsgBox(info, "Pagination Reference", "Icon!")
+MsgBox(info, "Pagination Reference", "Icon!")

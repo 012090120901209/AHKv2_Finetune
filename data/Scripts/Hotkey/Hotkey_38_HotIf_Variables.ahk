@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Context-Sensitive - Global Variables
-* Change hotkey behavior by toggling modes/states
-*/
+ * Context-Sensitive - Global Variables
+ * Change hotkey behavior by toggling modes/states
+ */
 
 global editMode := false
 global debugMode := false
@@ -32,26 +32,27 @@ F3:: {
 ; Different behavior in edit mode
 #HotIf editMode
 
-e::MsgBox("E in EDIT mode")
-d::Send("{Delete}")
+e:: MsgBox("E in EDIT mode")
+d:: Send("{Delete}")
 #HotIf
 
 ; Debug-only hotkeys
 #HotIf debugMode
 
-F10::MsgBox("Debug: Breakpoint")
-F11::MsgBox("Debug: Step Over")
+F10:: MsgBox("Debug: Breakpoint")
+F11:: MsgBox("Debug: Step Over")
 #HotIf
 
 ; User level restricted hotkeys
 #HotIf userLevel >= 2
 
-^!d::MsgBox("Admin command (Level 2+)")
+^!d:: MsgBox("Admin command (Level 2+)")
 #HotIf
 
 #HotIf userLevel = 3
 
-^!x::MsgBox("Super admin command (Level 3 only)")
+^!x:: MsgBox("Super admin command (Level 3 only)")
 #HotIf
 
 #HotIf  ; Reset
+

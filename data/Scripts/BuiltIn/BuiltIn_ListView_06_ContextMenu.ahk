@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_06_ContextMenu.ahk
-*
-* DESCRIPTION:
-* Demonstrates right-click context menus for ListView controls including item-specific
-* menus, multi-selection actions, and dynamic menu creation based on context.
-*
-* FEATURES:
-* - Creating context menus for ListView items
-* - Right-click event handling
-* - Item-specific menu options
-* - Multi-selection aware menus
-* - Dynamic menu generation
-* - Menu icons and separators
-* - Clipboard operations from context menu
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-* https://www.autohotkey.com/docs/v2/lib/Menu.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ContextMenu event for ListView
-* - Menu object creation and management
-* - Menu.Add() method syntax
-* - Dynamic menu item enabling/disabling
-* - GetNext() for multi-selection handling
-*
-* LEARNING POINTS:
-* 1. ContextMenu event provides row number and click position
-* 2. Right-click on empty area returns row = 0
-* 3. Menus can be created dynamically based on selected items
-* 4. Menu items can be enabled/disabled contextually
-* 5. Same menu object can be reused with modifications
-* 6. GuiContextMenu event fires for all right-clicks
-* 7. Context menus enhance user workflow significantly
-*/
+ * BuiltIn_ListView_06_ContextMenu.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates right-click context menus for ListView controls including item-specific
+ * menus, multi-selection actions, and dynamic menu creation based on context.
+ * 
+ * FEATURES:
+ * - Creating context menus for ListView items
+ * - Right-click event handling
+ * - Item-specific menu options
+ * - Multi-selection aware menus
+ * - Dynamic menu generation
+ * - Menu icons and separators
+ * - Clipboard operations from context menu
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * https://www.autohotkey.com/docs/v2/lib/Menu.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ContextMenu event for ListView
+ * - Menu object creation and management
+ * - Menu.Add() method syntax
+ * - Dynamic menu item enabling/disabling
+ * - GetNext() for multi-selection handling
+ * 
+ * LEARNING POINTS:
+ * 1. ContextMenu event provides row number and click position
+ * 2. Right-click on empty area returns row = 0
+ * 3. Menus can be created dynamically based on selected items
+ * 4. Menu items can be enabled/disabled contextually
+ * 5. Same menu object can be reused with modifications
+ * 6. GuiContextMenu event fires for all right-clicks
+ * 7. Context menus enhance user workflow significantly
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Context Menu
@@ -47,13 +47,13 @@ Example1_BasicContextMenu() {
     LV := MyGui.Add("ListView", "r12 w650", ["File Name", "Type", "Size"])
 
     files := [
-    ["document.txt", "Text", "5 KB"],
-    ["image.jpg", "Image", "1.2 MB"],
-    ["video.mp4", "Video", "45 MB"],
-    ["script.ahk", "Script", "8 KB"],
-    ["data.csv", "Data", "125 KB"],
-    ["archive.zip", "Archive", "15 MB"],
-    ["photo.png", "Image", "2.1 MB"]
+        ["document.txt", "Text", "5 KB"],
+        ["image.jpg", "Image", "1.2 MB"],
+        ["video.mp4", "Video", "45 MB"],
+        ["script.ahk", "Script", "8 KB"],
+        ["data.csv", "Data", "125 KB"],
+        ["archive.zip", "Archive", "15 MB"],
+        ["photo.png", "Image", "2.1 MB"]
     ]
 
     for file in files {
@@ -110,12 +110,12 @@ Example2_ItemSpecificMenus() {
     LV := MyGui.Add("ListView", "r12 w700", ["Item", "Type", "Status"])
 
     items := [
-    ["Project A", "Project", "Active"],
-    ["Document 1", "File", "Locked"],
-    ["Meeting Notes", "File", "Editable"],
-    ["Budget 2025", "File", "Locked"],
-    ["Project B", "Project", "Archived"],
-    ["Report Q1", "File", "Editable"]
+        ["Project A", "Project", "Active"],
+        ["Document 1", "File", "Locked"],
+        ["Meeting Notes", "File", "Editable"],
+        ["Budget 2025", "File", "Locked"],
+        ["Project B", "Project", "Archived"],
+        ["Report Q1", "File", "Editable"]
     ]
 
     for item in items {
@@ -146,7 +146,7 @@ Example2_ItemSpecificMenus() {
 
     ShowContextMenu(GuiCtrl, Item, IsRightClick, X, Y) {
         if Item = 0
-        return
+            return
 
         itemType := LV.GetText(Item, 2)
         status := LV.GetText(Item, 3)
@@ -192,14 +192,14 @@ Example3_MultiSelectionMenu() {
     LV := MyGui.Add("ListView", "r12 w700", ["File", "Size", "Type"])
 
     files := [
-    ["file1.txt", "5 KB", "Text"],
-    ["file2.txt", "3 KB", "Text"],
-    ["image1.jpg", "1.2 MB", "Image"],
-    ["image2.png", "800 KB", "Image"],
-    ["video.mp4", "25 MB", "Video"],
-    ["document.pdf", "450 KB", "PDF"],
-    ["script.ahk", "12 KB", "Script"],
-    ["data.csv", "85 KB", "Data"]
+        ["file1.txt", "5 KB", "Text"],
+        ["file2.txt", "3 KB", "Text"],
+        ["image1.jpg", "1.2 MB", "Image"],
+        ["image2.png", "800 KB", "Image"],
+        ["video.mp4", "25 MB", "Video"],
+        ["document.pdf", "450 KB", "PDF"],
+        ["script.ahk", "12 KB", "Script"],
+        ["data.csv", "85 KB", "Data"]
     ]
 
     for file in files {
@@ -250,7 +250,7 @@ Example3_MultiSelectionMenu() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             count++
             fileList .= LV.GetText(rowNum, 1) "`n"
@@ -273,7 +273,7 @@ Example3_MultiSelectionMenu() {
             Loop LV.GetCount() {
                 rowNum := LV.GetCount() - A_Index + 1
                 if LV.GetNext(rowNum - 1) = rowNum
-                LV.Delete(rowNum)
+                    LV.Delete(rowNum)
             }
             MsgBox(count " file(s) deleted!")
         }
@@ -282,14 +282,14 @@ Example3_MultiSelectionMenu() {
     SelectSameType(*) {
         rowNum := LV.GetNext()
         if !rowNum
-        return
+            return
 
         fileType := LV.GetText(rowNum, 3)
 
         ; Select all items of same type
         Loop LV.GetCount() {
             if LV.GetText(A_Index, 3) = fileType
-            LV.Modify(A_Index, "Select")
+                LV.Modify(A_Index, "Select")
         }
     }
 
@@ -302,11 +302,11 @@ Example3_MultiSelectionMenu() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             fileType := LV.GetText(rowNum, 3)
             if !types.Has(fileType)
-            types[fileType] := 0
+                types[fileType] := 0
             types[fileType]++
         }
 
@@ -332,11 +332,11 @@ Example4_SubmenuContext() {
     LV := MyGui.Add("ListView", "r10 w700", ["Task", "Priority", "Status"])
 
     tasks := [
-    ["Write Report", "High", "Pending"],
-    ["Review Code", "Medium", "In Progress"],
-    ["Fix Bug", "Critical", "Pending"],
-    ["Update Docs", "Low", "Completed"],
-    ["Team Meeting", "Medium", "Pending"]
+        ["Write Report", "High", "Pending"],
+        ["Review Code", "Medium", "In Progress"],
+        ["Fix Bug", "Critical", "Pending"],
+        ["Update Docs", "Low", "Completed"],
+        ["Team Meeting", "Medium", "Pending"]
     ]
 
     for task in tasks {
@@ -415,13 +415,13 @@ Example5_DynamicMenus() {
     LV := MyGui.Add("ListView", "r12 w750", ["Product", "Category", "Price", "Stock"])
 
     products := [
-    ["Laptop", "Electronics", "$999", "5"],
-    ["Mouse", "Electronics", "$25", "150"],
-    ["Desk", "Furniture", "$299", "8"],
-    ["Chair", "Furniture", "$199", "12"],
-    ["Monitor", "Electronics", "$349", "25"],
-    ["Lamp", "Lighting", "$45", "40"],
-    ["Keyboard", "Electronics", "$75", "85"]
+        ["Laptop", "Electronics", "$999", "5"],
+        ["Mouse", "Electronics", "$25", "150"],
+        ["Desk", "Furniture", "$299", "8"],
+        ["Chair", "Furniture", "$199", "12"],
+        ["Monitor", "Electronics", "$349", "25"],
+        ["Lamp", "Lighting", "$45", "40"],
+        ["Keyboard", "Electronics", "$75", "85"]
     ]
 
     for product in products {
@@ -434,7 +434,7 @@ Example5_DynamicMenus() {
 
     BuildDynamicMenu(GuiCtrl, Item, IsRightClick, X, Y) {
         if Item = 0
-        return
+            return
 
         ; Create fresh menu each time
         DynamicMenu := Menu()
@@ -474,7 +474,7 @@ Example5_DynamicMenus() {
         product := LV.GetText(row, 1)
         result := MsgBox("Delete " product "?", "Confirm", "YesNo")
         if result = "Yes"
-        LV.Delete(row)
+            LV.Delete(row)
     }
 
     MyGui.Add("Text", "w750", "Context menu changes based on item properties")
@@ -491,11 +491,11 @@ Example6_ClipboardMenu() {
     LV := MyGui.Add("ListView", "r12 w700", ["Name", "Email", "Phone", "Department"])
 
     contacts := [
-    ["John Smith", "john@company.com", "555-0101", "Engineering"],
-    ["Jane Doe", "jane@company.com", "555-0102", "Marketing"],
-    ["Bob Wilson", "bob@company.com", "555-0103", "Sales"],
-    ["Alice Brown", "alice@company.com", "555-0104", "Engineering"],
-    ["Charlie Davis", "charlie@company.com", "555-0105", "HR"]
+        ["John Smith", "john@company.com", "555-0101", "Engineering"],
+        ["Jane Doe", "jane@company.com", "555-0102", "Marketing"],
+        ["Bob Wilson", "bob@company.com", "555-0103", "Sales"],
+        ["Alice Brown", "alice@company.com", "555-0104", "Engineering"],
+        ["Charlie Davis", "charlie@company.com", "555-0105", "HR"]
     ]
 
     for contact in contacts {
@@ -520,7 +520,7 @@ Example6_ClipboardMenu() {
     CopyField(ItemName, *) {
         rowNum := LV.GetNext()
         if !rowNum
-        return
+            return
 
         col := (ItemName = "Copy Name") ? 1 : (ItemName = "Copy Email") ? 2 : 3
         value := LV.GetText(rowNum, col)
@@ -532,12 +532,12 @@ Example6_ClipboardMenu() {
     CopyRow(*) {
         rowNum := LV.GetNext()
         if !rowNum
-        return
+            return
 
         row := LV.GetText(rowNum, 1) "`t"
-        . LV.GetText(rowNum, 2) "`t"
-        . LV.GetText(rowNum, 3) "`t"
-        . LV.GetText(rowNum, 4)
+            . LV.GetText(rowNum, 2) "`t"
+            . LV.GetText(rowNum, 3) "`t"
+            . LV.GetText(rowNum, 4)
 
         A_Clipboard := row
         ToolTip("Row copied to clipboard")
@@ -551,12 +551,12 @@ Example6_ClipboardMenu() {
         Loop {
             rowNum := LV.GetNext(rowNum)
             if !rowNum
-            break
+                break
 
             output .= LV.GetText(rowNum, 1) ","
-            . LV.GetText(rowNum, 2) ","
-            . LV.GetText(rowNum, 3) ","
-            . LV.GetText(rowNum, 4) "`n"
+                . LV.GetText(rowNum, 2) ","
+                . LV.GetText(rowNum, 3) ","
+                . LV.GetText(rowNum, 4) "`n"
         }
 
         if output != "" {
@@ -571,9 +571,9 @@ Example6_ClipboardMenu() {
 
         Loop LV.GetCount() {
             output .= LV.GetText(A_Index, 1) ","
-            . LV.GetText(A_Index, 2) ","
-            . LV.GetText(A_Index, 3) ","
-            . LV.GetText(A_Index, 4) "`n"
+                . LV.GetText(A_Index, 2) ","
+                . LV.GetText(A_Index, 3) ","
+                . LV.GetText(A_Index, 4) "`n"
         }
 
         A_Clipboard := output
@@ -598,10 +598,10 @@ Example7_MenuWithIcons() {
     LV := MyGui.Add("ListView", "r10 w650", ["File", "Type", "Modified"])
 
     files := [
-    ["document.docx", "Document", "2025-11-15"],
-    ["image.jpg", "Image", "2025-11-14"],
-    ["video.mp4", "Video", "2025-11-10"],
-    ["script.ahk", "Script", "2025-11-16"]
+        ["document.docx", "Document", "2025-11-15"],
+        ["image.jpg", "Image", "2025-11-14"],
+        ["video.mp4", "Video", "2025-11-10"],
+        ["script.ahk", "Script", "2025-11-16"]
     ]
 
     for file in files {
@@ -658,7 +658,7 @@ Example7_MenuWithIcons() {
             oldName := LV.GetText(rowNum, 1)
             result := InputBox("New name:", "Rename", "w300", oldName)
             if result.Result != "Cancel"
-            LV.Modify(rowNum, , result.Value)
+                LV.Modify(rowNum, , result.Value)
         }
     }
 
@@ -671,7 +671,7 @@ Example7_MenuWithIcons() {
         if rowNum {
             result := MsgBox("Delete this file?", "Confirm", "YesNo Icon!")
             if result = "Yes"
-            LV.Delete(rowNum)
+                LV.Delete(rowNum)
         }
     }
 
@@ -679,8 +679,8 @@ Example7_MenuWithIcons() {
         rowNum := LV.GetNext()
         if rowNum {
             info := "File: " LV.GetText(rowNum, 1) "`n"
-            . "Type: " LV.GetText(rowNum, 2) "`n"
-            . "Modified: " LV.GetText(rowNum, 3)
+                . "Type: " LV.GetText(rowNum, 2) "`n"
+                . "Modified: " LV.GetText(rowNum, 3)
             MsgBox(info, "Properties")
         }
     }
@@ -789,3 +789,4 @@ KEYBOARD SHORTCUTS:
 E&xit    - Alt+X activates
 &Copy`tCtrl+C  - Shows Ctrl+C hint (visual only)
 */
+

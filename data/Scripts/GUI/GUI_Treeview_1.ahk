@@ -11,7 +11,8 @@ P2C1 := ogcTreeView.Add("Parent 2's first child", P2)
 P2C2 := ogcTreeView.Add("Parent 2's second child", P2)
 P2C2C1 := ogcTreeView.Add("Child 2's first child", P2C2) myGui.Show() ; Show the window and its TreeView.
 GuiClose: ; Exit the script when the user closes the TreeView's GUI window.
-GuiClose()
-ExitApp()
-GuiClose(*) { ExitApp()
-}
+    GuiClose()
+    ExitApp()
+    GuiClose(*) {
+        ExitApp()
+    }

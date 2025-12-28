@@ -20,7 +20,7 @@ class TabsManager {
         loop this.pages.Length {
             this.tab.UseTab(A_Index)
             for ctrl in this.pages[A_Index].controls
-            this.gui.Add(ctrl.type, ctrl.options, ctrl.text)
+                this.gui.Add(ctrl.type, ctrl.options, ctrl.text)
         }
 
         this.tab.UseTab()
@@ -33,11 +33,11 @@ class TabsManager {
 tabs := TabsManager("Settings")
 
 generalPage := TabPage("General")
-generalPage.AddControl({type: "Text", options: "x30 y50", text: "Application Name:"})
-.AddControl({type: "Edit", options: "x150 y47 w200", text: ""})
+generalPage.AddControl({ type: "Text", options: "x30 y50", text: "Application Name:" })
+    .AddControl({ type: "Edit", options: "x150 y47 w200", text: "" })
 
 advancedPage := TabPage("Advanced")
-advancedPage.AddControl({type: "Checkbox", options: "x30 y50", text: "Enable Debug Mode"})
-.AddControl({type: "Checkbox", options: "x30 y80", text: "Auto-update"})
+advancedPage.AddControl({ type: "Checkbox", options: "x30 y50", text: "Enable Debug Mode" })
+    .AddControl({ type: "Checkbox", options: "x30 y80", text: "Auto-update" })
 
 tabs.AddPage(generalPage).AddPage(advancedPage).Build()

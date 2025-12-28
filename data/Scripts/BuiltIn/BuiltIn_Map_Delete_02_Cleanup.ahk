@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Delete_02_Cleanup.ahk
-*
-* @description Map.Delete() for data cleanup operations
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Using Map.Delete() for cleaning up old data, removing invalid entries,
-* garbage collection, and maintaining data hygiene.
-*/
+ * BuiltIn_Map_Delete_02_Cleanup.ahk
+ * 
+ * @description Map.Delete() for data cleanup operations
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Using Map.Delete() for cleaning up old data, removing invalid entries,
+ * garbage collection, and maintaining data hygiene.
+ */
 
 ;=============================================================================
 ; Example 1: Expired Data Cleanup
@@ -20,10 +20,10 @@
 
 Example1_ExpiredCleanup() {
     cache := Map(
-    "item1", Map("value", "Data 1", "expires", A_Now),
-    "item2", Map("value", "Data 2", "expires", FormatTime(DateAdd(A_Now, 1, "days"), "yyyyMMddHHmmss")),
-    "item3", Map("value", "Data 3", "expires", "20200101000000"),  ; Expired
-    "item4", Map("value", "Data 4", "expires", FormatTime(DateAdd(A_Now, -1, "days"), "yyyyMMddHHmmss"))  ; Expired
+        "item1", Map("value", "Data 1", "expires", A_Now),
+        "item2", Map("value", "Data 2", "expires", FormatTime(DateAdd(A_Now, 1, "days"), "yyyyMMddHHmmss")),
+        "item3", Map("value", "Data 3", "expires", "20200101000000"),  ; Expired
+        "item4", Map("value", "Data 4", "expires", FormatTime(DateAdd(A_Now, -1, "days"), "yyyyMMddHHmmss"))  ; Expired
     )
 
     DateAdd(dateTime, amount, units) {
@@ -36,7 +36,7 @@ Example1_ExpiredCleanup() {
 
         for key, item in cache {
             if (item["expires"] < A_Now)
-            toDelete.Push(key)
+                toDelete.Push(key)
         }
 
         for key in toDelete {
@@ -64,10 +64,10 @@ Example1_ExpiredCleanup() {
 
 Example2_InvalidRemoval() {
     data := Map(
-    "valid1", Map("email", "user@example.com", "age", 25),
-    "invalid1", Map("email", "bad-email", "age", 25),
-    "invalid2", Map("email", "user2@example.com", "age", -5),
-    "valid2", Map("email", "user3@example.com", "age", 30)
+        "valid1", Map("email", "user@example.com", "age", 25),
+        "invalid1", Map("email", "bad-email", "age", 25),
+        "invalid2", Map("email", "user2@example.com", "age", -5),
+        "valid2", Map("email", "user3@example.com", "age", 30)
     )
 
     RemoveInvalid() {
@@ -76,13 +76,13 @@ Example2_InvalidRemoval() {
         for key, record in data {
             ; Validate email
             if (!InStr(record["email"], "@")) {
-                toRemove.Push({key: key, reason: "Invalid email"})
+                toRemove.Push({ key: key, reason: "Invalid email" })
                 continue
             }
 
             ; Validate age
             if (record["age"] < 0 || record["age"] > 150) {
-                toRemove.Push({key: key, reason: "Invalid age"})
+                toRemove.Push({ key: key, reason: "Invalid age" })
                 continue
             }
         }
@@ -117,16 +117,16 @@ Example2_InvalidRemoval() {
 Example3_OrphanRemoval() {
     ; Parent data
     users := Map(
-    "U001", Map("name", "Alice"),
-    "U002", Map("name", "Bob")
+        "U001", Map("name", "Alice"),
+        "U002", Map("name", "Bob")
     )
 
     ; Child data with orphans
     sessions := Map(
-    "S001", Map("userId", "U001", "active", true),
-    "S002", Map("userId", "U999", "active", true),  ; Orphan
-    "S003", Map("userId", "U002", "active", true),
-    "S004", Map("userId", "U888", "active", true)  ; Orphan
+        "S001", Map("userId", "U001", "active", true),
+        "S002", Map("userId", "U999", "active", true),  ; Orphan
+        "S003", Map("userId", "U002", "active", true),
+        "S004", Map("userId", "U888", "active", true)  ; Orphan
     )
 
     RemoveOrphans() {
@@ -164,11 +164,11 @@ Example3_OrphanRemoval() {
 
 Example4_DuplicateCleanup() {
     records := Map(
-    "R001", Map("email", "user1@example.com", "name", "User 1"),
-    "R002", Map("email", "user2@example.com", "name", "User 2"),
-    "R003", Map("email", "user1@example.com", "name", "User 1 Duplicate"),
-    "R004", Map("email", "user3@example.com", "name", "User 3"),
-    "R005", Map("email", "user2@example.com", "name", "User 2 Duplicate")
+        "R001", Map("email", "user1@example.com", "name", "User 1"),
+        "R002", Map("email", "user2@example.com", "name", "User 2"),
+        "R003", Map("email", "user1@example.com", "name", "User 1 Duplicate"),
+        "R004", Map("email", "user3@example.com", "name", "User 3"),
+        "R005", Map("email", "user2@example.com", "name", "User 2 Duplicate")
     )
 
     RemoveDuplicates(field) {
@@ -218,7 +218,7 @@ Example5_SizeBasedCleanup() {
         accessTimes.Set(key, A_TickCount)
 
         if (cache.Count > maxSize)
-        EvictLRU()
+            EvictLRU()
     }
 
     EvictLRU() {
@@ -266,9 +266,9 @@ Example6_ScheduledCleanup() {
 
     AddTempFile(name, path) {
         tempFiles.Set(name, Map(
-        "path", path,
-        "created", A_Now,
-        "accessed", A_Now
+            "path", path,
+            "created", A_Now,
+            "accessed", A_Now
         ))
     }
 
@@ -322,9 +322,9 @@ Example7_BatchCleanup() {
     ; Add test data
     Loop 100 {
         data.Set("item" A_Index, Map(
-        "value", "Data " A_Index,
-        "flag", Mod(A_Index, 3) = 0,
-        "priority", Mod(A_Index, 5)
+            "value", "Data " A_Index,
+            "flag", Mod(A_Index, 3) = 0,
+            "priority", Mod(A_Index, 5)
         ))
     }
 
@@ -337,7 +337,7 @@ Example7_BatchCleanup() {
                 toDelete.Push(key)
 
                 if (toDelete.Length >= batchSize)
-                break
+                    break
             }
         }
 
@@ -372,28 +372,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Data Cleanup with Map.Delete()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Expired")
-    .OnEvent("Click", (*) => Example1_ExpiredCleanup())
+        .OnEvent("Click", (*) => Example1_ExpiredCleanup())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Invalid")
-    .OnEvent("Click", (*) => Example2_InvalidRemoval())
+        .OnEvent("Click", (*) => Example2_InvalidRemoval())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Orphans")
-    .OnEvent("Click", (*) => Example3_OrphanRemoval())
+        .OnEvent("Click", (*) => Example3_OrphanRemoval())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Duplicates")
-    .OnEvent("Click", (*) => Example4_DuplicateCleanup())
+        .OnEvent("Click", (*) => Example4_DuplicateCleanup())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Size-Based")
-    .OnEvent("Click", (*) => Example5_SizeBasedCleanup())
+        .OnEvent("Click", (*) => Example5_SizeBasedCleanup())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Scheduled")
-    .OnEvent("Click", (*) => Example6_ScheduledCleanup())
+        .OnEvent("Click", (*) => Example6_ScheduledCleanup())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Batch Cleanup")
-    .OnEvent("Click", (*) => Example7_BatchCleanup())
+        .OnEvent("Click", (*) => Example7_BatchCleanup())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_ExpiredCleanup()

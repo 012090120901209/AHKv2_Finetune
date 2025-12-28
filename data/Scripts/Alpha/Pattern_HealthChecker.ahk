@@ -151,7 +151,7 @@ for checkName, checkResult in result["checks"] {
     output .= checkName ":`n"
     output .= "  Status: " checkResult["status"] "`n"
     output .= "  Duration: " checkResult["duration_ms"] "ms`n"
-    
+
     for key, value in checkResult {
         if key != "status" && key != "duration_ms" && key != "timestamp"
             output .= "  " key ": " value "`n"

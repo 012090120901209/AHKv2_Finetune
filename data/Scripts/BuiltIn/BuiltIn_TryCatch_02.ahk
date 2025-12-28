@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Resource Cleanup
-* ============================================================================
-*
-* This script demonstrates resource cleanup in AutoHotkey v2.
-* Covers finally blocks, resource management.
-*
-* @file BuiltIn_TryCatch_02.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Resource Cleanup
+ * ============================================================================
+ * 
+ * This script demonstrates resource cleanup in AutoHotkey v2.
+ * Covers finally blocks, resource management.
+ * 
+ * @file BuiltIn_TryCatch_02.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1
@@ -145,7 +145,7 @@ Example7() {
     OutputDebug("=== Example 7 ===`n")
 
     ; Complex example
-    matrix := [[1,2], [3,4]]
+    matrix := [[1, 2], [3, 4]]
 
     for row in matrix {
         line := ""

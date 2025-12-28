@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Kernel32_04_Time.ahk
-*
-* DESCRIPTION:
-* Demonstrates time and date functions using Windows API through DllCall.
-* Shows how to get system time, file time, tick counts, high-resolution timing,
-* and time zone information.
-*
-* FEATURES:
-* - Getting system time and local time
-* - File time conversions
-* - High-resolution performance counters
-* - Tick count for elapsed time
-* - Time zone information
-* - Time format conversions
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Time Functions
-* https://docs.microsoft.com/en-us/windows/win32/sysinfo/time-functions
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with time functions
-* - SYSTEMTIME and FILETIME structures
-* - 64-bit integer handling
-* - High-precision timing measurements
-*
-* LEARNING POINTS:
-* 1. Getting system and local time
-* 2. Working with SYSTEMTIME structures
-* 3. Converting between time formats
-* 4. Using high-resolution performance counters
-* 5. Measuring elapsed time accurately
-* 6. Getting tick counts
-* 7. Time zone management
-*/
+ * BuiltIn_DllCall_Kernel32_04_Time.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates time and date functions using Windows API through DllCall.
+ * Shows how to get system time, file time, tick counts, high-resolution timing,
+ * and time zone information.
+ * 
+ * FEATURES:
+ * - Getting system time and local time
+ * - File time conversions
+ * - High-resolution performance counters
+ * - Tick count for elapsed time
+ * - Time zone information
+ * - Time format conversions
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Time Functions
+ * https://docs.microsoft.com/en-us/windows/win32/sysinfo/time-functions
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with time functions
+ * - SYSTEMTIME and FILETIME structures
+ * - 64-bit integer handling
+ * - High-precision timing measurements
+ * 
+ * LEARNING POINTS:
+ * 1. Getting system and local time
+ * 2. Working with SYSTEMTIME structures
+ * 3. Converting between time formats
+ * 4. Using high-resolution performance counters
+ * 5. Measuring elapsed time accurately
+ * 6. Getting tick counts
+ * 7. Time zone management
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: System Time
@@ -62,7 +62,7 @@ Example1_SystemTime() {
     dayName := days[dayOfWeek + 1]
 
     utcTime := Format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}.{:03d} UTC",
-    year, month, day, hour, minute, second, milliseconds)
+        year, month, day, hour, minute, second, milliseconds)
 
     ; Get local time
     localTime := Buffer(16, 0)
@@ -76,7 +76,7 @@ Example1_SystemTime() {
     lSecond := NumGet(localTime, 12, "UShort")
 
     local := Format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}",
-    lYear, lMonth, lDay, lHour, lMinute, lSecond)
+        lYear, lMonth, lDay, lHour, lMinute, lSecond)
 
     MsgBox(Format("System Time:`n`nUTC: {}`nDay: {}`n`nLocal: {}", utcTime, dayName, local), "Time Info")
 }
@@ -95,14 +95,14 @@ Example2_FileTime() {
     FILE_ATTRIBUTE_NORMAL := 0x80
 
     hFile := DllCall("Kernel32.dll\CreateFileW"
-    , "Str", testFile
-    , "UInt", GENERIC_READ
-    , "UInt", 0
-    , "Ptr", 0
-    , "UInt", OPEN_EXISTING
-    , "UInt", FILE_ATTRIBUTE_NORMAL
-    , "Ptr", 0
-    , "Ptr")
+        , "Str", testFile
+        , "UInt", GENERIC_READ
+        , "UInt", 0
+        , "Ptr", 0
+        , "UInt", OPEN_EXISTING
+        , "UInt", FILE_ATTRIBUTE_NORMAL
+        , "Ptr", 0
+        , "Ptr")
 
     ; Get file times
     creation := Buffer(8, 0)
@@ -110,11 +110,11 @@ Example2_FileTime() {
     write := Buffer(8, 0)
 
     DllCall("Kernel32.dll\GetFileTime"
-    , "Ptr", hFile
-    , "Ptr", creation.Ptr
-    , "Ptr", access.Ptr
-    , "Ptr", write.Ptr
-    , "Int")
+        , "Ptr", hFile
+        , "Ptr", creation.Ptr
+        , "Ptr", access.Ptr
+        , "Ptr", write.Ptr
+        , "Int")
 
     ; Convert FILETIME to SYSTEMTIME
     sysTime := Buffer(16, 0)
@@ -130,7 +130,7 @@ Example2_FileTime() {
     minute := NumGet(sysTime, 10, "UShort")
     second := NumGet(sysTime, 12, "UShort")
     results .= Format("Created: {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}`n",
-    year, month, day, hour, minute, second)
+        year, month, day, hour, minute, second)
 
     ; Modified time
     DllCall("Kernel32.dll\FileTimeToSystemTime", "Ptr", write.Ptr, "Ptr", sysTime.Ptr, "Int")
@@ -141,7 +141,7 @@ Example2_FileTime() {
     minute := NumGet(sysTime, 10, "UShort")
     second := NumGet(sysTime, 12, "UShort")
     results .= Format("Modified: {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}`n",
-    year, month, day, hour, minute, second)
+        year, month, day, hour, minute, second)
 
     MsgBox(results, "File Times")
 
@@ -221,8 +221,8 @@ Example4_TimeZone() {
     tzInfo := Buffer(172, 0)
 
     result := DllCall("Kernel32.dll\GetTimeZoneInformation"
-    , "Ptr", tzInfo.Ptr
-    , "UInt")
+        , "Ptr", tzInfo.Ptr
+        , "UInt")
 
     ; result: 0 = unknown, 1 = standard time, 2 = daylight time
 
@@ -240,9 +240,9 @@ Example4_TimeZone() {
     minutes := Abs(Mod(-bias, 60))
 
     utcOffset := Format("UTC{}{:02d}:{:02d}",
-    hours >= 0 ? "+" : "",
-    hours,
-    minutes)
+        hours >= 0 ? "+" : "",
+        hours,
+        minutes)
 
     timeType := ["Unknown", "Standard Time", "Daylight Time"][result + 1]
 
@@ -260,8 +260,8 @@ Example4_TimeZone() {
     ; Get dynamic time zone information
     dynInfo := Buffer(320, 0)
     result := DllCall("Kernel32.dll\GetDynamicTimeZoneInformation"
-    , "Ptr", dynInfo.Ptr
-    , "UInt")
+        , "Ptr", dynInfo.Ptr
+        , "UInt")
 
     if (result != 0xFFFFFFFF) {
         keyName := StrGet(dynInfo.Ptr + 172, 32, "UTF-16")
@@ -328,9 +328,9 @@ Example6_TimeConversion() {
     ; Convert to file time
     fileTime := Buffer(8, 0)
     DllCall("Kernel32.dll\SystemTimeToFileTime"
-    , "Ptr", sysTime.Ptr
-    , "Ptr", fileTime.Ptr
-    , "Int")
+        , "Ptr", sysTime.Ptr
+        , "Ptr", fileTime.Ptr
+        , "Int")
 
     ; Get file time as 64-bit integer
     fileTime64 := NumGet(fileTime, 0, "Int64")
@@ -356,9 +356,9 @@ Example6_TimeConversion() {
     ; Convert back to SYSTEMTIME
     backSys := Buffer(16, 0)
     DllCall("Kernel32.dll\FileTimeToSystemTime"
-    , "Ptr", fileTime.Ptr
-    , "Ptr", backSys.Ptr
-    , "Int")
+        , "Ptr", fileTime.Ptr
+        , "Ptr", backSys.Ptr
+        , "Int")
 
     year := NumGet(backSys, 0, "UShort")
     month := NumGet(backSys, 2, "UShort")
@@ -368,7 +368,7 @@ Example6_TimeConversion() {
     second := NumGet(backSys, 12, "UShort")
 
     MsgBox(Format("Converted back: {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}",
-    year, month, day, hour, minute, second), "Verification")
+        year, month, day, hour, minute, second), "Verification")
 }
 
 ;==============================================================================
@@ -387,7 +387,7 @@ Example7_AdvancedTiming() {
     DllCall("Kernel32.dll\QueryPerformanceCounter", "Ptr", start.Ptr, "Int")
     str := ""
     Loop 1000
-    str .= "x"
+        str .= "x"
     DllCall("Kernel32.dll\QueryPerformanceCounter", "Ptr", end.Ptr, "Int")
 
     test1Time := ((NumGet(end, 0, "Int64") - NumGet(start, 0, "Int64")) * 1000000) / freq
@@ -396,7 +396,7 @@ Example7_AdvancedTiming() {
     DllCall("Kernel32.dll\QueryPerformanceCounter", "Ptr", start.Ptr, "Int")
     arr := []
     Loop 1000
-    arr.Push(A_Index)
+        arr.Push(A_Index)
     DllCall("Kernel32.dll\QueryPerformanceCounter", "Ptr", end.Ptr, "Int")
 
     test2Time := ((NumGet(end, 0, "Int64") - NumGet(start, 0, "Int64")) * 1000000) / freq
@@ -405,7 +405,7 @@ Example7_AdvancedTiming() {
     DllCall("Kernel32.dll\QueryPerformanceCounter", "Ptr", start.Ptr, "Int")
     map := Map()
     Loop 1000
-    map[A_Index] := A_Index * 2
+        map[A_Index] := A_Index * 2
     DllCall("Kernel32.dll\QueryPerformanceCounter", "Ptr", end.Ptr, "Int")
 
     test3Time := ((NumGet(end, 0, "Int64") - NumGet(start, 0, "Int64")) * 1000000) / freq
@@ -432,7 +432,7 @@ Example7_AdvancedTiming() {
 
     avg := 0
     for time in tests
-    avg += time
+        avg += time
     avg /= tests.Length
 
     MsgBox(Format("Sleep(10) precision test:`n`nAverage: {:.2f} ms`n(Target: 10 ms)", avg), "Sleep Precision")
@@ -463,7 +463,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Time Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_SystemTime()

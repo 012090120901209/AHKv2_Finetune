@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Nested If Statements
-* ============================================================================
-*
-* This script demonstrates nested if statements in AutoHotkey v2.
-* It covers multi-level nesting, complex decision trees, and best practices
-* for maintaining readable nested conditions.
-*
-* @file BuiltIn_IfElse_02.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Basic nested if statements (2 levels)
-* 2. Deep nesting with multiple levels (3+ levels)
-* 3. Nested if with else clauses
-* 4. Mixed nested conditions with logical operators
-* 5. Nested loops with conditional breaks
-* 6. Refactoring nested ifs for better readability
-* 7. Real-world nested decision scenarios
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Nested If Statements
+ * ============================================================================
+ * 
+ * This script demonstrates nested if statements in AutoHotkey v2.
+ * It covers multi-level nesting, complex decision trees, and best practices
+ * for maintaining readable nested conditions.
+ * 
+ * @file BuiltIn_IfElse_02.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Basic nested if statements (2 levels)
+ * 2. Deep nesting with multiple levels (3+ levels)
+ * 3. Nested if with else clauses
+ * 4. Mixed nested conditions with logical operators
+ * 5. Nested loops with conditional breaks
+ * 6. Refactoring nested ifs for better readability
+ * 7. Real-world nested decision scenarios
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Two-Level Nesting
 ; ============================================================================
 
 /**
-* Demonstrates simple two-level nested if statements.
-* Shows how to check multiple related conditions.
-*/
+ * Demonstrates simple two-level nested if statements.
+ * Shows how to check multiple related conditions.
+ */
 Example1_BasicNesting() {
     OutputDebug("=== Example 1: Basic Two-Level Nesting ===`n")
 
@@ -106,9 +106,9 @@ Example1_BasicNesting() {
 ; ============================================================================
 
 /**
-* Demonstrates deep nesting with three or more levels.
-* Shows complexity management in multi-level decisions.
-*/
+ * Demonstrates deep nesting with three or more levels.
+ * Shows complexity management in multi-level decisions.
+ */
 Example2_DeepNesting() {
     OutputDebug("=== Example 2: Deep Nesting (3+ Levels) ===`n")
 
@@ -196,9 +196,9 @@ Example2_DeepNesting() {
 ; ============================================================================
 
 /**
-* Demonstrates nested if statements with else branches at each level.
-* Shows complete decision trees with all paths covered.
-*/
+ * Demonstrates nested if statements with else branches at each level.
+ * Shows complete decision trees with all paths covered.
+ */
 Example3_NestedIfElse() {
     OutputDebug("=== Example 3: Nested If with Else Clauses ===`n")
 
@@ -279,9 +279,9 @@ Example3_NestedIfElse() {
 ; ============================================================================
 
 /**
-* Demonstrates combining nested ifs with logical operators.
-* Shows when to nest vs when to use AND/OR.
-*/
+ * Demonstrates combining nested ifs with logical operators.
+ * Shows when to nest vs when to use AND/OR.
+ */
 Example4_MixedNestedConditions() {
     OutputDebug("=== Example 4: Mixed Nested Conditions ===`n")
 
@@ -375,19 +375,19 @@ Example4_MixedNestedConditions() {
 ; ============================================================================
 
 /**
-* Demonstrates using nested ifs for sequential validation.
-* Shows early exit patterns and validation chains.
-*/
+ * Demonstrates using nested ifs for sequential validation.
+ * Shows early exit patterns and validation chains.
+ */
 Example5_NestedValidation() {
     OutputDebug("=== Example 5: Nested Validation Chains ===`n")
 
     ; Form validation
     formData := Map(
-    "username", "john_doe",
-    "email", "john@example.com",
-    "password", "P@ssw0rd123",
-    "age", "25",
-    "country", "USA"
+        "username", "john_doe",
+        "email", "john@example.com",
+        "password", "P@ssw0rd123",
+        "age", "25",
+        "country", "USA"
     )
 
     isValid := true
@@ -462,9 +462,9 @@ Example5_NestedValidation() {
 ; ============================================================================
 
 /**
-* Demonstrates refactoring deeply nested ifs for better readability.
-* Shows before and after patterns.
-*/
+ * Demonstrates refactoring deeply nested ifs for better readability.
+ * Shows before and after patterns.
+ */
 Example6_RefactoringNestedIfs() {
     OutputDebug("=== Example 6: Refactoring Nested Ifs ===`n")
 
@@ -545,9 +545,9 @@ Example6_RefactoringNestedIfs() {
 ; ============================================================================
 
 /**
-* Demonstrates practical real-world nested decision scenarios.
-* Shows complex business logic implementations.
-*/
+ * Demonstrates practical real-world nested decision scenarios.
+ * Shows complex business logic implementations.
+ */
 Example7_RealWorldScenarios() {
     OutputDebug("=== Example 7: Real-World Scenarios ===`n")
 
@@ -634,8 +634,8 @@ Example7_RealWorldScenarios() {
 ; ============================================================================
 
 /**
-* Checks if a string contains only numeric characters.
-*/
+ * Checks if a string contains only numeric characters.
+ */
 IsNumber(str) {
     return RegExMatch(str, "^\d+$")
 }

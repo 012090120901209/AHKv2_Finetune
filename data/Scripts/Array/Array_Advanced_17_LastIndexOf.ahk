@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* LastIndexOf() - Search from end (reverse search)
-*
-* Demonstrates: Reverse iteration, optional parameter defaults
-* Efficient last occurrence finding
-*/
+ * LastIndexOf() - Search from end (reverse search)
+ * 
+ * Demonstrates: Reverse iteration, optional parameter defaults
+ * Efficient last occurrence finding
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -22,7 +22,7 @@ LastIndexOf(arr, value, fromIndex := "") {
     Loop i {
         idx := i - A_Index + 1
         if arr[idx] == value
-        return idx
+            return idx
     }
 
     return -1
@@ -42,6 +42,6 @@ result4 := LastIndexOf(["a", "b", "a", "c", "a"], "a")
 ; => 5 (last occurrence)
 
 MsgBox("Last 2 in [1,2,1,2]: " result1 "`n"
-. "Last 1 up to index 3: " result2 "`n"
-. "Not found: " result3 "`n"
-. "Last 'a': " result4)
+    . "Last 1 up to index 3: " result2 "`n"
+    . "Not found: " result3 "`n"
+    . "Last 'a': " result4)

@@ -71,31 +71,31 @@ class BigInt {
             return this.Subtract(other.Abs())
         if this.negative && other.negative
             return this._AddMagnitudes(other).Negate()
-        
+
         return this._AddMagnitudes(other)
     }
 
     _AddMagnitudes(other) {
         a := this.digits, b := other.digits
-        
+
         ; Pad to same length
         maxLen := Max(StrLen(a), StrLen(b))
         a := Format("{:0" maxLen "}", a)
         b := Format("{:0" maxLen "}", b)
-        
+
         result := ""
         carry := 0
-        
+
         Loop maxLen {
             i := maxLen - A_Index + 1
             sum := Integer(SubStr(a, i, 1)) + Integer(SubStr(b, i, 1)) + carry
             carry := sum >= 10 ? 1 : 0
             result := String(Mod(sum, 10)) result
         }
-        
+
         if carry
             result := "1" result
-        
+
         return BigInt(result)
     }
 
@@ -106,14 +106,14 @@ class BigInt {
             return this._AddMagnitudes(other.Abs())
         if this.negative && other.negative
             return other.Abs().Subtract(this.Abs())
-        
+
         ; Both positive
         cmp := this._CompareMagnitude(other)
         if cmp = 0
             return BigInt.Zero()
         if cmp < 0
             return other._SubtractMagnitudes(this).Negate()
-        
+
         return this._SubtractMagnitudes(other)
     }
 
@@ -121,54 +121,54 @@ class BigInt {
         a := this.digits, b := other.digits
         maxLen := StrLen(a)
         b := Format("{:0" maxLen "}", b)
-        
+
         result := ""
         borrow := 0
-        
+
         Loop maxLen {
             i := maxLen - A_Index + 1
             diff := Integer(SubStr(a, i, 1)) - Integer(SubStr(b, i, 1)) - borrow
-            
+
             if diff < 0 {
                 diff += 10
                 borrow := 1
             } else {
                 borrow := 0
             }
-            
+
             result := String(diff) result
         }
-        
+
         return BigInt(result)
     }
 
     Multiply(other) {
         if this.IsZero() || other.IsZero()
             return BigInt.Zero()
-        
+
         a := this.digits, b := other.digits
         lenA := StrLen(a), lenB := StrLen(b)
-        
+
         ; Initialize result array
         resultLen := lenA + lenB
         result := []
         Loop resultLen
             result.Push(0)
-        
+
         ; Grade school multiplication
         Loop lenA {
             i := lenA - A_Index + 1
             digitA := Integer(SubStr(a, i, 1))
-            
+
             Loop lenB {
                 j := lenB - A_Index + 1
                 digitB := Integer(SubStr(b, j, 1))
                 pos := (lenA - i) + (lenB - j) + 1
-                
+
                 result[pos] += digitA * digitB
             }
         }
-        
+
         ; Process carries
         Loop resultLen - 1 {
             if result[A_Index] >= 10 {
@@ -176,12 +176,12 @@ class BigInt {
                 result[A_Index] := Mod(result[A_Index], 10)
             }
         }
-        
+
         ; Build string (reverse order)
         str := ""
         Loop resultLen
             str := String(result[A_Index]) str
-        
+
         resultBig := BigInt(str)
         resultBig.negative := this.negative != other.negative
         return resultBig

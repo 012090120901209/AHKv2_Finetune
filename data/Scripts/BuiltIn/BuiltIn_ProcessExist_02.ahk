@@ -1,17 +1,17 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Examples - ProcessExist Function (Part 02: Monitor)
-* ============================================================================
-*
-* Advanced ProcessExist usage for monitoring.
-*
-* @description Examples demonstrating monitoring techniques
-* @author AHK v2 Documentation Team
-* @date 2024
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 Examples - ProcessExist Function (Part 02: Monitor)
+ * ============================================================================
+ * 
+ * Advanced ProcessExist usage for monitoring.
+ * 
+ * @description Examples demonstrating monitoring techniques
+ * @author AHK v2 Documentation Team
+ * @date 2024
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1-7: Comprehensive process monitoring examples
@@ -19,8 +19,8 @@
 
 Example1() {
     MsgBox("Example 1: Process monitoring Basics`n`n" .
-    "Demonstrating monitoring with ProcessExist:",
-    "ProcessExist - Example 1", "Icon!")
+        "Demonstrating monitoring with ProcessExist:",
+        "ProcessExist - Example 1", "Icon!")
 
     ; Launch test process
     Run("notepad.exe", , , &pid)
@@ -35,7 +35,7 @@ Example1() {
 
 Example2() {
     MsgBox("Example 2: Advanced monitoring`n`n" .
-    "More complex monitoring scenarios:", "Example 2", "Icon!")
+        "More complex monitoring scenarios:", "Example 2", "Icon!")
 
     processes := ["notepad.exe", "calc.exe", "cmd.exe"]
     results := ""
@@ -74,7 +74,7 @@ Example3() {
 
 Example4() {
     MsgBox("Example 4: Conditional monitoring`n`n" .
-    "Take actions based on process existence:", "Example 4", "Icon!")
+        "Take actions based on process existence:", "Example 4", "Icon!")
 
     if ProcessExist("explorer.exe") {
         MsgBox("Explorer is running (system OK)", "Status", "Icon!")
@@ -85,7 +85,7 @@ Example4() {
 
 Example5() {
     MsgBox("Example 5: Wait for Process`n`n" .
-    "Demonstrating process waiting:", "Example 5", "Icon!")
+        "Demonstrating process waiting:", "Example 5", "Icon!")
 
     Run("notepad.exe", , , &pid)
 
@@ -106,7 +106,7 @@ Example5() {
 
 Example6() {
     MsgBox("Example 6: Multi-Process monitoring`n`n" .
-    "Check multiple processes simultaneously:", "Example 6", "Icon!")
+        "Check multiple processes simultaneously:", "Example 6", "Icon!")
 
     testProcs := []
     Loop 3 {
@@ -119,7 +119,7 @@ Example6() {
 
     for pid in testProcs {
         if ProcessExist(pid)
-        ProcessClose(pid)
+            ProcessClose(pid)
     }
 
     MsgBox("All processes closed", "Complete", "T2")
@@ -146,7 +146,7 @@ Example7() {
 
         if pid {
             statusText.Value := "✓ " . proc . " is running`nPID: " . pid . "`n" .
-            "Status: Active`nTime: " . A_Now
+                "Status: Active`nTime: " . A_Now
         } else {
             statusText.Value := "✗ " . proc . " not found`nStatus: Not running`nTime: " . A_Now
         }

@@ -3,28 +3,28 @@
 #Include JSON.ahk
 
 /**
-* GUI State Management
-*
-* Demonstrates separating GUI state from controls using a centralized
-* state Map with reactive updates.
-*
-* Source: AHK_Notes/Concepts/GUI_State_Management.md
-*/
+ * GUI State Management
+ * 
+ * Demonstrates separating GUI state from controls using a centralized
+ * state Map with reactive updates.
+ * 
+ * Source: AHK_Notes/Concepts/GUI_State_Management.md
+ */
 
 app := StateManagementDemo()
 app.Show()
 
 /**
-* StateManagementDemo - GUI with centralized state
-*/
+ * StateManagementDemo - GUI with centralized state
+ */
 class StateManagementDemo {
     ; Default state configuration
     static DEFAULT_STATE := Map(
-    "width", 600,
-    "height", 400,
-    "fontSize", 10,
-    "darkMode", false,
-    "userName", "Guest"
+        "width", 600,
+        "height", 400,
+        "fontSize", 10,
+        "darkMode", false,
+        "userName", "Guest"
     )
 
     ; Application state (separate from UI)
@@ -64,16 +64,16 @@ class StateManagementDemo {
     }
 
     /**
-    * Reset state to defaults
-    */
+     * Reset state to defaults
+     */
     ResetState() {
         this.state := this.DEFAULT_STATE.Clone()
     }
 
     /**
-    * Update all UI elements from state
-    * Central reactive update method
-    */
+     * Update all UI elements from state
+     * Central reactive update method
+     */
     UpdateUI() {
         ; Update font size across all controls
         this.gui.SetFont("s" this.state["fontSize"])
@@ -89,18 +89,18 @@ class StateManagementDemo {
 
         ; Update control values
         if (this.controls.Has("fontSizeLabel"))
-        this.controls["fontSizeLabel"].Value := this.state["fontSize"]
+            this.controls["fontSizeLabel"].Value := this.state["fontSize"]
 
         if (this.controls.Has("userLabel"))
-        this.controls["userLabel"].Value := "User: " this.state["userName"]
+            this.controls["userLabel"].Value := "User: " this.state["userName"]
 
         ; Resize window if needed
         this.gui.Move(, , this.state["width"], this.state["height"])
     }
 
     /**
-    * Event Handlers - Update state then refresh UI
-    */
+     * Event Handlers - Update state then refresh UI
+     */
     OnUserNameChange(ctrl, *) {
         this.state["userName"] := ctrl.Value
         this.UpdateUI()
@@ -187,4 +187,5 @@ class StateManagementDemo {
             *        this.state := JSON.Parse(json)
             *        this.UpdateUI()
             *    }
-            */
+*/
+

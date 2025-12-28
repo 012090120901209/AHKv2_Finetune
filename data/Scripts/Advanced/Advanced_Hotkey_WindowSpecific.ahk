@@ -21,7 +21,7 @@
     A_Clipboard := ""
     Send("^c")
     if !ClipWait(0.5)
-    return
+        return
 
     searchText := A_Clipboard
     A_Clipboard := savedClip
@@ -38,9 +38,9 @@
 {
     Send("^+{PgDn}")  ; Focus last tab
     Loop 50 {  ; Close up to 50 tabs
-    Send("^w")
-    Sleep(20)
-}
+        Send("^w")
+        Sleep(20)
+    }
 }
 
 #HotIf

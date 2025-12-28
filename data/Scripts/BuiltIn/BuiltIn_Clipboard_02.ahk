@@ -1,63 +1,63 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - A_Clipboard Text Manipulation
-* ============================================================================
-*
-* This file demonstrates advanced text manipulation operations using
-* A_Clipboard in AutoHotkey v2, focusing on practical text processing tasks.
-*
-* @file BuiltIn_Clipboard_02.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Text Formatting Operations
-* 2. Find and Replace in Clipboard
-* 3. Text Extraction and Filtering
-* 4. Line Manipulation
-* 5. Quote and Bracket Handling
-* 6. Code Formatting
-* 7. Advanced Text Processors
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Formatting text (indentation, wrapping, alignment)
-* - Find and replace operations
-* - Extracting URLs, emails, numbers from text
-* - Sorting, deduplicating, and filtering lines
-* - Adding/removing quotes and brackets
-* - Code beautification and formatting
-* - Building text processing utilities
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - A_Clipboard Text Manipulation
+ * ============================================================================
+ * 
+ * This file demonstrates advanced text manipulation operations using
+ * A_Clipboard in AutoHotkey v2, focusing on practical text processing tasks.
+ * 
+ * @file BuiltIn_Clipboard_02.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Text Formatting Operations
+ * 2. Find and Replace in Clipboard
+ * 3. Text Extraction and Filtering
+ * 4. Line Manipulation
+ * 5. Quote and Bracket Handling
+ * 6. Code Formatting
+ * 7. Advanced Text Processors
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Formatting text (indentation, wrapping, alignment)
+ * - Find and replace operations
+ * - Extracting URLs, emails, numbers from text
+ * - Sorting, deduplicating, and filtering lines
+ * - Adding/removing quotes and brackets
+ * - Code beautification and formatting
+ * - Building text processing utilities
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Text Formatting Operations
 ; ============================================================================
 
 /**
-* Demonstrates various text formatting operations on clipboard content.
-*
-* @class TextFormatter
-* @description Provides text formatting utilities for clipboard
-*/
+ * Demonstrates various text formatting operations on clipboard content.
+ * 
+ * @class TextFormatter
+ * @description Provides text formatting utilities for clipboard
+ */
 
 class TextFormatter {
 
     /**
-    * Adds indentation to each line
-    * @param {String} indentChar - Character to use for indentation
-    * @param {Integer} count - Number of indentation characters
-    * @returns {void}
-    */
+     * Adds indentation to each line
+     * @param {String} indentChar - Character to use for indentation
+     * @param {Integer} count - Number of indentation characters
+     * @returns {void}
+     */
     static AddIndentation(indentChar := " ", count := 4) {
         if (A_Clipboard = "")
-        return
+            return
 
         indent := ""
         Loop count {
@@ -81,13 +81,13 @@ class TextFormatter {
     }
 
     /**
-    * Removes indentation from each line
-    * @param {Integer} count - Number of characters to remove
-    * @returns {void}
-    */
+     * Removes indentation from each line
+     * @param {Integer} count - Number of characters to remove
+     * @returns {void}
+     */
     static RemoveIndentation(count := 4) {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         unindentedLines := []
@@ -117,13 +117,13 @@ class TextFormatter {
     }
 
     /**
-    * Wraps text to specified line length
-    * @param {Integer} maxLength - Maximum line length
-    * @returns {void}
-    */
+     * Wraps text to specified line length
+     * @param {Integer} maxLength - Maximum line length
+     * @returns {void}
+     */
     static WrapText(maxLength := 80) {
         if (A_Clipboard = "")
-        return
+            return
 
         words := StrSplit(A_Clipboard, " ")
         wrappedLines := []
@@ -145,7 +145,7 @@ class TextFormatter {
         }
 
         if (currentLine != "")
-        wrappedLines.Push(currentLine)
+            wrappedLines.Push(currentLine)
 
         A_Clipboard := ""
         for line in wrappedLines {
@@ -157,13 +157,13 @@ class TextFormatter {
     }
 
     /**
-    * Centers text within specified width
-    * @param {Integer} width - Width to center within
-    * @returns {void}
-    */
+     * Centers text within specified width
+     * @param {Integer} width - Width to center within
+     * @returns {void}
+     */
     static CenterText(width := 80) {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         centeredLines := []
@@ -194,51 +194,51 @@ class TextFormatter {
 }
 
 ; Hotkeys for text formatting
-^!+i::TextFormatter.AddIndentation(" ", 4)    ; Add 4 spaces
-^!+u::TextFormatter.RemoveIndentation(4)      ; Remove 4 spaces
-^!+w::TextFormatter.WrapText(80)              ; Wrap at 80 chars
-^!+c::TextFormatter.CenterText(80)            ; Center in 80 chars
+^!+i:: TextFormatter.AddIndentation(" ", 4)    ; Add 4 spaces
+^!+u:: TextFormatter.RemoveIndentation(4)      ; Remove 4 spaces
+^!+w:: TextFormatter.WrapText(80)              ; Wrap at 80 chars
+^!+c:: TextFormatter.CenterText(80)            ; Center in 80 chars
 
 ; ============================================================================
 ; Example 2: Find and Replace in Clipboard
 ; ============================================================================
 
 /**
-* Demonstrates find and replace operations on clipboard content.
-*
-* @class FindReplace
-* @description Provides find and replace functionality
-*/
+ * Demonstrates find and replace operations on clipboard content.
+ * 
+ * @class FindReplace
+ * @description Provides find and replace functionality
+ */
 
 class FindReplace {
 
     /**
-    * Simple find and replace
-    * @param {String} findText - Text to find
-    * @param {String} replaceText - Text to replace with
-    * @param {Boolean} caseSensitive - Case sensitive search
-    * @returns {Integer} Number of replacements made
-    */
+     * Simple find and replace
+     * @param {String} findText - Text to find
+     * @param {String} replaceText - Text to replace with
+     * @param {Boolean} caseSensitive - Case sensitive search
+     * @returns {Integer} Number of replacements made
+     */
     static Replace(findText, replaceText, caseSensitive := false) {
         if (A_Clipboard = "" || findText = "")
-        return 0
+            return 0
 
         oldText := A_Clipboard
         A_Clipboard := StrReplace(A_Clipboard, findText, replaceText,
-        caseSensitive, &count)
+            caseSensitive, &count)
 
         return count
     }
 
     /**
-    * Replace with regex pattern
-    * @param {String} pattern - Regex pattern to find
-    * @param {String} replacement - Replacement text
-    * @returns {Integer} Number of replacements made
-    */
+     * Replace with regex pattern
+     * @param {String} pattern - Regex pattern to find
+     * @param {String} replacement - Replacement text
+     * @returns {Integer} Number of replacements made
+     */
     static ReplaceRegex(pattern, replacement) {
         if (A_Clipboard = "" || pattern = "")
-        return 0
+            return 0
 
         oldText := A_Clipboard
         A_Clipboard := RegExReplace(A_Clipboard, pattern, replacement, &count)
@@ -247,9 +247,9 @@ class FindReplace {
     }
 
     /**
-    * Shows interactive find and replace dialog
-    * @returns {void}
-    */
+     * Shows interactive find and replace dialog
+     * @returns {void}
+     */
     static ShowDialog() {
         ; Create GUI
         frGui := Gui("+AlwaysOnTop", "Find and Replace")
@@ -274,9 +274,9 @@ class FindReplace {
     }
 
     /**
-    * Performs the replacement operation
-    * @private
-    */
+     * Performs the replacement operation
+     * @private
+     */
     static DoReplace(gui, findEdit, replaceEdit, caseCB, regexCB) {
         findText := findEdit.Value
         replaceText := replaceEdit.Value
@@ -289,8 +289,8 @@ class FindReplace {
         }
 
         count := useRegex
-        ? this.ReplaceRegex(findText, replaceText)
-        : this.Replace(findText, replaceText, caseSensitive)
+            ? this.ReplaceRegex(findText, replaceText)
+            : this.Replace(findText, replaceText, caseSensitive)
 
         MsgBox("Replaced " . count . " occurrence(s).", "Complete", "Icon Info T3")
         gui.Destroy()
@@ -298,28 +298,28 @@ class FindReplace {
 }
 
 ; Show find and replace dialog
-^h::FindReplace.ShowDialog()
+^h:: FindReplace.ShowDialog()
 
 ; ============================================================================
 ; Example 3: Text Extraction and Filtering
 ; ============================================================================
 
 /**
-* Demonstrates extracting and filtering specific content from clipboard.
-*
-* @class TextExtractor
-* @description Extracts specific patterns from clipboard text
-*/
+ * Demonstrates extracting and filtering specific content from clipboard.
+ * 
+ * @class TextExtractor
+ * @description Extracts specific patterns from clipboard text
+ */
 
 class TextExtractor {
 
     /**
-    * Extracts all URLs from clipboard
-    * @returns {Array} Array of URLs
-    */
+     * Extracts all URLs from clipboard
+     * @returns {Array} Array of URLs
+     */
     static ExtractURLs() {
         if (A_Clipboard = "")
-        return []
+            return []
 
         urls := []
         pattern := "i)(https?://[^\s]+)"
@@ -334,12 +334,12 @@ class TextExtractor {
     }
 
     /**
-    * Extracts all email addresses from clipboard
-    * @returns {Array} Array of email addresses
-    */
+     * Extracts all email addresses from clipboard
+     * @returns {Array} Array of email addresses
+     */
     static ExtractEmails() {
         if (A_Clipboard = "")
-        return []
+            return []
 
         emails := []
         pattern := "i)([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})"
@@ -354,12 +354,12 @@ class TextExtractor {
     }
 
     /**
-    * Extracts all numbers from clipboard
-    * @returns {Array} Array of numbers
-    */
+     * Extracts all numbers from clipboard
+     * @returns {Array} Array of numbers
+     */
     static ExtractNumbers() {
         if (A_Clipboard = "")
-        return []
+            return []
 
         numbers := []
         pattern := "(-?\d+\.?\d*)"
@@ -374,20 +374,20 @@ class TextExtractor {
     }
 
     /**
-    * Extracts lines matching a pattern
-    * @param {String} pattern - Pattern to match
-    * @returns {Array} Matching lines
-    */
+     * Extracts lines matching a pattern
+     * @param {String} pattern - Pattern to match
+     * @returns {Array} Matching lines
+     */
     static ExtractMatchingLines(pattern) {
         if (A_Clipboard = "")
-        return []
+            return []
 
         lines := StrSplit(A_Clipboard, "`n")
         matches := []
 
         for line in lines {
             if (RegExMatch(line, pattern))
-            matches.Push(line)
+                matches.Push(line)
         }
 
         return matches
@@ -445,22 +445,22 @@ class TextExtractor {
 ; ============================================================================
 
 /**
-* Demonstrates line-level manipulation of clipboard content.
-*
-* @class LineProcessor
-* @description Processes clipboard content line by line
-*/
+ * Demonstrates line-level manipulation of clipboard content.
+ * 
+ * @class LineProcessor
+ * @description Processes clipboard content line by line
+ */
 
 class LineProcessor {
 
     /**
-    * Sorts lines alphabetically
-    * @param {Boolean} descending - Sort in descending order
-    * @returns {void}
-    */
+     * Sorts lines alphabetically
+     * @param {Boolean} descending - Sort in descending order
+     * @returns {void}
+     */
     static SortLines(descending := false) {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
 
@@ -470,15 +470,15 @@ class LineProcessor {
             Loop lines.Length - i {
                 j := A_Index + i
                 if (descending) {
-                    if (lines[j-1] < lines[j]) {
-                        temp := lines[j-1]
-                        lines[j-1] := lines[j]
+                    if (lines[j - 1] < lines[j]) {
+                        temp := lines[j - 1]
+                        lines[j - 1] := lines[j]
                         lines[j] := temp
                     }
                 } else {
-                    if (lines[j-1] > lines[j]) {
-                        temp := lines[j-1]
-                        lines[j-1] := lines[j]
+                    if (lines[j - 1] > lines[j]) {
+                        temp := lines[j - 1]
+                        lines[j - 1] := lines[j]
                         lines[j] := temp
                     }
                 }
@@ -495,12 +495,12 @@ class LineProcessor {
     }
 
     /**
-    * Removes duplicate lines
-    * @returns {void}
-    */
+     * Removes duplicate lines
+     * @returns {void}
+     */
     static RemoveDuplicates() {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         uniqueLines := Map()
@@ -519,19 +519,19 @@ class LineProcessor {
     }
 
     /**
-    * Removes empty lines
-    * @returns {void}
-    */
+     * Removes empty lines
+     * @returns {void}
+     */
     static RemoveEmptyLines() {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         nonEmptyLines := []
 
         for line in lines {
             if (Trim(line) != "")
-            nonEmptyLines.Push(line)
+                nonEmptyLines.Push(line)
         }
 
         A_Clipboard := ""
@@ -544,12 +544,12 @@ class LineProcessor {
     }
 
     /**
-    * Reverses line order
-    * @returns {void}
-    */
+     * Reverses line order
+     * @returns {void}
+     */
     static ReverseLines() {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         reversedLines := []
@@ -568,12 +568,12 @@ class LineProcessor {
     }
 
     /**
-    * Shuffles lines randomly
-    * @returns {void}
-    */
+     * Shuffles lines randomly
+     * @returns {void}
+     */
     static ShuffleLines() {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
 
@@ -597,33 +597,33 @@ class LineProcessor {
 }
 
 ; Line manipulation hotkeys
-^!+s::LineProcessor.SortLines(false)          ; Sort ascending
-^!+d::LineProcessor.RemoveDuplicates()        ; Remove duplicates
-^!+b::LineProcessor.RemoveEmptyLines()        ; Remove empty lines
-^!+r::LineProcessor.ReverseLines()            ; Reverse lines
-^!+f::LineProcessor.ShuffleLines()            ; Shuffle lines
+^!+s:: LineProcessor.SortLines(false)          ; Sort ascending
+^!+d:: LineProcessor.RemoveDuplicates()        ; Remove duplicates
+^!+b:: LineProcessor.RemoveEmptyLines()        ; Remove empty lines
+^!+r:: LineProcessor.ReverseLines()            ; Reverse lines
+^!+f:: LineProcessor.ShuffleLines()            ; Shuffle lines
 
 ; ============================================================================
 ; Example 5: Quote and Bracket Handling
 ; ============================================================================
 
 /**
-* Demonstrates adding and removing quotes/brackets from clipboard content.
-*
-* @class QuoteBracketHandler
-* @description Handles quotes and brackets in clipboard
-*/
+ * Demonstrates adding and removing quotes/brackets from clipboard content.
+ * 
+ * @class QuoteBracketHandler
+ * @description Handles quotes and brackets in clipboard
+ */
 
 class QuoteBracketHandler {
 
     /**
-    * Adds quotes to each line
-    * @param {String} quoteType - Type of quotes ("double", "single", "backtick")
-    * @returns {void}
-    */
+     * Adds quotes to each line
+     * @param {String} quoteType - Type of quotes ("double", "single", "backtick")
+     * @returns {void}
+     */
     static AddQuotes(quoteType := "double") {
         if (A_Clipboard = "")
-        return
+            return
 
         quote := ""
         switch quoteType {
@@ -650,12 +650,12 @@ class QuoteBracketHandler {
     }
 
     /**
-    * Removes quotes from each line
-    * @returns {void}
-    */
+     * Removes quotes from each line
+     * @returns {void}
+     */
     static RemoveQuotes() {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         unquotedLines := []
@@ -664,11 +664,11 @@ class QuoteBracketHandler {
             ; Remove leading and trailing quotes
             processed := Trim(line)
             if (SubStr(processed, 1, 1) = '"' && SubStr(processed, -1) = '"')
-            processed := SubStr(processed, 2, StrLen(processed) - 2)
+                processed := SubStr(processed, 2, StrLen(processed) - 2)
             else if (SubStr(processed, 1, 1) = "'" && SubStr(processed, -1) = "'")
-            processed := SubStr(processed, 2, StrLen(processed) - 2)
+                processed := SubStr(processed, 2, StrLen(processed) - 2)
             else if (SubStr(processed, 1, 1) = "``" && SubStr(processed, -1) = "``")
-            processed := SubStr(processed, 2, StrLen(processed) - 2)
+                processed := SubStr(processed, 2, StrLen(processed) - 2)
 
             unquotedLines.Push(processed)
         }
@@ -683,13 +683,13 @@ class QuoteBracketHandler {
     }
 
     /**
-    * Wraps text in brackets
-    * @param {String} bracketType - Type of brackets ("square", "curly", "angle", "paren")
-    * @returns {void}
-    */
+     * Wraps text in brackets
+     * @param {String} bracketType - Type of brackets ("square", "curly", "angle", "paren")
+     * @returns {void}
+     */
     static WrapInBrackets(bracketType := "square") {
         if (A_Clipboard = "")
-        return
+            return
 
         openBracket := ""
         closeBracket := ""
@@ -708,30 +708,30 @@ class QuoteBracketHandler {
 }
 
 ; Quote and bracket hotkeys
-^!q::QuoteBracketHandler.AddQuotes("double")         ; Add double quotes
-^!+q::QuoteBracketHandler.RemoveQuotes()             ; Remove quotes
-^![::QuoteBracketHandler.WrapInBrackets("square")    ; Wrap in []
+^!q:: QuoteBracketHandler.AddQuotes("double")         ; Add double quotes
+^!+q:: QuoteBracketHandler.RemoveQuotes()             ; Remove quotes
+^![:: QuoteBracketHandler.WrapInBrackets("square")    ; Wrap in []
 
 ; ============================================================================
 ; Example 6: Code Formatting
 ; ============================================================================
 
 /**
-* Demonstrates code-specific formatting operations.
-*
-* @class CodeFormatter
-* @description Formats code snippets in clipboard
-*/
+ * Demonstrates code-specific formatting operations.
+ * 
+ * @class CodeFormatter
+ * @description Formats code snippets in clipboard
+ */
 
 class CodeFormatter {
 
     /**
-    * Converts to camelCase
-    * @returns {void}
-    */
+     * Converts to camelCase
+     * @returns {void}
+     */
     static ToCamelCase() {
         if (A_Clipboard = "")
-        return
+            return
 
         text := Trim(A_Clipboard)
         ; Split by spaces, underscores, hyphens
@@ -748,12 +748,12 @@ class CodeFormatter {
     }
 
     /**
-    * Converts to snake_case
-    * @returns {void}
-    */
+     * Converts to snake_case
+     * @returns {void}
+     */
     static ToSnakeCase() {
         if (A_Clipboard = "")
-        return
+            return
 
         text := Trim(A_Clipboard)
         ; Replace spaces and hyphens with underscores
@@ -770,12 +770,12 @@ class CodeFormatter {
     }
 
     /**
-    * Converts to kebab-case
-    * @returns {void}
-    */
+     * Converts to kebab-case
+     * @returns {void}
+     */
     static ToKebabCase() {
         if (A_Clipboard = "")
-        return
+            return
 
         text := Trim(A_Clipboard)
         ; Replace spaces and underscores with hyphens
@@ -793,30 +793,30 @@ class CodeFormatter {
 }
 
 ; Code formatting hotkeys
-^!+1::CodeFormatter.ToCamelCase()
-^!+2::CodeFormatter.ToSnakeCase()
-^!+3::CodeFormatter.ToKebabCase()
+^!+1:: CodeFormatter.ToCamelCase()
+^!+2:: CodeFormatter.ToSnakeCase()
+^!+3:: CodeFormatter.ToKebabCase()
 
 ; ============================================================================
 ; Example 7: Advanced Text Processors
 ; ============================================================================
 
 /**
-* Advanced text processing utilities combining multiple operations.
-*
-* @class AdvancedTextProcessor
-* @description Complex text processing operations
-*/
+ * Advanced text processing utilities combining multiple operations.
+ * 
+ * @class AdvancedTextProcessor
+ * @description Complex text processing operations
+ */
 
 class AdvancedTextProcessor {
 
     /**
-    * Creates a CSV from clipboard lines
-    * @returns {void}
-    */
+     * Creates a CSV from clipboard lines
+     * @returns {void}
+     */
     static ConvertToCSV() {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         csvLines := []
@@ -837,13 +837,13 @@ class AdvancedTextProcessor {
     }
 
     /**
-    * Creates a markdown list from clipboard lines
-    * @param {String} listType - "bullet" or "numbered"
-    * @returns {void}
-    */
+     * Creates a markdown list from clipboard lines
+     * @param {String} listType - "bullet" or "numbered"
+     * @returns {void}
+     */
     static ConvertToMarkdownList(listType := "bullet") {
         if (A_Clipboard = "")
-        return
+            return
 
         lines := StrSplit(A_Clipboard, "`n")
         mdLines := []
@@ -851,7 +851,7 @@ class AdvancedTextProcessor {
         for index, line in lines {
             trimmedLine := Trim(line)
             if (trimmedLine = "")
-            continue
+                continue
 
             if (listType = "bullet") {
                 mdLines.Push("- " . trimmedLine)

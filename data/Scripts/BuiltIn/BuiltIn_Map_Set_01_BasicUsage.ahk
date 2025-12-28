@@ -2,35 +2,35 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Set_01_BasicUsage.ahk
-*
-* @description Comprehensive examples of Map.Set() method for basic usage
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* The Map.Set() method adds or updates key-value pairs in a Map object.
-* Syntax: MapObject.Set(Key, Value [, Key2, Value2, ...])
-* Returns: The Map object itself (for method chaining)
-*
-* Key Features:
-* - Add new key-value pairs
-* - Update existing values
-* - Chain multiple Set operations
-* - Support multiple key-value pairs in single call
-* - Works with any data type as key or value
-*/
+ * BuiltIn_Map_Set_01_BasicUsage.ahk
+ * 
+ * @description Comprehensive examples of Map.Set() method for basic usage
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * The Map.Set() method adds or updates key-value pairs in a Map object.
+ * Syntax: MapObject.Set(Key, Value [, Key2, Value2, ...])
+ * Returns: The Map object itself (for method chaining)
+ * 
+ * Key Features:
+ * - Add new key-value pairs
+ * - Update existing values
+ * - Chain multiple Set operations
+ * - Support multiple key-value pairs in single call
+ * - Works with any data type as key or value
+ */
 
 ;=============================================================================
 ; Example 1: Basic Set Operations
 ;=============================================================================
 
 /**
-* @function Example1_BasicSet
-* @description Demonstrates fundamental Map.Set() operations
-* @returns {void}
-*/
+ * @function Example1_BasicSet
+ * @description Demonstrates fundamental Map.Set() operations
+ * @returns {void}
+ */
 Example1_BasicSet() {
     ; Create empty map
     userInfo := Map()
@@ -57,19 +57,19 @@ Example1_BasicSet() {
 ;=============================================================================
 
 /**
-* @function Example2_MultipleSet
-* @description Shows how to set multiple key-value pairs at once
-* @returns {void}
-*/
+ * @function Example2_MultipleSet
+ * @description Shows how to set multiple key-value pairs at once
+ * @returns {void}
+ */
 Example2_MultipleSet() {
     ; Create map with multiple entries in one Set() call
     settings := Map()
     settings.Set(
-    "theme", "dark",
-    "fontSize", 14,
-    "autoSave", true,
-    "language", "en-US",
-    "maxHistory", 50
+        "theme", "dark",
+        "fontSize", 14,
+        "autoSave", true,
+        "language", "en-US",
+        "maxHistory", 50
     )
 
     output := "=== Example 2: Multiple Set ===`n`n"
@@ -87,17 +87,17 @@ Example2_MultipleSet() {
 ;=============================================================================
 
 /**
-* @function Example3_UpdateValues
-* @description Demonstrates updating existing map values with Set()
-* @returns {void}
-*/
+ * @function Example3_UpdateValues
+ * @description Demonstrates updating existing map values with Set()
+ * @returns {void}
+ */
 Example3_UpdateValues() {
     ; Initial map
     product := Map(
-    "id", "PROD001",
-    "name", "Wireless Mouse",
-    "price", 29.99,
-    "stock", 100
+        "id", "PROD001",
+        "name", "Wireless Mouse",
+        "price", 29.99,
+        "stock", 100
     )
 
     output := "=== Example 3: Update Values ===`n`n"
@@ -123,20 +123,20 @@ Example3_UpdateValues() {
 ;=============================================================================
 
 /**
-* @function Example4_MethodChaining
-* @description Shows how to chain Set() methods for fluent syntax
-* @returns {void}
-*/
+ * @function Example4_MethodChaining
+ * @description Shows how to chain Set() methods for fluent syntax
+ * @returns {void}
+ */
 Example4_MethodChaining() {
     ; Create and populate map using method chaining
     ; Set() returns the map object, allowing chaining
     config := Map()
-    .Set("host", "localhost")
-    .Set("port", 8080)
-    .Set("protocol", "https")
-    .Set("timeout", 30)
-    .Set("retries", 3)
-    .Set("debug", false)
+        .Set("host", "localhost")
+        .Set("port", 8080)
+        .Set("protocol", "https")
+        .Set("timeout", 30)
+        .Set("retries", 3)
+        .Set("debug", false)
 
     output := "=== Example 4: Method Chaining ===`n`n"
     output .= "Connection configuration:`n`n"
@@ -153,10 +153,10 @@ Example4_MethodChaining() {
 ;=============================================================================
 
 /**
-* @function Example5_DataTypes
-* @description Demonstrates using various data types with Set()
-* @returns {void}
-*/
+ * @function Example5_DataTypes
+ * @description Demonstrates using various data types with Set()
+ * @returns {void}
+ */
 Example5_DataTypes() {
     mixedMap := Map()
 
@@ -190,231 +190,227 @@ Example5_DataTypes() {
 ;=============================================================================
 
 /**
-* @function Example6_FromArrayData
-* @description Shows how to populate a Map from array data using Set()
-* @returns {void}
-*/
+ * @function Example6_FromArrayData
+ * @description Shows how to populate a Map from array data using Set()
+ * @returns {void}
+ */
 Example6_FromArrayData() {
     ; Sample data: array of user information
-    users := [
-    {
-        id: "U001", name: "Alice Johnson", role: "Admin"},
-        {
-            id: "U002", name: "Bob Smith", role: "User"},
-            {
-                id: "U003", name: "Carol White", role: "Moderator"},
-                {
+    users := [{
+        id: "U001", name: "Alice Johnson", role: "Admin" }, {
+            id: "U002", name: "Bob Smith", role: "User" }, {
+                id: "U003", name: "Carol White", role: "Moderator" }, {
                     id: "U004", name: "David Brown", role: "User"
                 }
-                ]
+    ]
 
-                ; Build map indexed by user ID
-                userMap := Map()
-                for user in users {
-                    userMap.Set(user.id, Map(
-                    "name", user.name,
-                    "role", user.role
-                    ))
-                }
+    ; Build map indexed by user ID
+    userMap := Map()
+    for user in users {
+        userMap.Set(user.id, Map(
+            "name", user.name,
+            "role", user.role
+        ))
+    }
 
-                output := "=== Example 6: From Array Data ===`n`n"
-                output .= "User directory:`n`n"
+    output := "=== Example 6: From Array Data ===`n`n"
+    output .= "User directory:`n`n"
 
-                for userId, userData in userMap {
-                    output .= userId ": " userData["name"] " (" userData["role"] ")`n"
-                }
+    for userId, userData in userMap {
+        output .= userId ": " userData["name"] " (" userData["role"] ")`n"
+    }
 
-                output .= "`nTotal users: " userMap.Count "`n"
+    output .= "`nTotal users: " userMap.Count "`n"
 
-                MsgBox(output, "Example 6 Results")
-            }
+    MsgBox(output, "Example 6 Results")
+}
 
-            ;=============================================================================
-            ; Example 7: Dynamic Map Building with Computed Values
-            ;=============================================================================
+;=============================================================================
+; Example 7: Dynamic Map Building with Computed Values
+;=============================================================================
 
-            /**
-            * @function Example7_ComputedValues
-            * @description Demonstrates setting values based on computations
-            * @returns {void}
-            */
-            Example7_ComputedValues() {
-                ; Create multiplication table using Set()
-                multiplicationTable := Map()
+/**
+ * @function Example7_ComputedValues
+ * @description Demonstrates setting values based on computations
+ * @returns {void}
+ */
+Example7_ComputedValues() {
+    ; Create multiplication table using Set()
+    multiplicationTable := Map()
 
-                baseNumber := 7
-                for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
-                    key := baseNumber " x " i
-                    value := baseNumber * i
-                    multiplicationTable.Set(key, value)
-                }
+    baseNumber := 7
+    for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+        key := baseNumber " x " i
+        value := baseNumber * i
+        multiplicationTable.Set(key, value)
+    }
 
-                output := "=== Example 7: Computed Values ===`n`n"
-                output .= "Multiplication Table for " baseNumber ":`n`n"
+    output := "=== Example 7: Computed Values ===`n`n"
+    output .= "Multiplication Table for " baseNumber ":`n`n"
 
-                for equation, result in multiplicationTable {
-                    output .= equation " = " result "`n"
-                }
+    for equation, result in multiplicationTable {
+        output .= equation " = " result "`n"
+    }
 
-                ; Add summary statistics
-                total := 0
-                for equation, result in multiplicationTable {
-                    total += result
-                }
+    ; Add summary statistics
+    total := 0
+    for equation, result in multiplicationTable {
+        total += result
+    }
 
-                multiplicationTable.Set("_sum", total)
-                multiplicationTable.Set("_count", 10)
-                multiplicationTable.Set("_average", total / 10)
+    multiplicationTable.Set("_sum", total)
+    multiplicationTable.Set("_count", 10)
+    multiplicationTable.Set("_average", total / 10)
 
-                output .= "`nStatistics:`n"
-                output .= "  Sum: " multiplicationTable["_sum"] "`n"
-                output .= "  Count: " multiplicationTable["_count"] "`n"
-                output .= "  Average: " multiplicationTable["_average"] "`n"
+    output .= "`nStatistics:`n"
+    output .= "  Sum: " multiplicationTable["_sum"] "`n"
+    output .= "  Count: " multiplicationTable["_count"] "`n"
+    output .= "  Average: " multiplicationTable["_average"] "`n"
 
-                MsgBox(output, "Example 7 Results")
-            }
+    MsgBox(output, "Example 7 Results")
+}
 
-            ;=============================================================================
-            ; Helper Functions
-            ;=============================================================================
+;=============================================================================
+; Helper Functions
+;=============================================================================
 
-            /**
-            * @function ArrayToString
-            * @description Converts an array to a readable string representation
-            * @param {Array} arr - The array to convert
-            * @returns {String} String representation of the array
-            */
-            ArrayToString(arr) {
-                if (!IsObject(arr) || arr.Length = 0)
-                return "[]"
+/**
+ * @function ArrayToString
+ * @description Converts an array to a readable string representation
+ * @param {Array} arr - The array to convert
+ * @returns {String} String representation of the array
+ */
+ArrayToString(arr) {
+    if (!IsObject(arr) || arr.Length = 0)
+        return "[]"
 
-                result := ""
-                for item in arr {
-                    result .= (result ? ", " : "") . item
-                }
-                return "[" result "]"
-            }
+    result := ""
+    for item in arr {
+        result .= (result ? ", " : "") . item
+    }
+    return "[" result "]"
+}
 
-            ;=============================================================================
-            ; GUI Interface for Interactive Testing
-            ;=============================================================================
+;=============================================================================
+; GUI Interface for Interactive Testing
+;=============================================================================
 
-            /**
-            * @class MapSetDemoGUI
-            * @description Interactive GUI for testing Map.Set() operations
-            */
-            CreateDemoGUI() {
-                demoGui := Gui()
-                demoGui.Title := "Map.Set() Method - Basic Usage Examples"
+/**
+ * @class MapSetDemoGUI
+ * @description Interactive GUI for testing Map.Set() operations
+ */
+CreateDemoGUI() {
+    demoGui := Gui()
+    demoGui.Title := "Map.Set() Method - Basic Usage Examples"
 
-                ; Title
-                demoGui.Add("Text", "x10 y10 w480 h30 +Center",
-                "Click buttons below to see different Map.Set() examples")
+    ; Title
+    demoGui.Add("Text", "x10 y10 w480 h30 +Center",
+        "Click buttons below to see different Map.Set() examples")
 
-                ; Example buttons
-                demoGui.Add("Button", "x10 y50 w230 h35", "Example 1: Basic Set")
-                .OnEvent("Click", (*) => Example1_BasicSet())
+    ; Example buttons
+    demoGui.Add("Button", "x10 y50 w230 h35", "Example 1: Basic Set")
+        .OnEvent("Click", (*) => Example1_BasicSet())
 
-                demoGui.Add("Button", "x250 y50 w230 h35", "Example 2: Multiple Set")
-                .OnEvent("Click", (*) => Example2_MultipleSet())
+    demoGui.Add("Button", "x250 y50 w230 h35", "Example 2: Multiple Set")
+        .OnEvent("Click", (*) => Example2_MultipleSet())
 
-                demoGui.Add("Button", "x10 y95 w230 h35", "Example 3: Update Values")
-                .OnEvent("Click", (*) => Example3_UpdateValues())
+    demoGui.Add("Button", "x10 y95 w230 h35", "Example 3: Update Values")
+        .OnEvent("Click", (*) => Example3_UpdateValues())
 
-                demoGui.Add("Button", "x250 y95 w230 h35", "Example 4: Method Chaining")
-                .OnEvent("Click", (*) => Example4_MethodChaining())
+    demoGui.Add("Button", "x250 y95 w230 h35", "Example 4: Method Chaining")
+        .OnEvent("Click", (*) => Example4_MethodChaining())
 
-                demoGui.Add("Button", "x10 y140 w230 h35", "Example 5: Data Types")
-                .OnEvent("Click", (*) => Example5_DataTypes())
+    demoGui.Add("Button", "x10 y140 w230 h35", "Example 5: Data Types")
+        .OnEvent("Click", (*) => Example5_DataTypes())
 
-                demoGui.Add("Button", "x250 y140 w230 h35", "Example 6: From Array Data")
-                .OnEvent("Click", (*) => Example6_FromArrayData())
+    demoGui.Add("Button", "x250 y140 w230 h35", "Example 6: From Array Data")
+        .OnEvent("Click", (*) => Example6_FromArrayData())
 
-                demoGui.Add("Button", "x10 y185 w470 h35", "Example 7: Computed Values")
-                .OnEvent("Click", (*) => Example7_ComputedValues())
+    demoGui.Add("Button", "x10 y185 w470 h35", "Example 7: Computed Values")
+        .OnEvent("Click", (*) => Example7_ComputedValues())
 
-                ; Interactive section
-                demoGui.Add("GroupBox", "x10 y230 w470 h140", "Interactive Map.Set() Tester")
+    ; Interactive section
+    demoGui.Add("GroupBox", "x10 y230 w470 h140", "Interactive Map.Set() Tester")
 
-                demoGui.Add("Text", "x20 y255", "Key:")
-                keyInput := demoGui.Add("Edit", "x70 y252 w150")
+    demoGui.Add("Text", "x20 y255", "Key:")
+    keyInput := demoGui.Add("Edit", "x70 y252 w150")
 
-                demoGui.Add("Text", "x240 y255", "Value:")
-                valueInput := demoGui.Add("Edit", "x290 y252 w180")
+    demoGui.Add("Text", "x240 y255", "Value:")
+    valueInput := demoGui.Add("Edit", "x290 y252 w180")
 
-                demoGui.Add("Button", "x20 y285 w150 h30", "Set Key-Value")
-                .OnEvent("Click", SetInteractive)
+    demoGui.Add("Button", "x20 y285 w150 h30", "Set Key-Value")
+        .OnEvent("Click", SetInteractive)
 
-                demoGui.Add("Button", "x180 y285 w140 h30", "Show Map")
-                .OnEvent("Click", ShowInteractive)
+    demoGui.Add("Button", "x180 y285 w140 h30", "Show Map")
+        .OnEvent("Click", ShowInteractive)
 
-                demoGui.Add("Button", "x330 y285 w140 h30", "Clear Map")
-                .OnEvent("Click", ClearInteractive)
+    demoGui.Add("Button", "x330 y285 w140 h30", "Clear Map")
+        .OnEvent("Click", ClearInteractive)
 
-                resultDisplay := demoGui.Add("Edit", "x20 y325 w450 h35 ReadOnly")
-                resultDisplay.Value := "Map is empty"
+    resultDisplay := demoGui.Add("Edit", "x20 y325 w450 h35 ReadOnly")
+    resultDisplay.Value := "Map is empty"
 
-                ; Store controls in GUI object
-                demoGui.keyInput := keyInput
-                demoGui.valueInput := valueInput
-                demoGui.resultDisplay := resultDisplay
-                demoGui.interactiveMap := Map()
+    ; Store controls in GUI object
+    demoGui.keyInput := keyInput
+    demoGui.valueInput := valueInput
+    demoGui.resultDisplay := resultDisplay
+    demoGui.interactiveMap := Map()
 
-                ; Event handlers
-                SetInteractive(*) {
-                    key := demoGui.keyInput.Value
-                    value := demoGui.valueInput.Value
+    ; Event handlers
+    SetInteractive(*) {
+        key := demoGui.keyInput.Value
+        value := demoGui.valueInput.Value
 
-                    if (key = "") {
-                        MsgBox("Please enter a key!", "Error")
-                        return
-                    }
+        if (key = "") {
+            MsgBox("Please enter a key!", "Error")
+            return
+        }
 
-                    demoGui.interactiveMap.Set(key, value)
-                    demoGui.resultDisplay.Value := "Added: " key " = " value " (Total: " demoGui.interactiveMap.Count " entries)"
+        demoGui.interactiveMap.Set(key, value)
+        demoGui.resultDisplay.Value := "Added: " key " = " value " (Total: " demoGui.interactiveMap.Count " entries)"
 
-                    ; Clear inputs
-                    demoGui.keyInput.Value := ""
-                    demoGui.valueInput.Value := ""
-                }
+        ; Clear inputs
+        demoGui.keyInput.Value := ""
+        demoGui.valueInput.Value := ""
+    }
 
-                ShowInteractive(*) {
-                    if (demoGui.interactiveMap.Count = 0) {
-                        MsgBox("Map is empty!", "Info")
-                        return
-                    }
+    ShowInteractive(*) {
+        if (demoGui.interactiveMap.Count = 0) {
+            MsgBox("Map is empty!", "Info")
+            return
+        }
 
-                    output := "=== Interactive Map Contents ===`n`n"
-                    for key, value in demoGui.interactiveMap {
-                        output .= key " => " value "`n"
-                    }
-                    output .= "`nTotal entries: " demoGui.interactiveMap.Count
+        output := "=== Interactive Map Contents ===`n`n"
+        for key, value in demoGui.interactiveMap {
+            output .= key " => " value "`n"
+        }
+        output .= "`nTotal entries: " demoGui.interactiveMap.Count
 
-                    MsgBox(output, "Map Contents")
-                }
+        MsgBox(output, "Map Contents")
+    }
 
-                ClearInteractive(*) {
-                    demoGui.interactiveMap := Map()
-                    demoGui.resultDisplay.Value := "Map cleared"
-                }
+    ClearInteractive(*) {
+        demoGui.interactiveMap := Map()
+        demoGui.resultDisplay.Value := "Map cleared"
+    }
 
-                ; Run all examples button
-                demoGui.Add("Button", "x10 y380 w470 h30", "Run All Examples Sequentially")
-                .OnEvent("Click", RunAllExamples)
+    ; Run all examples button
+    demoGui.Add("Button", "x10 y380 w470 h30", "Run All Examples Sequentially")
+        .OnEvent("Click", RunAllExamples)
 
-                RunAllExamples(*) {
-                    Example1_BasicSet()
-                    Example2_MultipleSet()
-                    Example3_UpdateValues()
-                    Example4_MethodChaining()
-                    Example5_DataTypes()
-                    Example6_FromArrayData()
-                    Example7_ComputedValues()
-                    MsgBox("All examples completed!", "Finished")
-                }
+    RunAllExamples(*) {
+        Example1_BasicSet()
+        Example2_MultipleSet()
+        Example3_UpdateValues()
+        Example4_MethodChaining()
+        Example5_DataTypes()
+        Example6_FromArrayData()
+        Example7_ComputedValues()
+        MsgBox("All examples completed!", "Finished")
+    }
 
-                demoGui.Show("w500 h420")
-            }
+    demoGui.Show("w500 h420")
+}
 
-            ; Launch the demo GUI
-            CreateDemoGUI()
+; Launch the demo GUI
+CreateDemoGUI()

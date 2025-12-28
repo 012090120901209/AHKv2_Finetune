@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* CLR - XML Processing
-*
-* Demonstrates using .NET System.Xml for parsing, creating, and
-* manipulating XML documents with XPath queries.
-*
-* Library: https://github.com/Lexikos/CLR.ahk
-*/
+ * CLR - XML Processing
+ * 
+ * Demonstrates using .NET System.Xml for parsing, creating, and
+ * manipulating XML documents with XPath queries.
+ * 
+ * Library: https://github.com/Lexikos/CLR.ahk
+ */
 
 MsgBox("CLR - XML Processing Example`n`n"
-. "Demonstrates .NET XML APIs`n"
-. "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
+    . "Demonstrates .NET XML APIs`n"
+    . "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
 
 /*
 ; Uncomment to run (requires CLR.ahk):
@@ -260,3 +260,4 @@ MsgBox("XML processing example completed!", , "T2")
 *     XDocument (LINQ) - Modern API
 *     Choose based on needs
 */
+

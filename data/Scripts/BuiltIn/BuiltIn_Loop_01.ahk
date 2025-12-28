@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Basic Count Loop
-* ============================================================================
-*
-* This script demonstrates basic Loop statement usage in AutoHotkey v2.
-* Shows count-based iteration, loop counters, and common patterns.
-*
-* @file BuiltIn_Loop_01.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Basic count-based loops
-* 2. Loop counter (A_Index) usage
-* 3. Counting up and down
-* 4. Step intervals
-* 5. Loop with arrays
-* 6. Accumulation patterns
-* 7. Real-world count loop applications
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Basic Count Loop
+ * ============================================================================
+ * 
+ * This script demonstrates basic Loop statement usage in AutoHotkey v2.
+ * Shows count-based iteration, loop counters, and common patterns.
+ * 
+ * @file BuiltIn_Loop_01.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Basic count-based loops
+ * 2. Loop counter (A_Index) usage
+ * 3. Counting up and down
+ * 4. Step intervals
+ * 5. Loop with arrays
+ * 6. Accumulation patterns
+ * 7. Real-world count loop applications
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Count Loops
 ; ============================================================================
 
 /**
-* Demonstrates fundamental count-based loop syntax.
-*/
+ * Demonstrates fundamental count-based loop syntax.
+ */
 Example1_BasicCountLoops() {
     OutputDebug("=== Example 1: Basic Count Loops ===`n")
 
@@ -73,8 +73,8 @@ Example1_BasicCountLoops() {
 ; ============================================================================
 
 /**
-* Demonstrates using A_Index for various purposes.
-*/
+ * Demonstrates using A_Index for various purposes.
+ */
 Example2_LoopCounter() {
     OutputDebug("=== Example 2: Loop Counter (A_Index) ===`n")
 
@@ -116,8 +116,8 @@ Example2_LoopCounter() {
 ; ============================================================================
 
 /**
-* Demonstrates various counting patterns.
-*/
+ * Demonstrates various counting patterns.
+ */
 Example3_CountingPatterns() {
     OutputDebug("=== Example 3: Counting Patterns ===`n")
 
@@ -168,8 +168,8 @@ Example3_CountingPatterns() {
 ; ============================================================================
 
 /**
-* Demonstrates implementing step intervals in loops.
-*/
+ * Demonstrates implementing step intervals in loops.
+ */
 Example4_StepIntervals() {
     OutputDebug("=== Example 4: Step Intervals ===`n")
 
@@ -209,8 +209,8 @@ Example4_StepIntervals() {
 ; ============================================================================
 
 /**
-* Demonstrates looping through arrays and collections.
-*/
+ * Demonstrates looping through arrays and collections.
+ */
 Example5_LoopWithCollections() {
     OutputDebug("=== Example 5: Loop with Collections ===`n")
 
@@ -250,8 +250,8 @@ Example5_LoopWithCollections() {
 ; ============================================================================
 
 /**
-* Demonstrates various accumulation patterns.
-*/
+ * Demonstrates various accumulation patterns.
+ */
 Example6_AccumulationPatterns() {
     OutputDebug("=== Example 6: Accumulation Patterns ===`n")
 
@@ -310,8 +310,8 @@ Example6_AccumulationPatterns() {
 ; ============================================================================
 
 /**
-* Demonstrates practical real-world loop applications.
-*/
+ * Demonstrates practical real-world loop applications.
+ */
 Example7_RealWorldApplications() {
     OutputDebug("=== Example 7: Real-World Applications ===`n")
 

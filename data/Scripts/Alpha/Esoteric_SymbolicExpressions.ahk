@@ -18,9 +18,9 @@ class Sym {
     static Div(a, b) => SymBinOp(Sym._wrap(a), "/", Sym._wrap(b))
     static Pow(a, b) => SymBinOp(Sym._wrap(a), "^", Sym._wrap(b))
     static Neg(a) => SymUnaryOp("-", Sym._wrap(a))
-    
+
     static _wrap(x) => x is Sym ? x : SymNum(x)
-    
+
     ; Operator overloading
     __Add(other) => Sym.Add(this, other)
     __Sub(other) => Sym.Sub(this, other)
@@ -28,7 +28,7 @@ class Sym {
     __Div(other) => Sym.Div(this, other)
     __Pow(other) => Sym.Pow(this, other)
     __Neg() => Sym.Neg(this)
-    
+
     ; Abstract methods
     Eval(vars := Map()) => 0
     ToString() => ""
@@ -43,7 +43,7 @@ class Sym {
 
 class SymNum extends Sym {
     __New(value) => this.value := value
-    
+
     Eval(vars := Map()) => this.value
     ToString() => String(this.value)
     Simplify() => this
@@ -57,15 +57,15 @@ class SymNum extends Sym {
 
 class SymVar extends Sym {
     __New(name) => this.name := name
-    
+
     Eval(vars := Map()) => vars.Get(this.name, 0)
     ToString() => this.name
     Simplify() => this
-    
+
     Derivative(varName) {
         return this.name = varName ? SymNum(1) : SymNum(0)
     }
-    
+
     Substitute(varName, expr) {
         return this.name = varName ? expr : this
     }
@@ -81,11 +81,11 @@ class SymBinOp extends Sym {
         this.op := op
         this.right := right
     }
-    
+
     Eval(vars := Map()) {
         l := this.left.Eval(vars)
         r := this.right.Eval(vars)
-        
+
         switch this.op {
             case "+": return l + r
             case "-": return l - r
@@ -94,20 +94,20 @@ class SymBinOp extends Sym {
             case "^": return l ** r
         }
     }
-    
+
     ToString() {
         return "(" this.left.ToString() " " this.op " " this.right.ToString() ")"
     }
-    
+
     Simplify() {
         left := this.left.Simplify()
         right := this.right.Simplify()
-        
+
         ; Numeric simplification
         if left is SymNum && right is SymNum {
             return SymNum(SymBinOp(left, this.op, right).Eval())
         }
-        
+
         ; Identity rules
         switch this.op {
             case "+":
@@ -136,10 +136,10 @@ class SymBinOp extends Sym {
                 if right is SymNum && right.value = 1
                     return left
         }
-        
+
         return SymBinOp(left, this.op, right)
     }
-    
+
     Derivative(varName) {
         switch this.op {
             case "+":
@@ -148,21 +148,21 @@ class SymBinOp extends Sym {
                     this.left.Derivative(varName),
                     this.right.Derivative(varName)
                 ).Simplify()
-            
+
             case "-":
                 ; (f - g)' = f' - g'
                 return Sym.Sub(
                     this.left.Derivative(varName),
                     this.right.Derivative(varName)
                 ).Simplify()
-            
+
             case "*":
                 ; (f * g)' = f' * g + f * g'
                 return Sym.Add(
                     Sym.Mul(this.left.Derivative(varName), this.right),
                     Sym.Mul(this.left, this.right.Derivative(varName))
                 ).Simplify()
-            
+
             case "/":
                 ; (f / g)' = (f' * g - f * g') / g^2
                 return Sym.Div(
@@ -172,7 +172,7 @@ class SymBinOp extends Sym {
                     ),
                     Sym.Pow(this.right, 2)
                 ).Simplify()
-            
+
             case "^":
                 ; Power rule (assuming exponent is constant)
                 if this.right is SymNum {
@@ -183,10 +183,10 @@ class SymBinOp extends Sym {
                     ).Simplify()
                 }
         }
-        
+
         return SymNum(0)
     }
-    
+
     Substitute(varName, expr) {
         return SymBinOp(
             this.left.Substitute(varName, expr),
@@ -205,36 +205,36 @@ class SymUnaryOp extends Sym {
         this.op := op
         this.operand := operand
     }
-    
+
     Eval(vars := Map()) {
         v := this.operand.Eval(vars)
         switch this.op {
             case "-": return -v
         }
     }
-    
+
     ToString() => this.op this.operand.ToString()
-    
+
     Simplify() {
         operand := this.operand.Simplify()
-        
+
         if operand is SymNum {
             return SymNum(SymUnaryOp(this.op, operand).Eval())
         }
-        
+
         ; Double negation
         if this.op = "-" && operand is SymUnaryOp && operand.op = "-"
             return operand.operand
-        
+
         return SymUnaryOp(this.op, operand)
     }
-    
+
     Derivative(varName) {
         if this.op = "-"
             return Sym.Neg(this.operand.Derivative(varName)).Simplify()
         return SymNum(0)
     }
-    
+
     Substitute(varName, expr) {
         return SymUnaryOp(this.op, this.operand.Substitute(varName, expr))
     }
@@ -251,16 +251,16 @@ class ExprParser {
         parser.pos := 1
         return parser._parseExpr()
     }
-    
+
     _parseExpr() => this._parseAddSub()
-    
+
     _parseAddSub() {
         left := this._parseMulDiv()
-        
+
         loop {
             this._skipWhitespace()
             ch := this._peek()
-            
+
             if ch = "+" || ch = "-" {
                 this._advance()
                 right := this._parseMulDiv()
@@ -269,17 +269,17 @@ class ExprParser {
                 break
             }
         }
-        
+
         return left
     }
-    
+
     _parseMulDiv() {
         left := this._parsePower()
-        
+
         loop {
             this._skipWhitespace()
             ch := this._peek()
-            
+
             if ch = "*" || ch = "/" {
                 this._advance()
                 right := this._parsePower()
@@ -288,38 +288,38 @@ class ExprParser {
                 break
             }
         }
-        
+
         return left
     }
-    
+
     _parsePower() {
         base := this._parseUnary()
-        
+
         this._skipWhitespace()
         if this._peek() = "^" {
             this._advance()
             exp := this._parsePower()  ; Right associative
             return Sym.Pow(base, exp)
         }
-        
+
         return base
     }
-    
+
     _parseUnary() {
         this._skipWhitespace()
-        
+
         if this._peek() = "-" {
             this._advance()
             return Sym.Neg(this._parseUnary())
         }
-        
+
         return this._parseAtom()
     }
-    
+
     _parseAtom() {
         this._skipWhitespace()
         ch := this._peek()
-        
+
         ; Parenthesized expression
         if ch = "(" {
             this._advance()
@@ -327,20 +327,20 @@ class ExprParser {
             this._expect(")")
             return expr
         }
-        
+
         ; Number
         if IsDigit(ch) || ch = "." {
             return this._parseNumber()
         }
-        
+
         ; Variable
         if IsAlpha(ch) || ch = "_" {
             return this._parseVariable()
         }
-        
+
         throw Error("Unexpected character: " ch)
     }
-    
+
     _parseNumber() {
         start := this.pos
         while this.pos <= StrLen(this.input) {
@@ -351,7 +351,7 @@ class ExprParser {
         }
         return SymNum(Number(SubStr(this.input, start, this.pos - start)))
     }
-    
+
     _parseVariable() {
         start := this.pos
         while this.pos <= StrLen(this.input) {
@@ -362,17 +362,17 @@ class ExprParser {
         }
         return SymVar(SubStr(this.input, start, this.pos - start))
     }
-    
+
     _peek() => this.pos <= StrLen(this.input) ? SubStr(this.input, this.pos, 1) : ""
     _advance() => this.pos++
-    
+
     _expect(ch) {
         this._skipWhitespace()
         if this._peek() != ch
             throw Error("Expected '" ch "' at position " this.pos)
         this._advance()
     }
-    
+
     _skipWhitespace() {
         while this._peek() = " " || this._peek() = "`t"
             this._advance()
@@ -391,12 +391,12 @@ class ExprCompiler {
     ; Compile expression to AHK function
     static Compile(expr, varNames*) {
         body := ExprCompiler._generate(expr)
-        
+
         ; Build function signature
         params := ""
         for i, name in varNames
             params .= (i > 1 ? ", " : "") name
-        
+
         ; Return a function that evaluates the expression
         ; Note: In real AHK, we'd use different approach since no eval()
         ; This returns a wrapper that uses Eval
@@ -407,22 +407,22 @@ class ExprCompiler {
             expr.Eval(vars)
         )
     }
-    
+
     static _generate(expr) {
         if expr is SymNum
             return String(expr.value)
-        
+
         if expr is SymVar
             return expr.name
-        
+
         if expr is SymUnaryOp
             return "(" expr.op ExprCompiler._generate(expr.operand) ")"
-        
+
         if expr is SymBinOp {
             op := expr.op = "^" ? "**" : expr.op
             return "(" ExprCompiler._generate(expr.left) " " op " " ExprCompiler._generate(expr.right) ")"
         }
-        
+
         return "0"
     }
 }

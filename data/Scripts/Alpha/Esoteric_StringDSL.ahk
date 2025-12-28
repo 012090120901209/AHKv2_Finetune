@@ -10,11 +10,11 @@
 
 class Parser {
     ; Run parser on input
-    Parse(input) => this._parse({input: input, pos: 1})
-    
+    Parse(input) => this._parse({ input: input, pos: 1 })
+
     ; Abstract parse method
-    _parse(state) => {success: false, value: "", state: state}
-    
+    _parse(state) => { success: false, value: "", state: state }
+
     ; Combinators
     Then(next) => SequenceParser([this, next])
     Or(other) => ChoiceParser([this, other])
@@ -28,81 +28,81 @@ class Parser {
 ; Match exact string
 class StringParser extends Parser {
     __New(str) => this.str := str
-    
+
     _parse(state) {
         len := StrLen(this.str)
         if SubStr(state.input, state.pos, len) = this.str {
             return {
                 success: true,
                 value: this.str,
-                state: {input: state.input, pos: state.pos + len}
+                state: { input: state.input, pos: state.pos + len }
             }
         }
-        return {success: false, value: "", state: state}
+        return { success: false, value: "", state: state }
     }
 }
 
 ; Match regex
 class RegexParser extends Parser {
     __New(pattern) => this.pattern := pattern
-    
+
     _parse(state) {
         remaining := SubStr(state.input, state.pos)
         if RegExMatch(remaining, "^" this.pattern, &m) {
             return {
                 success: true,
                 value: m[0],
-                state: {input: state.input, pos: state.pos + StrLen(m[0])}
+                state: { input: state.input, pos: state.pos + StrLen(m[0]) }
             }
         }
-        return {success: false, value: "", state: state}
+        return { success: false, value: "", state: state }
     }
 }
 
 ; Sequence of parsers
 class SequenceParser extends Parser {
     __New(parsers) => this.parsers := parsers
-    
+
     _parse(state) {
         results := []
         currentState := state
-        
+
         for parser in this.parsers {
             result := parser._parse(currentState)
             if !result.success
-                return {success: false, value: "", state: state}
-            
+                return { success: false, value: "", state: state }
+
             if result.value != ""
                 results.Push(result.value)
             currentState := result.state
         }
-        
-        return {success: true, value: results, state: currentState}
+
+        return { success: true, value: results, state: currentState }
     }
 }
 
 ; Choice between parsers
 class ChoiceParser extends Parser {
     __New(parsers) => this.parsers := parsers
-    
+
     _parse(state) {
         for parser in this.parsers {
             result := parser._parse(state)
             if result.success
                 return result
         }
-        return {success: false, value: "", state: state}
+        return { success: false, value: "", state: state }
     }
 }
 
 ; Zero or more
 class ManyParser extends Parser {
     __New(parser) => this.parser := parser
-    
+
     _parse(state) {
         results := []
         currentState := state
-        
+
         loop {
             result := this.parser._parse(currentState)
             if !result.success
@@ -110,23 +110,23 @@ class ManyParser extends Parser {
             results.Push(result.value)
             currentState := result.state
         }
-        
-        return {success: true, value: results, state: currentState}
+
+        return { success: true, value: results, state: currentState }
     }
 }
 
 ; One or more
 class Many1Parser extends Parser {
     __New(parser) => this.parser := parser
-    
+
     _parse(state) {
         first := this.parser._parse(state)
         if !first.success
-            return {success: false, value: "", state: state}
-        
+            return { success: false, value: "", state: state }
+
         results := [first.value]
         currentState := first.state
-        
+
         loop {
             result := this.parser._parse(currentState)
             if !result.success
@@ -134,20 +134,20 @@ class Many1Parser extends Parser {
             results.Push(result.value)
             currentState := result.state
         }
-        
-        return {success: true, value: results, state: currentState}
+
+        return { success: true, value: results, state: currentState }
     }
 }
 
 ; Optional
 class OptionalParser extends Parser {
     __New(parser) => this.parser := parser
-    
+
     _parse(state) {
         result := this.parser._parse(state)
         if result.success
             return result
-        return {success: true, value: "", state: state}
+        return { success: true, value: "", state: state }
     }
 }
 
@@ -157,7 +157,7 @@ class MapParser extends Parser {
         this.parser := parser
         this.fn := fn
     }
-    
+
     _parse(state) {
         result := this.parser._parse(state)
         if !result.success
@@ -185,60 +185,60 @@ class Template {
         this.template := templateStr
         this.compiled := this._compile(templateStr)
     }
-    
+
     _compile(str) {
         parts := []
         pos := 1
-        
+
         while pos <= StrLen(str) {
             ; Look for {{ expression }}
             if SubStr(str, pos, 2) = "{{" {
                 endPos := InStr(str, "}}", , pos)
                 if endPos {
                     expr := Trim(SubStr(str, pos + 2, endPos - pos - 2))
-                    parts.Push({type: "expr", value: expr})
+                    parts.Push({ type: "expr", value: expr })
                     pos := endPos + 2
                     continue
                 }
             }
-            
+
             ; Look for {% control %}
             if SubStr(str, pos, 2) = "{%" {
                 endPos := InStr(str, "%}", , pos)
                 if endPos {
                     ctrl := Trim(SubStr(str, pos + 2, endPos - pos - 2))
-                    parts.Push({type: "control", value: ctrl})
+                    parts.Push({ type: "control", value: ctrl })
                     pos := endPos + 2
                     continue
                 }
             }
-            
+
             ; Regular text until next tag
             nextTag := this._findNextTag(str, pos)
             textEnd := nextTag > 0 ? nextTag : StrLen(str) + 1
             text := SubStr(str, pos, textEnd - pos)
             if text != ""
-                parts.Push({type: "text", value: text})
+                parts.Push({ type: "text", value: text })
             pos := textEnd
         }
-        
+
         return parts
     }
-    
+
     _findNextTag(str, from) {
         expr := InStr(str, "{{", , from)
         ctrl := InStr(str, "{%", , from)
-        
+
         if expr && ctrl
             return Min(expr, ctrl)
         return expr ? expr : ctrl
     }
-    
+
     Render(context := Map()) {
         output := ""
         stack := []
         skipUntil := ""
-        
+
         for part in this.compiled {
             ; Handle skip mode (for false if blocks)
             if skipUntil != "" {
@@ -246,22 +246,22 @@ class Template {
                     skipUntil := ""
                 continue
             }
-            
+
             switch part.type {
                 case "text":
                     output .= part.value
-                
+
                 case "expr":
                     output .= String(this._evalExpr(part.value, context))
-                
+
                 case "control":
                     output .= this._evalControl(part.value, context, &skipUntil, stack)
             }
         }
-        
+
         return output
     }
-    
+
     _evalExpr(expr, context) {
         ; Handle simple property access: obj.prop
         if InStr(expr, ".") {
@@ -277,7 +277,7 @@ class Template {
             }
             return value
         }
-        
+
         ; Handle filters: value | filter
         if InStr(expr, "|") {
             parts := StrSplit(expr, "|")
@@ -285,7 +285,7 @@ class Template {
             filter := Trim(parts[2])
             return this._applyFilter(value, filter)
         }
-        
+
         ; Simple lookup
         if context is Map
             return context.Get(expr, "")
@@ -293,7 +293,7 @@ class Template {
             return context.%expr%
         return ""
     }
-    
+
     _applyFilter(value, filter) {
         switch filter {
             case "upper": return StrUpper(value)
@@ -304,14 +304,14 @@ class Template {
             default: return value
         }
     }
-    
+
     _reverse(s) {
         result := ""
         loop StrLen(s)
             result := SubStr(s, A_Index, 1) . result
         return result
     }
-    
+
     _evalControl(ctrl, context, &skipUntil, stack) {
         ; if condition
         if SubStr(ctrl, 1, 3) = "if " {
@@ -323,35 +323,35 @@ class Template {
             stack.Push("if")
             return ""
         }
-        
+
         ; endif
         if ctrl = "endif" {
             if stack.Length > 0
                 stack.Pop()
             return ""
         }
-        
+
         ; for item in collection
         if SubStr(ctrl, 1, 4) = "for " {
             ; Parse: for item in collection
             if RegExMatch(ctrl, "for\s+(\w+)\s+in\s+(\w+)", &m) {
                 ; Note: Full for loop would need block parsing
                 ; This is simplified
-                stack.Push({type: "for", var: m[1], collection: m[2]})
+                stack.Push({ type: "for", var: m[1], collection: m[2] })
             }
             return ""
         }
-        
+
         ; endfor
         if ctrl = "endfor" {
             if stack.Length > 0
                 stack.Pop()
             return ""
         }
-        
+
         return ""
     }
-    
+
     _matchesEnd(ctrl, expected) {
         switch expected {
             case "endif": return ctrl = "endif"
@@ -369,38 +369,38 @@ class Interpolator {
     ; Ruby-style interpolation: "Hello #{name}!"
     static Ruby(template, context) {
         result := template
-        
+
         for key, value in context {
             result := StrReplace(result, "#{" key "}", String(value))
         }
-        
+
         return result
     }
-    
+
     ; Python f-string style: f"Hello {name}!"
     static FString(template, context) {
         result := template
         pos := 1
-        
+
         while pos <= StrLen(result) {
             start := InStr(result, "{", , pos)
             if !start
                 break
-            
+
             endPos := InStr(result, "}", , start)
             if !endPos
                 break
-            
+
             expr := SubStr(result, start + 1, endPos - start - 1)
             value := Interpolator._resolve(expr, context)
-            
+
             result := SubStr(result, 1, start - 1) . String(value) . SubStr(result, endPos + 1)
             pos := start + StrLen(String(value))
         }
-        
+
         return result
     }
-    
+
     static _resolve(expr, context) {
         ; Handle format spec: {value:spec}
         if InStr(expr, ":") {
@@ -408,10 +408,10 @@ class Interpolator {
             value := Interpolator._lookup(parts[1], context)
             return Interpolator._format(value, parts[2])
         }
-        
+
         return Interpolator._lookup(expr, context)
     }
-    
+
     static _lookup(key, context) {
         if context is Map
             return context.Get(key, "")
@@ -419,7 +419,7 @@ class Interpolator {
             return context.%key%
         return ""
     }
-    
+
     static _format(value, spec) {
         ; Width formatting: {value:10} right-align, {value:<10} left-align
         if RegExMatch(spec, "^(<)?(\d+)$", &m) {
@@ -427,19 +427,19 @@ class Interpolator {
             str := String(value)
             if StrLen(str) >= width
                 return str
-            
+
             padding := ""
             loop width - StrLen(str)
                 padding .= " "
-            
+
             return m[1] = "<" ? str . padding : padding . str
         }
-        
+
         ; Decimal places: {value:.2f}
         if RegExMatch(spec, "^\.(\d+)f$", &m) {
             return Format("{:." m[1] "f}", value)
         }
-        
+
         return String(value)
     }
 }
@@ -452,23 +452,23 @@ class Grammar {
     __New() {
         this.rules := Map()
     }
-    
+
     ; Define a rule
     Rule(name, parser) {
         this.rules[name] := parser
         return this
     }
-    
+
     ; Reference a rule by name
     Ref(name) {
         return RefParser(this, name)
     }
-    
+
     ; Parse with a rule
     Parse(ruleName, input) {
         if !this.rules.Has(ruleName)
             throw Error("Unknown rule: " ruleName)
-        
+
         return this.rules[ruleName].Parse(input)
     }
 }
@@ -478,7 +478,7 @@ class RefParser extends Parser {
         this.grammar := grammar
         this.ruleName := ruleName
     }
-    
+
     _parse(state) {
         rule := this.grammar.rules[this.ruleName]
         return rule._parse(state)
@@ -499,57 +499,57 @@ class QueryBuilder {
         this._offset := 0
         this._select := []
     }
-    
+
     From(data) {
         this._data := data
         return this
     }
-    
+
     Select(fields*) {
         this._select := fields
         return this
     }
-    
+
     Where(predicate) {
         this._filters.Push(predicate)
         return this
     }
-    
+
     WhereEq(field, value) {
         return this.Where((item) => item.%field% = value)
     }
-    
+
     WhereLike(field, pattern) {
         return this.Where((item) => InStr(item.%field%, pattern))
     }
-    
+
     WhereGt(field, value) {
         return this.Where((item) => item.%field% > value)
     }
-    
+
     WhereLt(field, value) {
         return this.Where((item) => item.%field% < value)
     }
-    
+
     OrderBy(field, direction := "asc") {
         this._orderBy := field
         this._orderDir := direction
         return this
     }
-    
+
     Limit(n) {
         this._limit := n
         return this
     }
-    
+
     Offset(n) {
         this._offset := n
         return this
     }
-    
+
     Execute() {
         result := []
-        
+
         ; Apply filters
         for item in this._data {
             matches := true
@@ -562,12 +562,12 @@ class QueryBuilder {
             if matches
                 result.Push(item)
         }
-        
+
         ; Sort
         if this._orderBy {
             result := this._sort(result, this._orderBy, this._orderDir)
         }
-        
+
         ; Offset
         if this._offset > 0 {
             newResult := []
@@ -577,7 +577,7 @@ class QueryBuilder {
             }
             result := newResult
         }
-        
+
         ; Limit
         if this._limit > 0 && result.Length > this._limit {
             limited := []
@@ -585,7 +585,7 @@ class QueryBuilder {
                 limited.Push(result[A_Index])
             result := limited
         }
-        
+
         ; Project fields
         if this._select.Length > 0 {
             projected := []
@@ -597,10 +597,10 @@ class QueryBuilder {
             }
             result := projected
         }
-        
+
         return result
     }
-    
+
     _sort(arr, field, dir) {
         ; Simple bubble sort
         n := arr.Length
@@ -611,7 +611,7 @@ class QueryBuilder {
                 shouldSwap := dir = "asc"
                     ? arr[j].%field% > arr[j + 1].%field%
                     : arr[j].%field% < arr[j + 1].%field%
-                
+
                 if shouldSwap {
                     temp := arr[j]
                     arr[j] := arr[j + 1]
@@ -621,9 +621,9 @@ class QueryBuilder {
         }
         return arr
     }
-    
+
     Count() => this.Execute().Length
-    
+
     First() {
         result := this.Limit(1).Execute()
         return result.Length > 0 ? result[1] : ""
@@ -666,11 +666,7 @@ MsgBox("F-String Interpolation:`n`n"
     . Interpolator.FString("Value: {value:>10}, Pi: {pi:.2f}", Map("value", "test", "pi", 3.14159)))
 
 ; Query DSL
-users := [
-    {name: "Alice", age: 30, active: true},
-    {name: "Bob", age: 25, active: true},
-    {name: "Charlie", age: 35, active: false},
-    {name: "Diana", age: 28, active: true}
+users := [{ name: "Alice", age: 30, active: true }, { name: "Bob", age: 25, active: true }, { name: "Charlie", age: 35, active: false }, { name: "Diana", age: 28, active: true }
 ]
 
 activeAdults := Query(users)
@@ -698,5 +694,5 @@ g.Rule("alphanum", Alt(g.Ref("digit"), g.Ref("letter")))
 g.Rule("identifier", Seq(g.Ref("letter"), g.Ref("alphanum").Many()))
 
 idResult := g.Parse("identifier", "myVar123")
-MsgBox("Grammar Parser:`n`n'myVar123' parsed as identifier: " 
+MsgBox("Grammar Parser:`n`n'myVar123' parsed as identifier: "
     . (idResult.success ? "Success" : "Failed"))

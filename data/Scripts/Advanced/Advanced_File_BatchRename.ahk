@@ -44,7 +44,7 @@ global undoHistory := []
 BrowseFolder(*) {
     selected := DirSelect(, 3, "Select folder")
     if (selected)
-    folderInput.Value := selected
+        folderInput.Value := selected
 }
 
 LoadFiles(*) {
@@ -56,7 +56,7 @@ LoadFiles(*) {
     pattern := patternInput.Value
 
     if (!DirExist(folder))
-    return
+        return
 
     Loop Files, folder "\" pattern, "F" {
         currentFiles.Push(Map("original", A_LoopFileName, "path", A_LoopFilePath))
@@ -78,7 +78,7 @@ PreviewRename(*) {
 
         ; Apply find/replace
         if (find != "")
-        newName := StrReplace(newName, find, replace)
+            newName := StrReplace(newName, find, replace)
 
         ; Add prefix/suffix
         SplitPath(newName, &name, , &ext)
@@ -117,7 +117,7 @@ DoRename(*) {
     }
 
     if (batch.Length > 0)
-    undoHistory.Push(batch)
+        undoHistory.Push(batch)
 
     MsgBox("Renamed " renamed " files", "Complete")
     LoadFiles()

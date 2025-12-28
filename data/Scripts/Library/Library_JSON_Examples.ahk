@@ -3,16 +3,16 @@
 #Include JSON.ahk
 
 /**
-* JSON Library Examples - thqby/ahk2_lib
-*
-* Comprehensive examples for JSON parsing and stringification
-* Library: https://github.com/thqby/ahk2_lib/blob/master/JSON.ahk
-*/
+ * JSON Library Examples - thqby/ahk2_lib
+ * 
+ * Comprehensive examples for JSON parsing and stringification
+ * Library: https://github.com/thqby/ahk2_lib/blob/master/JSON.ahk
+ */
 
 /**
-* Example 1: Basic JSON Parsing
-* Convert JSON string to AHK object
-*/
+ * Example 1: Basic JSON Parsing
+ * Convert JSON string to AHK object
+ */
 BasicParsingExample() {
     jsonString := '{"name": "Alice", "age": 30, "active": true}'
 
@@ -23,8 +23,8 @@ BasicParsingExample() {
 }
 
 /**
-* Example 2: Parse JSON Array
-*/
+ * Example 2: Parse JSON Array
+ */
 ParseArrayExample() {
     jsonArray := '["apple", "banana", "cherry", "date"]'
 
@@ -32,14 +32,14 @@ ParseArrayExample() {
 
     output := "Fruits:`n"
     for index, fruit in arr
-    output .= index ". " fruit "`n"
+        output .= index ". " fruit "`n"
 
     MsgBox(output)
 }
 
 /**
-* Example 3: Parse Nested JSON
-*/
+ * Example 3: Parse Nested JSON
+ */
 ParseNestedExample() {
     jsonNested := '
     (
@@ -59,13 +59,13 @@ ParseNestedExample() {
     obj := JSON.parse(jsonNested)
 
     MsgBox("User: " obj.user.name
-    . "`nEmail: " obj.user.email
-    . "`nAddress: " obj.user.address.street ", " obj.user.address.city " " obj.user.address.zip)
+        . "`nEmail: " obj.user.email
+        . "`nAddress: " obj.user.address.street ", " obj.user.address.city " " obj.user.address.zip)
 }
 
 /**
-* Example 4: Parse JSON with Arrays of Objects
-*/
+ * Example 4: Parse JSON with Arrays of Objects
+ */
 ParseArrayObjectsExample() {
     jsonData := '
     (
@@ -82,134 +82,134 @@ ParseArrayObjectsExample() {
             }
             )'
 
-            data := JSON.parse(jsonData)
+    data := JSON.parse(jsonData)
 
-            output := "Employees:`n`n"
-            for employee in data.employees
-            output .= "ID: " employee.id " | Name: " employee.name " | Role: " employee.role "`n"
+    output := "Employees:`n`n"
+    for employee in data.employees
+        output .= "ID: " employee.id " | Name: " employee.name " | Role: " employee.role "`n"
 
-            MsgBox(output)
-        }
+    MsgBox(output)
+}
 
-        /**
-        * Example 5: Convert AHK Object to JSON
-        */
-        StringifyObjectExample() {
-            ; Create AHK object
-            person := Map()
-            person["name"] := "Alice Johnson"
-            person["age"] := 30
-            person["email"] := "alice@example.com"
-            person["active"] := true
+/**
+ * Example 5: Convert AHK Object to JSON
+ */
+StringifyObjectExample() {
+    ; Create AHK object
+    person := Map()
+    person["name"] := "Alice Johnson"
+    person["age"] := 30
+    person["email"] := "alice@example.com"
+    person["active"] := true
 
-            ; Convert to JSON
-            jsonString := JSON.stringify(person)
+    ; Convert to JSON
+    jsonString := JSON.stringify(person)
 
-            MsgBox("JSON Output:`n`n" jsonString)
-        }
+    MsgBox("JSON Output:`n`n" jsonString)
+}
 
-        /**
-        * Example 6: Stringify with Formatting
-        */
-        StringifyFormattedExample() {
-            data := Map()
-            data["user"] := Map()
-            data["user"]["name"] := "Bob Smith"
-            data["user"]["age"] := 25
-            data["user"]["hobbies"] := ["reading", "gaming", "coding"]
+/**
+ * Example 6: Stringify with Formatting
+ */
+StringifyFormattedExample() {
+    data := Map()
+    data["user"] := Map()
+    data["user"]["name"] := "Bob Smith"
+    data["user"]["age"] := 25
+    data["user"]["hobbies"] := ["reading", "gaming", "coding"]
 
-            ; Stringify with indentation (2 spaces)
-            formattedJSON := JSON.stringify(data, , 2)
+    ; Stringify with indentation (2 spaces)
+    formattedJSON := JSON.stringify(data, , 2)
 
-            MsgBox("Formatted JSON:`n`n" formattedJSON)
-        }
+    MsgBox("Formatted JSON:`n`n" formattedJSON)
+}
 
-        /**
-        * Example 7: Convert Array to JSON
-        */
-        StringifyArrayExample() {
-            fruits := ["apple", "banana", "cherry", "date", "elderberry"]
+/**
+ * Example 7: Convert Array to JSON
+ */
+StringifyArrayExample() {
+    fruits := ["apple", "banana", "cherry", "date", "elderberry"]
 
-            jsonArray := JSON.stringify(fruits)
+    jsonArray := JSON.stringify(fruits)
 
-            MsgBox("Array as JSON:`n`n" jsonArray)
-        }
+    MsgBox("Array as JSON:`n`n" jsonArray)
+}
 
-        /**
-        * Example 8: Complex Data Structure
-        */
-        ComplexDataExample() {
-            ; Build complex data structure
-            company := Map()
-            company["name"] := "Tech Corp"
-            company["founded"] := 2010
+/**
+ * Example 8: Complex Data Structure
+ */
+ComplexDataExample() {
+    ; Build complex data structure
+    company := Map()
+    company["name"] := "Tech Corp"
+    company["founded"] := 2010
 
-            ; Departments array
-            departments := []
+    ; Departments array
+    departments := []
 
-            ; Engineering department
-            eng := Map()
-            eng["name"] := "Engineering"
-            eng["head"] := "Alice Johnson"
-            eng["employees"] := 15
-            departments.Push(eng)
+    ; Engineering department
+    eng := Map()
+    eng["name"] := "Engineering"
+    eng["head"] := "Alice Johnson"
+    eng["employees"] := 15
+    departments.Push(eng)
 
-            ; Sales department
-            sales := Map()
-            sales["name"] := "Sales"
-            sales["head"] := "Bob Smith"
-            sales["employees"] := 10
-            departments.Push(sales)
+    ; Sales department
+    sales := Map()
+    sales["name"] := "Sales"
+    sales["head"] := "Bob Smith"
+    sales["employees"] := 10
+    departments.Push(sales)
 
-            company["departments"] := departments
+    company["departments"] := departments
 
-            ; Convert to formatted JSON
-            json := JSON.stringify(company, , 2)
+    ; Convert to formatted JSON
+    json := JSON.stringify(company, , 2)
 
-            MsgBox("Company Data:`n`n" json)
-        }
+    MsgBox("Company Data:`n`n" json)
+}
 
-        /**
-        * Example 9: Save and Load JSON File
-        */
-        SaveLoadJSONFileExample() {
-            filePath := A_ScriptDir "\test_data.json"
+/**
+ * Example 9: Save and Load JSON File
+ */
+SaveLoadJSONFileExample() {
+    filePath := A_ScriptDir "\test_data.json"
 
-            ; Create data
-            config := Map()
-            config["appName"] := "MyApp"
-            config["version"] := "1.0.0"
-            config["settings"] := Map()
-            config["settings"]["theme"] := "dark"
-            config["settings"]["language"] := "en"
+    ; Create data
+    config := Map()
+    config["appName"] := "MyApp"
+    config["version"] := "1.0.0"
+    config["settings"] := Map()
+    config["settings"]["theme"] := "dark"
+    config["settings"]["language"] := "en"
 
-            ; Save to file
-            jsonString := JSON.stringify(config, , 2)
-            FileDelete(filePath)  ; Remove if exists
-            FileAppend(jsonString, filePath)
-            MsgBox("Data saved to: " filePath)
+    ; Save to file
+    jsonString := JSON.stringify(config, , 2)
+    FileDelete(filePath)  ; Remove if exists
+    FileAppend(jsonString, filePath)
+    MsgBox("Data saved to: " filePath)
 
-            Sleep(1000)
+    Sleep(1000)
 
-            ; Load from file
-            loadedJSON := FileRead(filePath)
-            loadedConfig := JSON.parse(loadedJSON)
+    ; Load from file
+    loadedJSON := FileRead(filePath)
+    loadedConfig := JSON.parse(loadedJSON)
 
-            MsgBox("Loaded Config:`n`n"
-            . "App: " loadedConfig["appName"] "`n"
-            . "Version: " loadedConfig["version"] "`n"
-            . "Theme: " loadedConfig["settings"]["theme"])
+    MsgBox("Loaded Config:`n`n"
+        . "App: " loadedConfig["appName"] "`n"
+        . "Version: " loadedConfig["version"] "`n"
+        . "Theme: " loadedConfig["settings"]["theme"])
 
-            ; Cleanup
-            FileDelete(filePath)
-        }
+    ; Cleanup
+    FileDelete(filePath)
+}
 
-        /**
-        * Example 10: Parse JSON with Comments
-        */
-        ParseWithCommentsExample() {
-            ; JSON with comments (supported by this library)
-            jsonWithComments := '
+/**
+ * Example 10: Parse JSON with Comments
+ */
+ParseWithCommentsExample() {
+    ; JSON with comments (supported by this library)
+    jsonWithComments := '
             (
             {
                 // User information
@@ -220,20 +220,20 @@ ParseArrayObjectsExample() {
             }
             )'
 
-            obj := JSON.parse(jsonWithComments)
+    obj := JSON.parse(jsonWithComments)
 
-            MsgBox("Parsed (ignoring comments):`n`n"
-            . "Name: " obj.name "`n"
-            . "Age: " obj.age "`n"
-            . "Email: " obj.email)
-        }
+    MsgBox("Parsed (ignoring comments):`n`n"
+        . "Name: " obj.name "`n"
+        . "Age: " obj.age "`n"
+        . "Email: " obj.email)
+}
 
-        /**
-        * Example 11: API Response Simulation
-        */
-        APIResponseExample() {
-            ; Simulate API response
-            apiResponse := '
+/**
+ * Example 11: API Response Simulation
+ */
+APIResponseExample() {
+    ; Simulate API response
+    apiResponse := '
             (
             {
                 "status": "success",
@@ -251,178 +251,178 @@ ParseArrayObjectsExample() {
                 }
                 )'
 
-                response := JSON.parse(apiResponse)
+    response := JSON.parse(apiResponse)
 
-                if (response.status = "success") {
-                    output := "API Response Successful`n`n"
-                    output .= "Total Users: " response.data.total "`n`n"
+    if (response.status = "success") {
+        output := "API Response Successful`n`n"
+        output .= "Total Users: " response.data.total "`n`n"
 
-                    for user in response.data.users
-                    output .= "User #" user.id ": " user.username " (" user.email ")`n"
+        for user in response.data.users
+            output .= "User #" user.id ": " user.username " (" user.email ")`n"
 
-                    output .= "`nTimestamp: " response.timestamp
+        output .= "`nTimestamp: " response.timestamp
 
-                    MsgBox(output)
-                }
-            }
+        MsgBox(output)
+    }
+}
 
-            /**
-            * Example 12: Configuration Manager
-            */
-            ConfigManagerExample() {
+/**
+ * Example 12: Configuration Manager
+ */
+ConfigManagerExample() {
 
-                ; Use the config manager
-                configPath := A_ScriptDir "\app_config.json"
-                cm := ConfigManager(configPath)
+    ; Use the config manager
+    configPath := A_ScriptDir "\app_config.json"
+    cm := ConfigManager(configPath)
 
-                ; Set some values
-                cm.Set("windowX", 100)
-                cm.Set("windowY", 200)
-                cm.Set("theme", "dark")
-                cm.Set("language", "en")
-                cm.Save()
+    ; Set some values
+    cm.Set("windowX", 100)
+    cm.Set("windowY", 200)
+    cm.Set("theme", "dark")
+    cm.Set("language", "en")
+    cm.Save()
 
-                MsgBox("Config saved!")
+    MsgBox("Config saved!")
 
-                ; Load and display
-                cm2 := ConfigManager(configPath)
-                MsgBox("Loaded Config:`n`n"
-                . "Window X: " cm2.Get("windowX") "`n"
-                . "Window Y: " cm2.Get("windowY") "`n"
-                . "Theme: " cm2.Get("theme") "`n"
-                . "Language: " cm2.Get("language"))
+    ; Load and display
+    cm2 := ConfigManager(configPath)
+    MsgBox("Loaded Config:`n`n"
+        . "Window X: " cm2.Get("windowX") "`n"
+        . "Window Y: " cm2.Get("windowY") "`n"
+        . "Theme: " cm2.Get("theme") "`n"
+        . "Language: " cm2.Get("language"))
 
-                ; Cleanup
-                FileDelete(configPath)
-            }
+    ; Cleanup
+    FileDelete(configPath)
+}
 
-            /**
-            * Example 13: Data Transformation
-            */
-            DataTransformationExample() {
-                ; Original data (CSV-like)
-                csvData := "Name,Age,City`nAlice,30,NYC`nBob,25,LA`nCharlie,35,Chicago"
+/**
+ * Example 13: Data Transformation
+ */
+DataTransformationExample() {
+    ; Original data (CSV-like)
+    csvData := "Name,Age,City`nAlice,30,NYC`nBob,25,LA`nCharlie,35,Chicago"
 
-                ; Convert to JSON
-                lines := StrSplit(csvData, "`n")
-                headers := StrSplit(lines[1], ",")
+    ; Convert to JSON
+    lines := StrSplit(csvData, "`n")
+    headers := StrSplit(lines[1], ",")
 
-                dataArray := []
-                loop lines.Length - 1 {
-                    values := StrSplit(lines[A_Index + 1], ",")
-                    row := Map()
+    dataArray := []
+    loop lines.Length - 1 {
+        values := StrSplit(lines[A_Index + 1], ",")
+        row := Map()
 
-                    loop headers.Length
-                    row[headers[A_Index]] := values[A_Index]
+        loop headers.Length
+            row[headers[A_Index]] := values[A_Index]
 
-                    dataArray.Push(row)
-                }
+        dataArray.Push(row)
+    }
 
-                result := Map()
-                result["data"] := dataArray
-                result["count"] := dataArray.Length
+    result := Map()
+    result["data"] := dataArray
+    result["count"] := dataArray.Length
 
-                jsonOutput := JSON.stringify(result, , 2)
+    jsonOutput := JSON.stringify(result, , 2)
 
-                MsgBox("CSV converted to JSON:`n`n" jsonOutput)
-            }
+    MsgBox("CSV converted to JSON:`n`n" jsonOutput)
+}
 
-            /**
-            * Example 14: Error Handling
-            */
-            ErrorHandlingExample() {
-                ; Invalid JSON
-                invalidJSON := '{"name": "Alice", "age": invalid}'
+/**
+ * Example 14: Error Handling
+ */
+ErrorHandlingExample() {
+    ; Invalid JSON
+    invalidJSON := '{"name": "Alice", "age": invalid}'
 
-                try {
-                    obj := JSON.parse(invalidJSON)
-                    MsgBox("Parsed successfully: " obj.name)
-                } catch Error as e {
-                    MsgBox("JSON Parse Error:`n`n" e.Message, "Error")
-                }
-            }
+    try {
+        obj := JSON.parse(invalidJSON)
+        MsgBox("Parsed successfully: " obj.name)
+    } catch Error as e {
+        MsgBox("JSON Parse Error:`n`n" e.Message, "Error")
+    }
+}
 
-            /**
-            * Example 15: Performance Test
-            */
-            PerformanceTestExample() {
-                ; Generate large dataset
-                largeData := []
-                loop 1000 {
-                    item := Map()
-                    item["id"] := A_Index
-                    item["name"] := "User" A_Index
-                    item["value"] := Random(1, 100)
-                    largeData.Push(item)
-                }
+/**
+ * Example 15: Performance Test
+ */
+PerformanceTestExample() {
+    ; Generate large dataset
+    largeData := []
+    loop 1000 {
+        item := Map()
+        item["id"] := A_Index
+        item["name"] := "User" A_Index
+        item["value"] := Random(1, 100)
+        largeData.Push(item)
+    }
 
-                ; Test stringify performance
-                startTime := A_TickCount
-                jsonString := JSON.stringify(largeData)
-                stringifyTime := A_TickCount - startTime
+    ; Test stringify performance
+    startTime := A_TickCount
+    jsonString := JSON.stringify(largeData)
+    stringifyTime := A_TickCount - startTime
 
-                ; Test parse performance
-                startTime := A_TickCount
-                parsedData := JSON.parse(jsonString)
-                parseTime := A_TickCount - startTime
+    ; Test parse performance
+    startTime := A_TickCount
+    parsedData := JSON.parse(jsonString)
+    parseTime := A_TickCount - startTime
 
-                MsgBox("Performance Test (1000 objects):`n`n"
-                . "Stringify: " stringifyTime " ms`n"
-                . "Parse: " parseTime " ms`n"
-                . "JSON Size: " Round(StrLen(jsonString) / 1024, 2) " KB")
-            }
+    MsgBox("Performance Test (1000 objects):`n`n"
+        . "Stringify: " stringifyTime " ms`n"
+        . "Parse: " parseTime " ms`n"
+        . "JSON Size: " Round(StrLen(jsonString) / 1024, 2) " KB")
+}
 
-            MsgBox("JSON Library Examples Loaded`n`n"
-            . "Available Examples:`n"
-            . "- BasicParsingExample()`n"
-            . "- ParseArrayExample()`n"
-            . "- ParseNestedExample()`n"
-            . "- StringifyObjectExample()`n"
-            . "- StringifyFormattedExample()`n"
-            . "- ComplexDataExample()`n"
-            . "- SaveLoadJSONFileExample()`n"
-            . "- APIResponseExample()`n"
-            . "- ConfigManagerExample()`n"
-            . "- DataTransformationExample()`n"
-            . "- PerformanceTestExample()")
+MsgBox("JSON Library Examples Loaded`n`n"
+    . "Available Examples:`n"
+    . "- BasicParsingExample()`n"
+    . "- ParseArrayExample()`n"
+    . "- ParseNestedExample()`n"
+    . "- StringifyObjectExample()`n"
+    . "- StringifyFormattedExample()`n"
+    . "- ComplexDataExample()`n"
+    . "- SaveLoadJSONFileExample()`n"
+    . "- APIResponseExample()`n"
+    . "- ConfigManagerExample()`n"
+    . "- DataTransformationExample()`n"
+    . "- PerformanceTestExample()")
 
-            ; Uncomment to test:
-            ; BasicParsingExample()
-            ; ParseArrayExample()
-            ; StringifyFormattedExample()
-            ; SaveLoadJSONFileExample()
-            ; ConfigManagerExample()
-            ; Moved class ConfigManager from nested scope
-            class ConfigManager {
-                configFile := ""
-                config := Map()
+; Uncomment to test:
+; BasicParsingExample()
+; ParseArrayExample()
+; StringifyFormattedExample()
+; SaveLoadJSONFileExample()
+; ConfigManagerExample()
+; Moved class ConfigManager from nested scope
+class ConfigManager {
+    configFile := ""
+    config := Map()
 
-                __New(filePath) {
-                    this.configFile := filePath
-                    this.Load()
-                }
+    __New(filePath) {
+        this.configFile := filePath
+        this.Load()
+    }
 
-                Load() {
-                    if FileExist(this.configFile) {
-                        jsonText := FileRead(this.configFile)
-                        this.config := JSON.parse(jsonText)
-                    } else {
-                        this.config := Map()
-                    }
-                }
+    Load() {
+        if FileExist(this.configFile) {
+            jsonText := FileRead(this.configFile)
+            this.config := JSON.parse(jsonText)
+        } else {
+            this.config := Map()
+        }
+    }
 
-                Save() {
-                    jsonText := JSON.stringify(this.config, , 2)
-                    FileDelete(this.configFile)
-                    FileAppend(jsonText, this.configFile)
-                }
+    Save() {
+        jsonText := JSON.stringify(this.config, , 2)
+        FileDelete(this.configFile)
+        FileAppend(jsonText, this.configFile)
+    }
 
-                Get(key, default := "") {
-                    return this.config.Has(key) ? this.config[key] : default
-                }
+    Get(key, default := "") {
+        return this.config.Has(key) ? this.config[key] : default
+    }
 
-                Set(key, value) {
-                    this.config[key] := value
-                    return this
-                }
-            }
+    Set(key, value) {
+        this.config[key] := value
+        return this
+    }
+}

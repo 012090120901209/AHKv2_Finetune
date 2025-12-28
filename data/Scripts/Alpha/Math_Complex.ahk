@@ -15,7 +15,7 @@ class Complex {
     }
 
     Add(other) => Complex(this.real + other.real, this.imag + other.imag)
-    
+
     Subtract(other) => Complex(this.real - other.real, this.imag - other.imag)
 
     Multiply(other) {
@@ -42,7 +42,7 @@ class Complex {
     Conjugate() => Complex(this.real, -this.imag)
 
     Magnitude() => Sqrt(this.real ** 2 + this.imag ** 2)
-    
+
     Phase() => ATan2(this.imag, this.real)
 
     Power(n) {
@@ -61,7 +61,7 @@ class Complex {
     }
 
     Equals(other, epsilon := 0.000001) {
-        return Abs(this.real - other.real) < epsilon 
+        return Abs(this.real - other.real) < epsilon
             && Abs(this.imag - other.imag) < epsilon
     }
 

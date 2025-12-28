@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlSetEnabled - Advanced Control
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlSetEnabled - Advanced Control
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -20,10 +20,10 @@ Example1() {
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Level " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Level " . A_Index))
     for i, ctrl in controls
-    if (i > 1)
-    ControlSetEnabled(false, ctrl)
+        if (i > 1)
+            ControlSetEnabled(false, ctrl)
     BtnCascade := MyGui.Add("Button", "xm y+20 w200", "Cascade Enable")
     BtnCascade.OnEvent("Click", Cascade)
     Cascade(*) {
@@ -55,9 +55,9 @@ Example2() {
     BtnUser.OnEvent("Click", (*) => SetRole("user"))
     SetRole(role) {
         for ctrl in adminFields
-        ControlSetEnabled(role = "admin", ctrl)
+            ControlSetEnabled(role = "admin", ctrl)
         for ctrl in userFields
-        ControlSetEnabled(true, ctrl)
+            ControlSetEnabled(true, ctrl)
     }
 
     MyGui.Show()
@@ -128,9 +128,9 @@ Example5() {
     Step2.OnEvent("Change", (*) => CheckChain())
     CheckChain() {
         if (StrLen(Step1.Value) > 0)
-        ControlSetEnabled(true, Step2)
+            ControlSetEnabled(true, Step2)
         if (StrLen(Step2.Value) > 0)
-        ControlSetEnabled(true, Step3)
+            ControlSetEnabled(true, Step3)
     }
 
     MyGui.Show()
@@ -193,13 +193,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Cascading Enable",
-"Example 2: Role-Based Access",
-"Example 3: Timed Enable",
-"Example 4: Validation-Based",
-"Example 5: Dependency Chain",
-"Example 6: Modal Enable",
-"Example 7: Smart Enable",
+    "Example 1: Cascading Enable",
+    "Example 2: Role-Based Access",
+    "Example 3: Timed Enable",
+    "Example 4: Validation-Based",
+    "Example 5: Dependency Chain",
+    "Example 6: Modal Enable",
+    "Example 7: Smart Enable",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

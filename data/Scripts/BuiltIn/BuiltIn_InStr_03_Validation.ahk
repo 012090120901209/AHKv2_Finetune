@@ -1,66 +1,66 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_InStr_03_Validation.ahk
-*
-* DESCRIPTION:
-* Using InStr() for input validation and format checking
-*
-* FEATURES:
-* - Email validation
-* - URL validation
-* - Format verification
-* - Content filtering
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - InStr()
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - InStr() for validation logic
-* - Multiple condition checking
-* - Content screening
-* - Format detection
-*
-* LEARNING POINTS:
-* 1. InStr() perfect for quick format checks
-* 2. Returns 0 if not found (false in boolean context)
-* 3. Can validate multiple requirements
-* 4. Fast and simple for basic validation
-*/
+ * BuiltIn_InStr_03_Validation.ahk
+ * 
+ * DESCRIPTION:
+ * Using InStr() for input validation and format checking
+ * 
+ * FEATURES:
+ * - Email validation
+ * - URL validation
+ * - Format verification
+ * - Content filtering
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - InStr()
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - InStr() for validation logic
+ * - Multiple condition checking
+ * - Content screening
+ * - Format detection
+ * 
+ * LEARNING POINTS:
+ * 1. InStr() perfect for quick format checks
+ * 2. Returns 0 if not found (false in boolean context)
+ * 3. Can validate multiple requirements
+ * 4. Fast and simple for basic validation
+ */
 
 ; ============================================================
 ; Example 1: Basic Email Validation
 ; ============================================================
 
 /**
-* Simple email validation using InStr()
-*
-* @param {String} email - Email address
-* @returns {Boolean} - Valid status
-*/
+ * Simple email validation using InStr()
+ * 
+ * @param {String} email - Email address
+ * @returns {Boolean} - Valid status
+ */
 ValidateEmail(email) {
     ; Must contain @
     if (!InStr(email, "@"))
-    return false
+        return false
 
     ; Must contain dot after @
     atPos := InStr(email, "@")
     if (!InStr(email, ".", , atPos))
-    return false
+        return false
 
     ; @ should not be first or last
     if (atPos = 1 || atPos = StrLen(email))
-    return false
+        return false
 
     return true
 }
 
 emails := [
-"user@example.com",
-"invalid.email",
-"@example.com",
-"user@",
-"user@domain.co.uk"
+    "user@example.com",
+    "invalid.email",
+    "@example.com",
+    "user@",
+    "user@domain.co.uk"
 ]
 
 output := "EMAIL VALIDATION:`n`n"
@@ -77,28 +77,28 @@ MsgBox(output, "Email Validation", "Icon!")
 ; ============================================================
 
 /**
-* Check if URL has valid protocol
-*
-* @param {String} url - URL to check
-* @returns {String} - Protocol or empty
-*/
+ * Check if URL has valid protocol
+ * 
+ * @param {String} url - URL to check
+ * @returns {String} - Protocol or empty
+ */
 GetURLProtocol(url) {
     protocols := ["http://", "https://", "ftp://", "file://"]
 
     for protocol in protocols {
         if (InStr(url, protocol) = 1)  ; At start
-        return protocol
+            return protocol
     }
 
     return ""
 }
 
 urls := [
-"https://www.example.com",
-"http://localhost:8080",
-"ftp://files.server.com",
-"www.example.com",
-"file:///C:/path/to/file"
+    "https://www.example.com",
+    "http://localhost:8080",
+    "ftp://files.server.com",
+    "www.example.com",
+    "file:///C:/path/to/file"
 ]
 
 output := "URL PROTOCOL CHECK:`n`n"
@@ -115,11 +115,11 @@ MsgBox(output, "URL Protocol", "Icon!")
 ; ============================================================
 
 /**
-* Check password meets character requirements
-*
-* @param {String} password - Password to check
-* @returns {Map} - Requirement checklist
-*/
+ * Check password meets character requirements
+ * 
+ * @param {String} password - Password to check
+ * @returns {Map} - Requirement checklist
+ */
 CheckPasswordRequirements(password) {
     req := Map()
 
@@ -152,7 +152,7 @@ CheckPasswordRequirements(password) {
 
     ; Check for special characters
     req["hasSpecial"] := InStr(password, "!") || InStr(password, "@")
-    || InStr(password, "#") || InStr(password, "$")
+        || InStr(password, "#") || InStr(password, "$")
 
     ; Check length
     req["hasMinLength"] := StrLen(password) >= 8
@@ -180,16 +180,16 @@ MsgBox(output, "Password Requirements", "Icon!")
 ; ============================================================
 
 /**
-* Check if file is allowed type
-*
-* @param {String} filename - Filename
-* @param {Array} allowedExts - Allowed extensions
-* @returns {Boolean} - Is allowed
-*/
+ * Check if file is allowed type
+ * 
+ * @param {String} filename - Filename
+ * @param {Array} allowedExts - Allowed extensions
+ * @returns {Boolean} - Is allowed
+ */
 IsAllowedFileType(filename, allowedExts) {
     for ext in allowedExts {
         if (InStr(filename, "." ext, , -1) > 0)  ; Check from end
-        return true
+            return true
     }
     return false
 }
@@ -198,11 +198,11 @@ allowedImages := ["jpg", "jpeg", "png", "gif", "webp"]
 allowedDocs := ["pdf", "doc", "docx", "txt"]
 
 files := [
-"photo.jpg",
-"document.pdf",
-"script.ahk",
-"image.png",
-"data.xlsx"
+    "photo.jpg",
+    "document.pdf",
+    "script.ahk",
+    "image.png",
+    "data.xlsx"
 ]
 
 output := "FILE TYPE VALIDATION:`n`n"
@@ -219,7 +219,7 @@ for file in files {
 StrJoin(arr, delimiter) {
     result := ""
     for item in arr
-    result .= item (A_Index < arr.Length ? delimiter : "")
+        result .= item (A_Index < arr.Length ? delimiter : "")
     return result
 }
 
@@ -230,16 +230,16 @@ MsgBox(output, "File Type Validation", "Icon!")
 ; ============================================================
 
 /**
-* Check text for blocked words
-*
-* @param {String} text - Text to check
-* @param {Array} blockedWords - Words to block
-* @returns {Map} - Check results
-*/
+ * Check text for blocked words
+ * 
+ * @param {String} text - Text to check
+ * @param {Array} blockedWords - Words to block
+ * @returns {Map} - Check results
+ */
 CheckContent(text, blockedWords) {
     result := Map(
-    "isClean", true,
-    "foundWords", []
+        "isClean", true,
+        "foundWords", []
     )
 
     textLower := StrLower(text)
@@ -257,9 +257,9 @@ CheckContent(text, blockedWords) {
 blockedWords := ["spam", "prohibited", "illegal"]
 
 comments := [
-"This is a great product!",
-"This is spam and prohibited content",
-"I found illegal activities here"
+    "This is a great product!",
+    "This is spam and prohibited content",
+    "I found illegal activities here"
 ]
 
 output := "CONTENT FILTERING:`n`n"
@@ -269,7 +269,7 @@ for comment in comments {
     check := CheckContent(comment, blockedWords)
     output .= (check["isClean"] ? "✓" : "✗") " " comment "`n"
     if (!check["isClean"])
-    output .= "  Found: " StrJoin(check["foundWords"], ", ") "`n"
+        output .= "  Found: " StrJoin(check["foundWords"], ", ") "`n"
 }
 
 MsgBox(output, "Content Filtering", "Icon!")
@@ -279,40 +279,40 @@ MsgBox(output, "Content Filtering", "Icon!")
 ; ============================================================
 
 /**
-* Check for common SQL injection patterns
-*
-* @param {String} input - User input
-* @returns {Boolean} - Contains suspicious content
-*/
+ * Check for common SQL injection patterns
+ * 
+ * @param {String} input - User input
+ * @returns {Boolean} - Contains suspicious content
+ */
 HasSQLInjectionPatterns(input) {
     dangerousPatterns := [
-    "'",
-    "--",
-    "/*",
-    "*/",
-    "DROP",
-    "DELETE",
-    "INSERT",
-    "UPDATE",
-    "UNION",
-    "SELECT"
+        "'",
+        "--",
+        "/*",
+        "*/",
+        "DROP",
+        "DELETE",
+        "INSERT",
+        "UPDATE",
+        "UNION",
+        "SELECT"
     ]
 
     inputUpper := StrUpper(input)
 
     for pattern in dangerousPatterns {
         if (InStr(inputUpper, StrUpper(pattern)))
-        return true
+            return true
     }
 
     return false
 }
 
 inputs := [
-"john_doe",
-"admin' OR '1'='1",
-"user123",
-"test'; DROP TABLE users--"
+    "john_doe",
+    "admin' OR '1'='1",
+    "user123",
+    "test'; DROP TABLE users--"
 ]
 
 output := "SQL INJECTION CHECK:`n`n"

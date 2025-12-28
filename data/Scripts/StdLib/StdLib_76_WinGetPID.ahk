@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinGetPID() - Get process ID
-*
-* Returns the process ID of a window.
-*/
+ * WinGetPID() - Get process ID
+ * 
+ * Returns the process ID of a window.
+ */
 
 if WinExist("ahk_class Notepad") {
     pid := WinGetPID()

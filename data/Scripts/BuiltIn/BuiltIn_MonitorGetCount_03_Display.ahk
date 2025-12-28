@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGetCount_03_Display.ahk
-*
-* DESCRIPTION:
-* Display management and visualization using MonitorGetCount. Demonstrates
-* creating visual representations, management interfaces, and diagnostic
-* tools based on monitor count.
-*
-* FEATURES:
-* - Visual monitor count displays
-* - Interactive monitor management GUIs
-* - System tray integration
-* - Monitor count dashboards
-* - Configuration recommendations
-* - Performance monitoring
-* - Display topology visualization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced GUI layouts
-* - Progress bars and visual indicators
-* - Tray icon integration
-* - Dynamic control creation
-* - Custom drawing and visualization
-* - Menu systems
-*
-* LEARNING POINTS:
-* 1. Visual feedback improves user experience
-* 2. Tray integration provides quick access
-* 3. Dashboard views consolidate information
-* 4. Color coding enhances readability
-* 5. Real-time updates keep displays current
-* 6. Topology views show monitor relationships
-* 7. Management interfaces simplify operations
-*/
+ * BuiltIn_MonitorGetCount_03_Display.ahk
+ * 
+ * DESCRIPTION:
+ * Display management and visualization using MonitorGetCount. Demonstrates
+ * creating visual representations, management interfaces, and diagnostic
+ * tools based on monitor count.
+ * 
+ * FEATURES:
+ * - Visual monitor count displays
+ * - Interactive monitor management GUIs
+ * - System tray integration
+ * - Monitor count dashboards
+ * - Configuration recommendations
+ * - Performance monitoring
+ * - Display topology visualization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGetCount.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced GUI layouts
+ * - Progress bars and visual indicators
+ * - Tray icon integration
+ * - Dynamic control creation
+ * - Custom drawing and visualization
+ * - Menu systems
+ * 
+ * LEARNING POINTS:
+ * 1. Visual feedback improves user experience
+ * 2. Tray integration provides quick access
+ * 3. Dashboard views consolidate information
+ * 4. Color coding enhances readability
+ * 5. Real-time updates keep displays current
+ * 6. Topology views show monitor relationships
+ * 7. Management interfaces simplify operations
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Monitor Count Dashboard
@@ -74,7 +74,7 @@ Example1_Dashboard() {
     ; Monitor list
     g.Add("Text", "xm Section cWhite", "Monitor Details:")
     lv := g.Add("ListView", "xs w600 h150 Background0x1E1E1E c0xFFFFFF", [
-    "Monitor", "Resolution", "Position", "Status"
+        "Monitor", "Resolution", "Position", "Status"
     ])
 
     ; Refresh button
@@ -123,7 +123,7 @@ Example1_Dashboard() {
         }
 
         Loop lv.GetCount("Column")
-        lv.ModifyCol(A_Index, "AutoHdr")
+            lv.ModifyCol(A_Index, "AutoHdr")
     }
 
     RefreshDashboard(*) {
@@ -184,10 +184,10 @@ Example2_TrayCounter() {
         Loop MonCount {
             MonitorGet(A_Index, &L, &T, &R, &B)
             details .= "Monitor " A_Index ":`n"
-            details .= "  Resolution: " (R-L) "x" (B-T) "`n"
+            details .= "  Resolution: " (R - L) "x" (B - T) "`n"
             details .= "  Position: " L "," T "`n"
             if A_Index = MonitorGetPrimary()
-            details .= "  Status: Primary`n"
+                details .= "  Status: Primary`n"
             details .= "`n"
         }
 
@@ -345,21 +345,21 @@ Example5_ConfigurationWizard() {
 
     if MonCount = 1 {
         options := [
-        "Single Monitor - Maximized Layout",
-        "Single Monitor - Tiled Layout",
-        "Single Monitor - Floating Windows"
+            "Single Monitor - Maximized Layout",
+            "Single Monitor - Tiled Layout",
+            "Single Monitor - Floating Windows"
         ]
     } else if MonCount = 2 {
         options := [
-        "Dual Monitor - Extended Desktop",
-        "Dual Monitor - Mirror Display",
-        "Dual Monitor - Primary + Secondary"
+            "Dual Monitor - Extended Desktop",
+            "Dual Monitor - Mirror Display",
+            "Dual Monitor - Primary + Secondary"
         ]
     } else {
         options := [
-        "Multi-Monitor - Surround Mode",
-        "Multi-Monitor - Independent Displays",
-        "Multi-Monitor - Custom Layout"
+            "Multi-Monitor - Surround Mode",
+            "Multi-Monitor - Independent Displays",
+            "Multi-Monitor - Custom Layout"
         ]
     }
 
@@ -520,12 +520,12 @@ Example7_TopologyViewer() {
 
         ; Monitor label
         g.Add("Text", "x" (x + w // 2 - 30) " y" (y + h // 2 - 10) " w60 h20 +Center BackgroundTrans cWhite",
-        "Monitor " mon.Num)
+            "Monitor " mon.Num)
 
         ; Resolution label
         resolution := (mon.Right - mon.Left) "x" (mon.Bottom - mon.Top)
         g.Add("Text", "x" (x + w // 2 - 40) " y" (y + h - 20) " w80 h15 +Center BackgroundTrans cWhite",
-        resolution)
+            resolution)
     }
 
     ; Legend

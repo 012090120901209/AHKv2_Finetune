@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_ComValue_01.ahk
-*
-* DESCRIPTION:
-* Using ComValue for COM type conversions.
-*
-* FEATURES:
-* - Type wrapping
-* - Variant types
-* - Type conversion
-* - ByRef parameters
-* - VT constants
-*/
+ * BuiltIn_COM_ComValue_01.ahk
+ * 
+ * DESCRIPTION:
+ * Using ComValue for COM type conversions.
+ * 
+ * FEATURES:
+ * - Type wrapping
+ * - Variant types
+ * - Type conversion
+ * - ByRef parameters
+ * - VT constants
+ */
 
 Example1_CreateComValue() {
     MsgBox("Example 1: Create ComValue")
@@ -115,6 +115,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

@@ -1,51 +1,51 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* BuiltIn_ControlClick_02 - Coordinate-Based Control Clicking
-* ============================================================================
-*
-* Demonstrates advanced ControlClick with coordinates, position control,
-* and pixel-perfect clicking within controls.
-*
-* @description
-* ControlClick can target specific coordinates within a control, enabling
-* precise interaction with complex controls like canvases, images, and
-* custom-drawn elements.
-*
-* Key Features:
-* - Coordinate-based clicking within controls
-* - Relative vs absolute positioning
-* - Control area mapping
-* - Multi-point clicking patterns
-* - Visual feedback and validation
-*
-* @syntax ControlClick Control, WinTitle, WinText, WhichButton, ClickCount, "X# Y#"
-*
-* @author AutoHotkey Community
-* @version 1.0.0
-* @since 2024-01-16
-*
-* @example
-* ; Click at specific coordinates within a control
-* ControlClick "Edit1", "Notepad",, "Left", 1, "X50 Y20"
-*
-* @see https://www.autohotkey.com/docs/v2/lib/ControlClick.htm
-*/
+ * ============================================================================
+ * BuiltIn_ControlClick_02 - Coordinate-Based Control Clicking
+ * ============================================================================
+ * 
+ * Demonstrates advanced ControlClick with coordinates, position control,
+ * and pixel-perfect clicking within controls.
+ * 
+ * @description
+ * ControlClick can target specific coordinates within a control, enabling
+ * precise interaction with complex controls like canvases, images, and
+ * custom-drawn elements.
+ * 
+ * Key Features:
+ * - Coordinate-based clicking within controls
+ * - Relative vs absolute positioning
+ * - Control area mapping
+ * - Multi-point clicking patterns
+ * - Visual feedback and validation
+ * 
+ * @syntax ControlClick Control, WinTitle, WinText, WhichButton, ClickCount, "X# Y#"
+ * 
+ * @author AutoHotkey Community
+ * @version 1.0.0
+ * @since 2024-01-16
+ * 
+ * @example
+ * ; Click at specific coordinates within a control
+ * ControlClick "Edit1", "Notepad",, "Left", 1, "X50 Y20"
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/ControlClick.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Coordinate Clicking
 ; ============================================================================
 
 /**
-* @function Example1_CoordinateClicking
-* @description Demonstrates clicking at specific coordinates within a control
-* Shows how to target precise positions
-*/
+ * @function Example1_CoordinateClicking
+ * @description Demonstrates clicking at specific coordinates within a control
+ * Shows how to target precise positions
+ */
 Example1_CoordinateClicking() {
     MsgBox("Example 1: Coordinate-Based Clicking`n`n" .
-    "Click at specific coordinates within a control.",
-    "Coordinate Clicking", "OK Icon!")
+        "Click at specific coordinates within a control.",
+        "Coordinate Clicking", "OK Icon!")
 
     ; Create a canvas-like GUI
     myGui := Gui("+AlwaysOnTop", "Coordinate Click Demo")
@@ -53,7 +53,7 @@ Example1_CoordinateClicking() {
 
     ; Large edit control as click target
     canvas := myGui.Add("Edit", "w400 h300 y+10 ReadOnly",
-    "Click Area - Coordinates will appear here`n`n")
+        "Click Area - Coordinates will appear here`n`n")
 
     ; Coordinate display
     myGui.Add("Text", "w400 y+10", "Click Coordinates:")
@@ -99,7 +99,7 @@ Example1_CoordinateClicking() {
     ClickAt(x, y) {
         try {
             ; Perform the coordinate-based click
-            ControlClick("Edit1", "Coordinate Click Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Coordinate Click Demo", , "Left", 1, "X" . x . " Y" . y)
 
             clickCount++
 
@@ -141,8 +141,8 @@ Example1_CoordinateClicking() {
     }
 
     MsgBox("Coordinate clicking demo started!`n`n" .
-    "Use buttons to click at preset or custom coordinates.",
-    "Info", "OK Icon! T3")
+        "Use buttons to click at preset or custom coordinates.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -150,14 +150,14 @@ Example1_CoordinateClicking() {
 ; ============================================================================
 
 /**
-* @function Example2_GridPattern
-* @description Demonstrates clicking in a grid pattern across a control
-* Useful for testing grid layouts and table interactions
-*/
+ * @function Example2_GridPattern
+ * @description Demonstrates clicking in a grid pattern across a control
+ * Useful for testing grid layouts and table interactions
+ */
 Example2_GridPattern() {
     MsgBox("Example 2: Grid-Based Clicking Pattern`n`n" .
-    "Demonstrates clicking in a grid pattern.",
-    "Grid Pattern", "OK Icon!")
+        "Demonstrates clicking in a grid pattern.",
+        "Grid Pattern", "OK Icon!")
 
     ; Create GUI with grid visualization
     myGui := Gui("+AlwaysOnTop", "Grid Pattern Demo")
@@ -165,7 +165,7 @@ Example2_GridPattern() {
 
     ; Grid display area
     gridArea := myGui.Add("Edit", "w450 h350 y+10 ReadOnly Multi",
-    "Grid Clicks:`n`n")
+        "Grid Clicks:`n`n")
 
     ; Grid configuration
     myGui.Add("Text", "w450 y+10", "Grid Settings:")
@@ -220,11 +220,11 @@ Example2_GridPattern() {
 
                 ; Click at cell center
                 try {
-                    ControlClick("Edit1", "Grid Pattern Demo",, "Left", 1, "X" . x . " Y" . y)
+                    ControlClick("Edit1", "Grid Pattern Demo", , "Left", 1, "X" . x . " Y" . y)
                     gridArea.Value .= Format("[{:d},{:d}] ", row, col)
 
                     if (Mod(col, cols) = 0)
-                    gridArea.Value .= "`n"
+                        gridArea.Value .= "`n"
 
                     Sleep(50)  ; Brief pause for visualization
                 } catch Error as err {
@@ -253,7 +253,7 @@ Example2_GridPattern() {
             y := Integer((i - 0.5) * cellHeight)
 
             try {
-                ControlClick("Edit1", "Grid Pattern Demo",, "Left", 1, "X" . x . " Y" . y)
+                ControlClick("Edit1", "Grid Pattern Demo", , "Left", 1, "X" . x . " Y" . y)
                 gridArea.Value .= "[" . i . "," . i . "] "
                 Sleep(100)
             } catch Error as err {
@@ -281,7 +281,7 @@ Example2_GridPattern() {
         Loop cols {
             x := Integer((A_Index - 0.5) * cellWidth)
             y := Integer(0.5 * cellHeight)
-            ControlClick("Edit1", "Grid Pattern Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Grid Pattern Demo", , "Left", 1, "X" . x . " Y" . y)
             gridArea.Value .= A_Index . " "
             Sleep(50)
         }
@@ -291,7 +291,7 @@ Example2_GridPattern() {
         Loop rows - 2 {
             x := Integer((cols - 0.5) * cellWidth)
             y := Integer((A_Index + 0.5) * cellHeight)
-            ControlClick("Edit1", "Grid Pattern Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Grid Pattern Demo", , "Left", 1, "X" . x . " Y" . y)
             gridArea.Value .= (A_Index + 1) . " "
             Sleep(50)
         }
@@ -302,7 +302,7 @@ Example2_GridPattern() {
             Loop cols {
                 x := Integer((cols - A_Index + 0.5) * cellWidth)
                 y := Integer((rows - 0.5) * cellHeight)
-                ControlClick("Edit1", "Grid Pattern Demo",, "Left", 1, "X" . x . " Y" . y)
+                ControlClick("Edit1", "Grid Pattern Demo", , "Left", 1, "X" . x . " Y" . y)
                 gridArea.Value .= A_Index . " "
                 Sleep(50)
             }
@@ -314,7 +314,7 @@ Example2_GridPattern() {
             Loop rows - 2 {
                 x := Integer(0.5 * cellWidth)
                 y := Integer((rows - A_Index - 0.5) * cellHeight)
-                ControlClick("Edit1", "Grid Pattern Demo",, "Left", 1, "X" . x . " Y" . y)
+                ControlClick("Edit1", "Grid Pattern Demo", , "Left", 1, "X" . x . " Y" . y)
                 gridArea.Value .= A_Index . " "
                 Sleep(50)
             }
@@ -329,8 +329,8 @@ Example2_GridPattern() {
     }
 
     MsgBox("Grid pattern demo started!`n`n" .
-    "Use buttons to create different clicking patterns.",
-    "Info", "OK Icon! T3")
+        "Use buttons to create different clicking patterns.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -338,14 +338,14 @@ Example2_GridPattern() {
 ; ============================================================================
 
 /**
-* @function Example3_InteractiveCanvas
-* @description Interactive canvas with coordinate tracking and drawing
-* Demonstrates practical use of coordinate-based clicking
-*/
+ * @function Example3_InteractiveCanvas
+ * @description Interactive canvas with coordinate tracking and drawing
+ * Demonstrates practical use of coordinate-based clicking
+ */
 Example3_InteractiveCanvas() {
     MsgBox("Example 3: Interactive Canvas`n`n" .
-    "Draw and interact with a virtual canvas.",
-    "Interactive Canvas", "OK Icon!")
+        "Draw and interact with a virtual canvas.",
+        "Interactive Canvas", "OK Icon!")
 
     ; Create main GUI
     myGui := Gui("+AlwaysOnTop", "Interactive Canvas Demo")
@@ -353,7 +353,7 @@ Example3_InteractiveCanvas() {
 
     ; Canvas area (using Edit control for demonstration)
     canvas := myGui.Add("Edit", "w500 h400 y+10 ReadOnly Multi Background000000 cFFFFFF",
-    "")
+        "")
 
     ; Drawing tools
     myGui.Add("Text", "w500 y+10", "Drawing Tools:")
@@ -420,7 +420,7 @@ Example3_InteractiveCanvas() {
             }
 
             ; Perform click
-            ControlClick("Edit1", "Interactive Canvas Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Interactive Canvas Demo", , "Left", 1, "X" . x . " Y" . y)
 
             ; Add to canvas visualization
             AddPoint(x, y)
@@ -432,7 +432,7 @@ Example3_InteractiveCanvas() {
 
     ; Add point to canvas
     AddPoint(x, y) {
-        points.Push({x: x, y: y})
+        points.Push({ x: x, y: y })
 
         ; Visual representation (text-based)
         marker := Format("● ({:3d},{:3d})  ", x, y)
@@ -440,7 +440,7 @@ Example3_InteractiveCanvas() {
 
         ; Add marker
         if (Mod(points.Length, 4) = 0)
-        marker .= "`n"
+            marker .= "`n"
 
         canvas.Value := current . marker
     }
@@ -461,7 +461,7 @@ Example3_InteractiveCanvas() {
             x := Integer(centerX + r * Cos(angle))
             y := Integer(centerY + r * Sin(angle))
 
-            ControlClick("Edit1", "Interactive Canvas Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Interactive Canvas Demo", , "Left", 1, "X" . x . " Y" . y)
             AddPoint(x, y)
             Sleep(50)
         }
@@ -482,7 +482,7 @@ Example3_InteractiveCanvas() {
             x := Integer(centerX + r * Cos(angle))
             y := Integer(centerY + r * Sin(angle))
 
-            ControlClick("Edit1", "Interactive Canvas Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Interactive Canvas Demo", , "Left", 1, "X" . x . " Y" . y)
             AddPoint(x, y)
             Sleep(30)
         }
@@ -497,7 +497,7 @@ Example3_InteractiveCanvas() {
             x := 50 + (A_Index - 1) * 40
             y := 200
 
-            ControlClick("Edit1", "Interactive Canvas Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Interactive Canvas Demo", , "Left", 1, "X" . x . " Y" . y)
             AddPoint(x, y)
             Sleep(30)
         }
@@ -507,7 +507,7 @@ Example3_InteractiveCanvas() {
             x := 250
             y := 50 + (A_Index - 1) * 30
 
-            ControlClick("Edit1", "Interactive Canvas Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Interactive Canvas Demo", , "Left", 1, "X" . x . " Y" . y)
             AddPoint(x, y)
             Sleep(30)
         }
@@ -523,21 +523,21 @@ Example3_InteractiveCanvas() {
             Loop 9 {
                 y := (A_Index - 1) * 50
 
-                ControlClick("Edit1", "Interactive Canvas Demo",, "Left", 1, "X" . x . " Y" . y)
+                ControlClick("Edit1", "Interactive Canvas Demo", , "Left", 1, "X" . x . " Y" . y)
                 Sleep(10)
             }
         }
 
         ; Mark corners
-        corners := [{x: 0, y: 0}, {x: 500, y: 0}, {x: 0, y: 400}, {x: 500, y: 400}]
+        corners := [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 400 }, { x: 500, y: 400 }]
         for corner in corners {
             AddPoint(corner.x, corner.y)
         }
     }
 
     MsgBox("Interactive canvas demo started!`n`n" .
-    "Use tools and patterns to draw on the virtual canvas.",
-    "Info", "OK Icon! T3")
+        "Use tools and patterns to draw on the virtual canvas.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -545,14 +545,14 @@ Example3_InteractiveCanvas() {
 ; ============================================================================
 
 /**
-* @function Example4_MultiRegion
-* @description Click different regions of a control with validation
-* Demonstrates area-based interaction logic
-*/
+ * @function Example4_MultiRegion
+ * @description Click different regions of a control with validation
+ * Demonstrates area-based interaction logic
+ */
 Example4_MultiRegion() {
     MsgBox("Example 4: Multi-Region Clicking`n`n" .
-    "Click different regions with automatic detection.",
-    "Multi-Region", "OK Icon!")
+        "Click different regions with automatic detection.",
+        "Multi-Region", "OK Icon!")
 
     ; Create GUI with region map
     myGui := Gui("+AlwaysOnTop", "Multi-Region Demo")
@@ -588,22 +588,22 @@ Example4_MultiRegion() {
 
     ; Define regions (9 regions in 3x3 grid)
     regions := Map(
-    "Top-Left", {x1: 0, y1: 0, x2: 133, y2: 100},
-    "Top-Center", {x1: 133, y1: 0, x2: 267, y2: 100},
-    "Top-Right", {x1: 267, y1: 0, x2: 400, y2: 100},
-    "Middle-Left", {x1: 0, y1: 100, x2: 133, y2: 200},
-    "Middle-Center", {x1: 133, y1: 100, x2: 267, y2: 200},
-    "Middle-Right", {x1: 267, y1: 100, x2: 400, y2: 200},
-    "Bottom-Left", {x1: 0, y1: 200, x2: 133, y2: 300},
-    "Bottom-Center", {x1: 133, y1: 200, x2: 267, y2: 300},
-    "Bottom-Right", {x1: 267, y1: 200, x2: 400, y2: 300}
+        "Top-Left", { x1: 0, y1: 0, x2: 133, y2: 100 },
+        "Top-Center", { x1: 133, y1: 0, x2: 267, y2: 100 },
+        "Top-Right", { x1: 267, y1: 0, x2: 400, y2: 100 },
+        "Middle-Left", { x1: 0, y1: 100, x2: 133, y2: 200 },
+        "Middle-Center", { x1: 133, y1: 100, x2: 267, y2: 200 },
+        "Middle-Right", { x1: 267, y1: 100, x2: 400, y2: 200 },
+        "Bottom-Left", { x1: 0, y1: 200, x2: 133, y2: 300 },
+        "Bottom-Center", { x1: 133, y1: 200, x2: 267, y2: 300 },
+        "Bottom-Right", { x1: 267, y1: 200, x2: 400, y2: 300 }
     )
 
     ; Get region name from coordinates
     GetRegionName(x, y) {
         for name, bounds in regions {
             if (x >= bounds.x1 && x < bounds.x2 && y >= bounds.y1 && y < bounds.y2)
-            return name
+                return name
         }
         return "Unknown"
     }
@@ -622,7 +622,7 @@ Example4_MultiRegion() {
         y := Integer((bounds.y1 + bounds.y2) / 2)
 
         try {
-            ControlClick("Edit1", "Multi-Region Demo",, "Left", 1, "X" . x . " Y" . y)
+            ControlClick("Edit1", "Multi-Region Demo", , "Left", 1, "X" . x . " Y" . y)
 
             ; Log the click
             timestamp := FormatTime(, "HH:mm:ss")
@@ -660,7 +660,7 @@ Example4_MultiRegion() {
             y := Random(0, 300)
 
             try {
-                ControlClick("Edit1", "Multi-Region Demo",, "Left", 1, "X" . x . " Y" . y)
+                ControlClick("Edit1", "Multi-Region Demo", , "Left", 1, "X" . x . " Y" . y)
 
                 region := GetRegionName(x, y)
                 timestamp := FormatTime(, "HH:mm:ss")
@@ -678,8 +678,8 @@ Example4_MultiRegion() {
     }
 
     MsgBox("Multi-region demo started!`n`n" .
-    "Test clicking different regions of the control.",
-    "Info", "OK Icon! T3")
+        "Test clicking different regions of the control.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -687,14 +687,14 @@ Example4_MultiRegion() {
 ; ============================================================================
 
 /**
-* @function Example5_BoundaryTesting
-* @description Test clicking at control boundaries and edge cases
-* Demonstrates coordinate validation and error handling
-*/
+ * @function Example5_BoundaryTesting
+ * @description Test clicking at control boundaries and edge cases
+ * Demonstrates coordinate validation and error handling
+ */
 Example5_BoundaryTesting() {
     MsgBox("Example 5: Boundary Testing`n`n" .
-    "Test clicks at control edges and boundaries.",
-    "Boundary Testing", "OK Icon!")
+        "Test clicks at control edges and boundaries.",
+        "Boundary Testing", "OK Icon!")
 
     ; Create GUI
     myGui := Gui("+AlwaysOnTop", "Boundary Testing Demo")
@@ -729,115 +729,102 @@ Example5_BoundaryTesting() {
     TestCorners() {
         resultArea.Value := "Testing 4 corners...`n`n"
 
-        corners := [
-        {
-            name: "Top-Left", x: 0, y: 0},
-            {
-                name: "Top-Right", x: 449, y: 0},
-                {
-                    name: "Bottom-Left", x: 0, y: 349},
-                    {
+        corners := [{
+            name: "Top-Left", x: 0, y: 0 }, {
+                name: "Top-Right", x: 449, y: 0 }, {
+                    name: "Bottom-Left", x: 0, y: 349 }, {
                         name: "Bottom-Right", x: 449, y: 349
                     }
-                    ]
+        ]
 
-                    for corner in corners {
-                        try {
-                            ControlClick("Edit1", "Boundary Testing Demo",, "Left", 1,
-                            "X" . corner.x . " Y" . corner.y)
+        for corner in corners {
+            try {
+                ControlClick("Edit1", "Boundary Testing Demo", , "Left", 1,
+                    "X" . corner.x . " Y" . corner.y)
 
-                            resultArea.Value .= "✓ " . corner.name . " (" . corner.x . "," .
-                            corner.y . ") - Success`n"
-                            Sleep(200)
+                resultArea.Value .= "✓ " . corner.name . " (" . corner.x . "," .
+                    corner.y . ") - Success`n"
+                Sleep(200)
 
-                        } catch Error as err {
-                            resultArea.Value .= "✗ " . corner.name . " - Error: " . err.Message . "`n"
-                        }
+            } catch Error as err {
+                resultArea.Value .= "✗ " . corner.name . " - Error: " . err.Message . "`n"
+            }
+        }
+
+        resultArea.Value .= "`n✓ Corner test complete!"
+    }
+
+    ; Test edges
+    TestEdges() {
+        resultArea.Value := "Testing edge midpoints...`n`n"
+
+        edges := [{
+            name: "Top Edge", x: 225, y: 0 }, {
+                name: "Right Edge", x: 449, y: 175 }, {
+                    name: "Bottom Edge", x: 225, y: 349 }, {
+                        name: "Left Edge", x: 0, y: 175
                     }
+        ]
 
-                    resultArea.Value .= "`n✓ Corner test complete!"
-                }
+        for edge in edges {
+            try {
+                ControlClick("Edit1", "Boundary Testing Demo", , "Left", 1,
+                    "X" . edge.x . " Y" . edge.y)
 
-                ; Test edges
-                TestEdges() {
-                    resultArea.Value := "Testing edge midpoints...`n`n"
+                resultArea.Value .= "✓ " . edge.name . " (" . edge.x . "," .
+                    edge.y . ") - Success`n"
+                Sleep(200)
 
-                    edges := [
-                    {
-                        name: "Top Edge", x: 225, y: 0},
-                        {
-                            name: "Right Edge", x: 449, y: 175},
-                            {
-                                name: "Bottom Edge", x: 225, y: 349},
-                                {
-                                    name: "Left Edge", x: 0, y: 175
-                                }
-                                ]
+            } catch Error as err {
+                resultArea.Value .= "✗ " . edge.name . " - Error: " . err.Message . "`n"
+            }
+        }
 
-                                for edge in edges {
-                                    try {
-                                        ControlClick("Edit1", "Boundary Testing Demo",, "Left", 1,
-                                        "X" . edge.x . " Y" . edge.y)
+        resultArea.Value .= "`n✓ Edge test complete!"
+    }
 
-                                        resultArea.Value .= "✓ " . edge.name . " (" . edge.x . "," .
-                                        edge.y . ") - Success`n"
-                                        Sleep(200)
+    ; Test out of bounds
+    TestOutOfBounds() {
+        resultArea.Value := "Testing out of bounds coordinates...`n`n"
 
-                                    } catch Error as err {
-                                        resultArea.Value .= "✗ " . edge.name . " - Error: " . err.Message . "`n"
-                                    }
-                                }
+        tests := [{
+            name: "Negative X", x: -10, y: 100 }, {
+                name: "Negative Y", x: 100, y: -10 }, {
+                    name: "Beyond Width", x: 500, y: 100 }, {
+                        name: "Beyond Height", x: 100, y: 400 }, {
+                            name: "Way Out", x: 1000, y: 1000
+                        }
+        ]
 
-                                resultArea.Value .= "`n✓ Edge test complete!"
-                            }
+        for test in tests {
+            try {
+                ControlClick("Edit1", "Boundary Testing Demo", , "Left", 1,
+                    "X" . test.x . " Y" . test.y)
 
-                            ; Test out of bounds
-                            TestOutOfBounds() {
-                                resultArea.Value := "Testing out of bounds coordinates...`n`n"
+                resultArea.Value .= "? " . test.name . " (" . test.x . "," .
+                    test.y . ") - Accepted (clipped?)`n"
 
-                                tests := [
-                                {
-                                    name: "Negative X", x: -10, y: 100},
-                                    {
-                                        name: "Negative Y", x: 100, y: -10},
-                                        {
-                                            name: "Beyond Width", x: 500, y: 100},
-                                            {
-                                                name: "Beyond Height", x: 100, y: 400},
-                                                {
-                                                    name: "Way Out", x: 1000, y: 1000
-                                                }
-                                                ]
+            } catch Error as err {
+                resultArea.Value .= "✓ " . test.name . " - Properly rejected`n"
+            }
 
-                                                for test in tests {
-                                                    try {
-                                                        ControlClick("Edit1", "Boundary Testing Demo",, "Left", 1,
-                                                        "X" . test.x . " Y" . test.y)
+            Sleep(100)
+        }
 
-                                                        resultArea.Value .= "? " . test.name . " (" . test.x . "," .
-                                                        test.y . ") - Accepted (clipped?)`n"
+        resultArea.Value .= "`n✓ Out of bounds test complete!"
+    }
 
-                                                    } catch Error as err {
-                                                        resultArea.Value .= "✓ " . test.name . " - Properly rejected`n"
-                                                    }
+    MsgBox("Boundary testing demo started!`n`n" .
+        "Test clicks at various boundary conditions.",
+        "Info", "OK Icon! T3")
+}
 
-                                                    Sleep(100)
-                                                }
+; ============================================================================
+; Main Menu
+; ============================================================================
 
-                                                resultArea.Value .= "`n✓ Out of bounds test complete!"
-                                            }
-
-                                            MsgBox("Boundary testing demo started!`n`n" .
-                                            "Test clicks at various boundary conditions.",
-                                            "Info", "OK Icon! T3")
-                                        }
-
-                                        ; ============================================================================
-                                        ; Main Menu
-                                        ; ============================================================================
-
-                                        ShowMainMenu() {
-                                            menuText := "
+ShowMainMenu() {
+    menuText := "
                                             (
                                             ControlClick Examples - Coordinates
                                             ====================================
@@ -851,24 +838,24 @@ Example5_BoundaryTesting() {
                                             Select an example (1-5) or press Esc to exit
                                             )"
 
-                                            choice := InputBox(menuText, "ControlClick Coordinate Examples", "w400 h280")
+    choice := InputBox(menuText, "ControlClick Coordinate Examples", "w400 h280")
 
-                                            if (choice.Result = "Cancel")
-                                            return
+    if (choice.Result = "Cancel")
+        return
 
-                                            switch choice.Value {
-                                                case "1": Example1_CoordinateClicking()
-                                                case "2": Example2_GridPattern()
-                                                case "3": Example3_InteractiveCanvas()
-                                                case "4": Example4_MultiRegion()
-                                                case "5": Example5_BoundaryTesting()
-                                                default:
-                                                MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
-                                            }
+    switch choice.Value {
+        case "1": Example1_CoordinateClicking()
+        case "2": Example2_GridPattern()
+        case "3": Example3_InteractiveCanvas()
+        case "4": Example4_MultiRegion()
+        case "5": Example5_BoundaryTesting()
+        default:
+            MsgBox("Invalid choice! Please select 1-5.", "Error", "OK IconX")
+    }
 
-                                            ; Show menu again
-                                            SetTimer(() => ShowMainMenu(), -500)
-                                        }
+    ; Show menu again
+    SetTimer(() => ShowMainMenu(), -500)
+}
 
-                                        ; Start the demo
-                                        ShowMainMenu()
+; Start the demo
+ShowMainMenu()

@@ -7,5 +7,5 @@ return ; End of auto-execute section. WatchForMenu()
 WatchForMenu() {
     DetectHiddenWindows(true)
     if WinExist("ahk_class #32768")
-    WinSetTransparent(150)
+        WinSetTransparent(150)
 }

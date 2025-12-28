@@ -5,11 +5,11 @@
 MsgBox(RunWaitOne("dir " A_ScriptDir))
 
 MsgBox(RunWaitMany(
-(
-"echo Put your commands here,
+    (
+        "echo Put your commands here,
 echo each one will be run,
 echo and you'll get the output."
-)))
+    )))
 
 RunWaitOne(command) {
     ; WshShell object: http://msdn.microsoft.com/en-us/library/aew9yb99

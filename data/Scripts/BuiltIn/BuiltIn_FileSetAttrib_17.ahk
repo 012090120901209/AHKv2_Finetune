@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileSetAttrib_17.ahk
-*
-* DESCRIPTION:
-* Basic usage of FileSetAttrib() to modify file attributes
-*
-* FEATURES:
-* - Set read-only attribute
-* - Set hidden attribute
-* - Set archive bit
-* - Remove attributes
-* - Toggle attributes
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileSetAttrib() function
-* - Adding attributes (+)
-* - Removing attributes (-)
-* - Setting exact attributes (^)
-* - Toggling attributes
-*
-* LEARNING POINTS:
-* 1. FileSetAttrib() modifies file attributes
-* 2. Use + to add, - to remove, ^ to set exactly
-* 3. Can combine multiple attributes (e.g., "+RH")
-* 4. Changes persist until modified again
-* 5. Requires appropriate permissions
-* 6. Essential for file protection and organization
-*/
+ * BuiltIn_FileSetAttrib_17.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage of FileSetAttrib() to modify file attributes
+ * 
+ * FEATURES:
+ * - Set read-only attribute
+ * - Set hidden attribute
+ * - Set archive bit
+ * - Remove attributes
+ * - Toggle attributes
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileSetAttrib() function
+ * - Adding attributes (+)
+ * - Removing attributes (-)
+ * - Setting exact attributes (^)
+ * - Toggling attributes
+ * 
+ * LEARNING POINTS:
+ * 1. FileSetAttrib() modifies file attributes
+ * 2. Use + to add, - to remove, ^ to set exactly
+ * 3. Can combine multiple attributes (e.g., "+RH")
+ * 4. Changes persist until modified again
+ * 5. Requires appropriate permissions
+ * 6. Essential for file protection and organization
+ */
 
 ; ============================================================
 ; Example 1: Add Read-Only Attribute
@@ -86,12 +86,12 @@ FileSetAttrib("-H", testFile)  ; Clean up
 ; ============================================================
 
 /**
-* Set multiple attributes at once
-*
-* @param {String} filePath - File to modify
-* @param {String} attributes - Attributes to set
-* @returns {Object} - Operation result
-*/
+ * Set multiple attributes at once
+ * 
+ * @param {String} filePath - File to modify
+ * @param {String} attributes - Attributes to set
+ * @returns {Object} - Operation result
+ */
 SetMultipleAttributes(filePath, attributes) {
     result := {
         success: false,
@@ -138,23 +138,23 @@ FileSetAttrib("-RH", testFile)  ; Clean up
 ; ============================================================
 
 /**
-* Toggle an attribute on/off
-*
-* @param {String} filePath - File to modify
-* @param {String} attribute - Attribute to toggle (single character)
-* @returns {Boolean} - New state (true if now set)
-*/
+ * Toggle an attribute on/off
+ * 
+ * @param {String} filePath - File to modify
+ * @param {String} attribute - Attribute to toggle (single character)
+ * @returns {Boolean} - New state (true if now set)
+ */
 ToggleAttribute(filePath, attribute) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     currentAttrs := FileGetAttrib(filePath)
     hasAttr := InStr(currentAttrs, attribute)
 
     if (hasAttr)
-    FileSetAttrib("-" attribute, filePath)
+        FileSetAttrib("-" attribute, filePath)
     else
-    FileSetAttrib("+" attribute, filePath)
+        FileSetAttrib("+" attribute, filePath)
 
     return !hasAttr
 }
@@ -201,12 +201,12 @@ FileSetAttrib("-R", testFile)  ; Clean up
 ; ============================================================
 
 /**
-* Protect file from modification
-*
-* @param {String} filePath - File to protect
-* @param {Boolean} protect - True to protect, false to unprotect
-* @returns {Object} - Protection result
-*/
+ * Protect file from modification
+ * 
+ * @param {String} filePath - File to protect
+ * @param {Boolean} protect - True to protect, false to unprotect
+ * @returns {Object} - Protection result
+ */
 ProtectFile(filePath, protect := true) {
     result := {
         success: false,
@@ -256,21 +256,21 @@ ProtectFile(testFile, false)
 ; ============================================================
 
 /**
-* Hide or unhide a file
-*
-* @param {String} filePath - File to modify
-* @param {Boolean} hide - True to hide, false to unhide
-* @returns {Boolean} - Success
-*/
+ * Hide or unhide a file
+ * 
+ * @param {String} filePath - File to modify
+ * @param {Boolean} hide - True to hide, false to unhide
+ * @returns {Boolean} - Success
+ */
 HideFile(filePath, hide := true) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     try {
         if (hide)
-        FileSetAttrib("+H", filePath)
+            FileSetAttrib("+H", filePath)
         else
-        FileSetAttrib("-H", filePath)
+            FileSetAttrib("-H", filePath)
         return true
     } catch {
         return false

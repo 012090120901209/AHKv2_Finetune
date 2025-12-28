@@ -1,51 +1,51 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - OnClipboardChange: History & Clipboard Managers
-* ============================================================================
-*
-* This file demonstrates building comprehensive clipboard history systems
-* and full-featured clipboard managers using OnClipboardChange.
-*
-* @file BuiltIn_OnClipboardChange_02.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Advanced Clipboard History
-* 2. Persistent Clipboard History
-* 3. Clipboard History Search
-* 4. Multi-Format History Manager
-* 5. Clipboard Snippets Manager
-* 6. Smart Clipboard Manager
-* 7. Complete Clipboard Manager System
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Building advanced clipboard history
-* - Saving history to disk
-* - Searching clipboard history
-* - Managing multiple formats in history
-* - Creating reusable snippets
-* - Building smart clipboard features
-* - Complete clipboard manager application
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - OnClipboardChange: History & Clipboard Managers
+ * ============================================================================
+ * 
+ * This file demonstrates building comprehensive clipboard history systems
+ * and full-featured clipboard managers using OnClipboardChange.
+ * 
+ * @file BuiltIn_OnClipboardChange_02.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Advanced Clipboard History
+ * 2. Persistent Clipboard History
+ * 3. Clipboard History Search
+ * 4. Multi-Format History Manager
+ * 5. Clipboard Snippets Manager
+ * 6. Smart Clipboard Manager
+ * 7. Complete Clipboard Manager System
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Building advanced clipboard history
+ * - Saving history to disk
+ * - Searching clipboard history
+ * - Managing multiple formats in history
+ * - Creating reusable snippets
+ * - Building smart clipboard features
+ * - Complete clipboard manager application
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Advanced Clipboard History
 ; ============================================================================
 
 /**
-* Demonstrates advanced clipboard history with metadata and organization.
-*
-* @class AdvancedHistory
-* @description Advanced clipboard history manager
-*/
+ * Demonstrates advanced clipboard history with metadata and organization.
+ * 
+ * @class AdvancedHistory
+ * @description Advanced clipboard history manager
+ */
 
 class AdvancedHistory {
     static history := []
@@ -53,13 +53,13 @@ class AdvancedHistory {
     static enabled := true
 
     /**
-    * Adds item to history with metadata
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Adds item to history with metadata
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static Add(dataType) {
         if (!this.enabled)
-        return
+            return
 
         item := Map()
         item["timestamp"] := A_Now
@@ -69,211 +69,211 @@ class AdvancedHistory {
 
         ; Store content based on type
         if (dataType = 1) {  ; Text
-        content := A_Clipboard
+            content := A_Clipboard
 
-        ; Skip empty or duplicate
-        if (content = "" || this.IsDuplicate(content))
-        return
+            ; Skip empty or duplicate
+            if (content = "" || this.IsDuplicate(content))
+                return
 
-        item["content"] := content
-        item["length"] := StrLen(content)
-        item["preview"] := this.GeneratePreview(content)
-        item["category"] := this.DetermineCategory(content)
-    } else {  ; Binary
-    item["content"] := ClipboardAll()
-    item["length"] := item["content"].Size
-    item["preview"] := "[Binary Data - " . item["length"] . " bytes]"
-    item["category"] := "Binary"
-}
+            item["content"] := content
+            item["length"] := StrLen(content)
+            item["preview"] := this.GeneratePreview(content)
+            item["category"] := this.DetermineCategory(content)
+        } else {  ; Binary
+            item["content"] := ClipboardAll()
+            item["length"] := item["content"].Size
+            item["preview"] := "[Binary Data - " . item["length"] . " bytes]"
+            item["category"] := "Binary"
+        }
 
-this.history.Push(item)
+        this.history.Push(item)
 
-; Limit history size
-if (this.history.Length > this.maxHistory)
-this.history.RemoveAt(1)
-}
-
-/**
-* Checks if content is duplicate of last item
-* @param {String} content - Content to check
-* @returns {Boolean}
-*/
-static IsDuplicate(content) {
-    if (this.history.Length = 0)
-    return false
-
-    lastItem := this.history[this.history.Length]
-    return (lastItem["dataType"] = 1 && lastItem["content"] = content)
-}
-
-/**
-* Generates preview text
-* @param {String} content - Full content
-* @returns {String}
-*/
-static GeneratePreview(content) {
-    preview := StrLen(content) > 100 ? SubStr(content, 1, 100) . "..." : content
-    preview := StrReplace(preview, "`n", " ")
-    preview := StrReplace(preview, "`r", "")
-    preview := StrReplace(preview, "`t", " ")
-    return preview
-}
-
-/**
-* Determines content category
-* @param {String} content - Content to categorize
-* @returns {String}
-*/
-static DetermineCategory(content) {
-    if (RegExMatch(content, "i)https?://"))
-    return "URL"
-    if (RegExMatch(content, "i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"))
-    return "Email"
-    if (RegExMatch(content, "^[A-Za-z]:\\") || RegExMatch(content, "^\\\\"))
-    return "File Path"
-    if (RegExMatch(content, "^\d+$"))
-    return "Number"
-    if (InStr(content, "`n") && StrSplit(content, "`n").Length > 5)
-    return "Multi-line"
-    if (StrLen(content) > 200)
-    return "Long Text"
-    return "Text"
-}
-
-/**
-* Shows advanced history GUI
-* @returns {void}
-*/
-static ShowHistory() {
-    if (this.history.Length = 0) {
-        MsgBox("No history available!", "History", "Icon Info")
-        return
+        ; Limit history size
+        if (this.history.Length > this.maxHistory)
+            this.history.RemoveAt(1)
     }
 
-    gui := Gui("+Resize", "Advanced Clipboard History")
-    gui.SetFont("s9")
+    /**
+     * Checks if content is duplicate of last item
+     * @param {String} content - Content to check
+     * @returns {Boolean}
+     */
+    static IsDuplicate(content) {
+        if (this.history.Length = 0)
+            return false
 
-    ; Filter dropdown
-    gui.Add("Text", "x10 y10", "Filter by category:")
-    filterDDL := gui.Add("DDL", "x+10 w150 vFilterCategory",
-    ["All", "Text", "URL", "Email", "File Path", "Number", "Multi-line", "Long Text", "Binary"])
-    filterDDL.OnEvent("Change", (*) => this.FilterHistory(gui, filterDDL))
-
-    ; History list
-    lv := gui.Add("ListView", "x10 y+10 w800 h400 vHistoryList",
-    ["#", "Time", "Category", "App", "Preview"])
-    lv.ModifyCol(1, 50)
-    lv.ModifyCol(2, 120)
-    lv.ModifyCol(3, 100)
-    lv.ModifyCol(4, 120)
-    lv.ModifyCol(5, 390)
-
-    this.PopulateList(lv, "All")
-
-    ; Buttons
-    btnPaste := gui.Add("Button", "x10 y+10 w100", "Paste")
-    btnPaste.OnEvent("Click", (*) => this.PasteItem(gui, lv))
-
-    btnCopy := gui.Add("Button", "x+10 w100", "Copy")
-    btnCopy.OnEvent("Click", (*) => this.CopyItem(gui, lv))
-
-    btnDelete := gui.Add("Button", "x+10 w100", "Delete")
-    btnDelete.OnEvent("Click", (*) => this.DeleteItem(gui, lv))
-
-    btnClear := gui.Add("Button", "x+10 w100", "Clear All")
-    btnClear.OnEvent("Click", (*) => this.ClearAll(gui))
-
-    btnClose := gui.Add("Button", "x+10 w100", "Close")
-    btnClose.OnEvent("Click", (*) => gui.Destroy())
-
-    gui.Show()
-}
-
-static PopulateList(lv, filter := "All") {
-    lv.Delete()
-
-    Loop this.history.Length {
-        index := this.history.Length - A_Index + 1
-        item := this.history[index]
-
-        ; Apply filter
-        if (filter != "All" && item["category"] != filter)
-        continue
-
-        timeStr := FormatTime(item["timestamp"], "HH:mm:ss")
-        lv.Add("", index, timeStr, item["category"], item["appName"], item["preview"])
-    }
-}
-
-static FilterHistory(gui, filterDDL) {
-    filter := filterDDL.Text
-    lv := gui["HistoryList"]
-    this.PopulateList(lv, filter)
-}
-
-static PasteItem(gui, lv) {
-    rowNum := lv.GetNext()
-    if (rowNum = 0) {
-        MsgBox("Please select an item!", "No Selection", "Icon Warn")
-        return
+        lastItem := this.history[this.history.Length]
+        return (lastItem["dataType"] = 1 && lastItem["content"] = content)
     }
 
-    index := lv.GetText(rowNum, 1)
-    actualIndex := this.history.Length - index + 1
-    item := this.history[actualIndex]
-
-    this.enabled := false
-    A_Clipboard := item["content"]
-    ClipWait(1)
-    Send("^v")
-    Sleep(100)
-    this.enabled := true
-
-    gui.Destroy()
-}
-
-static CopyItem(gui, lv) {
-    rowNum := lv.GetNext()
-    if (rowNum = 0) {
-        MsgBox("Please select an item!", "No Selection", "Icon Warn")
-        return
+    /**
+     * Generates preview text
+     * @param {String} content - Full content
+     * @returns {String}
+     */
+    static GeneratePreview(content) {
+        preview := StrLen(content) > 100 ? SubStr(content, 1, 100) . "..." : content
+        preview := StrReplace(preview, "`n", " ")
+        preview := StrReplace(preview, "`r", "")
+        preview := StrReplace(preview, "`t", " ")
+        return preview
     }
 
-    index := lv.GetText(rowNum, 1)
-    actualIndex := this.history.Length - index + 1
-    item := this.history[actualIndex]
-
-    this.enabled := false
-    A_Clipboard := item["content"]
-    ClipWait(1)
-    this.enabled := true
-
-    TrayTip("Copied", "Item copied to clipboard", "Icon Info")
-}
-
-static DeleteItem(gui, lv) {
-    rowNum := lv.GetNext()
-    if (rowNum = 0) {
-        MsgBox("Please select an item!", "No Selection", "Icon Warn")
-        return
+    /**
+     * Determines content category
+     * @param {String} content - Content to categorize
+     * @returns {String}
+     */
+    static DetermineCategory(content) {
+        if (RegExMatch(content, "i)https?://"))
+            return "URL"
+        if (RegExMatch(content, "i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"))
+            return "Email"
+        if (RegExMatch(content, "^[A-Za-z]:\\") || RegExMatch(content, "^\\\\"))
+            return "File Path"
+        if (RegExMatch(content, "^\d+$"))
+            return "Number"
+        if (InStr(content, "`n") && StrSplit(content, "`n").Length > 5)
+            return "Multi-line"
+        if (StrLen(content) > 200)
+            return "Long Text"
+        return "Text"
     }
 
-    index := lv.GetText(rowNum, 1)
-    actualIndex := this.history.Length - index + 1
+    /**
+     * Shows advanced history GUI
+     * @returns {void}
+     */
+    static ShowHistory() {
+        if (this.history.Length = 0) {
+            MsgBox("No history available!", "History", "Icon Info")
+            return
+        }
 
-    this.history.RemoveAt(actualIndex)
-    gui.Destroy()
-    this.ShowHistory()
-}
+        gui := Gui("+Resize", "Advanced Clipboard History")
+        gui.SetFont("s9")
 
-static ClearAll(gui) {
-    result := MsgBox("Clear all history?", "Confirm", "YesNo Icon Question")
-    if (result = "Yes") {
-        this.history := []
+        ; Filter dropdown
+        gui.Add("Text", "x10 y10", "Filter by category:")
+        filterDDL := gui.Add("DDL", "x+10 w150 vFilterCategory",
+            ["All", "Text", "URL", "Email", "File Path", "Number", "Multi-line", "Long Text", "Binary"])
+        filterDDL.OnEvent("Change", (*) => this.FilterHistory(gui, filterDDL))
+
+        ; History list
+        lv := gui.Add("ListView", "x10 y+10 w800 h400 vHistoryList",
+            ["#", "Time", "Category", "App", "Preview"])
+        lv.ModifyCol(1, 50)
+        lv.ModifyCol(2, 120)
+        lv.ModifyCol(3, 100)
+        lv.ModifyCol(4, 120)
+        lv.ModifyCol(5, 390)
+
+        this.PopulateList(lv, "All")
+
+        ; Buttons
+        btnPaste := gui.Add("Button", "x10 y+10 w100", "Paste")
+        btnPaste.OnEvent("Click", (*) => this.PasteItem(gui, lv))
+
+        btnCopy := gui.Add("Button", "x+10 w100", "Copy")
+        btnCopy.OnEvent("Click", (*) => this.CopyItem(gui, lv))
+
+        btnDelete := gui.Add("Button", "x+10 w100", "Delete")
+        btnDelete.OnEvent("Click", (*) => this.DeleteItem(gui, lv))
+
+        btnClear := gui.Add("Button", "x+10 w100", "Clear All")
+        btnClear.OnEvent("Click", (*) => this.ClearAll(gui))
+
+        btnClose := gui.Add("Button", "x+10 w100", "Close")
+        btnClose.OnEvent("Click", (*) => gui.Destroy())
+
+        gui.Show()
+    }
+
+    static PopulateList(lv, filter := "All") {
+        lv.Delete()
+
+        Loop this.history.Length {
+            index := this.history.Length - A_Index + 1
+            item := this.history[index]
+
+            ; Apply filter
+            if (filter != "All" && item["category"] != filter)
+                continue
+
+            timeStr := FormatTime(item["timestamp"], "HH:mm:ss")
+            lv.Add("", index, timeStr, item["category"], item["appName"], item["preview"])
+        }
+    }
+
+    static FilterHistory(gui, filterDDL) {
+        filter := filterDDL.Text
+        lv := gui["HistoryList"]
+        this.PopulateList(lv, filter)
+    }
+
+    static PasteItem(gui, lv) {
+        rowNum := lv.GetNext()
+        if (rowNum = 0) {
+            MsgBox("Please select an item!", "No Selection", "Icon Warn")
+            return
+        }
+
+        index := lv.GetText(rowNum, 1)
+        actualIndex := this.history.Length - index + 1
+        item := this.history[actualIndex]
+
+        this.enabled := false
+        A_Clipboard := item["content"]
+        ClipWait(1)
+        Send("^v")
+        Sleep(100)
+        this.enabled := true
+
         gui.Destroy()
-        MsgBox("History cleared!", "Cleared", "Icon Info T2")
     }
-}
+
+    static CopyItem(gui, lv) {
+        rowNum := lv.GetNext()
+        if (rowNum = 0) {
+            MsgBox("Please select an item!", "No Selection", "Icon Warn")
+            return
+        }
+
+        index := lv.GetText(rowNum, 1)
+        actualIndex := this.history.Length - index + 1
+        item := this.history[actualIndex]
+
+        this.enabled := false
+        A_Clipboard := item["content"]
+        ClipWait(1)
+        this.enabled := true
+
+        TrayTip("Copied", "Item copied to clipboard", "Icon Info")
+    }
+
+    static DeleteItem(gui, lv) {
+        rowNum := lv.GetNext()
+        if (rowNum = 0) {
+            MsgBox("Please select an item!", "No Selection", "Icon Warn")
+            return
+        }
+
+        index := lv.GetText(rowNum, 1)
+        actualIndex := this.history.Length - index + 1
+
+        this.history.RemoveAt(actualIndex)
+        gui.Destroy()
+        this.ShowHistory()
+    }
+
+    static ClearAll(gui) {
+        result := MsgBox("Clear all history?", "Confirm", "YesNo Icon Question")
+        if (result = "Yes") {
+            this.history := []
+            gui.Destroy()
+            MsgBox("History cleared!", "Cleared", "Icon Info T2")
+        }
+    }
 }
 
 ; Set up callback
@@ -284,18 +284,18 @@ HistoryAdd(DataType) {
 }
 
 ; Show advanced history
-^!h::AdvancedHistory.ShowHistory()
+^!h:: AdvancedHistory.ShowHistory()
 
 ; ============================================================================
 ; Example 2: Persistent Clipboard History
 ; ============================================================================
 
 /**
-* Demonstrates saving clipboard history to disk for persistence.
-*
-* @class PersistentHistory
-* @description Saves and loads clipboard history from disk
-*/
+ * Demonstrates saving clipboard history to disk for persistence.
+ * 
+ * @class PersistentHistory
+ * @description Saves and loads clipboard history from disk
+ */
 
 class PersistentHistory {
     static historyFile := A_ScriptDir . "\clipboard_history.dat"
@@ -303,38 +303,38 @@ class PersistentHistory {
     static maxHistory := 50
 
     /**
-    * Adds item and saves to disk
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Adds item and saves to disk
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static Add(dataType) {
         if (dataType != 1)  ; Only save text for now
-        return
+            return
 
         content := A_Clipboard
         if (content = "")
-        return
+            return
 
         ; Add to history
         item := Map(
-        "content", content,
-        "timestamp", A_Now
+            "content", content,
+            "timestamp", A_Now
         )
 
         this.history.Push(item)
 
         ; Limit size
         if (this.history.Length > this.maxHistory)
-        this.history.RemoveAt(1)
+            this.history.RemoveAt(1)
 
         ; Save to disk
         this.SaveToDisk()
     }
 
     /**
-    * Saves history to disk
-    * @returns {void}
-    */
+     * Saves history to disk
+     * @returns {void}
+     */
     static SaveToDisk() {
         try {
             ; Create JSON-like format
@@ -356,12 +356,12 @@ class PersistentHistory {
     }
 
     /**
-    * Loads history from disk
-    * @returns {Boolean} Success status
-    */
+     * Loads history from disk
+     * @returns {Boolean} Success status
+     */
     static LoadFromDisk() {
         if (!FileExist(this.historyFile))
-        return false
+            return false
 
         try {
             this.history := []
@@ -371,12 +371,12 @@ class PersistentHistory {
 
             for line in lines {
                 if (Trim(line) = "")
-                continue
+                    continue
 
                 ; Parse line
                 parts := StrSplit(line, "|", , 2)
                 if (parts.Length < 2)
-                continue
+                    continue
 
                 ; Unescape
                 itemContent := parts[2]
@@ -385,8 +385,8 @@ class PersistentHistory {
                 itemContent := StrReplace(itemContent, "\|", "|")
 
                 item := Map(
-                "timestamp", parts[1],
-                "content", itemContent
+                    "timestamp", parts[1],
+                    "content", itemContent
                 )
 
                 this.history.Push(item)
@@ -399,9 +399,9 @@ class PersistentHistory {
     }
 
     /**
-    * Shows persistent history
-    * @returns {void}
-    */
+     * Shows persistent history
+     * @returns {void}
+     */
     static ShowHistory() {
         if (this.history.Length = 0) {
             MsgBox("No persistent history available!", "History", "Icon Info")
@@ -424,8 +424,8 @@ class PersistentHistory {
 
             timeStr := FormatTime(item["timestamp"], "yyyy-MM-dd HH:mm:ss")
             preview := StrLen(item["content"]) > 60
-            ? SubStr(item["content"], 1, 60) . "..."
-            : item["content"]
+                ? SubStr(item["content"], 1, 60) . "..."
+                : item["content"]
             preview := StrReplace(preview, "`n", " ")
 
             lv.Add("", index, timeStr, preview)
@@ -467,34 +467,34 @@ PersistentAdd(DataType) {
 }
 
 ; Show persistent history
-^!+h::PersistentHistory.ShowHistory()
+^!+h:: PersistentHistory.ShowHistory()
 
 ; ============================================================================
 ; Example 3: Clipboard History Search
 ; ============================================================================
 
 /**
-* Demonstrates searching clipboard history.
-*
-* @class HistorySearch
-* @description Search functionality for clipboard history
-*/
+ * Demonstrates searching clipboard history.
+ * 
+ * @class HistorySearch
+ * @description Search functionality for clipboard history
+ */
 
 class HistorySearch {
 
     /**
-    * Searches history
-    * @param {String} query - Search query
-    * @param {Boolean} caseSensitive - Case sensitive search
-    * @param {Boolean} regex - Use regex
-    * @returns {Array} Matching items
-    */
+     * Searches history
+     * @param {String} query - Search query
+     * @param {Boolean} caseSensitive - Case sensitive search
+     * @param {Boolean} regex - Use regex
+     * @returns {Array} Matching items
+     */
     static Search(query, caseSensitive := false, regex := false) {
         matches := []
 
         for index, item in AdvancedHistory.history {
             if (item["dataType"] != 1)  ; Only search text
-            continue
+                continue
 
             content := item["content"]
             matched := false
@@ -519,9 +519,9 @@ class HistorySearch {
     }
 
     /**
-    * Shows search GUI
-    * @returns {void}
-    */
+     * Shows search GUI
+     * @returns {void}
+     */
     static ShowSearchGUI() {
         gui := Gui("+AlwaysOnTop", "Search Clipboard History")
         gui.SetFont("s10")
@@ -599,28 +599,28 @@ class HistorySearch {
 }
 
 ; Show search GUI
-^!f::HistorySearch.ShowSearchGUI()
+^!f:: HistorySearch.ShowSearchGUI()
 
 ; ============================================================================
 ; Example 4: Multi-Format History Manager
 ; ============================================================================
 
 /**
-* Demonstrates managing multiple clipboard formats in history.
-*
-* @class MultiFormatHistory
-* @description Handles text, binary, and files
-*/
+ * Demonstrates managing multiple clipboard formats in history.
+ * 
+ * @class MultiFormatHistory
+ * @description Handles text, binary, and files
+ */
 
 class MultiFormatHistory {
     static history := []
     static maxHistory := 30
 
     /**
-    * Adds item with full format preservation
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Adds item with full format preservation
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static Add(dataType) {
         item := Map()
         item["timestamp"] := A_Now
@@ -632,31 +632,31 @@ class MultiFormatHistory {
         ; Add type-specific info
         switch dataType {
             case 0:
-            item["type"] := "Empty"
-            item["preview"] := "[Empty]"
+                item["type"] := "Empty"
+                item["preview"] := "[Empty]"
             case 1:
-            item["type"] := "Text"
-            item["content"] := A_Clipboard
-            item["preview"] := StrLen(A_Clipboard) > 80
-            ? SubStr(A_Clipboard, 1, 80) . "..."
-            : A_Clipboard
-            item["preview"] := StrReplace(item["preview"], "`n", " ")
+                item["type"] := "Text"
+                item["content"] := A_Clipboard
+                item["preview"] := StrLen(A_Clipboard) > 80
+                    ? SubStr(A_Clipboard, 1, 80) . "..."
+                    : A_Clipboard
+                item["preview"] := StrReplace(item["preview"], "`n", " ")
             case 2:
-            item["type"] := "Binary"
-            item["size"] := item["clipboardAll"].Size
-            item["preview"] := "[Binary - " . item["size"] . " bytes]"
+                item["type"] := "Binary"
+                item["size"] := item["clipboardAll"].Size
+                item["preview"] := "[Binary - " . item["size"] . " bytes]"
         }
 
         this.history.Push(item)
 
         if (this.history.Length > this.maxHistory)
-        this.history.RemoveAt(1)
+            this.history.RemoveAt(1)
     }
 
     /**
-    * Shows multi-format history
-    * @returns {void}
-    */
+     * Shows multi-format history
+     * @returns {void}
+     */
     static ShowHistory() {
         if (this.history.Length = 0) {
             MsgBox("No history available!", "History", "Icon Info")
@@ -717,37 +717,37 @@ MultiFormatAdd(DataType) {
 }
 
 ; Show multi-format history
-^!m::MultiFormatHistory.ShowHistory()
+^!m:: MultiFormatHistory.ShowHistory()
 
 ; ============================================================================
 ; Example 5: Clipboard Snippets Manager
 ; ============================================================================
 
 /**
-* Demonstrates saving frequently used clipboard items as snippets.
-*
-* @class SnippetsManager
-* @description Manages reusable clipboard snippets
-*/
+ * Demonstrates saving frequently used clipboard items as snippets.
+ * 
+ * @class SnippetsManager
+ * @description Manages reusable clipboard snippets
+ */
 
 class SnippetsManager {
     static snippets := Map()
     static snippetsFile := A_ScriptDir . "\clipboard_snippets.ini"
 
     /**
-    * Saves current clipboard as snippet
-    * @param {String} name - Snippet name
-    * @param {String} category - Snippet category
-    * @returns {Boolean} Success
-    */
+     * Saves current clipboard as snippet
+     * @param {String} name - Snippet name
+     * @param {String} category - Snippet category
+     * @returns {Boolean} Success
+     */
     static SaveSnippet(name, category := "General") {
         if (A_Clipboard = "")
-        return false
+            return false
 
         this.snippets[name] := Map(
-        "content", A_Clipboard,
-        "category", category,
-        "created", A_Now
+            "content", A_Clipboard,
+            "category", category,
+            "created", A_Now
         )
 
         this.SaveToDisk()
@@ -755,9 +755,9 @@ class SnippetsManager {
     }
 
     /**
-    * Shows save snippet dialog
-    * @returns {void}
-    */
+     * Shows save snippet dialog
+     * @returns {void}
+     */
     static ShowSaveDialog() {
         if (A_Clipboard = "") {
             MsgBox("Clipboard is empty! Copy something first.", "Save Snippet", "Icon Warn")
@@ -772,12 +772,12 @@ class SnippetsManager {
 
         gui.Add("Text", "w300", "Category:")
         categoryDDL := gui.Add("DDL", "w300 vCategory",
-        ["General", "Code", "Email", "Addresses", "Passwords", "Other"])
+            ["General", "Code", "Email", "Addresses", "Passwords", "Other"])
 
         gui.Add("Text", "w300", "Preview:")
         preview := StrLen(A_Clipboard) > 100
-        ? SubStr(A_Clipboard, 1, 100) . "..."
-        : A_Clipboard
+            ? SubStr(A_Clipboard, 1, 100) . "..."
+            : A_Clipboard
         gui.Add("Edit", "w300 h80 ReadOnly", preview)
 
         btnSave := gui.Add("Button", "w100", "Save")
@@ -805,9 +805,9 @@ class SnippetsManager {
     }
 
     /**
-    * Shows snippets manager
-    * @returns {void}
-    */
+     * Shows snippets manager
+     * @returns {void}
+     */
     static ShowManager() {
         if (this.snippets.Count = 0) {
             MsgBox("No snippets saved yet!", "Snippets", "Icon Info")
@@ -826,8 +826,8 @@ class SnippetsManager {
         for name, snippet in this.snippets {
             dateStr := FormatTime(snippet["created"], "yyyy-MM-dd")
             preview := StrLen(snippet["content"]) > 40
-            ? SubStr(snippet["content"], 1, 40) . "..."
-            : snippet["content"]
+                ? SubStr(snippet["content"], 1, 40) . "..."
+                : snippet["content"]
             preview := StrReplace(preview, "`n", " ")
 
             lv.Add("", name, snippet["category"], dateStr, preview)
@@ -886,18 +886,18 @@ class SnippetsManager {
 
     static LoadFromDisk() {
         if (!FileExist(this.snippetsFile))
-        return
+            return
 
         sections := IniRead(this.snippetsFile)
         Loop Parse, sections, "`n" {
             if (A_LoopField = "")
-            continue
+                continue
 
             name := A_LoopField
             this.snippets[name] := Map(
-            "content", IniRead(this.snippetsFile, name, "content", ""),
-            "category", IniRead(this.snippetsFile, name, "category", "General"),
-            "created", IniRead(this.snippetsFile, name, "created", A_Now)
+                "content", IniRead(this.snippetsFile, name, "content", ""),
+                "category", IniRead(this.snippetsFile, name, "category", "General"),
+                "created", IniRead(this.snippetsFile, name, "created", A_Now)
             )
         }
     }
@@ -907,43 +907,43 @@ class SnippetsManager {
 SnippetsManager.LoadFromDisk()
 
 ; Save current clipboard as snippet
-^!s::SnippetsManager.ShowSaveDialog()
+^!s:: SnippetsManager.ShowSaveDialog()
 
 ; Show snippets manager
-^!+s::SnippetsManager.ShowManager()
+^!+s:: SnippetsManager.ShowManager()
 
 ; ============================================================================
 ; Example 6: Smart Clipboard Manager
 ; ============================================================================
 
 /**
-* Smart clipboard manager with automatic categorization and suggestions.
-*
-* @class SmartClipboardManager
-* @description Intelligent clipboard management
-*/
+ * Smart clipboard manager with automatic categorization and suggestions.
+ * 
+ * @class SmartClipboardManager
+ * @description Intelligent clipboard management
+ */
 
 class SmartClipboardManager {
     static categories := Map(
-    "URL", [],
-    "Email", [],
-    "Code", [],
-    "Numbers", [],
-    "Text", []
+        "URL", [],
+        "Email", [],
+        "Code", [],
+        "Numbers", [],
+        "Text", []
     )
 
     /**
-    * Categorizes and stores clipboard item
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Categorizes and stores clipboard item
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static CategorizeAndStore(dataType) {
         if (dataType != 1)
-        return
+            return
 
         content := A_Clipboard
         if (content = "")
-        return
+            return
 
         category := this.DetermineCategory(content)
         item := Map("content", content, "timestamp", A_Now)
@@ -952,25 +952,25 @@ class SmartClipboardManager {
 
         ; Limit each category
         if (this.categories[category].Length > 10)
-        this.categories[category].RemoveAt(1)
+            this.categories[category].RemoveAt(1)
     }
 
     static DetermineCategory(content) {
         if (RegExMatch(content, "i)https?://"))
-        return "URL"
+            return "URL"
         if (RegExMatch(content, "i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"))
-        return "Email"
+            return "Email"
         if (RegExMatch(content, "i)(function|class|def|var|const|let)\s+"))
-        return "Code"
+            return "Code"
         if (RegExMatch(content, "^\d+\.?\d*$"))
-        return "Numbers"
+            return "Numbers"
         return "Text"
     }
 
     /**
-    * Shows smart manager
-    * @returns {void}
-    */
+     * Shows smart manager
+     * @returns {void}
+     */
     static ShowManager() {
         gui := Gui("+Resize", "Smart Clipboard Manager")
         gui.SetFont("s9")
@@ -991,7 +991,7 @@ class SmartClipboardManager {
             tab.UseTab(tabName)
 
             lv := gui.Add("ListView", "w680 h380 v" . categoryName . "List",
-            ["#", "Preview"])
+                ["#", "Preview"])
             lv.ModifyCol(1, 50)
             lv.ModifyCol(2, 610)
 
@@ -1000,8 +1000,8 @@ class SmartClipboardManager {
                 item := items[index]
 
                 preview := StrLen(item["content"]) > 100
-                ? SubStr(item["content"], 1, 100) . "..."
-                : item["content"]
+                    ? SubStr(item["content"], 1, 100) . "..."
+                    : item["content"]
                 preview := StrReplace(preview, "`n", " ")
 
                 lv.Add("", index, preview)
@@ -1023,11 +1023,11 @@ class SmartClipboardManager {
         currentTab := tab.Text
 
         categoryMap := Map(
-        "URLs", "URL",
-        "Emails", "Email",
-        "Code", "Code",
-        "Numbers", "Numbers",
-        "Text", "Text"
+            "URLs", "URL",
+            "Emails", "Email",
+            "Code", "Code",
+            "Numbers", "Numbers",
+            "Text", "Text"
         )
 
         category := categoryMap[currentTab]
@@ -1057,25 +1057,25 @@ SmartCategorize(DataType) {
 }
 
 ; Show smart manager
-^!+m::SmartClipboardManager.ShowManager()
+^!+m:: SmartClipboardManager.ShowManager()
 
 ; ============================================================================
 ; Example 7: Complete Clipboard Manager System
 ; ============================================================================
 
 /**
-* Complete clipboard manager with all features.
-*
-* @class CompleteClipboardManager
-* @description Full-featured clipboard manager
-*/
+ * Complete clipboard manager with all features.
+ * 
+ * @class CompleteClipboardManager
+ * @description Full-featured clipboard manager
+ */
 
 class CompleteClipboardManager {
 
     /**
-    * Shows main control panel
-    * @returns {void}
-    */
+     * Shows main control panel
+     * @returns {void}
+     */
     static ShowControlPanel() {
         gui := Gui("+AlwaysOnTop", "Clipboard Manager - Control Panel")
         gui.SetFont("s10")
@@ -1112,7 +1112,7 @@ class CompleteClipboardManager {
 
         ; Statistics
         stats := "History Items: " . AdvancedHistory.history.Length
-        . " | Snippets: " . SnippetsManager.snippets.Count
+            . " | Snippets: " . SnippetsManager.snippets.Count
 
         gui.Add("Text", "x10 y+20 w400", stats)
 
@@ -1124,7 +1124,7 @@ class CompleteClipboardManager {
 }
 
 ; Show control panel
-^!p::CompleteClipboardManager.ShowControlPanel()
+^!p:: CompleteClipboardManager.ShowControlPanel()
 
 ; ============================================================================
 ; HELP AND INFORMATION

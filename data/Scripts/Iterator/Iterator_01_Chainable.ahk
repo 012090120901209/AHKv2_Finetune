@@ -2,36 +2,36 @@
 #SingleInstance Force
 
 /**
-* Chainable Iterator Implementation
-*
-* Demonstrates functional programming with chainable iterator operations.
-* Enables lazy evaluation and fluent API for data processing.
-*
-* Source: AHK_Notes/Snippets/ChainableIterator.md
-*/
+ * Chainable Iterator Implementation
+ * 
+ * Demonstrates functional programming with chainable iterator operations.
+ * Enables lazy evaluation and fluent API for data processing.
+ * 
+ * Source: AHK_Notes/Snippets/ChainableIterator.md
+ */
 
 ; Extend Array prototype with iterator methods
 for method in itb.Prototype.OwnProps()
-Array.Prototype.DefineProp(method, {Call: itb.Prototype.%method%})
+    Array.Prototype.DefineProp(method, { Call: itb.Prototype.%method% })
 
 ; Example 1: Array Chaining
 MsgBox("Example 1: Array Chaining`n`n"
-. "Original: [1,2,3,4,5,6,7,8,9,10]`n"
-. "Operations: drop(2) → filter(even) → transform(*10) → take(3)", , "T5")
+    . "Original: [1,2,3,4,5,6,7,8,9,10]`n"
+    . "Operations: drop(2) → filter(even) → transform(*10) → take(3)", , "T5")
 
 myArray := [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 result := []
 for value in myArray.drop(2).filter(x => Mod(x, 2) = 0).transform(x => x * 10).take(3)
-result.Push(value)
+    result.Push(value)
 
 MsgBox("Results: " result[1] ", " result[2] ", " result[3] "`n`n"
-. "Expected: 40, 60, 80", , "T5")
+    . "Expected: 40, 60, 80", , "T5")
 
 ; Example 2: Custom Iterable (Fibonacci)
 MsgBox("Example 2: Fibonacci Sequence`n`n"
-. "Using custom iterable with chainable operations.`n"
-. "Taking first 10 numbers.", , "T5")
+    . "Using custom iterable with chainable operations.`n"
+    . "Taking first 10 numbers.", , "T5")
 
 fibonacciSequence := {
     __Enum: (arity) {
@@ -43,52 +43,52 @@ fibonacciSequence := {
 fibonacci := enm(fibonacciSequence, x => x)
 fibResult := []
 for value in fibonacci.take(10)
-fibResult.Push(value)
+    fibResult.Push(value)
 
 MsgBox("First 10 Fibonacci: " fibResult.Length " numbers`n"
-. "First 5: " fibResult[1] ", " fibResult[2] ", " fibResult[3] ", "
-. fibResult[4] ", " fibResult[5], , "T5")
+    . "First 5: " fibResult[1] ", " fibResult[2] ", " fibResult[3] ", "
+    . fibResult[4] ", " fibResult[5], , "T5")
 
 /**
-* itb (Iterable Base) Class
-*
-* Provides chainable operations for iterables
-*/
+ * itb (Iterable Base) Class
+ * 
+ * Provides chainable operations for iterables
+ */
 class itb {
     /**
-    * Drop the first 'count' elements
-    */
+     * Drop the first 'count' elements
+     */
     drop(count) {
         return enm(this, (i := 0, f => (p*) => (++i <= count ? f(p*) : 0)))
     }
 
     /**
-    * Filter elements by predicate function
-    */
+     * Filter elements by predicate function
+     */
     filter(fn) {
-        return enm(this, (f => (p*) => (fn(p*[1]) ? f(p*) : this.__Enum(1)(p*) ? 1 : 0)))
+        return enm(this, (f => (p*) => (fn(p * [1]) ? f(p*) : this.__Enum(1)(p*) ? 1 : 0)))
     }
 
     /**
-    * Limit to first 'count' elements
-    */
+     * Limit to first 'count' elements
+     */
     take(count) {
         return enm(this, (i := 0, f => (p*) => (++i > count ? 0 : f(p*))))
     }
 
     /**
-    * Transform (map) each element
-    */
+     * Transform (map) each element
+     */
     transform(fn) {
-        return enm(this, (f => (p*) => (r := f(p*), r ? (p*[1] := fn(p*[1])) : 0, r)))
+        return enm(this, (f => (p*) => (r := f(p*), r ? (p * [1] := fn(p * [1])) : 0, r)))
     }
 }
 
 /**
-* enm (Enumerator Wrapper) Class
-*
-* Wraps enumerables and applies transformations
-*/
+ * enm (Enumerator Wrapper) Class
+ * 
+ * Wraps enumerables and applies transformations
+ */
 class enm extends itb {
     __New(ebl, enmw, atyx?) {
         this.ebl := ebl
@@ -162,3 +162,4 @@ class enm extends itb {
 *    - Functional-style programming
 *    - Stream processing
 */
+

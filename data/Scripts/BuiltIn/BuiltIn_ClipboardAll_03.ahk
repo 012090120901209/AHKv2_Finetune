@@ -1,51 +1,51 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - ClipboardAll Format Preservation
-* ============================================================================
-*
-* This file demonstrates preserving all clipboard formats using ClipboardAll,
-* including handling rich text, HTML, images, and custom formats.
-*
-* @file BuiltIn_ClipboardAll_03.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Format Preservation Basics
-* 2. Rich Text Format (RTF) Handling
-* 3. HTML Format Preservation
-* 4. Multi-Format Clipboard Operations
-* 5. Format Conversion and Export
-* 6. Clipboard Format Inspector
-* 7. Complete Format Preservation System
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Preserving all clipboard formats
-* - Handling rich text and formatting
-* - Managing HTML clipboard content
-* - Working with multiple formats simultaneously
-* - Converting between clipboard formats
-* - Inspecting available formats
-* - Building a complete preservation system
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - ClipboardAll Format Preservation
+ * ============================================================================
+ * 
+ * This file demonstrates preserving all clipboard formats using ClipboardAll,
+ * including handling rich text, HTML, images, and custom formats.
+ * 
+ * @file BuiltIn_ClipboardAll_03.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Format Preservation Basics
+ * 2. Rich Text Format (RTF) Handling
+ * 3. HTML Format Preservation
+ * 4. Multi-Format Clipboard Operations
+ * 5. Format Conversion and Export
+ * 6. Clipboard Format Inspector
+ * 7. Complete Format Preservation System
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Preserving all clipboard formats
+ * - Handling rich text and formatting
+ * - Managing HTML clipboard content
+ * - Working with multiple formats simultaneously
+ * - Converting between clipboard formats
+ * - Inspecting available formats
+ * - Building a complete preservation system
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Format Preservation Basics
 ; ============================================================================
 
 /**
-* Demonstrates basic clipboard format preservation.
-*
-* @class FormatPreserver
-* @description Preserves all clipboard formats
-*/
+ * Demonstrates basic clipboard format preservation.
+ * 
+ * @class FormatPreserver
+ * @description Preserves all clipboard formats
+ */
 
 class FormatPreserver {
     static preservedClipboard := ""
@@ -53,10 +53,10 @@ class FormatPreserver {
     static maxHistory := 10
 
     /**
-    * Preserves current clipboard with all formats
-    * @param {String} label - Optional label for the preservation
-    * @returns {Boolean}
-    */
+     * Preserves current clipboard with all formats
+     * @param {String} label - Optional label for the preservation
+     * @returns {Boolean}
+     */
     static Preserve(label := "") {
         try {
             clipData := ClipboardAll()
@@ -72,7 +72,7 @@ class FormatPreserver {
 
             ; Limit history
             if (this.preserveHistory.Length > this.maxHistory)
-            this.preserveHistory.RemoveAt(1)
+                this.preserveHistory.RemoveAt(1)
 
             return true
         } catch as err {
@@ -82,13 +82,13 @@ class FormatPreserver {
     }
 
     /**
-    * Restores preserved clipboard by index
-    * @param {Integer} index - Index in history (1 = oldest)
-    * @returns {Boolean}
-    */
+     * Restores preserved clipboard by index
+     * @param {Integer} index - Index in history (1 = oldest)
+     * @returns {Boolean}
+     */
     static Restore(index) {
         if (index < 1 || index > this.preserveHistory.Length)
-        return false
+            return false
 
         try {
             preservation := this.preserveHistory[index]
@@ -101,17 +101,17 @@ class FormatPreserver {
     }
 
     /**
-    * Gets preservation history
-    * @returns {Array}
-    */
+     * Gets preservation history
+     * @returns {Array}
+     */
     static GetHistory() {
         return this.preserveHistory
     }
 
     /**
-    * Shows preservation history GUI
-    * @returns {void}
-    */
+     * Shows preservation history GUI
+     * @returns {void}
+     */
     static ShowHistory() {
         if (this.preserveHistory.Length = 0) {
             MsgBox("No preservation history available!", "History", "Icon Info")
@@ -122,7 +122,7 @@ class FormatPreserver {
         gui.SetFont("s10")
 
         lv := gui.Add("ListView", "w600 h300",
-        ["#", "Label", "Time", "Size", "Has Text"])
+            ["#", "Label", "Time", "Size", "Has Text"])
         lv.ModifyCol(1, 40)
         lv.ModifyCol(2, 180)
         lv.ModifyCol(3, 150)
@@ -169,11 +169,11 @@ class FormatPreserver {
 
     static FormatSize(bytes) {
         if (bytes < 1024)
-        return bytes . " B"
+            return bytes . " B"
         else if (bytes < 1048576)
-        return Round(bytes / 1024, 2) . " KB"
+            return Round(bytes / 1024, 2) . " KB"
         else
-        return Round(bytes / 1048576, 2) . " MB"
+            return Round(bytes / 1048576, 2) . " MB"
     }
 }
 
@@ -181,32 +181,32 @@ class FormatPreserver {
 F1:: {
     ib := InputBox("Enter a label for this preservation:", "Preserve Clipboard")
     if (ib.Result = "Cancel")
-    return
+        return
 
     if (FormatPreserver.Preserve(ib.Value))
-    TrayTip("Preserved", "Clipboard formats preserved", "Icon Info")
+        TrayTip("Preserved", "Clipboard formats preserved", "Icon Info")
 }
 
 ; Show preservation history
-F2::FormatPreserver.ShowHistory()
+F2:: FormatPreserver.ShowHistory()
 
 ; ============================================================================
 ; Example 2: Rich Text Format (RTF) Handling
 ; ============================================================================
 
 /**
-* Demonstrates handling RTF clipboard content.
-*
-* @class RTFHandler
-* @description Manages RTF clipboard operations
-*/
+ * Demonstrates handling RTF clipboard content.
+ * 
+ * @class RTFHandler
+ * @description Manages RTF clipboard operations
+ */
 
 class RTFHandler {
 
     /**
-    * Checks if clipboard contains RTF data
-    * @returns {Boolean}
-    */
+     * Checks if clipboard contains RTF data
+     * @returns {Boolean}
+     */
     static HasRTF() {
         ; RTF typically comes with plain text too
         ; Check if clipboard has more data than just text
@@ -218,18 +218,18 @@ class RTFHandler {
     }
 
     /**
-    * Extracts plain text from RTF clipboard
-    * @returns {String}
-    */
+     * Extracts plain text from RTF clipboard
+     * @returns {String}
+     */
     static ExtractPlainText() {
         return A_Clipboard
     }
 
     /**
-    * Preserves RTF while modifying plain text
-    * @param {Func} modifier - Function to modify text
-    * @returns {Boolean}
-    */
+     * Preserves RTF while modifying plain text
+     * @param {Func} modifier - Function to modify text
+     * @returns {Boolean}
+     */
     static ModifyPreservingFormat(modifier) {
         ; Save full clipboard
         savedClip := ClipboardAll()
@@ -257,9 +257,9 @@ class RTFHandler {
     }
 
     /**
-    * Gets RTF information
-    * @returns {Map}
-    */
+     * Gets RTF information
+     * @returns {Map}
+     */
     static GetInfo() {
         info := Map()
 
@@ -296,28 +296,28 @@ F3:: {
 ; ============================================================================
 
 /**
-* Demonstrates HTML clipboard format handling.
-*
-* @class HTMLClipboardHandler
-* @description Manages HTML clipboard content
-*/
+ * Demonstrates HTML clipboard format handling.
+ * 
+ * @class HTMLClipboardHandler
+ * @description Manages HTML clipboard content
+ */
 
 class HTMLClipboardHandler {
 
     /**
-    * Checks if clipboard likely contains HTML
-    * @returns {Boolean}
-    */
+     * Checks if clipboard likely contains HTML
+     * @returns {Boolean}
+     */
     static HasHTML() {
         text := A_Clipboard
         return InStr(text, "<") && InStr(text, ">")
-        && (InStr(text, "<html") || InStr(text, "<div") || InStr(text, "<p"))
+            && (InStr(text, "<html") || InStr(text, "<div") || InStr(text, "<p"))
     }
 
     /**
-    * Strips HTML tags from clipboard
-    * @returns {String}
-    */
+     * Strips HTML tags from clipboard
+     * @returns {String}
+     */
     static StripHTML() {
         text := A_Clipboard
 
@@ -335,10 +335,10 @@ class HTMLClipboardHandler {
     }
 
     /**
-    * Converts plain text to HTML
-    * @param {String} text - Plain text
-    * @returns {String}
-    */
+     * Converts plain text to HTML
+     * @param {String} text - Plain text
+     * @returns {String}
+     */
     static TextToHTML(text) {
         ; Escape HTML special characters
         html := StrReplace(text, "&", "&amp;")
@@ -383,18 +383,18 @@ class HTMLClipboardHandler {
 ; ============================================================================
 
 /**
-* Demonstrates working with multiple clipboard formats simultaneously.
-*
-* @class MultiFormatClipboard
-* @description Manages multiple clipboard formats
-*/
+ * Demonstrates working with multiple clipboard formats simultaneously.
+ * 
+ * @class MultiFormatClipboard
+ * @description Manages multiple clipboard formats
+ */
 
 class MultiFormatClipboard {
 
     /**
-    * Gets all available clipboard formats
-    * @returns {Map}
-    */
+     * Gets all available clipboard formats
+     * @returns {Map}
+     */
     static GetAllFormats() {
         formats := Map()
 
@@ -421,9 +421,9 @@ class MultiFormatClipboard {
     }
 
     /**
-    * Creates a format report
-    * @returns {String}
-    */
+     * Creates a format report
+     * @returns {String}
+     */
     static CreateReport() {
         formats := this.GetAllFormats()
 
@@ -436,7 +436,7 @@ class MultiFormatClipboard {
             report .= "  Lines: " . formats["textLines"] . "`n"
             report .= "  Preview: " . SubStr(formats["text"], 1, 50)
             if (StrLen(formats["text"]) > 50)
-            report .= "..."
+                report .= "..."
             report .= "`n`n"
         }
 
@@ -453,9 +453,9 @@ class MultiFormatClipboard {
     }
 
     /**
-    * Shows format report
-    * @returns {void}
-    */
+     * Shows format report
+     * @returns {void}
+     */
     static ShowReport() {
         report := this.CreateReport()
         MsgBox(report, "Clipboard Format Report", "Icon Info")
@@ -463,26 +463,26 @@ class MultiFormatClipboard {
 }
 
 ; Show multi-format report
-F4::MultiFormatClipboard.ShowReport()
+F4:: MultiFormatClipboard.ShowReport()
 
 ; ============================================================================
 ; Example 5: Format Conversion and Export
 ; ============================================================================
 
 /**
-* Demonstrates converting and exporting clipboard formats.
-*
-* @class FormatConverter
-* @description Converts between clipboard formats
-*/
+ * Demonstrates converting and exporting clipboard formats.
+ * 
+ * @class FormatConverter
+ * @description Converts between clipboard formats
+ */
 
 class FormatConverter {
 
     /**
-    * Exports clipboard to multiple formats
-    * @param {String} basePath - Base path for export files
-    * @returns {Array} Array of created files
-    */
+     * Exports clipboard to multiple formats
+     * @param {String} basePath - Base path for export files
+     * @returns {Array} Array of created files
+     */
     static ExportAll(basePath) {
         createdFiles := []
 
@@ -522,15 +522,15 @@ class FormatConverter {
     }
 
     /**
-    * Shows export dialog
-    * @returns {void}
-    */
+     * Shows export dialog
+     * @returns {void}
+     */
     static ShowExportDialog() {
         ; Get save path
         filepath := FileSelect("S", , "Export Clipboard Formats", "Text Files (*.txt)")
 
         if (filepath = "")
-        return
+            return
 
         ; Remove extension to use as base
         SplitPath(filepath, , &dir, , &nameNoExt)
@@ -549,25 +549,25 @@ class FormatConverter {
 }
 
 ; Export clipboard formats
-^!e::FormatConverter.ShowExportDialog()
+^!e:: FormatConverter.ShowExportDialog()
 
 ; ============================================================================
 ; Example 6: Clipboard Format Inspector
 ; ============================================================================
 
 /**
-* Demonstrates detailed clipboard format inspection.
-*
-* @class FormatInspector
-* @description Inspects clipboard formats in detail
-*/
+ * Demonstrates detailed clipboard format inspection.
+ * 
+ * @class FormatInspector
+ * @description Inspects clipboard formats in detail
+ */
 
 class FormatInspector {
 
     /**
-    * Analyzes clipboard in detail
-    * @returns {Map}
-    */
+     * Analyzes clipboard in detail
+     * @returns {Map}
+     */
     static Analyze() {
         analysis := Map()
 
@@ -581,16 +581,16 @@ class FormatInspector {
         analysis["formats"] := []
 
         if (analysis["hasText"])
-        analysis["formats"].Push("Plain Text")
+            analysis["formats"].Push("Plain Text")
 
         if (HTMLClipboardHandler.HasHTML())
-        analysis["formats"].Push("HTML")
+            analysis["formats"].Push("HTML")
 
         if (RTFHandler.HasRTF())
-        analysis["formats"].Push("Rich Text (RTF)")
+            analysis["formats"].Push("Rich Text (RTF)")
 
         if (analysis["binarySize"] > analysis["textLength"] * 1.5)
-        analysis["formats"].Push("Binary/Image Data")
+            analysis["formats"].Push("Binary/Image Data")
 
         ; Character analysis
         if (analysis["hasText"]) {
@@ -610,11 +610,11 @@ class FormatInspector {
     }
 
     /**
-    * Counts regex matches
-    * @param {String} text - Text to search
-    * @param {String} pattern - Regex pattern
-    * @returns {Integer}
-    */
+     * Counts regex matches
+     * @param {String} text - Text to search
+     * @param {String} pattern - Regex pattern
+     * @returns {Integer}
+     */
     static CountMatches(text, pattern) {
         count := 0
         pos := 1
@@ -626,9 +626,9 @@ class FormatInspector {
     }
 
     /**
-    * Shows detailed inspection GUI
-    * @returns {void}
-    */
+     * Shows detailed inspection GUI
+     * @returns {void}
+     */
     static ShowInspection() {
         analysis := this.Analyze()
 
@@ -679,18 +679,18 @@ class FormatInspector {
 }
 
 ; Show format inspector
-F5::FormatInspector.ShowInspection()
+F5:: FormatInspector.ShowInspection()
 
 ; ============================================================================
 ; Example 7: Complete Format Preservation System
 ; ============================================================================
 
 /**
-* Complete clipboard format preservation system.
-*
-* @class CompletePreservationSystem
-* @description Comprehensive format preservation
-*/
+ * Complete clipboard format preservation system.
+ * 
+ * @class CompletePreservationSystem
+ * @description Comprehensive format preservation
+ */
 
 class CompletePreservationSystem {
     static autoPreserve := false
@@ -698,22 +698,22 @@ class CompletePreservationSystem {
     static timerRunning := false
 
     /**
-    * Starts automatic preservation
-    * @returns {void}
-    */
+     * Starts automatic preservation
+     * @returns {void}
+     */
     static StartAutoPreserve() {
         this.autoPreserve := true
         this.timerRunning := true
         SetTimer(() => this.AutoPreserveCallback(), this.preserveInterval)
         TrayTip("Auto-Preserve Started",
-        "Clipboard will be preserved every " . (this.preserveInterval/1000) . " seconds",
-        "Icon Info")
+            "Clipboard will be preserved every " . (this.preserveInterval / 1000) . " seconds",
+            "Icon Info")
     }
 
     /**
-    * Stops automatic preservation
-    * @returns {void}
-    */
+     * Stops automatic preservation
+     * @returns {void}
+     */
     static StopAutoPreserve() {
         this.autoPreserve := false
         this.timerRunning := false
@@ -722,31 +722,31 @@ class CompletePreservationSystem {
     }
 
     /**
-    * Toggles automatic preservation
-    * @returns {void}
-    */
+     * Toggles automatic preservation
+     * @returns {void}
+     */
     static ToggleAutoPreserve() {
         if (this.autoPreserve)
-        this.StopAutoPreserve()
+            this.StopAutoPreserve()
         else
-        this.StartAutoPreserve()
+            this.StartAutoPreserve()
     }
 
     /**
-    * Auto-preserve callback
-    * @private
-    */
+     * Auto-preserve callback
+     * @private
+     */
     static AutoPreserveCallback() {
         if (!this.autoPreserve)
-        return
+            return
 
         FormatPreserver.Preserve("Auto-" . A_Now)
     }
 
     /**
-    * Shows control panel
-    * @returns {void}
-    */
+     * Shows control panel
+     * @returns {void}
+     */
     static ShowControlPanel() {
         gui := Gui("+AlwaysOnTop", "Format Preservation System")
         gui.SetFont("s10")
@@ -787,7 +787,7 @@ class CompletePreservationSystem {
 }
 
 ; Show control panel
-^!p::CompletePreservationSystem.ShowControlPanel()
+^!p:: CompletePreservationSystem.ShowControlPanel()
 
 ; ============================================================================
 ; HELP AND INFORMATION

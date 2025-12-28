@@ -3,11 +3,11 @@
 #Include <adash>
 
 /**
-* _.sortedIndex() - Find insertion index
-*
-* Uses binary search to determine the lowest index at which value
-* should be inserted into array in order to maintain its sort order.
-*/
+ * _.sortedIndex() - Find insertion index
+ * 
+ * Uses binary search to determine the lowest index at which value
+ * should be inserted into array in order to maintain its sort order.
+ */
 
 result1 := _.sortedIndex([30, 50], 40)
 ; => 2
@@ -19,5 +19,5 @@ result3 := _.sortedIndex([30, 50], 99)
 ; => 3
 
 MsgBox("Insert 40 in [30,50] at: " result1 "`n"
-. "Insert 20 in [30,50] at: " result2 "`n"
-. "Insert 99 in [30,50] at: " result3)
+    . "Insert 20 in [30,50] at: " result2 "`n"
+    . "Insert 99 in [30,50] at: " result3)

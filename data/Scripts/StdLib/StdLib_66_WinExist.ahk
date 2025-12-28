@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinExist() - Check if window exists
-*
-* Returns window ID if found, 0 otherwise.
-*/
+ * WinExist() - Check if window exists
+ * 
+ * Returns window ID if found, 0 otherwise.
+ */
 
 exists := WinExist("ahk_class Notepad")
 

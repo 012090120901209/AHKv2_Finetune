@@ -33,7 +33,7 @@ BrowseLog(*) {
 
 LoadLog(filepath) {
     if (!FileExist(filepath))
-    return
+        return
 
     LV.Delete()
     content := FileRead(filepath)
@@ -41,7 +41,7 @@ LoadLog(filepath) {
 
     for line in lines {
         if (Trim(line) = "")
-        continue
+            continue
         ParseLogLine(line)
     }
 

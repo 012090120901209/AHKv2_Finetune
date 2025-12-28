@@ -39,13 +39,13 @@ class Channel {
     Receive() {
         if this.buffer.Length {
             value := this.buffer.RemoveAt(1)
-            
+
             ; Check if sender is waiting
             if this.sendWaiters.Length {
                 waiter := this.sendWaiters.RemoveAt(1)
                 this.buffer.Push(waiter["value"])
             }
-            
+
             return Map("value", value, "ok", true)
         }
 

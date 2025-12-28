@@ -7,22 +7,22 @@ global maxHistory := 20
 
 OnClipboardChange(ClipChanged)
 
-^!v::ShowHistory()
+^!v:: ShowHistory()
 
 ClipChanged(Type) {
     if (Type = 1) {  ; Text
-    text := A_Clipboard
-    if (text != "") {
-        clipHistory.InsertAt(1, text)
-        if (clipHistory.Length > maxHistory)
-        clipHistory.Pop()
+        text := A_Clipboard
+        if (text != "") {
+            clipHistory.InsertAt(1, text)
+            if (clipHistory.Length > maxHistory)
+                clipHistory.Pop()
+        }
     }
-}
 }
 
 ShowHistory() {
     if (clipHistory.Length = 0)
-    return MsgBox("Clipboard history is empty", "Clipboard Manager")
+        return MsgBox("Clipboard history is empty", "Clipboard Manager")
 
     histGui := Gui()
     histGui.Title := "Clipboard History"

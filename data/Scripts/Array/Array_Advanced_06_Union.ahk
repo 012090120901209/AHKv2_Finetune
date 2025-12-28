@@ -3,15 +3,15 @@
 #Include JSON.ahk JSON.ahk
 
 /**
-* Union() - Set union with nested function definition
-*
-* Demonstrates: Nested function, arrow functions, closures, Set pattern
-* Advanced functional programming pattern in AHK v2
-*/
+ * Union() - Set union with nested function definition
+ * 
+ * Demonstrates: Nested function, arrow functions, closures, Set pattern
+ * Advanced functional programming pattern in AHK v2
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -34,7 +34,7 @@ Union(a, b*) {
 
     add(a)
     for each in b
-    add(each)
+        add(each)
 
     return out
 }
@@ -50,5 +50,5 @@ result3 := Union([1, 1, 2], [2, 3, 3], [4])
 ; => [1, 2, 3, 4]
 
 MsgBox("Union [2] & [1,2]: " JSON.stringify(result1) "`n`n"
-. "Union of 3 arrays: " JSON.stringify(result2) "`n`n"
-. "With duplicates: " JSON.stringify(result3))
+    . "Union of 3 arrays: " JSON.stringify(result2) "`n`n"
+    . "With duplicates: " JSON.stringify(result3))

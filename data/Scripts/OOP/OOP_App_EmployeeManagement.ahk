@@ -23,7 +23,7 @@ class Employee {
 
     UseVacationDays(days) {
         if (days > this.vacationDays)
-        return MsgBox("Insufficient vacation days!", "Error")
+            return MsgBox("Insufficient vacation days!", "Error")
         this.vacationDays -= days
         MsgBox(Format("{1} used {2} vacation days`nRemaining: {3}", this.name, days, this.vacationDays))
         return true
@@ -31,7 +31,7 @@ class Employee {
 
     UseSickDays(days) {
         if (days > this.sickDays)
-        return MsgBox("Insufficient sick days!", "Error")
+            return MsgBox("Insufficient sick days!", "Error")
         this.sickDays -= days
         MsgBox(Format("{1} used {2} sick days`nRemaining: {3}", this.name, days, this.sickDays))
         return true
@@ -41,11 +41,11 @@ class Employee {
         oldSalary := this.salary
         this.salary := this.salary * (1 + percentage / 100)
         MsgBox(Format("{1} received {2}% raise`nOld: ${3:.2f}`nNew: ${4:.2f}",
-        this.name, percentage, oldSalary, this.salary))
+            this.name, percentage, oldSalary, this.salary))
     }
 
     ToString() => Format("#{1}: {2} - {3} (${4:,.2f}/year)",
-    this.employeeId, this.name, this.position, this.salary)
+        this.employeeId, this.name, this.position, this.salary)
 }
 
 class Manager extends Employee {
@@ -66,7 +66,7 @@ class Manager extends Employee {
     GetTeamSummary() {
         summary := Format("Manager: {1} ({2} direct reports)`n", this.name, this.directReports.Length)
         for emp in this.directReports
-        summary .= "  - " . emp.name . " (" . emp.position . ")`n"
+            summary .= "  - " . emp.name . " (" . emp.position . ")`n"
         return summary
     }
 }
@@ -85,13 +85,13 @@ class Department {
     GetTotalSalaries() {
         total := 0
         for emp in this.employees
-        total += emp.GetAnnualSalary()
+            total += emp.GetAnnualSalary()
         return total
     }
 
     GetAverageSalary() {
         if (this.employees.Length = 0)
-        return 0
+            return 0
         return this.GetTotalSalaries() / this.employees.Length
     }
 
@@ -102,10 +102,10 @@ class Department {
     GetBudgetUtilization() => Round((this.GetTotalSalaries() / this.budget) * 100, 1)
 
     ToString() => Format("{1}: {2} employees, ${3:,.2f} budget ({4}% used)",
-    this.name,
-    this.employees.Length,
-    this.budget,
-    this.GetBudgetUtilization())
+        this.name,
+        this.employees.Length,
+        this.budget,
+        this.GetBudgetUtilization())
 }
 
 class PayrollEntry {
@@ -126,12 +126,12 @@ class PayrollEntry {
     }
 
     ToString() => Format("Payroll - {1} ({2}/{3})`nGross: ${4:,.2f}`nDeductions: ${5:,.2f}`nNet: ${6:,.2f}",
-    this.employee.name,
-    this.month,
-    this.year,
-    this.grossPay,
-    this.deductions,
-    this.netPay)
+        this.employee.name,
+        this.month,
+        this.year,
+        this.grossPay,
+        this.deductions,
+        this.netPay)
 }
 
 class Company {
@@ -144,7 +144,7 @@ class Company {
     HireEmployee(employee, departmentName) {
         dept := this.GetDepartment(departmentName)
         if (!dept)
-        return MsgBox("Department not found!", "Error")
+            return MsgBox("Department not found!", "Error")
 
         this.employees[employee.employeeId] := employee
         dept.AddEmployee(employee)
@@ -157,14 +157,14 @@ class Company {
     GeneratePayroll(month, year) {
         payrollEntries := []
         for id, emp in this.employees
-        payrollEntries.Push(PayrollEntry(emp, month, year))
+            payrollEntries.Push(PayrollEntry(emp, month, year))
         return payrollEntries
     }
 
     GetTotalPayroll() {
         total := 0
         for id, emp in this.employees
-        total += emp.GetAnnualSalary()
+            total += emp.GetAnnualSalary()
         return total
     }
 
@@ -176,7 +176,7 @@ class Company {
 
         summary .= "Departments:`n"
         for name, dept in this.departments
-        summary .= "  " . dept.ToString() . "`n"
+            summary .= "  " . dept.ToString() . "`n"
 
         return summary
     }
@@ -232,7 +232,7 @@ MsgBox(engineering.ToString())
 MsgBox(Format("Engineering avg salary: ${:,.2f}", engineering.GetAverageSalary()))
 
 if (engineering.IsOverBudget())
-MsgBox("Engineering is over budget!", "Warning")
+    MsgBox("Engineering is over budget!", "Warning")
 
 ; Payroll generation
 payroll := company.GeneratePayroll("October", 2024)

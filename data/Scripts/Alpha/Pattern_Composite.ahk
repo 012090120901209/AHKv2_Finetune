@@ -16,7 +16,7 @@ class File extends FileComponent {
         super.__New(name)
         this.size := size
     }
-    
+
     GetSize() => this.size
     Display(indent := "") => indent this.name " (" this.size " bytes)"
 }

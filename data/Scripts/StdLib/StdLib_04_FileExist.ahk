@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileExist() - Check if file exists
-*
-* Returns the file's attributes if it exists, otherwise returns an empty string.
-*/
+ * FileExist() - Check if file exists
+ * 
+ * Returns the file's attributes if it exists, otherwise returns an empty string.
+ */
 
 file1 := A_ScriptDir "\exists.txt"
 FileDelete(file1)

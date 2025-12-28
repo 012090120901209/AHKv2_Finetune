@@ -1,41 +1,41 @@
 /**
-* ============================================================================
-* AutoHotkey v2 #HotIf Directive - Dynamic Contexts
-* ============================================================================
-*
-* @description Comprehensive examples demonstrating dynamic context
-*              switching and runtime context management with #HotIf
-*
-* @author AHK v2 Documentation Team
-* @version 2.0.0
-* @date 2025-01-15
-*
-* DIRECTIVE: #HotIf with dynamic contexts
-* PURPOSE: Create hotkeys that adapt to changing runtime conditions
-* CONCEPTS:
-*   - Runtime context evaluation
-*   - Dynamic condition updates
-*   - Context state management
-*   - Adaptive hotkey behavior
-*
-* @reference https://www.autohotkey.com/docs/v2/lib/_HotIf.htm
-*/
+ * ============================================================================
+ * AutoHotkey v2 #HotIf Directive - Dynamic Contexts
+ * ============================================================================
+ * 
+ * @description Comprehensive examples demonstrating dynamic context
+ *              switching and runtime context management with #HotIf
+ * 
+ * @author AHK v2 Documentation Team
+ * @version 2.0.0
+ * @date 2025-01-15
+ * 
+ * DIRECTIVE: #HotIf with dynamic contexts
+ * PURPOSE: Create hotkeys that adapt to changing runtime conditions
+ * CONCEPTS:
+ *   - Runtime context evaluation
+ *   - Dynamic condition updates
+ *   - Context state management
+ *   - Adaptive hotkey behavior
+ * 
+ * @reference https://www.autohotkey.com/docs/v2/lib/_HotIf.htm
+ */
 
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Example 1: Dynamic Window Context Tracking
-* ============================================================================
-*
-* @description Track and respond to changing window contexts
-* @concept Window tracking, context awareness, dynamic adaptation
-*/
+ * ============================================================================
+ * Example 1: Dynamic Window Context Tracking
+ * ============================================================================
+ * 
+ * @description Track and respond to changing window contexts
+ * @concept Window tracking, context awareness, dynamic adaptation
+ */
 
 /**
-* Window context tracker
-* @class
-*/
+ * Window context tracker
+ * @class
+ */
 class WindowTracker {
     static PreviousWindow := ""
     static CurrentWindow := ""
@@ -43,9 +43,9 @@ class WindowTracker {
     static MaxHistory := 10
 
     /**
-    * Update current window context
-    * @returns {void}
-    */
+     * Update current window context
+     * @returns {void}
+     */
     static Update() {
         title := WinGetTitle("A")
         if (title != this.CurrentWindow) {
@@ -61,18 +61,18 @@ class WindowTracker {
 
             ; Limit history size
             if (this.WindowHistory.Length > this.MaxHistory)
-            this.WindowHistory.RemoveAt(1)
+                this.WindowHistory.RemoveAt(1)
         }
     }
 
     /**
-    * Check if window changed recently
-    * @param {Integer} seconds - Time window in seconds
-    * @returns {Boolean} True if window changed within time window
-    */
+     * Check if window changed recently
+     * @param {Integer} seconds - Time window in seconds
+     * @returns {Boolean} True if window changed within time window
+     */
     static ChangedRecently(seconds := 5) {
         if (this.WindowHistory.Length < 2)
-        return false
+            return false
 
         latest := this.WindowHistory[-1]
         timeDiff := DateDiff(A_Now, latest.Time, "Seconds")
@@ -80,24 +80,24 @@ class WindowTracker {
     }
 
     /**
-    * Get window by position in history
-    * @param {Integer} index - History index (negative for recent)
-    * @returns {Object|Boolean} Window info or false
-    */
+     * Get window by position in history
+     * @param {Integer} index - History index (negative for recent)
+     * @returns {Object|Boolean} Window info or false
+     */
     static GetFromHistory(index) {
         if (Abs(index) > this.WindowHistory.Length)
-        return false
+            return false
 
         if (index < 0)
-        index := this.WindowHistory.Length + index + 1
+            index := this.WindowHistory.Length + index + 1
 
         return this.WindowHistory[index]
     }
 
     /**
-    * Display window history
-    * @returns {void}
-    */
+     * Display window history
+     * @returns {void}
+     */
     static ShowHistory() {
         output := "Window History`n"
         output .= "==============`n`n"
@@ -121,62 +121,62 @@ SetTimer(() => WindowTracker.Update(), 500)
 ; Hotkey active when window changed recently
 #HotIf WindowTracker.ChangedRecently()
 
-^!w::MsgBox("Window changed recently!", "Dynamic", "Iconi")
+^!w:: MsgBox("Window changed recently!", "Dynamic", "Iconi")
 #HotIf
 
-^!h::WindowTracker.ShowHistory()
+^!h:: WindowTracker.ShowHistory()
 
 /**
-* ============================================================================
-* Example 2: Workspace State Management
-* ============================================================================
-*
-* @description Manage complex workspace states dynamically
-* @concept Workspace management, state transitions, profile switching
-*/
+ * ============================================================================
+ * Example 2: Workspace State Management
+ * ============================================================================
+ * 
+ * @description Manage complex workspace states dynamically
+ * @concept Workspace management, state transitions, profile switching
+ */
 
 /**
-* Workspace manager for context-aware hotkeys
-* @class
-*/
+ * Workspace manager for context-aware hotkeys
+ * @class
+ */
 class WorkspaceManager {
     static CurrentWorkspace := "default"
     static Workspaces := Map()
 
     /**
-    * Initialize workspaces
-    * @returns {void}
-    */
+     * Initialize workspaces
+     * @returns {void}
+     */
     static Initialize() {
         ; Define workspaces
         this.Workspaces := Map(
-        "default", {
-            Name: "Default",
-            Color: "Gray",
-            Hotkeys: Map()
-        },
-        "coding", {
-            Name: "Coding",
-            Color: "Blue",
-            WindowPatterns: ["ahk_exe Code.exe", "ahk_exe sublime_text.exe"]
-        },
-        "browsing", {
-            Name: "Web Browsing",
-            Color: "Green",
-            WindowPatterns: ["ahk_exe chrome.exe", "ahk_exe firefox.exe"]
-        },
-        "writing", {
-            Name: "Writing",
-            Color: "Yellow",
-            WindowPatterns: ["ahk_exe WINWORD.EXE", "ahk_class Notepad"]
-        }
+            "default", {
+                Name: "Default",
+                Color: "Gray",
+                Hotkeys: Map()
+            },
+            "coding", {
+                Name: "Coding",
+                Color: "Blue",
+                WindowPatterns: ["ahk_exe Code.exe", "ahk_exe sublime_text.exe"]
+            },
+            "browsing", {
+                Name: "Web Browsing",
+                Color: "Green",
+                WindowPatterns: ["ahk_exe chrome.exe", "ahk_exe firefox.exe"]
+            },
+            "writing", {
+                Name: "Writing",
+                Color: "Yellow",
+                WindowPatterns: ["ahk_exe WINWORD.EXE", "ahk_class Notepad"]
+            }
         )
     }
 
     /**
-    * Auto-detect workspace based on active window
-    * @returns {String} Detected workspace name
-    */
+     * Auto-detect workspace based on active window
+     * @returns {String} Detected workspace name
+     */
     static DetectWorkspace() {
         process := WinGetProcessName("A")
 
@@ -184,7 +184,7 @@ class WorkspaceManager {
             if workspace.HasOwnProp("WindowPatterns") {
                 for pattern in workspace.WindowPatterns {
                     if WinActive(pattern)
-                    return name
+                        return name
                 }
             }
         }
@@ -193,13 +193,13 @@ class WorkspaceManager {
     }
 
     /**
-    * Switch to workspace
-    * @param {String} name - Workspace name
-    * @returns {Boolean} True if switched successfully
-    */
+     * Switch to workspace
+     * @param {String} name - Workspace name
+     * @returns {Boolean} True if switched successfully
+     */
     static SwitchTo(name) {
         if (!this.Workspaces.Has(name))
-        return false
+            return false
 
         this.CurrentWorkspace := name
         workspace := this.Workspaces[name]
@@ -209,28 +209,28 @@ class WorkspaceManager {
     }
 
     /**
-    * Check if in specific workspace
-    * @param {String} name - Workspace name
-    * @returns {Boolean} True if in workspace
-    */
+     * Check if in specific workspace
+     * @param {String} name - Workspace name
+     * @returns {Boolean} True if in workspace
+     */
     static IsWorkspace(name) {
         return (this.CurrentWorkspace = name)
     }
 
     /**
-    * Auto-switch workspace based on window
-    * @returns {void}
-    */
+     * Auto-switch workspace based on window
+     * @returns {void}
+     */
     static AutoSwitch() {
         detected := this.DetectWorkspace()
         if (detected != this.CurrentWorkspace)
-        this.SwitchTo(detected)
+            this.SwitchTo(detected)
     }
 
     /**
-    * Display workspace info
-    * @returns {void}
-    */
+     * Display workspace info
+     * @returns {void}
+     */
     static ShowInfo() {
         output := "Workspace Manager`n"
         output .= "=================`n`n"
@@ -243,7 +243,7 @@ class WorkspaceManager {
             output .= status " " workspace.Name
 
             if (workspace.HasOwnProp("Color"))
-            output .= " (" workspace.Color ")"
+                output .= " (" workspace.Color ")"
 
             output .= "`n"
         }
@@ -260,43 +260,43 @@ SetTimer(() => WorkspaceManager.AutoSwitch(), 1000)
 ; Workspace-specific hotkeys
 #HotIf WorkspaceManager.IsWorkspace("coding")
 
-^!c::MsgBox("Coding workspace active", "Coding", "Iconi")
-F5::MsgBox("Run/Debug in coding workspace", "Coding", "Iconi")
+^!c:: MsgBox("Coding workspace active", "Coding", "Iconi")
+F5:: MsgBox("Run/Debug in coding workspace", "Coding", "Iconi")
 #HotIf
 
 #HotIf WorkspaceManager.IsWorkspace("browsing")
 
-^!b::MsgBox("Browsing workspace active", "Browsing", "Iconi")
-^r::MsgBox("Refresh in browsing workspace", "Browsing", "Iconi")
+^!b:: MsgBox("Browsing workspace active", "Browsing", "Iconi")
+^r:: MsgBox("Refresh in browsing workspace", "Browsing", "Iconi")
 #HotIf
 
 #HotIf WorkspaceManager.IsWorkspace("writing")
 
-^!d::SendText(FormatTime(, "yyyy-MM-dd"))  ; Insert date
-^!t::SendText(FormatTime(, "HH:mm"))  ; Insert time
+^!d:: SendText(FormatTime(, "yyyy-MM-dd"))  ; Insert date
+^!t:: SendText(FormatTime(, "HH:mm"))  ; Insert time
 #HotIf
 
 ; Manual workspace switching
-^!1::WorkspaceManager.SwitchTo("default")
-^!2::WorkspaceManager.SwitchTo("coding")
-^!3::WorkspaceManager.SwitchTo("browsing")
-^!4::WorkspaceManager.SwitchTo("writing")
+^!1:: WorkspaceManager.SwitchTo("default")
+^!2:: WorkspaceManager.SwitchTo("coding")
+^!3:: WorkspaceManager.SwitchTo("browsing")
+^!4:: WorkspaceManager.SwitchTo("writing")
 
-^!w::WorkspaceManager.ShowInfo()
-
-/**
-* ============================================================================
-* Example 3: Activity-Based Context Switching
-* ============================================================================
-*
-* @description Switch contexts based on user activity patterns
-* @concept Activity tracking, behavior analysis, smart context
-*/
+^!w:: WorkspaceManager.ShowInfo()
 
 /**
-* Activity tracker for intelligent context switching
-* @class
-*/
+ * ============================================================================
+ * Example 3: Activity-Based Context Switching
+ * ============================================================================
+ * 
+ * @description Switch contexts based on user activity patterns
+ * @concept Activity tracking, behavior analysis, smart context
+ */
+
+/**
+ * Activity tracker for intelligent context switching
+ * @class
+ */
 class ActivityTracker {
     static KeypressCount := 0
     static MouseMoveCount := 0
@@ -305,9 +305,9 @@ class ActivityTracker {
     static IdleThreshold := 60000  ; 1 minute
 
     /**
-    * Record keypress activity
-    * @returns {void}
-    */
+     * Record keypress activity
+     * @returns {void}
+     */
     static RecordKeypress() {
         this.KeypressCount++
         this.LastActivity := A_TickCount
@@ -315,9 +315,9 @@ class ActivityTracker {
     }
 
     /**
-    * Record mouse activity
-    * @returns {void}
-    */
+     * Record mouse activity
+     * @returns {void}
+     */
     static RecordMouseMove() {
         this.MouseMoveCount++
         this.LastActivity := A_TickCount
@@ -325,9 +325,9 @@ class ActivityTracker {
     }
 
     /**
-    * Check if user is idle
-    * @returns {Boolean} True if idle
-    */
+     * Check if user is idle
+     * @returns {Boolean} True if idle
+     */
     static CheckIdle() {
         idleTime := A_TickCount - this.LastActivity
         this.IsIdle := (idleTime > this.IdleThreshold)
@@ -335,9 +335,9 @@ class ActivityTracker {
     }
 
     /**
-    * Get activity level (0-100)
-    * @returns {Integer} Activity percentage
-    */
+     * Get activity level (0-100)
+     * @returns {Integer} Activity percentage
+     */
     static GetActivityLevel() {
         ; Calculate based on recent activity
         ; This is simplified - real implementation would track over time
@@ -347,7 +347,7 @@ class ActivityTracker {
 
         timeDiff := (A_TickCount - LastCheck) / 1000  ; seconds
         if (timeDiff < 1)
-        return 0
+            return 0
 
         keyRate := (this.KeypressCount - LastKeyCount) / timeDiff
         mouseRate := (this.MouseMoveCount - LastMouseCount) / timeDiff
@@ -362,16 +362,16 @@ class ActivityTracker {
     }
 
     /**
-    * Check if user is actively typing
-    * @returns {Boolean} True if typing actively
-    */
+     * Check if user is actively typing
+     * @returns {Boolean} True if typing actively
+     */
     static IsTyping() {
         static LastCheck := A_TickCount
         static LastCount := 0
 
         timeDiff := (A_TickCount - LastCheck) / 1000
         if (timeDiff < 1)
-        return false
+            return false
 
         rate := (this.KeypressCount - LastCount) / timeDiff
         LastCheck := A_TickCount
@@ -381,9 +381,9 @@ class ActivityTracker {
     }
 
     /**
-    * Display activity stats
-    * @returns {void}
-    */
+     * Display activity stats
+     * @returns {void}
+     */
     static ShowStats() {
         output := "Activity Statistics`n"
         output .= "===================`n`n"
@@ -405,37 +405,37 @@ SetTimer(() => ActivityTracker.CheckIdle(), 5000)
 ; Hotkeys based on activity
 #HotIf !ActivityTracker.IsIdle
 
-^!a::MsgBox("User is active", "Activity", "Iconi")
+^!a:: MsgBox("User is active", "Activity", "Iconi")
 #HotIf
 
 #HotIf ActivityTracker.IsTyping()
 
-^!+t::MsgBox("User is typing", "Typing", "Iconi")
+^!+t:: MsgBox("User is typing", "Typing", "Iconi")
 #HotIf
 
-^!+a::ActivityTracker.ShowStats()
+^!+a:: ActivityTracker.ShowStats()
 
 /**
-* ============================================================================
-* Example 4: Clipboard-Based Context
-* ============================================================================
-*
-* @description Dynamic contexts based on clipboard content
-* @concept Clipboard awareness, content-based activation
-*/
+ * ============================================================================
+ * Example 4: Clipboard-Based Context
+ * ============================================================================
+ * 
+ * @description Dynamic contexts based on clipboard content
+ * @concept Clipboard awareness, content-based activation
+ */
 
 /**
-* Clipboard context manager
-* @class
-*/
+ * Clipboard context manager
+ * @class
+ */
 class ClipboardContext {
     static CurrentType := "empty"
     static CurrentContent := ""
 
     /**
-    * Analyze clipboard content
-    * @returns {String} Content type
-    */
+     * Analyze clipboard content
+     * @returns {String} Content type
+     */
     static AnalyzeClipboard() {
         content := A_Clipboard
 
@@ -460,19 +460,19 @@ class ClipboardContext {
     }
 
     /**
-    * Check if clipboard contains specific type
-    * @param {String} type - Type to check
-    * @returns {Boolean} True if matches
-    */
+     * Check if clipboard contains specific type
+     * @param {String} type - Type to check
+     * @returns {Boolean} True if matches
+     */
     static IsType(type) {
         this.AnalyzeClipboard()
         return (this.CurrentType = type)
     }
 
     /**
-    * Display clipboard info
-    * @returns {void}
-    */
+     * Display clipboard info
+     * @returns {void}
+     */
     static ShowInfo() {
         this.AnalyzeClipboard()
 
@@ -484,8 +484,8 @@ class ClipboardContext {
 
         if (StrLen(this.CurrentContent) > 0) {
             preview := StrLen(this.CurrentContent) > 100
-            ? SubStr(this.CurrentContent, 1, 100) "..."
-            : this.CurrentContent
+                ? SubStr(this.CurrentContent, 1, 100) "..."
+                : this.CurrentContent
 
             output .= "Preview:`n" preview
         }
@@ -498,51 +498,51 @@ class ClipboardContext {
 OnClipboardChange(ClipChanged)
 ClipChanged(Type) {
     if (Type = 1)  ; Text
-    ClipboardContext.AnalyzeClipboard()
+        ClipboardContext.AnalyzeClipboard()
 }
 
 ; Clipboard-type-specific hotkeys
 #HotIf ClipboardContext.IsType("url")
 
-^!v::MsgBox("Paste URL: " A_Clipboard, "URL", "Iconi")
+^!v:: MsgBox("Paste URL: " A_Clipboard, "URL", "Iconi")
 #HotIf
 
 #HotIf ClipboardContext.IsType("email")
 
-^!v::MsgBox("Email address: " A_Clipboard, "Email", "Iconi")
+^!v:: MsgBox("Email address: " A_Clipboard, "Email", "Iconi")
 #HotIf
 
 #HotIf ClipboardContext.IsType("filepath")
 
-^!v::MsgBox("File path: " A_Clipboard, "Path", "Iconi")
+^!v:: MsgBox("File path: " A_Clipboard, "Path", "Iconi")
 #HotIf
 
-^!+c::ClipboardContext.ShowInfo()
+^!+c:: ClipboardContext.ShowInfo()
 
 /**
-* ============================================================================
-* Example 5: Time-Based Dynamic Contexts
-* ============================================================================
-*
-* @description Contexts that change based on time of day
-* @concept Time-based switching, schedule management, temporal contexts
-*/
+ * ============================================================================
+ * Example 5: Time-Based Dynamic Contexts
+ * ============================================================================
+ * 
+ * @description Contexts that change based on time of day
+ * @concept Time-based switching, schedule management, temporal contexts
+ */
 
 /**
-* Time-based context scheduler
-* @class
-*/
+ * Time-based context scheduler
+ * @class
+ */
 class TimeScheduler {
     static Schedule := Map()
     static CurrentContext := "default"
 
     /**
-    * Add scheduled context
-    * @param {String} name - Context name
-    * @param {Integer} startHour - Start hour (0-23)
-    * @param {Integer} endHour - End hour (0-23)
-    * @returns {void}
-    */
+     * Add scheduled context
+     * @param {String} name - Context name
+     * @param {Integer} startHour - Start hour (0-23)
+     * @param {Integer} endHour - End hour (0-23)
+     * @returns {void}
+     */
     static AddSchedule(name, startHour, endHour) {
         this.Schedule[name] := {
             StartHour: startHour,
@@ -551,24 +551,24 @@ class TimeScheduler {
     }
 
     /**
-    * Get current scheduled context
-    * @returns {String} Context name
-    */
+     * Get current scheduled context
+     * @returns {String} Context name
+     */
     static GetCurrentContext() {
         hour := Integer(FormatTime(, "H"))
 
         for name, schedule in this.Schedule {
             if (hour >= schedule.StartHour && hour < schedule.EndHour)
-            return name
+                return name
         }
 
         return "default"
     }
 
     /**
-    * Update current context
-    * @returns {void}
-    */
+     * Update current context
+     * @returns {void}
+     */
     static Update() {
         newContext := this.GetCurrentContext()
         if (newContext != this.CurrentContext) {
@@ -578,19 +578,19 @@ class TimeScheduler {
     }
 
     /**
-    * Check if in specific context
-    * @param {String} name - Context name
-    * @returns {Boolean} True if in context
-    */
+     * Check if in specific context
+     * @param {String} name - Context name
+     * @returns {Boolean} True if in context
+     */
     static IsContext(name) {
         this.Update()
         return (this.CurrentContext = name)
     }
 
     /**
-    * Display schedule
-    * @returns {void}
-    */
+     * Display schedule
+     * @returns {void}
+     */
     static ShowSchedule() {
         output := "Time-Based Schedule`n"
         output .= "===================`n`n"
@@ -620,42 +620,42 @@ SetTimer(() => TimeScheduler.Update(), 60000)
 ; Time-based hotkeys
 #HotIf TimeScheduler.IsContext("morning")
 
-^!g::MsgBox("Good morning!", "Morning", "Iconi")
+^!g:: MsgBox("Good morning!", "Morning", "Iconi")
 #HotIf
 
 #HotIf TimeScheduler.IsContext("evening")
 
-^!g::MsgBox("Good evening!", "Evening", "Iconi")
+^!g:: MsgBox("Good evening!", "Evening", "Iconi")
 #HotIf
 
-^!+s::TimeScheduler.ShowSchedule()
+^!+s:: TimeScheduler.ShowSchedule()
 
 /**
-* ============================================================================
-* Example 6: Multi-Monitor Context
-* ============================================================================
-*
-* @description Contexts based on monitor configuration
-* @concept Multi-monitor, screen awareness, display contexts
-*/
+ * ============================================================================
+ * Example 6: Multi-Monitor Context
+ * ============================================================================
+ * 
+ * @description Contexts based on monitor configuration
+ * @concept Multi-monitor, screen awareness, display contexts
+ */
 
 /**
-* Monitor context manager
-* @class
-*/
+ * Monitor context manager
+ * @class
+ */
 class MonitorContext {
     /**
-    * Get monitor count
-    * @returns {Integer} Number of monitors
-    */
+     * Get monitor count
+     * @returns {Integer} Number of monitors
+     */
     static GetMonitorCount() {
         return SysGet(80)  ; SM_CMONITORS
     }
 
     /**
-    * Get current monitor for active window
-    * @returns {Integer} Monitor number
-    */
+     * Get current monitor for active window
+     * @returns {Integer} Monitor number
+     */
     static GetCurrentMonitor() {
         WinGetPos(&x, &y, &w, &h, "A")
         centerX := x + (w / 2)
@@ -665,34 +665,34 @@ class MonitorContext {
         Loop count {
             MonitorGet(A_Index, &left, &top, &right, &bottom)
             if (centerX >= left && centerX <= right
-            && centerY >= top && centerY <= bottom)
-            return A_Index
+                && centerY >= top && centerY <= bottom)
+                return A_Index
         }
 
         return 1
     }
 
     /**
-    * Check if on specific monitor
-    * @param {Integer} monitor - Monitor number
-    * @returns {Boolean} True if on monitor
-    */
+     * Check if on specific monitor
+     * @param {Integer} monitor - Monitor number
+     * @returns {Boolean} True if on monitor
+     */
     static IsMonitor(monitor) {
         return (this.GetCurrentMonitor() = monitor)
     }
 
     /**
-    * Check if multi-monitor setup
-    * @returns {Boolean} True if multiple monitors
-    */
+     * Check if multi-monitor setup
+     * @returns {Boolean} True if multiple monitors
+     */
     static IsMultiMonitor() {
         return (this.GetMonitorCount() > 1)
     }
 
     /**
-    * Display monitor info
-    * @returns {void}
-    */
+     * Display monitor info
+     * @returns {void}
+     */
     static ShowInfo() {
         output := "Monitor Information`n"
         output .= "===================`n`n"
@@ -709,7 +709,7 @@ class MonitorContext {
 
             output .= "Monitor " A_Index
             if (A_Index = current)
-            output .= " (active)"
+                output .= " (active)"
             output .= ":`n"
             output .= "  Position: " left "," top " to " right "," bottom "`n"
             output .= "  Size: " (right - left) "x" (bottom - top) "`n`n"
@@ -722,40 +722,40 @@ class MonitorContext {
 ; Multi-monitor hotkeys
 #HotIf MonitorContext.IsMultiMonitor() && MonitorContext.IsMonitor(1)
 
-^!+1::MsgBox("On primary monitor", "Monitor 1", "Iconi")
+^!+1:: MsgBox("On primary monitor", "Monitor 1", "Iconi")
 #HotIf
 
 #HotIf MonitorContext.IsMultiMonitor() && MonitorContext.IsMonitor(2)
 
-^!+2::MsgBox("On secondary monitor", "Monitor 2", "Iconi")
+^!+2:: MsgBox("On secondary monitor", "Monitor 2", "Iconi")
 #HotIf
 
-^!+m::MonitorContext.ShowInfo()
+^!+m:: MonitorContext.ShowInfo()
 
 /**
-* ============================================================================
-* Example 7: Master Context Controller
-* ============================================================================
-*
-* @description Central controller for all dynamic contexts
-* @concept Context orchestration, unified management
-*/
+ * ============================================================================
+ * Example 7: Master Context Controller
+ * ============================================================================
+ * 
+ * @description Central controller for all dynamic contexts
+ * @concept Context orchestration, unified management
+ */
 
 /**
-* Master context controller
-* @class
-*/
+ * Master context controller
+ * @class
+ */
 class ContextController {
     static Contexts := Map()
     static UpdateInterval := 1000
 
     /**
-    * Register a context
-    * @param {String} name - Context name
-    * @param {Func} checker - Checker function
-    * @param {Integer} priority - Priority (higher = more important)
-    * @returns {void}
-    */
+     * Register a context
+     * @param {String} name - Context name
+     * @param {Func} checker - Checker function
+     * @param {Integer} priority - Priority (higher = more important)
+     * @returns {void}
+     */
     static Register(name, checker, priority := 0) {
         this.Contexts[name] := {
             Name: name,
@@ -766,9 +766,9 @@ class ContextController {
     }
 
     /**
-    * Update all contexts
-    * @returns {void}
-    */
+     * Update all contexts
+     * @returns {void}
+     */
     static UpdateAll() {
         for name, context in this.Contexts {
             context.Active := context.Checker.Call()
@@ -776,15 +776,15 @@ class ContextController {
     }
 
     /**
-    * Get active contexts sorted by priority
-    * @returns {Array} Active context names
-    */
+     * Get active contexts sorted by priority
+     * @returns {Array} Active context names
+     */
     static GetActiveContexts() {
         active := []
 
         for name, context in this.Contexts {
             if context.Active
-            active.Push(context)
+                active.Push(context)
         }
 
         ; Sort by priority
@@ -792,15 +792,15 @@ class ContextController {
 
         names := []
         for context in active
-        names.Push(context.Name)
+            names.Push(context.Name)
 
         return names
     }
 
     /**
-    * Sort contexts by priority
-    * @private
-    */
+     * Sort contexts by priority
+     * @private
+     */
     static SortByPriority(contexts) {
         ; Simple bubble sort
         n := contexts.Length
@@ -819,9 +819,9 @@ class ContextController {
     }
 
     /**
-    * Display context status
-    * @returns {void}
-    */
+     * Display context status
+     * @returns {void}
+     */
     static ShowStatus() {
         output := "Context Controller Status`n"
         output .= "=========================`n`n"
@@ -836,7 +836,7 @@ class ContextController {
         output .= "`nInactive Contexts:`n"
         for name, context in this.Contexts {
             if !context.Active
-            output .= "  ○ " name "`n"
+                output .= "  ○ " name "`n"
         }
 
         MsgBox(output, "Context Status", "Iconi")
@@ -852,20 +852,20 @@ ContextController.Register("MultiMonitor", () => MonitorContext.IsMultiMonitor()
 ; Update all contexts periodically
 SetTimer(() => ContextController.UpdateAll(), 1000)
 
-^!+ctrl::ContextController.ShowStatus()
+^!+ctrl:: ContextController.ShowStatus()
 
 /**
-* ============================================================================
-* STARTUP AND HELP
-* ============================================================================
-*/
+ * ============================================================================
+ * STARTUP AND HELP
+ * ============================================================================
+ */
 
 TrayTip("Dynamic contexts loaded", "Script Ready", "Iconi Mute")
 
 /**
-* Help
-*/
-^!help::{
+ * Help
+ */
+^!help:: {
     help := "Dynamic Context Examples`n"
     help .= "========================`n`n"
 

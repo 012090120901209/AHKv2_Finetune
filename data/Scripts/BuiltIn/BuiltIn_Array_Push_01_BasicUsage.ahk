@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Push() - Basic Usage Examples
-* ============================================================================
-*
-* The Push() method adds one or more elements to the end of an array and
-* returns the new length of the array.
-*
-* Syntax: array.Push(value1, value2, ..., valueN)
-*
-* @description Comprehensive examples demonstrating basic Push() operations
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Push() - Basic Usage Examples
+ * ============================================================================
+ * 
+ * The Push() method adds one or more elements to the end of an array and
+ * returns the new length of the array.
+ * 
+ * Syntax: array.Push(value1, value2, ..., valueN)
+ * 
+ * @description Comprehensive examples demonstrating basic Push() operations
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Single Element Push
@@ -60,7 +60,7 @@ Example2_MultipleElementPush() {
 
     ; Can mix types
     mixed := ["text"]
-    mixed.Push(42, true, {key: "value"}, [1, 2, 3])
+    mixed.Push(42, true, { key: "value" }, [1, 2, 3])
     OutputDebug("Mixed types: " FormatArray(mixed) "`n")
     OutputDebug("`n")
 }
@@ -87,7 +87,7 @@ Example3_DifferentDataTypes() {
     OutputDebug("After booleans: " FormatArray(collection) "`n")
 
     ; Push objects
-    person := {name: "John", age: 30}
+    person := { name: "John", age: 30 }
     collection.Push(person)
     OutputDebug("After object: Length = " collection.Length "`n")
 
@@ -259,9 +259,9 @@ Example7_PracticalUseCases() {
 
     ; Use Case 3: Configuration builder
     config := []
-    config.Push({setting: "theme", value: "dark"})
-    config.Push({setting: "language", value: "en"})
-    config.Push({setting: "autoSave", value: true})
+    config.Push({ setting: "theme", value: "dark" })
+    config.Push({ setting: "language", value: "en" })
+    config.Push({ setting: "autoSave", value: true })
 
     OutputDebug("Config entries: " config.Length "`n")
     for entry in config {
@@ -286,10 +286,10 @@ Example7_PracticalUseCases() {
 ; ============================================================================
 
 /**
-* Formats an array for display
-* @param {Array} arr - The array to format
-* @returns {String} Formatted string representation
-*/
+ * Formats an array for display
+ * @param {Array} arr - The array to format
+ * @returns {String} Formatted string representation
+ */
 FormatArray(arr) {
     if (arr.Length = 0) {
         return "[]"
@@ -343,7 +343,7 @@ Main() {
     OutputDebug(String.Repeat("=", 80) "`n")
 
     MsgBox("Array.Push() examples completed!`nCheck DebugView for output.",
-    "Examples Complete", "Icon!")
+        "Examples Complete", "Icon!")
 }
 
 ; Run the examples

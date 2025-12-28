@@ -14,14 +14,14 @@
 DemoJSONDump() {
     ; Create data structure using Map and Array
     data := Map(
-    "name", "My Script",
-    "version", "1.0.0",
-    "settings", Map(
-    "theme", "dark",
-    "autoSave", true,
-    "maxItems", 100
-    ),
-    "tags", ["automation", "productivity", "v2"]
+        "name", "My Script",
+        "version", "1.0.0",
+        "settings", Map(
+            "theme", "dark",
+            "autoSave", true,
+            "maxItems", 100
+        ),
+        "tags", ["automation", "productivity", "v2"]
     )
 
     ; Using cJson library (commented out):
@@ -43,15 +43,15 @@ DemoJSONDump() {
     )'
 
     MsgBox("JSON Dump Demonstration`n`n"
-    "With cJson library:`n"
-    "data := Map('key', 'value')`n"
-    "jsonString := JSON.Dump(data, 2)  ; Indent=2`n`n"
-    "Example Output:`n" conceptJSON "`n`n"
-    "Perfect for:`n"
-    "- Saving config files`n"
-    "- API POST requests`n"
-    "- Data export",
-    "cJson Dump Demo")
+        "With cJson library:`n"
+        "data := Map('key', 'value')`n"
+        "jsonString := JSON.Dump(data, 2)  ; Indent=2`n`n"
+        "Example Output:`n" conceptJSON "`n`n"
+        "Perfect for:`n"
+        "- Saving config files`n"
+        "- API POST requests`n"
+        "- Data export",
+        "cJson Dump Demo")
 }
 
 ; Real implementation example (commented out, requires library):

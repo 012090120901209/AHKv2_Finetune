@@ -1,44 +1,44 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Gdi32_01_Drawing.ahk
-*
-* DESCRIPTION:
-* Demonstrates drawing operations using GDI32 API through DllCall.
-* Shows how to draw lines, rectangles, ellipses, polygons, and other shapes
-* using device context handles.
-*
-* FEATURES:
-* - Device context (DC) management
-* - Drawing lines with LineTo and MoveToEx
-* - Drawing rectangles and ellipses
-* - Polygon and polyline drawing
-* - Pen and brush creation
-* - Drawing arcs and chords
-* - Bezier curves
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft GDI Drawing Functions
-* https://docs.microsoft.com/en-us/windows/win32/gdi/drawing-functions
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with GDI32 functions
-* - Device context handle management
-* - GDI object creation and selection
-* - Coordinate systems
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Getting and releasing device contexts
-* 2. Creating pens and brushes
-* 3. Drawing basic shapes
-* 4. Working with GDI handles
-* 5. Selecting objects into DC
-* 6. Cleaning up GDI resources
-* 7. Drawing complex paths
-*/
+ * BuiltIn_DllCall_Gdi32_01_Drawing.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates drawing operations using GDI32 API through DllCall.
+ * Shows how to draw lines, rectangles, ellipses, polygons, and other shapes
+ * using device context handles.
+ * 
+ * FEATURES:
+ * - Device context (DC) management
+ * - Drawing lines with LineTo and MoveToEx
+ * - Drawing rectangles and ellipses
+ * - Polygon and polyline drawing
+ * - Pen and brush creation
+ * - Drawing arcs and chords
+ * - Bezier curves
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft GDI Drawing Functions
+ * https://docs.microsoft.com/en-us/windows/win32/gdi/drawing-functions
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with GDI32 functions
+ * - Device context handle management
+ * - GDI object creation and selection
+ * - Coordinate systems
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Getting and releasing device contexts
+ * 2. Creating pens and brushes
+ * 3. Drawing basic shapes
+ * 4. Working with GDI handles
+ * 5. Selecting objects into DC
+ * 6. Cleaning up GDI resources
+ * 7. Drawing complex paths
+ */
 
 global testGui := ""
 
@@ -57,10 +57,10 @@ Example1_LineDrawing() {
 
     ; Create red pen
     RED_PEN := DllCall("Gdi32.dll\CreatePen"
-    , "Int", 0          ; PS_SOLID
-    , "Int", 2          ; width
-    , "UInt", 0x000000FF  ; RGB(255,0,0)
-    , "Ptr")
+        , "Int", 0          ; PS_SOLID
+        , "Int", 2          ; width
+        , "UInt", 0x000000FF  ; RGB(255,0,0)
+        , "Ptr")
 
     oldPen := DllCall("Gdi32.dll\SelectObject", "Ptr", hdc, "Ptr", RED_PEN, "Ptr")
 
@@ -98,25 +98,25 @@ Example2_ShapesDrawing() {
 
     ; Draw rectangle
     DllCall("Gdi32.dll\Rectangle"
-    , "Ptr", hdc
-    , "Int", 20, "Int", 20
-    , "Int", 120, "Int", 80
-    , "Int")
+        , "Ptr", hdc
+        , "Int", 20, "Int", 20
+        , "Int", 120, "Int", 80
+        , "Int")
 
     ; Draw ellipse
     DllCall("Gdi32.dll\Ellipse"
-    , "Ptr", hdc
-    , "Int", 140, "Int", 20
-    , "Int", 240, "Int", 80
-    , "Int")
+        , "Ptr", hdc
+        , "Int", 140, "Int", 20
+        , "Int", 240, "Int", 80
+        , "Int")
 
     ; Draw rounded rectangle
     DllCall("Gdi32.dll\RoundRect"
-    , "Ptr", hdc
-    , "Int", 20, "Int", 100
-    , "Int", 120, "Int", 160
-    , "Int", 20, "Int", 20
-    , "Int")
+        , "Ptr", hdc
+        , "Int", 20, "Int", 100
+        , "Int", 120, "Int", 160
+        , "Int", 20, "Int", 20
+        , "Int")
 
     DllCall("Gdi32.dll\SelectObject", "Ptr", hdc, "Ptr", oldPen, "Ptr")
     DllCall("Gdi32.dll\DeleteObject", "Ptr", bluePen, "Int")
@@ -188,10 +188,10 @@ Example4_Polygons() {
 
     ; Draw polygon
     DllCall("Gdi32.dll\Polygon"
-    , "Ptr", hdc
-    , "Ptr", points.Ptr
-    , "Int", 3
-    , "Int")
+        , "Ptr", hdc
+        , "Ptr", points.Ptr
+        , "Int", 3
+        , "Int")
 
     ; Draw pentagon
     points2 := Buffer(20, 0)  ; 5 points
@@ -234,33 +234,33 @@ Example5_ArcsChords() {
 
     ; Draw arc
     DllCall("Gdi32.dll\Arc"
-    , "Ptr", hdc
-    , "Int", 20, "Int", 20    ; left, top
-    , "Int", 120, "Int", 120  ; right, bottom
-    , "Int", 70, "Int", 20    ; xStartArc, yStartArc
-    , "Int", 20, "Int", 70    ; xEndArc, yEndArc
-    , "Int")
+        , "Ptr", hdc
+        , "Int", 20, "Int", 20    ; left, top
+        , "Int", 120, "Int", 120  ; right, bottom
+        , "Int", 70, "Int", 20    ; xStartArc, yStartArc
+        , "Int", 20, "Int", 70    ; xEndArc, yEndArc
+        , "Int")
 
     ; Draw chord
     DllCall("Gdi32.dll\Chord"
-    , "Ptr", hdc
-    , "Int", 140, "Int", 20
-    , "Int", 240, "Int", 120
-    , "Int", 190, "Int", 20
-    , "Int", 140, "Int", 70
-    , "Int")
+        , "Ptr", hdc
+        , "Int", 140, "Int", 20
+        , "Int", 240, "Int", 120
+        , "Int", 190, "Int", 20
+        , "Int", 140, "Int", 70
+        , "Int")
 
     ; Draw pie
     greenBrush := DllCall("Gdi32.dll\CreateSolidBrush", "UInt", 0x0000FF00, "Ptr")
     oldBrush := DllCall("Gdi32.dll\SelectObject", "Ptr", hdc, "Ptr", greenBrush, "Ptr")
 
     DllCall("Gdi32.dll\Pie"
-    , "Ptr", hdc
-    , "Int", 260, "Int", 20
-    , "Int", 360, "Int", 120
-    , "Int", 310, "Int", 20
-    , "Int", 360, "Int", 70
-    , "Int")
+        , "Ptr", hdc
+        , "Int", 260, "Int", 20
+        , "Int", 360, "Int", 120
+        , "Int", 310, "Int", 20
+        , "Int", 360, "Int", 70
+        , "Int")
 
     DllCall("Gdi32.dll\SelectObject", "Ptr", hdc, "Ptr", oldBrush, "Ptr")
     DllCall("Gdi32.dll\DeleteObject", "Ptr", greenBrush, "Int")
@@ -366,7 +366,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "GDI Drawing Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_LineDrawing()

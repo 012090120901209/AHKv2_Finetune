@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Binary_03_Serialization.ahk
-*
-* DESCRIPTION:
-* Data serialization and deserialization using binary formats.
-* Converting objects/data structures to binary and back.
-*
-* FEATURES:
-* - Object serialization to binary
-* - Binary deserialization to objects
-* - Complex data structure handling
-* - Version-aware serialization
-* - Compact binary formats
-* - Data persistence
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Binary Operations
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Custom serialization protocols
-* - Binary data packing
-* - Object reconstruction
-* - Type encoding/decoding
-* - Efficient data storage
-*
-* LEARNING POINTS:
-* 1. Serialization converts objects to byte streams
-* 2. Binary format is more compact than text
-* 3. Type information must be preserved
-* 4. Versioning enables format evolution
-* 5. Deserialization must match serialization format
-*/
+ * BuiltIn_Binary_03_Serialization.ahk
+ * 
+ * DESCRIPTION:
+ * Data serialization and deserialization using binary formats.
+ * Converting objects/data structures to binary and back.
+ * 
+ * FEATURES:
+ * - Object serialization to binary
+ * - Binary deserialization to objects
+ * - Complex data structure handling
+ * - Version-aware serialization
+ * - Compact binary formats
+ * - Data persistence
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Binary Operations
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Custom serialization protocols
+ * - Binary data packing
+ * - Object reconstruction
+ * - Type encoding/decoding
+ * - Efficient data storage
+ * 
+ * LEARNING POINTS:
+ * 1. Serialization converts objects to byte streams
+ * 2. Binary format is more compact than text
+ * 3. Type information must be preserved
+ * 4. Versioning enables format evolution
+ * 5. Deserialization must match serialization format
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Simple Object Serialization
@@ -40,7 +40,7 @@
 Example1_SimpleObject() {
 
     ; Create and serialize
-    user := {id: 1001, name: "John Doe", email: "john@example.com"}
+    user := { id: 1001, name: "John Doe", email: "john@example.com" }
     serialized := Serializer.SerializeUser(user)
 
     ; Deserialize
@@ -150,7 +150,7 @@ ShowMenu() {
     choice := InputBox(menu, "Binary Serialization", "w450 h250")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_SimpleObject()
@@ -211,7 +211,7 @@ class Serializer {
         offset += 4
         email := StrGet(buf.Ptr + offset, emailLen, "UTF-8")
 
-        return {id: id, name: name, email: email}
+        return { id: id, name: name, email: email }
     }
 }
 

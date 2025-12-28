@@ -14,7 +14,7 @@ class Pipeline {
         filtered := []
         for item in this.data {
             if (predicate(item))
-            filtered.Push(item)
+                filtered.Push(item)
         }
         this.data := filtered
         return this  ; Enable chaining
@@ -54,7 +54,7 @@ class Pipeline {
         result := []
         Loop this.data.Length {
             if (A_Index > count)
-            result.Push(this.data[A_Index])
+                result.Push(this.data[A_Index])
         }
         this.data := result
         return this
@@ -79,7 +79,7 @@ class Pipeline {
                 }
             }
             if (!swapped)
-            break
+                break
         }
 
         this.data := arr
@@ -130,21 +130,21 @@ class Pipeline {
     ; Get average (for numeric data)
     Average() {
         if (this.data.Length = 0)
-        return 0
+            return 0
         return this.Sum() / this.data.Length
     }
 
     ; Get maximum value
     Max() {
         if (this.data.Length = 0)
-        return 0
+            return 0
         return this.Reduce((acc, val) => val > acc ? val : acc, this.data[1])
     }
 
     ; Get minimum value
     Min() {
         if (this.data.Length = 0)
-        return 0
+            return 0
         return this.Reduce((acc, val) => val < acc ? val : acc, this.data[1])
     }
 }
@@ -196,10 +196,10 @@ ExecutePipeline(*) {
     numbers := []
 
     Loop Parse, input, ","
- {
+    {
         trimmed := Trim(A_LoopField)
         if (IsNumber(trimmed))
-        numbers.Push(Integer(trimmed))
+            numbers.Push(Integer(trimmed))
     }
 
     if (numbers.Length = 0) {
@@ -270,29 +270,29 @@ ShowExamples(*) {
     Example 1: Filter and Transform
     -------------------------------
     [1,2,3,4,5,6,7,8,9,10]
-    .Filter(x => x > 5)     → [6,7,8,9,10]
-    .Map(x => x * 2)        → [12,14,16,18,20]
-    .Sum()                  → 80
+    .Filter(x => x > 5)     â†’ [6,7,8,9,10]
+    .Map(x => x * 2)        â†’ [12,14,16,18,20]
+    .Sum()                  â†’ 80
 
     Example 2: Sort and Take Top 5
     ------------------------------
     [15,3,9,22,7,18,5,12]
-    .Sort(descending)       → [22,18,15,12,9,7,5,3]
-    .Take(5)                → [22,18,15,12,9]
+    .Sort(descending)       â†’ [22,18,15,12,9,7,5,3]
+    .Take(5)                â†’ [22,18,15,12,9]
 
     Example 3: Remove Duplicates
     ----------------------------
     [1,2,2,3,3,3,4,4,4,4]
-    .Distinct()             → [1,2,3,4]
+    .Distinct()             â†’ [1,2,3,4]
 
     Example 4: Complex Chain
     -----------------------
     [5,12,3,18,7,22,9,15]
-    .Filter(x => x > 8)     → [12,18,22,15]
-    .Map(x => x * x)        → [144,324,484,225]
-    .Sort()                 → [144,225,324,484]
-    .Take(3)                → [144,225,324]
-    .Average()              → 231
+    .Filter(x => x > 8)     â†’ [12,18,22,15]
+    .Map(x => x * x)        â†’ [144,324,484,225]
+    .Sort()                 â†’ [144,225,324,484]
+    .Take(3)                â†’ [144,225,324]
+    .Average()              â†’ 231
 
     All operations are chainable!
     )"
@@ -302,7 +302,7 @@ ShowExamples(*) {
 
 ArrayToString(arr) {
     if (!IsObject(arr) || arr.Length = 0)
-    return "[]"
+        return "[]"
 
     result := "["
     for item in arr {

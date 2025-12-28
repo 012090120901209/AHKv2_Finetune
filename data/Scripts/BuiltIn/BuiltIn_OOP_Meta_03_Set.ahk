@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Meta_03_Set.ahk
-*
-* DESCRIPTION:
-* Demonstrates the __Set meta-function in AutoHotkey v2. __Set is invoked when
-* setting an undefined property, enabling property validation, type coercion,
-* readonly properties, and change tracking.
-*
-* FEATURES:
-* - __Set meta-function basics
-* - Property validation on assignment
-* - Readonly property enforcement
-* - Property change tracking
-* - Type coercion
-* - Computed setters
-* - Property observers/watchers
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - __Set(name, params, value) signature
-* - Property assignment interception
-* - Value validation before assignment
-* - Preventing property modification
-* - Change notification patterns
-* - Type enforcement
-*
-* LEARNING POINTS:
-* 1. __Set intercepts property assignments
-* 2. Can validate values before setting
-* 3. Enables readonly properties
-* 4. Can track property changes
-* 5. Allows type coercion
-* 6. Works with dot and bracket notation
-* 7. Can trigger side effects on assignment
-*/
+ * BuiltIn_OOP_Meta_03_Set.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the __Set meta-function in AutoHotkey v2. __Set is invoked when
+ * setting an undefined property, enabling property validation, type coercion,
+ * readonly properties, and change tracking.
+ * 
+ * FEATURES:
+ * - __Set meta-function basics
+ * - Property validation on assignment
+ * - Readonly property enforcement
+ * - Property change tracking
+ * - Type coercion
+ * - Computed setters
+ * - Property observers/watchers
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - __Set(name, params, value) signature
+ * - Property assignment interception
+ * - Value validation before assignment
+ * - Preventing property modification
+ * - Change notification patterns
+ * - Type enforcement
+ * 
+ * LEARNING POINTS:
+ * 1. __Set intercepts property assignments
+ * 2. Can validate values before setting
+ * 3. Enables readonly properties
+ * 4. Can track property changes
+ * 5. Allows type coercion
+ * 6. Works with dot and bracket notation
+ * 7. Can trigger side effects on assignment
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic __Set Usage
@@ -158,9 +158,9 @@ class TypedObject {
                 ; Try to coerce
                 if (expectedType = "Integer") {
                     if (IsNumber(value))
-                    value := Integer(value)
+                        value := Integer(value)
                     else
-                    throw TypeError("Cannot convert to Integer")
+                        throw TypeError("Cannot convert to Integer")
                 }
                 else if (expectedType = "String") {
                     value := String(value)
@@ -215,7 +215,7 @@ class Observable {
 
     Watch(property, callback) {
         if (!this._observers.Has(property))
-        this._observers[property] := []
+            this._observers[property] := []
 
         this._observers[property].Push(callback)
     }
@@ -241,7 +241,7 @@ class RangeValidator {
     _ranges := Map()
 
     SetRange(name, min, max) {
-        this._ranges[name] := {Min: min, Max: max}
+        this._ranges[name] := { Min: min, Max: max }
     }
 
     __Set(name, params, value) {
@@ -250,10 +250,10 @@ class RangeValidator {
             range := this._ranges[name]
 
             if (!IsNumber(value))
-            throw TypeError("Value must be numeric")
+                throw TypeError("Value must be numeric")
 
             if (value < range.Min || value > range.Max)
-            throw ValueError(name " must be between " range.Min " and " range.Max)
+                throw ValueError(name " must be between " range.Min " and " range.Max)
         }
 
         this._data[name] := value
@@ -292,7 +292,7 @@ class Temperature {
             this._celsius := value
         }
         else if (name = "Fahrenheit") {
-            this._celsius := (value - 32) * 5/9
+            this._celsius := (value - 32) * 5 / 9
         }
         else if (name = "Kelvin") {
             this._celsius := value - 273.15
@@ -304,11 +304,11 @@ class Temperature {
 
     __Get(name, params) {
         if (name = "Celsius")
-        return this._celsius
+            return this._celsius
         if (name = "Fahrenheit")
-        return (this._celsius * 9/5) + 32
+            return (this._celsius * 9 / 5) + 32
         if (name = "Kelvin")
-        return this._celsius + 273.15
+            return this._celsius + 273.15
 
         throw Error("Unknown property: " name)
     }
@@ -367,11 +367,11 @@ user.PhoneNumber := "(555) 123-4567"
 MsgBox("Normalized phone: " user.PhoneNumber)
 
 MsgBox("=== OOP __Set Meta-Function Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic __Set interception`n"
-. "- Readonly properties`n"
-. "- Type validation and coercion`n"
-. "- Property observers`n"
-. "- Range validation`n"
-. "- Computed setters`n"
-. "- Property normalization")
+    . "This file demonstrated:`n"
+    . "- Basic __Set interception`n"
+    . "- Readonly properties`n"
+    . "- Type validation and coercion`n"
+    . "- Property observers`n"
+    . "- Range validation`n"
+    . "- Computed setters`n"
+    . "- Property normalization")

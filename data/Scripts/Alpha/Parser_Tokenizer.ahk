@@ -12,7 +12,7 @@ class Tokenizer {
             this.line := line
             this.column := column
         }
-        
+
         ToString() => this.type "(" this.value ")"
     }
 
@@ -69,7 +69,7 @@ class Tokenizer {
 
                 ; Update position
                 this.pos += StrLen(value)
-                
+
                 ; Track line/column
                 Loop StrLen(value) {
                     char := SubStr(value, A_Index, 1)

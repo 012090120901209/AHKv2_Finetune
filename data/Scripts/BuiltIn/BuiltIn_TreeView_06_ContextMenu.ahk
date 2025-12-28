@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_06_ContextMenu.ahk
-*
-* DESCRIPTION:
-* Demonstrates implementing context menus (right-click menus) for TreeView
-* controls with dynamic menu items based on selected nodes.
-*
-* FEATURES:
-* - Creating context menus for TreeView items
-* - Dynamic menu items based on selection
-* - Menu item handlers and callbacks
-* - Multi-level context menus
-* - Clipboard operations via context menu
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-* https://www.autohotkey.com/docs/v2/lib/Menu.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Menu object creation and management
-* - Context menu activation
-* - Dynamic menu modification
-* - Event-driven menu handlers
-*
-* LEARNING POINTS:
-* 1. Context menus shown via ContextMenu event or right-click
-* 2. Menu items can be added/removed dynamically
-* 3. Menu handlers receive item name as parameter
-* 4. Menus can have submenus for organization
-* 5. Check marks and icons enhance menu usability
-*/
+ * BuiltIn_TreeView_06_ContextMenu.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates implementing context menus (right-click menus) for TreeView
+ * controls with dynamic menu items based on selected nodes.
+ * 
+ * FEATURES:
+ * - Creating context menus for TreeView items
+ * - Dynamic menu items based on selection
+ * - Menu item handlers and callbacks
+ * - Multi-level context menus
+ * - Clipboard operations via context menu
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * https://www.autohotkey.com/docs/v2/lib/Menu.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Menu object creation and management
+ * - Context menu activation
+ * - Dynamic menu modification
+ * - Event-driven menu handlers
+ * 
+ * LEARNING POINTS:
+ * 1. Context menus shown via ContextMenu event or right-click
+ * 2. Menu items can be added/removed dynamically
+ * 3. Menu handlers receive item name as parameter
+ * 4. Menus can have submenus for organization
+ * 5. Check marks and icons enhance menu usability
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Context Menu
@@ -76,41 +76,41 @@ Example1_BasicContextMenu() {
     MenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         itemText := TV.GetText(selected)
 
         switch ItemName {
             case "Rename":
-            newName := InputBox("Enter new name:", "Rename", "w300 h100", itemText)
-            if (newName.Result = "OK" && newName.Value)
-            TV.Modify(selected, newName.Value)
+                newName := InputBox("Enter new name:", "Rename", "w300 h100", itemText)
+                if (newName.Result = "OK" && newName.Value)
+                    TV.Modify(selected, newName.Value)
 
             case "Delete":
-            result := MsgBox("Delete " . itemText . "?", "Confirm", "YesNo 32")
-            if (result = "Yes")
-            TV.Delete(selected)
+                result := MsgBox("Delete " . itemText . "?", "Confirm", "YesNo 32")
+                if (result = "Yes")
+                    TV.Delete(selected)
 
             case "Properties":
-            parent := TV.GetParent(selected)
-            parentText := parent ? TV.GetText(parent) : "None"
-            childCount := 0
-            child := TV.GetChild(selected)
-            while (child) {
-                childCount++
-                child := TV.GetNext(child)
-            }
+                parent := TV.GetParent(selected)
+                parentText := parent ? TV.GetText(parent) : "None"
+                childCount := 0
+                child := TV.GetChild(selected)
+                while (child) {
+                    childCount++
+                    child := TV.GetNext(child)
+                }
 
-            info := "Name: " . itemText . "`n"
-            info .= "Parent: " . parentText . "`n"
-            info .= "Children: " . childCount
+                info := "Name: " . itemText . "`n"
+                info .= "Parent: " . parentText . "`n"
+                info .= "Children: " . childCount
 
-            MsgBox(info, "Properties", 64)
+                MsgBox(info, "Properties", 64)
         }
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Right-click on any item to show context menu with Rename, Delete, and Properties.")
+        "Right-click on any item to show context menu with Rename, Delete, and Properties.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -180,7 +180,7 @@ Example2_DynamicMenu() {
 
     ShowContextMenu(GuiCtrl, Item, IsRightClick, X, Y) {
         if (!Item)
-        return
+            return
 
         TV.Modify(Item, "Select")
 
@@ -189,73 +189,73 @@ Example2_DynamicMenu() {
 
         switch itemType {
             case "root", "category":
-            RootMenu.Show(X, Y)
+                RootMenu.Show(X, Y)
             case "folder":
-            FolderMenu.Show(X, Y)
+                FolderMenu.Show(X, Y)
             case "file":
-            FileMenu.Show(X, Y)
+                FileMenu.Show(X, Y)
         }
     }
 
     FolderMenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         switch ItemName {
             case "New File...":
-            name := InputBox("Enter file name:", "New File", "w300 h100")
-            if (name.Result = "OK" && name.Value) {
-                newID := TV.Add(name.Value, selected)
-                itemTypes[newID] := "file"
-                TV.Modify(selected, "Expand")
-            }
+                name := InputBox("Enter file name:", "New File", "w300 h100")
+                if (name.Result = "OK" && name.Value) {
+                    newID := TV.Add(name.Value, selected)
+                    itemTypes[newID] := "file"
+                    TV.Modify(selected, "Expand")
+                }
 
             case "New Folder...":
-            name := InputBox("Enter folder name:", "New Folder", "w300 h100")
-            if (name.Result = "OK" && name.Value) {
-                newID := TV.Add(name.Value, selected)
-                itemTypes[newID] := "folder"
-                TV.Modify(selected, "Expand")
-            }
+                name := InputBox("Enter folder name:", "New Folder", "w300 h100")
+                if (name.Result = "OK" && name.Value) {
+                    newID := TV.Add(name.Value, selected)
+                    itemTypes[newID] := "folder"
+                    TV.Modify(selected, "Expand")
+                }
 
             case "Rename":
-            oldName := TV.GetText(selected)
-            newName := InputBox("Enter new name:", "Rename", "w300 h100", oldName)
-            if (newName.Result = "OK" && newName.Value)
-            TV.Modify(selected, newName.Value)
+                oldName := TV.GetText(selected)
+                newName := InputBox("Enter new name:", "Rename", "w300 h100", oldName)
+                if (newName.Result = "OK" && newName.Value)
+                    TV.Modify(selected, newName.Value)
 
             case "Delete Folder":
-            result := MsgBox("Delete this folder and all contents?", "Confirm", "YesNo 32")
-            if (result = "Yes")
-            TV.Delete(selected)
+                result := MsgBox("Delete this folder and all contents?", "Confirm", "YesNo 32")
+                if (result = "Yes")
+                    TV.Delete(selected)
         }
     }
 
     FileMenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         itemText := TV.GetText(selected)
 
         switch ItemName {
             case "Open":
-            MsgBox("Opening: " . itemText, "Open", 64)
+                MsgBox("Opening: " . itemText, "Open", 64)
 
             case "Edit":
-            MsgBox("Editing: " . itemText, "Edit", 64)
+                MsgBox("Editing: " . itemText, "Edit", 64)
 
             case "Rename":
-            newName := InputBox("Enter new name:", "Rename", "w300 h100", itemText)
-            if (newName.Result = "OK" && newName.Value)
-            TV.Modify(selected, newName.Value)
+                newName := InputBox("Enter new name:", "Rename", "w300 h100", itemText)
+                if (newName.Result = "OK" && newName.Value)
+                    TV.Modify(selected, newName.Value)
 
             case "Delete":
-            TV.Delete(selected)
+                TV.Delete(selected)
 
             case "Properties":
-            MsgBox("File: " . itemText, "Properties", 64)
+                MsgBox("File: " . itemText, "Properties", 64)
         }
     }
 
@@ -264,22 +264,22 @@ Example2_DynamicMenu() {
 
         switch ItemName {
             case "New Folder...":
-            name := InputBox("Enter folder name:", "New Folder", "w300 h100")
-            if (name.Result = "OK" && name.Value) {
-                newID := TV.Add(name.Value, selected)
-                itemTypes[newID] := "folder"
-            }
+                name := InputBox("Enter folder name:", "New Folder", "w300 h100")
+                if (name.Result = "OK" && name.Value) {
+                    newID := TV.Add(name.Value, selected)
+                    itemTypes[newID] := "folder"
+                }
 
             case "Expand All":
-            ExpandAll(TV, selected)
+                ExpandAll(TV, selected)
 
             case "Collapse All":
-            CollapseAll(TV, selected)
+                CollapseAll(TV, selected)
         }
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Different items show different context menus (folders vs files).")
+        "Different items show different context menus (folders vs files).")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -291,16 +291,16 @@ MarkFilesRecursive(TV, NodeID, itemTypes) {
     child := TV.GetChild(NodeID)
     while (child) {
         if (!TV.GetChild(child))
-        itemTypes[child] := "file"
+            itemTypes[child] := "file"
         else
-        MarkFilesRecursive(TV, child, itemTypes)
+            MarkFilesRecursive(TV, child, itemTypes)
         child := TV.GetNext(child)
     }
 }
 
 ExpandAll(TV, NodeID) {
     if (NodeID)
-    TV.Modify(NodeID, "Expand")
+        TV.Modify(NodeID, "Expand")
     child := TV.GetChild(NodeID)
     while (child) {
         ExpandAll(TV, child)
@@ -376,7 +376,7 @@ Example3_MultiLevelMenus() {
 
     ShowMenu(GuiCtrl, Item, IsRightClick, X, Y) {
         if (Item)
-        TV.Modify(Item, "Select")
+            TV.Modify(Item, "Select")
         ContextMenu.Show(X, Y)
     }
 
@@ -385,76 +385,76 @@ Example3_MultiLevelMenus() {
 
         switch ItemName {
             case "Text File":
-            if (selected) {
-                newID := TV.Add("NewFile.txt", selected)
-                TV.Modify(selected, "Expand")
-                TV.Modify(newID, "Select")
-            }
+                if (selected) {
+                    newID := TV.Add("NewFile.txt", selected)
+                    TV.Modify(selected, "Expand")
+                    TV.Modify(newID, "Select")
+                }
 
             case "Folder":
-            if (selected) {
-                newID := TV.Add("New Folder", selected)
-                TV.Modify(selected, "Expand")
-                TV.Modify(newID, "Select")
-            }
+                if (selected) {
+                    newID := TV.Add("New Folder", selected)
+                    TV.Modify(selected, "Expand")
+                    TV.Modify(newID, "Select")
+                }
 
             case "HTML File":
-            if (selected) {
-                newID := TV.Add("NewFile.html", selected)
-                TV.Modify(selected, "Expand")
-                TV.Modify(newID, "Select")
-            }
+                if (selected) {
+                    newID := TV.Add("NewFile.html", selected)
+                    TV.Modify(selected, "Expand")
+                    TV.Modify(newID, "Select")
+                }
 
             case "Script File":
-            if (selected) {
-                newID := TV.Add("NewScript.ahk", selected)
-                TV.Modify(selected, "Expand")
-                TV.Modify(newID, "Select")
-            }
+                if (selected) {
+                    newID := TV.Add("NewScript.ahk", selected)
+                    TV.Modify(selected, "Expand")
+                    TV.Modify(newID, "Select")
+                }
 
             case "By Name (A-Z)":
-            MsgBox("Sorting by name A-Z", "Sort", 64)
+                MsgBox("Sorting by name A-Z", "Sort", 64)
 
             case "By Name (Z-A)":
-            MsgBox("Sorting by name Z-A", "Sort", 64)
+                MsgBox("Sorting by name Z-A", "Sort", 64)
 
             case "Expand All":
-            if (selected)
-            ExpandAll(TV, selected)
+                if (selected)
+                    ExpandAll(TV, selected)
 
             case "Collapse All":
-            if (selected)
-            CollapseAll(TV, selected)
+                if (selected)
+                    CollapseAll(TV, selected)
 
             case "Show Hidden":
-            MsgBox("Toggle show hidden items", "View", 64)
+                MsgBox("Toggle show hidden items", "View", 64)
         }
     }
 
     MainMenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         itemText := TV.GetText(selected)
 
         switch ItemName {
             case "Cut":
-            MsgBox("Cut: " . itemText, "Cut", 64)
+                MsgBox("Cut: " . itemText, "Cut", 64)
 
             case "Copy":
-            MsgBox("Copy: " . itemText, "Copy", 64)
+                MsgBox("Copy: " . itemText, "Copy", 64)
 
             case "Paste":
-            MsgBox("Paste at: " . itemText, "Paste", 64)
+                MsgBox("Paste at: " . itemText, "Paste", 64)
 
             case "Delete":
-            TV.Delete(selected)
+                TV.Delete(selected)
         }
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Right-click to show context menu with submenus for New, Sort, and View.")
+        "Right-click to show context menu with submenus for New, Sort, and View.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -483,7 +483,7 @@ Example4_ClipboardOperations() {
     TV.Modify(Root, "Expand")
 
     ; Clipboard state
-    clipboard := {active: false, itemText: "", operation: "", sourceParent: 0}
+    clipboard := { active: false, itemText: "", operation: "", sourceParent: 0 }
 
     ; Create context menu
     ContextMenu := Menu()
@@ -505,9 +505,9 @@ Example4_ClipboardOperations() {
 
             ; Enable/disable Paste based on clipboard state
             if (clipboard.active && TV.GetChild(Item) != 0 || Item = Root)
-            ContextMenu.Enable("Paste")
+                ContextMenu.Enable("Paste")
             else
-            ContextMenu.Disable("Paste")
+                ContextMenu.Disable("Paste")
 
             ContextMenu.Show(X, Y)
         }
@@ -516,57 +516,57 @@ Example4_ClipboardOperations() {
     MenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         switch ItemName {
             case "Cut":
-            clipboard.active := true
-            clipboard.itemText := TV.GetText(selected)
-            clipboard.operation := "cut"
-            clipboard.sourceID := selected
-            clipboard.sourceParent := TV.GetParent(selected)
-            TV.Modify(selected, "Bold")
-            statusText.Value := "Cut: " . clipboard.itemText . " (Paste into a folder)"
+                clipboard.active := true
+                clipboard.itemText := TV.GetText(selected)
+                clipboard.operation := "cut"
+                clipboard.sourceID := selected
+                clipboard.sourceParent := TV.GetParent(selected)
+                TV.Modify(selected, "Bold")
+                statusText.Value := "Cut: " . clipboard.itemText . " (Paste into a folder)"
 
             case "Copy":
-            clipboard.active := true
-            clipboard.itemText := TV.GetText(selected)
-            clipboard.operation := "copy"
-            clipboard.sourceID := selected
-            statusText.Value := "Copied: " . clipboard.itemText . " (Paste into a folder)"
+                clipboard.active := true
+                clipboard.itemText := TV.GetText(selected)
+                clipboard.operation := "copy"
+                clipboard.sourceID := selected
+                statusText.Value := "Copied: " . clipboard.itemText . " (Paste into a folder)"
 
             case "Paste":
-            if (!clipboard.active)
-            return
+                if (!clipboard.active)
+                    return
 
-            ; Paste into selected folder
-            if (clipboard.operation = "cut") {
-                ; Move item
-                TV.Delete(clipboard.sourceID)
-                newID := TV.Add(clipboard.itemText, selected)
-                TV.Modify(selected, "Expand")
-                TV.Modify(newID, "Select")
-                statusText.Value := "Moved: " . clipboard.itemText
-                clipboard.active := false
-            } else {
-                ; Copy item
-                newID := TV.Add(clipboard.itemText, selected)
-                TV.Modify(selected, "Expand")
-                TV.Modify(newID, "Select")
-                statusText.Value := "Pasted: " . clipboard.itemText
-                ; Keep clipboard active for multiple pastes
-            }
+                ; Paste into selected folder
+                if (clipboard.operation = "cut") {
+                    ; Move item
+                    TV.Delete(clipboard.sourceID)
+                    newID := TV.Add(clipboard.itemText, selected)
+                    TV.Modify(selected, "Expand")
+                    TV.Modify(newID, "Select")
+                    statusText.Value := "Moved: " . clipboard.itemText
+                    clipboard.active := false
+                } else {
+                    ; Copy item
+                    newID := TV.Add(clipboard.itemText, selected)
+                    TV.Modify(selected, "Expand")
+                    TV.Modify(newID, "Select")
+                    statusText.Value := "Pasted: " . clipboard.itemText
+                    ; Keep clipboard active for multiple pastes
+                }
 
             case "Delete":
-            itemText := TV.GetText(selected)
-            TV.Delete(selected)
-            statusText.Value := "Deleted: " . itemText
-            clipboard.active := false
+                itemText := TV.GetText(selected)
+                TV.Delete(selected)
+                statusText.Value := "Deleted: " . itemText
+                clipboard.active := false
         }
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Use Cut/Copy/Paste from context menu to move or copy items between folders.")
+        "Use Cut/Copy/Paste from context menu to move or copy items between folders.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -594,9 +594,9 @@ Example5_MenuCheckmarks() {
 
     ; View options
     viewOptions := Map(
-    "ShowHidden", false,
-    "ShowExtensions", true,
-    "SortAscending", true
+        "ShowHidden", false,
+        "ShowExtensions", true,
+        "SortAscending", true
     )
 
     ; Create context menu
@@ -611,9 +611,9 @@ Example5_MenuCheckmarks() {
 
     ; Set initial checkmarks
     if (viewOptions["ShowExtensions"])
-    ContextMenu.Check("Show File Extensions")
+        ContextMenu.Check("Show File Extensions")
     if (viewOptions["SortAscending"])
-    ContextMenu.Check("Sort Ascending")
+        ContextMenu.Check("Sort Ascending")
 
     ; Show menu
     TV.OnEvent("ContextMenu", ShowMenu)
@@ -625,34 +625,34 @@ Example5_MenuCheckmarks() {
     MenuHandler(ItemName, ItemPos, MyMenu) {
         switch ItemName {
             case "Show Hidden Files":
-            viewOptions["ShowHidden"] := !viewOptions["ShowHidden"]
-            if (viewOptions["ShowHidden"])
-            ContextMenu.Check(ItemName)
-            else
-            ContextMenu.Uncheck(ItemName)
-            UpdateStatus()
+                viewOptions["ShowHidden"] := !viewOptions["ShowHidden"]
+                if (viewOptions["ShowHidden"])
+                    ContextMenu.Check(ItemName)
+                else
+                    ContextMenu.Uncheck(ItemName)
+                UpdateStatus()
 
             case "Show File Extensions":
-            viewOptions["ShowExtensions"] := !viewOptions["ShowExtensions"]
-            if (viewOptions["ShowExtensions"])
-            ContextMenu.Check(ItemName)
-            else
-            ContextMenu.Uncheck(ItemName)
-            UpdateStatus()
+                viewOptions["ShowExtensions"] := !viewOptions["ShowExtensions"]
+                if (viewOptions["ShowExtensions"])
+                    ContextMenu.Check(ItemName)
+                else
+                    ContextMenu.Uncheck(ItemName)
+                UpdateStatus()
 
             case "Sort Ascending":
-            viewOptions["SortAscending"] := !viewOptions["SortAscending"]
-            if (viewOptions["SortAscending"])
-            ContextMenu.Check(ItemName)
-            else
-            ContextMenu.Uncheck(ItemName)
-            UpdateStatus()
+                viewOptions["SortAscending"] := !viewOptions["SortAscending"]
+                if (viewOptions["SortAscending"])
+                    ContextMenu.Check(ItemName)
+                else
+                    ContextMenu.Uncheck(ItemName)
+                UpdateStatus()
 
             case "Refresh":
-            MsgBox("Refreshing view...", "Refresh", 64)
+                MsgBox("Refreshing view...", "Refresh", 64)
 
             case "Properties":
-            MsgBox("View properties", "Properties", 64)
+                MsgBox("View properties", "Properties", 64)
         }
     }
 
@@ -670,7 +670,7 @@ Example5_MenuCheckmarks() {
     UpdateStatus()
 
     infoText := myGui.Add("Text", "xm y+5 w500",
-    "Right-click to toggle view options. Checkmarks show current state.")
+        "Right-click to toggle view options. Checkmarks show current state.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -728,36 +728,36 @@ Example6_MenuIcons() {
 
     ShowMenu(GuiCtrl, Item, IsRightClick, X, Y) {
         if (Item)
-        TV.Modify(Item, "Select")
+            TV.Modify(Item, "Select")
         ContextMenu.Show(X, Y)
     }
 
     MenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         itemText := TV.GetText(selected)
 
         switch ItemName {
             case "New Folder":
-            newID := TV.Add("New Folder", selected)
-            TV.Modify(selected, "Expand")
-            TV.Modify(newID, "Select")
+                newID := TV.Add("New Folder", selected)
+                TV.Modify(selected, "Expand")
+                TV.Modify(newID, "Select")
 
             case "Delete":
-            TV.Delete(selected)
+                TV.Delete(selected)
 
             case "Cut", "Copy", "Paste":
-            MsgBox(ItemName . ": " . itemText, ItemName, 64)
+                MsgBox(ItemName . ": " . itemText, ItemName, 64)
 
             case "Properties":
-            MsgBox("Properties of: " . itemText, "Properties", 64)
+                MsgBox("Properties of: " . itemText, "Properties", 64)
         }
     }
 
     infoText := myGui.Add("Text", "xm y+10 w500",
-    "Context menu with icons from shell32.dll for better visual feedback.")
+        "Context menu with icons from shell32.dll for better visual feedback.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -786,7 +786,7 @@ Example7_CompleteSystem() {
     TV.Modify(Root, "Expand")
 
     ; Clipboard
-    clipboard := {active: false, itemText: "", operation: ""}
+    clipboard := { active: false, itemText: "", operation: "" }
 
     ; Create comprehensive menu structure
     NewMenu := Menu()
@@ -829,9 +829,9 @@ Example7_CompleteSystem() {
 
             ; Enable/disable Paste
             if (clipboard.active && (TV.GetChild(Item) || Item = Root))
-            ContextMenu.Enable("Paste")
+                ContextMenu.Enable("Paste")
             else
-            ContextMenu.Disable("Paste")
+                ContextMenu.Disable("Paste")
 
             ContextMenu.Show(X, Y)
         }
@@ -840,78 +840,78 @@ Example7_CompleteSystem() {
     SubMenuHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         switch ItemName {
             case "File":
-            name := InputBox("File name:", "New File", "w300", "newfile.txt")
-            if (name.Result = "OK" && name.Value) {
-                newID := TV.Add(name.Value, selected)
-                TV.Modify(selected, "Expand")
-            }
+                name := InputBox("File name:", "New File", "w300", "newfile.txt")
+                if (name.Result = "OK" && name.Value) {
+                    newID := TV.Add(name.Value, selected)
+                    TV.Modify(selected, "Expand")
+                }
 
             case "Folder":
-            name := InputBox("Folder name:", "New Folder", "w300", "newfolder")
-            if (name.Result = "OK" && name.Value) {
-                newID := TV.Add(name.Value, selected)
-                TV.Modify(selected, "Expand")
-            }
+                name := InputBox("Folder name:", "New Folder", "w300", "newfolder")
+                if (name.Result = "OK" && name.Value) {
+                    newID := TV.Add(name.Value, selected)
+                    TV.Modify(selected, "Expand")
+                }
 
             case "Expand All":
-            ExpandAll(TV, selected)
+                ExpandAll(TV, selected)
 
             case "Collapse All":
-            CollapseAll(TV, selected)
+                CollapseAll(TV, selected)
 
             case "Refresh":
-            UpdateStatus("Refreshed")
+                UpdateStatus("Refreshed")
         }
     }
 
     MainHandler(ItemName, ItemPos, MyMenu) {
         selected := TV.GetSelection()
         if (!selected)
-        return
+            return
 
         itemText := TV.GetText(selected)
 
         switch ItemName {
             case "Cut":
-            clipboard.active := true
-            clipboard.itemText := itemText
-            clipboard.operation := "cut"
-            clipboard.sourceID := selected
-            UpdateStatus("Cut: " . itemText)
+                clipboard.active := true
+                clipboard.itemText := itemText
+                clipboard.operation := "cut"
+                clipboard.sourceID := selected
+                UpdateStatus("Cut: " . itemText)
 
             case "Copy":
-            clipboard.active := true
-            clipboard.itemText := itemText
-            clipboard.operation := "copy"
-            clipboard.sourceID := selected
-            UpdateStatus("Copied: " . itemText)
+                clipboard.active := true
+                clipboard.itemText := itemText
+                clipboard.operation := "copy"
+                clipboard.sourceID := selected
+                UpdateStatus("Copied: " . itemText)
 
             case "Paste":
-            if (!clipboard.active)
-            return
-            if (clipboard.operation = "cut") {
-                TV.Delete(clipboard.sourceID)
-                clipboard.active := false
-            }
-            newID := TV.Add(clipboard.itemText, selected)
-            TV.Modify(selected, "Expand")
-            UpdateStatus("Pasted: " . clipboard.itemText)
+                if (!clipboard.active)
+                    return
+                if (clipboard.operation = "cut") {
+                    TV.Delete(clipboard.sourceID)
+                    clipboard.active := false
+                }
+                newID := TV.Add(clipboard.itemText, selected)
+                TV.Modify(selected, "Expand")
+                UpdateStatus("Pasted: " . clipboard.itemText)
 
             case "Rename":
-            newName := InputBox("New name:", "Rename", "w300", itemText)
-            if (newName.Result = "OK" && newName.Value)
-            TV.Modify(selected, newName.Value)
+                newName := InputBox("New name:", "Rename", "w300", itemText)
+                if (newName.Result = "OK" && newName.Value)
+                    TV.Modify(selected, newName.Value)
 
             case "Delete":
-            TV.Delete(selected)
-            UpdateStatus("Deleted: " . itemText)
+                TV.Delete(selected)
+                UpdateStatus("Deleted: " . itemText)
 
             case "Properties":
-            ShowProperties(selected)
+                ShowProperties(selected)
         }
     }
 
@@ -941,7 +941,7 @@ Example7_CompleteSystem() {
     }
 
     infoText := myGui.Add("Text", "xm y+5 w500",
-    "Complete context menu system with icons, submenus, and clipboard operations.")
+        "Complete context menu system with icons, submenus, and clipboard operations.")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -1009,3 +1009,4 @@ COMMON PATTERNS:
 ; Example5_MenuCheckmarks()
 ; Example6_MenuIcons()
 ; Example7_CompleteSystem()
+

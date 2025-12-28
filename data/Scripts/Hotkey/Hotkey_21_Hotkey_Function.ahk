@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Hotkey() Function - Dynamic Hotkey Creation
-* Create, modify, enable, and disable hotkeys at runtime
-*/
+ * Hotkey() Function - Dynamic Hotkey Creation
+ * Create, modify, enable, and disable hotkeys at runtime
+ */
 
 ; Create a hotkey dynamically using Hotkey() function
 Hotkey("F6", MyFunction)

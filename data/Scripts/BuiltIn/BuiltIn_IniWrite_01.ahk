@@ -1,19 +1,19 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 INI Write Examples - Part 1
-* ============================================================================
-*
-* This file demonstrates comprehensive usage of the IniWrite function in
-* AutoHotkey v2, including writing INI files, creating sections, and
-* configuration management.
-*
-* @description Examples of writing INI configuration files
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 INI Write Examples - Part 1
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive usage of the IniWrite function in
+ * AutoHotkey v2, including writing INI files, creating sections, and
+ * configuration management.
+ * 
+ * @description Examples of writing INI configuration files
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic INI Writing
@@ -21,7 +21,7 @@
 
 Example1_BasicIniWrite() {
     MsgBox "=== Example 1: Basic INI Writing ===`n`n" .
-    "Creating an INI configuration file..."
+        "Creating an INI configuration file..."
 
     iniFile := A_ScriptDir . "\basic_config.ini"
 
@@ -85,7 +85,7 @@ class ConfigWriter {
         joined := ""
         for item in arr {
             if (joined != "")
-            joined .= ","
+                joined .= ","
             joined .= item
         }
         IniWrite joined, this.iniFile, section, key
@@ -94,18 +94,18 @@ class ConfigWriter {
     WriteSection(section, data) {
         for key, value in data {
             if (value is Integer)
-            this.SetInteger(section, key, value)
+                this.SetInteger(section, key, value)
             else if (value is Array)
-            this.SetArray(section, key, value)
+                this.SetArray(section, key, value)
             else
-            this.SetString(section, key, value)
+                this.SetString(section, key, value)
         }
     }
 }
 
 Example2_ConfigWriterClass() {
     MsgBox "=== Example 2: Config Writer Class ===`n`n" .
-    "Using ConfigWriter class..."
+        "Using ConfigWriter class..."
 
     iniFile := A_ScriptDir . "\class_config.ini"
 
@@ -123,10 +123,10 @@ Example2_ConfigWriterClass() {
 
     ; Write entire section
     dbConfig := Map(
-    "Host", "localhost",
-    "Port", 5432,
-    "Database", "mydb",
-    "SSL", true
+        "Host", "localhost",
+        "Port", 5432,
+        "Database", "mydb",
+        "SSL", true
     )
 
     writer.WriteSection("Database", dbConfig)
@@ -150,7 +150,7 @@ Example2_ConfigWriterClass() {
 
 Example3_TemplateConfig() {
     MsgBox "=== Example 3: Template Configuration ===`n`n" .
-    "Creating configuration from template..."
+        "Creating configuration from template..."
 
     iniFile := A_ScriptDir . "\template_output.ini"
 
@@ -160,12 +160,12 @@ Example3_TemplateConfig() {
 
     ; Template variables
     template := Map(
-    "{{APP_NAME}}", "ProductionApp",
-    "{{VERSION}}", "2.0.1",
-    "{{DB_HOST}}", "prod-db.example.com",
-    "{{DB_PORT}}", "5432",
-    "{{CACHE_SIZE}}", "1024",
-    "{{LOG_LEVEL}}", "INFO"
+        "{{APP_NAME}}", "ProductionApp",
+        "{{VERSION}}", "2.0.1",
+        "{{DB_HOST}}", "prod-db.example.com",
+        "{{DB_PORT}}", "5432",
+        "{{CACHE_SIZE}}", "1024",
+        "{{LOG_LEVEL}}", "INFO"
     )
 
     ; Write configuration using template
@@ -194,7 +194,7 @@ Example3_TemplateConfig() {
 
 Example4_BatchWrite() {
     MsgBox "=== Example 4: Batch Configuration Writing ===`n`n" .
-    "Writing multiple configurations..."
+        "Writing multiple configurations..."
 
     iniFile := A_ScriptDir . "\batch_config.ini"
 
@@ -204,12 +204,12 @@ Example4_BatchWrite() {
 
     ; Define multiple configurations
     configs := [
-    Map("section", "Server1", "key", "Host", "value", "server1.example.com"),
-    Map("section", "Server1", "key", "Port", "value", "8080"),
-    Map("section", "Server2", "key", "Host", "value", "server2.example.com"),
-    Map("section", "Server2", "key", "Port", "value", "8081"),
-    Map("section", "Server3", "key", "Host", "value", "server3.example.com"),
-    Map("section", "Server3", "key", "Port", "value", "8082")
+        Map("section", "Server1", "key", "Host", "value", "server1.example.com"),
+        Map("section", "Server1", "key", "Port", "value", "8080"),
+        Map("section", "Server2", "key", "Host", "value", "server2.example.com"),
+        Map("section", "Server2", "key", "Port", "value", "8081"),
+        Map("section", "Server3", "key", "Host", "value", "server3.example.com"),
+        Map("section", "Server3", "key", "Port", "value", "8082")
     ]
 
     ; Write all configurations
@@ -265,42 +265,42 @@ class UserSettings {
 
 Example5_UserSettingsManager() {
     MsgBox "=== Example 5: User Settings Manager ===`n`n" .
-    "Saving user-specific settings..."
+        "Saving user-specific settings..."
 
     settings := UserSettings("john_doe")
 
     ; Save profile
     profile := Map(
-    "name", "John Doe",
-    "email", "john@example.com",
-    "role", "Administrator"
+        "name", "John Doe",
+        "email", "john@example.com",
+        "role", "Administrator"
     )
     settings.SaveProfile(profile)
 
     ; Save preferences
     prefs := Map(
-    "Theme", "Dark",
-    "FontSize", "12",
-    "Language", "English",
-    "AutoSave", "true"
+        "Theme", "Dark",
+        "FontSize", "12",
+        "Language", "English",
+        "AutoSave", "true"
     )
     settings.SavePreferences(prefs)
 
     ; Save recent files
     recentFiles := [
-    "C:\Documents\project1.txt",
-    "C:\Documents\project2.txt",
-    "C:\Documents\notes.txt"
+        "C:\Documents\project1.txt",
+        "C:\Documents\project2.txt",
+        "C:\Documents\notes.txt"
     ]
     settings.SaveRecentFiles(recentFiles)
 
     ; Save window state
     windowState := Map(
-    "x", 100,
-    "y", 100,
-    "width", 1280,
-    "height", 720,
-    "maximized", false
+        "x", 100,
+        "y", 100,
+        "width", 1280,
+        "height", 720,
+        "maximized", false
     )
     settings.SaveWindowState(windowState)
 
@@ -321,7 +321,7 @@ Example5_UserSettingsManager() {
 
 Example6_EnvironmentConfig() {
     MsgBox "=== Example 6: Environment-Specific Config ===`n`n" .
-    "Creating environment-specific configurations..."
+        "Creating environment-specific configurations..."
 
     environments := ["Development", "Testing", "Production"]
 
@@ -340,19 +340,19 @@ Example6_EnvironmentConfig() {
         ; Environment-specific settings
         switch env {
             case "Development":
-            IniWrite "localhost", iniFile, "Database", "Host"
-            IniWrite "true", iniFile, "Debug", "Enabled"
-            IniWrite "DEBUG", iniFile, "Logging", "Level"
+                IniWrite "localhost", iniFile, "Database", "Host"
+                IniWrite "true", iniFile, "Debug", "Enabled"
+                IniWrite "DEBUG", iniFile, "Logging", "Level"
 
             case "Testing":
-            IniWrite "test-db.example.com", iniFile, "Database", "Host"
-            IniWrite "false", iniFile, "Debug", "Enabled"
-            IniWrite "INFO", iniFile, "Logging", "Level"
+                IniWrite "test-db.example.com", iniFile, "Database", "Host"
+                IniWrite "false", iniFile, "Debug", "Enabled"
+                IniWrite "INFO", iniFile, "Logging", "Level"
 
             case "Production":
-            IniWrite "prod-db.example.com", iniFile, "Database", "Host"
-            IniWrite "false", iniFile, "Debug", "Enabled"
-            IniWrite "ERROR", iniFile, "Logging", "Level"
+                IniWrite "prod-db.example.com", iniFile, "Database", "Host"
+                IniWrite "false", iniFile, "Debug", "Enabled"
+                IniWrite "ERROR", iniFile, "Logging", "Level"
         }
     }
 
@@ -371,7 +371,7 @@ Example6_EnvironmentConfig() {
 
 Example7_ConfigBackup() {
     MsgBox "=== Example 7: Configuration Backup ===`n`n" .
-    "Creating configuration backup..."
+        "Creating configuration backup..."
 
     iniFile := A_ScriptDir . "\current_config.ini"
     backupFile := A_ScriptDir . "\config_backup_" . A_Now . ".ini"
@@ -391,14 +391,14 @@ Example7_ConfigBackup() {
 
     for section in sectionList {
         if (section = "")
-        continue
+            continue
 
         keys := IniRead(iniFile, section)
         keyList := StrSplit(keys, "`n")
 
         for key in keyList {
             if (key = "")
-            continue
+                continue
 
             value := IniRead(iniFile, section, key)
             IniWrite value, backupFile, section, key
@@ -453,8 +453,8 @@ ShowMenu() {
         case "7": Example7_ConfigBackup()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     SetTimer(() => ShowMenu(), -1000)

@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiAdvanced_01.ahk - Custom GUI Controls
-*
-* This file demonstrates creating custom GUI controls in AutoHotkey v2.
-* Topics covered:
-* - Custom controls
-* - Control subclass
-* - Custom drawing
-* - Widgets
-* - Composite controls
-* - Templates
-* - Reusable components
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiAdvanced_01.ahk - Custom GUI Controls
+ * 
+ * This file demonstrates creating custom GUI controls in AutoHotkey v2.
+ * Topics covered:
+ * - Custom controls
+ * - Control subclass
+ * - Custom drawing
+ * - Widgets
+ * - Composite controls
+ * - Templates
+ * - Reusable components
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates custom controls
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates custom controls
+ * Advanced GUI techniques and patterns
+ */
 Example1_Customcontrols() {
     myGui := Gui(, "Custom controls Demo")
     myGui.BackColor := "White"
@@ -67,14 +66,13 @@ Example1_Customcontrols() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -94,15 +92,14 @@ Example1_Customcontrols() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Control subclass
 ; =============================================================================
 
 /**
-* Demonstrates control subclass
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates control subclass
+ * Advanced GUI techniques and patterns
+ */
 Example2_Controlsubclass() {
     myGui := Gui(, "Control subclass Demo")
     myGui.BackColor := "White"
@@ -142,14 +139,13 @@ Example2_Controlsubclass() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -169,15 +165,14 @@ Example2_Controlsubclass() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Custom drawing
 ; =============================================================================
 
 /**
-* Demonstrates custom drawing
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates custom drawing
+ * Advanced GUI techniques and patterns
+ */
 Example3_Customdrawing() {
     myGui := Gui(, "Custom drawing Demo")
     myGui.BackColor := "White"
@@ -217,14 +212,13 @@ Example3_Customdrawing() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -244,15 +238,14 @@ Example3_Customdrawing() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Widgets
 ; =============================================================================
 
 /**
-* Demonstrates widgets
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates widgets
+ * Advanced GUI techniques and patterns
+ */
 Example4_Widgets() {
     myGui := Gui(, "Widgets Demo")
     myGui.BackColor := "White"
@@ -292,14 +285,13 @@ Example4_Widgets() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -319,15 +311,14 @@ Example4_Widgets() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Composite controls
 ; =============================================================================
 
 /**
-* Demonstrates composite controls
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates composite controls
+ * Advanced GUI techniques and patterns
+ */
 Example5_Compositecontrols() {
     myGui := Gui(, "Composite controls Demo")
     myGui.BackColor := "White"
@@ -367,14 +358,13 @@ Example5_Compositecontrols() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -394,15 +384,14 @@ Example5_Compositecontrols() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Templates
 ; =============================================================================
 
 /**
-* Demonstrates templates
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates templates
+ * Advanced GUI techniques and patterns
+ */
 Example6_Templates() {
     myGui := Gui(, "Templates Demo")
     myGui.BackColor := "White"
@@ -442,14 +431,13 @@ Example6_Templates() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -469,15 +457,14 @@ Example6_Templates() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Reusable components
 ; =============================================================================
 
 /**
-* Demonstrates reusable components
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates reusable components
+ * Advanced GUI techniques and patterns
+ */
 Example7_Reusablecomponents() {
     myGui := Gui(, "Reusable components Demo")
     myGui.BackColor := "White"
@@ -517,14 +504,13 @@ Example7_Reusablecomponents() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -549,8 +535,8 @@ Example7_Reusablecomponents() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiAdvanced_01.ahk - Examples")
     menuGui.BackColor := "White"

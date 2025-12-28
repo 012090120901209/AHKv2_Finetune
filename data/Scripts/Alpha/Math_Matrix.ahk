@@ -25,7 +25,7 @@ class Matrix {
     }
 
     Get(row, col) => this.data[row][col]
-    
+
     Set(row, col, value) {
         this.data[row][col] := value
         return this

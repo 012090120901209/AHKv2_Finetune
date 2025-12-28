@@ -1,71 +1,71 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - ClipboardAll Save and Restore
-* ============================================================================
-*
-* This file demonstrates using ClipboardAll to save and restore the entire
-* clipboard contents including all formats (text, images, files, etc.).
-*
-* ClipboardAll creates a binary snapshot of everything on the clipboard,
-* allowing you to save and restore the complete clipboard state, not just text.
-*
-* @file BuiltIn_ClipboardAll_01.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Basic Save and Restore
-* 2. Multiple Clipboard Slots
-* 3. Clipboard Swap Operations
-* 4. Temporary Clipboard Operations
-* 5. Clipboard History System
-* 6. Clipboard Backup Manager
-* 7. Advanced Clipboard Preserver
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Saving complete clipboard state with ClipboardAll
-* - Restoring saved clipboard state
-* - Managing multiple clipboard slots
-* - Swapping clipboard contents
-* - Preserving clipboard during operations
-* - Building clipboard history with binary data
-* - Creating a comprehensive backup system
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - ClipboardAll Save and Restore
+ * ============================================================================
+ * 
+ * This file demonstrates using ClipboardAll to save and restore the entire
+ * clipboard contents including all formats (text, images, files, etc.).
+ * 
+ * ClipboardAll creates a binary snapshot of everything on the clipboard,
+ * allowing you to save and restore the complete clipboard state, not just text.
+ * 
+ * @file BuiltIn_ClipboardAll_01.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Basic Save and Restore
+ * 2. Multiple Clipboard Slots
+ * 3. Clipboard Swap Operations
+ * 4. Temporary Clipboard Operations
+ * 5. Clipboard History System
+ * 6. Clipboard Backup Manager
+ * 7. Advanced Clipboard Preserver
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Saving complete clipboard state with ClipboardAll
+ * - Restoring saved clipboard state
+ * - Managing multiple clipboard slots
+ * - Swapping clipboard contents
+ * - Preserving clipboard during operations
+ * - Building clipboard history with binary data
+ * - Creating a comprehensive backup system
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Basic Save and Restore
 ; ============================================================================
 
 /**
-* Demonstrates basic ClipboardAll save and restore operations.
-*
-* @class BasicClipboardSaver
-* @description Handles basic save/restore of entire clipboard
-*/
+ * Demonstrates basic ClipboardAll save and restore operations.
+ * 
+ * @class BasicClipboardSaver
+ * @description Handles basic save/restore of entire clipboard
+ */
 
 class BasicClipboardSaver {
     static savedClipboard := ""
 
     /**
-    * Saves current clipboard state
-    * @returns {Boolean} Success status
-    */
+     * Saves current clipboard state
+     * @returns {Boolean} Success status
+     */
     static Save() {
         this.savedClipboard := ClipboardAll()
         return true
     }
 
     /**
-    * Restores previously saved clipboard state
-    * @returns {Boolean} Success status
-    */
+     * Restores previously saved clipboard state
+     * @returns {Boolean} Success status
+     */
     static Restore() {
         if (Type(this.savedClipboard) = "ClipboardAll") {
             A_Clipboard := this.savedClipboard
@@ -76,17 +76,17 @@ class BasicClipboardSaver {
     }
 
     /**
-    * Checks if a backup exists
-    * @returns {Boolean}
-    */
+     * Checks if a backup exists
+     * @returns {Boolean}
+     */
     static HasBackup() {
         return Type(this.savedClipboard) = "ClipboardAll"
     }
 
     /**
-    * Clears the saved backup
-    * @returns {void}
-    */
+     * Clears the saved backup
+     * @returns {void}
+     */
     static ClearBackup() {
         this.savedClipboard := ""
     }
@@ -96,7 +96,7 @@ class BasicClipboardSaver {
 F1:: {
     BasicClipboardSaver.Save()
     TrayTip("Clipboard Saved", "Complete clipboard state has been saved",
-    "Icon Info")
+        "Icon Info")
 }
 
 ; Restore clipboard
@@ -104,7 +104,7 @@ F2:: {
     if (BasicClipboardSaver.HasBackup()) {
         BasicClipboardSaver.Restore()
         TrayTip("Clipboard Restored", "Clipboard has been restored from backup",
-        "Icon Info")
+            "Icon Info")
     } else {
         MsgBox("No clipboard backup available!", "Restore", "Icon Warn")
     }
@@ -117,7 +117,7 @@ F3:: {
         if (result = "Yes") {
             BasicClipboardSaver.ClearBackup()
             TrayTip("Backup Cleared", "Clipboard backup has been cleared",
-            "Icon Info")
+                "Icon Info")
         }
     } else {
         MsgBox("No backup to clear!", "Clear Backup", "Icon Info")
@@ -129,21 +129,21 @@ F3:: {
 ; ============================================================================
 
 /**
-* Demonstrates managing multiple clipboard save slots.
-*
-* @class MultiSlotClipboard
-* @description Manages multiple clipboard save slots
-*/
+ * Demonstrates managing multiple clipboard save slots.
+ * 
+ * @class MultiSlotClipboard
+ * @description Manages multiple clipboard save slots
+ */
 
 class MultiSlotClipboard {
     static slots := Map()
     static maxSlots := 5
 
     /**
-    * Saves clipboard to a specific slot
-    * @param {Integer} slotNum - Slot number (1-5)
-    * @returns {Boolean} Success status
-    */
+     * Saves clipboard to a specific slot
+     * @param {Integer} slotNum - Slot number (1-5)
+     * @returns {Boolean} Success status
+     */
     static SaveToSlot(slotNum) {
         if (slotNum < 1 || slotNum > this.maxSlots) {
             return false
@@ -154,10 +154,10 @@ class MultiSlotClipboard {
     }
 
     /**
-    * Restores clipboard from a specific slot
-    * @param {Integer} slotNum - Slot number (1-5)
-    * @returns {Boolean} Success status
-    */
+     * Restores clipboard from a specific slot
+     * @param {Integer} slotNum - Slot number (1-5)
+     * @returns {Boolean} Success status
+     */
     static RestoreFromSlot(slotNum) {
         if (!this.slots.Has(slotNum)) {
             return false
@@ -169,19 +169,19 @@ class MultiSlotClipboard {
     }
 
     /**
-    * Checks if a slot has data
-    * @param {Integer} slotNum - Slot number
-    * @returns {Boolean}
-    */
+     * Checks if a slot has data
+     * @param {Integer} slotNum - Slot number
+     * @returns {Boolean}
+     */
     static HasSlot(slotNum) {
         return this.slots.Has(slotNum)
     }
 
     /**
-    * Clears a specific slot
-    * @param {Integer} slotNum - Slot number
-    * @returns {void}
-    */
+     * Clears a specific slot
+     * @param {Integer} slotNum - Slot number
+     * @returns {void}
+     */
     static ClearSlot(slotNum) {
         if (this.slots.Has(slotNum)) {
             this.slots.Delete(slotNum)
@@ -189,17 +189,17 @@ class MultiSlotClipboard {
     }
 
     /**
-    * Clears all slots
-    * @returns {void}
-    */
+     * Clears all slots
+     * @returns {void}
+     */
     static ClearAllSlots() {
         this.slots := Map()
     }
 
     /**
-    * Gets list of occupied slots
-    * @returns {Array}
-    */
+     * Gets list of occupied slots
+     * @returns {Array}
+     */
     static GetOccupiedSlots() {
         occupied := []
         for slotNum, _ in this.slots {
@@ -209,9 +209,9 @@ class MultiSlotClipboard {
     }
 
     /**
-    * Shows slot manager GUI
-    * @returns {void}
-    */
+     * Shows slot manager GUI
+     * @returns {void}
+     */
     static ShowManager() {
         gui := Gui("+AlwaysOnTop", "Multi-Slot Clipboard Manager")
         gui.SetFont("s10")
@@ -222,9 +222,9 @@ class MultiSlotClipboard {
         Loop this.maxSlots {
             slotNum := A_Index
             if (A_Index = 1)
-            btn := gui.Add("Button", "w70", "Slot " . slotNum)
+                btn := gui.Add("Button", "w70", "Slot " . slotNum)
             else
-            btn := gui.Add("Button", "x+5 w70", "Slot " . slotNum)
+                btn := gui.Add("Button", "x+5 w70", "Slot " . slotNum)
 
             btn.OnEvent("Click", (*) => this.SaveSlotClick(slotNum, gui))
         }
@@ -235,15 +235,15 @@ class MultiSlotClipboard {
         Loop this.maxSlots {
             slotNum := A_Index
             if (A_Index = 1)
-            btn := gui.Add("Button", "w70", "Slot " . slotNum)
+                btn := gui.Add("Button", "w70", "Slot " . slotNum)
             else
-            btn := gui.Add("Button", "x+5 w70", "Slot " . slotNum)
+                btn := gui.Add("Button", "x+5 w70", "Slot " . slotNum)
 
             btn.OnEvent("Click", (*) => this.RestoreSlotClick(slotNum, gui))
 
             ; Disable if slot is empty
             if (!this.HasSlot(slotNum))
-            btn.Enabled := false
+                btn.Enabled := false
         }
 
         ; Status
@@ -272,7 +272,7 @@ class MultiSlotClipboard {
     static SaveSlotClick(slotNum, gui) {
         if (this.SaveToSlot(slotNum)) {
             MsgBox("Clipboard saved to slot " . slotNum . "!",
-            "Saved", "Icon Info T2")
+                "Saved", "Icon Info T2")
             gui.Destroy()
             this.ShowManager()  ; Refresh
         }
@@ -281,7 +281,7 @@ class MultiSlotClipboard {
     static RestoreSlotClick(slotNum, gui) {
         if (this.RestoreFromSlot(slotNum)) {
             MsgBox("Clipboard restored from slot " . slotNum . "!",
-            "Restored", "Icon Info T2")
+                "Restored", "Icon Info T2")
             gui.Destroy()
         }
     }
@@ -297,40 +297,40 @@ class MultiSlotClipboard {
 }
 
 ; Show multi-slot manager
-^!m::MultiSlotClipboard.ShowManager()
+^!m:: MultiSlotClipboard.ShowManager()
 
 ; Quick save to slots 1-5
-^!1::MultiSlotClipboard.SaveToSlot(1)
-^!2::MultiSlotClipboard.SaveToSlot(2)
-^!3::MultiSlotClipboard.SaveToSlot(3)
-^!4::MultiSlotClipboard.SaveToSlot(4)
-^!5::MultiSlotClipboard.SaveToSlot(5)
+^!1:: MultiSlotClipboard.SaveToSlot(1)
+^!2:: MultiSlotClipboard.SaveToSlot(2)
+^!3:: MultiSlotClipboard.SaveToSlot(3)
+^!4:: MultiSlotClipboard.SaveToSlot(4)
+^!5:: MultiSlotClipboard.SaveToSlot(5)
 
 ; Quick restore from slots 1-5
-^+1::MultiSlotClipboard.RestoreFromSlot(1)
-^+2::MultiSlotClipboard.RestoreFromSlot(2)
-^+3::MultiSlotClipboard.RestoreFromSlot(3)
-^+4::MultiSlotClipboard.RestoreFromSlot(4)
-^+5::MultiSlotClipboard.RestoreFromSlot(5)
+^+1:: MultiSlotClipboard.RestoreFromSlot(1)
+^+2:: MultiSlotClipboard.RestoreFromSlot(2)
+^+3:: MultiSlotClipboard.RestoreFromSlot(3)
+^+4:: MultiSlotClipboard.RestoreFromSlot(4)
+^+5:: MultiSlotClipboard.RestoreFromSlot(5)
 
 ; ============================================================================
 ; Example 3: Clipboard Swap Operations
 ; ============================================================================
 
 /**
-* Demonstrates swapping clipboard contents.
-*
-* @class ClipboardSwapper
-* @description Swaps between current and saved clipboard
-*/
+ * Demonstrates swapping clipboard contents.
+ * 
+ * @class ClipboardSwapper
+ * @description Swaps between current and saved clipboard
+ */
 
 class ClipboardSwapper {
     static swapBuffer := ""
 
     /**
-    * Swaps current clipboard with saved buffer
-    * @returns {void}
-    */
+     * Swaps current clipboard with saved buffer
+     * @returns {void}
+     */
     static Swap() {
         currentClip := ClipboardAll()
 
@@ -347,9 +347,9 @@ class ClipboardSwapper {
     }
 
     /**
-    * Clears swap buffer
-    * @returns {void}
-    */
+     * Clears swap buffer
+     * @returns {void}
+     */
     static Clear() {
         this.swapBuffer := ""
         TrayTip("Cleared", "Swap buffer cleared", "Icon Info")
@@ -357,26 +357,26 @@ class ClipboardSwapper {
 }
 
 ; Swap clipboard
-^!s::ClipboardSwapper.Swap()
+^!s:: ClipboardSwapper.Swap()
 
 ; ============================================================================
 ; Example 4: Temporary Clipboard Operations
 ; ============================================================================
 
 /**
-* Demonstrates preserving clipboard during temporary operations.
-*
-* @class TempClipboardOperation
-* @description Preserves clipboard during operations
-*/
+ * Demonstrates preserving clipboard during temporary operations.
+ * 
+ * @class TempClipboardOperation
+ * @description Preserves clipboard during operations
+ */
 
 class TempClipboardOperation {
 
     /**
-    * Executes a function while preserving clipboard
-    * @param {Func} callback - Function to execute
-    * @returns {Any} Return value of callback
-    */
+     * Executes a function while preserving clipboard
+     * @param {Func} callback - Function to execute
+     * @returns {Any} Return value of callback
+     */
     static PreserveClipboard(callback) {
         ; Save current clipboard
         savedClip := ClipboardAll()
@@ -393,11 +393,11 @@ class TempClipboardOperation {
     }
 
     /**
-    * Copies text temporarily without affecting clipboard
-    * @param {String} text - Text to copy temporarily
-    * @param {Func} callback - Function to execute with temp clipboard
-    * @returns {Any} Return value of callback
-    */
+     * Copies text temporarily without affecting clipboard
+     * @param {String} text - Text to copy temporarily
+     * @param {Func} callback - Function to execute with temp clipboard
+     * @returns {Any} Return value of callback
+     */
     static WithTempClipboard(text, callback) {
         savedClip := ClipboardAll()
 
@@ -436,11 +436,11 @@ class TempClipboardOperation {
 ; ============================================================================
 
 /**
-* Demonstrates a clipboard history system using ClipboardAll.
-*
-* @class ClipboardHistory
-* @description Maintains history of clipboard states
-*/
+ * Demonstrates a clipboard history system using ClipboardAll.
+ * 
+ * @class ClipboardHistory
+ * @description Maintains history of clipboard states
+ */
 
 class ClipboardHistory {
     static history := []
@@ -448,19 +448,19 @@ class ClipboardHistory {
     static enabled := true
 
     /**
-    * Adds current clipboard to history
-    * @returns {void}
-    */
+     * Adds current clipboard to history
+     * @returns {void}
+     */
     static AddToHistory() {
         if (!this.enabled)
-        return
+            return
 
         ; Save current clipboard
         clipData := ClipboardAll()
 
         ; Don't add if clipboard is empty
         if (A_Clipboard = "" && !Type(clipData) = "ClipboardAll")
-        return
+            return
 
         ; Add to history
         this.history.Push(clipData)
@@ -472,21 +472,21 @@ class ClipboardHistory {
     }
 
     /**
-    * Gets history count
-    * @returns {Integer}
-    */
+     * Gets history count
+     * @returns {Integer}
+     */
     static GetCount() {
         return this.history.Length
     }
 
     /**
-    * Restores clipboard from history index
-    * @param {Integer} index - History index (1 = oldest)
-    * @returns {Boolean}
-    */
+     * Restores clipboard from history index
+     * @param {Integer} index - History index (1 = oldest)
+     * @returns {Boolean}
+     */
     static RestoreFromHistory(index) {
         if (index < 1 || index > this.history.Length)
-        return false
+            return false
 
         A_Clipboard := this.history[index]
         ClipWait(2)
@@ -494,21 +494,21 @@ class ClipboardHistory {
     }
 
     /**
-    * Clears history
-    * @returns {void}
-    */
+     * Clears history
+     * @returns {void}
+     */
     static ClearHistory() {
         this.history := []
     }
 
     /**
-    * Shows history GUI
-    * @returns {void}
-    */
+     * Shows history GUI
+     * @returns {void}
+     */
     static ShowHistory() {
         if (this.history.Length = 0) {
             MsgBox("No clipboard history available!",
-            "Clipboard History", "Icon Info")
+                "Clipboard History", "Icon Info")
             return
         }
 
@@ -517,7 +517,7 @@ class ClipboardHistory {
 
         ; Info
         gui.Add("Text", "w500",
-        "History Items: " . this.history.Length . " / " . this.maxHistory)
+            "History Items: " . this.history.Length . " / " . this.maxHistory)
 
         ; List
         lv := gui.Add("ListView", "w500 h300", ["#", "Type", "Preview"])
@@ -543,8 +543,8 @@ class ClipboardHistory {
                 if (A_Clipboard != "") {
                     itemType := "Text"
                     preview := StrLen(A_Clipboard) > 50
-                    ? SubStr(A_Clipboard, 1, 50) . "..."
-                    : A_Clipboard
+                        ? SubStr(A_Clipboard, 1, 50) . "..."
+                        : A_Clipboard
                     preview := StrReplace(preview, "`n", " ")
                 } else {
                     itemType := "Binary"
@@ -573,7 +573,7 @@ class ClipboardHistory {
         rowNum := lv.GetNext()
         if (rowNum = 0) {
             MsgBox("Please select an item to restore!",
-            "No Selection", "Icon Warn")
+                "No Selection", "Icon Warn")
             return
         }
 
@@ -582,14 +582,14 @@ class ClipboardHistory {
 
         if (this.RestoreFromHistory(actualIndex)) {
             MsgBox("Clipboard restored from history!",
-            "Restored", "Icon Info T2")
+                "Restored", "Icon Info T2")
             gui.Destroy()
         }
     }
 
     static ClearClick(gui) {
         result := MsgBox("Clear all clipboard history?",
-        "Confirm", "YesNo Icon Question")
+            "Confirm", "YesNo Icon Question")
         if (result = "Yes") {
             this.ClearHistory()
             gui.Destroy()
@@ -599,34 +599,34 @@ class ClipboardHistory {
 }
 
 ; Add current clipboard to history
-^!h::ClipboardHistory.AddToHistory()
+^!h:: ClipboardHistory.AddToHistory()
 
 ; Show clipboard history
-^!+h::ClipboardHistory.ShowHistory()
+^!+h:: ClipboardHistory.ShowHistory()
 
 ; ============================================================================
 ; Example 6: Clipboard Backup Manager
 ; ============================================================================
 
 /**
-* Demonstrates saving clipboard backups to disk.
-*
-* @class ClipboardBackupManager
-* @description Saves/loads clipboard to/from files
-*/
+ * Demonstrates saving clipboard backups to disk.
+ * 
+ * @class ClipboardBackupManager
+ * @description Saves/loads clipboard to/from files
+ */
 
 class ClipboardBackupManager {
     static backupFolder := A_ScriptDir . "\ClipboardBackups"
 
     /**
-    * Saves clipboard to file
-    * @param {String} filename - Name for backup file
-    * @returns {Boolean}
-    */
+     * Saves clipboard to file
+     * @param {String} filename - Name for backup file
+     * @returns {Boolean}
+     */
     static SaveToFile(filename := "") {
         ; Create backup folder if it doesn't exist
         if (!DirExist(this.backupFolder))
-        DirCreate(this.backupFolder)
+            DirCreate(this.backupFolder)
 
         ; Generate filename if not provided
         if (filename = "") {
@@ -643,19 +643,19 @@ class ClipboardBackupManager {
             return true
         } catch as err {
             MsgBox("Error saving clipboard: " . err.Message,
-            "Error", "Icon Error")
+                "Error", "Icon Error")
             return false
         }
     }
 
     /**
-    * Loads clipboard from file
-    * @param {String} filepath - Path to backup file
-    * @returns {Boolean}
-    */
+     * Loads clipboard from file
+     * @param {String} filepath - Path to backup file
+     * @returns {Boolean}
+     */
     static LoadFromFile(filepath) {
         if (!FileExist(filepath))
-        return false
+            return false
 
         try {
             FileObj := FileOpen(filepath, "r")
@@ -668,15 +668,15 @@ class ClipboardBackupManager {
             return true
         } catch as err {
             MsgBox("Error loading clipboard: " . err.Message,
-            "Error", "Icon Error")
+                "Error", "Icon Error")
             return false
         }
     }
 
     /**
-    * Shows backup manager GUI
-    * @returns {void}
-    */
+     * Shows backup manager GUI
+     * @returns {void}
+     */
     static ShowManager() {
         gui := Gui("+Resize", "Clipboard Backup Manager")
         gui.SetFont("s10")
@@ -692,7 +692,7 @@ class ClipboardBackupManager {
         gui.Add("GroupBox", "x10 y+20 w500 h300", "Load Clipboard Backup")
 
         lv := gui.Add("ListView", "xp+10 yp+25 w480 h220",
-        ["Filename", "Size", "Date"])
+            ["Filename", "Size", "Date"])
         lv.ModifyCol(1, 250)
         lv.ModifyCol(2, 100)
         lv.ModifyCol(3, 110)
@@ -726,7 +726,7 @@ class ClipboardBackupManager {
 
         if (this.SaveToFile(filename)) {
             MsgBox("Clipboard saved to:`n" . this.backupFolder . "\" . filename,
-            "Saved", "Icon Info T3")
+                "Saved", "Icon Info T3")
             gui.Destroy()
             this.ShowManager()  ; Refresh
         }
@@ -736,7 +736,7 @@ class ClipboardBackupManager {
         rowNum := lv.GetNext()
         if (rowNum = 0) {
             MsgBox("Please select a backup to load!",
-            "No Selection", "Icon Warn")
+                "No Selection", "Icon Warn")
             return
         }
 
@@ -745,7 +745,7 @@ class ClipboardBackupManager {
 
         if (this.LoadFromFile(filepath)) {
             MsgBox("Clipboard loaded from backup!",
-            "Loaded", "Icon Info T2")
+                "Loaded", "Icon Info T2")
             gui.Destroy()
         }
     }
@@ -754,7 +754,7 @@ class ClipboardBackupManager {
         rowNum := lv.GetNext()
         if (rowNum = 0) {
             MsgBox("Please select a backup to delete!",
-            "No Selection", "Icon Warn")
+                "No Selection", "Icon Warn")
             return
         }
 
@@ -762,7 +762,7 @@ class ClipboardBackupManager {
         filepath := this.backupFolder . "\" . filename
 
         result := MsgBox("Delete backup: " . filename . "?",
-        "Confirm Delete", "YesNo Icon Question")
+            "Confirm Delete", "YesNo Icon Question")
         if (result = "Yes") {
             FileDelete(filepath)
             gui.Destroy()
@@ -772,49 +772,49 @@ class ClipboardBackupManager {
 }
 
 ; Show backup manager
-^!b::ClipboardBackupManager.ShowManager()
+^!b:: ClipboardBackupManager.ShowManager()
 
 ; ============================================================================
 ; Example 7: Advanced Clipboard Preserver
 ; ============================================================================
 
 /**
-* Advanced clipboard preservation for automation tasks.
-*
-* @class AdvancedClipboardPreserver
-* @description Automatically preserves clipboard during copy operations
-*/
+ * Advanced clipboard preservation for automation tasks.
+ * 
+ * @class AdvancedClipboardPreserver
+ * @description Automatically preserves clipboard during copy operations
+ */
 
 class AdvancedClipboardPreserver {
     static autoPreserve := false
     static preservedClip := ""
 
     /**
-    * Enables auto-preserve mode
-    * @returns {void}
-    */
+     * Enables auto-preserve mode
+     * @returns {void}
+     */
     static Enable() {
         this.autoPreserve := true
         TrayTip("Auto-Preserve Enabled",
-        "Clipboard will be automatically preserved",
-        "Icon Info")
+            "Clipboard will be automatically preserved",
+            "Icon Info")
     }
 
     /**
-    * Disables auto-preserve mode
-    * @returns {void}
-    */
+     * Disables auto-preserve mode
+     * @returns {void}
+     */
     static Disable() {
         this.autoPreserve := false
         TrayTip("Auto-Preserve Disabled",
-        "Clipboard preservation turned off",
-        "Icon Info")
+            "Clipboard preservation turned off",
+            "Icon Info")
     }
 
     /**
-    * Toggles auto-preserve mode
-    * @returns {void}
-    */
+     * Toggles auto-preserve mode
+     * @returns {void}
+     */
     static Toggle() {
         this.autoPreserve := !this.autoPreserve
         status := this.autoPreserve ? "Enabled" : "Disabled"
@@ -823,7 +823,7 @@ class AdvancedClipboardPreserver {
 }
 
 ; Toggle auto-preserve
-^!p::AdvancedClipboardPreserver.Toggle()
+^!p:: AdvancedClipboardPreserver.Toggle()
 
 ; ============================================================================
 ; HELP AND INFORMATION

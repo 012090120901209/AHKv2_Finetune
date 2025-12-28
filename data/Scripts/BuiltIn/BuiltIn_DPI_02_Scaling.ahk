@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DPI_02_Scaling.ahk
-*
-* DESCRIPTION:
-* Advanced DPI scaling techniques for AutoHotkey v2 applications. Demonstrates
-* how to properly scale UI elements, fonts, images, and layouts to maintain
-* consistent appearance across different DPI settings.
-*
-* FEATURES:
-* - Automatic DPI scaling
-* - Font size scaling
-* - Control size scaling
-* - Image scaling
-* - Layout scaling
-* - Dynamic rescaling
-* - Scale factor utilities
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* Windows DPI Scaling Guidelines
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DPI-aware sizing calculations
-* - Dynamic control sizing
-* - Proportional scaling
-* - Font scaling
-* - GUI layout adaptation
-*
-* LEARNING POINTS:
-* 1. All sizes should scale proportionally with DPI
-* 2. Calculate scale factor: currentDPI / 96
-* 3. Apply scaling to: width, height, fonts, spacing
-* 4. Round scaled values to avoid fractional pixels
-* 5. Test at 100%, 125%, 150%, and 200% scaling
-* 6. Maintain aspect ratios when scaling
-* 7. Use relative sizing where possible
-*/
+ * BuiltIn_DPI_02_Scaling.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced DPI scaling techniques for AutoHotkey v2 applications. Demonstrates
+ * how to properly scale UI elements, fonts, images, and layouts to maintain
+ * consistent appearance across different DPI settings.
+ * 
+ * FEATURES:
+ * - Automatic DPI scaling
+ * - Font size scaling
+ * - Control size scaling
+ * - Image scaling
+ * - Layout scaling
+ * - Dynamic rescaling
+ * - Scale factor utilities
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * Windows DPI Scaling Guidelines
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DPI-aware sizing calculations
+ * - Dynamic control sizing
+ * - Proportional scaling
+ * - Font scaling
+ * - GUI layout adaptation
+ * 
+ * LEARNING POINTS:
+ * 1. All sizes should scale proportionally with DPI
+ * 2. Calculate scale factor: currentDPI / 96
+ * 3. Apply scaling to: width, height, fonts, spacing
+ * 4. Round scaled values to avoid fractional pixels
+ * 5. Test at 100%, 125%, 150%, and 200% scaling
+ * 6. Maintain aspect ratios when scaling
+ * 7. Use relative sizing where possible
+ */
 
 ;=============================================================================
 ; HELPER: Get DPI and Scale Factor
@@ -46,7 +46,7 @@ GetDPIInfo() {
     dpi := DllCall("GetDeviceCaps", "Ptr", hDC, "Int", 88, "Int")
     DllCall("ReleaseDC", "Ptr", 0, "Ptr", hDC)
 
-    return {DPI: dpi, Scale: dpi / 96, Percent: Round(dpi / 96 * 100)}
+    return { DPI: dpi, Scale: dpi / 96, Percent: Round(dpi / 96 * 100) }
 }
 
 ScaleValue(value) {
@@ -127,7 +127,7 @@ Example2_LayoutScaling() {
 
     ; Scale all layout values
     for key, value in layout.OwnProps()
-    layout.%key% := Round(value * scale)
+        layout.%key% := Round(value * scale)
 
     ; Create GUI
     g := Gui(, "Layout Scaling System")
@@ -135,7 +135,7 @@ Example2_LayoutScaling() {
 
     ; Header
     g.Add("Text", "x" layout.Margin " y" layout.Margin " w" (layout.Width - layout.Margin * 2) " h" layout.HeaderHeight " +Center +Border",
-    "Scaled Layout Demo - " dpiInfo.Percent "%")
+        "Scaled Layout Demo - " dpiInfo.Percent "%")
 
     ; Content area
     contentY := layout.Margin + layout.HeaderHeight + layout.RowGap
@@ -159,7 +159,7 @@ Example2_LayoutScaling() {
     footerY := layout.Height - layout.FooterHeight - layout.Margin
 
     g.Add("Text", "x" layout.Margin " y" footerY " w" (layout.Width - layout.Margin * 2) " h" layout.FooterHeight " +Center +Border",
-    "Footer - All spacing and sizes scale proportionally")
+        "Footer - All spacing and sizes scale proportionally")
 
     g.Show("w" layout.Width " h" layout.Height)
 }
@@ -330,9 +330,9 @@ Example6_ResponsiveScaling() {
             info .= "Min Size: " minWidth "×" minHeight "`n`n"
 
             if winW < minWidth || winH < minHeight
-            info .= "⚠ Below minimum size!"
+                info .= "⚠ Below minimum size!"
             else
-            info .= "✓ Size OK"
+                info .= "✓ Size OK"
 
             statusText.Value := info
         }
@@ -365,63 +365,59 @@ Example7_MultiDPIPreview() {
         preview := "MULTI-DPI PREVIEW FOR " baseSize " PIXELS`n"
         preview .= "═══════════════════════════════════════════`n`n"
 
-        dpiSettings := [
-        {
-            DPI: 96, Percent: 100, Name: "Standard"},
-            {
-                DPI: 120, Percent: 125, Name: "Medium"},
-                {
-                    DPI: 144, Percent: 150, Name: "Large"},
-                    {
+        dpiSettings := [{
+            DPI: 96, Percent: 100, Name: "Standard" }, {
+                DPI: 120, Percent: 125, Name: "Medium" }, {
+                    DPI: 144, Percent: 150, Name: "Large" }, {
                         DPI: 192, Percent: 200, Name: "Very Large"
                     }
-                    ]
+        ]
 
-                    for setting in dpiSettings {
-                        scaleFactor := setting.DPI / 96
-                        scaledSize := Round(baseSize * scaleFactor)
+        for setting in dpiSettings {
+            scaleFactor := setting.DPI / 96
+            scaledSize := Round(baseSize * scaleFactor)
 
-                        preview .= setting.Percent "% Scaling (" setting.DPI " DPI)`n"
-                        preview .= "  Scaled to: " scaledSize " pixels`n"
-                        preview .= "  Factor: " Round(scaleFactor, 2) "x`n"
+            preview .= setting.Percent "% Scaling (" setting.DPI " DPI)`n"
+            preview .= "  Scaled to: " scaledSize " pixels`n"
+            preview .= "  Factor: " Round(scaleFactor, 2) "x`n"
 
-                        ; Visual representation
-                        barChars := Min(Round(scaledSize / 10), 50)
-                        preview .= "  Visual: "
-                        Loop barChars
-                        preview .= "█"
-                        preview .= "`n`n"
-                    }
+            ; Visual representation
+            barChars := Min(Round(scaledSize / 10), 50)
+            preview .= "  Visual: "
+            Loop barChars
+                preview .= "█"
+            preview .= "`n`n"
+        }
 
-                    preview .= "TIP: Test your UI at all common DPI settings!"
+        preview .= "TIP: Test your UI at all common DPI settings!"
 
-                    txtPreview.Value := preview
-                }
-            }
+        txtPreview.Value := preview
+    }
+}
 
-            ;=============================================================================
-            ; MAIN MENU
-            ;=============================================================================
-            CreateMainMenu() {
-                dpiInfo := GetDPIInfo()
+;=============================================================================
+; MAIN MENU
+;=============================================================================
+CreateMainMenu() {
+    dpiInfo := GetDPIInfo()
 
-                g := Gui(, "DPI Scaling Examples")
-                g.SetFont("s" ScaleValue(10))
+    g := Gui(, "DPI Scaling Examples")
+    g.SetFont("s" ScaleValue(10))
 
-                g.Add("Text", "w450", "Current DPI: " dpiInfo.DPI " (" dpiInfo.Percent "%)")
-                g.Add("Text", "w450", "DPI Scaling Examples:")
+    g.Add("Text", "w450", "Current DPI: " dpiInfo.DPI " (" dpiInfo.Percent "%)")
+    g.Add("Text", "w450", "DPI Scaling Examples:")
 
-                g.Add("Button", "w450", "Example 1: Basic Element Scaling").OnEvent("Click", (*) => Example1_ElementScaling())
-                g.Add("Button", "w450", "Example 2: Layout Scaling System").OnEvent("Click", (*) => Example2_LayoutScaling())
-                g.Add("Button", "w450", "Example 3: Font Scaling").OnEvent("Click", (*) => Example3_FontScaling())
-                g.Add("Button", "w450", "Example 4: Dynamic Rescaling").OnEvent("Click", (*) => Example4_DynamicRescaling())
-                g.Add("Button", "w450", "Example 5: Image Scaling").OnEvent("Click", (*) => Example5_ImageScaling())
-                g.Add("Button", "w450", "Example 6: Responsive Scaling").OnEvent("Click", (*) => Example6_ResponsiveScaling())
-                g.Add("Button", "w450", "Example 7: Multi-DPI Preview").OnEvent("Click", (*) => Example7_MultiDPIPreview())
+    g.Add("Button", "w450", "Example 1: Basic Element Scaling").OnEvent("Click", (*) => Example1_ElementScaling())
+    g.Add("Button", "w450", "Example 2: Layout Scaling System").OnEvent("Click", (*) => Example2_LayoutScaling())
+    g.Add("Button", "w450", "Example 3: Font Scaling").OnEvent("Click", (*) => Example3_FontScaling())
+    g.Add("Button", "w450", "Example 4: Dynamic Rescaling").OnEvent("Click", (*) => Example4_DynamicRescaling())
+    g.Add("Button", "w450", "Example 5: Image Scaling").OnEvent("Click", (*) => Example5_ImageScaling())
+    g.Add("Button", "w450", "Example 6: Responsive Scaling").OnEvent("Click", (*) => Example6_ResponsiveScaling())
+    g.Add("Button", "w450", "Example 7: Multi-DPI Preview").OnEvent("Click", (*) => Example7_MultiDPIPreview())
 
-                g.Add("Button", "w450", "Exit").OnEvent("Click", (*) => ExitApp())
+    g.Add("Button", "w450", "Exit").OnEvent("Click", (*) => ExitApp())
 
-                g.Show()
-            }
+    g.Show()
+}
 
-            CreateMainMenu()
+CreateMainMenu()

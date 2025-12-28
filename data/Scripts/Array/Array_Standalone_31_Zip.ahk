@@ -3,11 +3,11 @@
 #Include JSON.ahk
 
 /**
-* Zip() - Zip arrays together (Standalone Implementation)
-*
-* Creates an array of grouped elements, the first of which contains
-* the first elements of the given arrays, and so on.
-*/
+ * Zip() - Zip arrays together (Standalone Implementation)
+ * 
+ * Creates an array of grouped elements, the first of which contains
+ * the first elements of the given arrays, and so on.
+ */
 
 Zip(arrays*) {
     if (arrays.Length = 0) {

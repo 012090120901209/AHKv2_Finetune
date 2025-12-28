@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Basic Hotstrings
-* Auto-replace text as you type
-*/
+ * Basic Hotstrings
+ * Auto-replace text as you type
+ */
 
 ; Type "btw" followed by space/tab/enter, it becomes "by the way"
 ::btw::by the way

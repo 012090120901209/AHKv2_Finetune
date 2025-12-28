@@ -1,17 +1,17 @@
 /**
-* @file BuiltIn_Sleep_02.ahk
-* @description Rate limiting and throttling with Sleep in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Advanced Sleep examples focusing on rate limiting, request throttling,
-* API call management, and preventing system overload through controlled delays.
-*
-* @syntax Sleep Delay
-* @see https://www.autohotkey.com/docs/v2/lib/Sleep.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_Sleep_02.ahk
+ * @description Rate limiting and throttling with Sleep in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Advanced Sleep examples focusing on rate limiting, request throttling,
+ * API call management, and preventing system overload through controlled delays.
+ * 
+ * @syntax Sleep Delay
+ * @see https://www.autohotkey.com/docs/v2/lib/Sleep.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -20,9 +20,9 @@
 ; EXAMPLE 1: API Rate Limiter
 ; ============================================================================
 /**
-* Implements rate limiting for API calls
-* Prevents exceeding API quota by controlling request frequency
-*/
+ * Implements rate limiting for API calls
+ * Prevents exceeding API quota by controlling request frequency
+ */
 Example1_APIRateLimiter() {
     myGui := Gui("+AlwaysOnTop", "Example 1: API Rate Limiter")
     myGui.SetFont("s10")
@@ -57,7 +57,7 @@ Example1_APIRateLimiter() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Simulate API request
@@ -121,8 +121,8 @@ Example1_APIRateLimiter() {
 
             progressBar.Value := (requestCount / totalRequests) * 100
             statsText.Value := "Sent: " requestCount "/" totalRequests
-            . " | Rate: " currentRate " req/min"
-            . " | Remaining: " remaining
+                . " | Rate: " currentRate " req/min"
+                . " | Remaining: " remaining
 
             ; Rate limiting delay (except after last request)
             if (requestNum < totalRequests) {
@@ -141,7 +141,7 @@ Example1_APIRateLimiter() {
 
         statusText.Value := "Complete! Success: " successCount ", Failed: " failCount
         MsgBox("Requests complete!`n`nTotal: " requestCount "`nSuccess: " successCount "`nFailed: " failCount,
-        "Done", "Icon!")
+            "Done", "Icon!")
     }
 
     clearBtn.OnEvent("Click", (*) => logBox.Value := "")
@@ -156,9 +156,9 @@ Example1_APIRateLimiter() {
 ; EXAMPLE 2: Burst Throttling
 ; ============================================================================
 /**
-* Implements burst throttling with cooldown periods
-* Allows bursts of activity followed by mandatory rest
-*/
+ * Implements burst throttling with cooldown periods
+ * Allows bursts of activity followed by mandatory rest
+ */
 Example2_BurstThrottling() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Burst Throttling")
     myGui.SetFont("s10")
@@ -194,7 +194,7 @@ Example2_BurstThrottling() {
         timelineBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(timelineBox.Value) > 8000)
-        timelineBox.Value := SubStr(timelineBox.Value, -7000)
+            timelineBox.Value := SubStr(timelineBox.Value, -7000)
     }
 
     ; Execute with burst throttling
@@ -271,9 +271,9 @@ Example2_BurstThrottling() {
 ; EXAMPLE 3: Sliding Window Rate Limiter
 ; ============================================================================
 /**
-* Implements sliding window rate limiting algorithm
-* More sophisticated than fixed window, prevents burst at window boundaries
-*/
+ * Implements sliding window rate limiting algorithm
+ * More sophisticated than fixed window, prevents burst at window boundaries
+ */
 Example3_SlidingWindow() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Sliding Window Rate Limiter")
     myGui.SetFont("s10")
@@ -311,7 +311,7 @@ Example3_SlidingWindow() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 5000)
-        logBox.Value := SubStr(logBox.Value, -4500)
+            logBox.Value := SubStr(logBox.Value, -4500)
     }
 
     ; Check if operation allowed
@@ -323,7 +323,7 @@ Example3_SlidingWindow() {
         newTimes := []
         for opTime in operationTimes {
             if (opTime > cutoffTime)
-            newTimes.Push(opTime)
+                newTimes.Push(opTime)
         }
         operationTimes := newTimes
 
@@ -434,9 +434,9 @@ Example3_SlidingWindow() {
 ; EXAMPLE 4: Token Bucket Algorithm
 ; ============================================================================
 /**
-* Implements token bucket rate limiting
-* Allows bursts while maintaining average rate
-*/
+ * Implements token bucket rate limiting
+ * Allows bursts while maintaining average rate
+ */
 Example4_TokenBucket() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Token Bucket Rate Limiter")
     myGui.SetFont("s10")
@@ -477,7 +477,7 @@ Example4_TokenBucket() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Update token display
@@ -490,17 +490,17 @@ Example4_TokenBucket() {
 
         ; Change color based on token level
         if (percentage > 60)
-        tokenBar.Opt("BackgroundGreen")
+            tokenBar.Opt("BackgroundGreen")
         else if (percentage > 30)
-        tokenBar.Opt("BackgroundYellow")
+            tokenBar.Opt("BackgroundYellow")
         else
-        tokenBar.Opt("BackgroundRed")
+            tokenBar.Opt("BackgroundRed")
     }
 
     ; Refill tokens
     RefillTokens() {
         if (!isRefilling)
-        return
+            return
 
         capacity := Integer(capacityEdit.Value)
         refillRate := Integer(refillEdit.Value)
@@ -650,9 +650,9 @@ Example4_TokenBucket() {
 ; EXAMPLE 5: Adaptive Rate Limiting
 ; ============================================================================
 /**
-* Implements adaptive rate limiting that adjusts based on success/failure rates
-* Automatically slows down on errors, speeds up on success
-*/
+ * Implements adaptive rate limiting that adjusts based on success/failure rates
+ * Automatically slows down on errors, speeds up on success
+ */
 Example5_AdaptiveRateLimiting() {
     myGui := Gui("+AlwaysOnTop", "Example 5: Adaptive Rate Limiting")
     myGui.SetFont("s10")
@@ -666,7 +666,7 @@ Example5_AdaptiveRateLimiting() {
     ; Statistics
     myGui.Add("Text", "xm", "Statistics:")
     statsText := myGui.Add("Text", "w550 vStats",
-    "Requests: 0 | Success: 0 | Errors: 0 | Success Rate: 0%")
+        "Requests: 0 | Success: 0 | Errors: 0 | Success Rate: 0%")
 
     ; Log
     myGui.Add("Text", "xm", "Activity Log:")
@@ -687,7 +687,7 @@ Example5_AdaptiveRateLimiting() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 10000)
-        logBox.Value := SubStr(logBox.Value, -9000)
+            logBox.Value := SubStr(logBox.Value, -9000)
     }
 
     ; Simulate request (varying success rate based on current load)
@@ -735,9 +735,9 @@ Example5_AdaptiveRateLimiting() {
 
         successRate := (totalRequests > 0) ? Round((successCount / totalRequests) * 100) : 0
         statsText.Value := "Requests: " totalRequests
-        . " | Success: " successCount
-        . " | Errors: " errorCount
-        . " | Success Rate: " successRate "%"
+            . " | Success: " successCount
+            . " | Errors: " errorCount
+            . " | Success Rate: " successRate "%"
 
         ; Calculate "health" based on current delay
         health := Round(((maxDelay - currentDelay) / (maxDelay - minDelay)) * 100)
@@ -789,7 +789,7 @@ Example5_AdaptiveRateLimiting() {
 
         statusText.Value := "Complete! Success rate: " successRate "%"
         MsgBox("Adaptive requests complete!`n`nSuccess rate: " successRate "%`nFinal delay: " currentDelay "ms",
-        "Done", "Icon!")
+            "Done", "Icon!")
     }
 
     resetBtn.OnEvent("Click", (*) => ResetStats())

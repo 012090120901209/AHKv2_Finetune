@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinGetPos_01.ahk
-* @description Comprehensive examples demonstrating WinGetPos function for retrieving window position and size information in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic window position retrieval
-* Example 2: Window dimension calculator
-* Example 3: Window position tracker with real-time updates
-* Example 4: Save and restore window positions
-* Example 5: Multi-monitor window position detector
-* Example 6: Window alignment checker
-* Example 7: Window bounds validator
-*
-* @section FEATURES
-* - Get window X, Y coordinates
-* - Retrieve window width and height
-* - Calculate window centers
-* - Track window movements
-* - Save/restore positions
-* - Multi-monitor support
-* - Position validation
-*/
+ * @file BuiltIn_WinGetPos_01.ahk
+ * @description Comprehensive examples demonstrating WinGetPos function for retrieving window position and size information in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic window position retrieval
+ * Example 2: Window dimension calculator
+ * Example 3: Window position tracker with real-time updates
+ * Example 4: Save and restore window positions
+ * Example 5: Multi-monitor window position detector
+ * Example 6: Window alignment checker
+ * Example 7: Window bounds validator
+ * 
+ * @section FEATURES
+ * - Get window X, Y coordinates
+ * - Retrieve window width and height
+ * - Calculate window centers
+ * - Track window movements
+ * - Save/restore positions
+ * - Multi-monitor support
+ * - Position validation
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -31,11 +31,11 @@
 ; ========================================
 
 /**
-* @function GetWindowPositionBasic
-* @description Demonstrates basic usage of WinGetPos to retrieve window coordinates and dimensions
-* @param WinTitle The title or criteria of the window
-* @returns {Object} Window position data
-*/
+ * @function GetWindowPositionBasic
+ * @description Demonstrates basic usage of WinGetPos to retrieve window coordinates and dimensions
+ * @param WinTitle The title or criteria of the window
+ * @returns {Object} Window position data
+ */
 GetWindowPositionBasic(WinTitle := "A") {
     try {
         ; Get window position and size
@@ -78,32 +78,32 @@ GetWindowPositionBasic(WinTitle := "A") {
 ; ========================================
 
 /**
-* @class WindowDimensionCalculator
-* @description Advanced window dimension analyzer with various calculations
-*/
+ * @class WindowDimensionCalculator
+ * @description Advanced window dimension analyzer with various calculations
+ */
 class WindowDimensionCalculator {
     /**
-    * @method GetFullDimensions
-    * @description Get comprehensive dimension information for a window
-    * @param WinTitle Window identifier
-    * @returns {Object} Complete dimension data
-    */
+     * @method GetFullDimensions
+     * @description Get comprehensive dimension information for a window
+     * @param WinTitle Window identifier
+     * @returns {Object} Complete dimension data
+     */
     static GetFullDimensions(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
 
             return {
-                Position: {X: x, Y: y},
-                Size: {Width: width, Height: height},
+                Position: { X: x, Y: y },
+                Size: { Width: width, Height: height },
                 Center: {
                     X: x + (width // 2),
                     Y: y + (height // 2)
                 },
                 Corners: {
-                    TopLeft: {X: x, Y: y},
-                    TopRight: {X: x + width, Y: y},
-                    BottomLeft: {X: x, Y: y + height},
-                    BottomRight: {X: x + width, Y: y + height}
+                    TopLeft: { X: x, Y: y },
+                    TopRight: { X: x + width, Y: y },
+                    BottomLeft: { X: x, Y: y + height },
+                    BottomRight: { X: x + width, Y: y + height }
                 },
                 Bounds: {
                     Left: x,
@@ -114,7 +114,7 @@ class WindowDimensionCalculator {
                 Metrics: {
                     Area: width * height,
                     Perimeter: (width + height) * 2,
-                    Diagonal: Round(Sqrt(width**2 + height**2), 2),
+                    Diagonal: Round(Sqrt(width ** 2 + height ** 2), 2),
                     AspectRatio: Round(width / height, 3)
                 }
             }
@@ -124,12 +124,12 @@ class WindowDimensionCalculator {
     }
 
     /**
-    * @method CompareWindows
-    * @description Compare dimensions of two windows
-    * @param WinTitle1 First window
-    * @param WinTitle2 Second window
-    * @returns {Object} Comparison data
-    */
+     * @method CompareWindows
+     * @description Compare dimensions of two windows
+     * @param WinTitle1 First window
+     * @param WinTitle2 Second window
+     * @returns {Object} Comparison data
+     */
     static CompareWindows(WinTitle1, WinTitle2) {
         dim1 := this.GetFullDimensions(WinTitle1)
         dim2 := this.GetFullDimensions(WinTitle2)
@@ -149,17 +149,17 @@ class WindowDimensionCalculator {
     }
 
     /**
-    * @method CheckOverlap
-    * @description Check if two windows overlap
-    * @param dim1 First window dimensions
-    * @param dim2 Second window dimensions
-    * @returns {Boolean} True if windows overlap
-    */
+     * @method CheckOverlap
+     * @description Check if two windows overlap
+     * @param dim1 First window dimensions
+     * @param dim2 Second window dimensions
+     * @returns {Boolean} True if windows overlap
+     */
     static CheckOverlap(dim1, dim2) {
         return !(dim1.Bounds.Right < dim2.Bounds.Left ||
-        dim1.Bounds.Left > dim2.Bounds.Right ||
-        dim1.Bounds.Bottom < dim2.Bounds.Top ||
-        dim1.Bounds.Top > dim2.Bounds.Bottom)
+            dim1.Bounds.Left > dim2.Bounds.Right ||
+            dim1.Bounds.Bottom < dim2.Bounds.Top ||
+            dim1.Bounds.Top > dim2.Bounds.Bottom)
     }
 }
 
@@ -190,9 +190,9 @@ class WindowDimensionCalculator {
 ; ========================================
 
 /**
-* @class WindowPositionTracker
-* @description Real-time window position tracking with history
-*/
+ * @class WindowPositionTracker
+ * @description Real-time window position tracking with history
+ */
 class WindowPositionTracker {
     static tracking := false
     static trackTimer := 0
@@ -202,11 +202,11 @@ class WindowPositionTracker {
     static trackerGui := ""
 
     /**
-    * @method StartTracking
-    * @description Begin tracking a window's position
-    * @param WinTitle Window to track
-    * @param interval Update interval in milliseconds
-    */
+     * @method StartTracking
+     * @description Begin tracking a window's position
+     * @param WinTitle Window to track
+     * @param interval Update interval in milliseconds
+     */
     static StartTracking(WinTitle := "A", interval := 100) {
         this.targetWindow := WinTitle
         this.positionHistory := []
@@ -220,9 +220,9 @@ class WindowPositionTracker {
     }
 
     /**
-    * @method StopTracking
-    * @description Stop tracking and cleanup
-    */
+     * @method StopTracking
+     * @description Stop tracking and cleanup
+     */
     static StopTracking() {
         this.tracking := false
         if this.trackTimer {
@@ -236,9 +236,9 @@ class WindowPositionTracker {
     }
 
     /**
-    * @method UpdatePosition
-    * @description Update current position and history
-    */
+     * @method UpdatePosition
+     * @description Update current position and history
+     */
     static UpdatePosition() {
         try {
             WinGetPos(&x, &y, &width, &height, this.targetWindow)
@@ -267,9 +267,9 @@ class WindowPositionTracker {
     }
 
     /**
-    * @method CreateTrackerGui
-    * @description Create the tracker display GUI
-    */
+     * @method CreateTrackerGui
+     * @description Create the tracker display GUI
+     */
     static CreateTrackerGui() {
         this.trackerGui := Gui("+AlwaysOnTop +ToolWindow", "Position Tracker")
         this.trackerGui.SetFont("s10", "Consolas")
@@ -286,13 +286,13 @@ class WindowPositionTracker {
     }
 
     /**
-    * @method UpdateTrackerGui
-    * @description Update tracker GUI with current data
-    * @param pos Current position data
-    */
+     * @method UpdateTrackerGui
+     * @description Update tracker GUI with current data
+     * @param pos Current position data
+     */
     static UpdateTrackerGui(pos) {
         if !this.trackerGui
-        return
+            return
 
         this.trackerGui["PosX"].Value := "X: " pos.X " pixels"
         this.trackerGui["PosY"].Value := "Y: " pos.Y " pixels"
@@ -309,20 +309,20 @@ class WindowPositionTracker {
             dt := curr.Timestamp - prev.Timestamp
 
             if dt > 0 {
-                velocity := Round(Sqrt(dx**2 + dy**2) / (dt / 1000), 2)
+                velocity := Round(Sqrt(dx ** 2 + dy ** 2) / (dt / 1000), 2)
                 this.trackerGui["Velocity"].Value := "Velocity: " velocity " px/s"
             }
         }
     }
 
     /**
-    * @method GetStatistics
-    * @description Get statistics from tracking history
-    * @returns {Object} Position statistics
-    */
+     * @method GetStatistics
+     * @description Get statistics from tracking history
+     * @returns {Object} Position statistics
+     */
     static GetStatistics() {
         if this.positionHistory.Length = 0
-        return {}
+            return {}
 
         minX := minY := 999999
         maxX := maxY := -999999
@@ -335,15 +335,15 @@ class WindowPositionTracker {
             maxY := Max(maxY, pos.Y)
 
             if i > 1 {
-                prev := this.positionHistory[i-1]
-                totalMovement += Sqrt((pos.X - prev.X)**2 + (pos.Y - prev.Y)**2)
+                prev := this.positionHistory[i - 1]
+                totalMovement += Sqrt((pos.X - prev.X) ** 2 + (pos.Y - prev.Y) ** 2)
             }
         }
 
         return {
-            MinPosition: {X: minX, Y: minY},
-            MaxPosition: {X: maxX, Y: maxY},
-            Range: {X: maxX - minX, Y: maxY - minY},
+            MinPosition: { X: minX, Y: minY },
+            MaxPosition: { X: maxX, Y: maxY },
+            Range: { X: maxX - minX, Y: maxY - minY },
             TotalMovement: Round(totalMovement, 2),
             SampleCount: this.positionHistory.Length
         }
@@ -360,27 +360,27 @@ class WindowPositionTracker {
 ; ========================================
 
 /**
-* @class WindowPositionManager
-* @description Save and restore window positions across sessions
-*/
+ * @class WindowPositionManager
+ * @description Save and restore window positions across sessions
+ */
 class WindowPositionManager {
     static savedPositions := Map()
     static configFile := A_ScriptDir "\window_positions.ini"
 
     /**
-    * @method SavePosition
-    * @description Save current window position
-    * @param WinTitle Window to save
-    * @param name Name for this saved position
-    * @returns {Boolean} Success status
-    */
+     * @method SavePosition
+     * @description Save current window position
+     * @param WinTitle Window to save
+     * @param name Name for this saved position
+     * @returns {Boolean} Success status
+     */
     static SavePosition(WinTitle := "A", name := "") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
             windowTitle := WinGetTitle(WinTitle)
 
             if name = ""
-            name := windowTitle
+                name := windowTitle
 
             posData := {
                 X: x,
@@ -404,12 +404,12 @@ class WindowPositionManager {
     }
 
     /**
-    * @method RestorePosition
-    * @description Restore a saved window position
-    * @param name Name of saved position
-    * @param WinTitle Window to restore (default: active)
-    * @returns {Boolean} Success status
-    */
+     * @method RestorePosition
+     * @description Restore a saved window position
+     * @param name Name of saved position
+     * @param WinTitle Window to restore (default: active)
+     * @returns {Boolean} Success status
+     */
     static RestorePosition(name, WinTitle := "A") {
         if !this.savedPositions.Has(name) {
             this.LoadFromFile(name)
@@ -432,11 +432,11 @@ class WindowPositionManager {
     }
 
     /**
-    * @method WriteToFile
-    * @description Write position to INI file
-    * @param name Position name
-    * @param posData Position data
-    */
+     * @method WriteToFile
+     * @description Write position to INI file
+     * @param name Position name
+     * @param posData Position data
+     */
     static WriteToFile(name, posData) {
         IniWrite(posData.X, this.configFile, name, "X")
         IniWrite(posData.Y, this.configFile, name, "Y")
@@ -447,10 +447,10 @@ class WindowPositionManager {
     }
 
     /**
-    * @method LoadFromFile
-    * @description Load position from INI file
-    * @param name Position name
-    */
+     * @method LoadFromFile
+     * @description Load position from INI file
+     * @param name Position name
+     */
     static LoadFromFile(name) {
         try {
             posData := {
@@ -466,13 +466,13 @@ class WindowPositionManager {
     }
 
     /**
-    * @method ListSaved
-    * @description List all saved positions
-    * @returns {String} Formatted list
-    */
+     * @method ListSaved
+     * @description List all saved positions
+     * @returns {String} Formatted list
+     */
     static ListSaved() {
         if this.savedPositions.Count = 0
-        return "No saved positions"
+            return "No saved positions"
 
         output := "Saved Window Positions:`n`n"
         for name, pos in this.savedPositions {
@@ -486,7 +486,7 @@ class WindowPositionManager {
 ^!s:: {
     name := InputBox("Enter a name for this position:", "Save Position").Value
     if name != ""
-    WindowPositionManager.SavePosition("A", name)
+        WindowPositionManager.SavePosition("A", name)
 }
 
 ; Hotkey: Ctrl+Alt+R - Restore window position
@@ -495,7 +495,7 @@ class WindowPositionManager {
     MsgBox(list, "Saved Positions")
     name := InputBox("Enter position name to restore:", "Restore Position").Value
     if name != ""
-    WindowPositionManager.RestorePosition(name, "A")
+        WindowPositionManager.RestorePosition(name, "A")
 }
 
 ; ========================================
@@ -503,16 +503,16 @@ class WindowPositionManager {
 ; ========================================
 
 /**
-* @class MultiMonitorHelper
-* @description Detect window positions relative to multiple monitors
-*/
+ * @class MultiMonitorHelper
+ * @description Detect window positions relative to multiple monitors
+ */
 class MultiMonitorHelper {
     /**
-    * @method GetMonitorFromWindow
-    * @description Determine which monitor a window is on
-    * @param WinTitle Window to check
-    * @returns {Object} Monitor information
-    */
+     * @method GetMonitorFromWindow
+     * @description Determine which monitor a window is on
+     * @param WinTitle Window to check
+     * @returns {Object} Monitor information
+     */
     static GetMonitorFromWindow(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -566,18 +566,18 @@ class MultiMonitorHelper {
                 }
             }
 
-            return {Error: "Window not found on any monitor"}
+            return { Error: "Window not found on any monitor" }
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method GetAllMonitors
-    * @description Get information about all monitors
-    * @returns {Array} Monitor data
-    */
+     * @method GetAllMonitors
+     * @description Get information about all monitors
+     * @returns {Array} Monitor data
+     */
     static GetAllMonitors() {
         monitors := []
         monitorCount := MonitorGetCount()
@@ -640,17 +640,17 @@ class MultiMonitorHelper {
 ; ========================================
 
 /**
-* @class WindowAlignment
-* @description Check and enforce window alignment
-*/
+ * @class WindowAlignment
+ * @description Check and enforce window alignment
+ */
 class WindowAlignment {
     /**
-    * @method CheckAlignment
-    * @description Check if window is aligned to screen edges or center
-    * @param WinTitle Window to check
-    * @param threshold Alignment threshold in pixels
-    * @returns {Object} Alignment information
-    */
+     * @method CheckAlignment
+     * @description Check if window is aligned to screen edges or center
+     * @param WinTitle Window to check
+     * @param threshold Alignment threshold in pixels
+     * @returns {Object} Alignment information
+     */
     static CheckAlignment(WinTitle := "A", threshold := 10) {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -658,7 +658,7 @@ class WindowAlignment {
             ; Get monitor info
             monitorInfo := MultiMonitorHelper.GetMonitorFromWindow(WinTitle)
             if monitorInfo.HasOwnProp("Error")
-            throw Error(monitorInfo.Error)
+                throw Error(monitorInfo.Error)
 
             work := monitorInfo.WorkArea
 
@@ -680,7 +680,7 @@ class WindowAlignment {
             }
 
             return {
-                Position: {X: x, Y: y, Width: width, Height: height},
+                Position: { X: x, Y: y, Width: width, Height: height },
                 Alignments: alignments,
                 Summary: this.GetAlignmentSummary(alignments)
             }
@@ -691,42 +691,42 @@ class WindowAlignment {
     }
 
     /**
-    * @method GetAlignmentSummary
-    * @description Create human-readable alignment summary
-    * @param alignments Alignment data
-    * @returns {String} Summary text
-    */
+     * @method GetAlignmentSummary
+     * @description Create human-readable alignment summary
+     * @param alignments Alignment data
+     * @returns {String} Summary text
+     */
     static GetAlignmentSummary(alignments) {
         aligned := []
 
         if alignments.Maximized
-        return "Maximized"
+            return "Maximized"
 
         if alignments.Left
-        aligned.Push("Left")
+            aligned.Push("Left")
         if alignments.Right
-        aligned.Push("Right")
+            aligned.Push("Right")
         if alignments.Top
-        aligned.Push("Top")
+            aligned.Push("Top")
         if alignments.Bottom
-        aligned.Push("Bottom")
+            aligned.Push("Bottom")
         if alignments.CenterX
-        aligned.Push("Horizontal Center")
+            aligned.Push("Horizontal Center")
         if alignments.CenterY
-        aligned.Push("Vertical Center")
+            aligned.Push("Vertical Center")
 
         if aligned.Length = 0
-        return "No alignment"
+            return "No alignment"
 
         return "Aligned to: " StrJoin(aligned, ", ")
     }
 
     /**
-    * @method SnapToAlignment
-    * @description Snap window to nearest alignment
-    * @param WinTitle Window to snap
-    * @param snapType Type of snap (left, right, top, bottom, center)
-    */
+     * @method SnapToAlignment
+     * @description Snap window to nearest alignment
+     * @param WinTitle Window to snap
+     * @param snapType Type of snap (left, right, top, bottom, center)
+     */
     static SnapToAlignment(WinTitle := "A", snapType := "center") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -738,20 +738,20 @@ class WindowAlignment {
 
             switch snapType {
                 case "left":
-                newX := work.Left
+                    newX := work.Left
                 case "right":
-                newX := work.Right - width
+                    newX := work.Right - width
                 case "top":
-                newY := work.Top
+                    newY := work.Top
                 case "bottom":
-                newY := work.Bottom - height
+                    newY := work.Bottom - height
                 case "center":
-                newX := work.Left + (work.Width - width) // 2
-                newY := work.Top + (work.Height - height) // 2
+                    newX := work.Left + (work.Width - width) // 2
+                    newY := work.Top + (work.Height - height) // 2
                 case "center-x":
-                newX := work.Left + (work.Width - width) // 2
+                    newX := work.Left + (work.Width - width) // 2
                 case "center-y":
-                newY := work.Top + (work.Height - height) // 2
+                    newY := work.Top + (work.Height - height) // 2
             }
 
             WinMove(newX, newY, , , WinTitle)
@@ -793,16 +793,16 @@ StrJoin(arr, delimiter := ",") {
 ; ========================================
 
 /**
-* @class WindowBoundsValidator
-* @description Validate window positions and ensure windows stay on screen
-*/
+ * @class WindowBoundsValidator
+ * @description Validate window positions and ensure windows stay on screen
+ */
 class WindowBoundsValidator {
     /**
-    * @method IsOnScreen
-    * @description Check if window is fully visible on screen
-    * @param WinTitle Window to check
-    * @returns {Object} Validation result
-    */
+     * @method IsOnScreen
+     * @description Check if window is fully visible on screen
+     * @param WinTitle Window to check
+     * @returns {Object} Validation result
+     */
     static IsOnScreen(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -834,21 +834,21 @@ class WindowBoundsValidator {
                 FullyVisible: fullyVisible,
                 PartiallyVisible: partiallyVisible,
                 VisibleMonitors: visibleMonitors,
-                Position: {X: x, Y: y, Width: width, Height: height},
+                Position: { X: x, Y: y, Width: width, Height: height },
                 Status: fullyVisible ? "Fully On Screen" : (partiallyVisible ? "Partially On Screen" : "Off Screen")
             }
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method ConstrainToScreen
-    * @description Move window to ensure it's fully on screen
-    * @param WinTitle Window to constrain
-    * @returns {Boolean} True if window was moved
-    */
+     * @method ConstrainToScreen
+     * @description Move window to ensure it's fully on screen
+     * @param WinTitle Window to constrain
+     * @returns {Boolean} True if window was moved
+     */
     static ConstrainToScreen(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)

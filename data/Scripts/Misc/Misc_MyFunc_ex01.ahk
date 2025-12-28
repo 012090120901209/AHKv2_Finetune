@@ -2,7 +2,7 @@
 #SingleInstance Force
 
 if MyFunc()
-MsgBox(var)
+    MsgBox(var)
 
 MyFunc() {
     global var := 777

@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGet_02_MultiMonitor.ahk
-*
-* DESCRIPTION:
-* Advanced multi-monitor scenarios using MonitorGet function. Demonstrates
-* working with multiple displays, identifying monitor arrangements, and
-* managing windows across different screens.
-*
-* FEATURES:
-* - Detecting multi-monitor configurations
-* - Identifying monitor arrangement (horizontal/vertical)
-* - Finding monitor relationships (left/right/above/below)
-* - Window positioning across monitors
-* - Virtual desktop calculations
-* - Monitor identification and labeling
-* - Cross-monitor coordinate translation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Multi-monitor coordinate systems
-* - Array and Map collections
-* - Class-based organization
-* - Modern GUI controls
-* - Method chaining
-* - Property accessors
-*
-* LEARNING POINTS:
-* 1. Monitors can have negative coordinates
-* 2. Virtual desktop spans all monitors
-* 3. Monitors can be arranged in any configuration
-* 4. Monitor numbers may not correspond to physical position
-* 5. Coordinate systems can overlap in multi-monitor setups
-* 6. Working area varies per monitor based on taskbar position
-* 7. Monitor arrangement affects window spanning
-*/
+ * BuiltIn_MonitorGet_02_MultiMonitor.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced multi-monitor scenarios using MonitorGet function. Demonstrates
+ * working with multiple displays, identifying monitor arrangements, and
+ * managing windows across different screens.
+ * 
+ * FEATURES:
+ * - Detecting multi-monitor configurations
+ * - Identifying monitor arrangement (horizontal/vertical)
+ * - Finding monitor relationships (left/right/above/below)
+ * - Window positioning across monitors
+ * - Virtual desktop calculations
+ * - Monitor identification and labeling
+ * - Cross-monitor coordinate translation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Multi-monitor coordinate systems
+ * - Array and Map collections
+ * - Class-based organization
+ * - Modern GUI controls
+ * - Method chaining
+ * - Property accessors
+ * 
+ * LEARNING POINTS:
+ * 1. Monitors can have negative coordinates
+ * 2. Virtual desktop spans all monitors
+ * 3. Monitors can be arranged in any configuration
+ * 4. Monitor numbers may not correspond to physical position
+ * 5. Coordinate systems can overlap in multi-monitor setups
+ * 6. Working area varies per monitor based on taskbar position
+ * 7. Monitor arrangement affects window spanning
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Multi-Monitor Configuration Detector
@@ -48,7 +48,7 @@ Example1_ConfigurationDetector() {
 
     if MonCount = 1 {
         MsgBox("Single monitor detected. Multi-monitor examples require multiple displays.",
-        "Configuration Detector", "Icon!")
+            "Configuration Detector", "Icon!")
         return
     }
 
@@ -86,7 +86,7 @@ Example1_ConfigurationDetector() {
 
     result .= "VIRTUAL DESKTOP:`n"
     result .= "  Bounds: " virtualLeft "," virtualTop " to " virtualRight "," virtualBottom "`n"
-    result .= "  Total Size: " (virtualRight-virtualLeft) " x " (virtualBottom-virtualTop) "`n`n"
+    result .= "  Total Size: " (virtualRight - virtualLeft) " x " (virtualBottom - virtualTop) "`n`n"
 
     result .= "INDIVIDUAL MONITORS:`n"
     for MonNum, data in monitors {
@@ -96,15 +96,15 @@ Example1_ConfigurationDetector() {
         result .= "  Relative to virtual: "
 
         if data.Left = virtualLeft && data.Top = virtualTop
-        result .= "Top-Left corner`n"
+            result .= "Top-Left corner`n"
         else if data.Right = virtualRight && data.Top = virtualTop
-        result .= "Top-Right corner`n"
+            result .= "Top-Right corner`n"
         else if data.Left = virtualLeft && data.Bottom = virtualBottom
-        result .= "Bottom-Left corner`n"
+            result .= "Bottom-Left corner`n"
         else if data.Right = virtualRight && data.Bottom = virtualBottom
-        result .= "Bottom-Right corner`n"
+            result .= "Bottom-Right corner`n"
         else
-        result .= "Interior position`n"
+            result .= "Interior position`n"
     }
 
     MsgBox(result, "Example 1: Configuration Detector", "Icon!")
@@ -130,7 +130,7 @@ Example2_RelationshipFinder() {
     cmbMon := g.Add("ComboBox", "x+10 w60")
 
     Loop MonCount
-    cmbMon.Add([A_Index])
+        cmbMon.Add([A_Index])
     cmbMon.Choose(1)
 
     txtResult := g.Add("Text", "xm w500 h300 +Border")
@@ -152,22 +152,22 @@ Example2_RelationshipFinder() {
 
         Loop MonCount {
             if A_Index = MonNum
-            continue
+                continue
 
             TestNum := A_Index
             MonitorGet(TestNum, &TestLeft, &TestTop, &TestRight, &TestBottom)
 
             ; Check horizontal relationships
             if TestRight <= RefLeft
-            leftOf.Push(TestNum)
+                leftOf.Push(TestNum)
             else if TestLeft >= RefRight
-            rightOf.Push(TestNum)
+                rightOf.Push(TestNum)
 
             ; Check vertical relationships
             if TestBottom <= RefTop
-            above.Push(TestNum)
+                above.Push(TestNum)
             else if TestTop >= RefBottom
-            below.Push(TestNum)
+                below.Push(TestNum)
         }
 
         result .= "Monitors to the LEFT: " (leftOf.Length ? ArrayToString(leftOf) : "None") "`n"
@@ -179,15 +179,15 @@ Example2_RelationshipFinder() {
         adjacent := []
         Loop MonCount {
             if A_Index = MonNum
-            continue
+                continue
 
             TestNum := A_Index
             MonitorGet(TestNum, &TestLeft, &TestTop, &TestRight, &TestBottom)
 
             ; Check if edges touch
             if (TestRight = RefLeft) or (TestLeft = RefRight) or
-            (TestBottom = RefTop) or (TestTop = RefBottom)
-            adjacent.Push(TestNum)
+                (TestBottom = RefTop) or (TestTop = RefBottom)
+                adjacent.Push(TestNum)
         }
 
         result .= "ADJACENT Monitors (touching): " (adjacent.Length ? ArrayToString(adjacent) : "None")
@@ -198,7 +198,7 @@ Example2_RelationshipFinder() {
     ArrayToString(arr) {
         str := ""
         for item in arr
-        str .= item ", "
+            str .= item ", "
         return SubStr(str, 1, -2)
     }
 }
@@ -263,20 +263,20 @@ Example3_VisualLayoutMapper() {
         labelX := x + (w // 2) - 20
         labelY := y + (h // 2) - 10
         g.Add("Text", "x" labelX " y" labelY " w40 h20 +Center BackgroundTrans c0xFFFFFF",
-        "M" mon.Num)
+            "M" mon.Num)
 
         ; Add dimension label
         dimX := x + 5
         dimY := y + h - 20
-        g.Add("Text", "x" dimX " y" dimY " w" (w-10) " h15 +Center BackgroundTrans c0xFFFFFF",
-        (mon.Right - mon.Left) "x" (mon.Bottom - mon.Top))
+        g.Add("Text", "x" dimX " y" dimY " w" (w - 10) " h15 +Center BackgroundTrans c0xFFFFFF",
+            (mon.Right - mon.Left) "x" (mon.Bottom - mon.Top))
     }
 
     ; Add legend
     legendY := Round((virtualBottom - virtualTop) * scale) + 50
     g.Add("Text", "x20 y" legendY " w800",
-    "Scale: 1 pixel = " Round(1/scale, 2) " screen pixels | "
-    "Virtual Desktop: " virtualWidth "x" virtualHeight)
+        "Scale: 1 pixel = " Round(1 / scale, 2) " screen pixels | "
+        "Virtual Desktop: " virtualWidth "x" virtualHeight)
 
     g.Show("w" (maxCanvasWidth + 40) " h" (legendY + 40))
 }
@@ -319,7 +319,7 @@ Example4_CrossMonitorMover() {
         try {
             WinID := WinExist("A")
             if !WinID
-            return
+                return
 
             ; Get target monitor bounds
             MonitorGet(MonNum, &Left, &Top, &Right, &Bottom)
@@ -339,7 +339,7 @@ Example4_CrossMonitorMover() {
         try {
             WinID := WinExist("A")
             if !WinID
-            return
+                return
 
             ; Find which monitor the window is currently on
             WinGetPos(&WinX, &WinY, &WinW, &WinH, WinID)
@@ -362,8 +362,8 @@ Example4_CrossMonitorMover() {
                 case "TR": NewX := Right - WinW, NewY := Top
                 case "BL": NewX := Left, NewY := Bottom - WinH
                 case "BR": NewX := Right - WinW, NewY := Bottom - WinH
-                case "C":  NewX := Left + ((Right - Left - WinW) // 2),
-                NewY := Top + ((Bottom - Top - WinH) // 2)
+                case "C": NewX := Left + ((Right - Left - WinW) // 2),
+                    NewY := Top + ((Bottom - Top - WinH) // 2)
             }
 
             WinMove(NewX, NewY, , , WinID)
@@ -373,7 +373,7 @@ Example4_CrossMonitorMover() {
     UpdateCurrentMonitor() {
         try {
             if !WinExist("A")
-            return
+                return
 
             WinGetPos(&X, &Y, , , "A")
             WinTitle := WinGetTitle("A")
@@ -469,7 +469,7 @@ Example5_SpanningCalculator() {
             result .= "None (outside all monitors)"
         } else {
             for MonNum in spannedMonitors
-            result .= MonNum " "
+                result .= MonNum " "
 
             result .= "`n`nCOVERAGE BREAKDOWN:`n"
             for MonNum in spannedMonitors {
@@ -478,7 +478,7 @@ Example5_SpanningCalculator() {
                 result .= "  Area: " Format("{:,}", data.Area) " pixels² (" data.Percent "%)`n"
                 result .= "  Dimensions: " data.Width " x " data.Height
                 if spannedMonitors.Length > 1
-                result .= "`n"
+                    result .= "`n"
             }
 
             ; Find primary monitor
@@ -543,15 +543,15 @@ Example6_ArrangementDetector() {
     for i, mon1 in monitors {
         for j, mon2 in monitors {
             if i >= j
-            continue
+                continue
 
             ; Check if horizontally aligned (similar Y centers)
             if Abs(mon1.CenterY - mon2.CenterY) < tolerance
-            horizontalPairs++
+                horizontalPairs++
 
             ; Check if vertically aligned (similar X centers)
             if Abs(mon1.CenterX - mon2.CenterX) < tolerance
-            verticalPairs++
+                verticalPairs++
         }
     }
 
@@ -564,19 +564,19 @@ Example6_ArrangementDetector() {
     result .= "  Vertical pairs: " verticalPairs "`n`n"
 
     if horizontalPairs > verticalPairs
-    arrangement := "Primarily HORIZONTAL"
+        arrangement := "Primarily HORIZONTAL"
     else if verticalPairs > horizontalPairs
-    arrangement := "Primarily VERTICAL"
+        arrangement := "Primarily VERTICAL"
     else if horizontalPairs = 0 && verticalPairs = 0
-    arrangement := "SCATTERED (no alignment)"
+        arrangement := "SCATTERED (no alignment)"
     else
-    arrangement := "MIXED arrangement"
+        arrangement := "MIXED arrangement"
 
     result .= "Configuration: " arrangement "`n`n"
 
     result .= "Monitor Positions (by center point):`n"
     for mon in monitors
-    result .= "  Monitor " mon.Num ": Center at (" mon.CenterX ", " mon.CenterY ")`n"
+        result .= "  Monitor " mon.Num ": Center at (" mon.CenterX ", " mon.CenterY ")`n"
 
     MsgBox(result, "Example 6: Arrangement Detector", "Icon!")
 }
@@ -597,7 +597,7 @@ Example7_VirtualDesktopCalculator() {
 
     Loop MonCount {
         MonitorGet(A_Index, &Left, &Top, &Right, &Bottom)
-        monitors.Push({Left: Left, Top: Top, Right: Right, Bottom: Bottom})
+        monitors.Push({ Left: Left, Top: Top, Right: Right, Bottom: Bottom })
 
         virtualLeft := Min(virtualLeft, Left)
         virtualTop := Min(virtualTop, Top)
@@ -613,7 +613,7 @@ Example7_VirtualDesktopCalculator() {
     ; Calculate actual monitor area
     monitorArea := 0
     for mon in monitors
-    monitorArea += (mon.Right - mon.Left) * (mon.Bottom - mon.Top)
+        monitorArea += (mon.Right - mon.Left) * (mon.Bottom - mon.Top)
 
     ; Calculate dead space
     deadSpace := virtualArea - monitorArea
@@ -637,11 +637,11 @@ Example7_VirtualDesktopCalculator() {
     for i, mon in monitors {
         area := (mon.Right - mon.Left) * (mon.Bottom - mon.Top)
         result .= "  Monitor " i ": " Format("{:,}", area) " pixels² "
-        result .= "(" Round((area/virtualArea)*100, 1) "% of virtual)`n"
+        result .= "(" Round((area / virtualArea) * 100, 1) "% of virtual)`n"
     }
 
     if deadPercent > 5
-    result .= "`nNote: High dead space suggests gaps in monitor arrangement."
+        result .= "`nNote: High dead space suggests gaps in monitor arrangement."
 
     MsgBox(result, "Example 7: Virtual Desktop Calculator", "Icon!")
 }

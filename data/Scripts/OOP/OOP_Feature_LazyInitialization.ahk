@@ -27,7 +27,7 @@ class LazyDatabase {
             if (!this._connection) {
                 MsgBox("First access - creating database connection...")
                 Sleep(1000)
-                this._connection := {connected: true, connectionString: this.connectionString}
+                this._connection := { connected: true, connectionString: this.connectionString }
                 MsgBox("Database connection established!")
             }
             return this._connection
@@ -59,7 +59,7 @@ class ImageGallery {
         return this._images[index]
     }
 
-    _LoadImage(path) => {path: path, data: "Image data for " path, loaded: A_Now}
+    _LoadImage(path) => { path: path, data: "Image data for " path, loaded: A_Now }
 
     GetCacheInfo() => Format("Cached images: {1}/{2}", this._images.Count, this.imagePaths.Length)
 }
@@ -76,7 +76,7 @@ class ConfigManager {
         get {
             if (!ConfigManager._instance) {
                 MsgBox("Creating ConfigManager instance (first access)...")
-                ConfigManager._instance := {settings: Map(), Load: (*) => MsgBox("Loading config..."), Save: (*) => MsgBox("Saving config...")}
+                ConfigManager._instance := { settings: Map(), Load: (*) => MsgBox("Loading config..."), Save: (*) => MsgBox("Saving config...") }
                 MsgBox("ConfigManager instance created!")
             }
             return ConfigManager._instance
@@ -155,14 +155,14 @@ MsgBox("Report created (nothing computed yet)")
 
 result := MsgBox("Show summary?", "Choose", "YesNo")
 if (result = "Yes")
-MsgBox(report.Summary)
+    MsgBox(report.Summary)
 
 result := MsgBox("Show details?", "Choose", "YesNo")
 if (result = "Yes")
-MsgBox(report.Details)
+    MsgBox(report.Details)
 
 result := MsgBox("Show charts?", "Choose", "YesNo")
 if (result = "Yes")
-MsgBox(report.Charts)
+    MsgBox(report.Charts)
 
 MsgBox("Lazy initialization pattern demonstrated!")

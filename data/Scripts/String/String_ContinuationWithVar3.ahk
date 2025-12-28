@@ -2,7 +2,7 @@
 #SingleInstance Force ; Source: String_ContinuationWithVar3.ah2
 
 user := "hello" ; with continuation block
-script1 := ( "document.querySelector('#userId').value = '" user "'"
+script1 := ("document.querySelector('#userId').value = '" user "'"
 )
 MsgBox("script1:`n`n[" script1 "]") ; without continuation block
 script2 := "document.querySelector('#userId').value = '" . user . "'"

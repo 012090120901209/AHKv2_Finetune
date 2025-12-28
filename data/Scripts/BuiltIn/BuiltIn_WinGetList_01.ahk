@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinGetList_01.ahk
-* @description Comprehensive examples demonstrating WinGetList function for enumerating windows in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic window enumeration
-* Example 2: Filtered window lists
-* Example 3: Window catalog builder
-* Example 4: Process-based listing
-* Example 5: Window statistics generator
-* Example 6: Interactive window browser
-* Example 7: Window list exporter
-*
-* @section FEATURES
-* - Enumerate all windows
-* - Filter and sort
-* - Build catalogs
-* - Process grouping
-* - Statistics
-* - Interactive browsing
-* - Export capabilities
-*/
+ * @file BuiltIn_WinGetList_01.ahk
+ * @description Comprehensive examples demonstrating WinGetList function for enumerating windows in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic window enumeration
+ * Example 2: Filtered window lists
+ * Example 3: Window catalog builder
+ * Example 4: Process-based listing
+ * Example 5: Window statistics generator
+ * Example 6: Interactive window browser
+ * Example 7: Window list exporter
+ * 
+ * @section FEATURES
+ * - Enumerate all windows
+ * - Filter and sort
+ * - Build catalogs
+ * - Process grouping
+ * - Statistics
+ * - Interactive browsing
+ * - Export capabilities
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -56,11 +56,11 @@ GetAllWindows() {
 
     for i, win in windows {
         if i > 15
-        break
+            break
 
         output .= win.Class
         if win.Title != ""
-        output .= " - " SubStr(win.Title, 1, 30)
+            output .= " - " SubStr(win.Title, 1, 30)
         output .= "`n"
     }
 
@@ -138,44 +138,44 @@ class WindowFilter {
             try {
                 style := WinGetStyle("ahk_id " winId)
                 if (style & 0x10000000) {  ; WS_VISIBLE
-                visible.Push({
+                    visible.Push({
+                        ID: winId,
+                        Title: WinGetTitle("ahk_id " winId)
+                    })
+                }
+            }
+        }
+
+        return visible
+    }
+
+    static FilterByCustom(filterFunc) {
+        filtered := []
+        windowList := WinGetList()
+
+        for winId in windowList {
+            try {
+                winData := {
                     ID: winId,
-                    Title: WinGetTitle("ahk_id " winId)
-                })
+                    Title: WinGetTitle("ahk_id " winId),
+                    Class: WinGetClass("ahk_id " winId),
+                    Process: WinGetProcessName("ahk_id " winId)
+                }
+
+                if filterFunc(winData) {
+                    filtered.Push(winData)
+                }
             }
         }
+
+        return filtered
     }
-
-    return visible
-}
-
-static FilterByCustom(filterFunc) {
-    filtered := []
-    windowList := WinGetList()
-
-    for winId in windowList {
-        try {
-            winData := {
-                ID: winId,
-                Title: WinGetTitle("ahk_id " winId),
-                Class: WinGetClass("ahk_id " winId),
-                Process: WinGetProcessName("ahk_id " winId)
-            }
-
-            if filterFunc(winData) {
-                filtered.Push(winData)
-            }
-        }
-    }
-
-    return filtered
-}
 }
 
 ^+f:: {
     pattern := InputBox("Enter title pattern:", "Filter Windows").Value
     if pattern = ""
-    return
+        return
 
     filtered := WindowFilter.FilterByTitle(pattern)
 
@@ -183,7 +183,7 @@ static FilterByCustom(filterFunc) {
     for win in filtered {
         output .= win.Title "`n"
         if A_Index > 10
-        break
+            break
     }
 
     MsgBox(output, "Filtered Windows", "Icon!")
@@ -224,7 +224,7 @@ class WindowCatalog {
         stats := {
             TotalClasses: this.catalog.Count,
             TotalWindows: 0,
-            LargestClass: {Name: "", Count: 0}
+            LargestClass: { Name: "", Count: 0 }
         }
 
         for className, windows in this.catalog {
@@ -480,7 +480,7 @@ class WindowBrowser {
     static ActivateSelected(lv) {
         row := lv.GetNext()
         if !row
-        return
+            return
 
         winId := lv.GetNext(0, "Ptr")
 

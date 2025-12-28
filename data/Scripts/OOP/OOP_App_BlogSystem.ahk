@@ -35,10 +35,10 @@ class Comment {
     AddReply(comment) => (this.replies.Push(comment), this)
 
     ToString() => Format("[{1}] {2}: {3}{4}",
-    FormatTime(this.createdAt, "MM/dd HH:mm"),
-    this.author.displayName,
-    this.content,
-    this.replies.Length > 0 ? " (" . this.replies.Length . " replies)" : "")
+        FormatTime(this.createdAt, "MM/dd HH:mm"),
+        this.author.displayName,
+        this.content,
+        this.replies.Length > 0 ? " (" . this.replies.Length . " replies)" : "")
 }
 
 class Post {
@@ -93,7 +93,7 @@ class Post {
     GetExcerpt(length := 100) {
         excerpt := this.content
         if (StrLen(excerpt) > length)
-        excerpt := SubStr(excerpt, 1, length) . "..."
+            excerpt := SubStr(excerpt, 1, length) . "..."
         return excerpt
     }
 
@@ -102,9 +102,9 @@ class Post {
         post .= Format("By: {1} | {2}`n", this.author.displayName, FormatTime(this.createdAt, "yyyy-MM-dd"))
         post .= Format("Views: {1} | Comments: {2}`n", this.views, this.comments.Length)
         if (this.categories.Length > 0)
-        post .= "Categories: " . this.categories.Join(", ") . "`n"
+            post .= "Categories: " . this.categories.Join(", ") . "`n"
         if (this.tags.Length > 0)
-        post .= "Tags: " . this.tags.Join(", ") . "`n"
+            post .= "Tags: " . this.tags.Join(", ") . "`n"
         post .= "`n" . this.GetExcerpt(150)
         return post
     }
@@ -117,7 +117,7 @@ class Blog {
 
     CreatePost(author, title, content) {
         if (!this.authors.Has(author.authorId))
-        return MsgBox("Author not registered!", "Error")
+            return MsgBox("Author not registered!", "Error")
 
         post := Post(author, title, content)
         this.posts.Push(post)
@@ -127,42 +127,42 @@ class Blog {
     GetPublishedPosts() {
         published := []
         for post in this.posts
-        if (post.status = Post.STATUS_PUBLISHED)
-        published.Push(post)
+            if (post.status = Post.STATUS_PUBLISHED)
+                published.Push(post)
         return published
     }
 
     GetPostsByAuthor(authorId) {
         filtered := []
         for post in this.posts
-        if (post.author.authorId = authorId)
-        filtered.Push(post)
+            if (post.author.authorId = authorId)
+                filtered.Push(post)
         return filtered
     }
 
     GetPostsByCategory(category) {
         filtered := []
         for post in this.posts
-        for cat in post.categories
-        if (cat = category)
-        filtered.Push(post)
+            for cat in post.categories
+                if (cat = category)
+                    filtered.Push(post)
         return filtered
     }
 
     GetPostsByTag(tag) {
         filtered := []
         for post in this.posts
-        for t in post.tags
-        if (t = tag)
-        filtered.Push(post)
+            for t in post.tags
+                if (t = tag)
+                    filtered.Push(post)
         return filtered
     }
 
     SearchPosts(query) {
         results := []
         for post in this.posts
-        if (InStr(post.title, query) || InStr(post.content, query))
-        results.Push(post)
+            if (InStr(post.title, query) || InStr(post.content, query))
+                results.Push(post)
         return results
     }
 
@@ -184,7 +184,7 @@ class Blog {
 
         results := []
         loop Min(limit, sorted.Length)
-        results.Push(sorted[A_Index])
+            results.Push(sorted[A_Index])
         return results
     }
 
@@ -213,37 +213,37 @@ blog := Blog("Tech Insights", "A blog about technology and programming")
 
 ; Register authors
 alice := blog.RegisterAuthor(Author("alice_codes", "alice@blog.com", "Alice Johnson"))
-.SetBio("Full-stack developer passionate about web technologies")
+    .SetBio("Full-stack developer passionate about web technologies")
 
 bob := blog.RegisterAuthor(Author("bob_dev", "bob@blog.com", "Bob Smith"))
-.SetBio("DevOps engineer and cloud enthusiast")
+    .SetBio("DevOps engineer and cloud enthusiast")
 
 ; Create posts
 post1 := blog.CreatePost(alice, "Getting Started with AutoHotkey v2",
-"AutoHotkey v2 brings many exciting new features to the scripting language. " .
-"In this post, we'll explore the key changes and how to migrate from v1. " .
-"The new syntax is more consistent and modern, making it easier to write clean code.")
+    "AutoHotkey v2 brings many exciting new features to the scripting language. " .
+    "In this post, we'll explore the key changes and how to migrate from v1. " .
+    "The new syntax is more consistent and modern, making it easier to write clean code.")
 
 post1.AddCategory("Programming").AddCategory("AutoHotkey")
-.AddTag("tutorial").AddTag("beginner").AddTag("ahk-v2")
-.Publish()
+    .AddTag("tutorial").AddTag("beginner").AddTag("ahk-v2")
+    .Publish()
 
 post2 := blog.CreatePost(bob, "Docker Best Practices for 2024",
-"Docker has become an essential tool for modern development. " .
-"Here are the top 10 best practices every developer should follow " .
-"to create efficient and secure containerized applications.")
+    "Docker has become an essential tool for modern development. " .
+    "Here are the top 10 best practices every developer should follow " .
+    "to create efficient and secure containerized applications.")
 
 post2.AddCategory("DevOps").AddCategory("Containers")
-.AddTag("docker").AddTag("best-practices").AddTag("security")
-.Publish()
+    .AddTag("docker").AddTag("best-practices").AddTag("security")
+    .Publish()
 
 post3 := blog.CreatePost(alice, "Building RESTful APIs with Node.js",
-"Learn how to build scalable RESTful APIs using Node.js and Express. " .
-"We'll cover routing, middleware, error handling, and authentication.")
+    "Learn how to build scalable RESTful APIs using Node.js and Express. " .
+    "We'll cover routing, middleware, error handling, and authentication.")
 
 post3.AddCategory("Programming").AddCategory("Backend")
-.AddTag("nodejs").AddTag("api").AddTag("javascript")
-.Publish()
+    .AddTag("nodejs").AddTag("api").AddTag("javascript")
+    .Publish()
 
 ; Add comments
 comment1 := post1.AddComment(bob, "Great tutorial! Very helpful for beginners.")
@@ -255,16 +255,16 @@ post2.AddComment(alice, "Excellent tips on container security!")
 
 ; Simulate views
 post1.IncrementViews().IncrementViews().IncrementViews()
-.IncrementViews().IncrementViews().IncrementViews()
-.IncrementViews().IncrementViews().IncrementViews()
-.IncrementViews()  ; 10 views
+    .IncrementViews().IncrementViews().IncrementViews()
+    .IncrementViews().IncrementViews().IncrementViews()
+    .IncrementViews()  ; 10 views
 
 post2.IncrementViews().IncrementViews().IncrementViews()
-.IncrementViews().IncrementViews()  ; 5 views
+    .IncrementViews().IncrementViews()  ; 5 views
 
 post3.IncrementViews().IncrementViews().IncrementViews()
-.IncrementViews().IncrementViews().IncrementViews()
-.IncrementViews()  ; 7 views
+    .IncrementViews().IncrementViews().IncrementViews()
+    .IncrementViews()  ; 7 views
 
 ; Display post
 MsgBox(post1.ToString())

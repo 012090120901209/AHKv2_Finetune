@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates fundamental TreeView control operations including creating trees,
-* adding nodes, setting parent-child relationships, and basic tree manipulation.
-*
-* FEATURES:
-* - Creating TreeView controls in GUI windows
-* - Adding root and child nodes
-* - Modifying node properties
-* - Basic tree traversal
-* - Node deletion and modification
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Class-based GUI controls
-* - Method chaining for control creation
-* - Object-oriented event handling
-* - Modern parameter syntax
-*
-* LEARNING POINTS:
-* 1. TreeView controls require parent GUI window
-* 2. Nodes are identified by unique IDs returned when created
-* 3. Parent-child relationships established via parent parameter
-* 4. Node properties can be modified after creation
-* 5. TV object provides methods for all tree operations
-*/
+ * BuiltIn_TreeView_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates fundamental TreeView control operations including creating trees,
+ * adding nodes, setting parent-child relationships, and basic tree manipulation.
+ * 
+ * FEATURES:
+ * - Creating TreeView controls in GUI windows
+ * - Adding root and child nodes
+ * - Modifying node properties
+ * - Basic tree traversal
+ * - Node deletion and modification
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Class-based GUI controls
+ * - Method chaining for control creation
+ * - Object-oriented event handling
+ * - Modern parameter syntax
+ * 
+ * LEARNING POINTS:
+ * 1. TreeView controls require parent GUI window
+ * 2. Nodes are identified by unique IDs returned when created
+ * 3. Parent-child relationships established via parent parameter
+ * 4. Node properties can be modified after creation
+ * 5. TV object provides methods for all tree operations
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Creating a Simple TreeView
@@ -121,7 +121,7 @@ Example2_HierarchicalTree() {
 
     ; Add information display
     infoText := myGui.Add("Text", "xm y+10 w400",
-    "Total Employees: " . (TV.GetCount() - 1) . " | Departments: 3")
+        "Total Employees: " . (TV.GetCount() - 1) . " | Departments: 3")
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
     closeBtn.OnEvent("Click", (*) => myGui.Destroy())
@@ -470,7 +470,7 @@ CountNodes(TV, NodeID) {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -518,12 +518,12 @@ Example6_EventHandling() {
 
         ; Keep only last maxLogEntries
         if (eventLog.Length > maxLogEntries)
-        eventLog.RemoveAt(1)
+            eventLog.RemoveAt(1)
 
         ; Update display
         logText := ""
         for index, entry in eventLog
-        logText .= entry . "`n"
+            logText .= entry . "`n"
         logEdit.Value := logText
     }
 
@@ -634,9 +634,9 @@ Example7_CompleteManager() {
 
     AddChild(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
         if (!nodeInput.Value)
-        return SetStatus("Please enter node name")
+            return SetStatus("Please enter node name")
 
         newNode := TV.Add(nodeInput.Value, selected)
         TV.Modify(selected, "Expand")
@@ -647,9 +647,9 @@ Example7_CompleteManager() {
 
     AddSibling(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
         if (!nodeInput.Value)
-        return SetStatus("Please enter node name")
+            return SetStatus("Please enter node name")
 
         parent := TV.GetParent(selected)
         newNode := TV.Add(nodeInput.Value, parent)
@@ -660,9 +660,9 @@ Example7_CompleteManager() {
 
     RenameNode(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
         if (!nodeInput.Value)
-        return SetStatus("Please enter new name")
+            return SetStatus("Please enter new name")
 
         TV.Modify(selected, nodeInput.Value)
         SetStatus("Renamed to: " . nodeInput.Value)
@@ -671,9 +671,9 @@ Example7_CompleteManager() {
 
     DeleteNode(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
         if (selected = Root)
-        return SetStatus("Cannot delete root node")
+            return SetStatus("Cannot delete root node")
 
         text := TV.GetText(selected)
         TV.Delete(selected)
@@ -682,7 +682,7 @@ Example7_CompleteManager() {
 
     MoveUp(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
 
         ; This would require more complex implementation
         SetStatus("Move up functionality - would reorder siblings")
@@ -690,14 +690,14 @@ Example7_CompleteManager() {
 
     MoveDown(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
 
         SetStatus("Move down functionality - would reorder siblings")
     }
 
     SortChildren(*) {
         if (!selected := TV.GetSelection())
-        return SetStatus("No node selected")
+            return SetStatus("No node selected")
 
         ; Sort would require collecting children, sorting, and rebuilding
         SetStatus("Sort functionality - would alphabetically sort children")
@@ -705,7 +705,7 @@ Example7_CompleteManager() {
 
     FindNode(*) {
         if (!nodeInput.Value)
-        return SetStatus("Please enter search term")
+            return SetStatus("Please enter search term")
 
         found := FindInTree(TV, Root, nodeInput.Value)
         if (found) {
@@ -750,13 +750,13 @@ Example7_CompleteManager() {
 FindInTree(TV, NodeID, SearchText) {
     if (NodeID) {
         if (InStr(TV.GetText(NodeID), SearchText))
-        return NodeID
+            return NodeID
     }
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
         if (found := FindInTree(TV, ChildID, SearchText))
-        return found
+            return found
         ChildID := TV.GetNext(ChildID)
     }
     return 0
@@ -810,3 +810,4 @@ BEST PRACTICES:
 ; Example5_TreeTraversal()
 ; Example6_EventHandling()
 ; Example7_CompleteManager()
+

@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_IE_05_JavaScript.ahk
-*
-* DESCRIPTION:
-* JavaScript execution in IE using COM automation.
-*
-* FEATURES:
-* - Execute JavaScript
-* - Access window object
-* - Call JS functions
-* - Get return values
-* - DOM manipulation via JS
-*/
+ * BuiltIn_COM_IE_05_JavaScript.ahk
+ * 
+ * DESCRIPTION:
+ * JavaScript execution in IE using COM automation.
+ * 
+ * FEATURES:
+ * - Execute JavaScript
+ * - Access window object
+ * - Call JS functions
+ * - Get return values
+ * - DOM manipulation via JS
+ */
 
 Example1_ExecuteJS() {
     MsgBox("Example 1: Execute JavaScript")
@@ -21,7 +21,7 @@ Example1_ExecuteJS() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         ie.Document.parentWindow.execScript("alert('Hello from JS!')", "JavaScript")
         MsgBox("JS executed!")
     } Catch as err {
@@ -36,7 +36,7 @@ Example2_CreateFunction() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         ie.Document.parentWindow.execScript("function test() { return 'Test'; }", "JavaScript")
         MsgBox("Function created!")
     } Catch as err {
@@ -66,7 +66,7 @@ Example4_GetValue() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         result := ie.Document.parentWindow.eval("2 + 2")
         MsgBox("Result: " result)
     } Catch as err {
@@ -81,7 +81,7 @@ Example5_WindowObject() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         width := ie.Document.parentWindow.screen.width
         height := ie.Document.parentWindow.screen.height
         MsgBox("Screen: " width "x" height)
@@ -97,7 +97,7 @@ Example6_CallFunction() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         ie.Document.parentWindow.execScript("function add(a,b) { return a+b; }", "JavaScript")
         MsgBox("Function ready to call")
     } Catch as err {
@@ -112,7 +112,7 @@ Example7_ConsoleLog() {
         ie.Visible := true
         ie.Navigate("about:blank")
         while ie.Busy
-        Sleep(100)
+            Sleep(100)
         ie.Document.parentWindow.execScript("console.log('Test message')", "JavaScript")
         MsgBox("Check IE console (F12)")
     } Catch as err {
@@ -148,6 +148,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

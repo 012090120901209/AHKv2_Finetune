@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Hotstring Option: C (Case-sensitive)
-* Only triggers with exact case match
-*/
+ * Hotstring Option: C (Case-sensitive)
+ * Only triggers with exact case match
+ */
 
 ; Default: case-insensitive (BTW, btw, Btw all trigger)
 ::btw::by the way

@@ -11,9 +11,9 @@ global stateTimer := 0
 
 ; State durations (in seconds)
 global stateDurations := Map(
-"RED", 5,
-"GREEN", 5,
-"YELLOW", 2
+    "RED", 5,
+    "GREEN", 5,
+    "YELLOW", 2
 )
 
 ; Create GUI
@@ -51,7 +51,7 @@ StartTrafficLight(*) {
     global isRunning, startBtn, stopBtn
 
     if (isRunning)
-    return
+        return
 
     isRunning := true
     startBtn.Enabled := false
@@ -65,7 +65,7 @@ StopTrafficLight(*) {
     global isRunning, startBtn, stopBtn
 
     if (!isRunning)
-    return
+        return
 
     isRunning := false
     SetTimer(UpdateTrafficLight, 0)
@@ -96,7 +96,7 @@ UpdateTrafficLight() {
     global currentState, stateTimer, isRunning
 
     if (!isRunning)
-    return
+        return
 
     stateTimer += 0.1
 
@@ -115,17 +115,17 @@ TransitionState() {
     ; State transition logic
     Switch currentState {
         case "RED":
-        currentState := "GREEN"
-        LogState("RED → GREEN")
+            currentState := "GREEN"
+            LogState("RED â†’ GREEN")
 
         case "GREEN":
-        currentState := "YELLOW"
-        LogState("GREEN → YELLOW")
+            currentState := "YELLOW"
+            LogState("GREEN â†’ YELLOW")
 
         case "YELLOW":
-        currentState := "RED"
-        cycleCount++
-        LogState("YELLOW → RED (Cycle " cycleCount " complete)")
+            currentState := "RED"
+            cycleCount++
+            LogState("YELLOW â†’ RED (Cycle " cycleCount " complete)")
     }
 }
 

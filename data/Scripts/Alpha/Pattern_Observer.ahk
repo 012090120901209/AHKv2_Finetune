@@ -16,7 +16,7 @@ class EventEmitter {
     Off(event, callback) {
         if !this.listeners.Has(event)
             return
-        
+
         for i, cb in this.listeners[event] {
             if cb = callback {
                 this.listeners[event].RemoveAt(i)

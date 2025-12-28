@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* StrUpper/StrLower/StrTitle() - Change case
-*
-* Converts a string to uppercase, lowercase, or title case.
-*/
+ * StrUpper/StrLower/StrTitle() - Change case
+ * 
+ * Converts a string to uppercase, lowercase, or title case.
+ */
 
 text := "Hello World"
 
@@ -14,6 +14,6 @@ lower := StrLower(text)
 title := StrTitle(text)
 
 MsgBox("Original: " text
-. "`nUpper: " upper
-. "`nLower: " lower
-. "`nTitle: " title)
+    . "`nUpper: " upper
+    . "`nLower: " lower
+    . "`nTitle: " title)

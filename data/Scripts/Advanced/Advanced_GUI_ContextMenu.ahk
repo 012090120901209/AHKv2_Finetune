@@ -41,43 +41,43 @@ myGui.Show("w500 h360")
 
 ShowContextMenu(GuiCtrl, Item, IsRightClick, X, Y) {
     if (Item) {  ; Only show menu if an item was clicked
-    ; Select the row
-    LV.Modify(Item, "Select Focus")
-    contextMenu.Show(X, Y)
-}
+        ; Select the row
+        LV.Modify(Item, "Select Focus")
+        contextMenu.Show(X, Y)
+    }
 }
 
 MenuHandler(ItemName, ItemPos, MyMenu) {
     row := LV.GetNext()
     if (!row)
-    return
+        return
 
     name := LV.GetText(row, 1)
     type := LV.GetText(row, 2)
 
     Switch ItemName {
         case "Open":
-        MsgBox("Opening: " name, "Open File")
+            MsgBox("Opening: " name, "Open File")
         case "Edit":
-        MsgBox("Editing: " name, "Edit File")
+            MsgBox("Editing: " name, "Edit File")
         case "Copy Name":
-        A_Clipboard := name
-        infoText.Value := "Copied: " name
+            A_Clipboard := name
+            infoText.Value := "Copied: " name
         case "Copy Path":
-        A_Clipboard := "C:\Files\" name
-        infoText.Value := "Copied path to clipboard"
+            A_Clipboard := "C:\Files\" name
+            infoText.Value := "Copied path to clipboard"
         case "Properties":
-        props := "Name: " name "`n"
-        props .= "Type: " type "`n"
-        props .= "Size: " LV.GetText(row, 3) "`n"
-        props .= "Modified: " LV.GetText(row, 4)
-        MsgBox(props, "Properties")
+            props := "Name: " name "`n"
+            props .= "Type: " type "`n"
+            props .= "Size: " LV.GetText(row, 3) "`n"
+            props .= "Modified: " LV.GetText(row, 4)
+            MsgBox(props, "Properties")
         case "Delete":
-        result := MsgBox("Delete " name "?", "Confirm Delete", "YesNo Icon?")
-        if (result = "Yes") {
-            LV.Delete(row)
-            infoText.Value := "Deleted: " name
-        }
+            result := MsgBox("Delete " name "?", "Confirm Delete", "YesNo Icon?")
+            if (result = "Yes") {
+                LV.Delete(row)
+                infoText.Value := "Deleted: " name
+            }
     }
 }
 

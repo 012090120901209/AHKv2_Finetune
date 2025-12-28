@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* ControlClick() - Click control
-*
-* Clicks a button or control in a window.
-*/
+ * ControlClick() - Click control
+ * 
+ * Clicks a button or control in a window.
+ */
 
 MsgBox("This demonstrates ControlClick.`n`nIn practice, you'd click buttons in other windows.")

@@ -9,4 +9,4 @@ var1 := "abc"
 var2 := "ABC"
 
 if ((A_StringCaseSense && var1 == var2) || (!A_StringCaseSense && var1 = var2))
-MsgBox("Match")
+    MsgBox("Match")

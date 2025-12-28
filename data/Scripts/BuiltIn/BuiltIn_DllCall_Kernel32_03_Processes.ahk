@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Kernel32_03_Processes.ahk
-*
-* DESCRIPTION:
-* Demonstrates process and thread management using Windows API through DllCall.
-* Shows how to create processes, get process information, manage threads,
-* and work with process handles.
-*
-* FEATURES:
-* - Creating processes with CreateProcess
-* - Getting process and thread IDs
-* - Opening existing processes
-* - Process enumeration
-* - Thread creation and management
-* - Process priority control
-* - Getting exit codes
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Process and Thread API
-* https://docs.microsoft.com/en-us/windows/win32/procthread/
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with process functions
-* - Structure handling for PROCESS_INFORMATION and STARTUP_INFO
-* - Handle management
-* - Process synchronization
-*
-* LEARNING POINTS:
-* 1. Creating processes with CreateProcess API
-* 2. Getting current process and thread IDs
-* 3. Opening processes by ID or name
-* 4. Managing process and thread priorities
-* 5. Waiting for processes to complete
-* 6. Getting process exit codes
-* 7. Working with process handles safely
-*/
+ * BuiltIn_DllCall_Kernel32_03_Processes.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates process and thread management using Windows API through DllCall.
+ * Shows how to create processes, get process information, manage threads,
+ * and work with process handles.
+ * 
+ * FEATURES:
+ * - Creating processes with CreateProcess
+ * - Getting process and thread IDs
+ * - Opening existing processes
+ * - Process enumeration
+ * - Thread creation and management
+ * - Process priority control
+ * - Getting exit codes
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Process and Thread API
+ * https://docs.microsoft.com/en-us/windows/win32/procthread/
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with process functions
+ * - Structure handling for PROCESS_INFORMATION and STARTUP_INFO
+ * - Handle management
+ * - Process synchronization
+ * 
+ * LEARNING POINTS:
+ * 1. Creating processes with CreateProcess API
+ * 2. Getting current process and thread IDs
+ * 3. Opening processes by ID or name
+ * 4. Managing process and thread priorities
+ * 5. Waiting for processes to complete
+ * 6. Getting process exit codes
+ * 7. Working with process handles safely
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Getting Process Information
@@ -80,12 +80,12 @@ Example1_ProcessInfo() {
     user := Buffer(8, 0)
 
     DllCall("Kernel32.dll\GetProcessTimes"
-    , "Ptr", hProcess
-    , "Ptr", creation.Ptr
-    , "Ptr", exit.Ptr
-    , "Ptr", kernel.Ptr
-    , "Ptr", user.Ptr
-    , "Int")
+        , "Ptr", hProcess
+        , "Ptr", creation.Ptr
+        , "Ptr", exit.Ptr
+        , "Ptr", kernel.Ptr
+        , "Ptr", user.Ptr
+        , "Int")
 
     MsgBox("Process timing information retrieved", "Success")
 }
@@ -107,17 +107,17 @@ Example2_CreateProcess() {
     StrPut(cmdLine, cmdLineBuffer.Ptr, "UTF-16")
 
     success := DllCall("Kernel32.dll\CreateProcessW"
-    , "Ptr", 0                          ; lpApplicationName
-    , "Ptr", cmdLineBuffer.Ptr          ; lpCommandLine
-    , "Ptr", 0                          ; lpProcessAttributes
-    , "Ptr", 0                          ; lpThreadAttributes
-    , "Int", 0                          ; bInheritHandles
-    , "UInt", 0                         ; dwCreationFlags
-    , "Ptr", 0                          ; lpEnvironment
-    , "Ptr", 0                          ; lpCurrentDirectory
-    , "Ptr", startupInfo.Ptr            ; lpStartupInfo
-    , "Ptr", processInfo.Ptr            ; lpProcessInformation
-    , "Int")
+        , "Ptr", 0                          ; lpApplicationName
+        , "Ptr", cmdLineBuffer.Ptr          ; lpCommandLine
+        , "Ptr", 0                          ; lpProcessAttributes
+        , "Ptr", 0                          ; lpThreadAttributes
+        , "Int", 0                          ; bInheritHandles
+        , "UInt", 0                         ; dwCreationFlags
+        , "Ptr", 0                          ; lpEnvironment
+        , "Ptr", 0                          ; lpCurrentDirectory
+        , "Ptr", startupInfo.Ptr            ; lpStartupInfo
+        , "Ptr", processInfo.Ptr            ; lpProcessInformation
+        , "Int")
 
     if (success) {
         hProcess := NumGet(processInfo, 0, "Ptr")
@@ -149,10 +149,10 @@ Example3_OpenProcess() {
 
     ; Open process with query rights
     hProcess := DllCall("Kernel32.dll\OpenProcess"
-    , "UInt", PROCESS_QUERY_INFORMATION | PROCESS_VM_READ
-    , "Int", 0              ; bInheritHandle
-    , "UInt", currentPid    ; dwProcessId
-    , "Ptr")
+        , "UInt", PROCESS_QUERY_INFORMATION | PROCESS_VM_READ
+        , "Int", 0              ; bInheritHandle
+        , "UInt", currentPid    ; dwProcessId
+        , "Ptr")
 
     if (hProcess) {
         MsgBox(Format("Opened process {}:`nHandle: 0x{:X}", currentPid, hProcess), "Success")
@@ -160,9 +160,9 @@ Example3_OpenProcess() {
         ; Get process exit code (should be STILL_ACTIVE = 259 for running process)
         exitCode := Buffer(4, 0)
         DllCall("Kernel32.dll\GetExitCodeProcess"
-        , "Ptr", hProcess
-        , "Ptr", exitCode.Ptr
-        , "Int")
+            , "Ptr", hProcess
+            , "Ptr", exitCode.Ptr
+            , "Int")
 
         code := NumGet(exitCode, 0, "UInt")
         status := (code = 259) ? "Still Running" : "Exited with code " . code
@@ -173,12 +173,12 @@ Example3_OpenProcess() {
         priority := DllCall("Kernel32.dll\GetPriorityClass", "Ptr", hProcess, "UInt")
 
         priorityNames := Map(
-        0x00000040, "IDLE_PRIORITY_CLASS",
-        0x00004000, "BELOW_NORMAL_PRIORITY_CLASS",
-        0x00000020, "NORMAL_PRIORITY_CLASS",
-        0x00008000, "ABOVE_NORMAL_PRIORITY_CLASS",
-        0x00000080, "HIGH_PRIORITY_CLASS",
-        0x00000100, "REALTIME_PRIORITY_CLASS"
+            0x00000040, "IDLE_PRIORITY_CLASS",
+            0x00004000, "BELOW_NORMAL_PRIORITY_CLASS",
+            0x00000020, "NORMAL_PRIORITY_CLASS",
+            0x00008000, "ABOVE_NORMAL_PRIORITY_CLASS",
+            0x00000080, "HIGH_PRIORITY_CLASS",
+            0x00000100, "REALTIME_PRIORITY_CLASS"
         )
 
         priorityName := priorityNames.Has(priority) ? priorityNames[priority] : "Unknown"
@@ -205,10 +205,10 @@ Example4_ProcessPriority() {
     currentPid := DllCall("Kernel32.dll\GetCurrentProcessId", "UInt")
 
     hProcess := DllCall("Kernel32.dll\OpenProcess"
-    , "UInt", PROCESS_QUERY_INFORMATION | PROCESS_SET_INFORMATION
-    , "Int", 0
-    , "UInt", currentPid
-    , "Ptr")
+        , "UInt", PROCESS_QUERY_INFORMATION | PROCESS_SET_INFORMATION
+        , "Int", 0
+        , "UInt", currentPid
+        , "Ptr")
 
     if (!hProcess) {
         MsgBox("Failed to open process!", "Error")
@@ -222,9 +222,9 @@ Example4_ProcessPriority() {
 
     ; Set to above normal
     success := DllCall("Kernel32.dll\SetPriorityClass"
-    , "Ptr", hProcess
-    , "UInt", ABOVE_NORMAL_PRIORITY_CLASS
-    , "Int")
+        , "Ptr", hProcess
+        , "UInt", ABOVE_NORMAL_PRIORITY_CLASS
+        , "Int")
 
     if (success) {
         newPriority := DllCall("Kernel32.dll\GetPriorityClass", "Ptr", hProcess, "UInt")
@@ -258,17 +258,17 @@ Example5_WaitForProcess() {
     CREATE_NO_WINDOW := 0x08000000
 
     success := DllCall("Kernel32.dll\CreateProcessW"
-    , "Ptr", 0
-    , "Ptr", cmdLineBuffer.Ptr
-    , "Ptr", 0
-    , "Ptr", 0
-    , "Int", 0
-    , "UInt", CREATE_NO_WINDOW
-    , "Ptr", 0
-    , "Ptr", 0
-    , "Ptr", startupInfo.Ptr
-    , "Ptr", processInfo.Ptr
-    , "Int")
+        , "Ptr", 0
+        , "Ptr", cmdLineBuffer.Ptr
+        , "Ptr", 0
+        , "Ptr", 0
+        , "Int", 0
+        , "UInt", CREATE_NO_WINDOW
+        , "Ptr", 0
+        , "Ptr", 0
+        , "Ptr", startupInfo.Ptr
+        , "Ptr", processInfo.Ptr
+        , "Int")
 
     if (!success) {
         MsgBox("Failed to create process!", "Error")
@@ -285,9 +285,9 @@ Example5_WaitForProcess() {
     WAIT_TIMEOUT := 0x00000102
 
     waitResult := DllCall("Kernel32.dll\WaitForSingleObject"
-    , "Ptr", hProcess
-    , "UInt", 5000      ; 5 second timeout
-    , "UInt")
+        , "Ptr", hProcess
+        , "UInt", 5000      ; 5 second timeout
+        , "UInt")
 
     if (waitResult = WAIT_OBJECT_0) {
         ; Get exit code
@@ -316,11 +316,11 @@ Example6_ThreadInfo() {
     priority := DllCall("Kernel32.dll\GetThreadPriority", "Ptr", hThread, "Int")
 
     priorityNames := Map(
-    -2, "THREAD_PRIORITY_LOWEST",
-    -1, "THREAD_PRIORITY_BELOW_NORMAL",
-    0, "THREAD_PRIORITY_NORMAL",
-    1, "THREAD_PRIORITY_ABOVE_NORMAL",
-    2, "THREAD_PRIORITY_HIGHEST"
+        -2, "THREAD_PRIORITY_LOWEST",
+        -1, "THREAD_PRIORITY_BELOW_NORMAL",
+        0, "THREAD_PRIORITY_NORMAL",
+        1, "THREAD_PRIORITY_ABOVE_NORMAL",
+        2, "THREAD_PRIORITY_HIGHEST"
     )
 
     priorityName := priorityNames.Has(priority) ? priorityNames[priority] : "Unknown (" . priority . ")"
@@ -341,9 +341,9 @@ Example6_ThreadInfo() {
     THREAD_PRIORITY_ABOVE_NORMAL := 1
 
     success := DllCall("Kernel32.dll\SetThreadPriority"
-    , "Ptr", hThread
-    , "Int", THREAD_PRIORITY_ABOVE_NORMAL
-    , "Int")
+        , "Ptr", hThread
+        , "Int", THREAD_PRIORITY_ABOVE_NORMAL
+        , "Int")
 
     if (success) {
         MsgBox("Thread priority changed to ABOVE_NORMAL", "Success", "T2")
@@ -369,7 +369,7 @@ Example7_AdvancedOperations() {
         Loop {
             str := StrGet(envStrings + offset, "UTF-16")
             if (str = "" || count >= 5)
-            break
+                break
 
             results .= str . "`n"
             offset += (StrLen(str) + 1) * 2
@@ -385,9 +385,9 @@ Example7_AdvancedOperations() {
     ; Get Windows directory
     winDirBuf := Buffer(520, 0)
     length := DllCall("Kernel32.dll\GetWindowsDirectoryW"
-    , "Ptr", winDirBuf.Ptr
-    , "UInt", 260
-    , "UInt")
+        , "Ptr", winDirBuf.Ptr
+        , "UInt", 260
+        , "UInt")
 
     if (length > 0) {
         winDir := StrGet(winDirBuf.Ptr, "UTF-16")
@@ -406,9 +406,9 @@ Example7_AdvancedOperations() {
     NumPut("UInt", 260, nameLenBuf, 0)
 
     DllCall("Kernel32.dll\GetComputerNameW"
-    , "Ptr", nameBuf.Ptr
-    , "Ptr", nameLenBuf.Ptr
-    , "Int")
+        , "Ptr", nameBuf.Ptr
+        , "Ptr", nameLenBuf.Ptr
+        , "Int")
 
     computerName := StrGet(nameBuf.Ptr, "UTF-16")
 
@@ -418,9 +418,9 @@ Example7_AdvancedOperations() {
     NumPut("UInt", 260, userLenBuf, 0)
 
     DllCall("Advapi32.dll\GetUserNameW"
-    , "Ptr", userBuf.Ptr
-    , "Ptr", userLenBuf.Ptr
-    , "Int")
+        , "Ptr", userBuf.Ptr
+        , "Ptr", userLenBuf.Ptr
+        , "Int")
 
     userName := StrGet(userBuf.Ptr, "UTF-16")
 
@@ -452,7 +452,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Process Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_ProcessInfo()

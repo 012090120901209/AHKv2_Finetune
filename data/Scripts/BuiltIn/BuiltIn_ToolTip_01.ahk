@@ -1,34 +1,34 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ToolTip Basic Examples - Part 1
-* ============================================================================
-*
-* Comprehensive examples demonstrating ToolTip usage in AutoHotkey v2.
-*
-* @description This file covers fundamental ToolTip functionality including:
-*              - Basic tooltip display
-*              - Positioning and placement
-*              - Auto-hide with timers
-*              - Multiple tooltips
-*              - Tooltip formatting
-*
-* @author AutoHotkey Foundation
-* @version 2.0
-* @see https://www.autohotkey.com/docs/v2/lib/ToolTip.htm
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * ToolTip Basic Examples - Part 1
+ * ============================================================================
+ * 
+ * Comprehensive examples demonstrating ToolTip usage in AutoHotkey v2.
+ * 
+ * @description This file covers fundamental ToolTip functionality including:
+ *              - Basic tooltip display
+ *              - Positioning and placement
+ *              - Auto-hide with timers
+ *              - Multiple tooltips
+ *              - Tooltip formatting
+ * 
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @see https://www.autohotkey.com/docs/v2/lib/ToolTip.htm
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic ToolTip Display
 ; ============================================================================
 /**
-* Demonstrates basic tooltip creation and display.
-*
-* @description Shows how to display simple tooltips and clear them.
-*/
+ * Demonstrates basic tooltip creation and display.
+ * 
+ * @description Shows how to display simple tooltips and clear them.
+ */
 Example1_BasicDisplay() {
     ; Simple tooltip
     ToolTip "This is a basic tooltip"
@@ -54,8 +54,8 @@ Example1_BasicDisplay() {
 
     ; Long text tooltip
     longText := "This is a longer tooltip message that demonstrates "
-    . "how ToolTip handles extended text content. "
-    . "The tooltip will automatically size to fit the content."
+        . "how ToolTip handles extended text content. "
+        . "The tooltip will automatically size to fit the content."
     ToolTip longText
     Sleep 3000
     ToolTip
@@ -77,13 +77,13 @@ Example1_BasicDisplay() {
 ; EXAMPLE 2: ToolTip Positioning
 ; ============================================================================
 /**
-* Shows different tooltip positioning options.
-*
-* @description Demonstrates how to position tooltips at specific
-*              screen coordinates.
-*
-* Syntax: ToolTip(Text, X, Y, WhichToolTip)
-*/
+ * Shows different tooltip positioning options.
+ * 
+ * @description Demonstrates how to position tooltips at specific
+ *              screen coordinates.
+ * 
+ * Syntax: ToolTip(Text, X, Y, WhichToolTip)
+ */
 Example2_Positioning() {
     ; Center of screen
     screenWidth := A_ScreenWidth
@@ -131,11 +131,11 @@ Example2_Positioning() {
 ; EXAMPLE 3: Multiple ToolTips
 ; ============================================================================
 /**
-* Demonstrates using multiple tooltips simultaneously.
-*
-* @description Shows how to display up to 20 tooltips at once
-*              using the WhichToolTip parameter (1-20).
-*/
+ * Demonstrates using multiple tooltips simultaneously.
+ * 
+ * @description Shows how to display up to 20 tooltips at once
+ *              using the WhichToolTip parameter (1-20).
+ */
 Example3_MultipleToolTips() {
     ; Display 3 tooltips at different positions
     ToolTip "Tooltip 1 - Top", 100, 100, 1
@@ -189,11 +189,11 @@ Example3_MultipleToolTips() {
 ; EXAMPLE 4: Auto-Hide ToolTips with SetTimer
 ; ============================================================================
 /**
-* Shows how to auto-hide tooltips after a delay.
-*
-* @description Demonstrates using SetTimer to automatically
-*              clear tooltips after a specified duration.
-*/
+ * Shows how to auto-hide tooltips after a delay.
+ * 
+ * @description Demonstrates using SetTimer to automatically
+ *              clear tooltips after a specified duration.
+ */
 Example4_AutoHide() {
     ; Simple auto-hide (2 seconds)
     ShowTimedToolTip("This will disappear in 2 seconds", 2000)
@@ -229,19 +229,19 @@ Example4_AutoHide() {
 }
 
 /**
-* Shows a tooltip that auto-hides after specified duration.
-*
-* @param {String} text The tooltip text
-* @param {Integer} duration How long to show (milliseconds)
-* @param {Integer} x X position (optional)
-* @param {Integer} y Y position (optional)
-* @param {Integer} whichToolTip Tooltip number 1-20 (optional)
-*/
+ * Shows a tooltip that auto-hides after specified duration.
+ * 
+ * @param {String} text The tooltip text
+ * @param {Integer} duration How long to show (milliseconds)
+ * @param {Integer} x X position (optional)
+ * @param {Integer} y Y position (optional)
+ * @param {Integer} whichToolTip Tooltip number 1-20 (optional)
+ */
 ShowTimedToolTip(text, duration := 2000, x := "", y := "", whichToolTip := 1) {
     if (x = "" || y = "")
-    ToolTip text, , , whichToolTip
+        ToolTip text, , , whichToolTip
     else
-    ToolTip text, x, y, whichToolTip
+        ToolTip text, x, y, whichToolTip
 
     ; Set timer to clear tooltip
     ClearFunc := (*) => ToolTip("", , , whichToolTip)
@@ -252,10 +252,10 @@ ShowTimedToolTip(text, duration := 2000, x := "", y := "", whichToolTip := 1) {
 ; EXAMPLE 5: Status Display Tooltips
 ; ============================================================================
 /**
-* Creates status display tooltips for monitoring.
-*
-* @description Shows real-time status information using tooltips.
-*/
+ * Creates status display tooltips for monitoring.
+ * 
+ * @description Shows real-time status information using tooltips.
+ */
 Example5_StatusDisplay() {
     ; Simple status indicator
     ToolTip "Status: Initializing..."
@@ -292,7 +292,7 @@ Example5_StatusDisplay() {
         ToolTip FormatTime(, "HH:mm:ss")
         Sleep 100
         if (A_TickCount - startTime > 5000)
-        break
+            break
     }
     ToolTip
 
@@ -311,8 +311,8 @@ Example5_StatusDisplay() {
 }
 
 /**
-* Creates a text-based progress bar.
-*/
+ * Creates a text-based progress bar.
+ */
 CreateProgressBar(percent, width := 20) {
     filled := Round((percent / 100) * width)
     bar := ""
@@ -325,21 +325,21 @@ CreateProgressBar(percent, width := 20) {
 }
 
 /**
-* Shows formatted status message.
-*/
+ * Shows formatted status message.
+ */
 ShowStatus(action, label, value) {
     ToolTip Format("{1}...`n`n{2}: {3}", action, label, value)
 }
 
 /**
-* Shows system information tooltip.
-*/
+ * Shows system information tooltip.
+ */
 ShowSystemInfo() {
     info := "=== System Info ===`n`n"
-    . "Computer: " . A_ComputerName . "`n"
-    . "User: " . A_UserName . "`n"
-    . "OS: " . A_OSVersion . "`n"
-    . "Screen: " . A_ScreenWidth . "x" . A_ScreenHeight
+        . "Computer: " . A_ComputerName . "`n"
+        . "User: " . A_UserName . "`n"
+        . "OS: " . A_OSVersion . "`n"
+        . "Screen: " . A_ScreenWidth . "x" . A_ScreenHeight
 
     ToolTip info
 }
@@ -348,10 +348,10 @@ ShowSystemInfo() {
 ; EXAMPLE 6: Interactive ToolTips
 ; ============================================================================
 /**
-* Creates interactive tooltips that respond to events.
-*
-* @description Shows tooltips that update based on user actions.
-*/
+ * Creates interactive tooltips that respond to events.
+ * 
+ * @description Shows tooltips that update based on user actions.
+ */
 Example6_InteractiveToolTips() {
     ; Mouse position tracker
     MsgBox "Move mouse to see coordinates (5 seconds)"
@@ -361,7 +361,7 @@ Example6_InteractiveToolTips() {
         ToolTip Format("Mouse Position`nX: {1}`nY: {2}", x, y), x + 20, y + 20
         Sleep 50
         if (A_TickCount - startTime > 5000)
-        break
+            break
     }
     ToolTip
 
@@ -392,20 +392,20 @@ Example6_InteractiveToolTips() {
 }
 
 /**
-* Shows key press counter.
-*/
+ * Shows key press counter.
+ */
 ShowKeyCounter() {
     global keyPressCount
     keyPressCount := 0
 
     Loop 50 {  ; Check for 5 seconds
-    ToolTip Format("Key presses: {1}/5`nPress any key", keyPressCount)
-    Sleep 100
+        ToolTip Format("Key presses: {1}/5`nPress any key", keyPressCount)
+        Sleep 100
 
-    if (keyPressCount >= 5)
-    break
-}
-ToolTip
+        if (keyPressCount >= 5)
+            break
+    }
+    ToolTip
 }
 
 ; Monitor key presses (example - would need hotkeys in practice)
@@ -415,17 +415,17 @@ ToolTip
 ; EXAMPLE 7: Formatted and Styled ToolTips
 ; ============================================================================
 /**
-* Shows various tooltip formatting techniques.
-*
-* @description Demonstrates text formatting within tooltips.
-*/
+ * Shows various tooltip formatting techniques.
+ * 
+ * @description Demonstrates text formatting within tooltips.
+ */
 Example7_FormattedToolTips() {
     ; Aligned columns
     data := [
-    ["Name", "John Doe"],
-    ["Age", "30"],
-    ["City", "New York"],
-    ["Status", "Active"]
+        ["Name", "John Doe"],
+        ["Age", "30"],
+        ["City", "New York"],
+        ["Status", "Active"]
     ]
 
     formatted := ""
@@ -439,12 +439,12 @@ Example7_FormattedToolTips() {
 
     ; Table-like format
     table := "╔═══════════════════╗`n"
-    . "║   System Status   ║`n"
-    . "╠═══════════════════╣`n"
-    . "║ CPU:    45%       ║`n"
-    . "║ Memory: 60%       ║`n"
-    . "║ Disk:   75%       ║`n"
-    . "╚═══════════════════╝"
+        . "║   System Status   ║`n"
+        . "╠═══════════════════╣`n"
+        . "║ CPU:    45%       ║`n"
+        . "║ Memory: 60%       ║`n"
+        . "║ Disk:   75%       ║`n"
+        . "╚═══════════════════╝"
 
     ToolTip table
     Sleep 3000
@@ -452,11 +452,11 @@ Example7_FormattedToolTips() {
 
     ; List format
     list := "Shopping List:`n"
-    . "  • Milk`n"
-    . "  • Bread`n"
-    . "  • Eggs`n"
-    . "  • Butter`n"
-    . "  • Coffee"
+        . "  • Milk`n"
+        . "  • Bread`n"
+        . "  • Eggs`n"
+        . "  • Butter`n"
+        . "  • Coffee"
 
     ToolTip list
     Sleep 3000
@@ -464,11 +464,11 @@ Example7_FormattedToolTips() {
 
     ; Numbered list
     numbered := "Installation Steps:`n`n"
-    . "1. Download installer`n"
-    . "2. Run setup.exe`n"
-    . "3. Accept license`n"
-    . "4. Choose destination`n"
-    . "5. Complete installation"
+        . "1. Download installer`n"
+        . "2. Run setup.exe`n"
+        . "3. Accept license`n"
+        . "4. Choose destination`n"
+        . "5. Complete installation"
 
     ToolTip numbered
     Sleep 3000
@@ -476,11 +476,11 @@ Example7_FormattedToolTips() {
 
     ; Indented hierarchy
     hierarchy := "Project Structure:`n"
-    . "├─ src/`n"
-    . "│  ├─ main.ahk`n"
-    . "│  └─ lib/`n"
-    . "├─ docs/`n"
-    . "└─ tests/"
+        . "├─ src/`n"
+        . "│  ├─ main.ahk`n"
+        . "│  └─ lib/`n"
+        . "├─ docs/`n"
+        . "└─ tests/"
 
     ToolTip hierarchy
     Sleep 3000
@@ -488,11 +488,11 @@ Example7_FormattedToolTips() {
 
     ; Statistics display
     stats := "=== Statistics ===`n`n"
-    . "Total:    1,234`n"
-    . "Success:  1,100 (89%)`n"
-    . "Failed:     134 (11%)`n"
-    . "Pending:      0 (0%)`n`n"
-    . "Average: 12.5 sec"
+        . "Total:    1,234`n"
+        . "Success:  1,100 (89%)`n"
+        . "Failed:     134 (11%)`n"
+        . "Pending:      0 (0%)`n`n"
+        . "Average: 12.5 sec"
 
     ToolTip stats
     Sleep 3000
@@ -500,11 +500,11 @@ Example7_FormattedToolTips() {
 
     ; Multi-section format
     sections := "▼ Section 1: Overview`n"
-    . "   Status: Complete`n`n"
-    . "▼ Section 2: Details`n"
-    . "   Items: 45`n`n"
-    . "▼ Section 3: Summary`n"
-    . "   Result: Success"
+        . "   Status: Complete`n`n"
+        . "▼ Section 2: Details`n"
+        . "   Items: 45`n`n"
+        . "▼ Section 3: Summary`n"
+        . "   Result: Success"
 
     ToolTip sections
     Sleep 3000
@@ -515,36 +515,37 @@ Example7_FormattedToolTips() {
 ; Hotkey Triggers
 ; ============================================================================
 
-^1::Example1_BasicDisplay()
-^2::Example2_Positioning()
-^3::Example3_MultipleToolTips()
-^4::Example4_AutoHide()
-^5::Example5_StatusDisplay()
-^6::Example6_InteractiveToolTips()
-^7::Example7_FormattedToolTips()
-^0::ExitApp
+^1:: Example1_BasicDisplay()
+^2:: Example2_Positioning()
+^3:: Example3_MultipleToolTips()
+^4:: Example4_AutoHide()
+^5:: Example5_StatusDisplay()
+^6:: Example6_InteractiveToolTips()
+^7:: Example7_FormattedToolTips()
+^0:: ExitApp
 
 /**
-* ============================================================================
-* SUMMARY
-* ============================================================================
-*
-* ToolTip fundamentals covered:
-* 1. Basic tooltip display and clearing
-* 2. Positioning tooltips at specific coordinates
-* 3. Using multiple tooltips simultaneously (up to 20)
-* 4. Auto-hiding tooltips with SetTimer
-* 5. Status display and monitoring tooltips
-* 6. Interactive tooltips responding to events
-* 7. Formatted and styled tooltip content
-*
-* Key Points:
-* - ToolTip with no parameters clears the tooltip
-* - Position with X, Y coordinates
-* - Use WhichToolTip (1-20) for multiple tooltips
-* - Combine with SetTimer for auto-hide functionality
-* - Great for non-intrusive status displays
-* - Can display formatted text with line breaks
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * SUMMARY
+ * ============================================================================
+ * 
+ * ToolTip fundamentals covered:
+ * 1. Basic tooltip display and clearing
+ * 2. Positioning tooltips at specific coordinates
+ * 3. Using multiple tooltips simultaneously (up to 20)
+ * 4. Auto-hiding tooltips with SetTimer
+ * 5. Status display and monitoring tooltips
+ * 6. Interactive tooltips responding to events
+ * 7. Formatted and styled tooltip content
+ * 
+ * Key Points:
+ * - ToolTip with no parameters clears the tooltip
+ * - Position with X, Y coordinates
+ * - Use WhichToolTip (1-20) for multiple tooltips
+ * - Combine with SetTimer for auto-hide functionality
+ * - Great for non-intrusive status displays
+ * - Can display formatted text with line breaks
+ * 
+ * ============================================================================
+ */
+

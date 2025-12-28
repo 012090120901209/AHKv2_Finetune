@@ -1,19 +1,19 @@
 /**
-* @file DirCreate_02.ahk
-* @description Advanced DirCreate examples with automation, templates, and intelligent folder management
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Automated folder structure generation
-* - Smart folder naming
-* - Template-based creation
-* - Backup folder management
-* - Archive organization
-* - Dynamic folder creation
-* - Folder creation logging
-*/
+ * @file DirCreate_02.ahk
+ * @description Advanced DirCreate examples with automation, templates, and intelligent folder management
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Automated folder structure generation
+ * - Smart folder naming
+ * - Template-based creation
+ * - Backup folder management
+ * - Archive organization
+ * - Dynamic folder creation
+ * - Folder creation logging
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,9 +22,9 @@
 ; ===================================================================================================
 
 /**
-* @class SmartFolderNaming
-* @description Generates intelligent folder names
-*/
+ * @class SmartFolderNaming
+ * @description Generates intelligent folder names
+ */
 class SmartFolderNaming {
     static GenerateUniqueName(baseName, basePath) {
         counter := 1
@@ -40,7 +40,7 @@ class SmartFolderNaming {
 
     static GenerateTimestampedName(prefix, basePath := "") {
         if (basePath = "")
-        basePath := A_Desktop
+            basePath := A_Desktop
 
         timestamp := FormatTime(A_Now, "yyyyMMdd_HHmmss")
         return basePath . "\" . prefix . "_" . timestamp
@@ -48,7 +48,7 @@ class SmartFolderNaming {
 
     static GenerateDateName(prefix, basePath := "") {
         if (basePath = "")
-        basePath := A_Desktop
+            basePath := A_Desktop
 
         date := FormatTime(A_Now, "yyyy-MM-dd")
         return basePath . "\" . prefix . "_" . date
@@ -78,15 +78,15 @@ Example1_SmartNaming() {
 ; ===================================================================================================
 
 /**
-* @class BackupFolderManager
-* @description Manages backup folder creation and organization
-*/
+ * @class BackupFolderManager
+ * @description Manages backup folder creation and organization
+ */
 class BackupFolderManager {
     backupBasePath := A_MyDocuments . "\Backups"
 
     __New(basePath := "") {
         if (basePath != "")
-        this.backupBasePath := basePath
+            this.backupBasePath := basePath
 
         CreateFolder(this.backupBasePath)
     }
@@ -147,9 +147,9 @@ Example2_BackupFolders() {
 ; ===================================================================================================
 
 /**
-* @class FolderTemplateManager
-* @description Manages folder creation from templates
-*/
+ * @class FolderTemplateManager
+ * @description Manages folder creation from templates
+ */
 class FolderTemplateManager {
     templates := Map()
 
@@ -160,47 +160,47 @@ class FolderTemplateManager {
     DefineDefaultTemplates() {
         ; Web Development Template
         this.templates["web"] := [
-        "src",
-        "src\components",
-        "src\styles",
-        "src\scripts",
-        "src\assets",
-        "src\assets\images",
-        "src\assets\fonts",
-        "public",
-        "tests",
-        "docs"
+            "src",
+            "src\components",
+            "src\styles",
+            "src\scripts",
+            "src\assets",
+            "src\assets\images",
+            "src\assets\fonts",
+            "public",
+            "tests",
+            "docs"
         ]
 
         ; Documentation Template
         this.templates["docs"] := [
-        "guides",
-        "api",
-        "tutorials",
-        "examples",
-        "images",
-        "assets"
+            "guides",
+            "api",
+            "tutorials",
+            "examples",
+            "images",
+            "assets"
         ]
 
         ; Game Development Template
         this.templates["game"] := [
-        "src",
-        "assets",
-        "assets\sprites",
-        "assets\sounds",
-        "assets\music",
-        "levels",
-        "scripts",
-        "docs"
+            "src",
+            "assets",
+            "assets\sprites",
+            "assets\sounds",
+            "assets\music",
+            "levels",
+            "scripts",
+            "docs"
         ]
     }
 
     CreateFromTemplate(templateName, projectName, basePath := "") {
         if (basePath = "")
-        basePath := A_Desktop
+            basePath := A_Desktop
 
         if !this.templates.Has(templateName) {
-            return {Success: false, Error: "Template not found"}
+            return { Success: false, Error: "Template not found" }
         }
 
         projectPath := basePath . "\" . projectName
@@ -220,7 +220,7 @@ Example3_TemplateCreation() {
 
     projectName := InputBox("Enter project name:", "Create from Template").Value
     if (projectName = "")
-    return
+        return
 
     ; Create web development project
     results := manager.CreateFromTemplate("web", projectName, A_Desktop)
@@ -243,15 +243,15 @@ Example3_TemplateCreation() {
 ; ===================================================================================================
 
 /**
-* @class ArchiveOrganizer
-* @description Organizes archive folders by year/month
-*/
+ * @class ArchiveOrganizer
+ * @description Organizes archive folders by year/month
+ */
 class ArchiveOrganizer {
     archiveBasePath := A_MyDocuments . "\Archives"
 
     __New(basePath := "") {
         if (basePath != "")
-        this.archiveBasePath := basePath
+            this.archiveBasePath := basePath
 
         CreateFolder(this.archiveBasePath)
     }
@@ -261,10 +261,10 @@ class ArchiveOrganizer {
         month := FormatTime(A_Now, "MM")
 
         archivePath := Format("{1}\{2}\{3}\{4}",
-        this.archiveBasePath,
-        year,
-        month,
-        itemName)
+            this.archiveBasePath,
+            year,
+            month,
+            itemName)
 
         return CreateFolder(archivePath)
     }
@@ -275,9 +275,9 @@ class ArchiveOrganizer {
         Loop 12 {
             month := Format("{:02}", A_Index)
             monthPath := Format("{1}\{2}\{3}",
-            this.archiveBasePath,
-            year,
-            month)
+                this.archiveBasePath,
+                year,
+                month)
 
             result := CreateFolder(monthPath)
             results.Push(result)
@@ -297,7 +297,7 @@ Example4_ArchiveOrganization() {
     successCount := 0
     for result in results {
         if (result.Success)
-        successCount++
+            successCount++
     }
 
     message := Format("Archive Structure for {1}`n`n", currentYear)
@@ -313,13 +313,13 @@ Example4_ArchiveOrganization() {
 ; ===================================================================================================
 
 /**
-* @class DynamicProjectGenerator
-* @description Generates project structures based on user input
-*/
+ * @class DynamicProjectGenerator
+ * @description Generates project structures based on user input
+ */
 class DynamicProjectGenerator {
     static CreateCustomStructure(projectName, folderNames, basePath := "") {
         if (basePath = "")
-        basePath := A_Desktop
+            basePath := A_Desktop
 
         projectPath := basePath . "\" . projectName
         CreateFolder(projectPath)
@@ -332,9 +332,9 @@ class DynamicProjectGenerator {
             result := CreateFolder(fullPath)
 
             if (result.Success)
-            created.Push(fullPath)
+                created.Push(fullPath)
             else
-            failed.Push(fullPath)
+                failed.Push(fullPath)
         }
 
         return {
@@ -348,11 +348,11 @@ class DynamicProjectGenerator {
     static CreateInteractive() {
         projectName := InputBox("Enter project name:", "Dynamic Project").Value
         if (projectName = "")
-        return
+            return
 
         folderInput := InputBox("Enter folder names (comma-separated):", "Folder Names").Value
         if (folderInput = "")
-        return
+            return
 
         folderNames := StrSplit(folderInput, ",")
 
@@ -383,9 +383,9 @@ Example5_DynamicGenerator() {
 ; ===================================================================================================
 
 /**
-* @class FolderCreationLogger
-* @description Logs all folder creation operations
-*/
+ * @class FolderCreationLogger
+ * @description Logs all folder creation operations
+ */
 class FolderCreationLogger {
     logFile := A_ScriptDir . "\folder_creation.log"
 
@@ -394,12 +394,12 @@ class FolderCreationLogger {
         status := success ? "SUCCESS" : "FAILED"
 
         logEntry := Format("[{1}] {2} - {3}",
-        timestamp,
-        status,
-        folderPath)
+            timestamp,
+            status,
+            folderPath)
 
         if (error != "")
-        logEntry .= " - Error: " . error
+            logEntry .= " - Error: " . error
 
         logEntry .= "`n"
 
@@ -420,7 +420,7 @@ class FolderCreationLogger {
 
     GetRecentLog(lines := 20) {
         if !FileExist(this.logFile)
-        return []
+            return []
 
         content := FileRead(this.logFile)
         allLines := StrSplit(content, "`n", "`r")
@@ -430,7 +430,7 @@ class FolderCreationLogger {
 
         for i, line in allLines {
             if (i >= startIndex && line != "")
-            recent.Push(line)
+                recent.Push(line)
         }
 
         return recent
@@ -466,9 +466,9 @@ Example6_LoggedCreation() {
 ; ===================================================================================================
 
 /**
-* @class FolderMaintenanceManager
-* @description Maintains folder structures and performs cleanup
-*/
+ * @class FolderMaintenanceManager
+ * @description Maintains folder structures and performs cleanup
+ */
 class FolderMaintenanceManager {
     static CleanEmptyFolders(basePath) {
         removed := []
@@ -541,3 +541,4 @@ Example7_Maintenance() {
 
 ; Press Ctrl+Alt+A to create archive structure
 ; ^!a::Example4_ArchiveOrganization()
+

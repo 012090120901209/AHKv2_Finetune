@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Semaphore - Counted Resource Synchronization
-*
-* Demonstrates using Semaphore to limit concurrent access to resources.
-* Unlike Mutex (binary), Semaphore allows N simultaneous accesses.
-*
-* Source: AHK_Notes/Snippets/Semaphore.md
-*/
+ * Semaphore - Counted Resource Synchronization
+ * 
+ * Demonstrates using Semaphore to limit concurrent access to resources.
+ * Unlike Mutex (binary), Semaphore allows N simultaneous accesses.
+ * 
+ * Source: AHK_Notes/Snippets/Semaphore.md
+ */
 
 ; Example: Resource Pool with 3 Available Resources
 MsgBox("Semaphore Example: Resource Pool`n`n"
-. "Creating pool with 3 available resources.`n"
-. "Will attempt 5 concurrent accesses.", , "T3")
+    . "Creating pool with 3 available resources.`n"
+    . "Will attempt 5 concurrent accesses.", , "T3")
 
 ; Create semaphore with 3 available resources (max 3)
 sem := Semaphore(3, 3, "Local\ResourcePool")
@@ -28,8 +28,8 @@ SetTimer(() => UseResource("Resource E", 2500), -500)  ; Will wait
 Persistent()
 
 /**
-* Function to simulate resource usage
-*/
+ * Function to simulate resource usage
+ */
 UseResource(resourceName, duration) {
     ; Open the semaphore
     sem := Semaphore("Local\ResourcePool")
@@ -52,75 +52,75 @@ UseResource(resourceName, duration) {
 }
 
 /**
-* Semaphore Class Implementation
-*
-* Wraps Windows Semaphore API for counting synchronization
-*/
+ * Semaphore Class Implementation
+ * 
+ * Wraps Windows Semaphore API for counting synchronization
+ */
 class Semaphore {
     /**
-    * Create or open a semaphore
-    *
-    * Creating new semaphore:
-    *   Semaphore(initialCount, maximumCount, name?, securityAttributes)
-    *
-    * Opening existing semaphore:
-    *   Semaphore(name, desiredAccess?, inheritHandle?)
-    */
+     * Create or open a semaphore
+     * 
+     * Creating new semaphore:
+     *   Semaphore(initialCount, maximumCount, name?, securityAttributes)
+     * 
+     * Opening existing semaphore:
+     *   Semaphore(name, desiredAccess?, inheritHandle?)
+     */
     __New(initialCount, maximumCount?, name?, securityAttributes := 0) {
         ; Create new semaphore
         if IsSet(initialCount) && IsSet(maximumCount) &&
-        IsInteger(initialCount) && IsInteger(maximumCount) {
+            IsInteger(initialCount) && IsInteger(maximumCount) {
             this.ptr := DllCall("CreateSemaphore",
-            "Ptr", securityAttributes,
-            "Int", initialCount,
-            "Int", maximumCount,
-            "Ptr", IsSet(name) ? StrPtr(name) : 0)
+                "Ptr", securityAttributes,
+                "Int", initialCount,
+                "Int", maximumCount,
+                "Ptr", IsSet(name) ? StrPtr(name) : 0)
 
             if (!this.ptr)
-            throw Error("Unable to create the semaphore", -1)
+                throw Error("Unable to create the semaphore", -1)
         }
         ; Open existing semaphore
         else if IsSet(initialCount) && initialCount is String {
             this.ptr := DllCall("OpenSemaphore",
-            "Int", maximumCount ?? 0x0002,  ; SEMAPHORE_MODIFY_STATE
-            "Int", !!(name ?? 0),           ; inheritHandle
-            "Ptr", StrPtr(initialCount))    ; name
+                "Int", maximumCount ?? 0x0002,  ; SEMAPHORE_MODIFY_STATE
+                "Int", !!(name ?? 0),           ; inheritHandle
+                "Ptr", StrPtr(initialCount))    ; name
 
             if (!this.ptr)
-            throw Error("Unable to open the semaphore", -1)
+                throw Error("Unable to open the semaphore", -1)
         }
         else
-        throw ValueError("Invalid parameter list!", -1)
+            throw ValueError("Invalid parameter list!", -1)
     }
 
     /**
-    * Wait for semaphore (decrement count)
-    *
-    * @param timeout - Milliseconds to wait (0xFFFFFFFF = infinite)
-    * @return 0 = success, 258 = timeout
-    */
+     * Wait for semaphore (decrement count)
+     * 
+     * @param timeout - Milliseconds to wait (0xFFFFFFFF = infinite)
+     * @return 0 = success, 258 = timeout
+     */
     Wait(timeout := 0xFFFFFFFF) {
         return DllCall("WaitForSingleObject", "Ptr", this, "Int", timeout, "Int")
     }
 
     /**
-    * Release semaphore (increment count)
-    *
-    * @param count - Number to release (default 1)
-    * @param out - Output variable for previous count
-    * @return Previous count value
-    */
+     * Release semaphore (increment count)
+     * 
+     * @param count - Number to release (default 1)
+     * @param out - Output variable for previous count
+     * @return Previous count value
+     */
     Release(count := 1, &out?) {
         out := DllCall("ReleaseSemaphore",
-        "Ptr", this,
-        "Int", count,
-        "Int*", &prevCount := 0)
+            "Ptr", this,
+            "Int", count,
+            "Int*", &prevCount := 0)
         return prevCount
     }
 
     /**
-    * Destructor - automatically closes handle
-    */
+     * Destructor - automatically closes handle
+     */
     __Delete() {
         DllCall("CloseHandle", "Ptr", this)
     }
@@ -180,3 +180,4 @@ class Semaphore {
 *    ⚠️  Don't release more than acquired
 *    ⚠️  Don't exceed maximum count
 */
+

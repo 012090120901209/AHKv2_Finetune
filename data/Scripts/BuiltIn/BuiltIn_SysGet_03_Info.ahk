@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_SysGet_03_Info.ahk
-*
-* DESCRIPTION:
-* Comprehensive system information retrieval using SysGet. Demonstrates
-* gathering detailed system configuration, capabilities, and environment
-* information for diagnostic and adaptive purposes.
-*
-* FEATURES:
-* - System configuration queries
-* - Hardware capability detection
-* - Environment information gathering
-* - System diagnostics
-* - Configuration reporting
-* - System health monitoring
-* - Comprehensive info export
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/SysGet.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Comprehensive SysGet usage
-* - System information aggregation
-* - Diagnostic data collection
-* - Configuration export
-* - Multi-source information gathering
-*
-* LEARNING POINTS:
-* 1. SysGet provides extensive system information
-* 2. Combine multiple queries for complete picture
-* 3. System info useful for debugging
-* 4. Configuration affects application behavior
-* 5. Some metrics vary by Windows version
-* 6. Information useful for support/diagnostics
-* 7. Export data for analysis and troubleshooting
-*/
+ * BuiltIn_SysGet_03_Info.ahk
+ * 
+ * DESCRIPTION:
+ * Comprehensive system information retrieval using SysGet. Demonstrates
+ * gathering detailed system configuration, capabilities, and environment
+ * information for diagnostic and adaptive purposes.
+ * 
+ * FEATURES:
+ * - System configuration queries
+ * - Hardware capability detection
+ * - Environment information gathering
+ * - System diagnostics
+ * - Configuration reporting
+ * - System health monitoring
+ * - Comprehensive info export
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/SysGet.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Comprehensive SysGet usage
+ * - System information aggregation
+ * - Diagnostic data collection
+ * - Configuration export
+ * - Multi-source information gathering
+ * 
+ * LEARNING POINTS:
+ * 1. SysGet provides extensive system information
+ * 2. Combine multiple queries for complete picture
+ * 3. System info useful for debugging
+ * 4. Configuration affects application behavior
+ * 5. Some metrics vary by Windows version
+ * 6. Information useful for support/diagnostics
+ * 7. Export data for analysis and troubleshooting
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: System Information Summary
@@ -119,7 +119,7 @@ Example2_DiagnosticCollector() {
         ; Per-Monitor Info
         Loop SysGet(80) {
             MonitorGet(A_Index, &L, &T, &R, &B)
-            diag .= "Monitor " A_Index ": " (R-L) "×" (B-T) " at (" L "," T ")`n"
+            diag .= "Monitor " A_Index ": " (R - L) "×" (B - T) " at (" L "," T ")`n"
         }
 
         diag .= "`n[INPUT DEVICES]`n"
@@ -207,14 +207,14 @@ Example3_ConfigValidator() {
     lv.Add("", "Mouse Wheel Required", requirements["RequireMouseWheel"] ? "Yes" : "No", hasWheel ? "Yes" : "No", status)
 
     Loop lv.GetCount("Column")
-    lv.ModifyCol(A_Index, "AutoHdr")
+        lv.ModifyCol(A_Index, "AutoHdr")
 
     ; Overall result
     allPassed := true
     Loop lv.GetCount() {
         lv.GetText(statusText, A_Index, 4)
         if InStr(statusText, "FAIL")
-        allPassed := false
+            allPassed := false
     }
 
     result := "`nOverall Status: " (allPassed ? "✓ SYSTEM MEETS ALL REQUIREMENTS" : "✗ SYSTEM DOES NOT MEET REQUIREMENTS")
@@ -303,214 +303,209 @@ Example4_MultiMonitorReporter() {
 ; Compares current system with common configurations
 Example5_MetricsComparison() {
     ; Define common configurations
-    configs := [
-    {
-        Name: "HD (Laptop)", Width: 1366, Height: 768, Monitors: 1},
-        {
-            Name: "Full HD", Width: 1920, Height: 1080, Monitors: 1},
-            {
-                Name: "QHD", Width: 2560, Height: 1440, Monitors: 1},
-                {
-                    Name: "4K UHD", Width: 3840, Height: 2160, Monitors: 1},
-                    {
+    configs := [{
+        Name: "HD (Laptop)", Width: 1366, Height: 768, Monitors: 1 }, {
+            Name: "Full HD", Width: 1920, Height: 1080, Monitors: 1 }, {
+                Name: "QHD", Width: 2560, Height: 1440, Monitors: 1 }, {
+                    Name: "4K UHD", Width: 3840, Height: 2160, Monitors: 1 }, {
                         Name: "Dual Full HD", Width: 3840, Height: 1080, Monitors: 2
                     }
-                    ]
+    ]
 
-                    ; Get current config
-                    currentW := SysGet(78)  ; Virtual width
-                    currentH := SysGet(79)  ; Virtual height
-                    currentM := SysGet(80)  ; Monitor count
+    ; Get current config
+    currentW := SysGet(78)  ; Virtual width
+    currentH := SysGet(79)  ; Virtual height
+    currentM := SysGet(80)  ; Monitor count
 
-                    ; Create GUI
-                    g := Gui(, "System Metrics Comparison")
-                    g.SetFont("s10")
+    ; Create GUI
+    g := Gui(, "System Metrics Comparison")
+    g.SetFont("s10")
 
-                    g.Add("Text", "w500", "Compare your system with common configurations")
+    g.Add("Text", "w500", "Compare your system with common configurations")
 
-                    lv := g.Add("ListView", "w500 h200", ["Configuration", "Resolution", "Monitors", "Match"])
+    lv := g.Add("ListView", "w500 h200", ["Configuration", "Resolution", "Monitors", "Match"])
 
-                    for config in configs {
-                        isMatch := (config.Width = currentW && config.Height = currentH && config.Monitors = currentM)
-                        matchStr := isMatch ? "✓ EXACT MATCH" : ""
+    for config in configs {
+        isMatch := (config.Width = currentW && config.Height = currentH && config.Monitors = currentM)
+        matchStr := isMatch ? "✓ EXACT MATCH" : ""
 
-                        lv.Add("", config.Name, config.Width "×" config.Height, config.Monitors, matchStr)
+        lv.Add("", config.Name, config.Width "×" config.Height, config.Monitors, matchStr)
 
-                        if isMatch
-                        lv.Modify(A_Index, "Select")
-                    }
+        if isMatch
+            lv.Modify(A_Index, "Select")
+    }
 
-                    Loop lv.GetCount("Column")
-                    lv.ModifyCol(A_Index, "AutoHdr")
+    Loop lv.GetCount("Column")
+        lv.ModifyCol(A_Index, "AutoHdr")
 
-                    info := "`nYour Configuration:`n"
-                    info .= "  Virtual Desktop: " currentW "×" currentH "`n"
-                    info .= "  Monitors: " currentM "`n"
+    info := "`nYour Configuration:`n"
+    info .= "  Virtual Desktop: " currentW "×" currentH "`n"
+    info .= "  Monitors: " currentM "`n"
 
-                    g.Add("Text", "xm w500 +Border", info)
+    g.Add("Text", "xm w500 +Border", info)
 
-                    g.Show()
-                }
+    g.Show()
+}
 
-                ;=============================================================================
-                ; EXAMPLE 6: Performance Metrics Monitor
-                ;=============================================================================
-                ; Monitors performance-related system metrics
-                Example6_PerformanceMonitor() {
-                    ; Create GUI
-                    g := Gui("+AlwaysOnTop", "Performance Metrics Monitor")
-                    g.SetFont("s9")
+;=============================================================================
+; EXAMPLE 6: Performance Metrics Monitor
+;=============================================================================
+; Monitors performance-related system metrics
+Example6_PerformanceMonitor() {
+    ; Create GUI
+    g := Gui("+AlwaysOnTop", "Performance Metrics Monitor")
+    g.SetFont("s9")
 
-                    g.Add("Text", "w400", "Real-time Performance Metrics")
+    g.Add("Text", "w400", "Real-time Performance Metrics")
 
-                    metrics := Map()
-                    metrics["ScreenArea"] := g.Add("Text", "xm w400", "")
-                    metrics["Monitors"] := g.Add("Text", "xm w400", "")
-                    metrics["MousePos"] := g.Add("Text", "xm w400", "")
-                    metrics["Updates"] := g.Add("Text", "xm w400", "")
+    metrics := Map()
+    metrics["ScreenArea"] := g.Add("Text", "xm w400", "")
+    metrics["Monitors"] := g.Add("Text", "xm w400", "")
+    metrics["MousePos"] := g.Add("Text", "xm w400", "")
+    metrics["Updates"] := g.Add("Text", "xm w400", "")
 
-                    updateCount := 0
+    updateCount := 0
 
-                    UpdateMetrics()
-                    SetTimer(UpdateMetrics, 100)
+    UpdateMetrics()
+    SetTimer(UpdateMetrics, 100)
 
-                    g.OnEvent("Close", (*) => (SetTimer(UpdateMetrics, 0), g.Destroy()))
-                    g.Show()
+    g.OnEvent("Close", (*) => (SetTimer(UpdateMetrics, 0), g.Destroy()))
+    g.Show()
 
-                    UpdateMetrics() {
-                        updateCount++
+    UpdateMetrics() {
+        updateCount++
 
-                        ; Screen area
-                        area := SysGet(78) * SysGet(79)
-                        metrics["ScreenArea"].Value := "Virtual Screen Area: " Format("{:,}", area) " pixels²"
+        ; Screen area
+        area := SysGet(78) * SysGet(79)
+        metrics["ScreenArea"].Value := "Virtual Screen Area: " Format("{:,}", area) " pixels²"
 
-                        ; Monitor count
-                        metrics["Monitors"].Value := "Active Monitors: " SysGet(80)
+        ; Monitor count
+        metrics["Monitors"].Value := "Active Monitors: " SysGet(80)
 
-                        ; Mouse position
-                        MouseGetPos(&X, &Y)
-                        metrics["MousePos"].Value := "Mouse Position: " X ", " Y
+        ; Mouse position
+        MouseGetPos(&X, &Y)
+        metrics["MousePos"].Value := "Mouse Position: " X ", " Y
 
-                        ; Update count
-                        metrics["Updates"].Value := "Updates: " updateCount " (every 100ms)"
-                    }
-                }
+        ; Update count
+        metrics["Updates"].Value := "Updates: " updateCount " (every 100ms)"
+    }
+}
 
-                ;=============================================================================
-                ; EXAMPLE 7: Complete System Profile Exporter
-                ;=============================================================================
-                ; Exports complete system profile with all available information
-                Example7_ProfileExporter() {
-                    ; Create GUI
-                    g := Gui(, "Complete System Profile Exporter")
-                    g.SetFont("s10")
+;=============================================================================
+; EXAMPLE 7: Complete System Profile Exporter
+;=============================================================================
+; Exports complete system profile with all available information
+Example7_ProfileExporter() {
+    ; Create GUI
+    g := Gui(, "Complete System Profile Exporter")
+    g.SetFont("s10")
 
-                    g.Add("Text", "w500", "Export complete system profile")
+    g.Add("Text", "w500", "Export complete system profile")
 
-                    g.Add("Text", "xm Section", "Include in Export:")
+    g.Add("Text", "xm Section", "Include in Export:")
 
-                    chkSystem := g.Add("Checkbox", "xs Checked", "System Information")
-                    chkDisplay := g.Add("Checkbox", "xs Checked", "Display Configuration")
-                    chkInput := g.Add("Checkbox", "xs Checked", "Input Devices")
-                    chkMetrics := g.Add("Checkbox", "xs Checked", "Window Metrics")
-                    chkColors := g.Add("Checkbox", "xs Checked", "System Colors")
+    chkSystem := g.Add("Checkbox", "xs Checked", "System Information")
+    chkDisplay := g.Add("Checkbox", "xs Checked", "Display Configuration")
+    chkInput := g.Add("Checkbox", "xs Checked", "Input Devices")
+    chkMetrics := g.Add("Checkbox", "xs Checked", "Window Metrics")
+    chkColors := g.Add("Checkbox", "xs Checked", "System Colors")
 
-                    g.Add("Button", "xm w240", "Generate Profile").OnEvent("Click", GenerateProfile)
-                    g.Add("Button", "x+20 w240", "Export to File").OnEvent("Click", ExportToFile)
+    g.Add("Button", "xm w240", "Generate Profile").OnEvent("Click", GenerateProfile)
+    g.Add("Button", "x+20 w240", "Export to File").OnEvent("Click", ExportToFile)
 
-                    txtPreview := g.Add("Edit", "xm w500 h300 ReadOnly +Multi")
+    txtPreview := g.Add("Edit", "xm w500 h300 ReadOnly +Multi")
 
-                    currentProfile := ""
+    currentProfile := ""
 
-                    g.Show()
+    g.Show()
 
-                    GenerateProfile(*) {
-                        profile := "═══════════════════════════════════════════════`n"
-                        profile .= "       COMPLETE SYSTEM PROFILE`n"
-                        profile .= "═══════════════════════════════════════════════`n"
-                        profile .= "Generated: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n"
-                        profile .= "Computer: " A_ComputerName "`n"
-                        profile .= "User: " A_UserName "`n"
-                        profile .= "═══════════════════════════════════════════════`n`n"
+    GenerateProfile(*) {
+        profile := "═══════════════════════════════════════════════`n"
+        profile .= "       COMPLETE SYSTEM PROFILE`n"
+        profile .= "═══════════════════════════════════════════════`n"
+        profile .= "Generated: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n"
+        profile .= "Computer: " A_ComputerName "`n"
+        profile .= "User: " A_UserName "`n"
+        profile .= "═══════════════════════════════════════════════`n`n"
 
-                        if chkSystem.Value {
-                            profile .= "[SYSTEM INFORMATION]`n"
-                            profile .= "OS Version: " A_OSVersion "`n"
-                            profile .= "Is 64-bit: " (A_PtrSize = 8 ? "Yes" : "No") "`n"
-                            profile .= "AHK Version: " A_AhkVersion "`n`n"
-                        }
+        if chkSystem.Value {
+            profile .= "[SYSTEM INFORMATION]`n"
+            profile .= "OS Version: " A_OSVersion "`n"
+            profile .= "Is 64-bit: " (A_PtrSize = 8 ? "Yes" : "No") "`n"
+            profile .= "AHK Version: " A_AhkVersion "`n`n"
+        }
 
-                        if chkDisplay.Value {
-                            profile .= "[DISPLAY CONFIGURATION]`n"
-                            profile .= "Primary Screen: " SysGet(0) "×" SysGet(1) "`n"
-                            profile .= "Virtual Desktop: " SysGet(78) "×" SysGet(79) "`n"
-                            profile .= "Monitor Count: " SysGet(80) "`n`n"
-                        }
+        if chkDisplay.Value {
+            profile .= "[DISPLAY CONFIGURATION]`n"
+            profile .= "Primary Screen: " SysGet(0) "×" SysGet(1) "`n"
+            profile .= "Virtual Desktop: " SysGet(78) "×" SysGet(79) "`n"
+            profile .= "Monitor Count: " SysGet(80) "`n`n"
+        }
 
-                        if chkInput.Value {
-                            profile .= "[INPUT DEVICES]`n"
-                            profile .= "Mouse: " (SysGet(19) ? "Present" : "Not Present") "`n"
-                            profile .= "Mouse Wheel: " (SysGet(75) ? "Present" : "Not Present") "`n`n"
-                        }
+        if chkInput.Value {
+            profile .= "[INPUT DEVICES]`n"
+            profile .= "Mouse: " (SysGet(19) ? "Present" : "Not Present") "`n"
+            profile .= "Mouse Wheel: " (SysGet(75) ? "Present" : "Not Present") "`n`n"
+        }
 
-                        if chkMetrics.Value {
-                            profile .= "[WINDOW METRICS]`n"
-                            profile .= "Caption Height: " SysGet(4) " px`n"
-                            profile .= "Frame Size: " SysGet(32) "×" SysGet(33) " px`n`n"
-                        }
+        if chkMetrics.Value {
+            profile .= "[WINDOW METRICS]`n"
+            profile .= "Caption Height: " SysGet(4) " px`n"
+            profile .= "Frame Size: " SysGet(32) "×" SysGet(33) " px`n`n"
+        }
 
-                        if chkColors.Value {
-                            profile .= "[SYSTEM COLORS]`n"
-                            windowBG := DllCall("GetSysColor", "Int", 5, "UInt")
-                            highlightBG := DllCall("GetSysColor", "Int", 13, "UInt")
-                            profile .= "Window BG: 0x" Format("{:06X}", windowBG) "`n"
-                            profile .= "Highlight: 0x" Format("{:06X}", highlightBG) "`n`n"
-                        }
+        if chkColors.Value {
+            profile .= "[SYSTEM COLORS]`n"
+            windowBG := DllCall("GetSysColor", "Int", 5, "UInt")
+            highlightBG := DllCall("GetSysColor", "Int", 13, "UInt")
+            profile .= "Window BG: 0x" Format("{:06X}", windowBG) "`n"
+            profile .= "Highlight: 0x" Format("{:06X}", highlightBG) "`n`n"
+        }
 
-                        profile .= "═══════════════════════════════════════════════`n"
-                        profile .= "End of System Profile`n"
-                        profile .= "═══════════════════════════════════════════════"
+        profile .= "═══════════════════════════════════════════════`n"
+        profile .= "End of System Profile`n"
+        profile .= "═══════════════════════════════════════════════"
 
-                        currentProfile := profile
-                        txtPreview.Value := profile
-                    }
+        currentProfile := profile
+        txtPreview.Value := profile
+    }
 
-                    ExportToFile(*) {
-                        if currentProfile = "" {
-                            MsgBox("Generate profile first!", "Error", "Icon!")
-                            return
-                        }
+    ExportToFile(*) {
+        if currentProfile = "" {
+            MsgBox("Generate profile first!", "Error", "Icon!")
+            return
+        }
 
-                        fileName := "SystemProfile_" FormatTime(, "yyyyMMdd_HHmmss") ".txt"
-                        try {
-                            FileAppend(currentProfile, A_Desktop "\" fileName)
-                            MsgBox("Profile saved to:`n" A_Desktop "\" fileName, "Exported", "Icon!")
-                        } catch as err {
-                            MsgBox("Error saving file:`n" err.Message, "Error", "Iconx")
-                        }
-                    }
-                }
+        fileName := "SystemProfile_" FormatTime(, "yyyyMMdd_HHmmss") ".txt"
+        try {
+            FileAppend(currentProfile, A_Desktop "\" fileName)
+            MsgBox("Profile saved to:`n" A_Desktop "\" fileName, "Exported", "Icon!")
+        } catch as err {
+            MsgBox("Error saving file:`n" err.Message, "Error", "Iconx")
+        }
+    }
+}
 
-                ;=============================================================================
-                ; MAIN MENU
-                ;=============================================================================
-                CreateMainMenu() {
-                    g := Gui(, "SysGet System Information Examples")
-                    g.SetFont("s10")
+;=============================================================================
+; MAIN MENU
+;=============================================================================
+CreateMainMenu() {
+    g := Gui(, "SysGet System Information Examples")
+    g.SetFont("s10")
 
-                    g.Add("Text", "w450", "System Information Examples:")
+    g.Add("Text", "w450", "System Information Examples:")
 
-                    g.Add("Button", "w450", "Example 1: System Summary").OnEvent("Click", (*) => Example1_SystemSummary())
-                    g.Add("Button", "w450", "Example 2: Diagnostic Collector").OnEvent("Click", (*) => Example2_DiagnosticCollector())
-                    g.Add("Button", "w450", "Example 3: Config Validator").OnEvent("Click", (*) => Example3_ConfigValidator())
-                    g.Add("Button", "w450", "Example 4: Multi-Monitor Reporter").OnEvent("Click", (*) => Example4_MultiMonitorReporter())
-                    g.Add("Button", "w450", "Example 5: Metrics Comparison").OnEvent("Click", (*) => Example5_MetricsComparison())
-                    g.Add("Button", "w450", "Example 6: Performance Monitor").OnEvent("Click", (*) => Example6_PerformanceMonitor())
-                    g.Add("Button", "w450", "Example 7: Profile Exporter").OnEvent("Click", (*) => Example7_ProfileExporter())
+    g.Add("Button", "w450", "Example 1: System Summary").OnEvent("Click", (*) => Example1_SystemSummary())
+    g.Add("Button", "w450", "Example 2: Diagnostic Collector").OnEvent("Click", (*) => Example2_DiagnosticCollector())
+    g.Add("Button", "w450", "Example 3: Config Validator").OnEvent("Click", (*) => Example3_ConfigValidator())
+    g.Add("Button", "w450", "Example 4: Multi-Monitor Reporter").OnEvent("Click", (*) => Example4_MultiMonitorReporter())
+    g.Add("Button", "w450", "Example 5: Metrics Comparison").OnEvent("Click", (*) => Example5_MetricsComparison())
+    g.Add("Button", "w450", "Example 6: Performance Monitor").OnEvent("Click", (*) => Example6_PerformanceMonitor())
+    g.Add("Button", "w450", "Example 7: Profile Exporter").OnEvent("Click", (*) => Example7_ProfileExporter())
 
-                    g.Add("Button", "w450", "Exit").OnEvent("Click", (*) => ExitApp())
+    g.Add("Button", "w450", "Exit").OnEvent("Click", (*) => ExitApp())
 
-                    g.Show()
-                }
+    g.Show()
+}
 
-                CreateMainMenu()
+CreateMainMenu()

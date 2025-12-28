@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Shell_01_Files.ahk
-*
-* DESCRIPTION:
-* File operations using Windows Shell COM automation.
-*
-* FEATURES:
-* - Shell file operations
-* - Folder browsing
-* - File properties
-* - Shell namespace
-* - Special folders
-*/
+ * BuiltIn_COM_Shell_01_Files.ahk
+ * 
+ * DESCRIPTION:
+ * File operations using Windows Shell COM automation.
+ * 
+ * FEATURES:
+ * - Shell file operations
+ * - Folder browsing
+ * - File properties
+ * - Shell namespace
+ * - Special folders
+ */
 
 Example1_CreateShell() {
     MsgBox("Example 1: Create Shell Object")
@@ -30,7 +30,7 @@ Example2_BrowseFolder() {
         shell := ComObject("Shell.Application")
         folder := shell.BrowseForFolder(0, "Select a folder", 0, 0)
         if (folder)
-        MsgBox("Selected: " folder.Self.Path)
+            MsgBox("Selected: " folder.Self.Path)
     } Catch as err {
         MsgBox("Error: " err.Message)
     }
@@ -56,7 +56,7 @@ Example4_ListFiles() {
         for item in folder.Items() {
             output .= item.Name "`n"
             if (A_Index > 10)
-            break
+                break
         }
         MsgBox(output)
     } Catch as err {
@@ -71,7 +71,7 @@ Example5_FileProperties() {
         folder := shell.NameSpace(A_WinDir)
         item := folder.ParseName("notepad.exe")
         if (item)
-        MsgBox("File: " item.Name "`nSize: " item.Size)
+            MsgBox("File: " item.Name "`nSize: " item.Size)
     } Catch as err {
         MsgBox("Error: " err.Message)
     }
@@ -127,6 +127,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

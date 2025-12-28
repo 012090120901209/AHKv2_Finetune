@@ -1,48 +1,48 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_Replace_03_Functions.ahk
-*
-* DESCRIPTION:
-* Demonstrates using function callbacks in RegExReplace for dynamic replacements.
-* Shows how to pass a function reference to perform complex transformations that
-* cannot be achieved with simple backreference patterns.
-*
-* FEATURES:
-* - Using function callbacks for replacement
-* - Accessing Match object in callback
-* - Dynamic transformations based on matched text
-* - Case conversion in replacements
-* - Mathematical operations on matched numbers
-* - Conditional replacement logic
-* - Complex text processing
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Function references as replacement parameter
-* - Match object parameter in callbacks
-* - Modern function syntax
-* - Flexible replacement logic
-* - Integration with other functions
-*
-* LEARNING POINTS:
-* 1. Pass a function reference as the replacement parameter
-* 2. Callback receives Match object with full match details
-* 3. Return value becomes the replacement text
-* 4. Enables transformations impossible with static replacements
-* 5. Can call other functions or perform calculations
-* 6. Useful for case conversion, formatting, lookups, etc.
-* 7. Callback is called once per match
-*/
+ * BuiltIn_RegEx_Replace_03_Functions.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates using function callbacks in RegExReplace for dynamic replacements.
+ * Shows how to pass a function reference to perform complex transformations that
+ * cannot be achieved with simple backreference patterns.
+ * 
+ * FEATURES:
+ * - Using function callbacks for replacement
+ * - Accessing Match object in callback
+ * - Dynamic transformations based on matched text
+ * - Case conversion in replacements
+ * - Mathematical operations on matched numbers
+ * - Conditional replacement logic
+ * - Complex text processing
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Function references as replacement parameter
+ * - Match object parameter in callbacks
+ * - Modern function syntax
+ * - Flexible replacement logic
+ * - Integration with other functions
+ * 
+ * LEARNING POINTS:
+ * 1. Pass a function reference as the replacement parameter
+ * 2. Callback receives Match object with full match details
+ * 3. Return value becomes the replacement text
+ * 4. Enables transformations impossible with static replacements
+ * 5. Can call other functions or perform calculations
+ * 6. Useful for case conversion, formatting, lookups, etc.
+ * 7. Callback is called once per match
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Function Callback
 ; ========================================
 Example1_BasicCallback() {
     MsgBox "EXAMPLE 1: Basic Function Callback`n" .
-    "==================================="
+        "==================================="
 
     ; Simple uppercase callback
     UpperCallback(match) {
@@ -53,8 +53,8 @@ Example1_BasicCallback() {
     result := RegExReplace(text, "\w+", UpperCallback)
 
     MsgBox "Uppercase Callback:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Add brackets around matches
     BracketCallback(match) {
@@ -65,8 +65,8 @@ Example1_BasicCallback() {
     result := RegExReplace(text, "\w+", BracketCallback)
 
     MsgBox "Bracket Callback:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Reverse matched text
     ReverseCallback(match) {
@@ -82,8 +82,8 @@ Example1_BasicCallback() {
     result := RegExReplace(text, "\w+", ReverseCallback)
 
     MsgBox "Reverse Words:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 }
 
 ; ========================================
@@ -91,7 +91,7 @@ Example1_BasicCallback() {
 ; ========================================
 Example2_CaseConversion() {
     MsgBox "EXAMPLE 2: Case Conversion`n" .
-    "==========================="
+        "==========================="
 
     ; Title case converter
     TitleCase(match) {
@@ -103,8 +103,8 @@ Example2_CaseConversion() {
     result := RegExReplace(text, "\w+", TitleCase)
 
     MsgBox "Title Case:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Alternate case
     static toggle := true
@@ -117,8 +117,8 @@ Example2_CaseConversion() {
     result := RegExReplace(text, "\w+", AlternateCase)
 
     MsgBox "Alternate Case:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; camelCase to Title Case
     CamelToTitle(match) {
@@ -130,8 +130,8 @@ Example2_CaseConversion() {
     result := StrUpper(SubStr(result, 1, 1)) . SubStr(result, 2)  ; Fix first char
 
     MsgBox "camelCase to Title:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 }
 
 ; ========================================
@@ -139,7 +139,7 @@ Example2_CaseConversion() {
 ; ========================================
 Example3_NumberOperations() {
     MsgBox "EXAMPLE 3: Number Operations`n" .
-    "============================="
+        "============================="
 
     ; Double all numbers
     Double(match) {
@@ -150,8 +150,8 @@ Example3_NumberOperations() {
     result := RegExReplace(text, "\d+", Double)
 
     MsgBox "Double Numbers:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Add 100 to all numbers
     Add100(match) {
@@ -162,8 +162,8 @@ Example3_NumberOperations() {
     result := RegExReplace(text, "\d+", Add100)
 
     MsgBox "Add 100:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Convert percentage to decimal
     PercentToDecimal(match) {
@@ -174,8 +174,8 @@ Example3_NumberOperations() {
     result := RegExReplace(text, "(\d+)%", PercentToDecimal)
 
     MsgBox "Percent to Decimal:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Format currency
     FormatCurrency(match) {
@@ -187,8 +187,8 @@ Example3_NumberOperations() {
     result := RegExReplace(text, "\d+\.?\d*", FormatCurrency)
 
     MsgBox "Format Currency:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 }
 
 ; ========================================
@@ -196,7 +196,7 @@ Example3_NumberOperations() {
 ; ========================================
 Example4_ConditionalReplacement() {
     MsgBox "EXAMPLE 4: Conditional Replacement`n" .
-    "===================================="
+        "===================================="
 
     ; Replace only large numbers
     ReplaceIfLarge(match) {
@@ -208,8 +208,8 @@ Example4_ConditionalReplacement() {
     result := RegExReplace(text, "\d+", ReplaceIfLarge)
 
     MsgBox "Replace Large Numbers:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Censor long words
     CensorLong(match) {
@@ -221,26 +221,26 @@ Example4_ConditionalReplacement() {
     result := RegExReplace(text, "\w+", CensorLong)
 
     MsgBox "Censor Long Words:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Conditional formatting
     FormatNumber(match) {
         num := Integer(match[0])
         if num < 0
-        return "(" . Abs(num) . ")"
+            return "(" . Abs(num) . ")"
         else if num = 0
-        return "-"
+            return "-"
         else
-        return "+" . num
+            return "+" . num
     }
 
     text := "Values: 10, -5, 0, 25, -15"
     result := RegExReplace(text, "-?\d+", FormatNumber)
 
     MsgBox "Format Numbers:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 }
 
 ; ========================================
@@ -248,7 +248,7 @@ Example4_ConditionalReplacement() {
 ; ========================================
 Example5_UsingGroups() {
     MsgBox "EXAMPLE 5: Using Captured Groups`n" .
-    "=================================="
+        "=================================="
 
     ; Reformat date with validation
     FormatDate(match) {
@@ -258,7 +258,7 @@ Example5_UsingGroups() {
 
         ; Validate month
         if Integer(month) > 12 || Integer(month) < 1
-        return match[0]  ; Return unchanged
+            return match[0]  ; Return unchanged
 
         return month . "/" . day . "/" . year
     }
@@ -267,8 +267,8 @@ Example5_UsingGroups() {
     result := RegExReplace(text, "(\d{4})-(\d{2})-(\d{2})", FormatDate)
 
     MsgBox "Format & Validate Dates:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Create email links
     EmailToLink(match) {
@@ -281,8 +281,8 @@ Example5_UsingGroups() {
     result := RegExReplace(text, "(\w+)@([\w.]+)", EmailToLink)
 
     MsgBox "Email to Link:`n" .
-    "Text: " . text . "`n`n" .
-    "HTML: " . result
+        "Text: " . text . "`n`n" .
+        "HTML: " . result
 
     ; Phone number formatting
     FormatPhone(match) {
@@ -293,8 +293,8 @@ Example5_UsingGroups() {
     result := RegExReplace(text, "(\d{3})(\d{3})(\d{4})", FormatPhone)
 
     MsgBox "Format Phone:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 }
 
 ; ========================================
@@ -302,14 +302,14 @@ Example5_UsingGroups() {
 ; ========================================
 Example6_LookupTables() {
     MsgBox "EXAMPLE 6: Lookup Tables`n" .
-    "========================="
+        "========================="
 
     ; Month name to number
     monthMap := Map(
-    "January", "01", "February", "02", "March", "03",
-    "April", "04", "May", "05", "June", "06",
-    "July", "07", "August", "08", "September", "09",
-    "October", "10", "November", "11", "December", "12"
+        "January", "01", "February", "02", "March", "03",
+        "April", "04", "May", "05", "June", "06",
+        "July", "07", "August", "08", "September", "09",
+        "October", "10", "November", "11", "December", "12"
     )
 
     MonthToNumber(match) {
@@ -320,15 +320,15 @@ Example6_LookupTables() {
     result := RegExReplace(text, "\b[A-Z][a-z]+\b", MonthToNumber)
 
     MsgBox "Month to Number:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Emoticon to emoji
     emoticonMap := Map(
-    ":)", "😊",
-    ":(", "😞",
-    ":D", "😄",
-    ";)", "😉"
+        ":)", "😊",
+        ":(", "😞",
+        ":D", "😄",
+        ";)", "😉"
     )
 
     EmoticonToEmoji(match) {
@@ -339,14 +339,14 @@ Example6_LookupTables() {
     result := RegExReplace(text, ":\)|:\(|:D|;\)", EmoticonToEmoji)
 
     MsgBox "Emoticon to Emoji:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Status code to message
     statusMap := Map(
-    "200", "OK",
-    "404", "Not Found",
-    "500", "Server Error"
+        "200", "OK",
+        "404", "Not Found",
+        "500", "Server Error"
     )
 
     StatusMessage(match) {
@@ -358,8 +358,8 @@ Example6_LookupTables() {
     result := RegExReplace(text, "\b\d{3}\b", StatusMessage)
 
     MsgBox "Status Codes:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 }
 
 ; ========================================
@@ -367,7 +367,7 @@ Example6_LookupTables() {
 ; ========================================
 Example7_AdvancedApplications() {
     MsgBox "EXAMPLE 7: Advanced Applications`n" .
-    "=================================="
+        "=================================="
 
     ; Markdown code blocks to HTML
     CodeToHTML(match) {
@@ -377,77 +377,73 @@ Example7_AdvancedApplications() {
 
     markdown := "Here is `code` and `more code`"
     result := RegExReplace(markdown, "`([^`]+)`", CodeToHTML)
+        MsgBox "Markdown Code:`n" .
+        "Markdown: " . markdown . "`n`n" .
+        "HTML: " . result
+        ; Smart quotes
+        static quoteOpen := true
+        SmartQuote(match) {
+            quoteOpen := !quoteOpen
+            return quoteOpen ? "" " : " ""
+                }
 
-    MsgBox "Markdown Code:`n" .
-    "Markdown: " . markdown . "`n`n" .
-    "HTML: " . result
+            text := 'He said "Hello" and she said "Goodbye"'
+            result := RegExReplace(text, '"', SmartQuote)
 
-    ; Smart quotes
-    static quoteOpen := true
-    SmartQuote(match) {
-        quoteOpen := !quoteOpen
-        return quoteOpen ? """ : """
-    }
+            MsgBox "Smart Quotes:`n" .
+                "Original: " . text . "`n" .
+                "Result: " . result
 
-    text := 'He said "Hello" and she said "Goodbye"'
-    result := RegExReplace(text, '"', SmartQuote)
+            ; Calculate math expressions
+            Calculate(match) {
+                try {
+                    ; Simple evaluation (be careful with security!)
+                    expr := match[0]
+                    ; Only handle simple cases for safety
+                    if RegExMatch(expr, "(\d+)\+(\d+)", &m)
+                        return String(Integer(m[1]) + Integer(m[2]))
+                    else if RegExMatch(expr, "(\d+)\*(\d+)", &m)
+                        return String(Integer(m[1]) * Integer(m[2]))
+                }
+                return match[0]
+            }
 
-    MsgBox "Smart Quotes:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+            text := "Results: 5+3, 4*6, 10+20"
+            result := RegExReplace(text, "\d+[+*]\d+", Calculate)
 
-    ; Calculate math expressions
-    Calculate(match) {
-        try {
-            ; Simple evaluation (be careful with security!)
-            expr := match[0]
-            ; Only handle simple cases for safety
-            if RegExMatch(expr, "(\d+)\+(\d+)", &m)
-            return String(Integer(m[1]) + Integer(m[2]))
-            else if RegExMatch(expr, "(\d+)\*(\d+)", &m)
-            return String(Integer(m[1]) * Integer(m[2]))
+            MsgBox "Calculate:`n" .
+                "Original: " . text . "`n" .
+                "Result: " . result
+
+            ; ROT13 cipher
+            ROT13(match) {
+                char := match[0]
+                code := Ord(char)
+                if code >= 65 && code <= 90  ; A-Z
+                    return Chr(((code - 65 + 13) mod 26) + 65)
+                else if code >= 97 && code <= 122  ; a-z
+                    return Chr(((code - 97 + 13) mod 26) + 97)
+                return char
+            }
+
+            text := "Hello World"
+            result := RegExReplace(text, "[a-zA-Z]", ROT13)
+
+            MsgBox "ROT13 Cipher:`n" .
+                "Original: " . text . "`n" .
+                "Encoded: " . result . "`n" .
+                "Decoded: " . RegExReplace(result, "[a-zA-Z]", ROT13)
         }
-        return match[0]
-    }
-
-    text := "Results: 5+3, 4*6, 10+20"
-    result := RegExReplace(text, "\d+[+*]\d+", Calculate)
-
-    MsgBox "Calculate:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
-
-    ; ROT13 cipher
-    ROT13(match) {
-        char := match[0]
-        code := Ord(char)
-        if code >= 65 && code <= 90  ; A-Z
-        return Chr(((code - 65 + 13) mod 26) + 65)
-        else if code >= 97 && code <= 122  ; a-z
-        return Chr(((code - 97 + 13) mod 26) + 97)
-        return char
-    }
-
-    text := "Hello World"
-    result := RegExReplace(text, "[a-zA-Z]", ROT13)
-
-    MsgBox "ROT13 Cipher:`n" .
-    "Original: " . text . "`n" .
-    "Encoded: " . result . "`n" .
-    "Decoded: " . RegExReplace(result, "[a-zA-Z]", ROT13)
-}
-
-; Helper function
-StrRepeat(str, count) {
-    result := ""
-    Loop count
-    result .= str
-    return result
-}
-
-; Main Menu
-ShowMenu() {
-    MsgBox "
+        ; Helper function
+        StrRepeat(str, count) {
+            result := ""
+            Loop count
+                result .= str
+            return result
+        }
+        ; Main Menu
+        ShowMenu() {
+            MsgBox "
     (
     RegExReplace Function Callbacks
     ================================
@@ -462,15 +458,13 @@ ShowMenu() {
 
     Press Ctrl+1-7 to run examples
     )"
-}
-
-^1::Example1_BasicCallback()
-^2::Example2_CaseConversion()
-^3::Example3_NumberOperations()
-^4::Example4_ConditionalReplacement()
-^5::Example5_UsingGroups()
-^6::Example6_LookupTables()
-^7::Example7_AdvancedApplications()
-^h::ShowMenu()
-
-ShowMenu()
+        }
+        ^1:: Example1_BasicCallback()
+        ^2:: Example2_CaseConversion()
+        ^3:: Example3_NumberOperations()
+        ^4:: Example4_ConditionalReplacement()
+        ^5:: Example5_UsingGroups()
+        ^6:: Example6_LookupTables()
+        ^7:: Example7_AdvancedApplications()
+        ^h:: ShowMenu()
+        ShowMenu()

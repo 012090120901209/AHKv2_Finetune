@@ -2,21 +2,21 @@
 #SingleInstance Force
 
 /**
-* AHK v2 Process/Command Execution Functions - Corrected
-*
-* Fixed versions of StdOutToVar and StdOutStream for v2
-* These functions execute command-line programs and capture their output
-*/
+ * AHK v2 Process/Command Execution Functions - Corrected
+ * 
+ * Fixed versions of StdOutToVar and StdOutStream for v2
+ * These functions execute command-line programs and capture their output
+ */
 
 /**
-* Execute a command and return all stdout output
-*
-* Original by SKAN and Sean, corrected for AHK v2
-* @param {String} sCmd - Command line to execute
-* @returns {String} Complete stdout output from the command
-*
-* Example: result := StdOutToVar("ping 1.1.1.1")
-*/
+ * Execute a command and return all stdout output
+ * 
+ * Original by SKAN and Sean, corrected for AHK v2
+ * @param {String} sCmd - Command line to execute
+ * @returns {String} Complete stdout output from the command
+ * 
+ * Example: result := StdOutToVar("ping 1.1.1.1")
+ */
 StdOutToVar(sCmd) {
     ; Create anonymous pipes for stdout
     DllCall("CreatePipe", "Ptr*", &hPipeRead := 0, "Ptr*", &hPipeWrite := 0, "Ptr", 0, "UInt", 0)
@@ -34,57 +34,57 @@ StdOutToVar(sCmd) {
 
     ; Create process
     if !DllCall("CreateProcess"
-    , "Ptr", 0                                          ; lpApplicationName
-    , "Str", sCmd                                       ; lpCommandLine
-    , "Ptr", 0                                          ; lpProcessAttributes
-    , "Ptr", 0                                          ; lpThreadAttributes
-    , "UInt", 1                                         ; bInheritHandles
-    , "UInt", 0x08000000                                ; dwCreationFlags (CREATE_NO_WINDOW)
-    , "Ptr", 0                                          ; lpEnvironment
-    , "Ptr", 0                                          ; lpCurrentDirectory
-    , "Ptr", STARTUPINFO                                ; lpStartupInfo
-    , "Ptr", PROCESS_INFORMATION) {                     ; lpProcessInformation
+        , "Ptr", 0                                          ; lpApplicationName
+        , "Str", sCmd                                       ; lpCommandLine
+        , "Ptr", 0                                          ; lpProcessAttributes
+        , "Ptr", 0                                          ; lpThreadAttributes
+        , "UInt", 1                                         ; bInheritHandles
+        , "UInt", 0x08000000                                ; dwCreationFlags (CREATE_NO_WINDOW)
+        , "Ptr", 0                                          ; lpEnvironment
+        , "Ptr", 0                                          ; lpCurrentDirectory
+        , "Ptr", STARTUPINFO                                ; lpStartupInfo
+        , "Ptr", PROCESS_INFORMATION) {                     ; lpProcessInformation
+
+        DllCall("CloseHandle", "Ptr", hPipeWrite)
+        DllCall("CloseHandle", "Ptr", hPipeRead)
+        throw Error("Failed to create process")
+    }
+
+    hProcess := NumGet(PROCESS_INFORMATION, 0, "Ptr")
+    hThread := NumGet(PROCESS_INFORMATION, 8, "Ptr")
 
     DllCall("CloseHandle", "Ptr", hPipeWrite)
+
+    ; Read output
+    Buffer := Buffer(4096, 0)
+    sOutput := ""
+
+    while DllCall("ReadFile", "Ptr", hPipeRead, "Ptr", Buffer, "UInt", 4094, "UInt*", &nSz := 0, "Ptr", 0) {
+        if (nSz = 0)
+            break
+        sOutput .= StrGet(Buffer, nSz, "CP0")
+    }
+
+    ; Cleanup
+    DllCall("GetExitCodeProcess", "Ptr", hProcess, "UInt*", &ExitCode := 0)
+    DllCall("CloseHandle", "Ptr", hProcess)
+    DllCall("CloseHandle", "Ptr", hThread)
     DllCall("CloseHandle", "Ptr", hPipeRead)
-    throw Error("Failed to create process")
-}
 
-hProcess := NumGet(PROCESS_INFORMATION, 0, "Ptr")
-hThread := NumGet(PROCESS_INFORMATION, 8, "Ptr")
-
-DllCall("CloseHandle", "Ptr", hPipeWrite)
-
-; Read output
-Buffer := Buffer(4096, 0)
-sOutput := ""
-
-while DllCall("ReadFile", "Ptr", hPipeRead, "Ptr", Buffer, "UInt", 4094, "UInt*", &nSz := 0, "Ptr", 0) {
-    if (nSz = 0)
-    break
-    sOutput .= StrGet(Buffer, nSz, "CP0")
-}
-
-; Cleanup
-DllCall("GetExitCodeProcess", "Ptr", hProcess, "UInt*", &ExitCode := 0)
-DllCall("CloseHandle", "Ptr", hProcess)
-DllCall("CloseHandle", "Ptr", hThread)
-DllCall("CloseHandle", "Ptr", hPipeRead)
-
-return sOutput
+    return sOutput
 }
 
 /**
-* Execute command and stream output to callback function
-*
-* @param {String} sCmd - Command to execute
-* @param {Func} Callback - Function to call for each chunk of output
-*                          Callback(text, lineNumber) is called for each chunk
-*                          Callback("", 0) is called when complete
-* @returns {String} Complete output if no callback, empty if callback provided
-*
-* Example: StdOutStream("ping 1.1.1.1", (text, line) => ToolTip(text))
-*/
+ * Execute command and stream output to callback function
+ * 
+ * @param {String} sCmd - Command to execute
+ * @param {Func} Callback - Function to call for each chunk of output
+ *                          Callback(text, lineNumber) is called for each chunk
+ *                          Callback("", 0) is called when complete
+ * @returns {String} Complete output if no callback, empty if callback provided
+ * 
+ * Example: StdOutStream("ping 1.1.1.1", (text, line) => ToolTip(text))
+ */
 StdOutStream(sCmd, Callback := "") {
     ; Create pipes
     DllCall("CreatePipe", "Ptr*", &hPipeRead := 0, "Ptr*", &hPipeWrite := 0, "Ptr", 0, "UInt", 0)
@@ -99,8 +99,8 @@ StdOutStream(sCmd, Callback := "") {
     PROCESS_INFORMATION := Buffer(24, 0)
 
     if !DllCall("CreateProcess", "Ptr", 0, "Str", sCmd, "Ptr", 0, "Ptr", 0
-    , "UInt", 1, "UInt", 0x08000000, "Ptr", 0, "Ptr", 0
-    , "Ptr", STARTUPINFO, "Ptr", PROCESS_INFORMATION) {
+        , "UInt", 1, "UInt", 0x08000000, "Ptr", 0, "Ptr", 0
+        , "Ptr", STARTUPINFO, "Ptr", PROCESS_INFORMATION) {
         DllCall("CloseHandle", "Ptr", hPipeWrite)
         DllCall("CloseHandle", "Ptr", hPipeRead)
         throw Error("Failed to create process")
@@ -116,15 +116,15 @@ StdOutStream(sCmd, Callback := "") {
 
     while DllCall("ReadFile", "Ptr", hPipeRead, "Ptr", Buffer, "UInt", 4094, "UInt*", &nSz := 0, "Int", 0) {
         if (nSz = 0)
-        break
+            break
 
         tOutput := StrGet(Buffer, nSz, "CP0")
         lineNum++
 
         if (IsObject(Callback) && HasMethod(Callback, "Call"))
-        Callback.Call(tOutput, lineNum)
+            Callback.Call(tOutput, lineNum)
         else
-        sOutput .= tOutput
+            sOutput .= tOutput
     }
 
     DllCall("GetExitCodeProcess", "Ptr", hProcess, "UInt*", &ExitCode := 0)
@@ -134,14 +134,14 @@ StdOutStream(sCmd, Callback := "") {
 
     ; Call callback with empty string to signal completion
     if (IsObject(Callback) && HasMethod(Callback, "Call"))
-    Callback.Call("", 0)
+        Callback.Call("", 0)
 
     return sOutput
 }
 
 /**
-* Example 1: Execute ping and get complete output
-*/
+ * Example 1: Execute ping and get complete output
+ */
 PingExample() {
     MsgBox("Executing ping command...")
     result := StdOutToVar("ping -n 4 1.1.1.1")
@@ -149,24 +149,24 @@ PingExample() {
 }
 
 /**
-* Example 2: List directory contents
-*/
+ * Example 2: List directory contents
+ */
 DirExample() {
     result := StdOutToVar("cmd /c dir " A_ScriptDir)
     MsgBox("Directory listing:`n`n" result)
 }
 
 /**
-* Example 3: Get system information
-*/
+ * Example 3: Get system information
+ */
 SystemInfoExample() {
     result := StdOutToVar("systeminfo | findstr /C:`"OS Name`" /C:`"OS Version`"")
     MsgBox("System Info:`n`n" result)
 }
 
 /**
-* Example 4: Stream output with callback
-*/
+ * Example 4: Stream output with callback
+ */
 StreamExample() {
     outputText := ""
 
@@ -186,8 +186,8 @@ StreamExample() {
 }
 
 /**
-* Example 5: Execute PowerShell command
-*/
+ * Example 5: Execute PowerShell command
+ */
 PowerShellExample() {
     psCmd := 'powershell -Command "Get-Process | Select-Object -First 5 | Format-Table Name, CPU"'
     result := StdOutToVar(psCmd)
@@ -195,16 +195,16 @@ PowerShellExample() {
 }
 
 /**
-* Example 6: Get network adapters
-*/
+ * Example 6: Get network adapters
+ */
 NetworkExample() {
     result := StdOutToVar("ipconfig")
     MsgBox("Network configuration:`n`n" SubStr(result, 1, 500) "`n...")
 }
 
 /**
-* Example 7: Execute Python script (if Python installed)
-*/
+ * Example 7: Execute Python script (if Python installed)
+ */
 PythonExample() {
     ; Create temporary Python script
     script := 'import sys; print(f"Python {sys.version}"); print("Hello from Python!")'
@@ -213,8 +213,8 @@ PythonExample() {
 }
 
 /**
-* Example 8: Real-time streaming with progress
-*/
+ * Example 8: Real-time streaming with progress
+ */
 StreamProgressExample() {
     lineCount := 0
 
@@ -234,12 +234,12 @@ StreamProgressExample() {
 }
 
 MsgBox("Process/Command Execution Functions Loaded`n`nUncomment examples to test:`n`n"
-. "- PingExample()`n"
-. "- DirExample()`n"
-. "- SystemInfoExample()`n"
-. "- StreamExample()`n"
-. "- PowerShellExample()`n"
-. "- NetworkExample()")
+    . "- PingExample()`n"
+    . "- DirExample()`n"
+    . "- SystemInfoExample()`n"
+    . "- StreamExample()`n"
+    . "- PowerShellExample()`n"
+    . "- NetworkExample()")
 
 ; Uncomment to test:
 ; PingExample()
@@ -248,3 +248,4 @@ MsgBox("Process/Command Execution Functions Loaded`n`nUncomment examples to test
 ; StreamExample()
 ; PowerShellExample()
 ; NetworkExample()
+

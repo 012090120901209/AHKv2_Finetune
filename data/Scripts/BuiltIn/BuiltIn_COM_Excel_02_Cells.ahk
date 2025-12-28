@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Excel_02_Cells.ahk
-*
-* DESCRIPTION:
-* Demonstrates reading and writing cell data in Microsoft Excel using COM automation.
-* Shows various methods for accessing cells, ranges, and manipulating cell values.
-*
-* FEATURES:
-* - Reading and writing individual cells
-* - Working with ranges of cells
-* - Using Cells() and Range() methods
-* - Bulk data operations
-* - Array-based cell updates
-* - Dynamic cell references
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for Excel automation
-* - COM property access for cells
-* - Loop structures for cell iteration
-* - Array manipulation with COM objects
-*
-* LEARNING POINTS:
-* 1. Different ways to reference cells (Range vs Cells)
-* 2. Reading single cell values and ranges
-* 3. Writing data to cells efficiently
-* 4. Using R1C1 vs A1 notation
-* 5. Working with 2D arrays for bulk updates
-* 6. Iterating through cells and ranges
-* 7. Performance optimization for large datasets
-*/
+ * BuiltIn_COM_Excel_02_Cells.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates reading and writing cell data in Microsoft Excel using COM automation.
+ * Shows various methods for accessing cells, ranges, and manipulating cell values.
+ * 
+ * FEATURES:
+ * - Reading and writing individual cells
+ * - Working with ranges of cells
+ * - Using Cells() and Range() methods
+ * - Bulk data operations
+ * - Array-based cell updates
+ * - Dynamic cell references
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for Excel automation
+ * - COM property access for cells
+ * - Loop structures for cell iteration
+ * - Array manipulation with COM objects
+ * 
+ * LEARNING POINTS:
+ * 1. Different ways to reference cells (Range vs Cells)
+ * 2. Reading single cell values and ranges
+ * 3. Writing data to cells efficiently
+ * 4. Using R1C1 vs A1 notation
+ * 5. Working with 2D arrays for bulk updates
+ * 6. Iterating through cells and ranges
+ * 7. Performance optimization for large datasets
+ */
 
 ;===============================================================================
 ; Example 1: Basic Cell Reading and Writing
@@ -82,7 +82,7 @@ Example1_BasicCellOperations() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -126,7 +126,7 @@ Example2_RangeOperations() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -204,11 +204,11 @@ Example4_ReadingData() {
 
         ; Add some products
         products := [
-        ["Laptop", 999.99, 5],
-        ["Mouse", 24.99, 15],
-        ["Keyboard", 79.99, 10],
-        ["Monitor", 299.99, 8],
-        ["Webcam", 89.99, 12]
+            ["Laptop", 999.99, 5],
+            ["Mouse", 24.99, 15],
+            ["Keyboard", 79.99, 10],
+            ["Monitor", 299.99, 8],
+            ["Webcam", 89.99, 12]
         ]
 
         Loop products.Length {
@@ -246,7 +246,7 @@ Example4_ReadingData() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -297,11 +297,11 @@ Example5_DynamicReferences() {
 
                 ; Color cells based on value ranges
                 if (value <= 20)
-                sheet.Cells(row, col).Interior.Color := 0xE0FFE0  ; Light green
+                    sheet.Cells(row, col).Interior.Color := 0xE0FFE0  ; Light green
                 else if (value <= 50)
-                sheet.Cells(row, col).Interior.Color := 0xFFFFE0  ; Light yellow
+                    sheet.Cells(row, col).Interior.Color := 0xFFFFE0  ; Light yellow
                 else
-                sheet.Cells(row, col).Interior.Color := 0xFFE0E0  ; Light red
+                    sheet.Cells(row, col).Interior.Color := 0xFFE0E0  ; Light red
             }
         }
 
@@ -313,7 +313,7 @@ Example5_DynamicReferences() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -369,7 +369,7 @@ Example6_FindReplace() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -430,7 +430,7 @@ Example7_DataTypes() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -467,13 +467,13 @@ ShowMenu() {
         case "7": Example7_DataTypes()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

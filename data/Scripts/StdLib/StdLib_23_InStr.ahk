@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* InStr() - Find substring position
-*
-* Searches for a given occurrence of a string within another string.
-*/
+ * InStr() - Find substring position
+ * 
+ * Searches for a given occurrence of a string within another string.
+ */
 
 email := "user@example.com"
 
@@ -14,6 +14,6 @@ posDot := InStr(email, ".")
 posNotFound := InStr(email, "xyz")
 
 MsgBox("Email: " email
-. "`nPosition of '@': " posAt
-. "`nPosition of '.': " posDot
-. "`nPosition of 'xyz': " posNotFound " (not found)")
+    . "`nPosition of '@': " posAt
+    . "`nPosition of '.': " posDot
+    . "`nPosition of 'xyz': " posNotFound " (not found)")

@@ -17,7 +17,7 @@ class Trie {
             char := A_LoopField
 
             if (!node.children.Has(char))
-            node.children[char] := TrieNode()
+                node.children[char] := TrieNode()
 
             node := node.children[char]
         }
@@ -40,7 +40,7 @@ class Trie {
             char := A_LoopField
 
             if (!node.children.Has(char))
-            return ""
+                return ""
 
             node := node.children[char]
         }
@@ -50,7 +50,7 @@ class Trie {
 
     Delete(word) {
         if (!this.Search(word))
-        return false
+            return false
 
         this._DeleteHelper(this.root, word, 0)
         return true
@@ -65,7 +65,7 @@ class Trie {
         char := SubStr(word, index + 1, 1)
 
         if (!node.children.Has(char))
-        return false
+            return false
 
         childNode := node.children[char]
         shouldDeleteChild := this._DeleteHelper(childNode, word, index + 1)
@@ -86,16 +86,16 @@ class Trie {
 
     _CollectWords(node, prefix, words) {
         if (node.isEndOfWord)
-        words.Push(prefix)
+            words.Push(prefix)
 
         for char, childNode in node.children
-        this._CollectWords(childNode, prefix . char, words)
+            this._CollectWords(childNode, prefix . char, words)
     }
 
     GetWordsWithPrefix(prefix) {
         node := this._FindNode(prefix)
         if (!node)
-        return []
+            return []
 
         words := []
         this._CollectWords(node, prefix, words)
@@ -110,15 +110,15 @@ class Trie {
 
     _CountWordsHelper(node, &count) {
         if (node.isEndOfWord)
-        count++
+            count++
 
         for char, childNode in node.children
-        this._CountWordsHelper(childNode, &count)
+            this._CountWordsHelper(childNode, &count)
     }
 
     LongestCommonPrefix() {
         if (this.root.children.Count = 0)
-        return ""
+            return ""
 
         prefix := ""
         node := this.root
@@ -141,8 +141,8 @@ trie := Trie()
 
 ; Insert words
 trie.Insert("apple").Insert("app").Insert("application")
-.Insert("apply").Insert("banana").Insert("band")
-.Insert("bandana").Insert("can").Insert("candy")
+    .Insert("apply").Insert("banana").Insert("band")
+    .Insert("bandana").Insert("can").Insert("candy")
 
 MsgBox(trie.ToString())
 
@@ -171,7 +171,7 @@ MsgBox("After deleting 'app': " . trie.GetAllWords().Join(", "))
 ; Dictionary example
 dictionary := Trie()
 dictionary.Insert("hello").Insert("world").Insert("help")
-.Insert("heap").Insert("house").Insert("home")
+    .Insert("heap").Insert("house").Insert("home")
 
 MsgBox("Dictionary autocomplete 'he': " . dictionary.GetWordsWithPrefix("he").Join(", "))
 MsgBox("Dictionary autocomplete 'ho': " . dictionary.GetWordsWithPrefix("ho").Join(", "))

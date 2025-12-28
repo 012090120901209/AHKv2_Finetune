@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Memoization and Caching
-*
-* Demonstrates memoization for expensive computations and a simple
-* cache manager with TTL (time-to-live) expiration.
-*
-* Source: AHK_Notes/Snippets/advanced-caching.md
-*/
+ * Memoization and Caching
+ * 
+ * Demonstrates memoization for expensive computations and a simple
+ * cache manager with TTL (time-to-live) expiration.
+ * 
+ * Source: AHK_Notes/Snippets/advanced-caching.md
+ */
 
 ; Test memoized fibonacci
 MsgBox("Computing Fibonacci(35) with memoization...", , "T1")
@@ -20,34 +20,34 @@ MsgBox("Memoized Fibonacci(35) = " result "`nTime: " elapsed "ms", , "T3")
 
 ; Test cache manager
 cache := CacheManager()
-cache.Set("user:123", {name: "Alice", role: "Admin"}, 5000)  ; 5 second TTL
+cache.Set("user:123", { name: "Alice", role: "Admin" }, 5000)  ; 5 second TTL
 
 MsgBox("Cache Test:`n`n"
-. "Set user:123 (TTL: 5s)`n"
-. "Get user:123: " cache.Get("user:123").name, , "T2")
+    . "Set user:123 (TTL: 5s)`n"
+    . "Get user:123: " cache.Get("user:123").name, , "T2")
 
 Sleep(2000)
 MsgBox("After 2 seconds:`n"
-. "Get user:123: " cache.Get("user:123").name, , "T2")
+    . "Get user:123: " cache.Get("user:123").name, , "T2")
 
 Sleep(4000)
 MsgBox("After 6 seconds total:`n"
-. "Get user:123: " (cache.Get("user:123") == "" ? "Expired!" : "Still cached"), , "T2")
+    . "Get user:123: " (cache.Get("user:123") == "" ? "Expired!" : "Still cached"), , "T2")
 
 /**
-* Memoized Fibonacci
-* Caches previously computed values
-*/
+ * Memoized Fibonacci
+ * Caches previously computed values
+ */
 MemoizedFib(n) {
     static cache := Map()
 
     if (cache.Has(n))
-    return cache[n]
+        return cache[n]
 
     if (n <= 1) {
         result := n
     } else {
-        result := MemoizedFib(n-1) + MemoizedFib(n-2)
+        result := MemoizedFib(n - 1) + MemoizedFib(n - 2)
     }
 
     cache[n] := result
@@ -55,17 +55,17 @@ MemoizedFib(n) {
 }
 
 /**
-* CacheManager - Simple cache with TTL
-*/
+ * CacheManager - Simple cache with TTL
+ */
 class CacheManager {
     cache := Map()
 
     /**
-    * Set cache value with optional TTL
-    * @param {string} key - Cache key
-    * @param {any} value - Value to cache
-    * @param {int} ttl - Time to live in milliseconds (0 = no expiration)
-    */
+     * Set cache value with optional TTL
+     * @param {string} key - Cache key
+     * @param {any} value - Value to cache
+     * @param {int} ttl - Time to live in milliseconds (0 = no expiration)
+     */
     Set(key, value, ttl := 0) {
         entry := {
             value: value,
@@ -78,13 +78,13 @@ class CacheManager {
     }
 
     /**
-    * Get cached value if not expired
-    * @param {string} key - Cache key
-    * @return {any} Cached value or empty string if not found/expired
-    */
+     * Get cached value if not expired
+     * @param {string} key - Cache key
+     * @return {any} Cached value or empty string if not found/expired
+     */
     Get(key) {
         if (!this.cache.Has(key))
-        return ""
+            return ""
 
         entry := this.cache[key]
 
@@ -102,12 +102,12 @@ class CacheManager {
     }
 
     /**
-    * Get value or compute if not cached
-    * @param {string} key - Cache key
-    * @param {func} computeFunc - Function to compute value if missing
-    * @param {int} ttl - Time to live
-    * @return {any} Cached or computed value
-    */
+     * Get value or compute if not cached
+     * @param {string} key - Cache key
+     * @param {func} computeFunc - Function to compute value if missing
+     * @param {int} ttl - Time to live
+     * @return {any} Cached or computed value
+     */
     GetOrCompute(key, computeFunc, ttl := 0) {
         value := this.Get(key)
 
@@ -120,8 +120,8 @@ class CacheManager {
     }
 
     /**
-    * Remove expired entries
-    */
+     * Remove expired entries
+     */
     Cleanup() {
         toRemove := []
 
@@ -129,24 +129,24 @@ class CacheManager {
             if (entry.ttl > 0) {
                 age := A_TickCount - entry.created
                 if (age > entry.ttl)
-                toRemove.Push(key)
+                    toRemove.Push(key)
             }
         }
 
         for key in toRemove
-        this.cache.Delete(key)
+            this.cache.Delete(key)
     }
 
     /**
-    * Clear all cache
-    */
+     * Clear all cache
+     */
     Clear() {
         this.cache := Map()
     }
 
     /**
-    * Get cache statistics
-    */
+     * Get cache statistics
+     */
     GetStats() {
         stats := {
             count: this.cache.Count,
@@ -201,3 +201,4 @@ class CacheManager {
 *    📦 Size-based eviction (LRU)
 *    🧹 Manual cleanup
 */
+

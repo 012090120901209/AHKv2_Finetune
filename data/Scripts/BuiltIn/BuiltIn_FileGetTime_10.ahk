@@ -1,44 +1,44 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetTime_10.ahk
-*
-* DESCRIPTION:
-* File age checking and time-based file management
-*
-* FEATURES:
-* - Find old/new files
-* - Age-based filtering
-* - Retention policies
-* - Cleanup automation
-* - File freshness checking
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetTime() for age checking
-* - DateDiff() for age calculation
-* - DateAdd() for date arithmetic
-* - Time-based filtering
-* - Automated cleanup
-*
-* LEARNING POINTS:
-* 1. Calculate file age using DateDiff()
-* 2. Filter files by age criteria
-* 3. Implement retention policies
-* 4. Automate time-based cleanup
-* 5. Find recently modified files
-* 6. Track file freshness
-*/
+ * BuiltIn_FileGetTime_10.ahk
+ * 
+ * DESCRIPTION:
+ * File age checking and time-based file management
+ * 
+ * FEATURES:
+ * - Find old/new files
+ * - Age-based filtering
+ * - Retention policies
+ * - Cleanup automation
+ * - File freshness checking
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetTime() for age checking
+ * - DateDiff() for age calculation
+ * - DateAdd() for date arithmetic
+ * - Time-based filtering
+ * - Automated cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Calculate file age using DateDiff()
+ * 2. Filter files by age criteria
+ * 3. Implement retention policies
+ * 4. Automate time-based cleanup
+ * 5. Find recently modified files
+ * 6. Track file freshness
+ */
 
 ; Helper functions
 FormatAge(days) {
     if (days > 365)
-    return Round(days / 365, 1) " years"
+        return Round(days / 365, 1) " years"
     if (days > 30)
-    return Round(days / 30, 1) " months"
+        return Round(days / 30, 1) " months"
     return days " days"
 }
 
@@ -47,18 +47,18 @@ FormatAge(days) {
 ; ============================================================
 
 /**
-* Find files older than specified days
-*
-* @param {String} dirPath - Directory to search
-* @param {Integer} olderThanDays - Age threshold in days
-* @param {String} timeType - Time type to check (M/C/A)
-* @returns {Array} - Old files found
-*/
+ * Find files older than specified days
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {Integer} olderThanDays - Age threshold in days
+ * @param {String} timeType - Time type to check (M/C/A)
+ * @returns {Array} - Old files found
+ */
 FindOldFiles(dirPath, olderThanDays, timeType := "M") {
     oldFiles := []
 
     if (!DirExist(dirPath))
-    return oldFiles
+        return oldFiles
 
     ; Calculate cutoff timestamp
     cutoffDate := DateAdd(A_Now, -olderThanDays, "Days")
@@ -86,7 +86,7 @@ testDir := A_ScriptDir "\AgeTest"
 DirCreate(testDir)
 
 Loop 5
-FileAppend("File " A_Index, testDir "\file" A_Index ".txt")
+    FileAppend("File " A_Index, testDir "\file" A_Index ".txt")
 
 ; Find old files (using 0 days to include all for demo)
 oldFiles := FindOldFiles(testDir, 0, "M")
@@ -108,17 +108,17 @@ MsgBox(output, "Old Files", "Icon!")
 ; ============================================================
 
 /**
-* Find files modified within specified time
-*
-* @param {String} dirPath - Directory to search
-* @param {Integer} withinHours - Time window in hours
-* @returns {Array} - Recent files
-*/
+ * Find files modified within specified time
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {Integer} withinHours - Time window in hours
+ * @returns {Array} - Recent files
+ */
 FindRecentFiles(dirPath, withinHours := 24) {
     recentFiles := []
 
     if (!DirExist(dirPath))
-    return recentFiles
+        return recentFiles
 
     cutoffTime := DateAdd(A_Now, -withinHours, "Hours")
 
@@ -154,9 +154,9 @@ for file in recentFiles {
     output .= file.name ":`n"
     output .= "  Modified: " file.formatted "`n"
     if (file.hoursAgo = 0)
-    output .= "  Age: " file.minutesAgo " minutes ago`n`n"
+        output .= "  Age: " file.minutesAgo " minutes ago`n`n"
     else
-    output .= "  Age: " file.hoursAgo " hours ago`n`n"
+        output .= "  Age: " file.hoursAgo " hours ago`n`n"
 }
 
 MsgBox(output, "Recent Files", "Icon!")
@@ -166,12 +166,12 @@ MsgBox(output, "Recent Files", "Icon!")
 ; ============================================================
 
 /**
-* Apply retention policy to files
-*
-* @param {String} dirPath - Directory to manage
-* @param {Object} policy - Retention policy rules
-* @returns {Object} - Policy application results
-*/
+ * Apply retention policy to files
+ * 
+ * @param {String} dirPath - Directory to manage
+ * @param {Object} policy - Retention policy rules
+ * @returns {Object} - Policy application results
+ */
 ApplyRetentionPolicy(dirPath, policy) {
     result := {
         checked: 0,
@@ -181,7 +181,7 @@ ApplyRetentionPolicy(dirPath, policy) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "F" {
         result.checked++
@@ -192,7 +192,7 @@ ApplyRetentionPolicy(dirPath, policy) {
 
         ; Check retention period
         if (policy.maxAgeDays > 0 && ageDays > policy.maxAgeDays)
-        shouldDelete := true
+            shouldDelete := true
 
         if (shouldDelete) {
             result.toDelete++
@@ -226,7 +226,7 @@ output .= "To Delete: " retentionResult.toDelete "`n`n"
 if (retentionResult.toDelete > 0) {
     output .= "Files Marked for Deletion:`n"
     for file in retentionResult.filesToDelete
-    output .= "  • " file.name " (" FormatAge(file.age) " old)`n"
+        output .= "  • " file.name " (" FormatAge(file.age) " old)`n"
 }
 
 MsgBox(output, "Retention Policy", "Icon!")
@@ -236,12 +236,12 @@ MsgBox(output, "Retention Policy", "Icon!")
 ; ============================================================
 
 /**
-* Check if files are fresh (recently updated)
-*
-* @param {Array} files - Files to check
-* @param {Integer} freshnessDays - Max age to be considered fresh
-* @returns {Object} - Freshness report
-*/
+ * Check if files are fresh (recently updated)
+ * 
+ * @param {Array} files - Files to check
+ * @param {Integer} freshnessDays - Max age to be considered fresh
+ * @returns {Object} - Freshness report
+ */
 CheckFileFreshness(files, freshnessDays := 7) {
     report := {
         fresh: [],
@@ -253,7 +253,7 @@ CheckFileFreshness(files, freshnessDays := 7) {
 
     for filePath in files {
         if (!FileExist(filePath))
-        continue
+            continue
 
         fileTime := FileGetTime(filePath, "M")
         ageDays := DateDiff(A_Now, fileTime, "Days")
@@ -267,9 +267,9 @@ CheckFileFreshness(files, freshnessDays := 7) {
         }
 
         if (fileTime >= cutoffDate)
-        report.fresh.Push(fileInfo)
+            report.fresh.Push(fileInfo)
         else
-        report.stale.Push(fileInfo)
+            report.stale.Push(fileInfo)
     }
 
     return report
@@ -278,7 +278,7 @@ CheckFileFreshness(files, freshnessDays := 7) {
 ; Check freshness
 filesToCheck := []
 Loop Files, testDir "\*.txt", "F"
-filesToCheck.Push(A_LoopFilePath)
+    filesToCheck.Push(A_LoopFilePath)
 
 freshness := CheckFileFreshness(filesToCheck, 1)
 
@@ -287,11 +287,11 @@ output .= "Freshness Threshold: " freshness.threshold " days`n`n"
 
 output .= "FRESH (" freshness.fresh.Length "):`n"
 for file in freshness.fresh
-output .= "  ✓ " file.name " (" file.age " days old)`n"
+    output .= "  ✓ " file.name " (" file.age " days old)`n"
 
 output .= "`nSTALE (" freshness.stale.Length "):`n"
 for file in freshness.stale
-output .= "  ✗ " file.name " (" file.age " days old)`n"
+    output .= "  ✗ " file.name " (" file.age " days old)`n"
 
 MsgBox(output, "Freshness Check", "Icon!")
 
@@ -300,22 +300,22 @@ MsgBox(output, "Freshness Check", "Icon!")
 ; ============================================================
 
 /**
-* Categorize files by age
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Age categories
-*/
+ * Categorize files by age
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Age categories
+ */
 CategorizeByAge(dirPath) {
     categories := {
-        veryNew: {name: "Very New (< 1 day)", files: []},
-        new: {name: "New (1-7 days)", files: []},
-        recent: {name: "Recent (7-30 days)", files: []},
-        old: {name: "Old (30-90 days)", files: []},
-        veryOld: {name: "Very Old (> 90 days)", files: []}
+        veryNew: { name: "Very New (< 1 day)", files: [] },
+        new: { name: "New (1-7 days)", files: [] },
+        recent: { name: "Recent (7-30 days)", files: [] },
+        old: { name: "Old (30-90 days)", files: [] },
+        veryOld: { name: "Very Old (> 90 days)", files: [] }
     }
 
     if (!DirExist(dirPath))
-    return categories
+        return categories
 
     Loop Files, dirPath "\*.*", "FR" {
         fileTime := FileGetTime(A_LoopFilePath, "M")
@@ -328,15 +328,15 @@ CategorizeByAge(dirPath) {
         }
 
         if (ageDays < 1)
-        categories.veryNew.files.Push(fileInfo)
+            categories.veryNew.files.Push(fileInfo)
         else if (ageDays <= 7)
-        categories.new.files.Push(fileInfo)
+            categories.new.files.Push(fileInfo)
         else if (ageDays <= 30)
-        categories.recent.files.Push(fileInfo)
+            categories.recent.files.Push(fileInfo)
         else if (ageDays <= 90)
-        categories.old.files.Push(fileInfo)
+            categories.old.files.Push(fileInfo)
         else
-        categories.veryOld.files.Push(fileInfo)
+            categories.veryOld.files.Push(fileInfo)
     }
 
     return categories
@@ -350,7 +350,7 @@ for catName, catData in categories.OwnProps() {
     if (catData.files.Length > 0) {
         output .= catData.name " (" catData.files.Length "):`n"
         for file in catData.files
-        output .= "  • " file.name "`n"
+            output .= "  • " file.name "`n"
         output .= "`n"
     }
 }
@@ -362,13 +362,13 @@ MsgBox(output, "Age Categories", "Icon!")
 ; ============================================================
 
 /**
-* Clean up files older than threshold
-*
-* @param {String} dirPath - Directory to clean
-* @param {Integer} maxAgeDays - Maximum age to keep
-* @param {Boolean} dryRun - Preview without deleting
-* @returns {Object} - Cleanup results
-*/
+ * Clean up files older than threshold
+ * 
+ * @param {String} dirPath - Directory to clean
+ * @param {Integer} maxAgeDays - Maximum age to keep
+ * @param {Boolean} dryRun - Preview without deleting
+ * @returns {Object} - Cleanup results
+ */
 CleanupByAge(dirPath, maxAgeDays, dryRun := true) {
     result := {
         scanned: 0,
@@ -379,7 +379,7 @@ CleanupByAge(dirPath, maxAgeDays, dryRun := true) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     cutoffDate := DateAdd(A_Now, -maxAgeDays, "Days")
 
@@ -422,7 +422,7 @@ output .= "Eligible for Deletion: " cleanup.eligible "`n`n"
 if (cleanup.files.Length > 0) {
     output .= "Files to be deleted:`n"
     for file in cleanup.files
-    output .= "  • " file.name " (" file.age " days old)`n"
+        output .= "  • " file.name " (" file.age " days old)`n"
 }
 
 MsgBox(output, "Cleanup Preview", "Icon!")
@@ -432,16 +432,16 @@ MsgBox(output, "Cleanup Preview", "Icon!")
 ; ============================================================
 
 /**
-* Calculate age statistics for files
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Age statistics
-*/
+ * Calculate age statistics for files
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Age statistics
+ */
 CalculateAgeStats(dirPath) {
     ages := []
 
     if (!DirExist(dirPath))
-    return {valid: false}
+        return { valid: false }
 
     Loop Files, dirPath "\*.*", "F" {
         fileTime := FileGetTime(A_LoopFilePath, "M")
@@ -450,7 +450,7 @@ CalculateAgeStats(dirPath) {
     }
 
     if (ages.Length = 0)
-    return {valid: false}
+        return { valid: false }
 
     ; Calculate statistics
     total := 0
@@ -460,9 +460,9 @@ CalculateAgeStats(dirPath) {
     for age in ages {
         total += age
         if (age < min)
-        min := age
+            min := age
         if (age > max)
-        max := age
+            max := age
     }
 
     return {

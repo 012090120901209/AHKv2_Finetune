@@ -12,16 +12,16 @@
 
 DemoOCRFindString() {
     MsgBox("OCR FindString Demonstration`n`n"
-    "Find and interact with specific text on screen.`n`n"
-    "Usage with OCR library:`n"
-    "result := OCR.FromDesktop()`n"
-    "found := result.FindString('Search Text')`n"
-    "found.Click()  ; Click the found text`n`n"
-    "Common use cases:`n"
-    "- Click buttons by text in legacy apps`n"
-    "- Find and copy specific text`n"
-    "- Verify text presence for automation",
-    "OCR FindString Demo")
+        "Find and interact with specific text on screen.`n`n"
+        "Usage with OCR library:`n"
+        "result := OCR.FromDesktop()`n"
+        "found := result.FindString('Search Text')`n"
+        "found.Click()  ; Click the found text`n`n"
+        "Common use cases:`n"
+        "- Click buttons by text in legacy apps`n"
+        "- Find and copy specific text`n"
+        "- Verify text presence for automation",
+        "OCR FindString Demo")
 }
 
 ; Real implementation example (commented out, requires library):

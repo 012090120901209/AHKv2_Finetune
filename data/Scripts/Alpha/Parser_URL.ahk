@@ -60,40 +60,40 @@ class URL {
         } else {
             result["hostname"] := url
         }
-        
+
         result["host"] := result["hostname"] (result.Has("port") ? ":" result["port"] : "")
 
         return result
     }
-    
+
     static Build(parts) {
         url := ""
-        
+
         if parts.Has("protocol")
             url .= parts["protocol"] "://"
-        
+
         if parts.Has("username") {
             url .= parts["username"]
             if parts.Has("password")
                 url .= ":" parts["password"]
             url .= "@"
         }
-        
+
         if parts.Has("hostname")
             url .= parts["hostname"]
-        
+
         if parts.Has("port")
             url .= ":" parts["port"]
-        
+
         if parts.Has("pathname")
             url .= parts["pathname"]
-        
+
         if parts.Has("query")
             url .= "?" parts["query"]
-        
+
         if parts.Has("hash")
             url .= "#" parts["hash"]
-        
+
         return url
     }
 }

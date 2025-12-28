@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* ObjBindMethod - Timer with Bound Method
-*
-* Demonstrates ObjBindMethod for preserving class context in callbacks.
-* Essential for GUI events, timers, and asynchronous operations.
-*
-* Source: AHK_Notes/Methods/objbindmethod.md
-*/
+ * ObjBindMethod - Timer with Bound Method
+ * 
+ * Demonstrates ObjBindMethod for preserving class context in callbacks.
+ * Essential for GUI events, timers, and asynchronous operations.
+ * 
+ * Source: AHK_Notes/Methods/objbindmethod.md
+ */
 
 ; Create counter and start
 counter := Counter()
@@ -22,24 +22,24 @@ counter.StopCounting(boundFunc)
 MsgBox("Counter stopped.`nFinal count: " counter.count, , "T3")
 
 /**
-* Counter Class
-* Demonstrates method binding with SetTimer
-*/
+ * Counter Class
+ * Demonstrates method binding with SetTimer
+ */
 class Counter {
     count := 0
 
     /**
-    * Increment count (requires 'this' context)
-    */
+     * Increment count (requires 'this' context)
+     */
     Increment() {
         this.count++
         ToolTip("Count: " this.count)
     }
 
     /**
-    * Start counting with timer
-    * ObjBindMethod preserves 'this' context
-    */
+     * Start counting with timer
+     * ObjBindMethod preserves 'this' context
+     */
     StartCounting() {
         boundIncrement := ObjBindMethod(this, "Increment")
         SetTimer(boundIncrement, 1000)
@@ -47,8 +47,8 @@ class Counter {
     }
 
     /**
-    * Stop counting
-    */
+     * Stop counting
+     */
     StopCounting(timerFunc) {
         SetTimer(timerFunc, 0)
         ToolTip()  ; Clear tooltip
@@ -76,3 +76,4 @@ class Counter {
 *    ObjBindMethod(obj, "MethodName", param1, param2, ...)
 *    Pre-filled params come before callback params
 */
+

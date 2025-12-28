@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* ActiveScript - Advanced Regex with JavaScript
-*
-* Demonstrates using JavaScript's powerful regular expression engine
-* for complex pattern matching, captures, and replacements.
-*
-* Library: https://github.com/Lexikos/ActiveScript.ahk
-*/
+ * ActiveScript - Advanced Regex with JavaScript
+ * 
+ * Demonstrates using JavaScript's powerful regular expression engine
+ * for complex pattern matching, captures, and replacements.
+ * 
+ * Library: https://github.com/Lexikos/ActiveScript.ahk
+ */
 
 MsgBox("ActiveScript - JavaScript Regex Example`n`n"
-. "Demonstrates advanced regex with JS`n"
-. "Requires: ActiveScript.ahk in Lib folder", , "T3")
+    . "Demonstrates advanced regex with JS`n"
+    . "Requires: ActiveScript.ahk in Lib folder", , "T3")
 
 /*
 ; Uncomment to run (requires ActiveScript.ahk):
@@ -253,4 +253,5 @@ if (script.Eval("match != null")) {
     *     regex101.com - Online tester
     *     regexr.com - Visual regex
     *     Test in browser console
-    */
+*/
+

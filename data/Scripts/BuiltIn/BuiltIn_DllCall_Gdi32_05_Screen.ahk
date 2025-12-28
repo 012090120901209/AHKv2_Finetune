@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Gdi32_05_Screen.ahk
-*
-* DESCRIPTION:
-* Demonstrates Screen capture and display using Windows API through DllCall.
-* Comprehensive examples showing various Screen operations.
-*
-* FEATURES:
-* - Screen API integration
-* - Practical Screen examples
-* - Error handling
-* - Resource management
-* - Advanced Screen techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Gdi32 API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Gdi32 API functions
-* 2. Working with Screen operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Screen techniques
-* 6. Best practices for Gdi32 API
-* 7. Real-world Screen applications
-*/
+ * BuiltIn_DllCall_Gdi32_05_Screen.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Screen capture and display using Windows API through DllCall.
+ * Comprehensive examples showing various Screen operations.
+ * 
+ * FEATURES:
+ * - Screen API integration
+ * - Practical Screen examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Screen techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Gdi32 API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Gdi32 API functions
+ * 2. Working with Screen operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Screen techniques
+ * 6. Best practices for Gdi32 API
+ * 7. Real-world Screen applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Screen Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Screen operations
-*/
+ * Helper function for Screen operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Screen Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

@@ -1,50 +1,50 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_SoundPlay_01.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of SoundPlay() function for playing audio files and system sounds
-*
-* FEATURES:
-* - Play WAV files
-* - Play system sounds (asterisk, beep, question, etc.)
-* - Synchronous and asynchronous playback
-* - Audio notifications
-* - Error handling for missing files
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - SoundPlay() function
-* - Try/Catch error handling
-* - File existence checking
-* - System sound aliases
-* - Wait parameter for synchronous playback
-*
-* LEARNING POINTS:
-* 1. SoundPlay() can play WAV files and system sounds
-* 2. Use "*" prefix for system sounds (e.g., "*64" for question sound)
-* 3. Wait parameter controls synchronous vs asynchronous playback
-* 4. Always check file existence before playing
-* 5. Proper error handling prevents script crashes
-* 6. Can be used for audio notifications and alerts
-*/
+ * BuiltIn_SoundPlay_01.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of SoundPlay() function for playing audio files and system sounds
+ * 
+ * FEATURES:
+ * - Play WAV files
+ * - Play system sounds (asterisk, beep, question, etc.)
+ * - Synchronous and asynchronous playback
+ * - Audio notifications
+ * - Error handling for missing files
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/SoundPlay.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - SoundPlay() function
+ * - Try/Catch error handling
+ * - File existence checking
+ * - System sound aliases
+ * - Wait parameter for synchronous playback
+ * 
+ * LEARNING POINTS:
+ * 1. SoundPlay() can play WAV files and system sounds
+ * 2. Use "*" prefix for system sounds (e.g., "*64" for question sound)
+ * 3. Wait parameter controls synchronous vs asynchronous playback
+ * 4. Always check file existence before playing
+ * 5. Proper error handling prevents script crashes
+ * 6. Can be used for audio notifications and alerts
+ */
 
 ; ============================================================
 ; Example 1: Playing System Sounds
 ; ============================================================
 
 /**
-* Demonstrates built-in Windows system sounds
-* System sounds don't require external files
-*/
+ * Demonstrates built-in Windows system sounds
+ * System sounds don't require external files
+ */
 PlaySystemSounds() {
     MsgBox("Playing system sounds demonstration`n`n"
-    . "Each sound will play one after another",
-    "System Sounds", "Icon!")
+        . "Each sound will play one after another",
+        "System Sounds", "Icon!")
 
     ; System sound codes:
     ; *16 or *-1 = Hand/Stop/Error
@@ -75,32 +75,32 @@ PlaySystemSounds() {
 ; ============================================================
 
 /**
-* Play notification sounds for different event types
-*
-* @param {String} eventType - Type of notification (success, error, warning, info)
-*/
+ * Play notification sounds for different event types
+ * 
+ * @param {String} eventType - Type of notification (success, error, warning, info)
+ */
 NotifyWithSound(eventType) {
     switch eventType {
         case "success":
-        SoundPlay("*64")  ; Asterisk - positive sound
-        MsgBox("Operation completed successfully!", "Success", "Icon!")
+            SoundPlay("*64")  ; Asterisk - positive sound
+            MsgBox("Operation completed successfully!", "Success", "Icon!")
 
         case "error":
-        SoundPlay("*16")  ; Hand - error sound
-        MsgBox("An error occurred!", "Error", "Icon!")
+            SoundPlay("*16")  ; Hand - error sound
+            MsgBox("An error occurred!", "Error", "Icon!")
 
         case "warning":
-        SoundPlay("*48")  ; Exclamation - warning sound
-        MsgBox("Warning: Please review this action", "Warning", "Icon!")
+            SoundPlay("*48")  ; Exclamation - warning sound
+            MsgBox("Warning: Please review this action", "Warning", "Icon!")
 
         case "question":
-        SoundPlay("*32")  ; Question - inquiry sound
-        result := MsgBox("Do you want to continue?", "Question", "YesNo Icon?")
-        return result
+            SoundPlay("*32")  ; Question - inquiry sound
+            result := MsgBox("Do you want to continue?", "Question", "YesNo Icon?")
+            return result
 
         default:
-        SoundPlay("*64")
-        MsgBox("Notification: " eventType, "Info", "Icon!")
+            SoundPlay("*64")
+            MsgBox("Notification: " eventType, "Info", "Icon!")
     }
 }
 
@@ -115,23 +115,23 @@ NotifyWithSound(eventType) {
 ; ============================================================
 
 /**
-* Play a WAV file asynchronously (non-blocking)
-* The script continues while the sound plays
-*/
+ * Play a WAV file asynchronously (non-blocking)
+ * The script continues while the sound plays
+ */
 PlayWavFileAsync() {
     ; Example with Windows default sounds
     ; These paths work on most Windows systems
 
     wavFiles := [
-    "C:\Windows\Media\Windows Notify.wav",
-    "C:\Windows\Media\Windows Error.wav",
-    "C:\Windows\Media\chimes.wav"
+        "C:\Windows\Media\Windows Notify.wav",
+        "C:\Windows\Media\Windows Error.wav",
+        "C:\Windows\Media\chimes.wav"
     ]
 
     for index, wavPath in wavFiles {
         if FileExist(wavPath) {
             MsgBox("Playing: " wavPath "`n`nSound plays in background (async)",
-            "Playing Sound " index, "T2")
+                "Playing Sound " index, "T2")
 
             ; Play asynchronously (Wait parameter = 0 or omitted)
             SoundPlay(wavPath)
@@ -152,16 +152,16 @@ PlayWavFileAsync() {
 ; ============================================================
 
 /**
-* Play a WAV file synchronously (blocking)
-* Script waits until sound finishes before continuing
-*/
+ * Play a WAV file synchronously (blocking)
+ * Script waits until sound finishes before continuing
+ */
 PlayWavFileSync() {
     wavPath := "C:\Windows\Media\tada.wav"
 
     if FileExist(wavPath) {
         MsgBox("Playing sound synchronously...`n`n"
-        . "The script will wait until sound finishes",
-        "Synchronous Playback", "Icon!")
+            . "The script will wait until sound finishes",
+            "Synchronous Playback", "Icon!")
 
         startTime := A_TickCount
 
@@ -171,8 +171,8 @@ PlayWavFileSync() {
         elapsed := A_TickCount - startTime
 
         MsgBox("Sound finished playing!`n"
-        . "Time elapsed: " elapsed " ms",
-        "Playback Complete", "Icon!")
+            . "Time elapsed: " elapsed " ms",
+            "Playback Complete", "Icon!")
     } else {
         MsgBox("Windows sound file not found: " wavPath, "Error", "Icon!")
     }
@@ -186,66 +186,66 @@ PlayWavFileSync() {
 ; ============================================================
 
 /**
-* Comprehensive audio notification system with multiple sound types
-*/
+ * Comprehensive audio notification system with multiple sound types
+ */
 class AudioNotifier {
     /**
-    * Initialize the audio notifier
-    */
+     * Initialize the audio notifier
+     */
     __New() {
         this.soundsEnabled := true
     }
 
     /**
-    * Play notification based on severity level
-    *
-    * @param {String} message - Message to display
-    * @param {String} level - Severity level (critical, high, medium, low, info)
-    */
+     * Play notification based on severity level
+     * 
+     * @param {String} message - Message to display
+     * @param {String} level - Severity level (critical, high, medium, low, info)
+     */
     Notify(message, level := "info") {
         if !this.soundsEnabled
-        return
+            return
 
         switch level {
             case "critical":
-            ; Play error sound 3 times for critical alerts
-            Loop 3 {
-                SoundPlay("*16")
-                Sleep(300)
-            }
-            MsgBox(message, "CRITICAL ALERT", "Icon! T10")
+                ; Play error sound 3 times for critical alerts
+                Loop 3 {
+                    SoundPlay("*16")
+                    Sleep(300)
+                }
+                MsgBox(message, "CRITICAL ALERT", "Icon! T10")
 
             case "high":
-            ; Play error sound twice
-            Loop 2 {
-                SoundPlay("*16")
-                Sleep(300)
-            }
-            MsgBox(message, "High Priority", "Iconx T8")
+                ; Play error sound twice
+                Loop 2 {
+                    SoundPlay("*16")
+                    Sleep(300)
+                }
+                MsgBox(message, "High Priority", "Iconx T8")
 
             case "medium":
-            ; Play warning sound
-            SoundPlay("*48")
-            MsgBox(message, "Warning", "Icon! T5")
+                ; Play warning sound
+                SoundPlay("*48")
+                MsgBox(message, "Warning", "Icon! T5")
 
             case "low":
-            ; Play info sound
-            SoundPlay("*64")
-            MsgBox(message, "Notice", "Iconi T3")
+                ; Play info sound
+                SoundPlay("*64")
+                MsgBox(message, "Notice", "Iconi T3")
 
             case "info":
-            ; Gentle info sound
-            SoundPlay("*64")
-            MsgBox(message, "Information", "Iconi T2")
+                ; Gentle info sound
+                SoundPlay("*64")
+                MsgBox(message, "Information", "Iconi T2")
 
             default:
-            MsgBox(message, "Notification", "T2")
+                MsgBox(message, "Notification", "T2")
         }
     }
 
     /**
-    * Toggle sound notifications on/off
-    */
+     * Toggle sound notifications on/off
+     */
     ToggleSounds() {
         this.soundsEnabled := !this.soundsEnabled
         status := this.soundsEnabled ? "enabled" : "disabled"
@@ -253,11 +253,11 @@ class AudioNotifier {
     }
 
     /**
-    * Play custom success sequence
-    */
+     * Play custom success sequence
+     */
     PlaySuccess() {
         if !this.soundsEnabled
-        return
+            return
 
         SoundPlay("*64")
         Sleep(100)
@@ -282,15 +282,15 @@ notifier := AudioNotifier()
 ; ============================================================
 
 /**
-* Timer that plays sound alerts at intervals
-*/
+ * Timer that plays sound alerts at intervals
+ */
 class SoundTimer {
     /**
-    * Initialize timer
-    *
-    * @param {Integer} minutes - Minutes until alert
-    * @param {String} message - Alert message
-    */
+     * Initialize timer
+     * 
+     * @param {Integer} minutes - Minutes until alert
+     * @param {String} message - Alert message
+     */
     __New(minutes, message := "Time's up!") {
         this.minutes := minutes
         this.message := message
@@ -298,8 +298,8 @@ class SoundTimer {
     }
 
     /**
-    * Start the timer
-    */
+     * Start the timer
+     */
     Start() {
         if this.isRunning {
             MsgBox("Timer is already running!", "Error", "Icon!")
@@ -310,16 +310,16 @@ class SoundTimer {
         milliseconds := this.minutes * 60 * 1000
 
         MsgBox("Timer started for " this.minutes " minute(s)!`n`n"
-        . "You will hear a sound when time is up.",
-        "Timer Started", "Iconi")
+            . "You will hear a sound when time is up.",
+            "Timer Started", "Iconi")
 
         ; Set timer to fire once
         SetTimer(() => this.TimerAlert(), -milliseconds)
     }
 
     /**
-    * Called when timer expires
-    */
+     * Called when timer expires
+     */
     TimerAlert() {
         ; Play alert sound 5 times
         Loop 5 {
@@ -341,16 +341,16 @@ class SoundTimer {
 ; ============================================================
 
 /**
-* Safe sound player with comprehensive error handling
-*/
+ * Safe sound player with comprehensive error handling
+ */
 class SafeSoundPlayer {
     /**
-    * Play sound with full error handling
-    *
-    * @param {String} soundPath - Path to sound file or system sound code
-    * @param {Integer} wait - Whether to wait for sound to finish (0 or 1)
-    * @returns {Boolean} - Success status
-    */
+     * Play sound with full error handling
+     * 
+     * @param {String} soundPath - Path to sound file or system sound code
+     * @param {Integer} wait - Whether to wait for sound to finish (0 or 1)
+     * @returns {Boolean} - Success status
+     */
     static Play(soundPath, wait := 0) {
         try {
             ; Check if it's a system sound (starts with *)
@@ -371,8 +371,8 @@ class SafeSoundPlayer {
 
             if !this.IsValidExtension(ext, validExts) {
                 MsgBox("Unsupported audio format: ." ext "`n`n"
-                . "Supported formats: " this.JoinArray(validExts, ", "),
-                "Format Error", "Icon!")
+                    . "Supported formats: " this.JoinArray(validExts, ", "),
+                    "Format Error", "Icon!")
                 return false
             }
 
@@ -382,56 +382,56 @@ class SafeSoundPlayer {
 
         } catch as err {
             MsgBox("Error playing sound:`n`n"
-            . "File: " soundPath "`n"
-            . "Error: " err.Message,
-            "Playback Error", "Icon!")
+                . "File: " soundPath "`n"
+                . "Error: " err.Message,
+                "Playback Error", "Icon!")
             return false
         }
     }
 
     /**
-    * Check if file extension is valid
-    *
-    * @param {String} ext - File extension to check
-    * @param {Array} validExts - Array of valid extensions
-    * @returns {Boolean} - Whether extension is valid
-    */
+     * Check if file extension is valid
+     * 
+     * @param {String} ext - File extension to check
+     * @param {Array} validExts - Array of valid extensions
+     * @returns {Boolean} - Whether extension is valid
+     */
     static IsValidExtension(ext, validExts) {
         ext := StrLower(ext)
         for validExt in validExts {
             if ext = validExt
-            return true
+                return true
         }
         return false
     }
 
     /**
-    * Join array elements with separator
-    *
-    * @param {Array} arr - Array to join
-    * @param {String} separator - Separator string
-    * @returns {String} - Joined string
-    */
+     * Join array elements with separator
+     * 
+     * @param {Array} arr - Array to join
+     * @param {String} separator - Separator string
+     * @returns {String} - Joined string
+     */
     static JoinArray(arr, separator := ",") {
         result := ""
         for index, item in arr {
             result .= item
             if index < arr.Length
-            result .= separator
+                result .= separator
         }
         return result
     }
 
     /**
-    * Play a sequence of sounds
-    *
-    * @param {Array} soundPaths - Array of sound file paths
-    * @param {Integer} delay - Delay between sounds in ms
-    */
+     * Play a sequence of sounds
+     * 
+     * @param {Array} soundPaths - Array of sound file paths
+     * @param {Integer} delay - Delay between sounds in ms
+     */
     static PlaySequence(soundPaths, delay := 1000) {
         for index, soundPath in soundPaths {
             MsgBox("Playing sound " index " of " soundPaths.Length,
-            "Sequence", "T1")
+                "Sequence", "T1")
 
             if this.Play(soundPath) {
                 Sleep(delay)

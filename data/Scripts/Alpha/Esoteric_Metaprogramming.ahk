@@ -13,27 +13,27 @@ class ClassFactory {
     static Create(name, properties := [], methods := Map()) {
         ; Create base class dynamically
         newClass := Class()
-        
+
         ; Add properties
         for prop in properties {
             newClass.Prototype.DefineProp(prop, {
                 Value: ""
             })
         }
-        
+
         ; Add methods
         for methodName, methodFunc in methods {
             newClass.Prototype.DefineProp(methodName, {
                 Call: methodFunc
             })
         }
-        
+
         ; Store class name
-        newClass.DefineProp("__ClassName", {Value: name})
-        
+        newClass.DefineProp("__ClassName", { Value: name })
+
         return newClass
     }
-    
+
     ; Create a mixin that can be applied to any class
     static CreateMixin(methods) {
         return (targetClass) => (
@@ -41,10 +41,10 @@ class ClassFactory {
             targetClass
         )
     }
-    
+
     static _applyMethods(targetClass, methods) {
         for name, fn in methods
-            targetClass.Prototype.DefineProp(name, {Call: fn})
+            targetClass.Prototype.DefineProp(name, { Call: fn })
     }
 }
 
@@ -56,7 +56,7 @@ class MethodMissing {
     __New() {
         this.data := Map()
     }
-    
+
     ; Intercept all undefined method calls
     __Call(name, params) {
         ; Auto-generate getters/setters
@@ -64,17 +64,17 @@ class MethodMissing {
             prop := SubStr(name, 4)
             return this.data.Get(prop, "")
         }
-        
+
         if SubStr(name, 1, 3) = "set" {
             prop := SubStr(name, 4)
             this.data[prop] := params[1]
             return this
         }
-        
+
         ; Log unknown method calls
         return "Unknown method: " name "(" this._joinParams(params) ")"
     }
-    
+
     _joinParams(params) {
         result := ""
         for i, p in params
@@ -89,12 +89,12 @@ class MethodMissing {
 
 class DynamicProps {
     static storage := Map()
-    
+
     __Get(name, params) {
         key := ObjPtr(this) "." name
         return DynamicProps.storage.Get(key, "")
     }
-    
+
     __Set(name, params, value) {
         key := ObjPtr(this) "." name
         DynamicProps.storage[key] := value
@@ -112,23 +112,23 @@ class PrototypeHacks {
         Array.Prototype.DefineProp("Sum", {
             Call: (arr) => PrototypeHacks._arraySum(arr)
         })
-        
+
         ; Average
         Array.Prototype.DefineProp("Average", {
             Call: (arr) => arr.Sum() / arr.Length
         })
-        
+
         ; Chunk into groups
         Array.Prototype.DefineProp("Chunk", {
             Call: (arr, size) => PrototypeHacks._arrayChunk(arr, size)
         })
-        
+
         ; Unique values
         Array.Prototype.DefineProp("Unique", {
             Call: (arr) => PrototypeHacks._arrayUnique(arr)
         })
     }
-    
+
     static _arraySum(arr) {
         total := 0
         for v in arr
@@ -136,11 +136,11 @@ class PrototypeHacks {
                 total += v
         return total
     }
-    
+
     static _arrayChunk(arr, size) {
         chunks := []
         current := []
-        
+
         for v in arr {
             current.Push(v)
             if current.Length >= size {
@@ -148,17 +148,17 @@ class PrototypeHacks {
                 current := []
             }
         }
-        
+
         if current.Length > 0
             chunks.Push(current)
-        
+
         return chunks
     }
-    
+
     static _arrayUnique(arr) {
         seen := Map()
         result := []
-        
+
         for v in arr {
             key := Type(v) = "String" ? v : String(v)
             if !seen.Has(key) {
@@ -166,10 +166,10 @@ class PrototypeHacks {
                 result.Push(v)
             }
         }
-        
+
         return result
     }
-    
+
     ; Add method to all strings
     static ExtendString() {
         ; This requires String wrapper class since primitives
@@ -184,12 +184,12 @@ class PrototypeHacks {
 class Aspect {
     static Before(target, methodName, advice) {
         original := target.Prototype.GetOwnPropDesc(methodName)
-        
+
         if !original.HasProp("Call")
             throw Error("Method not found: " methodName)
-        
+
         originalFn := original.Call
-        
+
         target.Prototype.DefineProp(methodName, {
             Call: (this, params*) => (
                 advice(this, methodName, params),
@@ -197,15 +197,15 @@ class Aspect {
             )
         })
     }
-    
+
     static After(target, methodName, advice) {
         original := target.Prototype.GetOwnPropDesc(methodName)
-        
+
         if !original.HasProp("Call")
             throw Error("Method not found: " methodName)
-        
+
         originalFn := original.Call
-        
+
         target.Prototype.DefineProp(methodName, {
             Call: (this, params*) => (
                 result := originalFn(this, params*),
@@ -214,15 +214,15 @@ class Aspect {
             )
         })
     }
-    
+
     static Around(target, methodName, wrapper) {
         original := target.Prototype.GetOwnPropDesc(methodName)
-        
+
         if !original.HasProp("Call")
             throw Error("Method not found: " methodName)
-        
+
         originalFn := original.Call
-        
+
         target.Prototype.DefineProp(methodName, {
             Call: (this, params*) => wrapper(this, originalFn, params)
         })
@@ -237,23 +237,23 @@ class SelfModifying {
     __New() {
         this.callCount := Map()
     }
-    
+
     ; Method that optimizes itself after N calls
     SlowMethod() {
         name := "SlowMethod"
-        
+
         if !this.callCount.Has(name)
             this.callCount[name] := 0
-        
+
         this.callCount[name]++
-        
+
         ; After 3 calls, replace with optimized version
         if this.callCount[name] >= 3 {
             this.DefineProp("SlowMethod", {
                 Call: (*) => "Optimized!"
             })
         }
-        
+
         ; Simulate slow operation
         Sleep(100)
         return "Slow result " this.callCount[name]
@@ -267,7 +267,7 @@ class SelfModifying {
 class Capability {
     static CreateReadOnly(obj) {
         proxy := {}
-        
+
         for prop in obj.OwnProps() {
             value := obj.%prop%
             proxy.DefineProp(prop, {
@@ -275,26 +275,26 @@ class Capability {
                 Set: (*) => (throw Error("Read-only object"))
             })
         }
-        
+
         return proxy
     }
-    
+
     static CreateWriteOnly(obj) {
-        proxy := {_target: obj}
-        
+        proxy := { _target: obj }
+
         for prop in obj.OwnProps() {
             proxy.DefineProp(prop, {
                 Get: (*) => (throw Error("Write-only object")),
                 Set: (this, value) => this._target.%prop% := value
             })
         }
-        
+
         return proxy
     }
-    
+
     static CreateLogged(obj, logger) {
-        proxy := {_target: obj, _logger: logger}
-        
+        proxy := { _target: obj, _logger: logger }
+
         for prop in obj.OwnProps() {
             proxy.DefineProp(prop, {
                 Get: (this) => (
@@ -307,7 +307,7 @@ class Capability {
                 )
             })
         }
-        
+
         return proxy
     }
 }
@@ -354,11 +354,11 @@ sm := SelfModifying()
 results := []
 Loop 5
     results.Push(sm.SlowMethod())
-MsgBox("Self-Modifying:`n`n" 
+MsgBox("Self-Modifying:`n`n"
     . "Calls: " results[1] ", " results[2] ", " results[3] ", " results[4] ", " results[5])
 
 ; Capability model
-original := {secret: "password", public: "hello"}
+original := { secret: "password", public: "hello" }
 readOnly := Capability.CreateReadOnly(original)
 MsgBox("Capability (Read-Only):`n`n"
     . "Can read: " readOnly.public "`n"

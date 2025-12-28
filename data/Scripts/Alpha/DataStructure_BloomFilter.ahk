@@ -43,17 +43,17 @@ class BloomFilter {
             hash := (hash * 31 + Ord(SubStr(str, A_Index, 1))) & 0x7FFFFFFF
         return hash
     }
-    
+
     ; Estimate false positive rate
     FalsePositiveRate() {
         ; Formula: (1 - e^(-kn/m))^k
         k := this.hashCount
         n := this.itemCount
         m := this.size
-        
+
         if n = 0
             return 0
-        
+
         return (1 - Exp(-k * n / m)) ** k
     }
 }

@@ -1,24 +1,24 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Hotstring() Function - Advanced Options
-* ============================================================================
-*
-* Demonstrates all hotstring options and their combinations for precise
-* control over text expansion behavior.
-*
-* Options covered:
-* - * (no ending character), ? (trigger inside word)
-* - C (case sensitive), C0/C1 (case conforming)
-* - B0 (no backspacing), O (omit ending character)
-* - SE (SendEvent), SI (SendInput), SP (SendPlay), ST (SendText)
-* - T (text mode), R (raw mode), X (execute function)
-* - Z (reset to defaults)
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-*/
+ * ============================================================================
+ * Hotstring() Function - Advanced Options
+ * ============================================================================
+ * 
+ * Demonstrates all hotstring options and their combinations for precise
+ * control over text expansion behavior.
+ * 
+ * Options covered:
+ * - * (no ending character), ? (trigger inside word)
+ * - C (case sensitive), C0/C1 (case conforming)
+ * - B0 (no backspacing), O (omit ending character)
+ * - SE (SendEvent), SI (SendInput), SP (SendPlay), ST (SendText)
+ * - T (text mode), R (raw mode), X (execute function)
+ * - Z (reset to defaults)
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Ending Character Options (* and O)
@@ -38,13 +38,13 @@ Example1_EndingOptions() {
     Hotstring(":*O:both::", "Immediate + Omit ending")
 
     MsgBox(
-    "Ending Character Options`n`n"
-    "std → Standard (needs Space/Enter/Tab)`n"
-    "imm → Immediate (*)`n"
-    "omit → Omits ending char (O)`n"
-    "both → Immediate + Omit (*O)`n`n"
-    "Try typing each in a text editor!",
-    "Example 1"
+        "Ending Character Options`n`n"
+        "std → Standard (needs Space/Enter/Tab)`n"
+        "imm → Immediate (*)`n"
+        "omit → Omits ending char (O)`n"
+        "both → Immediate + Omit (*O)`n`n"
+        "Try typing each in a text editor!",
+        "Example 1"
     )
 }
 
@@ -69,15 +69,15 @@ Example2_CaseOptions() {
     ; sql → structured query language
 
     MsgBox(
-    "Case Sensitivity Options`n`n"
-    "C0 (default): hello → case insensitive`n`n"
-    "C (case sensitive):`n"
-    "  CAPS → ALL CAPITALS`n"
-    "  caps → lowercase version`n"
-    "  Caps → First capital only`n`n"
-    "C1 (case conforming):`n"
-    "  SQL/Sql/sql → matches your case",
-    "Example 2"
+        "Case Sensitivity Options`n`n"
+        "C0 (default): hello → case insensitive`n`n"
+        "C (case sensitive):`n"
+        "  CAPS → ALL CAPITALS`n"
+        "  caps → lowercase version`n"
+        "  Caps → First capital only`n`n"
+        "C1 (case conforming):`n"
+        "  SQL/Sql/sql → matches your case",
+        "Example 2"
     )
 }
 
@@ -103,15 +103,15 @@ Example3_WordDetection() {
     Hotstring(":?:©::", "©")
 
     MsgBox(
-    "Word Detection Option (?)`n`n"
-    "Without ?:`n"
-    "  test → Only at word start`n"
-    "  sig → Only at word start`n`n"
-    "With ?:`n"
-    "  ing → Works inside words (runing → runING)`n"
-    "  © → Works anywhere`n`n"
-    "Try: 'testing' vs 'test'",
-    "Example 3"
+        "Word Detection Option (?)`n`n"
+        "Without ?:`n"
+        "  test → Only at word start`n"
+        "  sig → Only at word start`n`n"
+        "With ?:`n"
+        "  ing → Works inside words (runing → runING)`n"
+        "  © → Works anywhere`n`n"
+        "Try: 'testing' vs 'test'",
+        "Example 3"
     )
 }
 
@@ -135,15 +135,15 @@ Example4_BackspacingOption() {
     Hotstring(":B0:expand2::", " Added after trigger")
 
     MsgBox(
-    "Backspacing Option (B0)`n`n"
-    "Default (backspaces trigger):`n"
-    "  brb → Be right back`n`n"
-    "B0 (keeps trigger, appends):`n"
-    "  append → append APPENDED`n"
-    "  inc → inc (Incorporated)`n"
-    "  ltd → ltd (Limited)`n`n"
-    "Useful for annotations!",
-    "Example 4"
+        "Backspacing Option (B0)`n`n"
+        "Default (backspaces trigger):`n"
+        "  brb → Be right back`n`n"
+        "B0 (keeps trigger, appends):`n"
+        "  append → append APPENDED`n"
+        "  inc → inc (Incorporated)`n"
+        "  ltd → ltd (Limited)`n`n"
+        "Useful for annotations!",
+        "Example 4"
     )
 }
 
@@ -169,15 +169,15 @@ Example5_SendModes() {
     Hotstring(":ST:literalkeys::", "These: {Enter} {Tab} are literal text")
 
     MsgBox(
-    "Send Mode Options`n`n"
-    "SI: SendInput (default, fastest)`n"
-    "SE: SendEvent (compatible)`n"
-    "SP: SendPlay (for games)`n"
-    "ST: SendText (literal text)`n`n"
-    "Try:`n"
-    "  normalkeys → {Enter} sends Enter key`n"
-    "  literalkeys → {Enter} as literal text",
-    "Example 5"
+        "Send Mode Options`n`n"
+        "SI: SendInput (default, fastest)`n"
+        "SE: SendEvent (compatible)`n"
+        "SP: SendPlay (for games)`n"
+        "ST: SendText (literal text)`n`n"
+        "Try:`n"
+        "  normalkeys → {Enter} sends Enter key`n"
+        "  literalkeys → {Enter} as literal text",
+        "Example 5"
     )
 }
 
@@ -231,16 +231,16 @@ Example6_TextVsExecute() {
     }
 
     MsgBox(
-    "Text vs Execute Mode`n`n"
-    "Text mode (T):`n"
-    "  txtmode → Static text`n`n"
-    "Execute mode (X):`n"
-    "  execmode → Dynamic timestamp`n"
-    "  rand100 → Random number`n"
-    "  timestamp → Current time`n"
-    "  clipboard → Clipboard content`n"
-    "  calc → Interactive calculator",
-    "Example 6"
+        "Text vs Execute Mode`n`n"
+        "Text mode (T):`n"
+        "  txtmode → Static text`n`n"
+        "Execute mode (X):`n"
+        "  execmode → Dynamic timestamp`n"
+        "  rand100 → Random number`n"
+        "  timestamp → Current time`n"
+        "  clipboard → Clipboard content`n"
+        "  calc → Interactive calculator",
+        "Example 6"
     )
 }
 
@@ -278,11 +278,11 @@ Example7_AdvancedCombinations() {
     Hotstring(":X*:sig::", (*) {
         hour := A_Hour + 0
         if (hour >= 5 && hour < 12)
-        greeting := "Good morning,`n"
+            greeting := "Good morning,`n"
         else if (hour >= 12 && hour < 17)
-        greeting := "Good afternoon,`n"
+            greeting := "Good afternoon,`n"
         else
-        greeting := "Good evening,`n"
+            greeting := "Good evening,`n"
 
         SendText(greeting . A_UserName)
     })
@@ -291,16 +291,16 @@ Example7_AdvancedCombinations() {
     Hotstring(":Z:reset::", "Options reset to default")
 
     MsgBox(
-    "Advanced Option Combinations`n`n"
-    "C*?: CEO → Immediate, case-sensitive, inside words`n"
-    "C1B0O: sql → Smart case, no backspace, omit end`n"
-    "*T?: ... → Immediate ellipsis (…)`n"
-    "ST?O: -> → Arrow (→)`n"
-    "X*C: NOW → Immediate time (execute)`n`n"
-    "Smart examples:`n"
-    "  email → Cycles through email addresses`n"
-    "  sig → Time-aware signature",
-    "Example 7"
+        "Advanced Option Combinations`n`n"
+        "C*?: CEO → Immediate, case-sensitive, inside words`n"
+        "C1B0O: sql → Smart case, no backspace, omit end`n"
+        "*T?: ... → Immediate ellipsis (…)`n"
+        "ST?O: -> → Arrow (→)`n"
+        "X*C: NOW → Immediate time (execute)`n`n"
+        "Smart examples:`n"
+        "  email → Cycles through email addresses`n"
+        "  sig → Time-aware signature",
+        "Example 7"
     )
 }
 
@@ -310,8 +310,8 @@ Example7_AdvancedCombinations() {
 
 Example8_OptionReference() {
     /**
-    * Interactive option tester
-    */
+     * Interactive option tester
+     */
     ShowOptionReference() {
         refText := "
         (
@@ -351,19 +351,19 @@ Example8_OptionReference() {
     }
 
     /**
-    * Creates test hotstrings for each option
-    */
+     * Creates test hotstrings for each option
+     */
     CreateTestHotstrings() {
         ; Test each option individually
         tests := Map(
-        "*", ":*:tstar::",
-        "O", ":O:tomit::",
-        "?", ":?:tquest::",
-        "C", ":C:TCASE::",
-        "C0", ":C0:tcase0::",
-        "C1", ":C1:tcase1::",
-        "B0", ":B0:tb0::",
-        "ST", ":ST:tst::"
+            "*", ":*:tstar::",
+            "O", ":O:tomit::",
+            "?", ":?:tquest::",
+            "C", ":C:TCASE::",
+            "C0", ":C0:tcase0::",
+            "C1", ":C1:tcase1::",
+            "B0", ":B0:tb0::",
+            "ST", ":ST:tst::"
         )
 
         for option, trigger in tests {
@@ -371,15 +371,15 @@ Example8_OptionReference() {
         }
 
         MsgBox(
-        "Test hotstrings created!`n`n"
-        "Try these triggers:`n"
-        "tstar (no end char)`n"
-        "tomit (omit end)`n"
-        "tquest (inside word)`n"
-        "TCASE (case sensitive)`n"
-        "tb0 (no backspace)`n"
-        "tst (send text mode)",
-        "Test Mode"
+            "Test hotstrings created!`n`n"
+            "Try these triggers:`n"
+            "tstar (no end char)`n"
+            "tomit (omit end)`n"
+            "tquest (inside word)`n"
+            "TCASE (case sensitive)`n"
+            "tb0 (no backspace)`n"
+            "tst (send text mode)",
+            "Test Mode"
         )
     }
 
@@ -391,11 +391,11 @@ Example8_OptionReference() {
     ShowOptionReference()
 
     MsgBox(
-    "Option Reference & Testing`n`n"
-    "Ctrl+Alt+R - Show option reference`n"
-    "Ctrl+Alt+T - Create test hotstrings`n`n"
-    "Use the reference to learn all options!",
-    "Example 8"
+        "Option Reference & Testing`n`n"
+        "Ctrl+Alt+R - Show option reference`n"
+        "Ctrl+Alt+T - Create test hotstrings`n`n"
+        "Use the reference to learn all options!",
+        "Example 8"
     )
 }
 

@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* Nth() - Access by positive or negative index
-*
-* Demonstrates: Negative indexing, ternary operator, bounds checking
-* Python-style negative indexing in AHK v2
-*/
+ * Nth() - Access by positive or negative index
+ * 
+ * Demonstrates: Negative indexing, ternary operator, bounds checking
+ * Python-style negative indexing in AHK v2
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -41,7 +41,7 @@ result5 := Nth([1, 2, 3], 5)
 ; => "" (out of bounds)
 
 MsgBox("First element: " result1 "`n"
-. "Third from end: " result2 "`n"
-. "Last element: " result3 "`n"
-. "Second from end: " result4 "`n"
-. "Out of bounds: '" result5 "'")
+    . "Third from end: " result2 "`n"
+    . "Last element: " result3 "`n"
+    . "Second from end: " result4 "`n"
+    . "Out of bounds: '" result5 "'")

@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiControls_02.ahk - Edit and Input Controls
-*
-* This file demonstrates edit boxes and input controls in AutoHotkey v2.
-* Topics covered:
-* - Single-line edit controls
-* - Multi-line edit controls
-* - Password fields
-* - Read-only edit boxes
-* - Input validation
-* - Text manipulation
-* - Number-only inputs
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_GuiControls_02.ahk - Edit and Input Controls
+ * 
+ * This file demonstrates edit boxes and input controls in AutoHotkey v2.
+ * Topics covered:
+ * - Single-line edit controls
+ * - Multi-line edit controls
+ * - Password fields
+ * - Read-only edit boxes
+ * - Input validation
+ * - Text manipulation
+ * - Number-only inputs
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Basic Edit Controls
 ; =============================================================================
 
 /**
-* Demonstrates basic edit control creation and usage
-* Shows different edit box configurations
-*/
+ * Demonstrates basic edit control creation and usage
+ * Shows different edit box configurations
+ */
 Example1_BasicEdit() {
     myGui := Gui(, "Basic Edit Controls")
     myGui.BackColor := "White"
@@ -97,9 +97,9 @@ Example1_BasicEdit() {
 ; =============================================================================
 
 /**
-* Creates a simple text editor with multi-line edit
-* Demonstrates text manipulation functions
-*/
+ * Creates a simple text editor with multi-line edit
+ * Demonstrates text manipulation functions
+ */
 Example2_TextEditor() {
     myGui := Gui(, "Simple Text Editor")
     myGui.BackColor := "0xF0F0F0"
@@ -135,7 +135,7 @@ Example2_TextEditor() {
         ; Count words
         Loop Parse, text, " `t`n`r" {
             if (A_LoopField != "")
-            words++
+                words++
         }
 
         ; Count lines
@@ -215,9 +215,9 @@ Example2_TextEditor() {
 ; =============================================================================
 
 /**
-* Demonstrates input validation techniques
-* Real-time validation and error feedback
-*/
+ * Demonstrates input validation techniques
+ * Real-time validation and error feedback
+ */
 Example3_InputValidation() {
     myGui := Gui(, "Input Validation Form")
     myGui.BackColor := "White"
@@ -367,12 +367,12 @@ Example3_InputValidation() {
 
         ; Check if all valid
         if (nameStatus.Value = "✓ Valid"
-        && emailStatus.Value = "✓ Valid"
-        && ageStatus.Value = "✓ Valid"
-        && phoneStatus.Value = "✓ Valid"
-        && zipStatus.Value = "✓ Valid"
-        && passStatus.Value = "✓ Valid"
-        && pass2Status.Value = "✓ Matches") {
+            && emailStatus.Value = "✓ Valid"
+            && ageStatus.Value = "✓ Valid"
+            && phoneStatus.Value = "✓ Valid"
+            && zipStatus.Value = "✓ Valid"
+            && passStatus.Value = "✓ Valid"
+            && pass2Status.Value = "✓ Matches") {
 
             MsgBox("All fields are valid!`n`nForm submitted successfully.", "Success")
         } else {
@@ -403,9 +403,9 @@ Example3_InputValidation() {
 ; =============================================================================
 
 /**
-* Real-time password strength indicator
-* Demonstrates dynamic validation feedback
-*/
+ * Real-time password strength indicator
+ * Demonstrates dynamic validation feedback
+ */
 Example4_PasswordStrength() {
     myGui := Gui(, "Password Strength Meter")
     myGui.BackColor := "White"
@@ -499,7 +499,7 @@ Example4_PasswordStrength() {
         }
 
         ; Check special character
-        if (RegExMatch(pass, "[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>/?]")) {
+        if (RegExMatch(pass, "[!@#$%^&*()_+\-=\[\]{};':\"\\ |, . < > / ?] ")) {
             checks.Push(true)
             check5.Value := "✓ Contains special character (!@#$%^&*)"
             check5.Opt("cGreen")
@@ -509,358 +509,355 @@ Example4_PasswordStrength() {
             check5.Value := "❌ Contains special character (!@#$%^&*)"
             check5.Opt("cRed")
         }
-
-        ; Update strength bar
-        strengthBar.Value := strength
-
-        ; Update strength text and color
-        if (strength = 0) {
-            strengthText.Value := ""
-        } else if (strength <= 40) {
-            strengthText.Value := "Strength: WEAK"
-            strengthText.Opt("cRed")
-        } else if (strength <= 60) {
-            strengthText.Value := "Strength: FAIR"
-            strengthText.Opt("cOrange")
-        } else if (strength <= 80) {
-            strengthText.Value := "Strength: GOOD"
-            strengthText.Opt("cBlue")
-        } else {
-            strengthText.Value := "Strength: STRONG"
-            strengthText.Opt("cGreen")
+            ; Update strength bar
+            strengthBar.Value := strength
+            ; Update strength text and color
+            if (strength = 0) {
+                strengthText.Value := ""
+            } else if (strength <= 40) {
+                strengthText.Value := "Strength: WEAK"
+                strengthText.Opt("cRed")
+            } else if (strength <= 60) {
+                strengthText.Value := "Strength: FAIR"
+                strengthText.Opt("cOrange")
+            } else if (strength <= 80) {
+                strengthText.Value := "Strength: GOOD"
+                strengthText.Opt("cBlue")
+            } else {
+                strengthText.Value := "Strength: STRONG"
+                strengthText.Opt("cGreen")
+            }
         }
+            myGui.Add("Button", "x20 y375 w220", "Generate Strong Password").OnEvent("Click", GeneratePassword)
+        myGui.Add("Button", "x250 y375 w230", "Close").OnEvent("Click", (*) => myGui.Destroy())
+
+        GeneratePassword(*) {
+            ; Generate random strong password
+            chars := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
+            password := ""
+            Loop 12 {
+                Random(&pos, 1, StrLen(chars))
+                password .= SubStr(chars, pos, 1)
+            }
+            passEdit.Value := password
+            showPass.Value := 1
+            TogglePassword()
+            CheckStrength()
+        }
+
+        myGui.Show("w500 h420")
     }
 
-    myGui.Add("Button", "x20 y375 w220", "Generate Strong Password").OnEvent("Click", GeneratePassword)
-    myGui.Add("Button", "x250 y375 w230", "Close").OnEvent("Click", (*) => myGui.Destroy())
+    ; =============================================================================
+    ; Example 5: Search and Filter
+    ; =============================================================================
 
-    GeneratePassword(*) {
-        ; Generate random strong password
-        chars := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
-        password := ""
-        Loop 12 {
-            Random(&pos, 1, StrLen(chars))
-            password .= SubStr(chars, pos, 1)
+    /**
+     * Search box with real-time filtering
+     * Demonstrates incremental search functionality
+     */
+    Example5_SearchFilter() {
+        myGui := Gui(, "Search and Filter Demo")
+        myGui.BackColor := "White"
+
+        myGui.SetFont("s11 Bold")
+        myGui.Add("Text", "x20 y20 w560", "Search and Filter Example")
+        myGui.SetFont("s9 Norm")
+
+        ; Sample data
+        allItems := [
+            "Apple", "Banana", "Cherry", "Date", "Elderberry",
+            "Fig", "Grape", "Honeydew", "Kiwi", "Lemon",
+            "Mango", "Nectarine", "Orange", "Papaya", "Quince",
+            "Raspberry", "Strawberry", "Tangerine", "Ugli Fruit", "Watermelon",
+            "Apricot", "Blueberry", "Cantaloupe", "Dragonfruit", "Grapefruit"
+        ]
+
+        ; Search box
+        myGui.Add("Text", "x20 y55", "Search:")
+        searchEdit := myGui.Add("Edit", "x20 y75 w460")
+        clearBtn := myGui.Add("Button", "x490 y75 w90", "Clear")
+
+        ; Results count
+        resultText := myGui.Add("Text", "x20 y110 w560", Format("Showing all {1} items", allItems.Length))
+
+        ; Results list
+        resultList := myGui.Add("ListBox", "x20 y135 w560 h300", allItems)
+
+        ; Search on keypress
+        searchEdit.OnEvent("Change", FilterResults)
+        clearBtn.OnEvent("Click", (*) => (searchEdit.Value := "", FilterResults()))
+
+        FilterResults(*) {
+            query := StrLower(searchEdit.Value)
+            resultList.Delete()
+
+            if (query = "") {
+                resultList.Add(allItems)
+                resultText.Value := Format("Showing all {1} items", allItems.Length)
+            } else {
+                filtered := []
+                for item in allItems {
+                    if (InStr(StrLower(item), query)) {
+                        filtered.Push(item)
+                    }
+                }
+
+                if (filtered.Length > 0) {
+                    resultList.Add(filtered)
+                    resultText.Value := Format("Found {1} item{2} matching '{3}'",
+                        filtered.Length, filtered.Length = 1 ? "" : "s", query)
+                } else {
+                    resultText.Value := Format("No items found matching '{1}'", query)
+                }
+            }
         }
-        passEdit.Value := password
-        showPass.Value := 1
-        TogglePassword()
-        CheckStrength()
+
+        ; Action buttons
+        myGui.Add("Button", "x20 y445 w180", "Select Item").OnEvent("Click", SelectItem)
+        myGui.Add("Button", "x210 y445 w180", "Add to Favorites").OnEvent("Click", AddFavorite)
+        myGui.Add("Button", "x400 y445 w180", "Close").OnEvent("Click", (*) => myGui.Destroy())
+
+        SelectItem(*) {
+            selected := resultList.Text
+            if (selected != "") {
+                MsgBox("Selected: " selected, "Item Selected")
+            } else {
+                MsgBox("Please select an item first", "No Selection")
+            }
+        }
+
+        AddFavorite(*) {
+            selected := resultList.Text
+            if (selected != "") {
+                MsgBox("Added to favorites: " selected, "Favorite Added")
+            } else {
+                MsgBox("Please select an item first", "No Selection")
+            }
+        }
+
+        searchEdit.Focus()
+        myGui.Show("w600 h490")
     }
 
-    myGui.Show("w500 h420")
-}
+    ; =============================================================================
+    ; Example 6: Auto-Complete Input
+    ; =============================================================================
 
-; =============================================================================
-; Example 5: Search and Filter
-; =============================================================================
+    /**
+     * Edit control with auto-complete suggestions
+     * Demonstrates suggestion dropdown
+     */
+    Example6_AutoComplete() {
+        myGui := Gui(, "Auto-Complete Demo")
+        myGui.BackColor := "White"
 
-/**
-* Search box with real-time filtering
-* Demonstrates incremental search functionality
-*/
-Example5_SearchFilter() {
-    myGui := Gui(, "Search and Filter Demo")
-    myGui.BackColor := "White"
+        myGui.SetFont("s11 Bold")
+        myGui.Add("Text", "x20 y20 w460", "Auto-Complete Input Field")
+        myGui.SetFont("s9 Norm")
 
-    myGui.SetFont("s11 Bold")
-    myGui.Add("Text", "x20 y20 w560", "Search and Filter Example")
-    myGui.SetFont("s9 Norm")
+        ; Suggestions database
+        suggestions := [
+            "JavaScript", "Python", "Java", "C++", "C#",
+            "Ruby", "PHP", "Swift", "Kotlin", "Go",
+            "Rust", "TypeScript", "Perl", "Scala", "Haskell",
+            "AutoHotkey", "PowerShell", "Bash", "SQL", "HTML"
+        ]
 
-    ; Sample data
-    allItems := [
-    "Apple", "Banana", "Cherry", "Date", "Elderberry",
-    "Fig", "Grape", "Honeydew", "Kiwi", "Lemon",
-    "Mango", "Nectarine", "Orange", "Papaya", "Quince",
-    "Raspberry", "Strawberry", "Tangerine", "Ugli Fruit", "Watermelon",
-    "Apricot", "Blueberry", "Cantaloupe", "Dragonfruit", "Grapefruit"
-    ]
+        myGui.Add("Text", "x20 y55", "Type a programming language:")
+        inputEdit := myGui.Add("Edit", "x20 y75 w460")
 
-    ; Search box
-    myGui.Add("Text", "x20 y55", "Search:")
-    searchEdit := myGui.Add("Edit", "x20 y75 w460")
-    clearBtn := myGui.Add("Button", "x490 y75 w90", "Clear")
+        myGui.Add("Text", "x20 y110", "Suggestions:")
+        suggestionList := myGui.Add("ListBox", "x20 y130 w460 h200", [])
+        suggestionList.Visible := false
 
-    ; Results count
-    resultText := myGui.Add("Text", "x20 y110 w560", Format("Showing all {1} items", allItems.Length))
+        resultText := myGui.Add("Text", "x20 y345 w460 h60 Border BackgroundWhite", "Selected: None")
 
-    ; Results list
-    resultList := myGui.Add("ListBox", "x20 y135 w560 h300", allItems)
+        inputEdit.OnEvent("Change", ShowSuggestions)
+        suggestionList.OnEvent("DoubleClick", SelectSuggestion)
 
-    ; Search on keypress
-    searchEdit.OnEvent("Change", FilterResults)
-    clearBtn.OnEvent("Click", (*) => (searchEdit.Value := "", FilterResults()))
+        ShowSuggestions(*) {
+            query := inputEdit.Value
 
-    FilterResults(*) {
-        query := StrLower(searchEdit.Value)
-        resultList.Delete()
+            if (query = "" || StrLen(query) < 2) {
+                suggestionList.Visible := false
+                return
+            }
 
-        if (query = "") {
-            resultList.Add(allItems)
-            resultText.Value := Format("Showing all {1} items", allItems.Length)
-        } else {
-            filtered := []
-            for item in allItems {
-                if (InStr(StrLower(item), query)) {
-                    filtered.Push(item)
+            ; Filter suggestions
+            matches := []
+            for item in suggestions {
+                if (InStr(StrLower(item), StrLower(query)) = 1) {  ; Starts with query
+                    matches.Push(item)
                 }
             }
 
-            if (filtered.Length > 0) {
-                resultList.Add(filtered)
-                resultText.Value := Format("Found {1} item{2} matching '{3}'",
-                filtered.Length, filtered.Length = 1 ? "" : "s", query)
+            if (matches.Length > 0) {
+                suggestionList.Delete()
+                suggestionList.Add(matches)
+                suggestionList.Visible := true
+                suggestionList.Choose(1)
             } else {
-                resultText.Value := Format("No items found matching '{1}'", query)
+                suggestionList.Visible := false
             }
         }
-    }
 
-    ; Action buttons
-    myGui.Add("Button", "x20 y445 w180", "Select Item").OnEvent("Click", SelectItem)
-    myGui.Add("Button", "x210 y445 w180", "Add to Favorites").OnEvent("Click", AddFavorite)
-    myGui.Add("Button", "x400 y445 w180", "Close").OnEvent("Click", (*) => myGui.Destroy())
-
-    SelectItem(*) {
-        selected := resultList.Text
-        if (selected != "") {
-            MsgBox("Selected: " selected, "Item Selected")
-        } else {
-            MsgBox("Please select an item first", "No Selection")
-        }
-    }
-
-    AddFavorite(*) {
-        selected := resultList.Text
-        if (selected != "") {
-            MsgBox("Added to favorites: " selected, "Favorite Added")
-        } else {
-            MsgBox("Please select an item first", "No Selection")
-        }
-    }
-
-    searchEdit.Focus()
-    myGui.Show("w600 h490")
-}
-
-; =============================================================================
-; Example 6: Auto-Complete Input
-; =============================================================================
-
-/**
-* Edit control with auto-complete suggestions
-* Demonstrates suggestion dropdown
-*/
-Example6_AutoComplete() {
-    myGui := Gui(, "Auto-Complete Demo")
-    myGui.BackColor := "White"
-
-    myGui.SetFont("s11 Bold")
-    myGui.Add("Text", "x20 y20 w460", "Auto-Complete Input Field")
-    myGui.SetFont("s9 Norm")
-
-    ; Suggestions database
-    suggestions := [
-    "JavaScript", "Python", "Java", "C++", "C#",
-    "Ruby", "PHP", "Swift", "Kotlin", "Go",
-    "Rust", "TypeScript", "Perl", "Scala", "Haskell",
-    "AutoHotkey", "PowerShell", "Bash", "SQL", "HTML"
-    ]
-
-    myGui.Add("Text", "x20 y55", "Type a programming language:")
-    inputEdit := myGui.Add("Edit", "x20 y75 w460")
-
-    myGui.Add("Text", "x20 y110", "Suggestions:")
-    suggestionList := myGui.Add("ListBox", "x20 y130 w460 h200", [])
-    suggestionList.Visible := false
-
-    resultText := myGui.Add("Text", "x20 y345 w460 h60 Border BackgroundWhite", "Selected: None")
-
-    inputEdit.OnEvent("Change", ShowSuggestions)
-    suggestionList.OnEvent("DoubleClick", SelectSuggestion)
-
-    ShowSuggestions(*) {
-        query := inputEdit.Value
-
-        if (query = "" || StrLen(query) < 2) {
-            suggestionList.Visible := false
-            return
+        SelectSuggestion(*) {
+            selected := suggestionList.Text
+            if (selected != "") {
+                inputEdit.Value := selected
+                suggestionList.Visible := false
+                resultText.Value := "Selected: " selected
+            }
         }
 
-        ; Filter suggestions
-        matches := []
-        for item in suggestions {
-            if (InStr(StrLower(item), StrLower(query)) = 1) {  ; Starts with query
-            matches.Push(item)
-        }
-    }
+        myGui.Add("Button", "x20 y420 w220", "Use Selected").OnEvent("Click", UseSelection)
+        myGui.Add("Button", "x250 y420 w230", "Close").OnEvent("Click", (*) => myGui.Destroy())
 
-    if (matches.Length > 0) {
-        suggestionList.Delete()
-        suggestionList.Add(matches)
-        suggestionList.Visible := true
-        suggestionList.Choose(1)
-    } else {
-        suggestionList.Visible := false
-    }
-}
-
-SelectSuggestion(*) {
-    selected := suggestionList.Text
-    if (selected != "") {
-        inputEdit.Value := selected
-        suggestionList.Visible := false
-        resultText.Value := "Selected: " selected
-    }
-}
-
-myGui.Add("Button", "x20 y420 w220", "Use Selected").OnEvent("Click", UseSelection)
-myGui.Add("Button", "x250 y420 w230", "Close").OnEvent("Click", (*) => myGui.Destroy())
-
-UseSelection(*) {
-    value := inputEdit.Value
-    if (value != "") {
-        MsgBox("Using: " value, "Selection")
-        resultText.Value := "Selected: " value
-    }
-}
-
-inputEdit.Focus()
-myGui.Show("w500 h465")
-}
-
-; =============================================================================
-; Example 7: Character Counter and Limiter
-; =============================================================================
-
-/**
-* Text input with character limit and counter
-* Real-time character counting
-*/
-Example7_CharacterLimit() {
-    myGui := Gui(, "Character Counter Demo")
-    myGui.BackColor := "White"
-
-    myGui.SetFont("s11 Bold")
-    myGui.Add("Text", "x20 y20 w460", "Character Limit Examples")
-    myGui.SetFont("s9 Norm")
-
-    ; Tweet-style limit (280 chars)
-    myGui.Add("Text", "x20 y55", "Tweet (280 character limit):")
-    tweetEdit := myGui.Add("Edit", "x20 y75 w460 h80 Multi")
-    tweetCounter := myGui.Add("Text", "x20 y160 w460 Right", "0 / 280")
-
-    tweetEdit.OnEvent("Change", UpdateTweetCounter)
-
-    UpdateTweetCounter(*) {
-        text := tweetEdit.Value
-        length := StrLen(text)
-        maxLen := 280
-
-        if (length > maxLen) {
-            tweetEdit.Value := SubStr(text, 1, maxLen)
-            length := maxLen
+        UseSelection(*) {
+            value := inputEdit.Value
+            if (value != "") {
+                MsgBox("Using: " value, "Selection")
+                resultText.Value := "Selected: " value
+            }
         }
 
-        tweetCounter.Value := length " / " maxLen
-
-        if (length > maxLen * 0.9) {
-            tweetCounter.Opt("cRed")
-        } else if (length > maxLen * 0.75) {
-            tweetCounter.Opt("cOrange")
-        } else {
-            tweetCounter.Opt("cGreen")
-        }
+        inputEdit.Focus()
+        myGui.Show("w500 h465")
     }
 
-    ; Bio (150 chars)
-    myGui.Add("Text", "x20 y190", "Bio (150 character limit):")
-    bioEdit := myGui.Add("Edit", "x20 y210 w460 h60 Multi")
-    bioCounter := myGui.Add("Text", "x20 y275 w460 Right", "0 / 150")
+    ; =============================================================================
+    ; Example 7: Character Counter and Limiter
+    ; =============================================================================
 
-    bioEdit.OnEvent("Change", UpdateBioCounter)
+    /**
+     * Text input with character limit and counter
+     * Real-time character counting
+     */
+    Example7_CharacterLimit() {
+        myGui := Gui(, "Character Counter Demo")
+        myGui.BackColor := "White"
 
-    UpdateBioCounter(*) {
-        text := bioEdit.Value
-        length := StrLen(text)
-        maxLen := 150
+        myGui.SetFont("s11 Bold")
+        myGui.Add("Text", "x20 y20 w460", "Character Limit Examples")
+        myGui.SetFont("s9 Norm")
 
-        if (length > maxLen) {
-            bioEdit.Value := SubStr(text, 1, maxLen)
-            length := maxLen
+        ; Tweet-style limit (280 chars)
+        myGui.Add("Text", "x20 y55", "Tweet (280 character limit):")
+        tweetEdit := myGui.Add("Edit", "x20 y75 w460 h80 Multi")
+        tweetCounter := myGui.Add("Text", "x20 y160 w460 Right", "0 / 280")
+
+        tweetEdit.OnEvent("Change", UpdateTweetCounter)
+
+        UpdateTweetCounter(*) {
+            text := tweetEdit.Value
+            length := StrLen(text)
+            maxLen := 280
+
+            if (length > maxLen) {
+                tweetEdit.Value := SubStr(text, 1, maxLen)
+                length := maxLen
+            }
+
+            tweetCounter.Value := length " / " maxLen
+
+            if (length > maxLen * 0.9) {
+                tweetCounter.Opt("cRed")
+            } else if (length > maxLen * 0.75) {
+                tweetCounter.Opt("cOrange")
+            } else {
+                tweetCounter.Opt("cGreen")
+            }
         }
 
-        bioCounter.Value := length " / " maxLen
+        ; Bio (150 chars)
+        myGui.Add("Text", "x20 y190", "Bio (150 character limit):")
+        bioEdit := myGui.Add("Edit", "x20 y210 w460 h60 Multi")
+        bioCounter := myGui.Add("Text", "x20 y275 w460 Right", "0 / 150")
 
-        if (length >= maxLen) {
-            bioCounter.Opt("cRed")
-        } else {
-            bioCounter.Opt("cBlack")
+        bioEdit.OnEvent("Change", UpdateBioCounter)
+
+        UpdateBioCounter(*) {
+            text := bioEdit.Value
+            length := StrLen(text)
+            maxLen := 150
+
+            if (length > maxLen) {
+                bioEdit.Value := SubStr(text, 1, maxLen)
+                length := maxLen
+            }
+
+            bioCounter.Value := length " / " maxLen
+
+            if (length >= maxLen) {
+                bioCounter.Opt("cRed")
+            } else {
+                bioCounter.Opt("cBlack")
+            }
         }
+
+        ; Comment (500 chars)
+        myGui.Add("Text", "x20 y305", "Comment (500 character limit):")
+        commentEdit := myGui.Add("Edit", "x20 y325 w460 h100 Multi")
+        commentCounter := myGui.Add("Text", "x20 y430 w460", "Characters: 0 / 500 | Words: 0")
+
+        commentEdit.OnEvent("Change", UpdateCommentCounter)
+
+        UpdateCommentCounter(*) {
+            text := commentEdit.Value
+            length := StrLen(text)
+            maxLen := 500
+
+            if (length > maxLen) {
+                commentEdit.Value := SubStr(text, 1, maxLen)
+                length := maxLen
+            }
+
+            ; Count words
+            words := 0
+            Loop Parse, text, " `t`n`r" {
+                if (A_LoopField != "")
+                    words++
+            }
+
+            commentCounter.Value := Format("Characters: {1} / {2} | Words: {3}", length, maxLen, words)
+        }
+
+        myGui.Add("Button", "x20 y460 w460", "Close").OnEvent("Click", (*) => myGui.Destroy())
+
+        myGui.Show("w500 h505")
     }
 
-    ; Comment (500 chars)
-    myGui.Add("Text", "x20 y305", "Comment (500 character limit):")
-    commentEdit := myGui.Add("Edit", "x20 y325 w460 h100 Multi")
-    commentCounter := myGui.Add("Text", "x20 y430 w460", "Characters: 0 / 500 | Words: 0")
+    ; =============================================================================
+    ; Main Menu - Example Launcher
+    ; =============================================================================
 
-    commentEdit.OnEvent("Change", UpdateCommentCounter)
+    /**
+     * Creates a main menu to launch all examples
+     */
+    ShowMainMenu() {
+        menuGui := Gui(, "BuiltIn_GuiControls_02 - Edit Control Examples")
+        menuGui.BackColor := "White"
 
-    UpdateCommentCounter(*) {
-        text := commentEdit.Value
-        length := StrLen(text)
-        maxLen := 500
+        menuGui.SetFont("s10 Bold")
+        menuGui.Add("Text", "x20 y20 w360", "Edit and Input Control Examples")
+        menuGui.SetFont("s9 Norm")
 
-        if (length > maxLen) {
-            commentEdit.Value := SubStr(text, 1, maxLen)
-            length := maxLen
-        }
+        menuGui.Add("Text", "x20 y50 w360", "Select an example to run:")
 
-        ; Count words
-        words := 0
-        Loop Parse, text, " `t`n`r" {
-            if (A_LoopField != "")
-            words++
-        }
+        ; Example buttons
+        menuGui.Add("Button", "x20 y80 w360", "Example 1: Basic Edit Controls").OnEvent("Click", (*) => Example1_BasicEdit())
+        menuGui.Add("Button", "x20 y110 w360", "Example 2: Text Editor").OnEvent("Click", (*) => Example2_TextEditor())
+        menuGui.Add("Button", "x20 y140 w360", "Example 3: Input Validation").OnEvent("Click", (*) => Example3_InputValidation())
+        menuGui.Add("Button", "x20 y170 w360", "Example 4: Password Strength").OnEvent("Click", (*) => Example4_PasswordStrength())
+        menuGui.Add("Button", "x20 y200 w360", "Example 5: Search and Filter").OnEvent("Click", (*) => Example5_SearchFilter())
+        menuGui.Add("Button", "x20 y230 w360", "Example 6: Auto-Complete").OnEvent("Click", (*) => Example6_AutoComplete())
+        menuGui.Add("Button", "x20 y260 w360", "Example 7: Character Limit").OnEvent("Click", (*) => Example7_CharacterLimit())
 
-        commentCounter.Value := Format("Characters: {1} / {2} | Words: {3}", length, maxLen, words)
+        menuGui.Add("Button", "x20 y300 w360", "Exit").OnEvent("Click", (*) => ExitApp())
+
+        menuGui.Show("w400 h350")
     }
 
-    myGui.Add("Button", "x20 y460 w460", "Close").OnEvent("Click", (*) => myGui.Destroy())
-
-    myGui.Show("w500 h505")
-}
-
-; =============================================================================
-; Main Menu - Example Launcher
-; =============================================================================
-
-/**
-* Creates a main menu to launch all examples
-*/
-ShowMainMenu() {
-    menuGui := Gui(, "BuiltIn_GuiControls_02 - Edit Control Examples")
-    menuGui.BackColor := "White"
-
-    menuGui.SetFont("s10 Bold")
-    menuGui.Add("Text", "x20 y20 w360", "Edit and Input Control Examples")
-    menuGui.SetFont("s9 Norm")
-
-    menuGui.Add("Text", "x20 y50 w360", "Select an example to run:")
-
-    ; Example buttons
-    menuGui.Add("Button", "x20 y80 w360", "Example 1: Basic Edit Controls").OnEvent("Click", (*) => Example1_BasicEdit())
-    menuGui.Add("Button", "x20 y110 w360", "Example 2: Text Editor").OnEvent("Click", (*) => Example2_TextEditor())
-    menuGui.Add("Button", "x20 y140 w360", "Example 3: Input Validation").OnEvent("Click", (*) => Example3_InputValidation())
-    menuGui.Add("Button", "x20 y170 w360", "Example 4: Password Strength").OnEvent("Click", (*) => Example4_PasswordStrength())
-    menuGui.Add("Button", "x20 y200 w360", "Example 5: Search and Filter").OnEvent("Click", (*) => Example5_SearchFilter())
-    menuGui.Add("Button", "x20 y230 w360", "Example 6: Auto-Complete").OnEvent("Click", (*) => Example6_AutoComplete())
-    menuGui.Add("Button", "x20 y260 w360", "Example 7: Character Limit").OnEvent("Click", (*) => Example7_CharacterLimit())
-
-    menuGui.Add("Button", "x20 y300 w360", "Exit").OnEvent("Click", (*) => ExitApp())
-
-    menuGui.Show("w400 h350")
-}
-
-; Show the main menu
-ShowMainMenu()
+    ; Show the main menu
+    ShowMainMenu()

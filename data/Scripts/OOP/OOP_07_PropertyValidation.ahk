@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Property Descriptors - Validation and Computed Properties
-*
-* Demonstrates using property descriptors for data validation,
-* computed properties, and maintaining data consistency.
-*
-* Source: AHK_Notes/Concepts/property-get-set-descriptors.md
-*/
+ * Property Descriptors - Validation and Computed Properties
+ * 
+ * Demonstrates using property descriptors for data validation,
+ * computed properties, and maintaining data consistency.
+ * 
+ * Source: AHK_Notes/Concepts/property-get-set-descriptors.md
+ */
 
 ; Test User class with validation
 user := User()
@@ -34,81 +34,81 @@ try {
 ; Test Rectangle with computed properties
 rect := Rectangle(5, 10)
 MsgBox("Rectangle:`n`n"
-. "Width: " rect.Width "`n"
-. "Height: " rect.Height "`n"
-. "Area: " rect.Area " (computed)`n"
-. "Perimeter: " rect.Perimeter " (computed)", , "T3")
+    . "Width: " rect.Width "`n"
+    . "Height: " rect.Height "`n"
+    . "Area: " rect.Area " (computed)`n"
+    . "Perimeter: " rect.Perimeter " (computed)", , "T3")
 
 rect.Width := 8
 MsgBox("After changing width to 8:`n`n"
-. "Area: " rect.Area "`n"
-. "Perimeter: " rect.Perimeter, , "T3")
+    . "Area: " rect.Area "`n"
+    . "Perimeter: " rect.Perimeter, , "T3")
 
 /**
-* User - Class with validated properties
-*/
+ * User - Class with validated properties
+ */
 class User {
     _name := ""
     _email := ""
     _age := 0
 
     /**
-    * Name property with validation
-    */
+     * Name property with validation
+     */
     Name {
         get => this._name
 
         set {
             if (StrLen(value) < 2)
-            throw ValueError("Name must be at least 2 characters")
+                throw ValueError("Name must be at least 2 characters")
             this._name := value
         }
     }
 
     /**
-    * Email property with validation
-    */
+     * Email property with validation
+     */
     Email {
         get => this._email
 
         set {
             if (!RegExMatch(value, "i)^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"))
-            throw ValueError("Invalid email format")
+                throw ValueError("Invalid email format")
             this._email := value
         }
     }
 
     /**
-    * Age property with range validation
-    */
+     * Age property with range validation
+     */
     Age {
         get => this._age
 
         set {
             if (value < 0 || value > 150)
-            throw ValueError("Age must be between 0 and 150")
+                throw ValueError("Age must be between 0 and 150")
             this._age := value
         }
     }
 
     /**
-    * IsAdult - Computed property (no storage)
-    */
+     * IsAdult - Computed property (no storage)
+     */
     IsAdult {
         get => this._age >= 18
     }
 
     GetInfo() {
         return "Name: " this.Name "`n"
-        . "Email: " this.Email "`n"
-        . "Age: " this.Age "`n"
-        . "Is Adult: " (this.IsAdult ? "Yes" : "No")
+            . "Email: " this.Email "`n"
+            . "Age: " this.Age "`n"
+            . "Is Adult: " (this.IsAdult ? "Yes" : "No")
     }
 }
 
 /**
-* Rectangle - Class with computed properties
-*/
+ * Rectangle - Class with computed properties
+ */
 class Rectangle {
     _width := 0
     _height := 0
@@ -119,48 +119,48 @@ class Rectangle {
     }
 
     /**
-    * Width with validation
-    */
+     * Width with validation
+     */
     Width {
         get => this._width
 
         set {
             if (value <= 0)
-            throw ValueError("Width must be positive")
+                throw ValueError("Width must be positive")
             this._width := value
         }
     }
 
     /**
-    * Height with validation
-    */
+     * Height with validation
+     */
     Height {
         get => this._height
 
         set {
             if (value <= 0)
-            throw ValueError("Height must be positive")
+                throw ValueError("Height must be positive")
             this._height := value
         }
     }
 
     /**
-    * Area - Computed property (not stored)
-    */
+     * Area - Computed property (not stored)
+     */
     Area {
         get => this._width * this._height
     }
 
     /**
-    * Perimeter - Computed property
-    */
+     * Perimeter - Computed property
+     */
     Perimeter {
         get => 2 * (this._width + this._height)
     }
 
     /**
-    * IsSquare - Computed boolean property
-    */
+     * IsSquare - Computed boolean property
+     */
     IsSquare {
         get => this._width == this._height
     }
@@ -222,4 +222,5 @@ class Rectangle {
                     *        ; validation
                     *        ; transformation
                     *    }
-                    */
+*/
+

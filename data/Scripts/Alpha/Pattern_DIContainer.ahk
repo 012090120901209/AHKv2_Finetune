@@ -15,10 +15,10 @@ class Container {
         this.bindings[name] := Map("factory", factory, "singleton", singleton)
         return this
     }
-    
+
     ; Bind as singleton
     Singleton(name, factory) => this.Bind(name, factory, true)
-    
+
     ; Bind existing instance
     Instance(name, instance) {
         this.singletons[name] := instance
@@ -36,14 +36,14 @@ class Container {
 
         binding := this.bindings[name]
         instance := binding["factory"](this)
-        
+
         ; Cache if singleton
         if binding["singleton"]
             this.singletons[name] := instance
 
         return instance
     }
-    
+
     Has(name) => this.bindings.Has(name)
 }
 
@@ -64,7 +64,7 @@ class UserRepository {
         this.db := db
         this.logger := logger
     }
-    
+
     Find(id) {
         this.logger.Log("Finding user " id)
         return Map("id", id, "name", "User" id)
@@ -76,7 +76,7 @@ class UserService {
         this.repo := repo
         this.logger := logger
     }
-    
+
     GetUser(id) {
         this.logger.Log("Service: GetUser " id)
         return this.repo.Find(id)

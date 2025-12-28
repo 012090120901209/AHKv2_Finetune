@@ -29,23 +29,23 @@ class PersistentStore extends CacheStore {
         this.writeLatency := 50  ; Simulated write delay
         this.readLatency := 30   ; Simulated read delay
     }
-    
+
     Get(key) {
         Sleep(this.readLatency)
         return this.data.Has(key) ? this.data[key] : ""
     }
-    
+
     Set(key, value) {
         Sleep(this.writeLatency)
         this.data[key] := value
         return value
     }
-    
+
     Delete(key) {
         Sleep(this.writeLatency)
         return this.data.Delete(key)
     }
-    
+
     Has(key) {
         Sleep(this.readLatency)
         return this.data.Has(key)
@@ -55,7 +55,7 @@ class PersistentStore extends CacheStore {
 ; Write-Through Cache - Writes go to both cache and store synchronously
 class WriteThroughCache {
     cache := Map()  ; Direct Map usage avoids type inference issues
-    
+
     __New(backingStore) {
         this.store := backingStore
     }
@@ -64,12 +64,12 @@ class WriteThroughCache {
         ; Try cache first
         if this.cache.Has(key)
             return this.cache[key]
-        
+
         ; Miss - fetch from store
         value := this.store.Get(key)
         if value != ""
             this.cache[key] := value
-        
+
         return value
     }
 
@@ -94,7 +94,7 @@ class WriteThroughCache {
 class WriteBehindCache {
     cache := Map()  ; Direct Map usage
     writeBuffer := Map()
-    
+
     __New(backingStore, options := "") {
         this.store := backingStore
         this.maxBufferSize := (options && options.Has("maxBufferSize")) ? options["maxBufferSize"] : 100
@@ -106,50 +106,50 @@ class WriteBehindCache {
         ; Check write buffer first (most recent)
         if this.writeBuffer.Has(key)
             return this.writeBuffer[key]["value"]
-        
+
         ; Then cache
         if this.cache.Has(key)
             return this.cache[key]
-        
+
         ; Finally backing store
         value := this.store.Get(key)
         if value != ""
             this.cache[key] := value
-        
+
         return value
     }
 
     Set(key, value) {
         ; Update cache immediately
         this.cache[key] := value
-        
+
         ; Buffer the write
         this.writeBuffer[key] := Map("value", value, "timestamp", A_TickCount)
-        
+
         ; Check if flush needed
         if this.writeBuffer.Count >= this.maxBufferSize
             this.Flush()
-        
+
         return value
     }
 
     Flush() {
         if !this.writeBuffer.Count
             return 0
-        
+
         count := 0
         for key, entry in this.writeBuffer {
             this.store.Set(key, entry["value"])
             count++
         }
-        
+
         this.writeBuffer := Map()
         this.lastFlush := A_TickCount
         return count
     }
 
     GetPendingWrites() => this.writeBuffer.Count
-    
+
     Delete(key) {
         this.cache.Delete(key)
         this.writeBuffer.Delete(key)
@@ -160,7 +160,7 @@ class WriteBehindCache {
 ; Read-Through Cache - Automatically loads missing entries
 class ReadThroughCache {
     cache := Map()  ; Direct Map usage
-    
+
     __New(loader) {
         this.loader := loader  ; Function to load missing data
     }
@@ -168,12 +168,12 @@ class ReadThroughCache {
     Get(key) {
         if this.cache.Has(key)
             return this.cache[key]
-        
+
         ; Load from source
         value := this.loader(key)
         if value != ""
             this.cache[key] := value
-        
+
         return value
     }
 

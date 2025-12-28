@@ -63,23 +63,23 @@ class Graph {
                 this.DFSRecurse(edge["vertex"], visited, result)
         }
     }
-    
+
     HasPath(start, end) {
         visited := Map()
         return this.HasPathDFS(start, end, visited)
     }
-    
+
     HasPathDFS(current, end, visited) {
         if current = end
             return true
-        
+
         visited[current] := true
-        
+
         for edge in this.GetNeighbors(current)
             if !visited.Has(edge["vertex"])
                 if this.HasPathDFS(edge["vertex"], end, visited)
                     return true
-        
+
         return false
     }
 }

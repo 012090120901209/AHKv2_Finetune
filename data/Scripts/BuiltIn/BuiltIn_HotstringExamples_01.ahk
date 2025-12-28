@@ -1,17 +1,17 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Text Expander Systems - Practical Hotstring Applications
-* ============================================================================
-*
-* Comprehensive text expansion systems using hotstrings for productivity,
-* including personal information, coding shortcuts, documentation templates,
-* and specialized vocabulary expansions.
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-*/
+ * ============================================================================
+ * Text Expander Systems - Practical Hotstring Applications
+ * ============================================================================
+ * 
+ * Comprehensive text expansion systems using hotstrings for productivity,
+ * including personal information, coding shortcuts, documentation templates,
+ * and specialized vocabulary expansions.
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Personal Information Expander
@@ -58,16 +58,16 @@ Example1_PersonalInfo() {
     )")
 
     MsgBox(
-    "Personal Information Expander Loaded!`n`n"
-    "Contact info:`n"
-    "  myname, myemail, myphone, myaddr`n"
-    "  myweb, mylinkedin, mygithub`n`n"
-    "Professional:`n"
-    "  mytitle, mycompany, myoffice`n`n"
-    "Signatures:`n"
-    "  sig1, sig2, sig3`n`n"
-    "Customize with your own info!",
-    "Example 1"
+        "Personal Information Expander Loaded!`n`n"
+        "Contact info:`n"
+        "  myname, myemail, myphone, myaddr`n"
+        "  myweb, mylinkedin, mygithub`n`n"
+        "Professional:`n"
+        "  mytitle, mycompany, myoffice`n`n"
+        "Signatures:`n"
+        "  sig1, sig2, sig3`n`n"
+        "Customize with your own info!",
+        "Example 1"
     )
 }
 
@@ -166,14 +166,14 @@ Example2_CodeSnippets() {
     Hotstring("::cwarn::", "console.warn();")
 
     MsgBox(
-    "Programming Code Snippets Loaded!`n`n"
-    "JavaScript: jsfunc, jsarrow, jsclass, jspromise, jsasync`n"
-    "Python: pydef, pyclass, pytry`n"
-    "HTML: htmldoc, htmldiv, htmlspan`n"
-    "Comments: todo, fixme, note, hack`n"
-    "Console: clog, cerr, cwarn`n`n"
-    "Type in your code editor!",
-    "Example 2"
+        "Programming Code Snippets Loaded!`n`n"
+        "JavaScript: jsfunc, jsarrow, jsclass, jspromise, jsasync`n"
+        "Python: pydef, pyclass, pytry`n"
+        "HTML: htmldoc, htmldiv, htmlspan`n"
+        "Comments: todo, fixme, note, hack`n"
+        "Console: clog, cerr, cwarn`n`n"
+        "Type in your code editor!",
+        "Example 2"
     )
 }
 
@@ -257,14 +257,14 @@ Example3_DocTemplates() {
     Hotstring("::mdpy::", "``````python`n`n``````")
 
     MsgBox(
-    "Documentation Templates Loaded!`n`n"
-    "JSDoc: jsdoc, jsdocclass`n"
-    "Python: pydoc`n"
-    "README: readme`n"
-    "Markdown: mdh1, mdh2, mdh3`n"
-    "Code blocks: mdcode, mdbash, mdpy`n`n"
-    "Perfect for documentation!",
-    "Example 3"
+        "Documentation Templates Loaded!`n`n"
+        "JSDoc: jsdoc, jsdocclass`n"
+        "Python: pydoc`n"
+        "README: readme`n"
+        "Markdown: mdh1, mdh2, mdh3`n"
+        "Code blocks: mdcode, mdbash, mdpy`n`n"
+        "Perfect for documentation!",
+        "Example 3"
     )
 }
 
@@ -348,22 +348,22 @@ Example4_EmailTemplates() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     MsgBox(
-    "Email & Communication Templates Loaded!`n`n"
-    "Emails:`n"
-    "  emailmeet - Meeting request`n"
-    "  emailfollow - Follow-up`n"
-    "  emailthx - Thank you`n"
-    "  emailack - Acknowledgment`n"
-    "  emailooo - Out of office`n`n"
-    "Meetings:`n"
-    "  meetagenda - Meeting agenda`n"
-    "  meetnotes - Meeting notes",
-    "Example 4"
+        "Email & Communication Templates Loaded!`n`n"
+        "Emails:`n"
+        "  emailmeet - Meeting request`n"
+        "  emailfollow - Follow-up`n"
+        "  emailthx - Thank you`n"
+        "  emailack - Acknowledgment`n"
+        "  emailooo - Out of office`n`n"
+        "Meetings:`n"
+        "  meetagenda - Meeting agenda`n"
+        "  meetnotes - Meeting notes",
+        "Example 4"
     )
 }
 
@@ -468,19 +468,19 @@ Example5_AcademicTemplates() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     MsgBox(
-    "Academic & Research Templates Loaded!`n`n"
-    "Citations: citeapa, citemla`n`n"
-    "Paper sections:`n"
-    "  abstract, intro, methods`n"
-    "  results, discussion`n`n"
-    "Lab: labreport`n`n"
-    "Perfect for students and researchers!",
-    "Example 5"
+        "Academic & Research Templates Loaded!`n`n"
+        "Citations: citeapa, citemla`n`n"
+        "Paper sections:`n"
+        "  abstract, intro, methods`n"
+        "  results, discussion`n`n"
+        "Lab: labreport`n`n"
+        "Perfect for students and researchers!",
+        "Example 5"
     )
 }
 
@@ -523,19 +523,19 @@ Example6_DateTimeExpanders() {
     Hotstring("::stamp2::", (*) => SendText(FormatTime(, "yyyyMMdd-HHmmss")))
 
     MsgBox(
-    "Date & Time Expanders Loaded!`n`n"
-    "Dates:`n"
-    "  diso → 2024-01-15`n"
-    "  dus → 01/15/2024`n"
-    "  deu → 15/01/2024`n"
-    "  dlong → Monday, January 15, 2024`n`n"
-    "Time:`n"
-    "  time12 → 3:45 PM`n"
-    "  time24 → 15:45`n"
-    "  timenow → 15:45:30`n`n"
-    "Relative: today, tomorrow, yesterday`n"
-    "Stamps: stamp, stamp2",
-    "Example 6"
+        "Date & Time Expanders Loaded!`n`n"
+        "Dates:`n"
+        "  diso → 2024-01-15`n"
+        "  dus → 01/15/2024`n"
+        "  deu → 15/01/2024`n"
+        "  dlong → Monday, January 15, 2024`n`n"
+        "Time:`n"
+        "  time12 → 3:45 PM`n"
+        "  time24 → 15:45`n"
+        "  timenow → 15:45:30`n`n"
+        "Relative: today, tomorrow, yesterday`n"
+        "Stamps: stamp, stamp2",
+        "Example 6"
     )
 }
 
@@ -578,14 +578,14 @@ Example7_SpecializedVocab() {
     Hotstring("::uart::", "Universal Asynchronous Receiver/Transmitter")
 
     MsgBox(
-    "Specialized Vocabulary Loaded!`n`n"
-    "Medical: htn, dm, cad, copd, mi`n"
-    "Legal: plaintiff, defendant, etc.`n"
-    "Chemistry: h2o, co2, o2, nacl`n"
-    "Math: alpha, beta, pi, sigma, delta`n"
-    "Technical: rtos, fifo, lifo, uart`n`n"
-    "Customize for your field!",
-    "Example 7"
+        "Specialized Vocabulary Loaded!`n`n"
+        "Medical: htn, dm, cad, copd, mi`n"
+        "Legal: plaintiff, defendant, etc.`n"
+        "Chemistry: h2o, co2, o2, nacl`n"
+        "Math: alpha, beta, pi, sigma, delta`n"
+        "Technical: rtos, fifo, lifo, uart`n`n"
+        "Customize for your field!",
+        "Example 7"
     )
 }
 

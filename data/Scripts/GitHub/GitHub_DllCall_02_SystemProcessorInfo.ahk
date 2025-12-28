@@ -1,69 +1,69 @@
 #Requires AutoHotkey v2.0
 
 /**
-* GitHub_DllCall_02_SystemProcessorInfo.ahk
-*
-* DESCRIPTION:
-* Retrieves detailed processor information using Windows Native API
-*
-* FEATURES:
-* - Uses NtQuerySystemInformation (Windows Native API)
-* - Demonstrates buffer resizing for variable-length data
-* - Shows NumGet for reading binary data structures
-* - Proper error handling with status codes
-*
-* SOURCE:
-* Repository: jNizM/ahk-scripts-v2
-* File: src/SystemInformation/SystemProcessorInformation.ahk
-* URL: https://github.com/jNizM/ahk-scripts-v2
-* Author: jNizM
-* License: MIT
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllLoad directive for loading DLLs
-* - Buffer() for dynamic memory management
-* - NumGet() for reading binary structures
-* - Map() for returning structured data
-* - Output variable syntax (&variable)
-* - While loop for buffer resizing
-*
-* USAGE:
-* info := SystemProcessorInformation()
-* MsgBox("CPU Count: " info["MaximumProcessors"])
-*
-* LEARNING POINTS:
-* 1. Native API calls require precise buffer sizing
-* 2. STATUS_INFO_LENGTH_MISMATCH means retry with larger buffer
-* 3. NumGet reads data at specific offsets in binary structures
-* 4. Map() is ideal for returning structured system information
-* 5. OSError() throws error with Windows error code
-*/
+ * GitHub_DllCall_02_SystemProcessorInfo.ahk
+ * 
+ * DESCRIPTION:
+ * Retrieves detailed processor information using Windows Native API
+ * 
+ * FEATURES:
+ * - Uses NtQuerySystemInformation (Windows Native API)
+ * - Demonstrates buffer resizing for variable-length data
+ * - Shows NumGet for reading binary data structures
+ * - Proper error handling with status codes
+ * 
+ * SOURCE:
+ * Repository: jNizM/ahk-scripts-v2
+ * File: src/SystemInformation/SystemProcessorInformation.ahk
+ * URL: https://github.com/jNizM/ahk-scripts-v2
+ * Author: jNizM
+ * License: MIT
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllLoad directive for loading DLLs
+ * - Buffer() for dynamic memory management
+ * - NumGet() for reading binary structures
+ * - Map() for returning structured data
+ * - Output variable syntax (&variable)
+ * - While loop for buffer resizing
+ * 
+ * USAGE:
+ * info := SystemProcessorInformation()
+ * MsgBox("CPU Count: " info["MaximumProcessors"])
+ * 
+ * LEARNING POINTS:
+ * 1. Native API calls require precise buffer sizing
+ * 2. STATUS_INFO_LENGTH_MISMATCH means retry with larger buffer
+ * 3. NumGet reads data at specific offsets in binary structures
+ * 4. Map() is ideal for returning structured system information
+ * 5. OSError() throws error with Windows error code
+ */
 
 /**
-* Get detailed system processor information
-*
-* @returns {Map} - Map containing processor details:
-*   - ProcessorArchitecture: CPU architecture (0=x86, 9=x64, 12=ARM64)
-*   - ProcessorLevel: CPU family (e.g., 6 for Intel/AMD)
-*   - ProcessorRevision: Model and stepping
-*   - MaximumProcessors: Number of logical processors
-*   - ProcessorFeatureBits: CPU feature flags
-*
-* @throws {OSError} - If Windows API call fails
-*
-* @example
-* info := SystemProcessorInformation()
-* MsgBox("Processor Count: " info["MaximumProcessors"])
-* MsgBox("Architecture: " info["ProcessorArchitecture"])
-*/
+ * Get detailed system processor information
+ * 
+ * @returns {Map} - Map containing processor details:
+ *   - ProcessorArchitecture: CPU architecture (0=x86, 9=x64, 12=ARM64)
+ *   - ProcessorLevel: CPU family (e.g., 6 for Intel/AMD)
+ *   - ProcessorRevision: Model and stepping
+ *   - MaximumProcessors: Number of logical processors
+ *   - ProcessorFeatureBits: CPU feature flags
+ * 
+ * @throws {OSError} - If Windows API call fails
+ * 
+ * @example
+ * info := SystemProcessorInformation()
+ * MsgBox("Processor Count: " info["MaximumProcessors"])
+ * MsgBox("Architecture: " info["ProcessorArchitecture"])
+ */
 SystemProcessorInformation() {
     ; Load ntdll.dll (Windows Native API)
     #DllLoad "ntdll.dll"
 
     ; Windows NT Status Codes
-    static STATUS_SUCCESS               := 0x00000000
-    static STATUS_INFO_LENGTH_MISMATCH  := 0xC0000004
-    static STATUS_BUFFER_TOO_SMALL      := 0xC0000023
+    static STATUS_SUCCESS := 0x00000000
+    static STATUS_INFO_LENGTH_MISMATCH := 0xC0000004
+    static STATUS_BUFFER_TOO_SMALL := 0xC0000023
 
     ; System Information Class
     static SYSTEM_PROCESSOR_INFORMATION := 0x00000001
@@ -73,21 +73,21 @@ SystemProcessorInformation() {
 
     ; First API call to get required buffer size
     NT_STATUS := DllCall("ntdll\NtQuerySystemInformation",
-    "Int", SYSTEM_PROCESSOR_INFORMATION,  ; Information class
-    "Ptr", Buf.Ptr,                       ; Buffer pointer
-    "UInt", Buf.Size,                     ; Buffer size
-    "UInt*", &Size := 0,                  ; Returns required size
-    "UInt")                               ; Return value
+        "Int", SYSTEM_PROCESSOR_INFORMATION,  ; Information class
+        "Ptr", Buf.Ptr,                       ; Buffer pointer
+        "UInt", Buf.Size,                     ; Buffer size
+        "UInt*", &Size := 0,                  ; Returns required size
+        "UInt")                               ; Return value
 
     ; Retry with larger buffer if needed
     while (NT_STATUS = STATUS_INFO_LENGTH_MISMATCH) || (NT_STATUS = STATUS_BUFFER_TOO_SMALL) {
         Buf := Buffer(Size)
         NT_STATUS := DllCall("ntdll\NtQuerySystemInformation",
-        "Int", SYSTEM_PROCESSOR_INFORMATION,
-        "Ptr", Buf.Ptr,
-        "UInt", Buf.Size,
-        "UInt*", &Size := 0,
-        "UInt")
+            "Int", SYSTEM_PROCESSOR_INFORMATION,
+            "Ptr", Buf.Ptr,
+            "UInt", Buf.Size,
+            "UInt*", &Size := 0,
+            "UInt")
     }
 
     ; If successful, parse the binary structure
@@ -96,10 +96,10 @@ SystemProcessorInformation() {
 
         ; Read binary structure at specific offsets
         PROCESSOR_INFORMATION["ProcessorArchitecture"] := NumGet(Buf, 0x0000, "UShort")
-        PROCESSOR_INFORMATION["ProcessorLevel"]        := NumGet(Buf, 0x0002, "UShort")
-        PROCESSOR_INFORMATION["ProcessorRevision"]     := NumGet(Buf, 0x0004, "UShort")
-        PROCESSOR_INFORMATION["MaximumProcessors"]     := NumGet(Buf, 0x0006, "UShort")
-        PROCESSOR_INFORMATION["ProcessorFeatureBits"]  := NumGet(Buf, 0x0008, "UInt")
+        PROCESSOR_INFORMATION["ProcessorLevel"] := NumGet(Buf, 0x0002, "UShort")
+        PROCESSOR_INFORMATION["ProcessorRevision"] := NumGet(Buf, 0x0004, "UShort")
+        PROCESSOR_INFORMATION["MaximumProcessors"] := NumGet(Buf, 0x0006, "UShort")
+        PROCESSOR_INFORMATION["ProcessorFeatureBits"] := NumGet(Buf, 0x0008, "UInt")
 
         return PROCESSOR_INFORMATION
     }
@@ -113,11 +113,11 @@ SystemProcessorInformation() {
 ; ============================================================
 
 /**
-* Get human-readable processor architecture name
-*
-* @param {Number} arch - Architecture code
-* @returns {String} - Architecture name
-*/
+ * Get human-readable processor architecture name
+ * 
+ * @param {Number} arch - Architecture code
+ * @returns {String} - Architecture name
+ */
 GetArchitectureName(arch) {
     switch arch {
         case 0: return "x86 (Intel/AMD 32-bit)"
@@ -130,11 +130,11 @@ GetArchitectureName(arch) {
 }
 
 /**
-* Get processor level description
-*
-* @param {Number} level - Processor level
-* @returns {String} - Level description
-*/
+ * Get processor level description
+ * 
+ * @param {Number} level - Processor level
+ * @returns {String} - Level description
+ */
 GetProcessorLevelDescription(level) {
     switch level {
         case 3: return "80386"
@@ -166,7 +166,7 @@ try {
     ; Display just CPU count (common use case)
     cpuCount := info["MaximumProcessors"]
     MsgBox("This system has " cpuCount " logical processor(s).",
-    "CPU Count", "Icon!")
+        "CPU Count", "Icon!")
 
     ; Check architecture
     arch := info["ProcessorArchitecture"]
@@ -178,7 +178,7 @@ try {
 
 } catch as err {
     MsgBox("Error retrieving processor information:`n" err.Message,
-    "Error", "Icon!")
+        "Error", "Icon!")
 }
 
 ; ============================================================
@@ -186,8 +186,8 @@ try {
 ; ============================================================
 
 /**
-* Example: Determine if system can run 64-bit applications
-*/
+ * Example: Determine if system can run 64-bit applications
+ */
 CanRun64Bit() {
     info := SystemProcessorInformation()
     return info["ProcessorArchitecture"] = 9  ; x64
@@ -198,8 +198,8 @@ if (CanRun64Bit()) {
 }
 
 /**
-* Example: Optimize thread count for parallel processing
-*/
+ * Example: Optimize thread count for parallel processing
+ */
 GetOptimalThreadCount() {
     info := SystemProcessorInformation()
     cpuCount := info["MaximumProcessors"]
@@ -210,7 +210,7 @@ GetOptimalThreadCount() {
 
 threads := GetOptimalThreadCount()
 MsgBox("Optimal thread count for background tasks: " threads,
-"Thread Optimization", "Icon!")
+    "Thread Optimization", "Icon!")
 
 ; ============================================================
 ; Technical Information

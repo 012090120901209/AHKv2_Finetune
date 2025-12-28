@@ -1,64 +1,64 @@
 /**
-* ============================================================================
-* AutoHotkey v2 #Include Directive - Library Management
-* ============================================================================
-*
-* @description Comprehensive examples demonstrating #Include for library
-*              management and code organization in AutoHotkey v2
-*
-* @author AHK v2 Documentation Team
-* @version 2.0.0
-* @date 2025-01-15
-*
-* DIRECTIVE: #Include
-* PURPOSE: Include external script files and libraries
-* SYNTAX: #Include <LibName>
-*         #Include LibName.ahk
-*         #Include %A_ScriptDir%\Lib\MyLib.ahk
-*         #Include *i Optional.ahk
-*
-* @reference https://www.autohotkey.com/docs/v2/lib/_Include.htm
-*/
+ * ============================================================================
+ * AutoHotkey v2 #Include Directive - Library Management
+ * ============================================================================
+ * 
+ * @description Comprehensive examples demonstrating #Include for library
+ *              management and code organization in AutoHotkey v2
+ * 
+ * @author AHK v2 Documentation Team
+ * @version 2.0.0
+ * @date 2025-01-15
+ * 
+ * DIRECTIVE: #Include
+ * PURPOSE: Include external script files and libraries
+ * SYNTAX: #Include <LibName>
+ *         #Include LibName.ahk
+ *         #Include %A_ScriptDir%\Lib\MyLib.ahk
+ *         #Include *i Optional.ahk
+ * 
+ * @reference https://www.autohotkey.com/docs/v2/lib/_Include.htm
+ */
 
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Example 1: Basic Library Inclusion
-* ============================================================================
-*
-* @description Demonstrate basic #Include usage for external libraries
-* @concept Library inclusion, code organization, modularity
-*/
+ * ============================================================================
+ * Example 1: Basic Library Inclusion
+ * ============================================================================
+ * 
+ * @description Demonstrate basic #Include usage for external libraries
+ * @concept Library inclusion, code organization, modularity
+ */
 
 /**
-* Simulated library inclusion (would normally be in separate file)
-* In practice: #Include MyUtilities.ahk
-*/
+ * Simulated library inclusion (would normally be in separate file)
+ * In practice: #Include MyUtilities.ahk
+ */
 
 /**
-* String utility library
-* @namespace StringUtils
-*/
+ * String utility library
+ * @namespace StringUtils
+ */
 class StringUtils {
     /**
-    * Reverse a string
-    * @param {String} str - Input string
-    * @returns {String} Reversed string
-    */
+     * Reverse a string
+     * @param {String} str - Input string
+     * @returns {String} Reversed string
+     */
     static Reverse(str) {
         result := ""
         Loop Parse str
-        result := A_LoopField result
+            result := A_LoopField result
         return result
     }
 
     /**
-    * Count occurrences of substring
-    * @param {String} str - String to search
-    * @param {String} substr - Substring to count
-    * @returns {Integer} Number of occurrences
-    */
+     * Count occurrences of substring
+     * @param {String} str - String to search
+     * @param {String} substr - Substring to count
+     * @returns {Integer} Number of occurrences
+     */
     static CountOccurrences(str, substr) {
         count := 0
         pos := 1
@@ -70,22 +70,22 @@ class StringUtils {
     }
 
     /**
-    * Truncate string with ellipsis
-    * @param {String} str - String to truncate
-    * @param {Integer} maxLen - Maximum length
-    * @returns {String} Truncated string
-    */
+     * Truncate string with ellipsis
+     * @param {String} str - String to truncate
+     * @param {Integer} maxLen - Maximum length
+     * @returns {String} Truncated string
+     */
     static Truncate(str, maxLen := 50) {
         if (StrLen(str) <= maxLen)
-        return str
+            return str
         return SubStr(str, 1, maxLen - 3) "..."
     }
 
     /**
-    * Convert to title case
-    * @param {String} str - Input string
-    * @returns {String} Title cased string
-    */
+     * Convert to title case
+     * @param {String} str - Input string
+     * @returns {String} Title cased string
+     */
     static ToTitleCase(str) {
         result := ""
         wordStart := true
@@ -106,9 +106,9 @@ class StringUtils {
 }
 
 /**
-* Test string utilities
-*/
-^!1::{
+ * Test string utilities
+ */
+^!1:: {
     str := "Hello World AutoHotkey"
 
     output := "String Utilities Demo`n"
@@ -123,29 +123,29 @@ class StringUtils {
 }
 
 /**
-* ============================================================================
-* Example 2: Standard Library Inclusion
-* ============================================================================
-*
-* @description Use angle brackets for standard library includes
-* @concept Standard library, built-in modules
-*/
+ * ============================================================================
+ * Example 2: Standard Library Inclusion
+ * ============================================================================
+ * 
+ * @description Use angle brackets for standard library includes
+ * @concept Standard library, built-in modules
+ */
 
 /**
-* Example: #Include <JSON>
-* Would include JSON.ahk from standard library locations
-*/
+ * Example: #Include <JSON>
+ * Would include JSON.ahk from standard library locations
+ */
 
 /**
-* Simulated JSON library (simplified version)
-* @namespace JSON
-*/
+ * Simulated JSON library (simplified version)
+ * @namespace JSON
+ */
 class JSON {
     /**
-    * Parse JSON string
-    * @param {String} jsonStr - JSON string
-    * @returns {Object|Array} Parsed object
-    */
+     * Parse JSON string
+     * @param {String} jsonStr - JSON string
+     * @returns {Object|Array} Parsed object
+     */
     static Parse(jsonStr) {
         ; Simplified JSON parsing for demonstration
         ; In practice, use a full JSON library
@@ -153,39 +153,39 @@ class JSON {
     }
 
     /**
-    * Stringify object to JSON
-    * @param {Object} obj - Object to stringify
-    * @param {Integer} indent - Indentation spaces
-    * @returns {String} JSON string
-    */
+     * Stringify object to JSON
+     * @param {Object} obj - Object to stringify
+     * @param {Integer} indent - Indentation spaces
+     * @returns {String} JSON string
+     */
     static Stringify(obj, indent := 2) {
         return this._StringifyValue(obj, 0, indent)
     }
 
     /**
-    * Internal stringify helper
-    * @private
-    */
+     * Internal stringify helper
+     * @private
+     */
     static _StringifyValue(value, depth, indent) {
         if (Type(value) = "String")
-        return '"' this._EscapeString(value) '"'
+            return '"' this._EscapeString(value) '"'
         else if (Type(value) = "Integer" || Type(value) = "Float")
-        return String(value)
+            return String(value)
         else if (Type(value) = "Map")
-        return this._StringifyMap(value, depth, indent)
+            return this._StringifyMap(value, depth, indent)
         else if (Type(value) = "Array")
-        return this._StringifyArray(value, depth, indent)
+            return this._StringifyArray(value, depth, indent)
         else
-        return "null"
+            return "null"
     }
 
     /**
-    * Stringify Map object
-    * @private
-    */
+     * Stringify Map object
+     * @private
+     */
     static _StringifyMap(map, depth, indent) {
         if (map.Count = 0)
-        return "{}"
+            return "{}"
 
         result := "{"
         indentStr := this._GetIndent(depth + 1, indent)
@@ -193,7 +193,7 @@ class JSON {
 
         for key, value in map {
             if (!first)
-            result .= ","
+                result .= ","
             result .= "`n" indentStr '"' key '": '
             result .= this._StringifyValue(value, depth + 1, indent)
             first := false
@@ -204,19 +204,19 @@ class JSON {
     }
 
     /**
-    * Stringify Array object
-    * @private
-    */
+     * Stringify Array object
+     * @private
+     */
     static _StringifyArray(arr, depth, indent) {
         if (arr.Length = 0)
-        return "[]"
+            return "[]"
 
         result := "["
         indentStr := this._GetIndent(depth + 1, indent)
 
         for index, value in arr {
             if (index > 1)
-            result .= ","
+                result .= ","
             result .= "`n" indentStr
             result .= this._StringifyValue(value, depth + 1, indent)
         }
@@ -226,9 +226,9 @@ class JSON {
     }
 
     /**
-    * Escape string for JSON
-    * @private
-    */
+     * Escape string for JSON
+     * @private
+     */
     static _EscapeString(str) {
         str := StrReplace(str, "\", "\\")
         str := StrReplace(str, '"', '\"')
@@ -239,23 +239,23 @@ class JSON {
     }
 
     /**
-    * Get indentation string
-    * @private
-    */
+     * Get indentation string
+     * @private
+     */
     static _GetIndent(depth, spaces) {
         return StrReplace(Format("{:" depth * spaces "s}", ""), " ", " ")
     }
 }
 
 /**
-* Test JSON library
-*/
-^!2::{
+ * Test JSON library
+ */
+^!2:: {
     ; Create sample data
     data := Map(
-    "name", "AutoHotkey",
-    "version", "2.0",
-    "features", ["hotkeys", "automation", "GUI"]
+        "name", "AutoHotkey",
+        "version", "2.0",
+        "features", ["hotkeys", "automation", "GUI"]
     )
 
     ; Convert to JSON
@@ -265,32 +265,32 @@ class JSON {
 }
 
 /**
-* ============================================================================
-* Example 3: Conditional Include with Error Handling
-* ============================================================================
-*
-* @description Include files conditionally with *i flag
-* @concept Optional includes, error handling
-*/
+ * ============================================================================
+ * Example 3: Conditional Include with Error Handling
+ * ============================================================================
+ * 
+ * @description Include files conditionally with *i flag
+ * @concept Optional includes, error handling
+ */
 
 /**
-* Include manager for conditional loading
-* @class
-*/
+ * Include manager for conditional loading
+ * @class
+ */
 class IncludeManager {
     static LoadedModules := Map()
     static FailedModules := []
 
     /**
-    * Try to include a module
-    * @param {String} moduleName - Module identifier
-    * @param {Func} loader - Function to call if available
-    * @returns {Boolean} True if loaded successfully
-    */
+     * Try to include a module
+     * @param {String} moduleName - Module identifier
+     * @param {Func} loader - Function to call if available
+     * @returns {Boolean} True if loaded successfully
+     */
     static TryInclude(moduleName, loader := "") {
         try {
             if (loader != "" && HasMethod(loader, "Call"))
-            loader.Call()
+                loader.Call()
 
             this.LoadedModules[moduleName] := true
             OutputDebug("✓ Loaded module: " moduleName)
@@ -303,18 +303,18 @@ class IncludeManager {
     }
 
     /**
-    * Check if module is loaded
-    * @param {String} moduleName - Module identifier
-    * @returns {Boolean} True if loaded
-    */
+     * Check if module is loaded
+     * @param {String} moduleName - Module identifier
+     * @returns {Boolean} True if loaded
+     */
     static IsLoaded(moduleName) {
         return this.LoadedModules.Get(moduleName, false)
     }
 
     /**
-    * Get load report
-    * @returns {String} Report of loaded/failed modules
-    */
+     * Get load report
+     * @returns {String} Report of loaded/failed modules
+     */
     static GetLoadReport() {
         report := "Module Load Report`n"
         report .= "==================`n`n"
@@ -339,34 +339,34 @@ class IncludeManager {
 IncludeManager.TryInclude("StringUtils", () => StringUtils.Reverse("test"))
 IncludeManager.TryInclude("JSON", () => JSON.Stringify(Map()))
 
-^!3::MsgBox(IncludeManager.GetLoadReport(), "Modules", "Iconi")
+^!3:: MsgBox(IncludeManager.GetLoadReport(), "Modules", "Iconi")
 
 /**
-* ============================================================================
-* Example 4: Library Version Management
-* ============================================================================
-*
-* @description Manage library versions and compatibility
-* @concept Version checking, library compatibility
-*/
+ * ============================================================================
+ * Example 4: Library Version Management
+ * ============================================================================
+ * 
+ * @description Manage library versions and compatibility
+ * @concept Version checking, library compatibility
+ */
 
 /**
-* Library version manager
-* @class
-*/
+ * Library version manager
+ * @class
+ */
 class LibraryVersionManager {
     /**
-    * Registered libraries with versions
-    */
+     * Registered libraries with versions
+     */
     static Libraries := Map()
 
     /**
-    * Register a library
-    * @param {String} name - Library name
-    * @param {String} version - Library version
-    * @param {Object} api - Library API object
-    * @returns {void}
-    */
+     * Register a library
+     * @param {String} name - Library name
+     * @param {String} version - Library version
+     * @param {Object} api - Library API object
+     * @returns {void}
+     */
     static Register(name, version, api) {
         this.Libraries[name] := {
             Version: version,
@@ -377,22 +377,22 @@ class LibraryVersionManager {
     }
 
     /**
-    * Get library API
-    * @param {String} name - Library name
-    * @param {String} minVersion - Minimum required version
-    * @returns {Object|false} Library API or false
-    */
+     * Get library API
+     * @param {String} name - Library name
+     * @param {String} minVersion - Minimum required version
+     * @returns {Object|false} Library API or false
+     */
     static GetLibrary(name, minVersion := "") {
         if (!this.Libraries.Has(name))
-        return false
+            return false
 
         lib := this.Libraries[name]
 
         if (minVersion != "" && !this.CheckVersion(lib.Version, minVersion)) {
             MsgBox(
-            "Library " name " version " lib.Version " is older than required " minVersion,
-            "Version Error",
-            "Icon!"
+                "Library " name " version " lib.Version " is older than required " minVersion,
+                "Version Error",
+                "Icon!"
             )
             return false
         }
@@ -401,11 +401,11 @@ class LibraryVersionManager {
     }
 
     /**
-    * Check version compatibility
-    * @param {String} current - Current version
-    * @param {String} required - Required version
-    * @returns {Boolean} True if compatible
-    */
+     * Check version compatibility
+     * @param {String} current - Current version
+     * @param {String} required - Required version
+     * @returns {Boolean} True if compatible
+     */
     static CheckVersion(current, required) {
         ParseVersion(ver) {
             parts := StrSplit(ver, ".")
@@ -420,16 +420,16 @@ class LibraryVersionManager {
         req := ParseVersion(required)
 
         if (cur.major != req.major)
-        return cur.major > req.major
+            return cur.major > req.major
         if (cur.minor != req.minor)
-        return cur.minor > req.minor
+            return cur.minor > req.minor
         return cur.patch >= req.patch
     }
 
     /**
-    * Display library registry
-    * @returns {void}
-    */
+     * Display library registry
+     * @returns {void}
+     */
     static ShowRegistry() {
         if (this.Libraries.Count = 0) {
             MsgBox("No libraries registered", "Library Registry", "Iconi")
@@ -452,74 +452,74 @@ class LibraryVersionManager {
 LibraryVersionManager.Register("StringUtils", "1.0.0", StringUtils)
 LibraryVersionManager.Register("JSON", "2.1.0", JSON)
 
-^!4::LibraryVersionManager.ShowRegistry()
+^!4:: LibraryVersionManager.ShowRegistry()
 
 /**
-* ============================================================================
-* Example 5: Dynamic Library Loading
-* ============================================================================
-*
-* @description Load libraries dynamically at runtime
-* @concept Dynamic loading, runtime includes
-*/
+ * ============================================================================
+ * Example 5: Dynamic Library Loading
+ * ============================================================================
+ * 
+ * @description Load libraries dynamically at runtime
+ * @concept Dynamic loading, runtime includes
+ */
 
 /**
-* Dynamic library loader
-* @class
-*/
+ * Dynamic library loader
+ * @class
+ */
 class DynamicLoader {
     static LibraryPaths := []
     static Cache := Map()
 
     /**
-    * Add library search path
-    * @param {String} path - Path to add
-    * @returns {void}
-    */
+     * Add library search path
+     * @param {String} path - Path to add
+     * @returns {void}
+     */
     static AddPath(path) {
         if (!this.LibraryPaths.Includes(path))
-        this.LibraryPaths.Push(path)
+            this.LibraryPaths.Push(path)
     }
 
     /**
-    * Search for library file
-    * @param {String} libName - Library name
-    * @returns {String|false} Full path or false
-    */
+     * Search for library file
+     * @param {String} libName - Library name
+     * @returns {String|false} Full path or false
+     */
     static FindLibrary(libName) {
         ; Ensure .ahk extension
         if (!InStr(libName, ".ahk"))
-        libName .= ".ahk"
+            libName .= ".ahk"
 
         ; Check script directory
         scriptLib := A_ScriptDir "\Lib\" libName
         if FileExist(scriptLib)
-        return scriptLib
+            return scriptLib
 
         ; Check additional paths
         for path in this.LibraryPaths {
             fullPath := path "\" libName
             if FileExist(fullPath)
-            return fullPath
+                return fullPath
         }
 
         ; Check standard library locations
         stdLib := A_MyDocuments "\AutoHotkey\Lib\" libName
         if FileExist(stdLib)
-        return stdLib
+            return stdLib
 
         return false
     }
 
     /**
-    * Load library dynamically
-    * @param {String} libName - Library name
-    * @returns {Boolean} True if loaded
-    */
+     * Load library dynamically
+     * @param {String} libName - Library name
+     * @returns {Boolean} True if loaded
+     */
     static Load(libName) {
         ; Check cache
         if (this.Cache.Has(libName))
-        return true
+            return true
 
         ; Find library file
         libPath := this.FindLibrary(libName)
@@ -545,9 +545,9 @@ class DynamicLoader {
     }
 
     /**
-    * Get loaded libraries
-    * @returns {Array} List of loaded library names
-    */
+     * Get loaded libraries
+     * @returns {Array} List of loaded library names
+     */
     static GetLoadedLibraries() {
         loaded := []
         for libName, info in this.Cache {
@@ -557,9 +557,9 @@ class DynamicLoader {
     }
 
     /**
-    * Display loader information
-    * @returns {void}
-    */
+     * Display loader information
+     * @returns {void}
+     */
     static ShowInfo() {
         info := "Dynamic Library Loader`n"
         info .= "======================`n`n"
@@ -592,57 +592,57 @@ DynamicLoader.AddPath(A_ScriptDir "\CustomLibs")
 DynamicLoader.Load("MyCustomLib")
 DynamicLoader.Load("HelperFunctions")
 
-^!5::DynamicLoader.ShowInfo()
+^!5:: DynamicLoader.ShowInfo()
 
 /**
-* ============================================================================
-* Example 6: Namespace Management with Includes
-* ============================================================================
-*
-* @description Organize included libraries with namespaces
-* @concept Namespaces, organization, conflict prevention
-*/
+ * ============================================================================
+ * Example 6: Namespace Management with Includes
+ * ============================================================================
+ * 
+ * @description Organize included libraries with namespaces
+ * @concept Namespaces, organization, conflict prevention
+ */
 
 /**
-* Namespace registry for library organization
-* @class
-*/
+ * Namespace registry for library organization
+ * @class
+ */
 class NamespaceRegistry {
     static Namespaces := Map()
 
     /**
-    * Register a namespace
-    * @param {String} namespace - Namespace name
-    * @param {Object} api - Namespace API
-    * @returns {void}
-    */
+     * Register a namespace
+     * @param {String} namespace - Namespace name
+     * @param {Object} api - Namespace API
+     * @returns {void}
+     */
     static Register(namespace, api) {
         this.Namespaces[namespace] := api
         OutputDebug("Registered namespace: " namespace)
     }
 
     /**
-    * Get namespace API
-    * @param {String} namespace - Namespace name
-    * @returns {Object|false} API object or false
-    */
+     * Get namespace API
+     * @param {String} namespace - Namespace name
+     * @returns {Object|false} API object or false
+     */
     static Get(namespace) {
         return this.Namespaces.Get(namespace, false)
     }
 
     /**
-    * Check if namespace exists
-    * @param {String} namespace - Namespace name
-    * @returns {Boolean} True if exists
-    */
+     * Check if namespace exists
+     * @param {String} namespace - Namespace name
+     * @returns {Boolean} True if exists
+     */
     static Has(namespace) {
         return this.Namespaces.Has(namespace)
     }
 
     /**
-    * List all namespaces
-    * @returns {Array} List of namespace names
-    */
+     * List all namespaces
+     * @returns {Array} List of namespace names
+     */
     static List() {
         namespaces := []
         for ns, api in this.Namespaces {
@@ -652,9 +652,9 @@ class NamespaceRegistry {
     }
 
     /**
-    * Display namespace tree
-    * @returns {void}
-    */
+     * Display namespace tree
+     * @returns {void}
+     */
     static ShowTree() {
         tree := "Namespace Registry`n"
         tree .= "==================`n`n"
@@ -687,34 +687,34 @@ NamespaceRegistry.Register("Utils.String", StringUtils)
 NamespaceRegistry.Register("Data.JSON", JSON)
 NamespaceRegistry.Register("Include.Manager", IncludeManager)
 
-^!6::NamespaceRegistry.ShowTree()
+^!6:: NamespaceRegistry.ShowTree()
 
 /**
-* ============================================================================
-* Example 7: Include Guards and Circular Dependency Prevention
-* ============================================================================
-*
-* @description Prevent circular dependencies and duplicate includes
-* @concept Include guards, dependency management
-*/
+ * ============================================================================
+ * Example 7: Include Guards and Circular Dependency Prevention
+ * ============================================================================
+ * 
+ * @description Prevent circular dependencies and duplicate includes
+ * @concept Include guards, dependency management
+ */
 
 /**
-* Include guard manager
-* @class
-*/
+ * Include guard manager
+ * @class
+ */
 class IncludeGuard {
     static Included := Map()
     static Including := []
 
     /**
-    * Begin include operation
-    * @param {String} fileName - File being included
-    * @returns {Boolean} True if should proceed
-    */
+     * Begin include operation
+     * @param {String} fileName - File being included
+     * @returns {Boolean} True if should proceed
+     */
     static BeginInclude(fileName) {
         ; Already included
         if (this.Included.Has(fileName))
-        return false
+            return false
 
         ; Circular dependency check
         if (this.Including.Includes(fileName)) {
@@ -727,10 +727,10 @@ class IncludeGuard {
     }
 
     /**
-    * End include operation
-    * @param {String} fileName - File being included
-    * @returns {void}
-    */
+     * End include operation
+     * @param {String} fileName - File being included
+     * @returns {void}
+     */
     static EndInclude(fileName) {
         this.Included[fileName] := A_Now
 
@@ -744,19 +744,19 @@ class IncludeGuard {
     }
 
     /**
-    * Check if file is included
-    * @param {String} fileName - File to check
-    * @returns {Boolean} True if included
-    */
+     * Check if file is included
+     * @param {String} fileName - File to check
+     * @returns {Boolean} True if included
+     */
     static IsIncluded(fileName) {
         return this.Included.Has(fileName)
     }
 
     /**
-    * Show circular dependency error
-    * @param {String} fileName - File causing circular dependency
-    * @returns {void}
-    */
+     * Show circular dependency error
+     * @param {String} fileName - File causing circular dependency
+     * @returns {void}
+     */
     static ShowCircularDependencyError(fileName) {
         chain := ""
         for file in this.Including {
@@ -774,9 +774,9 @@ class IncludeGuard {
     }
 
     /**
-    * Display include tree
-    * @returns {void}
-    */
+     * Display include tree
+     * @returns {void}
+     */
     static ShowIncludeTree() {
         tree := "Include Tree`n"
         tree .= "============`n`n"
@@ -808,20 +808,20 @@ IncludeGuard.EndInclude("StringUtils.ahk")
 IncludeGuard.BeginInclude("JSON.ahk")
 IncludeGuard.EndInclude("JSON.ahk")
 
-^!7::IncludeGuard.ShowIncludeTree()
+^!7:: IncludeGuard.ShowIncludeTree()
 
 /**
-* ============================================================================
-* HELPER FUNCTIONS
-* ============================================================================
-*/
+ * ============================================================================
+ * HELPER FUNCTIONS
+ * ============================================================================
+ */
 
 /**
-* Check if array includes value
-* @param {Array} arr - Array to search
-* @param {Any} value - Value to find
-* @returns {Boolean} True if found
-*/
+ * Check if array includes value
+ * @param {Array} arr - Array to search
+ * @param {Any} value - Value to find
+ * @returns {Boolean} True if found
+ */
 Array.Prototype.Includes := (this, value) => {
     for item in this {
         if (item = value)
@@ -831,17 +831,17 @@ Array.Prototype.Includes := (this, value) => {
 }
 
 /**
-* ============================================================================
-* STARTUP
-* ============================================================================
-*/
+ * ============================================================================
+ * STARTUP
+ * ============================================================================
+ */
 
 TrayTip("Library includes loaded", "Script Ready", "Iconi Mute")
 
 /**
-* Help hotkey
-*/
-^!h::{
+ * Help hotkey
+ */
+^!h:: {
     help := "Library Management Examples`n"
     help .= "===========================`n`n"
     help .= "^!1 - StringUtils Demo`n"

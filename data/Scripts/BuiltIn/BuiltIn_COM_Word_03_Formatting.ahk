@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Word_03_Formatting.ahk
-*
-* DESCRIPTION:
-* Demonstrates text formatting operations in Microsoft Word using COM automation.
-* Covers fonts, colors, styles, paragraph formatting, and text effects.
-*
-* FEATURES:
-* - Font formatting (bold, italic, size, color)
-* - Paragraph alignment and indentation
-* - Line spacing and paragraph spacing
-* - Applying styles
-* - Text effects (underline, strikethrough)
-* - Highlighting and shading
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for Word automation
-* - Font and ParagraphFormat objects
-* - Style application
-* - Color and formatting properties
-*
-* LEARNING POINTS:
-* 1. How to format text appearance
-* 2. Applying paragraph formatting
-* 3. Using built-in Word styles
-* 4. Creating professional-looking documents
-* 5. Combining multiple formatting options
-* 6. Text highlighting and colors
-* 7. Managing line and paragraph spacing
-*/
+ * BuiltIn_COM_Word_03_Formatting.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates text formatting operations in Microsoft Word using COM automation.
+ * Covers fonts, colors, styles, paragraph formatting, and text effects.
+ * 
+ * FEATURES:
+ * - Font formatting (bold, italic, size, color)
+ * - Paragraph alignment and indentation
+ * - Line spacing and paragraph spacing
+ * - Applying styles
+ * - Text effects (underline, strikethrough)
+ * - Highlighting and shading
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for Word automation
+ * - Font and ParagraphFormat objects
+ * - Style application
+ * - Color and formatting properties
+ * 
+ * LEARNING POINTS:
+ * 1. How to format text appearance
+ * 2. Applying paragraph formatting
+ * 3. Using built-in Word styles
+ * 4. Creating professional-looking documents
+ * 5. Combining multiple formatting options
+ * 6. Text highlighting and colors
+ * 7. Managing line and paragraph spacing
+ */
 
 ;===============================================================================
 ; Example 1: Font Formatting
@@ -106,7 +106,7 @@ Example1_FontFormatting() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -176,7 +176,7 @@ Example2_ParagraphFormatting() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -244,7 +244,7 @@ Example3_Spacing() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -306,7 +306,7 @@ Example4_HighlightingShading() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -388,7 +388,7 @@ Example5_Styles() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -458,7 +458,7 @@ Example6_TextEffects() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -553,7 +553,7 @@ Example7_ProfessionalDocument() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -590,13 +590,13 @@ ShowMenu() {
         case "7": Example7_ProfessionalDocument()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

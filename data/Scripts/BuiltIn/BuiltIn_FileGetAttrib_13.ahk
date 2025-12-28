@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetAttrib_13.ahk
-*
-* DESCRIPTION:
-* Basic usage of FileGetAttrib() to read file attributes
-*
-* FEATURES:
-* - Read file attributes
-* - Check read-only status
-* - Detect hidden files
-* - Identify system files
-* - Check archive bit
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetAttrib() function
-* - Attribute string parsing
-* - InStr() for attribute checking
-* - File attribute detection
-* - Attribute validation
-*
-* LEARNING POINTS:
-* 1. FileGetAttrib() returns attribute string
-* 2. Attributes: R=ReadOnly, A=Archive, S=System, H=Hidden, N=Normal, D=Directory
-* 3. Use InStr() to check for specific attributes
-* 4. Can check multiple attributes at once
-* 5. Essential for file management and security
-* 6. Attributes control file behavior
-*/
+ * BuiltIn_FileGetAttrib_13.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage of FileGetAttrib() to read file attributes
+ * 
+ * FEATURES:
+ * - Read file attributes
+ * - Check read-only status
+ * - Detect hidden files
+ * - Identify system files
+ * - Check archive bit
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetAttrib() function
+ * - Attribute string parsing
+ * - InStr() for attribute checking
+ * - File attribute detection
+ * - Attribute validation
+ * 
+ * LEARNING POINTS:
+ * 1. FileGetAttrib() returns attribute string
+ * 2. Attributes: R=ReadOnly, A=Archive, S=System, H=Hidden, N=Normal, D=Directory
+ * 3. Use InStr() to check for specific attributes
+ * 4. Can check multiple attributes at once
+ * 5. Essential for file management and security
+ * 6. Attributes control file behavior
+ */
 
 ; ============================================================
 ; Example 1: Basic Attribute Retrieval
@@ -64,14 +64,14 @@ MsgBox(output, "File Attributes", "Icon!")
 ; ============================================================
 
 /**
-* Check if file is read-only
-*
-* @param {String} filePath - File to check
-* @returns {Boolean} - True if read-only
-*/
+ * Check if file is read-only
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Boolean} - True if read-only
+ */
 IsReadOnly(filePath) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     attributes := FileGetAttrib(filePath)
     return InStr(attributes, "R") ? true : false
@@ -101,41 +101,41 @@ FileSetAttrib("-R", testFile)
 ; ============================================================
 
 /**
-* Check if file is hidden
-*
-* @param {String} filePath - File to check
-* @returns {Boolean} - True if hidden
-*/
+ * Check if file is hidden
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Boolean} - True if hidden
+ */
 IsHidden(filePath) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     attributes := FileGetAttrib(filePath)
     return InStr(attributes, "H") ? true : false
 }
 
 /**
-* Find all hidden files in directory
-*
-* @param {String} dirPath - Directory to search
-* @returns {Array} - Hidden files found
-*/
+ * Find all hidden files in directory
+ * 
+ * @param {String} dirPath - Directory to search
+ * @returns {Array} - Hidden files found
+ */
 FindHiddenFiles(dirPath) {
     hiddenFiles := []
 
     if (!DirExist(dirPath))
-    return hiddenFiles
+        return hiddenFiles
 
     Loop Files, dirPath "\*.*", "FH" {  ; H flag includes hidden files
-    if (IsHidden(A_LoopFilePath)) {
-        hiddenFiles.Push({
-            name: A_LoopFileName,
-            path: A_LoopFilePath
-        })
+        if (IsHidden(A_LoopFilePath)) {
+            hiddenFiles.Push({
+                name: A_LoopFileName,
+                path: A_LoopFilePath
+            })
+        }
     }
-}
 
-return hiddenFiles
+    return hiddenFiles
 }
 
 ; Create hidden test file
@@ -153,7 +153,7 @@ output .= "Hidden Files Found: " hidden.Length "`n`n"
 if (hidden.Length > 0) {
     output .= "Files:`n"
     for file in hidden
-    output .= "  • " file.name "`n"
+        output .= "  • " file.name "`n"
 }
 
 MsgBox(output, "Hidden Files", "Icon!")
@@ -166,25 +166,25 @@ FileSetAttrib("-H", hiddenFile)
 ; ============================================================
 
 /**
-* Check if file is a system file
-*
-* @param {String} filePath - File to check
-* @returns {Boolean} - True if system file
-*/
+ * Check if file is a system file
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Boolean} - True if system file
+ */
 IsSystemFile(filePath) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     attributes := FileGetAttrib(filePath)
     return InStr(attributes, "S") ? true : false
 }
 
 /**
-* Check file safety based on attributes
-*
-* @param {String} filePath - File to check
-* @returns {Object} - Safety assessment
-*/
+ * Check file safety based on attributes
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Object} - Safety assessment
+ */
 AssessFileSafety(filePath) {
     result := {
         safe: true,
@@ -228,7 +228,7 @@ output .= "Safe to Modify: " (safety.safe ? "YES ✓" : "NO ✗") "`n`n"
 if (safety.warnings.Length > 0) {
     output .= "Warnings:`n"
     for warning in safety.warnings
-    output .= "  • " warning "`n"
+        output .= "  • " warning "`n"
 }
 
 MsgBox(output, "Safety Check", safety.safe ? "Icon!" : "IconX")
@@ -238,30 +238,30 @@ MsgBox(output, "Safety Check", safety.safe ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Check if file has archive bit set
-*
-* @param {String} filePath - File to check
-* @returns {Boolean} - True if archive bit set
-*/
+ * Check if file has archive bit set
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Boolean} - True if archive bit set
+ */
 HasArchiveBit(filePath) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     attributes := FileGetAttrib(filePath)
     return InStr(attributes, "A") ? true : false
 }
 
 /**
-* Find files ready for backup (archive bit set)
-*
-* @param {String} dirPath - Directory to search
-* @returns {Array} - Files ready for backup
-*/
+ * Find files ready for backup (archive bit set)
+ * 
+ * @param {String} dirPath - Directory to search
+ * @returns {Array} - Files ready for backup
+ */
 FindFilesForBackup(dirPath) {
     backupList := []
 
     if (!DirExist(dirPath))
-    return backupList
+        return backupList
 
     Loop Files, dirPath "\*.*", "F" {
         if (HasArchiveBit(A_LoopFilePath)) {
@@ -286,10 +286,10 @@ if (backupFiles.Length > 0) {
     output .= "Ready for Backup:`n"
     count := Min(5, backupFiles.Length)
     Loop count
-    output .= "  • " backupFiles[A_Index].name "`n"
+        output .= "  • " backupFiles[A_Index].name "`n"
 
     if (backupFiles.Length > 5)
-    output .= "  ... and " (backupFiles.Length - 5) " more"
+        output .= "  ... and " (backupFiles.Length - 5) " more"
 }
 
 MsgBox(output, "Archive Bit", "Icon!")
@@ -299,11 +299,11 @@ MsgBox(output, "Archive Bit", "Icon!")
 ; ============================================================
 
 /**
-* Get detailed attribute information
-*
-* @param {String} filePath - File to analyze
-* @returns {Object} - Detailed attribute info
-*/
+ * Get detailed attribute information
+ * 
+ * @param {String} filePath - File to analyze
+ * @returns {Object} - Detailed attribute info
+ */
 AnalyzeAttributes(filePath) {
     analysis := {
         exists: false,
@@ -312,7 +312,7 @@ AnalyzeAttributes(filePath) {
     }
 
     if (!FileExist(filePath))
-    return analysis
+        return analysis
 
     attrs := FileGetAttrib(filePath)
     analysis.exists := true
@@ -320,14 +320,14 @@ AnalyzeAttributes(filePath) {
 
     ; Detailed attribute analysis
     attributeInfo := Map(
-    "R", {name: "Read-Only", description: "Cannot be modified or deleted", present: InStr(attrs, "R")},
-    "A", {name: "Archive", description: "Modified since last backup", present: InStr(attrs, "A")},
-    "S", {name: "System", description: "System file", present: InStr(attrs, "S")},
-    "H", {name: "Hidden", description: "Hidden from normal view", present: InStr(attrs, "H")},
-    "N", {name: "Normal", description: "No special attributes", present: InStr(attrs, "N")},
-    "D", {name: "Directory", description: "Is a directory", present: InStr(attrs, "D")},
-    "O", {name: "Offline", description: "Data not immediately available", present: InStr(attrs, "O")},
-    "C", {name: "Compressed", description: "Compressed file", present: InStr(attrs, "C")}
+        "R", { name: "Read-Only", description: "Cannot be modified or deleted", present: InStr(attrs, "R") },
+        "A", { name: "Archive", description: "Modified since last backup", present: InStr(attrs, "A") },
+        "S", { name: "System", description: "System file", present: InStr(attrs, "S") },
+        "H", { name: "Hidden", description: "Hidden from normal view", present: InStr(attrs, "H") },
+        "N", { name: "Normal", description: "No special attributes", present: InStr(attrs, "N") },
+        "D", { name: "Directory", description: "Is a directory", present: InStr(attrs, "D") },
+        "O", { name: "Offline", description: "Data not immediately available", present: InStr(attrs, "O") },
+        "C", { name: "Compressed", description: "Compressed file", present: InStr(attrs, "C") }
     )
 
     analysis.details := attributeInfo
@@ -358,17 +358,17 @@ if (analysis.exists) {
 ; ============================================================
 
 /**
-* Check attributes for multiple files
-*
-* @param {Array} files - Files to check
-* @returns {Array} - Attribute information
-*/
+ * Check attributes for multiple files
+ * 
+ * @param {Array} files - Files to check
+ * @returns {Array} - Attribute information
+ */
 CheckBatchAttributes(files) {
     results := []
 
     for filePath in files {
         if (!FileExist(filePath))
-        continue
+            continue
 
         attributes := FileGetAttrib(filePath)
         SplitPath(filePath, &name)
@@ -476,4 +476,4 @@ MsgBox(info, "FileGetAttrib() Reference", "Icon!")
 FileDelete(testFile)
 FileDelete(hiddenFile)
 Loop 3
-FileDelete(A_ScriptDir "\batch_test" A_Index ".txt")
+    FileDelete(A_ScriptDir "\batch_test" A_Index ".txt")

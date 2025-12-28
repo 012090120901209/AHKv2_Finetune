@@ -1,17 +1,17 @@
 /**
-* @file BuiltIn_SetTimer_03.ahk
-* @description Countdown timers and time-limited operations with SetTimer in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Advanced countdown timer examples including stopwatches, pomodoro timers,
-* session timers, and time-limited task execution.
-*
-* @syntax SetTimer [Function, Period, Priority]
-* @see https://www.autohotkey.com/docs/v2/lib/SetTimer.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_SetTimer_03.ahk
+ * @description Countdown timers and time-limited operations with SetTimer in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Advanced countdown timer examples including stopwatches, pomodoro timers,
+ * session timers, and time-limited task execution.
+ * 
+ * @syntax SetTimer [Function, Period, Priority]
+ * @see https://www.autohotkey.com/docs/v2/lib/SetTimer.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -20,9 +20,9 @@
 ; EXAMPLE 1: Basic Countdown Timer
 ; ============================================================================
 /**
-* Simple countdown timer with hours, minutes, and seconds
-* Demonstrates time calculation and display formatting
-*/
+ * Simple countdown timer with hours, minutes, and seconds
+ * Demonstrates time calculation and display formatting
+ */
 Example1_BasicCountdown() {
     myGui := Gui("+AlwaysOnTop", "Example 1: Countdown Timer")
     myGui.SetFont("s12")
@@ -76,7 +76,7 @@ Example1_BasicCountdown() {
     ; Countdown tick
     CountdownTick() {
         if (!isRunning || isPaused)
-        return
+            return
 
         remainingSeconds--
         UpdateDisplay()
@@ -167,9 +167,9 @@ Example1_BasicCountdown() {
 ; EXAMPLE 2: Pomodoro Timer
 ; ============================================================================
 /**
-* Implements the Pomodoro Technique timer
-* Work sessions followed by short and long breaks
-*/
+ * Implements the Pomodoro Technique timer
+ * Work sessions followed by short and long breaks
+ */
 Example2_PomodoroTimer() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Pomodoro Timer")
     myGui.SetFont("s12")
@@ -218,7 +218,7 @@ Example2_PomodoroTimer() {
 
         ; Update progress
         maxTime := (currentMode = "work") ? workDuration :
-        (currentMode = "shortbreak") ? shortBreak : longBreak
+            (currentMode = "shortbreak") ? shortBreak : longBreak
 
         percentage := ((maxTime - remainingSeconds) / maxTime) * 100
         progressBar.Value := percentage
@@ -227,7 +227,7 @@ Example2_PomodoroTimer() {
     ; Timer tick
     PomodoroTick() {
         if (!isRunning || isPaused)
-        return
+            return
 
         remainingSeconds--
         UpdateDisplay()
@@ -360,9 +360,9 @@ Example2_PomodoroTimer() {
 ; EXAMPLE 3: Multi-Timer Manager
 ; ============================================================================
 /**
-* Manage multiple countdown timers simultaneously
-* Each timer can have a different duration and label
-*/
+ * Manage multiple countdown timers simultaneously
+ * Each timer can have a different duration and label
+ */
 Example3_MultiTimer() {
     myGui := Gui("+AlwaysOnTop +Resize", "Example 3: Multi-Timer Manager")
     myGui.SetFont("s10")
@@ -392,7 +392,7 @@ Example3_MultiTimer() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 5000)
-        logBox.Value := SubStr(logBox.Value, -4000)
+            logBox.Value := SubStr(logBox.Value, -4000)
     }
 
     ; Format time
@@ -405,12 +405,12 @@ Example3_MultiTimer() {
     ; Update timer display
     UpdateTimer(idx) {
         if (idx > timers.Length)
-        return
+            return
 
         timer := timers[idx]
 
         if (!timer.isRunning)
-        return
+            return
 
         timer.remaining--
 
@@ -419,7 +419,7 @@ Example3_MultiTimer() {
 
         ; Update ListView
         timerList.Modify(idx, , timer.name, FormatTime(timer.remaining),
-        Format("{:.0f}%", progress), "Running")
+            Format("{:.0f}%", progress), "Running")
 
         if (timer.remaining <= 0) {
             ; Timer completed
@@ -481,7 +481,7 @@ Example3_MultiTimer() {
     StartTimer() {
         row := timerList.GetNext()
         if (!row || row > timers.Length)
-        return
+            return
 
         timer := timers[row]
 
@@ -498,7 +498,7 @@ Example3_MultiTimer() {
     StopTimer() {
         row := timerList.GetNext()
         if (!row || row > timers.Length)
-        return
+            return
 
         timer := timers[row]
 
@@ -515,7 +515,7 @@ Example3_MultiTimer() {
     ResetTimer() {
         row := timerList.GetNext()
         if (!row || row > timers.Length)
-        return
+            return
 
         timer := timers[row]
 
@@ -532,7 +532,7 @@ Example3_MultiTimer() {
     RemoveTimer() {
         row := timerList.GetNext()
         if (!row || row > timers.Length)
-        return
+            return
 
         timer := timers[row]
 
@@ -548,7 +548,7 @@ Example3_MultiTimer() {
     Cleanup() {
         for timer in timers {
             if (timer.isRunning)
-            SetTimer(timer.func, 0)
+                SetTimer(timer.func, 0)
         }
         myGui.Destroy()
     }
@@ -561,9 +561,9 @@ Example3_MultiTimer() {
 ; EXAMPLE 4: Stopwatch with Lap Times
 ; ============================================================================
 /**
-* Precision stopwatch with lap time recording
-* Demonstrates upward counting timer
-*/
+ * Precision stopwatch with lap time recording
+ * Demonstrates upward counting timer
+ */
 Example4_Stopwatch() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Stopwatch")
     myGui.SetFont("s12")
@@ -603,7 +603,7 @@ Example4_Stopwatch() {
     ; Update stopwatch
     UpdateStopwatch() {
         if (!isRunning)
-        return
+            return
 
         elapsedTime := A_TickCount - startTime
         timeDisplay.Value := FormatTimeMs(elapsedTime)
@@ -634,7 +634,7 @@ Example4_Stopwatch() {
     lapBtn.OnEvent("Click", (*) => RecordLap())
     RecordLap() {
         if (!isRunning)
-        return
+            return
 
         lapCount++
         currentTime := elapsedTime
@@ -675,9 +675,9 @@ Example4_Stopwatch() {
 ; EXAMPLE 5: Session Timer with Warnings
 ; ============================================================================
 /**
-* Session timer with configurable warning notifications
-* Useful for time-limited tasks with reminders
-*/
+ * Session timer with configurable warning notifications
+ * Useful for time-limited tasks with reminders
+ */
 Example5_SessionTimer() {
     myGui := Gui("+AlwaysOnTop", "Example 5: Session Timer")
     myGui.SetFont("s10")
@@ -700,7 +700,7 @@ Example5_SessionTimer() {
     UpdateDurationText() {
         durationText.Value := durationSlider.Value " minutes"
         if (!isRunning)
-        timeDisplay.Value := Format("{:02d}:00", durationSlider.Value)
+            timeDisplay.Value := Format("{:02d}:00", durationSlider.Value)
     }
 
     ; Warning settings
@@ -739,18 +739,18 @@ Example5_SessionTimer() {
 
             ; Change color based on remaining time
             if (percentage < 50)
-            progressBar.Opt("BackgroundGreen")
+                progressBar.Opt("BackgroundGreen")
             else if (percentage < 75)
-            progressBar.Opt("BackgroundYellow")
+                progressBar.Opt("BackgroundYellow")
             else
-            progressBar.Opt("BackgroundRed")
+                progressBar.Opt("BackgroundRed")
         }
     }
 
     ; Session tick
     SessionTick() {
         if (!isRunning)
-        return
+            return
 
         remainingSeconds--
         UpdateDisplay()

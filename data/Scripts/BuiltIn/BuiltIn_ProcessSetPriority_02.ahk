@@ -1,28 +1,28 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Examples - ProcessSetPriority Function (Part 02: Performance tuning)
-* ============================================================================
-*
-* ProcessSetPriority changes a process's CPU priority level.
-*
-* @description Examples demonstrating performance tuning
-* @author AHK v2 Documentation Team
-* @date 2024
-* @version 2.0.0
-*
-* SYNTAX:
-*   ProcessSetPriority(Level, PIDOrName)
-*
-* PRIORITY LEVELS:
-*   - "Low" or "L"
-*   - "BelowNormal" or "B"
-*   - "Normal" or "N"
-*   - "AboveNormal" or "A"
-*   - "High" or "H"
-*   - "Realtime" or "R"
-*/
+ * ============================================================================
+ * AutoHotkey v2 Examples - ProcessSetPriority Function (Part 02: Performance tuning)
+ * ============================================================================
+ * 
+ * ProcessSetPriority changes a process's CPU priority level.
+ * 
+ * @description Examples demonstrating performance tuning
+ * @author AHK v2 Documentation Team
+ * @date 2024
+ * @version 2.0.0
+ * 
+ * SYNTAX:
+ *   ProcessSetPriority(Level, PIDOrName)
+ * 
+ * PRIORITY LEVELS:
+ *   - "Low" or "L"
+ *   - "BelowNormal" or "B"
+ *   - "Normal" or "N"
+ *   - "AboveNormal" or "A"
+ *   - "High" or "H"
+ *   - "Realtime" or "R"
+ */
 
 ; ============================================================================
 ; Examples 1-7: Process priority management
@@ -215,125 +215,122 @@ Example5() {
 Example6() {
     MsgBox("Example 6: Priority-Based Task Scheduler`n`nSchedule tasks with different priorities:", "Example 6", "Icon!")
 
-    tasks := [
-    {
-        name: "Critical Task", priority: "High"},
-        {
-            name: "Normal Task", priority: "Normal"},
-            {
+    tasks := [{
+        name: "Critical Task", priority: "High" }, {
+            name: "Normal Task", priority: "Normal" }, {
                 name: "Background Task", priority: "Low"
             }
-            ]
+    ]
 
-            results := "Task Scheduling Results:`n`n"
+    results := "Task Scheduling Results:`n`n"
 
-            for task in tasks {
-                Run("notepad.exe", , , &pid)
-                Sleep(200)
+    for task in tasks {
+        Run("notepad.exe", , , &pid)
+        Sleep(200)
 
-                try {
-                    ProcessSetPriority(task.priority, pid)
-                    results .= "✓ " . task.name . " (Priority: " . task.priority . ", PID: " . pid . ")`n"
-                    Sleep(1000)
-                    ProcessClose(pid)
-                } catch Error as err {
-                    results .= "✗ " . task.name . " failed`n"
-                }
+        try {
+            ProcessSetPriority(task.priority, pid)
+            results .= "✓ " . task.name . " (Priority: " . task.priority . ", PID: " . pid . ")`n"
+            Sleep(1000)
+            ProcessClose(pid)
+        } catch Error as err {
+            results .= "✗ " . task.name . " failed`n"
+        }
+    }
+
+    MsgBox(results, "Scheduling Complete", "Icon!")
+}
+
+Example7() {
+    MsgBox("Example 7: System Resource Manager`n`nComprehensive resource management:", "Example 7", "Icon!")
+
+    CreateResourceManager()
+}
+
+CreateResourceManager() {
+    gui := Gui(, "System Resource Manager")
+    gui.SetFont("s10")
+
+    gui.Add("Text", "w500", "System Resource Management Dashboard")
+
+    processView := gui.Add("ListView", "w500 h150", ["Process", "PID", "Priority"])
+
+    gui.Add("Text", "w500", "Set Priority:")
+    priorityDD := gui.Add("DropDownList", "w500", ["Low", "BelowNormal", "Normal", "AboveNormal", "High"])
+    priorityDD.Choose(3)
+
+    logText := gui.Add("Edit", "w500 h100 +ReadOnly +Multi", "System log...")
+
+    gui.Add("Button", "w240 h35", "Refresh List").OnEvent("Click", RefreshList)
+    gui.Add("Button", "x+20 yp w240 h35", "Set Priority").OnEvent("Click", SetPrio)
+
+    gui.Add("Button", "xm w500 h30", "Exit").OnEvent("Click", (*) => gui.Destroy())
+
+    processes := []
+
+    RefreshList(*) {
+        processView.Delete()
+        processes := []
+
+        monProcs := ["notepad.exe", "calc.exe", "mspaint.exe"]
+
+        for proc in monProcs {
+            if pid := ProcessExist(proc) {
+                processes.Push({ name: proc, pid: pid })
+                processView.Add(, proc, pid, "Unknown")
             }
-
-            MsgBox(results, "Scheduling Complete", "Icon!")
         }
 
-        Example7() {
-            MsgBox("Example 7: System Resource Manager`n`nComprehensive resource management:", "Example 7", "Icon!")
+        logText.Value .= FormatTime(A_Now, "HH:mm:ss") . " - Refreshed`n"
+    }
 
-            CreateResourceManager()
+    SetPrio(*) {
+        row := processView.GetNext()
+        if !row {
+            MsgBox("Select a process", "Error")
+            return
         }
 
-        CreateResourceManager() {
-            gui := Gui(, "System Resource Manager")
-            gui.SetFont("s10")
+        pid := Integer(processView.GetText(row, 2))
+        priority := priorityDD.Text
 
-            gui.Add("Text", "w500", "System Resource Management Dashboard")
-
-            processView := gui.Add("ListView", "w500 h150", ["Process", "PID", "Priority"])
-
-            gui.Add("Text", "w500", "Set Priority:")
-            priorityDD := gui.Add("DropDownList", "w500", ["Low", "BelowNormal", "Normal", "AboveNormal", "High"])
-            priorityDD.Choose(3)
-
-            logText := gui.Add("Edit", "w500 h100 +ReadOnly +Multi", "System log...")
-
-            gui.Add("Button", "w240 h35", "Refresh List").OnEvent("Click", RefreshList)
-            gui.Add("Button", "x+20 yp w240 h35", "Set Priority").OnEvent("Click", SetPrio)
-
-            gui.Add("Button", "xm w500 h30", "Exit").OnEvent("Click", (*) => gui.Destroy())
-
-            processes := []
-
-            RefreshList(*) {
-                processView.Delete()
-                processes := []
-
-                monProcs := ["notepad.exe", "calc.exe", "mspaint.exe"]
-
-                for proc in monProcs {
-                    if pid := ProcessExist(proc) {
-                        processes.Push({name: proc, pid: pid})
-                        processView.Add(, proc, pid, "Unknown")
-                    }
-                }
-
-                logText.Value .= FormatTime(A_Now, "HH:mm:ss") . " - Refreshed`n"
-            }
-
-            SetPrio(*) {
-                row := processView.GetNext()
-                if !row {
-                    MsgBox("Select a process", "Error")
-                    return
-                }
-
-                pid := Integer(processView.GetText(row, 2))
-                priority := priorityDD.Text
-
-                try {
-                    ProcessSetPriority(priority, pid)
-                    processView.Modify(row, , , , priority)
-                    logText.Value .= FormatTime(A_Now, "HH:mm:ss") . " - Set " . pid . " to " . priority . "`n"
-                } catch Error as err {
-                    logText.Value .= "Error: " . err.Message . "`n"
-                }
-            }
-
-            RefreshList()
-            gui.Show()
-            MsgBox("Resource manager ready!", "Ready", "Icon!")
+        try {
+            ProcessSetPriority(priority, pid)
+            processView.Modify(row, , , , priority)
+            logText.Value .= FormatTime(A_Now, "HH:mm:ss") . " - Set " . pid . " to " . priority . "`n"
+        } catch Error as err {
+            logText.Value .= "Error: " . err.Message . "`n"
         }
+    }
 
-        ; ============================================================================
-        ; Main Menu
-        ; ============================================================================
+    RefreshList()
+    gui.Show()
+    MsgBox("Resource manager ready!", "Ready", "Icon!")
+}
 
-        ShowMainMenu() {
-            menu := Gui(, "ProcessSetPriority Examples (Part 02) - Main Menu")
-            menu.SetFont("s10")
+; ============================================================================
+; Main Menu
+; ============================================================================
 
-            menu.Add("Text", "w500", "AutoHotkey v2 - ProcessSetPriority (Performance tuning)")
-            menu.SetFont("s9")
+ShowMainMenu() {
+    menu := Gui(, "ProcessSetPriority Examples (Part 02) - Main Menu")
+    menu.SetFont("s10")
 
-            menu.Add("Button", "w500 h35", "Example 1: Basic Priority Setting").OnEvent("Click", (*) => (menu.Hide(), Example1(), menu.Show()))
-            menu.Add("Button", "w500 h35", "Example 2: Priority Levels Comparison").OnEvent("Click", (*) => (menu.Hide(), Example2(), menu.Show()))
-            menu.Add("Button", "w500 h35", "Example 3: Priority Manager GUI").OnEvent("Click", (*) => (menu.Hide(), Example3(), menu.Show()))
-            menu.Add("Button", "w500 h35", "Example 4: Background Process Optimization").OnEvent("Click", (*) => (menu.Hide(), Example4(), menu.Show()))
-            menu.Add("Button", "w500 h35", "Example 5: Performance Tuning").OnEvent("Click", (*) => (menu.Hide(), Example5(), menu.Show()))
-            menu.Add("Button", "w500 h35", "Example 6: Priority-Based Task Scheduler").OnEvent("Click", (*) => (menu.Hide(), Example6(), menu.Show()))
-            menu.Add("Button", "w500 h35", "Example 7: System Resource Manager").OnEvent("Click", (*) => (menu.Hide(), Example7(), menu.Show()))
+    menu.Add("Text", "w500", "AutoHotkey v2 - ProcessSetPriority (Performance tuning)")
+    menu.SetFont("s9")
 
-            menu.Add("Text", "w500 0x10")
-            menu.Add("Button", "w500 h30", "Exit").OnEvent("Click", (*) => ExitApp())
+    menu.Add("Button", "w500 h35", "Example 1: Basic Priority Setting").OnEvent("Click", (*) => (menu.Hide(), Example1(), menu.Show()))
+    menu.Add("Button", "w500 h35", "Example 2: Priority Levels Comparison").OnEvent("Click", (*) => (menu.Hide(), Example2(), menu.Show()))
+    menu.Add("Button", "w500 h35", "Example 3: Priority Manager GUI").OnEvent("Click", (*) => (menu.Hide(), Example3(), menu.Show()))
+    menu.Add("Button", "w500 h35", "Example 4: Background Process Optimization").OnEvent("Click", (*) => (menu.Hide(), Example4(), menu.Show()))
+    menu.Add("Button", "w500 h35", "Example 5: Performance Tuning").OnEvent("Click", (*) => (menu.Hide(), Example5(), menu.Show()))
+    menu.Add("Button", "w500 h35", "Example 6: Priority-Based Task Scheduler").OnEvent("Click", (*) => (menu.Hide(), Example6(), menu.Show()))
+    menu.Add("Button", "w500 h35", "Example 7: System Resource Manager").OnEvent("Click", (*) => (menu.Hide(), Example7(), menu.Show()))
 
-            menu.Show()
-        }
+    menu.Add("Text", "w500 0x10")
+    menu.Add("Button", "w500 h30", "Exit").OnEvent("Click", (*) => ExitApp())
 
-        ShowMainMenu()
+    menu.Show()
+}
+
+ShowMainMenu()

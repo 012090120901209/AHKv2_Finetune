@@ -2,36 +2,36 @@
 #Include JSON.ahk
 
 /**
-* ============================================================================
-* WinGetTitle Examples - Part 2: List All Window Titles
-* ============================================================================
-*
-* This script demonstrates how to enumerate and list all window titles.
-* Essential for window management, monitoring, and organizational tasks.
-*
-* @description List and manage multiple window titles
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinGetTitle Examples - Part 2: List All Window Titles
+ * ============================================================================
+ * 
+ * This script demonstrates how to enumerate and list all window titles.
+ * Essential for window management, monitoring, and organizational tasks.
+ * 
+ * @description List and manage multiple window titles
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: List All Window Titles
 ; ============================================================================
 
 /**
-* Retrieves and displays all window titles in the system
-* Basic enumeration example
-*
-* @hotkey F1 - List all window titles
-*/
+ * Retrieves and displays all window titles in the system
+ * Basic enumeration example
+ * 
+ * @hotkey F1 - List all window titles
+ */
 F1:: {
     ListAllWindowTitles()
 }
 
 /**
-* Displays all window titles in a list
-*/
+ * Displays all window titles in a list
+ */
 ListAllWindowTitles() {
     static listGui := ""
 
@@ -101,18 +101,18 @@ ListAllWindowTitles() {
 ; ============================================================================
 
 /**
-* Groups windows by their parent application
-* Useful for understanding window distribution
-*
-* @hotkey F2 - Categorize windows
-*/
+ * Groups windows by their parent application
+ * Useful for understanding window distribution
+ * 
+ * @hotkey F2 - Categorize windows
+ */
 F2:: {
     CategorizeWindows()
 }
 
 /**
-* Creates categorized view of windows
-*/
+ * Creates categorized view of windows
+ */
 CategorizeWindows() {
     static catGui := ""
 
@@ -141,7 +141,7 @@ CategorizeWindows() {
                     processList[process] := []
                 }
 
-                processList[process].Push({hwnd: hwnd, title: title})
+                processList[process].Push({ hwnd: hwnd, title: title })
             }
         }
     }
@@ -165,8 +165,8 @@ CategorizeWindows() {
 }
 
 /**
-* Expands or collapses tree view
-*/
+ * Expands or collapses tree view
+ */
 ExpandTree(treeView, expand) {
     itemID := 0
     while (itemID := treeView.GetNext(itemID)) {
@@ -183,18 +183,18 @@ ExpandTree(treeView, expand) {
 ; ============================================================================
 
 /**
-* Exports all window titles to various file formats
-* Useful for documentation and reporting
-*
-* @hotkey F3 - Export window titles
-*/
+ * Exports all window titles to various file formats
+ * Useful for documentation and reporting
+ * 
+ * @hotkey F3 - Export window titles
+ */
 F3:: {
     ExportWindowTitles()
 }
 
 /**
-* Exports window titles to file
-*/
+ * Exports window titles to file
+ */
 ExportWindowTitles() {
     static exportGui := ""
 
@@ -229,7 +229,7 @@ ExportWindowTitles() {
             try {
                 title := WinGetTitle(hwnd)
                 if title != "" {
-                    entry := {title: title}
+                    entry := { title: title }
 
                     if includeProcess {
                         entry.process := WinGetProcessName(hwnd)
@@ -247,79 +247,79 @@ ExportWindowTitles() {
 
         switch format {
             case 1:  ; Plain Text
-            fileExt := ".txt"
-            content := "Window Titles - " A_Now "`n"
-            content .= StrRepeat("=", 60) "`n`n"
+                fileExt := ".txt"
+                content := "Window Titles - " A_Now "`n"
+                content .= StrRepeat("=", 60) "`n`n"
 
-            for win in windowData {
-                content .= win.title
-                if includeProcess {
-                    content .= " [" win.process "]"
+                for win in windowData {
+                    content .= win.title
+                    if includeProcess {
+                        content .= " [" win.process "]"
+                    }
+                    content .= "`n"
                 }
-                content .= "`n"
-            }
 
             case 2:  ; CSV
-            fileExt := ".csv"
-            if includeProcess {
-                content := "Title,Process,PID`n"
-                for win in windowData {
-                    content .= '"' win.title '","' win.process '",' win.pid "`n"
+                fileExt := ".csv"
+                if includeProcess {
+                    content := "Title,Process,PID`n"
+                    for win in windowData {
+                        content .= '"' win.title '","' win.process '",' win.pid "`n"
+                    }
+                } else {
+                    content := "Title`n"
+                    for win in windowData {
+                        content .= '"' win.title '"`n'
+                    }
                 }
-            } else {
-                content := "Title`n"
-                for win in windowData {
-                    content .= '"' win.title '"`n'
-                }
-            }
 
             case 3:  ; HTML
-            fileExt := ".html"
-            content := "<!DOCTYPE html>`n<html>`n<head>`n<title>Window Titles</title>`n"
-            content .= "<style>table{border-collapse:collapse;width:100%;}th,td{border:1px solid black;padding:8px;text-align:left;}th{background-color:#4CAF50;color:white;}</style>`n"
-            content .= "</head>`n<body>`n"
-            content .= "<h1>Window Titles - " A_Now "</h1>`n"
-            content .= "<table>`n<tr><th>Title</th>"
+                fileExt := ".html"
+                content := "<!DOCTYPE html>`n<html>`n<head>`n<title>Window Titles</title>`n"
+                content .= "<style>table{border-collapse:collapse;width:100%;}th,td{border:1px solid black;padding:8px;text-align:left;}th{background-color:#4CAF50;color:white;}</style>`n"
+                content .= "</head>`n<body>`n"
+                content .= "<h1>Window Titles - " A_Now "</h1>`n"
+                content .= "<table>`n<tr><th>Title</th>"
 
-            if includeProcess {
-                content .= "<th>Process</th><th>PID</th>"
-            }
-
-            content .= "</tr>`n"
-
-            for win in windowData {
-                content .= "<tr><td>" win.title "</td>"
                 if includeProcess {
-                    content .= "<td>" win.process "</td><td>" win.pid "</td>"
+                    content .= "<th>Process</th><th>PID</th>"
                 }
-                content .= "</tr>`n"
-            }
 
-            content .= "</table>`n</body>`n</html>"
+                content .= "</tr>`n"
+
+                for win in windowData {
+                    content .= "<tr><td>" win.title "</td>"
+                    if includeProcess {
+                        content .= "<td>" win.process "</td><td>" win.pid "</td>"
+                    }
+                    content .= "</tr>`n"
+                }
+
+                content .= "</table>`n</body>`n</html>"
 
             case 4:  ; JSON
-            fileExt := ".json"
-            content := "[\n"
+                fileExt := ".json"
+                content := "[\n"
 
-            for index, win in windowData {
-                content .= "  {\n"
-                content .= '    "title": "' StrReplace(win.title, '"', '\"') '"'
+                for index, win in windowData {
+                    content .= "  {\n"
+                    content .= '    "title": "' StrReplace(win.title, '"', '\"') '"'
 
-                if includeProcess {
-                    content .= ',\n    "process": "' win.process '"'
-                    content .= ',\n    "pid": ' win.pid
+                    if includeProcess {
+                        content .= ',\n    "process": "' win.process '"'
+                        content .= ',\n    "pid": ' win.pid
+                    }
+
+                    content .= "\n  }"
+
+                    if index < windowData.Length {
+                        content .= ","
+                    }
+
+                    content .= "\n"
                 }
 
-                content .= "\n  }"
-
-                if index < windowData.Length {
-                    content .= ","
-                }
-
-                content .= "\n"
-            }
-
-            content .= "]"
+                content .= "]"
         }
 
         ; Save file
@@ -337,8 +337,8 @@ ExportWindowTitles() {
 }
 
 /**
-* Helper to repeat strings
-*/
+ * Helper to repeat strings
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count {
@@ -352,18 +352,18 @@ StrRepeat(str, count) {
 ; ============================================================================
 
 /**
-* Advanced filtering and searching of window titles
-* Supports multiple filter criteria
-*
-* @hotkey F4 - Filter window titles
-*/
+ * Advanced filtering and searching of window titles
+ * Supports multiple filter criteria
+ * 
+ * @hotkey F4 - Filter window titles
+ */
 F4:: {
     FilterWindowTitles()
 }
 
 /**
-* Creates advanced filtering GUI
-*/
+ * Creates advanced filtering GUI
+ */
 FilterWindowTitles() {
     static filterGui := ""
 
@@ -477,18 +477,18 @@ FilterWindowTitles() {
 ; ============================================================================
 
 /**
-* Analyzes window title statistics
-* Provides insights into window title patterns
-*
-* @hotkey F5 - Show title statistics
-*/
+ * Analyzes window title statistics
+ * Provides insights into window title patterns
+ * 
+ * @hotkey F5 - Show title statistics
+ */
 F5:: {
     ShowTitleStatistics()
 }
 
 /**
-* Displays statistical analysis of window titles
-*/
+ * Displays statistical analysis of window titles
+ */
 ShowTitleStatistics() {
     allWindows := WinGetList()
 
@@ -550,18 +550,18 @@ ShowTitleStatistics() {
 ; ============================================================================
 
 /**
-* Finds windows with duplicate or similar titles
-* Useful for identifying redundant windows
-*
-* @hotkey F6 - Find duplicate titles
-*/
+ * Finds windows with duplicate or similar titles
+ * Useful for identifying redundant windows
+ * 
+ * @hotkey F6 - Find duplicate titles
+ */
 F6:: {
     FindDuplicateTitles()
 }
 
 /**
-* Finds and displays duplicate window titles
-*/
+ * Finds and displays duplicate window titles
+ */
 FindDuplicateTitles() {
     static dupGui := ""
 
@@ -631,11 +631,11 @@ FindDuplicateTitles() {
 ; ============================================================================
 
 /**
-* Monitors all window titles in real-time
-* Shows additions and removals
-*
-* @hotkey F7 - Start real-time monitor
-*/
+ * Monitors all window titles in real-time
+ * Shows additions and removals
+ * 
+ * @hotkey F7 - Start real-time monitor
+ */
 F7:: {
     static monitoring := false
 
@@ -648,8 +648,8 @@ F7:: {
 }
 
 /**
-* Creates real-time monitoring display
-*/
+ * Creates real-time monitoring display
+ */
 StartRealtimeMonitor() {
     static monGui := ""
     static lv := ""
@@ -722,7 +722,7 @@ StartRealtimeMonitor() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

@@ -2,18 +2,18 @@
 #SingleInstance Force
 
 /**
-* Timer-Based Window Detection
-*
-* Demonstrates detecting window creation and destruction using timers
-* and state tracking with static variables.
-*
-* Source: AHK_Notes/Snippets/TimerBasedWindowDetection.md
-*/
+ * Timer-Based Window Detection
+ * 
+ * Demonstrates detecting window creation and destruction using timers
+ * and state tracking with static variables.
+ * 
+ * Source: AHK_Notes/Snippets/TimerBasedWindowDetection.md
+ */
 
 MsgBox("Window Detection Demo`n`n"
-. "Monitoring Notepad windows...`n"
-. "Open/close Notepad to see detection.`n`n"
-. "Will run for 20 seconds.", , "T3")
+    . "Monitoring Notepad windows...`n"
+    . "Open/close Notepad to see detection.`n`n"
+    . "Will run for 20 seconds.", , "T3")
 
 ; Start single window monitor
 SetTimer(MonitorNotepad, 500)
@@ -31,9 +31,9 @@ SetTimer(MonitorAllWindows, 0)
 MsgBox("Monitoring stopped", , "T2")
 
 /**
-* MonitorNotepad - Detect single window (Notepad)
-* Uses static variable to track previous state
-*/
+ * MonitorNotepad - Detect single window (Notepad)
+ * Uses static variable to track previous state
+ */
 MonitorNotepad() {
     static wasOpen := false
 
@@ -55,8 +55,8 @@ MonitorNotepad() {
 }
 
 /**
-* MonitorAllWindows - Track all windows using Map
-*/
+ * MonitorAllWindows - Track all windows using Map
+ */
 MonitorAllWindows() {
     static prevWindows := Map()
 
@@ -68,7 +68,7 @@ MonitorAllWindows() {
         try {
             ; Skip invisible and minimized windows
             if (!WinGetTitle("ahk_id " hwnd))
-            continue
+                continue
 
             title := WinGetTitle("ahk_id " hwnd)
             class := WinGetClass("ahk_id " hwnd)
@@ -85,7 +85,7 @@ MonitorAllWindows() {
         if (!prevWindows.Has(hwnd)) {
             ; Filter out certain windows
             if (info.class ~= "i)Shell_TrayWnd|WorkerW")
-            continue
+                continue
 
             ToolTip("NEW WINDOW: " info.title)
             SetTimer(() => ToolTip(), -2000)
@@ -105,8 +105,8 @@ MonitorAllWindows() {
 }
 
 /**
-* MonitorMultiple - Monitor multiple specific applications
-*/
+ * MonitorMultiple - Monitor multiple specific applications
+ */
 MonitorMultiple() {
     static notepadWasOpen := false
     static calculatorWasOpen := false
@@ -114,17 +114,17 @@ MonitorMultiple() {
     ; Check Notepad
     notepadOpen := WinExist("ahk_exe notepad.exe")
     if (notepadOpen && !notepadWasOpen)
-    MsgBox("Notepad opened", , "T2")
+        MsgBox("Notepad opened", , "T2")
     else if (!notepadOpen && notepadWasOpen)
-    MsgBox("Notepad closed", , "T2")
+        MsgBox("Notepad closed", , "T2")
     notepadWasOpen := notepadOpen
 
     ; Check Calculator
     calcOpen := WinExist("ahk_exe calc.exe")
     if (calcOpen && !calculatorWasOpen)
-    MsgBox("Calculator opened", , "T2")
+        MsgBox("Calculator opened", , "T2")
     else if (!calcOpen && calculatorWasOpen)
-    MsgBox("Calculator closed", , "T2")
+        MsgBox("Calculator closed", , "T2")
     calculatorWasOpen := calcOpen
 }
 
@@ -190,3 +190,4 @@ MonitorMultiple() {
 *     WinEventHook - Detailed events
 *     Both covered in other examples
 */
+

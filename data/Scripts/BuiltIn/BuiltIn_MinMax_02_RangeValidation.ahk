@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MinMax_02_RangeValidation.ahk
-*
-* DESCRIPTION:
-* Range validation and clamping applications using Min() and Max() for
-* constraining values to bounds, input validation, and safe value operations
-*
-* FEATURES:
-* - Value clamping to ranges
-* - Bounds checking and validation
-* - Safe arithmetic operations
-* - Input sanitization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Min.htm
-* https://www.autohotkey.com/docs/v2/lib/Max.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Min/Max for clamping values
-* - Range constraint patterns
-* - Defensive programming
-* - Input validation
-*
-* LEARNING POINTS:
-* 1. Clamp value: Max(min, Min(max, value))
-* 2. Ensures values stay within bounds
-* 3. Prevents invalid operations
-* 4. Essential for user input validation
-* 5. Creates safe, predictable behavior
-*/
+ * BuiltIn_MinMax_02_RangeValidation.ahk
+ * 
+ * DESCRIPTION:
+ * Range validation and clamping applications using Min() and Max() for
+ * constraining values to bounds, input validation, and safe value operations
+ * 
+ * FEATURES:
+ * - Value clamping to ranges
+ * - Bounds checking and validation
+ * - Safe arithmetic operations
+ * - Input sanitization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Min.htm
+ * https://www.autohotkey.com/docs/v2/lib/Max.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Min/Max for clamping values
+ * - Range constraint patterns
+ * - Defensive programming
+ * - Input validation
+ * 
+ * LEARNING POINTS:
+ * 1. Clamp value: Max(min, Min(max, value))
+ * 2. Ensures values stay within bounds
+ * 3. Prevents invalid operations
+ * 4. Essential for user input validation
+ * 5. Creates safe, predictable behavior
+ */
 
 ; ============================================================
 ; Example 1: Basic Value Clamping
 ; ============================================================
 
 /**
-* Clamp a value to a range
-*
-* @param {Number} value - Value to clamp
-* @param {Number} minValue - Minimum allowed value
-* @param {Number} maxValue - Maximum allowed value
-* @returns {Number} - Clamped value
-*/
+ * Clamp a value to a range
+ * 
+ * @param {Number} value - Value to clamp
+ * @param {Number} minValue - Minimum allowed value
+ * @param {Number} maxValue - Maximum allowed value
+ * @returns {Number} - Clamped value
+ */
 Clamp(value, minValue, maxValue) {
     return Max(minValue, Min(maxValue, value))
 }
@@ -72,12 +72,12 @@ MsgBox(output, "Value Clamping", "Icon!")
 ; ============================================================
 
 /**
-* Safe volume adjustment
-*
-* @param {Number} currentVolume - Current volume (0-100)
-* @param {Number} adjustment - Volume change
-* @returns {Object} - New volume and status
-*/
+ * Safe volume adjustment
+ * 
+ * @param {Number} currentVolume - Current volume (0-100)
+ * @param {Number} adjustment - Volume change
+ * @returns {Object} - New volume and status
+ */
 AdjustVolume(currentVolume, adjustment) {
     newVolume := currentVolume + adjustment
     clampedVolume := Clamp(newVolume, 0, 100)
@@ -106,14 +106,14 @@ for adjustment in adjustments {
     currentVol := result.actual
 
     output .= Format("Adjust {1:+d}: {2} → {3}",
-    result.adjustment, result.previous, result.actual)
+        result.adjustment, result.previous, result.actual)
 
     if (result.wasClipped)
-    output .= " [CLIPPED]"
+        output .= " [CLIPPED]"
     if (result.atMin)
-    output .= " [MIN]"
+        output .= " [MIN]"
     if (result.atMax)
-    output .= " [MAX]"
+        output .= " [MAX]"
 
     output .= "`n"
 }
@@ -125,26 +125,26 @@ MsgBox(output, "Volume Control", "Icon!")
 ; ============================================================
 
 /**
-* Clamp RGB color values
-*
-* @param {Number} r - Red component
-* @param {Number} g - Green component
-* @param {Number} b - Blue component
-* @returns {Object} - Clamped RGB values
-*/
+ * Clamp RGB color values
+ * 
+ * @param {Number} r - Red component
+ * @param {Number} g - Green component
+ * @param {Number} b - Blue component
+ * @returns {Object} - Clamped RGB values
+ */
 ClampRGB(r, g, b) {
     return {
         r: Clamp(r, 0, 255),
         g: Clamp(g, 0, 255),
         b: Clamp(b, 0, 255),
-        original: {r: r, g: g, b: b},
+        original: { r: r, g: g, b: b },
         wasModified: (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
     }
 }
 
 /**
-* Adjust color brightness
-*/
+ * Adjust color brightness
+ */
 AdjustBrightness(r, g, b, amount) {
     newR := r + amount
     newG := g + amount
@@ -153,30 +153,30 @@ AdjustBrightness(r, g, b, amount) {
     clamped := ClampRGB(newR, newG, newB)
 
     return {
-        original: {r: r, g: g, b: b},
+        original: { r: r, g: g, b: b },
         adjustment: amount,
-        result: {r: clamped.r, g: clamped.g, b: clamped.b},
+        result: { r: clamped.r, g: clamped.g, b: clamped.b },
         wasClipped: clamped.wasModified
     }
 }
 
 ; Test color adjustments
-baseColor := {r: 200, g: 150, b: 100}
+baseColor := { r: 200, g: 150, b: 100 }
 brightnessChanges := [50, -100, 30]
 
 output := "Color Brightness Adjustment:`n"
 output .= Format("Base Color: RGB({1}, {2}, {3})`n`n",
-baseColor.r, baseColor.g, baseColor.b)
+    baseColor.r, baseColor.g, baseColor.b)
 
 for change in brightnessChanges {
     result := AdjustBrightness(baseColor.r, baseColor.g, baseColor.b, change)
 
     output .= Format("Adjust {1:+d}: RGB({2}, {3}, {4})",
-    result.adjustment,
-    result.result.r, result.result.g, result.result.b)
+        result.adjustment,
+        result.result.r, result.result.g, result.result.b)
 
     if (result.wasClipped)
-    output .= " [CLIPPED]"
+        output .= " [CLIPPED]"
 
     output .= "`n"
 }
@@ -188,13 +188,13 @@ MsgBox(output, "Color Clamping", "Icon!")
 ; ============================================================
 
 /**
-* Validate slider position
-*
-* @param {Number} position - Requested position
-* @param {Number} min - Minimum value
-* @param {Number} max - Maximum value
-* @returns {Object} - Validated position
-*/
+ * Validate slider position
+ * 
+ * @param {Number} position - Requested position
+ * @param {Number} min - Minimum value
+ * @param {Number} max - Maximum value
+ * @returns {Object} - Validated position
+ */
 ValidateSliderPosition(position, min, max) {
     clamped := Clamp(position, min, max)
     percent := ((clamped - min) / (max - min)) * 100
@@ -212,8 +212,8 @@ ValidateSliderPosition(position, min, max) {
 }
 
 /**
-* Create progress bar visualization
-*/
+ * Create progress bar visualization
+ */
 CreateProgressBar(value, min, max, width := 20) {
     normalized := Clamp(value, min, max)
     percent := (normalized - min) / (max - min)
@@ -243,8 +243,8 @@ for position in testPositions {
     progress := CreateProgressBar(position, sliderMin, sliderMax, 20)
 
     output .= Format("{1} → {2} | {3} {4}%`n",
-    validated.requested, validated.validated,
-    progress.bar, progress.percent)
+        validated.requested, validated.validated,
+        progress.bar, progress.percent)
 }
 
 MsgBox(output, "Slider Validation", "Icon!")
@@ -254,14 +254,14 @@ MsgBox(output, "Slider Validation", "Icon!")
 ; ============================================================
 
 /**
-* Safe division with result clamping
-*
-* @param {Number} numerator - Numerator
-* @param {Number} denominator - Denominator
-* @param {Number} minResult - Minimum allowed result
-* @param {Number} maxResult - Maximum allowed result
-* @returns {Object} - Division result
-*/
+ * Safe division with result clamping
+ * 
+ * @param {Number} numerator - Numerator
+ * @param {Number} denominator - Denominator
+ * @param {Number} minResult - Minimum allowed result
+ * @param {Number} maxResult - Maximum allowed result
+ * @returns {Object} - Division result
+ */
 SafeDivide(numerator, denominator, minResult := -1000, maxResult := 1000) {
     if (denominator = 0) {
         return {
@@ -280,196 +280,188 @@ SafeDivide(numerator, denominator, minResult := -1000, maxResult := 1000) {
         rawResult: Round(rawResult, 2),
         result: Round(clampedResult, 2),
         wasClamped: rawResult != clampedResult,
-        bounds: {min: minResult, max: maxResult}
+        bounds: { min: minResult, max: maxResult }
     }
 }
 
 ; Test safe division
-divisionTests := [
-{
-    num: 100, den: 5},
-    {
-        num: 1000, den: 1},
-        {
-            num: 50, den: 0},
-            {
+divisionTests := [{
+    num: 100, den: 5 }, {
+        num: 1000, den: 1 }, {
+            num: 50, den: 0 }, {
                 num: 10, den: 0.001
             }
-            ]
+]
 
-            output := "Safe Division (Clamped to ±1000):`n`n"
+output := "Safe Division (Clamped to ±1000):`n`n"
 
-            for test in divisionTests {
-                result := SafeDivide(test.num, test.den, -1000, 1000)
+for test in divisionTests {
+    result := SafeDivide(test.num, test.den, -1000, 1000)
 
-                if (result.HasOwnProp("error")) {
-                    output .= Format("{1} ÷ {2} = ERROR: {3}`n",
-                    test.num, test.den, result.error)
-                } else {
-                    output .= Format("{1} ÷ {2} = {3}",
-                    result.numerator, result.denominator, result.result)
+    if (result.HasOwnProp("error")) {
+        output .= Format("{1} ÷ {2} = ERROR: {3}`n",
+            test.num, test.den, result.error)
+    } else {
+        output .= Format("{1} ÷ {2} = {3}",
+            result.numerator, result.denominator, result.result)
 
-                    if (result.wasClamped)
-                    output .= " [CLAMPED from " result.rawResult "]"
+        if (result.wasClamped)
+            output .= " [CLAMPED from " result.rawResult "]"
 
-                    output .= "`n"
-                }
+        output .= "`n"
+    }
+}
+
+MsgBox(output, "Safe Division", "Icon!")
+
+; ============================================================
+; Example 6: User Input Sanitization
+; ============================================================
+
+/**
+ * Sanitize numeric input
+ * 
+ * @param {Number} input - User input value
+ * @param {Object} constraints - Min, max, and default values
+ * @returns {Object} - Sanitized value
+ */
+SanitizeInput(input, constraints) {
+    ; Apply constraints
+    sanitized := Clamp(input, constraints.min, constraints.max)
+
+    return {
+        original: input,
+        sanitized: sanitized,
+        wasModified: input != sanitized,
+        constraints: constraints,
+        percentOfRange: Round(((sanitized - constraints.min) /
+            (constraints.max - constraints.min)) * 100, 1)
+    }
+}
+
+/**
+ * Validate form field
+ */
+ValidateField(fieldName, value, min, max, defaultValue := 0) {
+    if (!IsNumber(value))
+        return { field: fieldName, value: defaultValue, error: "Not a number" }
+
+    result := SanitizeInput(value, { min: min, max: max })
+
+    return {
+        field: fieldName,
+        original: result.original,
+        value: result.sanitized,
+        wasModified: result.wasModified,
+        valid: !result.wasModified
+    }
+}
+
+; Form validation examples
+formFields := [{
+    name: "Age", value: 25, min: 0, max: 120 }, {
+        name: "Quantity", value: 150, min: 1, max: 100 }, {
+            name: "Temperature", value: -50, min: -20, max: 120 }, {
+                name: "Score", value: 85, min: 0, max: 100
             }
+]
 
-            MsgBox(output, "Safe Division", "Icon!")
+output := "Form Input Validation:`n`n"
 
-            ; ============================================================
-            ; Example 6: User Input Sanitization
-            ; ============================================================
+validCount := 0
+invalidCount := 0
 
-            /**
-            * Sanitize numeric input
-            *
-            * @param {Number} input - User input value
-            * @param {Object} constraints - Min, max, and default values
-            * @returns {Object} - Sanitized value
-            */
-            SanitizeInput(input, constraints) {
-                ; Apply constraints
-                sanitized := Clamp(input, constraints.min, constraints.max)
+for field in formFields {
+    validation := ValidateField(field.name, field.value,
+        field.min, field.max)
 
-                return {
-                    original: input,
-                    sanitized: sanitized,
-                    wasModified: input != sanitized,
-                    constraints: constraints,
-                    percentOfRange: Round(((sanitized - constraints.min) /
-                    (constraints.max - constraints.min)) * 100, 1)
-                }
-            }
+    output .= Format("{1}: {2} → {3} ",
+        validation.field, validation.original, validation.value)
 
-            /**
-            * Validate form field
-            */
-            ValidateField(fieldName, value, min, max, defaultValue := 0) {
-                if (!IsNumber(value))
-                return {field: fieldName, value: defaultValue, error: "Not a number"}
+    if (validation.valid) {
+        output .= "✓"
+        validCount++
+    } else {
+        output .= "✗ ADJUSTED"
+        invalidCount++
+    }
 
-                result := SanitizeInput(value, {min: min, max: max})
+    output .= "`n"
+}
 
-                return {
-                    field: fieldName,
-                    original: result.original,
-                    value: result.sanitized,
-                    wasModified: result.wasModified,
-                    valid: !result.wasModified
-                }
-            }
+output .= Format("`nValid: {1} | Adjusted: {2}", validCount, invalidCount)
 
-            ; Form validation examples
-            formFields := [
-            {
-                name: "Age", value: 25, min: 0, max: 120},
-                {
-                    name: "Quantity", value: 150, min: 1, max: 100},
-                    {
-                        name: "Temperature", value: -50, min: -20, max: 120},
-                        {
-                            name: "Score", value: 85, min: 0, max: 100
-                        }
-                        ]
+MsgBox(output, "Input Validation", "Icon!")
 
-                        output := "Form Input Validation:`n`n"
+; ============================================================
+; Example 7: Percentage Bounds
+; ============================================================
 
-                        validCount := 0
-                        invalidCount := 0
+/**
+ * Ensure percentage is valid (0-100)
+ * 
+ * @param {Number} value - Percentage value
+ * @returns {Object} - Valid percentage
+ */
+ClampPercent(value) {
+    clamped := Clamp(value, 0, 100)
 
-                        for field in formFields {
-                            validation := ValidateField(field.name, field.value,
-                            field.min, field.max)
+    return {
+        original: value,
+        percent: clamped,
+        decimal: clamped / 100,
+        formatted: Format("{1:.1f}%", clamped),
+        wasClipped: value != clamped
+    }
+}
 
-                            output .= Format("{1}: {2} → {3} ",
-                            validation.field, validation.original, validation.value)
+/**
+ * Calculate discount with limits
+ */
+ApplyDiscount(price, discountPercent, maxDiscount := 50) {
+    ; Limit discount to maximum
+    actualDiscount := Clamp(discountPercent, 0, maxDiscount)
+    discountAmount := price * (actualDiscount / 100)
+    finalPrice := price - discountAmount
 
-                            if (validation.valid) {
-                                output .= "✓"
-                                validCount++
-                            } else {
-                                output .= "✗ ADJUSTED"
-                                invalidCount++
-                            }
+    return {
+        originalPrice: price,
+        requestedDiscount: discountPercent,
+        actualDiscount: actualDiscount,
+        discountAmount: Round(discountAmount, 2),
+        finalPrice: Round(finalPrice, 2),
+        wasLimited: discountPercent != actualDiscount
+    }
+}
 
-                            output .= "`n"
-                        }
+; Discount scenarios
+price := 199.99
+discountAttempts := [10, 25, 50, 75, 100]
+maxAllowedDiscount := 50
 
-                        output .= Format("`nValid: {1} | Adjusted: {2}", validCount, invalidCount)
+output := "Discount Validation (Max " maxAllowedDiscount "%):`n"
+output .= "Original Price: $" Format("{1:.2f}", price) "`n`n"
 
-                        MsgBox(output, "Input Validation", "Icon!")
+for discount in discountAttempts {
+    result := ApplyDiscount(price, discount, maxAllowedDiscount)
 
-                        ; ============================================================
-                        ; Example 7: Percentage Bounds
-                        ; ============================================================
+    output .= Format("{1}% → {2}%: ${3:.2f}",
+        result.requestedDiscount, result.actualDiscount,
+        result.finalPrice)
 
-                        /**
-                        * Ensure percentage is valid (0-100)
-                        *
-                        * @param {Number} value - Percentage value
-                        * @returns {Object} - Valid percentage
-                        */
-                        ClampPercent(value) {
-                            clamped := Clamp(value, 0, 100)
+    if (result.wasLimited)
+        output .= " [LIMITED]"
 
-                            return {
-                                original: value,
-                                percent: clamped,
-                                decimal: clamped / 100,
-                                formatted: Format("{1:.1f}%", clamped),
-                                wasClipped: value != clamped
-                            }
-                        }
+    output .= "`n"
+}
 
-                        /**
-                        * Calculate discount with limits
-                        */
-                        ApplyDiscount(price, discountPercent, maxDiscount := 50) {
-                            ; Limit discount to maximum
-                            actualDiscount := Clamp(discountPercent, 0, maxDiscount)
-                            discountAmount := price * (actualDiscount / 100)
-                            finalPrice := price - discountAmount
+MsgBox(output, "Discount Clamping", "Icon!")
 
-                            return {
-                                originalPrice: price,
-                                requestedDiscount: discountPercent,
-                                actualDiscount: actualDiscount,
-                                discountAmount: Round(discountAmount, 2),
-                                finalPrice: Round(finalPrice, 2),
-                                wasLimited: discountPercent != actualDiscount
-                            }
-                        }
+; ============================================================
+; Reference Information
+; ============================================================
 
-                        ; Discount scenarios
-                        price := 199.99
-                        discountAttempts := [10, 25, 50, 75, 100]
-                        maxAllowedDiscount := 50
-
-                        output := "Discount Validation (Max " maxAllowedDiscount "%):`n"
-                        output .= "Original Price: $" Format("{1:.2f}", price) "`n`n"
-
-                        for discount in discountAttempts {
-                            result := ApplyDiscount(price, discount, maxAllowedDiscount)
-
-                            output .= Format("{1}% → {2}%: ${3:.2f}",
-                            result.requestedDiscount, result.actualDiscount,
-                            result.finalPrice)
-
-                            if (result.wasLimited)
-                            output .= " [LIMITED]"
-
-                            output .= "`n"
-                        }
-
-                        MsgBox(output, "Discount Clamping", "Icon!")
-
-                        ; ============================================================
-                        ; Reference Information
-                        ; ============================================================
-
-                        info := "
+info := "
                         (
                         MIN/MAX FOR RANGE VALIDATION & CLAMPING:
 
@@ -617,4 +609,4 @@ divisionTests := [
                         • Division issues
                         )"
 
-                        MsgBox(info, "Range Validation Reference", "Icon!")
+MsgBox(info, "Range Validation Reference", "Icon!")

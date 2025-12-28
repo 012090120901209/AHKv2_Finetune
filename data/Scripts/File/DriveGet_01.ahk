@@ -1,42 +1,42 @@
+#Requires AutoHotkey v2.0
 #Include JSON.ahk
 
 /**
-* @file DriveGet_01.ahk
-* @description Comprehensive examples of DriveGetCapacity, DriveGetSpaceFree, and DriveGetStatus functions in AutoHotkey v2
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Getting drive capacity and space information
-* - Monitoring disk space usage
-* - Checking drive status and readiness
-* - Calculating disk usage percentages
-* - Building disk space monitoring tools
-* - Creating low disk space alerts
-* - Generating disk space reports
-*/
+ * @file DriveGet_01.ahk
+ * @description Comprehensive examples of DriveGetCapacity, DriveGetSpaceFree, and DriveGetStatus functions in AutoHotkey v2
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Getting drive capacity and space information
+ * - Monitoring disk space usage
+ * - Checking drive status and readiness
+ * - Calculating disk usage percentages
+ * - Building disk space monitoring tools
+ * - Creating low disk space alerts
+ * - Generating disk space reports
+ */
 
-#Requires AutoHotkey v2.0
 
 ; ===================================================================================================
 ; EXAMPLE 1: Basic Drive Capacity and Free Space Information
 ; ===================================================================================================
 
 /**
-* @function GetDriveInfo
-* @description Gets comprehensive drive capacity and free space information
-* @param {String} DriveLetter - The drive letter to query (e.g., "C:")
-* @returns {Object} Object containing capacity, free space, used space, and usage percentage
-*
-* @example
-* info := GetDriveInfo("C:")
-* MsgBox("Drive C: has " . info.FreeGB . " GB free")
-*/
+ * @function GetDriveInfo
+ * @description Gets comprehensive drive capacity and free space information
+ * @param {String} DriveLetter - The drive letter to query (e.g., "C:")
+ * @returns {Object} Object containing capacity, free space, used space, and usage percentage
+ * 
+ * @example
+ * info := GetDriveInfo("C:")
+ * MsgBox("Drive C: has " . info.FreeGB . " GB free")
+ */
 GetDriveInfo(DriveLetter) {
     ; Ensure drive letter has colon
     if !InStr(DriveLetter, ":")
-    DriveLetter .= ":"
+        DriveLetter .= ":"
 
     ; Get capacity in megabytes
     capacity := DriveGetCapacity(DriveLetter)
@@ -82,12 +82,12 @@ Example1_BasicDriveInfo() {
     Usage:          {8}%
     Free:           {9}%
     )",
-    info.Drive,
-    info.CapacityGB, info.CapacityMB,
-    info.UsedSpaceGB, info.UsedSpaceMB,
-    info.FreeSpaceGB, info.FreeSpaceMB,
-    info.UsagePercent,
-    info.FreePercent
+        info.Drive,
+        info.CapacityGB, info.CapacityMB,
+        info.UsedSpaceGB, info.UsedSpaceMB,
+        info.FreeSpaceGB, info.FreeSpaceMB,
+        info.UsagePercent,
+        info.FreePercent
     )
 
     MsgBox(report, "Drive Information", "Icon!")
@@ -100,15 +100,15 @@ Example1_BasicDriveInfo() {
 ; ===================================================================================================
 
 /**
-* @function GetAllDrivesInfo
-* @description Gets space information for all available drives
-* @returns {Array} Array of drive information objects
-*
-* @example
-* drives := GetAllDrivesInfo()
-* for drive in drives
-*     MsgBox(drive.Drive . " has " . drive.FreeGB . " GB free")
-*/
+ * @function GetAllDrivesInfo
+ * @description Gets space information for all available drives
+ * @returns {Array} Array of drive information objects
+ * 
+ * @example
+ * drives := GetAllDrivesInfo()
+ * for drive in drives
+ *     MsgBox(drive.Drive . " has " . drive.FreeGB . " GB free")
+ */
 GetAllDrivesInfo() {
     drives := []
 
@@ -137,12 +137,12 @@ GetAllDrivesInfo() {
 }
 
 /**
-* @function ShowAllDrivesReport
-* @description Displays a comprehensive report of all drives
-*
-* @example
-* ShowAllDrivesReport()
-*/
+ * @function ShowAllDrivesReport
+ * @description Displays a comprehensive report of all drives
+ * 
+ * @example
+ * ShowAllDrivesReport()
+ */
 ShowAllDrivesReport() {
     drives := GetAllDrivesInfo()
 
@@ -159,11 +159,11 @@ ShowAllDrivesReport() {
     for drive in drives {
         report .= Format("Drive {1}:`n", drive.Drive)
         report .= Format("  Total: {1} GB | Used: {2} GB ({3}%) | Free: {4} GB ({5}%)`n`n",
-        drive.CapacityGB,
-        drive.UsedSpaceGB,
-        drive.UsagePercent,
-        drive.FreeSpaceGB,
-        drive.FreePercent
+            drive.CapacityGB,
+            drive.UsedSpaceGB,
+            drive.UsagePercent,
+            drive.FreeSpaceGB,
+            drive.FreePercent
         )
     }
 
@@ -175,36 +175,36 @@ ShowAllDrivesReport() {
 ; ===================================================================================================
 
 /**
-* @class DiskSpaceMonitor
-* @description Monitors disk space and alerts when space is low
-*/
+ * @class DiskSpaceMonitor
+ * @description Monitors disk space and alerts when space is low
+ */
 class DiskSpaceMonitor {
     /**
-    * @property {Number} threshold - Percentage threshold for low space warning (default: 10%)
-    * @property {Number} checkInterval - Time between checks in milliseconds (default: 300000 = 5 minutes)
-    * @property {Array} drivesToMonitor - Array of drive letters to monitor
-    * @property {Boolean} isMonitoring - Whether monitoring is active
-    */
+     * @property {Number} threshold - Percentage threshold for low space warning (default: 10%)
+     * @property {Number} checkInterval - Time between checks in milliseconds (default: 300000 = 5 minutes)
+     * @property {Array} drivesToMonitor - Array of drive letters to monitor
+     * @property {Boolean} isMonitoring - Whether monitoring is active
+     */
     threshold := 10
     checkInterval := 300000
     drivesToMonitor := []
     isMonitoring := false
 
     /**
-    * @constructor
-    * @param {Array} drives - Array of drive letters to monitor (optional)
-    * @param {Number} threshold - Free space percentage threshold (optional)
-    */
+     * @constructor
+     * @param {Array} drives - Array of drive letters to monitor (optional)
+     * @param {Number} threshold - Free space percentage threshold (optional)
+     */
     __New(drives := [], threshold := 10) {
         this.threshold := threshold
         this.drivesToMonitor := drives.Length > 0 ? drives : this.GetSystemDrives()
     }
 
     /**
-    * @method GetSystemDrives
-    * @description Gets all ready fixed drives on the system
-    * @returns {Array} Array of drive letters
-    */
+     * @method GetSystemDrives
+     * @description Gets all ready fixed drives on the system
+     * @returns {Array} Array of drive letters
+     */
     GetSystemDrives() {
         systemDrives := []
         driveList := DriveGetList("FIXED")
@@ -212,35 +212,35 @@ class DiskSpaceMonitor {
         for index, driveLetter in StrSplit(driveList) {
             drive := driveLetter . ":"
             if (DriveGetStatus(drive) = "Ready")
-            systemDrives.Push(drive)
+                systemDrives.Push(drive)
         }
 
         return systemDrives
     }
 
     /**
-    * @method StartMonitoring
-    * @description Starts the disk space monitoring
-    */
+     * @method StartMonitoring
+     * @description Starts the disk space monitoring
+     */
     StartMonitoring() {
         if (this.isMonitoring)
-        return
+            return
 
         this.isMonitoring := true
         this.CheckDiskSpace()
         SetTimer(() => this.CheckDiskSpace(), this.checkInterval)
 
         MsgBox("Disk space monitoring started.`nThreshold: " . this.threshold . "% free space",
-        "Monitor Started", "Icon!")
+            "Monitor Started", "Icon!")
     }
 
     /**
-    * @method StopMonitoring
-    * @description Stops the disk space monitoring
-    */
+     * @method StopMonitoring
+     * @description Stops the disk space monitoring
+     */
     StopMonitoring() {
         if (!this.isMonitoring)
-        return
+            return
 
         this.isMonitoring := false
         SetTimer(() => this.CheckDiskSpace(), 0)
@@ -249,9 +249,9 @@ class DiskSpaceMonitor {
     }
 
     /**
-    * @method CheckDiskSpace
-    * @description Checks disk space for all monitored drives
-    */
+     * @method CheckDiskSpace
+     * @description Checks disk space for all monitored drives
+     */
     CheckDiskSpace() {
         lowSpaceDrives := []
 
@@ -278,19 +278,19 @@ class DiskSpaceMonitor {
     }
 
     /**
-    * @method ShowLowSpaceAlert
-    * @description Shows alert for low disk space
-    * @param {Array} drives - Array of drives with low space
-    */
+     * @method ShowLowSpaceAlert
+     * @description Shows alert for low disk space
+     * @param {Array} drives - Array of drives with low space
+     */
     ShowLowSpaceAlert(drives) {
         message := "⚠️ LOW DISK SPACE WARNING ⚠️`n`n"
         message .= "The following drives are running low on space:`n`n"
 
         for driveInfo in drives {
             message .= Format("Drive {1}: Only {2}% ({3} GB) free`n",
-            driveInfo.Drive,
-            Round(driveInfo.FreePercent, 1),
-            driveInfo.FreeGB
+                driveInfo.Drive,
+                Round(driveInfo.FreePercent, 1),
+                driveInfo.FreeGB
             )
         }
 
@@ -318,19 +318,19 @@ Example3_DiskSpaceMonitor() {
 ; ===================================================================================================
 
 /**
-* @function CheckDriveStatus
-* @description Checks and reports the status of a drive
-* @param {String} DriveLetter - The drive letter to check
-* @returns {Object} Object containing status information
-*
-* Status values:
-* - "Ready": Drive is ready for use
-* - "NotReady": Drive exists but is not ready (e.g., no media)
-* - "" (empty): Drive does not exist
-*/
+ * @function CheckDriveStatus
+ * @description Checks and reports the status of a drive
+ * @param {String} DriveLetter - The drive letter to check
+ * @returns {Object} Object containing status information
+ * 
+ * Status values:
+ * - "Ready": Drive is ready for use
+ * - "NotReady": Drive exists but is not ready (e.g., no media)
+ * - "" (empty): Drive does not exist
+ */
 CheckDriveStatus(DriveLetter) {
     if !InStr(DriveLetter, ":")
-    DriveLetter .= ":"
+        DriveLetter .= ":"
 
     status := DriveGetStatus(DriveLetter)
 
@@ -355,21 +355,21 @@ CheckDriveStatus(DriveLetter) {
 }
 
 /**
-* @function WaitForDriveReady
-* @description Waits for a drive to become ready
-* @param {String} DriveLetter - The drive letter to wait for
-* @param {Number} timeout - Maximum time to wait in milliseconds (default: 30000)
-* @returns {Boolean} True if drive became ready, false if timeout
-*/
+ * @function WaitForDriveReady
+ * @description Waits for a drive to become ready
+ * @param {String} DriveLetter - The drive letter to wait for
+ * @param {Number} timeout - Maximum time to wait in milliseconds (default: 30000)
+ * @returns {Boolean} True if drive became ready, false if timeout
+ */
 WaitForDriveReady(DriveLetter, timeout := 30000) {
     if !InStr(DriveLetter, ":")
-    DriveLetter .= ":"
+        DriveLetter .= ":"
 
     startTime := A_TickCount
 
     while ((A_TickCount - startTime) < timeout) {
         if (DriveGetStatus(DriveLetter) = "Ready")
-        return true
+            return true
 
         Sleep(500)
     }
@@ -388,9 +388,9 @@ Example4_DriveStatusCheck() {
     for drive in drives {
         statusInfo := CheckDriveStatus(drive)
         report .= Format("Drive {1}: {2}`n  {3}`n`n",
-        statusInfo.Drive,
-        statusInfo.Status,
-        statusInfo.Message
+            statusInfo.Drive,
+            statusInfo.Status,
+            statusInfo.Message
         )
     }
 
@@ -402,12 +402,12 @@ Example4_DriveStatusCheck() {
 ; ===================================================================================================
 
 /**
-* @function CreateDiskUsageBar
-* @description Creates a text-based progress bar for disk usage
-* @param {Number} usagePercent - The usage percentage (0-100)
-* @param {Number} barLength - Length of the bar in characters (default: 50)
-* @returns {String} ASCII progress bar
-*/
+ * @function CreateDiskUsageBar
+ * @description Creates a text-based progress bar for disk usage
+ * @param {Number} usagePercent - The usage percentage (0-100)
+ * @param {Number} barLength - Length of the bar in characters (default: 50)
+ * @returns {String} ASCII progress bar
+ */
 CreateDiskUsageBar(usagePercent, barLength := 50) {
     filledLength := Round((usagePercent / 100) * barLength)
     emptyLength := barLength - filledLength
@@ -421,13 +421,13 @@ CreateDiskUsageBar(usagePercent, barLength := 50) {
 }
 
 /**
-* @function ShowDiskUsageVisualization
-* @description Shows a visual representation of disk usage
-* @param {String} DriveLetter - The drive to visualize
-*/
+ * @function ShowDiskUsageVisualization
+ * @description Shows a visual representation of disk usage
+ * @param {String} DriveLetter - The drive to visualize
+ */
 ShowDiskUsageVisualization(DriveLetter) {
     if !InStr(DriveLetter, ":")
-    DriveLetter .= ":"
+        DriveLetter .= ":"
 
     ; Check if drive is ready
     if (DriveGetStatus(DriveLetter) != "Ready") {
@@ -456,11 +456,11 @@ ShowDiskUsageVisualization(DriveLetter) {
     ║                                                          ║
     ╚══════════════════════════════════════════════════════════╝
     )",
-    info.Drive,
-    info.CapacityGB,
-    usageBar,
-    info.UsedSpaceGB, info.UsagePercent,
-    info.FreeSpaceGB, info.FreePercent
+        info.Drive,
+        info.CapacityGB,
+        usageBar,
+        info.UsedSpaceGB, info.UsagePercent,
+        info.FreeSpaceGB, info.FreePercent
     )
 
     MsgBox(visualization, "Disk Usage", "Icon!")
@@ -476,11 +476,11 @@ Example5_DiskVisualization() {
 ; ===================================================================================================
 
 /**
-* @function CompareDriveSpace
-* @description Compares space usage between multiple drives
-* @param {Array} drives - Array of drive letters to compare
-* @returns {Object} Comparison statistics
-*/
+ * @function CompareDriveSpace
+ * @description Compares space usage between multiple drives
+ * @param {Array} drives - Array of drive letters to compare
+ * @returns {Object} Comparison statistics
+ */
 CompareDriveSpace(drives) {
     driveInfos := []
     totalCapacity := 0
@@ -490,7 +490,7 @@ CompareDriveSpace(drives) {
     ; Collect information for each drive
     for drive in drives {
         if !InStr(drive, ":")
-        drive .= ":"
+            drive .= ":"
 
         if (DriveGetStatus(drive) = "Ready") {
             try {
@@ -515,9 +515,9 @@ CompareDriveSpace(drives) {
 }
 
 /**
-* @function ShowDriveComparison
-* @description Displays a comparison report of multiple drives
-*/
+ * @function ShowDriveComparison
+ * @description Displays a comparison report of multiple drives
+ */
 ShowDriveComparison() {
     ; Compare all fixed drives
     allDrives := StrSplit(DriveGetList("FIXED"))
@@ -530,11 +530,11 @@ ShowDriveComparison() {
     ; Individual drive details
     for info in comparison.Drives {
         report .= Format("{1}: {2} GB total, {3} GB used ({4}%), {5} GB free`n",
-        info.Drive,
-        info.CapacityGB,
-        info.UsedSpaceGB,
-        info.UsagePercent,
-        info.FreeSpaceGB
+            info.Drive,
+            info.CapacityGB,
+            info.UsedSpaceGB,
+            info.UsagePercent,
+            info.FreeSpaceGB
         )
     }
 
@@ -555,17 +555,17 @@ ShowDriveComparison() {
 ; ===================================================================================================
 
 /**
-* @function ExportDiskSpaceReport
-* @description Exports disk space information to a file
-* @param {String} outputPath - Path to save the report
-* @param {String} format - Format of the report ("TXT", "CSV", or "JSON")
-* @returns {Boolean} True if successful, false otherwise
-*/
+ * @function ExportDiskSpaceReport
+ * @description Exports disk space information to a file
+ * @param {String} outputPath - Path to save the report
+ * @param {String} format - Format of the report ("TXT", "CSV", or "JSON")
+ * @returns {Boolean} True if successful, false otherwise
+ */
 ExportDiskSpaceReport(outputPath, format := "TXT") {
     drives := GetAllDrivesInfo()
 
     if (drives.Length = 0)
-    return false
+        return false
 
     content := ""
 
@@ -574,12 +574,12 @@ ExportDiskSpaceReport(outputPath, format := "TXT") {
         content .= "Drive,CapacityGB,UsedGB,FreeGB,UsagePercent,FreePercent`n"
         for info in drives {
             content .= Format("{1},{2},{3},{4},{5},{6}`n",
-            info.Drive,
-            info.CapacityGB,
-            info.UsedSpaceGB,
-            info.FreeSpaceGB,
-            info.UsagePercent,
-            info.FreePercent
+                info.Drive,
+                info.CapacityGB,
+                info.UsedSpaceGB,
+                info.FreeSpaceGB,
+                info.UsagePercent,
+                info.FreePercent
             )
         }
     } else if (format = "JSON") {
@@ -627,7 +627,7 @@ Example7_ExportReport() {
     ExportDiskSpaceReport(A_Desktop . "\DiskReport_" . timestamp . ".json", "JSON")
 
     MsgBox("Disk space reports exported to desktop in TXT, CSV, and JSON formats.",
-    "Export Complete", "Icon!")
+        "Export Complete", "Icon!")
 }
 
 ; ===================================================================================================
@@ -645,3 +645,4 @@ Example7_ExportReport() {
 
 ; Press Ctrl+Alt+E to export disk report
 ; ^!e::Example7_ExportReport()
+

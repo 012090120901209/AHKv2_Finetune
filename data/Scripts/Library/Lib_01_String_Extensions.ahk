@@ -1,26 +1,26 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-
-/**
-* String Extensions - Enhanced String Operations
-*
-* Demonstrates the String library extensions that add powerful
-* methods to the native String type including slicing, counting,
-* wrapping, and functional operations.
-*
-* Source: nperovic-AHK-v2-Libraries/Lib/String.ahk
-* Inspired by: https://github.com/nperovic/AHK-v2-Libraries
-*/
-
 #Include <String>
 
+/**
+ * String Extensions - Enhanced String Operations
+ * 
+ * Demonstrates the String library extensions that add powerful
+ * methods to the native String type including slicing, counting,
+ * wrapping, and functional operations.
+ * 
+ * Source: nperovic-AHK-v2-Libraries/Lib/String.ahk
+ * Inspired by: https://github.com/nperovic/AHK-v2-Libraries
+ */
+
+
 MsgBox("String Extensions Demo`n`n"
-. "This demonstrates enhanced string operations:`n"
-. "- Character/substring indexing`n"
-. "- Reverse, center, wrap`n"
-. "- Count occurrences`n"
-. "- Remove duplicates`n"
-. "- Contains checking", , "T5")
+    . "This demonstrates enhanced string operations:`n"
+    . "- Character/substring indexing`n"
+    . "- Reverse, center, wrap`n"
+    . "- Count occurrences`n"
+    . "- Remove duplicates`n"
+    . "- Contains checking", , "T5")
 
 ; ===============================================
 ; CHARACTER AND SUBSTRING INDEXING
@@ -30,16 +30,16 @@ text := "Hello World"
 
 ; Get individual character (like Python)
 MsgBox("Character indexing:`n`n"
-. "text := 'Hello World'`n"
-. "text[1] = '" text[1] "'`n"
-. "text[7] = '" text[7] "'`n"
-. "text[-1] = '" text[-1] "' (last char)", , "T4")
+    . "text := 'Hello World'`n"
+    . "text[1] = '" text[1] "'`n"
+    . "text[7] = '" text[7] "'`n"
+    . "text[-1] = '" text[-1] "' (last char)", , "T4")
 
 ; Get substring with slice notation
 MsgBox("Substring slicing:`n`n"
-. "text[1, 5] = '" text[1, 5] "'`n"
-. "text[7, 11] = '" text[7, 11] "'`n"
-. "text[1, -1] = '" text[1, -1] "' (except last)", , "T4")
+    . "text[1, 5] = '" text[1, 5] "'`n"
+    . "text[7, 11] = '" text[7, 11] "'`n"
+    . "text[1, -1] = '" text[1, -1] "' (except last)", , "T4")
 
 ; ===============================================
 ; STRING MANIPULATION
@@ -48,24 +48,24 @@ MsgBox("Substring slicing:`n`n"
 ; Reverse string
 reversed := text.Reverse()
 MsgBox("Reverse:`n`n"
-. "Original: " text "`n"
-. "Reversed: " reversed, , "T3")
+    . "Original: " text "`n"
+    . "Reversed: " reversed, , "T3")
 
 ; Center text (pad with spaces)
 centered := text.Center(21)  ; Total width 21
 MsgBox("Center text:`n`n"
-. "Original length: " StrLen(text) "`n"
-. "Centered (21 width):`n"
-. "[" centered "]", , "T3")
+    . "Original length: " StrLen(text) "`n"
+    . "Centered (21 width):`n"
+    . "[" centered "]", , "T3")
 
 ; Count occurrences
 sentence := "The quick brown fox jumps over the lazy dog"
 count_o := sentence.Count("o")
 count_the := sentence.Count("the")
 MsgBox("Count occurrences:`n`n"
-. "Sentence: " sentence "`n`n"
-. "Count 'o': " count_o "`n"
-. "Count 'the': " count_the " (case-sensitive)", , "T4")
+    . "Sentence: " sentence "`n`n"
+    . "Count 'o': " count_o "`n"
+    . "Count 'the': " count_the " (case-sensitive)", , "T4")
 
 ; ===============================================
 ; LINE OPERATIONS
@@ -81,8 +81,8 @@ MsgBox("Line wrapping at 40 characters:`n`n" wrapped, , "T5")
 duplicateText := "Line 1`nLine 2`nLine 1`nLine 3`nLine 2`nLine 4"
 unique := duplicateText.RemoveDuplicates()
 MsgBox("Remove duplicate lines:`n`n"
-. "Original:`n" duplicateText "`n`n"
-. "Unique:`n" unique, , "T5")
+    . "Original:`n" duplicateText "`n`n"
+    . "Unique:`n" unique, , "T5")
 
 ; ===============================================
 ; CONTAINS CHECKING
@@ -94,10 +94,10 @@ hasDomain := email.Contains("example")
 hasMultiple := email.Contains("@", ".com")  ; Check multiple
 
 MsgBox("Contains checking:`n`n"
-. "Email: " email "`n`n"
-. "Contains '@': " (hasAt ? "Yes" : "No") "`n"
-. "Contains 'example': " (hasDomain ? "Yes" : "No") "`n"
-. "Contains both '@' and '.com': " (hasMultiple ? "Yes" : "No"), , "T4")
+    . "Email: " email "`n`n"
+    . "Contains '@': " (hasAt ? "Yes" : "No") "`n"
+    . "Contains 'example': " (hasDomain ? "Yes" : "No") "`n"
+    . "Contains both '@' and '.com': " (hasMultiple ? "Yes" : "No"), , "T4")
 
 ; ===============================================
 ; PRACTICAL EXAMPLE: TEXT PROCESSOR
@@ -114,9 +114,9 @@ sampleText := "AutoHotkey is amazing! AutoHotkey makes automation easy. Try Auto
 Send(sampleText)
 
 result := MsgBox("Text processing demo:`n`n"
-. "Count 'AutoHotkey': " sampleText.Count("AutoHotkey") "`n"
-. "Contains 'automation': " (sampleText.Contains("automation") ? "Yes" : "No") "`n`n"
-. "Click OK to see reversed text", "OK")
+    . "Count 'AutoHotkey': " sampleText.Count("AutoHotkey") "`n"
+    . "Contains 'automation': " (sampleText.Contains("automation") ? "Yes" : "No") "`n`n"
+    . "Click OK to see reversed text", "OK")
 
 ; Show reversed
 Send("^a")
@@ -204,3 +204,4 @@ Send(reversed)
 *     ✅ Validate before processing
 *     ✅ Handle empty strings
 */
+

@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Without() - Exclude values from array (Standalone Implementation)
-*
-* Creates an array excluding all given values.
-*/
+ * Without() - Exclude values from array (Standalone Implementation)
+ * 
+ * Creates an array excluding all given values.
+ */
 
 Without(array, excludeValues*) {
     result := []

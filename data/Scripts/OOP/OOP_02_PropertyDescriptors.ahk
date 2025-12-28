@@ -2,28 +2,28 @@
 #SingleInstance Force
 
 /**
-* Property Descriptors - Temperature Converter
-*
-* Demonstrates get/set property descriptors for computed properties.
-* Temperature class with Celsius, Fahrenheit, and Kelvin conversions.
-*
-* Source: AHK_Notes/Concepts/property-get-set-descriptors.md
-*/
+ * Property Descriptors - Temperature Converter
+ * 
+ * Demonstrates get/set property descriptors for computed properties.
+ * Temperature class with Celsius, Fahrenheit, and Kelvin conversions.
+ * 
+ * Source: AHK_Notes/Concepts/property-get-set-descriptors.md
+ */
 
 ; Create temperature object
 temp := Temperature(25)  ; 25°C
 
 MsgBox("Initial: 25°C`n`n"
-. "Celsius: " temp.Celsius "`n"
-. "Fahrenheit: " temp.Fahrenheit "`n"
-. "Kelvin: " temp.Kelvin, , "T5")
+    . "Celsius: " temp.Celsius "`n"
+    . "Fahrenheit: " temp.Fahrenheit "`n"
+    . "Kelvin: " temp.Kelvin, , "T5")
 
 ; Set via Fahrenheit
 temp.Fahrenheit := 68
 MsgBox("After setting to 68°F:`n`n"
-. "Celsius: " temp.Celsius "`n"
-. "Fahrenheit: " temp.Fahrenheit "`n"
-. "Kelvin: " temp.Kelvin, , "T5")
+    . "Celsius: " temp.Celsius "`n"
+    . "Fahrenheit: " temp.Fahrenheit "`n"
+    . "Kelvin: " temp.Kelvin, , "T5")
 
 ; Test validation (absolute zero)
 try {
@@ -33,9 +33,9 @@ try {
 }
 
 /**
-* Temperature Class
-* Stores in Celsius, computes other units via descriptors
-*/
+ * Temperature Class
+ * Stores in Celsius, computes other units via descriptors
+ */
 class Temperature {
     _celsius := 0
 
@@ -44,26 +44,26 @@ class Temperature {
     }
 
     /**
-    * Define properties in static constructor
-    */
+     * Define properties in static constructor
+     */
     static __New() {
         ; Celsius property (stored value)
         this.Prototype.DefineProp("Celsius", {
             get: (this) => this._celsius,
             set: (this, value) {
                 if (value < -273.15)
-                throw ValueError("Below absolute zero (-273.15°C)")
+                    throw ValueError("Below absolute zero (-273.15°C)")
                 this._celsius := value
             }
         })
 
         ; Fahrenheit property (computed)
         this.Prototype.DefineProp("Fahrenheit", {
-            get: (this) => (this._celsius * 9/5) + 32,
+            get: (this) => (this._celsius * 9 / 5) + 32,
             set: (this, value) {
-                celsius := (value - 32) * 5/9
+                celsius := (value - 32) * 5 / 9
                 if (celsius < -273.15)
-                throw ValueError("Below absolute zero")
+                    throw ValueError("Below absolute zero")
                 this._celsius := celsius
             }
         })
@@ -74,7 +74,7 @@ class Temperature {
             set: (this, value) {
                 celsius := value - 273.15
                 if (celsius < -273.15)
-                throw ValueError("Below absolute zero (0K)")
+                    throw ValueError("Below absolute zero (0K)")
                 this._celsius := celsius
             }
         })
@@ -105,3 +105,4 @@ class Temperature {
 *    ✅ Validation enforced
 *    ✅ Single source of truth
 */
+

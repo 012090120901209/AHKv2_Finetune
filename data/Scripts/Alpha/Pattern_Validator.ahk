@@ -30,15 +30,15 @@ class FieldValidator {
         this.rules.Push(Map("type", "pattern", "value", regex, "msg", msg))
         return this
     }
-    
+
     Email(msg := "Invalid email format") {
         return this.Pattern("^\w+@\w+\.\w+$", msg)
     }
-    
+
     Numeric(msg := "Must be a number") {
         return this.Pattern("^\d+$", msg)
     }
-    
+
     Custom(fn, msg := "Validation failed") {
         this.rules.Push(Map("type", "custom", "fn", fn, "msg", msg))
         return this

@@ -50,10 +50,10 @@ class Pipeline {
     Reduce(fn, initial) {
         result := this.Execute()
         accumulator := initial
-        
+
         for item in result
             accumulator := fn(accumulator, item)
-        
+
         return accumulator
     }
 
@@ -165,7 +165,7 @@ Curry(fn, arity := 2) {
 _curry(fn, arity, args) {
     if args.Length >= arity
         return fn(args*)
-    
+
     ; Return a closure that captures fn, arity, and args
     return CurriedStep.Bind(fn, arity, args)
 }

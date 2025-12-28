@@ -27,24 +27,24 @@ class User {
     }
 
     static GetStats() => Format("Total: {1}, Active: {2}, Inactive: {3}",
-    User.totalUsers, User.activeUsers, User.totalUsers - User.activeUsers)
+        User.totalUsers, User.activeUsers, User.totalUsers - User.activeUsers)
 
     static FindById(id) => User.userRegistry.Has(id) ? User.userRegistry[id] : ""
 
     static GetAllUsers() {
         users := []
         for id, user in User.userRegistry
-        users.Push(Format("#{1}: {2} ({3})", id, user.username, user.active ? "active" : "inactive"))
+            users.Push(Format("#{1}: {2} ({3})", id, user.username, user.active ? "active" : "inactive"))
         return users
     }
 }
 
 class Config {
     static settings := Map(
-    "appName", "MyApp",
-    "version", "1.0.0",
-    "debug", false,
-    "maxConnections", 100
+        "appName", "MyApp",
+        "version", "1.0.0",
+        "debug", false,
+        "maxConnections", 100
     )
 
     static Get(key, default := "") => Config.settings.Has(key) ? Config.settings[key] : default

@@ -29,12 +29,12 @@ class Query {
         this.operations.Push(Map("type", "take", "count", count))
         return this
     }
-    
+
     Skip(count) {
         this.operations.Push(Map("type", "skip", "count", count))
         return this
     }
-    
+
     Distinct() {
         this.operations.Push(Map("type", "distinct"))
         return this
@@ -42,7 +42,7 @@ class Query {
 
     ToArray() {
         result := this.source.Clone()
-        
+
         for op in this.operations {
             switch op["type"] {
                 case "where":
@@ -61,12 +61,12 @@ class Query {
         }
         return result
     }
-    
+
     First() {
         arr := this.ToArray()
         return arr.Length ? arr[1] : ""
     }
-    
+
     Count() => this.ToArray().Length
 
     ApplyWhere(arr, fn) {
@@ -100,7 +100,7 @@ class Query {
             result.Push(arr[A_Index])
         return result
     }
-    
+
     ApplySkip(arr, count) {
         result := []
         i := count + 1
@@ -108,7 +108,7 @@ class Query {
             result.Push(arr[i++])
         return result
     }
-    
+
     ApplyDistinct(arr) {
         seen := Map()
         result := []

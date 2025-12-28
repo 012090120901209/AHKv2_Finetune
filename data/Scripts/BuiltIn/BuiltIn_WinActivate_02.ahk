@@ -1,30 +1,30 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinActivate Examples - Part 2: Activate by Window Class
-* ============================================================================
-*
-* This script demonstrates how to use WinActivate with window classes.
-* Window classes are more reliable than titles for identifying windows,
-* as they don't change when the window content changes.
-*
-* @description Advanced window activation using class names and combinations
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinActivate Examples - Part 2: Activate by Window Class
+ * ============================================================================
+ * 
+ * This script demonstrates how to use WinActivate with window classes.
+ * Window classes are more reliable than titles for identifying windows,
+ * as they don't change when the window content changes.
+ * 
+ * @description Advanced window activation using class names and combinations
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Activate by Window Class
 ; ============================================================================
 
 /**
-* Activates windows using their window class
-* Window classes are internal identifiers that remain constant
-*
-* @hotkey F1 - Activate Notepad by class
-*/
+ * Activates windows using their window class
+ * Window classes are internal identifiers that remain constant
+ * 
+ * @hotkey F1 - Activate Notepad by class
+ */
 F1:: {
     try {
         ; Notepad's window class is "Notepad"
@@ -50,11 +50,11 @@ F1:: {
 ; ============================================================================
 
 /**
-* Uses multiple criteria to identify windows precisely
-* Combining class and title helps avoid ambiguity
-*
-* @hotkey F2 - Activate specific window using class and title
-*/
+ * Uses multiple criteria to identify windows precisely
+ * Combining class and title helps avoid ambiguity
+ * 
+ * @hotkey F2 - Activate specific window using class and title
+ */
 F2:: {
     try {
         ; Find Windows Explorer window showing a specific folder
@@ -74,10 +74,10 @@ F2:: {
 }
 
 /**
-* Gets the current path from the active Explorer window
-*
-* @returns {String} Current folder path
-*/
+ * Gets the current path from the active Explorer window
+ * 
+ * @returns {String} Current folder path
+ */
 GetExplorerPath() {
     try {
         for window in ComObject("Shell.Application").Windows {
@@ -96,18 +96,18 @@ GetExplorerPath() {
 ; ============================================================================
 
 /**
-* Switches between common applications using their window classes
-* Creates a reliable app switcher independent of window titles
-*
-* @hotkey F3 - Show application class switcher
-*/
+ * Switches between common applications using their window classes
+ * Creates a reliable app switcher independent of window titles
+ * 
+ * @hotkey F3 - Show application class switcher
+ */
 F3:: {
     ShowClassSwitcher()
 }
 
 /**
-* Displays a GUI to switch between applications by class
-*/
+ * Displays a GUI to switch between applications by class
+ */
 ShowClassSwitcher() {
     static classSwitcherGui := ""
 
@@ -120,14 +120,14 @@ ShowClassSwitcher() {
 
     ; Define common application classes
     appClasses := Map(
-    "Notepad", "ahk_class Notepad",
-    "Calculator", "ahk_class ApplicationFrameWindow ahk_exe ApplicationFrameHost.exe",
-    "File Explorer", "ahk_class CabinetWClass",
-    "Task Manager", "ahk_class TaskManagerWindow",
-    "Chrome", "ahk_class Chrome_WidgetWin_1",
-    "Firefox", "ahk_class MozillaWindowClass",
-    "Visual Studio Code", "ahk_class Chrome_WidgetWin_1 ahk_exe Code.exe",
-    "Command Prompt", "ahk_class ConsoleWindowClass"
+        "Notepad", "ahk_class Notepad",
+        "Calculator", "ahk_class ApplicationFrameWindow ahk_exe ApplicationFrameHost.exe",
+        "File Explorer", "ahk_class CabinetWClass",
+        "Task Manager", "ahk_class TaskManagerWindow",
+        "Chrome", "ahk_class Chrome_WidgetWin_1",
+        "Firefox", "ahk_class MozillaWindowClass",
+        "Visual Studio Code", "ahk_class Chrome_WidgetWin_1 ahk_exe Code.exe",
+        "Command Prompt", "ahk_class ConsoleWindowClass"
     )
 
     classSwitcherGui.Add("Text", "w350", "Select application to activate:")
@@ -178,18 +178,18 @@ ShowClassSwitcher() {
 ; ============================================================================
 
 /**
-* Creates a tool to inspect window classes
-* Useful for discovering class names of windows
-*
-* @hotkey F4 - Show window class inspector
-*/
+ * Creates a tool to inspect window classes
+ * Useful for discovering class names of windows
+ * 
+ * @hotkey F4 - Show window class inspector
+ */
 F4:: {
     ShowClassInspector()
 }
 
 /**
-* Displays window class information for the window under cursor
-*/
+ * Displays window class information for the window under cursor
+ */
 ShowClassInspector() {
     static inspectorGui := ""
     static updateTimer := 0
@@ -291,24 +291,24 @@ ShowClassInspector() {
 ; ============================================================================
 
 /**
-* Cycles through browser windows based on their class
-* Works with multiple browsers
-*
-* @hotkey F5 - Cycle through browser windows
-*/
+ * Cycles through browser windows based on their class
+ * Works with multiple browsers
+ * 
+ * @hotkey F5 - Cycle through browser windows
+ */
 F5:: {
     CycleBrowserWindows()
 }
 
 /**
-* Cycles through all browser windows
-*/
+ * Cycles through all browser windows
+ */
 CycleBrowserWindows() {
     static lastBrowser := ""
     static browsers := Map(
-    "Chrome", "ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe",
-    "Firefox", "ahk_class MozillaWindowClass",
-    "Edge", "ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe"
+        "Chrome", "ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe",
+        "Firefox", "ahk_class MozillaWindowClass",
+        "Edge", "ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe"
     )
 
     ; Find next available browser
@@ -349,20 +349,20 @@ CycleBrowserWindows() {
 ; ============================================================================
 
 /**
-* Activates the most recently created window of a specific class
-* Useful when multiple instances exist
-*
-* @hotkey F6 - Activate newest Notepad window
-*/
+ * Activates the most recently created window of a specific class
+ * Useful when multiple instances exist
+ * 
+ * @hotkey F6 - Activate newest Notepad window
+ */
 F6:: {
     ActivateNewestByClass("Notepad")
 }
 
 /**
-* Activates the most recently created window of a class
-*
-* @param {String} className - Window class name
-*/
+ * Activates the most recently created window of a class
+ * 
+ * @param {String} className - Window class name
+ */
 ActivateNewestByClass(className) {
     try {
         criteria := "ahk_class " className
@@ -393,18 +393,18 @@ ActivateNewestByClass(className) {
 ; ============================================================================
 
 /**
-* Smart launcher that activates if exists, launches if not
-* Uses class for reliable identification
-*
-* @hotkey F7 - Launch/activate application manager
-*/
+ * Smart launcher that activates if exists, launches if not
+ * Uses class for reliable identification
+ * 
+ * @hotkey F7 - Launch/activate application manager
+ */
 F7:: {
     ShowAppManager()
 }
 
 /**
-* Displays application manager GUI
-*/
+ * Displays application manager GUI
+ */
 ShowAppManager() {
     static managerGui := ""
 
@@ -417,10 +417,10 @@ ShowAppManager() {
 
     ; Define applications with their launch commands and class
     apps := Map(
-    "Notepad", {exe: "notepad.exe", class: "ahk_class Notepad"},
-    "Calculator", {exe: "calc.exe", class: "ahk_exe ApplicationFrameHost.exe"},
-    "Paint", {exe: "mspaint.exe", class: "ahk_class MSPaintApp"},
-    "Command Prompt", {exe: "cmd.exe", class: "ahk_class ConsoleWindowClass"}
+        "Notepad", { exe: "notepad.exe", class: "ahk_class Notepad" },
+        "Calculator", { exe: "calc.exe", class: "ahk_exe ApplicationFrameHost.exe" },
+        "Paint", { exe: "mspaint.exe", class: "ahk_class MSPaintApp" },
+        "Command Prompt", { exe: "cmd.exe", class: "ahk_class ConsoleWindowClass" }
     )
 
     managerGui.Add("Text", "w400", "Select an application:")
@@ -474,7 +474,7 @@ ShowAppManager() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

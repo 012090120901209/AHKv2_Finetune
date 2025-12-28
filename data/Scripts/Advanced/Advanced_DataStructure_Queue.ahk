@@ -17,14 +17,14 @@ class Queue {
     ; Remove and return item from front of queue
     Dequeue() {
         if (this.IsEmpty())
-        throw Error("Queue is empty")
+            throw Error("Queue is empty")
         return this.items.RemoveAt(1)
     }
 
     ; View front item without removing
     Peek() {
         if (this.IsEmpty())
-        throw Error("Queue is empty")
+            throw Error("Queue is empty")
         return this.items[1]
     }
 
@@ -53,7 +53,7 @@ class Queue {
 class PriorityQueue extends Queue {
     ; Enqueue with priority (lower number = higher priority)
     Enqueue(item, priority := 5) {
-        element := {item: item, priority: priority}
+        element := { item: item, priority: priority }
 
         ; Find correct position based on priority
         inserted := false
@@ -67,13 +67,13 @@ class PriorityQueue extends Queue {
 
         ; If not inserted, add to end
         if (!inserted)
-        this.items.Push(element)
+            this.items.Push(element)
     }
 
     ; Override Dequeue to return just the item
     Dequeue() {
         if (this.IsEmpty())
-        throw Error("Queue is empty")
+            throw Error("Queue is empty")
         element := this.items.RemoveAt(1)
         return element.item
     }
@@ -81,7 +81,7 @@ class PriorityQueue extends Queue {
     ; Override Peek
     Peek() {
         if (this.IsEmpty())
-        throw Error("Queue is empty")
+            throw Error("Queue is empty")
         return this.items[1].item
     }
 }
@@ -112,7 +112,7 @@ queueGui.Add("Button", "x230 y75 w100", "Clear").OnEvent("Click", ClearQueue)
 queueGui.Add("Button", "x340 y75 w100", "Process All").OnEvent("Click", ProcessAll)
 
 ; Queue display
-queueGui.Add("Text", "x10 y115", "Queue Contents (Front → Back):")
+queueGui.Add("Text", "x10 y115", "Queue Contents (Front â†’ Back):")
 queueDisplay := queueGui.Add("ListView", "x10 y135 w540 h200", ["Position", "Item", "Priority"])
 
 ; Stats

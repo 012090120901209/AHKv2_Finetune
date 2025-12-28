@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Last() - Get last element (Standalone Implementation)
-*
-* Gets the last element of array.
-*/
+ * Last() - Get last element (Standalone Implementation)
+ * 
+ * Gets the last element of array.
+ */
 
 Last(array) {
     if (array.Length > 0) {
@@ -25,5 +25,5 @@ result3 := Last([])
 ; => ""
 
 MsgBox("Last of [1,2,3]: " result1 "`n"
-. "Last of names: " result2 "`n"
-. "Last of []: '" result3 "'")
+    . "Last of names: " result2 "`n"
+    . "Last of []: '" result3 "'")

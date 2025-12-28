@@ -1,25 +1,25 @@
 /**
-* ============================================================================
-* AutoHotkey v2 #SingleInstance Directive - Instance Control
-* ============================================================================
-*
-* @description Comprehensive examples demonstrating #SingleInstance directive
-*              for controlling multiple script instances in AutoHotkey v2
-*
-* @author AHK v2 Documentation Team
-* @version 2.0.0
-* @date 2025-01-15
-*
-* DIRECTIVE: #SingleInstance
-* PURPOSE: Control behavior when script is launched multiple times
-* OPTIONS:
-*   - Force: Automatically replace old instance
-*   - Ignore: Keep old instance, don't start new one
-*   - Prompt: Ask user what to do
-*   - Off: Allow multiple instances
-*
-* @reference https://www.autohotkey.com/docs/v2/lib/_SingleInstance.htm
-*/
+ * ============================================================================
+ * AutoHotkey v2 #SingleInstance Directive - Instance Control
+ * ============================================================================
+ * 
+ * @description Comprehensive examples demonstrating #SingleInstance directive
+ *              for controlling multiple script instances in AutoHotkey v2
+ * 
+ * @author AHK v2 Documentation Team
+ * @version 2.0.0
+ * @date 2025-01-15
+ * 
+ * DIRECTIVE: #SingleInstance
+ * PURPOSE: Control behavior when script is launched multiple times
+ * OPTIONS:
+ *   - Force: Automatically replace old instance
+ *   - Ignore: Keep old instance, don't start new one
+ *   - Prompt: Ask user what to do
+ *   - Off: Allow multiple instances
+ * 
+ * @reference https://www.autohotkey.com/docs/v2/lib/_SingleInstance.htm
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -27,27 +27,27 @@
 Demonstrate Force mode
 
 /**
-* ============================================================================
-* Example 1: Force Mode - Automatic Replacement
-* ============================================================================
-*
-* @description Automatically replace old instance with new one
-* @concept Auto-replacement, seamless updates, no prompts
-*/
+ * ============================================================================
+ * Example 1: Force Mode - Automatic Replacement
+ * ============================================================================
+ * 
+ * @description Automatically replace old instance with new one
+ * @concept Auto-replacement, seamless updates, no prompts
+ */
 
 /**
-* Instance manager for tracking script instances
-* @class
-*/
+ * Instance manager for tracking script instances
+ * @class
+ */
 class InstanceManager {
     static StartTime := A_Now
     static InstanceID := Random(10000, 99999)
     static ReloadCount := 0
 
     /**
-    * Initialize instance tracking
-    * @returns {void}
-    */
+     * Initialize instance tracking
+     * @returns {void}
+     */
     static Initialize() {
         ; Check if this is a reload
         if (FileExist(A_Temp "\AHK_Instance.txt")) {
@@ -68,9 +68,9 @@ class InstanceManager {
     }
 
     /**
-    * Log instance start
-    * @returns {void}
-    */
+     * Log instance start
+     * @returns {void}
+     */
     static LogStart() {
         log := "Instance started:`n"
         log .= "  ID: " this.InstanceID "`n"
@@ -82,9 +82,9 @@ class InstanceManager {
     }
 
     /**
-    * Get instance information
-    * @returns {Object} Instance details
-    */
+     * Get instance information
+     * @returns {Object} Instance details
+     */
     static GetInfo() {
         return {
             ID: this.InstanceID,
@@ -96,9 +96,9 @@ class InstanceManager {
     }
 
     /**
-    * Get uptime in seconds
-    * @returns {Integer} Uptime in seconds
-    */
+     * Get uptime in seconds
+     * @returns {Integer} Uptime in seconds
+     */
     static GetUptime() {
         start := FormatTime(this.StartTime, "yyyyMMddHHmmss")
         now := FormatTime(A_Now, "yyyyMMddHHmmss")
@@ -106,9 +106,9 @@ class InstanceManager {
     }
 
     /**
-    * Display instance information
-    * @returns {void}
-    */
+     * Display instance information
+     * @returns {void}
+     */
     static ShowInfo() {
         info := this.GetInfo()
 
@@ -131,26 +131,26 @@ class InstanceManager {
 
 InstanceManager.Initialize()
 
-^!i::InstanceManager.ShowInfo()
+^!i:: InstanceManager.ShowInfo()
 
 /**
-* ============================================================================
-* Example 2: Force Mode Benefits and Use Cases
-* ============================================================================
-*
-* @description Demonstrate when Force mode is beneficial
-* @concept Development workflow, testing, quick updates
-*/
+ * ============================================================================
+ * Example 2: Force Mode Benefits and Use Cases
+ * ============================================================================
+ * 
+ * @description Demonstrate when Force mode is beneficial
+ * @concept Development workflow, testing, quick updates
+ */
 
 /**
-* Development helper for quick script updates
-* @class
-*/
+ * Development helper for quick script updates
+ * @class
+ */
 class DevHelper {
     /**
-    * Quick reload with notification
-    * @returns {void}
-    */
+     * Quick reload with notification
+     * @returns {void}
+     */
     static QuickReload() {
         TrayTip("Reloading script...", "Force Mode", "Iconi Mute")
 
@@ -162,14 +162,14 @@ class DevHelper {
     }
 
     /**
-    * Save state before reload
-    * @returns {void}
-    */
+     * Save state before reload
+     * @returns {void}
+     */
     static SaveState() {
         ; Example: Save window positions, settings, etc.
         state := Map(
-        "ReloadTime", A_Now,
-        "ActiveWindow", WinGetTitle("A")
+            "ReloadTime", A_Now,
+            "ActiveWindow", WinGetTitle("A")
         )
 
         ; In real application, save to file
@@ -177,18 +177,18 @@ class DevHelper {
     }
 
     /**
-    * Restore state after reload
-    * @returns {void}
-    */
+     * Restore state after reload
+     * @returns {void}
+     */
     static RestoreState() {
         ; Example: Restore saved state
         OutputDebug("State restored after reload")
     }
 
     /**
-    * Display reload information
-    * @returns {void}
-    */
+     * Display reload information
+     * @returns {void}
+     */
     static ShowReloadInfo() {
         output := "Force Mode Benefits`n"
         output .= "==================`n`n"
@@ -217,36 +217,36 @@ class DevHelper {
 }
 
 ; Quick reload hotkey
-^!r::DevHelper.QuickReload()
-^!f::DevHelper.ShowReloadInfo()
+^!r:: DevHelper.QuickReload()
+^!f:: DevHelper.ShowReloadInfo()
 
 /**
-* ============================================================================
-* Example 3: Testing Force Mode Behavior
-* ============================================================================
-*
-* @description Test and demonstrate Force mode behavior
-* @concept Testing, verification, behavior demonstration
-*/
+ * ============================================================================
+ * Example 3: Testing Force Mode Behavior
+ * ============================================================================
+ * 
+ * @description Test and demonstrate Force mode behavior
+ * @concept Testing, verification, behavior demonstration
+ */
 
 /**
-* Force mode tester
-* @class
-*/
+ * Force mode tester
+ * @class
+ */
 class ForceModeTester {
     /**
-    * Launch additional instance (will replace this one)
-    * @returns {void}
-    */
+     * Launch additional instance (will replace this one)
+     * @returns {void}
+     */
     static LaunchNewInstance() {
         currentID := InstanceManager.InstanceID
 
         MsgBox(
-        "Current Instance ID: " currentID "`n`n"
-        "Launching new instance...`n"
-        "This instance will be automatically replaced!",
-        "Force Mode Test",
-        "Iconi 3"
+            "Current Instance ID: " currentID "`n`n"
+            "Launching new instance...`n"
+            "This instance will be automatically replaced!",
+            "Force Mode Test",
+            "Iconi 3"
         )
 
         ; Launch new instance
@@ -256,9 +256,9 @@ class ForceModeTester {
     }
 
     /**
-    * Test script with modifications
-    * @returns {void}
-    */
+     * Test script with modifications
+     * @returns {void}
+     */
     static TestWithModifications() {
         output := "Force Mode Testing`n"
         output .= "==================`n`n"
@@ -277,9 +277,9 @@ class ForceModeTester {
     }
 
     /**
-    * Display comparison with other modes
-    * @returns {void}
-    */
+     * Display comparison with other modes
+     * @returns {void}
+     */
     static CompareWithOtherModes() {
         output := "#SingleInstance Mode Comparison`n"
         output .= "================================`n`n"
@@ -309,31 +309,31 @@ class ForceModeTester {
     }
 }
 
-^!+l::ForceModeTester.LaunchNewInstance()
-^!+t::ForceModeTester.TestWithModifications()
-^!+m::ForceModeTester.CompareWithOtherModes()
+^!+l:: ForceModeTester.LaunchNewInstance()
+^!+t:: ForceModeTester.TestWithModifications()
+^!+m:: ForceModeTester.CompareWithOtherModes()
 
 /**
-* ============================================================================
-* Example 4: State Preservation Across Reloads
-* ============================================================================
-*
-* @description Preserve script state across Force mode reloads
-* @concept State persistence, reload recovery, data preservation
-*/
+ * ============================================================================
+ * Example 4: State Preservation Across Reloads
+ * ============================================================================
+ * 
+ * @description Preserve script state across Force mode reloads
+ * @concept State persistence, reload recovery, data preservation
+ */
 
 /**
-* State manager for reload persistence
-* @class
-*/
+ * State manager for reload persistence
+ * @class
+ */
 class StateManager {
     static StateFile := A_Temp "\AHK_ScriptState.ini"
     static State := Map()
 
     /**
-    * Save current state
-    * @returns {void}
-    */
+     * Save current state
+     * @returns {void}
+     */
     static Save() {
         try {
             ; Write state to INI file
@@ -355,12 +355,12 @@ class StateManager {
     }
 
     /**
-    * Load previous state
-    * @returns {Boolean} True if loaded successfully
-    */
+     * Load previous state
+     * @returns {Boolean} True if loaded successfully
+     */
     static Load() {
         if (!FileExist(this.StateFile))
-        return false
+            return false
 
         try {
             lastID := IniRead(this.StateFile, "Instance", "LastID", "")
@@ -379,25 +379,25 @@ class StateManager {
     }
 
     /**
-    * Set state value
-    * @param {String} key - State key
-    * @param {Any} value - State value
-    * @returns {void}
-    */
+     * Set state value
+     * @param {String} key - State key
+     * @param {Any} value - State value
+     * @returns {void}
+     */
     static Set(key, value) {
         this.State[key] := value
         this.Save()
     }
 
     /**
-    * Get state value
-    * @param {String} key - State key
-    * @param {Any} default - Default value
-    * @returns {Any} State value
-    */
+     * Get state value
+     * @param {String} key - State key
+     * @param {Any} default - Default value
+     * @returns {Any} State value
+     */
     static Get(key, default := "") {
         if this.State.Has(key)
-        return this.State[key]
+            return this.State[key]
 
         ; Try to load from file
         if FileExist(this.StateFile) {
@@ -412,9 +412,9 @@ class StateManager {
     }
 
     /**
-    * Display state information
-    * @returns {void}
-    */
+     * Display state information
+     * @returns {void}
+     */
     static ShowState() {
         output := "Persistent State`n"
         output .= "================`n`n"
@@ -446,9 +446,9 @@ class StateManager {
     }
 
     /**
-    * Clear all state
-    * @returns {void}
-    */
+     * Clear all state
+     * @returns {void}
+     */
     static Clear() {
         this.State.Clear()
         if FileExist(this.StateFile) {
@@ -467,38 +467,38 @@ StateManager.Load()
 OnExit((*) => StateManager.Save())
 
 ; Test state persistence
-^!+s::StateManager.ShowState()
-^!+c::StateManager.Clear()
+^!+s:: StateManager.ShowState()
+^!+c:: StateManager.Clear()
 
 ; Example: Set custom state
-^!+1::StateManager.Set("TestValue", "Hello from state!")
-^!+2::MsgBox(StateManager.Get("TestValue", "No value set"), "State Value", "Iconi")
+^!+1:: StateManager.Set("TestValue", "Hello from state!")
+^!+2:: MsgBox(StateManager.Get("TestValue", "No value set"), "State Value", "Iconi")
 
 /**
-* ============================================================================
-* Example 5: Development Mode Features
-* ============================================================================
-*
-* @description Special features useful during development with Force mode
-* @concept Development tools, debugging aids, productivity
-*/
+ * ============================================================================
+ * Example 5: Development Mode Features
+ * ============================================================================
+ * 
+ * @description Special features useful during development with Force mode
+ * @concept Development tools, debugging aids, productivity
+ */
 
 /**
-* Development mode utilities
-* @class
-*/
+ * Development mode utilities
+ * @class
+ */
 class DevMode {
     static Enabled := true
     static LogFile := A_ScriptDir "\dev.log"
 
     /**
-    * Log development message
-    * @param {String} message - Message to log
-    * @returns {void}
-    */
+     * Log development message
+     * @param {String} message - Message to log
+     * @returns {void}
+     */
     static Log(message) {
         if (!this.Enabled)
-        return
+            return
 
         timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
         logEntry := timestamp " [" InstanceManager.InstanceID "] " message "`n"
@@ -511,18 +511,18 @@ class DevMode {
     }
 
     /**
-    * Log script reload
-    * @returns {void}
-    */
+     * Log script reload
+     * @returns {void}
+     */
     static LogReload() {
         this.Log("Script reloaded (count: " InstanceManager.ReloadCount ")")
     }
 
     /**
-    * Display recent log entries
-    * @param {Integer} lines - Number of lines to show
-    * @returns {void}
-    */
+     * Display recent log entries
+     * @param {Integer} lines - Number of lines to show
+     * @returns {void}
+     */
     static ShowLog(lines := 20) {
         if (!FileExist(this.LogFile)) {
             MsgBox("No log file exists yet", "Dev Log", "Iconi")
@@ -540,23 +540,23 @@ class DevMode {
             Loop (logLines.Length - startLine + 1) {
                 line := logLines[startLine + A_Index - 1]
                 if (line != "")
-                recentLines.Push(line)
+                    recentLines.Push(line)
             }
 
             output := "Recent Log Entries (last " recentLines.Length ")`n"
             output .= "====================================`n`n"
 
             for line in recentLines
-            output .= line "`n"
+                output .= line "`n"
 
             MsgBox(output, "Dev Log", "Iconi")
         }
     }
 
     /**
-    * Clear log file
-    * @returns {void}
-    */
+     * Clear log file
+     * @returns {void}
+     */
     static ClearLog() {
         if FileExist(this.LogFile) {
             try {
@@ -574,27 +574,27 @@ DevMode.LogReload()
 ; ^!+clear::DevMode.ClearLog()
 
 /**
-* ============================================================================
-* Example 6: Auto-Reload on File Change
-* ============================================================================
-*
-* @description Automatically reload script when file changes
-* @concept Auto-reload, file monitoring, development automation
-*/
+ * ============================================================================
+ * Example 6: Auto-Reload on File Change
+ * ============================================================================
+ * 
+ * @description Automatically reload script when file changes
+ * @concept Auto-reload, file monitoring, development automation
+ */
 
 /**
-* File change monitor for auto-reload
-* @class
-*/
+ * File change monitor for auto-reload
+ * @class
+ */
 class FileMonitor {
     static Enabled := false
     static LastModified := 0
     static CheckInterval := 1000
 
     /**
-    * Enable file monitoring
-    * @returns {void}
-    */
+     * Enable file monitoring
+     * @returns {void}
+     */
     static Enable() {
         this.Enabled := true
         this.LastModified := FileGetTime(A_ScriptFullPath, "M")
@@ -604,9 +604,9 @@ class FileMonitor {
     }
 
     /**
-    * Disable file monitoring
-    * @returns {void}
-    */
+     * Disable file monitoring
+     * @returns {void}
+     */
     static Disable() {
         this.Enabled := false
         SetTimer(() => this.CheckForChanges(), 0)
@@ -614,12 +614,12 @@ class FileMonitor {
     }
 
     /**
-    * Check for file changes
-    * @returns {void}
-    */
+     * Check for file changes
+     * @returns {void}
+     */
     static CheckForChanges() {
         if (!this.Enabled)
-        return
+            return
 
         try {
             currentModified := FileGetTime(A_ScriptFullPath, "M")
@@ -636,20 +636,20 @@ class FileMonitor {
     }
 
     /**
-    * Toggle monitoring
-    * @returns {void}
-    */
+     * Toggle monitoring
+     * @returns {void}
+     */
     static Toggle() {
         if this.Enabled
-        this.Disable()
+            this.Disable()
         else
-        this.Enable()
+            this.Enable()
     }
 
     /**
-    * Display monitor status
-    * @returns {void}
-    */
+     * Display monitor status
+     * @returns {void}
+     */
     static ShowStatus() {
         output := "File Monitor Status`n"
         output .= "===================`n`n"
@@ -659,7 +659,7 @@ class FileMonitor {
         output .= "Script File: " A_ScriptName "`n"
 
         if (this.LastModified != 0)
-        output .= "Last Modified: " FormatTime(this.LastModified, "yyyy-MM-dd HH:mm:ss") "`n"
+            output .= "Last Modified: " FormatTime(this.LastModified, "yyyy-MM-dd HH:mm:ss") "`n"
 
         output .= "`nPress ^!+auto to toggle"
 
@@ -671,23 +671,23 @@ class FileMonitor {
 ; ^!+mon::FileMonitor.ShowStatus()
 
 /**
-* ============================================================================
-* Example 7: Force Mode Best Practices
-* ============================================================================
-*
-* @description Best practices for using Force mode effectively
-* @concept Best practices, guidelines, recommendations
-*/
+ * ============================================================================
+ * Example 7: Force Mode Best Practices
+ * ============================================================================
+ * 
+ * @description Best practices for using Force mode effectively
+ * @concept Best practices, guidelines, recommendations
+ */
 
 /**
-* Best practices guide
-* @class
-*/
+ * Best practices guide
+ * @class
+ */
 class BestPractices {
     /**
-    * Display best practices
-    * @returns {void}
-    */
+     * Display best practices
+     * @returns {void}
+     */
     static ShowGuide() {
         guide := "Force Mode Best Practices`n"
         guide .= "=========================`n`n"
@@ -721,26 +721,26 @@ class BestPractices {
     }
 }
 
-^!+help::BestPractices.ShowGuide()
+^!+help:: BestPractices.ShowGuide()
 
 /**
-* ============================================================================
-* STARTUP
-* ============================================================================
-*/
+ * ============================================================================
+ * STARTUP
+ * ============================================================================
+ */
 
 TrayTip(
-"Instance: " InstanceManager.InstanceID "`n"
-"Mode: Force`n"
-"Reload: " InstanceManager.ReloadCount,
-"Script Started",
-"Iconi Mute"
+    "Instance: " InstanceManager.InstanceID "`n"
+    "Mode: Force`n"
+    "Reload: " InstanceManager.ReloadCount,
+    "Script Started",
+    "Iconi Mute"
 )
 
 /**
-* Help
-*/
-^!h::{
+ * Help
+ */
+^!h:: {
     help := "Force Mode Examples`n"
     help .= "===================`n`n"
 

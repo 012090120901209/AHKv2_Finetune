@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Download_03.ahk - Download Error Handling
-*
-* This file demonstrates comprehensive error handling for download operations
-* in AutoHotkey v2, including retry logic, validation, and recovery strategies.
-*
-* Features Demonstrated:
-* - Try-catch error handling
-* - Automatic retry mechanisms
-* - Network error detection
-* - URL validation
-* - Download verification
-* - Fallback strategies
-* - Error logging and reporting
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024-11-16
-*/
+ * BuiltIn_Download_03.ahk - Download Error Handling
+ * 
+ * This file demonstrates comprehensive error handling for download operations
+ * in AutoHotkey v2, including retry logic, validation, and recovery strategies.
+ * 
+ * Features Demonstrated:
+ * - Try-catch error handling
+ * - Automatic retry mechanisms
+ * - Network error detection
+ * - URL validation
+ * - Download verification
+ * - Fallback strategies
+ * - Error logging and reporting
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024-11-16
+ */
 
 ; ============================================================================
 ; Example 1: Basic Error Handling with Try-Catch
 ; ============================================================================
 
 /**
-* Downloads file with comprehensive error handling
-*
-* Demonstrates proper try-catch usage for download operations.
-* Shows detailed error message handling.
-*
-* @example
-* DownloadWithErrorHandling()
-*/
+ * Downloads file with comprehensive error handling
+ * 
+ * Demonstrates proper try-catch usage for download operations.
+ * Shows detailed error message handling.
+ * 
+ * @example
+ * DownloadWithErrorHandling()
+ */
 DownloadWithErrorHandling() {
     url := "https://www.example.com/file.zip"
     destPath := A_Desktop "\file.zip"
@@ -47,8 +47,8 @@ DownloadWithErrorHandling() {
         if FileExist(destPath) {
             fileSize := FileGetSize(destPath)
             MsgBox("Download successful!`n`n"
-            . "File: " destPath "`n"
-            . "Size: " FormatBytes(fileSize), "Success", "Icon!")
+                . "File: " destPath "`n"
+                . "Size: " FormatBytes(fileSize), "Success", "Icon!")
         } else {
             throw Error("File was not created after download")
         }
@@ -60,7 +60,7 @@ DownloadWithErrorHandling() {
         errorMessage .= "Message: " err.Message "`n"
 
         if err.Extra
-        errorMessage .= "Extra Info: " err.Extra "`n"
+            errorMessage .= "Extra Info: " err.Extra "`n"
 
         errorMessage .= "`nWhat: " err.What "`n"
         errorMessage .= "File: " err.File "`n"
@@ -74,28 +74,28 @@ DownloadWithErrorHandling() {
 }
 
 /**
-* Formats bytes to human-readable size
-*
-* @param {Integer} bytes - Size in bytes
-* @return {String} Formatted size string
-*/
+ * Formats bytes to human-readable size
+ * 
+ * @param {Integer} bytes - Size in bytes
+ * @return {String} Formatted size string
+ */
 FormatBytes(bytes) {
     if (bytes < 1024)
-    return bytes " B"
+        return bytes " B"
     else if (bytes < 1024 * 1024)
-    return Round(bytes / 1024, 2) " KB"
+        return Round(bytes / 1024, 2) " KB"
     else if (bytes < 1024 * 1024 * 1024)
-    return Round(bytes / (1024 * 1024), 2) " MB"
+        return Round(bytes / (1024 * 1024), 2) " MB"
     else
-    return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
+        return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
 }
 
 /**
-* Logs error to file
-*
-* @param {String} url - Failed URL
-* @param {Error} err - Error object
-*/
+ * Logs error to file
+ * 
+ * @param {String} url - Failed URL
+ * @param {Error} err - Error object
+ */
 LogError(url, err) {
     logFile := A_ScriptDir "\download_errors.log"
     timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
@@ -116,14 +116,14 @@ LogError(url, err) {
 ; ============================================================================
 
 /**
-* Downloads file with automatic retry on failure
-*
-* Implements retry logic with exponential backoff.
-* Demonstrates resilient download patterns.
-*
-* @example
-* DownloadWithRetry()
-*/
+ * Downloads file with automatic retry on failure
+ * 
+ * Implements retry logic with exponential backoff.
+ * Demonstrates resilient download patterns.
+ * 
+ * @example
+ * DownloadWithRetry()
+ */
 DownloadWithRetry() {
     url := "https://www.example.com/important.zip"
     destPath := A_Desktop "\important.zip"
@@ -168,7 +168,7 @@ DownloadWithRetry() {
                 AddLog("File size: " FormatBytes(FileGetSize(destPath)))
 
                 MsgBox("Download successful on attempt " attempt "!`n`n"
-                . "File: " destPath, "Success", "Icon!")
+                    . "File: " destPath, "Success", "Icon!")
             } else {
                 throw Error("Downloaded file is empty or missing")
             }
@@ -184,7 +184,7 @@ DownloadWithRetry() {
             } else {
                 AddLog("FAILED: Maximum retries exceeded")
                 MsgBox("Download failed after " attempt " attempts!`n`n"
-                . "Last error: " err.Message, "Failed", "IconX")
+                    . "Last error: " err.Message, "Failed", "IconX")
                 break
             }
         }
@@ -199,22 +199,22 @@ DownloadWithRetry() {
 ; ============================================================================
 
 /**
-* Validates URL before attempting download
-*
-* Checks URL format and accessibility before downloading.
-* Demonstrates pre-download validation.
-*
-* @example
-* DownloadWithURLValidation()
-*/
+ * Validates URL before attempting download
+ * 
+ * Checks URL format and accessibility before downloading.
+ * Demonstrates pre-download validation.
+ * 
+ * @example
+ * DownloadWithURLValidation()
+ */
 DownloadWithURLValidation() {
     ; Test with various URLs
     testURLs := [
-    "https://www.example.com/valid.zip",
-    "http://invalid-url",
-    "ftp://example.com/file.txt",
-    "not-a-url",
-    ""
+        "https://www.example.com/valid.zip",
+        "http://invalid-url",
+        "ftp://example.com/file.txt",
+        "not-a-url",
+        ""
     ]
 
     results := []
@@ -235,13 +235,13 @@ DownloadWithURLValidation() {
 }
 
 /**
-* Validates URL and attempts download
-*
-* @param {String} url - URL to validate and download
-* @return {Object} Result object with status and message
-*/
+ * Validates URL and attempts download
+ * 
+ * @param {String} url - URL to validate and download
+ * @return {Object} Result object with status and message
+ */
 ValidateAndDownload(url) {
-    result := {status: "Unknown", message: "Not processed", url: url}
+    result := { status: "Unknown", message: "Not processed", url: url }
 
     ; Check if URL is empty
     if (url = "") {
@@ -300,14 +300,14 @@ ValidateAndDownload(url) {
 ; ============================================================================
 
 /**
-* Downloads file and verifies integrity
-*
-* Checks file size and basic integrity after download.
-* Demonstrates post-download verification.
-*
-* @example
-* DownloadWithVerification()
-*/
+ * Downloads file and verifies integrity
+ * 
+ * Checks file size and basic integrity after download.
+ * Demonstrates post-download verification.
+ * 
+ * @example
+ * DownloadWithVerification()
+ */
 DownloadWithVerification() {
     url := "https://www.example.com/package.zip"
     destPath := A_Desktop "\package.zip"
@@ -337,10 +337,10 @@ DownloadWithVerification() {
 
         if (actualSize < minSize || actualSize > maxSize) {
             MsgBox("Warning: File size mismatch!`n`n"
-            . "Expected: " FormatBytes(expectedSize) "`n"
-            . "Actual: " FormatBytes(actualSize) "`n"
-            . "Difference: " Round(Abs(actualSize - expectedSize) / expectedSize * 100, 1) "%",
-            "Size Mismatch", "Icon!")
+                . "Expected: " FormatBytes(expectedSize) "`n"
+                . "Actual: " FormatBytes(actualSize) "`n"
+                . "Difference: " Round(Abs(actualSize - expectedSize) / expectedSize * 100, 1) "%",
+                "Size Mismatch", "Icon!")
         }
 
         ; Verify file can be read
@@ -352,9 +352,9 @@ DownloadWithVerification() {
 
         ; All checks passed
         MsgBox("Download verified successfully!`n`n"
-        . "File: " destPath "`n"
-        . "Size: " FormatBytes(actualSize) "`n"
-        . "Status: All integrity checks passed", "Verified", "Icon!")
+            . "File: " destPath "`n"
+            . "Size: " FormatBytes(actualSize) "`n"
+            . "Status: All integrity checks passed", "Verified", "Icon!")
 
     } catch Error as err {
         MsgBox("Download or verification failed!`n`nError: " err.Message, "Error", "IconX")
@@ -373,21 +373,21 @@ DownloadWithVerification() {
 ; ============================================================================
 
 /**
-* Downloads from primary URL with fallback options
-*
-* Tries multiple URLs until one succeeds.
-* Demonstrates failover strategies.
-*
-* @example
-* DownloadWithFallback()
-*/
+ * Downloads from primary URL with fallback options
+ * 
+ * Tries multiple URLs until one succeeds.
+ * Demonstrates failover strategies.
+ * 
+ * @example
+ * DownloadWithFallback()
+ */
 DownloadWithFallback() {
     ; Define primary and fallback URLs
     urls := [
-    "https://primary.example.com/file.zip",
-    "https://mirror1.example.com/file.zip",
-    "https://mirror2.example.com/file.zip",
-    "https://backup.example.com/file.zip"
+        "https://primary.example.com/file.zip",
+        "https://mirror1.example.com/file.zip",
+        "https://mirror2.example.com/file.zip",
+        "https://backup.example.com/file.zip"
     ]
 
     destPath := A_Desktop "\file.zip"
@@ -434,9 +434,9 @@ DownloadWithFallback() {
 
     if success {
         MsgBox("Download completed successfully!`n`n"
-        . "Source: " successURL "`n"
-        . "File: " destPath "`n"
-        . "Size: " FormatBytes(FileGetSize(destPath)), "Success", "Icon!")
+            . "Source: " successURL "`n"
+            . "File: " destPath "`n"
+            . "Size: " FormatBytes(FileGetSize(destPath)), "Success", "Icon!")
     } else {
         MsgBox("Download failed!`n`nAll " urls.Length " sources failed.", "Failed", "IconX")
     }
@@ -450,14 +450,14 @@ DownloadWithFallback() {
 ; ============================================================================
 
 /**
-* Downloads file with timeout protection
-*
-* Implements timeout mechanism to prevent hanging downloads.
-* Demonstrates time-based error handling.
-*
-* @example
-* DownloadWithTimeout()
-*/
+ * Downloads file with timeout protection
+ * 
+ * Implements timeout mechanism to prevent hanging downloads.
+ * Demonstrates time-based error handling.
+ * 
+ * @example
+ * DownloadWithTimeout()
+ */
 DownloadWithTimeout() {
     url := "https://www.example.com/largefile.zip"
     destPath := A_Desktop "\largefile.zip"
@@ -484,7 +484,7 @@ DownloadWithTimeout() {
         if !timedOut {
             elapsedTime := (A_TickCount - startTime) / 1000
             MsgBox("Download completed in " Round(elapsedTime, 1) " seconds!`n`n"
-            . "File: " destPath, "Success", "Icon!")
+                . "File: " destPath, "Success", "Icon!")
         }
 
     } catch Error as err {
@@ -498,12 +498,12 @@ DownloadWithTimeout() {
     } finally {
         SetTimer(CheckTimeout, 0)
         if IsObject(timeoutGui)
-        timeoutGui.Destroy()
+            timeoutGui.Destroy()
     }
 
     CheckTimeout() {
         if downloadComplete
-        return
+            return
 
         elapsed := (A_TickCount - startTime) / 1000
 
@@ -524,14 +524,14 @@ DownloadWithTimeout() {
 ; ============================================================================
 
 /**
-* Complete error recovery system with logging and recovery
-*
-* Implements full error handling with recovery strategies.
-* Demonstrates production-ready error handling.
-*
-* @example
-* ComprehensiveErrorRecovery()
-*/
+ * Complete error recovery system with logging and recovery
+ * 
+ * Implements full error handling with recovery strategies.
+ * Demonstrates production-ready error handling.
+ * 
+ * @example
+ * ComprehensiveErrorRecovery()
+ */
 ComprehensiveErrorRecovery() {
     ; Download configuration
     config := {
@@ -613,7 +613,7 @@ ComprehensiveErrorRecovery() {
 
                 if config.verifySize && Abs(fileSize - config.expectedSize) > (config.expectedSize * 0.1) {
                     Log("Size mismatch detected: Expected " FormatBytes(config.expectedSize)
-                    . ", Got " FormatBytes(fileSize), "WARN")
+                        . ", Got " FormatBytes(fileSize), "WARN")
                 }
 
                 ; All checks passed
@@ -623,7 +623,7 @@ ComprehensiveErrorRecovery() {
                 Log("File size: " FormatBytes(fileSize))
 
                 MsgBox("Download successful!`n`nAttempts: " attempt "`nFile: " config.destPath,
-                "Success", "Icon!")
+                    "Success", "Icon!")
 
             } catch Error as err {
                 Log("Download failed: " err.Message, "ERROR")
@@ -636,7 +636,7 @@ ComprehensiveErrorRecovery() {
                 } else {
                     Log("Maximum retries exceeded. Download failed.", "ERROR")
                     MsgBox("Download failed after " attempt " attempts!`n`n"
-                    . "Last error: " err.Message, "Failed", "IconX")
+                        . "Last error: " err.Message, "Failed", "IconX")
                     break
                 }
             }
@@ -646,11 +646,11 @@ ComprehensiveErrorRecovery() {
     }
 
     /**
-    * Tests if a file path is writable
-    *
-    * @param {String} filePath - Path to test
-    * @return {Boolean} True if writable
-    */
+     * Tests if a file path is writable
+     * 
+     * @param {String} filePath - Path to test
+     * @return {Boolean} True if writable
+     */
     TestFileWritable(filePath) {
         testFile := filePath ".test"
         try {
@@ -687,3 +687,4 @@ ComprehensiveErrorRecovery() {
 
 ; Run Example 7: Comprehensive error recovery
 ; ComprehensiveErrorRecovery()
+

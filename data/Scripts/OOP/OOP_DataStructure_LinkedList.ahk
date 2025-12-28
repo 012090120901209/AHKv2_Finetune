@@ -29,18 +29,18 @@ class LinkedList {
         node.next := this.head
         this.head := node
         if (!this.tail)
-        this.tail := node
+            this.tail := node
         this.length++
         return this
     }
 
     InsertAt(index, value) {
         if (index < 0 || index > this.length)
-        return false
+            return false
         if (index = 0)
-        return this.Prepend(value)
+            return this.Prepend(value)
         if (index = this.length)
-        return this.Append(value)
+            return this.Append(value)
 
         node := ListNode(value)
         prev := this.GetNodeAt(index - 1)
@@ -52,17 +52,17 @@ class LinkedList {
 
     RemoveAt(index) {
         if (index < 0 || index >= this.length)
-        return false
+            return false
 
         if (index = 0) {
             this.head := this.head.next
             if (this.length = 1)
-            this.tail := ""
+                this.tail := ""
         } else {
             prev := this.GetNodeAt(index - 1)
             prev.next := prev.next.next
             if (index = this.length - 1)
-            this.tail := prev
+                this.tail := prev
         }
 
         this.length--
@@ -76,11 +76,11 @@ class LinkedList {
 
     GetNodeAt(index) {
         if (index < 0 || index >= this.length)
-        return ""
+            return ""
 
         current := this.head
         loop index
-        current := current.next
+            current := current.next
         return current
     }
 
@@ -89,7 +89,7 @@ class LinkedList {
         index := 0
         while (current) {
             if (current.value = value)
-            return index
+                return index
             current := current.next
             index++
         }

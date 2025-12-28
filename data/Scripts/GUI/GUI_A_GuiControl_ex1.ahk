@@ -8,5 +8,6 @@ ogcEditTestnTest := myGui.Add("Edit", "R2 w100", "Test`nTest")
 ogcEditTestnTest.OnEvent("Change", ButtonName.Bind("Normal"))
 myGui.Show("w120")
 ButtonName()
-ButtonName(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { A_GuiControl := HasProp(A_GuiControl, "Text") ? A_GuiControl.Text : A_GuiControl MsgBox("A_GuiEvent: " A_GuiEvent "`nA_GuiControl: " A_GuiControl)
+ButtonName(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    A_GuiControl := HasProp(A_GuiControl, "Text") ? A_GuiControl.Text : A_GuiControl MsgBox("A_GuiEvent: " A_GuiEvent "`nA_GuiControl: " A_GuiControl)
 }

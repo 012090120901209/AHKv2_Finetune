@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* StrPut/StrGet() - Encoding operations
-*
-* Write/read strings to/from buffers with specific encodings.
-*/
+ * StrPut/StrGet() - Encoding operations
+ * 
+ * Write/read strings to/from buffers with specific encodings.
+ */
 
 text := "Hello 世界"
 
@@ -17,5 +17,5 @@ StrPut(text, buf, "UTF-8")
 retrieved := StrGet(buf, "UTF-8")
 
 MsgBox("Original: " text
-. "`nBuffer size: " buf.Size
-. "`nRetrieved: " retrieved)
+    . "`nBuffer size: " buf.Size
+    . "`nRetrieved: " retrieved)

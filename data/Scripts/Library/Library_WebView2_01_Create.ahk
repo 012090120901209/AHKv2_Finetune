@@ -12,21 +12,21 @@
 
 DemoWebView2() {
     MsgBox("WebView2 Demonstration`n`n"
-    "Create modern web-based GUIs:`n`n"
-    "Basic usage:`n"
-    "gui := Gui()`n"
-    "wv := gui.AddWebView2()`n"
-    "wv.Navigate('https://example.com')`n"
-    "gui.Show()`n`n"
-    "Features:`n"
-    "- Full HTML5/CSS3/ES6 support`n"
-    "- Two-way AHK ↔ JavaScript communication`n"
-    "- Local HTML or remote URLs`n"
-    "- No IE compatibility issues`n`n"
-    "Libraries:`n"
-    "- thqby/ahk2_lib/WebView2 (comprehensive)`n"
-    "- The-CoDingman/WebViewToo (wrapper)",
-    "WebView2 Demo")
+        "Create modern web-based GUIs:`n`n"
+        "Basic usage:`n"
+        "gui := Gui()`n"
+        "wv := gui.AddWebView2()`n"
+        "wv.Navigate('https://example.com')`n"
+        "gui.Show()`n`n"
+        "Features:`n"
+        "- Full HTML5/CSS3/ES6 support`n"
+        "- Two-way AHK ↔ JavaScript communication`n"
+        "- Local HTML or remote URLs`n"
+        "- No IE compatibility issues`n`n"
+        "Libraries:`n"
+        "- thqby/ahk2_lib/WebView2 (comprehensive)`n"
+        "- The-CoDingman/WebViewToo (wrapper)",
+        "WebView2 Demo")
 }
 
 ; Real implementation example (commented out, requires library):

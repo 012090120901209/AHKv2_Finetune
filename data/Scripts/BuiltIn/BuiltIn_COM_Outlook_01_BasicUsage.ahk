@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Outlook_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates BasicUsage using COM automation in AutoHotkey v2.
-*
-* FEATURES:
-* - Creating Outlook COM objects
-* - Sending emails programmatically
-* - Email formatting and attachments
-* - Managing email properties
-* - Accessing Outlook folders
-* - Error handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() function for creating COM instances
-* - COM method calls and property access
-* - Try/Catch error handling
-* - Proper cleanup with object := ""
-*
-* LEARNING POINTS:
-* 1. Creating and using Outlook COM objects
-* 2. Working with Outlook automation
-* 3. Error handling in COM operations
-* 4. Best practices for Outlook automation
-* 5. Practical real-world examples
-* 6. Performance optimization
-* 7. Resource management and cleanup
-*/
+ * BuiltIn_COM_Outlook_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates BasicUsage using COM automation in AutoHotkey v2.
+ * 
+ * FEATURES:
+ * - Creating Outlook COM objects
+ * - Sending emails programmatically
+ * - Email formatting and attachments
+ * - Managing email properties
+ * - Accessing Outlook folders
+ * - Error handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() function for creating COM instances
+ * - COM method calls and property access
+ * - Try/Catch error handling
+ * - Proper cleanup with object := ""
+ * 
+ * LEARNING POINTS:
+ * 1. Creating and using Outlook COM objects
+ * 2. Working with Outlook automation
+ * 3. Error handling in COM operations
+ * 4. Best practices for Outlook automation
+ * 5. Practical real-world examples
+ * 6. Performance optimization
+ * 7. Resource management and cleanup
+ */
 
 
 ;===============================================================================
@@ -56,7 +56,7 @@ Example1_SendEmail() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -85,7 +85,7 @@ Example2_SendWithAttachment() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -109,7 +109,7 @@ Example3_HTMLEmail() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -135,7 +135,7 @@ Example4_MultipleRecipients() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -160,7 +160,7 @@ Example5_HighPriority() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -185,7 +185,7 @@ Example6_ReadReceipt() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -212,7 +212,7 @@ Example7_BatchEmails() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -250,13 +250,13 @@ ShowMenu() {
         case "7": Example7_BatchEmails()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

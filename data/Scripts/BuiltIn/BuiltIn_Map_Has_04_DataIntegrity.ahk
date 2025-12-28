@@ -2,46 +2,46 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Has_04_DataIntegrity.ahk
-*
-* @description Map.Has() for data integrity and consistency checks
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Using Map.Has() to ensure data integrity, validate consistency,
-* check referential integrity, and maintain data quality.
-*/
+ * BuiltIn_Map_Has_04_DataIntegrity.ahk
+ * 
+ * @description Map.Has() for data integrity and consistency checks
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Using Map.Has() to ensure data integrity, validate consistency,
+ * check referential integrity, and maintain data quality.
+ */
 
 ;=============================================================================
 ; Example 1: Referential Integrity Checker
 ;=============================================================================
 
 /**
-* @class ReferentialIntegrityChecker
-* @description Check references between related data
-*/
+ * @class ReferentialIntegrityChecker
+ * @description Check references between related data
+ */
 class ReferentialIntegrityChecker {
     /**
-    * @method CheckReferences
-    * @description Verify all foreign keys exist in parent table
-    */
+     * @method CheckReferences
+     * @description Verify all foreign keys exist in parent table
+     */
     static CheckReferences(childData, parentData, foreignKey) {
         orphaned := []
         valid := []
 
         for childId, childRecord in childData {
             if (!childRecord.Has(foreignKey)) {
-                orphaned.Push({id: childId, reason: "Missing foreign key"})
+                orphaned.Push({ id: childId, reason: "Missing foreign key" })
                 continue
             }
 
             parentId := childRecord[foreignKey]
             if (parentData.Has(parentId))
-            valid.Push(childId)
+                valid.Push(childId)
             else
-            orphaned.Push({id: childId, reason: "Parent not found: " parentId})
+                orphaned.Push({ id: childId, reason: "Parent not found: " parentId })
         }
 
         return {
@@ -56,17 +56,17 @@ class ReferentialIntegrityChecker {
 Example1_ReferentialIntegrity() {
     ; Parent table - users
     users := Map(
-    "U001", Map("name", "Alice"),
-    "U002", Map("name", "Bob"),
-    "U003", Map("name", "Carol")
+        "U001", Map("name", "Alice"),
+        "U002", Map("name", "Bob"),
+        "U003", Map("name", "Carol")
     )
 
     ; Child table - orders
     orders := Map(
-    "O001", Map("userId", "U001", "amount", 100),
-    "O002", Map("userId", "U002", "amount", 200),
-    "O003", Map("userId", "U999", "amount", 150),  ; Orphaned
-    "O004", Map("amount", 75)  ; Missing userId
+        "O001", Map("userId", "U001", "amount", 100),
+        "O002", Map("userId", "U002", "amount", 200),
+        "O003", Map("userId", "U999", "amount", 150),  ; Orphaned
+        "O004", Map("amount", 75)  ; Missing userId
     )
 
     result := ReferentialIntegrityChecker.CheckReferences(orders, users, "userId")
@@ -97,21 +97,21 @@ Example2_DataConsistency() {
         ; If shipping is true, address must exist
         if (data.Has("shipping") && data["shipping"]) {
             if (!data.Has("address"))
-            errors.Push("Shipping enabled but no address provided")
+                errors.Push("Shipping enabled but no address provided")
         }
 
         ; If discounted, must have both price and discount
         if (data.Has("discounted") && data["discounted"]) {
             if (!data.Has("originalPrice"))
-            errors.Push("Discounted item missing original price")
+                errors.Push("Discounted item missing original price")
             if (!data.Has("discountPercent"))
-            errors.Push("Discounted item missing discount percent")
+                errors.Push("Discounted item missing discount percent")
         }
 
         ; If payment method is credit card, need card details
         if (data.Has("paymentMethod") && data["paymentMethod"] = "card") {
             if (!data.Has("cardNumber"))
-            errors.Push("Card payment missing card number")
+                errors.Push("Card payment missing card number")
         }
 
         return {
@@ -124,10 +124,10 @@ Example2_DataConsistency() {
 
     ; Test 1: Inconsistent data
     order1 := Map(
-    "id", "O001",
-    "shipping", true,
-    "discounted", true,
-    "paymentMethod", "card"
+        "id", "O001",
+        "shipping", true,
+        "discounted", true,
+        "paymentMethod", "card"
     )
 
     result1 := ValidateConsistency(order1)
@@ -142,10 +142,10 @@ Example2_DataConsistency() {
 
     ; Test 2: Consistent data
     order2 := Map(
-    "id", "O002",
-    "shipping", true,
-    "address", "123 Main St",
-    "paymentMethod", "cash"
+        "id", "O002",
+        "shipping", true,
+        "address", "123 Main St",
+        "paymentMethod", "cash"
     )
 
     result2 := ValidateConsistency(order2)
@@ -161,10 +161,10 @@ Example2_DataConsistency() {
 
 Example3_DuplicateDetection() {
     records := Map(
-    "R001", Map("email", "john@example.com", "name", "John"),
-    "R002", Map("email", "jane@example.com", "name", "Jane"),
-    "R003", Map("email", "john@example.com", "name", "Johnny"),  ; Duplicate email
-    "R004", Map("email", "bob@example.com", "name", "Bob")
+        "R001", Map("email", "john@example.com", "name", "John"),
+        "R002", Map("email", "jane@example.com", "name", "Jane"),
+        "R003", Map("email", "john@example.com", "name", "Johnny"),  ; Duplicate email
+        "R004", Map("email", "bob@example.com", "name", "Bob")
     )
 
     DetectDuplicates(data, field) {
@@ -173,7 +173,7 @@ Example3_DuplicateDetection() {
 
         for id, record in data {
             if (!record.Has(field))
-            continue
+                continue
 
             value := record[field]
 
@@ -220,9 +220,9 @@ Example4_CompletenessAudit() {
 
             for field in mandatoryFields {
                 if (record.Has(field))
-                present.Push(field)
+                    present.Push(field)
                 else
-                missing.Push(field)
+                    missing.Push(field)
             }
 
             completeness := Round((present.Length / mandatoryFields.Length) * 100)
@@ -232,8 +232,8 @@ Example4_CompletenessAudit() {
                 completeness: completeness,
                 missing: missing,
                 quality: completeness = 100 ? "Perfect" :
-                completeness >= 75 ? "Good" :
-                completeness >= 50 ? "Fair" : "Poor"
+                    completeness >= 75 ? "Good" :
+                    completeness >= 50 ? "Fair" : "Poor"
             })
         }
 
@@ -241,9 +241,9 @@ Example4_CompletenessAudit() {
     }
 
     records := Map(
-    "P001", Map("name", "Product A", "price", 99.99, "stock", 100, "category", "Electronics"),
-    "P002", Map("name", "Product B", "price", 49.99),
-    "P003", Map("name", "Product C")
+        "P001", Map("name", "Product A", "price", 99.99, "stock", 100, "category", "Electronics"),
+        "P002", Map("name", "Product B", "price", 49.99),
+        "P003", Map("name", "Product C")
     )
 
     mandatoryFields := ["name", "price", "stock", "category", "description"]
@@ -277,18 +277,18 @@ Example5_CrossFieldValidation() {
 
         ; End date must exist if start date exists
         if (data.Has("startDate") && !data.Has("endDate"))
-        errors.Push("Start date without end date")
+            errors.Push("Start date without end date")
 
         ; Max must be greater than min
         if (data.Has("minValue") && data.Has("maxValue")) {
             if (data["minValue"] >= data["maxValue"])
-            errors.Push("Min value must be less than max value")
+                errors.Push("Min value must be less than max value")
         }
 
         ; Confirm password must match password
         if (data.Has("password") && data.Has("confirmPassword")) {
             if (data["password"] != data["confirmPassword"])
-            errors.Push("Passwords do not match")
+                errors.Push("Passwords do not match")
         }
 
         return {
@@ -301,10 +301,10 @@ Example5_CrossFieldValidation() {
 
     ; Test cases
     testData := [
-    Map("startDate", "2025-01-01"),  ; Missing endDate
-    Map("minValue", 100, "maxValue", 50),  ; Invalid range
-    Map("password", "abc123", "confirmPassword", "xyz789"),  ; Mismatch
-    Map("minValue", 10, "maxValue", 100, "startDate", "2025-01-01", "endDate", "2025-12-31")  ; Valid
+        Map("startDate", "2025-01-01"),  ; Missing endDate
+        Map("minValue", 100, "maxValue", 50),  ; Invalid range
+        Map("password", "abc123", "confirmPassword", "xyz789"),  ; Mismatch
+        Map("minValue", 10, "maxValue", 100, "startDate", "2025-01-01", "endDate", "2025-12-31")  ; Valid
     ]
 
     Loop testData.Length {
@@ -340,22 +340,22 @@ Example6_OrphanRecords() {
             }
 
             if (!hasRelated)
-            orphans.Push(id)
+                orphans.Push(id)
         }
 
         return orphans
     }
 
     categories := Map(
-    "C001", Map("name", "Electronics"),
-    "C002", Map("name", "Books"),
-    "C003", Map("name", "Clothing")
+        "C001", Map("name", "Electronics"),
+        "C002", Map("name", "Books"),
+        "C003", Map("name", "Clothing")
     )
 
     products := Map(
-    "P001", Map("name", "Laptop", "categoryId", "C001"),
-    "P002", Map("name", "Novel", "categoryId", "C002")
-    ; No products in C003
+        "P001", Map("name", "Laptop", "categoryId", "C001"),
+        "P002", Map("name", "Novel", "categoryId", "C002")
+        ; No products in C003
     )
 
     orphanCategories := FindOrphans(categories, products, "categoryId")
@@ -417,18 +417,18 @@ Example7_DataQualityScore() {
             maxScore: maxScore,
             percentage: percentage,
             grade: percentage >= 90 ? "A" :
-            percentage >= 80 ? "B" :
-            percentage >= 70 ? "C" :
-            percentage >= 60 ? "D" : "F",
+                percentage >= 80 ? "B" :
+                percentage >= 70 ? "C" :
+                percentage >= 60 ? "D" : "F",
             details: details
         }
     }
 
     record := Map(
-    "name", "John Doe",
-    "email", "john@example.com",
-    "age", 30,
-    "phone", "555-1234"
+        "name", "John Doe",
+        "email", "john@example.com",
+        "age", 30,
+        "phone", "555-1234"
     )
 
     requiredFields := ["name", "email", "age"]
@@ -460,28 +460,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Data Integrity with Map.Has()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Referential")
-    .OnEvent("Click", (*) => Example1_ReferentialIntegrity())
+        .OnEvent("Click", (*) => Example1_ReferentialIntegrity())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Consistency")
-    .OnEvent("Click", (*) => Example2_DataConsistency())
+        .OnEvent("Click", (*) => Example2_DataConsistency())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Duplicates")
-    .OnEvent("Click", (*) => Example3_DuplicateDetection())
+        .OnEvent("Click", (*) => Example3_DuplicateDetection())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Completeness")
-    .OnEvent("Click", (*) => Example4_CompletenessAudit())
+        .OnEvent("Click", (*) => Example4_CompletenessAudit())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Cross-Field")
-    .OnEvent("Click", (*) => Example5_CrossFieldValidation())
+        .OnEvent("Click", (*) => Example5_CrossFieldValidation())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Orphans")
-    .OnEvent("Click", (*) => Example6_OrphanRecords())
+        .OnEvent("Click", (*) => Example6_OrphanRecords())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Quality Score")
-    .OnEvent("Click", (*) => Example7_DataQualityScore())
+        .OnEvent("Click", (*) => Example7_DataQualityScore())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_ReferentialIntegrity()

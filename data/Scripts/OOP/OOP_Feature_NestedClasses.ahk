@@ -6,7 +6,6 @@
 class Database {
 
 
-
     ; Database main class
     __New(host := "localhost", port := 3306) => (this.conn := Database.Connection(host, port), this.queryLog := [])
 
@@ -19,7 +18,7 @@ class Database {
     Run(sql) {
         this.queryLog.Push(sql)
         MsgBox("Executing: " sql)
-        return {success: true, rows: Random(1, 100)}
+        return { success: true, rows: Random(1, 100) }
     }
 
     GetQueryLog() => this.queryLog
@@ -31,20 +30,20 @@ db.Connect()
 
 ; Use nested Query class
 query := db.CreateQuery()
-.Select("id", "name", "email")
-.From("users")
-.Where("age > 18")
-.Execute()
+    .Select("id", "name", "email")
+    .From("users")
+    .Where("age > 18")
+    .Execute()
 
 MsgBox("Query returned " query.rows " rows")
 
 ; Use nested Transaction class
 transaction := db.CreateTransaction()
 transaction.Begin()
-.Add("INSERT INTO users VALUES (1, 'Alice')")
-.Add("INSERT INTO users VALUES (2, 'Bob')")
-.Add("UPDATE users SET status = 'active'")
-.Commit()
+    .Add("INSERT INTO users VALUES (1, 'Alice')")
+    .Add("INSERT INTO users VALUES (2, 'Bob')")
+    .Add("UPDATE users SET status = 'active'")
+    .Commit()
 
 ; Access connection info
 MsgBox("Connected: " (db.conn.IsConnected() ? "Yes" : "No"))
@@ -66,7 +65,7 @@ class Query {
     _Join(arr) {
         result := ""
         for item in arr
-        result .= (result ? ", " : "") item
+            result .= (result ? ", " : "") item
         return result ? result : "*"
     }
 }
@@ -82,7 +81,7 @@ class Transaction {
 
     _Execute() {
         for op in this.operations
-        this.db.Run(op)
+            this.db.Run(op)
     }
 }
 

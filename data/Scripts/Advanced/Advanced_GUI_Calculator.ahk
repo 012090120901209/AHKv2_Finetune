@@ -50,7 +50,7 @@ ClearClick(*) {
 BackspaceClick(*) {
     global display
     if (StrLen(display.Value) > 0)
-    display.Value := SubStr(display.Value, 1, -1)
+        display.Value := SubStr(display.Value, 1, -1)
 }
 
 Evaluate(expr) {

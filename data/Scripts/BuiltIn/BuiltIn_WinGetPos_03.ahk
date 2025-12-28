@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinGetPos_03.ahk
-* @description Window alignment, snapping, and smart positioning examples using WinGetPos in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Smart window snapping system
-* Example 2: Magnetic window edges
-* Example 3: Window docking system
-* Example 4: Proportional window sizing
-* Example 5: Window aspect ratio manager
-* Example 6: Virtual desktop zones
-* Example 7: Window position presets
-*
-* @section FEATURES
-* - Smart snapping
-* - Magnetic edges
-* - Docking system
-* - Proportional sizing
-* - Aspect ratio control
-* - Desktop zones
-* - Position presets
-*/
+ * @file BuiltIn_WinGetPos_03.ahk
+ * @description Window alignment, snapping, and smart positioning examples using WinGetPos in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Smart window snapping system
+ * Example 2: Magnetic window edges
+ * Example 3: Window docking system
+ * Example 4: Proportional window sizing
+ * Example 5: Window aspect ratio manager
+ * Example 6: Virtual desktop zones
+ * Example 7: Window position presets
+ * 
+ * @section FEATURES
+ * - Smart snapping
+ * - Magnetic edges
+ * - Docking system
+ * - Proportional sizing
+ * - Aspect ratio control
+ * - Desktop zones
+ * - Position presets
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -31,22 +31,22 @@
 ; ========================================
 
 /**
-* @class SmartSnap
-* @description Intelligent window snapping with edge detection
-*/
+ * @class SmartSnap
+ * @description Intelligent window snapping with edge detection
+ */
 class SmartSnap {
     static snapThreshold := 20  ; Pixels for snap detection
     static enabled := true
 
     /**
-    * @method SnapToEdges
-    * @description Snap window to screen edges if close enough
-    * @param WinTitle Window identifier
-    * @returns {Boolean} True if snapped
-    */
+     * @method SnapToEdges
+     * @description Snap window to screen edges if close enough
+     * @param WinTitle Window identifier
+     * @returns {Boolean} True if snapped
+     */
     static SnapToEdges(WinTitle := "A") {
         if !this.enabled
-        return false
+            return false
 
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -94,12 +94,12 @@ class SmartSnap {
     }
 
     /**
-    * @method SnapToWindow
-    * @description Snap one window to another window's edges
-    * @param SourceWin Window to snap
-    * @param TargetWin Window to snap to
-    * @returns {Boolean} True if snapped
-    */
+     * @method SnapToWindow
+     * @description Snap one window to another window's edges
+     * @param SourceWin Window to snap
+     * @param TargetWin Window to snap to
+     * @returns {Boolean} True if snapped
+     */
     static SnapToWindow(SourceWin, TargetWin) {
         try {
             WinGetPos(&sx, &sy, &sw, &sh, SourceWin)
@@ -145,11 +145,11 @@ class SmartSnap {
     }
 
     /**
-    * @method QuickSnap
-    * @description Snap window to predefined positions
-    * @param WinTitle Window identifier
-    * @param position Position name (left, right, top, bottom, etc.)
-    */
+     * @method QuickSnap
+     * @description Snap window to predefined positions
+     * @param WinTitle Window identifier
+     * @param position Position name (left, right, top, bottom, etc.)
+     */
     static QuickSnap(WinTitle := "A", position := "left") {
         try {
             MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
@@ -160,25 +160,25 @@ class SmartSnap {
 
             switch position {
                 case "left":
-                WinMove(left, top, workWidth // 2, workHeight, WinTitle)
+                    WinMove(left, top, workWidth // 2, workHeight, WinTitle)
                 case "right":
-                WinMove(left + workWidth // 2, top, workWidth // 2, workHeight, WinTitle)
+                    WinMove(left + workWidth // 2, top, workWidth // 2, workHeight, WinTitle)
                 case "top":
-                WinMove(left, top, workWidth, workHeight // 2, WinTitle)
+                    WinMove(left, top, workWidth, workHeight // 2, WinTitle)
                 case "bottom":
-                WinMove(left, top + workHeight // 2, workWidth, workHeight // 2, WinTitle)
+                    WinMove(left, top + workHeight // 2, workWidth, workHeight // 2, WinTitle)
                 case "topleft":
-                WinMove(left, top, workWidth // 2, workHeight // 2, WinTitle)
+                    WinMove(left, top, workWidth // 2, workHeight // 2, WinTitle)
                 case "topright":
-                WinMove(left + workWidth // 2, top, workWidth // 2, workHeight // 2, WinTitle)
+                    WinMove(left + workWidth // 2, top, workWidth // 2, workHeight // 2, WinTitle)
                 case "bottomleft":
-                WinMove(left, top + workHeight // 2, workWidth // 2, workHeight // 2, WinTitle)
+                    WinMove(left, top + workHeight // 2, workWidth // 2, workHeight // 2, WinTitle)
                 case "bottomright":
-                WinMove(left + workWidth // 2, top + workHeight // 2, workWidth // 2, workHeight // 2, WinTitle)
+                    WinMove(left + workWidth // 2, top + workHeight // 2, workWidth // 2, workHeight // 2, WinTitle)
                 case "center":
-                WinMove(left + (workWidth - width) // 2, top + (workHeight - height) // 2, , , WinTitle)
+                    WinMove(left + (workWidth - width) // 2, top + (workHeight - height) // 2, , , WinTitle)
                 case "maximize":
-                WinMove(left, top, workWidth, workHeight, WinTitle)
+                    WinMove(left, top, workWidth, workHeight, WinTitle)
             }
 
         } catch as err {
@@ -204,9 +204,9 @@ class SmartSnap {
 ; ========================================
 
 /**
-* @class MagneticEdges
-* @description Windows automatically snap when moved close to edges
-*/
+ * @class MagneticEdges
+ * @description Windows automatically snap when moved close to edges
+ */
 class MagneticEdges {
     static active := false
     static magneticStrength := 30
@@ -214,10 +214,10 @@ class MagneticEdges {
     static monitoredWindow := ""
 
     /**
-    * @method Enable
-    * @description Enable magnetic edges for a window
-    * @param WinTitle Window identifier
-    */
+     * @method Enable
+     * @description Enable magnetic edges for a window
+     * @param WinTitle Window identifier
+     */
     static Enable(WinTitle := "A") {
         this.monitoredWindow := "ahk_id " WinExist(WinTitle)
         this.active := true
@@ -226,9 +226,9 @@ class MagneticEdges {
     }
 
     /**
-    * @method Disable
-    * @description Disable magnetic edges
-    */
+     * @method Disable
+     * @description Disable magnetic edges
+     */
     static Disable() {
         this.active := false
         if this.checkTimer {
@@ -239,17 +239,17 @@ class MagneticEdges {
     }
 
     /**
-    * @method CheckPosition
-    * @description Check and apply magnetic effect
-    */
+     * @method CheckPosition
+     * @description Check and apply magnetic effect
+     */
     static CheckPosition() {
         if !this.active
-        return
+            return
 
         try {
             ; Only apply when window is being moved
             if !GetKeyState("LButton", "P")
-            return
+                return
 
             WinGetPos(&x, &y, &width, &height, this.monitoredWindow)
 
@@ -295,10 +295,10 @@ class MagneticEdges {
     }
 
     /**
-    * @method SetStrength
-    * @description Set magnetic strength
-    * @param pixels Magnetic distance in pixels
-    */
+     * @method SetStrength
+     * @description Set magnetic strength
+     * @param pixels Magnetic distance in pixels
+     */
     static SetStrength(pixels) {
         this.magneticStrength := pixels
     }
@@ -318,20 +318,20 @@ class MagneticEdges {
 ; ========================================
 
 /**
-* @class WindowDock
-* @description Dock windows to screen edges with spacing
-*/
+ * @class WindowDock
+ * @description Dock windows to screen edges with spacing
+ */
 class WindowDock {
     static dockedWindows := Map()
     static dockSpacing := 5
 
     /**
-    * @method DockWindow
-    * @description Dock window to specified edge
-    * @param WinTitle Window identifier
-    * @param edge Edge to dock to (left, right, top, bottom)
-    * @param size Size of docked window (percentage or pixels)
-    */
+     * @method DockWindow
+     * @description Dock window to specified edge
+     * @param WinTitle Window identifier
+     * @param edge Edge to dock to (left, right, top, bottom)
+     * @param size Size of docked window (percentage or pixels)
+     */
     static DockWindow(WinTitle := "A", edge := "left", size := 30) {
         try {
             MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
@@ -341,93 +341,93 @@ class WindowDock {
 
             ; Calculate size
             if size <= 100 {  ; Percentage
-            sizePixels := edge = "left" || edge = "right" ? (workWidth * size / 100) : (workHeight * size / 100)
-        } else {  ; Absolute pixels
-        sizePixels := size
-    }
-
-    ; Calculate position and size based on edge
-    switch edge {
-        case "left":
-        WinMove(left, top, sizePixels, workHeight, WinTitle)
-        case "right":
-        WinMove(right - sizePixels, top, sizePixels, workHeight, WinTitle)
-        case "top":
-        WinMove(left, top, workWidth, sizePixels, WinTitle)
-        case "bottom":
-        WinMove(left, bottom - sizePixels, workWidth, sizePixels, WinTitle)
-    }
-
-    ; Store dock info
-    winId := "ahk_id " WinExist(WinTitle)
-    this.dockedWindows[winId] := {
-        Edge: edge,
-        Size: sizePixels,
-        DockTime: A_TickCount
-    }
-
-    return true
-
-} catch as err {
-    MsgBox("Dock failed: " err.Message, "Error", "IconX")
-    return false
-}
-}
-
-/**
-* @method UndockWindow
-* @description Remove window from dock
-* @param WinTitle Window identifier
-*/
-static UndockWindow(WinTitle := "A") {
-    winId := "ahk_id " WinExist(WinTitle)
-    if this.dockedWindows.Has(winId) {
-        this.dockedWindows.Delete(winId)
-        TrayTip("Window undocked", "Dock System", "Icon!")
-    }
-}
-
-/**
-* @method ArrangeWithDock
-* @description Arrange remaining windows around docked windows
-* @param WinTitle Window to arrange
-*/
-static ArrangeWithDock(WinTitle := "A") {
-    try {
-        MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
-
-        workLeft := left
-        workTop := top
-        workRight := right
-        workBottom := bottom
-
-        ; Adjust for docked windows
-        for winId, dockInfo in this.dockedWindows {
-            if !WinExist(winId)
-            continue
-
-            switch dockInfo.Edge {
-                case "left":
-                workLeft += dockInfo.Size + this.dockSpacing
-                case "right":
-                workRight -= dockInfo.Size + this.dockSpacing
-                case "top":
-                workTop += dockInfo.Size + this.dockSpacing
-                case "bottom":
-                workBottom -= dockInfo.Size + this.dockSpacing
+                sizePixels := edge = "left" || edge = "right" ? (workWidth * size / 100) : (workHeight * size / 100)
+            } else {  ; Absolute pixels
+                sizePixels := size
             }
+
+            ; Calculate position and size based on edge
+            switch edge {
+                case "left":
+                    WinMove(left, top, sizePixels, workHeight, WinTitle)
+                case "right":
+                    WinMove(right - sizePixels, top, sizePixels, workHeight, WinTitle)
+                case "top":
+                    WinMove(left, top, workWidth, sizePixels, WinTitle)
+                case "bottom":
+                    WinMove(left, bottom - sizePixels, workWidth, sizePixels, WinTitle)
+            }
+
+            ; Store dock info
+            winId := "ahk_id " WinExist(WinTitle)
+            this.dockedWindows[winId] := {
+                Edge: edge,
+                Size: sizePixels,
+                DockTime: A_TickCount
+            }
+
+            return true
+
+        } catch as err {
+            MsgBox("Dock failed: " err.Message, "Error", "IconX")
+            return false
         }
-
-        ; Position window in remaining space
-        workWidth := workRight - workLeft
-        workHeight := workBottom - workTop
-
-        WinMove(workLeft, workTop, workWidth, workHeight, WinTitle)
-
-    } catch as err {
-        MsgBox("Arrange failed: " err.Message, "Error", "IconX")
     }
-}
+
+    /**
+     * @method UndockWindow
+     * @description Remove window from dock
+     * @param WinTitle Window identifier
+     */
+    static UndockWindow(WinTitle := "A") {
+        winId := "ahk_id " WinExist(WinTitle)
+        if this.dockedWindows.Has(winId) {
+            this.dockedWindows.Delete(winId)
+            TrayTip("Window undocked", "Dock System", "Icon!")
+        }
+    }
+
+    /**
+     * @method ArrangeWithDock
+     * @description Arrange remaining windows around docked windows
+     * @param WinTitle Window to arrange
+     */
+    static ArrangeWithDock(WinTitle := "A") {
+        try {
+            MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
+
+            workLeft := left
+            workTop := top
+            workRight := right
+            workBottom := bottom
+
+            ; Adjust for docked windows
+            for winId, dockInfo in this.dockedWindows {
+                if !WinExist(winId)
+                    continue
+
+                switch dockInfo.Edge {
+                    case "left":
+                        workLeft += dockInfo.Size + this.dockSpacing
+                    case "right":
+                        workRight -= dockInfo.Size + this.dockSpacing
+                    case "top":
+                        workTop += dockInfo.Size + this.dockSpacing
+                    case "bottom":
+                        workBottom -= dockInfo.Size + this.dockSpacing
+                }
+            }
+
+            ; Position window in remaining space
+            workWidth := workRight - workLeft
+            workHeight := workBottom - workTop
+
+            WinMove(workLeft, workTop, workWidth, workHeight, WinTitle)
+
+        } catch as err {
+            MsgBox("Arrange failed: " err.Message, "Error", "IconX")
+        }
+    }
 }
 
 ; Hotkey: Ctrl+Alt+Left - Dock window to left
@@ -441,18 +441,18 @@ static ArrangeWithDock(WinTitle := "A") {
 ; ========================================
 
 /**
-* @class ProportionalSize
-* @description Resize windows proportionally to screen size
-*/
+ * @class ProportionalSize
+ * @description Resize windows proportionally to screen size
+ */
 class ProportionalSize {
     /**
-    * @method SetProportional
-    * @description Set window size as percentage of screen
-    * @param WinTitle Window identifier
-    * @param widthPercent Width percentage (0-100)
-    * @param heightPercent Height percentage (0-100)
-    * @param center Center window after resize
-    */
+     * @method SetProportional
+     * @description Set window size as percentage of screen
+     * @param WinTitle Window identifier
+     * @param widthPercent Width percentage (0-100)
+     * @param heightPercent Height percentage (0-100)
+     * @param center Center window after resize
+     */
     static SetProportional(WinTitle := "A", widthPercent := 80, heightPercent := 80, center := true) {
         try {
             MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
@@ -478,11 +478,11 @@ class ProportionalSize {
     }
 
     /**
-    * @method GetProportions
-    * @description Get current window size as percentage of screen
-    * @param WinTitle Window identifier
-    * @returns {Object} Width and height percentages
-    */
+     * @method GetProportions
+     * @description Get current window size as percentage of screen
+     * @param WinTitle Window identifier
+     * @returns {Object} Width and height percentages
+     */
     static GetProportions(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -499,16 +499,16 @@ class ProportionalSize {
             }
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method ScaleRelative
-    * @description Scale window by relative amount
-    * @param WinTitle Window identifier
-    * @param scaleFactor Scale factor (1.0 = 100%, 1.5 = 150%)
-    */
+     * @method ScaleRelative
+     * @description Scale window by relative amount
+     * @param WinTitle Window identifier
+     * @param scaleFactor Scale factor (1.0 = 100%, 1.5 = 150%)
+     */
     static ScaleRelative(WinTitle := "A", scaleFactor := 1.1) {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -542,18 +542,18 @@ class ProportionalSize {
 ; ========================================
 
 /**
-* @class AspectRatioManager
-* @description Maintain or set window aspect ratios
-*/
+ * @class AspectRatioManager
+ * @description Maintain or set window aspect ratios
+ */
 class AspectRatioManager {
     static lockedRatio := 0
     static lockedWindow := ""
 
     /**
-    * @method LockAspectRatio
-    * @description Lock current window aspect ratio
-    * @param WinTitle Window identifier
-    */
+     * @method LockAspectRatio
+     * @description Lock current window aspect ratio
+     * @param WinTitle Window identifier
+     */
     static LockAspectRatio(WinTitle := "A") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -569,9 +569,9 @@ class AspectRatioManager {
     }
 
     /**
-    * @method UnlockAspectRatio
-    * @description Unlock aspect ratio
-    */
+     * @method UnlockAspectRatio
+     * @description Unlock aspect ratio
+     */
     static UnlockAspectRatio() {
         this.lockedRatio := 0
         this.lockedWindow := ""
@@ -579,11 +579,11 @@ class AspectRatioManager {
     }
 
     /**
-    * @method SetAspectRatio
-    * @description Set specific aspect ratio
-    * @param WinTitle Window identifier
-    * @param ratio Aspect ratio (width/height) or preset name
-    */
+     * @method SetAspectRatio
+     * @description Set specific aspect ratio
+     * @param WinTitle Window identifier
+     * @param ratio Aspect ratio (width/height) or preset name
+     */
     static SetAspectRatio(WinTitle := "A", ratio := "16:9") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -601,12 +601,12 @@ class AspectRatioManager {
                     ; Preset ratios
                     switch ratio {
                         case "square": numericRatio := 1.0
-                        case "widescreen": numericRatio := 16/9
-                        case "ultrawide": numericRatio := 21/9
+                        case "widescreen": numericRatio := 16 / 9
+                        case "ultrawide": numericRatio := 21 / 9
                         case "cinema": numericRatio := 2.39
-                        case "standard": numericRatio := 4/3
-                        case "portrait": numericRatio := 9/16
-                        default: numericRatio := 16/9
+                        case "standard": numericRatio := 4 / 3
+                        case "portrait": numericRatio := 9 / 16
+                        default: numericRatio := 16 / 9
                     }
                 }
             }
@@ -631,12 +631,12 @@ class AspectRatioManager {
     }
 
     /**
-    * @method ResizeKeepingRatio
-    * @description Resize window while maintaining aspect ratio
-    * @param WinTitle Window identifier
-    * @param dimension Which dimension to change (width or height)
-    * @param size New size for that dimension
-    */
+     * @method ResizeKeepingRatio
+     * @description Resize window while maintaining aspect ratio
+     * @param WinTitle Window identifier
+     * @param dimension Which dimension to change (width or height)
+     * @param size New size for that dimension
+     */
     static ResizeKeepingRatio(WinTitle := "A", dimension := "width", size := 1000) {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -670,22 +670,22 @@ class AspectRatioManager {
 ; ========================================
 
 /**
-* @class VirtualZones
-* @description Create virtual zones on desktop for window organization
-*/
+ * @class VirtualZones
+ * @description Create virtual zones on desktop for window organization
+ */
 class VirtualZones {
     static zones := []
     static zoneOverlay := []
 
     /**
-    * @method DefineZone
-    * @description Define a new zone
-    * @param name Zone name
-    * @param x X position (pixels or percentage)
-    * @param y Y position (pixels or percentage)
-    * @param width Width (pixels or percentage)
-    * @param height Height (pixels or percentage)
-    */
+     * @method DefineZone
+     * @description Define a new zone
+     * @param name Zone name
+     * @param x X position (pixels or percentage)
+     * @param y Y position (pixels or percentage)
+     * @param width Width (pixels or percentage)
+     * @param height Height (pixels or percentage)
+     */
     static DefineZone(name, x, y, width, height) {
         MonitorGetWorkArea(MonitorGetPrimary(), &left, &top, &right, &bottom)
 
@@ -694,13 +694,13 @@ class VirtualZones {
 
         ; Convert percentages to pixels
         if x <= 1.0
-        x := left + Integer(workWidth * x)
+            x := left + Integer(workWidth * x)
         if y <= 1.0
-        y := top + Integer(workHeight * y)
+            y := top + Integer(workHeight * y)
         if width <= 1.0
-        width := Integer(workWidth * width)
+            width := Integer(workWidth * width)
         if height <= 1.0
-        height := Integer(workHeight * height)
+            height := Integer(workHeight * height)
 
         this.zones.Push({
             Name: name,
@@ -715,11 +715,11 @@ class VirtualZones {
     }
 
     /**
-    * @method MoveToZone
-    * @description Move window to specified zone
-    * @param WinTitle Window identifier
-    * @param zoneName Zone name or index
-    */
+     * @method MoveToZone
+     * @description Move window to specified zone
+     * @param WinTitle Window identifier
+     * @param zoneName Zone name or index
+     */
     static MoveToZone(WinTitle := "A", zoneName := 1) {
         zone := ""
 
@@ -757,10 +757,10 @@ class VirtualZones {
     }
 
     /**
-    * @method ShowZones
-    * @description Display zone overlay
-    * @param duration Duration to show in milliseconds (0 = permanent)
-    */
+     * @method ShowZones
+     * @description Display zone overlay
+     * @param duration Duration to show in milliseconds (0 = permanent)
+     */
     static ShowZones(duration := 3000) {
         this.HideZones()
 
@@ -783,9 +783,9 @@ class VirtualZones {
     }
 
     /**
-    * @method HideZones
-    * @description Hide zone overlay
-    */
+     * @method HideZones
+     * @description Hide zone overlay
+     */
     static HideZones() {
         for gui in this.zoneOverlay {
             try gui.Destroy()
@@ -794,9 +794,9 @@ class VirtualZones {
     }
 
     /**
-    * @method CreateDefaultZones
-    * @description Create a default set of zones
-    */
+     * @method CreateDefaultZones
+     * @description Create a default set of zones
+     */
     static CreateDefaultZones() {
         this.zones := []
 
@@ -829,7 +829,7 @@ class VirtualZones {
 HasValue(arr, value) {
     for item in arr {
         if item = value
-        return true
+            return true
     }
     return false
 }
@@ -852,18 +852,18 @@ VirtualZones.CreateDefaultZones()
 ; ========================================
 
 /**
-* @class PositionPresets
-* @description Save and apply window position presets
-*/
+ * @class PositionPresets
+ * @description Save and apply window position presets
+ */
 class PositionPresets {
     static presets := Map()
 
     /**
-    * @method SavePreset
-    * @description Save current window position as preset
-    * @param WinTitle Window identifier
-    * @param name Preset name
-    */
+     * @method SavePreset
+     * @description Save current window position as preset
+     * @param WinTitle Window identifier
+     * @param name Preset name
+     */
     static SavePreset(WinTitle := "A", name := "Default") {
         try {
             WinGetPos(&x, &y, &width, &height, WinTitle)
@@ -876,7 +876,7 @@ class PositionPresets {
 
             preset := {
                 Name: name,
-                Absolute: {X: x, Y: y, Width: width, Height: height},
+                Absolute: { X: x, Y: y, Width: width, Height: height },
                 Relative: {
                     XPercent: (x - left) / workWidth,
                     YPercent: (y - top) / workHeight,
@@ -899,12 +899,12 @@ class PositionPresets {
     }
 
     /**
-    * @method ApplyPreset
-    * @description Apply saved preset to window
-    * @param WinTitle Window identifier
-    * @param name Preset name
-    * @param useRelative Use relative positioning
-    */
+     * @method ApplyPreset
+     * @description Apply saved preset to window
+     * @param WinTitle Window identifier
+     * @param name Preset name
+     * @param useRelative Use relative positioning
+     */
     static ApplyPreset(WinTitle := "A", name := "Default", useRelative := true) {
         if !this.presets.Has(name) {
             MsgBox("Preset not found: " name, "Error", "IconX")
@@ -930,7 +930,7 @@ class PositionPresets {
             } else {
                 ; Use absolute positioning
                 WinMove(preset.Absolute.X, preset.Absolute.Y,
-                preset.Absolute.Width, preset.Absolute.Height, WinTitle)
+                    preset.Absolute.Width, preset.Absolute.Height, WinTitle)
             }
 
             TrayTip("Preset applied: " name, "Position Presets", "Icon!")
@@ -943,13 +943,13 @@ class PositionPresets {
     }
 
     /**
-    * @method ListPresets
-    * @description List all saved presets
-    * @returns {String} Formatted list
-    */
+     * @method ListPresets
+     * @description List all saved presets
+     * @returns {String} Formatted list
+     */
     static ListPresets() {
         if this.presets.Count = 0
-        return "No presets saved"
+            return "No presets saved"
 
         output := "Saved Position Presets:`n`n"
 
@@ -963,10 +963,10 @@ class PositionPresets {
     }
 
     /**
-    * @method DeletePreset
-    * @description Delete a saved preset
-    * @param name Preset name
-    */
+     * @method DeletePreset
+     * @description Delete a saved preset
+     * @param name Preset name
+     */
     static DeletePreset(name) {
         if this.presets.Has(name) {
             this.presets.Delete(name)
@@ -981,7 +981,7 @@ class PositionPresets {
 ^!s:: {
     name := InputBox("Enter preset name:", "Save Preset", "w300").Value
     if name != ""
-    PositionPresets.SavePreset("A", name)
+        PositionPresets.SavePreset("A", name)
 }
 
 ; Hotkey: Ctrl+Alt+L - Load position preset
@@ -991,7 +991,7 @@ class PositionPresets {
 
     name := InputBox("Enter preset name to load:", "Load Preset", "w300").Value
     if name != ""
-    PositionPresets.ApplyPreset("A", name, true)
+        PositionPresets.ApplyPreset("A", name, true)
 }
 
 ; ========================================

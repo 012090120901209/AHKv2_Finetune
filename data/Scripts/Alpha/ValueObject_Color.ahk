@@ -21,15 +21,15 @@ class Color {
             StrLen(hex) >= 8 ? Integer("0x" SubStr(hex, 7, 2)) : 255
         )
     }
-    
+
     static FromHSL(h, s, l) {
         s := s / 100
         l := l / 100
-        
+
         c := (1 - Abs(2 * l - 1)) * s
         x := c * (1 - Abs(Mod(h / 60, 2) - 1))
         m := l - c / 2
-        
+
         if h < 60
             r := c, g := x, b := 0
         else if h < 120
@@ -42,7 +42,7 @@ class Color {
             r := x, g := 0, b := c
         else
             r := c, g := 0, b := x
-        
+
         return Color(
             Round((r + m) * 255),
             Round((g + m) * 255),
@@ -80,11 +80,11 @@ class Color {
             Round(this.a * (1 - weight) + other.a * weight)
         )
     }
-    
+
     Invert() {
         return Color(255 - this.r, 255 - this.g, 255 - this.b, this.a)
     }
-    
+
     Grayscale() {
         gray := Round(this.r * 0.299 + this.g * 0.587 + this.b * 0.114)
         return Color(gray, gray, gray, this.a)
@@ -96,9 +96,9 @@ primary := Color.FromHex("#3498db")
 secondary := Color(231, 76, 60)
 
 MsgBox("Primary: " primary.ToHex() "`n"
-     . "Lightened: " primary.Lighten(0.2).ToHex() "`n"
-     . "Darkened: " primary.Darken(0.2).ToHex() "`n`n"
-     . "Secondary: " secondary.ToRGB() "`n"
-     . "Inverted: " secondary.Invert().ToHex() "`n"
-     . "Grayscale: " secondary.Grayscale().ToHex() "`n`n"
-     . "Mixed: " primary.Mix(secondary, 0.5).ToHex())
+    . "Lightened: " primary.Lighten(0.2).ToHex() "`n"
+    . "Darkened: " primary.Darken(0.2).ToHex() "`n`n"
+    . "Secondary: " secondary.ToRGB() "`n"
+    . "Inverted: " secondary.Invert().ToHex() "`n"
+    . "Grayscale: " secondary.Grayscale().ToHex() "`n`n"
+    . "Mixed: " primary.Mix(secondary, 0.5).ToHex())

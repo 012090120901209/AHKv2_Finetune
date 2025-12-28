@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Class_03_Constructor.ahk
-*
-* DESCRIPTION:
-* Demonstrates the __New constructor method in AutoHotkey v2 classes, including
-* initialization patterns, parameter handling, validation, and advanced constructor techniques.
-*
-* FEATURES:
-* - Basic constructor syntax
-* - Constructor parameters (required and optional)
-* - Default parameter values
-* - Parameter validation in constructors
-* - Constructor chaining
-* - Factory methods as constructor alternatives
-* - Constructor error handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - __New() special method
-* - Optional parameters with := default values
-* - Parameter validation with throw
-* - Variadic parameters (params*)
-* - Static methods for factory patterns
-* - Constructor return values
-*
-* LEARNING POINTS:
-* 1. Constructors initialize objects when created
-* 2. __New is called automatically on instantiation
-* 3. Constructors can validate input parameters
-* 4. Optional parameters provide flexibility
-* 5. Factory methods offer alternative creation patterns
-* 6. Constructors can throw errors for invalid input
-* 7. Proper initialization prevents bugs
-*/
+ * BuiltIn_OOP_Class_03_Constructor.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the __New constructor method in AutoHotkey v2 classes, including
+ * initialization patterns, parameter handling, validation, and advanced constructor techniques.
+ * 
+ * FEATURES:
+ * - Basic constructor syntax
+ * - Constructor parameters (required and optional)
+ * - Default parameter values
+ * - Parameter validation in constructors
+ * - Constructor chaining
+ * - Factory methods as constructor alternatives
+ * - Constructor error handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - __New() special method
+ * - Optional parameters with := default values
+ * - Parameter validation with throw
+ * - Variadic parameters (params*)
+ * - Static methods for factory patterns
+ * - Constructor return values
+ * 
+ * LEARNING POINTS:
+ * 1. Constructors initialize objects when created
+ * 2. __New is called automatically on instantiation
+ * 3. Constructors can validate input parameters
+ * 4. Optional parameters provide flexibility
+ * 5. Factory methods offer alternative creation patterns
+ * 6. Constructors can throw errors for invalid input
+ * 7. Proper initialization prevents bugs
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Constructor Patterns
@@ -60,7 +60,7 @@ class Book {
 
     ToString() {
         return Format('"{}" by {} ({}), {} pages, Published: {}',
-        this.Title, this.Author, this.ISBN, this.Pages, this.Published)
+            this.Title, this.Author, this.ISBN, this.Pages, this.Published)
     }
 }
 
@@ -105,21 +105,21 @@ class Person {
     __New(name, age, email := "") {
         ; Validate name
         if (Trim(name) = "")
-        throw ValueError("Name cannot be empty")
+            throw ValueError("Name cannot be empty")
 
         if (StrLen(name) > 100)
-        throw ValueError("Name is too long (max 100 characters)")
+            throw ValueError("Name is too long (max 100 characters)")
 
         ; Validate age
         if (!IsInteger(age))
-        throw TypeError("Age must be an integer")
+            throw TypeError("Age must be an integer")
 
         if (age < 0 || age > 150)
-        throw ValueError("Age must be between 0 and 150")
+            throw ValueError("Age must be between 0 and 150")
 
         ; Validate email if provided
         if (email != "" && !RegExMatch(email, "^[^@]+@[^@]+\.[^@]+$"))
-        throw ValueError("Invalid email format")
+            throw ValueError("Invalid email format")
 
         ; All validations passed - set properties
         this.Name := Trim(name)
@@ -244,10 +244,10 @@ color4 := Color(200, 150, 100, 128)  ; RGBA
 color5 := Color("#FF5733")           ; Hex string
 
 MsgBox("Color 1: " color1.ToString() "`n"
-. "Color 2: " color2.ToString() "`n"
-. "Color 3: " color3.ToString() "`n"
-. "Color 4: " color4.ToString() "`n"
-. "Color 5: " color5.ToString())
+    . "Color 2: " color2.ToString() "`n"
+    . "Color 3: " color3.ToString() "`n"
+    . "Color 4: " color4.ToString() "`n"
+    . "Color 5: " color5.ToString())
 
 ; ========================================
 ; EXAMPLE 4: Factory Methods as Constructor Alternatives
@@ -273,7 +273,7 @@ class Database {
 
     _BuildConnectionString() {
         return Format("Server={};Port={};Database={};Uid={};Pwd={};",
-        this.Host, this.Port, this.DatabaseName, this.Username, this.Password)
+            this.Host, this.Port, this.DatabaseName, this.Username, this.Password)
     }
 
     ; Factory method for local development database
@@ -294,11 +294,11 @@ class Database {
     ; Factory method from configuration object
     static FromConfig(config) {
         return Database(
-        config.Host,
-        config.Port,
-        config.Username,
-        config.Password,
-        config.DatabaseName
+            config.Host,
+            config.Port,
+            config.Username,
+            config.Password,
+            config.DatabaseName
         )
     }
 
@@ -313,8 +313,8 @@ prodDb := Database.Production("my_app")
 testDb := Database.Testing()
 
 MsgBox("Development: " devDb.ToString() "`n"
-. "Production: " prodDb.ToString() "`n"
-. "Testing: " testDb.ToString())
+    . "Production: " prodDb.ToString() "`n"
+    . "Testing: " testDb.ToString())
 
 ; Using FromConfig factory
 config := {
@@ -364,7 +364,7 @@ class Logger {
 
         for validLevel in validLevels {
             if (level = validLevel)
-            return level
+                return level
         }
 
         throw ValueError("Invalid log level: " level)
@@ -372,7 +372,7 @@ class Logger {
 
     _AddDefaultOutputs() {
         ; Add default output handlers
-        this.Outputs.Push({type: "console", enabled: true})
+        this.Outputs.Push({ type: "console", enabled: true })
     }
 
     _LogInit() {
@@ -400,7 +400,7 @@ class Logger {
     GetStats() {
         uptime := DateDiff(A_Now, this.StartTime, "Seconds")
         return Format("Logger: {}, Level: {}, Logs: {}, Uptime: {}s",
-        this.Name, this.Level, this.LogCount, uptime)
+            this.Name, this.Level, this.LogCount, uptime)
     }
 }
 
@@ -473,17 +473,17 @@ class Form {
 
     ToString() {
         return Format("Form: '{}' ({}x{}), Controls: {}, Styles: {}",
-        this.Title, this.Width, this.Height,
-        this.Controls.Length, this.Styles.Count)
+            this.Title, this.Width, this.Height,
+            this.Controls.Length, this.Styles.Count)
     }
 }
 
 ; Create form with automatic initialization
 form := Form("My Application", 1024, 768)
 form.SetStyle("BackgroundColor", "LightGray")
-.SetStyle("FontSize", 10)
-.AddControl("Button1")
-.AddControl("TextBox1")
+    .SetStyle("FontSize", 10)
+    .AddControl("Button1")
+    .AddControl("TextBox1")
 
 MsgBox(form.ToString())
 MsgBox("Font Family: " form.Styles["FontFamily"])
@@ -504,11 +504,11 @@ class FileHandler {
     __New(filePath, mode := "r") {
         ; Validate parameters
         if (Trim(filePath) = "")
-        throw ValueError("File path cannot be empty")
+            throw ValueError("File path cannot be empty")
 
         validModes := ["r", "w", "a", "rw"]
         if (!this._IsValidMode(mode, validModes))
-        throw ValueError("Invalid file mode: " mode)
+            throw ValueError("Invalid file mode: " mode)
 
         ; Store basic properties
         this.FilePath := filePath
@@ -526,7 +526,7 @@ class FileHandler {
     _IsValidMode(mode, validModes) {
         for validMode in validModes {
             if (mode = validMode)
-            return true
+                return true
         }
         return false
     }
@@ -550,7 +550,7 @@ class FileHandler {
     GetInfo() {
         status := this.IsOpen ? "Open" : "Closed"
         return Format("File: {}, Mode: {}, Status: {}, Bytes: {}",
-        this.FilePath, this.Mode, status, this.BytesProcessed)
+            this.FilePath, this.Mode, status, this.BytesProcessed)
     }
 
     __Delete() {
@@ -566,12 +566,12 @@ fileHandler.Close()
 MsgBox(fileHandler.GetInfo())
 
 MsgBox("=== OOP Constructor Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic constructor syntax`n"
-. "- Required and optional parameters`n"
-. "- Parameter validation`n"
-. "- Constructor overloading simulation`n"
-. "- Factory methods`n"
-. "- Complex initialization`n"
-. "- Constructor chaining`n"
-. "- Resource management in constructors")
+    . "This file demonstrated:`n"
+    . "- Basic constructor syntax`n"
+    . "- Required and optional parameters`n"
+    . "- Parameter validation`n"
+    . "- Constructor overloading simulation`n"
+    . "- Factory methods`n"
+    . "- Complex initialization`n"
+    . "- Constructor chaining`n"
+    . "- Resource management in constructors")

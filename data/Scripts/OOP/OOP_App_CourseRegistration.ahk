@@ -39,14 +39,14 @@ class Student {
     GetTotalCredits() {
         total := 0
         for course in this.enrolledCourses
-        total += course.credits
+            total += course.credits
         return total
     }
 
     HasCompleted(courseCode) {
         for code in this.completedCourses
-        if (code = courseCode)
-        return true
+            if (code = courseCode)
+                return true
         return false
     }
 
@@ -56,7 +56,7 @@ class Student {
     }
 
     ToString() => Format("#{1}: {2} ({3} major)`n{4} enrolled courses, {5} completed | GPA: {6}",
-    this.studentId, this.name, this.major, this.enrolledCourses.Length, this.completedCourses.Length, this.gpa)
+        this.studentId, this.name, this.major, this.enrolledCourses.Length, this.completedCourses.Length, this.gpa)
 }
 
 class Enrollment {
@@ -85,18 +85,18 @@ class RegistrationSystem {
         course := this.courses.Has(courseCode) ? this.courses[courseCode] : ""
 
         if (!student)
-        return MsgBox("Student not found!", "Error")
+            return MsgBox("Student not found!", "Error")
         if (!course)
-        return MsgBox("Course not found!", "Error")
+            return MsgBox("Course not found!", "Error")
 
         ; Check prerequisites
         if (!this._CheckPrerequisites(student, course))
-        return MsgBox("Prerequisites not met!", "Error")
+            return MsgBox("Prerequisites not met!", "Error")
 
         ; Check if already enrolled
         for enrolled in student.enrolledCourses
-        if (enrolled.code = courseCode)
-        return MsgBox("Already enrolled in this course!", "Error")
+            if (enrolled.code = courseCode)
+                return MsgBox("Already enrolled in this course!", "Error")
 
         ; Check capacity
         if (course.IsFull()) {
@@ -118,7 +118,7 @@ class RegistrationSystem {
     DropCourse(studentId, courseCode) {
         student := this.students.Has(studentId) ? this.students[studentId] : ""
         if (!student)
-        return MsgBox("Student not found!", "Error")
+            return MsgBox("Student not found!", "Error")
 
         ; Find and remove enrollment
         for index, course in student.enrolledCourses {
@@ -150,22 +150,22 @@ class RegistrationSystem {
     GetCourseRoster(courseCode) {
         course := this.courses.Has(courseCode) ? this.courses[courseCode] : ""
         if (!course)
-        return []
+            return []
         return course.enrolledStudents
     }
 
     GetStudentSchedule(studentId) {
         student := this.students.Has(studentId) ? this.students[studentId] : ""
         if (!student)
-        return ""
+            return ""
 
         schedule := Format("{1}'s Schedule`n", student.name)
         schedule .= "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n"
         schedule .= Format("Total Credits: {1}`n`n", student.GetTotalCredits())
 
         for course in student.enrolledCourses
-        schedule .= Format("{1} - {2} ({3} credits)`n{4}`n`n",
-        course.code, course.name, course.credits, course.schedule)
+            schedule .= Format("{1} - {2} ({3} credits)`n{4}`n`n",
+                course.code, course.name, course.credits, course.schedule)
 
         return schedule
     }
@@ -182,22 +182,22 @@ class RegistrationSystem {
 
         for code, course in this.courses {
             if (course.IsFull())
-            fullCourses++
+                fullCourses++
             totalSeats += course.capacity
             usedSeats += course.enrolledStudents.Length
         }
 
         stats .= Format("Full courses: {1}`n", fullCourses)
         stats .= Format("Overall capacity: {1}% ({2}/{3})",
-        Round((usedSeats / totalSeats) * 100, 1), usedSeats, totalSeats)
+            Round((usedSeats / totalSeats) * 100, 1), usedSeats, totalSeats)
 
         return stats
     }
 
     _CheckPrerequisites(student, course) {
         for prereqCode in course.prerequisites
-        if (!student.HasCompleted(prereqCode))
-        return false
+            if (!student.HasCompleted(prereqCode))
+                return false
         return true
     }
 }

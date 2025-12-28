@@ -4,4 +4,4 @@
 FolderSize := 0
 WhichFolder := DirSelect() ; Ask the user to pick a folder.
 Loop Files, WhichFolder "\*.*", "R" FolderSize + = A_LoopFileSize
-MsgBox("Size of " WhichFolder " is " FolderSize " bytes.")
+    MsgBox("Size of " WhichFolder " is " FolderSize " bytes.")

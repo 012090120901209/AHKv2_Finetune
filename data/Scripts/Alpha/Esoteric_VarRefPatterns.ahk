@@ -44,10 +44,10 @@ ModifyRef(ref, newValue) {
 ; Reference to array element doesn't work directly - need wrapper
 class RefCell {
     __New(value := "") => this.value := value
-    
+
     Get() => this.value
     Set(&v) => this.value := v
-    
+
     ; Allow using as VarRef target
     __Item {
         get => this.value
@@ -97,8 +97,8 @@ MakeCounter() {
 
 ; Explicit reference sharing between closures
 MakeLinkedCounters() {
-    shared := {value: 0}  ; Object reference shared
-    
+    shared := { value: 0 }  ; Object reference shared
+
     return {
         inc: () => ++shared.value,
         dec: () => --shared.value,
@@ -121,19 +121,19 @@ class RefTracker {
         this.refs := []
         this.names := []
     }
-    
+
     ; Store a reference with a name
     Track(name, &var) {
         this.refs.Push(&var)
         this.names.Push(name)
     }
-    
+
     ; Update all tracked refs
     SetAll(value) {
         for ref in this.refs
             %ref% := value
     }
-    
+
     ; Get snapshot of all values
     Snapshot() {
         result := Map()
@@ -141,7 +141,7 @@ class RefTracker {
             result[this.names[i]] := %ref%
         return result
     }
-    
+
     ; Apply function to all refs
     MapInPlace(fn) {
         for ref in this.refs
@@ -159,21 +159,21 @@ class TwoWayBinding {
         this.targets := []
         this.transforms := []
     }
-    
+
     ; Bind target with optional transform
     Bind(&target, transform := (v) => v, inverse := (v) => v) {
-        this.targets.Push({ref: &target, transform: transform, inverse: inverse})
+        this.targets.Push({ ref: &target, transform: transform, inverse: inverse })
         target := transform(%this.sourceRef%)  ; Initial sync
         return this
     }
-    
+
     ; Update source and propagate to all targets
     Update(value) {
         %this.sourceRef% := value
         for binding in this.targets
             %binding.ref% := binding.transform(value)
     }
-    
+
     ; Sync back from target to source (by index)
     SyncBack(targetIndex) {
         binding := this.targets[targetIndex]
@@ -192,7 +192,7 @@ class LazyRef {
         this._hasValue := false
         this._value := ""
     }
-    
+
     ; Get or compute value
     Value {
         get {
@@ -207,12 +207,12 @@ class LazyRef {
             this._hasValue := true
         }
     }
-    
+
     ; Force recomputation on next access
     Invalidate() {
         this._hasValue := false
     }
-    
+
     ; Check without forcing computation
     HasValue => this._hasValue
 }
@@ -228,56 +228,56 @@ class RefStateMachine {
         this.onEnter := Map()
         this.onExit := Map()
     }
-    
+
     ; Define valid transition
     Allow(from, to, &via := unset) {
         if !this.transitions.Has(from)
             this.transitions[from] := Map()
-        
+
         handler := IsSet(via) ? () => %via%() : () => true
         this.transitions[from][to] := handler
         return this
     }
-    
+
     ; Register enter callback
     OnEnter(state, callback) {
         this.onEnter[state] := callback
         return this
     }
-    
+
     ; Register exit callback
     OnExit(state, callback) {
         this.onExit[state] := callback
         return this
     }
-    
+
     ; Attempt transition
     TransitionTo(newState) {
         current := %this.stateRef%
-        
+
         if !this.transitions.Has(current)
             return false
         if !this.transitions[current].Has(newState)
             return false
-        
+
         handler := this.transitions[current][newState]
         if !handler()
             return false
-        
+
         ; Exit current
         if this.onExit.Has(current)
             this.onExit[current]()
-        
+
         ; Transition
         %this.stateRef% := newState
-        
+
         ; Enter new
         if this.onEnter.Has(newState)
             this.onEnter[newState]()
-        
+
         return true
     }
-    
+
     Current => %this.stateRef%
 }
 

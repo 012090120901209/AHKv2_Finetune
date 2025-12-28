@@ -1,19 +1,19 @@
 /**
-* @file DirCreate_03.ahk
-* @description Comprehensive examples of DirCreate advanced recursive and error handling
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Multi-level recursive creation
-* - Advanced error handling
-* - Permission management
-* - Folder validation
-* - Atomic operations
-* - Transaction-like creation
-* - Rollback on error
-*/
+ * @file DirCreate_03.ahk
+ * @description Comprehensive examples of DirCreate advanced recursive and error handling
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Multi-level recursive creation
+ * - Advanced error handling
+ * - Permission management
+ * - Folder validation
+ * - Atomic operations
+ * - Transaction-like creation
+ * - Rollback on error
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,17 +22,17 @@
 ; ===================================================================================================
 
 /**
-* @function BasicDirCreateOperation
-* @description Demonstrates basic DirCreate usage
-* @param {String} path - Path to operate on
-* @returns {Object} Result object
-*/
+ * @function BasicDirCreateOperation
+ * @description Demonstrates basic DirCreate usage
+ * @param {String} path - Path to operate on
+ * @returns {Object} Result object
+ */
 BasicDirCreateOperation(path) {
     try {
         ; Example operation implementation
-        return {Success: true, Path: path}
+        return { Success: true, Path: path }
     } catch as err {
-        return {Success: false, Error: err.Message}
+        return { Success: false, Error: err.Message }
     }
 }
 
@@ -53,9 +53,9 @@ Example1_Basic() {
 ; ===================================================================================================
 
 /**
-* @class DirCreateManager
-* @description Manages dircreate operations with comprehensive error handling
-*/
+ * @class DirCreateManager
+ * @description Manages dircreate operations with comprehensive error handling
+ */
 class DirCreateManager {
     lastError := ""
 
@@ -66,21 +66,21 @@ class DirCreateManager {
             ; Validate inputs
             if (sourcePath = "") {
                 this.lastError := "Source path is required"
-                return {Success: false, Error: this.lastError}
+                return { Success: false, Error: this.lastError }
             }
 
             ; Perform operation based on file type
 
             if DirExist(sourcePath) {
-                return {Success: true, Existed: true, Path: sourcePath}
+                return { Success: true, Existed: true, Path: sourcePath }
             }
 
             DirCreate(sourcePath)
-            return {Success: true, Created: true, Path: sourcePath}
+            return { Success: true, Created: true, Path: sourcePath }
 
         } catch as err {
             this.lastError := err.Message
-            return {Success: false, Error: err.Message}
+            return { Success: false, Error: err.Message }
         }
     }
 
@@ -99,7 +99,7 @@ Example2_Advanced() {
         message := "Advanced operation completed!`n`n"
         for key, value in result.OwnProps() {
             if (key != "Success")
-            message .= key . ": " . value . "`n"
+                message .= key . ": " . value . "`n"
         }
         MsgBox(message, "Success", "Iconi")
     } else {
@@ -114,9 +114,9 @@ Example2_Advanced() {
 ; ===================================================================================================
 
 /**
-* @class BatchDirCreateManager
-* @description Handles batch dircreate operations
-*/
+ * @class BatchDirCreateManager
+ * @description Handles batch dircreate operations
+ */
 class BatchDirCreateManager {
     static ProcessMultiple(paths) {
         results := []
@@ -128,9 +128,9 @@ class BatchDirCreateManager {
             result := manager.Execute(path)
 
             if (result.Success)
-            successCount++
+                successCount++
             else
-            failCount++
+                failCount++
 
             results.Push(result)
         }
@@ -171,14 +171,14 @@ Example3_Batch() {
 ; ===================================================================================================
 
 /**
-* @function InteractiveDirCreate
-* @description Interactive dircreate operation with user prompts
-*/
+ * @function InteractiveDirCreate
+ * @description Interactive dircreate operation with user prompts
+ */
 InteractiveDirCreate() {
     sourcePath := InputBox("Enter source path:", "DirCreate Operation").Value
 
     if (sourcePath = "")
-    return
+        return
 
     manager := DirCreateManager()
     result := manager.Execute(sourcePath)
@@ -201,9 +201,9 @@ Example4_Interactive() {
 ; ===================================================================================================
 
 /**
-* @class DirCreateLogger
-* @description Logs all dircreate operations
-*/
+ * @class DirCreateLogger
+ * @description Logs all dircreate operations
+ */
 class DirCreateLogger {
     logFile := A_ScriptDir . "\dircreate_operations.log"
 
@@ -214,7 +214,7 @@ class DirCreateLogger {
         logEntry := Format("[{1}] {2} - {3}", timestamp, status, path)
 
         if (details != "")
-        logEntry .= " - " . details
+            logEntry .= " - " . details
 
         logEntry .= "`n"
 
@@ -250,7 +250,7 @@ class DirCreateLogger {
 
         for i, line in allLines {
             if (i >= startIndex && line != "")
-            report .= line . "`n"
+                report .= line . "`n"
         }
 
         MsgBox(report, "Operation Log", "Iconi")
@@ -275,9 +275,9 @@ Example5_Logging() {
 ; ===================================================================================================
 
 /**
-* @class ScheduledDirCreate
-* @description Schedules dircreate operations
-*/
+ * @class ScheduledDirCreate
+ * @description Schedules dircreate operations
+ */
 class ScheduledDirCreate {
     schedules := Map()
 
@@ -296,7 +296,7 @@ class ScheduledDirCreate {
 
                 if (result.Success) {
                     MsgBox(Format("Scheduled operation completed for: {1}", path),
-                    "Scheduled DirCreate", "Iconi")
+                        "Scheduled DirCreate", "Iconi")
                 }
 
                 this.schedules.Delete(path)
@@ -314,9 +314,9 @@ Example6_Scheduled() {
     if (scheduleTime != "" && StrLen(scheduleTime) = 4) {
         scheduler.Schedule(testPath, scheduleTime)
         MsgBox(Format("Operation scheduled for {1}:{2}",
-        SubStr(scheduleTime, 1, 2),
-        SubStr(scheduleTime, 3, 2)),
-        "Scheduled", "Iconi")
+            SubStr(scheduleTime, 1, 2),
+            SubStr(scheduleTime, 3, 2)),
+            "Scheduled", "Iconi")
     }
 
     return scheduler
@@ -327,9 +327,9 @@ Example6_Scheduled() {
 ; ===================================================================================================
 
 /**
-* @class DirCreateStatistics
-* @description Tracks statistics for dircreate operations
-*/
+ * @class DirCreateStatistics
+ * @description Tracks statistics for dircreate operations
+ */
 class DirCreateStatistics {
     totalOperations := 0
     successfulOperations := 0
@@ -339,15 +339,15 @@ class DirCreateStatistics {
         this.totalOperations++
 
         if (result.Success)
-        this.successfulOperations++
+            this.successfulOperations++
         else
-        this.failedOperations++
+            this.failedOperations++
     }
 
     GetStatistics() {
         successRate := this.totalOperations > 0
-        ? Round((this.successfulOperations / this.totalOperations) * 100, 2)
-        : 0
+            ? Round((this.successfulOperations / this.totalOperations) * 100, 2)
+            : 0
 
         return {
             Total: this.totalOperations,
@@ -407,3 +407,4 @@ Example7_Statistics() {
 
 ; Press Ctrl+Alt+5 for logged operation
 ; ^!5::Example5_Logging()
+

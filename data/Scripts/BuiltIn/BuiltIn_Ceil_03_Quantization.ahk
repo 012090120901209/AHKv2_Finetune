@@ -1,47 +1,47 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Ceil_03_Quantization.ahk
-*
-* DESCRIPTION:
-* Quantization applications using Ceil() for block sizing, memory allocation,
-* resource granularity, and discrete unit calculations
-*
-* FEATURES:
-* - Block and sector size calculations
-* - Memory allocation and alignment
-* - Discrete unit quantization
-* - Bandwidth and storage planning
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Ceil.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Ceil() for quantization rounding
-* - Bit shifting and memory calculations
-* - Resource allocation algorithms
-* - Unit conversion with rounding
-*
-* LEARNING POINTS:
-* 1. Quantization rounds to discrete units
-* 2. Memory allocated in fixed block sizes
-* 3. Storage uses minimum allocation units
-* 4. Resources often come in fixed quantities
-* 5. Ceil() ensures adequate allocation
-*/
+ * BuiltIn_Ceil_03_Quantization.ahk
+ * 
+ * DESCRIPTION:
+ * Quantization applications using Ceil() for block sizing, memory allocation,
+ * resource granularity, and discrete unit calculations
+ * 
+ * FEATURES:
+ * - Block and sector size calculations
+ * - Memory allocation and alignment
+ * - Discrete unit quantization
+ * - Bandwidth and storage planning
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Ceil.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Ceil() for quantization rounding
+ * - Bit shifting and memory calculations
+ * - Resource allocation algorithms
+ * - Unit conversion with rounding
+ * 
+ * LEARNING POINTS:
+ * 1. Quantization rounds to discrete units
+ * 2. Memory allocated in fixed block sizes
+ * 3. Storage uses minimum allocation units
+ * 4. Resources often come in fixed quantities
+ * 5. Ceil() ensures adequate allocation
+ */
 
 ; ============================================================
 ; Example 1: Memory Block Allocation
 ; ============================================================
 
 /**
-* Calculate memory blocks needed
-*
-* @param {Number} requiredBytes - Bytes needed
-* @param {Number} blockSize - Block size in bytes
-* @returns {Object} - Allocation details
-*/
+ * Calculate memory blocks needed
+ * 
+ * @param {Number} requiredBytes - Bytes needed
+ * @param {Number} blockSize - Block size in bytes
+ * @returns {Object} - Allocation details
+ */
 AllocateMemoryBlocks(requiredBytes, blockSize) {
     blocksNeeded := Ceil(requiredBytes / blockSize)
     bytesAllocated := blocksNeeded * blockSize
@@ -59,17 +59,17 @@ AllocateMemoryBlocks(requiredBytes, blockSize) {
 }
 
 /**
-* Format bytes as human-readable
-*/
+ * Format bytes as human-readable
+ */
 FormatBytes(bytes) {
     if (bytes >= 1073741824)
-    return Format("{1:.2f} GB", bytes / 1073741824)
+        return Format("{1:.2f} GB", bytes / 1073741824)
     else if (bytes >= 1048576)
-    return Format("{1:.2f} MB", bytes / 1048576)
+        return Format("{1:.2f} MB", bytes / 1048576)
     else if (bytes >= 1024)
-    return Format("{1:.2f} KB", bytes / 1024)
+        return Format("{1:.2f} KB", bytes / 1024)
     else
-    return Format("{1} bytes", bytes)
+        return Format("{1} bytes", bytes)
 }
 
 ; Allocate memory for data structure
@@ -79,27 +79,27 @@ blockSize := 4096  ; 4 KB blocks
 allocation := AllocateMemoryBlocks(dataSize, blockSize)
 
 MsgBox("Memory Block Allocation:`n`n"
-. "Data Size: " FormatBytes(allocation.required) "`n"
-. "Block Size: " FormatBytes(allocation.blockSize) "`n`n"
-. "Blocks Needed: " allocation.blocksNeeded "`n"
-. "Allocated: " FormatBytes(allocation.bytesAllocated) "`n"
-. "Wasted: " FormatBytes(allocation.wastedBytes) "`n"
-. "Efficiency: " allocation.efficiency "%`n`n"
-. "Calculation: Ceil(" allocation.required " / " allocation.blockSize ")`n"
-. "= Ceil(15.87) = " allocation.blocksNeeded " blocks",
-"Memory Allocation", "Icon!")
+    . "Data Size: " FormatBytes(allocation.required) "`n"
+    . "Block Size: " FormatBytes(allocation.blockSize) "`n`n"
+    . "Blocks Needed: " allocation.blocksNeeded "`n"
+    . "Allocated: " FormatBytes(allocation.bytesAllocated) "`n"
+    . "Wasted: " FormatBytes(allocation.wastedBytes) "`n"
+    . "Efficiency: " allocation.efficiency "%`n`n"
+    . "Calculation: Ceil(" allocation.required " / " allocation.blockSize ")`n"
+    . "= Ceil(15.87) = " allocation.blocksNeeded " blocks",
+    "Memory Allocation", "Icon!")
 
 ; ============================================================
 ; Example 2: Disk Sector Allocation
 ; ============================================================
 
 /**
-* Calculate disk sectors for file storage
-*
-* @param {Number} fileSize - File size in bytes
-* @param {Number} sectorSize - Sector size (default: 4096)
-* @returns {Object} - Sector allocation
-*/
+ * Calculate disk sectors for file storage
+ * 
+ * @param {Number} fileSize - File size in bytes
+ * @param {Number} sectorSize - Sector size (default: 4096)
+ * @returns {Object} - Sector allocation
+ */
 CalculateDiskSectors(fileSize, sectorSize := 4096) {
     sectorsNeeded := Ceil(fileSize / sectorSize)
     diskSpace := sectorsNeeded * sectorSize
@@ -116,8 +116,8 @@ CalculateDiskSectors(fileSize, sectorSize := 4096) {
 }
 
 /**
-* Analyze multiple files
-*/
+ * Analyze multiple files
+ */
 AnalyzeDiskUsage(files, sectorSize := 4096) {
     totalFileSize := 0
     totalDiskSpace := 0
@@ -145,369 +145,351 @@ AnalyzeDiskUsage(files, sectorSize := 4096) {
 }
 
 ; Analyze file system usage
-fileList := [
-{
-    name: "document.txt", size: 2500},
-    {
-        name: "image.jpg", size: 8500},
-        {
-            name: "script.ahk", size: 1200},
-            {
+fileList := [{
+    name: "document.txt", size: 2500 }, {
+        name: "image.jpg", size: 8500 }, {
+            name: "script.ahk", size: 1200 }, {
                 name: "data.csv", size: 15000
             }
-            ]
+]
 
-            diskAnalysis := AnalyzeDiskUsage(fileList, 4096)
+diskAnalysis := AnalyzeDiskUsage(fileList, 4096)
 
-            output := "Disk Sector Usage Analysis:`n"
-            output .= "Sector Size: 4096 bytes (4 KB)`n"
-            output .= "═══════════════════════════════════════`n`n"
+output := "Disk Sector Usage Analysis:`n"
+output .= "Sector Size: 4096 bytes (4 KB)`n"
+output .= "═══════════════════════════════════════`n`n"
 
-            for item in diskAnalysis.files {
-                alloc := item.allocation
-                output .= item.name . ":`n"
-                output .= "  File: " FormatBytes(alloc.fileSize) "`n"
-                output .= "  Disk: " FormatBytes(alloc.diskSpace)
-                output .= " (" alloc.sectorsNeeded " sectors)`n"
-                output .= "  Slack: " FormatBytes(alloc.slackSpace) "`n`n"
+for item in diskAnalysis.files {
+    alloc := item.allocation
+    output .= item.name . ":`n"
+    output .= "  File: " FormatBytes(alloc.fileSize) "`n"
+    output .= "  Disk: " FormatBytes(alloc.diskSpace)
+    output .= " (" alloc.sectorsNeeded " sectors)`n"
+    output .= "  Slack: " FormatBytes(alloc.slackSpace) "`n`n"
+}
+
+output .= "───────────────────────────────────────`n"
+output .= "Total File Size: " FormatBytes(diskAnalysis.totalFileSize) "`n"
+output .= "Total Disk Space: " FormatBytes(diskAnalysis.totalDiskSpace) "`n"
+output .= "Total Slack: " FormatBytes(diskAnalysis.totalSlack)
+output .= " (" diskAnalysis.wastePercent "%)"
+
+MsgBox(output, "Disk Usage", "Icon!")
+
+; ============================================================
+; Example 3: Network Packet Framing
+; ============================================================
+
+/**
+ * Calculate network packets needed
+ * 
+ * @param {Number} dataSize - Data size in bytes
+ * @param {Number} maxPayload - Maximum payload per packet
+ * @returns {Object} - Packet breakdown
+ */
+CalculatePackets(dataSize, maxPayload) {
+    packetsNeeded := Ceil(dataSize / maxPayload)
+    packets := []
+
+    Loop packetsNeeded {
+        packetNum := A_Index
+        offset := (packetNum - 1) * maxPayload
+        payloadSize := Min(maxPayload, dataSize - offset)
+
+        packets.Push({
+            number: packetNum,
+            offset: offset,
+            payloadSize: payloadSize
+        })
+    }
+
+    return {
+        dataSize: dataSize,
+        maxPayload: maxPayload,
+        packetsNeeded: packetsNeeded,
+        packets: packets
+    }
+}
+
+; Network transmission
+messageSize := 8500  ; bytes
+mtu := 1500         ; Maximum Transmission Unit (bytes)
+headerOverhead := 40 ; IP + TCP headers
+maxPayload := mtu - headerOverhead
+
+packetCalc := CalculatePackets(messageSize, maxPayload)
+
+output := "Network Packet Calculation:`n`n"
+output .= "Data Size: " FormatBytes(packetCalc.dataSize) "`n"
+output .= "MTU: " mtu " bytes`n"
+output .= "Header Overhead: " headerOverhead " bytes`n"
+output .= "Max Payload: " maxPayload " bytes`n`n"
+output .= "Packets Needed: " packetCalc.packetsNeeded "`n`n"
+
+for packet in packetCalc.packets {
+    output .= Format("Packet {1}: Offset {2}, Payload {3} bytes`n",
+        packet.number, packet.offset, packet.payloadSize)
+}
+
+MsgBox(output, "Network Packets", "Icon!")
+
+; ============================================================
+; Example 4: Cloud Storage Blocks
+; ============================================================
+
+/**
+ * Calculate cloud storage blocks
+ * 
+ * @param {Number} dataGB - Data size in GB
+ * @param {Number} blockSizeGB - Block size in GB
+ * @param {Number} pricePerBlock - Price per block
+ * @returns {Object} - Storage cost calculation
+ */
+CalculateCloudStorage(dataGB, blockSizeGB, pricePerBlock) {
+    blocksNeeded := Ceil(dataGB / blockSizeGB)
+    totalStorageGB := blocksNeeded * blockSizeGB
+    wastedGB := totalStorageGB - dataGB
+    monthlyCost := blocksNeeded * pricePerBlock
+    yearlyOld := monthlyCost * 12
+
+    return {
+        dataGB: dataGB,
+        blockSizeGB: blockSizeGB,
+        blocksNeeded: blocksNeeded,
+        totalStorageGB: totalStorageGB,
+        wastedGB: Round(wastedGB, 2),
+        pricePerBlock: pricePerBlock,
+        monthlyCost: Round(monthlyCost, 2),
+        yearlyCost: Round(yearlyOld, 2)
+    }
+}
+
+; Cloud storage scenarios
+storageScenarios := [{
+    name: "Small Project", data: 15, block: 10, price: 1.50 }, {
+        name: "Medium Database", data: 275, block: 100, price: 10.00 }, {
+            name: "Large Archive", data: 1250, block: 500, price: 45.00
+        }
+]
+
+output := "Cloud Storage Cost Analysis:`n`n"
+
+for scenario in storageScenarios {
+    calc := CalculateCloudStorage(scenario.data, scenario.block, scenario.price)
+
+    output .= scenario.name . ":`n"
+    output .= "  Data: " calc.dataGB " GB`n"
+    output .= "  Block Size: " calc.blockSizeGB " GB @ $"
+    output .= calc.pricePerBlock "/month`n"
+    output .= "  Blocks Needed: " calc.blocksNeeded "`n"
+    output .= "  Total Storage: " calc.totalStorageGB " GB`n"
+    output .= "  Wasted: " calc.wastedGB " GB`n"
+    output .= "  Monthly Cost: $" Format("{1:.2f}", calc.monthlyCost) "`n"
+    output .= "  Yearly Cost: $" Format("{1:.2f}", calc.yearlyCost) "`n`n"
+}
+
+MsgBox(output, "Cloud Storage Costs", "Icon!")
+
+; ============================================================
+; Example 5: Time Quantization
+; ============================================================
+
+/**
+ * Round time to billing interval
+ * 
+ * @param {Number} actualMinutes - Actual time used
+ * @param {Number} billingInterval - Billing interval in minutes
+ * @returns {Object} - Billing calculation
+ */
+QuantizeTime(actualMinutes, billingInterval) {
+    billingUnits := Ceil(actualMinutes / billingInterval)
+    billedMinutes := billingUnits * billingInterval
+    extraMinutes := billedMinutes - actualMinutes
+
+    return {
+        actualMinutes: actualMinutes,
+        billingInterval: billingInterval,
+        billingUnits: billingUnits,
+        billedMinutes: billedMinutes,
+        extraMinutes: extraMinutes
+    }
+}
+
+/**
+ * Calculate service costs
+ */
+CalculateServiceCost(minutes, interval, costPerInterval) {
+    quantized := QuantizeTime(minutes, interval)
+    cost := quantized.billingUnits * costPerInterval
+
+    return {
+        time: quantized,
+        costPerInterval: costPerInterval,
+        totalCost: Round(cost, 2)
+    }
+}
+
+; API usage billing (10-minute intervals at $0.05 each)
+apiCalls := [{
+    duration: 3, desc: "Quick query" }, {
+        duration: 15, desc: "Data export" }, {
+            duration: 47, desc: "Batch process" }, {
+                duration: 90, desc: "Long operation"
             }
+]
 
-            output .= "───────────────────────────────────────`n"
-            output .= "Total File Size: " FormatBytes(diskAnalysis.totalFileSize) "`n"
-            output .= "Total Disk Space: " FormatBytes(diskAnalysis.totalDiskSpace) "`n"
-            output .= "Total Slack: " FormatBytes(diskAnalysis.totalSlack)
-            output .= " (" diskAnalysis.wastePercent "%)"
+output := "API Billing (10-minute intervals @ $0.05):`n`n"
 
-            MsgBox(output, "Disk Usage", "Icon!")
+totalCost := 0
+for call in apiCalls {
+    billing := CalculateServiceCost(call.duration, 10, 0.05)
 
-            ; ============================================================
-            ; Example 3: Network Packet Framing
-            ; ============================================================
+    output .= call.desc . ":`n"
+    output .= "  Actual: " billing.time.actualMinutes " min`n"
+    output .= "  Billed: " billing.time.billedMinutes " min"
+    output .= " (" billing.time.billingUnits " units)`n"
+    output .= "  Cost: $" Format("{1:.2f}", billing.totalCost) "`n`n"
 
-            /**
-            * Calculate network packets needed
-            *
-            * @param {Number} dataSize - Data size in bytes
-            * @param {Number} maxPayload - Maximum payload per packet
-            * @returns {Object} - Packet breakdown
-            */
-            CalculatePackets(dataSize, maxPayload) {
-                packetsNeeded := Ceil(dataSize / maxPayload)
-                packets := []
+    totalCost += billing.totalCost
+}
 
-                Loop packetsNeeded {
-                    packetNum := A_Index
-                    offset := (packetNum - 1) * maxPayload
-                    payloadSize := Min(maxPayload, dataSize - offset)
+output .= "Total Cost: $" Format("{1:.2f}", totalCost)
 
-                    packets.Push({
-                        number: packetNum,
-                        offset: offset,
-                        payloadSize: payloadSize
-                    })
-                }
+MsgBox(output, "Time Quantization", "Icon!")
 
-                return {
-                    dataSize: dataSize,
-                    maxPayload: maxPayload,
-                    packetsNeeded: packetsNeeded,
-                    packets: packets
-                }
+; ============================================================
+; Example 6: Bandwidth Reservation
+; ============================================================
+
+/**
+ * Calculate bandwidth units needed
+ * 
+ * @param {Number} requiredMbps - Required bandwidth in Mbps
+ * @param {Number} unitSizeMbps - Unit size in Mbps
+ * @returns {Object} - Bandwidth allocation
+ */
+ReserveBandwidth(requiredMbps, unitSizeMbps) {
+    unitsNeeded := Ceil(requiredMbps / unitSizeMbps)
+    allocatedMbps := unitsNeeded * unitSizeMbps
+    excessMbps := allocatedMbps - requiredMbps
+    utilizationPercent := Round((requiredMbps / allocatedMbps) * 100, 1)
+
+    return {
+        required: requiredMbps,
+        unitSize: unitSizeMbps,
+        unitsNeeded: unitsNeeded,
+        allocated: allocatedMbps,
+        excess: Round(excessMbps, 2),
+        utilization: utilizationPercent
+    }
+}
+
+; Network bandwidth planning
+bandwidthNeeds := [{
+    app: "Video Streaming", need: 35 }, {
+        app: "File Transfer", need: 180 }, {
+            app: "VoIP Conference", need: 8 }, {
+                app: "Database Sync", need: 125
             }
+]
 
-            ; Network transmission
-            messageSize := 8500  ; bytes
-            mtu := 1500         ; Maximum Transmission Unit (bytes)
-            headerOverhead := 40 ; IP + TCP headers
-            maxPayload := mtu - headerOverhead
+unitSize := 50  ; Mbps units
 
-            packetCalc := CalculatePackets(messageSize, maxPayload)
+output := "Bandwidth Reservation (50 Mbps units):`n`n"
 
-            output := "Network Packet Calculation:`n`n"
-            output .= "Data Size: " FormatBytes(packetCalc.dataSize) "`n"
-            output .= "MTU: " mtu " bytes`n"
-            output .= "Header Overhead: " headerOverhead " bytes`n"
-            output .= "Max Payload: " maxPayload " bytes`n`n"
-            output .= "Packets Needed: " packetCalc.packetsNeeded "`n`n"
+totalUnits := 0
+for app in bandwidthNeeds {
+    reservation := ReserveBandwidth(app.need, unitSize)
 
-            for packet in packetCalc.packets {
-                output .= Format("Packet {1}: Offset {2}, Payload {3} bytes`n",
-                packet.number, packet.offset, packet.payloadSize)
-            }
+    output .= app.app . ":`n"
+    output .= "  Required: " reservation.required " Mbps`n"
+    output .= "  Reserved: " reservation.allocated " Mbps"
+    output .= " (" reservation.unitsNeeded " units)`n"
+    output .= "  Utilization: " reservation.utilization "%`n`n"
 
-            MsgBox(output, "Network Packets", "Icon!")
+    totalUnits += reservation.unitsNeeded
+}
 
-            ; ============================================================
-            ; Example 4: Cloud Storage Blocks
-            ; ============================================================
+output .= "Total Units: " totalUnits " × " unitSize " Mbps = "
+output .= (totalUnits * unitSize) " Mbps"
 
-            /**
-            * Calculate cloud storage blocks
-            *
-            * @param {Number} dataGB - Data size in GB
-            * @param {Number} blockSizeGB - Block size in GB
-            * @param {Number} pricePerBlock - Price per block
-            * @returns {Object} - Storage cost calculation
-            */
-            CalculateCloudStorage(dataGB, blockSizeGB, pricePerBlock) {
-                blocksNeeded := Ceil(dataGB / blockSizeGB)
-                totalStorageGB := blocksNeeded * blockSizeGB
-                wastedGB := totalStorageGB - dataGB
-                monthlyCost := blocksNeeded * pricePerBlock
-                yearlyOld := monthlyCost * 12
+MsgBox(output, "Bandwidth Planning", "Icon!")
 
-                return {
-                    dataGB: dataGB,
-                    blockSizeGB: blockSizeGB,
-                    blocksNeeded: blocksNeeded,
-                    totalStorageGB: totalStorageGB,
-                    wastedGB: Round(wastedGB, 2),
-                    pricePerBlock: pricePerBlock,
-                    monthlyCost: Round(monthlyCost, 2),
-                    yearlyCost: Round(yearlyOld, 2)
-                }
-            }
+; ============================================================
+; Example 7: Container/Pod Allocation
+; ============================================================
 
-            ; Cloud storage scenarios
-            storageScenarios := [
-            {
-                name: "Small Project", data: 15, block: 10, price: 1.50},
-                {
-                    name: "Medium Database", data: 275, block: 100, price: 10.00},
-                    {
-                        name: "Large Archive", data: 1250, block: 500, price: 45.00
-                    }
-                    ]
+/**
+ * Calculate container instances needed
+ * 
+ * @param {Number} requestsPerSecond - Expected requests/sec
+ * @param {Number} requestsPerContainer - Capacity per container
+ * @returns {Object} - Container allocation
+ */
+AllocateContainers(requestsPerSecond, requestsPerContainer) {
+    containersNeeded := Ceil(requestsPerSecond / requestsPerContainer)
+    totalCapacity := containersNeeded * requestsPerContainer
+    headroom := totalCapacity - requestsPerSecond
+    headroomPercent := Round((headroom / totalCapacity) * 100, 1)
 
-                    output := "Cloud Storage Cost Analysis:`n`n"
+    return {
+        requestsPerSecond: requestsPerSecond,
+        requestsPerContainer: requestsPerContainer,
+        containersNeeded: containersNeeded,
+        totalCapacity: totalCapacity,
+        headroom: headroom,
+        headroomPercent: headroomPercent
+    }
+}
 
-                    for scenario in storageScenarios {
-                        calc := CalculateCloudStorage(scenario.data, scenario.block, scenario.price)
+/**
+ * Calculate with scaling buffer
+ */
+AllocateWithBuffer(requestsPerSecond, requestsPerContainer, bufferPercent := 20) {
+    ; Add buffer for scaling
+    withBuffer := requestsPerSecond * (1 + bufferPercent / 100)
+    allocation := AllocateContainers(withBuffer, requestsPerContainer)
 
-                        output .= scenario.name . ":`n"
-                        output .= "  Data: " calc.dataGB " GB`n"
-                        output .= "  Block Size: " calc.blockSizeGB " GB @ $"
-                        output .= calc.pricePerBlock "/month`n"
-                        output .= "  Blocks Needed: " calc.blocksNeeded "`n"
-                        output .= "  Total Storage: " calc.totalStorageGB " GB`n"
-                        output .= "  Wasted: " calc.wastedGB " GB`n"
-                        output .= "  Monthly Cost: $" Format("{1:.2f}", calc.monthlyCost) "`n"
-                        output .= "  Yearly Cost: $" Format("{1:.2f}", calc.yearlyCost) "`n`n"
-                    }
+    return {
+        baseRequests: requestsPerSecond,
+        bufferPercent: bufferPercent,
+        withBuffer: Round(withBuffer, 0),
+        allocation: allocation
+    }
+}
 
-                    MsgBox(output, "Cloud Storage Costs", "Icon!")
+; Kubernetes pod scaling
+trafficLevels := [{
+    time: "Off-Peak", rps: 450 }, {
+        time: "Business Hours", rps: 1250 }, {
+            time: "Peak Traffic", rps: 3800
+        }
+]
 
-                    ; ============================================================
-                    ; Example 5: Time Quantization
-                    ; ============================================================
+containerCapacity := 500  ; requests per second per container
 
-                    /**
-                    * Round time to billing interval
-                    *
-                    * @param {Number} actualMinutes - Actual time used
-                    * @param {Number} billingInterval - Billing interval in minutes
-                    * @returns {Object} - Billing calculation
-                    */
-                    QuantizeTime(actualMinutes, billingInterval) {
-                        billingUnits := Ceil(actualMinutes / billingInterval)
-                        billedMinutes := billingUnits * billingInterval
-                        extraMinutes := billedMinutes - actualMinutes
+output := "Container Allocation Plan:`n"
+output .= "Container Capacity: " containerCapacity " req/sec`n"
+output .= "Safety Buffer: 20%`n"
+output .= "═══════════════════════════════════════`n`n"
 
-                        return {
-                            actualMinutes: actualMinutes,
-                            billingInterval: billingInterval,
-                            billingUnits: billingUnits,
-                            billedMinutes: billedMinutes,
-                            extraMinutes: extraMinutes
-                        }
-                    }
+for level in trafficLevels {
+    plan := AllocateWithBuffer(level.rps, containerCapacity, 20)
 
-                    /**
-                    * Calculate service costs
-                    */
-                    CalculateServiceCost(minutes, interval, costPerInterval) {
-                        quantized := QuantizeTime(minutes, interval)
-                        cost := quantized.billingUnits * costPerInterval
+    output .= level.time . ":`n"
+    output .= "  Base Load: " plan.baseRequests " req/sec`n"
+    output .= "  With Buffer: " plan.withBuffer " req/sec`n"
+    output .= "  Containers: " plan.allocation.containersNeeded "`n"
+    output .= "  Total Capacity: " plan.allocation.totalCapacity " req/sec`n`n"
+}
 
-                        return {
-                            time: quantized,
-                            costPerInterval: costPerInterval,
-                            totalCost: Round(cost, 2)
-                        }
-                    }
+MsgBox(output, "Container Scaling", "Icon!")
 
-                    ; API usage billing (10-minute intervals at $0.05 each)
-                    apiCalls := [
-                    {
-                        duration: 3, desc: "Quick query"},
-                        {
-                            duration: 15, desc: "Data export"},
-                            {
-                                duration: 47, desc: "Batch process"},
-                                {
-                                    duration: 90, desc: "Long operation"
-                                }
-                                ]
+; ============================================================
+; Reference Information
+; ============================================================
 
-                                output := "API Billing (10-minute intervals @ $0.05):`n`n"
-
-                                totalCost := 0
-                                for call in apiCalls {
-                                    billing := CalculateServiceCost(call.duration, 10, 0.05)
-
-                                    output .= call.desc . ":`n"
-                                    output .= "  Actual: " billing.time.actualMinutes " min`n"
-                                    output .= "  Billed: " billing.time.billedMinutes " min"
-                                    output .= " (" billing.time.billingUnits " units)`n"
-                                    output .= "  Cost: $" Format("{1:.2f}", billing.totalCost) "`n`n"
-
-                                    totalCost += billing.totalCost
-                                }
-
-                                output .= "Total Cost: $" Format("{1:.2f}", totalCost)
-
-                                MsgBox(output, "Time Quantization", "Icon!")
-
-                                ; ============================================================
-                                ; Example 6: Bandwidth Reservation
-                                ; ============================================================
-
-                                /**
-                                * Calculate bandwidth units needed
-                                *
-                                * @param {Number} requiredMbps - Required bandwidth in Mbps
-                                * @param {Number} unitSizeMbps - Unit size in Mbps
-                                * @returns {Object} - Bandwidth allocation
-                                */
-                                ReserveBandwidth(requiredMbps, unitSizeMbps) {
-                                    unitsNeeded := Ceil(requiredMbps / unitSizeMbps)
-                                    allocatedMbps := unitsNeeded * unitSizeMbps
-                                    excessMbps := allocatedMbps - requiredMbps
-                                    utilizationPercent := Round((requiredMbps / allocatedMbps) * 100, 1)
-
-                                    return {
-                                        required: requiredMbps,
-                                        unitSize: unitSizeMbps,
-                                        unitsNeeded: unitsNeeded,
-                                        allocated: allocatedMbps,
-                                        excess: Round(excessMbps, 2),
-                                        utilization: utilizationPercent
-                                    }
-                                }
-
-                                ; Network bandwidth planning
-                                bandwidthNeeds := [
-                                {
-                                    app: "Video Streaming", need: 35},
-                                    {
-                                        app: "File Transfer", need: 180},
-                                        {
-                                            app: "VoIP Conference", need: 8},
-                                            {
-                                                app: "Database Sync", need: 125
-                                            }
-                                            ]
-
-                                            unitSize := 50  ; Mbps units
-
-                                            output := "Bandwidth Reservation (50 Mbps units):`n`n"
-
-                                            totalUnits := 0
-                                            for app in bandwidthNeeds {
-                                                reservation := ReserveBandwidth(app.need, unitSize)
-
-                                                output .= app.app . ":`n"
-                                                output .= "  Required: " reservation.required " Mbps`n"
-                                                output .= "  Reserved: " reservation.allocated " Mbps"
-                                                output .= " (" reservation.unitsNeeded " units)`n"
-                                                output .= "  Utilization: " reservation.utilization "%`n`n"
-
-                                                totalUnits += reservation.unitsNeeded
-                                            }
-
-                                            output .= "Total Units: " totalUnits " × " unitSize " Mbps = "
-                                            output .= (totalUnits * unitSize) " Mbps"
-
-                                            MsgBox(output, "Bandwidth Planning", "Icon!")
-
-                                            ; ============================================================
-                                            ; Example 7: Container/Pod Allocation
-                                            ; ============================================================
-
-                                            /**
-                                            * Calculate container instances needed
-                                            *
-                                            * @param {Number} requestsPerSecond - Expected requests/sec
-                                            * @param {Number} requestsPerContainer - Capacity per container
-                                            * @returns {Object} - Container allocation
-                                            */
-                                            AllocateContainers(requestsPerSecond, requestsPerContainer) {
-                                                containersNeeded := Ceil(requestsPerSecond / requestsPerContainer)
-                                                totalCapacity := containersNeeded * requestsPerContainer
-                                                headroom := totalCapacity - requestsPerSecond
-                                                headroomPercent := Round((headroom / totalCapacity) * 100, 1)
-
-                                                return {
-                                                    requestsPerSecond: requestsPerSecond,
-                                                    requestsPerContainer: requestsPerContainer,
-                                                    containersNeeded: containersNeeded,
-                                                    totalCapacity: totalCapacity,
-                                                    headroom: headroom,
-                                                    headroomPercent: headroomPercent
-                                                }
-                                            }
-
-                                            /**
-                                            * Calculate with scaling buffer
-                                            */
-                                            AllocateWithBuffer(requestsPerSecond, requestsPerContainer, bufferPercent := 20) {
-                                                ; Add buffer for scaling
-                                                withBuffer := requestsPerSecond * (1 + bufferPercent / 100)
-                                                allocation := AllocateContainers(withBuffer, requestsPerContainer)
-
-                                                return {
-                                                    baseRequests: requestsPerSecond,
-                                                    bufferPercent: bufferPercent,
-                                                    withBuffer: Round(withBuffer, 0),
-                                                    allocation: allocation
-                                                }
-                                            }
-
-                                            ; Kubernetes pod scaling
-                                            trafficLevels := [
-                                            {
-                                                time: "Off-Peak", rps: 450},
-                                                {
-                                                    time: "Business Hours", rps: 1250},
-                                                    {
-                                                        time: "Peak Traffic", rps: 3800
-                                                    }
-                                                    ]
-
-                                                    containerCapacity := 500  ; requests per second per container
-
-                                                    output := "Container Allocation Plan:`n"
-                                                    output .= "Container Capacity: " containerCapacity " req/sec`n"
-                                                    output .= "Safety Buffer: 20%`n"
-                                                    output .= "═══════════════════════════════════════`n`n"
-
-                                                    for level in trafficLevels {
-                                                        plan := AllocateWithBuffer(level.rps, containerCapacity, 20)
-
-                                                        output .= level.time . ":`n"
-                                                        output .= "  Base Load: " plan.baseRequests " req/sec`n"
-                                                        output .= "  With Buffer: " plan.withBuffer " req/sec`n"
-                                                        output .= "  Containers: " plan.allocation.containersNeeded "`n"
-                                                        output .= "  Total Capacity: " plan.allocation.totalCapacity " req/sec`n`n"
-                                                    }
-
-                                                    MsgBox(output, "Container Scaling", "Icon!")
-
-                                                    ; ============================================================
-                                                    ; Reference Information
-                                                    ; ============================================================
-
-                                                    info := "
+info := "
                                                     (
                                                     CEIL() FOR QUANTIZATION & ALLOCATION:
 
@@ -602,4 +584,4 @@ fileList := [
                                                     Lower efficiency = more headroom
                                                     )"
 
-                                                    MsgBox(info, "Quantization Reference", "Icon!")
+MsgBox(info, "Quantization Reference", "Icon!")

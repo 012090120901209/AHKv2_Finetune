@@ -2,25 +2,25 @@
 #SingleInstance Force
 
 /**
-* Text Wrapping Utility
-*
-* Demonstrates wrapping selected text in quotes, brackets, or custom
-* symbols for quick formatting and code editing.
-*
-* Source: xypha/AHK-v2-scripts - Showcase.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * Text Wrapping Utility
+ * 
+ * Demonstrates wrapping selected text in quotes, brackets, or custom
+ * symbols for quick formatting and code editing.
+ * 
+ * Source: xypha/AHK-v2-scripts - Showcase.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 MsgBox("Text Wrapping Demo`n`n"
-. "Hotkey: Alt+W`n`n"
-. "Select text and press Alt+W to wrap it in:`n"
-. '- "Quotes"`n'
-. "- 'Single quotes'`n"
-. "- (Parentheses)`n"
-. "- [Brackets]`n"
-. "- {Braces}`n"
-. "- <Angle brackets>`n"
-. "- ``Backticks``", , "T5")
+    . "Hotkey: Alt+W`n`n"
+    . "Select text and press Alt+W to wrap it in:`n"
+    . '- "Quotes"`n'
+    . "- 'Single quotes'`n"
+    . "- (Parentheses)`n"
+    . "- [Brackets]`n"
+    . "- {Braces}`n"
+    . "- <Angle brackets>`n"
+    . "- ``Backticks``", , "T5")
 
 ; Open Notepad for demo
 Run("notepad.exe")
@@ -33,11 +33,11 @@ Send("^a")  ; Select all
 MsgBox("Press Alt+W to wrap the selected text!", , "T3")
 
 ; Hotkey
-!w::ShowWrapMenu()
+!w:: ShowWrapMenu()
 
 /**
-* Show text wrapping menu
-*/
+ * Show text wrapping menu
+ */
 ShowWrapMenu() {
     ; Save clipboard
     clipSaved := ClipboardAll()
@@ -75,8 +75,8 @@ ShowWrapMenu() {
 }
 
 /**
-* Wrap text with leading and trailing characters
-*/
+ * Wrap text with leading and trailing characters
+ */
 WrapText(text, leadChar, trailChar) {
     result := leadChar text trailChar
 
@@ -90,17 +90,17 @@ WrapText(text, leadChar, trailChar) {
 }
 
 /**
-* Wrap with custom characters
-*/
+ * Wrap with custom characters
+ */
 WrapCustom(text) {
     ; Get custom wrapper
     ib := InputBox("Enter wrapper character(s):`n(e.g. ** for bold, __ for italic)", "Custom Wrapper")
     if (ib.Result == "Cancel")
-    return
+        return
 
     wrapper := ib.Value
     if (wrapper == "")
-    return
+        return
 
     WrapText(text, wrapper, wrapper)
 }
@@ -186,3 +186,4 @@ WrapCustom(text) {
 *     HTML: <>, ""
 *     Markdown: *, **, `, []
 */
+

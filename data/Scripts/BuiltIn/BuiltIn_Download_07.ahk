@@ -1,45 +1,45 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Download_07.ahk - Complete Download Manager
-*
-* This file demonstrates a full-featured download manager implementation in AutoHotkey v2,
-* combining queue management, progress tracking, error handling, and user interface.
-*
-* Features Demonstrated:
-* - Complete download manager GUI
-* - Multi-threaded download concepts
-* - Download history tracking
-* - Bandwidth management
-* - Category management
-* - Search and filter
-* - Import/Export functionality
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024-11-16
-*/
+ * BuiltIn_Download_07.ahk - Complete Download Manager
+ * 
+ * This file demonstrates a full-featured download manager implementation in AutoHotkey v2,
+ * combining queue management, progress tracking, error handling, and user interface.
+ * 
+ * Features Demonstrated:
+ * - Complete download manager GUI
+ * - Multi-threaded download concepts
+ * - Download history tracking
+ * - Bandwidth management
+ * - Category management
+ * - Search and filter
+ * - Import/Export functionality
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024-11-16
+ */
 
 ; ============================================================================
 ; Download Manager Main Class
 ; ============================================================================
 
 /**
-* Complete download manager with full feature set
-*/
+ * Complete download manager with full feature set
+ */
 class DownloadManager {
     downloads := []
     history := []
     categories := Map("Default", [], "Documents", [], "Media", [], "Software", [])
-    settings := {maxConcurrent: 3, downloadPath: A_Desktop "\Downloads"}
+    settings := { maxConcurrent: 3, downloadPath: A_Desktop "\Downloads" }
 
     /**
-    * Adds new download
-    */
+     * Adds new download
+     */
     AddDownload(url, category := "Default") {
         SplitPath(url, &fileName)
         if (fileName = "")
-        fileName := "download_" A_TickCount ".dat"
+            fileName := "download_" A_TickCount ".dat"
 
         download := {
             id: A_TickCount,
@@ -63,8 +63,8 @@ class DownloadManager {
     }
 
     /**
-    * Removes download by ID
-    */
+     * Removes download by ID
+     */
     RemoveDownload(id) {
         for index, download in this.downloads {
             if (download.id = id) {
@@ -76,19 +76,19 @@ class DownloadManager {
     }
 
     /**
-    * Gets download by ID
-    */
+     * Gets download by ID
+     */
     GetDownload(id) {
         for download in this.downloads {
             if (download.id = id)
-            return download
+                return download
         }
         return false
     }
 
     /**
-    * Moves download to history
-    */
+     * Moves download to history
+     */
     MoveToHistory(download) {
         this.history.Push(download)
     }
@@ -99,14 +99,14 @@ class DownloadManager {
 ; ============================================================================
 
 /**
-* Complete download manager with GUI
-*
-* Demonstrates a production-ready download manager.
-* Shows comprehensive download management.
-*
-* @example
-* FullDownloadManager()
-*/
+ * Complete download manager with GUI
+ * 
+ * Demonstrates a production-ready download manager.
+ * Shows comprehensive download management.
+ * 
+ * @example
+ * FullDownloadManager()
+ */
 FullDownloadManager() {
     manager := DownloadManager()
 
@@ -141,7 +141,7 @@ FullDownloadManager() {
     ; Download list
     mainGui.Add("Text", "x10 y50", "Downloads:")
     downloadList := mainGui.Add("ListView", "x10 y70 w760 h300 vDownloadList",
-    ["Name", "Status", "Progress", "Speed", "Size", "Category"])
+        ["Name", "Status", "Progress", "Speed", "Size", "Category"])
 
     downloadList.ModifyCol(1, 200)
     downloadList.ModifyCol(2, 80)
@@ -178,12 +178,12 @@ FullDownloadManager() {
         downloadList.Delete()
         for download in manager.downloads {
             downloadList.Add("",
-            download.fileName,
-            download.status,
-            download.progress "%",
-            FormatSpeed(download.speed),
-            FormatBytes(download.size),
-            download.category)
+                download.fileName,
+                download.status,
+                download.progress "%",
+                FormatSpeed(download.speed),
+                FormatBytes(download.size),
+                download.category)
         }
         UpdateStatusBar()
     }
@@ -195,9 +195,9 @@ FullDownloadManager() {
 
         for download in manager.downloads {
             if (download.status = "downloading")
-            active++
+                active++
             if (download.status = "completed")
-            completed++
+                completed++
         }
 
         mainGui["StatusBar"].Text := "Ready | Downloads: " total " | Active: " active " | Completed: " completed
@@ -240,9 +240,9 @@ FullDownloadManager() {
         newDownloads := []
         for download in manager.downloads {
             if (download.status != "completed")
-            newDownloads.Push(download)
+                newDownloads.Push(download)
             else
-            manager.MoveToHistory(download)
+                manager.MoveToHistory(download)
         }
         manager.downloads := newDownloads
         RefreshDownloadList()
@@ -282,29 +282,29 @@ FullDownloadManager() {
 }
 
 /**
-* Formats speed in bytes/sec
-*/
+ * Formats speed in bytes/sec
+ */
 FormatSpeed(bytesPerSec) {
     if (bytesPerSec < 1024)
-    return bytesPerSec " B/s"
+        return bytesPerSec " B/s"
     else if (bytesPerSec < 1024 * 1024)
-    return Round(bytesPerSec / 1024, 2) " KB/s"
+        return Round(bytesPerSec / 1024, 2) " KB/s"
     else
-    return Round(bytesPerSec / (1024 * 1024), 2) " MB/s"
+        return Round(bytesPerSec / (1024 * 1024), 2) " MB/s"
 }
 
 /**
-* Formats bytes to readable size
-*/
+ * Formats bytes to readable size
+ */
 FormatBytes(bytes) {
     if (bytes < 1024)
-    return bytes " B"
+        return bytes " B"
     else if (bytes < 1024 * 1024)
-    return Round(bytes / 1024, 2) " KB"
+        return Round(bytes / 1024, 2) " KB"
     else if (bytes < 1024 * 1024 * 1024)
-    return Round(bytes / (1024 * 1024), 2) " MB"
+        return Round(bytes / (1024 * 1024), 2) " MB"
     else
-    return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
+        return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
 }
 
 ; ============================================================================
@@ -312,14 +312,14 @@ FormatBytes(bytes) {
 ; ============================================================================
 
 /**
-* Download manager with category organization
-*
-* Organizes downloads by categories.
-* Demonstrates categorized file management.
-*
-* @example
-* CategoryDownloadManager()
-*/
+ * Download manager with category organization
+ * 
+ * Organizes downloads by categories.
+ * Demonstrates categorized file management.
+ * 
+ * @example
+ * CategoryDownloadManager()
+ */
 CategoryDownloadManager() {
     manager := DownloadManager()
 
@@ -328,7 +328,7 @@ CategoryDownloadManager() {
 
     ; Category tabs
     catGui.Add("Tab3", "w700 h400 vCategoryTabs",
-    ["All Downloads", "Documents", "Media", "Software", "Other"])
+        ["All Downloads", "Documents", "Media", "Software", "Other"])
 
     ; All Downloads tab
     catGui["CategoryTabs"].UseTab("All Downloads")
@@ -372,11 +372,11 @@ CategoryDownloadManager() {
             allList.Add("", download.fileName, download.category, download.status, FormatBytes(download.size))
 
             if (download.category = "Documents")
-            docList.Add("", download.fileName, download.status, FormatBytes(download.size))
+                docList.Add("", download.fileName, download.status, FormatBytes(download.size))
             else if (download.category = "Media")
-            mediaList.Add("", download.fileName, download.status, FormatBytes(download.size))
+                mediaList.Add("", download.fileName, download.status, FormatBytes(download.size))
             else if (download.category = "Software")
-            softList.Add("", download.fileName, download.status, FormatBytes(download.size))
+                softList.Add("", download.fileName, download.status, FormatBytes(download.size))
         }
     }
 
@@ -414,14 +414,14 @@ CategoryDownloadManager() {
 ; ============================================================================
 
 /**
-* Views download history with search and filter
-*
-* Displays historical download data.
-* Demonstrates history tracking and search.
-*
-* @example
-* DownloadHistoryViewer()
-*/
+ * Views download history with search and filter
+ * 
+ * Displays historical download data.
+ * Demonstrates history tracking and search.
+ * 
+ * @example
+ * DownloadHistoryViewer()
+ */
 DownloadHistoryViewer() {
     manager := DownloadManager()
 
@@ -451,7 +451,7 @@ DownloadHistoryViewer() {
     historyGui.Add("Button", "x+10 w80", "Apply").OnEvent("Click", ApplyFilter)
 
     historyList := historyGui.Add("ListView", "w700 h350",
-    ["File", "Status", "Size", "Date", "Category"])
+        ["File", "Status", "Size", "Date", "Category"])
 
     historyGui.Add("Button", "w100", "Export").OnEvent("Click", ExportHist)
     historyGui.Add("Button", "x+10 w100", "Clear History").OnEvent("Click", ClearHist)
@@ -464,11 +464,11 @@ DownloadHistoryViewer() {
         historyList.Delete()
         for download in manager.history {
             historyList.Add("",
-            download.fileName,
-            download.status,
-            FormatBytes(download.size),
-            download.addedTime,
-            download.category)
+                download.fileName,
+                download.status,
+                FormatBytes(download.size),
+                download.addedTime,
+                download.category)
         }
     }
 
@@ -479,11 +479,11 @@ DownloadHistoryViewer() {
         for download in manager.history {
             if InStr(download.fileName, searchTerm) {
                 historyList.Add("",
-                download.fileName,
-                download.status,
-                FormatBytes(download.size),
-                download.addedTime,
-                download.category)
+                    download.fileName,
+                    download.status,
+                    FormatBytes(download.size),
+                    download.addedTime,
+                    download.category)
             }
         }
     }
@@ -500,11 +500,11 @@ DownloadHistoryViewer() {
         for download in manager.history {
             if (filter = "All" || download.status = StrLower(filter)) {
                 historyList.Add("",
-                download.fileName,
-                download.status,
-                FormatBytes(download.size),
-                download.addedTime,
-                download.category)
+                    download.fileName,
+                    download.status,
+                    FormatBytes(download.size),
+                    download.addedTime,
+                    download.category)
             }
         }
     }
@@ -515,7 +515,7 @@ DownloadHistoryViewer() {
 
         for download in manager.history {
             content .= download.fileName "," download.status "," download.size ","
-            . download.addedTime "," download.category "`n"
+                . download.addedTime "," download.category "`n"
         }
 
         FileDelete(exportFile)
@@ -537,14 +537,14 @@ DownloadHistoryViewer() {
 ; ============================================================================
 
 /**
-* Download manager with configurable settings
-*
-* Allows user to configure download behavior.
-* Demonstrates settings management.
-*
-* @example
-* DownloadManagerWithSettings()
-*/
+ * Download manager with configurable settings
+ * 
+ * Allows user to configure download behavior.
+ * Demonstrates settings management.
+ * 
+ * @example
+ * DownloadManagerWithSettings()
+ */
 DownloadManagerWithSettings() {
     manager := DownloadManager()
 
@@ -579,7 +579,7 @@ DownloadManagerWithSettings() {
     BrowseFolder(*) {
         selectedFolder := DirSelect("*" manager.settings.downloadPath, 3, "Select Download Folder")
         if (selectedFolder != "")
-        settingsGui["DownloadPath"].Value := selectedFolder
+            settingsGui["DownloadPath"].Value := selectedFolder
     }
 
     SaveSettings(*) {
@@ -587,8 +587,8 @@ DownloadManagerWithSettings() {
         manager.settings.maxConcurrent := settingsGui["MaxConcurrent"].Value
 
         MsgBox("Settings saved!`n`n"
-        . "Download Path: " manager.settings.downloadPath "`n"
-        . "Max Concurrent: " manager.settings.maxConcurrent, "Settings", "Icon!")
+            . "Download Path: " manager.settings.downloadPath "`n"
+            . "Max Concurrent: " manager.settings.maxConcurrent, "Settings", "Icon!")
 
         settingsGui.Destroy()
     }
@@ -607,14 +607,14 @@ DownloadManagerWithSettings() {
 ; ============================================================================
 
 /**
-* Download manager with scheduled downloads
-*
-* Schedules downloads for specific times.
-* Demonstrates download scheduling.
-*
-* @example
-* ScheduledDownloadManager()
-*/
+ * Download manager with scheduled downloads
+ * 
+ * Schedules downloads for specific times.
+ * Demonstrates download scheduling.
+ * 
+ * @example
+ * ScheduledDownloadManager()
+ */
 ScheduledDownloadManager() {
     schedules := []
 
@@ -623,7 +623,7 @@ ScheduledDownloadManager() {
 
     schedGui.Add("Text", , "Schedule Downloads for Later")
     schedGui.Add("ListView", "w600 h250 vScheduleList",
-    ["URL", "Scheduled Time", "Status", "Category"])
+        ["URL", "Scheduled Time", "Status", "Category"])
 
     schedGui.Add("Button", "w100", "Add Schedule").OnEvent("Click", AddSchedule)
     schedGui.Add("Button", "x+10 w100", "Remove").OnEvent("Click", RemoveSchedule)
@@ -683,14 +683,14 @@ ScheduledDownloadManager() {
 ; ============================================================================
 
 /**
-* Download manager with bandwidth monitoring
-*
-* Monitors and displays bandwidth usage.
-* Demonstrates bandwidth tracking.
-*
-* @example
-* BandwidthMonitor()
-*/
+ * Download manager with bandwidth monitoring
+ * 
+ * Monitors and displays bandwidth usage.
+ * Demonstrates bandwidth tracking.
+ * 
+ * @example
+ * BandwidthMonitor()
+ */
 BandwidthMonitor() {
     ; Create bandwidth monitor
     bwGui := Gui("+AlwaysOnTop", "Bandwidth Monitor")
@@ -700,7 +700,7 @@ BandwidthMonitor() {
     bwGui.Add("Text", "w400 vBandwidthText Center", "Current: 0 KB/s | Avg: 0 KB/s | Peak: 0 KB/s")
 
     bwGui.Add("ListView", "w400 h200 vConnectionList",
-    ["Download", "Speed", "Progress", "ETA"])
+        ["Download", "Speed", "Progress", "ETA"])
 
     ; Add sample connections
     bwGui["ConnectionList"].Add("", "file1.zip", "512 KB/s", "45%", "2m 15s")
@@ -719,7 +719,7 @@ BandwidthMonitor() {
         currentBW := Random(100, 800)
         bwGui["BandwidthBar"].Value := currentBW
         bwGui["BandwidthText"].Text := "Current: " currentBW " KB/s | Avg: " Random(200, 600)
-        . " KB/s | Peak: " Random(700, 1000) " KB/s"
+            . " KB/s | Peak: " Random(700, 1000) " KB/s"
     }
 }
 
@@ -728,19 +728,19 @@ BandwidthMonitor() {
 ; ============================================================================
 
 /**
-* Download manager with cloud storage integration
-*
-* Integrates with cloud storage services.
-* Demonstrates cloud download management.
-*
-* @example
-* CloudIntegrationManager()
-*/
+ * Download manager with cloud storage integration
+ * 
+ * Integrates with cloud storage services.
+ * Demonstrates cloud download management.
+ * 
+ * @example
+ * CloudIntegrationManager()
+ */
 CloudIntegrationManager() {
     cloudServices := Map(
-    "Dropbox", {connected: false, folder: ""},
-    "Google Drive", {connected: false, folder: ""},
-    "OneDrive", {connected: false, folder: ""}
+        "Dropbox", { connected: false, folder: "" },
+        "Google Drive", { connected: false, folder: "" },
+        "OneDrive", { connected: false, folder: "" }
     )
 
     ; Create cloud GUI
@@ -802,3 +802,4 @@ CloudIntegrationManager() {
 
 ; Run Example 7: Cloud integration manager
 ; CloudIntegrationManager()
+

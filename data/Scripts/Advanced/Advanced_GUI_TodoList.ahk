@@ -28,7 +28,7 @@ AddTask(*) {
     global taskInput, LV
     task := Trim(taskInput.Value)
     if (task = "")
-    return
+        return
 
     timestamp := FormatTime(, "yyyy-MM-dd HH:mm")
     LV.Add(, "Pending", task, timestamp)
@@ -56,7 +56,7 @@ ClearAll(*) {
     global LV
     result := MsgBox("Delete all tasks?", "Confirm", "YesNo Icon?")
     if (result = "Yes")
-    LV.Delete()
+        LV.Delete()
 }
 
 ExportTasks(*) {
@@ -78,15 +78,15 @@ ExportTasks(*) {
 LoadTasks() {
     global LV
     if !FileExist("todolist.dat")
-    return
+        return
 
     contents := FileRead("todolist.dat")
     Loop Parse, contents, "`n", "`r" {
         if (A_LoopField = "")
-        continue
+            continue
         parts := StrSplit(A_LoopField, "|")
         if (parts.Length >= 3)
-        LV.Add(, parts[1], parts[2], parts[3])
+            LV.Add(, parts[1], parts[2], parts[3])
     }
     LV.ModifyCol()
 }
@@ -102,7 +102,7 @@ SaveAndExit(*) {
     }
 
     if (output != "")
-    FileDelete("todolist.dat")
+        FileDelete("todolist.dat")
     FileAppend(output, "todolist.dat")
 
     ExitApp

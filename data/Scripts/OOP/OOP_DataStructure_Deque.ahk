@@ -18,13 +18,13 @@ class Deque {
 
     RemoveFront() {
         if (this.IsEmpty())
-        throw Error("Deque is empty")
+            throw Error("Deque is empty")
         return this.items.RemoveAt(1)
     }
 
     RemoveRear() {
         if (this.IsEmpty())
-        throw Error("Deque is empty")
+            throw Error("Deque is empty")
         return this.items.Pop()
     }
 
@@ -40,8 +40,8 @@ class Deque {
 
     Contains(value) {
         for item in this.items
-        if (item = value)
-        return true
+            if (item = value)
+                return true
         return false
     }
 
@@ -56,13 +56,13 @@ IsPalindrome(str) {
 
     ; Add all characters
     loop parse str
-    if (A_LoopField != " ")
-    deque.AddRear(StrLower(A_LoopField))
+        if (A_LoopField != " ")
+            deque.AddRear(StrLower(A_LoopField))
 
     ; Check palindrome
     while (deque.Size() > 1) {
         if (deque.RemoveFront() != deque.RemoveRear())
-        return false
+            return false
     }
 
     return true
@@ -100,17 +100,17 @@ FindMaxInWindow(arr, k) {
 
         ; Remove elements outside window
         while (!deque.IsEmpty() && deque.PeekFront() < i - k + 1)
-        deque.RemoveFront()
+            deque.RemoveFront()
 
         ; Remove smaller elements from rear
         while (!deque.IsEmpty() && arr[deque.PeekRear()] < arr[i])
-        deque.RemoveRear()
+            deque.RemoveRear()
 
         deque.AddRear(i)
 
         ; Add to result when window is complete
         if (i >= k)
-        result.Push(arr[deque.PeekFront()])
+            result.Push(arr[deque.PeekFront()])
     }
 
     return result

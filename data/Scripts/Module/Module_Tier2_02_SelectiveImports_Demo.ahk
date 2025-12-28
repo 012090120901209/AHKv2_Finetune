@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
-* Module Tier 2 Example 02: Selective Imports Demo
-*
-* This example demonstrates:
-* - Importing only specific functions from a module
-* - Benefits of selective imports (cleaner code)
-* - Direct function calls without namespace
-* - Choosing only needed functionality
-*
-* USAGE: Run this file directly
-*
-* @requires Module_Tier2_01_StringHelpers_Module.ahk
-*/
+ * Module Tier 2 Example 02: Selective Imports Demo
+ * 
+ * This example demonstrates:
+ * - Importing only specific functions from a module
+ * - Benefits of selective imports (cleaner code)
+ * - Direct function calls without namespace
+ * - Choosing only needed functionality
+ * 
+ * USAGE: Run this file directly
+ * 
+ * @requires Module_Tier2_01_StringHelpers_Module.ahk
+ */
 
-#SingleInstance Force
 
 ; ============================================================
 ; Selective Import Syntax
@@ -35,10 +35,10 @@ snake := ToSnakeCase(input)
 camel := ToCamelCase(input)
 
 MsgBox("Input: " input "`n`n"
-. "Title Case: " title "`n"
-. "snake_case: " snake "`n"
-. "camelCase: " camel,
-"Selective Imports - Direct Usage", "Icon!")
+    . "Title Case: " title "`n"
+    . "snake_case: " snake "`n"
+    . "camelCase: " camel,
+    "Selective Imports - Direct Usage", "Icon!")
 
 ; ============================================================
 ; Example 2: Import Only What You Need
@@ -60,20 +60,20 @@ processText(text) {
 result := processText("make this beautiful")
 
 MsgBox("Processed Text:`n`n"
-. "Title: " result.title "`n"
-. "Snake: " result.snake "`n"
-. "Camel: " result.camel,
-"Function Usage", "Icon!")
+    . "Title: " result.title "`n"
+    . "Snake: " result.snake "`n"
+    . "Camel: " result.camel,
+    "Function Usage", "Icon!")
 
 ; ============================================================
 ; Example 3: Multiple Conversions
 ; ============================================================
 
 testCases := [
-"hello world",
-"AutoHotkey is awesome",
-"module system rocks",
-"selective imports rule"
+    "hello world",
+    "AutoHotkey is awesome",
+    "module system rocks",
+    "selective imports rule"
 ]
 
 output := "Case Conversions:`n`n"
@@ -184,3 +184,4 @@ MsgBox(benefitsText, "Selective Import Benefits", "Icon!")
 ; 2. Or import the entire module:
 ;    Import StringHelpers
 ;    result := StringHelpers.Truncate("Hello", 5)
+

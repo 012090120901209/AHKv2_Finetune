@@ -7,7 +7,7 @@
 class Easing {
     ; Linear
     static Linear(t) => t
-    
+
     ; Quadratic
     static EaseInQuad(t) => t * t
     static EaseOutQuad(t) => t * (2 - t)
@@ -44,7 +44,7 @@ class Easing {
             return 7.5625 * (t -= 2.25 / 2.75) * t + 0.9375
         return 7.5625 * (t -= 2.625 / 2.75) * t + 0.984375
     }
-    
+
     ; Back (overshoot)
     static EaseOutBack(t) {
         c1 := 1.70158

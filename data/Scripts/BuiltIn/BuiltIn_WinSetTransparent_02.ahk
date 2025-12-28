@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinSetTransparent_02.ahk
-* @description Advanced transparency features, animations, and visual effects using WinSetTransparent in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Advanced fade animations
-* Example 2: Transparency scheduler
-* Example 3: Focus-based transparency
-* Example 4: Transparency groups
-* Example 5: Animated transparency effects
-* Example 6: Smart transparency manager
-*
-* @section FEATURES
-* - Advanced animations
-* - Scheduled transparency
-* - Focus-aware transparency
-* - Group management
-* - Visual effects
-* - Smart management
-*/
+ * @file BuiltIn_WinSetTransparent_02.ahk
+ * @description Advanced transparency features, animations, and visual effects using WinSetTransparent in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Advanced fade animations
+ * Example 2: Transparency scheduler
+ * Example 3: Focus-based transparency
+ * Example 4: Transparency groups
+ * Example 5: Animated transparency effects
+ * Example 6: Smart transparency manager
+ * 
+ * @section FEATURES
+ * - Advanced animations
+ * - Scheduled transparency
+ * - Focus-aware transparency
+ * - Group management
+ * - Visual effects
+ * - Smart management
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -116,7 +116,7 @@ class FocusTransparency {
 
     static ApplyFocusTransparency() {
         if !this.enabled
-        return
+            return
 
         activeWin := WinExist("A")
         windowList := WinGetList()
@@ -128,12 +128,12 @@ class FocusTransparency {
                 } else {
                     style := WinGetStyle("ahk_id " winId)
                     if style & 0x10000000 {  ; Visible
-                    WinSetTransparent(this.inactiveLevel, "ahk_id " winId)
+                        WinSetTransparent(this.inactiveLevel, "ahk_id " winId)
+                    }
                 }
             }
         }
     }
-}
 }
 
 class TransparencyGroups {
@@ -148,7 +148,7 @@ class TransparencyGroups {
             }
         }
 
-        this.groups[name] := {Name: name, Level: level}
+        this.groups[name] := { Name: name, Level: level }
         TrayTip("Group created: " name, "Level: " level, "Icon!")
     }
 }

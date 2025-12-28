@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DPI_03_MultiDPI.ahk
-*
-* DESCRIPTION:
-* Advanced multi-monitor DPI handling in AutoHotkey v2. Demonstrates managing
-* applications across monitors with different DPI settings, per-monitor DPI
-* awareness, and dynamic adaptation to DPI changes.
-*
-* FEATURES:
-* - Per-monitor DPI detection
-* - Cross-monitor DPI adaptation
-* - DPI-aware window positioning
-* - Mixed DPI environment handling
-* - DPI change notifications
-* - Multi-DPI GUI management
-* - DPI topology visualization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* Windows Per-Monitor DPI Awareness
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Per-monitor DPI querying
-* - DPI-aware multi-monitor support
-* - Dynamic DPI adaptation
-* - Cross-DPI window management
-* - DPI event handling
-*
-* LEARNING POINTS:
-* 1. Each monitor can have different DPI settings
-* 2. Windows 8.1+ supports per-monitor DPI
-* 3. Apps must adapt when moving between monitors
-* 4. Use GetDpiForMonitor for per-monitor DPI
-* 5. Monitor DPI can change dynamically
-* 6. Test with mixed DPI configurations
-* 7. Per-monitor DPI v2 provides best experience
-*/
+ * BuiltIn_DPI_03_MultiDPI.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced multi-monitor DPI handling in AutoHotkey v2. Demonstrates managing
+ * applications across monitors with different DPI settings, per-monitor DPI
+ * awareness, and dynamic adaptation to DPI changes.
+ * 
+ * FEATURES:
+ * - Per-monitor DPI detection
+ * - Cross-monitor DPI adaptation
+ * - DPI-aware window positioning
+ * - Mixed DPI environment handling
+ * - DPI change notifications
+ * - Multi-DPI GUI management
+ * - DPI topology visualization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * Windows Per-Monitor DPI Awareness
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Per-monitor DPI querying
+ * - DPI-aware multi-monitor support
+ * - Dynamic DPI adaptation
+ * - Cross-DPI window management
+ * - DPI event handling
+ * 
+ * LEARNING POINTS:
+ * 1. Each monitor can have different DPI settings
+ * 2. Windows 8.1+ supports per-monitor DPI
+ * 3. Apps must adapt when moving between monitors
+ * 4. Use GetDpiForMonitor for per-monitor DPI
+ * 5. Monitor DPI can change dynamically
+ * 6. Test with mixed DPI configurations
+ * 7. Per-monitor DPI v2 provides best experience
+ */
 
 ;=============================================================================
 ; HELPER: Get DPI for Specific Monitor
@@ -52,9 +52,9 @@ GetMonitorDPI(monNum) {
     ; Get monitor handle
     MONITOR_DEFAULTTONEAREST := 2
     hMonitor := DllCall("MonitorFromPoint",
-    "Int64", (centerY << 32) | (centerX & 0xFFFFFFFF),
-    "UInt", MONITOR_DEFAULTTONEAREST,
-    "Ptr")
+        "Int64", (centerY << 32) | (centerX & 0xFFFFFFFF),
+        "UInt", MONITOR_DEFAULTTONEAREST,
+        "Ptr")
 
     ; Try to get per-monitor DPI
     try {
@@ -63,14 +63,14 @@ GetMonitorDPI(monNum) {
         MDT_EFFECTIVE_DPI := 0
 
         result := DllCall("Shcore\GetDpiForMonitor",
-        "Ptr", hMonitor,
-        "Int", MDT_EFFECTIVE_DPI,
-        "UInt*", &dpiX,
-        "UInt*", &dpiY,
-        "Int")
+            "Ptr", hMonitor,
+            "Int", MDT_EFFECTIVE_DPI,
+            "UInt*", &dpiX,
+            "UInt*", &dpiY,
+            "Int")
 
         if result = 0
-        return {DPI: dpiX, Scale: dpiX / 96, Percent: Round(dpiX / 96 * 100)}
+            return { DPI: dpiX, Scale: dpiX / 96, Percent: Round(dpiX / 96 * 100) }
     }
 
     ; Fallback to system DPI
@@ -78,7 +78,7 @@ GetMonitorDPI(monNum) {
     dpi := DllCall("GetDeviceCaps", "Ptr", hDC, "Int", 88, "Int")
     DllCall("ReleaseDC", "Ptr", 0, "Ptr", hDC)
 
-    return {DPI: dpi, Scale: dpi / 96, Percent: Round(dpi / 96 * 100)}
+    return { DPI: dpi, Scale: dpi / 96, Percent: Round(dpi / 96 * 100) }
 }
 
 ;=============================================================================
@@ -95,7 +95,7 @@ Example1_DPIMap() {
     g.Add("Text", "w600", "DPI Settings Across All Monitors")
 
     lv := g.Add("ListView", "w650 h250", [
-    "Monitor", "DPI", "Scaling %", "Resolution", "Type", "Status"
+        "Monitor", "DPI", "Scaling %", "Resolution", "Type", "Status"
     ])
 
     ; Check each monitor
@@ -111,7 +111,7 @@ Example1_DPIMap() {
 
         ; Track unique DPI values
         if !uniqueDPIs.Has(dpiInfo.DPI)
-        uniqueDPIs[dpiInfo.DPI] := []
+            uniqueDPIs[dpiInfo.DPI] := []
         uniqueDPIs[dpiInfo.DPI].Push(MonNum)
 
         resolution := (Right - Left) "×" (Bottom - Top)
@@ -119,17 +119,17 @@ Example1_DPIMap() {
 
         status := ""
         if dpiInfo.DPI = 96
-        status := "Standard"
+            status := "Standard"
         else if dpiInfo.DPI > 144
-        status := "High DPI"
+            status := "High DPI"
         else
-        status := "Scaled"
+            status := "Scaled"
 
         lv.Add("", MonNum, dpiInfo.DPI, dpiInfo.Percent "%", resolution, type, status)
     }
 
     Loop lv.GetCount("Column")
-    lv.ModifyCol(A_Index, "AutoHdr")
+        lv.ModifyCol(A_Index, "AutoHdr")
 
     ; Summary
     summary := "`nDPI Configuration Summary:`n"
@@ -137,13 +137,13 @@ Example1_DPIMap() {
     summary .= "  Unique DPI Settings: " uniqueDPIs.Count "`n`n"
 
     if uniqueDPIs.Count = 1
-    summary .= "  ✓ Uniform DPI across all monitors`n"
+        summary .= "  ✓ Uniform DPI across all monitors`n"
     else {
         summary .= "  ⚠ Mixed DPI configuration:`n"
         for dpi, monitors in uniqueDPIs {
             summary .= "    " dpi " DPI: Monitor(s) "
             for mon in monitors
-            summary .= mon " "
+                summary .= mon " "
             summary .= "`n"
         }
     }
@@ -327,7 +327,7 @@ Example3_MultiDPIWindowCreator() {
     CloseAllTest(*) {
         for hwnd in testWindows {
             if WinExist(hwnd)
-            WinClose(hwnd)
+                WinClose(hwnd)
         }
         testWindows := []
         txtStatus.Value := "All test windows closed"
@@ -392,7 +392,7 @@ Example4_DPITopology() {
             case 125: color := "0xFFAA00"  ; Orange - Medium
             case 150: color := "0xFF6600"  ; Dark Orange - Large
             case 200: color := "0xFF0000"  ; Red - Very Large
-            default:  color := "0x4169E1"  ; Blue - Custom
+            default: color := "0x4169E1"  ; Blue - Custom
         }
 
         ; Monitor rectangle
@@ -400,8 +400,8 @@ Example4_DPITopology() {
 
         ; Labels
         labelText := "Monitor " mon.Num "`n" mon.DPI.Percent "%`n" mon.DPI.DPI " DPI"
-        g.Add("Text", "x" (x + w//2 - 40) " y" (y + h//2 - 20) " w80 h40 +Center BackgroundTrans cWhite",
-        labelText)
+        g.Add("Text", "x" (x + w // 2 - 40) " y" (y + h // 2 - 20) " w80 h40 +Center BackgroundTrans cWhite",
+            labelText)
     }
 
     ; Legend
@@ -431,14 +431,14 @@ Example5_ContentManager() {
         dpiInfo := GetMonitorDPI(A_Index)
 
         if !dpiMap.Has(dpiInfo.DPI)
-        dpiMap[dpiInfo.DPI] := []
+            dpiMap[dpiInfo.DPI] := []
         dpiMap[dpiInfo.DPI].Push(A_Index)
     }
 
     for dpi, monitors in dpiMap {
         dpiSummary .= "  " dpi " DPI (" Round(dpi / 96 * 100) "%): Monitor(s) "
         for mon in monitors
-        dpiSummary .= mon " "
+            dpiSummary .= mon " "
         dpiSummary .= "`n"
     }
 
@@ -458,7 +458,7 @@ Example5_ContentManager() {
         recommendations .= "  • Create assets for each DPI setting:`n"
 
         for dpi in dpiMap
-        recommendations .= "    - " dpi " DPI (" Round(dpi / 96 * 100) "%) version`n"
+            recommendations .= "    - " dpi " DPI (" Round(dpi / 96 * 100) "%) version`n"
 
         recommendations .= "  • Implement dynamic asset loading`n"
         recommendations .= "  • Test on each monitor configuration"
@@ -556,16 +556,16 @@ Example7_TestingSuite() {
     g.Add("GroupBox", "xm w550 h150 Section", "Test Scenarios")
 
     tests := [
-    "Uniform DPI (all monitors same)",
-    "Mixed DPI (different DPI per monitor)",
-    "Window movement across DPI boundaries",
-    "Dynamic content scaling",
-    "Font rendering at different DPIs",
-    "Image quality across DPIs"
+        "Uniform DPI (all monitors same)",
+        "Mixed DPI (different DPI per monitor)",
+        "Window movement across DPI boundaries",
+        "Dynamic content scaling",
+        "Font rendering at different DPIs",
+        "Image quality across DPIs"
     ]
 
     for test in tests
-    g.Add("Checkbox", "xs+10", test)
+        g.Add("Checkbox", "xs+10", test)
 
     g.Add("Button", "xm w150", "Run Tests").OnEvent("Click", RunTests)
     g.Add("Button", "x+10 w150", "Generate Report").OnEvent("Click", GenerateReport)
@@ -589,16 +589,16 @@ Example7_TestingSuite() {
 
         results .= "[TEST 1] DPI Uniformity:`n"
         if dpiSet.Count = 1
-        results .= "  ✓ PASS - All monitors have same DPI`n"
+            results .= "  ✓ PASS - All monitors have same DPI`n"
         else
-        results .= "  ⚠ INFO - " dpiSet.Count " different DPI settings detected`n"
+            results .= "  ⚠ INFO - " dpiSet.Count " different DPI settings detected`n"
 
         results .= "`n[TEST 2] Per-Monitor DPI Support:`n"
         hasDifferentDPI := dpiSet.Count > 1
         if hasDifferentDPI
-        results .= "  ✓ ACTIVE - Multi-DPI configuration`n"
+            results .= "  ✓ ACTIVE - Multi-DPI configuration`n"
         else
-        results .= "  ℹ N/A - Single DPI configuration`n"
+            results .= "  ℹ N/A - Single DPI configuration`n"
 
         results .= "`n[TEST 3] Monitor Count:`n"
         results .= "  Total: " MonCount " monitor(s)`n"

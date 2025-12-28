@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* ProcessGetName() - Get process name from PID
-*
-* Returns the executable name of a process.
-*/
+ * ProcessGetName() - Get process name from PID
+ * 
+ * Returns the executable name of a process.
+ */
 
 pid := ProcessExist("explorer.exe")
 if (pid) {

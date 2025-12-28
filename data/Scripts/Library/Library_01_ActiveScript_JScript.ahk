@@ -3,14 +3,14 @@
 #Include JSON.ahk
 
 /**
-* ActiveScript Library - JScript Integration
-*
-* Demonstrates using Lexikos' ActiveScript.ahk library to execute
-* JScript (JavaScript) code within AutoHotkey and exchange data.
-*
-* Library: https://github.com/Lexikos/ActiveScript.ahk
-* Note: This example assumes ActiveScript.ahk is installed in Lib folder
-*/
+ * ActiveScript Library - JScript Integration
+ * 
+ * Demonstrates using Lexikos' ActiveScript.ahk library to execute
+ * JScript (JavaScript) code within AutoHotkey and exchange data.
+ * 
+ * Library: https://github.com/Lexikos/ActiveScript.ahk
+ * Note: This example assumes ActiveScript.ahk is installed in Lib folder
+ */
 
 ; NOTE: This is a demonstration. To run, you need to:
 ; 1. Download ActiveScript.ahk from https://github.com/Lexikos/ActiveScript.ahk
@@ -18,11 +18,11 @@
 ; 3. Uncomment the code below
 
 MsgBox("ActiveScript Library Example`n`n"
-. "This demonstrates JScript integration.`n`n"
-. "To use this library:`n"
-. "1. Download from github.com/Lexikos/ActiveScript.ahk`n"
-. "2. Place in Lib folder`n"
-. "3. Uncomment the example code", , "T5")
+    . "This demonstrates JScript integration.`n`n"
+    . "To use this library:`n"
+    . "1. Download from github.com/Lexikos/ActiveScript.ahk`n"
+    . "2. Place in Lib folder`n"
+    . "3. Uncomment the example code", , "T5")
 
 /*
 ; Uncomment to test (requires library installation):
@@ -132,3 +132,4 @@ MsgBox("JavaScript array sum: " sum, , "T3")
 *     - Mathematical calculations
 *     - Legacy code integration
 */
+

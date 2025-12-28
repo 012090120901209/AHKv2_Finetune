@@ -1,46 +1,46 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_StrSplit_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of StrSplit() function for splitting strings into arrays
-*
-* FEATURES:
-* - Split strings by single character delimiters
-* - Split by comma, space, tab, and custom delimiters
-* - Handle empty elements in results
-* - Traverse and process split arrays
-* - Remove empty elements from results
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/StrSplit.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - StrSplit() function with various delimiters
-* - Array iteration with for loops
-* - Array.Length property
-* - Array element access
-* - OmitChars parameter usage
-*
-* LEARNING POINTS:
-* 1. StrSplit() returns an Array object in v2
-* 2. First parameter is the string to split
-* 3. Second parameter is the delimiter(s)
-* 4. Third parameter can omit characters from results
-* 5. Empty elements are included by default
-* 6. Multiple delimiters can be specified
-* 7. Arrays are 1-indexed in AutoHotkey v2
-*/
+ * BuiltIn_StrSplit_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of StrSplit() function for splitting strings into arrays
+ * 
+ * FEATURES:
+ * - Split strings by single character delimiters
+ * - Split by comma, space, tab, and custom delimiters
+ * - Handle empty elements in results
+ * - Traverse and process split arrays
+ * - Remove empty elements from results
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/StrSplit.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - StrSplit() function with various delimiters
+ * - Array iteration with for loops
+ * - Array.Length property
+ * - Array element access
+ * - OmitChars parameter usage
+ * 
+ * LEARNING POINTS:
+ * 1. StrSplit() returns an Array object in v2
+ * 2. First parameter is the string to split
+ * 3. Second parameter is the delimiter(s)
+ * 4. Third parameter can omit characters from results
+ * 5. Empty elements are included by default
+ * 6. Multiple delimiters can be specified
+ * 7. Arrays are 1-indexed in AutoHotkey v2
+ */
 
 ; ============================================================
 ; Example 1: Basic Comma-Separated Split
 ; ============================================================
 
 /**
-* Demonstrates basic comma-separated string splitting
-*/
+ * Demonstrates basic comma-separated string splitting
+ */
 csvData := "Apple,Banana,Cherry,Date,Elderberry"
 fruits := StrSplit(csvData, ",")
 
@@ -58,8 +58,8 @@ MsgBox(output, "Basic Comma Split", "Icon!")
 ; ============================================================
 
 /**
-* Split a sentence into words using space delimiter
-*/
+ * Split a sentence into words using space delimiter
+ */
 sentence := "The quick brown fox jumps over the lazy dog"
 words := StrSplit(sentence, " ")
 
@@ -78,8 +78,8 @@ MsgBox(output, "Space-Separated Words", "Icon!")
 ; ============================================================
 
 /**
-* Parse tab-separated data (common in spreadsheet exports)
-*/
+ * Parse tab-separated data (common in spreadsheet exports)
+ */
 tsvLine := "ID`tName`tAge`tCity"  ; Using `t for tab
 columns := StrSplit(tsvLine, "`t")
 
@@ -106,9 +106,9 @@ MsgBox(output, "Tab-Separated Values", "Icon!")
 ; ============================================================
 
 /**
-* Split using multiple delimiter characters
-* Any character in the delimiter string will split the text
-*/
+ * Split using multiple delimiter characters
+ * Any character in the delimiter string will split the text
+ */
 mixedData := "apple,banana;cherry:date|elderberry"
 items := StrSplit(mixedData, ",;:|")  ; Split on comma, semicolon, colon, or pipe
 
@@ -127,9 +127,9 @@ MsgBox(output, "Multiple Delimiters", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrates how StrSplit handles consecutive delimiters
-* Empty elements are preserved in the array
-*/
+ * Demonstrates how StrSplit handles consecutive delimiters
+ * Empty elements are preserved in the array
+ */
 dataWithEmpties := "apple,,banana,,,cherry"
 result := StrSplit(dataWithEmpties, ",")
 
@@ -139,16 +139,16 @@ output .= "Elements (empty shown as ''):`n"
 
 for index, item in result {
     if (item = "")
-    output .= index ". (empty)`n"
+        output .= index ". (empty)`n"
     else
-    output .= index ". '" item "'`n"
+        output .= index ". '" item "'`n"
 }
 
 ; Count non-empty elements
 nonEmptyCount := 0
 for item in result {
     if (item != "")
-    nonEmptyCount++
+        nonEmptyCount++
 }
 
 output .= "`nNon-empty items: " nonEmptyCount
@@ -160,16 +160,16 @@ MsgBox(output, "Empty Elements", "Icon!")
 ; ============================================================
 
 /**
-* Remove unwanted characters and empty elements
-* Third parameter removes specified characters from results
-*
-* @example StrSplit(string, delimiters, omitChars)
-*/
+ * Remove unwanted characters and empty elements
+ * Third parameter removes specified characters from results
+ * 
+ * @example StrSplit(string, delimiters, omitChars)
+ */
 RemoveEmptyElements(array) {
     result := []
     for item in array {
         if (item != "")
-        result.Push(item)
+            result.Push(item)
     }
     return result
 }
@@ -188,9 +188,9 @@ for index, item in rawSplit {
 output .= "`nWith OmitChars=' ' (" cleanSplit.Length " elements):`n"
 for index, item in cleanSplit {
     if (item = "")
-    output .= index ". (empty)`n"
+        output .= index ". (empty)`n"
     else
-    output .= index ". '" item "'`n"
+        output .= index ". '" item "'`n"
 }
 
 ; Further cleanup: remove empty elements
@@ -207,9 +207,9 @@ MsgBox(output, "Removing Unwanted Characters", "Icon!")
 ; ============================================================
 
 /**
-* Split string into individual characters
-* Use empty string as delimiter
-*/
+ * Split string into individual characters
+ * Use empty string as delimiter
+ */
 text := "Hello"
 characters := StrSplit(text)  ; Empty delimiter = split each character
 
@@ -235,11 +235,11 @@ MsgBox(output, "Character Split", "Icon!")
 ; ============================================================
 
 /**
-* Validate and parse email addresses
-*
-* @param {String} email - Email address to validate
-* @returns {Object} - Map with validation results
-*/
+ * Validate and parse email addresses
+ * 
+ * @param {String} email - Email address to validate
+ * @returns {Object} - Map with validation results
+ */
 ParseEmail(email) {
     result := Map()
     result["valid"] := false
@@ -280,11 +280,11 @@ ParseEmail(email) {
 
 ; Test email addresses
 testEmails := [
-"john.doe@example.com",
-"invalid.email",
-"@example.com",
-"user@domain",
-"contact@company.co.uk"
+    "john.doe@example.com",
+    "invalid.email",
+    "@example.com",
+    "user@domain",
+    "contact@company.co.uk"
 ]
 
 output := "EMAIL VALIDATION:`n`n"
@@ -311,19 +311,19 @@ MsgBox(output, "Email Parser", "Icon!")
 ; ============================================================
 
 /**
-* Join array elements back into a string
-* (Reverse of StrSplit)
-*
-* @param {Array} array - Array to join
-* @param {String} separator - Separator to use
-* @returns {String} - Joined string
-*/
+ * Join array elements back into a string
+ * (Reverse of StrSplit)
+ * 
+ * @param {Array} array - Array to join
+ * @param {String} separator - Separator to use
+ * @returns {String} - Joined string
+ */
 JoinArray(array, separator := ",") {
     result := ""
     for index, item in array {
         result .= item
         if (index < array.Length)
-        result .= separator
+            result .= separator
     }
     return result
 }

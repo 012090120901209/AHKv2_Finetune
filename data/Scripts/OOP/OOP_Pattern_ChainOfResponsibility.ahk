@@ -12,7 +12,7 @@ class Handler {
 class AuthenticationHandler extends Handler {
     Handle(request) {
         if (!request.HasOwnProp("user") || request.user = "")
-        return MsgBox("Authentication failed: No user", "Error"), false
+            return MsgBox("Authentication failed: No user", "Error"), false
         return super.Handle(request)
     }
 }
@@ -20,7 +20,7 @@ class AuthenticationHandler extends Handler {
 class AuthorizationHandler extends Handler {
     Handle(request) {
         if (!request.HasOwnProp("role") || request.role != "admin")
-        return MsgBox("Authorization failed: Insufficient permissions", "Error"), false
+            return MsgBox("Authorization failed: Insufficient permissions", "Error"), false
         return super.Handle(request)
     }
 }
@@ -28,7 +28,7 @@ class AuthorizationHandler extends Handler {
 class ValidationHandler extends Handler {
     Handle(request) {
         if (!request.HasOwnProp("data") || request.data = "")
-        return MsgBox("Validation failed: No data", "Error"), false
+            return MsgBox("Validation failed: No data", "Error"), false
         return super.Handle(request)
     }
 }
@@ -49,8 +49,8 @@ process := ProcessingHandler()
 auth.SetNext(authz).SetNext(valid).SetNext(process)
 
 ; Test requests
-request1 := {user: "admin", role: "admin", data: "important data"}
+request1 := { user: "admin", role: "admin", data: "important data" }
 auth.Handle(request1)
 
-request2 := {user: "guest", role: "guest", data: "some data"}
+request2 := { user: "guest", role: "guest", data: "some data" }
 auth.Handle(request2)

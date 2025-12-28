@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGet_03_Positioning.ahk
-*
-* DESCRIPTION:
-* Advanced window positioning techniques using MonitorGet. Demonstrates smart
-* window placement, constraint-based positioning, and multi-monitor aware
-* window management strategies.
-*
-* FEATURES:
-* - Smart window positioning within monitor bounds
-* - Percentage-based placement
-* - Grid-based window snapping
-* - Monitor-aware window sizing
-* - Boundary constraint enforcement
-* - Custom positioning presets
-* - Dynamic window cascading
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - MonitorGet for precise positioning
-* - MonitorGetWorkArea for usable space
-* - Object literal syntax
-* - Class methods and properties
-* - Hotkey context sensitivity
-* - Modern GUI positioning
-*
-* LEARNING POINTS:
-* 1. Always constrain windows within monitor bounds
-* 2. Use working area for better taskbar handling
-* 3. Percentage-based positioning is resolution-independent
-* 4. Grid snapping improves window organization
-* 5. Monitor awareness prevents windows appearing off-screen
-* 6. Cascading requires offset calculation
-* 7. Window positioning should account for title bar and borders
-*/
+ * BuiltIn_MonitorGet_03_Positioning.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced window positioning techniques using MonitorGet. Demonstrates smart
+ * window placement, constraint-based positioning, and multi-monitor aware
+ * window management strategies.
+ * 
+ * FEATURES:
+ * - Smart window positioning within monitor bounds
+ * - Percentage-based placement
+ * - Grid-based window snapping
+ * - Monitor-aware window sizing
+ * - Boundary constraint enforcement
+ * - Custom positioning presets
+ * - Dynamic window cascading
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGet.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - MonitorGet for precise positioning
+ * - MonitorGetWorkArea for usable space
+ * - Object literal syntax
+ * - Class methods and properties
+ * - Hotkey context sensitivity
+ * - Modern GUI positioning
+ * 
+ * LEARNING POINTS:
+ * 1. Always constrain windows within monitor bounds
+ * 2. Use working area for better taskbar handling
+ * 3. Percentage-based positioning is resolution-independent
+ * 4. Grid snapping improves window organization
+ * 5. Monitor awareness prevents windows appearing off-screen
+ * 6. Cascading requires offset calculation
+ * 7. Window positioning should account for title bar and borders
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Percentage-Based Window Positioner
@@ -51,7 +51,7 @@ Example1_PercentagePositioner() {
     g.Add("Text", "w100", "Monitor:")
     cmbMon := g.Add("ComboBox", "x+10 w60")
     Loop MonitorGetCount()
-    cmbMon.Add([A_Index])
+        cmbMon.Add([A_Index])
     cmbMon.Choose(1)
 
     g.Add("Text", "xm w100", "X Position %:")
@@ -187,7 +187,7 @@ Example2_GridSnapper() {
     GenerateGrid(*) {
         ; Clear existing buttons
         for btn in gridButtons
-        btn.Destroy()
+            btn.Destroy()
         gridButtons := []
 
         cols := Integer(edtCols.Value)
@@ -209,7 +209,7 @@ Example2_GridSnapper() {
                 y := baseY + (row * (cellHeight + gap)) + gap
 
                 btn := g.Add("Button", "x" x " y" y " w" cellWidth " h" cellHeight,
-                (col + 1) "," (row + 1))
+                    (col + 1) "," (row + 1))
                 btn.OnEvent("Click", SnapToCell.Bind(col, row, cols, rows))
                 gridButtons.Push(btn)
             }
@@ -220,7 +220,7 @@ Example2_GridSnapper() {
         try {
             WinID := WinExist("A")
             if !WinID
-            return
+                return
 
             ; Find which monitor the window is on
             WinGetPos(&WinX, &WinY, , , WinID)
@@ -276,7 +276,7 @@ Example3_SmartConstrainer() {
 
     MonitorWindows() {
         if !chkEnabled.Value
-        return
+            return
 
         ; Get all windows
         windowList := WinGetList(, , "Program Manager")
@@ -284,19 +284,19 @@ Example3_SmartConstrainer() {
         for winID in windowList {
             try {
                 if !WinExist(winID)
-                continue
+                    continue
 
                 WinGetPos(&X, &Y, &W, &H, winID)
 
                 ; Find the primary monitor for this window
                 MonNum := GetMonitorForPoint(X, Y)
                 if !MonNum
-                MonNum := 1
+                    MonNum := 1
 
                 if chkWork.Value
-                MonitorGetWorkArea(MonNum, &Left, &Top, &Right, &Bottom)
+                    MonitorGetWorkArea(MonNum, &Left, &Top, &Right, &Bottom)
                 else
-                MonitorGet(MonNum, &Left, &Top, &Right, &Bottom)
+                    MonitorGet(MonNum, &Left, &Top, &Right, &Bottom)
 
                 ; Check if window is out of bounds
                 needsMove := false
@@ -333,17 +333,17 @@ Example3_SmartConstrainer() {
         try {
             WinID := WinExist("A")
             if !WinID
-            return
+                return
 
             WinGetPos(&X, &Y, &W, &H, winID)
             MonNum := GetMonitorForPoint(X, Y)
             if !MonNum
-            MonNum := 1
+                MonNum := 1
 
             if chkWork.Value
-            MonitorGetWorkArea(MonNum, &Left, &Top, &Right, &Bottom)
+                MonitorGetWorkArea(MonNum, &Left, &Top, &Right, &Bottom)
             else
-            MonitorGet(MonNum, &Left, &Top, &Right, &Bottom)
+                MonitorGet(MonNum, &Left, &Top, &Right, &Bottom)
 
             NewX := Max(Left, Min(X, Right - W))
             NewY := Max(Top, Min(Y, Bottom - H))
@@ -371,7 +371,7 @@ Example3_SmartConstrainer() {
         Loop MonitorGetCount() {
             MonitorGet(A_Index, &Left, &Top, &Right, &Bottom)
             if (X >= Left && X < Right && Y >= Top && Y < Bottom)
-            return A_Index
+                return A_Index
         }
         return 0
     }
@@ -391,7 +391,7 @@ Example4_CascadeManager() {
     g.Add("Text", "w100", "Monitor:")
     cmbMon := g.Add("ComboBox", "x+10 w60")
     Loop MonitorGetCount()
-    cmbMon.Add([A_Index])
+        cmbMon.Add([A_Index])
     cmbMon.Choose(1)
 
     g.Add("Text", "xm w100", "Cascade Offset:")
@@ -425,8 +425,8 @@ Example4_CascadeManager() {
 
         ; Calculate max cascade positions
         maxCascades := Min(
-        (MonWidth - winWidth) // offset,
-        (MonHeight - winHeight) // offset
+            (MonWidth - winWidth) // offset,
+            (MonHeight - winHeight) // offset
         )
 
         windowList := WinGetList(, , "Program Manager")
@@ -436,7 +436,7 @@ Example4_CascadeManager() {
         for winID in windowList {
             try {
                 if !WinExist(winID)
-                continue
+                    continue
 
                 ; Calculate position
                 offsetX := (currentIndex * offset) mod (maxCascades * offset)
@@ -452,7 +452,7 @@ Example4_CascadeManager() {
                     currentIndex++
 
                     if currentIndex >= maxCascades
-                    currentIndex := 0
+                        currentIndex := 0
                 }
             }
         }
@@ -481,15 +481,15 @@ Example5_AnchorPositioner() {
     g.SetFont("s9")
 
     anchors := ["Top-Left", "Top-Center", "Top-Right",
-    "Middle-Left", "Center", "Middle-Right",
-    "Bottom-Left", "Bottom-Center", "Bottom-Right"]
+        "Middle-Left", "Center", "Middle-Right",
+        "Bottom-Left", "Bottom-Center", "Bottom-Right"]
 
     g.Add("Text", , "Select anchor point:")
 
     for anchor in anchors {
         g.Add("Button", "w130", anchor).OnEvent("Click", PositionToAnchor.Bind(anchor))
         if Mod(A_Index, 3) = 0
-        g.Add("Text", "xm", "")  ; New row
+            g.Add("Text", "xm", "")  ; New row
     }
 
     g.Add("Text", "xm Section", "Offset from anchor:")
@@ -504,7 +504,7 @@ Example5_AnchorPositioner() {
         try {
             WinID := WinExist("A")
             if !WinID
-            return
+                return
 
             WinGetPos(&WinX, &WinY, &WinW, &WinH, WinID)
 
@@ -530,32 +530,32 @@ Example5_AnchorPositioner() {
             ; Calculate anchor position
             switch anchor {
                 case "Top-Left":
-                NewX := Left + offsetX
-                NewY := Top + offsetY
+                    NewX := Left + offsetX
+                    NewY := Top + offsetY
                 case "Top-Center":
-                NewX := Left + (MonWidth - WinW) // 2 + offsetX
-                NewY := Top + offsetY
+                    NewX := Left + (MonWidth - WinW) // 2 + offsetX
+                    NewY := Top + offsetY
                 case "Top-Right":
-                NewX := Right - WinW + offsetX
-                NewY := Top + offsetY
+                    NewX := Right - WinW + offsetX
+                    NewY := Top + offsetY
                 case "Middle-Left":
-                NewX := Left + offsetX
-                NewY := Top + (MonHeight - WinH) // 2 + offsetY
+                    NewX := Left + offsetX
+                    NewY := Top + (MonHeight - WinH) // 2 + offsetY
                 case "Center":
-                NewX := Left + (MonWidth - WinW) // 2 + offsetX
-                NewY := Top + (MonHeight - WinH) // 2 + offsetY
+                    NewX := Left + (MonWidth - WinW) // 2 + offsetX
+                    NewY := Top + (MonHeight - WinH) // 2 + offsetY
                 case "Middle-Right":
-                NewX := Right - WinW + offsetX
-                NewY := Top + (MonHeight - WinH) // 2 + offsetY
+                    NewX := Right - WinW + offsetX
+                    NewY := Top + (MonHeight - WinH) // 2 + offsetY
                 case "Bottom-Left":
-                NewX := Left + offsetX
-                NewY := Bottom - WinH + offsetY
+                    NewX := Left + offsetX
+                    NewY := Bottom - WinH + offsetY
                 case "Bottom-Center":
-                NewX := Left + (MonWidth - WinW) // 2 + offsetX
-                NewY := Bottom - WinH + offsetY
+                    NewX := Left + (MonWidth - WinW) // 2 + offsetX
+                    NewY := Bottom - WinH + offsetY
                 case "Bottom-Right":
-                NewX := Right - WinW + offsetX
-                NewY := Bottom - WinH + offsetY
+                    NewX := Right - WinW + offsetX
+                    NewY := Bottom - WinH + offsetY
             }
 
             ; Constrain to monitor
@@ -582,7 +582,7 @@ Example6_ProportionalSizer() {
     for frac in fractions {
         g.Add("Button", "w80", frac).OnEvent("Click", ApplyFraction.Bind(frac))
         if Mod(A_Index, 3) = 0 && A_Index < fractions.Length
-        g.Add("Text", "xm", "")
+            g.Add("Text", "xm", "")
     }
 
     g.Add("Text", "xm Section", "Options:")
@@ -595,7 +595,7 @@ Example6_ProportionalSizer() {
         try {
             WinID := WinExist("A")
             if !WinID
-            return
+                return
 
             WinGetPos(&X, &Y, &CurrentW, &CurrentH, WinID)
 
@@ -682,7 +682,7 @@ Example7_WindowDistributor() {
         winCount := 0
         for winID in windowList {
             if WinExist(winID)
-            winCount++
+                winCount++
         }
 
         if winCount = 0 {
@@ -692,80 +692,80 @@ Example7_WindowDistributor() {
 
         switch strategy {
             case 1:  ; Even distribution
-            winsPerMonitor := Ceil(winCount / MonCount)
-            currentMon := 1
-            monIndex := 0
+                winsPerMonitor := Ceil(winCount / MonCount)
+                currentMon := 1
+                monIndex := 0
 
-            for winID in windowList {
-                if !WinExist(winID)
-                continue
+                for winID in windowList {
+                    if !WinExist(winID)
+                        continue
 
-                MonitorGetWorkArea(currentMon, &Left, &Top, &Right, &Bottom)
+                    MonitorGetWorkArea(currentMon, &Left, &Top, &Right, &Bottom)
 
-                MonWidth := Right - Left
-                MonHeight := Bottom - Top
+                    MonWidth := Right - Left
+                    MonHeight := Bottom - Top
 
-                NewW := Round(MonWidth * sizePercent)
-                NewH := Round(MonHeight * sizePercent)
-                NewX := Left + (MonWidth - NewW) // 2
-                NewY := Top + (MonHeight - NewH) // 2 + (monIndex * 30)
+                    NewW := Round(MonWidth * sizePercent)
+                    NewH := Round(MonHeight * sizePercent)
+                    NewX := Left + (MonWidth - NewW) // 2
+                    NewY := Top + (MonHeight - NewH) // 2 + (monIndex * 30)
 
-                WinMove(NewX, NewY, NewW, NewH, winID)
+                    WinMove(NewX, NewY, NewW, NewH, winID)
 
-                monIndex++
-                if monIndex >= winsPerMonitor {
-                    currentMon++
-                    monIndex := 0
-                    if currentMon > MonCount
-                    currentMon := 1
+                    monIndex++
+                    if monIndex >= winsPerMonitor {
+                        currentMon++
+                        monIndex := 0
+                        if currentMon > MonCount
+                            currentMon := 1
+                    }
                 }
-            }
 
             case 2:  ; Fill monitor by monitor
-            currentMon := 1
-            for winID in windowList {
-                if !WinExist(winID)
-                continue
-
-                MonitorGetWorkArea(currentMon, &Left, &Top, &Right, &Bottom)
-
-                MonWidth := Right - Left
-                MonHeight := Bottom - Top
-
-                NewW := Round(MonWidth * sizePercent)
-                NewH := Round(MonHeight * sizePercent)
-                NewX := Left + (MonWidth - NewW) // 2
-                NewY := Top + (MonHeight - NewH) // 2
-
-                WinMove(NewX, NewY, NewW, NewH, winID)
-
-                currentMon++
-                if currentMon > MonCount
                 currentMon := 1
-            }
+                for winID in windowList {
+                    if !WinExist(winID)
+                        continue
+
+                    MonitorGetWorkArea(currentMon, &Left, &Top, &Right, &Bottom)
+
+                    MonWidth := Right - Left
+                    MonHeight := Bottom - Top
+
+                    NewW := Round(MonWidth * sizePercent)
+                    NewH := Round(MonHeight * sizePercent)
+                    NewX := Left + (MonWidth - NewW) // 2
+                    NewY := Top + (MonHeight - NewH) // 2
+
+                    WinMove(NewX, NewY, NewW, NewH, winID)
+
+                    currentMon++
+                    if currentMon > MonCount
+                        currentMon := 1
+                }
 
             case 3:  ; Round robin
-            monIndex := 1
-            for winID in windowList {
-                if !WinExist(winID)
-                continue
-
-                MonitorGetWorkArea(monIndex, &Left, &Top, &Right, &Bottom)
-
-                MonWidth := Right - Left
-                MonHeight := Bottom - Top
-
-                NewW := Round(MonWidth * sizePercent)
-                NewH := Round(MonHeight * sizePercent)
-                NewX := Left + (MonWidth - NewW) // 2
-                NewY := Top + (MonHeight - NewH) // 2
-
-                WinMove(NewX, NewY, NewW, NewH, winID)
-
-                monIndex++
-                if monIndex > MonCount
                 monIndex := 1
-            }
+                for winID in windowList {
+                    if !WinExist(winID)
+                        continue
+
+                    MonitorGetWorkArea(monIndex, &Left, &Top, &Right, &Bottom)
+
+                    MonWidth := Right - Left
+                    MonHeight := Bottom - Top
+
+                    NewW := Round(MonWidth * sizePercent)
+                    NewH := Round(MonHeight * sizePercent)
+                    NewX := Left + (MonWidth - NewW) // 2
+                    NewY := Top + (MonHeight - NewH) // 2
+
+                    WinMove(NewX, NewY, NewW, NewH, winID)
+
+                    monIndex++
+                    if monIndex > MonCount
+                        monIndex := 1
+                }
         }
 
         txtResult.Value := "Distributed " winCount " windows`n"

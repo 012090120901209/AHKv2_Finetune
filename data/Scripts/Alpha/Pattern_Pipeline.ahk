@@ -35,7 +35,7 @@ class LowerStage {
 
 class ValidateStage {
     __New(minLength := 1) => this.minLength := minLength
-    
+
     Process(data) {
         if StrLen(data) < this.minLength
             throw Error("Input too short (min: " this.minLength ")")

@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_StrGet_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates reading strings from binary data using StrGet.
-* Covers basic string extraction from buffers and memory addresses.
-*
-* FEATURES:
-* - Reading null-terminated strings
-* - String length specification
-* - UTF-16 and UTF-8 string reading
-* - Reading multiple strings from buffer
-* - String pointer dereferencing
-* - Practical string extraction
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - StrGet Function
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - StrGet(address, length, encoding) syntax
-* - StrGet with Buffer objects
-* - UTF-16 (default encoding on Windows)
-* - UTF-8 support
-* - Automatic null termination handling
-*
-* LEARNING POINTS:
-* 1. StrGet reads strings from memory addresses
-* 2. Default encoding is UTF-16 on Windows
-* 3. Length parameter can be omitted for null-terminated strings
-* 4. StrGet handles Unicode properly
-* 5. Can read from Buffer.Ptr or numeric addresses
-*/
+ * BuiltIn_StrGet_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates reading strings from binary data using StrGet.
+ * Covers basic string extraction from buffers and memory addresses.
+ * 
+ * FEATURES:
+ * - Reading null-terminated strings
+ * - String length specification
+ * - UTF-16 and UTF-8 string reading
+ * - Reading multiple strings from buffer
+ * - String pointer dereferencing
+ * - Practical string extraction
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - StrGet Function
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - StrGet(address, length, encoding) syntax
+ * - StrGet with Buffer objects
+ * - UTF-16 (default encoding on Windows)
+ * - UTF-8 support
+ * - Automatic null termination handling
+ * 
+ * LEARNING POINTS:
+ * 1. StrGet reads strings from memory addresses
+ * 2. Default encoding is UTF-16 on Windows
+ * 3. Length parameter can be omitted for null-terminated strings
+ * 4. StrGet handles Unicode properly
+ * 5. Can read from Buffer.Ptr or numeric addresses
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Basic String Reading
@@ -123,7 +123,7 @@ Example3_MultipleStrings() {
         result .= "  Offset: " . offsets[A_Index] . " bytes`n"
         result .= "  Value: '" . readStrings[A_Index] . "'`n"
         if A_Index < strings.Length
-        result .= "`n"
+            result .= "`n"
     }
 
     MsgBox(result, "Example 3: Multiple Strings", "Icon!")
@@ -248,7 +248,7 @@ Example6_StringArrays() {
     loop names.Length {
         ptr := NumGet(ptrArray, (A_Index - 1) * A_PtrSize, "Ptr")
         result .= "  [" . (A_Index - 1) . "] 0x" . Format("{:X}", ptr)
-        . " -> '" . readNames[A_Index] . "'`n"
+            . " -> '" . readNames[A_Index] . "'`n"
     }
 
     MsgBox(result, "Example 6: String Arrays", "Icon!")
@@ -276,7 +276,7 @@ ShowMenu() {
     choice := InputBox(menu, "StrGet Basic Examples", "w450 h320")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicStringReading()

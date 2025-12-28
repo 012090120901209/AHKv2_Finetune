@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinSetTransparent_01.ahk
-* @description Comprehensive examples demonstrating WinSetTransparent function for window transparency in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic transparency control
-* Example 2: Gradual fade effects
-* Example 3: Transparency presets
-* Example 4: Mouse-hover transparency
-* Example 5: Conditional transparency
-* Example 6: Transparency profiles
-* Example 7: Visual transparency indicator
-*
-* @section FEATURES
-* - Set window transparency
-* - Fade animations
-* - Preset levels
-* - Hover effects
-* - Conditional transparency
-* - Profile management
-* - Visual indicators
-*/
+ * @file BuiltIn_WinSetTransparent_01.ahk
+ * @description Comprehensive examples demonstrating WinSetTransparent function for window transparency in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic transparency control
+ * Example 2: Gradual fade effects
+ * Example 3: Transparency presets
+ * Example 4: Mouse-hover transparency
+ * Example 5: Conditional transparency
+ * Example 6: Transparency profiles
+ * Example 7: Visual transparency indicator
+ * 
+ * @section FEATURES
+ * - Set window transparency
+ * - Fade animations
+ * - Preset levels
+ * - Hover effects
+ * - Conditional transparency
+ * - Profile management
+ * - Visual indicators
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -113,12 +113,12 @@ class FadeEffects {
 
 class TransparencyPresets {
     static presets := Map(
-    "Opaque", 255,
-    "Slightly Transparent", 220,
-    "Semi-Transparent", 180,
-    "Half Transparent", 128,
-    "Very Transparent", 80,
-    "Almost Invisible", 30
+        "Opaque", 255,
+        "Slightly Transparent", 220,
+        "Semi-Transparent", 180,
+        "Half Transparent", 128,
+        "Very Transparent", 80,
+        "Almost Invisible", 30
     )
 
     static ApplyPreset(presetName, WinTitle := "A") {
@@ -137,7 +137,7 @@ class TransparencyPresets {
         output := "Available Transparency Presets:`n`n"
 
         for name, level in this.presets {
-            output .= name ": " level " (" Round((level/255)*100, 1) "%)`n"
+            output .= name ": " level " (" Round((level / 255) * 100, 1) "%)`n"
         }
 
         MsgBox(output, "Transparency Presets", "Icon!")
@@ -148,7 +148,7 @@ class TransparencyPresets {
     TransparencyPresets.ShowPresets()
     preset := InputBox("Enter preset name:", "Apply Preset").Value
     if preset != ""
-    TransparencyPresets.ApplyPreset(preset, "A")
+        TransparencyPresets.ApplyPreset(preset, "A")
 }
 
 ; ========================================
@@ -164,7 +164,7 @@ class HoverTransparency {
     static Enable(WinTitle := "A", normalTransp := 128, hoverTransp := 255) {
         this.targetWindow := WinExist(WinTitle)
         if !this.targetWindow
-        return false
+            return false
 
         this.normalLevel := normalTransp
         this.hoverLevel := hoverTransp
@@ -191,7 +191,7 @@ class HoverTransparency {
 
     static CheckHover() {
         if !this.monitoring || !this.targetWindow
-        return
+            return
 
         if !WinExist("ahk_id " this.targetWindow) {
             this.Disable()
@@ -269,7 +269,7 @@ class TransparencyIndicator {
         if trans = "" {
             output .= "Transparency: Not set (100% opaque)"
         } else {
-            percent := Round((trans/255)*100, 1)
+            percent := Round((trans / 255) * 100, 1)
             output .= "Level: " trans " / 255`n"
             output .= "Percent: " percent "%"
         }

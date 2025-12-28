@@ -25,10 +25,10 @@ class Saga {
     Execute() {
         this.completed := []
         this.logs := []
-        
+
         for step in this.steps {
             this._log("Executing: " step["name"])
-            
+
             try {
                 result := step["action"](this.context)
                 this.context["_last"] := result
@@ -37,7 +37,7 @@ class Saga {
             } catch Error as e {
                 this._log("  Failed: " step["name"] " - " e.Message)
                 this._compensate()
-                
+
                 return Map(
                     "success", false,
                     "failedStep", step["name"],
@@ -56,13 +56,13 @@ class Saga {
 
     _compensate() {
         this._log("Starting compensation...")
-        
+
         ; Execute compensations in reverse order
         i := this.completed.Length
         while i >= 1 {
             step := this.completed[i]
             this._log("  Compensating: " step["name"])
-            
+
             try {
                 step["compensation"](this.context)
                 this._log("    Compensated: " step["name"])
@@ -107,13 +107,13 @@ class SagaOrchestrator {
     Run(name, context := "") {
         if !this.sagas.Has(name)
             throw Error("Saga not found: " name)
-        
+
         saga := this.sagas[name]
         if context {
             for key, value in context
                 saga.context[key] := value
         }
-        
+
         return saga.Execute()
     }
 }
@@ -132,7 +132,7 @@ ReserveInventoryAction(ctx) {
     ; Simulate inventory check
     if !ctx.Has("productId")
         throw Error("Product ID required")
-    
+
     ctx["reserved"] := true
     return "Reserved item #" ctx["productId"]
 }
@@ -152,11 +152,11 @@ orderSaga.AddStep(
 ProcessPaymentAction(ctx) {
     if !ctx.Has("amount")
         throw Error("Amount required")
-    
+
     ; Simulate payment (fails for amounts > 1000)
     if ctx["amount"] > 1000
         throw Error("Payment declined")
-    
+
     ctx["paymentId"] := "PAY-" Random(1000, 9999)
     return "Payment processed: " ctx["paymentId"]
 }
@@ -274,7 +274,7 @@ BookCarAction(ctx) {
     ; Simulate failure
     if ctx.Has("failCar") && ctx["failCar"]
         throw Error("No cars available")
-    
+
     ctx["carBooked"] := true
     ctx["carRef"] := "CR-" Random(1000, 9999)
     return ctx["carRef"]

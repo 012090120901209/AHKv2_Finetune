@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* InputLevel Hotkey Option
-* Control which hotkeys can trigger other hotkeys
-*/
+ * InputLevel Hotkey Option
+ * Control which hotkeys can trigger other hotkeys
+ */
 
 ; Level 0 hotkeys (default) - triggered by physical input
 F1:: {
@@ -21,7 +21,8 @@ F2:: {
 ; Level 1 hotkey - can be triggered by SendLevel 1
 #InputLevel 1
 
-F3::MsgBox("F3 triggered!`n`nThis is a Level 1 hotkey`n(Can be triggered by Send)")
+F3:: MsgBox("F3 triggered!`n`nThis is a Level 1 hotkey`n(Can be triggered by Send)")
 #InputLevel 0
 
 ; Practical use: Prevent hotkey chains while allowing specific triggers
+

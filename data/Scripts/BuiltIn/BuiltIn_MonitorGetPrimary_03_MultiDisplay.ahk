@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_MonitorGetPrimary_03_MultiDisplay.ahk
-*
-* DESCRIPTION:
-* Multi-display management with primary monitor awareness. Demonstrates
-* complex multi-monitor scenarios, primary-secondary relationships, and
-* advanced display topology handling.
-*
-* FEATURES:
-* - Primary-secondary monitor relationships
-* - Cross-monitor window operations
-* - Display topology analysis
-* - Primary-based monitor ordering
-* - Multi-display synchronization
-* - Primary monitor role management
-* - Display configuration utilities
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/MonitorGetPrimary.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced multi-monitor logic
-* - Primary monitor as reference point
-* - Complex coordinate calculations
-* - Multi-display state management
-* - Dynamic display adaptation
-*
-* LEARNING POINTS:
-* 1. Primary monitor serves as reference for multi-display setups
-* 2. Secondary monitors are numbered relative to primary
-* 3. Primary designation affects window placement logic
-* 4. Multi-display requires primary-aware algorithms
-* 5. Primary monitor anchors the virtual desktop
-* 6. Display topology centers on primary monitor
-* 7. Primary-secondary distinction affects user experience
-*/
+ * BuiltIn_MonitorGetPrimary_03_MultiDisplay.ahk
+ * 
+ * DESCRIPTION:
+ * Multi-display management with primary monitor awareness. Demonstrates
+ * complex multi-monitor scenarios, primary-secondary relationships, and
+ * advanced display topology handling.
+ * 
+ * FEATURES:
+ * - Primary-secondary monitor relationships
+ * - Cross-monitor window operations
+ * - Display topology analysis
+ * - Primary-based monitor ordering
+ * - Multi-display synchronization
+ * - Primary monitor role management
+ * - Display configuration utilities
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/MonitorGetPrimary.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced multi-monitor logic
+ * - Primary monitor as reference point
+ * - Complex coordinate calculations
+ * - Multi-display state management
+ * - Dynamic display adaptation
+ * 
+ * LEARNING POINTS:
+ * 1. Primary monitor serves as reference for multi-display setups
+ * 2. Secondary monitors are numbered relative to primary
+ * 3. Primary designation affects window placement logic
+ * 4. Multi-display requires primary-aware algorithms
+ * 5. Primary monitor anchors the virtual desktop
+ * 6. Display topology centers on primary monitor
+ * 7. Primary-secondary distinction affects user experience
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Primary-Secondary Relationship Analyzer
@@ -61,18 +61,18 @@ Example1_RelationshipAnalyzer() {
     MonitorGet(PrimaryNum, &PLeft, &PTop, &PRight, &PBottom)
 
     ; Analyze each secondary monitor
-    report := "`nPrimary Monitor (#" PrimaryNum "): " (PRight-PLeft) "x" (PBottom-PTop) " at " PLeft "," PTop "`n"
+    report := "`nPrimary Monitor (#" PrimaryNum "): " (PRight - PLeft) "x" (PBottom - PTop) " at " PLeft "," PTop "`n"
     report .= "═══════════════════════════════════════════════════════════`n`n"
 
     Loop MonCount {
         if A_Index = PrimaryNum
-        continue
+            continue
 
         SecNum := A_Index
         MonitorGet(SecNum, &SLeft, &STop, &SRight, &SBottom)
 
         report .= "Secondary Monitor #" SecNum ":`n"
-        report .= "  Resolution: " (SRight-SLeft) "x" (SBottom-STop) "`n"
+        report .= "  Resolution: " (SRight - SLeft) "x" (SBottom - STop) "`n"
         report .= "  Position: " SLeft "," STop "`n`n"
 
         ; Determine spatial relationship
@@ -80,19 +80,19 @@ Example1_RelationshipAnalyzer() {
 
         ; Horizontal
         if SRight <= PLeft
-        report .= "    • Located LEFT of primary`n"
+            report .= "    • Located LEFT of primary`n"
         else if SLeft >= PRight
-        report .= "    • Located RIGHT of primary`n"
+            report .= "    • Located RIGHT of primary`n"
         else
-        report .= "    • Horizontally OVERLAPPING with primary`n"
+            report .= "    • Horizontally OVERLAPPING with primary`n"
 
         ; Vertical
         if SBottom <= PTop
-        report .= "    • Located ABOVE primary`n"
+            report .= "    • Located ABOVE primary`n"
         else if STop >= PBottom
-        report .= "    • Located BELOW primary`n"
+            report .= "    • Located BELOW primary`n"
         else
-        report .= "    • Vertically OVERLAPPING with primary`n"
+            report .= "    • Vertically OVERLAPPING with primary`n"
 
         ; Check if adjacent (touching edges)
         adjacent := false
@@ -109,7 +109,7 @@ Example1_RelationshipAnalyzer() {
         SCenterX := (SLeft + SRight) // 2
         SCenterY := (STop + SBottom) // 2
 
-        distance := Round(Sqrt((SCenterX - PCenterX)**2 + (SCenterY - PCenterY)**2))
+        distance := Round(Sqrt((SCenterX - PCenterX) ** 2 + (SCenterY - PCenterY) ** 2))
         report .= "    • Distance from primary: " distance " pixels`n"
 
         report .= "`n"
@@ -186,13 +186,13 @@ Example2_DisplayMap() {
 
         ; Monitor label
         labelText := mon.IsPrimary ? "PRIMARY`n#" mon.Num : "Secondary`n#" mon.Num
-        g.Add("Text", "x" (x + w//2 - 30) " y" (y + h//2 - 15) " w60 h30 +Center BackgroundTrans cBlack",
-        labelText)
+        g.Add("Text", "x" (x + w // 2 - 30) " y" (y + h // 2 - 15) " w60 h30 +Center BackgroundTrans cBlack",
+            labelText)
 
         ; Resolution
         resolution := (mon.Right - mon.Left) "x" (mon.Bottom - mon.Top)
-        g.Add("Text", "x" (x + w//2 - 40) " y" (y + h - 20) " w80 h15 +Center BackgroundTrans cBlack",
-        resolution)
+        g.Add("Text", "x" (x + w // 2 - 40) " y" (y + h - 20) " w80 h15 +Center BackgroundTrans cBlack",
+            resolution)
     }
 
     ; Legend
@@ -227,12 +227,12 @@ Example3_SecondaryManager() {
     secondaries := []
     Loop MonCount {
         if A_Index != PrimaryNum
-        secondaries.Push(A_Index)
+            secondaries.Push(A_Index)
     }
 
     cmbSecondary := g.Add("ComboBox", "xs w150")
     for secNum in secondaries
-    cmbSecondary.Add(["Monitor " secNum])
+        cmbSecondary.Add(["Monitor " secNum])
     cmbSecondary.Choose(1)
 
     ; Actions
@@ -298,9 +298,9 @@ Example3_SecondaryManager() {
         MonitorGetWorkArea(secNum, &WL, &WT, &WR, &WB)
 
         info := "Secondary Monitor #" secNum " Information:`n`n"
-        info .= "Resolution: " (R-L) "x" (B-T) "`n"
+        info .= "Resolution: " (R - L) "x" (B - T) "`n"
         info .= "Position: " L "," T "`n"
-        info .= "Working Area: " (WR-WL) "x" (WB-WT) "`n"
+        info .= "Working Area: " (WR - WL) "x" (WB - WT) "`n"
         info .= "Distance from Primary: "
 
         ; Calculate distance
@@ -310,7 +310,7 @@ Example3_SecondaryManager() {
         SCenterX := (L + R) // 2
         SCenterY := (T + B) // 2
 
-        distance := Round(Sqrt((SCenterX - PCenterX)**2 + (SCenterY - PCenterY)**2))
+        distance := Round(Sqrt((SCenterX - PCenterX) ** 2 + (SCenterY - PCenterY) ** 2))
         info .= distance " pixels"
 
         txtStatus.Value := info
@@ -334,10 +334,10 @@ Example4_PrimaryDistribution() {
     g.Add("Text", "xm Section", "Distribution Strategy:")
 
     strategies := [
-    "Primary Heavy (70% primary, 30% secondary)",
-    "Primary Moderate (50% primary, 50% secondary)",
-    "Even Distribution",
-    "Secondary Priority (30% primary, 70% secondary)"
+        "Primary Heavy (70% primary, 30% secondary)",
+        "Primary Moderate (50% primary, 50% secondary)",
+        "Even Distribution",
+        "Secondary Priority (30% primary, 70% secondary)"
     ]
 
     ddlStrategy := g.Add("DropDownList", "xs w350 Choose1", strategies)
@@ -356,7 +356,7 @@ Example4_PrimaryDistribution() {
         validWindows := []
         for winID in windowList {
             if WinExist(winID)
-            validWindows.Push(winID)
+                validWindows.Push(winID)
         }
 
         totalWins := validWindows.Length
@@ -369,16 +369,16 @@ Example4_PrimaryDistribution() {
         ; Calculate distribution
         switch strategy {
             case 1:  ; Primary Heavy
-            primaryCount := Ceil(totalWins * 0.7)
+                primaryCount := Ceil(totalWins * 0.7)
 
             case 2:  ; Primary Moderate
-            primaryCount := Ceil(totalWins * 0.5)
+                primaryCount := Ceil(totalWins * 0.5)
 
             case 3:  ; Even
-            primaryCount := Ceil(totalWins / MonCount)
+                primaryCount := Ceil(totalWins / MonCount)
 
             case 4:  ; Secondary Priority
-            primaryCount := Ceil(totalWins * 0.3)
+                primaryCount := Ceil(totalWins * 0.3)
         }
 
         ; Distribute
@@ -395,7 +395,7 @@ Example4_PrimaryDistribution() {
                 secondaries := []
                 Loop MonCount {
                     if A_Index != PrimaryNum
-                    secondaries.Push(A_Index)
+                        secondaries.Push(A_Index)
                 }
 
                 targetMon := secondaries[Mod(secondaryIndex, secondaries.Length) + 1]
@@ -467,7 +467,7 @@ Example5_MultiMonitorSync() {
 
         for monNum, winID in testWindows {
             if monNum = PrimaryNum || !WinExist(winID)
-            continue
+                continue
 
             WinGetPos(&X, &Y, , , winID)
             WinMove(X, Y, RefW, RefH, winID)
@@ -501,7 +501,7 @@ Example5_MultiMonitorSync() {
         ; Apply to all monitors
         for monNum, winID in testWindows {
             if monNum = PrimaryNum || !WinExist(winID)
-            continue
+                continue
 
             MonitorGet(monNum, &Left, &Top, &Right, &Bottom)
 
@@ -511,7 +511,7 @@ Example5_MultiMonitorSync() {
             WinMove(NewX, NewY, , , winID)
         }
 
-        Log("Synchronized positions (relative: " Round(relX*100) "%, " Round(relY*100) "%)")
+        Log("Synchronized positions (relative: " Round(relX * 100) "%, " Round(relY * 100) "%)")
     }
 
     CreateTestWindows(*) {
@@ -541,7 +541,7 @@ Example5_MultiMonitorSync() {
     ClearAll(*) {
         for winID in testWindows {
             if WinExist(winID)
-            WinClose(winID)
+                WinClose(winID)
         }
 
         testWindows := []
@@ -599,7 +599,7 @@ Example6_RoleManager() {
     }
 
     Loop lv.GetCount("Column")
-    lv.ModifyCol(A_Index, "AutoHdr")
+        lv.ModifyCol(A_Index, "AutoHdr")
 
     ; Actions
     g.Add("Button", "xm w160", "Apply Layout").OnEvent("Click", ApplyLayout)
@@ -609,7 +609,7 @@ Example6_RoleManager() {
 
     ApplyLayout(*) {
         MsgBox("Role-based layout would organize windows according to assigned monitor roles.",
-        "Apply Layout", "Icon!")
+            "Apply Layout", "Icon!")
     }
 
     ShowAssignment(*) {
@@ -622,7 +622,7 @@ Example6_RoleManager() {
 
             info .= "Monitor #" monNum " " type "`n"
             info .= "  Role: " role "`n"
-            info .= "  Size: " (R-L) "x" (B-T) "`n`n"
+            info .= "  Size: " (R - L) "x" (B - T) "`n`n"
         }
 
         MsgBox(info, "Role Assignments", "Icon!")
@@ -670,13 +670,13 @@ Example7_ConfigurationExporter() {
         config .= "Top=" T "`n"
         config .= "Right=" R "`n"
         config .= "Bottom=" B "`n"
-        config .= "Width=" (R-L) "`n"
-        config .= "Height=" (B-T) "`n`n"
+        config .= "Width=" (R - L) "`n"
+        config .= "Height=" (B - T) "`n`n"
 
         ; Secondary monitors
         Loop MonCount {
             if A_Index = PrimaryNum
-            continue
+                continue
 
             config .= "[SECONDARY MONITOR " A_Index "]`n"
             MonitorGet(A_Index, &L, &T, &R, &B)
@@ -685,8 +685,8 @@ Example7_ConfigurationExporter() {
             config .= "Top=" T "`n"
             config .= "Right=" R "`n"
             config .= "Bottom=" B "`n"
-            config .= "Width=" (R-L) "`n"
-            config .= "Height=" (B-T) "`n`n"
+            config .= "Width=" (R - L) "`n"
+            config .= "Height=" (B - T) "`n`n"
         }
 
         return config

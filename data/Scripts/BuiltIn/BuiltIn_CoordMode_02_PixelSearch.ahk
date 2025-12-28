@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_CoordMode_02_PixelSearch.ahk
-*
-* DESCRIPTION:
-* Demonstrates how CoordMode affects pixel search and color detection
-* operations, crucial for image-based automation and game scripting.
-*
-* FEATURES:
-* - PixelSearch with different coordinate modes
-* - PixelGetColor coordinate handling
-* - Color matching and tolerance
-* - Region-based pixel detection
-* - Screen capture automation
-* - Color picker tool implementation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - CoordMode for Pixel operations
-* - PixelSearch function
-* - PixelGetColor function
-* - Error handling with Try/Catch
-* - Real-time color monitoring
-*
-* LEARNING POINTS:
-* 1. Pixel operations default to Screen coordinates
-* 2. CoordMode affects search region interpretation
-* 3. Color values are in RGB hex format
-* 4. Variation parameter allows color tolerance
-* 5. Fast mode vs slow mode for pixel search
-* 6. Coordinate modes crucial for multi-window scenarios
-* 7. PixelGetColor always uses current coordinate mode
-*/
+ * BuiltIn_CoordMode_02_PixelSearch.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates how CoordMode affects pixel search and color detection
+ * operations, crucial for image-based automation and game scripting.
+ * 
+ * FEATURES:
+ * - PixelSearch with different coordinate modes
+ * - PixelGetColor coordinate handling
+ * - Color matching and tolerance
+ * - Region-based pixel detection
+ * - Screen capture automation
+ * - Color picker tool implementation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - CoordMode for Pixel operations
+ * - PixelSearch function
+ * - PixelGetColor function
+ * - Error handling with Try/Catch
+ * - Real-time color monitoring
+ * 
+ * LEARNING POINTS:
+ * 1. Pixel operations default to Screen coordinates
+ * 2. CoordMode affects search region interpretation
+ * 3. Color values are in RGB hex format
+ * 4. Variation parameter allows color tolerance
+ * 5. Fast mode vs slow mode for pixel search
+ * 6. Coordinate modes crucial for multi-window scenarios
+ * 7. PixelGetColor always uses current coordinate mode
+ */
 
 ;===============================================================================
 ; EXAMPLE 1: Basic Pixel Color Detection
@@ -66,7 +66,7 @@ Example1_BasicPixelColor() {
 
     ; Demonstrate pixel detection in different modes
     MsgBox("This demo shows pixel color detection.`n`n"
-    . "We'll detect colors using different coordinate modes.", "Demo Start")
+        . "We'll detect colors using different coordinate modes.", "Demo Start")
 
     ; Using SCREEN coordinates
     CoordMode("Pixel", "Screen")
@@ -93,7 +93,7 @@ Example1_BasicPixelColor() {
     colorInfo.Value .= "Same RED box, different coordinate mode"
 
     MsgBox("Notice how we can detect the same pixel using different coordinate modes.",
-    "Coordinate Modes")
+        "Coordinate Modes")
 
     paletteGui.Destroy()
 }
@@ -114,7 +114,7 @@ Example2_PixelSearchDemo() {
 
     ; Add instructions
     gameGui.Add("Text", "x10 y10 w380",
-    "A red target is hidden somewhere. Click 'Search' to find it!")
+        "A red target is hidden somewhere. Click 'Search' to find it!")
 
     searchBtn := gameGui.Add("Button", "x10 y40 w100 h30", "Search")
     resultText := gameGui.Add("Edit", "x10 y80 w380 h200 ReadOnly Multi", "")
@@ -182,7 +182,7 @@ Example3_ColorPickerTool() {
     pickerGui := Gui(, "Advanced Color Picker Tool")
 
     pickerGui.Add("Text", "x10 y10 w300",
-    "Hover anywhere on screen to pick colors (F4 to freeze)")
+        "Hover anywhere on screen to pick colors (F4 to freeze)")
 
     ; Color preview box
     pickerGui.Add("Text", "x10 y40", "Preview:")
@@ -236,7 +236,7 @@ Example3_ColorPickerTool() {
 
     UpdateColorInfo() {
         if !isPicking
-        return
+            return
 
         ; Use screen coordinates
         CoordMode("Pixel", "Screen")
@@ -268,13 +268,13 @@ Example3_ColorPickerTool() {
 
     ; Freeze color on F4
     HotKey("F4", (*) => (
-    SaveColor(),
-    MsgBox("Color saved to history!", "Saved")
+        SaveColor(),
+        MsgBox("Color saved to history!", "Saved")
     ))
 
     SaveColor() {
         if !isPicking
-        return
+            return
 
         CoordMode("Pixel", "Screen")
         CoordMode("Mouse", "Screen")
@@ -342,191 +342,188 @@ Example4_RegionPixelSearch() {
         CoordMode("Pixel", "Client")
 
         ; Define regions (in client coordinates)
-        regions := [
-        {
-            name: "Region 1 (Red)", x1: 10, y1: 30, x2: 160, y2: 130},
-            {
-                name: "Region 2 (Green)", x1: 170, y1: 30, x2: 320, y2: 130},
-                {
-                    name: "Region 3 (Blue)", x1: 10, y1: 170, x2: 160, y2: 270},
-                    {
+        regions := [{
+            name: "Region 1 (Red)", x1: 10, y1: 30, x2: 160, y2: 130 }, {
+                name: "Region 2 (Green)", x1: 170, y1: 30, x2: 320, y2: 130 }, {
+                    name: "Region 3 (Blue)", x1: 10, y1: 170, x2: 160, y2: 270 }, {
                         name: "Region 4 (Yellow)", x1: 170, y1: 170, x2: 320, y2: 270
                     }
-                    ]
+        ]
 
-                    foundCount := 0
+        foundCount := 0
 
-                    ; Search each region
-                    for index, region in regions {
-                        try {
-                            if PixelSearch(&fx, &fy, region.x1, region.y1,
-                            region.x2, region.y2, colorNum, 3) {
-                                resultDisplay.Value .= "✓ Found in " region.name "`n"
-                                resultDisplay.Value .= "  at (" fx ", " fy ")`n"
-                                foundCount++
-                            } else {
-                                resultDisplay.Value .= "✗ Not in " region.name "`n"
-                            }
-                        } catch {
-                            resultDisplay.Value .= "✗ Error searching " region.name "`n"
-                        }
-                    }
-
-                    resultDisplay.Value .= "`nTotal regions with color: " foundCount
+        ; Search each region
+        for index, region in regions {
+            try {
+                if PixelSearch(&fx, &fy, region.x1, region.y1,
+                    region.x2, region.y2, colorNum, 3) {
+                    resultDisplay.Value .= "✓ Found in " region.name "`n"
+                    resultDisplay.Value .= "  at (" fx ", " fy ")`n"
+                    foundCount++
+                } else {
+                    resultDisplay.Value .= "✗ Not in " region.name "`n"
                 }
-
-                searchBtn.OnEvent("Click", SearchInRegions)
-
-                MsgBox("Enter a color in hex format (e.g., 0xFF0000 for red)`n"
-                . "and click Search to find it in specific regions.", "Instructions")
-
-                regionGui.Destroy()
+            } catch {
+                resultDisplay.Value .= "✗ Error searching " region.name "`n"
             }
+        }
 
-            ;===============================================================================
-            ; EXAMPLE 5: Screen Change Detection
-            ;===============================================================================
+        resultDisplay.Value .= "`nTotal regions with color: " foundCount
+    }
 
-            Example5_ScreenChangeDetection() {
-                ; Create monitoring GUI
-                monitorGui := Gui(, "Screen Change Detector")
+    searchBtn.OnEvent("Click", SearchInRegions)
 
-                monitorGui.Add("Text", "x10 y10 w380",
-                "Monitor a screen region for color changes")
+    MsgBox("Enter a color in hex format (e.g., 0xFF0000 for red)`n"
+        . "and click Search to find it in specific regions.", "Instructions")
 
-                ; Region selection
-                monitorGui.Add("Text", "x10 y40", "Monitor Region:")
-                monitorGui.Add("Text", "x10 y65", "X1:")
-                x1Input := monitorGui.Add("Edit", "x35 y60 w50", "100")
-                monitorGui.Add("Text", "x95 y65", "Y1:")
-                y1Input := monitorGui.Add("Edit", "x120 y60 w50", "100")
+    regionGui.Destroy()
+}
 
-                monitorGui.Add("Text", "x10 y95", "X2:")
-                x2Input := monitorGui.Add("Edit", "x35 y90 w50", "200")
-                monitorGui.Add("Text", "x95 y95", "Y2:")
-                y2Input := monitorGui.Add("Edit", "x120 y90 w50", "200")
+;===============================================================================
+; EXAMPLE 5: Screen Change Detection
+;===============================================================================
 
-                btnCapture := monitorGui.Add("Button", "x180 y60 w100 h30", "Capture")
-                btnStart := monitorGui.Add("Button", "x180 y95 w100 h30", "Start Monitor")
-                btnStop := monitorGui.Add("Button", "x290 y95 w100 h30", "Stop")
+Example5_ScreenChangeDetection() {
+    ; Create monitoring GUI
+    monitorGui := Gui(, "Screen Change Detector")
 
-                ; Log display
-                logDisplay := monitorGui.Add("Edit", "x10 y135 w380 h200 ReadOnly Multi", "")
+    monitorGui.Add("Text", "x10 y10 w380",
+        "Monitor a screen region for color changes")
 
-                monitorGui.Show("w400 h355")
+    ; Region selection
+    monitorGui.Add("Text", "x10 y40", "Monitor Region:")
+    monitorGui.Add("Text", "x10 y65", "X1:")
+    x1Input := monitorGui.Add("Edit", "x35 y60 w50", "100")
+    monitorGui.Add("Text", "x95 y65", "Y1:")
+    y1Input := monitorGui.Add("Edit", "x120 y60 w50", "100")
 
-                isMonitoring := false
-                baselineColors := Map()
+    monitorGui.Add("Text", "x10 y95", "X2:")
+    x2Input := monitorGui.Add("Edit", "x35 y90 w50", "200")
+    monitorGui.Add("Text", "x95 y95", "Y2:")
+    y2Input := monitorGui.Add("Edit", "x120 y90 w50", "200")
 
-                CaptureBaseline(*) {
-                    CoordMode("Pixel", "Screen")
+    btnCapture := monitorGui.Add("Button", "x180 y60 w100 h30", "Capture")
+    btnStart := monitorGui.Add("Button", "x180 y95 w100 h30", "Start Monitor")
+    btnStop := monitorGui.Add("Button", "x290 y95 w100 h30", "Stop")
 
-                    x1 := Integer(x1Input.Value)
-                    y1 := Integer(y1Input.Value)
-                    x2 := Integer(x2Input.Value)
-                    y2 := Integer(y2Input.Value)
+    ; Log display
+    logDisplay := monitorGui.Add("Edit", "x10 y135 w380 h200 ReadOnly Multi", "")
 
-                    logDisplay.Value := "Capturing baseline colors...`n"
+    monitorGui.Show("w400 h355")
 
-                    ; Sample multiple points in the region
-                    samplePoints := []
-                    stepX := (x2 - x1) // 5
-                    stepY := (y2 - y1) // 5
+    isMonitoring := false
+    baselineColors := Map()
 
-                    Loop 25 {
-                        row := (A_Index - 1) // 5
-                        col := Mod(A_Index - 1, 5)
-                        px := x1 + (col * stepX)
-                        py := y1 + (row * stepY)
+    CaptureBaseline(*) {
+        CoordMode("Pixel", "Screen")
 
-                        color := PixelGetColor(px, py)
-                        baselineColors[A_Index] := color
-                        samplePoints.Push({x: px, y: py, color: color})
-                    }
+        x1 := Integer(x1Input.Value)
+        y1 := Integer(y1Input.Value)
+        x2 := Integer(x2Input.Value)
+        y2 := Integer(y2Input.Value)
 
-                    logDisplay.Value .= "Captured " baselineColors.Count " sample points`n"
-                    logDisplay.Value .= "Ready to monitor for changes!`n"
+        logDisplay.Value := "Capturing baseline colors...`n"
 
-                    btnStart.Enabled := true
-                }
+        ; Sample multiple points in the region
+        samplePoints := []
+        stepX := (x2 - x1) // 5
+        stepY := (y2 - y1) // 5
 
-                StartMonitoring(*) {
-                    if baselineColors.Count = 0 {
-                        MsgBox("Please capture baseline first!", "Error")
-                        return
-                    }
+        Loop 25 {
+            row := (A_Index - 1) // 5
+            col := Mod(A_Index - 1, 5)
+            px := x1 + (col * stepX)
+            py := y1 + (row * stepY)
 
-                    isMonitoring := true
-                    SetTimer(CheckForChanges, 500)
-                    btnStart.Enabled := false
-                    btnStop.Enabled := true
-                    logDisplay.Value .= "`nMonitoring started...`n"
-                }
+            color := PixelGetColor(px, py)
+            baselineColors[A_Index] := color
+            samplePoints.Push({ x: px, y: py, color: color })
+        }
 
-                StopMonitoring(*) {
-                    isMonitoring := false
-                    SetTimer(CheckForChanges, 0)
-                    btnStart.Enabled := true
-                    btnStop.Enabled := false
-                    logDisplay.Value .= "Monitoring stopped.`n"
-                }
+        logDisplay.Value .= "Captured " baselineColors.Count " sample points`n"
+        logDisplay.Value .= "Ready to monitor for changes!`n"
 
-                CheckForChanges() {
-                    if !isMonitoring
-                    return
+        btnStart.Enabled := true
+    }
 
-                    CoordMode("Pixel", "Screen")
+    StartMonitoring(*) {
+        if baselineColors.Count = 0 {
+            MsgBox("Please capture baseline first!", "Error")
+            return
+        }
 
-                    x1 := Integer(x1Input.Value)
-                    y1 := Integer(y1Input.Value)
-                    x2 := Integer(x2Input.Value)
-                    y2 := Integer(y2Input.Value)
+        isMonitoring := true
+        SetTimer(CheckForChanges, 500)
+        btnStart.Enabled := false
+        btnStop.Enabled := true
+        logDisplay.Value .= "`nMonitoring started...`n"
+    }
 
-                    stepX := (x2 - x1) // 5
-                    stepY := (y2 - y1) // 5
+    StopMonitoring(*) {
+        isMonitoring := false
+        SetTimer(CheckForChanges, 0)
+        btnStart.Enabled := true
+        btnStop.Enabled := false
+        logDisplay.Value .= "Monitoring stopped.`n"
+    }
 
-                    changesDetected := 0
+    CheckForChanges() {
+        if !isMonitoring
+            return
 
-                    Loop 25 {
-                        row := (A_Index - 1) // 5
-                        col := Mod(A_Index - 1, 5)
-                        px := x1 + (col * stepX)
-                        py := y1 + (row * stepY)
+        CoordMode("Pixel", "Screen")
 
-                        currentColor := PixelGetColor(px, py)
-                        baselineColor := baselineColors[A_Index]
+        x1 := Integer(x1Input.Value)
+        y1 := Integer(y1Input.Value)
+        x2 := Integer(x2Input.Value)
+        y2 := Integer(y2Input.Value)
 
-                        if currentColor != baselineColor {
-                            changesDetected++
-                        }
-                    }
+        stepX := (x2 - x1) // 5
+        stepY := (y2 - y1) // 5
 
-                    if changesDetected > 0 {
-                        timestamp := FormatTime(, "HH:mm:ss")
-                        logDisplay.Value .= "[" timestamp "] Change detected! "
-                        logDisplay.Value .= changesDetected " points changed`n"
+        changesDetected := 0
 
-                        ; Optional: Stop monitoring after detection
-                        ; StopMonitoring()
-                    }
-                }
+        Loop 25 {
+            row := (A_Index - 1) // 5
+            col := Mod(A_Index - 1, 5)
+            px := x1 + (col * stepX)
+            py := y1 + (row * stepY)
 
-                btnCapture.OnEvent("Click", CaptureBaseline)
-                btnStart.OnEvent("Click", StartMonitoring)
-                btnStop.OnEvent("Click", StopMonitoring)
-                btnStart.Enabled := false
-                btnStop.Enabled := false
+            currentColor := PixelGetColor(px, py)
+            baselineColor := baselineColors[A_Index]
 
-                monitorGui.OnEvent("Close", (*) => (StopMonitoring(), monitorGui.Destroy()))
+            if currentColor != baselineColor {
+                changesDetected++
             }
+        }
 
-            ;===============================================================================
-            ; Run Examples
-            ;===============================================================================
+        if changesDetected > 0 {
+            timestamp := FormatTime(, "HH:mm:ss")
+            logDisplay.Value .= "[" timestamp "] Change detected! "
+            logDisplay.Value .= changesDetected " points changed`n"
 
-            ; Uncomment to run specific examples:
-            ; Example1_BasicPixelColor()
-            ; Example2_PixelSearchDemo()
-            ; Example3_ColorPickerTool()
-            ; Example4_RegionPixelSearch()
-            ; Example5_ScreenChangeDetection()
+            ; Optional: Stop monitoring after detection
+            ; StopMonitoring()
+        }
+    }
+
+    btnCapture.OnEvent("Click", CaptureBaseline)
+    btnStart.OnEvent("Click", StartMonitoring)
+    btnStop.OnEvent("Click", StopMonitoring)
+    btnStart.Enabled := false
+    btnStop.Enabled := false
+
+    monitorGui.OnEvent("Close", (*) => (StopMonitoring(), monitorGui.Destroy()))
+}
+
+;===============================================================================
+; Run Examples
+;===============================================================================
+
+; Uncomment to run specific examples:
+; Example1_BasicPixelColor()
+; Example2_PixelSearchDemo()
+; Example3_ColorPickerTool()
+; Example4_RegionPixelSearch()
+; Example5_ScreenChangeDetection()
+

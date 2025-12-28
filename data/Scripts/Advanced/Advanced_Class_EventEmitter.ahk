@@ -8,13 +8,13 @@ class EventEmitter {
 
     On(event, callback) {
         if (!this.listeners.Has(event))
-        this.listeners[event] := []
+            this.listeners[event] := []
         this.listeners[event].Push(callback)
     }
 
     Off(event, callback := "") {
         if (!this.listeners.Has(event))
-        return
+            return
 
         if (callback = "") {
             this.listeners.Delete(event)
@@ -31,7 +31,7 @@ class EventEmitter {
 
     Emit(event, data := "") {
         if (!this.listeners.Has(event))
-        return
+            return
 
         for callback in this.listeners[event] {
             callback(data)
@@ -45,5 +45,5 @@ emitter := EventEmitter()
 emitter.On("userLogin", (data) => MsgBox("User logged in: " data.name))
 emitter.On("userLogout", (data) => MsgBox("User logged out: " data.name))
 
-emitter.Emit("userLogin", {name: "John"})
-emitter.Emit("userLogout", {name: "John"})
+emitter.Emit("userLogin", { name: "John" })
+emitter.Emit("userLogout", { name: "John" })

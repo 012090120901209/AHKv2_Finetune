@@ -1,26 +1,26 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Suspend - Hotkey Suspension Management
-* ============================================================================
-*
-* Demonstrates the Suspend function for temporarily disabling hotkeys
-* and hotstrings. Useful for gaming, presentations, or preventing
-* interference during specific tasks.
-*
-* Features:
-* - Basic suspend/resume
-* - Selective suspension with HotIf
-* - Timed suspension
-* - Application-specific suspension
-* - Suspension indicators
-* - Permit mode
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/Suspend.htm
-*/
+ * ============================================================================
+ * Suspend - Hotkey Suspension Management
+ * ============================================================================
+ * 
+ * Demonstrates the Suspend function for temporarily disabling hotkeys
+ * and hotstrings. Useful for gaming, presentations, or preventing
+ * interference during specific tasks.
+ * 
+ * Features:
+ * - Basic suspend/resume
+ * - Selective suspension with HotIf
+ * - Timed suspension
+ * - Application-specific suspension
+ * - Suspension indicators
+ * - Permit mode
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/Suspend.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Suspend Operations
@@ -55,13 +55,13 @@ Example1_BasicSuspend() {
     })
 
     MsgBox(
-    "Basic Suspend Operations`n`n"
-    "Test hotkeys: F5, F6, F7`n`n"
-    "Alt+S → Toggle suspend`n"
-    "Alt+Shift+S → Force suspend`n"
-    "Alt+Ctrl+S → Force resume`n`n"
-    "Try suspending and pressing F5-F7!",
-    "Example 1"
+        "Basic Suspend Operations`n`n"
+        "Test hotkeys: F5, F6, F7`n`n"
+        "Alt+S → Toggle suspend`n"
+        "Alt+Shift+S → Force suspend`n"
+        "Alt+Ctrl+S → Force resume`n`n"
+        "Try suspending and pressing F5-F7!",
+        "Example 1"
     )
 }
 
@@ -86,12 +86,12 @@ Example2_PermitMode() {
     }, "P")
 
     MsgBox(
-    "Permit Mode Example`n`n"
-    "Regular hotkeys (suspended): F1, F2`n"
-    "Permit hotkeys (always work): F3, F4`n`n"
-    "Ctrl+Alt+P → Toggle suspend`n`n"
-    "Permit hotkeys work even when suspended!",
-    "Example 2"
+        "Permit Mode Example`n`n"
+        "Regular hotkeys (suspended): F1, F2`n"
+        "Permit hotkeys (always work): F3, F4`n`n"
+        "Ctrl+Alt+P → Toggle suspend`n`n"
+        "Permit hotkeys work even when suspended!",
+        "Example 2"
     )
 }
 
@@ -103,8 +103,8 @@ Example3_TimedSuspension() {
     global suspendTimer := 0
 
     /**
-    * Suspends hotkeys for specified duration
-    */
+     * Suspends hotkeys for specified duration
+     */
     SuspendFor(seconds) {
         global suspendTimer
 
@@ -141,13 +141,13 @@ Example3_TimedSuspension() {
     Hotkey("^!t10", (*) => SuspendFor(10), "P")
 
     MsgBox(
-    "Timed Suspension`n`n"
-    "Test hotkeys: F8, F9`n`n"
-    "Ctrl+Alt+T3 → Suspend for 3 seconds`n"
-    "Ctrl+Alt+T5 → Suspend for 5 seconds`n"
-    "Ctrl+Alt+T10 → Suspend for 10 seconds`n`n"
-    "Hotkeys auto-resume after timeout!",
-    "Example 3"
+        "Timed Suspension`n`n"
+        "Test hotkeys: F8, F9`n`n"
+        "Ctrl+Alt+T3 → Suspend for 3 seconds`n"
+        "Ctrl+Alt+T5 → Suspend for 5 seconds`n"
+        "Ctrl+Alt+T10 → Suspend for 10 seconds`n`n"
+        "Hotkeys auto-resume after timeout!",
+        "Example 3"
     )
 }
 
@@ -159,20 +159,20 @@ Example4_ApplicationSuspension() {
     global gameProcesses := ["notepad.exe", "mspaint.exe"] ; Demo with Notepad/Paint
 
     /**
-    * Checks if a game is active
-    */
+     * Checks if a game is active
+     */
     IsGameActive() {
         global gameProcesses
         for process in gameProcesses {
             if WinActive("ahk_exe " . process)
-            return true
+                return true
         }
         return false
     }
 
     /**
-    * Auto-suspend when games are active
-    */
+     * Auto-suspend when games are active
+     */
     UpdateGameSuspension() {
         static wasGameActive := false
 
@@ -206,14 +206,14 @@ Example4_ApplicationSuspension() {
     }, "P")
 
     MsgBox(
-    "Application-Specific Suspension`n`n"
-    "Hotkeys auto-suspend when these apps are active:`n"
-    "  • Notepad`n"
-    "  • Paint`n`n"
-    "Test hotkey: Ctrl+Space`n"
-    "Override: Ctrl+Alt+O`n`n"
-    "Try opening Notepad and pressing Ctrl+Space!",
-    "Example 4"
+        "Application-Specific Suspension`n`n"
+        "Hotkeys auto-suspend when these apps are active:`n"
+        "  • Notepad`n"
+        "  • Paint`n`n"
+        "Test hotkey: Ctrl+Space`n"
+        "Override: Ctrl+Alt+O`n`n"
+        "Try opening Notepad and pressing Ctrl+Space!",
+        "Example 4"
     )
 }
 
@@ -243,20 +243,20 @@ Example5_SelectiveSuspension() {
         groupEnabled := !groupEnabled
         status := groupEnabled ? "ENABLED" : "DISABLED"
         MsgBox(
-        "Group A hotkeys " . status . "`n`n"
-        "Group A: Ctrl+1, Ctrl+2`n"
-        "Group B (always on): Ctrl+3, Ctrl+4",
-        "Toggle"
+            "Group A hotkeys " . status . "`n`n"
+            "Group A: Ctrl+1, Ctrl+2`n"
+            "Group B (always on): Ctrl+3, Ctrl+4",
+            "Toggle"
         )
     })
 
     MsgBox(
-    "Selective Suspension`n`n"
-    "Group A (toggleable): Ctrl+1, Ctrl+2`n"
-    "Group B (always on): Ctrl+3, Ctrl+4`n`n"
-    "Ctrl+Alt+G → Toggle Group A`n`n"
-    "Use HotIf for selective control!",
-    "Example 5"
+        "Selective Suspension`n`n"
+        "Group A (toggleable): Ctrl+1, Ctrl+2`n"
+        "Group B (always on): Ctrl+3, Ctrl+4`n`n"
+        "Ctrl+Alt+G → Toggle Group A`n`n"
+        "Use HotIf for selective control!",
+        "Example 5"
     )
 }
 
@@ -268,8 +268,8 @@ Example6_StatusIndicators() {
     global statusGui := ""
 
     /**
-    * Creates a status indicator GUI
-    */
+     * Creates a status indicator GUI
+     */
     CreateStatusIndicator() {
         global statusGui
 
@@ -287,13 +287,13 @@ Example6_StatusIndicators() {
     }
 
     /**
-    * Updates the status display
-    */
+     * Updates the status display
+     */
     UpdateStatusDisplay() {
         global statusGui
 
         if !IsObject(statusGui)
-        return
+            return
 
         status := A_IsSuspended ? "SUSPENDED" : "ACTIVE"
         color := A_IsSuspended ? "Red" : "Green"
@@ -323,14 +323,14 @@ Example6_StatusIndicators() {
     SetTimer(UpdateStatusDisplay, 500)
 
     MsgBox(
-    "Status Indicators`n`n"
-    "Watch the status indicator in top-right corner`n`n"
-    "Test hotkeys: Ctrl+F1, Ctrl+F2`n"
-    "Toggle: Ctrl+Alt+Z`n`n"
-    "Status changes color:  `n"
-    "  Green = Active`n"
-    "  Red = Suspended",
-    "Example 6"
+        "Status Indicators`n`n"
+        "Watch the status indicator in top-right corner`n`n"
+        "Test hotkeys: Ctrl+F1, Ctrl+F2`n"
+        "Toggle: Ctrl+Alt+Z`n`n"
+        "Status changes color:  `n"
+        "  Green = Active`n"
+        "  Red = Suspended",
+        "Example 6"
     )
 }
 
@@ -343,8 +343,8 @@ Example7_SuspensionManager() {
     global currentProfile := "default"
 
     /**
-    * Creates a suspension profile
-    */
+     * Creates a suspension profile
+     */
     CreateProfile(name, suspendedHotkeys, activeHotkeys) {
         global suspensionProfiles
         suspensionProfiles[name] := {
@@ -354,8 +354,8 @@ Example7_SuspensionManager() {
     }
 
     /**
-    * Activates a profile
-    */
+     * Activates a profile
+     */
     ActivateProfile(name) {
         global suspensionProfiles, currentProfile
 
@@ -382,8 +382,8 @@ Example7_SuspensionManager() {
     }
 
     /**
-    * Shows available profiles
-    */
+     * Shows available profiles
+     */
     ShowProfiles() {
         global suspensionProfiles, currentProfile
 
@@ -400,7 +400,7 @@ Example7_SuspensionManager() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -422,15 +422,15 @@ Example7_SuspensionManager() {
     Hotkey("F8", (*) => ShowProfiles(), "P")
 
     MsgBox(
-    "Advanced Suspension Manager`n`n"
-    "Profiles:`n"
-    "  F5 - Default (all active)`n"
-    "  F6 - Gaming (1,2 off; 3,4 on)`n"
-    "  F7 - Work (3,4 off; 1,2 on)`n"
-    "  F8 - Show profiles`n`n"
-    "Test: Ctrl+Alt+1,2,3,4`n`n"
-    "Switch profiles and test!",
-    "Example 7"
+        "Advanced Suspension Manager`n`n"
+        "Profiles:`n"
+        "  F5 - Default (all active)`n"
+        "  F6 - Gaming (1,2 off; 3,4 on)`n"
+        "  F7 - Work (3,4 off; 1,2 on)`n"
+        "  F8 - Show profiles`n`n"
+        "Test: Ctrl+Alt+1,2,3,4`n`n"
+        "Switch profiles and test!",
+        "Example 7"
     )
 }
 

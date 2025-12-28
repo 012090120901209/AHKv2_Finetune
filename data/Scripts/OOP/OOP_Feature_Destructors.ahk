@@ -8,14 +8,14 @@ class FileLogger {
         this.filePath := filePath
         this.handle := FileOpen(filePath, "a")
         if (!this.handle)
-        throw Error("Failed to open log file: " filePath)
+            throw Error("Failed to open log file: " filePath)
         this.Log("Logger initialized")
         MsgBox("FileLogger created: " filePath)
     }
 
     Log(message) {
         if (this.handle)
-        this.handle.WriteLine(Format("[{1}] {2}", FormatTime(, "yyyy-MM-dd HH:mm:ss"), message))
+            this.handle.WriteLine(Format("[{1}] {2}", FormatTime(, "yyyy-MM-dd HH:mm:ss"), message))
     }
 
     __Delete() {
@@ -58,7 +58,7 @@ class ResourcePool {
 
     Acquire() {
         this.acquired++
-        resource := {id: this.acquired, pool: this}
+        resource := { id: this.acquired, pool: this }
         this.resources.Push(resource)
         MsgBox(this.name ": Resource #" this.acquired " acquired`nTotal: " this.resources.Length)
         return resource
@@ -76,9 +76,9 @@ class ResourcePool {
 
     __Delete() {
         if (this.resources.Length > 0)
-        MsgBox("WARNING: " this.name " destroyed with " this.resources.Length " unreleased resources!", "Resource Leak")
+            MsgBox("WARNING: " this.name " destroyed with " this.resources.Length " unreleased resources!", "Resource Leak")
         else
-        MsgBox("ResourcePool '" this.name "' cleaned up properly")
+            MsgBox("ResourcePool '" this.name "' cleaned up properly")
     }
 }
 

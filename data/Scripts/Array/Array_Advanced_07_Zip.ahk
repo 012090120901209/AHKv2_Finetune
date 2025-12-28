@@ -3,15 +3,15 @@
 #Include JSON.ahk
 
 /**
-* Zip() - Combine multiple arrays into tuples
-*
-* Demonstrates: Variadic parameters, Min() for multiple values, row building
-* Professional pattern for array transposition
-*/
+ * Zip() - Combine multiple arrays into tuples
+ * 
+ * Demonstrates: Variadic parameters, Min() for multiple values, row building
+ * Professional pattern for array transposition
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
@@ -22,13 +22,13 @@ Zip(a, b, rest*) {
     ; Find minimum length across all arrays
     minLen := Min(a.Length, b.Length)
     for each in rest
-    minLen := Min(minLen, each.Length)
+        minLen := Min(minLen, each.Length)
 
     out := []
     Loop minLen {
         row := [a[A_Index], b[A_Index]]
         for each in rest
-        row.Push(each[A_Index])
+            row.Push(each[A_Index])
         out.Push(row)
     }
     return out
@@ -45,5 +45,5 @@ result3 := Zip([1, 2], ["a", "b", "c"], [true, false, true])
 ; => [[1, "a", true], [2, "b", false]]  (stops at shortest)
 
 MsgBox("Zip 3 arrays: " JSON.stringify(result1) "`n`n"
-. "Zip numbers & letters: " JSON.stringify(result2) "`n`n"
-. "Different lengths: " JSON.stringify(result3))
+    . "Zip numbers & letters: " JSON.stringify(result2) "`n`n"
+    . "Different lengths: " JSON.stringify(result3))

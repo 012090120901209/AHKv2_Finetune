@@ -1,28 +1,28 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Examples - RunWait Function (Part 3: Timeouts)
-* ============================================================================
-*
-* Handling timeouts and long-running processes with RunWait.
-*
-* @description Examples for timeout handling and monitoring long processes
-* @author AHK v2 Documentation Team
-* @date 2024
-* @version 2.0.0
-*
-* TIMEOUT CHALLENGES:
-*   RunWait blocks indefinitely - there's no built-in timeout
-*   Solutions:
-*   - Use SetTimer to monitor duration
-*   - Run process separately and monitor with ProcessExist
-*   - Create wrapper scripts with timeout logic
-*
-* IMPORTANT NOTE:
-*   Since RunWait blocks, you cannot check A_TickCount during execution.
-*   You must use alternative strategies for timeout handling.
-*/
+ * ============================================================================
+ * AutoHotkey v2 Examples - RunWait Function (Part 3: Timeouts)
+ * ============================================================================
+ * 
+ * Handling timeouts and long-running processes with RunWait.
+ * 
+ * @description Examples for timeout handling and monitoring long processes
+ * @author AHK v2 Documentation Team
+ * @date 2024
+ * @version 2.0.0
+ * 
+ * TIMEOUT CHALLENGES:
+ *   RunWait blocks indefinitely - there's no built-in timeout
+ *   Solutions:
+ *   - Use SetTimer to monitor duration
+ *   - Run process separately and monitor with ProcessExist
+ *   - Create wrapper scripts with timeout logic
+ * 
+ * IMPORTANT NOTE:
+ *   Since RunWait blocks, you cannot check A_TickCount during execution.
+ *   You must use alternative strategies for timeout handling.
+ */
 
 ; ============================================================================
 ; Example 1: The Timeout Problem
@@ -31,14 +31,14 @@
 
 Example1_TimeoutProblem() {
     MsgBox("Example 1: The Timeout Problem`n`n" .
-    "Understand why timeout handling is important with RunWait:",
-    "RunWait - Example 1", "Icon!")
+        "Understand why timeout handling is important with RunWait:",
+        "RunWait - Example 1", "Icon!")
 
     testDir := A_Temp . "\ahk_timeout_demo"
 
     try {
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create long-running process
         longBat := testDir . "\long_process.bat"
@@ -55,17 +55,17 @@ Example1_TimeoutProblem() {
         )", longBat)
 
         result := MsgBox("Demonstrate the blocking problem?`n`n" .
-        "WARNING: This will launch a 30-second process.`n" .
-        "You can close it early by closing the CMD window.`n`n" .
-        "Run demonstration?",
-        "Timeout Demo", "YesNo Icon?")
+            "WARNING: This will launch a 30-second process.`n" .
+            "You can close it early by closing the CMD window.`n`n" .
+            "Run demonstration?",
+            "Timeout Demo", "YesNo Icon?")
 
         if result = "Yes" {
             MsgBox("Launching 30-second process...`n`n" .
-            "The script is now BLOCKED.`n" .
-            "You can close the CMD window to continue early.`n`n" .
-            "This demonstrates why timeout handling is important!",
-            "Running", "T3")
+                "The script is now BLOCKED.`n" .
+                "You can close the CMD window to continue early.`n`n" .
+                "This demonstrates why timeout handling is important!",
+                "Running", "T3")
 
             startTime := A_TickCount
 
@@ -75,17 +75,17 @@ Example1_TimeoutProblem() {
             elapsed := (A_TickCount - startTime) / 1000
 
             MsgBox("Process finished!`n`n" .
-            "Time elapsed: " . Format("{:.1f}", elapsed) . " seconds`n" .
-            "Exit Code: " . exitCode . "`n`n" .
-            "The script was blocked this entire time!",
-            "Complete", "Icon!")
+                "Time elapsed: " . Format("{:.1f}", elapsed) . " seconds`n" .
+                "Exit Code: " . exitCode . "`n`n" .
+                "The script was blocked this entire time!",
+                "Complete", "Icon!")
         }
 
         MsgBox("Problem demonstrated!`n`n" .
-        "RunWait has no built-in timeout - it waits indefinitely.`n" .
-        "This can freeze your script if a process hangs!`n`n" .
-        "Next examples show solutions...",
-        "Problem", "Icon!")
+            "RunWait has no built-in timeout - it waits indefinitely.`n" .
+            "This can freeze your script if a process hangs!`n`n" .
+            "Next examples show solutions...",
+            "Problem", "Icon!")
 
     } catch Error as err {
         MsgBox("Error: " . err.Message, "Error")
@@ -99,14 +99,14 @@ Example1_TimeoutProblem() {
 
 Example2_RunWithTimeout() {
     MsgBox("Example 2: Timeout with Run + ProcessWaitClose`n`n" .
-    "Use Run instead of RunWait, then wait with timeout:",
-    "RunWait - Example 2", "Icon!")
+        "Use Run instead of RunWait, then wait with timeout:",
+        "RunWait - Example 2", "Icon!")
 
     testDir := A_Temp . "\ahk_run_timeout"
 
     try {
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create test process
         testBat := testDir . "\test_process.bat"
@@ -121,9 +121,9 @@ Example2_RunWithTimeout() {
         )", testBat)
 
         result := MsgBox("Run a process with 5-second timeout?`n`n" .
-        "The process takes 10 seconds, but timeout is 5 seconds.`n" .
-        "Process will be killed after timeout.",
-        "Run Test", "YesNo Icon?")
+            "The process takes 10 seconds, but timeout is 5 seconds.`n" .
+            "Process will be killed after timeout.",
+            "Run Test", "YesNo Icon?")
 
         if result = "Yes" {
             MsgBox("Starting process with 5-second timeout...", "Starting", "T2")
@@ -143,27 +143,27 @@ Example2_RunWithTimeout() {
             if timedOut {
                 ; Process still running - timeout occurred
                 MsgBox("TIMEOUT after " . Format("{:.1f}", elapsed) . " seconds!`n`n" .
-                "Process (PID: " . pid . ") is still running.`n" .
-                "Killing process...",
-                "Timeout", "Icon!")
+                    "Process (PID: " . pid . ") is still running.`n" .
+                    "Killing process...",
+                    "Timeout", "Icon!")
 
                 ProcessClose(pid)
 
                 MsgBox("Process killed due to timeout.`n`n" .
-                "This prevents indefinite blocking!",
-                "Killed", "T3")
+                    "This prevents indefinite blocking!",
+                    "Killed", "T3")
             } else {
                 ; Process completed before timeout
                 MsgBox("Process completed in " . Format("{:.1f}", elapsed) . " seconds.`n`n" .
-                "No timeout needed!",
-                "Complete", "T3")
+                    "No timeout needed!",
+                    "Complete", "T3")
             }
         }
 
         MsgBox("Timeout handling demonstrated!`n`n" .
-        "Strategy: Use Run + ProcessWaitClose with timeout parameter.`n" .
-        "This prevents indefinite blocking.",
-        "Complete", "Icon!")
+            "Strategy: Use Run + ProcessWaitClose with timeout parameter.`n" .
+            "This prevents indefinite blocking.",
+            "Complete", "Icon!")
 
     } catch Error as err {
         MsgBox("Error: " . err.Message, "Error")
@@ -177,14 +177,14 @@ Example2_RunWithTimeout() {
 
 Example3_ProgressMonitoring() {
     MsgBox("Example 3: RunWait with Progress Monitoring`n`n" .
-    "Monitor progress of long-running processes:",
-    "RunWait - Example 3", "Icon!")
+        "Monitor progress of long-running processes:",
+        "RunWait - Example 3", "Icon!")
 
     testDir := A_Temp . "\ahk_progress"
 
     try {
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create process that outputs progress
         progressBat := testDir . "\progress_process.bat"
@@ -199,12 +199,11 @@ Example3_ProgressMonitoring() {
         echo %%i > progress.txt
         timeout /t 1 /nobreak >nul
         )
-
-        echo.
-        echo Process complete!
-        del progress.txt
-        exit /b 0
-        )", progressBat)
+            echo.
+            echo Process complete !
+            del progress.txt
+            exit / b 0
+        ) ", progressBat)
 
         CreateProgressMonitor(testDir, progressBat)
 
@@ -267,10 +266,10 @@ CreateProgressMonitor(testDir, progressBat) {
     monitorGUI.Show()
 
     MsgBox("Progress Monitor Created!`n`n" .
-    "This monitors a long-running process using Run + SetTimer.`n" .
-    "Progress is tracked by reading a file the process updates.`n`n" .
-    "Click 'Start Process' to see it in action!",
-    "Monitor Ready", "Icon!")
+        "This monitors a long-running process using Run + SetTimer.`n" .
+        "Progress is tracked by reading a file the process updates.`n`n" .
+        "Click 'Start Process' to see it in action!",
+        "Monitor Ready", "Icon!")
 }
 
 ; ============================================================================
@@ -280,14 +279,14 @@ CreateProgressMonitor(testDir, progressBat) {
 
 Example4_BatchWithTimeout() {
     MsgBox("Example 4: Batch Processing with Timeout`n`n" .
-    "Process multiple items, each with its own timeout:",
-    "RunWait - Example 4", "Icon!")
+        "Process multiple items, each with its own timeout:",
+        "RunWait - Example 4", "Icon!")
 
     batchDir := A_Temp . "\ahk_batch_timeout"
 
     try {
         if !DirExist(batchDir)
-        DirCreate(batchDir)
+            DirCreate(batchDir)
 
         ; Create processor script
         processorBat := batchDir . "\processor.bat"
@@ -317,9 +316,9 @@ CreateBatchProcessor(batchDir, processorBat) {
     batchGUI.Add("Text", "w500", "Process 5 items, each with 5-second timeout:")
 
     logText := batchGUI.Add("Edit", "w500 h200 +ReadOnly +Multi",
-    "Click 'Start Batch' to process 5 items...`n" .
-    "Each item has random processing time (1-8 seconds).`n" .
-    "Timeout for each item: 5 seconds.")
+        "Click 'Start Batch' to process 5 items...`n" .
+        "Each item has random processing time (1-8 seconds).`n" .
+        "Timeout for each item: 5 seconds.")
 
     startBtn := batchGUI.Add("Button", "w500 h35", "Start Batch Processing")
     startBtn.OnEvent("Click", StartBatch)
@@ -374,10 +373,10 @@ CreateBatchProcessor(batchDir, processorBat) {
     batchGUI.Show()
 
     MsgBox("Batch Processor Created!`n`n" .
-    "This demonstrates batch processing with timeouts.`n" .
-    "Each item gets a 5-second timeout.`n`n" .
-    "Items taking longer than 5 seconds will be killed.",
-    "Processor Ready", "Icon!")
+        "This demonstrates batch processing with timeouts.`n" .
+        "Each item gets a 5-second timeout.`n`n" .
+        "Items taking longer than 5 seconds will be killed.",
+        "Processor Ready", "Icon!")
 }
 
 ; ============================================================================
@@ -387,14 +386,14 @@ CreateBatchProcessor(batchDir, processorBat) {
 
 Example5_TimeoutWithRetry() {
     MsgBox("Example 5: Smart Timeout with Retry`n`n" .
-    "Implement timeout handling with automatic retry:",
-    "RunWait - Example 5", "Icon!")
+        "Implement timeout handling with automatic retry:",
+        "RunWait - Example 5", "Icon!")
 
     retryDir := A_Temp . "\ahk_retry"
 
     try {
         if !DirExist(retryDir)
-        DirCreate(retryDir)
+            DirCreate(retryDir)
 
         ; Create unreliable process
         unreliableBat := retryDir . "\unreliable.bat"
@@ -410,11 +409,10 @@ Example5_TimeoutWithRetry() {
         if %delay% GTR 7 (
         echo This will timeout...
         )
-
-        timeout /t %delay% /nobreak >nul
-        echo Success!
-        exit /b 0
-        )", unreliableBat)
+            timeout / t %delay% / nobreak > nul
+            echo Success !
+            exit / b 0
+        ) ", unreliableBat)
 
         CreateRetrySystem(retryDir, unreliableBat)
 
@@ -432,9 +430,9 @@ CreateRetrySystem(retryDir, unreliableBat) {
     retryGUI.Add("Text", "w500", "Timeout: 6 seconds, Max Retries: 3")
 
     logText := retryGUI.Add("Edit", "w500 h200 +ReadOnly +Multi",
-    "The process will be retried if it times out.`n" .
-    "Maximum 3 attempts will be made.`n`n" .
-    "Click 'Start' to begin...")
+        "The process will be retried if it times out.`n" .
+        "Maximum 3 attempts will be made.`n`n" .
+        "Click 'Start' to begin...")
 
     startBtn := retryGUI.Add("Button", "w500 h35", "Start Process (with retry)")
     startBtn.OnEvent("Click", StartWithRetry)
@@ -500,10 +498,10 @@ CreateRetrySystem(retryDir, unreliableBat) {
     retryGUI.Show()
 
     MsgBox("Retry System Created!`n`n" .
-    "This demonstrates timeout handling with automatic retry.`n" .
-    "If a process times out, it's automatically retried.`n`n" .
-    "Useful for unreliable operations or network processes!",
-    "Retry System Ready", "Icon!")
+        "This demonstrates timeout handling with automatic retry.`n" .
+        "If a process times out, it's automatically retried.`n`n" .
+        "Useful for unreliable operations or network processes!",
+        "Retry System Ready", "Icon!")
 }
 
 ; ============================================================================
@@ -513,14 +511,14 @@ CreateRetrySystem(retryDir, unreliableBat) {
 
 Example6_ParallelWithTimeout() {
     MsgBox("Example 6: Parallel Processing with Timeout`n`n" .
-    "Run multiple processes in parallel, each with timeout:",
-    "RunWait - Example 6", "Icon!")
+        "Run multiple processes in parallel, each with timeout:",
+        "RunWait - Example 6", "Icon!")
 
     parallelDir := A_Temp . "\ahk_parallel"
 
     try {
         if !DirExist(parallelDir)
-        DirCreate(parallelDir)
+            DirCreate(parallelDir)
 
         ; Create worker process
         workerBat := parallelDir . "\worker.bat"
@@ -549,9 +547,9 @@ CreateParallelProcessor(parallelDir, workerBat) {
     parallelGUI.Add("Text", "w500", "Launch 4 workers in parallel, monitor with 8-second timeout:")
 
     logText := parallelGUI.Add("Edit", "w500 h200 +ReadOnly +Multi",
-    "Click 'Start Parallel Processing' to launch 4 workers.`n" .
-    "Each worker has random duration (1-12 seconds).`n" .
-    "Timeout for each: 8 seconds.")
+        "Click 'Start Parallel Processing' to launch 4 workers.`n" .
+        "Each worker has random duration (1-12 seconds).`n" .
+        "Timeout for each: 8 seconds.")
 
     startBtn := parallelGUI.Add("Button", "w500 h35", "Start Parallel Processing")
     startBtn.OnEvent("Click", StartParallel)
@@ -571,7 +569,7 @@ CreateParallelProcessor(parallelDir, workerBat) {
         Loop workerCount {
             workerID := A_Index
             Run('"' . workerBat . '" "' . workerID . '"', parallelDir, "Hide", &pid)
-            workers.Push({id: workerID, pid: pid, startTime: A_TickCount})
+            workers.Push({ id: workerID, pid: pid, startTime: A_TickCount })
             logText.Value .= "Worker " . workerID . " launched (PID: " . pid . ")`n"
         }
 
@@ -610,10 +608,10 @@ CreateParallelProcessor(parallelDir, workerBat) {
     parallelGUI.Show()
 
     MsgBox("Parallel Processor Created!`n`n" .
-    "This launches multiple workers in parallel.`n" .
-    "Each worker is monitored independently with timeout.`n`n" .
-    "Useful for batch operations with concurrent execution!",
-    "Processor Ready", "Icon!")
+        "This launches multiple workers in parallel.`n" .
+        "Each worker is monitored independently with timeout.`n`n" .
+        "Useful for batch operations with concurrent execution!",
+        "Processor Ready", "Icon!")
 }
 
 ; ============================================================================

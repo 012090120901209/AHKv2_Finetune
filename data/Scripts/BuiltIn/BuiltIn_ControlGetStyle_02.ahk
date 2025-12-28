@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlGetStyle - Advanced Style Analysis and Pattern Detection
-* ============================================================================
-*
-* This script demonstrates advanced techniques for analyzing control styles,
-* detecting patterns, and identifying control behaviors based on style flags.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*
-* Advanced Topics Covered:
-* - Style pattern detection
-* - Control type identification
-* - Style inheritance analysis
-* - Custom style validators
-* - Style-based control classification
-*/
+ * ============================================================================
+ * ControlGetStyle - Advanced Style Analysis and Pattern Detection
+ * ============================================================================
+ * 
+ * This script demonstrates advanced techniques for analyzing control styles,
+ * detecting patterns, and identifying control behaviors based on style flags.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ * 
+ * Advanced Topics Covered:
+ * - Style pattern detection
+ * - Control type identification
+ * - Style inheritance analysis
+ * - Custom style validators
+ * - Style-based control classification
+ */
 
 ;==============================================================================
 ; Example 1: Control Type Detection from Styles
 ;==============================================================================
 
 /**
-* Detects control types and subtypes from their style values
-*
-* @example
-* Identifies specific control types using style analysis
-*/
+ * Detects control types and subtypes from their style values
+ * 
+ * @example
+ * Identifies specific control types using style analysis
+ */
 Example1_ControlTypeDetection() {
     MyGui := Gui("+Resize", "Example 1: Control Type Detection")
 
@@ -37,14 +37,14 @@ Example1_ControlTypeDetection() {
 
     ; Create various controls
     controls := []
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+20"), desc: "Normal Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+10 Password"), desc: "Password Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+10 Number"), desc: "Number Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 h100 y+10 Multi"), desc: "Multiline Edit"})
-    controls.Push({ctrl: MyGui.Add("Button", "w200 y+10"), desc: "Push Button"})
-    controls.Push({ctrl: MyGui.Add("Button", "w200 y+10 Default"), desc: "Default Button"})
-    controls.Push({ctrl: MyGui.Add("Checkbox", "w200 y+10", "Check"), desc: "Checkbox"})
-    controls.Push({ctrl: MyGui.Add("Radio", "w200 y+10", "Radio"), desc: "Radio Button"})
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+20"), desc: "Normal Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+10 Password"), desc: "Password Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+10 Number"), desc: "Number Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 h100 y+10 Multi"), desc: "Multiline Edit" })
+    controls.Push({ ctrl: MyGui.Add("Button", "w200 y+10"), desc: "Push Button" })
+    controls.Push({ ctrl: MyGui.Add("Button", "w200 y+10 Default"), desc: "Default Button" })
+    controls.Push({ ctrl: MyGui.Add("Checkbox", "w200 y+10", "Check"), desc: "Checkbox" })
+    controls.Push({ ctrl: MyGui.Add("Radio", "w200 y+10", "Radio"), desc: "Radio Button" })
 
     BtnDetect := MyGui.Add("Button", "w200 y+20", "Detect Control Types")
     BtnDetect.OnEvent("Click", DetectTypes)
@@ -79,20 +79,20 @@ Example1_ControlTypeDetection() {
 
                     flags := []
                     if (style & ES_PASSWORD)
-                    flags.Push("Password")
+                        flags.Push("Password")
                     if (style & ES_MULTILINE)
-                    flags.Push("Multiline")
+                        flags.Push("Multiline")
                     if (style & ES_NUMBER)
-                    flags.Push("Number Only")
+                        flags.Push("Number Only")
                     if (style & ES_READONLY)
-                    flags.Push("Read-Only")
+                        flags.Push("Read-Only")
                     if (style & ES_UPPERCASE)
-                    flags.Push("Uppercase")
+                        flags.Push("Uppercase")
                     if (style & ES_LOWERCASE)
-                    flags.Push("Lowercase")
+                        flags.Push("Lowercase")
 
                     if (flags.Length > 0)
-                    results .= "  Features: " . ArrayJoin(flags, ", ") . "`n"
+                        results .= "  Features: " . ArrayJoin(flags, ", ") . "`n"
                 }
 
                 ; Detect Button control types
@@ -118,11 +118,11 @@ Example1_ControlTypeDetection() {
 
         types := []
         if (style & ES_PASSWORD)
-        return "Password Field"
+            return "Password Field"
         if (style & ES_NUMBER)
-        return "Numeric Input"
+            return "Numeric Input"
         if (style & ES_MULTILINE)
-        return "Multiline Text Area"
+            return "Multiline Text Area"
         return "Single-Line Text"
     }
 
@@ -146,7 +146,7 @@ Example1_ControlTypeDetection() {
     ArrayJoin(arr, delimiter) {
         result := ""
         for item in arr
-        result .= item . delimiter
+            result .= item . delimiter
         return SubStr(result, 1, -(StrLen(delimiter)))
     }
 }
@@ -156,11 +156,11 @@ Example1_ControlTypeDetection() {
 ;==============================================================================
 
 /**
-* Demonstrates pattern matching for common style combinations
-*
-* @example
-* Identifies common UI patterns from style combinations
-*/
+ * Demonstrates pattern matching for common style combinations
+ * 
+ * @example
+ * Identifies common UI patterns from style combinations
+ */
 Example2_StylePatternMatching() {
     ; Define common style patterns
 
@@ -170,11 +170,11 @@ Example2_StylePatternMatching() {
 
     ; Create test controls
     controls := []
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+20 ReadOnly", "Display Field"), name: "Read-Only"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10 Password"), name: "Password"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 h100 y+10 Multi"), name: "Text Editor"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10 Number"), name: "Numeric"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10"), name: "Standard Input"})
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+20 ReadOnly", "Display Field"), name: "Read-Only" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10 Password"), name: "Password" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 h100 y+10 Multi"), name: "Text Editor" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10 Number"), name: "Numeric" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10"), name: "Standard Input" })
 
     BtnMatch := MyGui.Add("Button", "w200 y+20", "Match Patterns")
     BtnMatch.OnEvent("Click", MatchPatterns)
@@ -219,15 +219,15 @@ Example2_StylePatternMatching() {
 ;==============================================================================
 
 /**
-* Creates a validation system based on control styles
-*
-* @example
-* Validates controls meet specific style requirements
-*/
+ * Creates a validation system based on control styles
+ * 
+ * @example
+ * Validates controls meet specific style requirements
+ */
 Example3_StyleValidation() {
     /**
-    * Style validation class
-    */
+     * Style validation class
+     */
 
     MyGui := Gui("+Resize", "Example 3: Style Validation")
 
@@ -252,11 +252,11 @@ Example3_StyleValidation() {
         ; Test 1: Ensure Edit1 is editable (not readonly, not disabled)
         results .= "Test 1: Edit1 Should Be Editable`n"
         validation := StyleValidator.Validate(
-        Edit1,
-        [],  ; No required flags
-        [0x0800, 0x08000000],  ; Forbidden: ES_READONLY, WS_DISABLED
-        "",
-        Map(1, "ES_READONLY", 2, "WS_DISABLED")
+            Edit1,
+            [],  ; No required flags
+            [0x0800, 0x08000000],  ; Forbidden: ES_READONLY, WS_DISABLED
+            "",
+            Map(1, "ES_READONLY", 2, "WS_DISABLED")
         )
         results .= "  Result: " . (validation.valid ? "PASS" : "FAIL") . "`n"
         if (!validation.forbidden.valid) {
@@ -267,11 +267,11 @@ Example3_StyleValidation() {
         ; Test 2: Ensure Edit2 is read-only
         results .= "Test 2: Edit2 Should Be Read-Only`n"
         validation := StyleValidator.Validate(
-        Edit2,
-        [0x0800],  ; Required: ES_READONLY
-        [],
-        Map(1, "ES_READONLY"),
-        ""
+            Edit2,
+            [0x0800],  ; Required: ES_READONLY
+            [],
+            Map(1, "ES_READONLY"),
+            ""
         )
         results .= "  Result: " . (validation.valid ? "PASS" : "FAIL") . "`n"
         if (!validation.required.valid) {
@@ -282,11 +282,11 @@ Example3_StyleValidation() {
         ; Test 3: Ensure Edit3 is password field (not multiline)
         results .= "Test 3: Edit3 Should Be Password Field (Single-Line)`n"
         validation := StyleValidator.Validate(
-        Edit3,
-        [0x0020],  ; Required: ES_PASSWORD
-        [0x0004],  ; Forbidden: ES_MULTILINE
-        Map(1, "ES_PASSWORD"),
-        Map(1, "ES_MULTILINE")
+            Edit3,
+            [0x0020],  ; Required: ES_PASSWORD
+            [0x0004],  ; Forbidden: ES_MULTILINE
+            Map(1, "ES_PASSWORD"),
+            Map(1, "ES_MULTILINE")
         )
         results .= "  Result: " . (validation.valid ? "PASS" : "FAIL") . "`n"
         if (!validation.required.valid) {
@@ -300,11 +300,11 @@ Example3_StyleValidation() {
         ; Test 4: Ensure Edit4 is multiline
         results .= "Test 4: Edit4 Should Be Multiline`n"
         validation := StyleValidator.Validate(
-        Edit4,
-        [0x0004],  ; Required: ES_MULTILINE
-        [],
-        Map(1, "ES_MULTILINE"),
-        ""
+            Edit4,
+            [0x0004],  ; Required: ES_MULTILINE
+            [],
+            Map(1, "ES_MULTILINE"),
+            ""
         )
         results .= "  Result: " . (validation.valid ? "PASS" : "FAIL") . "`n"
         if (!validation.required.valid) {
@@ -320,10 +320,10 @@ Example3_StyleValidation() {
 
     Join(arr, delimiter) {
         if (!arr || arr.Length = 0)
-        return "None"
+            return "None"
         result := ""
         for item in arr
-        result .= item . delimiter
+            result .= item . delimiter
         return SubStr(result, 1, -StrLen(delimiter))
     }
 }
@@ -333,11 +333,11 @@ Example3_StyleValidation() {
 ;==============================================================================
 
 /**
-* Detects style inheritance patterns in GUI controls
-*
-* @example
-* Shows which styles are inherited from parent windows
-*/
+ * Detects style inheritance patterns in GUI controls
+ * 
+ * @example
+ * Shows which styles are inherited from parent windows
+ */
 Example4_StyleInheritance() {
     MyGui := Gui("+Resize", "Example 4: Style Inheritance Detection")
 
@@ -404,9 +404,9 @@ Example4_StyleInheritance() {
 
         ; Check specific differences
         if ((style1 & 0x08000000) != (style2 & 0x08000000))
-        result .= "    Disabled state differs`n"
+            result .= "    Disabled state differs`n"
         if ((style1 & 0x10000000) != (style2 & 0x10000000))
-        result .= "    Visibility differs`n"
+            result .= "    Visibility differs`n"
 
         return result
     }
@@ -417,11 +417,11 @@ Example4_StyleInheritance() {
 ;==============================================================================
 
 /**
-* Classifies controls into categories based on their styles
-*
-* @example
-* Groups controls by their functional characteristics
-*/
+ * Classifies controls into categories based on their styles
+ * 
+ * @example
+ * Groups controls by their functional characteristics
+ */
 Example5_ControlClassification() {
 
     MyGui := Gui("+Resize", "Example 5: Control Classification")
@@ -430,13 +430,13 @@ Example5_ControlClassification() {
 
     ; Create diverse set of controls
     controls := []
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+20"), name: "Normal Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+10 ReadOnly"), name: "ReadOnly Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+10 Password"), name: "Password Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 y+10 Number"), name: "Number Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w200 h60 y+10 Multi"), name: "Multiline Edit"})
-    controls.Push({ctrl: MyGui.Add("Button", "w200 y+10"), name: "Button"})
-    controls.Push({ctrl: MyGui.Add("Checkbox", "w200 y+10", "Checkbox"), name: "Checkbox"})
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+20"), name: "Normal Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+10 ReadOnly"), name: "ReadOnly Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+10 Password"), name: "Password Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 y+10 Number"), name: "Number Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w200 h60 y+10 Multi"), name: "Multiline Edit" })
+    controls.Push({ ctrl: MyGui.Add("Button", "w200 y+10"), name: "Button" })
+    controls.Push({ ctrl: MyGui.Add("Checkbox", "w200 y+10", "Checkbox"), name: "Checkbox" })
 
     ; Disable one control for testing
     controls[6].ctrl.Enabled := false
@@ -485,7 +485,7 @@ Example5_ControlClassification() {
     Join(arr, delimiter) {
         result := ""
         for item in arr
-        result .= item . delimiter
+            result .= item . delimiter
         return SubStr(result, 1, -StrLen(delimiter))
     }
 }
@@ -495,11 +495,11 @@ Example5_ControlClassification() {
 ;==============================================================================
 
 /**
-* Advanced comparison of control styles with detailed differences
-*
-* @example
-* Compare multiple controls and show detailed style differences
-*/
+ * Advanced comparison of control styles with detailed differences
+ * 
+ * @example
+ * Compare multiple controls and show detailed style differences
+ */
 Example6_AdvancedStyleComparison() {
     MyGui := Gui("+Resize", "Example 6: Advanced Style Comparison")
 
@@ -542,12 +542,12 @@ Example6_AdvancedStyleComparison() {
 
         ; Analyze specific differences
         commonFlags := Map(
-        "WS_VISIBLE", 0x10000000,
-        "WS_DISABLED", 0x08000000,
-        "WS_TABSTOP", 0x00010000,
-        "ES_MULTILINE", 0x0004,
-        "ES_READONLY", 0x0800,
-        "ES_PASSWORD", 0x0020
+            "WS_VISIBLE", 0x10000000,
+            "WS_DISABLED", 0x08000000,
+            "WS_TABSTOP", 0x00010000,
+            "ES_MULTILINE", 0x0004,
+            "ES_READONLY", 0x0800,
+            "ES_PASSWORD", 0x0020
         )
 
         results .= "Flag Comparison:`n"
@@ -560,10 +560,10 @@ Example6_AdvancedStyleComparison() {
             differs := has1 != has2
 
             results .= Format("{:<20} {:<10} {:<10} {:<10}",
-            flagName,
-            has1 ? "Yes" : "No",
-            has2 ? "Yes" : "No",
-            differs ? "YES" : "No") . "`n"
+                flagName,
+                has1 ? "Yes" : "No",
+                has2 ? "Yes" : "No",
+                differs ? "YES" : "No") . "`n"
         }
 
         ResultsEdit.Value := results
@@ -572,273 +572,269 @@ Example6_AdvancedStyleComparison() {
     CompareAll(*) {
         results := "=== COMPLETE COMPARISON ===`n`n"
 
-        controls := [
-        {
-            ctrl: Edit1A, name: "Edit1A"},
-            {
-                ctrl: Edit1B, name: "Edit1B"},
-                {
-                    ctrl: Edit2A, name: "Edit2A"},
-                    {
+        controls := [{
+            ctrl: Edit1A, name: "Edit1A" }, {
+                ctrl: Edit1B, name: "Edit1B" }, {
+                    ctrl: Edit2A, name: "Edit2A" }, {
                         ctrl: Edit2B, name: "Edit2B"
                     }
-                    ]
+        ]
 
-                    ; Create comparison matrix
-                    results .= "Style Matrix:`n"
-                    results .= Format("{:<10}", "")
-                    for item in controls
-                    results .= Format("{:<12}", item.name)
-                    results .= "`n"
+        ; Create comparison matrix
+        results .= "Style Matrix:`n"
+        results .= Format("{:<10}", "")
+        for item in controls
+            results .= Format("{:<12}", item.name)
+        results .= "`n"
 
-                    for i, item1 in controls {
-                        results .= Format("{:<10}", item1.name)
-                        for j, item2 in controls {
-                            if (i = j) {
-                                results .= Format("{:<12}", "-")
-                            } else {
-                                style1 := ControlGetStyle(item1.ctrl)
-                                style2 := ControlGetStyle(item2.ctrl)
-                                diff := style1 ^ style2
-                                diffCount := CountSetBits(diff)
-                                results .= Format("{:<12}", diffCount . " bits")
-                            }
-                        }
-                        results .= "`n"
-                    }
-
-                    ResultsEdit.Value := results
-                }
-
-                CountSetBits(n) {
-                    count := 0
-                    while (n > 0) {
-                        count += n & 1
-                        n := n >> 1
-                    }
-                    return count
+        for i, item1 in controls {
+            results .= Format("{:<10}", item1.name)
+            for j, item2 in controls {
+                if (i = j) {
+                    results .= Format("{:<12}", "-")
+                } else {
+                    style1 := ControlGetStyle(item1.ctrl)
+                    style2 := ControlGetStyle(item2.ctrl)
+                    diff := style1 ^ style2
+                    diffCount := CountSetBits(diff)
+                    results .= Format("{:<12}", diffCount . " bits")
                 }
             }
+            results .= "`n"
+        }
 
-            ;==============================================================================
-            ; Main Menu
-            ;==============================================================================
+        ResultsEdit.Value := results
+    }
 
-            MainGui := Gui("+Resize", "ControlGetStyle Advanced Examples - Main Menu")
-            MainGui.Add("Text", "w400", "Select an example to run:")
+    CountSetBits(n) {
+        count := 0
+        while (n > 0) {
+            count += n & 1
+            n := n >> 1
+        }
+        return count
+    }
+}
 
-            examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-            "Example 1: Control Type Detection",
-            "Example 2: Style Pattern Matching",
-            "Example 3: Style Validation System",
-            "Example 4: Style Inheritance Detection",
-            "Example 5: Control Classification",
-            "Example 6: Advanced Style Comparison"
-            ])
+;==============================================================================
+; Main Menu
+;==============================================================================
 
-            btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")
-            btnRun.OnEvent("Click", RunSelected)
+MainGui := Gui("+Resize", "ControlGetStyle Advanced Examples - Main Menu")
+MainGui.Add("Text", "w400", "Select an example to run:")
 
-            btnExit := MainGui.Add("Button", "x+10 w200", "Exit")
-            btnExit.OnEvent("Click", (*) => ExitApp())
+examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
+    "Example 1: Control Type Detection",
+    "Example 2: Style Pattern Matching",
+    "Example 3: Style Validation System",
+    "Example 4: Style Inheritance Detection",
+    "Example 5: Control Classification",
+    "Example 6: Advanced Style Comparison"
+])
 
-            MainGui.Show()
+btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")
+btnRun.OnEvent("Click", RunSelected)
 
-            RunSelected(*) {
-                selected := examplesList.Value
-                if (selected = 0) {
-                    MsgBox("Please select an example first", "Info", "Iconi")
-                    return
-                }
+btnExit := MainGui.Add("Button", "x+10 w200", "Exit")
+btnExit.OnEvent("Click", (*) => ExitApp())
 
-                switch selected {
-                    case 1: Example1_ControlTypeDetection()
-                    case 2: Example2_StylePatternMatching()
-                    case 3: Example3_StyleValidation()
-                    case 4: Example4_StyleInheritance()
-                    case 5: Example5_ControlClassification()
-                    case 6: Example6_AdvancedStyleComparison()
-                }
-            }
+MainGui.Show()
 
-            return
+RunSelected(*) {
+    selected := examplesList.Value
+    if (selected = 0) {
+        MsgBox("Please select an example first", "Info", "Iconi")
+        return
+    }
 
-            ; Moved class StylePatterns from nested scope
-            class StylePatterns {
-                static READONLY_DISPLAY := 0x50800800  ; Common for display-only fields
-                static STANDARD_INPUT := 0x50010080    ; Typical input field
-                static MULTILINE_EDITOR := 0x50210044  ; Text editor configuration
+    switch selected {
+        case 1: Example1_ControlTypeDetection()
+        case 2: Example2_StylePatternMatching()
+        case 3: Example3_StyleValidation()
+        case 4: Example4_StyleInheritance()
+        case 5: Example5_ControlClassification()
+        case 6: Example6_AdvancedStyleComparison()
+    }
+}
 
-                static Patterns := Map(
-                "Read-Only Display", {
-                    required: [0x0800],  ; ES_READONLY
-                    description: "Display-only text field"
-                },
-                "Password Input", {
-                    required: [0x0020],  ; ES_PASSWORD
-                    forbidden: [0x0004], ; Not multiline
-                    description: "Secure password entry"
-                },
-                "Text Editor", {
-                    required: [0x0004, 0x0040],  ; ES_MULTILINE, ES_AUTOVSCROLL
-                    description: "Multiline text editor"
-                },
-                "Numeric Input", {
-                    required: [0x2000],  ; ES_NUMBER
-                    description: "Number-only input field"
-                },
-                "Form Input", {
-                    required: [0x0080],  ; ES_AUTOHSCROLL
-                    forbidden: [0x0800], ; Not readonly
-                    description: "Standard form input field"
-                }
-                )
+return
 
-                static MatchPattern(style) {
-                    matches := []
+; Moved class StylePatterns from nested scope
+class StylePatterns {
+    static READONLY_DISPLAY := 0x50800800  ; Common for display-only fields
+    static STANDARD_INPUT := 0x50010080    ; Typical input field
+    static MULTILINE_EDITOR := 0x50210044  ; Text editor configuration
 
-                    for patternName, pattern in this.Patterns {
-                        isMatch := true
+    static Patterns := Map(
+        "Read-Only Display", {
+            required: [0x0800],  ; ES_READONLY
+            description: "Display-only text field"
+        },
+        "Password Input", {
+            required: [0x0020],  ; ES_PASSWORD
+            forbidden: [0x0004], ; Not multiline
+            description: "Secure password entry"
+        },
+        "Text Editor", {
+            required: [0x0004, 0x0040],  ; ES_MULTILINE, ES_AUTOVSCROLL
+            description: "Multiline text editor"
+        },
+        "Numeric Input", {
+            required: [0x2000],  ; ES_NUMBER
+            description: "Number-only input field"
+        },
+        "Form Input", {
+            required: [0x0080],  ; ES_AUTOHSCROLL
+            forbidden: [0x0800], ; Not readonly
+            description: "Standard form input field"
+        }
+    )
 
-                        ; Check required flags
-                        if (pattern.HasOwnProp("required")) {
-                            for flag in pattern.required {
-                                if (!(style & flag)) {
-                                    isMatch := false
-                                    break
-                                }
-                            }
-                        }
+    static MatchPattern(style) {
+        matches := []
 
-                        ; Check forbidden flags
-                        if (isMatch && pattern.HasOwnProp("forbidden")) {
-                            for flag in pattern.forbidden {
-                                if (style & flag) {
-                                    isMatch := false
-                                    break
-                                }
-                            }
-                        }
+        for patternName, pattern in this.Patterns {
+            isMatch := true
 
-                        if (isMatch)
-                        matches.Push({name: patternName, desc: pattern.description})
-                    }
-
-                    return matches
-                }
-            }
-
-            ; Moved class StyleValidator from nested scope
-            class StyleValidator {
-                /**
-                * Validates that control has required styles
-                */
-                static ValidateRequired(ctrl, requiredFlags, flagNames := "") {
-                    style := ControlGetStyle(ctrl)
-                    missing := []
-
-                    for index, flag in requiredFlags {
-                        if (!(style & flag)) {
-                            name := (flagNames && flagNames.Has(index)) ? flagNames[index] : Format("0x{:X}", flag)
-                            missing.Push(name)
-                        }
-                    }
-
-                    return {
-                        valid: missing.Length = 0,
-                        missing: missing,
-                        style: style
-                    }
-                }
-
-                /**
-                * Validates that control doesn't have forbidden styles
-                */
-                static ValidateForbidden(ctrl, forbiddenFlags, flagNames := "") {
-                    style := ControlGetStyle(ctrl)
-                    present := []
-
-                    for index, flag in forbiddenFlags {
-                        if (style & flag) {
-                            name := (flagNames && flagNames.Has(index)) ? flagNames[index] : Format("0x{:X}", flag)
-                            present.Push(name)
-                        }
-                    }
-
-                    return {
-                        valid: present.Length = 0,
-                        forbidden: present,
-                        style: style
-                    }
-                }
-
-                /**
-                * Complete validation check
-                */
-                static Validate(ctrl, required := [], forbidden := [], requiredNames := "", forbiddenNames := "") {
-                    reqResult := this.ValidateRequired(ctrl, required, requiredNames)
-                    forbResult := this.ValidateForbidden(ctrl, forbidden, forbiddenNames)
-
-                    return {
-                        valid: reqResult.valid && forbResult.valid,
-                        required: reqResult,
-                        forbidden: forbResult
+            ; Check required flags
+            if (pattern.HasOwnProp("required")) {
+                for flag in pattern.required {
+                    if (!(style & flag)) {
+                        isMatch := false
+                        break
                     }
                 }
             }
 
-            ; Moved class ControlClassifier from nested scope
-            class ControlClassifier {
-                static Classify(ctrl) {
-                    style := ControlGetStyle(ctrl)
-                    className := ctrl.ClassNN
-
-                    categories := []
-
-                    ; Classify by interaction capability
-                    if (style & 0x08000000)  ; WS_DISABLED
-                    categories.Push("Non-Interactive")
-                    else
-                    categories.Push("Interactive")
-
-                    ; Classify by editability (for edit controls)
-                    if (InStr(className, "Edit")) {
-                        if (style & 0x0800)  ; ES_READONLY
-                        categories.Push("Display-Only")
-                        else
-                        categories.Push("User-Editable")
-
-                        ; Input type
-                        if (style & 0x0020)  ; ES_PASSWORD
-                        categories.Push("Secure-Input")
-                        else if (style & 0x2000)  ; ES_NUMBER
-                        categories.Push("Numeric-Input")
-                        else if (style & 0x0004)  ; ES_MULTILINE
-                        categories.Push("Text-Area")
-                        else
-                        categories.Push("Single-Line-Input")
+            ; Check forbidden flags
+            if (isMatch && pattern.HasOwnProp("forbidden")) {
+                for flag in pattern.forbidden {
+                    if (style & flag) {
+                        isMatch := false
+                        break
                     }
-
-                    ; Classify by visibility
-                    if (style & 0x10000000)  ; WS_VISIBLE
-                    categories.Push("Visible")
-                    else
-                    categories.Push("Hidden")
-
-                    ; Classify by focus capability
-                    if (style & 0x00010000)  ; WS_TABSTOP
-                    categories.Push("Focusable")
-                    else
-                    categories.Push("Non-Focusable")
-
-                    return categories
-                }
-
-                static GetCategory(categories, filter) {
-                    for cat in categories {
-                        if (cat = filter)
-                        return true
-                    }
-                    return false
                 }
             }
+
+            if (isMatch)
+                matches.Push({ name: patternName, desc: pattern.description })
+        }
+
+        return matches
+    }
+}
+
+; Moved class StyleValidator from nested scope
+class StyleValidator {
+    /**
+     * Validates that control has required styles
+     */
+    static ValidateRequired(ctrl, requiredFlags, flagNames := "") {
+        style := ControlGetStyle(ctrl)
+        missing := []
+
+        for index, flag in requiredFlags {
+            if (!(style & flag)) {
+                name := (flagNames && flagNames.Has(index)) ? flagNames[index] : Format("0x{:X}", flag)
+                missing.Push(name)
+            }
+        }
+
+        return {
+            valid: missing.Length = 0,
+            missing: missing,
+            style: style
+        }
+    }
+
+    /**
+     * Validates that control doesn't have forbidden styles
+     */
+    static ValidateForbidden(ctrl, forbiddenFlags, flagNames := "") {
+        style := ControlGetStyle(ctrl)
+        present := []
+
+        for index, flag in forbiddenFlags {
+            if (style & flag) {
+                name := (flagNames && flagNames.Has(index)) ? flagNames[index] : Format("0x{:X}", flag)
+                present.Push(name)
+            }
+        }
+
+        return {
+            valid: present.Length = 0,
+            forbidden: present,
+            style: style
+        }
+    }
+
+    /**
+     * Complete validation check
+     */
+    static Validate(ctrl, required := [], forbidden := [], requiredNames := "", forbiddenNames := "") {
+        reqResult := this.ValidateRequired(ctrl, required, requiredNames)
+        forbResult := this.ValidateForbidden(ctrl, forbidden, forbiddenNames)
+
+        return {
+            valid: reqResult.valid && forbResult.valid,
+            required: reqResult,
+            forbidden: forbResult
+        }
+    }
+}
+
+; Moved class ControlClassifier from nested scope
+class ControlClassifier {
+    static Classify(ctrl) {
+        style := ControlGetStyle(ctrl)
+        className := ctrl.ClassNN
+
+        categories := []
+
+        ; Classify by interaction capability
+        if (style & 0x08000000)  ; WS_DISABLED
+            categories.Push("Non-Interactive")
+        else
+            categories.Push("Interactive")
+
+        ; Classify by editability (for edit controls)
+        if (InStr(className, "Edit")) {
+            if (style & 0x0800)  ; ES_READONLY
+                categories.Push("Display-Only")
+            else
+                categories.Push("User-Editable")
+
+            ; Input type
+            if (style & 0x0020)  ; ES_PASSWORD
+                categories.Push("Secure-Input")
+            else if (style & 0x2000)  ; ES_NUMBER
+                categories.Push("Numeric-Input")
+            else if (style & 0x0004)  ; ES_MULTILINE
+                categories.Push("Text-Area")
+            else
+                categories.Push("Single-Line-Input")
+        }
+
+        ; Classify by visibility
+        if (style & 0x10000000)  ; WS_VISIBLE
+            categories.Push("Visible")
+        else
+            categories.Push("Hidden")
+
+        ; Classify by focus capability
+        if (style & 0x00010000)  ; WS_TABSTOP
+            categories.Push("Focusable")
+        else
+            categories.Push("Non-Focusable")
+
+        return categories
+    }
+
+    static GetCategory(categories, filter) {
+        for cat in categories {
+            if (cat = filter)
+                return true
+        }
+        return false
+    }
+}

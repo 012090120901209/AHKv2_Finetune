@@ -3,22 +3,22 @@
 #Include JSON.ahk
 
 /**
-* Unzip() - Transpose rows to columns
-*
-* Demonstrates: Matrix transposition, nested array manipulation
-* Inverse operation of Zip()
-*/
+ * Unzip() - Transpose rows to columns
+ * 
+ * Demonstrates: Matrix transposition, nested array manipulation
+ * Inverse operation of Zip()
+ */
 
 ToArray(val) {
     if val is Array
-    return val
+        return val
     throw Error("Expected Array")
 }
 
 Unzip(grouped) {
     grouped := ToArray(grouped)
     if !grouped.Length
-    return []
+        return []
 
     ; Get width from first row
     width := grouped[1].Length
@@ -26,12 +26,12 @@ Unzip(grouped) {
     ; Create empty output columns
     out := []
     Loop width
-    out.Push([])
+        out.Push([])
 
     ; Transpose rows to columns
     for row in grouped
-    for i, v in row
-    out[i].Push(v)
+        for i, v in row
+            out[i].Push(v)
 
     return out
 }
@@ -46,4 +46,4 @@ result2 := Unzip(zipped2)
 ; => [[1, 2, 3], ["x", "y", "z"]]
 
 MsgBox("Unzip to columns: " JSON.stringify(result1) "`n`n"
-. "Unzip 3 rows: " JSON.stringify(result2))
+    . "Unzip 3 rows: " JSON.stringify(result2))

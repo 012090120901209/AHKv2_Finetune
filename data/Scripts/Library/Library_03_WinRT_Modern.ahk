@@ -3,14 +3,14 @@
 #Include JSON.ahk
 
 /**
-* WinRT Library - Windows Runtime Integration
-*
-* Demonstrates using Lexikos' winrt.ahk library to access modern Windows
-* APIs including toast notifications, file pickers, and sensors.
-*
-* Library: https://github.com/Lexikos/winrt.ahk
-* Note: This example assumes winrt.ahk is installed in Lib folder
-*/
+ * WinRT Library - Windows Runtime Integration
+ * 
+ * Demonstrates using Lexikos' winrt.ahk library to access modern Windows
+ * APIs including toast notifications, file pickers, and sensors.
+ * 
+ * Library: https://github.com/Lexikos/winrt.ahk
+ * Note: This example assumes winrt.ahk is installed in Lib folder
+ */
 
 ; NOTE: This is a demonstration. To run, you need to:
 ; 1. Download winrt.ahk from https://github.com/Lexikos/winrt.ahk
@@ -19,12 +19,12 @@
 ; 4. Uncomment the code below
 
 MsgBox("WinRT Library Example`n`n"
-. "This demonstrates Windows Runtime integration.`n`n"
-. "To use this library:`n"
-. "1. Download from github.com/Lexikos/winrt.ahk`n"
-. "2. Place in Lib folder`n"
-. "3. Requires Windows 10+`n"
-. "4. Uncomment the example code", , "T5")
+    . "This demonstrates Windows Runtime integration.`n`n"
+    . "To use this library:`n"
+    . "1. Download from github.com/Lexikos/winrt.ahk`n"
+    . "2. Place in Lib folder`n"
+    . "3. Requires Windows 10+`n"
+    . "4. Uncomment the example code", , "T5")
 
 /*
 ; Uncomment to test (requires library installation):
@@ -203,3 +203,4 @@ MsgBox("Base64 Encoding:`n`n"
 *     - Hardware sensor access
 *     - Bluetooth device control
 */
+

@@ -133,7 +133,7 @@ class BiMap {
             values.Push(value)
         return values
     }
-    
+
     Count() => this.forward.Count
 }
 
@@ -163,13 +163,13 @@ bm := BiMap()
 bm.Set("one", 1).Set("two", 2).Set("three", 3)
 
 MsgBox("BiMap:`n"
-     . "'one' -> " bm.Get("one") "`n"
-     . "2 <- " bm.GetKey(2) "`n"
-     . "Has 'two'? " bm.Has("two") "`n"
-     . "Has value 3? " bm.HasValue(3))
+    . "'one' -> " bm.Get("one") "`n"
+    . "2 <- " bm.GetKey(2) "`n"
+    . "Has 'two'? " bm.Has("two") "`n"
+    . "Has value 3? " bm.HasValue(3))
 
 ; Overwrite test
 bm.Set("ONE", 1)  ; 1 now maps to ONE instead of one
 MsgBox("After bm.Set('ONE', 1):`n"
-     . "1 <- " bm.GetKey(1) "`n"
-     . "Has 'one'? " bm.Has("one"))
+    . "1 <- " bm.GetKey(1) "`n"
+    . "Has 'one'? " bm.Has("one"))

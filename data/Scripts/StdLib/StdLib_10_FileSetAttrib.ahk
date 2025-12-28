@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileSetAttrib() - Set file attributes
-*
-* Changes the attributes of one or more files.
-*/
+ * FileSetAttrib() - Set file attributes
+ * 
+ * Changes the attributes of one or more files.
+ */
 
 testFile := A_ScriptDir "\setattr.txt"
 FileDelete(testFile)

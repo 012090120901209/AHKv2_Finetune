@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinGetTitle Examples - Part 1: Get Window Title
-* ============================================================================
-*
-* This script demonstrates how to retrieve window titles using WinGetTitle.
-* Window titles are essential for identification, logging, and display purposes.
-*
-* @description Comprehensive examples of retrieving window titles
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinGetTitle Examples - Part 1: Get Window Title
+ * ============================================================================
+ * 
+ * This script demonstrates how to retrieve window titles using WinGetTitle.
+ * Window titles are essential for identification, logging, and display purposes.
+ * 
+ * @description Comprehensive examples of retrieving window titles
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Get Active Window Title
 ; ============================================================================
 
 /**
-* Retrieves and displays the title of the currently active window
-* Most basic use case for WinGetTitle
-*
-* @hotkey F1 - Get active window title
-*/
+ * Retrieves and displays the title of the currently active window
+ * Most basic use case for WinGetTitle
+ * 
+ * @hotkey F1 - Get active window title
+ */
 F1:: {
     try {
         title := WinGetTitle("A")
@@ -43,11 +43,11 @@ F1:: {
 ; ============================================================================
 
 /**
-* Gets the title of the window currently under the mouse cursor
-* Useful for window inspection and debugging
-*
-* @hotkey F2 - Get window title under mouse
-*/
+ * Gets the title of the window currently under the mouse cursor
+ * Useful for window inspection and debugging
+ * 
+ * @hotkey F2 - Get window title under mouse
+ */
 F2:: {
     try {
         ; Get window under mouse
@@ -75,8 +75,8 @@ F2:: {
 }
 
 /**
-* Helper to repeat strings
-*/
+ * Helper to repeat strings
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count {
@@ -90,18 +90,18 @@ StrRepeat(str, count) {
 ; ============================================================================
 
 /**
-* Copies window titles to clipboard for easy sharing
-* Useful for documentation and bug reports
-*
-* @hotkey F3 - Copy window title to clipboard
-*/
+ * Copies window titles to clipboard for easy sharing
+ * Useful for documentation and bug reports
+ * 
+ * @hotkey F3 - Copy window title to clipboard
+ */
 F3:: {
     ShowTitleClipboardTool()
 }
 
 /**
-* Creates GUI for copying window titles
-*/
+ * Creates GUI for copying window titles
+ */
 ShowTitleClipboardTool() {
     static toolGui := ""
 
@@ -126,7 +126,7 @@ ShowTitleClipboardTool() {
             if title != "" {
                 process := WinGetProcessName(hwnd)
                 display := title " [" process "]"
-                windows.Push({hwnd: hwnd, title: title, display: display})
+                windows.Push({ hwnd: hwnd, title: title, display: display })
                 windowList.Add([display])
             }
         }
@@ -179,11 +179,11 @@ ShowTitleClipboardTool() {
 ; ============================================================================
 
 /**
-* Logs window titles over time
-* Useful for tracking window usage and activity
-*
-* @hotkey F4 - Start/stop title logger
-*/
+ * Logs window titles over time
+ * Useful for tracking window usage and activity
+ * 
+ * @hotkey F4 - Start/stop title logger
+ */
 F4:: {
     static logging := false
     static logTimer := 0
@@ -201,8 +201,8 @@ F4:: {
 }
 
 /**
-* Creates a title logging GUI
-*/
+ * Creates a title logging GUI
+ */
 StartTitleLogger() {
     static logGui := ""
     static logEdit := ""
@@ -276,18 +276,18 @@ StartTitleLogger() {
 ; ============================================================================
 
 /**
-* Finds windows matching title patterns
-* Demonstrates pattern matching and filtering
-*
-* @hotkey F5 - Find windows by title pattern
-*/
+ * Finds windows matching title patterns
+ * Demonstrates pattern matching and filtering
+ * 
+ * @hotkey F5 - Find windows by title pattern
+ */
 F5:: {
     ShowTitleMatcher()
 }
 
 /**
-* Creates GUI for pattern matching
-*/
+ * Creates GUI for pattern matching
+ */
 ShowTitleMatcher() {
     static matcherGui := ""
 
@@ -344,7 +344,7 @@ ShowTitleMatcher() {
 
                 if matched && title != "" {
                     process := WinGetProcessName(hwnd)
-                    foundMatches.Push({hwnd: hwnd, title: title})
+                    foundMatches.Push({ hwnd: hwnd, title: title })
                     results .= title "`n[" process "]`n`n"
                 }
             }
@@ -373,18 +373,18 @@ ShowTitleMatcher() {
 ; ============================================================================
 
 /**
-* Compares titles of two windows
-* Useful for finding similar or duplicate windows
-*
-* @hotkey F6 - Compare window titles
-*/
+ * Compares titles of two windows
+ * Useful for finding similar or duplicate windows
+ * 
+ * @hotkey F6 - Compare window titles
+ */
 F6:: {
     CompareWindowTitles()
 }
 
 /**
-* Creates tool for comparing window titles
-*/
+ * Creates tool for comparing window titles
+ */
 CompareWindowTitles() {
     static compareGui := ""
 
@@ -460,18 +460,18 @@ CompareWindowTitles() {
 ; ============================================================================
 
 /**
-* Tracks title changes of a specific window
-* Useful for monitoring dynamic window titles
-*
-* @hotkey F7 - Track title changes
-*/
+ * Tracks title changes of a specific window
+ * Useful for monitoring dynamic window titles
+ * 
+ * @hotkey F7 - Track title changes
+ */
 F7:: {
     TrackTitleChanges()
 }
 
 /**
-* Tracks and displays title changes
-*/
+ * Tracks and displays title changes
+ */
 TrackTitleChanges() {
     static trackGui := ""
 
@@ -551,7 +551,7 @@ TrackTitleChanges() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

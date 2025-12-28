@@ -2,12 +2,12 @@
 #SingleInstance Force
 
 /**
-* WinActivate() - Activate window
-*
-* Brings a window to the foreground.
-*/
+ * WinActivate() - Activate window
+ * 
+ * Brings a window to the foreground.
+ */
 
 if WinExist("ahk_class Notepad")
-WinActivate()
+    WinActivate()
 else
-MsgBox("Notepad not found. Please open Notepad first.")
+    MsgBox("Notepad not found. Please open Notepad first.")

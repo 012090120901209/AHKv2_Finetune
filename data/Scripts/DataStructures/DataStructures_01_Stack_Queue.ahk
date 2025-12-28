@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Custom Data Structures - Stack and Queue
-*
-* Demonstrates implementing Stack (LIFO) and Queue (FIFO) data structures
-* using AutoHotkey v2 Arrays as the underlying storage.
-*
-* Source: AHK_Notes/Concepts/data-structures-in-ahk-v2.md
-*/
+ * Custom Data Structures - Stack and Queue
+ * 
+ * Demonstrates implementing Stack (LIFO) and Queue (FIFO) data structures
+ * using AutoHotkey v2 Arrays as the underlying storage.
+ * 
+ * Source: AHK_Notes/Concepts/data-structures-in-ahk-v2.md
+ */
 
 ; Test Stack (LIFO - Last In First Out)
 myStack := Stack()
@@ -17,12 +17,12 @@ myStack.Push("Second")
 myStack.Push("Third")
 
 MsgBox("Stack (LIFO) Test:`n`n"
-. "Push: First, Second, Third`n"
-. "Size: " myStack.Size() "`n"
-. "Peek: " myStack.Peek() "`n"
-. "Pop: " myStack.Pop() "`n"
-. "Pop: " myStack.Pop() "`n"
-. "Size: " myStack.Size(), , "T5")
+    . "Push: First, Second, Third`n"
+    . "Size: " myStack.Size() "`n"
+    . "Peek: " myStack.Peek() "`n"
+    . "Pop: " myStack.Pop() "`n"
+    . "Pop: " myStack.Pop() "`n"
+    . "Size: " myStack.Size(), , "T5")
 
 ; Test Queue (FIFO - First In First Out)
 myQueue := Queue()
@@ -31,12 +31,12 @@ myQueue.Enqueue("Task 2")
 myQueue.Enqueue("Task 3")
 
 MsgBox("Queue (FIFO) Test:`n`n"
-. "Enqueue: Task 1, Task 2, Task 3`n"
-. "Size: " myQueue.Size() "`n"
-. "Peek: " myQueue.Peek() "`n"
-. "Dequeue: " myQueue.Dequeue() "`n"
-. "Dequeue: " myQueue.Dequeue() "`n"
-. "Size: " myQueue.Size(), , "T5")
+    . "Enqueue: Task 1, Task 2, Task 3`n"
+    . "Size: " myQueue.Size() "`n"
+    . "Peek: " myQueue.Peek() "`n"
+    . "Dequeue: " myQueue.Dequeue() "`n"
+    . "Dequeue: " myQueue.Dequeue() "`n"
+    . "Size: " myQueue.Size(), , "T5")
 
 ; Test practical use case: Undo/Redo
 undoStack := Stack()
@@ -48,8 +48,8 @@ DoAction("Edit Text", undoStack, redoStack)
 DoAction("Save File", undoStack, redoStack)
 
 MsgBox("Undo/Redo Demo:`n`n"
-. "Actions: Create, Edit, Save`n"
-. "Undo stack: " undoStack.Size() " items", , "T2")
+    . "Actions: Create, Edit, Save`n"
+    . "Undo stack: " undoStack.Size() " items", , "T2")
 
 ; Undo twice
 undone := Undo(undoStack, redoStack)
@@ -62,127 +62,127 @@ redone := Redo(undoStack, redoStack)
 MsgBox("Redo: " redone, , "T2")
 
 /**
-* Stack - LIFO Data Structure
-*/
+ * Stack - LIFO Data Structure
+ */
 class Stack {
     items := []
 
     /**
-    * Push item onto stack
-    */
+     * Push item onto stack
+     */
     Push(item) {
         this.items.Push(item)
     }
 
     /**
-    * Pop item from stack
-    * @return {any} Top item or empty string if empty
-    */
+     * Pop item from stack
+     * @return {any} Top item or empty string if empty
+     */
     Pop() {
         if (this.IsEmpty())
-        throw Error("Stack is empty")
+            throw Error("Stack is empty")
         return this.items.Pop()
     }
 
     /**
-    * Peek at top item without removing
-    */
+     * Peek at top item without removing
+     */
     Peek() {
         if (this.IsEmpty())
-        return ""
+            return ""
         return this.items[this.items.Length]
     }
 
     /**
-    * Check if stack is empty
-    */
+     * Check if stack is empty
+     */
     IsEmpty() {
         return this.items.Length == 0
     }
 
     /**
-    * Get stack size
-    */
+     * Get stack size
+     */
     Size() {
         return this.items.Length
     }
 
     /**
-    * Clear stack
-    */
+     * Clear stack
+     */
     Clear() {
         this.items := []
     }
 }
 
 /**
-* Queue - FIFO Data Structure
-*/
+ * Queue - FIFO Data Structure
+ */
 class Queue {
     items := []
 
     /**
-    * Add item to back of queue
-    */
+     * Add item to back of queue
+     */
     Enqueue(item) {
         this.items.Push(item)
     }
 
     /**
-    * Remove item from front of queue
-    * @return {any} Front item or throws if empty
-    */
+     * Remove item from front of queue
+     * @return {any} Front item or throws if empty
+     */
     Dequeue() {
         if (this.IsEmpty())
-        throw Error("Queue is empty")
+            throw Error("Queue is empty")
         return this.items.RemoveAt(1)
     }
 
     /**
-    * Peek at front item without removing
-    */
+     * Peek at front item without removing
+     */
     Peek() {
         if (this.IsEmpty())
-        return ""
+            return ""
         return this.items[1]
     }
 
     /**
-    * Check if queue is empty
-    */
+     * Check if queue is empty
+     */
     IsEmpty() {
         return this.items.Length == 0
     }
 
     /**
-    * Get queue size
-    */
+     * Get queue size
+     */
     Size() {
         return this.items.Length
     }
 
     /**
-    * Clear queue
-    */
+     * Clear queue
+     */
     Clear() {
         this.items := []
     }
 }
 
 /**
-* DoAction - Simulate action with undo support
-*/
+ * DoAction - Simulate action with undo support
+ */
 DoAction(action, undoStack, redoStack) {
     undoStack.Push(action)
     redoStack.Clear()  ; Clear redo on new action
 }
 
 /**
-* Undo - Undo last action
-*/
+ * Undo - Undo last action
+ */
 Undo(undoStack, redoStack) {
     if (undoStack.IsEmpty())
-    return "Nothing to undo"
+        return "Nothing to undo"
 
     action := undoStack.Pop()
     redoStack.Push(action)
@@ -190,11 +190,11 @@ Undo(undoStack, redoStack) {
 }
 
 /**
-* Redo - Redo last undone action
-*/
+ * Redo - Redo last undone action
+ */
 Redo(undoStack, redoStack) {
     if (redoStack.IsEmpty())
-    return "Nothing to redo"
+        return "Nothing to redo"
 
     action := redoStack.Pop()
     undoStack.Push(action)
@@ -244,3 +244,4 @@ Redo(undoStack, redoStack) {
 *    Passed by reference
 *    Dynamic sizing
 */
+

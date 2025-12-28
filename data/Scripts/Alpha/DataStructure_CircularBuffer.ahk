@@ -11,7 +11,7 @@ class CircularBuffer {
         this.head := 0      ; Write position
         this.tail := 0      ; Read position
         this.count := 0     ; Current item count
-        
+
         ; Pre-allocate buffer
         Loop capacity
             this.buffer.Push("")
@@ -21,14 +21,14 @@ class CircularBuffer {
         index := Mod(this.head, this.capacity) + 1
         this.buffer[index] := value
         this.head++
-        
+
         if this.count < this.capacity {
             this.count++
         } else {
             ; Overwrite oldest (move tail)
             this.tail++
         }
-        
+
         return this
     }
 
@@ -40,7 +40,7 @@ class CircularBuffer {
         value := this.buffer[index]
         this.tail++
         this.count--
-        
+
         return value
     }
 
@@ -98,7 +98,7 @@ class SlidingWindow {
         ; If full, subtract the value being overwritten
         if this.buffer.IsFull()
             this.sum -= this.buffer.Peek()
-        
+
         this.buffer.Push(value)
         this.sum += value
         return this
@@ -115,7 +115,7 @@ class SlidingWindow {
     Min() {
         if this.buffer.IsEmpty()
             return ""
-        
+
         minVal := this.buffer.Get(0)
         Loop this.buffer.Count() - 1 {
             val := this.buffer.Get(A_Index)
@@ -128,7 +128,7 @@ class SlidingWindow {
     Max() {
         if this.buffer.IsEmpty()
             return ""
-        
+
         maxVal := this.buffer.Get(0)
         Loop this.buffer.Count() - 1 {
             val := this.buffer.Get(A_Index)
@@ -186,8 +186,8 @@ result .= "Window size: 5`n`n"
 values := [10, 20, 30, 40, 50, 60, 70, 80]
 for value in values {
     window.Add(value)
-    result .= Format("Add {}: avg={:.1f}, sum={}, [{}]`n", 
-        value, 
+    result .= Format("Add {}: avg={:.1f}, sum={}, [{}]`n",
+        value,
         window.Average(),
         window.Sum(),
         _join(window.Values()))

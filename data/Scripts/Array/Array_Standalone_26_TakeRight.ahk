@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* TakeRight() - Take elements from end (Standalone Implementation)
-*
-* Creates a slice of array with n elements taken from the end.
-*/
+ * TakeRight() - Take elements from end (Standalone Implementation)
+ * 
+ * Creates a slice of array with n elements taken from the end.
+ */
 
 TakeRight(array, n := 1) {
     result := []
@@ -35,6 +35,6 @@ result4 := TakeRight([1, 2, 3], 0)
 ; => []
 
 MsgBox("TakeRight 1: " JSON.stringify(result1) "`n"
-. "TakeRight 2: " JSON.stringify(result2) "`n"
-. "TakeRight 5: " JSON.stringify(result3) "`n"
-. "TakeRight 0: " JSON.stringify(result4))
+    . "TakeRight 2: " JSON.stringify(result2) "`n"
+    . "TakeRight 5: " JSON.stringify(result3) "`n"
+    . "TakeRight 0: " JSON.stringify(result4))

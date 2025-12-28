@@ -19,7 +19,7 @@ class FuzzyMatcher {
         Loop strLen {
             if patternIdx > patternLen
                 break
-            
+
             if SubStr(str, A_Index, 1) = SubStr(pattern, patternIdx, 1)
                 patternIdx++
         }
@@ -49,7 +49,7 @@ class FuzzyMatcher {
 
             if SubStr(str, A_Index, 1) = SubStr(pattern, patternIdx, 1) {
                 score += 1
-                
+
                 ; Bonus for consecutive matches
                 if A_Index = lastMatch + 1 {
                     consecutive++
@@ -57,18 +57,18 @@ class FuzzyMatcher {
                 } else {
                     consecutive := 0
                 }
-                
+
                 ; Bonus for matching at start
                 if A_Index = 1
                     score += 10
-                
+
                 ; Bonus for matching after separator
                 if A_Index > 1 {
                     prev := SubStr(str, A_Index - 1, 1)
                     if InStr(" _-./\", prev)
                         score += 5
                 }
-                
+
                 ; Bonus for matching uppercase in original (camelCase)
                 origChar := SubStr(origStr, A_Index, 1)
                 if origChar = SubStr(pattern, patternIdx, 1) && RegExMatch(origChar, "[A-Z]")
@@ -97,7 +97,7 @@ class FuzzyMatcher {
         for item in items {
             str := key ? item[key] : item
             score := this.Score(pattern, str, caseSensitive)
-            
+
             if score > threshold
                 results.Push(Map("item", item, "score", score))
         }

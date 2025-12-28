@@ -5,6 +5,7 @@ x := y
 MsgBox(x) ; Removed #Warn UseEnv
 temp := ""
 MsgBox(temp) ; Removed #Warn ClassOverwrite
-class MyClass { prop := "Hello, I am a class property."
+class MyClass {
+    prop := "Hello, I am a class property."
 }
 MyClass := MyClass()

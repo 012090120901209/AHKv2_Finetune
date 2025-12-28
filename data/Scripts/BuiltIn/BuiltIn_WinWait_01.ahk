@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinWait_01.ahk
-* @description Comprehensive examples demonstrating WinWait function for waiting on window appearance in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic window waiting
-* Example 2: Window wait with timeout
-* Example 3: Multi-window waiter
-* Example 4: Startup sequence automation
-* Example 5: Application launcher with wait
-* Example 6: Window appearance monitor
-* Example 7: Conditional window waiting
-*
-* @section FEATURES
-* - Wait for windows
-* - Timeout handling
-* - Multi-window waiting
-* - Startup automation
-* - Application launching
-* - Appearance monitoring
-* - Conditional waiting
-*/
+ * @file BuiltIn_WinWait_01.ahk
+ * @description Comprehensive examples demonstrating WinWait function for waiting on window appearance in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic window waiting
+ * Example 2: Window wait with timeout
+ * Example 3: Multi-window waiter
+ * Example 4: Startup sequence automation
+ * Example 5: Application launcher with wait
+ * Example 6: Window appearance monitor
+ * Example 7: Conditional window waiting
+ * 
+ * @section FEATURES
+ * - Wait for windows
+ * - Timeout handling
+ * - Multi-window waiting
+ * - Startup automation
+ * - Application launching
+ * - Appearance monitoring
+ * - Conditional waiting
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -31,12 +31,12 @@
 ; ========================================
 
 /**
-* @function WaitForWindow
-* @description Wait for a window to appear
-* @param WinTitle Window to wait for
-* @param timeout Timeout in seconds (0 = infinite)
-* @returns {Boolean} True if window appeared
-*/
+ * @function WaitForWindow
+ * @description Wait for a window to appear
+ * @param WinTitle Window to wait for
+ * @param timeout Timeout in seconds (0 = infinite)
+ * @returns {Boolean} True if window appeared
+ */
 WaitForWindow(WinTitle, timeout := 0) {
     try {
         if timeout > 0 {
@@ -54,12 +54,12 @@ WaitForWindow(WinTitle, timeout := 0) {
 }
 
 /**
-* @function WaitAndActivate
-* @description Wait for window and activate it
-* @param WinTitle Window to wait for
-* @param timeout Timeout in seconds
-* @returns {Boolean} Success status
-*/
+ * @function WaitAndActivate
+ * @description Wait for window and activate it
+ * @param WinTitle Window to wait for
+ * @param timeout Timeout in seconds
+ * @returns {Boolean} Success status
+ */
 WaitAndActivate(WinTitle, timeout := 10) {
     try {
         if WinWait(WinTitle, , timeout) {
@@ -80,7 +80,7 @@ WaitAndActivate(WinTitle, timeout := 10) {
 ^+w:: {
     winTitle := InputBox("Enter window title to wait for:", "Wait for Window").Value
     if winTitle = ""
-    return
+        return
 
     TrayTip("Waiting for: " winTitle, "Window Wait", "Icon!")
 
@@ -96,17 +96,17 @@ WaitAndActivate(WinTitle, timeout := 10) {
 ; ========================================
 
 /**
-* @class TimeoutWaiter
-* @description Advanced window waiting with timeout handling
-*/
+ * @class TimeoutWaiter
+ * @description Advanced window waiting with timeout handling
+ */
 class TimeoutWaiter {
     /**
-    * @method WaitWithProgress
-    * @description Wait for window with progress indicator
-    * @param WinTitle Window to wait for
-    * @param timeout Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * @method WaitWithProgress
+     * @description Wait for window with progress indicator
+     * @param WinTitle Window to wait for
+     * @param timeout Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static WaitWithProgress(WinTitle, timeout := 30) {
         progressGui := Gui("+AlwaysOnTop -SysMenu", "Waiting for Window")
         progressGui.Add("Text", "w300", "Waiting for: " WinTitle)
@@ -120,66 +120,66 @@ class TimeoutWaiter {
         found := false
 
         Loop timeout * 10 {  ; Check 10 times per second
-        if WinExist(WinTitle) {
-            found := true
-            break
+            if WinExist(WinTitle) {
+                found := true
+                break
+            }
+
+            elapsed := (A_TickCount - startTime) / 1000
+            remaining := timeout - elapsed
+
+            if remaining <= 0
+                break
+
+            try {
+                progressGui["Progress"].Value := (elapsed / timeout) * 100
+                progressGui["TimeLeft"].Value := "Time remaining: " Round(remaining, 1) "s"
+            } catch {
+                break  ; GUI was closed
+            }
+
+            Sleep(100)
         }
-
-        elapsed := (A_TickCount - startTime) / 1000
-        remaining := timeout - elapsed
-
-        if remaining <= 0
-        break
 
         try {
-            progressGui["Progress"].Value := (elapsed / timeout) * 100
-            progressGui["TimeLeft"].Value := "Time remaining: " Round(remaining, 1) "s"
-        } catch {
-            break  ; GUI was closed
+            progressGui.Destroy()
         }
 
-        Sleep(100)
+        return found
     }
 
-    try {
-        progressGui.Destroy()
-    }
+    /**
+     * @method WaitMultipleConditions
+     * @description Wait with multiple timeout stages
+     * @param WinTitle Window to wait for
+     * @param stages Array of {timeout, action} objects
+     * @returns {Integer} Stage at which window appeared (0 if timeout)
+     */
+    static WaitMultipleConditions(WinTitle, stages) {
+        for index, stage in stages {
+            TrayTip("Stage " index ": Waiting " stage.Timeout "s", "Multi-Stage Wait", "Icon!")
 
-    return found
-}
+            if WinWait(WinTitle, , stage.Timeout) {
+                if stage.HasOwnProp("Action")
+                    stage.Action()
 
-/**
-* @method WaitMultipleConditions
-* @description Wait with multiple timeout stages
-* @param WinTitle Window to wait for
-* @param stages Array of {timeout, action} objects
-* @returns {Integer} Stage at which window appeared (0 if timeout)
-*/
-static WaitMultipleConditions(WinTitle, stages) {
-    for index, stage in stages {
-        TrayTip("Stage " index ": Waiting " stage.Timeout "s", "Multi-Stage Wait", "Icon!")
+                return index
+            }
 
-        if WinWait(WinTitle, , stage.Timeout) {
-            if stage.HasOwnProp("Action")
-            stage.Action()
-
-            return index
+            ; Stage timeout - execute timeout action if exists
+            if stage.HasOwnProp("OnTimeout")
+                stage.OnTimeout()
         }
 
-        ; Stage timeout - execute timeout action if exists
-        if stage.HasOwnProp("OnTimeout")
-        stage.OnTimeout()
+        return 0  ; All stages timed out
     }
-
-    return 0  ; All stages timed out
-}
 }
 
 ; Hotkey: Ctrl+Shift+T - Wait with timeout and progress
 ^+t:: {
     winTitle := InputBox("Enter window title:", "Wait with Progress").Value
     if winTitle = ""
-    return
+        return
 
     if TimeoutWaiter.WaitWithProgress(winTitle, 20) {
         MsgBox("Window found!", "Success", "Icon!")
@@ -194,17 +194,17 @@ static WaitMultipleConditions(WinTitle, stages) {
 ; ========================================
 
 /**
-* @class MultiWindowWaiter
-* @description Wait for multiple windows
-*/
+ * @class MultiWindowWaiter
+ * @description Wait for multiple windows
+ */
 class MultiWindowWaiter {
     /**
-    * @method WaitForAny
-    * @description Wait for any of multiple windows
-    * @param windowTitles Array of window titles
-    * @param timeout Timeout in seconds
-    * @returns {String} Title of window that appeared (empty if timeout)
-    */
+     * @method WaitForAny
+     * @description Wait for any of multiple windows
+     * @param windowTitles Array of window titles
+     * @param timeout Timeout in seconds
+     * @returns {String} Title of window that appeared (empty if timeout)
+     */
     static WaitForAny(windowTitles, timeout := 30) {
         startTime := A_TickCount
         endTime := startTime + (timeout * 1000)
@@ -217,7 +217,7 @@ class MultiWindowWaiter {
             }
 
             if A_TickCount >= endTime
-            break
+                break
 
             Sleep(100)
         }
@@ -226,12 +226,12 @@ class MultiWindowWaiter {
     }
 
     /**
-    * @method WaitForAll
-    * @description Wait for all specified windows
-    * @param windowTitles Array of window titles
-    * @param timeout Timeout in seconds
-    * @returns {Array} Array of appeared windows
-    */
+     * @method WaitForAll
+     * @description Wait for all specified windows
+     * @param windowTitles Array of window titles
+     * @param timeout Timeout in seconds
+     * @returns {Array} Array of appeared windows
+     */
     static WaitForAll(windowTitles, timeout := 30) {
         appeared := []
         startTime := A_TickCount
@@ -249,10 +249,10 @@ class MultiWindowWaiter {
             }
 
             if remainingTitles.Length = 0
-            break
+                break
 
             if A_TickCount >= endTime
-            break
+                break
 
             Sleep(100)
         }
@@ -261,12 +261,12 @@ class MultiWindowWaiter {
     }
 
     /**
-    * @method WaitForSequence
-    * @description Wait for windows to appear in sequence
-    * @param sequence Array of window titles in order
-    * @param perWindowTimeout Timeout per window
-    * @returns {Boolean} True if entire sequence appeared
-    */
+     * @method WaitForSequence
+     * @description Wait for windows to appear in sequence
+     * @param sequence Array of window titles in order
+     * @param perWindowTimeout Timeout per window
+     * @returns {Boolean} True if entire sequence appeared
+     */
     static WaitForSequence(sequence, perWindowTimeout := 10) {
         for title in sequence {
             TrayTip("Waiting for: " title, "Sequence Wait", "Icon!")
@@ -305,28 +305,28 @@ class MultiWindowWaiter {
 ; ========================================
 
 /**
-* @class StartupAutomation
-* @description Automate application startup sequences
-*/
+ * @class StartupAutomation
+ * @description Automate application startup sequences
+ */
 class StartupAutomation {
     static sequences := Map()
 
     /**
-    * @method DefineSequence
-    * @description Define a startup sequence
-    * @param name Sequence name
-    * @param steps Array of startup steps
-    */
+     * @method DefineSequence
+     * @description Define a startup sequence
+     * @param name Sequence name
+     * @param steps Array of startup steps
+     */
     static DefineSequence(name, steps) {
         this.sequences[name] := steps
     }
 
     /**
-    * @method ExecuteSequence
-    * @description Execute a startup sequence
-    * @param name Sequence name
-    * @returns {Boolean} Success status
-    */
+     * @method ExecuteSequence
+     * @description Execute a startup sequence
+     * @param name Sequence name
+     * @returns {Boolean} Success status
+     */
     static ExecuteSequence(name) {
         if !this.sequences.Has(name) {
             MsgBox("Sequence not found: " name, "Error", "IconX")
@@ -368,8 +368,8 @@ class StartupAutomation {
             ; Position window if specified
             if step.HasOwnProp("Position") {
                 WinMove(step.Position.X, step.Position.Y,
-                step.Position.Width, step.Position.Height,
-                step.WaitFor)
+                    step.Position.Width, step.Position.Height,
+                    step.WaitFor)
             }
         }
 
@@ -378,30 +378,27 @@ class StartupAutomation {
     }
 
     /**
-    * @method CreateExampleSequences
-    * @description Create example startup sequences
-    */
+     * @method CreateExampleSequences
+     * @description Create example startup sequences
+     */
     static CreateExampleSequences() {
         ; Notepad startup
-        this.DefineSequence("Notepad", [
-        {
+        this.DefineSequence("Notepad", [{
             Description: "Launch Notepad",
             Launch: "notepad.exe",
             WaitFor: "ahk_class Notepad",
             Timeout: 5,
-            Position: {X: 100, Y: 100, Width: 800, Height: 600}
+            Position: { X: 100, Y: 100, Width: 800, Height: 600 }
         }
         ])
 
         ; Multi-app startup
-        this.DefineSequence("Office", [
-        {
+        this.DefineSequence("Office", [{
             Description: "Launch Calculator",
             Launch: "calc.exe",
             WaitFor: "Calculator",
             Timeout: 5
-        },
-        {
+        }, {
             Description: "Launch Notepad",
             Launch: "notepad.exe",
             WaitFor: "ahk_class Notepad",
@@ -428,7 +425,7 @@ StartupAutomation.CreateExampleSequences()
 
     name := InputBox("Enter sequence name:", "Execute Sequence").Value
     if name != ""
-    StartupAutomation.ExecuteSequence(name)
+        StartupAutomation.ExecuteSequence(name)
 }
 
 ; ========================================
@@ -436,26 +433,26 @@ StartupAutomation.CreateExampleSequences()
 ; ========================================
 
 /**
-* @class SmartLauncher
-* @description Launch applications and wait for their windows
-*/
+ * @class SmartLauncher
+ * @description Launch applications and wait for their windows
+ */
 class SmartLauncher {
     /**
-    * @method LaunchAndWait
-    * @description Launch app and wait for its window
-    * @param exePath Executable path
-    * @param winTitle Expected window title pattern
-    * @param args Command line arguments
-    * @param timeout Wait timeout
-    * @returns {Boolean} Success status
-    */
+     * @method LaunchAndWait
+     * @description Launch app and wait for its window
+     * @param exePath Executable path
+     * @param winTitle Expected window title pattern
+     * @param args Command line arguments
+     * @param timeout Wait timeout
+     * @returns {Boolean} Success status
+     */
     static LaunchAndWait(exePath, winTitle, args := "", timeout := 10) {
         try {
             ; Launch application
             if args != ""
-            Run(exePath " " args)
+                Run(exePath " " args)
             else
-            Run(exePath)
+                Run(exePath)
 
             ; Wait for window
             if WinWait(winTitle, , timeout) {
@@ -474,13 +471,13 @@ class SmartLauncher {
     }
 
     /**
-    * @method LaunchOrActivate
-    * @description Launch if not running, or activate if already running
-    * @param exePath Executable path
-    * @param winTitle Window title pattern
-    * @param timeout Wait timeout if launching
-    * @returns {Boolean} Success status
-    */
+     * @method LaunchOrActivate
+     * @description Launch if not running, or activate if already running
+     * @param exePath Executable path
+     * @param winTitle Window title pattern
+     * @param timeout Wait timeout if launching
+     * @returns {Boolean} Success status
+     */
     static LaunchOrActivate(exePath, winTitle, timeout := 10) {
         ; Check if already running
         if WinExist(winTitle) {
@@ -506,20 +503,20 @@ class SmartLauncher {
 ; ========================================
 
 /**
-* @class AppearanceMonitor
-* @description Monitor for window appearances
-*/
+ * @class AppearanceMonitor
+ * @description Monitor for window appearances
+ */
 class AppearanceMonitor {
     static monitors := Map()
     static monitoring := false
 
     /**
-    * @method WatchFor
-    * @description Watch for a window to appear
-    * @param WinTitle Window to watch for
-    * @param callback Function to call when appears
-    * @param continuous Keep watching after appearance
-    */
+     * @method WatchFor
+     * @description Watch for a window to appear
+     * @param WinTitle Window to watch for
+     * @param callback Function to call when appears
+     * @param continuous Keep watching after appearance
+     */
     static WatchFor(WinTitle, callback, continuous := false) {
         this.monitors[WinTitle] := {
             Title: WinTitle,
@@ -537,17 +534,17 @@ class AppearanceMonitor {
     }
 
     /**
-    * @method StartMonitoring
-    * @description Begin monitoring loop
-    */
+     * @method StartMonitoring
+     * @description Begin monitoring loop
+     */
     static StartMonitoring() {
         SetTimer(() => this.CheckAllMonitors(), 500)
     }
 
     /**
-    * @method CheckAllMonitors
-    * @description Check all monitored windows
-    */
+     * @method CheckAllMonitors
+     * @description Check all monitored windows
+     */
     static CheckAllMonitors() {
         for winTitle, monitor in this.monitors {
             if WinExist(winTitle) {
@@ -579,7 +576,7 @@ OnWindowAppeared(winTitle) {
 ^+a:: {
     winTitle := InputBox("Enter window title to watch for:", "Watch").Value
     if winTitle != ""
-    AppearanceMonitor.WatchFor(winTitle, OnWindowAppeared, false)
+        AppearanceMonitor.WatchFor(winTitle, OnWindowAppeared, false)
 }
 
 ; ========================================
@@ -587,18 +584,18 @@ OnWindowAppeared(winTitle) {
 ; ========================================
 
 /**
-* @class ConditionalWaiter
-* @description Wait for windows with conditions
-*/
+ * @class ConditionalWaiter
+ * @description Wait for windows with conditions
+ */
 class ConditionalWaiter {
     /**
-    * @method WaitWithCondition
-    * @description Wait for window matching additional conditions
-    * @param WinTitle Window title
-    * @param condition Function to test condition
-    * @param timeout Timeout in seconds
-    * @returns {Boolean} Success status
-    */
+     * @method WaitWithCondition
+     * @description Wait for window matching additional conditions
+     * @param WinTitle Window title
+     * @param condition Function to test condition
+     * @param timeout Timeout in seconds
+     * @returns {Boolean} Success status
+     */
     static WaitWithCondition(WinTitle, condition, timeout := 30) {
         startTime := A_TickCount
         endTime := startTime + (timeout * 1000)
@@ -611,7 +608,7 @@ class ConditionalWaiter {
             }
 
             if A_TickCount >= endTime
-            break
+                break
 
             Sleep(100)
         }
@@ -620,29 +617,29 @@ class ConditionalWaiter {
     }
 
     /**
-    * @method WaitForActiveState
-    * @description Wait for window to become active
-    * @param WinTitle Window title
-    * @param timeout Timeout
-    * @returns {Boolean} Success status
-    */
+     * @method WaitForActiveState
+     * @description Wait for window to become active
+     * @param WinTitle Window title
+     * @param timeout Timeout
+     * @returns {Boolean} Success status
+     */
     static WaitForActiveState(WinTitle, timeout := 10) {
         return this.WaitWithCondition(WinTitle,
-        (title) => WinActive(title),
-        timeout)
+            (title) => WinActive(title),
+            timeout)
     }
 
     /**
-    * @method WaitForVisibleState
-    * @description Wait for window to become visible
-    * @param WinTitle Window title
-    * @param timeout Timeout
-    * @returns {Boolean} Success status
-    */
+     * @method WaitForVisibleState
+     * @description Wait for window to become visible
+     * @param WinTitle Window title
+     * @param timeout Timeout
+     * @returns {Boolean} Success status
+     */
     static WaitForVisibleState(WinTitle, timeout := 10) {
         return this.WaitWithCondition(WinTitle,
-        (title) => WinGetStyle(title) & 0x10000000,
-        timeout)
+            (title) => WinGetStyle(title) & 0x10000000,
+            timeout)
     }
 }
 

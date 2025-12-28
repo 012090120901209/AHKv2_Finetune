@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* Loop Files - Iterate through files
-*
-* Retrieves files or folders one at a time.
-*/
+ * Loop Files - Iterate through files
+ * 
+ * Retrieves files or folders one at a time.
+ */
 
 ; Create test files
 testDir := A_ScriptDir "\testfiles"
 DirCreate(testDir)
 
 Loop 5
-FileAppend("test" A_Index, testDir "\file" A_Index ".txt")
+    FileAppend("test" A_Index, testDir "\file" A_Index ".txt")
 
 ; List all files
 output := "Files in folder:`n`n"
@@ -24,5 +24,5 @@ MsgBox(output)
 
 ; Cleanup
 Loop Files testDir "\*.*"
-FileDelete(A_LoopFilePath)
+    FileDelete(A_LoopFilePath)
 DirDelete(testDir)

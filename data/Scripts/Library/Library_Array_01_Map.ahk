@@ -16,7 +16,7 @@ DemoArrayMap() {
     ; Map: multiply each by 2
     doubled := []
     for num in numbers
-    doubled.Push(num * 2)
+        doubled.Push(num * 2)
 
     ; Display result
     result := "Original: " ArrayToString(numbers) "`n"
@@ -44,7 +44,7 @@ ArrayToString(arr) {
     for i, val in arr {
         str .= val
         if (i < arr.Length)
-        str .= ", "
+            str .= ", "
     }
     return str "]"
 }

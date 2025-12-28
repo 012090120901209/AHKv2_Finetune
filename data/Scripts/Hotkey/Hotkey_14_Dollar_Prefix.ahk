@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Dollar Prefix ($)
-* Prevents the hotkey from triggering itself when using Send
-*/
+ * Dollar Prefix ($)
+ * Prevents the hotkey from triggering itself when using Send
+ */
 
 ; Without $, this could create an infinite loop
 $F1:: {

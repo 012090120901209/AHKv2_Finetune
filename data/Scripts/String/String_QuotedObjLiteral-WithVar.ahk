@@ -2,5 +2,5 @@
 #SingleInstance Force ; Source: String_QuotedObjLiteral-WithVar.ah2
 
 var := "C"
-obj := {key%var%: "valueC"}
+obj := { key%var%: "valueC" }
 MsgBox(obj.keyC)

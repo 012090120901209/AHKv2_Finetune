@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* ProcessClose() - Close process
-*
-* Terminates a process by PID or name.
-*/
+ * ProcessClose() - Close process
+ * 
+ * Terminates a process by PID or name.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

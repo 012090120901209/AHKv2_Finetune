@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_CoordMode_01_MouseCoordinates.ahk
-*
-* DESCRIPTION:
-* Demonstrates how to use CoordMode to control mouse coordinate systems
-* for clicking, moving, and positioning relative to windows or screen.
-*
-* FEATURES:
-* - Screen vs Window vs Client coordinate modes
-* - Mouse clicking with different coordinate modes
-* - Coordinate conversion between modes
-* - Practical examples of coordinate-dependent automation
-* - Mouse position tracking across modes
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - CoordMode function syntax
-* - MouseClick with coordinate modes
-* - MouseMove coordinate handling
-* - MouseGetPos coordinate retrieval
-* - Window-relative positioning
-*
-* LEARNING POINTS:
-* 1. CoordMode affects how coordinates are interpreted
-* 2. Screen mode uses absolute screen coordinates
-* 3. Window mode is relative to active window
-* 4. Client mode excludes title bar and borders
-* 5. Default mode can vary by function
-* 6. Always set CoordMode explicitly for reliability
-* 7. Coordinate modes persist until changed
-*/
+ * BuiltIn_CoordMode_01_MouseCoordinates.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates how to use CoordMode to control mouse coordinate systems
+ * for clicking, moving, and positioning relative to windows or screen.
+ * 
+ * FEATURES:
+ * - Screen vs Window vs Client coordinate modes
+ * - Mouse clicking with different coordinate modes
+ * - Coordinate conversion between modes
+ * - Practical examples of coordinate-dependent automation
+ * - Mouse position tracking across modes
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - CoordMode function syntax
+ * - MouseClick with coordinate modes
+ * - MouseMove coordinate handling
+ * - MouseGetPos coordinate retrieval
+ * - Window-relative positioning
+ * 
+ * LEARNING POINTS:
+ * 1. CoordMode affects how coordinates are interpreted
+ * 2. Screen mode uses absolute screen coordinates
+ * 3. Window mode is relative to active window
+ * 4. Client mode excludes title bar and borders
+ * 5. Default mode can vary by function
+ * 6. Always set CoordMode explicitly for reliability
+ * 7. Coordinate modes persist until changed
+ */
 
 ;===============================================================================
 ; EXAMPLE 1: Basic CoordMode - Screen vs Window vs Client
@@ -54,29 +54,29 @@ Example1_BasicCoordModes() {
     CoordMode("Mouse", "Screen")
     MouseGetPos(&xScreen, &yScreen)
     MsgBox("Screen Mode Coordinates:`n"
-    . "X: " xScreen " Y: " yScreen
-    . "`n`nThese are absolute screen positions")
+        . "X: " xScreen " Y: " yScreen
+        . "`n`nThese are absolute screen positions")
 
     ; WINDOW MODE - Relative to active window (includes title bar)
     CoordMode("Mouse", "Window")
     MouseGetPos(&xWindow, &yWindow)
     MsgBox("Window Mode Coordinates:`n"
-    . "X: " xWindow " Y: " yWindow
-    . "`n`nRelative to window top-left (includes title bar)")
+        . "X: " xWindow " Y: " yWindow
+        . "`n`nRelative to window top-left (includes title bar)")
 
     ; CLIENT MODE - Relative to client area (excludes title bar)
     CoordMode("Mouse", "Client")
     MouseGetPos(&xClient, &yClient)
     MsgBox("Client Mode Coordinates:`n"
-    . "X: " xClient " Y: " yClient
-    . "`n`nRelative to client area (excludes title bar)")
+        . "X: " xClient " Y: " yClient
+        . "`n`nRelative to client area (excludes title bar)")
 
     ; Comparison
     MsgBox("Coordinate Comparison:`n"
-    . "Screen: (" xScreen ", " yScreen ")`n"
-    . "Window: (" xWindow ", " yWindow ")`n"
-    . "Client: (" xClient ", " yClient ")`n`n"
-    . "Notice how the values differ!")
+        . "Screen: (" xScreen ", " yScreen ")`n"
+        . "Window: (" xWindow ", " yWindow ")`n"
+        . "Client: (" xClient ", " yClient ")`n`n"
+        . "Notice how the values differ!")
 
     ; Restore original mode
     CoordMode("Mouse", originalMode)
@@ -117,7 +117,7 @@ Example2_ClickingWithCoordModes() {
     titleBarHeight := 30  ; Approximate title bar height
 
     MsgBox("Clicking Button 1 using WINDOW coordinates`n"
-    . "Y coordinate includes title bar height")
+        . "Y coordinate includes title bar height")
     MouseClick("Left", 50, 40 + titleBarHeight)
     Sleep 1000
 
@@ -128,7 +128,7 @@ Example2_ClickingWithCoordModes() {
     screenY := winY + 55   ; Button 3 Y position + window offset
 
     MsgBox("Clicking Button 3 using SCREEN coordinates`n"
-    . "X: " screenX " Y: " screenY)
+        . "X: " screenX " Y: " screenY)
     MouseClick("Left", screenX, screenY)
     Sleep 1000
 
@@ -176,7 +176,7 @@ Example3_CoordinateConverter() {
 
     UpdateCoordinates() {
         if !tracking
-        return
+            return
 
         ; Get screen coordinates
         CoordMode("Mouse", "Screen")
@@ -202,15 +202,15 @@ Example3_CoordinateConverter() {
 
     ; Hotkey to capture current position
     HotKey("F2", (*) => MsgBox("Current Position:`n"
-    . "Screen: " screenText.Value "`n"
-    . "Window: " windowText.Value "`n"
-    . "Client: " clientText.Value, "Captured"))
+        . "Screen: " screenText.Value "`n"
+        . "Window: " windowText.Value "`n"
+        . "Client: " clientText.Value, "Captured"))
 
     converterGui.OnEvent("Close", (*) => (StopTracking(), converterGui.Destroy()))
     converterGui.Show("w300 h220")
 
     MsgBox("Click 'Start Tracking' to see real-time coordinates`n"
-    . "Press F2 to capture current position", "Instructions")
+        . "Press F2 to capture current position", "Instructions")
 }
 
 ;===============================================================================
@@ -256,7 +256,7 @@ Example4_MultiMonitorCoords() {
         ToolTip()
     } else {
         MsgBox("Single monitor detected. Screen coordinates cover entire display.",
-        "Single Monitor")
+            "Single Monitor")
     }
 }
 
@@ -275,7 +275,7 @@ Example5_DrawingWithCoordMode() {
     ; Add mode selector
     drawGui.Add("Text", "x10 y320", "Coordinate Mode:")
     modeSelect := drawGui.Add("DropDownList", "x110 y315 w100 Choose1",
-    ["Client", "Window", "Screen"])
+        ["Client", "Window", "Screen"])
 
     btnClear := drawGui.Add("Button", "x220 y315 w80", "Clear")
     btnClose := drawGui.Add("Button", "x310 y315 w100", "Close")
@@ -293,14 +293,14 @@ Example5_DrawingWithCoordMode() {
     btnClose.OnEvent("Click", (*) => drawGui.Destroy())
 
     btnClear.OnEvent("Click", (*) => (
-    points := [],
-    canvas.Value := "",
-    MsgBox("Canvas cleared!", "Drawing")
+        points := [],
+        canvas.Value := "",
+        MsgBox("Canvas cleared!", "Drawing")
     ))
 
     modeSelect.OnEvent("Change", (*) => (
-    CoordMode("Mouse", modeSelect.Text),
-    MsgBox("Coordinate mode changed to: " modeSelect.Text, "Mode Changed")
+        CoordMode("Mouse", modeSelect.Text),
+        MsgBox("Coordinate mode changed to: " modeSelect.Text, "Mode Changed")
     ))
 
     ; Set initial coordinate mode
@@ -308,12 +308,12 @@ Example5_DrawingWithCoordMode() {
 
     ; Note: Full drawing implementation would require Windows GDI calls
     MsgBox("This demonstrates how CoordMode affects drawing applications.`n`n"
-    . "Key Points:`n"
-    . "- CLIENT mode: Best for drawing within a control`n"
-    . "- WINDOW mode: Includes title bar in coordinates`n"
-    . "- SCREEN mode: For cross-window drawing`n`n"
-    . "The coordinate mode affects how mouse positions are interpreted.",
-    "Drawing Demo")
+        . "Key Points:`n"
+        . "- CLIENT mode: Best for drawing within a control`n"
+        . "- WINDOW mode: Includes title bar in coordinates`n"
+        . "- SCREEN mode: For cross-window drawing`n`n"
+        . "The coordinate mode affects how mouse positions are interpreted.",
+        "Drawing Demo")
 }
 
 ;===============================================================================
@@ -325,7 +325,7 @@ Example6_WindowInspector() {
     inspectorGui := Gui(, "Window Element Inspector")
 
     inspectorGui.Add("Text", "x10 y10 w300",
-    "Hover over window elements to inspect coordinates")
+        "Hover over window elements to inspect coordinates")
 
     inspectorGui.Add("Text", "x10 y40", "Window Title:")
     winTitle := inspectorGui.Add("Edit", "x100 y35 w280 ReadOnly", "")
@@ -363,7 +363,7 @@ Example6_WindowInspector() {
 
     InspectElement() {
         if !inspecting
-        return
+            return
 
         ; Get window under mouse
         CoordMode("Mouse", "Screen")
@@ -466,8 +466,8 @@ Example7_FormFillingAutomation() {
         MouseMove(origX, origY)
 
         MsgBox("Form auto-filled using CLIENT coordinate mode!`n`n"
-        . "This ensures coordinates are relative to the form,`n"
-        . "not the screen or window frame.", "Auto-Fill Complete")
+            . "This ensures coordinates are relative to the form,`n"
+            . "not the screen or window frame.", "Auto-Fill Complete")
     }
 
     autoFill.OnEvent("Click", AutoFillForm)
@@ -475,8 +475,8 @@ Example7_FormFillingAutomation() {
     formGui.Show("w320 h180")
 
     MsgBox("Click 'Auto-Fill' to see automated form filling.`n`n"
-    . "Using CLIENT coordinates ensures the automation`n"
-    . "works regardless of window position.", "Form Demo")
+        . "Using CLIENT coordinates ensures the automation`n"
+        . "works regardless of window position.", "Form Demo")
 }
 
 ;===============================================================================
@@ -491,3 +491,4 @@ Example7_FormFillingAutomation() {
 ; Example5_DrawingWithCoordMode()
 ; Example6_WindowInspector()
 ; Example7_FormFillingAutomation()
+

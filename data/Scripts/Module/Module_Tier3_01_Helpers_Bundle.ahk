@@ -1,19 +1,19 @@
 #Requires AutoHotkey v2.1-alpha.17
 
 /**
-* Module Tier 3 Example 01: Helpers Bundle (Re-exports)
-*
-* This example demonstrates:
-* - Re-exporting modules
-* - Creating aggregate/bundle modules
-* - Providing convenient API
-* - Module composition
-*
-* This is a "barrel" or "bundle" module that aggregates
-* multiple related modules into one convenient import.
-*
-* @module Helpers
-*/
+ * Module Tier 3 Example 01: Helpers Bundle (Re-exports)
+ * 
+ * This example demonstrates:
+ * - Re-exporting modules
+ * - Creating aggregate/bundle modules
+ * - Providing convenient API
+ * - Module composition
+ * 
+ * This is a "barrel" or "bundle" module that aggregates
+ * multiple related modules into one convenient import.
+ * 
+ * @module Helpers
+ */
 
 #Module Helpers
 
@@ -26,12 +26,12 @@ Import MathHelpers
 ArrayHelpers.EnsureArrayHelpers()
 
 /**
-* Get ready-to-use helpers bundle
-* Returns an object with convenient access to all helpers
-*
-* @returns {Object} - Bundle of helper functions
-* @export
-*/
+ * Get ready-to-use helpers bundle
+ * Returns an object with convenient access to all helpers
+ * 
+ * @returns {Object} - Bundle of helper functions
+ * @export
+ */
 Export HelpersReady() {
     return {
         ; String helpers
@@ -46,7 +46,6 @@ Export HelpersReady() {
             Reverse: StringHelpers.Reverse,
             WordCount: StringHelpers.WordCount
         },
-
         ; Array helpers
         Array: {
             Join: ArrayHelpers.Join,
@@ -60,7 +59,6 @@ Export HelpersReady() {
             Min: ArrayHelpers.Min,
             Max: ArrayHelpers.Max
         },
-
         ; Math helpers
         Math: {
             Add: MathHelpers.Add,
@@ -75,22 +73,20 @@ Export HelpersReady() {
 }
 
 /**
-* Get quick access functions (most commonly used)
-* @returns {Object} - Quick access bundle
-* @export
-*/
+ * Get quick access functions (most commonly used)
+ * @returns {Object} - Quick access bundle
+ * @export
+ */
 Export QuickHelpers() {
     return {
         ; Most common string operations
         Title: StringHelpers.ToTitleCase,
         Snake: StringHelpers.ToSnakeCase,
         Clean: StringHelpers.CollapseWhitespace,
-
         ; Most common array operations
         Join: ArrayHelpers.Join,
         Chunk: ArrayHelpers.Chunk,
         Unique: ArrayHelpers.Unique,
-
         ; Most common math operations
         Add: MathHelpers.Add,
         Multiply: MathHelpers.Multiply,
@@ -99,18 +95,19 @@ Export QuickHelpers() {
 }
 
 /**
-* Re-export entire sub-modules for direct access
-* This allows: Helpers.StringHelpers.ToTitleCase()
-*
-* @export
-*/
-Export { StringHelpers, ArrayHelpers, MathHelpers }
+ * Re-export entire sub-modules for direct access
+ * This allows: Helpers.StringHelpers.ToTitleCase()
+ * 
+ * @export
+ */
+Export {
+    StringHelpers, ArrayHelpers, MathHelpers}
 
 /**
-* Get module info
-* @returns {Object} - Module information
-* @export
-*/
+ * Get module info
+ * @returns {Object} - Module information
+ * @export
+ */
 Export GetModuleInfo() {
     return {
         name: "Helpers",

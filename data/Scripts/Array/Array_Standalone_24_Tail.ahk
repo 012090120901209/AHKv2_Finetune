@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Tail() - Get all but first element (Standalone Implementation)
-*
-* Gets all but the first element of array.
-*/
+ * Tail() - Get all but first element (Standalone Implementation)
+ * 
+ * Gets all but the first element of array.
+ */
 
 Tail(array) {
     result := []
@@ -26,4 +26,4 @@ result2 := Tail(["a", "b", "c", "d"])
 ; => ["b", "c", "d"]
 
 MsgBox("Tail of [1,2,3]: " JSON.stringify(result1) "`n"
-. "Tail of ['a','b','c','d']: " JSON.stringify(result2))
+    . "Tail of ['a','b','c','d']: " JSON.stringify(result2))

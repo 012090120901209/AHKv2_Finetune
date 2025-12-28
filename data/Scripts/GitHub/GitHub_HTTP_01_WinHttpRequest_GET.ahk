@@ -2,54 +2,54 @@
 #Include JSON.ahk
 
 /**
-* GitHub_HTTP_01_WinHttpRequest_GET.ahk
-*
-* DESCRIPTION:
-* Demonstrates HTTP GET requests using WinHttpRequest COM object
-*
-* FEATURES:
-* - HTTP GET request to web APIs
-* - Response status and headers
-* - JSON response handling
-* - Error handling for network requests
-*
-* SOURCE:
-* Based on: thqby/ahk2_lib - WinHttpRequest.ahk
-* URL: https://github.com/thqby/ahk2_lib
-* Author: thqby
-* License: MIT
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for creating COM objects
-* - Method chaining with COM objects
-* - Try/catch error handling
-* - Map() for response data
-* - String interpolation
-*
-* USAGE:
-* response := HttpGet("https://api.github.com")
-* MsgBox(response.text)
-*
-* LEARNING POINTS:
-* 1. WinHttp.WinHttpRequest.5.1 is the COM ProgID
-* 2. Open() initializes the request (method, URL, async flag)
-* 3. Send() transmits the request
-* 4. ResponseText contains the response body as string
-* 5. Status is HTTP status code (200 = OK, 404 = Not Found, etc.)
-*/
+ * GitHub_HTTP_01_WinHttpRequest_GET.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates HTTP GET requests using WinHttpRequest COM object
+ * 
+ * FEATURES:
+ * - HTTP GET request to web APIs
+ * - Response status and headers
+ * - JSON response handling
+ * - Error handling for network requests
+ * 
+ * SOURCE:
+ * Based on: thqby/ahk2_lib - WinHttpRequest.ahk
+ * URL: https://github.com/thqby/ahk2_lib
+ * Author: thqby
+ * License: MIT
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for creating COM objects
+ * - Method chaining with COM objects
+ * - Try/catch error handling
+ * - Map() for response data
+ * - String interpolation
+ * 
+ * USAGE:
+ * response := HttpGet("https://api.github.com")
+ * MsgBox(response.text)
+ * 
+ * LEARNING POINTS:
+ * 1. WinHttp.WinHttpRequest.5.1 is the COM ProgID
+ * 2. Open() initializes the request (method, URL, async flag)
+ * 3. Send() transmits the request
+ * 4. ResponseText contains the response body as string
+ * 5. Status is HTTP status code (200 = OK, 404 = Not Found, etc.)
+ */
 
 /**
-* Perform HTTP GET request
-*
-* @param {String} url - URL to request
-* @param {Map} headers - Optional request headers
-* @returns {Map} - Response object with status, text, headers
-* @throws {Error} - Network or HTTP errors
-*
-* @example
-* response := HttpGet("https://api.github.com")
-* MsgBox("Status: " response.status "`n" response.text)
-*/
+ * Perform HTTP GET request
+ * 
+ * @param {String} url - URL to request
+ * @param {Map} headers - Optional request headers
+ * @returns {Map} - Response object with status, text, headers
+ * @throws {Error} - Network or HTTP errors
+ * 
+ * @example
+ * response := HttpGet("https://api.github.com")
+ * MsgBox("Status: " response.status "`n" response.text)
+ */
 HttpGet(url, headers := unset) {
     try {
         ; Create WinHttpRequest COM object
@@ -61,22 +61,22 @@ HttpGet(url, headers := unset) {
         ; Set custom headers if provided
         if IsSet(headers) {
             for name, value in headers
-            http.SetRequestHeader(name, value)
+                http.SetRequestHeader(name, value)
         }
 
         ; Set default User-Agent if not provided
         if !IsSet(headers) || !headers.Has("User-Agent")
-        http.SetRequestHeader("User-Agent", "AutoHotkey-v2-Script")
+            http.SetRequestHeader("User-Agent", "AutoHotkey-v2-Script")
 
         ; Send request
         http.Send()
 
         ; Return response data
         return Map(
-        "status", http.Status,
-        "statusText", http.StatusText,
-        "text", http.ResponseText,
-        "headers", http.GetAllResponseHeaders()
+            "status", http.Status,
+            "statusText", http.StatusText,
+            "text", http.ResponseText,
+            "headers", http.GetAllResponseHeaders()
         )
 
     } catch as err {
@@ -92,10 +92,10 @@ try {
     response := HttpGet("https://api.github.com")
 
     MsgBox("GitHub API Response:`n`n"
-    . "Status: " response.status " " response.statusText "`n"
-    . "Response Length: " StrLen(response.text) " characters`n`n"
-    . "First 200 chars:`n" SubStr(response.text, 1, 200),
-    "Simple GET", "Icon!")
+        . "Status: " response.status " " response.statusText "`n"
+        . "Response Length: " StrLen(response.text) " characters`n`n"
+        . "First 200 chars:`n" SubStr(response.text, 1, 200),
+        "Simple GET", "Icon!")
 
 } catch as err {
     MsgBox("Error: " err.Message, "Error", "Icon!")
@@ -107,16 +107,16 @@ try {
 
 try {
     headers := Map(
-    "User-Agent", "My-AHK-Script/1.0",
-    "Accept", "application/json"
+        "User-Agent", "My-AHK-Script/1.0",
+        "Accept", "application/json"
     )
 
     response := HttpGet("https://api.github.com/users/github", headers)
 
     MsgBox("GitHub User Info:`n`n"
-    . "Status: " response.status "`n`n"
-    . "Response:`n" response.text,
-    "Custom Headers", "Icon!")
+        . "Status: " response.status "`n`n"
+        . "Response:`n" response.text,
+        "Custom Headers", "Icon!")
 
 } catch as err {
     MsgBox("Error: " err.Message, "Error", "Icon!")
@@ -127,11 +127,11 @@ try {
 ; ============================================================
 
 /**
-* Check if website is accessible
-*
-* @param {String} url - URL to check
-* @returns {Boolean} - True if accessible (status 200-299)
-*/
+ * Check if website is accessible
+ * 
+ * @param {String} url - URL to check
+ * @returns {Boolean} - True if accessible (status 200-299)
+ */
 CheckWebsite(url) {
     try {
         response := HttpGet(url)
@@ -143,9 +143,9 @@ CheckWebsite(url) {
 
 ; Test multiple websites
 websites := [
-"https://www.google.com",
-"https://www.github.com",
-"https://www.autohotkey.com"
+    "https://www.google.com",
+    "https://www.github.com",
+    "https://www.autohotkey.com"
 ]
 
 output := "Website Status Check:`n`n"
@@ -161,12 +161,12 @@ MsgBox(output, "Website Check", "Icon!")
 ; ============================================================
 
 /**
-* Download text content from URL
-*
-* @param {String} url - URL to download
-* @param {String} savePath - File path to save
-* @returns {Boolean} - True if successful
-*/
+ * Download text content from URL
+ * 
+ * @param {String} url - URL to download
+ * @param {String} savePath - File path to save
+ * @returns {Boolean} - True if successful
+ */
 DownloadText(url, savePath) {
     try {
         response := HttpGet(url)
@@ -221,17 +221,17 @@ try {
 ; ============================================================
 
 /**
-* Safe HTTP GET with error handling
-*
-* @param {String} url - URL to request
-* @returns {Map} - Response or error information
-*/
+ * Safe HTTP GET with error handling
+ * 
+ * @param {String} url - URL to request
+ * @returns {Map} - Response or error information
+ */
 SafeHttpGet(url) {
     result := Map(
-    "success", false,
-    "status", 0,
-    "data", "",
-    "error", ""
+        "success", false,
+        "status", 0,
+        "data", "",
+        "error", ""
     )
 
     try {
@@ -248,17 +248,17 @@ SafeHttpGet(url) {
 
 ; Test with valid and invalid URLs
 testUrls := [
-"https://api.github.com",
-"https://invalid-domain-xyz123.com"
+    "https://api.github.com",
+    "https://invalid-domain-xyz123.com"
 ]
 
 for url in testUrls {
     result := SafeHttpGet(url)
 
     if (result["success"])
-    MsgBox("✓ Success: " url "`nStatus: " result["status"], "Safe GET", "Icon!")
+        MsgBox("✓ Success: " url "`nStatus: " result["status"], "Safe GET", "Icon!")
     else
-    MsgBox("✗ Failed: " url "`nError: " result["error"], "Safe GET", "Icon!")
+        MsgBox("✗ Failed: " url "`nError: " result["error"], "Safe GET", "Icon!")
 }
 
 ; ============================================================

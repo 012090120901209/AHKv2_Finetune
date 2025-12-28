@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Head() - Get first element (Standalone Implementation)
-*
-* Gets the first element of array.
-*/
+ * Head() - Get first element (Standalone Implementation)
+ * 
+ * Gets the first element of array.
+ */
 
 Head(array) {
     if (array.Length > 0) {
@@ -25,5 +25,5 @@ result3 := Head([])
 ; => ""
 
 MsgBox("Head of [1, 2, 3]: " result1 "`n"
-. "Head of names: " result2 "`n"
-. "Head of []: '" result3 "'")
+    . "Head of names: " result2 "`n"
+    . "Head of []: '" result3 "'")

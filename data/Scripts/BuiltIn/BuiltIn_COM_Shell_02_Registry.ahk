@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Shell_02_Registry.ahk
-*
-* DESCRIPTION:
-* Registry access using WScript.Shell COM object.
-*
-* FEATURES:
-* - Read registry values
-* - Write registry values
-* - Delete registry keys
-* - Registry data types
-* - Environment variables
-*/
+ * BuiltIn_COM_Shell_02_Registry.ahk
+ * 
+ * DESCRIPTION:
+ * Registry access using WScript.Shell COM object.
+ * 
+ * FEATURES:
+ * - Read registry values
+ * - Write registry values
+ * - Delete registry keys
+ * - Registry data types
+ * - Environment variables
+ */
 
 Example1_ReadRegistry() {
     MsgBox("Example 1: Read Registry")
@@ -120,6 +120,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

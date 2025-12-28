@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 INI Read Examples - Part 2
-* ============================================================================
-*
-* Advanced INI reading scenarios including validation, templates,
-* and configuration merging.
-*
-* @description Advanced INI file reading techniques
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 INI Read Examples - Part 2
+ * ============================================================================
+ * 
+ * Advanced INI reading scenarios including validation, templates,
+ * and configuration merging.
+ * 
+ * @description Advanced INI file reading techniques
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: INI Configuration Validator
 ; ============================================================================
 
 /**
-* @class IniValidator
-* @description Validates INI configuration against rules
-*/
+ * @class IniValidator
+ * @description Validates INI configuration against rules
+ */
 class IniValidator {
     iniFile := ""
     rules := Map()
@@ -33,12 +33,12 @@ class IniValidator {
 
     AddRule(section, key, type, required := true, defaultValue := "") {
         if (!this.rules.Has(section))
-        this.rules[section] := Map()
+            this.rules[section] := Map()
 
         this.rules[section][key] := Map(
-        "type", type,
-        "required", required,
-        "default", defaultValue
+            "type", type,
+            "required", required,
+            "default", defaultValue
         )
     }
 
@@ -61,15 +61,15 @@ class IniValidator {
                 ; Validate type
                 switch rule["type"] {
                     case "integer":
-                    if (!IsInteger(value)) {
-                        this.errors.Push("Invalid integer: [" . section . "] " . key)
-                        valid := false
-                    }
+                        if (!IsInteger(value)) {
+                            this.errors.Push("Invalid integer: [" . section . "] " . key)
+                            valid := false
+                        }
                     case "boolean":
-                    if (value != "true" && value != "false" && value != "1" && value != "0") {
-                        this.errors.Push("Invalid boolean: [" . section . "] " . key)
-                        valid := false
-                    }
+                        if (value != "true" && value != "false" && value != "1" && value != "0") {
+                            this.errors.Push("Invalid boolean: [" . section . "] " . key)
+                            valid := false
+                        }
                 }
             }
         }
@@ -84,7 +84,7 @@ class IniValidator {
 
 Example1_ValidationDemo() {
     MsgBox "=== Example 1: Configuration Validation ===`n`n" .
-    "Validating INI file structure..."
+        "Validating INI file structure..."
 
     iniFile := A_ScriptDir . "\validate_config.ini"
 
@@ -118,7 +118,7 @@ Example1_ValidationDemo() {
 
 Example2_ConfigInheritance() {
     MsgBox "=== Example 2: Configuration Inheritance ===`n`n" .
-    "Using base and override configurations..."
+        "Using base and override configurations..."
 
     baseIni := A_ScriptDir . "\base_config.ini"
     overrideIni := A_ScriptDir . "\override_config.ini"
@@ -157,7 +157,7 @@ Example2_ConfigInheritance() {
 
 Example3_EnvironmentConfig() {
     MsgBox "=== Example 3: Environment-Specific Config ===`n`n" .
-    "Reading environment-specific settings..."
+        "Reading environment-specific settings..."
 
     iniFile := A_ScriptDir . "\env_config.ini"
 
@@ -198,7 +198,7 @@ Example3_EnvironmentConfig() {
 
 Example4_ConfigTemplates() {
     MsgBox "=== Example 4: Configuration Templates ===`n`n" .
-    "Using configuration templates..."
+        "Using configuration templates..."
 
     templateIni := A_ScriptDir . "\template_config.ini"
 
@@ -214,10 +214,10 @@ Example4_ConfigTemplates() {
 
     ; Read and substitute
     substitutions := Map(
-    "${APP_NAME}", "MyApplication",
-    "${APP_VERSION}", "1.0.0",
-    "${DB_HOST}", "localhost",
-    "${DB_PORT}", "5432"
+        "${APP_NAME}", "MyApplication",
+        "${APP_VERSION}", "1.0.0",
+        "${DB_HOST}", "localhost",
+        "${DB_PORT}", "5432"
     )
 
     config := Map()
@@ -229,7 +229,7 @@ Example4_ConfigTemplates() {
 
         for key in keyList {
             if (key = "")
-            continue
+                continue
 
             value := IniRead(templateIni, section, key)
 
@@ -258,7 +258,7 @@ Example4_ConfigTemplates() {
 
 Example5_ConfigComparison() {
     MsgBox "=== Example 5: Configuration Comparison ===`n`n" .
-    "Comparing two configuration files..."
+        "Comparing two configuration files..."
 
     config1 := A_ScriptDir . "\config1.ini"
     config2 := A_ScriptDir . "\config2.ini"
@@ -285,7 +285,7 @@ Example5_ConfigComparison() {
 
     for key in keyList1 {
         if (key = "")
-        continue
+            continue
 
         val1 := IniRead(config1, "Settings", key)
         val2 := IniRead(config2, "Settings", key, "***MISSING***")
@@ -303,7 +303,7 @@ Example5_ConfigComparison() {
 
     for key in keyList2 {
         if (key = "")
-        continue
+            continue
 
         val1 := IniRead(config1, "Settings", key, "***MISSING***")
         if (val1 = "***MISSING***") {
@@ -331,7 +331,7 @@ Example5_ConfigComparison() {
 
 Example6_ConfigProfiles() {
     MsgBox "=== Example 6: Configuration Profiles ===`n`n" .
-    "Managing multiple configuration profiles..."
+        "Managing multiple configuration profiles..."
 
     iniFile := A_ScriptDir . "\profiles_config.ini"
 
@@ -377,7 +377,7 @@ Example6_ConfigProfiles() {
 
 Example7_ConfigMonitoring() {
     MsgBox "=== Example 7: Configuration Monitoring ===`n`n" .
-    "Monitoring configuration changes..."
+        "Monitoring configuration changes..."
 
     iniFile := A_ScriptDir . "\monitor_config.ini"
 
@@ -396,7 +396,7 @@ Example7_ConfigMonitoring() {
 
     for key in keyList {
         if (key != "")
-        snapshot[key] := IniRead(iniFile, "Monitor", key)
+            snapshot[key] := IniRead(iniFile, "Monitor", key)
     }
 
     ; Simulate modification
@@ -472,8 +472,8 @@ ShowMenu() {
         case "7": Example7_ConfigMonitoring()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     SetTimer(() => ShowMenu(), -1000)

@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Download_06.ahk - Download Queue Management
-*
-* This file demonstrates advanced download queue management in AutoHotkey v2,
-* showing how to organize, prioritize, and control download queues effectively.
-*
-* Features Demonstrated:
-* - Queue creation and management
-* - Priority queue implementation
-* - Queue manipulation (add, remove, reorder)
-* - Concurrent download limiting
-* - Queue persistence
-* - Dynamic queue updates
-* - Queue monitoring and control
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024-11-16
-*/
+ * BuiltIn_Download_06.ahk - Download Queue Management
+ * 
+ * This file demonstrates advanced download queue management in AutoHotkey v2,
+ * showing how to organize, prioritize, and control download queues effectively.
+ * 
+ * Features Demonstrated:
+ * - Queue creation and management
+ * - Priority queue implementation
+ * - Queue manipulation (add, remove, reorder)
+ * - Concurrent download limiting
+ * - Queue persistence
+ * - Dynamic queue updates
+ * - Queue monitoring and control
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024-11-16
+ */
 
 ; ============================================================================
 ; Global Queue Manager Class
 ; ============================================================================
 
 /**
-* Download queue manager class
-*
-* Manages download operations with queuing capabilities
-*/
+ * Download queue manager class
+ * 
+ * Manages download operations with queuing capabilities
+ */
 class DownloadQueueManager {
     queue := []
     activeDownloads := 0
     maxConcurrent := 2
-    stats := {total: 0, completed: 0, failed: 0, active: 0}
+    stats := { total: 0, completed: 0, failed: 0, active: 0 }
 
     /**
-    * Adds item to queue
-    */
+     * Adds item to queue
+     */
     Add(url, dest, priority := 5) {
         this.queue.Push({
             url: url,
@@ -51,8 +51,8 @@ class DownloadQueueManager {
     }
 
     /**
-    * Removes item from queue
-    */
+     * Removes item from queue
+     */
     Remove(index) {
         if (index > 0 && index <= this.queue.Length) {
             this.queue.RemoveAt(index)
@@ -63,19 +63,19 @@ class DownloadQueueManager {
     }
 
     /**
-    * Gets next item to download
-    */
+     * Gets next item to download
+     */
     GetNext() {
         for index, item in this.queue {
             if (item.status = "queued")
-            return {index: index, item: item}
+                return { index: index, item: item }
         }
         return false
     }
 
     /**
-    * Sorts queue by priority
-    */
+     * Sorts queue by priority
+     */
     SortByPriority() {
         ; Simple bubble sort by priority (lower number = higher priority)
         n := this.queue.Length
@@ -98,14 +98,14 @@ class DownloadQueueManager {
 ; ============================================================================
 
 /**
-* Creates and manages a basic download queue
-*
-* Demonstrates fundamental queue operations.
-* Shows sequential queue processing.
-*
-* @example
-* BasicDownloadQueue()
-*/
+ * Creates and manages a basic download queue
+ * 
+ * Demonstrates fundamental queue operations.
+ * Shows sequential queue processing.
+ * 
+ * @example
+ * BasicDownloadQueue()
+ */
 BasicDownloadQueue() {
     queueManager := DownloadQueueManager()
 
@@ -141,7 +141,7 @@ BasicDownloadQueue() {
 
         for index, item in queueManager.queue {
             if (item.status != "queued")
-            continue
+                continue
 
             item.status := "downloading"
             RefreshQueueList()
@@ -159,8 +159,8 @@ BasicDownloadQueue() {
         }
 
         MsgBox("Queue processing complete!`n`n"
-        . "Completed: " queueManager.stats.completed "`n"
-        . "Failed: " queueManager.stats.failed, "Complete", "Icon!")
+            . "Completed: " queueManager.stats.completed "`n"
+            . "Failed: " queueManager.stats.failed, "Complete", "Icon!")
 
         queueGui["Button1"].Enabled := true
     }
@@ -173,7 +173,7 @@ BasicDownloadQueue() {
 
     ClearQueue(*) {
         queueManager.queue := []
-        queueManager.stats := {total: 0, completed: 0, failed: 0, active: 0}
+        queueManager.stats := { total: 0, completed: 0, failed: 0, active: 0 }
         RefreshQueueList()
         MsgBox("Queue cleared!", "Cleared", "Icon!")
     }
@@ -184,14 +184,14 @@ BasicDownloadQueue() {
 ; ============================================================================
 
 /**
-* Interactive queue with add, remove, and reorder capabilities
-*
-* Allows user to manipulate queue in real-time.
-* Demonstrates interactive queue management.
-*
-* @example
-* InteractiveQueueManager()
-*/
+ * Interactive queue with add, remove, and reorder capabilities
+ * 
+ * Allows user to manipulate queue in real-time.
+ * Demonstrates interactive queue management.
+ * 
+ * @example
+ * InteractiveQueueManager()
+ */
 InteractiveQueueManager() {
     queueManager := DownloadQueueManager()
 
@@ -231,8 +231,8 @@ InteractiveQueueManager() {
 
     UpdateStats() {
         interactiveGui["Stats"].Text := "Queue: " queueManager.queue.Length " items | "
-        . "Completed: " queueManager.stats.completed " | "
-        . "Failed: " queueManager.stats.failed
+            . "Completed: " queueManager.stats.completed " | "
+            . "Failed: " queueManager.stats.failed
     }
 
     AddToQueue(*) {
@@ -247,7 +247,7 @@ InteractiveQueueManager() {
         ; Generate destination filename
         SplitPath(url, &fileName)
         if (fileName = "")
-        fileName := "download_" A_TickCount ".dat"
+            fileName := "download_" A_TickCount ".dat"
 
         dest := A_Desktop "\QueueDownloads\" fileName
 
@@ -270,12 +270,12 @@ InteractiveQueueManager() {
         ; Create destination directory
         destDir := A_Desktop "\QueueDownloads"
         if !FileExist(destDir)
-        DirCreate(destDir)
+            DirCreate(destDir)
 
         ; Process queue
         for index, item in queueManager.queue {
             if (item.status != "queued")
-            continue
+                continue
 
             item.status := "downloading"
             RefreshDisplay()
@@ -332,7 +332,7 @@ InteractiveQueueManager() {
         result := MsgBox("Clear all queue items?", "Confirm", "YesNo Icon?")
         if (result = "Yes") {
             queueManager.queue := []
-            queueManager.stats := {total: 0, completed: 0, failed: 0, active: 0}
+            queueManager.stats := { total: 0, completed: 0, failed: 0, active: 0 }
             RefreshDisplay()
         }
     }
@@ -343,14 +343,14 @@ InteractiveQueueManager() {
 ; ============================================================================
 
 /**
-* Queue manager with concurrent download limiting
-*
-* Limits number of simultaneous downloads.
-* Demonstrates concurrent download control.
-*
-* @example
-* ConcurrentDownloadQueue()
-*/
+ * Queue manager with concurrent download limiting
+ * 
+ * Limits number of simultaneous downloads.
+ * Demonstrates concurrent download control.
+ * 
+ * @example
+ * ConcurrentDownloadQueue()
+ */
 ConcurrentDownloadQueue() {
     queueManager := DownloadQueueManager()
     queueManager.maxConcurrent := 3
@@ -358,9 +358,9 @@ ConcurrentDownloadQueue() {
     ; Add items
     loop 10 {
         queueManager.Add(
-        "https://example.com/file" A_Index ".zip",
-        A_Desktop "\concurrent\file" A_Index ".zip",
-        Mod(A_Index, 3) + 1
+            "https://example.com/file" A_Index ".zip",
+            A_Desktop "\concurrent\file" A_Index ".zip",
+            Mod(A_Index, 3) + 1
         )
     }
 
@@ -385,7 +385,7 @@ ConcurrentDownloadQueue() {
         ; Create destination
         destDir := A_Desktop "\concurrent"
         if !FileExist(destDir)
-        DirCreate(destDir)
+            DirCreate(destDir)
 
         ; Process with concurrency limit (simulated)
         completed := 0
@@ -425,14 +425,14 @@ ConcurrentDownloadQueue() {
 ; ============================================================================
 
 /**
-* Queue that persists to disk
-*
-* Saves and loads queue state from file.
-* Demonstrates queue persistence.
-*
-* @example
-* PersistentQueueManager()
-*/
+ * Queue that persists to disk
+ * 
+ * Saves and loads queue state from file.
+ * Demonstrates queue persistence.
+ * 
+ * @example
+ * PersistentQueueManager()
+ */
 PersistentQueueManager() {
     queueFile := A_ScriptDir "\download_queue.txt"
     queueManager := DownloadQueueManager()
@@ -461,9 +461,9 @@ PersistentQueueManager() {
     AddItem(*) {
         static counter := 1
         queueManager.Add(
-        "https://example.com/file" counter ".zip",
-        A_Desktop "\persistent\file" counter ".zip",
-        counter
+            "https://example.com/file" counter ".zip",
+            A_Desktop "\persistent\file" counter ".zip",
+            counter
         )
         counter++
         RefreshPersistList()
@@ -495,7 +495,7 @@ PersistentQueueManager() {
 
         loop parse, content, "`n", "`r" {
             if (A_LoopField = "")
-            continue
+                continue
 
             parts := StrSplit(A_LoopField, "|")
             if (parts.Length >= 4) {
@@ -511,7 +511,7 @@ PersistentQueueManager() {
     ProcessPersistent(*) {
         destDir := A_Desktop "\persistent"
         if !FileExist(destDir)
-        DirCreate(destDir)
+            DirCreate(destDir)
 
         for item in queueManager.queue {
             if (item.status = "queued") {
@@ -539,264 +539,262 @@ PersistentQueueManager() {
 ; ============================================================================
 
 /**
-* Queue with automatic retry for failed downloads
-*
-* Retries failed items automatically.
-* Demonstrates intelligent queue processing.
-*
-* @example
-* SmartQueueWithRetry()
-*/
+ * Queue with automatic retry for failed downloads
+ * 
+ * Retries failed items automatically.
+ * Demonstrates intelligent queue processing.
+ * 
+ * @example
+ * SmartQueueWithRetry()
+ */
 SmartQueueWithRetry() {
     ; Create queue with retry tracking
-    downloads := [
-    {
-        url: "https://example.com/file1.zip", dest: A_Desktop "\file1.zip", retries: 0, maxRetries: 3},
-        {
-            url: "https://example.com/file2.pdf", dest: A_Desktop "\file2.pdf", retries: 0, maxRetries: 3},
-            {
+    downloads := [{
+        url: "https://example.com/file1.zip", dest: A_Desktop "\file1.zip", retries: 0, maxRetries: 3 }, {
+            url: "https://example.com/file2.pdf", dest: A_Desktop "\file2.pdf", retries: 0, maxRetries: 3 }, {
                 url: "https://example.com/file3.jpg", dest: A_Desktop "\file3.jpg", retries: 0, maxRetries: 3
             }
-            ]
+    ]
 
-            ; Create GUI
-            smartGui := Gui("+AlwaysOnTop", "Smart Queue with Auto-Retry")
-            smartGui.Add("Text", "w500", "Auto-Retry Queue (Max 3 retries per file)")
-            smartGui.Add("ListView", "w500 h200 vSmartList", ["File", "Status", "Retries", "Last Error"])
+    ; Create GUI
+    smartGui := Gui("+AlwaysOnTop", "Smart Queue with Auto-Retry")
+    smartGui.Add("Text", "w500", "Auto-Retry Queue (Max 3 retries per file)")
+    smartGui.Add("ListView", "w500 h200 vSmartList", ["File", "Status", "Retries", "Last Error"])
 
-            for item in downloads {
-                SplitPath(item.dest, &fileName)
-                smartGui["SmartList"].Add("", fileName, "Queued", "0/3", "---")
-            }
+    for item in downloads {
+        SplitPath(item.dest, &fileName)
+        smartGui["SmartList"].Add("", fileName, "Queued", "0/3", "---")
+    }
 
-            smartGui.Add("Button", "w100", "Process").OnEvent("Click", ProcessSmart)
-            smartGui.Show()
+    smartGui.Add("Button", "w100", "Process").OnEvent("Click", ProcessSmart)
+    smartGui.Show()
 
-            ProcessSmart(*) {
-                smartGui["Button1"].Enabled := false
+    ProcessSmart(*) {
+        smartGui["Button1"].Enabled := false
 
-                for index, item in downloads {
-                    success := false
+        for index, item in downloads {
+            success := false
 
-                    while (item.retries < item.maxRetries && !success) {
-                        smartGui["SmartList"].Modify(index, "Col2", "Downloading")
-                        smartGui["SmartList"].Modify(index, "Col3", item.retries "/" item.maxRetries)
+            while (item.retries < item.maxRetries && !success) {
+                smartGui["SmartList"].Modify(index, "Col2", "Downloading")
+                smartGui["SmartList"].Modify(index, "Col3", item.retries "/" item.maxRetries)
 
-                        try {
-                            Download(item.url, item.dest)
-                            success := true
-                            smartGui["SmartList"].Modify(index, "Col2", "Complete")
-                            smartGui["SmartList"].Modify(index, "Col4", "Success")
-                        } catch as err {
-                            item.retries++
-                            smartGui["SmartList"].Modify(index, "Col3", item.retries "/" item.maxRetries)
-                            smartGui["SmartList"].Modify(index, "Col4", err.Message)
+                try {
+                    Download(item.url, item.dest)
+                    success := true
+                    smartGui["SmartList"].Modify(index, "Col2", "Complete")
+                    smartGui["SmartList"].Modify(index, "Col4", "Success")
+                } catch as err {
+                    item.retries++
+                    smartGui["SmartList"].Modify(index, "Col3", item.retries "/" item.maxRetries)
+                    smartGui["SmartList"].Modify(index, "Col4", err.Message)
 
-                            if (item.retries < item.maxRetries) {
-                                smartGui["SmartList"].Modify(index, "Col2", "Retrying...")
-                                Sleep(1000)
-                            }
-                        }
-                    }
-
-                    if !success {
-                        smartGui["SmartList"].Modify(index, "Col2", "Failed")
+                    if (item.retries < item.maxRetries) {
+                        smartGui["SmartList"].Modify(index, "Col2", "Retrying...")
+                        Sleep(1000)
                     }
                 }
+            }
 
-                MsgBox("Smart queue processing complete!", "Complete", "Icon!")
+            if !success {
+                smartGui["SmartList"].Modify(index, "Col2", "Failed")
             }
         }
 
-        ; ============================================================================
-        ; Example 6: Category-Based Queue
-        ; ============================================================================
+        MsgBox("Smart queue processing complete!", "Complete", "Icon!")
+    }
+}
 
-        /**
-        * Queue organized by download categories
-        *
-        * Groups downloads by category for organized processing.
-        * Demonstrates categorized queue management.
-        *
-        * @example
-        * CategoryBasedQueue()
-        */
-        CategoryBasedQueue() {
-            ; Categorized downloads
-            categories := Map(
-            "Documents", [],
-            "Images", [],
-            "Videos", [],
-            "Software", []
-            )
+; ============================================================================
+; Example 6: Category-Based Queue
+; ============================================================================
 
-            ; Add sample items
-            categories["Documents"].Push({url: "https://example.com/doc1.pdf", name: "Document 1"})
-            categories["Documents"].Push({url: "https://example.com/doc2.docx", name: "Document 2"})
-            categories["Images"].Push({url: "https://example.com/img1.jpg", name: "Image 1"})
-            categories["Videos"].Push({url: "https://example.com/vid1.mp4", name: "Video 1"})
+/**
+ * Queue organized by download categories
+ * 
+ * Groups downloads by category for organized processing.
+ * Demonstrates categorized queue management.
+ * 
+ * @example
+ * CategoryBasedQueue()
+ */
+CategoryBasedQueue() {
+    ; Categorized downloads
+    categories := Map(
+        "Documents", [],
+        "Images", [],
+        "Videos", [],
+        "Software", []
+    )
 
-            ; Create GUI
-            categoryGui := Gui("+Resize +AlwaysOnTop", "Category-Based Queue")
-            categoryGui.Add("Text", "w500", "Categorized Download Queue")
-            categoryGui.Add("Tab3", "w500 h300 vCategoryTabs", ["Documents", "Images", "Videos", "Software"])
+    ; Add sample items
+    categories["Documents"].Push({ url: "https://example.com/doc1.pdf", name: "Document 1" })
+    categories["Documents"].Push({ url: "https://example.com/doc2.docx", name: "Document 2" })
+    categories["Images"].Push({ url: "https://example.com/img1.jpg", name: "Image 1" })
+    categories["Videos"].Push({ url: "https://example.com/vid1.mp4", name: "Video 1" })
 
-            ; Create ListView for each category
-            categoryGui["CategoryTabs"].UseTab("Documents")
-            docList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
+    ; Create GUI
+    categoryGui := Gui("+Resize +AlwaysOnTop", "Category-Based Queue")
+    categoryGui.Add("Text", "w500", "Categorized Download Queue")
+    categoryGui.Add("Tab3", "w500 h300 vCategoryTabs", ["Documents", "Images", "Videos", "Software"])
 
-            categoryGui["CategoryTabs"].UseTab("Images")
-            imgList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
+    ; Create ListView for each category
+    categoryGui["CategoryTabs"].UseTab("Documents")
+    docList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
 
-            categoryGui["CategoryTabs"].UseTab("Videos")
-            vidList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
+    categoryGui["CategoryTabs"].UseTab("Images")
+    imgList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
 
-            categoryGui["CategoryTabs"].UseTab("Software")
-            swList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
+    categoryGui["CategoryTabs"].UseTab("Videos")
+    vidList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
 
-            categoryGui["CategoryTabs"].UseTab()
+    categoryGui["CategoryTabs"].UseTab("Software")
+    swList := categoryGui.Add("ListView", "w480 h250", ["File", "Status"])
 
-            ; Populate lists
-            for item in categories["Documents"]
-            docList.Add("", item.name, "Queued")
-            for item in categories["Images"]
-            imgList.Add("", item.name, "Queued")
-            for item in categories["Videos"]
-            vidList.Add("", item.name, "Queued")
+    categoryGui["CategoryTabs"].UseTab()
 
-            categoryGui.Add("Button", "w150", "Process All Categories").OnEvent("Click", ProcessAll)
-            categoryGui.Show()
+    ; Populate lists
+    for item in categories["Documents"]
+        docList.Add("", item.name, "Queued")
+    for item in categories["Images"]
+        imgList.Add("", item.name, "Queued")
+    for item in categories["Videos"]
+        vidList.Add("", item.name, "Queued")
 
-            ProcessAll(*) {
-                MsgBox("Processing all categories...`n`n"
-                . "Documents: " categories["Documents"].Length "`n"
-                . "Images: " categories["Images"].Length "`n"
-                . "Videos: " categories["Videos"].Length "`n"
-                . "Software: " categories["Software"].Length, "Processing", "Icon!")
-            }
+    categoryGui.Add("Button", "w150", "Process All Categories").OnEvent("Click", ProcessAll)
+    categoryGui.Show()
+
+    ProcessAll(*) {
+        MsgBox("Processing all categories...`n`n"
+            . "Documents: " categories["Documents"].Length "`n"
+            . "Images: " categories["Images"].Length "`n"
+            . "Videos: " categories["Videos"].Length "`n"
+            . "Software: " categories["Software"].Length, "Processing", "Icon!")
+    }
+}
+
+; ============================================================================
+; Example 7: Advanced Queue Dashboard
+; ============================================================================
+
+/**
+ * Comprehensive queue dashboard with statistics
+ * 
+ * Full-featured queue management interface.
+ * Demonstrates production-ready queue dashboard.
+ * 
+ * @example
+ * AdvancedQueueDashboard()
+ */
+AdvancedQueueDashboard() {
+    queueManager := DownloadQueueManager()
+
+    ; Add sample items
+    loop 15 {
+        queueManager.Add(
+            "https://example.com/file" A_Index ".zip",
+            A_Desktop "\dashboard\file" A_Index ".zip",
+            Mod(A_Index, 5) + 1
+        )
+    }
+
+    ; Create dashboard
+    dashboard := Gui("+Resize +AlwaysOnTop", "Advanced Queue Dashboard")
+    dashboard.Add("Text", "w700", "Download Queue Dashboard")
+
+    ; Statistics panel
+    dashboard.Add("GroupBox", "w700 h80", "Statistics")
+    dashboard.Add("Text", "x20 y35 w150 vTotalItems", "Total Items: " queueManager.queue.Length)
+    dashboard.Add("Text", "x180 y35 w150 vQueued", "Queued: " queueManager.queue.Length)
+    dashboard.Add("Text", "x340 y35 w150 vActive", "Active: 0")
+    dashboard.Add("Text", "x500 y35 w150 vCompleted", "Completed: 0")
+    dashboard.Add("Text", "x20 y55 w150 vFailed", "Failed: 0")
+    dashboard.Add("Text", "x180 y55 w150 vSuccessRate", "Success Rate: 0%")
+
+    ; Queue display
+    dashboard.Add("ListView", "x10 y95 w700 h300 vDashList", ["#", "File", "Status", "Priority", "Size"])
+
+    for index, item in queueManager.queue {
+        SplitPath(item.dest, &fileName)
+        dashboard["DashList"].Add("", index, fileName, item.status, item.priority, "---")
+    }
+
+    ; Control panel
+    dashboard.Add("Button", "x10 y405 w100", "Start All").OnEvent("Click", StartAll)
+    dashboard.Add("Button", "x120 y405 w100", "Pause All").OnEvent("Click", PauseAll)
+    dashboard.Add("Button", "x230 y405 w100", "Clear Completed").OnEvent("Click", ClearCompleted)
+    dashboard.Add("Button", "x340 y405 w100", "Export Log").OnEvent("Click", ExportLog)
+    dashboard.Add("Button", "x450 y405 w100", "Refresh").OnEvent("Click", RefreshDash)
+
+    dashboard.Show()
+
+    StartAll(*) {
+        MsgBox("Starting all queued downloads...", "Start", "Icon!")
+    }
+
+    PauseAll(*) {
+        MsgBox("Pausing all active downloads...", "Pause", "Icon!")
+    }
+
+    ClearCompleted(*) {
+        ; Remove completed items
+        newQueue := []
+        for item in queueManager.queue {
+            if (item.status != "complete")
+                newQueue.Push(item)
+        }
+        queueManager.queue := newQueue
+        RefreshDash()
+        MsgBox("Completed items removed!", "Cleared", "Icon!")
+    }
+
+    ExportLog(*) {
+        logFile := A_Desktop "\queue_export.txt"
+        logContent := "Download Queue Export`n"
+        logContent .= "Generated: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n`n"
+
+        for index, item in queueManager.queue {
+            logContent .= "Item " index ": " item.url "`n"
+            logContent .= "  Status: " item.status "`n"
+            logContent .= "  Priority: " item.priority "`n`n"
         }
 
-        ; ============================================================================
-        ; Example 7: Advanced Queue Dashboard
-        ; ============================================================================
+        FileDelete(logFile)
+        FileAppend(logContent, logFile)
+        MsgBox("Queue exported to:`n" logFile, "Exported", "Icon!")
+    }
 
-        /**
-        * Comprehensive queue dashboard with statistics
-        *
-        * Full-featured queue management interface.
-        * Demonstrates production-ready queue dashboard.
-        *
-        * @example
-        * AdvancedQueueDashboard()
-        */
-        AdvancedQueueDashboard() {
-            queueManager := DownloadQueueManager()
-
-            ; Add sample items
-            loop 15 {
-                queueManager.Add(
-                "https://example.com/file" A_Index ".zip",
-                A_Desktop "\dashboard\file" A_Index ".zip",
-                Mod(A_Index, 5) + 1
-                )
-            }
-
-            ; Create dashboard
-            dashboard := Gui("+Resize +AlwaysOnTop", "Advanced Queue Dashboard")
-            dashboard.Add("Text", "w700", "Download Queue Dashboard")
-
-            ; Statistics panel
-            dashboard.Add("GroupBox", "w700 h80", "Statistics")
-            dashboard.Add("Text", "x20 y35 w150 vTotalItems", "Total Items: " queueManager.queue.Length)
-            dashboard.Add("Text", "x180 y35 w150 vQueued", "Queued: " queueManager.queue.Length)
-            dashboard.Add("Text", "x340 y35 w150 vActive", "Active: 0")
-            dashboard.Add("Text", "x500 y35 w150 vCompleted", "Completed: 0")
-            dashboard.Add("Text", "x20 y55 w150 vFailed", "Failed: 0")
-            dashboard.Add("Text", "x180 y55 w150 vSuccessRate", "Success Rate: 0%")
-
-            ; Queue display
-            dashboard.Add("ListView", "x10 y95 w700 h300 vDashList", ["#", "File", "Status", "Priority", "Size"])
-
-            for index, item in queueManager.queue {
-                SplitPath(item.dest, &fileName)
-                dashboard["DashList"].Add("", index, fileName, item.status, item.priority, "---")
-            }
-
-            ; Control panel
-            dashboard.Add("Button", "x10 y405 w100", "Start All").OnEvent("Click", StartAll)
-            dashboard.Add("Button", "x120 y405 w100", "Pause All").OnEvent("Click", PauseAll)
-            dashboard.Add("Button", "x230 y405 w100", "Clear Completed").OnEvent("Click", ClearCompleted)
-            dashboard.Add("Button", "x340 y405 w100", "Export Log").OnEvent("Click", ExportLog)
-            dashboard.Add("Button", "x450 y405 w100", "Refresh").OnEvent("Click", RefreshDash)
-
-            dashboard.Show()
-
-            StartAll(*) {
-                MsgBox("Starting all queued downloads...", "Start", "Icon!")
-            }
-
-            PauseAll(*) {
-                MsgBox("Pausing all active downloads...", "Pause", "Icon!")
-            }
-
-            ClearCompleted(*) {
-                ; Remove completed items
-                newQueue := []
-                for item in queueManager.queue {
-                    if (item.status != "complete")
-                    newQueue.Push(item)
-                }
-                queueManager.queue := newQueue
-                RefreshDash()
-                MsgBox("Completed items removed!", "Cleared", "Icon!")
-            }
-
-            ExportLog(*) {
-                logFile := A_Desktop "\queue_export.txt"
-                logContent := "Download Queue Export`n"
-                logContent .= "Generated: " FormatTime(, "yyyy-MM-dd HH:mm:ss") "`n`n"
-
-                for index, item in queueManager.queue {
-                    logContent .= "Item " index ": " item.url "`n"
-                    logContent .= "  Status: " item.status "`n"
-                    logContent .= "  Priority: " item.priority "`n`n"
-                }
-
-                FileDelete(logFile)
-                FileAppend(logContent, logFile)
-                MsgBox("Queue exported to:`n" logFile, "Exported", "Icon!")
-            }
-
-            RefreshDash(*) {
-                dashboard["DashList"].Delete()
-                for index, item in queueManager.queue {
-                    SplitPath(item.dest, &fileName)
-                    dashboard["DashList"].Add("", index, fileName, item.status, item.priority, "---")
-                }
-            }
+    RefreshDash(*) {
+        dashboard["DashList"].Delete()
+        for index, item in queueManager.queue {
+            SplitPath(item.dest, &fileName)
+            dashboard["DashList"].Add("", index, fileName, item.status, item.priority, "---")
         }
+    }
+}
 
-        ; ============================================================================
-        ; Test Runner - Uncomment to run individual examples
-        ; ============================================================================
+; ============================================================================
+; Test Runner - Uncomment to run individual examples
+; ============================================================================
 
-        ; Run Example 1: Basic download queue
-        ; BasicDownloadQueue()
+; Run Example 1: Basic download queue
+; BasicDownloadQueue()
 
-        ; Run Example 2: Interactive queue manager
-        ; InteractiveQueueManager()
+; Run Example 2: Interactive queue manager
+; InteractiveQueueManager()
 
-        ; Run Example 3: Concurrent download queue
-        ; ConcurrentDownloadQueue()
+; Run Example 3: Concurrent download queue
+; ConcurrentDownloadQueue()
 
-        ; Run Example 4: Persistent queue manager
-        ; PersistentQueueManager()
+; Run Example 4: Persistent queue manager
+; PersistentQueueManager()
 
-        ; Run Example 5: Smart queue with auto-retry
-        ; SmartQueueWithRetry()
+; Run Example 5: Smart queue with auto-retry
+; SmartQueueWithRetry()
 
-        ; Run Example 6: Category-based queue
-        ; CategoryBasedQueue()
+; Run Example 6: Category-based queue
+; CategoryBasedQueue()
 
-        ; Run Example 7: Advanced queue dashboard
-        ; AdvancedQueueDashboard()
+; Run Example 7: Advanced queue dashboard
+; AdvancedQueueDashboard()
+

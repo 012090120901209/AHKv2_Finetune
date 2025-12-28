@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.1-alpha.17
 
 /**
-* Module Tier 1 Example 05: Constants Module
-*
-* This example demonstrates:
-* - Exporting constant values
-* - Exporting configuration classes
-* - Organizing application constants
-* - Read-only configuration patterns
-*
-* @module Constants
-*/
+ * Module Tier 1 Example 05: Constants Module
+ * 
+ * This example demonstrates:
+ * - Exporting constant values
+ * - Exporting configuration classes
+ * - Organizing application constants
+ * - Read-only configuration patterns
+ * 
+ * @module Constants
+ */
 
 #Module Constants
 
@@ -19,39 +19,39 @@
 ; ============================================================
 
 /**
-* PI constant (π)
-* @const {Number}
-*/
+ * PI constant (π)
+ * @const {Number}
+ */
 Export PI := 3.14159265359
 
 /**
-* Euler's number (e)
-* @const {Number}
-*/
+ * Euler's number (e)
+ * @const {Number}
+ */
 Export E := 2.71828182846
 
 /**
-* Golden ratio (φ)
-* @const {Number}
-*/
+ * Golden ratio (φ)
+ * @const {Number}
+ */
 Export GOLDEN_RATIO := 1.61803398875
 
 /**
-* Square root of 2
-* @const {Number}
-*/
+ * Square root of 2
+ * @const {Number}
+ */
 Export SQRT2 := 1.41421356237
 
 /**
-* Natural log of 2
-* @const {Number}
-*/
+ * Natural log of 2
+ * @const {Number}
+ */
 Export LN2 := 0.69314718056
 
 /**
-* Natural log of 10
-* @const {Number}
-*/
+ * Natural log of 10
+ * @const {Number}
+ */
 Export LN10 := 2.30258509299
 
 ; ============================================================
@@ -59,9 +59,9 @@ Export LN10 := 2.30258509299
 ; ============================================================
 
 /**
-* Application configuration constants
-* @class Config
-*/
+ * Application configuration constants
+ * @class Config
+ */
 Export class Config {
     static APP_NAME := "AutoHotkey Module Demo"
     static VERSION := "1.0.0"
@@ -70,17 +70,17 @@ Export class Config {
     static LOG_LEVEL := "INFO"
 
     /**
-    * Get full application info string
-    * @returns {String} - Formatted app info
-    */
+     * Get full application info string
+     * @returns {String} - Formatted app info
+     */
     static GetInfo() {
         return this.APP_NAME " v" this.VERSION " by " this.AUTHOR
     }
 
     /**
-    * Check if debug mode is enabled
-    * @returns {Boolean} - True if debug mode
-    */
+     * Check if debug mode is enabled
+     * @returns {Boolean} - True if debug mode
+     */
     static IsDebug() {
         return this.DEBUG
     }
@@ -91,9 +91,9 @@ Export class Config {
 ; ============================================================
 
 /**
-* Common HTTP status codes
-* @class HttpStatus
-*/
+ * Common HTTP status codes
+ * @class HttpStatus
+ */
 Export class HttpStatus {
     ; Success
     static OK := 200
@@ -121,10 +121,10 @@ Export class HttpStatus {
     static SERVICE_UNAVAILABLE := 503
 
     /**
-    * Get status code description
-    * @param code {Number} - HTTP status code
-    * @returns {String} - Description
-    */
+     * Get status code description
+     * @param code {Number} - HTTP status code
+     * @returns {String} - Description
+     */
     static GetDescription(code) {
         switch code {
             case 200: return "OK"
@@ -140,10 +140,10 @@ Export class HttpStatus {
     }
 
     /**
-    * Check if status code is successful (2xx)
-    * @param code {Number} - HTTP status code
-    * @returns {Boolean} - True if success
-    */
+     * Check if status code is successful (2xx)
+     * @param code {Number} - HTTP status code
+     * @returns {Boolean} - True if success
+     */
     static IsSuccess(code) {
         return code >= 200 && code < 300
     }
@@ -154,9 +154,9 @@ Export class HttpStatus {
 ; ============================================================
 
 /**
-* Common color values (RGB hex)
-* @class Colors
-*/
+ * Common color values (RGB hex)
+ * @class Colors
+ */
 Export class Colors {
     ; Basic colors
     static WHITE := 0xFFFFFF
@@ -180,21 +180,21 @@ Export class Colors {
     static BROWN := 0xA52A2A
 
     /**
-    * Convert RGB to hex string
-    * @param r {Number} - Red (0-255)
-    * @param g {Number} - Green (0-255)
-    * @param b {Number} - Blue (0-255)
-    * @returns {String} - Hex color string
-    */
+     * Convert RGB to hex string
+     * @param r {Number} - Red (0-255)
+     * @param g {Number} - Green (0-255)
+     * @param b {Number} - Blue (0-255)
+     * @returns {String} - Hex color string
+     */
     static RGBToHex(r, g, b) {
         return Format("#{:02X}{:02X}{:02X}", r, g, b)
     }
 
     /**
-    * Convert hex to RGB values
-    * @param hex {Number} - Hex color value
-    * @returns {Object} - {r, g, b} object
-    */
+     * Convert hex to RGB values
+     * @param hex {Number} - Hex color value
+     * @returns {Object} - {r, g, b} object
+     */
     static HexToRGB(hex) {
         return {
             r: (hex >> 16) & 0xFF,
@@ -209,9 +209,9 @@ Export class Colors {
 ; ============================================================
 
 /**
-* Virtual key codes
-* @class Keys
-*/
+ * Virtual key codes
+ * @class Keys
+ */
 Export class Keys {
     ; Function keys
     static F1 := "F1"
@@ -248,15 +248,15 @@ Export class Keys {
     static RIGHT := "Right"
 
     /**
-    * Create hotkey combination string
-    * @param key {String} - Key name
-    * @param modifiers {Array} - Array of modifier strings
-    * @returns {String} - Hotkey string
-    */
+     * Create hotkey combination string
+     * @param key {String} - Key name
+     * @param modifiers {Array} - Array of modifier strings
+     * @returns {String} - Hotkey string
+     */
     static Combine(key, modifiers*) {
         combo := ""
         for modifier in modifiers
-        combo .= modifier
+            combo .= modifier
         combo .= key
         return combo
     }
@@ -267,9 +267,9 @@ Export class Keys {
 ; ============================================================
 
 /**
-* Time duration constants (in milliseconds)
-* @class Time
-*/
+ * Time duration constants (in milliseconds)
+ * @class Time
+ */
 Export class Time {
     static MILLISECOND := 1
     static SECOND := 1000
@@ -279,28 +279,28 @@ Export class Time {
     static WEEK := 604800000
 
     /**
-    * Convert seconds to milliseconds
-    * @param seconds {Number} - Seconds
-    * @returns {Number} - Milliseconds
-    */
+     * Convert seconds to milliseconds
+     * @param seconds {Number} - Seconds
+     * @returns {Number} - Milliseconds
+     */
     static SecondsToMs(seconds) {
         return seconds * this.SECOND
     }
 
     /**
-    * Convert minutes to milliseconds
-    * @param minutes {Number} - Minutes
-    * @returns {Number} - Milliseconds
-    */
+     * Convert minutes to milliseconds
+     * @param minutes {Number} - Minutes
+     * @returns {Number} - Milliseconds
+     */
     static MinutesToMs(minutes) {
         return minutes * this.MINUTE
     }
 
     /**
-    * Convert hours to milliseconds
-    * @param hours {Number} - Hours
-    * @returns {Number} - Milliseconds
-    */
+     * Convert hours to milliseconds
+     * @param hours {Number} - Hours
+     * @returns {Number} - Milliseconds
+     */
     static HoursToMs(hours) {
         return hours * this.HOUR
     }
@@ -311,9 +311,9 @@ Export class Time {
 ; ============================================================
 
 /**
-* File size constants (in bytes)
-* @class FileSize
-*/
+ * File size constants (in bytes)
+ * @class FileSize
+ */
 Export class FileSize {
     static BYTE := 1
     static KB := 1024
@@ -322,19 +322,19 @@ Export class FileSize {
     static TB := 1099511627776
 
     /**
-    * Format bytes to human-readable string
-    * @param bytes {Number} - Size in bytes
-    * @returns {String} - Formatted size
-    */
+     * Format bytes to human-readable string
+     * @param bytes {Number} - Size in bytes
+     * @returns {String} - Formatted size
+     */
     static Format(bytes) {
         if bytes < this.KB
-        return bytes " B"
+            return bytes " B"
         if bytes < this.MB
-        return Format("{:.2f} KB", bytes / this.KB)
+            return Format("{:.2f} KB", bytes / this.KB)
         if bytes < this.GB
-        return Format("{:.2f} MB", bytes / this.MB)
+            return Format("{:.2f} MB", bytes / this.MB)
         if bytes < this.TB
-        return Format("{:.2f} GB", bytes / this.GB)
+            return Format("{:.2f} GB", bytes / this.GB)
         return Format("{:.2f} TB", bytes / this.TB)
     }
 }

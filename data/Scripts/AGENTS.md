@@ -78,3 +78,7 @@ To sanity-check include paths, use `scripts/validate_includes.py` (see `wiki/Get
 
 - Save files as UTF-8 without BOM.
 
+## Automation
+
+- Audit/normalize formatting with `python scripts/format_ahk_examples.py --root data/Scripts` (add `--fix` to write, `--thqby` to use the THQBY formatter).
+

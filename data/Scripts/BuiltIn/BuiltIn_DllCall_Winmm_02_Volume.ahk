@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Winmm_02_Volume.ahk
-*
-* DESCRIPTION:
-* Demonstrates Volume control operations using Windows API through DllCall.
-* Comprehensive examples showing various Volume operations.
-*
-* FEATURES:
-* - Volume API integration
-* - Practical Volume examples
-* - Error handling
-* - Resource management
-* - Advanced Volume techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Winmm API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Winmm API functions
-* 2. Working with Volume operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Volume techniques
-* 6. Best practices for Winmm API
-* 7. Real-world Volume applications
-*/
+ * BuiltIn_DllCall_Winmm_02_Volume.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Volume control operations using Windows API through DllCall.
+ * Comprehensive examples showing various Volume operations.
+ * 
+ * FEATURES:
+ * - Volume API integration
+ * - Practical Volume examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Volume techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Winmm API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Winmm API functions
+ * 2. Working with Volume operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Volume techniques
+ * 6. Best practices for Winmm API
+ * 7. Real-world Volume applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Volume Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Volume operations
-*/
+ * Helper function for Volume operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Volume Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

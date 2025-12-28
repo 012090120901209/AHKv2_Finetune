@@ -25,15 +25,15 @@ class Room {
         price := this.basePrice * nights
         ; Add premium for suites
         if (this.type = Room.TYPE_SUITE)
-        price *= 1.5
+            price *= 1.5
         return price
     }
 
     ToString() => Format("Room {1} ({2}) - ${3:.2f}/night {4}",
-    this.roomNumber,
-    this.type,
-    this.basePrice,
-    this.occupied ? "[OCCUPIED]" : "[AVAILABLE]")
+        this.roomNumber,
+        this.type,
+        this.basePrice,
+        this.occupied ? "[OCCUPIED]" : "[AVAILABLE]")
 }
 
 class Guest {
@@ -83,14 +83,14 @@ class Reservation {
     Cancel() => (this.status := Reservation.STATUS_CANCELLED, this)
 
     ToString() => Format("Reservation #{1}`nGuest: {2}`nRoom: {3}`nDates: {4} to {5} ({6} nights)`nPrice: ${7:.2f}`nStatus: {8}",
-    this.reservationId,
-    this.guest.name,
-    this.room.roomNumber,
-    FormatTime(this.checkInDate, "yyyy-MM-dd"),
-    FormatTime(this.checkOutDate, "yyyy-MM-dd"),
-    this.GetNights(),
-    this.totalPrice,
-    this.status)
+        this.reservationId,
+        this.guest.name,
+        this.room.roomNumber,
+        FormatTime(this.checkInDate, "yyyy-MM-dd"),
+        FormatTime(this.checkOutDate, "yyyy-MM-dd"),
+        this.GetNights(),
+        this.totalPrice,
+        this.status)
 }
 
 class Hotel {
@@ -103,7 +103,7 @@ class Hotel {
         available := []
         for roomNum, room in this.rooms {
             if (room.IsAvailable() && (type = "" || room.type = type))
-            available.Push(room)
+                available.Push(room)
         }
         return available
     }
@@ -113,11 +113,11 @@ class Hotel {
         room := this.rooms.Has(roomNumber) ? this.rooms[roomNumber] : ""
 
         if (!guest)
-        return MsgBox("Guest not found!", "Error")
+            return MsgBox("Guest not found!", "Error")
         if (!room)
-        return MsgBox("Room not found!", "Error")
+            return MsgBox("Room not found!", "Error")
         if (!room.IsAvailable())
-        return MsgBox("Room not available!", "Error")
+            return MsgBox("Room not available!", "Error")
 
         reservation := Reservation(guest, room, checkInDate, checkOutDate)
         this.reservations.Push(reservation)
@@ -129,51 +129,51 @@ class Hotel {
     CheckIn(reservationId) {
         reservation := this._FindReservation(reservationId)
         if (!reservation)
-        return MsgBox("Reservation not found!", "Error")
+            return MsgBox("Reservation not found!", "Error")
 
         if (reservation.status != Reservation.STATUS_CONFIRMED)
-        return MsgBox("Reservation must be confirmed first!", "Error")
+            return MsgBox("Reservation must be confirmed first!", "Error")
 
         reservation.CheckIn()
         reservation.guest.AddLoyaltyPoints(reservation.GetNights() * 10)
 
         MsgBox(Format("Checked in!`nGuest: {1}`nRoom: {2}`nLoyalty points earned: {3}",
-        reservation.guest.name,
-        reservation.room.roomNumber,
-        reservation.GetNights() * 10))
+            reservation.guest.name,
+            reservation.room.roomNumber,
+            reservation.GetNights() * 10))
         return true
     }
 
     CheckOut(reservationId) {
         reservation := this._FindReservation(reservationId)
         if (!reservation)
-        return MsgBox("Reservation not found!", "Error")
+            return MsgBox("Reservation not found!", "Error")
 
         if (reservation.status != Reservation.STATUS_CHECKED_IN)
-        return MsgBox("Guest not checked in!", "Error")
+            return MsgBox("Guest not checked in!", "Error")
 
         reservation.CheckOut()
         MsgBox(Format("Checked out!`nGuest: {1}`nTotal: ${2:.2f}`nThank you for staying at {3}!",
-        reservation.guest.name,
-        reservation.totalPrice,
-        this.name))
+            reservation.guest.name,
+            reservation.totalPrice,
+            this.name))
         return true
     }
 
     _FindReservation(reservationId) {
         for reservation in this.reservations
-        if (reservation.reservationId = reservationId)
-        return reservation
+            if (reservation.reservationId = reservationId)
+                return reservation
         return ""
     }
 
     GetOccupancyRate() {
         if (this.rooms.Count = 0)
-        return 0
+            return 0
         occupied := 0
         for roomNum, room in this.rooms
-        if (room.occupied)
-        occupied++
+            if (room.occupied)
+                occupied++
         return Round((occupied / this.rooms.Count) * 100, 1)
     }
 

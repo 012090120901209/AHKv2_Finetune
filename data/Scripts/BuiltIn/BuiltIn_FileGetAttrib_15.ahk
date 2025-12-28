@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetAttrib_15.ahk
-*
-* DESCRIPTION:
-* Attribute-based file operations and validation
-*
-* FEATURES:
-* - Validate file attributes
-* - Attribute-based access control
-* - Permission checking
-* - Attribute validation rules
-* - Safety checks
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetAttrib() for validation
-* - Attribute-based security
-* - Permission verification
-* - Safety assertions
-* - Access control checks
-*
-* LEARNING POINTS:
-* 1. Validate attributes before operations
-* 2. Implement attribute-based security
-* 3. Check permissions programmatically
-* 4. Enforce attribute requirements
-* 5. Prevent unauthorized modifications
-* 6. Create safety guards
-*/
+ * BuiltIn_FileGetAttrib_15.ahk
+ * 
+ * DESCRIPTION:
+ * Attribute-based file operations and validation
+ * 
+ * FEATURES:
+ * - Validate file attributes
+ * - Attribute-based access control
+ * - Permission checking
+ * - Attribute validation rules
+ * - Safety checks
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetAttrib() for validation
+ * - Attribute-based security
+ * - Permission verification
+ * - Safety assertions
+ * - Access control checks
+ * 
+ * LEARNING POINTS:
+ * 1. Validate attributes before operations
+ * 2. Implement attribute-based security
+ * 3. Check permissions programmatically
+ * 4. Enforce attribute requirements
+ * 5. Prevent unauthorized modifications
+ * 6. Create safety guards
+ */
 
 ; Create test file
 testFile := A_ScriptDir "\validation_test.txt"
@@ -42,11 +42,11 @@ FileAppend("Test content", testFile)
 ; ============================================================
 
 /**
-* Check if file can be written to
-*
-* @param {String} filePath - File to check
-* @returns {Object} - Permission status
-*/
+ * Check if file can be written to
+ * 
+ * @param {String} filePath - File to check
+ * @returns {Object} - Permission status
+ */
 ValidateWritePermission(filePath) {
     result := {
         canWrite: false,
@@ -78,37 +78,37 @@ ValidateWritePermission(filePath) {
 writeCheck := ValidateWritePermission(testFile)
 
 MsgBox("WRITE PERMISSION CHECK:`n`n"
-. "File: validation_test.txt`n"
-. "Can Write: " (writeCheck.canWrite ? "YES ✓" : "NO ✗") "`n"
-. "Reason: " writeCheck.reason,
-"Permission Check", writeCheck.canWrite ? "Icon!" : "IconX")
+    . "File: validation_test.txt`n"
+    . "Can Write: " (writeCheck.canWrite ? "YES ✓" : "NO ✗") "`n"
+    . "Reason: " writeCheck.reason,
+    "Permission Check", writeCheck.canWrite ? "Icon!" : "IconX")
 
 ; ============================================================
 ; Example 2: Attribute-Based Access Control
 ; ============================================================
 
 /**
-* Control access based on attributes
-*
-* @param {String} filePath - File to access
-* @param {String} operation - Operation type (read/write/delete)
-* @returns {Boolean} - Access granted
-*/
+ * Control access based on attributes
+ * 
+ * @param {String} filePath - File to access
+ * @param {String} operation - Operation type (read/write/delete)
+ * @returns {Boolean} - Access granted
+ */
 CheckFileAccess(filePath, operation) {
     if (!FileExist(filePath))
-    return false
+        return false
 
     attrs := FileGetAttrib(filePath)
 
     switch operation {
         case "read":
-        return true  ; Can always read
+            return true  ; Can always read
         case "write":
-        return !InStr(attrs, "R")  ; Can write if not read-only
+            return !InStr(attrs, "R")  ; Can write if not read-only
         case "delete":
-        return !InStr(attrs, "R") && !InStr(attrs, "S")  ; Can delete if not RO or System
+            return !InStr(attrs, "R") && !InStr(attrs, "S")  ; Can delete if not RO or System
         default:
-        return false
+            return false
     }
 }
 
@@ -127,12 +127,12 @@ MsgBox(output, "Access Control", "Icon!")
 ; ============================================================
 
 /**
-* Safely modify file with attribute validation
-*
-* @param {String} filePath - File to modify
-* @param {String} content - Content to append
-* @returns {Object} - Operation result
-*/
+ * Safely modify file with attribute validation
+ * 
+ * @param {String} filePath - File to modify
+ * @param {String} content - Content to append
+ * @returns {Object} - Operation result
+ */
 SafeModify(filePath, content) {
     result := {
         success: false,
@@ -171,21 +171,21 @@ SafeModify(filePath, content) {
 modifyResult := SafeModify(testFile, "`nAppended line")
 
 MsgBox("SAFE MODIFICATION:`n`n"
-. "Success: " (modifyResult.success ? "YES ✓" : "NO ✗") "`n"
-. "Message: " modifyResult.message,
-"Safe Modify", modifyResult.success ? "Icon!" : "IconX")
+    . "Success: " (modifyResult.success ? "YES ✓" : "NO ✗") "`n"
+    . "Message: " modifyResult.message,
+    "Safe Modify", modifyResult.success ? "Icon!" : "IconX")
 
 ; ============================================================
 ; Example 4: Attribute Requirements Enforcement
 ; ============================================================
 
 /**
-* Enforce attribute requirements
-*
-* @param {String} filePath - File to check
-* @param {Object} requirements - Required attributes
-* @returns {Object} - Compliance result
-*/
+ * Enforce attribute requirements
+ * 
+ * @param {String} filePath - File to check
+ * @param {Object} requirements - Required attributes
+ * @returns {Object} - Compliance result
+ */
 EnforceAttributeRequirements(filePath, requirements) {
     result := {
         compliant: true,
@@ -236,7 +236,7 @@ output .= "Compliant: " (compliance.compliant ? "YES ✓" : "NO ✗") "`n`n"
 if (compliance.violations.Length > 0) {
     output .= "Violations:`n"
     for violation in compliance.violations
-    output .= "  • " violation "`n"
+        output .= "  • " violation "`n"
 }
 
 MsgBox(output, "Compliance Check", compliance.compliant ? "Icon!" : "IconX")

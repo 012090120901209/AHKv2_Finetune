@@ -25,18 +25,18 @@ class Particle {
         ; Apply acceleration
         this.vx += this.ax * dt
         this.vy += this.ay * dt
-        
+
         ; Apply friction
         this.vx *= this.friction
         this.vy *= this.friction
-        
+
         ; Update position
         this.x += this.vx * dt
         this.y += this.vy * dt
-        
+
         ; Decay life
         this.life -= dt * this.decay
-        
+
         ; Update alpha based on life
         this.alpha := Max(0, this.life / this.maxLife)
     }
@@ -65,13 +65,13 @@ class ParticleEmitter {
         Loop count {
             if this.particles.Length >= this.maxParticles
                 break
-            
+
             opts := Map()
             for k, v in this.particleOptions
-                opts[k] := IsObject(v) && v.Has("min") 
-                         ? v["min"] + Random() * (v["max"] - v["min"])
-                         : v
-            
+                opts[k] := IsObject(v) && v.Has("min")
+                    ? v["min"] + Random() * (v["max"] - v["min"])
+                    : v
+
             this.particles.Push(Particle(this.x, this.y, opts))
         }
     }
@@ -181,7 +181,7 @@ result := "Fire Particle Simulation:`n`n"
 Loop 5 {
     fireEmitter.Update(0.1)  ; 100ms timestep
     result .= Format("t={:.1f}s: {} particles`n", A_Index * 0.1, fireEmitter.Count())
-    
+
     ; Show some particle positions
     if fireEmitter.particles.Length > 0 {
         p := fireEmitter.particles[1]

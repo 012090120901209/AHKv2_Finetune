@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileCopy - Batch Copy Operations
-* ============================================================================
-*
-* Demonstrates FileCopy operations:
-* - multiple file copy
-* - directory sync
-* - filtered copy
-* - progress tracking
-* - copy statistics
-*
-* @description Batch Copy Operations examples for FileCopy
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileCopy.htm
-*/
+ * ============================================================================
+ * FileCopy - Batch Copy Operations
+ * ============================================================================
+ * 
+ * Demonstrates FileCopy operations:
+ * - multiple file copy
+ * - directory sync
+ * - filtered copy
+ * - progress tracking
+ * - copy statistics
+ * 
+ * @description Batch Copy Operations examples for FileCopy
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileCopy.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Operation
@@ -37,7 +37,7 @@ Example1_BasicOp() {
     } finally {
         ; Cleanup
         if FileExist(testFile)
-        FileDelete(testFile)
+            FileDelete(testFile)
     }
 }
 
@@ -51,7 +51,7 @@ Example2_MultiFile() {
     try {
         ; Create test directory
         if !DirExist(testDir)
-        DirCreate(testDir)
+            DirCreate(testDir)
 
         ; Create test files
         Loop 5 {
@@ -69,7 +69,7 @@ Example2_MultiFile() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(testDir)
-        DirDelete(testDir, true)
+            DirDelete(testDir, true)
     }
 }
 
@@ -148,30 +148,24 @@ Example7_Advanced() {
 ; ============================================================================
 
 RunAllExamples() {
-    examples := [
-    {
-        name: "Basic Operation", func: Example1_BasicOp},
-        {
-            name: "Multiple Files", func: Example2_MultiFile},
-            {
-                name: "With Options", func: Example3_WithOpts},
-                {
-                    name: "Error Handling", func: Example4_ErrorHandle},
-                    {
-                        name: "Progress Tracking", func: Example5_Progress},
-                        {
-                            name: "Custom Configuration", func: Example6_Config},
-                            {
+    examples := [{
+        name: "Basic Operation", func: Example1_BasicOp }, {
+            name: "Multiple Files", func: Example2_MultiFile }, {
+                name: "With Options", func: Example3_WithOpts }, {
+                    name: "Error Handling", func: Example4_ErrorHandle }, {
+                        name: "Progress Tracking", func: Example5_Progress }, {
+                            name: "Custom Configuration", func: Example6_Config }, {
                                 name: "Advanced Usage", func: Example7_Advanced
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "FileCopy Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "FileCopy Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
 
-                        ; Uncomment to run all examples interactively:
-                        ; RunAllExamples()
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

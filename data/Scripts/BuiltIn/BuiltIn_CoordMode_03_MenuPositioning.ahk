@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_CoordMode_03_MenuPositioning.ahk
-*
-* DESCRIPTION:
-* Demonstrates CoordMode effects on menu and caret positioning,
-* essential for context menus and text editing automation.
-*
-* FEATURES:
-* - Menu positioning with different coordinate modes
-* - Caret position tracking and automation
-* - Context menu creation and placement
-* - Dynamic menu positioning based on mouse/window
-* - Tooltip coordinate handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - CoordMode for Menu positioning
-* - CoordMode for Caret detection
-* - Menu.Show() coordinate parameters
-* - CaretGetPos() function
-* - Tooltip positioning with CoordMode
-*
-* LEARNING POINTS:
-* 1. Menu coordinates default to Screen mode
-* 2. Caret position depends on active edit control
-* 3. CoordMode affects where menus appear
-* 4. Tooltips also respect coordinate mode
-* 5. Window vs Client important for menu placement
-* 6. Context menus benefit from cursor-relative positioning
-* 7. Coordinate mode should match usage context
-*/
+ * BuiltIn_CoordMode_03_MenuPositioning.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates CoordMode effects on menu and caret positioning,
+ * essential for context menus and text editing automation.
+ * 
+ * FEATURES:
+ * - Menu positioning with different coordinate modes
+ * - Caret position tracking and automation
+ * - Context menu creation and placement
+ * - Dynamic menu positioning based on mouse/window
+ * - Tooltip coordinate handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - CoordMode for Menu positioning
+ * - CoordMode for Caret detection
+ * - Menu.Show() coordinate parameters
+ * - CaretGetPos() function
+ * - Tooltip positioning with CoordMode
+ * 
+ * LEARNING POINTS:
+ * 1. Menu coordinates default to Screen mode
+ * 2. Caret position depends on active edit control
+ * 3. CoordMode affects where menus appear
+ * 4. Tooltips also respect coordinate mode
+ * 5. Window vs Client important for menu placement
+ * 6. Context menus benefit from cursor-relative positioning
+ * 7. Coordinate mode should match usage context
+ */
 
 ;===============================================================================
 ; EXAMPLE 1: Basic Menu Positioning Modes
@@ -42,7 +42,7 @@ Example1_BasicMenuPositioning() {
     ; Create main window
     mainGui := Gui(, "Menu Positioning Demo")
     mainGui.Add("Text", "x10 y10 w380",
-    "Right-click anywhere in this window to see menu")
+        "Right-click anywhere in this window to see menu")
 
     canvas := mainGui.Add("Edit", "x10 y40 w380 h250 Multi", "")
 
@@ -58,7 +58,7 @@ Example1_BasicMenuPositioning() {
 
     ShowMenuAt(mode) {
         MsgBox("Menu was shown using " mode " coordinate mode`n`n"
-        . "Each mode positions the menu differently:", mode)
+            . "Each mode positions the menu differently:", mode)
     }
 
     ; Right-click handler with SCREEN coordinates
@@ -77,8 +77,8 @@ Example1_BasicMenuPositioning() {
     })
 
     MsgBox("Right-click in the window to see the context menu.`n`n"
-    . "The menu appears at cursor position using Screen coordinates.",
-    "Instructions")
+        . "The menu appears at cursor position using Screen coordinates.",
+        "Instructions")
 }
 
 ;===============================================================================
@@ -121,13 +121,13 @@ Example2_DynamicMenus() {
         statusBar.Value := "Executed: " cmd
         switch cmd {
             case "Cut":
-            Send("^x")
+                Send("^x")
             case "Copy":
-            Send("^c")
+                Send("^c")
             case "Paste":
-            Send("^v")
+                Send("^v")
             case "SelectAll":
-            Send("^a")
+                Send("^a")
         }
     }
 
@@ -156,7 +156,7 @@ Example2_DynamicMenus() {
     })
 
     MsgBox("Right-click in the editor to see dynamic context menu.`n`n"
-    . "Menu appears near text cursor when possible.", "Instructions")
+        . "Menu appears near text cursor when possible.", "Instructions")
 }
 
 ;===============================================================================
@@ -204,7 +204,7 @@ Example3_CaretTracking() {
 
     UpdateCaretInfo() {
         if !isTracking
-        return
+            return
 
         info := "Caret Status:`n"
 
@@ -242,7 +242,7 @@ Example3_CaretTracking() {
     editorGui.OnEvent("Close", (*) => (StopTracking(), editorGui.Destroy()))
 
     MsgBox("Click 'Start Tracking' and then type in the text boxes.`n`n"
-    . "Watch the caret position update in real-time!", "Instructions")
+        . "Watch the caret position update in real-time!", "Instructions")
 }
 
 ;===============================================================================
@@ -254,7 +254,7 @@ Example4_SmartTooltips() {
     tooltipGui := Gui(, "Smart Tooltip Demo")
 
     tooltipGui.Add("Text", "x10 y10 w380",
-    "Hover over the buttons to see smart tooltips")
+        "Hover over the buttons to see smart tooltips")
 
     ; Create buttons with tooltips
     btn1 := tooltipGui.Add("Button", "x10 y40 w180 h40", "Hover Me (Top-Left)")
@@ -267,18 +267,18 @@ Example4_SmartTooltips() {
     ; Mode selector
     tooltipGui.Add("Text", "x10 y210", "Tooltip Mode:")
     modeSelect := tooltipGui.Add("DropDownList", "x100 y205 w100 Choose1",
-    ["Screen", "Window", "Client"])
+        ["Screen", "Window", "Client"])
 
     tooltipGui.Show("w400 h250")
 
     ; Tooltip data
     tooltipData := Map(
-    btn1.Hwnd, "This is the top-left button",
-    btn2.Hwnd, "This is the top-right button",
-    btn3.Hwnd, "This is the mid-left button",
-    btn4.Hwnd, "This is the mid-right button",
-    btn5.Hwnd, "This is the bottom-left button",
-    btn6.Hwnd, "This is the bottom-right button"
+        btn1.Hwnd, "This is the top-left button",
+        btn2.Hwnd, "This is the top-right button",
+        btn3.Hwnd, "This is the mid-left button",
+        btn4.Hwnd, "This is the mid-right button",
+        btn5.Hwnd, "This is the bottom-left button",
+        btn6.Hwnd, "This is the bottom-right button"
     )
 
     ; Mouse tracking
@@ -299,21 +299,21 @@ Example4_SmartTooltips() {
             ; Position tooltip based on mode
             switch mode {
                 case "Screen":
-                CoordMode("ToolTip", "Screen")
-                MouseGetPos(&x, &y)
-                ToolTip(tooltipData[ctrl], x + 15, y + 15)
+                    CoordMode("ToolTip", "Screen")
+                    MouseGetPos(&x, &y)
+                    ToolTip(tooltipData[ctrl], x + 15, y + 15)
 
                 case "Window":
-                CoordMode("ToolTip", "Window")
-                CoordMode("Mouse", "Window")
-                MouseGetPos(&x, &y)
-                ToolTip(tooltipData[ctrl], x + 15, y + 15)
+                    CoordMode("ToolTip", "Window")
+                    CoordMode("Mouse", "Window")
+                    MouseGetPos(&x, &y)
+                    ToolTip(tooltipData[ctrl], x + 15, y + 15)
 
                 case "Client":
-                CoordMode("ToolTip", "Client")
-                CoordMode("Mouse", "Client")
-                MouseGetPos(&x, &y)
-                ToolTip(tooltipData[ctrl], x + 15, y + 15)
+                    CoordMode("ToolTip", "Client")
+                    CoordMode("Mouse", "Client")
+                    MouseGetPos(&x, &y)
+                    ToolTip(tooltipData[ctrl], x + 15, y + 15)
             }
         } else if !tooltipData.Has(ctrl) && lastHovered != 0 {
             ToolTip()
@@ -322,13 +322,13 @@ Example4_SmartTooltips() {
     }
 
     tooltipGui.OnEvent("Close", (*) => (
-    SetTimer(CheckHover, 0),
-    ToolTip(),
-    tooltipGui.Destroy()
+        SetTimer(CheckHover, 0),
+        ToolTip(),
+        tooltipGui.Destroy()
     ))
 
     MsgBox("Hover over buttons to see tooltips.`n`n"
-    . "Change the mode to see different positioning!", "Instructions")
+        . "Change the mode to see different positioning!", "Instructions")
 }
 
 ;===============================================================================
@@ -341,15 +341,15 @@ Example5_AutocompleteMenu() {
 
     acGui.Add("Text", "x10 y10", "Type 'func', 'var', or 'loop' for suggestions")
     editor := acGui.Add("Edit", "x10 y30 w380 h250 Multi",
-    "; Start typing AutoHotkey code here`n`n")
+        "; Start typing AutoHotkey code here`n`n")
 
     acGui.Show("w400 h300")
 
     ; Autocomplete suggestions
     suggestions := Map(
-    "func", ["function()", "func MyFunc()", "MyFunc() {`n    `n}"],
-    "var", ["variable := value", "local var", "global var"],
-    "loop", ["Loop {`n    `n}", "Loop 10 {`n    `n}", "Loop Files, *.*"]
+        "func", ["function()", "func MyFunc()", "MyFunc() {`n    `n}"],
+        "var", ["variable := value", "local var", "global var"],
+        "loop", ["Loop {`n    `n}", "Loop 10 {`n    `n}", "Loop Files, *.*"]
     )
 
     ; Create suggestion menu
@@ -367,7 +367,7 @@ Example5_AutocompleteMenu() {
         ; Get last word typed
         RegExMatch(text, "(\w+)$", &match)
         if !match
-        return
+            return
 
         word := match[1]
 
@@ -415,7 +415,7 @@ Example5_AutocompleteMenu() {
     }
 
     MsgBox("Type 'func', 'var', or 'loop' to see autocomplete suggestions!`n`n"
-    . "Menu appears at caret position.", "Instructions")
+        . "Menu appears at caret position.", "Instructions")
 }
 
 ;===============================================================================
@@ -444,9 +444,9 @@ Example6_MultiWindowMenus() {
         WinGetPos(&x, &y, &w, &h, "A")
 
         MsgBox("Active Window:`n"
-        . "Title: " title "`n"
-        . "Position: (" x ", " y ")`n"
-        . "Size: " w "x" h, "Window Info")
+            . "Title: " title "`n"
+            . "Position: (" x ", " y ")`n"
+            . "Size: " w "x" h, "Window Info")
     }
 
     CloseWindow(*) {
@@ -469,7 +469,7 @@ Example6_MultiWindowMenus() {
     })
 
     MsgBox("Right-click in either window to see the context menu.`n`n"
-    . "Notice how the same menu works across multiple windows!", "Instructions")
+        . "Notice how the same menu works across multiple windows!", "Instructions")
 }
 
 ;===============================================================================
@@ -482,7 +482,7 @@ Example7_CaretTooltips() {
 
     assistGui.Add("Text", "x10 y10", "Start typing to see word count at caret")
     textArea := assistGui.Add("Edit", "x10 y30 w380 h200 Multi",
-    "Type your text here...")
+        "Type your text here...")
 
     statsDisplay := assistGui.Add("Edit", "x10 y240 w380 h60 ReadOnly Multi", "")
 
@@ -506,7 +506,7 @@ Example7_CaretTooltips() {
 
     UpdateCaretTooltip() {
         if !showCaretTooltip
-        return
+            return
 
         ; Get text statistics
         text := textArea.Value
@@ -515,13 +515,13 @@ Example7_CaretTooltips() {
 
         for word in words {
             if StrLen(Trim(word)) > 0
-            wordCount++
+                wordCount++
         }
 
         charCount := StrLen(text)
         lineCount := 1
         Loop Parse, text, "`n"
-        lineCount := A_Index
+            lineCount := A_Index
 
         ; Update stats display
         statsDisplay.Value := "Words: " wordCount " | Characters: " charCount " | Lines: " lineCount
@@ -537,13 +537,13 @@ Example7_CaretTooltips() {
     btnToggle.OnEvent("Click", ToggleCaretTooltip)
 
     assistGui.OnEvent("Close", (*) => (
-    SetTimer(UpdateCaretTooltip, 0),
-    ToolTip(),
-    assistGui.Destroy()
+        SetTimer(UpdateCaretTooltip, 0),
+        ToolTip(),
+        assistGui.Destroy()
     ))
 
     MsgBox("Click 'Toggle Caret Tooltip' to see stats at cursor!`n`n"
-    . "The tooltip follows your caret as you type.", "Instructions")
+        . "The tooltip follows your caret as you type.", "Instructions")
 }
 
 ;===============================================================================
@@ -558,3 +558,4 @@ Example7_CaretTooltips() {
 ; Example5_AutocompleteMenu()
 ; Example6_MultiWindowMenus()
 ; Example7_CaretTooltips()
+

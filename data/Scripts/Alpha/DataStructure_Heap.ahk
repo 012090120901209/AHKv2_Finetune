@@ -89,7 +89,7 @@ class BinaryHeap {
 ; Priority Queue with priorities
 class PriorityQueue {
     __New(minPriority := true) {
-        comparator := minPriority 
+        comparator := minPriority
             ? (a, b) => a["priority"] < b["priority"]
             : (a, b) => a["priority"] > b["priority"]
         this.heap := BinaryHeap(comparator)

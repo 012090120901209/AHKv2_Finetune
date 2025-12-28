@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* Buffer Management Patterns
-* Source: Patterns from jNizM examples
-*
-* Demonstrates:
-* - Buffer() for memory allocation (AHK v2 way)
-* - NumPut/NumGet for binary data
-* - StrPut/StrGet for string encoding
-* - Working with pointers and DllCall
-*/
+ * Buffer Management Patterns
+ * Source: Patterns from jNizM examples
+ * 
+ * Demonstrates:
+ * - Buffer() for memory allocation (AHK v2 way)
+ * - NumPut/NumGet for binary data
+ * - StrPut/StrGet for string encoding
+ * - Working with pointers and DllCall
+ */
 
 ; Example 1: Basic Buffer allocation
 CreateBuffer() {
@@ -26,8 +26,8 @@ CreateBuffer() {
     val2 := NumGet(buf, 4, "UInt")
 
     MsgBox("Buffer Example:`n"
-    . "Value 1: " val1 "`n"
-    . "Value 2: " val2)
+        . "Value 1: " val1 "`n"
+        . "Value 2: " val2)
 }
 
 ; Example 2: String in Buffer
@@ -45,8 +45,8 @@ StringBuffer() {
     retrieved := StrGet(buf, "UTF-8")
 
     MsgBox("String Buffer:`n"
-    . "Original: " text "`n"
-    . "Retrieved: " retrieved)
+        . "Original: " text "`n"
+        . "Retrieved: " retrieved)
 }
 
 ; Example 3: Struct-like usage
@@ -61,8 +61,8 @@ PointStruct() {
     y := NumGet(point, 4, "Int")
 
     MsgBox("POINT Structure:`n"
-    . "X: " x "`n"
-    . "Y: " y)
+        . "X: " x "`n"
+        . "Y: " y)
 }
 
 ; Run all examples

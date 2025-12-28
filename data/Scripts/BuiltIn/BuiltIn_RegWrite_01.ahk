@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Registry Write Examples - Part 1
-* ============================================================================
-*
-* This file demonstrates comprehensive usage of the RegWrite function in
-* AutoHotkey v2, including writing values, creating keys, and handling
-* different data types (REG_SZ, REG_DWORD, REG_BINARY, etc.).
-*
-* @description Examples of writing to Windows Registry
-* @author AHK v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*/
+ * ============================================================================
+ * AutoHotkey v2 Registry Write Examples - Part 1
+ * ============================================================================
+ * 
+ * This file demonstrates comprehensive usage of the RegWrite function in
+ * AutoHotkey v2, including writing values, creating keys, and handling
+ * different data types (REG_SZ, REG_DWORD, REG_BINARY, etc.).
+ * 
+ * @description Examples of writing to Windows Registry
+ * @author AHK v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Registry Writing (Different Data Types)
 ; ============================================================================
 
 /**
-* @function Example1_BasicRegWrite
-* @description Demonstrates writing different registry data types
-* @returns {void}
-*/
+ * @function Example1_BasicRegWrite
+ * @description Demonstrates writing different registry data types
+ * @returns {void}
+ */
 Example1_BasicRegWrite() {
     MsgBox "=== Example 1: Basic Registry Writing ===`n`n" .
-    "Creating test registry entries with different data types..."
+        "Creating test registry entries with different data types..."
 
     ; Define test key (safe location in HKCU)
     testKey := "HKCU\Software\AHKv2Examples\RegWriteTest"
@@ -73,28 +73,28 @@ Example1_BasicRegWrite() {
 ; ============================================================================
 
 /**
-* @class AppSettings
-* @description Manages application settings in the registry
-*/
+ * @class AppSettings
+ * @description Manages application settings in the registry
+ */
 class AppSettings {
     appKey := ""
 
     /**
-    * @method __New
-    * @description Constructor
-    * @param {String} appName - Application name for registry key
-    */
+     * @method __New
+     * @description Constructor
+     * @param {String} appName - Application name for registry key
+     */
     __New(appName) {
         this.appKey := "HKCU\Software\" . appName
     }
 
     /**
-    * @method SetString
-    * @description Sets a string value
-    * @param {String} name - Setting name
-    * @param {String} value - Setting value
-    * @returns {Boolean} Success status
-    */
+     * @method SetString
+     * @description Sets a string value
+     * @param {String} name - Setting name
+     * @param {String} value - Setting value
+     * @returns {Boolean} Success status
+     */
     SetString(name, value) {
         try {
             RegWrite value, "REG_SZ", this.appKey, name
@@ -105,12 +105,12 @@ class AppSettings {
     }
 
     /**
-    * @method SetNumber
-    * @description Sets a numeric value
-    * @param {String} name - Setting name
-    * @param {Integer} value - Setting value
-    * @returns {Boolean} Success status
-    */
+     * @method SetNumber
+     * @description Sets a numeric value
+     * @param {String} name - Setting name
+     * @param {Integer} value - Setting value
+     * @returns {Boolean} Success status
+     */
     SetNumber(name, value) {
         try {
             RegWrite value, "REG_DWORD", this.appKey, name
@@ -121,12 +121,12 @@ class AppSettings {
     }
 
     /**
-    * @method SetBoolean
-    * @description Sets a boolean value (as DWORD 0 or 1)
-    * @param {String} name - Setting name
-    * @param {Boolean} value - Setting value
-    * @returns {Boolean} Success status
-    */
+     * @method SetBoolean
+     * @description Sets a boolean value (as DWORD 0 or 1)
+     * @param {String} name - Setting name
+     * @param {Boolean} value - Setting value
+     * @returns {Boolean} Success status
+     */
     SetBoolean(name, value) {
         try {
             RegWrite (value ? 1 : 0), "REG_DWORD", this.appKey, name
@@ -137,12 +137,12 @@ class AppSettings {
     }
 
     /**
-    * @method GetString
-    * @description Gets a string value
-    * @param {String} name - Setting name
-    * @param {String} default - Default value
-    * @returns {String} Setting value
-    */
+     * @method GetString
+     * @description Gets a string value
+     * @param {String} name - Setting name
+     * @param {String} default - Default value
+     * @returns {String} Setting value
+     */
     GetString(name, default := "") {
         try {
             return RegRead(this.appKey, name)
@@ -152,12 +152,12 @@ class AppSettings {
     }
 
     /**
-    * @method GetNumber
-    * @description Gets a numeric value
-    * @param {String} name - Setting name
-    * @param {Integer} default - Default value
-    * @returns {Integer} Setting value
-    */
+     * @method GetNumber
+     * @description Gets a numeric value
+     * @param {String} name - Setting name
+     * @param {Integer} default - Default value
+     * @returns {Integer} Setting value
+     */
     GetNumber(name, default := 0) {
         try {
             return RegRead(this.appKey, name)
@@ -167,12 +167,12 @@ class AppSettings {
     }
 
     /**
-    * @method GetBoolean
-    * @description Gets a boolean value
-    * @param {String} name - Setting name
-    * @param {Boolean} default - Default value
-    * @returns {Boolean} Setting value
-    */
+     * @method GetBoolean
+     * @description Gets a boolean value
+     * @param {String} name - Setting name
+     * @param {Boolean} default - Default value
+     * @returns {Boolean} Setting value
+     */
     GetBoolean(name, default := false) {
         try {
             value := RegRead(this.appKey, name)
@@ -183,15 +183,15 @@ class AppSettings {
     }
 
     /**
-    * @method ExportSettings
-    * @description Exports all settings
-    * @returns {Map} All settings
-    */
+     * @method ExportSettings
+     * @description Exports all settings
+     * @returns {Map} All settings
+     */
     ExportSettings() {
         settings := Map()
         try {
             Loop Reg, this.appKey, "V"
- {
+            {
                 try {
                     settings[A_LoopRegName] := RegRead(this.appKey, A_LoopRegName)
                 }
@@ -202,13 +202,13 @@ class AppSettings {
 }
 
 /**
-* @function Example2_AppSettings
-* @description Demonstrates application settings management
-* @returns {void}
-*/
+ * @function Example2_AppSettings
+ * @description Demonstrates application settings management
+ * @returns {void}
+ */
 Example2_AppSettings() {
     MsgBox "=== Example 2: Application Settings ===`n`n" .
-    "Managing application settings in registry..."
+        "Managing application settings in registry..."
 
     settings := AppSettings("AHKv2Examples\MyApp")
 
@@ -239,18 +239,18 @@ Example2_AppSettings() {
 ; ============================================================================
 
 /**
-* @class ConfigBackup
-* @description Backs up and restores registry configurations
-*/
+ * @class ConfigBackup
+ * @description Backs up and restores registry configurations
+ */
 class ConfigBackup {
     backupData := Map()
 
     /**
-    * @method Backup
-    * @description Backs up a registry key and all its values
-    * @param {String} keyPath - Registry key to backup
-    * @returns {Integer} Number of values backed up
-    */
+     * @method Backup
+     * @description Backs up a registry key and all its values
+     * @param {String} keyPath - Registry key to backup
+     * @returns {Integer} Number of values backed up
+     */
     Backup(keyPath) {
         this.backupData := Map()
         this.backupData["keyPath"] := keyPath
@@ -259,15 +259,15 @@ class ConfigBackup {
 
         try {
             Loop Reg, keyPath, "V"
- {
+            {
                 try {
                     valueName := A_LoopRegName
                     value := RegRead(keyPath, valueName)
 
                     ; Try to determine the type by reading it back
                     this.backupData["values"][valueName] := Map(
-                    "value", value,
-                    "type", "REG_SZ"  ; Default to string type
+                        "value", value,
+                        "type", "REG_SZ"  ; Default to string type
                     )
                     count++
                 } catch {
@@ -283,13 +283,13 @@ class ConfigBackup {
     }
 
     /**
-    * @method Restore
-    * @description Restores backed up values
-    * @returns {Integer} Number of values restored
-    */
+     * @method Restore
+     * @description Restores backed up values
+     * @returns {Integer} Number of values restored
+     */
     Restore() {
         if (!this.backupData.Has("keyPath"))
-        return 0
+            return 0
 
         keyPath := this.backupData["keyPath"]
         count := 0
@@ -307,13 +307,13 @@ class ConfigBackup {
     }
 
     /**
-    * @method GetBackupInfo
-    * @description Gets information about the backup
-    * @returns {String} Backup information
-    */
+     * @method GetBackupInfo
+     * @description Gets information about the backup
+     * @returns {String} Backup information
+     */
     GetBackupInfo() {
         if (!this.backupData.Has("keyPath"))
-        return "No backup data available"
+            return "No backup data available"
 
         info := "Backup Information:`n"
         info .= "━━━━━━━━━━━━━━━━━━`n"
@@ -324,7 +324,7 @@ class ConfigBackup {
         for valueName, valueData in this.backupData["values"] {
             valueStr := String(valueData["value"])
             if (StrLen(valueStr) > 40)
-            valueStr := SubStr(valueStr, 1, 37) . "..."
+                valueStr := SubStr(valueStr, 1, 37) . "..."
             info .= valueName . " = " . valueStr . "`n"
         }
 
@@ -333,13 +333,13 @@ class ConfigBackup {
 }
 
 /**
-* @function Example3_BackupRestore
-* @description Demonstrates backup and restore functionality
-* @returns {void}
-*/
+ * @function Example3_BackupRestore
+ * @description Demonstrates backup and restore functionality
+ * @returns {void}
+ */
 Example3_BackupRestore() {
     MsgBox "=== Example 3: Backup & Restore ===`n`n" .
-    "Demonstrating registry backup and restore..."
+        "Demonstrating registry backup and restore..."
 
     testKey := "HKCU\Software\AHKv2Examples\BackupTest"
 
@@ -392,45 +392,45 @@ Example3_BackupRestore() {
 ; ============================================================================
 
 /**
-* @class BatchRegWriter
-* @description Performs batch registry write operations
-*/
+ * @class BatchRegWriter
+ * @description Performs batch registry write operations
+ */
 class BatchRegWriter {
     operations := []
     results := []
 
     /**
-    * @method Add
-    * @description Adds an operation to the batch
-    * @param {String} keyPath - Registry key path
-    * @param {String} valueName - Value name
-    * @param {Any} value - Value to write
-    * @param {String} type - Registry value type
-    */
+     * @method Add
+     * @description Adds an operation to the batch
+     * @param {String} keyPath - Registry key path
+     * @param {String} valueName - Value name
+     * @param {Any} value - Value to write
+     * @param {String} type - Registry value type
+     */
     Add(keyPath, valueName, value, type := "REG_SZ") {
         this.operations.Push(Map(
-        "keyPath", keyPath,
-        "valueName", valueName,
-        "value", value,
-        "type", type
+            "keyPath", keyPath,
+            "valueName", valueName,
+            "value", value,
+            "type", type
         ))
     }
 
     /**
-    * @method Execute
-    * @description Executes all batch operations
-    * @returns {Integer} Number of successful operations
-    */
+     * @method Execute
+     * @description Executes all batch operations
+     * @returns {Integer} Number of successful operations
+     */
     Execute() {
         this.results := []
         successCount := 0
 
         for op in this.operations {
             result := Map(
-            "keyPath", op["keyPath"],
-            "valueName", op["valueName"],
-            "status", "Unknown",
-            "error", ""
+                "keyPath", op["keyPath"],
+                "valueName", op["valueName"],
+                "status", "Unknown",
+                "error", ""
             )
 
             try {
@@ -449,10 +449,10 @@ class BatchRegWriter {
     }
 
     /**
-    * @method GetReport
-    * @description Gets execution report
-    * @returns {String} Formatted report
-    */
+     * @method GetReport
+     * @description Gets execution report
+     * @returns {String} Formatted report
+     */
     GetReport() {
         report := "Batch Operation Report:`n"
         report .= "━━━━━━━━━━━━━━━━━━━━━━`n"
@@ -463,9 +463,9 @@ class BatchRegWriter {
 
         for result in this.results {
             if (result["status"] = "Success")
-            successCount++
+                successCount++
             else
-            failCount++
+                failCount++
         }
 
         report .= "Successful: " . successCount . "`n"
@@ -475,16 +475,16 @@ class BatchRegWriter {
             status := result["status"] = "Success" ? "✓" : "✗"
             report .= status . " " . result["keyPath"] . "\" . result["valueName"] . "`n"
             if (result["status"] != "Success" && result["error"] != "")
-            report .= "  Error: " . result["error"] . "`n"
+                report .= "  Error: " . result["error"] . "`n"
         }
 
         return report
     }
 
     /**
-    * @method Clear
-    * @description Clears all operations
-    */
+     * @method Clear
+     * @description Clears all operations
+     */
     Clear() {
         this.operations := []
         this.results := []
@@ -492,13 +492,13 @@ class BatchRegWriter {
 }
 
 /**
-* @function Example4_BatchOperations
-* @description Demonstrates batch registry operations
-* @returns {void}
-*/
+ * @function Example4_BatchOperations
+ * @description Demonstrates batch registry operations
+ * @returns {void}
+ */
 Example4_BatchOperations() {
     MsgBox "=== Example 4: Batch Operations ===`n`n" .
-    "Performing batch registry writes..."
+        "Performing batch registry writes..."
 
     batch := BatchRegWriter()
     baseKey := "HKCU\Software\AHKv2Examples\BatchTest"
@@ -523,22 +523,22 @@ Example4_BatchOperations() {
 ; ============================================================================
 
 /**
-* @class UserPreferences
-* @description Manages user preferences with validation
-*/
+ * @class UserPreferences
+ * @description Manages user preferences with validation
+ */
 class UserPreferences {
     prefKey := "HKCU\Software\AHKv2Examples\UserPrefs"
 
     /**
-    * @method SetTheme
-    * @description Sets the theme preference
-    * @param {String} themeName - Theme name (Light, Dark, Auto)
-    * @returns {Boolean} Success status
-    */
+     * @method SetTheme
+     * @description Sets the theme preference
+     * @param {String} themeName - Theme name (Light, Dark, Auto)
+     * @returns {Boolean} Success status
+     */
     SetTheme(themeName) {
         validThemes := ["Light", "Dark", "Auto"]
         if (!this.ArrayContains(validThemes, themeName))
-        return false
+            return false
 
         try {
             RegWrite themeName, "REG_SZ", this.prefKey, "Theme"
@@ -549,14 +549,14 @@ class UserPreferences {
     }
 
     /**
-    * @method SetFontSize
-    * @description Sets the font size preference
-    * @param {Integer} size - Font size (8-72)
-    * @returns {Boolean} Success status
-    */
+     * @method SetFontSize
+     * @description Sets the font size preference
+     * @param {Integer} size - Font size (8-72)
+     * @returns {Boolean} Success status
+     */
     SetFontSize(size) {
         if (size < 8 || size > 72)
-        return false
+            return false
 
         try {
             RegWrite size, "REG_DWORD", this.prefKey, "FontSize"
@@ -567,15 +567,15 @@ class UserPreferences {
     }
 
     /**
-    * @method SetLanguage
-    * @description Sets the language preference
-    * @param {String} langCode - Language code (en, es, fr, de)
-    * @returns {Boolean} Success status
-    */
+     * @method SetLanguage
+     * @description Sets the language preference
+     * @param {String} langCode - Language code (en, es, fr, de)
+     * @returns {Boolean} Success status
+     */
     SetLanguage(langCode) {
         validLangs := ["en", "es", "fr", "de", "ja", "zh"]
         if (!this.ArrayContains(validLangs, langCode))
-        return false
+            return false
 
         try {
             RegWrite langCode, "REG_SZ", this.prefKey, "Language"
@@ -586,15 +586,15 @@ class UserPreferences {
     }
 
     /**
-    * @method SetNotifications
-    * @description Sets notification preferences
-    * @param {Boolean} enabled - Enable notifications
-    * @param {Integer} volume - Notification volume (0-100)
-    * @returns {Boolean} Success status
-    */
+     * @method SetNotifications
+     * @description Sets notification preferences
+     * @param {Boolean} enabled - Enable notifications
+     * @param {Integer} volume - Notification volume (0-100)
+     * @returns {Boolean} Success status
+     */
     SetNotifications(enabled, volume := 50) {
         if (volume < 0 || volume > 100)
-        return false
+            return false
 
         try {
             RegWrite (enabled ? 1 : 0), "REG_DWORD", this.prefKey, "NotificationsEnabled"
@@ -606,10 +606,10 @@ class UserPreferences {
     }
 
     /**
-    * @method GetAllPreferences
-    * @description Gets all current preferences
-    * @returns {String} Formatted preferences
-    */
+     * @method GetAllPreferences
+     * @description Gets all current preferences
+     * @returns {String} Formatted preferences
+     */
     GetAllPreferences() {
         prefs := "User Preferences:`n"
         prefs .= "━━━━━━━━━━━━━━━━━━`n`n"
@@ -648,26 +648,26 @@ class UserPreferences {
     }
 
     /**
-    * @method ArrayContains
-    * @description Helper to check if array contains value
-    */
+     * @method ArrayContains
+     * @description Helper to check if array contains value
+     */
     ArrayContains(arr, value) {
         for item in arr {
             if (item = value)
-            return true
+                return true
         }
         return false
     }
 }
 
 /**
-* @function Example5_UserPreferences
-* @description Demonstrates user preferences management
-* @returns {void}
-*/
+ * @function Example5_UserPreferences
+ * @description Demonstrates user preferences management
+ * @returns {void}
+ */
 Example5_UserPreferences() {
     MsgBox "=== Example 5: User Preferences ===`n`n" .
-    "Managing user preferences with validation..."
+        "Managing user preferences with validation..."
 
     prefs := UserPreferences()
 
@@ -687,13 +687,13 @@ Example5_UserPreferences() {
 ; ============================================================================
 
 /**
-* @function Example6_RegistryMigration
-* @description Demonstrates migrating settings from one key to another
-* @returns {void}
-*/
+ * @function Example6_RegistryMigration
+ * @description Demonstrates migrating settings from one key to another
+ * @returns {void}
+ */
 Example6_RegistryMigration() {
     MsgBox "=== Example 6: Registry Migration ===`n`n" .
-    "Migrating settings from old to new location..."
+        "Migrating settings from old to new location..."
 
     oldKey := "HKCU\Software\AHKv2Examples\OldSettings"
     newKey := "HKCU\Software\AHKv2Examples\NewSettings"
@@ -709,7 +709,7 @@ Example6_RegistryMigration() {
     migrated := 0
     try {
         Loop Reg, oldKey, "V"
- {
+        {
             try {
                 value := RegRead(oldKey, A_LoopRegName)
                 ; Default to REG_SZ for simplicity
@@ -733,28 +733,28 @@ Example6_RegistryMigration() {
 ; ============================================================================
 
 /**
-* @function Example7_ConfigTemplate
-* @description Demonstrates applying configuration templates
-* @returns {void}
-*/
+ * @function Example7_ConfigTemplate
+ * @description Demonstrates applying configuration templates
+ * @returns {void}
+ */
 Example7_ConfigTemplate() {
     MsgBox "=== Example 7: Configuration Template ===`n`n" .
-    "Applying configuration template..."
+        "Applying configuration template..."
 
     ; Define configuration template
     template := Map(
-    "AppName", "AHK Application",
-    "Version", "2.0.0",
-    "WindowX", 100,
-    "WindowY", 100,
-    "WindowWidth", 1024,
-    "WindowHeight", 768,
-    "MaximizeOnStart", 0,
-    "AutoSave", 1,
-    "AutoSaveInterval", 300,
-    "Theme", "Light",
-    "ShowToolbar", 1,
-    "ShowStatusBar", 1
+        "AppName", "AHK Application",
+        "Version", "2.0.0",
+        "WindowX", 100,
+        "WindowY", 100,
+        "WindowWidth", 1024,
+        "WindowHeight", 768,
+        "MaximizeOnStart", 0,
+        "AutoSave", 1,
+        "AutoSaveInterval", 300,
+        "Theme", "Light",
+        "ShowToolbar", 1,
+        "ShowStatusBar", 1
     )
 
     targetKey := "HKCU\Software\AHKv2Examples\TemplateConfig"
@@ -765,9 +765,9 @@ Example7_ConfigTemplate() {
         try {
             ; Determine type based on value
             if (value is Integer)
-            RegWrite value, "REG_DWORD", targetKey, valueName
+                RegWrite value, "REG_DWORD", targetKey, valueName
             else
-            RegWrite value, "REG_SZ", targetKey, valueName
+                RegWrite value, "REG_SZ", targetKey, valueName
             applied++
         }
     }
@@ -819,8 +819,8 @@ ShowMenu() {
         case "7": Example7_ConfigTemplate()
         case "0": ExitApp()
         default:
-        MsgBox "Invalid selection!", "Error"
-        return
+            MsgBox "Invalid selection!", "Error"
+            return
     }
 
     ; Show menu again

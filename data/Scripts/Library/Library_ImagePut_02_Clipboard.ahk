@@ -12,14 +12,14 @@
 
 DemoImagePutClipboard() {
     MsgBox("ImagePut Clipboard Demonstration`n`n"
-    "Copy images to clipboard from various sources:`n`n"
-    "1. Screenshot: ImagePutClipboard([0,0,500,500])`n"
-    "2. File: ImagePutClipboard('photo.jpg')`n"
-    "3. URL: ImagePutClipboard('https://...')`n"
-    "4. Convert: ImagePutClipboard('file.bmp')  ; Auto-converts`n`n"
-    "The image is ready to paste in any application.`n`n"
-    "Perfect for: Screenshot tools, image converters, automation",
-    "ImagePut Clipboard Demo")
+        "Copy images to clipboard from various sources:`n`n"
+        "1. Screenshot: ImagePutClipboard([0,0,500,500])`n"
+        "2. File: ImagePutClipboard('photo.jpg')`n"
+        "3. URL: ImagePutClipboard('https://...')`n"
+        "4. Convert: ImagePutClipboard('file.bmp')  ; Auto-converts`n`n"
+        "The image is ready to paste in any application.`n`n"
+        "Perfect for: Screenshot tools, image converters, automation",
+        "ImagePut Clipboard Demo")
 }
 
 ; Real implementation examples (commented out, requires library):

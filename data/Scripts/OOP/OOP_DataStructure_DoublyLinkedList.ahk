@@ -44,11 +44,11 @@ class DoublyLinkedList {
 
     InsertAt(index, value) {
         if (index < 0 || index > this.length)
-        return false
+            return false
         if (index = 0)
-        return this.Prepend(value)
+            return this.Prepend(value)
         if (index = this.length)
-        return this.Append(value)
+            return this.Append(value)
 
         node := DNode(value)
         current := this.GetNodeAt(index)
@@ -64,20 +64,20 @@ class DoublyLinkedList {
 
     RemoveAt(index) {
         if (index < 0 || index >= this.length)
-        return false
+            return false
 
         if (index = 0) {
             this.head := this.head.next
             if (this.head)
-            this.head.prev := ""
+                this.head.prev := ""
             else
-            this.tail := ""
+                this.tail := ""
         } else if (index = this.length - 1) {
             this.tail := this.tail.prev
             if (this.tail)
-            this.tail.next := ""
+                this.tail.next := ""
             else
-            this.head := ""
+                this.head := ""
         } else {
             current := this.GetNodeAt(index)
             current.prev.next := current.next
@@ -95,17 +95,17 @@ class DoublyLinkedList {
 
     GetNodeAt(index) {
         if (index < 0 || index >= this.length)
-        return ""
+            return ""
 
         ; Optimize by choosing direction
         if (index < this.length // 2) {
             current := this.head
             loop index
-            current := current.next
+                current := current.next
         } else {
             current := this.tail
             loop this.length - index - 1
-            current := current.prev
+                current := current.prev
         }
 
         return current
@@ -113,7 +113,7 @@ class DoublyLinkedList {
 
     Reverse() {
         if (!this.head)
-        return this
+            return this
 
         current := this.head
         temp := ""

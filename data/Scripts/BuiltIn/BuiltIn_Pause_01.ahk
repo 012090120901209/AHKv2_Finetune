@@ -1,20 +1,20 @@
 /**
-* @file BuiltIn_Pause_01.ahk
-* @description Pause and resume script execution in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Pause temporarily halts the script's current thread. Useful for temporarily
-* disabling hotkeys, controlling script execution, and creating pause/resume
-* functionality in automation workflows.
-*
-* @syntax Pause [NewState]
-* @param NewState - -1 (toggle), 0 (unpause), 1 (pause), or omit (toggle)
-*
-* @see https://www.autohotkey.com/docs/v2/lib/Pause.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_Pause_01.ahk
+ * @description Pause and resume script execution in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Pause temporarily halts the script's current thread. Useful for temporarily
+ * disabling hotkeys, controlling script execution, and creating pause/resume
+ * functionality in automation workflows.
+ * 
+ * @syntax Pause [NewState]
+ * @param NewState - -1 (toggle), 0 (unpause), 1 (pause), or omit (toggle)
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/Pause.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -23,9 +23,9 @@
 ; EXAMPLE 1: Basic Pause/Resume Control
 ; ============================================================================
 /**
-* Demonstrates basic Pause functionality
-* Shows how to pause and resume script execution
-*/
+ * Demonstrates basic Pause functionality
+ * Shows how to pause and resume script execution
+ */
 Example1_BasicPause() {
     myGui := Gui("+AlwaysOnTop", "Example 1: Basic Pause/Resume")
     myGui.SetFont("s10")
@@ -53,13 +53,13 @@ Example1_BasicPause() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Background activity simulation
     BackgroundActivity() {
         if (isPaused)
-        return
+            return
 
         activityCount++
         counterText.Value := "Activity Count: " activityCount
@@ -145,9 +145,9 @@ Example1_BasicPause() {
 ; EXAMPLE 2: Selective Hotkey Pausing
 ; ============================================================================
 /**
-* Demonstrates pausing specific hotkeys while keeping others active
-* Shows how to control which parts of script are paused
-*/
+ * Demonstrates pausing specific hotkeys while keeping others active
+ * Shows how to control which parts of script are paused
+ */
 Example2_SelectivePause() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Selective Hotkey Pausing")
     myGui.SetFont("s10")
@@ -176,7 +176,7 @@ Example2_SelectivePause() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; F1 hotkey handler
@@ -307,9 +307,9 @@ Example2_SelectivePause() {
 ; EXAMPLE 3: Timed Pause/Resume
 ; ============================================================================
 /**
-* Demonstrates automatic pause and resume with timers
-* Useful for scheduled script suspension
-*/
+ * Demonstrates automatic pause and resume with timers
+ * Useful for scheduled script suspension
+ */
 Example3_TimedPause() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Timed Pause/Resume")
     myGui.SetFont("s10")
@@ -342,13 +342,13 @@ Example3_TimedPause() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Background activity
     BackgroundActivity() {
         if (isPaused)
-        return
+            return
 
         activityCount++
         activityText.Value := "Activities: " activityCount
@@ -507,9 +507,9 @@ Example3_TimedPause() {
 ; EXAMPLE 4: Pause with User Notification
 ; ============================================================================
 /**
-* Demonstrates pause with visual and audio notifications
-* Provides clear feedback when script is paused
-*/
+ * Demonstrates pause with visual and audio notifications
+ * Provides clear feedback when script is paused
+ */
 Example4_PauseNotifications() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Pause Notifications")
     myGui.SetFont("s10")
@@ -522,7 +522,7 @@ Example4_PauseNotifications() {
 
     ; Statistics
     statsText := myGui.Add("Text", "w500 Center vStats",
-    "Total Pauses: 0 | Total Resume: 0 | Pause Time: 0s")
+        "Total Pauses: 0 | Total Resume: 0 | Pause Time: 0s")
 
     ; Log
     myGui.Add("Text", "xm", "Activity Log:")
@@ -541,21 +541,21 @@ Example4_PauseNotifications() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Update statistics
     UpdateStats() {
         pauseTimeSeconds := Round(totalPauseTime / 1000)
         statsText.Value := "Total Pauses: " pauseCount
-        . " | Total Resumes: " resumeCount
-        . " | Total Pause Time: " pauseTimeSeconds "s"
+            . " | Total Resumes: " resumeCount
+            . " | Total Pause Time: " pauseTimeSeconds "s"
     }
 
     ; Pause with notification
     PauseWithNotification() {
         if (isPaused)
-        return
+            return
 
         Pause(1)
         isPaused := true
@@ -585,7 +585,7 @@ Example4_PauseNotifications() {
     ; Resume with notification
     ResumeWithNotification() {
         if (!isPaused)
-        return
+            return
 
         Pause(0)
         isPaused := false
@@ -669,9 +669,9 @@ Example4_PauseNotifications() {
 ; EXAMPLE 5: Conditional Pause System
 ; ============================================================================
 /**
-* Implements conditional pausing based on system state
-* Automatically pauses during specific conditions
-*/
+ * Implements conditional pausing based on system state
+ * Automatically pauses during specific conditions
+ */
 Example5_ConditionalPause() {
     myGui := Gui("+AlwaysOnTop", "Example 5: Conditional Pause")
     myGui.SetFont("s10")
@@ -710,13 +710,13 @@ Example5_ConditionalPause() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Check conditions
     CheckConditions() {
         if (!isMonitoring)
-        return
+            return
 
         shouldPause := false
         reason := ""
@@ -734,113 +734,113 @@ Example5_ConditionalPause() {
         if (cond2.Value && !shouldPause) {
             idleTime := A_TickCount - lastActivityTime
             if (idleTime > 30000) {  ; 30 seconds
-            shouldPause := true
-            reason := "System idle for " Round(idleTime / 1000) " seconds"
+                shouldPause := true
+                reason := "System idle for " Round(idleTime / 1000) " seconds"
+            }
+        }
+
+        ; Check time range condition
+        if (cond3.Value && !shouldPause) {
+            currentTime := FormatTime(, "HH:mm")
+            startTime := startTimeEdit.Value
+            endTime := endTimeEdit.Value
+
+            ; Simple time range check (doesn't handle midnight wrap perfectly)
+            if (startTime > endTime) {
+                ; Range crosses midnight
+                if (currentTime >= startTime || currentTime <= endTime) {
+                    shouldPause := true
+                    reason := "Current time in pause range (" startTime " - " endTime ")"
+                }
+            } else {
+                ; Normal range
+                if (currentTime >= startTime && currentTime <= endTime) {
+                    shouldPause := true
+                    reason := "Current time in pause range (" startTime " - " endTime ")"
+                }
+            }
+        }
+
+        ; Apply pause state
+        if (shouldPause && !isPaused) {
+            AutoPause(reason)
+        } else if (!shouldPause && isPaused) {
+            AutoResume()
         }
     }
 
-    ; Check time range condition
-    if (cond3.Value && !shouldPause) {
-        currentTime := FormatTime(, "HH:mm")
-        startTime := startTimeEdit.Value
-        endTime := endTimeEdit.Value
+    ; Auto pause
+    AutoPause(reason) {
+        Pause(1)
+        isPaused := true
 
-        ; Simple time range check (doesn't handle midnight wrap perfectly)
-        if (startTime > endTime) {
-            ; Range crosses midnight
-            if (currentTime >= startTime || currentTime <= endTime) {
-                shouldPause := true
-                reason := "Current time in pause range (" startTime " - " endTime ")"
-            }
-        } else {
-            ; Normal range
-            if (currentTime >= startTime && currentTime <= endTime) {
-                shouldPause := true
-                reason := "Current time in pause range (" startTime " - " endTime ")"
-            }
-        }
+        statusText.Value := "Status: AUTO-PAUSED"
+        LogCondition("AUTO-PAUSED: " reason)
     }
 
-    ; Apply pause state
-    if (shouldPause && !isPaused) {
-        AutoPause(reason)
-    } else if (!shouldPause && isPaused) {
-        AutoResume()
-    }
-}
-
-; Auto pause
-AutoPause(reason) {
-    Pause(1)
-    isPaused := true
-
-    statusText.Value := "Status: AUTO-PAUSED"
-    LogCondition("AUTO-PAUSED: " reason)
-}
-
-; Auto resume
-AutoResume() {
-    Pause(0)
-    isPaused := false
-
-    statusText.Value := "Status: RUNNING (monitoring)"
-    LogCondition("AUTO-RESUMED: Conditions no longer met")
-}
-
-; Start/stop monitoring
-startMonitorBtn := myGui.Add("Button", "xm w270", "Start Monitoring")
-stopMonitorBtn := myGui.Add("Button", "w270 x+10", "Stop Monitoring")
-
-startMonitorBtn.OnEvent("Click", (*) => StartMonitoring())
-StartMonitoring() {
-    isMonitoring := true
-    SetTimer(CheckConditions, 1000)  ; Check every second
-
-    statusText.Value := "Status: RUNNING (monitoring)"
-    LogCondition("Conditional monitoring started")
-
-    startMonitorBtn.Enabled := false
-    stopMonitorBtn.Enabled := true
-}
-
-stopMonitorBtn.OnEvent("Click", (*) => StopMonitoring())
-StopMonitoring() {
-    isMonitoring := false
-    SetTimer(CheckConditions, 0)
-
-    if (isPaused) {
+    ; Auto resume
+    AutoResume() {
         Pause(0)
         isPaused := false
+
+        statusText.Value := "Status: RUNNING (monitoring)"
+        LogCondition("AUTO-RESUMED: Conditions no longer met")
     }
 
-    statusText.Value := "Status: RUNNING (not monitoring)"
-    LogCondition("Conditional monitoring stopped")
+    ; Start/stop monitoring
+    startMonitorBtn := myGui.Add("Button", "xm w270", "Start Monitoring")
+    stopMonitorBtn := myGui.Add("Button", "w270 x+10", "Stop Monitoring")
 
-    startMonitorBtn.Enabled := true
+    startMonitorBtn.OnEvent("Click", (*) => StartMonitoring())
+    StartMonitoring() {
+        isMonitoring := true
+        SetTimer(CheckConditions, 1000)  ; Check every second
+
+        statusText.Value := "Status: RUNNING (monitoring)"
+        LogCondition("Conditional monitoring started")
+
+        startMonitorBtn.Enabled := false
+        stopMonitorBtn.Enabled := true
+    }
+
+    stopMonitorBtn.OnEvent("Click", (*) => StopMonitoring())
+    StopMonitoring() {
+        isMonitoring := false
+        SetTimer(CheckConditions, 0)
+
+        if (isPaused) {
+            Pause(0)
+            isPaused := false
+        }
+
+        statusText.Value := "Status: RUNNING (not monitoring)"
+        LogCondition("Conditional monitoring stopped")
+
+        startMonitorBtn.Enabled := true
+        stopMonitorBtn.Enabled := false
+    }
+
+    ; Simulate activity (resets idle timer)
+    activityBtn := myGui.Add("Button", "xm w550", "Simulate Activity (Reset Idle Timer)")
+    activityBtn.OnEvent("Click", (*) => SimulateActivity())
+
+    SimulateActivity() {
+        lastActivityTime := A_TickCount
+        LogCondition("Activity detected - idle timer reset")
+    }
+
+    ; Cleanup
+    myGui.OnEvent("Close", (*) => Cleanup())
+    Cleanup() {
+        SetTimer(CheckConditions, 0)
+        myGui.Destroy()
+    }
+
     stopMonitorBtn.Enabled := false
-}
+    myGui.Show()
 
-; Simulate activity (resets idle timer)
-activityBtn := myGui.Add("Button", "xm w550", "Simulate Activity (Reset Idle Timer)")
-activityBtn.OnEvent("Click", (*) => SimulateActivity())
-
-SimulateActivity() {
-    lastActivityTime := A_TickCount
-    LogCondition("Activity detected - idle timer reset")
-}
-
-; Cleanup
-myGui.OnEvent("Close", (*) => Cleanup())
-Cleanup() {
-    SetTimer(CheckConditions, 0)
-    myGui.Destroy()
-}
-
-stopMonitorBtn.Enabled := false
-myGui.Show()
-
-LogCondition("Conditional Pause system ready")
-LogCondition("Click 'Start Monitoring' to begin automatic pause checks")
+    LogCondition("Conditional Pause system ready")
+    LogCondition("Click 'Start Monitoring' to begin automatic pause checks")
 }
 
 ; ============================================================================

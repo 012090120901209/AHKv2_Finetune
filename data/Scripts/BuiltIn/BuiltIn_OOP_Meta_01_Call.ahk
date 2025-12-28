@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Meta_01_Call.ahk
-*
-* DESCRIPTION:
-* Demonstrates the __Call meta-function in AutoHotkey v2. __Call is invoked when
-* an undefined method is called on an object, enabling dynamic method handling,
-* method forwarding, and flexible API patterns.
-*
-* FEATURES:
-* - __Call meta-function basics
-* - Dynamic method handling
-* - Method forwarding
-* - Fluent interface implementation
-* - Method name pattern matching
-* - Default method behavior
-* - Call logging and debugging
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - __Call(name, params) signature
-* - Accessing method name via parameter
-* - Variadic params array
-* - Method existence checking
-* - Dynamic dispatch patterns
-* - Meta-function inheritance
-*
-* LEARNING POINTS:
-* 1. __Call catches undefined method calls
-* 2. First parameter is the method name
-* 3. Remaining parameters are method arguments
-* 4. Enables dynamic method creation
-* 5. Useful for proxy and wrapper patterns
-* 6. Can forward calls to other objects
-* 7. Allows flexible DSL-like syntax
-*/
+ * BuiltIn_OOP_Meta_01_Call.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the __Call meta-function in AutoHotkey v2. __Call is invoked when
+ * an undefined method is called on an object, enabling dynamic method handling,
+ * method forwarding, and flexible API patterns.
+ * 
+ * FEATURES:
+ * - __Call meta-function basics
+ * - Dynamic method handling
+ * - Method forwarding
+ * - Fluent interface implementation
+ * - Method name pattern matching
+ * - Default method behavior
+ * - Call logging and debugging
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - __Call(name, params) signature
+ * - Accessing method name via parameter
+ * - Variadic params array
+ * - Method existence checking
+ * - Dynamic dispatch patterns
+ * - Meta-function inheritance
+ * 
+ * LEARNING POINTS:
+ * 1. __Call catches undefined method calls
+ * 2. First parameter is the method name
+ * 3. Remaining parameters are method arguments
+ * 4. Enables dynamic method creation
+ * 5. Useful for proxy and wrapper patterns
+ * 6. Can forward calls to other objects
+ * 7. Allows flexible DSL-like syntax
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic __Call Usage
@@ -61,7 +61,7 @@ class MethodLogger {
         for param in params {
             paramStr .= param
             if (A_Index < params.Length)
-            paramStr .= ", "
+                paramStr .= ", "
         }
 
         return "Called " name "(" paramStr ")"
@@ -75,7 +75,7 @@ class MethodLogger {
             for param in call.Params {
                 paramList .= param
                 if (A_Index < call.Params.Length)
-                paramList .= ", "
+                    paramList .= ", "
             }
 
             history .= index ". " call.Method "(" paramList ")`n"
@@ -185,7 +185,7 @@ class QueryBuilder {
         }
         else if (name = "where") {
             if (!this._query.Has("where"))
-            this._query["where"] := []
+                this._query["where"] := []
             this._query["where"].Push(params[1])
             return this
         }
@@ -214,14 +214,14 @@ class QueryBuilder {
                 for field in this._query["fields"] {
                     fields .= field
                     if (A_Index < this._query["fields"].Length)
-                    fields .= ", "
+                        fields .= ", "
                 }
                 query .= fields
             }
 
             ; Table
             if (this._query.Has("table"))
-            query .= " FROM " this._query["table"]
+                query .= " FROM " this._query["table"]
 
             ; Where
             if (this._query.Has("where")) {
@@ -229,17 +229,17 @@ class QueryBuilder {
                 for index, condition in this._query["where"] {
                     query .= condition
                     if (A_Index < this._query["where"].Length)
-                    query .= " AND "
+                        query .= " AND "
                 }
             }
 
             ; Order
             if (this._query.Has("order"))
-            query .= " ORDER BY " this._query["order"]
+                query .= " ORDER BY " this._query["order"]
 
             ; Limit
             if (this._query.Has("limit"))
-            query .= " LIMIT " this._query["limit"]
+                query .= " LIMIT " this._query["limit"]
 
             return query
         }
@@ -251,21 +251,21 @@ class QueryBuilder {
 ; Build queries fluently
 qb := QueryBuilder()
 query := qb.select("id", "name", "email")
-.from("users")
-.where("age > 18")
-.where("active = 1")
-.orderBy("name ASC")
-.limit(10)
-.build()
+    .from("users")
+    .where("age > 18")
+    .where("active = 1")
+    .orderBy("name ASC")
+    .limit(10)
+    .build()
 
 MsgBox("Generated Query:`n" query)
 
 ; Another query
 qb2 := QueryBuilder()
 query2 := qb2.select()
-.from("products")
-.where("price < 100")
-.build()
+    .from("products")
+    .where("price < 100")
+    .build()
 
 MsgBox("Generated Query:`n" query2)
 
@@ -288,7 +288,7 @@ class SmartObject {
         if (SubStr(name, 1, 3) = "set") {
             propName := SubStr(name, 4)
             if (params.Length > 0)
-            return this._SetProperty(propName, params[1])
+                return this._SetProperty(propName, params[1])
             throw Error("set" propName " requires a value parameter")
         }
 
@@ -309,7 +309,7 @@ class SmartObject {
 
     _GetProperty(name) {
         if (this._data.Has(name))
-        return this._data[name]
+            return this._data[name]
         return ""
     }
 
@@ -324,7 +324,7 @@ class SmartObject {
 
     _ClearProperty(name) {
         if (this._data.Has(name))
-        this._data.Delete(name)
+            this._data.Delete(name)
         return this
     }
 
@@ -374,7 +374,7 @@ class EventEmitter {
         if (SubStr(name, 1, 2) = "on") {
             eventName := SubStr(name, 3)
             if (params.Length > 0)
-            return this._RegisterEvent(eventName, params[1])
+                return this._RegisterEvent(eventName, params[1])
             throw Error("on" eventName " requires a callback parameter")
         }
 
@@ -395,7 +395,7 @@ class EventEmitter {
 
     _RegisterEvent(eventName, callback) {
         if (!this._events.Has(eventName))
-        this._events[eventName] := []
+            this._events[eventName] := []
 
         this._events[eventName].Push(callback)
         return "Registered event: " eventName
@@ -403,7 +403,7 @@ class EventEmitter {
 
     _EmitEvent(eventName, params*) {
         if (!this._events.Has(eventName))
-        return "No handlers for event: " eventName
+            return "No handlers for event: " eventName
 
         results := []
         for callback in this._events[eventName] {
@@ -470,20 +470,20 @@ class MathOperations {
 
     Divide(a, b) {
         if (b = 0)
-        throw Error("Division by zero")
+            throw Error("Division by zero")
         return a / b
     }
 
     __Call(name, params) {
         ; Define aliases
         aliases := Map(
-        "plus", "Add",
-        "sum", "Add",
-        "minus", "Subtract",
-        "sub", "Subtract",
-        "times", "Multiply",
-        "mult", "Multiply",
-        "div", "Divide"
+            "plus", "Add",
+            "sum", "Add",
+            "minus", "Subtract",
+            "sub", "Subtract",
+            "times", "Multiply",
+            "mult", "Multiply",
+            "div", "Divide"
         )
 
         ; Check if name is an alias
@@ -529,7 +529,7 @@ class DebugWrapper {
     __Call(name, params) {
         ; Check if method exists on target
         if (!this._target.HasOwnProp(name))
-        throw Error("Method '" name "' not found on target object")
+            throw Error("Method '" name "' not found on target object")
 
         ; Log the call
         if (this._enabled) {
@@ -537,7 +537,7 @@ class DebugWrapper {
             for param in params {
                 paramStr .= param
                 if (A_Index < params.Length)
-                paramStr .= ", "
+                    paramStr .= ", "
             }
 
             logEntry := {
@@ -601,7 +601,7 @@ class Calculator {
 
     Factorial(n) {
         if (n <= 1)
-        return 1
+            return 1
         return n * this.Factorial(n - 1)
     }
 }
@@ -629,11 +629,11 @@ debugCalc.Cube(4)  ; Logged
 MsgBox(debugCalc.GetLog())
 
 MsgBox("=== OOP __Call Meta-Function Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic __Call interception`n"
-. "- Method forwarding pattern`n"
-. "- Fluent interface builder`n"
-. "- Magic getters/setters`n"
-. "- Event emitter pattern`n"
-. "- Method aliasing`n"
-. "- Debugging wrapper")
+    . "This file demonstrated:`n"
+    . "- Basic __Call interception`n"
+    . "- Method forwarding pattern`n"
+    . "- Fluent interface builder`n"
+    . "- Magic getters/setters`n"
+    . "- Event emitter pattern`n"
+    . "- Method aliasing`n"
+    . "- Debugging wrapper")

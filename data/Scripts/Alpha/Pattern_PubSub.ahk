@@ -40,7 +40,7 @@ class PubSub {
         }
         return count
     }
-    
+
     static HasSubscribers(channel) => this.channels.Has(channel) && this.channels[channel].Length > 0
 
     static Clear(channel := "") {
@@ -59,7 +59,7 @@ PubSub.Subscribe("user:login", (user) => logs.Push("User logged in: " user))
 PubSub.Subscribe("user:login", (user) => logs.Push("Analytics: login event for " user))
 PubSub.Subscribe("user:logout", (user) => logs.Push("User logged out: " user))
 
-unsub := PubSub.Subscribe("order:created", (orderId) => 
+unsub := PubSub.Subscribe("order:created", (orderId) =>
     logs.Push("New order: " orderId))
 
 ; Publish events

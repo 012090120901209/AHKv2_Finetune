@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_10_Checkboxes.ahk
-*
-* DESCRIPTION:
-* Demonstrates using TreeView controls with checkboxes for multi-selection,
-* tri-state logic, cascading checks, and checkbox-based operations.
-*
-* FEATURES:
-* - Creating TreeView with checkboxes
-* - Checking and unchecking nodes
-* - Tri-state checkbox logic
-* - Cascading check/uncheck (parent-child)
-* - Getting all checked items
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Checked TreeView style
-* - Check state management
-* - Recursive checkbox operations
-* - Event handling for checkboxes
-*
-* LEARNING POINTS:
-* 1. Use "Checked" option to enable checkboxes
-* 2. Check state accessed via TV.Get(ID, "Check")
-* 3. Set check with TV.Modify(ID, "Check") or "-Check"
-* 4. Implement custom tri-state logic
-* 5. Cascade checks to maintain consistency
-*/
+ * BuiltIn_TreeView_10_Checkboxes.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates using TreeView controls with checkboxes for multi-selection,
+ * tri-state logic, cascading checks, and checkbox-based operations.
+ * 
+ * FEATURES:
+ * - Creating TreeView with checkboxes
+ * - Checking and unchecking nodes
+ * - Tri-state checkbox logic
+ * - Cascading check/uncheck (parent-child)
+ * - Getting all checked items
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Checked TreeView style
+ * - Check state management
+ * - Recursive checkbox operations
+ * - Event handling for checkboxes
+ * 
+ * LEARNING POINTS:
+ * 1. Use "Checked" option to enable checkboxes
+ * 2. Check state accessed via TV.Get(ID, "Check")
+ * 3. Set check with TV.Modify(ID, "Check") or "-Check"
+ * 4. Implement custom tri-state logic
+ * 5. Cascade checks to maintain consistency
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Basic Checkboxes
@@ -80,7 +80,7 @@ Example1_BasicCheckboxes() {
 
         list := "Checked Items:`n`n"
         for item in checked
-        list .= "• " . TV.GetText(item) . "`n"
+            list .= "• " . TV.GetText(item) . "`n"
 
         MsgBox(list, "Checked Items", 64)
     }
@@ -109,7 +109,7 @@ Example1_BasicCheckboxes() {
 ; Recursively check/uncheck all nodes
 CheckAll(TV, nodeID, state) {
     if (nodeID)
-    TV.Modify(nodeID, state ? "Check" : "-Check")
+        TV.Modify(nodeID, state ? "Check" : "-Check")
 
     child := TV.GetChild(nodeID)
     while (child) {
@@ -121,7 +121,7 @@ CheckAll(TV, nodeID, state) {
 ; Get all checked items
 GetCheckedItems(TV, nodeID, &checked) {
     if (nodeID && TV.Get(nodeID, "Check"))
-    checked.Push(nodeID)
+        checked.Push(nodeID)
 
     child := TV.GetChild(nodeID)
     while (child) {
@@ -165,7 +165,7 @@ Example2_CascadingChecks() {
 
     OnCheckChange(GuiCtrl, ItemID) {
         if (!ItemID)
-        return
+            return
 
         ; Small delay to let checkbox state update
         Sleep(50)
@@ -193,7 +193,7 @@ Example2_CascadingChecks() {
     UpdateParentState(TV, nodeID) {
         parent := TV.GetParent(nodeID)
         if (!parent)
-        return
+            return
 
         ; Check if all siblings are checked
         allChecked := true
@@ -202,17 +202,17 @@ Example2_CascadingChecks() {
         sibling := TV.GetChild(parent)
         while (sibling) {
             if (TV.Get(sibling, "Check"))
-            anyChecked := true
+                anyChecked := true
             else
-            allChecked := false
+                allChecked := false
             sibling := TV.GetNext(sibling)
         }
 
         ; Update parent check state
         if (allChecked)
-        TV.Modify(parent, "Check")
+            TV.Modify(parent, "Check")
         else
-        TV.Modify(parent, "-Check")
+            TV.Modify(parent, "-Check")
 
         ; Recurse up the tree
         UpdateParentState(TV, parent)
@@ -269,7 +269,7 @@ Example3_TriState() {
 
     OnCheckClick(GuiCtrl, ItemID) {
         if (!ItemID || !TV.GetChild(ItemID))
-        return
+            return
 
         Sleep(50)
         UpdateTriState(TV, ItemID)
@@ -283,7 +283,7 @@ Example3_TriState() {
         while (child) {
             totalCount++
             if (TV.Get(child, "Check"))
-            checkedCount++
+                checkedCount++
             child := TV.GetNext(child)
         }
 
@@ -307,17 +307,17 @@ Example3_TriState() {
 
     ; Status with legend
     legendText := myGui.Add("Text", "xm y+10 w600",
-    "Legend: Normal = All checked | Unchecked = None | Bold + Checked = Some")
+        "Legend: Normal = All checked | Unchecked = None | Bold + Checked = Some")
 
     statusText := myGui.Add("Text", "xm y+5 w600", "")
 
     UpdateStatus(checked, total) {
         if (checked = 0)
-        state := "None"
+            state := "None"
         else if (checked = total)
-        state := "All"
+            state := "All"
         else
-        state := "Some (" . checked . "/" . total . ")"
+            state := "Some (" . checked . "/" . total . ")"
 
         statusText.Value := "Status: " . state
     }
@@ -388,7 +388,7 @@ Example4_CheckboxSelection() {
         index := 1
         while (child) {
             if (Mod(index, 2) = 0)
-            TV.Modify(child, "Check")
+                TV.Modify(child, "Check")
             child := TV.GetNext(child)
             index++
         }
@@ -401,7 +401,7 @@ Example4_CheckboxSelection() {
         index := 1
         while (child) {
             if (Mod(index, 2) = 1)
-            TV.Modify(child, "Check")
+                TV.Modify(child, "Check")
             child := TV.GetNext(child)
             index++
         }
@@ -422,12 +422,12 @@ Example4_CheckboxSelection() {
         GetCheckedItems(TV, Root, &checked)
 
         if (checked.Length = 0)
-        return
+            return
 
         result := MsgBox("Delete " . checked.Length . " items?", "Confirm", "YesNo 32")
         if (result = "Yes") {
             for itemID in checked
-            TV.Delete(itemID)
+                TV.Delete(itemID)
             UpdateCount()
         }
     }
@@ -437,11 +437,11 @@ Example4_CheckboxSelection() {
         GetCheckedItems(TV, Root, &checked)
 
         if (checked.Length = 0)
-        return
+            return
 
         list := "Selected Files:`n"
         for itemID in checked
-        list .= TV.GetText(itemID) . "`n"
+            list .= TV.GetText(itemID) . "`n"
 
         MsgBox(list, "Export", 64)
     }
@@ -579,7 +579,7 @@ Example5_StatePersistence() {
             checkedCount := 0
             for item in state {
                 if (item.checked)
-                checkedCount++
+                    checkedCount++
             }
             list .= "• " . name . " (" . checkedCount . " checked)`n"
         }
@@ -642,7 +642,7 @@ Example6_Dependencies() {
 
     ValidateDependencies(GuiCtrl, ItemID) {
         if (!ItemID)
-        return
+            return
 
         Sleep(50)
 
@@ -761,7 +761,7 @@ Example7_CompleteSystem() {
 
     ExpandAll(TV, nodeID) {
         if (nodeID)
-        TV.Modify(nodeID, "Expand")
+            TV.Modify(nodeID, "Expand")
         child := TV.GetChild(nodeID)
         while (child) {
             ExpandAll(TV, child)
@@ -801,12 +801,12 @@ Example7_CompleteSystem() {
 
     FindNodeByText(TV, nodeID, searchText) {
         if (nodeID && TV.GetText(nodeID) = searchText)
-        return nodeID
+            return nodeID
 
         child := TV.GetChild(nodeID)
         while (child) {
             if (found := FindNodeByText(TV, child, searchText))
-            return found
+                return found
             child := TV.GetNext(child)
         }
         return 0
@@ -816,35 +816,35 @@ Example7_CompleteSystem() {
         child := TV.GetChild(nodeID)
         while (child) {
             if (!TV.GetChild(child)) {  ; Leaf node
-            total++
-            if (TV.Get(child, "Check"))
-            completed++
-        } else {
-            CountPhaseProgress(TV, child, &total, &completed)
+                total++
+                if (TV.Get(child, "Check"))
+                    completed++
+            } else {
+                CountPhaseProgress(TV, child, &total, &completed)
+            }
+            child := TV.GetNext(child)
         }
-        child := TV.GetNext(child)
     }
-}
 
-; Statistics
-statsText := myGui.Add("Text", "xm y+10 w700 Border", "")
+    ; Statistics
+    statsText := myGui.Add("Text", "xm y+10 w700 Border", "")
 
-UpdateStats() {
-    total := TV.GetCount() - 1
-    checked := []
-    GetCheckedItems(TV, Root, &checked)
-    percent := total > 0 ? Round((checked.Length / total) * 100) : 0
+    UpdateStats() {
+        total := TV.GetCount() - 1
+        checked := []
+        GetCheckedItems(TV, Root, &checked)
+        percent := total > 0 ? Round((checked.Length / total) * 100) : 0
 
-    statsText.Value := "Progress: " . checked.Length . " / " . total . " (" . percent . "%) | Click items to mark as complete"
-}
+        statsText.Value := "Progress: " . checked.Length . " / " . total . " (" . percent . "%) | Click items to mark as complete"
+    }
 
-TV.OnEvent("Click", (*) => UpdateStats())
-UpdateStats()
+    TV.OnEvent("Click", (*) => UpdateStats())
+    UpdateStats()
 
-closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
-closeBtn.OnEvent("Click", (*) => myGui.Destroy())
+    closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
+    closeBtn.OnEvent("Click", (*) => myGui.Destroy())
 
-myGui.Show()
+    myGui.Show()
 }
 
 ;=============================================================================
@@ -938,3 +938,4 @@ PERFORMANCE:
 ; Example5_StatePersistence()
 ; Example6_Dependencies()
 ; Example7_CompleteSystem()
+

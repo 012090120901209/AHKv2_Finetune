@@ -3,14 +3,14 @@
 #Include JSON.ahk
 
 /**
-* CLR Library - .NET Framework Integration
-*
-* Demonstrates using Lexikos' CLR.ahk library to access .NET Framework
-* classes, compile C# dynamically, and create Windows Forms applications.
-*
-* Library: https://github.com/Lexikos/CLR.ahk
-* Note: This example assumes CLR.ahk is installed in Lib folder
-*/
+ * CLR Library - .NET Framework Integration
+ * 
+ * Demonstrates using Lexikos' CLR.ahk library to access .NET Framework
+ * classes, compile C# dynamically, and create Windows Forms applications.
+ * 
+ * Library: https://github.com/Lexikos/CLR.ahk
+ * Note: This example assumes CLR.ahk is installed in Lib folder
+ */
 
 ; NOTE: This is a demonstration. To run, you need to:
 ; 1. Download CLR.ahk from https://github.com/Lexikos/CLR.ahk
@@ -19,12 +19,12 @@
 ; 4. Uncomment the code below
 
 MsgBox("CLR Library Example`n`n"
-. "This demonstrates .NET Framework integration.`n`n"
-. "To use this library:`n"
-. "1. Download from github.com/Lexikos/CLR.ahk`n"
-. "2. Place in Lib folder`n"
-. "3. Ensure .NET Framework 4.0+ installed`n"
-. "4. Uncomment the example code", , "T5")
+    . "This demonstrates .NET Framework integration.`n`n"
+    . "To use this library:`n"
+    . "1. Download from github.com/Lexikos/CLR.ahk`n"
+    . "2. Place in Lib folder`n"
+    . "3. Ensure .NET Framework 4.0+ installed`n"
+    . "4. Uncomment the example code", , "T5")
 
 /*
 ; Uncomment to test (requires library installation):
@@ -201,3 +201,4 @@ MsgBox(result, , "T5")
 *     - Web service clients
 *     - XML/JSON processing
 */
+

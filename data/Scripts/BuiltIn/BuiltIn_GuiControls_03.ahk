@@ -1,31 +1,31 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiControls_03.ahk - Checkbox and Radio Button Controls
-*
-* This file demonstrates checkbox and radio button controls in AutoHotkey v2.
-* Topics covered:
-* - Checkbox creation and states
-* - Three-state checkboxes
-* - Radio button groups
-* - Dynamic checkbox/radio behavior
-* - Event handling for selection changes
-* - Grouped options and mutual exclusivity
-* - Checkbox/radio validation
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
+ * BuiltIn_GuiControls_03.ahk - Checkbox and Radio Button Controls
+ * 
+ * This file demonstrates checkbox and radio button controls in AutoHotkey v2.
+ * Topics covered:
+ * - Checkbox creation and states
+ * - Three-state checkboxes
+ * - Radio button groups
+ * - Dynamic checkbox/radio behavior
+ * - Event handling for selection changes
+ * - Grouped options and mutual exclusivity
+ * - Checkbox/radio validation
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 ; =============================================================================
 ; Example 1: Basic Checkboxes
 ; =============================================================================
 
 /**
-* Demonstrates basic checkbox creation and usage
-* Shows different checkbox configurations
-*/
+ * Demonstrates basic checkbox creation and usage
+ * Shows different checkbox configurations
+ */
 Example1_BasicCheckboxes() {
     myGui := Gui(, "Basic Checkboxes")
     myGui.BackColor := "White"
@@ -95,9 +95,9 @@ Example1_BasicCheckboxes() {
 ; =============================================================================
 
 /**
-* Demonstrates radio button groups
-* Shows mutually exclusive selections
-*/
+ * Demonstrates radio button groups
+ * Shows mutually exclusive selections
+ */
 Example2_RadioButtons() {
     myGui := Gui(, "Radio Button Examples")
     myGui.BackColor := "White"
@@ -138,24 +138,24 @@ Example2_RadioButtons() {
         ; Get size
         size := ""
         if (radio1_1.Value)
-        size := "Small"
+            size := "Small"
         else if (radio1_2.Value)
-        size := "Medium"
+            size := "Medium"
         else if (radio1_3.Value)
-        size := "Large"
+            size := "Large"
         else if (radio1_4.Value)
-        size := "Extra Large"
+            size := "Extra Large"
 
         ; Get color
         color := ""
         if (radio2_1.Value)
-        color := "Red"
+            color := "Red"
         else if (radio2_2.Value)
-        color := "Green"
+            color := "Green"
         else if (radio2_3.Value)
-        color := "Blue"
+            color := "Blue"
         else if (radio2_4.Value)
-        color := "Yellow"
+            color := "Yellow"
 
         ; Get payment
         payment := ""
@@ -190,9 +190,9 @@ Example2_RadioButtons() {
 ; =============================================================================
 
 /**
-* Demonstrates three-state checkboxes
-* Checked, unchecked, and indeterminate states
-*/
+ * Demonstrates three-state checkboxes
+ * Checked, unchecked, and indeterminate states
+ */
 Example3_ThreeState() {
     myGui := Gui(, "Three-State Checkboxes")
     myGui.BackColor := "White"
@@ -227,7 +227,7 @@ Example3_ThreeState() {
         checkedCount := 0
         for child in children {
             if (child.Value)
-            checkedCount++
+                checkedCount++
         }
 
         if (checkedCount = 0) {
@@ -281,8 +281,8 @@ Example3_ThreeState() {
         }
 
         statusText.Value := Format("Parent state: {1}`nChecked features: {2} of {3}`n{4}",
-        parentState, checkedCount, children.Length,
-        checkedCount > 0 ? "Selected: " StrReplace(checkedNames.Join(", "), "Feature ", "") : "None selected")
+            parentState, checkedCount, children.Length,
+            checkedCount > 0 ? "Selected: " StrReplace(checkedNames.Join(", "), "Feature ", "") : "None selected")
     }
 
     ; Preset buttons
@@ -310,9 +310,9 @@ Example3_ThreeState() {
 ; =============================================================================
 
 /**
-* Dynamic checkbox groups with conditional logic
-* Checkboxes that enable/disable other controls
-*/
+ * Dynamic checkbox groups with conditional logic
+ * Checkboxes that enable/disable other controls
+ */
 Example4_DynamicCheckboxes() {
     myGui := Gui(, "Dynamic Checkbox Groups")
     myGui.BackColor := "White"
@@ -344,7 +344,7 @@ Example4_DynamicCheckboxes() {
         for child in children {
             child.Enabled := enabled
             if (!enabled)
-            child.Value := 0
+                child.Value := 0
         }
         UpdateSummary()
     }
@@ -367,7 +367,7 @@ Example4_DynamicCheckboxes() {
         if (selected.Value) {
             for item in group {
                 if (item != selected)
-                item.Value := 0
+                    item.Value := 0
             }
         }
         UpdateSummary()
@@ -390,10 +390,10 @@ Example4_DynamicCheckboxes() {
             summary .= "✓ Email Notifications enabled"
             subs := []
             if (feature1Sub1.Value) subs.Push("Daily")
-            if (feature1Sub2.Value) subs.Push("Instant")
-            if (feature1Sub3.Value) subs.Push("Weekly")
-            if (subs.Length > 0)
-            summary .= " (" subs.Join(", ") ")"
+                if (feature1Sub2.Value) subs.Push("Instant")
+                    if (feature1Sub3.Value) subs.Push("Weekly")
+                        if (subs.Length > 0)
+                            summary .= " (" subs.Join(", ") ")"
             summary .= "`n"
         }
 
@@ -402,10 +402,10 @@ Example4_DynamicCheckboxes() {
             summary .= "✓ Advanced Mode enabled"
             subs := []
             if (feature2Sub1.Value) subs.Push("Debug")
-            if (feature2Sub2.Value) subs.Push("Metrics")
-            if (feature2Sub3.Value) subs.Push("Dev tools")
-            if (subs.Length > 0)
-            summary .= " (" subs.Join(", ") ")"
+                if (feature2Sub2.Value) subs.Push("Metrics")
+                    if (feature2Sub3.Value) subs.Push("Dev tools")
+                        if (subs.Length > 0)
+                            summary .= " (" subs.Join(", ") ")"
             summary .= "`n"
         }
 
@@ -420,7 +420,7 @@ Example4_DynamicCheckboxes() {
         ; Check required agreements
         allAgreed := required1.Value && required2.Value && required3.Value
         summary .= Format("`nRequired agreements: {1}/3 complete",
-        (required1.Value ? 1 : 0) + (required2.Value ? 1 : 0) + (required3.Value ? 1 : 0))
+            (required1.Value ? 1 : 0) + (required2.Value ? 1 : 0) + (required3.Value ? 1 : 0))
 
         summaryText.Value := summary
     }
@@ -457,9 +457,9 @@ Example4_DynamicCheckboxes() {
 ; =============================================================================
 
 /**
-* Build lists using checkboxes
-* Select multiple items to create a custom list
-*/
+ * Build lists using checkboxes
+ * Select multiple items to create a custom list
+ */
 Example5_CheckboxList() {
     myGui := Gui(, "Checkbox List Builder")
     myGui.BackColor := "White"
@@ -472,9 +472,9 @@ Example5_CheckboxList() {
 
     ; Categories with items
     categories := Map(
-    "Fruits", ["Apple", "Banana", "Orange", "Grape", "Mango"],
-    "Vegetables", ["Carrot", "Broccoli", "Spinach", "Tomato", "Cucumber"],
-    "Grains", ["Rice", "Wheat", "Oats", "Barley", "Quinoa"]
+        "Fruits", ["Apple", "Banana", "Orange", "Grape", "Mango"],
+        "Vegetables", ["Carrot", "Broccoli", "Spinach", "Tomato", "Cucumber"],
+        "Grains", ["Rice", "Wheat", "Oats", "Barley", "Quinoa"]
     )
 
     checkboxes := Map()
@@ -593,9 +593,9 @@ Example5_CheckboxList() {
 ; =============================================================================
 
 /**
-* Complete survey form combining radio and checkbox controls
-* Demonstrates real-world form design
-*/
+ * Complete survey form combining radio and checkbox controls
+ * Demonstrates real-world form design
+ */
 Example6_SurveyForm() {
     myGui := Gui(, "Customer Satisfaction Survey")
     myGui.BackColor := "White"
@@ -689,9 +689,9 @@ Example6_SurveyForm() {
 ; =============================================================================
 
 /**
-* Complete settings panel with organized checkbox/radio groups
-* Demonstrates professional settings interface
-*/
+ * Complete settings panel with organized checkbox/radio groups
+ * Demonstrates professional settings interface
+ */
 Example7_SettingsPanel() {
     myGui := Gui(, "Application Settings")
     myGui.BackColor := "0xF0F0F0"
@@ -788,8 +788,8 @@ Example7_SettingsPanel() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiControls_03 - Checkbox & Radio Examples")
     menuGui.BackColor := "White"

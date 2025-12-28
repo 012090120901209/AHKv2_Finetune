@@ -2,14 +2,14 @@
 #SingleInstance Force
 
 /**
-* MultiClip - Clipboard History Manager
-*
-* Demonstrates a clipboard history system with multiple slots,
-* persistent storage, and quick paste functionality.
-*
-* Source: xypha/AHK-v2-scripts - MultiClip.ahk
-* Inspired by: https://github.com/xypha/AHK-v2-scripts
-*/
+ * MultiClip - Clipboard History Manager
+ * 
+ * Demonstrates a clipboard history system with multiple slots,
+ * persistent storage, and quick paste functionality.
+ * 
+ * Source: xypha/AHK-v2-scripts - MultiClip.ahk
+ * Inspired by: https://github.com/xypha/AHK-v2-scripts
+ */
 
 ; Initialize clipboard manager
 global MultiClip_arr := []  ; Clipboard history array
@@ -27,32 +27,32 @@ OnClipboardChange(MultiClip_OnChange)
 
 ; Display instructions
 MsgBox("MultiClip Manager Demo`n`n"
-. "Copy some text to see it saved to clipboard history.`n`n"
-. "Hotkeys:`n"
-. "Ctrl+Shift+V - Show clipboard history`n"
-. "Ctrl+1 to Ctrl+9 - Paste from slot`n"
-. "Ctrl+0 - Paste from slot 10`n`n"
-. "Try copying different text snippets...", , "T5")
+    . "Copy some text to see it saved to clipboard history.`n`n"
+    . "Hotkeys:`n"
+    . "Ctrl+Shift+V - Show clipboard history`n"
+    . "Ctrl+1 to Ctrl+9 - Paste from slot`n"
+    . "Ctrl+0 - Paste from slot 10`n`n"
+    . "Try copying different text snippets...", , "T5")
 
 ; Example hotkeys for accessing clipboard slots
-^+v::MultiClip_ShowMenu()  ; Show menu
-^1::MultiClip_Paste(1)
-^2::MultiClip_Paste(2)
-^3::MultiClip_Paste(3)
-^4::MultiClip_Paste(4)
-^5::MultiClip_Paste(5)
-^6::MultiClip_Paste(6)
-^7::MultiClip_Paste(7)
-^8::MultiClip_Paste(8)
-^9::MultiClip_Paste(9)
-^0::MultiClip_Paste(10)
+^+v:: MultiClip_ShowMenu()  ; Show menu
+^1:: MultiClip_Paste(1)
+^2:: MultiClip_Paste(2)
+^3:: MultiClip_Paste(3)
+^4:: MultiClip_Paste(4)
+^5:: MultiClip_Paste(5)
+^6:: MultiClip_Paste(6)
+^7:: MultiClip_Paste(7)
+^8:: MultiClip_Paste(8)
+^9:: MultiClip_Paste(9)
+^0:: MultiClip_Paste(10)
 
 ; Save on exit
 OnExit((*) => MultiClip_SaveToFile())
 
 /**
-* Initialize clipboard slots
-*/
+ * Initialize clipboard slots
+ */
 MultiClip_Initialize() {
     global MultiClip_arr, MultiClip_maxSlots
 
@@ -66,23 +66,23 @@ MultiClip_Initialize() {
 }
 
 /**
-* Handle clipboard changes
-*/
+ * Handle clipboard changes
+ */
 MultiClip_OnChange(DataType) {
     global MultiClip_arr
 
     ; Only process text
     if (DataType != 1)
-    return
+        return
 
     text := A_Clipboard
     if (text == "" || StrLen(text) > 10000)
-    return
+        return
 
     ; Check if already in history (avoid duplicates)
     for slot in MultiClip_arr {
         if (slot.text == text)
-        return
+            return
     }
 
     ; Add to history (shift array)
@@ -103,8 +103,8 @@ MultiClip_OnChange(DataType) {
 }
 
 /**
-* Show clipboard history menu
-*/
+ * Show clipboard history menu
+ */
 MultiClip_ShowMenu() {
     global MultiClip_arr
 
@@ -114,7 +114,7 @@ MultiClip_ShowMenu() {
     ; Add items
     for index, slot in MultiClip_arr {
         if (slot.text == "")
-        continue
+            continue
 
         ; Create preview
         preview := StrReplace(slot.text, "`n", " ")
@@ -139,17 +139,17 @@ MultiClip_ShowMenu() {
 }
 
 /**
-* Paste from clipboard slot
-*/
+ * Paste from clipboard slot
+ */
 MultiClip_Paste(slotNumber) {
     global MultiClip_arr
 
     if (slotNumber < 1 || slotNumber > MultiClip_maxSlots)
-    return
+        return
 
     slot := MultiClip_arr[slotNumber]
     if (slot.text == "")
-    return
+        return
 
     ; Set clipboard and paste
     A_Clipboard := slot.text
@@ -164,22 +164,22 @@ MultiClip_Paste(slotNumber) {
 }
 
 /**
-* Clear clipboard history
-*/
+ * Clear clipboard history
+ */
 MultiClip_Clear() {
     global MultiClip_arr
 
     result := MsgBox("Clear all clipboard history?", "MultiClip", "YesNo Icon?")
     if (result == "No")
-    return
+        return
 
     MultiClip_Initialize()
     MsgBox("Clipboard history cleared", "MultiClip", "T2")
 }
 
 /**
-* Save clipboard history to file
-*/
+ * Save clipboard history to file
+ */
 MultiClip_SaveToFile() {
     global MultiClip_arr, MultiClip_fileBackup
 
@@ -187,7 +187,7 @@ MultiClip_SaveToFile() {
         content := ""
         for slot in MultiClip_arr {
             if (slot.text == "")
-            continue
+                continue
 
             ; Use delimiter to separate entries
             content .= "===CLIP===`n"
@@ -201,13 +201,13 @@ MultiClip_SaveToFile() {
 }
 
 /**
-* Load clipboard history from file
-*/
+ * Load clipboard history from file
+ */
 MultiClip_LoadFromFile() {
     global MultiClip_arr, MultiClip_fileBackup
 
     if (!FileExist(MultiClip_fileBackup))
-    return
+        return
 
     try {
         content := FileRead(MultiClip_fileBackup, "UTF-8")
@@ -216,11 +216,11 @@ MultiClip_LoadFromFile() {
         index := 1
         for entry in entries {
             if (Trim(entry) == "")
-            continue
+                continue
 
             lines := StrSplit(entry, "`n", , 2)
             if (lines.Length < 2)
-            continue
+                continue
 
             MultiClip_arr[index] := {
                 text: lines[2],
@@ -230,7 +230,7 @@ MultiClip_LoadFromFile() {
 
             index++
             if (index > MultiClip_maxSlots)
-            break
+                break
         }
     }
 }
@@ -305,3 +305,4 @@ MultiClip_LoadFromFile() {
 *     Text content follows
 *     UTF-8 for unicode
 */
+

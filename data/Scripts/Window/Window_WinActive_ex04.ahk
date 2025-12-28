@@ -2,6 +2,6 @@
 #SingleInstance Force
 
 if WinActive()
-FileAppend("last found window is Active", "*")
+    FileAppend("last found window is Active", "*")
 else
-FileAppend("last found window is not Active", "*")
+    FileAppend("last found window is not Active", "*")

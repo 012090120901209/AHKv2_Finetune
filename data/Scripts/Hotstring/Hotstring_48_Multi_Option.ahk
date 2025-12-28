@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Multiple Hotstring Options Combined
-* Combine various options for advanced behavior
-*/
+ * Multiple Hotstring Options Combined
+ * Combine various options for advanced behavior
+ */
 
 ; *C = Immediate trigger + Case-sensitive
 :*C:AHK::AutoHotkey

@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Binary_02_NetworkData.ahk
-*
-* DESCRIPTION:
-* Network packet parsing and binary protocol handling using Buffer and NumGet/NumPut.
-* Demonstrates building and parsing network data structures.
-*
-* FEATURES:
-* - Network packet construction
-* - Protocol header parsing
-* - Binary message encoding/decoding
-* - Checksum calculation
-* - Packet fragmentation handling
-* - Network byte order (big-endian)
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Binary Operations
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Binary protocol implementation
-* - Endianness conversion
-* - CRC/checksum algorithms
-* - Packet assembly and disassembly
-* - Binary data validation
-*
-* LEARNING POINTS:
-* 1. Network protocols use binary formats for efficiency
-* 2. Network byte order is big-endian
-* 3. Packets include headers, payload, and checksums
-* 4. Binary parsing must handle variable-length data
-* 5. Validation prevents corrupted data processing
-*/
+ * BuiltIn_Binary_02_NetworkData.ahk
+ * 
+ * DESCRIPTION:
+ * Network packet parsing and binary protocol handling using Buffer and NumGet/NumPut.
+ * Demonstrates building and parsing network data structures.
+ * 
+ * FEATURES:
+ * - Network packet construction
+ * - Protocol header parsing
+ * - Binary message encoding/decoding
+ * - Checksum calculation
+ * - Packet fragmentation handling
+ * - Network byte order (big-endian)
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Binary Operations
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Binary protocol implementation
+ * - Endianness conversion
+ * - CRC/checksum algorithms
+ * - Packet assembly and disassembly
+ * - Binary data validation
+ * 
+ * LEARNING POINTS:
+ * 1. Network protocols use binary formats for efficiency
+ * 2. Network byte order is big-endian
+ * 3. Packets include headers, payload, and checksums
+ * 4. Binary parsing must handle variable-length data
+ * 5. Validation prevents corrupted data processing
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Simple Protocol Packet
@@ -136,7 +136,7 @@ ShowMenu() {
     choice := InputBox(menu, "Network Data", "w450 h250")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_SimplePacket()
@@ -173,7 +173,7 @@ class Packet {
     static Parse(buf) {
         magic := NumGet(buf, 0, "UInt")
         if magic != 0x50414B54
-        return {valid: false, error: "Invalid magic"}
+            return { valid: false, error: "Invalid magic" }
 
         return {
             valid: true,
@@ -216,7 +216,7 @@ class ChecksumPacket {
 
     static Verify(buf) {
         if buf.Size < 8
-        return false
+            return false
 
         dataSize := NumGet(buf, 0, "UInt")
         storedChecksum := NumGet(buf, buf.Size - 4, "UInt")
@@ -259,7 +259,7 @@ class NetworkMessage {
     static Parse(buf) {
         magic := NumGet(buf, 0, "UInt")
         if magic != 0x4D534721
-        return {valid: false}
+            return { valid: false }
 
         type := NumGet(buf, 4, "UShort")
         sender := NumGet(buf, 6, "UInt")

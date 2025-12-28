@@ -2,9 +2,9 @@
 #SingleInstance Force ; Source: Mouse and Keyboard/MouseClickDrag_ex2.ah2
 
 Run("mspaint.exe")
-ErrorLevel := ! WinWaitActive("ahk_class MSPaintApp", , 2)
+ErrorLevel := !WinWaitActive("ahk_class MSPaintApp", , 2)
 if ErrorLevel
-MouseClickDrag("L", 150, 250, 150, 150)
+    MouseClickDrag("L", 150, 250, 150, 150)
 MouseClickDrag("L", 150, 150, 200, 100)
 MouseClickDrag("L", 200, 100, 250, 150)
 MouseClickDrag("L", 250, 150, 150, 150)

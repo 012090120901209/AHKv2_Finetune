@@ -2,22 +2,22 @@
 #SingleInstance Force
 
 /**
-* MVC Pattern - Basic Structure
-*
-* Demonstrates the Model-View-Controller design pattern,
-* which separates data (Model), presentation (View), and logic (Controller).
-*
-* Source: AHK_Notes/Patterns/MVC_Pattern.md
-*/
+ * MVC Pattern - Basic Structure
+ * 
+ * Demonstrates the Model-View-Controller design pattern,
+ * which separates data (Model), presentation (View), and logic (Controller).
+ * 
+ * Source: AHK_Notes/Patterns/MVC_Pattern.md
+ */
 
 ; Initialize the application
 MyMVCApp := MVCExampleApp()
 
 class MVCExampleApp {
     /**
-    * Application entry point
-    * Creates Model, View, and Controller components
-    */
+     * Application entry point
+     * Creates Model, View, and Controller components
+     */
     __New() {
         this.model := MVCModel()
         this.view := MVCView()
@@ -28,9 +28,9 @@ class MVCExampleApp {
 
 class MVCModel {
     /**
-    * Model component - manages data
-    * Stores application state and business logic
-    */
+     * Model component - manages data
+     * Stores application state and business logic
+     */
     __New() {
         this.data := Map("count", 0)
     }
@@ -47,9 +47,9 @@ class MVCModel {
 
 class MVCView {
     /**
-    * View component - manages UI presentation
-    * Handles display logic only, no business logic
-    */
+     * View component - manages UI presentation
+     * Handles display logic only, no business logic
+     */
     __New() {
         this.gui := Gui("+Resize", "MVC Example")
         this.gui.SetFont("s10")
@@ -74,9 +74,9 @@ class MVCView {
 
 class MVCController {
     /**
-    * Controller component - mediates between Model and View
-    * Handles user input and updates Model/View accordingly
-    */
+     * Controller component - mediates between Model and View
+     * Handles user input and updates Model/View accordingly
+     */
     __New(model, view) {
         this.model := model
         this.view := view
@@ -111,3 +111,4 @@ class MVCController {
 *    User clicks button → View triggers event → Controller handles event
 *    → Controller updates Model → Controller updates View
 */
+

@@ -56,7 +56,7 @@ StrJoin(arr, delimiter := "") {
     for i, val in arr {
         str .= val
         if (i < arr.Length)
-        str .= delimiter
+            str .= delimiter
     }
     return str
 }

@@ -28,7 +28,7 @@ csvGui.Show("w600 h400")
 BrowseCSV(*) {
     selected := FileSelect(3, , "Select CSV File", "CSV Files (*.csv)")
     if (!selected)
-    return
+        return
 
     fileInput.Value := selected
     LoadCSV(selected)
@@ -49,20 +49,20 @@ LoadCSV(filepath) {
     lines := StrSplit(content, "`n", "`r")
 
     if (lines.Length = 0)
-    return
+        return
 
     ; Parse headers
     headers := ParseCSVLine(lines[1])
     LV.Delete()
     Loop headers.Length
-    LV.InsertCol(A_Index, , headers[A_Index])
+        LV.InsertCol(A_Index, , headers[A_Index])
 
     ; Parse data rows
     Loop lines.Length - 1 {
         if (A_Index = lines.Length)
-        break
+            break
         if (lines[A_Index + 1] = "")
-        continue
+            continue
 
         row := ParseCSVLine(lines[A_Index + 1])
         csvData.Push(row)
@@ -161,7 +161,7 @@ ArrayToCSVLine(arr) {
     line := ""
     for item in arr {
         if (InStr(item, ",") || InStr(item, '"'))
-        item := '"' StrReplace(item, '"', '""') '"'
+            item := '"' StrReplace(item, '"', '""') '"'
         line .= (line ? "," : "") item
     }
     return line

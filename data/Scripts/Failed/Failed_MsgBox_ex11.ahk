@@ -9,10 +9,10 @@ Var := 1
 
 switch (Var) {
     case 1:
-    msgResult := MsgBox("Test1")
+        msgResult := MsgBox("Test1")
     case 2:
-    msgResult := MsgBox("Test2")
+        msgResult := MsgBox("Test2")
 }
 
 if (msgResult = "Ok")
-MsgBox()
+    MsgBox()

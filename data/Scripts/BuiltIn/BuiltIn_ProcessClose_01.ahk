@@ -1,21 +1,21 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Examples - ProcessClose Function (Part 01: Close process basics)
-* ============================================================================
-*
-* ProcessClose terminates a running process.
-*
-* @description Examples demonstrating close process basics
-* @author AHK v2 Documentation Team
-* @date 2024
-* @version 2.0.0
-*
-* SYNTAX:
-*   ProcessClose(PIDOrName)
-*   Returns: PID of closed process, or 0 if not found
-*/
+ * ============================================================================
+ * AutoHotkey v2 Examples - ProcessClose Function (Part 01: Close process basics)
+ * ============================================================================
+ * 
+ * ProcessClose terminates a running process.
+ * 
+ * @description Examples demonstrating close process basics
+ * @author AHK v2 Documentation Team
+ * @date 2024
+ * @version 2.0.0
+ * 
+ * SYNTAX:
+ *   ProcessClose(PIDOrName)
+ *   Returns: PID of closed process, or 0 if not found
+ */
 
 ; ============================================================================
 ; Examples 1-7: Process closing and termination

@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 SendText Function - Safe Input
-* ============================================================================
-*
-* Demonstrates safe text input for sensitive data, security contexts,
-* and scenarios where special character interpretation could cause issues.
-*
-* @module BuiltIn_SendText_03
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 SendText Function - Safe Input
+ * ============================================================================
+ * 
+ * Demonstrates safe text input for sensitive data, security contexts,
+ * and scenarios where special character interpretation could cause issues.
+ * 
+ * @module BuiltIn_SendText_03
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Password and Credential Entry
 ; ============================================================================
 
 /**
-* Enters complex passwords safely.
-* No character interpretation prevents accidental triggers.
-*
-* @example
-* ; Press F1 for safe password entry
-*/
+ * Enters complex passwords safely.
+ * No character interpretation prevents accidental triggers.
+ * 
+ * @example
+ * ; Press F1 for safe password entry
+ */
 F1:: {
     ToolTip("Password entry in 2 seconds...")
     Sleep(2000)
@@ -40,9 +40,9 @@ F1:: {
 }
 
 /**
-* Enters username/password combination
-* Complete login automation
-*/
+ * Enters username/password combination
+ * Complete login automation
+ */
 F2:: {
     ToolTip("Login automation in 2 seconds...")
     Sleep(2000)
@@ -66,9 +66,9 @@ F2:: {
 }
 
 /**
-* Enters API keys and tokens
-* Preserves exact token format
-*/
+ * Enters API keys and tokens
+ * Preserves exact token format
+ */
 F3:: {
     ToolTip("API token entry in 2 seconds...")
     Sleep(2000)
@@ -94,22 +94,22 @@ F3:: {
 ; ============================================================================
 
 /**
-* Enters database connection strings.
-* Preserves all special characters in connection string.
-*
-* @description
-* Safe database configuration
-*/
+ * Enters database connection strings.
+ * Preserves all special characters in connection string.
+ * 
+ * @description
+ * Safe database configuration
+ */
 ^F1:: {
     ToolTip("Database connection string in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     connectionStrings := [
-    "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=P@ssw0rd123!;",
-    "mongodb://username:p@ss%w0rd@localhost:27017/database?authSource=admin",
-    "postgresql://user:p@ss!word@localhost:5432/dbname?sslmode=require",
-    "mysql://root:P@ssw0rd#2024@localhost:3306/mydatabase"
+        "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=P@ssw0rd123!;",
+        "mongodb://username:p@ss%w0rd@localhost:27017/database?authSource=admin",
+        "postgresql://user:p@ss!word@localhost:5432/dbname?sslmode=require",
+        "mysql://root:P@ssw0rd#2024@localhost:3306/mydatabase"
     ]
 
     for index, connStr in connectionStrings {
@@ -127,20 +127,20 @@ F3:: {
 }
 
 /**
-* Enters environment variables
-* Configuration with special characters
-*/
+ * Enters environment variables
+ * Configuration with special characters
+ */
 ^F2:: {
     ToolTip("Environment variables in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     envVars := [
-    "DATABASE_URL=postgres://user:pass@localhost:5432/db",
-    "API_KEY=api_test_EXAMPLE1234567890abcdefghij",
-    "SECRET_KEY=+v8kX!mN2pQ@rS#tU&wY*zB",
-    "JWT_SECRET=mySuperSecret!Key@2024#Secure",
-    "SMTP_PASSWORD=Em@il!P@ssw0rd#2024"
+        "DATABASE_URL=postgres://user:pass@localhost:5432/db",
+        "API_KEY=api_test_EXAMPLE1234567890abcdefghij",
+        "SECRET_KEY=+v8kX!mN2pQ@rS#tU&wY*zB",
+        "JWT_SECRET=mySuperSecret!Key@2024#Secure",
+        "SMTP_PASSWORD=Em@il!P@ssw0rd#2024"
     ]
 
     for index, envVar in envVars {
@@ -162,22 +162,22 @@ F3:: {
 ; ============================================================================
 
 /**
-* Enters command line arguments safely.
-* Preserves all command syntax.
-*
-* @description
-* Safe shell command entry
-*/
+ * Enters command line arguments safely.
+ * Preserves all command syntax.
+ * 
+ * @description
+ * Safe shell command entry
+ */
 ^F3:: {
     ToolTip("Command line input in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     commands := [
-    'docker run -e "DATABASE_URL=postgres://user:p@ss@localhost/db" myapp',
-    'curl -H "Authorization: Bearer sk_live_ABC123!@#" https://api.example.com',
-    'python script.py --password="P@ssw0rd!2024" --user="admin@example.com"',
-    'git commit -m "Fix: Handle special chars (^, +, !, @, #) in input"'
+        'docker run -e "DATABASE_URL=postgres://user:p@ss@localhost/db" myapp',
+        'curl -H "Authorization: Bearer sk_live_ABC123!@#" https://api.example.com',
+        'python script.py --password="P@ssw0rd!2024" --user="admin@example.com"',
+        'git commit -m "Fix: Handle special chars (^, +, !, @, #) in input"'
     ]
 
     for index, cmd in commands {
@@ -195,9 +195,9 @@ F3:: {
 }
 
 /**
-* Enters script code safely
-* Code with special characters
-*/
+ * Enters script code safely
+ * Code with special characters
+ */
 ^F4:: {
     ToolTip("Script code entry in 2 seconds...")
     Sleep(2000)
@@ -225,12 +225,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Enters configuration files safely.
-* Preserves all config syntax.
-*
-* @description
-* Config file automation
-*/
+ * Enters configuration files safely.
+ * Preserves all config syntax.
+ * 
+ * @description
+ * Config file automation
+ */
 ^F5:: {
     ToolTip("Configuration file in 2 seconds...")
     Sleep(2000)
@@ -269,9 +269,9 @@ F3:: {
 }
 
 /**
-* Enters .env file contents
-* Environment configuration
-*/
+ * Enters .env file contents
+ * Environment configuration
+ */
 ^F6:: {
     ToolTip(".env file entry in 2 seconds...")
     Sleep(2000)
@@ -320,23 +320,23 @@ F3:: {
 ; ============================================================================
 
 /**
-* Enters regex patterns safely.
-* All regex special characters preserved.
-*
-* @description
-* Regex pattern entry
-*/
+ * Enters regex patterns safely.
+ * All regex special characters preserved.
+ * 
+ * @description
+ * Regex pattern entry
+ */
 ^F7:: {
     ToolTip("Regex patterns in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     regexPatterns := [
-    '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    '^\+?1?\d{9,15}$',
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
-    '^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b',
-    '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$'
+        '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+        '^\+?1?\d{9,15}$',
+        '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
+        '^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b',
+        '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$'
     ]
 
     for index, pattern in regexPatterns {
@@ -358,12 +358,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Enters code templates with sensitive data.
-* Preserves all code structure.
-*
-* @description
-* Template code insertion
-*/
+ * Enters code templates with sensitive data.
+ * Preserves all code structure.
+ * 
+ * @description
+ * Template code insertion
+ */
 ^F8:: {
     ToolTip("Code template in 2 seconds...")
     Sleep(2000)
@@ -402,9 +402,9 @@ F3:: {
 }
 
 /**
-* Enters SQL with sensitive data
-* Database queries with passwords
-*/
+ * Enters SQL with sensitive data
+ * Database queries with passwords
+ */
 ^F9:: {
     ToolTip("SQL with sensitive data in 2 seconds...")
     Sleep(2000)
@@ -428,16 +428,16 @@ F3:: {
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-    -- Insert test user
+    --Insert test user
     INSERT INTO users (username, email, password_hash, api_key)
     VALUES ('admin', 'admin@example.com', '$2b$12$ABC...', 'sk_test_123!@#');
-    )"
+) "
 
-    SendText(StrReplace(sqlCode, "`n    ", "`n"))
+SendText(StrReplace(sqlCode, "`n    ", "`n"))
 
-    ToolTip("SQL entered!")
-    Sleep(2000)
-    ToolTip()
+ToolTip("SQL entered!")
+Sleep(2000)
+ToolTip()
 }
 
 ; ============================================================================
@@ -445,12 +445,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Enters secure notes with credentials.
-* Documentation with sensitive information.
-*
-* @description
-* Secure documentation entry
-*/
+ * Enters secure notes with credentials.
+ * Documentation with sensitive information.
+ * 
+ * @description
+ * Secure documentation entry
+ */
 ^F10:: {
     ToolTip("Secure notes in 2 seconds...")
     Sleep(2000)
@@ -500,10 +500,10 @@ F3:: {
 ; ============================================================================
 
 /**
-* Securely enters password from clipboard
-*
-* @returns {Boolean} Success status
-*/
+ * Securely enters password from clipboard
+ * 
+ * @returns {Boolean} Success status
+ */
 EnterPasswordFromClipboard() {
     if (A_Clipboard != "") {
         SendText(A_Clipboard)
@@ -514,24 +514,24 @@ EnterPasswordFromClipboard() {
 }
 
 /**
-* Enters masked sensitive data
-*
-* @param {String} data - Sensitive data
-* @param {Boolean} clearAfter - Clear data after entry
-*/
+ * Enters masked sensitive data
+ * 
+ * @param {String} data - Sensitive data
+ * @param {Boolean} clearAfter - Clear data after entry
+ */
 SecureEntry(data, clearAfter := true) {
     SendText(data)
 
     if (clearAfter)
-    data := ""  ; Clear variable
+        data := ""  ; Clear variable
 }
 
 /**
-* Enters credentials safely
-*
-* @param {String} username - Username
-* @param {String} password - Password
-*/
+ * Enters credentials safely
+ * 
+ * @param {String} username - Username
+ * @param {String} password - Password
+ */
 EnterCredentials(username, password) {
     SendText(username)
     Send("{Tab}")
@@ -571,7 +571,7 @@ EnterCredentials(username, password) {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

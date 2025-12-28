@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* ControlSend() - Send text to control
-*
-* Sends keystrokes directly to a control.
-*/
+ * ControlSend() - Send text to control
+ * 
+ * Sends keystrokes directly to a control.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)
@@ -17,3 +17,4 @@ Sleep(2000)
 WinClose("ahk_class Notepad")
 Sleep(500)
 Send("{Tab}{Enter}")  ; Don't save
+

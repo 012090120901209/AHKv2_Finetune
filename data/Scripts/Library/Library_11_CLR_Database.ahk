@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* CLR - Database Access with ADO.NET
-*
-* Demonstrates using .NET ADO.NET for database operations including
-* SQLite connections, queries, and data manipulation.
-*
-* Library: https://github.com/Lexikos/CLR.ahk
-*/
+ * CLR - Database Access with ADO.NET
+ * 
+ * Demonstrates using .NET ADO.NET for database operations including
+ * SQLite connections, queries, and data manipulation.
+ * 
+ * Library: https://github.com/Lexikos/CLR.ahk
+ */
 
 MsgBox("CLR - Database Example`n`n"
-. "Demonstrates ADO.NET database access`n"
-. "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
+    . "Demonstrates ADO.NET database access`n"
+    . "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
 
 /*
 ; Uncomment to run (requires CLR.ahk and System.Data.SQLite):
@@ -256,3 +256,4 @@ MsgBox("Database example completed and cleaned up", , "T3")
 *     ✅ Handle exceptions
 *     ✅ Index frequently queried columns
 */
+

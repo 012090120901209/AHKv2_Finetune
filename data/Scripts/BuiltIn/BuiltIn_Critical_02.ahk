@@ -1,18 +1,18 @@
 /**
-* @file BuiltIn_Critical_02.ahk
-* @description Atomic operations and data consistency with Critical in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Advanced Critical examples focusing on atomic operations, ensuring data
-* consistency, transaction safety, and complex multi-step operations that
-* must complete without interruption.
-*
-* @syntax Critical [OnOffNumeric]
-* @see https://www.autohotkey.com/docs/v2/lib/Critical.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_Critical_02.ahk
+ * @description Atomic operations and data consistency with Critical in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Advanced Critical examples focusing on atomic operations, ensuring data
+ * consistency, transaction safety, and complex multi-step operations that
+ * must complete without interruption.
+ * 
+ * @syntax Critical [OnOffNumeric]
+ * @see https://www.autohotkey.com/docs/v2/lib/Critical.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -21,9 +21,9 @@
 ; EXAMPLE 1: Atomic File Operations
 ; ============================================================================
 /**
-* Demonstrates atomic file operations using Critical
-* Ensures file read-modify-write operations complete without interruption
-*/
+ * Demonstrates atomic file operations using Critical
+ * Ensures file read-modify-write operations complete without interruption
+ */
 Example1_AtomicFileOps() {
     myGui := Gui("+AlwaysOnTop", "Example 1: Atomic File Operations")
     myGui.SetFont("s10")
@@ -36,7 +36,7 @@ Example1_AtomicFileOps() {
     ; Statistics
     myGui.Add("Text", "xm", "Operation Statistics:")
     statsText := myGui.Add("Text", "w600 vStats",
-    "Total Operations: 0 | Successful: 0 | Conflicts: 0")
+        "Total Operations: 0 | Successful: 0 | Conflicts: 0")
 
     ; Log
     myGui.Add("Text", "xm", "Operation Log:")
@@ -44,9 +44,9 @@ Example1_AtomicFileOps() {
 
     ; Simulated file data
     static fileData := Map(
-    "counter", 0,
-    "lastModified", "",
-    "checksum", 0
+        "counter", 0,
+        "lastModified", "",
+        "checksum", 0
     )
 
     static totalOps := 0
@@ -60,14 +60,14 @@ Example1_AtomicFileOps() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Update file display
     UpdateFileDisplay() {
         display := "Counter: " fileData["counter"]
-        . "`nLast Modified: " fileData["lastModified"]
-        . "`nChecksum: " fileData["checksum"]
+            . "`nLast Modified: " fileData["lastModified"]
+            . "`nChecksum: " fileData["checksum"]
 
         fileDataBox.Value := display
     }
@@ -140,8 +140,8 @@ Example1_AtomicFileOps() {
     ; Update statistics
     UpdateStats() {
         statsText.Value := "Total Operations: " totalOps
-        . " | Successful: " successOps
-        . " | Conflicts: " conflicts
+            . " | Successful: " successOps
+            . " | Conflicts: " conflicts
     }
 
     ; Test buttons
@@ -207,9 +207,9 @@ Example1_AtomicFileOps() {
 ; EXAMPLE 2: Transaction Processing
 ; ============================================================================
 /**
-* Implements transaction-like operations with rollback capability
-* Demonstrates all-or-nothing operation semantics
-*/
+ * Implements transaction-like operations with rollback capability
+ * Demonstrates all-or-nothing operation semantics
+ */
 Example2_Transactions() {
     myGui := Gui("+AlwaysOnTop", "Example 2: Transaction Processing")
     myGui.SetFont("s10")
@@ -228,8 +228,8 @@ Example2_Transactions() {
     logBox := myGui.Add("Edit", "w600 h300 ReadOnly vLog")
 
     static accounts := Map(
-    "A", 1000,
-    "B", 500
+        "A", 1000,
+        "B", 500
     )
 
     static transactionCount := 0
@@ -241,7 +241,7 @@ Example2_Transactions() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Update account display
@@ -383,9 +383,9 @@ Example2_Transactions() {
 ; EXAMPLE 3: Shared Resource Management
 ; ============================================================================
 /**
-* Manages access to shared resources using Critical
-* Prevents concurrent access conflicts
-*/
+ * Manages access to shared resources using Critical
+ * Prevents concurrent access conflicts
+ */
 Example3_SharedResources() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Shared Resource Management")
     myGui.SetFont("s10")
@@ -398,15 +398,15 @@ Example3_SharedResources() {
 
     ; Statistics
     statsText := myGui.Add("Text", "w600 vStats",
-    "Successful Acquisitions: 0 | Conflicts Prevented: 0")
+        "Successful Acquisitions: 0 | Conflicts Prevented: 0")
 
     ; Log
     myGui.Add("Text", "xm", "Access Log:")
     logBox := myGui.Add("Edit", "w600 h300 ReadOnly vLog")
 
     static resources := Map(
-    "R1", {locked: false, owner: "", lockTime: 0},
-    "R2", {locked: false, owner: "", lockTime: 0}
+        "R1", { locked: false, owner: "", lockTime: 0 },
+        "R2", { locked: false, owner: "", lockTime: 0 }
     )
 
     static successCount := 0
@@ -419,7 +419,7 @@ Example3_SharedResources() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Update resource display
@@ -428,17 +428,17 @@ Example3_SharedResources() {
         r2 := resources["R2"]
 
         if (r1.locked)
-        resource1Text.Value := "Resource 1: LOCKED by " r1.owner
+            resource1Text.Value := "Resource 1: LOCKED by " r1.owner
         else
-        resource1Text.Value := "Resource 1: Available"
+            resource1Text.Value := "Resource 1: Available"
 
         if (r2.locked)
-        resource2Text.Value := "Resource 2: LOCKED by " r2.owner
+            resource2Text.Value := "Resource 2: LOCKED by " r2.owner
         else
-        resource2Text.Value := "Resource 2: Available"
+            resource2Text.Value := "Resource 2: Available"
 
         statsText.Value := "Successful Acquisitions: " successCount
-        . " | Conflicts Prevented: " conflictCount
+            . " | Conflicts Prevented: " conflictCount
     }
 
     ; Acquire resource (atomic operation)
@@ -587,9 +587,9 @@ Example3_SharedResources() {
 ; EXAMPLE 4: State Machine with Atomic Transitions
 ; ============================================================================
 /**
-* Implements a state machine with atomic state transitions
-* Ensures state changes are consistent and complete
-*/
+ * Implements a state machine with atomic state transitions
+ * Ensures state changes are consistent and complete
+ */
 Example4_StateMachine() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Atomic State Machine")
     myGui.SetFont("s10")
@@ -613,12 +613,12 @@ Example4_StateMachine() {
 
     ; Valid transitions
     static validTransitions := Map(
-    "IDLE", ["STARTING"],
-    "STARTING", ["RUNNING", "ERROR"],
-    "RUNNING", ["PAUSED", "STOPPING", "ERROR"],
-    "PAUSED", ["RUNNING", "STOPPING"],
-    "STOPPING", ["IDLE", "ERROR"],
-    "ERROR", ["IDLE"]
+        "IDLE", ["STARTING"],
+        "STARTING", ["RUNNING", "ERROR"],
+        "RUNNING", ["PAUSED", "STOPPING", "ERROR"],
+        "PAUSED", ["RUNNING", "STOPPING"],
+        "STOPPING", ["IDLE", "ERROR"],
+        "ERROR", ["IDLE"]
     )
 
     static currentState := "IDLE"
@@ -631,7 +631,7 @@ Example4_StateMachine() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 5000)
-        logBox.Value := SubStr(logBox.Value, -4500)
+            logBox.Value := SubStr(logBox.Value, -4500)
     }
 
     ; Update state display
@@ -641,15 +641,15 @@ Example4_StateMachine() {
         ; Color-code based on state
         switch currentState {
             case "IDLE":
-            stateText.SetFont("cBlue")
+                stateText.SetFont("cBlue")
             case "STARTING", "STOPPING":
-            stateText.SetFont("cOrange")
+                stateText.SetFont("cOrange")
             case "RUNNING":
-            stateText.SetFont("cGreen")
+                stateText.SetFont("cGreen")
             case "PAUSED":
-            stateText.SetFont("cGray")
+                stateText.SetFont("cGray")
             case "ERROR":
-            stateText.SetFont("cRed")
+                stateText.SetFont("cRed")
         }
     }
 
@@ -674,7 +674,7 @@ Example4_StateMachine() {
         if (!isValid) {
             LogTransition("REJECTED: Invalid transition " currentState " → " newState)
             MsgBox("Invalid transition!`n`n" currentState " → " newState " is not allowed.",
-            "Invalid Transition", "Icon!")
+                "Invalid Transition", "Icon!")
             Critical("Off")
             return false
         }

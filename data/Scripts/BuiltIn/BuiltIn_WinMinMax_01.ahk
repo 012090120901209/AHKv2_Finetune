@@ -1,28 +1,28 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinMinMax Examples: Minimize, Maximize, and Restore
-* ============================================================================
-*
-* Demonstrates window state management: minimize, maximize, and restore.
-* Essential for window organization and workflow optimization.
-*
-* @description Window minimize/maximize/restore examples
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinMinMax Examples: Minimize, Maximize, and Restore
+ * ============================================================================
+ * 
+ * Demonstrates window state management: minimize, maximize, and restore.
+ * Essential for window organization and workflow optimization.
+ * 
+ * @description Window minimize/maximize/restore examples
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Minimize/Maximize/Restore
 ; ============================================================================
 
 /**
-* Cycles through window states
-*
-* @hotkey F1 - Cycle window state
-*/
+ * Cycles through window states
+ * 
+ * @hotkey F1 - Cycle window state
+ */
 F1:: {
     CycleWindowState()
 }
@@ -37,14 +37,14 @@ CycleWindowState() {
 
     switch state {
         case 0:  ; Normal - maximize it
-        WinMaximize("A")
-        ToolTip("Window maximized")
+            WinMaximize("A")
+            ToolTip("Window maximized")
         case 1:  ; Maximized - restore it
-        WinRestore("A")
-        ToolTip("Window restored")
+            WinRestore("A")
+            ToolTip("Window restored")
         case -1:  ; Minimized - restore it
-        WinRestore("A")
-        ToolTip("Window restored from minimized")
+            WinRestore("A")
+            ToolTip("Window restored from minimized")
     }
 
     SetTimer(() => ToolTip(), -1500)
@@ -55,10 +55,10 @@ CycleWindowState() {
 ; ============================================================================
 
 /**
-* Minimizes all windows except the active one
-*
-* @hotkey F2 - Minimize all except active
-*/
+ * Minimizes all windows except the active one
+ * 
+ * @hotkey F2 - Minimize all except active
+ */
 F2:: {
     MinimizeAllExceptActive()
 }
@@ -93,10 +93,10 @@ MinimizeAllExceptActive() {
 ; ============================================================================
 
 /**
-* Restores all minimized windows
-*
-* @hotkey F3 - Restore all minimized
-*/
+ * Restores all minimized windows
+ * 
+ * @hotkey F3 - Restore all minimized
+ */
 F3:: {
     RestoreAllMinimized()
 }
@@ -108,13 +108,13 @@ RestoreAllMinimized() {
     for hwnd in allWindows {
         try {
             if WinGetMinMax(hwnd) = -1 {  ; Minimized
-            WinRestore(hwnd)
-            restored++
+                WinRestore(hwnd)
+                restored++
+            }
         }
     }
-}
 
-MsgBox("Restored " restored " minimized window(s).", "Success", 64)
+    MsgBox("Restored " restored " minimized window(s).", "Success", 64)
 }
 
 ; ============================================================================
@@ -122,10 +122,10 @@ MsgBox("Restored " restored " minimized window(s).", "Success", 64)
 ; ============================================================================
 
 /**
-* Maximizes window to specific monitor
-*
-* @hotkey F4 - Maximize to monitor
-*/
+ * Maximizes window to specific monitor
+ * 
+ * @hotkey F4 - Maximize to monitor
+ */
 F4:: {
     MaximizeToMonitor()
 }
@@ -171,10 +171,10 @@ MaximizeToMonitor() {
 ; ============================================================================
 
 /**
-* Smart restore - activates and restores if minimized
-*
-* @hotkey F5 - Smart restore Notepad
-*/
+ * Smart restore - activates and restores if minimized
+ * 
+ * @hotkey F5 - Smart restore Notepad
+ */
 F5:: {
     SmartRestore("ahk_class Notepad", "Notepad")
 }
@@ -188,13 +188,13 @@ SmartRestore(criteria, appName) {
     state := WinGetMinMax(criteria)
 
     if state = -1 {  ; Minimized
-    WinRestore(criteria)
-}
+        WinRestore(criteria)
+    }
 
-WinActivate(criteria)
+    WinActivate(criteria)
 
-ToolTip(appName " activated")
-SetTimer(() => ToolTip(), -1500)
+    ToolTip(appName " activated")
+    SetTimer(() => ToolTip(), -1500)
 }
 
 ; ============================================================================
@@ -202,10 +202,10 @@ SetTimer(() => ToolTip(), -1500)
 ; ============================================================================
 
 /**
-* Manages state of multiple windows
-*
-* @hotkey F6 - Batch state manager
-*/
+ * Manages state of multiple windows
+ * 
+ * @hotkey F6 - Batch state manager
+ */
 F6:: {
     BatchStateManager()
 }
@@ -276,10 +276,10 @@ BatchStateManager() {
 ; ============================================================================
 
 /**
-* Monitors and logs window state changes
-*
-* @hotkey F7 - State monitor
-*/
+ * Monitors and logs window state changes
+ * 
+ * @hotkey F7 - State monitor
+ */
 F7:: {
     static monitoring := false
 
@@ -358,7 +358,7 @@ StartStateMonitor() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

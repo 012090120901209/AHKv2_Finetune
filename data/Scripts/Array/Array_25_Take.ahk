@@ -4,10 +4,10 @@
 #Include <adash>
 
 /**
-* _.take() - Take elements from beginning
-*
-* Creates a slice of array with n elements taken from the beginning.
-*/
+ * _.take() - Take elements from beginning
+ * 
+ * Creates a slice of array with n elements taken from the beginning.
+ */
 
 result1 := _.take([1, 2, 3])
 ; => [1]
@@ -22,6 +22,6 @@ result4 := _.take([1, 2, 3], 0)
 ; => []
 
 MsgBox("Take 1: " JSON.stringify(result1) "`n"
-. "Take 2: " JSON.stringify(result2) "`n"
-. "Take 5: " JSON.stringify(result3) "`n"
-. "Take 0: " JSON.stringify(result4))
+    . "Take 2: " JSON.stringify(result2) "`n"
+    . "Take 5: " JSON.stringify(result3) "`n"
+    . "Take 0: " JSON.stringify(result4))

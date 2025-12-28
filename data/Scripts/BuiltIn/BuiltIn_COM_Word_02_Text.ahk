@@ -1,39 +1,39 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Word_02_Text.ahk
-*
-* DESCRIPTION:
-* Demonstrates reading and writing text in Microsoft Word using COM automation.
-* Shows various methods for inserting, modifying, and extracting text content.
-*
-* FEATURES:
-* - Inserting text at different positions
-* - Reading text from documents
-* - Working with Selection and Range objects
-* - Find and replace operations
-* - Text manipulation and extraction
-* - Paragraph and sentence handling
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for Word automation
-* - Selection object for text insertion
-* - Range object for text manipulation
-* - Find and Replace functionality
-*
-* LEARNING POINTS:
-* 1. Different ways to insert text (Selection vs Range)
-* 2. Reading text from documents
-* 3. Moving through document content
-* 4. Finding and replacing text
-* 5. Working with paragraphs
-* 6. Extracting specific portions of text
-* 7. Text formatting while inserting
-*/
+ * BuiltIn_COM_Word_02_Text.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates reading and writing text in Microsoft Word using COM automation.
+ * Shows various methods for inserting, modifying, and extracting text content.
+ * 
+ * FEATURES:
+ * - Inserting text at different positions
+ * - Reading text from documents
+ * - Working with Selection and Range objects
+ * - Find and replace operations
+ * - Text manipulation and extraction
+ * - Paragraph and sentence handling
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for Word automation
+ * - Selection object for text insertion
+ * - Range object for text manipulation
+ * - Find and Replace functionality
+ * 
+ * LEARNING POINTS:
+ * 1. Different ways to insert text (Selection vs Range)
+ * 2. Reading text from documents
+ * 3. Moving through document content
+ * 4. Finding and replacing text
+ * 5. Working with paragraphs
+ * 6. Extracting specific portions of text
+ * 7. Text formatting while inserting
+ */
 
 ;===============================================================================
 ; Example 1: Basic Text Insertion
@@ -74,7 +74,7 @@ Example1_BasicTextInsertion() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -124,7 +124,7 @@ Example2_ReadingText() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -162,7 +162,7 @@ Example3_FindReplace() {
         findObj.MatchWholeWord := true
 
         ; Execute replace all
-        findObj.Execute(,,,,,,,,,"wolf", 2)  ; 2 = wdReplaceAll
+        findObj.Execute(, , , , , , , , , "wolf", 2)  ; 2 = wdReplaceAll
 
         ; Count how many replacements were made
         MsgBox("Replacement complete!`n`nAll instances of 'fox' replaced with 'wolf'.`n`nCheck the document.")
@@ -172,7 +172,7 @@ Example3_FindReplace() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -220,7 +220,7 @@ Example4_Paragraphs() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -270,7 +270,7 @@ Example5_SelectionMovement() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -332,7 +332,7 @@ Example6_TextExtraction() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -398,7 +398,7 @@ Example7_DocumentGeneration() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if (IsSet(word))
-        word.Quit()
+            word.Quit()
     }
 }
 
@@ -435,13 +435,13 @@ ShowMenu() {
         case "7": Example7_DocumentGeneration()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

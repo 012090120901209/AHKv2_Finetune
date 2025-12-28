@@ -37,7 +37,7 @@ class Fraction {
 
         isNegative := decimal < 0
         decimal := Abs(decimal)
-        
+
         h1 := 1, h2 := 0
         k1 := 0, k2 := 1
         b := decimal
@@ -119,13 +119,13 @@ class Fraction {
         ; Returns mixed number string (e.g., "2 1/3")
         if Abs(this.num) < this.den
             return this.ToString()
-        
+
         whole := this.num // this.den
         remainder := Abs(Mod(this.num, this.den))
-        
+
         if remainder = 0
             return String(whole)
-        
+
         return whole " " remainder "/" this.den
     }
 }

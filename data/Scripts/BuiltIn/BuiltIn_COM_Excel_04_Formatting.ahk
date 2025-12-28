@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Excel_04_Formatting.ahk
-*
-* DESCRIPTION:
-* Demonstrates cell formatting operations in Microsoft Excel using COM automation.
-* Covers fonts, colors, borders, number formats, and conditional formatting.
-*
-* FEATURES:
-* - Font formatting (bold, italic, size, color)
-* - Cell background colors and patterns
-* - Borders and gridlines
-* - Number formatting (currency, dates, percentages)
-* - Column and row sizing
-* - Alignment and text wrapping
-* - Conditional formatting
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() for Excel automation
-* - Accessing Font, Interior, and Borders objects
-* - Using Excel constants for formatting
-* - Property chaining for complex formatting
-*
-* LEARNING POINTS:
-* 1. How to format fonts and text appearance
-* 2. Applying colors to cells and text
-* 3. Adding and customizing borders
-* 4. Using number format strings
-* 5. Auto-sizing columns and rows
-* 6. Text alignment and wrapping
-* 7. Creating professional-looking spreadsheets
-*/
+ * BuiltIn_COM_Excel_04_Formatting.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates cell formatting operations in Microsoft Excel using COM automation.
+ * Covers fonts, colors, borders, number formats, and conditional formatting.
+ * 
+ * FEATURES:
+ * - Font formatting (bold, italic, size, color)
+ * - Cell background colors and patterns
+ * - Borders and gridlines
+ * - Number formatting (currency, dates, percentages)
+ * - Column and row sizing
+ * - Alignment and text wrapping
+ * - Conditional formatting
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() for Excel automation
+ * - Accessing Font, Interior, and Borders objects
+ * - Using Excel constants for formatting
+ * - Property chaining for complex formatting
+ * 
+ * LEARNING POINTS:
+ * 1. How to format fonts and text appearance
+ * 2. Applying colors to cells and text
+ * 3. Adding and customizing borders
+ * 4. Using number format strings
+ * 5. Auto-sizing columns and rows
+ * 6. Text alignment and wrapping
+ * 7. Creating professional-looking spreadsheets
+ */
 
 ;===============================================================================
 ; Example 1: Font Formatting
@@ -113,7 +113,7 @@ Example1_FontFormatting() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -159,13 +159,13 @@ Example2_CellColors() {
 
         ; Create a gradient effect
         colors := [
-        0xFFFFFF,  ; White
-        0xF0F0F0,  ; Very light gray
-        0xD0D0D0,  ; Light gray
-        0xB0B0B0,  ; Gray
-        0x808080,  ; Dark gray
-        0x404040,  ; Very dark gray
-        0x000000   ; Black
+            0xFFFFFF,  ; White
+            0xF0F0F0,  ; Very light gray
+            0xD0D0D0,  ; Light gray
+            0xB0B0B0,  ; Gray
+            0x808080,  ; Dark gray
+            0x404040,  ; Very dark gray
+            0x000000   ; Black
         ]
 
         Loop colors.Length {
@@ -175,7 +175,7 @@ Example2_CellColors() {
 
             ; White text for darker backgrounds
             if (A_Index > 4)
-            sheet.Cells(row, 4).Font.Color := 0xFFFFFF
+                sheet.Cells(row, 4).Font.Color := 0xFFFFFF
         }
 
         ; Pattern example
@@ -192,7 +192,7 @@ Example2_CellColors() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -265,7 +265,7 @@ Example3_Borders() {
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -365,7 +365,7 @@ Example4_NumberFormatting() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -452,7 +452,7 @@ Example5_Alignment() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -519,7 +519,7 @@ Example6_ColumnRowSizing() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if (IsSet(xl))
-        xl.Quit()
+            xl.Quit()
     }
 }
 
@@ -650,13 +650,13 @@ ShowMenu() {
         case "7": Example7_ProfessionalReport()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiAdvanced_02.ahk - Owner-Drawn Controls
-*
-* This file demonstrates owner-drawn control techniques in AutoHotkey v2.
-* Topics covered:
-* - Owner-draw basics
-* - Custom buttons
-* - Gradient effects
-* - Hover states
-* - Focus indicators
-* - Custom list items
-* - Image rendering
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiAdvanced_02.ahk - Owner-Drawn Controls
+ * 
+ * This file demonstrates owner-drawn control techniques in AutoHotkey v2.
+ * Topics covered:
+ * - Owner-draw basics
+ * - Custom buttons
+ * - Gradient effects
+ * - Hover states
+ * - Focus indicators
+ * - Custom list items
+ * - Image rendering
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates owner-draw basics
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates owner-draw basics
+ * Advanced GUI techniques and patterns
+ */
 Example1_Ownerdrawbasics() {
     myGui := Gui(, "Owner-draw basics Demo")
     myGui.BackColor := "White"
@@ -67,14 +66,13 @@ Example1_Ownerdrawbasics() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -94,15 +92,14 @@ Example1_Ownerdrawbasics() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Custom buttons
 ; =============================================================================
 
 /**
-* Demonstrates custom buttons
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates custom buttons
+ * Advanced GUI techniques and patterns
+ */
 Example2_Custombuttons() {
     myGui := Gui(, "Custom buttons Demo")
     myGui.BackColor := "White"
@@ -142,14 +139,13 @@ Example2_Custombuttons() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -169,15 +165,14 @@ Example2_Custombuttons() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Gradient effects
 ; =============================================================================
 
 /**
-* Demonstrates gradient effects
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates gradient effects
+ * Advanced GUI techniques and patterns
+ */
 Example3_Gradienteffects() {
     myGui := Gui(, "Gradient effects Demo")
     myGui.BackColor := "White"
@@ -217,14 +212,13 @@ Example3_Gradienteffects() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -244,15 +238,14 @@ Example3_Gradienteffects() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Hover states
 ; =============================================================================
 
 /**
-* Demonstrates hover states
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates hover states
+ * Advanced GUI techniques and patterns
+ */
 Example4_Hoverstates() {
     myGui := Gui(, "Hover states Demo")
     myGui.BackColor := "White"
@@ -292,14 +285,13 @@ Example4_Hoverstates() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -319,15 +311,14 @@ Example4_Hoverstates() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Focus indicators
 ; =============================================================================
 
 /**
-* Demonstrates focus indicators
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates focus indicators
+ * Advanced GUI techniques and patterns
+ */
 Example5_Focusindicators() {
     myGui := Gui(, "Focus indicators Demo")
     myGui.BackColor := "White"
@@ -367,14 +358,13 @@ Example5_Focusindicators() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -394,15 +384,14 @@ Example5_Focusindicators() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Custom list items
 ; =============================================================================
 
 /**
-* Demonstrates custom list items
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates custom list items
+ * Advanced GUI techniques and patterns
+ */
 Example6_Customlistitems() {
     myGui := Gui(, "Custom list items Demo")
     myGui.BackColor := "White"
@@ -442,14 +431,13 @@ Example6_Customlistitems() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -469,15 +457,14 @@ Example6_Customlistitems() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Image rendering
 ; =============================================================================
 
 /**
-* Demonstrates image rendering
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates image rendering
+ * Advanced GUI techniques and patterns
+ */
 Example7_Imagerendering() {
     myGui := Gui(, "Image rendering Demo")
     myGui.BackColor := "White"
@@ -517,14 +504,13 @@ Example7_Imagerendering() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -549,8 +535,8 @@ Example7_Imagerendering() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiAdvanced_02.ahk - Examples")
     menuGui.BackColor := "White"

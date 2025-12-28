@@ -2,34 +2,34 @@
 #Include JSON.ahk
 
 /**
-* BuiltIn_OOP_Practical_04_Config.ahk
-*
-* DESCRIPTION:
-* Configuration class
-*
-* FEATURES:
-* - Configuration manager
-* - INI/JSON support
-* - Default values
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced OOP patterns
-* - Practical implementations
-* - Real-world examples
-* - Best practices
-*
-* LEARNING POINTS:
-* 1. Demonstrates practical AutoHotkey v2 OOP usage
-* 2. Shows real-world design patterns
-* 3. Provides reusable code examples
-* 4. Illustrates best practices
-* 5. Complete working examples
-* 6. Production-ready patterns
-* 7. Comprehensive documentation
-*/
+ * BuiltIn_OOP_Practical_04_Config.ahk
+ * 
+ * DESCRIPTION:
+ * Configuration class
+ * 
+ * FEATURES:
+ * - Configuration manager
+ * - INI/JSON support
+ * - Default values
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced OOP patterns
+ * - Practical implementations
+ * - Real-world examples
+ * - Best practices
+ * 
+ * LEARNING POINTS:
+ * 1. Demonstrates practical AutoHotkey v2 OOP usage
+ * 2. Shows real-world design patterns
+ * 3. Provides reusable code examples
+ * 4. Illustrates best practices
+ * 5. Complete working examples
+ * 6. Production-ready patterns
+ * 7. Comprehensive documentation
+ */
 
 ; This file contains 5-7 comprehensive examples
 ; Each example demonstrates the topic with detailed code

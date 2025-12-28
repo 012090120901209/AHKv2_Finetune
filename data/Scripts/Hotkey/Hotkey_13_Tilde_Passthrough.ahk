@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Tilde Prefix (~)
-* Allows the native function of the key to pass through
-*/
+ * Tilde Prefix (~)
+ * Allows the native function of the key to pass through
+ */
 
 ; This lets Ctrl+C still copy, but also triggers our custom action
 ~^c:: {

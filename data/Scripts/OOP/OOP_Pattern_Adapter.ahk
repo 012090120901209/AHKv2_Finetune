@@ -22,7 +22,7 @@ class LegacyAdapter extends ModernAPI {
     ConvertToCSV(data) {
         result := ""
         for key, value in data.OwnProps()
-        result .= (result ? "," : "") . value
+            result .= (result ? "," : "") . value
         return result
     }
 }
@@ -32,7 +32,8 @@ modern := ModernAPI()
 legacy := LegacySystem()
 adapter := LegacyAdapter(legacy)
 
-data := {name: "John", age: 30, city: "NYC"}
+data := { name: "John", age: 30, city: "NYC" }
 
 modern.ProcessData(data)    ; Modern way
 adapter.ProcessData(data)   ; Adapted to legacy
+

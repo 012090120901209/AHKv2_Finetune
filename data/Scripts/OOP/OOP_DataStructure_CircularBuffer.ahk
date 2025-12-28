@@ -12,12 +12,12 @@ class CircularBuffer {
         this.size := 0
 
         loop capacity
-        this.buffer.Push("")
+            this.buffer.Push("")
     }
 
     Enqueue(value) {
         if (this.IsFull())
-        throw Error("Buffer is full")
+            throw Error("Buffer is full")
 
         this.buffer[this.tail + 1] := value  ; +1 for 1-based indexing
         this.tail := Mod(this.tail + 1, this.capacity)
@@ -31,16 +31,16 @@ class CircularBuffer {
         this.tail := Mod(this.tail + 1, this.capacity)
 
         if (this.IsFull())
-        this.head := Mod(this.head + 1, this.capacity)
+            this.head := Mod(this.head + 1, this.capacity)
         else
-        this.size++
+            this.size++
 
         return this
     }
 
     Dequeue() {
         if (this.IsEmpty())
-        throw Error("Buffer is empty")
+            throw Error("Buffer is empty")
 
         value := this.buffer[this.head + 1]
         this.head := Mod(this.head + 1, this.capacity)
@@ -51,7 +51,7 @@ class CircularBuffer {
 
     Peek() {
         if (this.IsEmpty())
-        return ""
+            return ""
         return this.buffer[this.head + 1]
     }
 
@@ -94,9 +94,9 @@ MsgBox("Full buffer: " . buffer.ToString())
 
 ; Try to enqueue when full (will error)
 try
-buffer.Enqueue("G")
+    buffer.Enqueue("G")
 catch Error as e
-MsgBox("Error: " . e.Message)
+    MsgBox("Error: " . e.Message)
 
 ; Overwrite mode
 buffer.EnqueueOverwrite("G")  ; Overwrites oldest
@@ -105,7 +105,7 @@ MsgBox("After overwrite: " . buffer.ToString())
 ; Dequeue all
 result := ""
 while (!buffer.IsEmpty())
-result .= buffer.Dequeue() . " "
+    result .= buffer.Dequeue() . " "
 MsgBox("Dequeued all: " . result . "`nBuffer: " . buffer.ToString())
 
 ; Use case: Logging with fixed size

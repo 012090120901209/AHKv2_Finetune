@@ -1,17 +1,17 @@
 /**
-* @file BuiltIn_SetTimer_02.ahk
-* @description Recurring tasks and scheduled operations with SetTimer in AutoHotkey v2
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Advanced SetTimer examples focusing on recurring tasks, scheduled operations,
-* task schedulers, periodic maintenance, and automated workflows.
-*
-* @syntax SetTimer [Function, Period, Priority]
-* @see https://www.autohotkey.com/docs/v2/lib/SetTimer.htm
-* @requires AutoHotkey v2.0+
-*/
+ * @file BuiltIn_SetTimer_02.ahk
+ * @description Recurring tasks and scheduled operations with SetTimer in AutoHotkey v2
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Advanced SetTimer examples focusing on recurring tasks, scheduled operations,
+ * task schedulers, periodic maintenance, and automated workflows.
+ * 
+ * @syntax SetTimer [Function, Period, Priority]
+ * @see https://www.autohotkey.com/docs/v2/lib/SetTimer.htm
+ * @requires AutoHotkey v2.0+
+ */
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
@@ -20,9 +20,9 @@
 ; EXAMPLE 1: Task Scheduler with Multiple Jobs
 ; ============================================================================
 /**
-* Implements a task scheduler that manages multiple recurring jobs
-* Each job can have different intervals and enable/disable states
-*/
+ * Implements a task scheduler that manages multiple recurring jobs
+ * Each job can have different intervals and enable/disable states
+ */
 Example1_TaskScheduler() {
     ; Task registry
     static tasks := Map()
@@ -62,7 +62,7 @@ Example1_TaskScheduler() {
 
         ; Auto-scroll by limiting to last 1000 chars
         if (StrLen(logBox.Value) > 10000)
-        logBox.Value := SubStr(logBox.Value, -9000)
+            logBox.Value := SubStr(logBox.Value, -9000)
     }
 
     ; Add new task
@@ -102,7 +102,7 @@ Example1_TaskScheduler() {
     ; Execute task
     ExecuteTask(taskId) {
         if (!tasks.Has(taskId))
-        return
+            return
 
         task := tasks[taskId]
         task.runCount++
@@ -129,7 +129,7 @@ Example1_TaskScheduler() {
 
         taskId := Integer(taskList.GetText(row, 1))
         if (!tasks.Has(taskId))
-        return
+            return
 
         task := tasks[taskId]
         if (!task.isActive) {
@@ -145,11 +145,11 @@ Example1_TaskScheduler() {
     StopSelectedTask() {
         row := taskList.GetNext()
         if (!row)
-        return
+            return
 
         taskId := Integer(taskList.GetText(row, 1))
         if (!tasks.Has(taskId))
-        return
+            return
 
         task := tasks[taskId]
         if (task.isActive) {
@@ -165,17 +165,17 @@ Example1_TaskScheduler() {
     RemoveSelectedTask() {
         row := taskList.GetNext()
         if (!row)
-        return
+            return
 
         taskId := Integer(taskList.GetText(row, 1))
         if (!tasks.Has(taskId))
-        return
+            return
 
         task := tasks[taskId]
 
         ; Stop timer if active
         if (task.isActive)
-        SetTimer(task.func, 0)
+            SetTimer(task.func, 0)
 
         tasks.Delete(taskId)
         taskList.Delete(row)
@@ -190,7 +190,7 @@ Example1_TaskScheduler() {
     Cleanup() {
         for taskId, task in tasks {
             if (task.isActive)
-            SetTimer(task.func, 0)
+                SetTimer(task.func, 0)
         }
         myGui.Destroy()
     }
@@ -203,9 +203,9 @@ Example1_TaskScheduler() {
 ; EXAMPLE 2: Periodic Backup System
 ; ============================================================================
 /**
-* Simulates a periodic backup system with configurable intervals
-* Demonstrates file backup automation using timers
-*/
+ * Simulates a periodic backup system with configurable intervals
+ * Demonstrates file backup automation using timers
+ */
 Example2_PeriodicBackup() {
     static backupCount := 0
     static lastBackupTime := ""
@@ -251,7 +251,7 @@ Example2_PeriodicBackup() {
     ; Timer countdown updater
     UpdateCountdown() {
         if (!isEnabled)
-        return
+            return
 
         if (lastBackupTime = "") {
             nextBackupText.Value := "Next Backup: Calculating..."
@@ -263,7 +263,7 @@ Example2_PeriodicBackup() {
         remaining := backupInterval - elapsed
 
         if (remaining < 0)
-        remaining := 0
+            remaining := 0
 
         seconds := Round(remaining / 1000)
         nextBackupText.Value := "Next Backup: " seconds "s"
@@ -289,16 +289,16 @@ Example2_PeriodicBackup() {
 
     ResetStatus() {
         if (isEnabled)
-        statusText.Value := "Status: Auto-backup enabled"
+            statusText.Value := "Status: Auto-backup enabled"
         else
-        statusText.Value := "Status: Idle"
+            statusText.Value := "Status: Idle"
     }
 
     ; Enable auto-backup
     enableBtn.OnEvent("Click", (*) => EnableBackup())
     EnableBackup() {
         if (isEnabled)
-        return
+            return
 
         isEnabled := true
         lastBackupTime := A_TickCount
@@ -306,15 +306,15 @@ Example2_PeriodicBackup() {
         ; Parse interval
         intervalText := intervalCombo.Text
         if (InStr(intervalText, "5 seconds"))
-        backupInterval := 5000
+            backupInterval := 5000
         else if (InStr(intervalText, "10 seconds"))
-        backupInterval := 10000
+            backupInterval := 10000
         else if (InStr(intervalText, "30 seconds"))
-        backupInterval := 30000
+            backupInterval := 30000
         else if (InStr(intervalText, "1 minute"))
-        backupInterval := 60000
+            backupInterval := 60000
         else if (InStr(intervalText, "5 minutes"))
-        backupInterval := 300000
+            backupInterval := 300000
 
         SetTimer(PerformBackup, backupInterval)
         SetTimer(UpdateCountdown, 100)
@@ -330,7 +330,7 @@ Example2_PeriodicBackup() {
     disableBtn.OnEvent("Click", (*) => DisableBackup())
     DisableBackup() {
         if (!isEnabled)
-        return
+            return
 
         isEnabled := false
         SetTimer(PerformBackup, 0)
@@ -368,9 +368,9 @@ Example2_PeriodicBackup() {
 ; EXAMPLE 3: Health Check Monitor
 ; ============================================================================
 /**
-* Periodic health check system for monitoring application status
-* Demonstrates recurring diagnostic tasks
-*/
+ * Periodic health check system for monitoring application status
+ * Demonstrates recurring diagnostic tasks
+ */
 Example3_HealthCheck() {
     myGui := Gui("+AlwaysOnTop", "Example 3: Health Check Monitor")
     myGui.SetFont("s10")
@@ -407,9 +407,9 @@ Example3_HealthCheck() {
 
     ; Service health states (randomized for demo)
     static serviceStates := Map(
-    "database", {healthy: true, failRate: 0.05},
-    "api", {healthy: true, failRate: 0.03},
-    "filesystem", {healthy: true, failRate: 0.02}
+        "database", { healthy: true, failRate: 0.05 },
+        "api", { healthy: true, failRate: 0.03 },
+        "filesystem", { healthy: true, failRate: 0.02 }
     )
 
     ; Log helper
@@ -420,7 +420,7 @@ Example3_HealthCheck() {
         logBox.Value := currentLog . timestamp . " [" . prefix . "] " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 10000)
-        logBox.Value := SubStr(logBox.Value, -9000)
+            logBox.Value := SubStr(logBox.Value, -9000)
     }
 
     ; Perform health check
@@ -501,7 +501,7 @@ Example3_HealthCheck() {
     startBtn.OnEvent("Click", (*) => StartMonitoring())
     StartMonitoring() {
         if (isMonitoring)
-        return
+            return
 
         isMonitoring := true
         startTime := A_TickCount
@@ -515,7 +515,7 @@ Example3_HealthCheck() {
     stopBtn.OnEvent("Click", (*) => StopMonitoring())
     StopMonitoring() {
         if (!isMonitoring)
-        return
+            return
 
         isMonitoring := false
         SetTimer(PerformHealthCheck, 0)
@@ -543,9 +543,9 @@ Example3_HealthCheck() {
 ; EXAMPLE 4: Notification Reminder System
 ; ============================================================================
 /**
-* Recurring reminder system with snooze functionality
-* Demonstrates notification scheduling and management
-*/
+ * Recurring reminder system with snooze functionality
+ * Demonstrates notification scheduling and management
+ */
 Example4_ReminderSystem() {
     myGui := Gui("+AlwaysOnTop", "Example 4: Reminder System")
     myGui.SetFont("s10")
@@ -580,7 +580,7 @@ Example4_ReminderSystem() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 5000)
-        logBox.Value := SubStr(logBox.Value, -4000)
+            logBox.Value := SubStr(logBox.Value, -4000)
     }
 
     ; Add reminder
@@ -625,14 +625,14 @@ Example4_ReminderSystem() {
     ; Trigger reminder
     TriggerReminder(idx) {
         if (idx > reminders.Length)
-        return
+            return
 
         reminder := reminders[idx]
         reminder.count++
 
         ; Update list
         reminderList.Modify(idx, , reminder.startTime, reminder.message,
-        reminder.interval // 1000 . "s", reminder.count)
+            reminder.interval // 1000 . "s", reminder.count)
 
         ; Show notification
         ToolTip("REMINDER: " reminder.message, 100, 100)
@@ -649,7 +649,7 @@ Example4_ReminderSystem() {
     RemoveReminder() {
         row := reminderList.GetNext()
         if (!row)
-        return
+            return
 
         ; Stop timer
         if (reminderFuncs.Has(row)) {
@@ -668,7 +668,7 @@ Example4_ReminderSystem() {
     myGui.OnEvent("Close", (*) => Cleanup())
     Cleanup() {
         for idx, func in reminderFuncs
-        SetTimer(func, 0)
+            SetTimer(func, 0)
         ToolTip()
         myGui.Destroy()
     }
@@ -681,9 +681,9 @@ Example4_ReminderSystem() {
 ; EXAMPLE 5: Data Synchronization Timer
 ; ============================================================================
 /**
-* Simulates periodic data synchronization with conflict detection
-* Demonstrates coordinated recurring tasks
-*/
+ * Simulates periodic data synchronization with conflict detection
+ * Demonstrates coordinated recurring tasks
+ */
 Example5_DataSync() {
     myGui := Gui("+AlwaysOnTop", "Example 5: Data Synchronization")
     myGui.SetFont("s10")
@@ -725,13 +725,13 @@ Example5_DataSync() {
         logBox.Value := currentLog . timestamp . " - " . msg . "`r`n"
 
         if (StrLen(logBox.Value) > 8000)
-        logBox.Value := SubStr(logBox.Value, -7000)
+            logBox.Value := SubStr(logBox.Value, -7000)
     }
 
     ; Simulate sync operation
     PerformSync() {
         if (isSyncing)
-        return
+            return
 
         isSyncing := true
         totalSyncs++
@@ -813,16 +813,16 @@ Example5_DataSync() {
     startBtn.OnEvent("Click", (*) => StartAutoSync())
     StartAutoSync() {
         if (autoSyncEnabled)
-        return
+            return
 
         ; Get interval
         intervalText := intervalCombo.Text
         if (InStr(intervalText, "10 seconds"))
-        syncInterval := 10000
+            syncInterval := 10000
         else if (InStr(intervalText, "30 seconds"))
-        syncInterval := 30000
+            syncInterval := 30000
         else if (InStr(intervalText, "1 minute"))
-        syncInterval := 60000
+            syncInterval := 60000
 
         SetTimer(PerformSync, syncInterval)
         autoSyncEnabled := true
@@ -836,7 +836,7 @@ Example5_DataSync() {
     stopBtn.OnEvent("Click", (*) => StopAutoSync())
     StopAutoSync() {
         if (!autoSyncEnabled)
-        return
+            return
 
         SetTimer(PerformSync, 0)
         autoSyncEnabled := false

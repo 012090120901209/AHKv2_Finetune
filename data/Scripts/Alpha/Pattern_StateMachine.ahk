@@ -28,7 +28,7 @@ class StateMachine {
         this.onExit[state] := action
         return this
     }
-    
+
     OnAnyTransition(callback) {
         this.onTransition := callback
         return this
@@ -48,7 +48,7 @@ class StateMachine {
 
         ; Transition
         this.current := toState
-        
+
         if this.onTransition
             this.onTransition(fromState, event, toState)
 
@@ -58,9 +58,9 @@ class StateMachine {
 
         return true
     }
-    
+
     GetState() => this.current
-    
+
     CanTrigger(event) => this.transitions.Has(this.current ":" event)
 }
 

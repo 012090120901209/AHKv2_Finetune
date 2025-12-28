@@ -6,5 +6,6 @@ ogcButtonThing := myGui.Add("Button", "vThing", "Thing")
 ogcButtonThing.OnEvent("Click", Thing.Bind("Normal"))
 myGui.Show()
 Thing()
-Thing(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { MsgBox("Thing")
+Thing(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    MsgBox("Thing")
 }

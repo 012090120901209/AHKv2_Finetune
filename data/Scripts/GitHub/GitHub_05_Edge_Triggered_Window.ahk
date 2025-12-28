@@ -2,15 +2,15 @@
 #SingleInstance Force
 
 /**
-* Edge-Triggered Window - Mouse Proximity Window Activation
-*
-* Demonstrates window activation based on mouse position proximity
-* to screen edges. Move mouse to left edge to show browser, top
-* edge for terminal, etc.
-*
-* Source: replete/productivity-ahk - LeftBrowser.ahk
-* Inspired by: https://github.com/replete/productivity-ahk
-*/
+ * Edge-Triggered Window - Mouse Proximity Window Activation
+ * 
+ * Demonstrates window activation based on mouse position proximity
+ * to screen edges. Move mouse to left edge to show browser, top
+ * edge for terminal, etc.
+ * 
+ * Source: replete/productivity-ahk - LeftBrowser.ahk
+ * Inspired by: https://github.com/replete/productivity-ahk
+ */
 
 ; Configuration
 global EDGE_THRESHOLD := 5        ; Pixels from edge to trigger
@@ -30,17 +30,17 @@ global topWindow := ""    ; Terminal
 global bottomWindow := "" ; Notes
 
 MsgBox("Edge-Triggered Windows`n`n"
-. "Move mouse to screen edges to trigger windows:`n`n"
-. "LEFT edge (~500ms) - Browser (Chrome)`n"
-. "RIGHT edge (~500ms) - File Explorer`n"
-. "TOP edge (~500ms) - Command Prompt`n"
-. "BOTTOM edge (~500ms) - Notepad`n`n"
-. "Win+E - Toggle edge detection ON/OFF`n`n"
-. "Perfect for:`n"
-. "- Quick access panels`n"
-. "- Side browsers`n"
-. "- Terminal drawers`n"
-. "- Reference windows", , "T8")
+    . "Move mouse to screen edges to trigger windows:`n`n"
+    . "LEFT edge (~500ms) - Browser (Chrome)`n"
+    . "RIGHT edge (~500ms) - File Explorer`n"
+    . "TOP edge (~500ms) - Command Prompt`n"
+    . "BOTTOM edge (~500ms) - Notepad`n`n"
+    . "Win+E - Toggle edge detection ON/OFF`n`n"
+    . "Perfect for:`n"
+    . "- Quick access panels`n"
+    . "- Side browsers`n"
+    . "- Terminal drawers`n"
+    . "- Reference windows", , "T8")
 
 ; Start edge detection
 SetTimer(CheckEdges, 100)
@@ -50,8 +50,8 @@ SetTimer(CheckEdges, 100)
 ; ===============================================
 
 /**
-* Check if mouse is near screen edges
-*/
+ * Check if mouse is near screen edges
+ */
 CheckEdges() {
     global leftEdgeTime, rightEdgeTime, topEdgeTime, bottomEdgeTime
     global EDGE_THRESHOLD, TRIGGER_DELAY
@@ -62,9 +62,9 @@ CheckEdges() {
     ; Left edge
     if (x <= EDGE_THRESHOLD) {
         if (leftEdgeTime == 0)
-        leftEdgeTime := currentTime
+            leftEdgeTime := currentTime
         else if (currentTime - leftEdgeTime >= TRIGGER_DELAY)
-        TriggerLeftWindow()
+            TriggerLeftWindow()
     } else {
         leftEdgeTime := 0
     }
@@ -72,9 +72,9 @@ CheckEdges() {
     ; Right edge
     if (x >= A_ScreenWidth - EDGE_THRESHOLD) {
         if (rightEdgeTime == 0)
-        rightEdgeTime := currentTime
+            rightEdgeTime := currentTime
         else if (currentTime - rightEdgeTime >= TRIGGER_DELAY)
-        TriggerRightWindow()
+            TriggerRightWindow()
     } else {
         rightEdgeTime := 0
     }
@@ -82,9 +82,9 @@ CheckEdges() {
     ; Top edge
     if (y <= EDGE_THRESHOLD) {
         if (topEdgeTime == 0)
-        topEdgeTime := currentTime
+            topEdgeTime := currentTime
         else if (currentTime - topEdgeTime >= TRIGGER_DELAY)
-        TriggerTopWindow()
+            TriggerTopWindow()
     } else {
         topEdgeTime := 0
     }
@@ -92,9 +92,9 @@ CheckEdges() {
     ; Bottom edge
     if (y >= A_ScreenHeight - EDGE_THRESHOLD) {
         if (bottomEdgeTime == 0)
-        bottomEdgeTime := currentTime
+            bottomEdgeTime := currentTime
         else if (currentTime - bottomEdgeTime >= TRIGGER_DELAY)
-        TriggerBottomWindow()
+            TriggerBottomWindow()
     } else {
         bottomEdgeTime := 0
     }
@@ -105,8 +105,8 @@ CheckEdges() {
 ; ===============================================
 
 /**
-* Trigger left edge window (Browser)
-*/
+ * Trigger left edge window (Browser)
+ */
 TriggerLeftWindow() {
     global leftWindow, leftEdgeTime
 
@@ -138,8 +138,8 @@ TriggerLeftWindow() {
 }
 
 /**
-* Trigger right edge window (File Explorer)
-*/
+ * Trigger right edge window (File Explorer)
+ */
 TriggerRightWindow() {
     global rightEdgeTime
 
@@ -166,8 +166,8 @@ TriggerRightWindow() {
 }
 
 /**
-* Trigger top edge window (Terminal)
-*/
+ * Trigger top edge window (Terminal)
+ */
 TriggerTopWindow() {
     global topEdgeTime
 
@@ -194,8 +194,8 @@ TriggerTopWindow() {
 }
 
 /**
-* Trigger bottom edge window (Notepad)
-*/
+ * Trigger bottom edge window (Notepad)
+ */
 TriggerBottomWindow() {
     global bottomEdgeTime
 
@@ -226,8 +226,8 @@ TriggerBottomWindow() {
 ; ===============================================
 
 /**
-* Position window at screen edge
-*/
+ * Position window at screen edge
+ */
 PositionWindow(edge) {
     global WINDOW_WIDTH_PERCENT
 
@@ -236,17 +236,17 @@ PositionWindow(edge) {
 
     switch edge {
         case "left":
-        WinMove(0, 0, width, height, "A")
+            WinMove(0, 0, width, height, "A")
 
         case "right":
-        WinMove(A_ScreenWidth - width, 0, width, height, "A")
+            WinMove(A_ScreenWidth - width, 0, width, height, "A")
 
         case "top":
-        WinMove(0, 0, A_ScreenWidth, Round(height * 0.4), "A")
+            WinMove(0, 0, A_ScreenWidth, Round(height * 0.4), "A")
 
         case "bottom":
-        bottomHeight := Round(height * 0.3)
-        WinMove(0, height - bottomHeight, A_ScreenWidth, bottomHeight, "A")
+            bottomHeight := Round(height * 0.3)
+            WinMove(0, height - bottomHeight, A_ScreenWidth, bottomHeight, "A")
     }
 }
 
@@ -257,9 +257,9 @@ PositionWindow(edge) {
 global detectionEnabled := true
 
 /**
-* Toggle edge detection ON/OFF
-*/
-#e::ToggleDetection()
+ * Toggle edge detection ON/OFF
+ */
+#e:: ToggleDetection()
 
 ToggleDetection() {
     global detectionEnabled
@@ -373,3 +373,4 @@ ToggleDetection() {
 *     - Per-monitor settings
 *     - Profile switching
 */
+

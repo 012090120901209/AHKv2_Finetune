@@ -3,11 +3,11 @@
 #Include JSON.ahk
 
 /**
-* Chunk() - Split array into chunks (Standalone Implementation)
-*
-* Creates an array of elements split into groups the length of size.
-* Demonstrates pure AHK v2 array manipulation without external libraries.
-*/
+ * Chunk() - Split array into chunks (Standalone Implementation)
+ * 
+ * Creates an array of elements split into groups the length of size.
+ * Demonstrates pure AHK v2 array manipulation without external libraries.
+ */
 
 Chunk(array, size := 1) {
     result := []
@@ -38,4 +38,4 @@ result2 := Chunk(["a", "b", "c", "d"], 3)
 ; => [["a", "b", "c"], ["d"]]
 
 MsgBox("Chunk by 2: " JSON.stringify(result1) "`n`n"
-. "Chunk by 3: " JSON.stringify(result2))
+    . "Chunk by 3: " JSON.stringify(result2))

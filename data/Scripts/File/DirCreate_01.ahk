@@ -1,19 +1,19 @@
 /**
-* @file DirCreate_01.ahk
-* @description Comprehensive examples of DirCreate function with folder creation, recursive operations, and error handling
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Creating single folders
-* - Creating nested folder structures
-* - Recursive folder creation
-* - Error handling for folder creation
-* - Creating multiple folders at once
-* - Folder creation with validation
-* - Project structure generation
-*/
+ * @file DirCreate_01.ahk
+ * @description Comprehensive examples of DirCreate function with folder creation, recursive operations, and error handling
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Creating single folders
+ * - Creating nested folder structures
+ * - Recursive folder creation
+ * - Error handling for folder creation
+ * - Creating multiple folders at once
+ * - Folder creation with validation
+ * - Project structure generation
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,21 +22,21 @@
 ; ===================================================================================================
 
 /**
-* @function CreateFolder
-* @description Creates a folder with error handling
-* @param {String} folderPath - Path to create
-* @returns {Object} Result object
-*/
+ * @function CreateFolder
+ * @description Creates a folder with error handling
+ * @param {String} folderPath - Path to create
+ * @returns {Object} Result object
+ */
 CreateFolder(folderPath) {
     if DirExist(folderPath) {
-        return {Success: true, Existed: true, Path: folderPath}
+        return { Success: true, Existed: true, Path: folderPath }
     }
 
     try {
         DirCreate(folderPath)
-        return {Success: true, Created: true, Path: folderPath}
+        return { Success: true, Created: true, Path: folderPath }
     } catch as err {
-        return {Success: false, Error: err.Message, Path: folderPath}
+        return { Success: false, Error: err.Message, Path: folderPath }
     }
 }
 
@@ -60,12 +60,12 @@ Example1_BasicCreate() {
 ; ===================================================================================================
 
 /**
-* @function CreateNestedFolders
-* @description Creates nested folder structure recursively
-* @param {String} basePath - Base path
-* @param {Array} structure - Array of subfolder names
-* @returns {Object} Creation results
-*/
+ * @function CreateNestedFolders
+ * @description Creates nested folder structure recursively
+ * @param {String} basePath - Base path
+ * @param {Array} structure - Array of subfolder names
+ * @returns {Object} Creation results
+ */
 CreateNestedFolders(basePath, structure) {
     created := []
     existed := []
@@ -78,11 +78,11 @@ CreateNestedFolders(basePath, structure) {
 
         if (result.Success) {
             if result.HasOwnProp("Created")
-            created.Push(fullPath)
+                created.Push(fullPath)
             else
-            existed.Push(fullPath)
+                existed.Push(fullPath)
         } else {
-            errors.Push({Path: fullPath, Error: result.Error})
+            errors.Push({ Path: fullPath, Error: result.Error })
         }
     }
 
@@ -103,14 +103,14 @@ Example2_RecursiveCreate() {
 
     ; Define nested structure
     structure := [
-    "src",
-    "src\components",
-    "src\utils",
-    "src\assets",
-    "tests",
-    "docs",
-    "build",
-    "config"
+        "src",
+        "src\components",
+        "src\utils",
+        "src\assets",
+        "tests",
+        "docs",
+        "build",
+        "config"
     ]
 
     results := CreateNestedFolders(basePath, structure)
@@ -130,9 +130,9 @@ Example2_RecursiveCreate() {
 ; ===================================================================================================
 
 /**
-* @class BatchFolderCreator
-* @description Creates multiple folders in batch
-*/
+ * @class BatchFolderCreator
+ * @description Creates multiple folders in batch
+ */
 class BatchFolderCreator {
     static CreateMultiple(folderPaths) {
         results := []
@@ -147,7 +147,7 @@ class BatchFolderCreator {
 
     static CreateFromList(listFile) {
         if !FileExist(listFile) {
-            return {Success: false, Error: "List file not found"}
+            return { Success: false, Error: "List file not found" }
         }
 
         content := FileRead(listFile)
@@ -158,13 +158,13 @@ class BatchFolderCreator {
 
         for path in paths {
             if (Trim(path) = "")
-            continue
+                continue
 
             result := CreateFolder(Trim(path))
             if (result.Success)
-            created++
+                created++
             else
-            failed++
+                failed++
         }
 
         return {
@@ -180,11 +180,11 @@ Example3_BatchCreate() {
     CreateFolder(basePath)
 
     folders := [
-    basePath . "\Folder1",
-    basePath . "\Folder2",
-    basePath . "\Folder3",
-    basePath . "\Folder4",
-    basePath . "\Folder5"
+        basePath . "\Folder1",
+        basePath . "\Folder2",
+        basePath . "\Folder3",
+        basePath . "\Folder4",
+        basePath . "\Folder5"
     ]
 
     results := BatchFolderCreator.CreateMultiple(folders)
@@ -195,7 +195,7 @@ Example3_BatchCreate() {
     successCount := 0
     for result in results {
         if (result.Success)
-        successCount++
+            successCount++
     }
 
     report .= Format("Total Folders: {1}`n", results.Length)
@@ -210,34 +210,34 @@ Example3_BatchCreate() {
 ; ===================================================================================================
 
 /**
-* @class ProjectTemplateGenerator
-* @description Generates complete project folder structures
-*/
+ * @class ProjectTemplateGenerator
+ * @description Generates complete project folder structures
+ */
 class ProjectTemplateGenerator {
     static WebProjectTemplate := [
-    "src",
-    "src\js",
-    "src\css",
-    "src\images",
-    "src\components",
-    "public",
-    "tests",
-    "docs",
-    "config"
+        "src",
+        "src\js",
+        "src\css",
+        "src\images",
+        "src\components",
+        "public",
+        "tests",
+        "docs",
+        "config"
     ]
 
     static PythonProjectTemplate := [
-    "src",
-    "tests",
-    "docs",
-    "data",
-    "scripts",
-    "venv"
+        "src",
+        "tests",
+        "docs",
+        "data",
+        "scripts",
+        "venv"
     ]
 
     static CreateWebProject(projectName, basePath := "") {
         if (basePath = "")
-        basePath := A_MyDocuments . "\Projects"
+            basePath := A_MyDocuments . "\Projects"
 
         projectPath := basePath . "\" . projectName
 
@@ -250,7 +250,7 @@ class ProjectTemplateGenerator {
 
     static CreatePythonProject(projectName, basePath := "") {
         if (basePath = "")
-        basePath := A_MyDocuments . "\Projects"
+            basePath := A_MyDocuments . "\Projects"
 
         projectPath := basePath . "\" . projectName
         CreateFolder(projectPath)
@@ -263,7 +263,7 @@ Example4_ProjectTemplate() {
     projectName := InputBox("Enter project name:", "Create Web Project").Value
 
     if (projectName = "")
-    return
+        return
 
     results := ProjectTemplateGenerator.CreateWebProject(projectName, A_Desktop)
 
@@ -280,42 +280,42 @@ Example4_ProjectTemplate() {
 ; ===================================================================================================
 
 /**
-* @function SafeCreateFolder
-* @description Creates folder with path validation
-* @param {String} folderPath - Path to create
-* @returns {Object} Result object
-*/
+ * @function SafeCreateFolder
+ * @description Creates folder with path validation
+ * @param {String} folderPath - Path to create
+ * @returns {Object} Result object
+ */
 SafeCreateFolder(folderPath) {
     ; Validate path
     if (folderPath = "") {
-        return {Success: false, Error: "Empty path provided"}
+        return { Success: false, Error: "Empty path provided" }
     }
 
     ; Check for invalid characters
-    if RegExMatch(folderPath, "[<>:""?*]") {
-        return {Success: false, Error: "Path contains invalid characters"}
+    if RegExMatch(folderPath, "[<>:" "?*]") {
+        return { Success: false, Error: "Path contains invalid characters" }
     }
 
     ; Check path length (Windows MAX_PATH is 260 characters)
     if (StrLen(folderPath) > 248) {  ; Leave room for files
-    return {Success: false, Error: "Path too long (max 248 characters)"}
-}
+        return { Success: false, Error: "Path too long (max 248 characters)" }
+    }
 
-; Check if parent directory exists
-SplitPath(folderPath, , &parentDir)
-if (parentDir != "" && !DirExist(parentDir)) {
-    return {Success: false, Error: "Parent directory does not exist"}
-}
+    ; Check if parent directory exists
+    SplitPath(folderPath, , &parentDir)
+    if (parentDir != "" && !DirExist(parentDir)) {
+        return { Success: false, Error: "Parent directory does not exist" }
+    }
 
-; Create folder
-return CreateFolder(folderPath)
+    ; Create folder
+    return CreateFolder(folderPath)
 }
 
 Example5_SafeCreate() {
     testPath := InputBox("Enter folder path to create:", "Safe Create").Value
 
     if (testPath = "")
-    return
+        return
 
     result := SafeCreateFolder(testPath)
 
@@ -331,13 +331,13 @@ Example5_SafeCreate() {
 ; ===================================================================================================
 
 /**
-* @class DateBasedOrganizer
-* @description Creates date-based folder structures
-*/
+ * @class DateBasedOrganizer
+ * @description Creates date-based folder structures
+ */
 class DateBasedOrganizer {
     static CreateDailyFolder(basePath := "") {
         if (basePath = "")
-        basePath := A_MyDocuments
+            basePath := A_MyDocuments
 
         year := FormatTime(A_Now, "yyyy")
         month := FormatTime(A_Now, "MM")
@@ -384,12 +384,12 @@ Example6_DateBased() {
 ; ===================================================================================================
 
 /**
-* @function CreateFolderIfNeeded
-* @description Creates folder only if it doesn't exist
-* @param {String} folderPath - Path to potentially create
-* @param {Boolean} forceCreate - Force creation even if exists
-* @returns {Object} Result object
-*/
+ * @function CreateFolderIfNeeded
+ * @description Creates folder only if it doesn't exist
+ * @param {String} folderPath - Path to potentially create
+ * @param {Boolean} forceCreate - Force creation even if exists
+ * @returns {Object} Result object
+ */
 CreateFolderIfNeeded(folderPath, forceCreate := false) {
     if DirExist(folderPath) && !forceCreate {
         return {
@@ -406,9 +406,9 @@ CreateFolderIfNeeded(folderPath, forceCreate := false) {
 }
 
 /**
-* @class ConditionalFolderManager
-* @description Manages conditional folder creation
-*/
+ * @class ConditionalFolderManager
+ * @description Manages conditional folder creation
+ */
 class ConditionalFolderManager {
     static EnsureFoldersExist(folderPaths) {
         ensured := []
@@ -420,7 +420,7 @@ class ConditionalFolderManager {
             if (result.Success) {
                 ensured.Push(path)
                 if (result.Created)
-                created.Push(path)
+                    created.Push(path)
             }
         }
 
@@ -436,11 +436,11 @@ Example7_ConditionalCreate() {
     basePath := A_Desktop . "\ConditionalTest"
 
     folders := [
-    basePath,
-    basePath . "\Logs",
-    basePath . "\Data",
-    basePath . "\Temp",
-    basePath . "\Output"
+        basePath,
+        basePath . "\Logs",
+        basePath . "\Data",
+        basePath . "\Temp",
+        basePath . "\Output"
     ]
 
     results := ConditionalFolderManager.EnsureFoldersExist(folders)
@@ -469,3 +469,4 @@ Example7_ConditionalCreate() {
 
 ; Press Ctrl+Alt+D to create date-based folder
 ; ^!d::Example6_DateBased()
+

@@ -1,51 +1,51 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* BuiltIn_ControlClick_01 - Basic Control Clicking
-* ============================================================================
-*
-* Demonstrates basic ControlClick functionality for automating UI interactions
-* without requiring window focus or mouse movement.
-*
-* @description
-* ControlClick sends a click directly to a control within a window, making it
-* ideal for background automation. Unlike Click, ControlClick doesn't require
-* the target window to be active or visible.
-*
-* Key Features:
-* - Direct control targeting without focus
-* - Background window automation
-* - Multiple button support (left, right, middle)
-* - Error handling and validation
-* - Control identification methods
-*
-* @syntax ControlClick Control, WinTitle, WinText, WhichButton, ClickCount
-*
-* @author AutoHotkey Community
-* @version 1.0.0
-* @since 2024-01-16
-*
-* @example
-* ; Click a button in Notepad
-* ControlClick "Button1", "Untitled - Notepad"
-*
-* @see https://www.autohotkey.com/docs/v2/lib/ControlClick.htm
-*/
+ * ============================================================================
+ * BuiltIn_ControlClick_01 - Basic Control Clicking
+ * ============================================================================
+ * 
+ * Demonstrates basic ControlClick functionality for automating UI interactions
+ * without requiring window focus or mouse movement.
+ * 
+ * @description
+ * ControlClick sends a click directly to a control within a window, making it
+ * ideal for background automation. Unlike Click, ControlClick doesn't require
+ * the target window to be active or visible.
+ * 
+ * Key Features:
+ * - Direct control targeting without focus
+ * - Background window automation
+ * - Multiple button support (left, right, middle)
+ * - Error handling and validation
+ * - Control identification methods
+ * 
+ * @syntax ControlClick Control, WinTitle, WinText, WhichButton, ClickCount
+ * 
+ * @author AutoHotkey Community
+ * @version 1.0.0
+ * @since 2024-01-16
+ * 
+ * @example
+ * ; Click a button in Notepad
+ * ControlClick "Button1", "Untitled - Notepad"
+ * 
+ * @see https://www.autohotkey.com/docs/v2/lib/ControlClick.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Control Click - Clicking Notepad's Menu Items
 ; ============================================================================
 
 /**
-* @function Example1_BasicControlClick
-* @description Demonstrates basic ControlClick usage with Notepad menus
-* Opens Notepad and clicks menu items using control identifiers
-*/
+ * @function Example1_BasicControlClick
+ * @description Demonstrates basic ControlClick usage with Notepad menus
+ * Opens Notepad and clicks menu items using control identifiers
+ */
 Example1_BasicControlClick() {
     MsgBox("Example 1: Basic Control Click`n`n" .
-    "This will open Notepad and automate clicking the File menu.",
-    "Control Click Demo", "OK Icon!")
+        "This will open Notepad and automate clicking the File menu.",
+        "Control Click Demo", "OK Icon!")
 
     ; Launch Notepad
     Run("notepad.exe")
@@ -86,14 +86,14 @@ Example1_BasicControlClick() {
 ; ============================================================================
 
 /**
-* @function Example2_ControlIdentification
-* @description Shows different ways to identify and click controls
-* Demonstrates ClassNN, Text, and HWND identification methods
-*/
+ * @function Example2_ControlIdentification
+ * @description Shows different ways to identify and click controls
+ * Demonstrates ClassNN, Text, and HWND identification methods
+ */
 Example2_ControlIdentification() {
     MsgBox("Example 2: Control Identification Methods`n`n" .
-    "Demonstrates different ways to identify controls.",
-    "Control Identification", "OK Icon!")
+        "Demonstrates different ways to identify controls.",
+        "Control Identification", "OK Icon!")
 
     ; Create a GUI for demonstration
     myGui := Gui("+AlwaysOnTop", "Control Identification Demo")
@@ -145,7 +145,7 @@ Example2_ControlIdentification() {
 
     ; Close the GUI
     if WinExist(winTitle)
-    myGui.Destroy()
+        myGui.Destroy()
 }
 
 ; ============================================================================
@@ -153,14 +153,14 @@ Example2_ControlIdentification() {
 ; ============================================================================
 
 /**
-* @function Example3_BackgroundClicking
-* @description Demonstrates clicking controls in background windows
-* Shows how ControlClick works without activating the window
-*/
+ * @function Example3_BackgroundClicking
+ * @description Demonstrates clicking controls in background windows
+ * Shows how ControlClick works without activating the window
+ */
 Example3_BackgroundClicking() {
     MsgBox("Example 3: Background Window Clicking`n`n" .
-    "This will click buttons without activating the window.",
-    "Background Clicking", "OK Icon!")
+        "This will click buttons without activating the window.",
+        "Background Clicking", "OK Icon!")
 
     ; Create a target GUI window
     targetGui := Gui("+AlwaysOnTop", "Background Target")
@@ -168,7 +168,7 @@ Example3_BackgroundClicking() {
 
     clickCounter := 0
     statusText := targetGui.Add("Text", "w300 h60 y+20 Border",
-    "Click count: 0`nLast click time: Never")
+        "Click count: 0`nLast click time: Never")
 
     ; Add buttons to click
     btn1 := targetGui.Add("Button", "w140 y+20", "Counter Button")
@@ -198,7 +198,7 @@ Example3_BackgroundClicking() {
     UpdateCounter(*) {
         clickCounter++
         statusText.Value := "Click count: " . clickCounter .
-        "`nLast click time: " . FormatTime(, "HH:mm:ss")
+            "`nLast click time: " . FormatTime(, "HH:mm:ss")
     }
 
     ; Helper function to reset counter
@@ -225,14 +225,14 @@ Example3_BackgroundClicking() {
     ; Close demo function
     CloseDemo(*) {
         if WinExist("Background Target")
-        targetGui.Destroy()
+            targetGui.Destroy()
         if WinExist("Control Panel")
-        controlGui.Destroy()
+            controlGui.Destroy()
     }
 
     MsgBox("Background clicking demo started!`n`n" .
-    "Notice how you can click buttons without the window becoming active.",
-    "Info", "OK Icon! T3")
+        "Notice how you can click buttons without the window becoming active.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -240,14 +240,14 @@ Example3_BackgroundClicking() {
 ; ============================================================================
 
 /**
-* @function Example4_ButtonTypes
-* @description Demonstrates clicking with different mouse buttons
-* Shows Left, Right, and Middle button clicks on controls
-*/
+ * @function Example4_ButtonTypes
+ * @description Demonstrates clicking with different mouse buttons
+ * Shows Left, Right, and Middle button clicks on controls
+ */
 Example4_ButtonTypes() {
     MsgBox("Example 4: Different Button Click Types`n`n" .
-    "Demonstrates Left, Right, and Middle button clicks.",
-    "Button Types", "OK Icon!")
+        "Demonstrates Left, Right, and Middle button clicks.",
+        "Button Types", "OK Icon!")
 
     ; Create GUI with context menu support
     myGui := Gui("+AlwaysOnTop", "Button Types Demo")
@@ -255,7 +255,7 @@ Example4_ButtonTypes() {
 
     ; Add ListBox with right-click support
     lb := myGui.Add("ListBox", "w350 h120 y+10",
-    ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"])
+        ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"])
 
     ; Create context menu
     contextMenu := Menu()
@@ -266,7 +266,7 @@ Example4_ButtonTypes() {
 
     ; Status display
     statusText := myGui.Add("Text", "w350 h80 y+20 Border",
-    "Status: Ready`nLast action: None`nClick type: None")
+        "Status: Ready`nLast action: None`nClick type: None")
 
     ; Control buttons
     leftBtn := myGui.Add("Button", "w110 y+20", "Left Click")
@@ -290,7 +290,7 @@ Example4_ButtonTypes() {
     AddItem(*) {
         currentItems := []
         Loop lb.GetCount()
-        currentItems.Push(lb.GetText(A_Index))
+            currentItems.Push(lb.GetText(A_Index))
 
         newItem := "Item " . (currentItems.Length + 1)
         lb.Add([newItem])
@@ -315,8 +315,8 @@ Example4_ButtonTypes() {
 
     UpdateStatus(action, clickType) {
         statusText.Value := "Status: Action completed`n" .
-        "Last action: " . action . "`n" .
-        "Click type: " . clickType
+            "Last action: " . action . "`n" .
+            "Click type: " . clickType
     }
 
     ; Simulate different click types
@@ -326,18 +326,18 @@ Example4_ButtonTypes() {
 
             Switch buttonType {
                 Case "Left":
-                ControlClick("ListBox1", winTitle, , "Left", 1)
-                UpdateStatus("ListBox clicked", "Left Button")
+                    ControlClick("ListBox1", winTitle, , "Left", 1)
+                    UpdateStatus("ListBox clicked", "Left Button")
 
                 Case "Right":
-                ControlClick("ListBox1", winTitle, , "Right", 1)
-                Sleep(100)
-                ; Note: Context menu would appear with real right-click
-                UpdateStatus("ListBox right-clicked (would show context menu)", "Right Button")
+                    ControlClick("ListBox1", winTitle, , "Right", 1)
+                    Sleep(100)
+                    ; Note: Context menu would appear with real right-click
+                    UpdateStatus("ListBox right-clicked (would show context menu)", "Right Button")
 
                 Case "Middle":
-                ControlClick("ListBox1", winTitle, , "Middle", 1)
-                UpdateStatus("ListBox middle-clicked", "Middle Button")
+                    ControlClick("ListBox1", winTitle, , "Middle", 1)
+                    UpdateStatus("ListBox middle-clicked", "Middle Button")
             }
 
         } catch Error as err {
@@ -346,8 +346,8 @@ Example4_ButtonTypes() {
     }
 
     MsgBox("Different button types demo started!`n`n" .
-    "Use the buttons to simulate different mouse click types.",
-    "Info", "OK Icon! T3")
+        "Use the buttons to simulate different mouse click types.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -355,14 +355,14 @@ Example4_ButtonTypes() {
 ; ============================================================================
 
 /**
-* @function Example5_ClickCount
-* @description Demonstrates single, double, and multiple clicks on controls
-* Shows how to use the ClickCount parameter
-*/
+ * @function Example5_ClickCount
+ * @description Demonstrates single, double, and multiple clicks on controls
+ * Shows how to use the ClickCount parameter
+ */
 Example5_ClickCount() {
     MsgBox("Example 5: Click Count and Multiple Clicks`n`n" .
-    "Demonstrates single, double, and multiple clicks.",
-    "Click Count", "OK Icon!")
+        "Demonstrates single, double, and multiple clicks.",
+        "Click Count", "OK Icon!")
 
     ; Create demo GUI
     myGui := Gui("+AlwaysOnTop", "Click Count Demo")
@@ -370,8 +370,8 @@ Example5_ClickCount() {
 
     ; Edit control that responds to clicks
     edit := myGui.Add("Edit", "w350 h100 y+10",
-    "Click this area with different click counts.`n`n" .
-    "Try single click, double click, etc.")
+        "Click this area with different click counts.`n`n" .
+        "Try single click, double click, etc.")
 
     ; Click counter displays
     myGui.Add("Text", "w350 y+20", "Click Statistics:")
@@ -415,14 +415,14 @@ Example5_ClickCount() {
             ; Update counters
             Switch count {
                 Case 1:
-                singles++
-                singleCount.Value := "Single clicks: " . singles
+                    singles++
+                    singleCount.Value := "Single clicks: " . singles
                 Case 2:
-                doubles++
-                doubleCount.Value := "Double clicks: " . doubles
+                    doubles++
+                    doubleCount.Value := "Double clicks: " . doubles
                 Case 3:
-                triples++
-                tripleCount.Value := "Triple clicks: " . triples
+                    triples++
+                    tripleCount.Value := "Triple clicks: " . triples
             }
 
             ; Visual feedback
@@ -446,8 +446,8 @@ Example5_ClickCount() {
     }
 
     MsgBox("Click count demo started!`n`n" .
-    "Use the buttons to simulate different click counts.",
-    "Info", "OK Icon! T3")
+        "Use the buttons to simulate different click counts.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -455,14 +455,14 @@ Example5_ClickCount() {
 ; ============================================================================
 
 /**
-* @function Example6_ErrorHandling
-* @description Comprehensive error handling for ControlClick operations
-* Shows proper validation and error recovery techniques
-*/
+ * @function Example6_ErrorHandling
+ * @description Comprehensive error handling for ControlClick operations
+ * Shows proper validation and error recovery techniques
+ */
 Example6_ErrorHandling() {
     MsgBox("Example 6: Error Handling and Validation`n`n" .
-    "Demonstrates proper error handling for ControlClick.",
-    "Error Handling", "OK Icon!")
+        "Demonstrates proper error handling for ControlClick.",
+        "Error Handling", "OK Icon!")
 
     ; Create demo GUI
     myGui := Gui("+AlwaysOnTop", "Error Handling Demo")
@@ -562,10 +562,10 @@ Example6_ErrorHandling() {
                 controls := WinGetControls(winTitle)
                 for index, ctrl in controls {
                     if (index <= 5)  ; Show first 5 controls
-                    AppendResult("    - " . ctrl)
+                        AppendResult("    - " . ctrl)
                 }
                 if (controls.Length > 5)
-                AppendResult("    ... and " . (controls.Length - 5) . " more")
+                    AppendResult("    ... and " . (controls.Length - 5) . " more")
             } catch {
                 AppendResult("  Could not enumerate controls")
             }
@@ -594,8 +594,8 @@ Example6_ErrorHandling() {
     }
 
     MsgBox("Error handling demo started!`n`n" .
-    "Try both methods to see the difference between basic and validated clicks.",
-    "Info", "OK Icon! T3")
+        "Try both methods to see the difference between basic and validated clicks.",
+        "Info", "OK Icon! T3")
 }
 
 ; ============================================================================
@@ -603,14 +603,14 @@ Example6_ErrorHandling() {
 ; ============================================================================
 
 /**
-* @function Example7_FormAutomation
-* @description Real-world form filling automation using ControlClick
-* Demonstrates automated form interaction for testing
-*/
+ * @function Example7_FormAutomation
+ * @description Real-world form filling automation using ControlClick
+ * Demonstrates automated form interaction for testing
+ */
 Example7_FormAutomation() {
     MsgBox("Example 7: Form Automation`n`n" .
-    "Demonstrates automated form filling for testing.",
-    "Form Automation", "OK Icon!")
+        "Demonstrates automated form filling for testing.",
+        "Form Automation", "OK Icon!")
 
     ; Create a sample form
     formGui := Gui("+AlwaysOnTop", "Sample Registration Form")
@@ -625,7 +625,7 @@ Example7_FormAutomation() {
 
     formGui.Add("Text", "w400 y+10", "Country:")
     countryDDL := formGui.Add("DropDownList", "w400",
-    ["USA", "Canada", "UK", "Australia", "Other"])
+        ["USA", "Canada", "UK", "Australia", "Other"])
 
     formGui.Add("Text", "w400 y+10", "Subscribe to newsletter:")
     newsletterChk := formGui.Add("CheckBox", "w400", "Yes, send me updates")
@@ -654,7 +654,7 @@ Example7_FormAutomation() {
     stepBtn.OnEvent("Click", (*) => StepFillForm())
 
     statusEdit := controlGui.Add("Edit", "w340 h150 y+20 ReadOnly",
-    "Status: Ready for automation")
+        "Status: Ready for automation")
 
     closeBtn := controlGui.Add("Button", "w340 y+20", "Close Demo")
     closeBtn.OnEvent("Click", (*) => CloseAll())
@@ -706,80 +706,76 @@ Example7_FormAutomation() {
         formTitle := "Sample Registration Form"
         statusEdit.Value := "Step-by-step fill started...`n"
 
-        steps := [
-        {
-            name: "Name", ctrl: "Edit1", value: "Jane Smith", desc: "Filling name field"},
-            {
-                name: "Email", ctrl: "Edit2", value: "jane.smith@example.com", desc: "Filling email field"},
-                {
-                    name: "Newsletter", ctrl: "Button3", value: "CLICK", desc: "Checking newsletter"},
-                    {
+        steps := [{
+            name: "Name", ctrl: "Edit1", value: "Jane Smith", desc: "Filling name field" }, {
+                name: "Email", ctrl: "Edit2", value: "jane.smith@example.com", desc: "Filling email field" }, {
+                    name: "Newsletter", ctrl: "Button3", value: "CLICK", desc: "Checking newsletter" }, {
                         name: "Account", ctrl: "Button4", value: "CLICK", desc: "Selecting Personal account"
                     }
-                    ]
+        ]
 
-                    for index, step in steps {
-                        MsgBox("Step " . index . ": " . step.desc, "Automation", "OK Icon! T2")
+        for index, step in steps {
+            MsgBox("Step " . index . ": " . step.desc, "Automation", "OK Icon! T2")
 
-                        try {
-                            if (step.value = "CLICK") {
-                                ControlClick(step.ctrl, formTitle)
-                            } else {
-                                ControlSetText(step.value, step.ctrl, formTitle)
-                            }
-                            statusEdit.Value .= "✓ " . step.name . " completed`n"
-                            Sleep(300)
-                        } catch Error as err {
-                            statusEdit.Value .= "✗ " . step.name . " failed: " . err.Message . "`n"
-                            return
-                        }
-                    }
-
-                    statusEdit.Value .= "`n✓ All steps completed!"
+            try {
+                if (step.value = "CLICK") {
+                    ControlClick(step.ctrl, formTitle)
+                } else {
+                    ControlSetText(step.value, step.ctrl, formTitle)
                 }
-
-                ; Submit form handler
-                SubmitForm(*) {
-                    data := "Form Submitted:`n`n" .
-                    "Name: " . nameEdit.Value . "`n" .
-                    "Email: " . emailEdit.Value . "`n" .
-                    "Country: " . countryDDL.Text . "`n" .
-                    "Newsletter: " . (newsletterChk.Value ? "Yes" : "No") . "`n" .
-                    "Type: " . (personalRB.Value ? "Personal" : "Business")
-
-                    MsgBox(data, "Form Submitted", "OK Icon!")
-                }
-
-                ; Clear form handler
-                ClearForm(*) {
-                    nameEdit.Value := ""
-                    emailEdit.Value := ""
-                    countryDDL.Value := 0
-                    newsletterChk.Value := 0
-                    personalRB.Value := 0
-                    businessRB.Value := 0
-                    MsgBox("Form cleared!", "Clear", "OK Icon! T1")
-                }
-
-                ; Close all windows
-                CloseAll(*) {
-                    if WinExist("Sample Registration Form")
-                    formGui.Destroy()
-                    if WinExist("Automation Control")
-                    controlGui.Destroy()
-                }
-
-                MsgBox("Form automation demo started!`n`n" .
-                "Use the control panel to automate form filling.",
-                "Info", "OK Icon! T3")
+                statusEdit.Value .= "✓ " . step.name . " completed`n"
+                Sleep(300)
+            } catch Error as err {
+                statusEdit.Value .= "✗ " . step.name . " failed: " . err.Message . "`n"
+                return
             }
+        }
 
-            ; ============================================================================
-            ; Main Menu
-            ; ============================================================================
+        statusEdit.Value .= "`n✓ All steps completed!"
+    }
 
-            ShowMainMenu() {
-                menuText := "
+    ; Submit form handler
+    SubmitForm(*) {
+        data := "Form Submitted:`n`n" .
+            "Name: " . nameEdit.Value . "`n" .
+            "Email: " . emailEdit.Value . "`n" .
+            "Country: " . countryDDL.Text . "`n" .
+            "Newsletter: " . (newsletterChk.Value ? "Yes" : "No") . "`n" .
+            "Type: " . (personalRB.Value ? "Personal" : "Business")
+
+        MsgBox(data, "Form Submitted", "OK Icon!")
+    }
+
+    ; Clear form handler
+    ClearForm(*) {
+        nameEdit.Value := ""
+        emailEdit.Value := ""
+        countryDDL.Value := 0
+        newsletterChk.Value := 0
+        personalRB.Value := 0
+        businessRB.Value := 0
+        MsgBox("Form cleared!", "Clear", "OK Icon! T1")
+    }
+
+    ; Close all windows
+    CloseAll(*) {
+        if WinExist("Sample Registration Form")
+            formGui.Destroy()
+        if WinExist("Automation Control")
+            controlGui.Destroy()
+    }
+
+    MsgBox("Form automation demo started!`n`n" .
+        "Use the control panel to automate form filling.",
+        "Info", "OK Icon! T3")
+}
+
+; ============================================================================
+; Main Menu
+; ============================================================================
+
+ShowMainMenu() {
+    menuText := "
                 (
                 ControlClick Examples - Basic Usage
                 =====================================
@@ -795,26 +791,26 @@ Example7_FormAutomation() {
                 Select an example (1-7) or press Esc to exit
                 )"
 
-                choice := InputBox(menuText, "ControlClick Examples", "w400 h350")
+    choice := InputBox(menuText, "ControlClick Examples", "w400 h350")
 
-                if (choice.Result = "Cancel")
-                return
+    if (choice.Result = "Cancel")
+        return
 
-                switch choice.Value {
-                    case "1": Example1_BasicControlClick()
-                    case "2": Example2_ControlIdentification()
-                    case "3": Example3_BackgroundClicking()
-                    case "4": Example4_ButtonTypes()
-                    case "5": Example5_ClickCount()
-                    case "6": Example6_ErrorHandling()
-                    case "7": Example7_FormAutomation()
-                    default:
-                    MsgBox("Invalid choice! Please select 1-7.", "Error", "OK IconX")
-                }
+    switch choice.Value {
+        case "1": Example1_BasicControlClick()
+        case "2": Example2_ControlIdentification()
+        case "3": Example3_BackgroundClicking()
+        case "4": Example4_ButtonTypes()
+        case "5": Example5_ClickCount()
+        case "6": Example6_ErrorHandling()
+        case "7": Example7_FormAutomation()
+        default:
+            MsgBox("Invalid choice! Please select 1-7.", "Error", "OK IconX")
+    }
 
-                ; Show menu again
-                SetTimer(() => ShowMainMenu(), -500)
-            }
+    ; Show menu again
+    SetTimer(() => ShowMainMenu(), -500)
+}
 
-            ; Start the demo
-            ShowMainMenu()
+; Start the demo
+ShowMainMenu()

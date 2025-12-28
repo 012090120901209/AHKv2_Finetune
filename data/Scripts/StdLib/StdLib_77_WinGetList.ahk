@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinGetList() - List all windows
-*
-* Returns an array of all window IDs matching criteria.
-*/
+ * WinGetList() - List all windows
+ * 
+ * Returns an array of all window IDs matching criteria.
+ */
 
 windows := WinGetList(, , "Program Manager")
 
@@ -14,7 +14,7 @@ count := 0
 
 for id in windows {
     if (count >= 10)
-    break
+        break
 
     title := WinGetTitle(id)
     if (title) {

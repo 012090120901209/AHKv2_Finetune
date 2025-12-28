@@ -1,19 +1,19 @@
 /**
-* @file DriveEject_02.ahk
-* @description Advanced drive ejection automation and scheduled eject systems
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Scheduled drive ejection
-* - Auto-eject on file operations complete
-* - Drive ejection with backup verification
-* - Optical media automation workflows
-* - Intelligent eject queue management
-* - Eject failure recovery
-* - Custom eject notifications
-*/
+ * @file DriveEject_02.ahk
+ * @description Advanced drive ejection automation and scheduled eject systems
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Scheduled drive ejection
+ * - Auto-eject on file operations complete
+ * - Drive ejection with backup verification
+ * - Optical media automation workflows
+ * - Intelligent eject queue management
+ * - Eject failure recovery
+ * - Custom eject notifications
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,15 +22,15 @@
 ; ===================================================================================================
 
 /**
-* @class ScheduledEjectManager
-* @description Manages scheduled drive ejections
-*/
+ * @class ScheduledEjectManager
+ * @description Manages scheduled drive ejections
+ */
 class ScheduledEjectManager {
     schedules := Map()
 
     ScheduleEject(driveLetter, ejectTime) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         this.schedules[driveLetter] := ejectTime
         SetTimer(() => this.CheckSchedules(), 60000)
@@ -44,7 +44,7 @@ class ScheduledEjectManager {
                 try {
                     DriveEject(drive)
                     MsgBox(Format("Drive {1} auto-ejected at {2}", drive, FormatTime(A_Now, "HH:mm")),
-                    "Scheduled Eject", "Iconi")
+                        "Scheduled Eject", "Iconi")
                     this.schedules.Delete(drive)
                 }
             }
@@ -67,8 +67,8 @@ Example1_ScheduledEject() {
     if (ejectTime != "" && StrLen(ejectTime) = 4) {
         manager.ScheduleEject(firstDrive, ejectTime)
         MsgBox(Format("Drive {1} scheduled to eject at {2}:{3}",
-        firstDrive, SubStr(ejectTime, 1, 2), SubStr(ejectTime, 3, 2)),
-        "Schedule Set", "Iconi")
+            firstDrive, SubStr(ejectTime, 1, 2), SubStr(ejectTime, 3, 2)),
+            "Schedule Set", "Iconi")
     }
 
     return manager
@@ -79,13 +79,13 @@ Example1_ScheduledEject() {
 ; ===================================================================================================
 
 /**
-* @class BackupEjectManager
-* @description Auto-ejects drives after backup verification
-*/
+ * @class BackupEjectManager
+ * @description Auto-ejects drives after backup verification
+ */
 class BackupEjectManager {
     static VerifyAndEject(driveLetter, expectedFiles) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         ; Verify backup
         verified := true
@@ -100,12 +100,12 @@ class BackupEjectManager {
             Sleep(1000)
             try {
                 DriveEject(driveLetter)
-                return {Success: true, Message: "Backup verified and drive ejected"}
+                return { Success: true, Message: "Backup verified and drive ejected" }
             } catch as err {
-                return {Success: false, Error: err.Message}
+                return { Success: false, Error: err.Message }
             }
         } else {
-            return {Success: false, Error: "Backup verification failed"}
+            return { Success: false, Error: "Backup verification failed" }
         }
     }
 }
@@ -142,31 +142,31 @@ Example2_BackupEject() {
 ; ===================================================================================================
 
 /**
-* @class OpticalWorkflow
-* @description Automates optical media workflows
-*/
+ * @class OpticalWorkflow
+ * @description Automates optical media workflows
+ */
 class OpticalWorkflow {
     static BurnAndEject(driveLetter, dataPath) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetType(driveLetter) != "CDROM") {
-            return {Success: false, Error: "Not an optical drive"}
+            return { Success: false, Error: "Not an optical drive" }
         }
 
         ; Simulate burn operation (in reality, would use burning software)
         status := DriveGetStatusCD(driveLetter)
 
         if (status = "not ready") {
-            return {Success: false, Error: "No disc in drive"}
+            return { Success: false, Error: "No disc in drive" }
         }
 
         ; Eject when done
         try {
             DriveEject(driveLetter)
-            return {Success: true, Message: "Workflow complete, disc ejected"}
+            return { Success: true, Message: "Workflow complete, disc ejected" }
         } catch as err {
-            return {Success: false, Error: err.Message}
+            return { Success: false, Error: err.Message }
         }
     }
 }
@@ -194,17 +194,17 @@ Example3_OpticalWorkflow() {
 ; ===================================================================================================
 
 /**
-* @class EjectQueue
-* @description Manages a queue of drives to eject
-*/
+ * @class EjectQueue
+ * @description Manages a queue of drives to eject
+ */
 class EjectQueue {
     queue := []
 
     Add(driveLetter, priority := 1) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
-        this.queue.Push({Drive: driveLetter, Priority: priority, Added: A_Now})
+        this.queue.Push({ Drive: driveLetter, Priority: priority, Added: A_Now })
     }
 
     ProcessQueue() {
@@ -216,10 +216,10 @@ class EjectQueue {
         for item in sorted {
             try {
                 DriveEject(item.Drive)
-                results.Push({Drive: item.Drive, Success: true})
+                results.Push({ Drive: item.Drive, Success: true })
                 Sleep(1000)
             } catch as err {
-                results.Push({Drive: item.Drive, Success: false, Error: err.Message})
+                results.Push({ Drive: item.Drive, Success: false, Error: err.Message })
             }
         }
 
@@ -242,7 +242,7 @@ Example4_EjectQueue() {
     }
 
     if (MsgBox(Format("Process eject queue ({1} drives)?", queue.queue.Length),
-    "Eject Queue", "YesNo Icon?") = "Yes") {
+        "Eject Queue", "YesNo Icon?") = "Yes") {
         results := queue.ProcessQueue()
 
         report := "Eject Queue Results:`n`n"
@@ -262,13 +262,13 @@ Example4_EjectQueue() {
 ; ===================================================================================================
 
 /**
-* @class EjectNotifier
-* @description Provides visual feedback during eject operations
-*/
+ * @class EjectNotifier
+ * @description Provides visual feedback during eject operations
+ */
 class EjectNotifier {
     static EjectWithNotification(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         ; Show progress
         progress := Gui(, "Ejecting Drive")
@@ -287,11 +287,11 @@ class EjectNotifier {
             DriveEject(driveLetter)
             progress.Destroy()
             MsgBox("Drive ejected successfully!", "Success", "Iconi 1")
-            return {Success: true}
+            return { Success: true }
         } catch as err {
             progress.Destroy()
             MsgBox("Eject failed: " . err.Message, "Error", "Icon!")
-            return {Success: false, Error: err.Message}
+            return { Success: false, Error: err.Message }
         }
     }
 }
@@ -313,15 +313,15 @@ Example5_EjectNotification() {
 ; ===================================================================================================
 
 /**
-* @function RetryEject
-* @description Retries eject operation with exponential backoff
-* @param {String} driveLetter - Drive letter
-* @param {Number} maxRetries - Maximum retry attempts
-* @returns {Object} Result object
-*/
+ * @function RetryEject
+ * @description Retries eject operation with exponential backoff
+ * @param {String} driveLetter - Drive letter
+ * @param {Number} maxRetries - Maximum retry attempts
+ * @returns {Object} Result object
+ */
 RetryEject(driveLetter, maxRetries := 3) {
     if !InStr(driveLetter, ":")
-    driveLetter .= ":"
+        driveLetter .= ":"
 
     attempt := 0
     lastError := ""
@@ -377,9 +377,9 @@ Example6_RetryEject() {
 ; ===================================================================================================
 
 /**
-* @class EjectLogger
-* @description Logs all eject operations
-*/
+ * @class EjectLogger
+ * @description Logs all eject operations
+ */
 class EjectLogger {
     logFile := A_ScriptDir . "\eject_history.log"
 
@@ -388,10 +388,10 @@ class EjectLogger {
         status := success ? "SUCCESS" : "FAILED"
 
         logEntry := Format("[{1}] {2} - Drive: {3}",
-        timestamp, status, driveLetter)
+            timestamp, status, driveLetter)
 
         if (error != "")
-        logEntry .= " - Error: " . error
+            logEntry .= " - Error: " . error
 
         logEntry .= "`n"
 
@@ -400,7 +400,7 @@ class EjectLogger {
 
     GetHistory(count := 10) {
         if !FileExist(this.logFile)
-        return []
+            return []
 
         content := FileRead(this.logFile)
         lines := StrSplit(content, "`n", "`r")
@@ -410,7 +410,7 @@ class EjectLogger {
 
         for i, line in lines {
             if (i >= startIndex && line != "")
-            history.Push(line)
+                history.Push(line)
         }
 
         return history
@@ -451,3 +451,4 @@ Example7_EjectHistory() {
 
 ; Press Ctrl+Alt+Q to process eject queue
 ; ^!q::Example4_EjectQueue()
+

@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Outlook_02_Contacts.ahk
-*
-* DESCRIPTION:
-* Demonstrates Contacts using COM automation in AutoHotkey v2.
-*
-* FEATURES:
-* - Creating contacts
-* - Reading contact information
-* - Modifying contacts
-* - Searching contacts
-* - Contact categories
-* - Distribution lists
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ComObject() function for creating COM instances
-* - COM method calls and property access
-* - Try/Catch error handling
-* - Proper cleanup with object := ""
-*
-* LEARNING POINTS:
-* 1. Creating and using Outlook COM objects
-* 2. Working with Outlook automation
-* 3. Error handling in COM operations
-* 4. Best practices for Outlook automation
-* 5. Practical real-world examples
-* 6. Performance optimization
-* 7. Resource management and cleanup
-*/
+ * BuiltIn_COM_Outlook_02_Contacts.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Contacts using COM automation in AutoHotkey v2.
+ * 
+ * FEATURES:
+ * - Creating contacts
+ * - Reading contact information
+ * - Modifying contacts
+ * - Searching contacts
+ * - Contact categories
+ * - Distribution lists
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ComObject() function for creating COM instances
+ * - COM method calls and property access
+ * - Try/Catch error handling
+ * - Proper cleanup with object := ""
+ * 
+ * LEARNING POINTS:
+ * 1. Creating and using Outlook COM objects
+ * 2. Working with Outlook automation
+ * 3. Error handling in COM operations
+ * 4. Best practices for Outlook automation
+ * 5. Practical real-world examples
+ * 6. Performance optimization
+ * 7. Resource management and cleanup
+ */
 
 
 ;===============================================================================
@@ -56,7 +56,7 @@ Example1_CreateContact() {
     Catch as err {
         MsgBox("Error in Example 1:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -77,7 +77,7 @@ Example2_ReadContacts() {
     Catch as err {
         MsgBox("Error in Example 2:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -94,14 +94,14 @@ Example3_SearchContact() {
 
         found := contacts.Items.Find("[FirstName] = 'John'")
         if (found)
-        MsgBox("Found: " found.FullName)
+            MsgBox("Found: " found.FullName)
         else
-        MsgBox("Contact not found")
+            MsgBox("Contact not found")
     }
     Catch as err {
         MsgBox("Error in Example 3:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -126,7 +126,7 @@ Example4_ModifyContact() {
     Catch as err {
         MsgBox("Error in Example 4:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -151,7 +151,7 @@ Example5_ContactCategory() {
     Catch as err {
         MsgBox("Error in Example 5:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -177,7 +177,7 @@ Example6_ExportContacts() {
     Catch as err {
         MsgBox("Error in Example 6:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -202,7 +202,7 @@ Example7_BirthdayReminder() {
     Catch as err {
         MsgBox("Error in Example 7:`n" err.Message)
         if IsSet(obj)
-        Try obj.Quit()
+            Try obj.Quit()
     }
 }
 
@@ -240,13 +240,13 @@ ShowMenu() {
         case "7": Example7_BirthdayReminder()
         case "0": return
         default:
-        MsgBox("Invalid choice!")
-        return
+            MsgBox("Invalid choice!")
+            return
     }
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

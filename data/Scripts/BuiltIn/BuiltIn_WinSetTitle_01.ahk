@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* WinSetTitle Examples - Part 1: Set Window Title
-* ============================================================================
-*
-* This script demonstrates how to change window titles using WinSetTitle.
-* Useful for organizing windows, marking states, and improving identification.
-*
-* @description Comprehensive examples of setting window titles
-* @author AutoHotkey Community
-* @version 2.0.0
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * WinSetTitle Examples - Part 1: Set Window Title
+ * ============================================================================
+ * 
+ * This script demonstrates how to change window titles using WinSetTitle.
+ * Useful for organizing windows, marking states, and improving identification.
+ * 
+ * @description Comprehensive examples of setting window titles
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Window Title Change
 ; ============================================================================
 
 /**
-* Changes the title of the active window
-* Most basic use case for WinSetTitle
-*
-* @hotkey F1 - Change active window title
-*/
+ * Changes the title of the active window
+ * Most basic use case for WinSetTitle
+ * 
+ * @hotkey F1 - Change active window title
+ */
 F1:: {
     try {
         if !WinExist("A") {
@@ -49,18 +49,18 @@ F1:: {
 ; ============================================================================
 
 /**
-* Adds prefix or suffix to existing window titles
-* Useful for marking or categorizing windows
-*
-* @hotkey F2 - Add prefix/suffix to title
-*/
+ * Adds prefix or suffix to existing window titles
+ * Useful for marking or categorizing windows
+ * 
+ * @hotkey F2 - Add prefix/suffix to title
+ */
 F2:: {
     ModifyWindowTitle()
 }
 
 /**
-* Creates GUI for adding prefix/suffix
-*/
+ * Creates GUI for adding prefix/suffix
+ */
 ModifyWindowTitle() {
     static modGui := ""
 
@@ -120,18 +120,18 @@ ModifyWindowTitle() {
 ; ============================================================================
 
 /**
-* Renames multiple windows at once
-* Useful for organizing multiple instances
-*
-* @hotkey F3 - Batch rename windows
-*/
+ * Renames multiple windows at once
+ * Useful for organizing multiple instances
+ * 
+ * @hotkey F3 - Batch rename windows
+ */
 F3:: {
     BatchRenameWindows()
 }
 
 /**
-* Creates GUI for batch renaming
-*/
+ * Creates GUI for batch renaming
+ */
 BatchRenameWindows() {
     static batchGui := ""
 
@@ -227,8 +227,8 @@ BatchRenameWindows() {
 }
 
 /**
-* Helper to repeat strings
-*/
+ * Helper to repeat strings
+ */
 StrRepeat(str, count) {
     result := ""
     Loop count {
@@ -242,18 +242,18 @@ StrRepeat(str, count) {
 ; ============================================================================
 
 /**
-* Adds timestamps to window titles
-* Useful for tracking when windows were opened or modified
-*
-* @hotkey F4 - Add timestamp to title
-*/
+ * Adds timestamps to window titles
+ * Useful for tracking when windows were opened or modified
+ * 
+ * @hotkey F4 - Add timestamp to title
+ */
 F4:: {
     AddTimestampToTitle()
 }
 
 /**
-* Adds timestamp to active window title
-*/
+ * Adds timestamp to active window title
+ */
 AddTimestampToTitle() {
     static tsGui := ""
 
@@ -276,11 +276,11 @@ AddTimestampToTitle() {
 
     tsGui.Add("Text", "w400", "Timestamp format:")
     formatDrop := tsGui.Add("DropDownList", "w400 vFormat Choose1", [
-    "[YYYY-MM-DD HH:MM:SS]",
-    "[HH:MM:SS]",
-    "[YYYY-MM-DD]",
-    "[YYYYMMDD_HHMMSS]",
-    "Custom..."
+        "[YYYY-MM-DD HH:MM:SS]",
+        "[HH:MM:SS]",
+        "[YYYY-MM-DD]",
+        "[YYYYMMDD_HHMMSS]",
+        "Custom..."
     ])
 
     customEdit := tsGui.Add("Edit", "w400 vCustom Hidden", "")
@@ -346,18 +346,18 @@ AddTimestampToTitle() {
 ; ============================================================================
 
 /**
-* Uses templates to standardize window titles
-* Great for organizing workflow
-*
-* @hotkey F5 - Apply title template
-*/
+ * Uses templates to standardize window titles
+ * Great for organizing workflow
+ * 
+ * @hotkey F5 - Apply title template
+ */
 F5:: {
     ApplyTitleTemplate()
 }
 
 /**
-* Applies predefined templates to window titles
-*/
+ * Applies predefined templates to window titles
+ */
 ApplyTitleTemplate() {
     static tempGui := ""
 
@@ -383,13 +383,13 @@ ApplyTitleTemplate() {
 
     ; Define templates
     templates := Map(
-    "[WORK] - {TITLE}", "Work prefix",
-    "[PERSONAL] - {TITLE}", "Personal prefix",
-    "[PROJECT: {PROJECT}] - {TITLE}", "Project template",
-    "[TODO] - {TITLE}", "Todo marker",
-    "[DONE] - {TITLE}", "Done marker",
-    "{TITLE} - [IMPORTANT]", "Important suffix",
-    "{DATE} - {TITLE}", "Date prefix"
+        "[WORK] - {TITLE}", "Work prefix",
+        "[PERSONAL] - {TITLE}", "Personal prefix",
+        "[PROJECT: {PROJECT}] - {TITLE}", "Project template",
+        "[TODO] - {TITLE}", "Todo marker",
+        "[DONE] - {TITLE}", "Done marker",
+        "{TITLE} - [IMPORTANT]", "Important suffix",
+        "{DATE} - {TITLE}", "Date prefix"
     )
 
     templateList := tempGui.Add("ListBox", "w500 h150 vTemplate")
@@ -451,18 +451,18 @@ ApplyTitleTemplate() {
 ; ============================================================================
 
 /**
-* Numbers windows of the same application sequentially
-* Helps distinguish between multiple instances
-*
-* @hotkey F6 - Number windows
-*/
+ * Numbers windows of the same application sequentially
+ * Helps distinguish between multiple instances
+ * 
+ * @hotkey F6 - Number windows
+ */
 F6:: {
     NumberWindows()
 }
 
 /**
-* Adds sequential numbers to windows
-*/
+ * Adds sequential numbers to windows
+ */
 NumberWindows() {
     static numGui := ""
 
@@ -497,56 +497,56 @@ NumberWindows() {
 
     for process, count in processes {
         if count > 1 {  ; Only show processes with multiple windows
-        procList.Add([process " (" count " windows)"])
-        procArray.Push(process)
-    }
-}
-
-if procArray.Length = 0 {
-    MsgBox("No applications with multiple windows found.", "Info", 64)
-    return
-}
-
-procList.Choose(1)
-
-numGui.Add("Text", "w400", "Number format:")
-formatEdit := numGui.Add("Edit", "w400 vFormat", "[{N}] {TITLE}")
-
-numGui.Add("Button", "w195 Default", "Apply").OnEvent("Click", Apply)
-numGui.Add("Button", "w195 x+10 yp", "Cancel").OnEvent("Click", (*) => numGui.Destroy())
-
-numGui.Show()
-
-Apply(*) {
-    selectedIdx := procList.Value
-
-    if selectedIdx = 0 || selectedIdx > procArray.Length {
-        MsgBox("Please select a process.", "Error", 16)
-        return
-    }
-
-    selectedProcess := procArray[selectedIdx]
-    submitted := numGui.Submit()
-
-    ; Number all windows of this process
-    count := 0
-    allWindows := WinGetList("ahk_exe " selectedProcess)
-
-    for hwnd in allWindows {
-        try {
-            title := WinGetTitle(hwnd)
-            if title != "" {
-                count++
-                newTitle := StrReplace(submitted.Format, "{N}", count)
-                newTitle := StrReplace(newTitle, "{TITLE}", title)
-                WinSetTitle(newTitle, hwnd)
-            }
+            procList.Add([process " (" count " windows)"])
+            procArray.Push(process)
         }
     }
 
-    numGui.Destroy()
-    MsgBox("Numbered " count " windows of " selectedProcess, "Success", 64)
-}
+    if procArray.Length = 0 {
+        MsgBox("No applications with multiple windows found.", "Info", 64)
+        return
+    }
+
+    procList.Choose(1)
+
+    numGui.Add("Text", "w400", "Number format:")
+    formatEdit := numGui.Add("Edit", "w400 vFormat", "[{N}] {TITLE}")
+
+    numGui.Add("Button", "w195 Default", "Apply").OnEvent("Click", Apply)
+    numGui.Add("Button", "w195 x+10 yp", "Cancel").OnEvent("Click", (*) => numGui.Destroy())
+
+    numGui.Show()
+
+    Apply(*) {
+        selectedIdx := procList.Value
+
+        if selectedIdx = 0 || selectedIdx > procArray.Length {
+            MsgBox("Please select a process.", "Error", 16)
+            return
+        }
+
+        selectedProcess := procArray[selectedIdx]
+        submitted := numGui.Submit()
+
+        ; Number all windows of this process
+        count := 0
+        allWindows := WinGetList("ahk_exe " selectedProcess)
+
+        for hwnd in allWindows {
+            try {
+                title := WinGetTitle(hwnd)
+                if title != "" {
+                    count++
+                    newTitle := StrReplace(submitted.Format, "{N}", count)
+                    newTitle := StrReplace(newTitle, "{TITLE}", title)
+                    WinSetTitle(newTitle, hwnd)
+                }
+            }
+        }
+
+        numGui.Destroy()
+        MsgBox("Numbered " count " windows of " selectedProcess, "Success", 64)
+    }
 }
 
 ; ============================================================================
@@ -554,18 +554,18 @@ Apply(*) {
 ; ============================================================================
 
 /**
-* Cleans and formats window titles
-* Removes extra spaces, special characters, etc.
-*
-* @hotkey F7 - Clean window title
-*/
+ * Cleans and formats window titles
+ * Removes extra spaces, special characters, etc.
+ * 
+ * @hotkey F7 - Clean window title
+ */
 F7:: {
     CleanWindowTitle()
 }
 
 /**
-* Cleans and formats the active window title
-*/
+ * Cleans and formats the active window title
+ */
 CleanWindowTitle() {
     static cleanGui := ""
 
@@ -640,7 +640,7 @@ CleanWindowTitle() {
 ; Cleanup and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 ^F1:: {
     help := "

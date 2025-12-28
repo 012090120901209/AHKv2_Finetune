@@ -2,6 +2,6 @@
 #SingleInstance Force
 
 if WinActive("ahk_class Notepad")
-FileAppend("notepad is Active", "*")
+    FileAppend("notepad is Active", "*")
 else
-FileAppend("notepad is not Active", "*")
+    FileAppend("notepad is not Active", "*")

@@ -1,29 +1,29 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 GetKeyState Function - Toggle Detection
-* ============================================================================
-*
-* Advanced toggle state detection, state change monitoring, and toggle-based
-* automation for CapsLock, NumLock, ScrollLock, and Insert keys.
-*
-* @module BuiltIn_GetKeyState_02
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 GetKeyState Function - Toggle Detection
+ * ============================================================================
+ * 
+ * Advanced toggle state detection, state change monitoring, and toggle-based
+ * automation for CapsLock, NumLock, ScrollLock, and Insert keys.
+ * 
+ * @module BuiltIn_GetKeyState_02
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: CapsLock State Management
 ; ============================================================================
 
 /**
-* Detects CapsLock state changes.
-* Monitors when CapsLock is toggled on/off.
-*
-* @example
-* ; Press F1 to start CapsLock monitoring
-*/
+ * Detects CapsLock state changes.
+ * Monitors when CapsLock is toggled on/off.
+ * 
+ * @example
+ * ; Press F1 to start CapsLock monitoring
+ */
 F1:: {
     global capsMonitoring := true
     global lastCapsState := GetKeyState("CapsLock", "T")
@@ -34,16 +34,16 @@ F1:: {
 
     CheckCapsLock() {
         if (!capsMonitoring)
-        return
+            return
 
         currentState := GetKeyState("CapsLock", "T")
 
         if (currentState != lastCapsState) {
             ; State changed!
             if (currentState)
-            ToolTip("CapsLock turned ON`nPress F1 to stop")
+                ToolTip("CapsLock turned ON`nPress F1 to stop")
             else
-            ToolTip("CapsLock turned OFF`nPress F1 to stop")
+                ToolTip("CapsLock turned OFF`nPress F1 to stop")
 
             SoundBeep(currentState ? 800 : 400, 100)
 
@@ -63,9 +63,9 @@ F1 up:: {
 }
 
 /**
-* Auto-corrects CapsLock state
-* Automatically turns off CapsLock
-*/
+ * Auto-corrects CapsLock state
+ * Automatically turns off CapsLock
+ */
 F2:: {
     global autoCapsCorrect := true
 
@@ -75,7 +75,7 @@ F2:: {
 
     AutoCorrectCaps() {
         if (!autoCapsCorrect)
-        return
+            return
 
         capsState := GetKeyState("CapsLock", "T")
 
@@ -98,12 +98,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Monitors NumLock state for warnings.
-* Alerts when NumLock is in wrong state.
-*
-* @description
-* Prevents accidental NumLock changes
-*/
+ * Monitors NumLock state for warnings.
+ * Alerts when NumLock is in wrong state.
+ * 
+ * @description
+ * Prevents accidental NumLock changes
+ */
 ^F1:: {
     global numMonitoring := true
     global preferredNumState := true  ; Prefer NumLock ON
@@ -114,7 +114,7 @@ F2 up:: {
 
     CheckNumLock() {
         if (!numMonitoring)
-        return
+            return
 
         currentState := GetKeyState("NumLock", "T")
 
@@ -134,9 +134,9 @@ F2 up:: {
 }
 
 /**
-* Auto-enforces NumLock state
-* Keeps NumLock in desired state
-*/
+ * Auto-enforces NumLock state
+ * Keeps NumLock in desired state
+ */
 ^F2:: {
     global numEnforcing := true
     global enforcedNumState := true  ; Keep NumLock ON
@@ -147,7 +147,7 @@ F2 up:: {
 
     EnforceNumLock() {
         if (!numEnforcing)
-        return
+            return
 
         currentState := GetKeyState("NumLock", "T")
 
@@ -170,12 +170,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Monitors all toggle keys simultaneously.
-* Displays state of all toggle keys.
-*
-* @description
-* Comprehensive toggle monitoring
-*/
+ * Monitors all toggle keys simultaneously.
+ * Displays state of all toggle keys.
+ * 
+ * @description
+ * Comprehensive toggle monitoring
+ */
 ^F3:: {
     global multiToggleMonitoring := true
 
@@ -185,7 +185,7 @@ F2 up:: {
 
     MonitorAllToggles() {
         if (!multiToggleMonitoring)
-        return
+            return
 
         capsState := GetKeyState("CapsLock", "T")
         numState := GetKeyState("NumLock", "T")
@@ -214,12 +214,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Logs all toggle state changes.
-* Creates timestamped log of changes.
-*
-* @description
-* State change tracking
-*/
+ * Logs all toggle state changes.
+ * Creates timestamped log of changes.
+ * 
+ * @description
+ * State change tracking
+ */
 ^F4:: {
     global toggleLogging := true
     global toggleLog := []
@@ -236,7 +236,7 @@ F2 up:: {
 
     LogToggleChanges() {
         if (!toggleLogging)
-        return
+            return
 
         keys := ["CapsLock", "NumLock", "ScrollLock"]
 
@@ -287,12 +287,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Different actions based on CapsLock state.
-* Typing mode changes with CapsLock.
-*
-* @description
-* Toggle-aware automation
-*/
+ * Different actions based on CapsLock state.
+ * Typing mode changes with CapsLock.
+ * 
+ * @description
+ * Toggle-aware automation
+ */
 ^F5:: {
     capsOn := GetKeyState("CapsLock", "T")
 
@@ -308,16 +308,16 @@ F2 up:: {
 }
 
 /**
-* NumLock-dependent number pad behavior
-* Shows different behavior based on NumLock
-*/
+ * NumLock-dependent number pad behavior
+ * Shows different behavior based on NumLock
+ */
 ^F6:: {
     numOn := GetKeyState("NumLock", "T")
 
     if (numOn)
-    MsgBox("NumLock ON: Numpad produces NUMBERS (0-9)", "NumLock Mode")
+        MsgBox("NumLock ON: Numpad produces NUMBERS (0-9)", "NumLock Mode")
     else
-    MsgBox("NumLock OFF: Numpad produces NAVIGATION (arrows, home, etc.)", "NumLock Mode")
+        MsgBox("NumLock OFF: Numpad produces NAVIGATION (arrows, home, etc.)", "NumLock Mode")
 }
 
 ; ============================================================================
@@ -325,12 +325,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Detects specific toggle combinations.
-* Different actions for different toggle states.
-*
-* @description
-* Complex toggle logic
-*/
+ * Detects specific toggle combinations.
+ * Different actions for different toggle states.
+ * 
+ * @description
+ * Complex toggle logic
+ */
 ^F7:: {
     capsOn := GetKeyState("CapsLock", "T")
     numOn := GetKeyState("NumLock", "T")
@@ -339,17 +339,17 @@ F2 up:: {
     mode := ""
 
     if (capsOn && numOn && scrollOn)
-    mode := "ALL TOGGLES ON - Maximum mode!"
+        mode := "ALL TOGGLES ON - Maximum mode!"
     else if (!capsOn && !numOn && !scrollOn)
-    mode := "ALL TOGGLES OFF - Minimal mode"
+        mode := "ALL TOGGLES OFF - Minimal mode"
     else if (capsOn && numOn)
-    mode := "Caps + Num ON - Typing + Numbers mode"
+        mode := "Caps + Num ON - Typing + Numbers mode"
     else if (capsOn)
-    mode := "Caps ONLY - UPPERCASE mode"
+        mode := "Caps ONLY - UPPERCASE mode"
     else if (numOn)
-    mode := "Num ONLY - Number pad mode"
+        mode := "Num ONLY - Number pad mode"
     else
-    mode := "Mixed toggle state"
+        mode := "Mixed toggle state"
 
     MsgBox("Current Mode: " mode, "Toggle Combination")
 }
@@ -359,12 +359,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Checks toggle persistence over time.
-* Monitors how long toggles stay in state.
-*
-* @description
-* Duration tracking
-*/
+ * Checks toggle persistence over time.
+ * Monitors how long toggles stay in state.
+ * 
+ * @description
+ * Duration tracking
+ */
 ^F8:: {
     global persistenceMonitoring := true
     global capsOnTime := 0
@@ -376,13 +376,13 @@ F2 up:: {
 
     CheckTogglePersistence() {
         if (!persistenceMonitoring)
-        return
+            return
 
         capsOn := GetKeyState("CapsLock", "T")
 
         if (capsOn) {
             if (capsOnStart = 0)
-            capsOnStart := A_TickCount
+                capsOnStart := A_TickCount
 
             capsOnTime := A_TickCount - capsOnStart
 
@@ -413,12 +413,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Validates toggle states before operations.
-* Ensures correct toggle configuration.
-*
-* @description
-* Pre-operation validation
-*/
+ * Validates toggle states before operations.
+ * Ensures correct toggle configuration.
+ * 
+ * @description
+ * Pre-operation validation
+ */
 ^F9:: {
     ; Define required states
     requiredStates := {
@@ -440,9 +440,9 @@ F2 up:: {
     result .= "ScrollLock: " (scrollOK ? "✓ Correct (OFF)" : "✗ Wrong (should be OFF)") "`n`n"
 
     if (allOK)
-    result .= "Status: READY TO PROCEED"
+        result .= "Status: READY TO PROCEED"
     else
-    result .= "Status: FIX TOGGLE STATES BEFORE PROCEEDING"
+        result .= "Status: FIX TOGGLE STATES BEFORE PROCEEDING"
 
     MsgBox(result, "State Validation")
 }
@@ -452,12 +452,12 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Automatically configures toggle states.
-* Sets toggles to optimal configuration.
-*
-* @description
-* Auto-setup for optimal state
-*/
+ * Automatically configures toggle states.
+ * Sets toggles to optimal configuration.
+ * 
+ * @description
+ * Auto-setup for optimal state
+ */
 ^F10:: {
     ToolTip("Auto-configuring toggle states...")
 
@@ -487,10 +487,10 @@ F2 up:: {
 ; ============================================================================
 
 /**
-* Gets all toggle states
-*
-* @returns {Object} All toggle states
-*/
+ * Gets all toggle states
+ * 
+ * @returns {Object} All toggle states
+ */
 GetAllToggleStates() {
     return {
         capsLock: GetKeyState("CapsLock", "T"),
@@ -501,50 +501,50 @@ GetAllToggleStates() {
 }
 
 /**
-* Checks if toggle configuration matches requirements
-*
-* @param {Object} required - Required states
-* @returns {Boolean} True if matches
-*/
+ * Checks if toggle configuration matches requirements
+ * 
+ * @param {Object} required - Required states
+ * @returns {Boolean} True if matches
+ */
 ValidateToggleConfig(required) {
     for toggleName, requiredState in required.OwnProps() {
         actualState := GetKeyState(toggleName, "T")
         if (actualState != requiredState)
-        return false
+            return false
     }
     return true
 }
 
 /**
-* Sets multiple toggle states
-*
-* @param {Object} states - Desired states
-*/
+ * Sets multiple toggle states
+ * 
+ * @param {Object} states - Desired states
+ */
 SetToggleStates(states) {
     if (states.HasOwnProp("capsLock"))
-    SetCapsLockState(states.capsLock ? 1 : 0)
+        SetCapsLockState(states.capsLock ? 1 : 0)
 
     if (states.HasOwnProp("numLock"))
-    SetNumLockState(states.numLock ? 1 : 0)
+        SetNumLockState(states.numLock ? 1 : 0)
 
     if (states.HasOwnProp("scrollLock"))
-    SetScrollLockState(states.scrollLock ? 1 : 0)
+        SetScrollLockState(states.scrollLock ? 1 : 0)
 }
 
 /**
-* Counts how many toggles are ON
-*
-* @returns {Number} Count of active toggles
-*/
+ * Counts how many toggles are ON
+ * 
+ * @returns {Number} Count of active toggles
+ */
 CountActiveToggles() {
     count := 0
 
     if (GetKeyState("CapsLock", "T"))
-    count++
+        count++
     if (GetKeyState("NumLock", "T"))
-    count++
+        count++
     if (GetKeyState("ScrollLock", "T"))
-    count++
+        count++
 
     return count
 }
@@ -555,7 +555,7 @@ CountActiveToggles() {
 
     msg := "All Toggle States:`n`n"
     for name, state in states.OwnProps()
-    msg .= name ": " (state ? "ON" : "OFF") "`n"
+        msg .= name ": " (state ? "ON" : "OFF") "`n"
 
     MsgBox(msg, "GetAllToggleStates Test")
 }
@@ -581,7 +581,7 @@ CountActiveToggles() {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

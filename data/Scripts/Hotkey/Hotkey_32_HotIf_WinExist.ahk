@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Context-Sensitive - WinExist
-* Hotkeys based on window existence (not just active)
-*/
+ * Context-Sensitive - WinExist
+ * Hotkeys based on window existence (not just active)
+ */
 
 ; F5 only works if Notepad exists anywhere
 #HotIf WinExist("ahk_exe notepad.exe")
@@ -29,5 +29,5 @@ F5:: {
 ; Works only when NO Notepad exists
 #HotIf !WinExist("ahk_exe notepad.exe")
 
-F6::MsgBox("F6: No Notepad window found`n`nThis hotkey only works when Notepad is NOT open")
+F6:: MsgBox("F6: No Notepad window found`n`nThis hotkey only works when Notepad is NOT open")
 #HotIf

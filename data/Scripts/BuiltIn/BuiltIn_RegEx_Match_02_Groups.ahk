@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_Match_02_Groups.ahk
-*
-* DESCRIPTION:
-* Demonstrates capturing groups in RegExMatch, including named groups, nested groups,
-* and using backreferences. Shows how to extract multiple pieces of information from
-* a single pattern match.
-*
-* FEATURES:
-* - Parentheses for creating capture groups
-* - Accessing captured groups via Match object
-* - Named capture groups with (?P<name>...)
-* - Non-capturing groups with (?:...)
-* - Nested and optional groups
-* - Extracting structured data
-* - Multiple group patterns
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Match object array indexing for groups
-* - Named group access via Match["name"]
-* - Match.Count property for group count
-* - Modern object syntax
-* - Map objects for storing extracted data
-*
-* LEARNING POINTS:
-* 1. Parentheses () create capturing groups
-* 2. Match[0] is the full match, Match[1] is first group, etc.
-* 3. Named groups allow accessing captures by name: Match["groupname"]
-* 4. (?:...) creates non-capturing groups for grouping without capturing
-* 5. Groups can be nested and referenced individually
-* 6. Match.Count returns the number of capturing groups
-* 7. Groups are numbered left-to-right by opening parenthesis
-*/
+ * BuiltIn_RegEx_Match_02_Groups.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates capturing groups in RegExMatch, including named groups, nested groups,
+ * and using backreferences. Shows how to extract multiple pieces of information from
+ * a single pattern match.
+ * 
+ * FEATURES:
+ * - Parentheses for creating capture groups
+ * - Accessing captured groups via Match object
+ * - Named capture groups with (?P<name>...)
+ * - Non-capturing groups with (?:...)
+ * - Nested and optional groups
+ * - Extracting structured data
+ * - Multiple group patterns
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Match object array indexing for groups
+ * - Named group access via Match["name"]
+ * - Match.Count property for group count
+ * - Modern object syntax
+ * - Map objects for storing extracted data
+ * 
+ * LEARNING POINTS:
+ * 1. Parentheses () create capturing groups
+ * 2. Match[0] is the full match, Match[1] is first group, etc.
+ * 3. Named groups allow accessing captures by name: Match["groupname"]
+ * 4. (?:...) creates non-capturing groups for grouping without capturing
+ * 5. Groups can be nested and referenced individually
+ * 6. Match.Count returns the number of capturing groups
+ * 7. Groups are numbered left-to-right by opening parenthesis
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Capturing Groups
@@ -43,7 +43,7 @@
 ; Using parentheses to capture parts of a match
 Example1_BasicGroups() {
     MsgBox "EXAMPLE 1: Basic Capturing Groups`n" .
-    "=================================="
+        "=================================="
 
     ; Extract date components
     text := "Today's date is 2024-01-15"
@@ -53,10 +53,10 @@ Example1_BasicGroups() {
 
     if RegExMatch(text, pattern, &match) {
         MsgBox "Full match: " . match[0] . "`n" .
-        "Year (group 1): " . match[1] . "`n" .
-        "Month (group 2): " . match[2] . "`n" .
-        "Day (group 3): " . match[3] . "`n" .
-        "Total groups: " . match.Count
+            "Year (group 1): " . match[1] . "`n" .
+            "Month (group 2): " . match[2] . "`n" .
+            "Day (group 3): " . match[3] . "`n" .
+            "Total groups: " . match.Count
     }
 
     ; Extract name parts
@@ -71,10 +71,10 @@ Example1_BasicGroups() {
         lastName := match[3]
 
         MsgBox "Parsed name:`n" .
-        "First: " . firstName . "`n" .
-        "Middle: " . middleName . "`n" .
-        "Last: " . lastName . "`n`n" .
-        "Reversed: " . lastName . ", " . firstName . " " . middleName
+            "First: " . firstName . "`n" .
+            "Middle: " . middleName . "`n" .
+            "Last: " . lastName . "`n`n" .
+            "Reversed: " . lastName . ", " . firstName . " " . middleName
     }
 
     ; Extract time components
@@ -92,7 +92,7 @@ Example1_BasicGroups() {
         hours12 := (hours12 = 0) ? 12 : hours12
 
         MsgBox "24-hour format: " . match[0] . "`n" .
-        "12-hour format: " . hours12 . ":" . minutes . ":" . seconds . " " . ampm
+            "12-hour format: " . hours12 . ":" . minutes . ":" . seconds . " " . ampm
     }
 
     ; Extract protocol and domain from URL
@@ -104,9 +104,9 @@ Example1_BasicGroups() {
         domain := match[2]
 
         MsgBox "URL Components:`n" .
-        "Protocol: " . protocol . "`n" .
-        "Domain: " . domain . "`n" .
-        "Full match: " . match[0]
+            "Protocol: " . protocol . "`n" .
+            "Domain: " . domain . "`n" .
+            "Full match: " . match[0]
     }
 }
 
@@ -116,7 +116,7 @@ Example1_BasicGroups() {
 ; Using (?P<name>...) for readable group access
 Example2_NamedGroups() {
     MsgBox "EXAMPLE 2: Named Capturing Groups`n" .
-    "=================================="
+        "=================================="
 
     ; Parse date with named groups
     text := "Date: 2024-01-15"
@@ -124,13 +124,13 @@ Example2_NamedGroups() {
 
     if RegExMatch(text, pattern, &match) {
         MsgBox "Named group access:`n" .
-        "Year: " . match["year"] . "`n" .
-        "Month: " . match["month"] . "`n" .
-        "Day: " . match["day"] . "`n`n" .
-        "Also accessible by number:`n" .
-        "Group 1: " . match[1] . " (year)`n" .
-        "Group 2: " . match[2] . " (month)`n" .
-        "Group 3: " . match[3] . " (day)"
+            "Year: " . match["year"] . "`n" .
+            "Month: " . match["month"] . "`n" .
+            "Day: " . match["day"] . "`n`n" .
+            "Also accessible by number:`n" .
+            "Group 1: " . match[1] . " (year)`n" .
+            "Group 2: " . match[2] . " (month)`n" .
+            "Group 3: " . match[3] . " (day)"
     }
 
     ; Parse email address
@@ -139,9 +139,9 @@ Example2_NamedGroups() {
 
     if RegExMatch(email, pattern, &match) {
         MsgBox "Email Components:`n" .
-        "Local part: " . match["local"] . "`n" .
-        "Domain: " . match["domain"] . "`n`n" .
-        "Validation: " . (StrLen(match["local"]) > 0 && StrLen(match["domain"]) > 3 ? "Valid" : "Invalid")
+            "Local part: " . match["local"] . "`n" .
+            "Domain: " . match["domain"] . "`n`n" .
+            "Validation: " . (StrLen(match["local"]) > 0 && StrLen(match["domain"]) > 3 ? "Valid" : "Invalid")
     }
 
     ; Parse log entry with multiple named groups
@@ -150,10 +150,10 @@ Example2_NamedGroups() {
 
     if RegExMatch(logLine, pattern, &match) {
         MsgBox "Log Entry Details:`n" .
-        "Date: " . match["date"] . "`n" .
-        "Time: " . match["time"] . "`n" .
-        "Level: " . match["level"] . "`n" .
-        "Message: " . match["message"]
+            "Date: " . match["date"] . "`n" .
+            "Time: " . match["time"] . "`n" .
+            "Level: " . match["level"] . "`n" .
+            "Message: " . match["message"]
     }
 
     ; Parse phone number
@@ -162,11 +162,11 @@ Example2_NamedGroups() {
 
     if RegExMatch(phone, pattern, &match) {
         MsgBox "Phone Number Components:`n" .
-        "Country: " . match["country"] . "`n" .
-        "Area: " . match["area"] . "`n" .
-        "Prefix: " . match["prefix"] . "`n" .
-        "Line: " . match["line"] . "`n`n" .
-        "Formatted: +" . match["country"] . "-" . match["area"] . "-" . match["prefix"] . "-" . match["line"]
+            "Country: " . match["country"] . "`n" .
+            "Area: " . match["area"] . "`n" .
+            "Prefix: " . match["prefix"] . "`n" .
+            "Line: " . match["line"] . "`n`n" .
+            "Formatted: +" . match["country"] . "-" . match["area"] . "-" . match["prefix"] . "-" . match["line"]
     }
 
     ; Parse price with currency
@@ -179,10 +179,10 @@ Example2_NamedGroups() {
         total := amount + tax
 
         MsgBox "Price Details:`n" .
-        "Currency: " . match["currency"] . "`n" .
-        "Amount: " . match["amount"] . "`n" .
-        "Tax (10%): " . match["currency"] . tax . "`n" .
-        "Total: " . match["currency"] . total
+            "Currency: " . match["currency"] . "`n" .
+            "Amount: " . match["amount"] . "`n" .
+            "Tax (10%): " . match["currency"] . tax . "`n" .
+            "Total: " . match["currency"] . total
     }
 }
 
@@ -192,7 +192,7 @@ Example2_NamedGroups() {
 ; Using (?:...) for grouping without capturing
 Example3_NonCapturingGroups() {
     MsgBox "EXAMPLE 3: Non-Capturing Groups`n" .
-    "================================="
+        "================================="
 
     ; Group for alternation without capturing
     text := "I like cats and dogs"
@@ -201,17 +201,17 @@ Example3_NonCapturingGroups() {
     pattern1 := "(cat|dog)s?"
     if RegExMatch(text, pattern1, &match) {
         MsgBox "With capturing group:`n" .
-        "Full match: " . match[0] . "`n" .
-        "Group 1: " . match[1] . "`n" .
-        "Group count: " . match.Count
+            "Full match: " . match[0] . "`n" .
+            "Group 1: " . match[1] . "`n" .
+            "Group count: " . match.Count
     }
 
     ; With non-capturing group - doesn't capture the alternation
     pattern2 := "(?:cat|dog)s?"
     if RegExMatch(text, pattern2, &match) {
         MsgBox "With non-capturing group:`n" .
-        "Full match: " . match[0] . "`n" .
-        "Group count: " . match.Count . " (no groups captured)"
+            "Full match: " . match[0] . "`n" .
+            "Group count: " . match.Count . " (no groups captured)"
     }
 
     ; Practical example: Extract number but not unit
@@ -222,8 +222,8 @@ Example3_NonCapturingGroups() {
 
     if RegExMatch(measurement, pattern, &match) {
         MsgBox "Temperature value: " . match[1] . "`n" .
-        "Full match: " . match[0] . "`n" .
-        "Only one group captured (the number)"
+            "Full match: " . match[0] . "`n" .
+            "Only one group captured (the number)"
     }
 
     ; Complex example: URL parsing with mixed groups
@@ -234,10 +234,10 @@ Example3_NonCapturingGroups() {
 
     if RegExMatch(url, pattern, &match) {
         MsgBox "URL Components (selective capturing):`n" .
-        "Protocol: " . match["protocol"] . "`n" .
-        "Domain: " . match["domain"] . "`n" .
-        "Path: " . match["path"] . "`n" .
-        "Groups captured: " . match.Count
+            "Protocol: " . match["protocol"] . "`n" .
+            "Domain: " . match["domain"] . "`n" .
+            "Path: " . match["path"] . "`n" .
+            "Groups captured: " . match.Count
     }
 
     ; Extract version number, ignore prefix
@@ -250,10 +250,10 @@ Example3_NonCapturingGroups() {
         patch := match[3]
 
         MsgBox "Version Components:`n" .
-        "Major: " . major . "`n" .
-        "Minor: " . minor . "`n" .
-        "Patch: " . patch . "`n" .
-        "Numeric: " . major . "." . minor . "." . patch
+            "Major: " . major . "`n" .
+            "Minor: " . minor . "`n" .
+            "Patch: " . patch . "`n" .
+            "Numeric: " . major . "." . minor . "." . patch
     }
 }
 
@@ -263,7 +263,7 @@ Example3_NonCapturingGroups() {
 ; Working with groups inside other groups
 Example4_NestedGroups() {
     MsgBox "EXAMPLE 4: Nested Groups`n" .
-    "========================="
+        "========================="
 
     ; Groups are numbered by opening parenthesis from left to right
     text := "Name: John Doe"
@@ -271,10 +271,10 @@ Example4_NestedGroups() {
 
     if RegExMatch(text, pattern, &match) {
         MsgBox "Nested groups:`n" .
-        "Group 0 (full): " . match[0] . "`n" .
-        "Group 1 (outer): " . match[1] . "`n" .
-        "Group 2 (first name): " . match[2] . "`n" .
-        "Group 3 (last name): " . match[3]
+            "Group 0 (full): " . match[0] . "`n" .
+            "Group 1 (outer): " . match[1] . "`n" .
+            "Group 2 (first name): " . match[2] . "`n" .
+            "Group 3 (last name): " . match[3]
     }
 
     ; Parse nested structure: function call
@@ -283,9 +283,9 @@ Example4_NestedGroups() {
 
     if RegExMatch(code, pattern, &match) {
         MsgBox "Function call parsing:`n" .
-        "Function name (1): " . match[1] . "`n" .
-        "Full argument (2): " . match[2] . "`n" .
-        "String content (3): " . match[3]
+            "Function name (1): " . match[1] . "`n" .
+            "Full argument (2): " . match[2] . "`n" .
+            "String content (3): " . match[3]
     }
 
     ; Complex nested date/time
@@ -294,14 +294,14 @@ Example4_NestedGroups() {
 
     if RegExMatch(datetime, pattern, &match) {
         MsgBox "ISO DateTime Parsing:`n" .
-        "Full date (1): " . match[1] . "`n" .
-        "  Year (2): " . match[2] . "`n" .
-        "  Month (3): " . match[3] . "`n" .
-        "  Day (4): " . match[4] . "`n" .
-        "Full time (5): " . match[5] . "`n" .
-        "  Hour (6): " . match[6] . "`n" .
-        "  Minute (7): " . match[7] . "`n" .
-        "  Second (8): " . match[8]
+            "Full date (1): " . match[1] . "`n" .
+            "  Year (2): " . match[2] . "`n" .
+            "  Month (3): " . match[3] . "`n" .
+            "  Day (4): " . match[4] . "`n" .
+            "Full time (5): " . match[5] . "`n" .
+            "  Hour (6): " . match[6] . "`n" .
+            "  Minute (7): " . match[7] . "`n" .
+            "  Second (8): " . match[8]
     }
 
     ; Named nested groups
@@ -310,10 +310,10 @@ Example4_NestedGroups() {
 
     if RegExMatch(email, pattern, &match) {
         MsgBox "Email with display name:`n" .
-        "Display name: " . match["display"] . "`n" .
-        "  First: " . match["first"] . "`n" .
-        "  Last: " . match["last"] . "`n" .
-        "Email: " . match["email"]
+            "Display name: " . match["display"] . "`n" .
+            "  First: " . match["first"] . "`n" .
+            "  Last: " . match["last"] . "`n" .
+            "Email: " . match["email"]
     }
 }
 
@@ -323,7 +323,7 @@ Example4_NestedGroups() {
 ; Using ? quantifier with groups
 Example5_OptionalGroups() {
     MsgBox "EXAMPLE 5: Optional Groups`n" .
-    "==========================="
+        "==========================="
 
     ; Optional middle name
     ParseName(fullname) {
@@ -347,13 +347,13 @@ Example5_OptionalGroups() {
     parsed2 := ParseName(name2)
 
     MsgBox "Name 1: " . name1 . "`n" .
-    "  First: " . parsed1["first"] . "`n" .
-    "  Middle: " . parsed1["middle"] . "`n" .
-    "  Last: " . parsed1["last"] . "`n`n" .
-    "Name 2: " . name2 . "`n" .
-    "  First: " . parsed2["first"] . "`n" .
-    "  Middle: " . parsed2["middle"] . "`n" .
-    "  Last: " . parsed2["last"]
+        "  First: " . parsed1["first"] . "`n" .
+        "  Middle: " . parsed1["middle"] . "`n" .
+        "  Last: " . parsed1["last"] . "`n`n" .
+        "Name 2: " . name2 . "`n" .
+        "  First: " . parsed2["first"] . "`n" .
+        "  Middle: " . parsed2["middle"] . "`n" .
+        "  Last: " . parsed2["last"]
 
     ; Optional protocol in URL
     ParseURL(url) {
@@ -361,9 +361,9 @@ Example5_OptionalGroups() {
 
         if RegExMatch(url, pattern, &match) {
             return Map(
-            "protocol", match["protocol"] != "" ? match["protocol"] : "http",
-            "domain", match["domain"],
-            "path", match["path"] != "" ? match["path"] : "/"
+                "protocol", match["protocol"] != "" ? match["protocol"] : "http",
+                "domain", match["domain"],
+                "path", match["path"] != "" ? match["path"] : "/"
             )
         }
         return false
@@ -376,13 +376,13 @@ Example5_OptionalGroups() {
     parsed2 := ParseURL(url2)
 
     MsgBox "URL 1: " . url1 . "`n" .
-    "  Protocol: " . parsed1["protocol"] . "`n" .
-    "  Domain: " . parsed1["domain"] . "`n" .
-    "  Path: " . parsed1["path"] . "`n`n" .
-    "URL 2: " . url2 . "`n" .
-    "  Protocol: " . parsed2["protocol"] . " (default)`n" .
-    "  Domain: " . parsed2["domain"] . "`n" .
-    "  Path: " . parsed2["path"] . " (default)"
+        "  Protocol: " . parsed1["protocol"] . "`n" .
+        "  Domain: " . parsed1["domain"] . "`n" .
+        "  Path: " . parsed1["path"] . "`n`n" .
+        "URL 2: " . url2 . "`n" .
+        "  Protocol: " . parsed2["protocol"] . " (default)`n" .
+        "  Domain: " . parsed2["domain"] . "`n" .
+        "  Path: " . parsed2["path"] . " (default)"
 
     ; Optional decimal places
     ParseNumber(numStr) {
@@ -390,10 +390,10 @@ Example5_OptionalGroups() {
 
         if RegExMatch(numStr, pattern, &match) {
             return Map(
-            "sign", match["sign"] != "" ? "-" : "+",
-            "integer", match["integer"],
-            "decimal", match["decimal"] != "" ? match["decimal"] : "0",
-            "isDecimal", match["decimal"] != "" ? true : false
+                "sign", match["sign"] != "" ? "-" : "+",
+                "integer", match["integer"],
+                "decimal", match["decimal"] != "" ? match["decimal"] : "0",
+                "isDecimal", match["decimal"] != "" ? true : false
             )
         }
         return false
@@ -408,8 +408,8 @@ Example5_OptionalGroups() {
     p3 := ParseNumber(num3)
 
     MsgBox "Number: " . num1 . " -> " . p1["sign"] . p1["integer"] . "." . p1["decimal"] . " (Decimal: " . p1["isDecimal"] . ")`n" .
-    "Number: " . num2 . " -> " . p2["sign"] . p2["integer"] . "." . p2["decimal"] . " (Decimal: " . p2["isDecimal"] . ")`n" .
-    "Number: " . num3 . " -> " . p3["sign"] . p3["integer"] . "." . p3["decimal"] . " (Decimal: " . p3["isDecimal"] . ")"
+        "Number: " . num2 . " -> " . p2["sign"] . p2["integer"] . "." . p2["decimal"] . " (Decimal: " . p2["isDecimal"] . ")`n" .
+        "Number: " . num3 . " -> " . p3["sign"] . p3["integer"] . "." . p3["decimal"] . " (Decimal: " . p3["isDecimal"] . ")"
 }
 
 ; ========================================
@@ -418,7 +418,7 @@ Example5_OptionalGroups() {
 ; Using groups to extract multiple pieces of data
 Example6_MultipleExtractions() {
     MsgBox "EXAMPLE 6: Extracting Multiple Items`n" .
-    "====================================="
+        "====================================="
 
     ; Extract all email addresses with names
     text := "Contact john@example.com or jane@test.org for more info"
@@ -434,8 +434,8 @@ Example6_MultipleExtractions() {
     result := "Found " . emails.Length . " email addresses:`n`n"
     for index, email in emails {
         result .= index . ". " . email["full"] . "`n" .
-        "   User: " . email["user"] . "`n" .
-        "   Domain: " . email["domain"] . "`n"
+            "   User: " . email["user"] . "`n" .
+            "   Domain: " . email["domain"] . "`n"
     }
     MsgBox result
 
@@ -451,7 +451,7 @@ Example6_MultipleExtractions() {
     }
 
     MsgBox "Tweet: " . tweet . "`n`n" .
-    "Hashtags found: " . StrJoin(hashtags, ", ")
+        "Hashtags found: " . StrJoin(hashtags, ", ")
 
     ; Parse multiple key=value pairs
     config := "name=John;age=30;city=NewYork;country=USA"
@@ -494,7 +494,7 @@ Example6_MultipleExtractions() {
 ; Complex real-world group usage
 Example7_AdvancedGroupPatterns() {
     MsgBox "EXAMPLE 7: Advanced Group Patterns`n" .
-    "==================================="
+        "==================================="
 
     ; Parse credit card (with masking)
     ParseCreditCard(cardText) {
@@ -504,9 +504,9 @@ Example7_AdvancedGroupPatterns() {
         if RegExMatch(cardText, pattern, &match) {
             masked := "****-****-****-" . match[4]
             return Map(
-            "masked", masked,
-            "last4", match[4],
-            "valid", true
+                "masked", masked,
+                "last4", match[4],
+                "valid", true
             )
         }
         return Map("valid", false)
@@ -519,7 +519,7 @@ Example7_AdvancedGroupPatterns() {
     p2 := ParseCreditCard(card2)
 
     MsgBox "Card 1: " . (p1["valid"] ? p1["masked"] : "Invalid") . "`n" .
-    "Card 2: " . (p2["valid"] ? p2["masked"] : "Invalid")
+        "Card 2: " . (p2["valid"] ? p2["masked"] : "Invalid")
 
     ; Parse complex log entry
     logEntry := '192.168.1.100 - admin [15/Jan/2024:10:30:45 +0000] "GET /api/users HTTP/1.1" 200 1234'
@@ -527,14 +527,14 @@ Example7_AdvancedGroupPatterns() {
 
     if RegExMatch(logEntry, pattern, &match) {
         MsgBox "Apache Log Entry:`n" .
-        "IP: " . match["ip"] . "`n" .
-        "User: " . match["user"] . "`n" .
-        "Date: " . match["date"] . "`n" .
-        "Method: " . match["method"] . "`n" .
-        "Path: " . match["path"] . "`n" .
-        "Protocol: " . match["protocol"] . "`n" .
-        "Status: " . match["status"] . "`n" .
-        "Size: " . match["size"] . " bytes"
+            "IP: " . match["ip"] . "`n" .
+            "User: " . match["user"] . "`n" .
+            "Date: " . match["date"] . "`n" .
+            "Method: " . match["method"] . "`n" .
+            "Path: " . match["path"] . "`n" .
+            "Protocol: " . match["protocol"] . "`n" .
+            "Status: " . match["status"] . "`n" .
+            "Size: " . match["size"] . " bytes"
     }
 
     ; Parse semantic version with metadata
@@ -543,11 +543,11 @@ Example7_AdvancedGroupPatterns() {
 
     if RegExMatch(version, pattern, &match) {
         MsgBox "Semantic Version:`n" .
-        "Major: " . match["major"] . "`n" .
-        "Minor: " . match["minor"] . "`n" .
-        "Patch: " . match["patch"] . "`n" .
-        "Pre-release: " . (match["prerelease"] != "" ? match["prerelease"] : "N/A") . "`n" .
-        "Build: " . (match["build"] != "" ? match["build"] : "N/A")
+            "Major: " . match["major"] . "`n" .
+            "Minor: " . match["minor"] . "`n" .
+            "Patch: " . match["patch"] . "`n" .
+            "Pre-release: " . (match["prerelease"] != "" ? match["prerelease"] : "N/A") . "`n" .
+            "Build: " . (match["build"] != "" ? match["build"] : "N/A")
     }
 
     ; Parse SQL-like query
@@ -556,10 +556,10 @@ Example7_AdvancedGroupPatterns() {
 
     if RegExMatch(query, pattern, &match) {
         MsgBox "SQL Query Components:`n" .
-        "Fields: " . match["fields"] . "`n" .
-        "Table: " . match["table"] . "`n" .
-        "Condition: " . (match["condition"] != "" ? match["condition"] : "None") . "`n" .
-        "Limit: " . (match["limit"] != "" ? match["limit"] : "No limit")
+            "Fields: " . match["fields"] . "`n" .
+            "Table: " . match["table"] . "`n" .
+            "Condition: " . (match["condition"] != "" ? match["condition"] : "None") . "`n" .
+            "Limit: " . (match["limit"] != "" ? match["limit"] : "No limit")
     }
 }
 
@@ -572,7 +572,7 @@ StrJoin(arr, delim := ",") {
     for index, value in arr {
         result .= value
         if index < arr.Length
-        result .= delim
+            result .= delim
     }
     return result
 }
@@ -602,14 +602,14 @@ ShowMenu() {
     MsgBox menu
 }
 
-^1::Example1_BasicGroups()
-^2::Example2_NamedGroups()
-^3::Example3_NonCapturingGroups()
-^4::Example4_NestedGroups()
-^5::Example5_OptionalGroups()
-^6::Example6_MultipleExtractions()
-^7::Example7_AdvancedGroupPatterns()
+^1:: Example1_BasicGroups()
+^2:: Example2_NamedGroups()
+^3:: Example3_NonCapturingGroups()
+^4:: Example4_NestedGroups()
+^5:: Example5_OptionalGroups()
+^6:: Example6_MultipleExtractions()
+^7:: Example7_AdvancedGroupPatterns()
 
-^h::ShowMenu()
+^h:: ShowMenu()
 
 ShowMenu()

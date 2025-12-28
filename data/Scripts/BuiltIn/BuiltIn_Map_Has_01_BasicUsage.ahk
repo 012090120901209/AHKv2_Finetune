@@ -2,41 +2,41 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Has_01_BasicUsage.ahk
-*
-* @description Comprehensive examples of Map.Has() method for basic usage
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* The Map.Has() method checks if a key exists in a Map object.
-* Syntax: MapObject.Has(Key)
-* Returns: Boolean (true if key exists, false otherwise)
-*
-* Key Features:
-* - Check key existence
-* - Validate data presence
-* - Conditional logic based on key existence
-* - Safe data access patterns
-*/
+ * BuiltIn_Map_Has_01_BasicUsage.ahk
+ * 
+ * @description Comprehensive examples of Map.Has() method for basic usage
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * The Map.Has() method checks if a key exists in a Map object.
+ * Syntax: MapObject.Has(Key)
+ * Returns: Boolean (true if key exists, false otherwise)
+ * 
+ * Key Features:
+ * - Check key existence
+ * - Validate data presence
+ * - Conditional logic based on key existence
+ * - Safe data access patterns
+ */
 
 ;=============================================================================
 ; Example 1: Basic Key Existence Check
 ;=============================================================================
 
 /**
-* @function Example1_BasicHas
-* @description Demonstrates fundamental Map.Has() operations
-* @returns {void}
-*/
+ * @function Example1_BasicHas
+ * @description Demonstrates fundamental Map.Has() operations
+ * @returns {void}
+ */
 Example1_BasicHas() {
     ; Create and populate map
     userProfile := Map(
-    "username", "john_doe",
-    "email", "john@example.com",
-    "age", 30,
-    "verified", true
+        "username", "john_doe",
+        "email", "john@example.com",
+        "age", 30,
+        "verified", true
     )
 
     output := "=== Example 1: Basic Has Operations ===`n`n"
@@ -58,9 +58,9 @@ Example1_BasicHas() {
 
     for key in testKeys {
         if (userProfile.Has(key))
-        existing++
+            existing++
         else
-        missing++
+            missing++
     }
 
     output .= "Summary:`n"
@@ -76,15 +76,15 @@ Example1_BasicHas() {
 ;=============================================================================
 
 /**
-* @function Example2_ConditionalAccess
-* @description Using Has() for safe conditional data access
-* @returns {void}
-*/
+ * @function Example2_ConditionalAccess
+ * @description Using Has() for safe conditional data access
+ * @returns {void}
+ */
 Example2_ConditionalAccess() {
     settings := Map(
-    "theme", "dark",
-    "fontSize", 14,
-    "autoSave", true
+        "theme", "dark",
+        "fontSize", 14,
+        "autoSave", true
     )
 
     output := "=== Example 2: Conditional Access ===`n`n"
@@ -93,19 +93,19 @@ Example2_ConditionalAccess() {
     output .= "Settings:`n"
 
     if (settings.Has("theme"))
-    output .= "  Theme: " settings["theme"] "`n"
+        output .= "  Theme: " settings["theme"] "`n"
     else
-    output .= "  Theme: Not set (using default)`n"
+        output .= "  Theme: Not set (using default)`n"
 
     if (settings.Has("fontSize"))
-    output .= "  Font Size: " settings["fontSize"] "`n"
+        output .= "  Font Size: " settings["fontSize"] "`n"
     else
-    output .= "  Font Size: Not set (using default)`n"
+        output .= "  Font Size: Not set (using default)`n"
 
     if (settings.Has("language"))
-    output .= "  Language: " settings["language"] "`n"
+        output .= "  Language: " settings["language"] "`n"
     else
-    output .= "  Language: Not set (using default: en-US)`n"
+        output .= "  Language: Not set (using default: en-US)`n"
 
     output .= "`n"
 
@@ -130,52 +130,52 @@ Example2_ConditionalAccess() {
 ;=============================================================================
 
 /**
-* @class FormValidator
-* @description Validate form data using Has()
-*/
+ * @class FormValidator
+ * @description Validate form data using Has()
+ */
 class FormValidator {
     data := Map()
     requiredFields := []
     optionalFields := []
 
     /**
-    * @method SetRequired
-    * @description Set required field names
-    */
+     * @method SetRequired
+     * @description Set required field names
+     */
     SetRequired(fields) {
         this.requiredFields := fields
     }
 
     /**
-    * @method SetOptional
-    * @description Set optional field names
-    */
+     * @method SetOptional
+     * @description Set optional field names
+     */
     SetOptional(fields) {
         this.optionalFields := fields
     }
 
     /**
-    * @method SetData
-    * @description Set form data
-    */
+     * @method SetData
+     * @description Set form data
+     */
     SetData(formData) {
         this.data := formData
     }
 
     /**
-    * @method Validate
-    * @description Validate that all required fields exist
-    * @returns {Object} Validation result
-    */
+     * @method Validate
+     * @description Validate that all required fields exist
+     * @returns {Object} Validation result
+     */
     Validate() {
         missing := []
         present := []
 
         for field in this.requiredFields {
             if (this.data.Has(field))
-            present.Push(field)
+                present.Push(field)
             else
-            missing.Push(field)
+                missing.Push(field)
         }
 
         return {
@@ -187,10 +187,10 @@ class FormValidator {
     }
 
     /**
-    * @method GetCompleteness
-    * @description Get form completeness percentage
-    * @returns {Integer} Percentage complete
-    */
+     * @method GetCompleteness
+     * @description Get form completeness percentage
+     * @returns {Integer} Percentage complete
+     */
     GetCompleteness() {
         allFields := []
         allFields.Push(this.requiredFields*)
@@ -199,7 +199,7 @@ class FormValidator {
         filled := 0
         for field in allFields {
             if (this.data.Has(field))
-            filled++
+                filled++
         }
 
         return allFields.Length > 0 ? Round((filled / allFields.Length) * 100) : 0
@@ -215,9 +215,9 @@ Example3_Validation() {
 
     ; Test with incomplete data
     formData1 := Map(
-    "name", "John Doe",
-    "email", "john@example.com"
-    ; Missing password
+        "name", "John Doe",
+        "email", "john@example.com"
+        ; Missing password
     )
 
     validator.SetData(formData1)
@@ -231,11 +231,11 @@ Example3_Validation() {
 
     ; Test with complete data
     formData2 := Map(
-    "name", "Jane Smith",
-    "email", "jane@example.com",
-    "password", "secret123",
-    "phone", "555-1234",
-    "company", "Acme Corp"
+        "name", "Jane Smith",
+        "email", "jane@example.com",
+        "password", "secret123",
+        "phone", "555-1234",
+        "company", "Acme Corp"
     )
 
     validator.SetData(formData2)
@@ -262,29 +262,29 @@ ArrayJoin(arr, delimiter) {
 ;=============================================================================
 
 /**
-* @function Example4_PropertyDetection
-* @description Detect available properties/features
-* @returns {void}
-*/
+ * @function Example4_PropertyDetection
+ * @description Detect available properties/features
+ * @returns {void}
+ */
 Example4_PropertyDetection() {
     ; Simulate different device capabilities
     device1 := Map(
-    "camera", true,
-    "gps", true,
-    "nfc", false,
-    "fingerprint", true
+        "camera", true,
+        "gps", true,
+        "nfc", false,
+        "fingerprint", true
     )
 
     device2 := Map(
-    "camera", true,
-    "gps", false
-    ; Missing nfc and fingerprint
+        "camera", true,
+        "gps", false
+        ; Missing nfc and fingerprint
     )
 
     /**
-    * @function DetectFeatures
-    * @description Detect which features are available
-    */
+     * @function DetectFeatures
+     * @description Detect which features are available
+     */
     DetectFeatures(device) {
         features := ["camera", "gps", "nfc", "fingerprint", "bluetooth"]
         available := []
@@ -292,12 +292,12 @@ Example4_PropertyDetection() {
 
         for feature in features {
             if (device.Has(feature) && device[feature])
-            available.Push(feature)
+                available.Push(feature)
             else
-            unavailable.Push(feature)
+                unavailable.Push(feature)
         }
 
-        return {available: available, unavailable: unavailable}
+        return { available: available, unavailable: unavailable }
     }
 
     output := "=== Example 4: Property Detection ===`n`n"
@@ -322,51 +322,51 @@ Example4_PropertyDetection() {
 ;=============================================================================
 
 /**
-* @class SimpleCache
-* @description Cache with existence checking
-*/
+ * @class SimpleCache
+ * @description Cache with existence checking
+ */
 class SimpleCache {
     cache := Map()
 
     /**
-    * @method IsCached
-    * @description Check if key is in cache
-    */
+     * @method IsCached
+     * @description Check if key is in cache
+     */
     IsCached(key) {
         return this.cache.Has(key)
     }
 
     /**
-    * @method GetOrCompute
-    * @description Get from cache or compute
-    */
+     * @method GetOrCompute
+     * @description Get from cache or compute
+     */
     GetOrCompute(key, computeFunc) {
         if (this.IsCached(key)) {
-            return {value: this.cache[key], fromCache: true}
+            return { value: this.cache[key], fromCache: true }
         }
 
         value := computeFunc.Call()
         this.cache.Set(key, value)
 
-        return {value: value, fromCache: false}
+        return { value: value, fromCache: false }
     }
 
     /**
-    * @method GetCacheInfo
-    * @description Get cache information
-    */
+     * @method GetCacheInfo
+     * @description Get cache information
+     */
     GetCacheInfo(keys) {
         cached := 0
         notCached := 0
 
         for key in keys {
             if (this.IsCached(key))
-            cached++
+                cached++
             else
-            notCached++
+                notCached++
         }
 
-        return {cached: cached, notCached: notCached, hitRate: Round((cached / keys.Length) * 100)}
+        return { cached: cached, notCached: notCached, hitRate: Round((cached / keys.Length) * 100) }
     }
 }
 
@@ -403,51 +403,51 @@ Example5_CacheCheck() {
 ;=============================================================================
 
 /**
-* @function Example6_MultiKeyCheck
-* @description Check multiple keys at once
-* @returns {void}
-*/
+ * @function Example6_MultiKeyCheck
+ * @description Check multiple keys at once
+ * @returns {void}
+ */
 Example6_MultiKeyCheck() {
     data := Map(
-    "id", 123,
-    "name", "Product A",
-    "price", 99.99,
-    "category", "Electronics"
+        "id", 123,
+        "name", "Product A",
+        "price", 99.99,
+        "category", "Electronics"
     )
 
     /**
-    * @function HasAll
-    * @description Check if all keys exist
-    */
+     * @function HasAll
+     * @description Check if all keys exist
+     */
     HasAll(mapObj, keys) {
         for key in keys {
             if (!mapObj.Has(key))
-            return false
+                return false
         }
         return true
     }
 
     /**
-    * @function HasAny
-    * @description Check if any key exists
-    */
+     * @function HasAny
+     * @description Check if any key exists
+     */
     HasAny(mapObj, keys) {
         for key in keys {
             if (mapObj.Has(key))
-            return true
+                return true
         }
         return false
     }
 
     /**
-    * @function CountExisting
-    * @description Count how many keys exist
-    */
+     * @function CountExisting
+     * @description Count how many keys exist
+     */
     CountExisting(mapObj, keys) {
         count := 0
         for key in keys {
             if (mapObj.Has(key))
-            count++
+                count++
         }
         return count
     }
@@ -473,31 +473,31 @@ Example6_MultiKeyCheck() {
 ;=============================================================================
 
 /**
-* @function Example7_DynamicKeys
-* @description Check dynamically generated keys
-* @returns {void}
-*/
+ * @function Example7_DynamicKeys
+ * @description Check dynamically generated keys
+ * @returns {void}
+ */
 Example7_DynamicKeys() {
     permissions := Map(
-    "user.read", true,
-    "user.write", true,
-    "admin.read", false,
-    "admin.write", false
+        "user.read", true,
+        "user.write", true,
+        "admin.read", false,
+        "admin.write", false
     )
 
     /**
-    * @function HasPermission
-    * @description Check if user has specific permission
-    */
+     * @function HasPermission
+     * @description Check if user has specific permission
+     */
     HasPermission(permMap, resource, action) {
         key := resource "." action
         return permMap.Has(key) && permMap[key]
     }
 
     /**
-    * @function GetUserPermissions
-    * @description Get all permissions for a resource
-    */
+     * @function GetUserPermissions
+     * @description Get all permissions for a resource
+     */
     GetUserPermissions(permMap, resource) {
         actions := ["read", "write", "delete", "execute"]
         granted := []
@@ -505,12 +505,12 @@ Example7_DynamicKeys() {
 
         for action in actions {
             if (HasPermission(permMap, resource, action))
-            granted.Push(action)
+                granted.Push(action)
             else
-            denied.Push(action)
+                denied.Push(action)
         }
 
-        return {granted: granted, denied: denied}
+        return { granted: granted, denied: denied }
     }
 
     output := "=== Example 7: Dynamic Keys ===`n`n"
@@ -540,43 +540,43 @@ CreateDemoGUI() {
     demoGui.Title := "Map.Has() Method - Basic Usage Examples"
 
     demoGui.Add("Text", "x10 y10 w480 +Center",
-    "Check key existence with Map.Has()")
+        "Check key existence with Map.Has()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Basic Has")
-    .OnEvent("Click", (*) => Example1_BasicHas())
+        .OnEvent("Click", (*) => Example1_BasicHas())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Conditional")
-    .OnEvent("Click", (*) => Example2_ConditionalAccess())
+        .OnEvent("Click", (*) => Example2_ConditionalAccess())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Validation")
-    .OnEvent("Click", (*) => Example3_Validation())
+        .OnEvent("Click", (*) => Example3_Validation())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Detection")
-    .OnEvent("Click", (*) => Example4_PropertyDetection())
+        .OnEvent("Click", (*) => Example4_PropertyDetection())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Cache Check")
-    .OnEvent("Click", (*) => Example5_CacheCheck())
+        .OnEvent("Click", (*) => Example5_CacheCheck())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Multi-Key")
-    .OnEvent("Click", (*) => Example6_MultiKeyCheck())
+        .OnEvent("Click", (*) => Example6_MultiKeyCheck())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Dynamic Keys")
-    .OnEvent("Click", (*) => Example7_DynamicKeys())
+        .OnEvent("Click", (*) => Example7_DynamicKeys())
 
     ; Interactive tester
     demoGui.Add("GroupBox", "x10 y200 w470 h100", "Interactive Has Tester")
 
     testMap := Map(
-    "name", "John",
-    "age", 30,
-    "city", "New York"
+        "name", "John",
+        "age", 30,
+        "city", "New York"
     )
 
     demoGui.Add("Text", "x20 y225", "Check key:")
     keyInput := demoGui.Add("Edit", "x90 y222 w180")
 
     demoGui.Add("Button", "x280 y222 w90 h25", "Check")
-    .OnEvent("Click", CheckKey)
+        .OnEvent("Click", CheckKey)
 
     resultDisplay := demoGui.Add("Edit", "x20 y255 w450 h35 ReadOnly")
 
@@ -599,7 +599,7 @@ CreateDemoGUI() {
     }
 
     demoGui.Add("Button", "x380 y222 w90 h25", "Show Keys")
-    .OnEvent("Click", ShowKeys)
+        .OnEvent("Click", ShowKeys)
 
     ShowKeys(*) {
         keys := []
@@ -610,7 +610,7 @@ CreateDemoGUI() {
     }
 
     demoGui.Add("Button", "x10 y310 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_BasicHas()

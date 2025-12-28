@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* DirSelect Advanced Applications - Part 2
-* ============================================================================
-*
-* Advanced DirSelect applications and patterns in AutoHotkey v2.
-*
-* @description This file covers advanced DirSelect usage including:
-*              - Folder browsing utilities
-*              - Multi-folder operations
-*              - Folder comparison and synchronization
-*              - Smart folder selection
-*              - Folder organization tools
-*              - Directory management workflows
-*
-* @author AutoHotkey Foundation
-* @version 2.0
-* @see https://www.autohotkey.com/docs/v2/lib/DirSelect.htm
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * DirSelect Advanced Applications - Part 2
+ * ============================================================================
+ * 
+ * Advanced DirSelect applications and patterns in AutoHotkey v2.
+ * 
+ * @description This file covers advanced DirSelect usage including:
+ *              - Folder browsing utilities
+ *              - Multi-folder operations
+ *              - Folder comparison and synchronization
+ *              - Smart folder selection
+ *              - Folder organization tools
+ *              - Directory management workflows
+ * 
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @see https://www.autohotkey.com/docs/v2/lib/DirSelect.htm
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Folder Browsing Utilities
 ; ============================================================================
 /**
-* Creates advanced folder browsing tools.
-*
-* @description Shows utility functions for folder browsing.
-*/
+ * Creates advanced folder browsing tools.
+ * 
+ * @description Shows utility functions for folder browsing.
+ */
 Example1_FolderBrowsingUtilities() {
     ; Quick folder opener
     QuickFolderOpen()
@@ -45,32 +45,32 @@ Example1_FolderBrowsingUtilities() {
 }
 
 /**
-* Quick folder opener with presets.
-*/
+ * Quick folder opener with presets.
+ */
 QuickFolderOpen() {
     presets := Map(
-    "Desktop", A_Desktop,
-    "Documents", A_MyDocuments,
-    "Downloads", A_MyDocuments . "\..\Downloads",
-    "Pictures", A_MyDocuments . "\Pictures",
-    "Projects", "C:\Projects",
-    "Temp", A_Temp
+        "Desktop", A_Desktop,
+        "Documents", A_MyDocuments,
+        "Downloads", A_MyDocuments . "\..\Downloads",
+        "Pictures", A_MyDocuments . "\Pictures",
+        "Projects", "C:\Projects",
+        "Temp", A_Temp
     )
 
     choice := MsgBox("Quick Open:`n`n"
-    . "Yes - Desktop`n"
-    . "No - Documents`n"
-    . "Cancel - Custom",
-    "Quick Folder Open",
-    "YesNoCancel")
+        . "Yes - Desktop`n"
+        . "No - Documents`n"
+        . "Cancel - Custom",
+        "Quick Folder Open",
+        "YesNoCancel")
 
     Switch choice {
         Case "Yes":
-        startDir := presets["Desktop"]
+            startDir := presets["Desktop"]
         Case "No":
-        startDir := presets["Documents"]
+            startDir := presets["Documents"]
         Case "Cancel":
-        startDir := ""
+            startDir := ""
     }
 
     folder := DirSelect(startDir, , "Quick Folder Open")
@@ -81,22 +81,22 @@ QuickFolderOpen() {
 }
 
 /**
-* Recent folders functionality (simulated).
-*/
+ * Recent folders functionality (simulated).
+ */
 RecentFoldersMenu() {
     ; Simulated recent folders
     recentFolders := [
-    A_Desktop,
-    A_MyDocuments,
-    A_Temp,
-    A_ScriptDir
+        A_Desktop,
+        A_MyDocuments,
+        A_Temp,
+        A_ScriptDir
     ]
 
     MsgBox "Recent Folders:`n`n"
-    . "1. " . recentFolders[1] . "`n"
-    . "2. " . recentFolders[2] . "`n"
-    . "3. " . recentFolders[3] . "`n"
-    . "4. " . recentFolders[4]
+        . "1. " . recentFolders[1] . "`n"
+        . "2. " . recentFolders[2] . "`n"
+        . "3. " . recentFolders[3] . "`n"
+        . "4. " . recentFolders[4]
 
     folder := DirSelect(recentFolders[1], , "Select from recent or browse")
 
@@ -107,14 +107,14 @@ RecentFoldersMenu() {
 }
 
 /**
-* Favorite folders system.
-*/
+ * Favorite folders system.
+ */
 FavoriteFolders() {
     ; Simulated favorites
     favorites := Map(
-    "Work", A_MyDocuments . "\Work",
-    "Personal", A_MyDocuments . "\Personal",
-    "Projects", "C:\Projects"
+        "Work", A_MyDocuments . "\Work",
+        "Personal", A_MyDocuments . "\Personal",
+        "Projects", "C:\Projects"
     )
 
     favoritesList := "Favorite Folders:`n`n"
@@ -132,8 +132,8 @@ FavoriteFolders() {
 }
 
 /**
-* Folder history with navigation.
-*/
+ * Folder history with navigation.
+ */
 FolderHistory() {
     static history := []
 
@@ -142,7 +142,7 @@ FolderHistory() {
     if (folder != "") {
         ; Add to history
         if (!HasValue(history, folder))
-        history.Push(folder)
+            history.Push(folder)
 
         ; Show history
         historyText := "Folder History:`n`n"
@@ -155,12 +155,12 @@ FolderHistory() {
 }
 
 /**
-* Check if array contains value.
-*/
+ * Check if array contains value.
+ */
 HasValue(arr, value) {
     for item in arr {
         if (item = value)
-        return true
+            return true
     }
     return false
 }
@@ -169,10 +169,10 @@ HasValue(arr, value) {
 ; EXAMPLE 2: Multi-Folder Operations
 ; ============================================================================
 /**
-* Demonstrates operations involving multiple folders.
-*
-* @description Shows multi-folder workflows.
-*/
+ * Demonstrates operations involving multiple folders.
+ * 
+ * @description Shows multi-folder workflows.
+ */
 Example2_MultiFolderOperations() {
     ; Folder comparison
     CompareFolders()
@@ -188,16 +188,16 @@ Example2_MultiFolderOperations() {
 }
 
 /**
-* Compares two folders.
-*/
+ * Compares two folders.
+ */
 CompareFolders() {
     folder1 := DirSelect("", , "Select first folder to compare")
     if (folder1 = "")
-    return
+        return
 
     folder2 := DirSelect("", , "Select second folder to compare")
     if (folder2 = "")
-    return
+        return
 
     ; Count files in each
     count1 := 0
@@ -211,39 +211,39 @@ CompareFolders() {
     }
 
     MsgBox Format("Folder Comparison:`n`n"
-    . "Folder 1: {1}`nFiles: {2}`n`n"
-    . "Folder 2: {3}`nFiles: {4}`n`n"
-    . "Difference: {5} files",
-    folder1, count1,
-    folder2, count2,
-    Abs(count1 - count2))
+        . "Folder 1: {1}`nFiles: {2}`n`n"
+        . "Folder 2: {3}`nFiles: {4}`n`n"
+        . "Difference: {5} files",
+        folder1, count1,
+        folder2, count2,
+        Abs(count1 - count2))
 }
 
 /**
-* Sets up folder synchronization.
-*/
+ * Sets up folder synchronization.
+ */
 SetupFolderSync() {
     sourceFolder := DirSelect("", , "Select source folder")
     if (sourceFolder = "")
-    return
+        return
 
     targetFolder := DirSelect("", , "Select target folder")
     if (targetFolder = "")
-    return
+        return
 
     MsgBox Format("Folder Sync Setup:`n`n"
-    . "Source: {1}`n"
-    . "Target: {2}`n`n"
-    . "Sync mode: One-way (source → target)",
-    sourceFolder,
-    targetFolder),
-    "Sync Configuration",
-    "Iconi"
+        . "Source: {1}`n"
+        . "Target: {2}`n`n"
+        . "Sync mode: One-way (source → target)",
+        sourceFolder,
+        targetFolder),
+        "Sync Configuration",
+        "Iconi"
 }
 
 /**
-* Multiple folder backup.
-*/
+ * Multiple folder backup.
+ */
 MultiFolder_Backup() {
     folders := []
 
@@ -252,7 +252,7 @@ MultiFolder_Backup() {
         folder := DirSelect("", , Format("Select folder #{1} to backup (or cancel to finish)", A_Index))
 
         if (folder = "")
-        break
+            break
 
         folders.Push(folder)
     }
@@ -272,36 +272,36 @@ MultiFolder_Backup() {
         }
 
         MsgBox Format("Backup {1} folders to:`n{2}`n`nFolders:`n{3}",
-        folders.Length,
-        backupDest,
-        folderList),
-        "Backup Plan",
-        "Iconi"
+            folders.Length,
+            backupDest,
+            folderList),
+            "Backup Plan",
+            "Iconi"
     }
 }
 
 /**
-* Merges folders.
-*/
+ * Merges folders.
+ */
 MergeFolders() {
     sourceFolder := DirSelect("", , "Select source folder (will be merged)")
     if (sourceFolder = "")
-    return
+        return
 
     targetFolder := DirSelect("", , "Select target folder (merge destination)")
     if (targetFolder = "")
-    return
+        return
 
     confirm := MsgBox(Format("Merge contents of:`n{1}`n`nInto:`n{2}`n`nContinue?",
-    sourceFolder,
-    targetFolder),
-    "Confirm Merge",
-    "YesNo Icon!")
+        sourceFolder,
+        targetFolder),
+        "Confirm Merge",
+        "YesNo Icon!")
 
     if (confirm = "Yes") {
         MsgBox "Folders would be merged (demo mode)",
-        "Merge",
-        "Iconi"
+            "Merge",
+            "Iconi"
     }
 }
 
@@ -309,10 +309,10 @@ MergeFolders() {
 ; EXAMPLE 3: Smart Folder Selection
 ; ============================================================================
 /**
-* Implements intelligent folder selection.
-*
-* @description Shows context-aware folder selection.
-*/
+ * Implements intelligent folder selection.
+ * 
+ * @description Shows context-aware folder selection.
+ */
 Example3_SmartFolderSelection() {
     ; Auto-detect project root
     SelectProjectRoot()
@@ -328,8 +328,8 @@ Example3_SmartFolderSelection() {
 }
 
 /**
-* Selects project root intelligently.
-*/
+ * Selects project root intelligently.
+ */
 SelectProjectRoot() {
     ; Start from script directory and look for project indicators
     currentDir := A_ScriptDir
@@ -338,8 +338,8 @@ SelectProjectRoot() {
     ; Look for .git, package.json, etc.
     Loop {
         if (DirExist(projectRoot . "\.git")
-        || FileExist(projectRoot . "\package.json")
-        || FileExist(projectRoot . "\*.sln")) {
+            || FileExist(projectRoot . "\package.json")
+            || FileExist(projectRoot . "\*.sln")) {
             MsgBox "Project root detected at:`n`n" . projectRoot
             break
         }
@@ -348,7 +348,7 @@ SelectProjectRoot() {
         SplitPath projectRoot, , &parentDir
 
         if (parentDir = projectRoot)  ; At root
-        break
+            break
 
         projectRoot := parentDir
     }
@@ -361,8 +361,8 @@ SelectProjectRoot() {
 }
 
 /**
-* Smart export folder based on date.
-*/
+ * Smart export folder based on date.
+ */
 SmartExportFolder() {
     baseExportDir := A_MyDocuments . "\Exports"
 
@@ -385,14 +385,14 @@ SmartExportFolder() {
 }
 
 /**
-* Workspace selector with categories.
-*/
+ * Workspace selector with categories.
+ */
 WorkspaceSelector() {
     category := MsgBox("Select workspace category:`n`n"
-    . "Yes - Development`n"
-    . "No - Documents",
-    "Workspace",
-    "YesNo")
+        . "Yes - Development`n"
+        . "No - Documents",
+        "Workspace",
+        "YesNo")
 
     if (category = "Yes") {
         baseDir := "C:\Development"
@@ -403,7 +403,7 @@ WorkspaceSelector() {
     }
 
     if (!DirExist(baseDir))
-    baseDir := A_MyDocuments
+        baseDir := A_MyDocuments
 
     folder := DirSelect(baseDir, , title)
 
@@ -413,8 +413,8 @@ WorkspaceSelector() {
 }
 
 /**
-* Auto-organize folder with smart categorization.
-*/
+ * Auto-organize folder with smart categorization.
+ */
 AutoOrganizeFolder() {
     folder := DirSelect("", , "Select folder to auto-organize")
 
@@ -424,12 +424,12 @@ AutoOrganizeFolder() {
 
     ; Create category subfolders
     categories := [
-    "Documents",
-    "Images",
-    "Videos",
-    "Audio",
-    "Archives",
-    "Other"
+        "Documents",
+        "Images",
+        "Videos",
+        "Audio",
+        "Archives",
+        "Other"
     ]
 
     for category in categories {
@@ -440,21 +440,21 @@ AutoOrganizeFolder() {
     }
 
     MsgBox Format("Created organization structure in:`n{1}`n`n"
-    . "Categories: {2}",
-    folder,
-    categories.Length),
-    "Auto-Organize",
-    "Iconi"
+        . "Categories: {2}",
+        folder,
+        categories.Length),
+        "Auto-Organize",
+        "Iconi"
 }
 
 ; ============================================================================
 ; EXAMPLE 4: Folder Organization Tools
 ; ============================================================================
 /**
-* Creates folder organization utilities.
-*
-* @description Shows organizational tools.
-*/
+ * Creates folder organization utilities.
+ * 
+ * @description Shows organizational tools.
+ */
 Example4_FolderOrganization() {
     ; Create dated folder structure
     CreateDatedStructure()
@@ -470,13 +470,13 @@ Example4_FolderOrganization() {
 }
 
 /**
-* Creates dated folder structure.
-*/
+ * Creates dated folder structure.
+ */
 CreateDatedStructure() {
     baseFolder := DirSelect("", , "Select base folder for dated structure")
 
     if (baseFolder = "")
-    return
+        return
 
     ; Create year/month/day structure
     year := FormatTime(, "yyyy")
@@ -500,38 +500,38 @@ CreateDatedStructure() {
 
     if (created.Length > 0) {
         MsgBox Format("Created {1} dated folders:`n`n{2}",
-        created.Length,
-        dayFolder),
-        "Dated Structure",
-        "Iconi"
+            created.Length,
+            dayFolder),
+            "Dated Structure",
+            "Iconi"
     }
 }
 
 /**
-* Creates project template.
-*/
+ * Creates project template.
+ */
 CreateProjectTemplate() {
     rootFolder := DirSelect("", 1, "Select or create project root folder")
 
     if (rootFolder = "")
-    return
+        return
 
     projectName := InputBox("Enter project name:", "Project Name").Value
 
     if (projectName = "")
-    return
+        return
 
     projectRoot := rootFolder . "\" . projectName
 
     template := [
-    "\src",
-    "\src\assets",
-    "\src\components",
-    "\src\utils",
-    "\docs",
-    "\tests",
-    "\build",
-    "\dist"
+        "\src",
+        "\src\assets",
+        "\src\components",
+        "\src\utils",
+        "\docs",
+        "\tests",
+        "\build",
+        "\dist"
     ]
 
     createdCount := 0
@@ -547,22 +547,22 @@ CreateProjectTemplate() {
     }
 
     MsgBox Format("Project template created!`n`n"
-    . "Project: {1}`n"
-    . "Folders created: {2}",
-    projectName,
-    createdCount),
-    "Template Created",
-    "Iconi"
+        . "Project: {1}`n"
+        . "Folders created: {2}",
+        projectName,
+        createdCount),
+        "Template Created",
+        "Iconi"
 }
 
 /**
-* Cleans up empty folders.
-*/
+ * Cleans up empty folders.
+ */
 CleanupEmptyFolders() {
     folder := DirSelect("", , "Select folder to clean up empty subfolders")
 
     if (folder = "")
-    return
+        return
 
     emptyFolders := []
 
@@ -575,7 +575,7 @@ CleanupEmptyFolders() {
         }
 
         if (isEmpty)
-        emptyFolders.Push(A_LoopFilePath)
+            emptyFolders.Push(A_LoopFilePath)
     }
 
     if (emptyFolders.Length > 0) {
@@ -586,31 +586,31 @@ CleanupEmptyFolders() {
         }
 
         confirm := MsgBox(Format("Found {1} empty folder(s):`n`n{2}`nDelete them?",
-        emptyFolders.Length,
-        folderList),
-        "Empty Folders",
-        "YesNo Icon?")
+            emptyFolders.Length,
+            folderList),
+            "Empty Folders",
+            "YesNo Icon?")
 
         if (confirm = "Yes") {
             MsgBox "Empty folders would be deleted (demo mode)",
-            "Cleanup",
-            "Iconi"
+                "Cleanup",
+                "Iconi"
         }
     } else {
         MsgBox "No empty folders found.",
-        "Cleanup",
-        "Iconi"
+            "Cleanup",
+            "Iconi"
     }
 }
 
 /**
-* Flattens nested folder structure.
-*/
+ * Flattens nested folder structure.
+ */
 FlattenFolderStructure() {
     sourceFolder := DirSelect("", , "Select folder to flatten")
 
     if (sourceFolder = "")
-    return
+        return
 
     targetFolder := DirSelect("", , "Select destination for flattened files")
 
@@ -625,16 +625,16 @@ FlattenFolderStructure() {
     }
 
     confirm := MsgBox(Format("Flatten {1} files from:`n{2}`n`nTo:`n{3}`n`nContinue?",
-    fileCount,
-    sourceFolder,
-    targetFolder),
-    "Flatten Structure",
-    "YesNo Icon?")
+        fileCount,
+        sourceFolder,
+        targetFolder),
+        "Flatten Structure",
+        "YesNo Icon?")
 
     if (confirm = "Yes") {
         MsgBox "Files would be flattened (demo mode)",
-        "Flatten",
-        "Iconi"
+            "Flatten",
+            "Iconi"
     }
 }
 
@@ -642,10 +642,10 @@ FlattenFolderStructure() {
 ; EXAMPLE 5: Directory Management Workflows
 ; ============================================================================
 /**
-* Complete directory management workflows.
-*
-* @description Shows end-to-end directory workflows.
-*/
+ * Complete directory management workflows.
+ * 
+ * @description Shows end-to-end directory workflows.
+ */
 Example5_DirectoryWorkflows() {
     ; Archive old folders
     ArchiveOldFolders()
@@ -661,18 +661,18 @@ Example5_DirectoryWorkflows() {
 }
 
 /**
-* Archives old folders.
-*/
+ * Archives old folders.
+ */
 ArchiveOldFolders() {
     sourceFolder := DirSelect("", , "Select folder to archive")
 
     if (sourceFolder = "")
-    return
+        return
 
     archiveRoot := DirSelect("", , "Select archive destination")
 
     if (archiveRoot = "")
-    return
+        return
 
     ; Create archive subfolder with timestamp
     timestamp := FormatTime(, "yyyyMMdd_HHmmss")
@@ -681,55 +681,55 @@ ArchiveOldFolders() {
     archivePath := archiveRoot . "\Archive_" . folderName . "_" . timestamp
 
     confirm := MsgBox(Format("Archive folder:`n{1}`n`nTo:`n{2}`n`nProceed?",
-    sourceFolder,
-    archivePath),
-    "Archive",
-    "YesNo Icon?")
+        sourceFolder,
+        archivePath),
+        "Archive",
+        "YesNo Icon?")
 
     if (confirm = "Yes") {
         MsgBox "Folder would be archived (demo mode)",
-        "Archive",
-        "Iconi"
+            "Archive",
+            "Iconi"
     }
 }
 
 /**
-* Migrates folders to new location.
-*/
+ * Migrates folders to new location.
+ */
 MigrateFolders() {
     oldLocation := DirSelect("", , "Select old location")
 
     if (oldLocation = "")
-    return
+        return
 
     newLocation := DirSelect("", 1, "Select or create new location")
 
     if (newLocation = "")
-    return
+        return
 
     MsgBox Format("Migration Plan:`n`n"
-    . "From: {1}`n"
-    . "To: {2}`n`n"
-    . "This will move all contents.",
-    oldLocation,
-    newLocation),
-    "Migration",
-    "Iconi"
+        . "From: {1}`n"
+        . "To: {2}`n`n"
+        . "This will move all contents.",
+        oldLocation,
+        newLocation),
+        "Migration",
+        "Iconi"
 }
 
 /**
-* Clones folder structure (folders only, no files).
-*/
+ * Clones folder structure (folders only, no files).
+ */
 CloneFolderStructure() {
     sourceFolder := DirSelect("", , "Select folder structure to clone")
 
     if (sourceFolder = "")
-    return
+        return
 
     targetFolder := DirSelect("", 1, "Select destination for cloned structure")
 
     if (targetFolder = "")
-    return
+        return
 
     ; Count subfolders
     folderCount := 0
@@ -738,22 +738,22 @@ CloneFolderStructure() {
     }
 
     MsgBox Format("Clone structure from:`n{1}`n`nTo:`n{2}`n`n"
-    . "Subfolders to create: {3}",
-    sourceFolder,
-    targetFolder,
-    folderCount),
-    "Clone Structure",
-    "Iconi"
+        . "Subfolders to create: {3}",
+        sourceFolder,
+        targetFolder,
+        folderCount),
+        "Clone Structure",
+        "Iconi"
 }
 
 /**
-* Creates snapshot of folder state.
-*/
+ * Creates snapshot of folder state.
+ */
 SnapshotFolderState() {
     folder := DirSelect("", , "Select folder to snapshot")
 
     if (folder = "")
-    return
+        return
 
     ; Collect folder statistics
     fileCount := 0
@@ -765,14 +765,14 @@ SnapshotFolderState() {
     }
 
     snapshot := Format("═══ Folder Snapshot ═══`n`n"
-    . "Path: {1}`n"
-    . "Date: {2}`n"
-    . "Files: {3}`n"
-    . "Total Size: {4} MB",
-    folder,
-    FormatTime(, "yyyy-MM-dd HH:mm:ss"),
-    fileCount,
-    Round(totalSize / 1048576, 2))
+        . "Path: {1}`n"
+        . "Date: {2}`n"
+        . "Files: {3}`n"
+        . "Total Size: {4} MB",
+        folder,
+        FormatTime(, "yyyy-MM-dd HH:mm:ss"),
+        fileCount,
+        Round(totalSize / 1048576, 2))
 
     MsgBox snapshot, "Snapshot Created", "Iconi"
 
@@ -781,14 +781,14 @@ SnapshotFolderState() {
 
     if (save = "Yes") {
         savePath := FileSelect("S",
-        A_MyDocuments . "\folder_snapshot.txt",
-        "Save snapshot",
-        "Text Files (*.txt)")
+            A_MyDocuments . "\folder_snapshot.txt",
+            "Save snapshot",
+            "Text Files (*.txt)")
 
         if (savePath != "") {
             MsgBox "Snapshot would be saved to:`n" . savePath,
-            "Save Snapshot",
-            "Iconi"
+                "Save Snapshot",
+                "Iconi"
             ; FileAppend snapshot, savePath
         }
     }
@@ -798,10 +798,10 @@ SnapshotFolderState() {
 ; EXAMPLE 6: Advanced Folder Utilities
 ; ============================================================================
 /**
-* Advanced folder management utilities.
-*
-* @description Shows specialized folder tools.
-*/
+ * Advanced folder management utilities.
+ * 
+ * @description Shows specialized folder tools.
+ */
 Example6_AdvancedUtilities() {
     ; Folder size calculator
     CalculateFolderSize()
@@ -817,13 +817,13 @@ Example6_AdvancedUtilities() {
 }
 
 /**
-* Calculates total folder size.
-*/
+ * Calculates total folder size.
+ */
 CalculateFolderSize() {
     folder := DirSelect("", , "Select folder to analyze size")
 
     if (folder = "")
-    return
+        return
 
     totalSize := 0
     fileCount := 0
@@ -837,25 +837,25 @@ CalculateFolderSize() {
     sizeGB := Round(totalSize / 1073741824, 2)
 
     MsgBox Format("Folder Size Analysis:`n`n"
-    . "Path: {1}`n`n"
-    . "Files: {2}`n"
-    . "Total Size: {3} MB ({4} GB)",
-    folder,
-    fileCount,
-    sizeMB,
-    sizeGB),
-    "Folder Size",
-    "Iconi"
+        . "Path: {1}`n`n"
+        . "Files: {2}`n"
+        . "Total Size: {3} MB ({4} GB)",
+        folder,
+        fileCount,
+        sizeMB,
+        sizeGB),
+        "Folder Size",
+        "Iconi"
 }
 
 /**
-* Finds potentially duplicate folders.
-*/
+ * Finds potentially duplicate folders.
+ */
 FindDuplicateFolders() {
     folder := DirSelect("", , "Select folder to scan for duplicates")
 
     if (folder = "")
-    return
+        return
 
     folders := Map()
 
@@ -881,25 +881,25 @@ FindDuplicateFolders() {
 
     if (dupCount > 0) {
         MsgBox Format("Found {1} duplicate folder name(s):`n`n{2}",
-        dupCount,
-        duplicates),
-        "Duplicates Found",
-        "Icon!"
+            dupCount,
+            duplicates),
+            "Duplicates Found",
+            "Icon!"
     } else {
         MsgBox "No duplicate folder names found.",
-        "No Duplicates",
-        "Iconi"
+            "No Duplicates",
+            "Iconi"
     }
 }
 
 /**
-* Checks folder permissions.
-*/
+ * Checks folder permissions.
+ */
 CheckFolderPermissions() {
     folder := DirSelect("", , "Select folder to check permissions")
 
     if (folder = "")
-    return
+        return
 
     canRead := DirExist(folder) ? true : false
     canWrite := false
@@ -913,24 +913,24 @@ CheckFolderPermissions() {
     }
 
     permissions := Format("Folder Permissions:`n`n"
-    . "Path: {1}`n`n"
-    . "Read: {2}`n"
-    . "Write: {3}",
-    folder,
-    canRead ? "✓ Yes" : "❌ No",
-    canWrite ? "✓ Yes" : "❌ No")
+        . "Path: {1}`n`n"
+        . "Read: {2}`n"
+        . "Write: {3}",
+        folder,
+        canRead ? "✓ Yes" : "❌ No",
+        canWrite ? "✓ Yes" : "❌ No")
 
     MsgBox permissions, "Permissions Check", "Iconi"
 }
 
 /**
-* Analyzes folder age.
-*/
+ * Analyzes folder age.
+ */
 AnalyzeFolderAge() {
     folder := DirSelect("", , "Select folder to analyze age")
 
     if (folder = "")
-    return
+        return
 
     newest := 0
     oldest := 99999999999999
@@ -940,10 +940,10 @@ AnalyzeFolderAge() {
         fileTime := FileGetTime(A_LoopFilePath, "M")
 
         if (fileTime > newest)
-        newest := fileTime
+            newest := fileTime
 
         if (fileTime < oldest)
-        oldest := fileTime
+            oldest := fileTime
 
         fileCount++
     }
@@ -953,14 +953,14 @@ AnalyzeFolderAge() {
         oldestDate := FormatTime(oldest, "yyyy-MM-dd HH:mm")
 
         MsgBox Format("Folder Age Analysis:`n`n"
-        . "Files: {1}`n`n"
-        . "Oldest file: {2}`n"
-        . "Newest file: {3}",
-        fileCount,
-        oldestDate,
-        newestDate),
-        "Folder Age",
-        "Iconi"
+            . "Files: {1}`n`n"
+            . "Oldest file: {2}`n"
+            . "Newest file: {3}",
+            fileCount,
+            oldestDate,
+            newestDate),
+            "Folder Age",
+            "Iconi"
     }
 }
 
@@ -968,10 +968,10 @@ AnalyzeFolderAge() {
 ; EXAMPLE 7: Folder Browser Integration
 ; ============================================================================
 /**
-* Integrates folder selection with system browser.
-*
-* @description Shows browser integration patterns.
-*/
+ * Integrates folder selection with system browser.
+ * 
+ * @description Shows browser integration patterns.
+ */
 Example7_BrowserIntegration() {
     ; Select and open in Explorer
     SelectAndOpen()
@@ -987,36 +987,36 @@ Example7_BrowserIntegration() {
 }
 
 /**
-* Selects folder and opens in Explorer.
-*/
+ * Selects folder and opens in Explorer.
+ */
 SelectAndOpen() {
     folder := DirSelect("", , "Select folder to open in Explorer")
 
     if (folder != "") {
         MsgBox "Would open in Explorer:`n`n" . folder,
-        "Open Folder",
-        "Iconi"
+            "Open Folder",
+            "Iconi"
         ; Run 'explorer.exe "' . folder . '"'
     }
 }
 
 /**
-* Selects folder and copies path to clipboard.
-*/
+ * Selects folder and copies path to clipboard.
+ */
 SelectAndCopyPath() {
     folder := DirSelect("", , "Select folder to copy path")
 
     if (folder != "") {
         A_Clipboard := folder
         MsgBox "Path copied to clipboard:`n`n" . folder,
-        "Path Copied",
-        "Iconi"
+            "Path Copied",
+            "Iconi"
     }
 }
 
 /**
-* Selects folder and creates desktop shortcut.
-*/
+ * Selects folder and creates desktop shortcut.
+ */
 SelectAndCreateShortcut() {
     folder := DirSelect("", , "Select folder for shortcut")
 
@@ -1026,19 +1026,19 @@ SelectAndCreateShortcut() {
         shortcutPath := A_Desktop . "\" . folderName . ".lnk"
 
         MsgBox Format("Shortcut would be created:`n`n"
-        . "Target: {1}`n"
-        . "Shortcut: {2}",
-        folder,
-        shortcutPath),
-        "Create Shortcut",
-        "Iconi"
+            . "Target: {1}`n"
+            . "Shortcut: {2}",
+            folder,
+            shortcutPath),
+            "Create Shortcut",
+            "Iconi"
         ; FileCreateShortcut folder, shortcutPath
     }
 }
 
 /**
-* Selects folder and shows simulated properties.
-*/
+ * Selects folder and shows simulated properties.
+ */
 SelectAndShowProperties() {
     folder := DirSelect("", , "Select folder to view properties")
 
@@ -1055,15 +1055,15 @@ SelectAndShowProperties() {
         }
 
         MsgBox Format("Folder Properties:`n`n"
-        . "Location: {1}`n`n"
-        . "Contains:`n"
-        . "  Files: {2}`n"
-        . "  Folders: {3}",
-        folder,
-        fileCount,
-        folderCount),
-        "Properties",
-        "Iconi"
+            . "Location: {1}`n`n"
+            . "Contains:`n"
+            . "  Files: {2}`n"
+            . "  Folders: {3}",
+            folder,
+            fileCount,
+            folderCount),
+            "Properties",
+            "Iconi"
     }
 }
 
@@ -1071,38 +1071,39 @@ SelectAndShowProperties() {
 ; Hotkey Triggers
 ; ============================================================================
 
-^1::Example1_FolderBrowsingUtilities()
-^2::Example2_MultiFolderOperations()
-^3::Example3_SmartFolderSelection()
-^4::Example4_FolderOrganization()
-^5::Example5_DirectoryWorkflows()
-^6::Example6_AdvancedUtilities()
-^7::Example7_BrowserIntegration()
-^0::ExitApp
+^1:: Example1_FolderBrowsingUtilities()
+^2:: Example2_MultiFolderOperations()
+^3:: Example3_SmartFolderSelection()
+^4:: Example4_FolderOrganization()
+^5:: Example5_DirectoryWorkflows()
+^6:: Example6_AdvancedUtilities()
+^7:: Example7_BrowserIntegration()
+^0:: ExitApp
 
 /**
-* ============================================================================
-* SUMMARY
-* ============================================================================
-*
-* Advanced DirSelect applications:
-* 1. Folder browsing utilities (quick open, favorites, history)
-* 2. Multi-folder operations (compare, sync, backup, merge)
-* 3. Smart folder selection (auto-detect, context-aware)
-* 4. Folder organization tools (templates, cleanup, flatten)
-* 5. Directory management workflows (archive, migrate, clone)
-* 6. Advanced utilities (size calc, duplicates, permissions, age)
-* 7. Browser integration (open, copy path, shortcuts, properties)
-*
-* Best Practices:
-* - Validate folder existence before operations
-* - Provide clear confirmation for destructive actions
-* - Use smart defaults based on context
-* - Remember user preferences and history
-* - Handle errors gracefully with meaningful messages
-* - Offer preview before executing bulk operations
-* - Create backup copies for safety
-* - Integrate with system features when appropriate
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * SUMMARY
+ * ============================================================================
+ * 
+ * Advanced DirSelect applications:
+ * 1. Folder browsing utilities (quick open, favorites, history)
+ * 2. Multi-folder operations (compare, sync, backup, merge)
+ * 3. Smart folder selection (auto-detect, context-aware)
+ * 4. Folder organization tools (templates, cleanup, flatten)
+ * 5. Directory management workflows (archive, migrate, clone)
+ * 6. Advanced utilities (size calc, duplicates, permissions, age)
+ * 7. Browser integration (open, copy path, shortcuts, properties)
+ * 
+ * Best Practices:
+ * - Validate folder existence before operations
+ * - Provide clear confirmation for destructive actions
+ * - Use smart defaults based on context
+ * - Remember user preferences and history
+ * - Handle errors gracefully with meaningful messages
+ * - Offer preview before executing bulk operations
+ * - Create backup copies for safety
+ * - Integrate with system features when appropriate
+ * 
+ * ============================================================================
+ */
+

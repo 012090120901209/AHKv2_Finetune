@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Join() - Join array elements (Standalone Implementation)
-*
-* Converts all elements in array into a string separated by separator.
-*/
+ * Join() - Join array elements (Standalone Implementation)
+ * 
+ * Converts all elements in array into a string separated by separator.
+ */
 
 Join(array, separator := ",") {
     result := ""
@@ -31,5 +31,5 @@ result3 := Join([1, 2, 3], " - ")
 ; => "1 - 2 - 3"
 
 MsgBox("Join with '~': " result1 "`n"
-. "Join with default: " result2 "`n"
-. "Join with ' - ': " result3)
+    . "Join with default: " result2 "`n"
+    . "Join with ' - ': " result3)

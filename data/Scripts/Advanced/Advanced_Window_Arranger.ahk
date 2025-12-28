@@ -15,14 +15,14 @@ RefreshWindows()
 
 RefreshWindows(*) {
     LV.Delete()
-    ids := WinGetList(,,)
+    ids := WinGetList(, ,)
     for id in ids {
         try {
             title := WinGetTitle("ahk_id " id)
             class := WinGetClass("ahk_id " id)
             pid := WinGetPID("ahk_id " id)
             if (title != "")
-            LV.Add(, title, class, pid)
+                LV.Add(, title, class, pid)
         }
     }
     LV.ModifyCol()
@@ -31,14 +31,14 @@ RefreshWindows(*) {
 TileWindow(side) {
     row := LV.GetNext()
     if (!row)
-    return
+        return
     pid := LV.GetText(row, 3)
     WinActivate("ahk_pid " pid)
 
     if (side = "left")
-    WinMove(0, 0, A_ScreenWidth//2, A_ScreenHeight, "A")
+        WinMove(0, 0, A_ScreenWidth // 2, A_ScreenHeight, "A")
     else
-    WinMove(A_ScreenWidth//2, 0, A_ScreenWidth//2, A_ScreenHeight, "A")
+        WinMove(A_ScreenWidth // 2, 0, A_ScreenWidth // 2, A_ScreenHeight, "A")
 }
 
 MaxWin(*) {

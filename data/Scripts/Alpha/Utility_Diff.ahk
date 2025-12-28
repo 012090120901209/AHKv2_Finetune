@@ -14,7 +14,7 @@ class Diff {
 
         ; Get LCS table
         lcs := this._LCSTable(a, b)
-        
+
         ; Generate diff from LCS
         return this._GenerateDiff(a, b, lcs)
     }
@@ -22,7 +22,7 @@ class Diff {
     static _LCSTable(a, b) {
         m := a.Length
         n := b.Length
-        
+
         ; Initialize table
         table := []
         Loop m + 1 {
@@ -80,18 +80,18 @@ class Diff {
             b := StrSplit(b, "`n")
 
         changes := this.Compare(a, b)
-        
+
         result := "--- " oldName "`n"
         result .= "+++ " newName "`n"
 
         ; Group changes into hunks
         hunks := this._CreateHunks(changes, context)
-        
+
         for hunk in hunks {
             result .= Format("@@ -{},{} +{},{} @@`n",
-                            hunk["oldStart"], hunk["oldCount"],
-                            hunk["newStart"], hunk["newCount"])
-            
+                hunk["oldStart"], hunk["oldCount"],
+                hunk["newStart"], hunk["newCount"])
+
             for change in hunk["changes"] {
                 switch change["type"] {
                     case "equal": result .= " " change["line"] "`n"
@@ -119,7 +119,7 @@ class Diff {
                         "oldCount", 0,
                         "newCount", 0
                     )
-                    
+
                     ; Add leading context
                     start := Max(1, i - contextLines)
                     Loop i - start {
@@ -133,7 +133,7 @@ class Diff {
 
                 currentHunk["changes"].Push(change)
                 lastChangeIndex := i
-                
+
                 if change["type"] = "remove"
                     currentHunk["oldCount"]++
                 else if change["type"] = "add"

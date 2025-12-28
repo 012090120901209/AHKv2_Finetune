@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* FromPairs() - Create object from pairs (Standalone Implementation)
-*
-* Returns an object composed from key-value pairs.
-*/
+ * FromPairs() - Create object from pairs (Standalone Implementation)
+ * 
+ * Returns an object composed from key-value pairs.
+ */
 
 FromPairs(pairs) {
     result := {}

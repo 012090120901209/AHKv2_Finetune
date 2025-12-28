@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_Winmm_04_Joystick.ahk
-*
-* DESCRIPTION:
-* Demonstrates Joystick input handling using Windows API through DllCall.
-* Comprehensive examples showing various Joystick operations.
-*
-* FEATURES:
-* - Joystick API integration
-* - Practical Joystick examples
-* - Error handling
-* - Resource management
-* - Advanced Joystick techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Winmm API Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() function
-* - Windows API integration
-* - Pointer handling
-* - Structure manipulation
-* - Resource cleanup
-*
-* LEARNING POINTS:
-* 1. Understanding Winmm API functions
-* 2. Working with Joystick operations
-* 3. Proper error handling
-* 4. Memory and resource management
-* 5. Advanced Joystick techniques
-* 6. Best practices for Winmm API
-* 7. Real-world Joystick applications
-*/
+ * BuiltIn_DllCall_Winmm_04_Joystick.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates Joystick input handling using Windows API through DllCall.
+ * Comprehensive examples showing various Joystick operations.
+ * 
+ * FEATURES:
+ * - Joystick API integration
+ * - Practical Joystick examples
+ * - Error handling
+ * - Resource management
+ * - Advanced Joystick techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Winmm API Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() function
+ * - Windows API integration
+ * - Pointer handling
+ * - Structure manipulation
+ * - Resource cleanup
+ * 
+ * LEARNING POINTS:
+ * 1. Understanding Winmm API functions
+ * 2. Working with Joystick operations
+ * 3. Proper error handling
+ * 4. Memory and resource management
+ * 5. Advanced Joystick techniques
+ * 6. Best practices for Winmm API
+ * 7. Real-world Joystick applications
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Joystick Operations
@@ -136,8 +136,8 @@ Example7_ComprehensiveExample() {
 ;==============================================================================
 
 /**
-* Helper function for Joystick operations
-*/
+ * Helper function for Joystick operations
+ */
 HelperFunction(param) {
     ; Helper implementation
     return "Helper result"
@@ -168,7 +168,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Joystick Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicOperations()
@@ -187,7 +187,7 @@ ShowDemoMenu() {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 

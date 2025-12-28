@@ -11,12 +11,12 @@ class ResourcePool {
         this.maxSize := options.Has("maxSize") ? options["maxSize"] : 10
         this.idleTimeout := options.Has("idleTimeout") ? options["idleTimeout"] : 30000
         this.acquireTimeout := options.Has("acquireTimeout") ? options["acquireTimeout"] : 5000
-        
+
         this.available := []
         this.inUse := []
         this.waitQueue := []
         this.totalCreated := 0
-        
+
         ; Pre-populate with minimum resources
         this._warmup()
     }
@@ -31,7 +31,7 @@ class ResourcePool {
     _createResource() {
         if this.totalCreated >= this.maxSize
             return ""
-        
+
         resource := this.factory()
         this.totalCreated++
         return Map(
@@ -69,7 +69,7 @@ class ResourcePool {
             if wrapper["resource"] = resource {
                 this.inUse.RemoveAt(i)
                 wrapper["lastUsed"] := A_TickCount
-                
+
                 ; Process wait queue if any
                 if this.waitQueue.Length {
                     callback := this.waitQueue.RemoveAt(1)
@@ -100,7 +100,7 @@ class ResourcePool {
         resource := this.Acquire()
         if !resource
             throw Error("Could not acquire resource")
-        
+
         try {
             return fn(resource)
         } finally {
@@ -112,19 +112,19 @@ class ResourcePool {
     Prune() {
         now := A_TickCount
         pruned := 0
-        
+
         i := this.available.Length
         while i >= 1 {
             wrapper := this.available[i]
-            if now - wrapper["lastUsed"] > this.idleTimeout 
-               && this.available.Length > this.minSize {
+            if now - wrapper["lastUsed"] > this.idleTimeout
+                && this.available.Length > this.minSize {
                 this.available.RemoveAt(i)
                 this.totalCreated--
                 pruned++
             }
             i--
         }
-        
+
         return pruned
     }
 
@@ -167,13 +167,13 @@ class ConnectionPool extends ResourcePool {
 ; Mock connection for demo
 class MockConnection {
     static idCounter := 0
-    
+
     __New() {
         MockConnection.idCounter++
         this.id := MockConnection.idCounter
         OutputDebug("[Connection " this.id "] Created`n")
     }
-    
+
     Execute(sql) {
         OutputDebug("[Connection " this.id "] Executing: " sql "`n")
         return Map("rows", Random(1, 100), "sql", sql)
@@ -222,7 +222,7 @@ MsgBox(result)
 
 ; Helper
 StatsToString(stats) {
-    return Format("Available: {}, InUse: {}, Total: {}/{}", 
-                  stats["available"], stats["inUse"], 
-                  stats["total"], stats["maxSize"])
+    return Format("Available: {}, InUse: {}, Total: {}/{}",
+        stats["available"], stats["inUse"],
+        stats["total"], stats["maxSize"])
 }

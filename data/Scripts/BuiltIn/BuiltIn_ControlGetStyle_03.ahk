@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlGetStyle - Real-World Detection and Diagnostic Applications
-* ============================================================================
-*
-* This script demonstrates practical applications of ControlGetStyle for
-* diagnostics, accessibility checking, and automated UI testing.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*
-* Practical Applications:
-* - Accessibility auditing
-* - UI testing automation
-* - Control state diagnostics
-* - Form validation
-* - Theme detection
-*/
+ * ============================================================================
+ * ControlGetStyle - Real-World Detection and Diagnostic Applications
+ * ============================================================================
+ * 
+ * This script demonstrates practical applications of ControlGetStyle for
+ * diagnostics, accessibility checking, and automated UI testing.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ * 
+ * Practical Applications:
+ * - Accessibility auditing
+ * - UI testing automation
+ * - Control state diagnostics
+ * - Form validation
+ * - Theme detection
+ */
 
 ;==============================================================================
 ; Example 1: Accessibility Checker
 ;==============================================================================
 
 /**
-* Checks controls for accessibility compliance
-*
-* @example
-* Audits GUI controls for common accessibility issues
-*/
+ * Checks controls for accessibility compliance
+ * 
+ * @example
+ * Audits GUI controls for common accessibility issues
+ */
 Example1_AccessibilityChecker() {
 
     MyGui := Gui("+Resize", "Example 1: Accessibility Checker")
@@ -58,7 +58,7 @@ Example1_AccessibilityChecker() {
     ; Disable one control
     disabledEdit := MyGui.Add("Edit", "w300 y+10", "Disabled Visible")
     disabledEdit.Enabled := false
-    controls.Push({ctrl: disabledEdit, name: "Disabled Visible Edit"})
+    controls.Push({ ctrl: disabledEdit, name: "Disabled Visible Edit" })
 
     BtnAudit := MyGui.Add("Button", "w200 y+20", "Run Accessibility Audit")
     BtnAudit.OnEvent("Click", RunAudit)
@@ -105,11 +105,11 @@ Example1_AccessibilityChecker() {
         results .= "`n"
 
         if (totalIssues = 0 && totalWarnings = 0)
-        results .= "Result: All controls pass accessibility checks ✓`n"
+            results .= "Result: All controls pass accessibility checks ✓`n"
         else if (totalIssues = 0)
-        results .= "Result: No critical issues, but warnings present ⚠`n"
+            results .= "Result: No critical issues, but warnings present ⚠`n"
         else
-        results .= "Result: Critical accessibility issues found ✗`n"
+            results .= "Result: Critical accessibility issues found ✗`n"
 
         ResultsEdit.Value := results
     }
@@ -120,11 +120,11 @@ Example1_AccessibilityChecker() {
 ;==============================================================================
 
 /**
-* Diagnoses form controls for data entry issues
-*
-* @example
-* Validates form setup for proper data collection
-*/
+ * Diagnoses form controls for data entry issues
+ * 
+ * @example
+ * Validates form setup for proper data collection
+ */
 Example2_FormValidationDiagnostic() {
 
     MyGui := Gui("+Resize", "Example 2: Form Validation Diagnostic")
@@ -219,11 +219,11 @@ Example2_FormValidationDiagnostic() {
 ;==============================================================================
 
 /**
-* Creates a testing utility for automated UI tests
-*
-* @example
-* Verifies control states match expected configurations
-*/
+ * Creates a testing utility for automated UI tests
+ * 
+ * @example
+ * Verifies control states match expected configurations
+ */
 Example3_UITestingHelper() {
 
     MyGui := Gui("+Resize", "Example 3: UI Testing Helper")
@@ -293,13 +293,13 @@ Example3_UITestingHelper() {
             failed++
 
             if (test.HasOwnProp("missing") && test.missing.Length > 0)
-            result .= "  Missing flags: " . Join(test.missing, ", ") . "`n"
+                result .= "  Missing flags: " . Join(test.missing, ", ") . "`n"
             if (test.HasOwnProp("found") && test.found.Length > 0)
-            result .= "  Forbidden flags present: " . Join(test.found, ", ") . "`n"
+                result .= "  Forbidden flags present: " . Join(test.found, ", ") . "`n"
             if (test.HasOwnProp("isReadOnly"))
-            result .= "  IsReadOnly: " . test.isReadOnly . "`n"
+                result .= "  IsReadOnly: " . test.isReadOnly . "`n"
             if (test.HasOwnProp("isDisabled"))
-            result .= "  IsDisabled: " . test.isDisabled . "`n"
+                result .= "  IsDisabled: " . test.isDisabled . "`n"
         }
 
         result .= "  Style: 0x" . Format("{:08X}", test.style) . "`n`n"
@@ -308,10 +308,10 @@ Example3_UITestingHelper() {
 
     Join(arr, delimiter) {
         if (!arr || arr.Length = 0)
-        return ""
+            return ""
         result := ""
         for item in arr
-        result .= item . delimiter
+            result .= item . delimiter
         return SubStr(result, 1, -StrLen(delimiter))
     }
 }
@@ -321,11 +321,11 @@ Example3_UITestingHelper() {
 ;==============================================================================
 
 /**
-* Comprehensive diagnostic tool for control state analysis
-*
-* @example
-* Complete diagnostic report for any control
-*/
+ * Comprehensive diagnostic tool for control state analysis
+ * 
+ * @example
+ * Complete diagnostic report for any control
+ */
 Example4_StateDiagnostic() {
 
     MyGui := Gui("+Resize", "Example 4: State Diagnostic Tool")
@@ -334,10 +334,10 @@ Example4_StateDiagnostic() {
 
     ; Create test controls
     controls := []
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+20"), name: "Normal Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10 ReadOnly"), name: "ReadOnly Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10 Password"), name: "Password Edit"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 h60 y+10 Multi"), name: "Multiline Edit"})
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+20"), name: "Normal Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10 ReadOnly"), name: "ReadOnly Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10 Password"), name: "Password Edit" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 h60 y+10 Multi"), name: "Multiline Edit" })
 
     ControlSelect := MyGui.Add("DropDownList", "w300 y+20", ["Normal Edit", "ReadOnly Edit", "Password Edit", "Multiline Edit"])
     ControlSelect.Choose(1)
@@ -372,7 +372,7 @@ Example4_StateDiagnostic() {
         results .= "ACTIVE FLAGS:`n"
         if (report.flags.Length > 0) {
             for flag in report.flags
-            results .= "  ✓ " . flag . "`n"
+                results .= "  ✓ " . flag . "`n"
         } else {
             results .= "  (None)`n"
         }
@@ -381,7 +381,7 @@ Example4_StateDiagnostic() {
         results .= "CAPABILITIES:`n"
         if (report.capabilities.Length > 0) {
             for cap in report.capabilities
-            results .= "  • " . cap . "`n"
+                results .= "  • " . cap . "`n"
         } else {
             results .= "  (None detected)`n"
         }
@@ -390,7 +390,7 @@ Example4_StateDiagnostic() {
         results .= "RESTRICTIONS:`n"
         if (report.restrictions.Length > 0) {
             for rest in report.restrictions
-            results .= "  ⚠ " . rest . "`n"
+                results .= "  ⚠ " . rest . "`n"
         } else {
             results .= "  (None detected)`n"
         }
@@ -399,7 +399,7 @@ Example4_StateDiagnostic() {
         results .= "RECOMMENDATIONS:`n"
         if (report.recommendations.Length > 0) {
             for rec in report.recommendations
-            results .= "  💡 " . rec . "`n"
+                results .= "  💡 " . rec . "`n"
         } else {
             results .= "  No recommendations`n"
         }
@@ -413,11 +413,11 @@ Example4_StateDiagnostic() {
 ;==============================================================================
 
 /**
-* Detects visual styling patterns from control styles
-*
-* @example
-* Identifies common UI themes and visual patterns
-*/
+ * Detects visual styling patterns from control styles
+ * 
+ * @example
+ * Identifies common UI themes and visual patterns
+ */
 Example5_ThemeDetector() {
 
     MyGui := Gui("+Resize", "Example 5: Theme Detector")
@@ -427,19 +427,19 @@ Example5_ThemeDetector() {
     ; Create a themed form
     controls := []
     MyGui.Add("Text", "xm y+20", "Name:")
-    controls.Push({ctrl: MyGui.Add("Edit", "x+10 w200")})
+    controls.Push({ ctrl: MyGui.Add("Edit", "x+10 w200") })
 
     MyGui.Add("Text", "xm y+10", "Email:")
-    controls.Push({ctrl: MyGui.Add("Edit", "x+10 w200")})
+    controls.Push({ ctrl: MyGui.Add("Edit", "x+10 w200") })
 
     MyGui.Add("Text", "xm y+10", "Password:")
-    controls.Push({ctrl: MyGui.Add("Edit", "x+10 w200 Password")})
+    controls.Push({ ctrl: MyGui.Add("Edit", "x+10 w200 Password") })
 
     MyGui.Add("Text", "xm y+10", "Bio:")
-    controls.Push({ctrl: MyGui.Add("Edit", "x+10 w200 h60 Multi")})
+    controls.Push({ ctrl: MyGui.Add("Edit", "x+10 w200 h60 Multi") })
 
     MyGui.Add("Text", "xm y+10", "User ID:")
-    controls.Push({ctrl: MyGui.Add("Edit", "x+10 w200 ReadOnly", "12345")})
+    controls.Push({ ctrl: MyGui.Add("Edit", "x+10 w200 ReadOnly", "12345") })
 
     BtnDetect := MyGui.Add("Button", "xm y+20 w200", "Detect Theme")
     BtnDetect.OnEvent("Click", DetectTheme)
@@ -457,7 +457,7 @@ Example5_ThemeDetector() {
         results .= "THEME CHARACTERISTICS:`n"
         if (theme.characteristics.Length > 0) {
             for char in theme.characteristics
-            results .= "  • " . char . "`n"
+                results .= "  • " . char . "`n"
         }
         results .= "`n"
 
@@ -474,11 +474,11 @@ Example5_ThemeDetector() {
 ;==============================================================================
 
 /**
-* Benchmarks ControlGetStyle performance
-*
-* @example
-* Tests performance characteristics of style reading operations
-*/
+ * Benchmarks ControlGetStyle performance
+ * 
+ * @example
+ * Tests performance characteristics of style reading operations
+ */
 Example6_PerformanceDiagnostic() {
     MyGui := Gui("+Resize", "Example 6: Performance Diagnostic")
 
@@ -547,11 +547,11 @@ Example6_PerformanceDiagnostic() {
 ;==============================================================================
 
 /**
-* Analyzes controls in external windows
-*
-* @example
-* Real-world application testing tool
-*/
+ * Analyzes controls in external windows
+ * 
+ * @example
+ * Real-world application testing tool
+ */
 Example7_ExternalAnalyzer() {
     MyGui := Gui("+AlwaysOnTop +Resize", "Example 7: External Window Analyzer")
 
@@ -638,13 +638,13 @@ MainGui := Gui("+Resize", "ControlGetStyle Practical Examples")
 MainGui.Add("Text", "w400", "Select an example to run:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Accessibility Checker",
-"Example 2: Form Validation Diagnostic",
-"Example 3: UI Testing Helper",
-"Example 4: State Diagnostic Tool",
-"Example 5: Theme Detector",
-"Example 6: Performance Diagnostic",
-"Example 7: External Window Analyzer"
+    "Example 1: Accessibility Checker",
+    "Example 2: Form Validation Diagnostic",
+    "Example 3: UI Testing Helper",
+    "Example 4: State Diagnostic Tool",
+    "Example 5: Theme Detector",
+    "Example 6: Performance Diagnostic",
+    "Example 7: External Window Analyzer"
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")
@@ -703,20 +703,20 @@ class AccessibilityAuditor {
         ; Check for edit controls without autoscroll
         if (InStr(className, "Edit")) {
             if (!(style & 0x0004) && !(style & 0x0080)) {  ; Single-line without autohscroll
-            warnings.Push("Single-line edit lacks ES_AUTOHSCROLL")
+                warnings.Push("Single-line edit lacks ES_AUTOHSCROLL")
+            }
+            if ((style & 0x0004) && !(style & 0x0040)) {  ; Multiline without autovscroll
+                warnings.Push("Multiline edit lacks ES_AUTOVSCROLL")
+            }
         }
-        if ((style & 0x0004) && !(style & 0x0040)) {  ; Multiline without autovscroll
-        warnings.Push("Multiline edit lacks ES_AUTOVSCROLL")
-    }
-}
 
-return {
-    issues: issues,
-    warnings: warnings,
-    style: style,
-    isAccessible: issues.Length = 0
-}
-}
+        return {
+            issues: issues,
+            warnings: warnings,
+            style: style,
+            isAccessible: issues.Length = 0
+        }
+    }
 }
 
 ; Moved class FormDiagnostic from nested scope
@@ -727,75 +727,75 @@ class FormDiagnostic {
 
         ; Check if editable fields are actually editable
         if (style & 0x0800) {  ; ES_READONLY
-        issues.Push({
-            severity: "INFO",
-            message: "Field is read-only"
-        })
+            issues.Push({
+                severity: "INFO",
+                message: "Field is read-only"
+            })
+        }
+
+        if (style & 0x08000000) {  ; WS_DISABLED
+            issues.Push({
+                severity: "WARNING",
+                message: "Field is disabled - cannot collect input"
+            })
+        }
+
+        ; Check for password fields
+        if (style & 0x0020) {  ; ES_PASSWORD
+            if (!(style & 0x0080)) {  ; No ES_AUTOHSCROLL
+                issues.Push({
+                    severity: "WARNING",
+                    message: "Password field without auto-scroll"
+                })
+            }
+        }
+
+        ; Check numeric fields
+        if (style & 0x2000) {  ; ES_NUMBER
+            issues.Push({
+                severity: "INFO",
+                message: "Numeric input only"
+            })
+        }
+
+        return issues
     }
 
-    if (style & 0x08000000) {  ; WS_DISABLED
-    issues.Push({
-        severity: "WARNING",
-        message: "Field is disabled - cannot collect input"
-    })
-}
+    static CheckForm(controls) {
+        report := {
+            controls: [],
+            editableCount: 0,
+            readOnlyCount: 0,
+            disabledCount: 0,
+            passwordCount: 0,
+            numericCount: 0
+        }
 
-; Check for password fields
-if (style & 0x0020) {  ; ES_PASSWORD
-if (!(style & 0x0080)) {  ; No ES_AUTOHSCROLL
-issues.Push({
-    severity: "WARNING",
-    message: "Password field without auto-scroll"
-})
-}
-}
+        for item in controls {
+            issues := this.CheckEditControl(item.ctrl)
+            style := ControlGetStyle(item.ctrl)
 
-; Check numeric fields
-if (style & 0x2000) {  ; ES_NUMBER
-issues.Push({
-    severity: "INFO",
-    message: "Numeric input only"
-})
-}
+            ; Count control types
+            if (!(style & 0x0800) && !(style & 0x08000000))
+                report.editableCount++
+            if (style & 0x0800)
+                report.readOnlyCount++
+            if (style & 0x08000000)
+                report.disabledCount++
+            if (style & 0x0020)
+                report.passwordCount++
+            if (style & 0x2000)
+                report.numericCount++
 
-return issues
-}
+            report.controls.Push({
+                name: item.name,
+                style: style,
+                issues: issues
+            })
+        }
 
-static CheckForm(controls) {
-    report := {
-        controls: [],
-        editableCount: 0,
-        readOnlyCount: 0,
-        disabledCount: 0,
-        passwordCount: 0,
-        numericCount: 0
+        return report
     }
-
-    for item in controls {
-        issues := this.CheckEditControl(item.ctrl)
-        style := ControlGetStyle(item.ctrl)
-
-        ; Count control types
-        if (!(style & 0x0800) && !(style & 0x08000000))
-        report.editableCount++
-        if (style & 0x0800)
-        report.readOnlyCount++
-        if (style & 0x08000000)
-        report.disabledCount++
-        if (style & 0x0020)
-        report.passwordCount++
-        if (style & 0x2000)
-        report.numericCount++
-
-        report.controls.Push({
-            name: item.name,
-            style: style,
-            issues: issues
-        })
-    }
-
-    return report
-}
 }
 
 ; Moved class UITester from nested scope
@@ -902,70 +902,70 @@ class StateDiagnostic {
 
     static AnalyzeFlags(style, &report) {
         flags := Map(
-        "WS_VISIBLE", 0x10000000,
-        "WS_DISABLED", 0x08000000,
-        "WS_TABSTOP", 0x00010000,
-        "WS_GROUP", 0x00020000,
-        "WS_BORDER", 0x00800000,
-        "ES_READONLY", 0x0800,
-        "ES_PASSWORD", 0x0020,
-        "ES_MULTILINE", 0x0004,
-        "ES_NUMBER", 0x2000
+            "WS_VISIBLE", 0x10000000,
+            "WS_DISABLED", 0x08000000,
+            "WS_TABSTOP", 0x00010000,
+            "WS_GROUP", 0x00020000,
+            "WS_BORDER", 0x00800000,
+            "ES_READONLY", 0x0800,
+            "ES_PASSWORD", 0x0020,
+            "ES_MULTILINE", 0x0004,
+            "ES_NUMBER", 0x2000
         )
 
         for name, value in flags {
             if (style & value)
-            report.flags.Push(name)
+                report.flags.Push(name)
         }
     }
 
     static AnalyzeCapabilities(style, className, &report) {
         if (!(style & 0x08000000))
-        report.capabilities.Push("Can receive user input")
+            report.capabilities.Push("Can receive user input")
 
         if (style & 0x00010000)
-        report.capabilities.Push("Can receive keyboard focus via Tab")
+            report.capabilities.Push("Can receive keyboard focus via Tab")
 
         if (InStr(className, "Edit")) {
             if (!(style & 0x0800))
-            report.capabilities.Push("User can edit text")
+                report.capabilities.Push("User can edit text")
 
             if (style & 0x0004)
-            report.capabilities.Push("Supports multiple lines")
+                report.capabilities.Push("Supports multiple lines")
 
             if (style & 0x2000)
-            report.capabilities.Push("Accepts only numeric input")
+                report.capabilities.Push("Accepts only numeric input")
         }
     }
 
     static AnalyzeRestrictions(style, &report) {
         if (style & 0x08000000)
-        report.restrictions.Push("Control is disabled")
+            report.restrictions.Push("Control is disabled")
 
         if (style & 0x0800)
-        report.restrictions.Push("Text cannot be edited")
+            report.restrictions.Push("Text cannot be edited")
 
         if (!(style & 0x00010000))
-        report.restrictions.Push("Cannot receive focus via Tab key")
+            report.restrictions.Push("Cannot receive focus via Tab key")
 
         if (style & 0x0020)
-        report.restrictions.Push("Text is masked (password)")
+            report.restrictions.Push("Text is masked (password)")
     }
 
     static GenerateRecommendations(style, className, &report) {
         if (InStr(className, "Edit")) {
             if ((style & 0x0004) && !(style & 0x0040))
-            report.recommendations.Push("Add ES_AUTOVSCROLL for better multiline editing")
+                report.recommendations.Push("Add ES_AUTOVSCROLL for better multiline editing")
 
             if (!(style & 0x0004) && !(style & 0x0080))
-            report.recommendations.Push("Add ES_AUTOHSCROLL for single-line editing")
+                report.recommendations.Push("Add ES_AUTOHSCROLL for single-line editing")
 
             if ((style & 0x10000000) && (style & 0x08000000))
-            report.recommendations.Push("Consider hiding disabled controls")
+                report.recommendations.Push("Consider hiding disabled controls")
         }
 
         if ((style & 0x08000000) && (style & 0x00010000))
-        report.recommendations.Push("Remove WS_TABSTOP from disabled control")
+            report.recommendations.Push("Remove WS_TABSTOP from disabled control")
     }
 }
 
@@ -982,13 +982,13 @@ class ThemeDetector {
             style := ControlGetStyle(item.ctrl)
 
             if (style & 0x0800)  ; ES_READONLY
-            hasReadOnly := true
+                hasReadOnly := true
             if (style & 0x0020)  ; ES_PASSWORD
-            hasPasswords := true
+                hasPasswords := true
             if (style & 0x0004)  ; ES_MULTILINE
-            hasMultiline := true
+                hasMultiline := true
             if (style & 0x00800000)  ; WS_BORDER
-            hasBorders++
+                hasBorders++
         }
 
         theme := {
@@ -999,27 +999,27 @@ class ThemeDetector {
 
         ; Detect theme type
         if (hasReadOnly && !hasPasswords && hasBorders / totalControls > 0.5)
-        theme.name := "Information Display"
+            theme.name := "Information Display"
         else if (hasPasswords && hasMultiline)
-        theme.name := "Comprehensive Form"
+            theme.name := "Comprehensive Form"
         else if (hasPasswords)
-        theme.name := "Secure Input Form"
+            theme.name := "Secure Input Form"
         else if (hasMultiline && hasBorders / totalControls > 0.7)
-        theme.name := "Document Editor"
+            theme.name := "Document Editor"
         else
-        theme.name := "Standard Form"
+            theme.name := "Standard Form"
 
         ; Add characteristics
         if (hasReadOnly)
-        theme.characteristics.Push("Contains read-only fields")
+            theme.characteristics.Push("Contains read-only fields")
         if (hasPasswords)
-        theme.characteristics.Push("Includes secure input")
+            theme.characteristics.Push("Includes secure input")
         if (hasMultiline)
-        theme.characteristics.Push("Supports long-form text")
+            theme.characteristics.Push("Supports long-form text")
         if (theme.borderPercent > 80)
-        theme.characteristics.Push("Heavily bordered (classic style)")
+            theme.characteristics.Push("Heavily bordered (classic style)")
         else if (theme.borderPercent < 20)
-        theme.characteristics.Push("Minimal borders (modern style)")
+            theme.characteristics.Push("Minimal borders (modern style)")
 
         return theme
     }

@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinSetAlwaysOnTop() - Set always on top
-*
-* Makes a window stay above other windows.
-*/
+ * WinSetAlwaysOnTop() - Set always on top
+ * 
+ * Makes a window stay above other windows.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

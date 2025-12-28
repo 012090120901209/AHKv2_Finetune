@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ListView_10_Styling.ahk
-*
-* DESCRIPTION:
-* Demonstrates styling and visual customization of ListView controls including colors,
-* fonts, grid lines, checkboxes, and various view modes.
-*
-* FEATURES:
-* - Custom background and text colors
-* - Row color alternation (zebra striping)
-* - Font customization
-* - Grid lines and visual separators
-* - Checkboxes for items
-* - Different view modes (Details, Icon, List, Tile)
-* - Full row selection
-* - Custom item coloring
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ListView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - ListView options (Grid, Checked, etc.)
-* - SetFont() method
-* - Color customization via options
-* - View mode switching
-* - Visual enhancement techniques
-*
-* LEARNING POINTS:
-* 1. ListView appearance can be customized extensively
-* 2. Grid option shows cell boundaries
-* 3. Checked option adds checkboxes to rows
-* 4. Different view modes suit different data types
-* 5. Fonts can be customized like other controls
-* 6. Background colors improve readability
-* 7. Visual design affects usability
-*/
+ * BuiltIn_ListView_10_Styling.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates styling and visual customization of ListView controls including colors,
+ * fonts, grid lines, checkboxes, and various view modes.
+ * 
+ * FEATURES:
+ * - Custom background and text colors
+ * - Row color alternation (zebra striping)
+ * - Font customization
+ * - Grid lines and visual separators
+ * - Checkboxes for items
+ * - Different view modes (Details, Icon, List, Tile)
+ * - Full row selection
+ * - Custom item coloring
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ListView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - ListView options (Grid, Checked, etc.)
+ * - SetFont() method
+ * - Color customization via options
+ * - View mode switching
+ * - Visual enhancement techniques
+ * 
+ * LEARNING POINTS:
+ * 1. ListView appearance can be customized extensively
+ * 2. Grid option shows cell boundaries
+ * 3. Checked option adds checkboxes to rows
+ * 4. Different view modes suit different data types
+ * 5. Fonts can be customized like other controls
+ * 6. Background colors improve readability
+ * 7. Visual design affects usability
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Basic Styling Options
@@ -78,19 +78,19 @@ Example1_BasicStyling() {
         checked := []
         Loop LV3.GetCount() {
             if LV3.GetNext(A_Index - 1, "Checked") = A_Index
-            checked.Push(LV3.GetText(A_Index, 1))
+                checked.Push(LV3.GetText(A_Index, 1))
         }
 
         if checked.Length = 0
-        MsgBox("No items checked!")
+            MsgBox("No items checked!")
         else
-        MsgBox("Checked items:`n" Join(checked, "`n"))
+            MsgBox("Checked items:`n" Join(checked, "`n"))
     }
 
     Join(arr, delimiter) {
         result := ""
         for item in arr
-        result .= item delimiter
+            result .= item delimiter
         return SubStr(result, 1, -StrLen(delimiter))
     }
 
@@ -106,28 +106,28 @@ Example2_FontCustomization() {
     MyGui.Add("Text", "w750", "Default Font:")
     LV1 := MyGui.Add("ListView", "r4 w750", ["Product", "Price"])
     Loop 4
-    LV1.Add(, "Product " A_Index, "$" Random(10, 100))
+        LV1.Add(, "Product " A_Index, "$" Random(10, 100))
     LV1.ModifyCol()
 
     MyGui.Add("Text", "w750", "Large Bold Font:")
     LV2 := MyGui.Add("ListView", "r4 w750", ["Product", "Price"])
     LV2.SetFont("s12 Bold", "Segoe UI")
     Loop 4
-    LV2.Add(, "Product " A_Index, "$" Random(10, 100))
+        LV2.Add(, "Product " A_Index, "$" Random(10, 100))
     LV2.ModifyCol()
 
     MyGui.Add("Text", "w750", "Monospace Font (Consolas):")
     LV3 := MyGui.Add("ListView", "r4 w750", ["Code", "Value"])
     LV3.SetFont("s10", "Consolas")
     Loop 4
-    LV3.Add(, Format("CODE{:04}", A_Index), Random(1000, 9999))
+        LV3.Add(, Format("CODE{:04}", A_Index), Random(1000, 9999))
     LV3.ModifyCol()
 
     MyGui.Add("Text", "w750", "Custom Color Font:")
     LV4 := MyGui.Add("ListView", "r4 w750", ["Item", "Amount"])
     LV4.SetFont("s11 cBlue", "Arial")
     Loop 4
-    LV4.Add(, "Item " A_Index, Format("${:,.2f}", Random(100, 1000)))
+        LV4.Add(, "Item " A_Index, Format("${:,.2f}", Random(100, 1000)))
     LV4.ModifyCol()
 
     MyGui.Show()
@@ -142,13 +142,13 @@ Example3_GridAndRowSelect() {
     MyGui.Add("Text", "w750", "Default (no grid):")
     LV1 := MyGui.Add("ListView", "r6 w750", ["Col 1", "Col 2", "Col 3", "Col 4"])
     Loop 6
-    LV1.Add(, "A" A_Index, "B" A_Index, "C" A_Index, "D" A_Index)
+        LV1.Add(, "A" A_Index, "B" A_Index, "C" A_Index, "D" A_Index)
     LV1.ModifyCol()
 
     MyGui.Add("Text", "w750", "With Grid Lines:")
     LV2 := MyGui.Add("ListView", "r6 w750 Grid", ["Col 1", "Col 2", "Col 3", "Col 4"])
     Loop 6
-    LV2.Add(, "A" A_Index, "B" A_Index, "C" A_Index, "D" A_Index)
+        LV2.Add(, "A" A_Index, "B" A_Index, "C" A_Index, "D" A_Index)
     LV2.ModifyCol()
 
     MyGui.Add("Text", "w750", "Toggle Options:")
@@ -158,9 +158,9 @@ Example3_GridAndRowSelect() {
     ToggleGrid(*) {
         static hasGrid := true
         if hasGrid
-        LV2.Opt("-Grid")
+            LV2.Opt("-Grid")
         else
-        LV2.Opt("+Grid")
+            LV2.Opt("+Grid")
         hasGrid := !hasGrid
         MsgBox("Grid " (hasGrid ? "enabled" : "disabled"))
     }
@@ -225,20 +225,20 @@ Example4_ViewModes() {
         ; Apply new view
         switch viewType {
             case "Report":
-            LV.Opt("+Report")
-            MsgBox("Details/Report view - shows columns")
+                LV.Opt("+Report")
+                MsgBox("Details/Report view - shows columns")
             case "Icon":
-            LV.Opt("+Icon")
-            MsgBox("Large icon view - best for visual content")
+                LV.Opt("+Icon")
+                MsgBox("Large icon view - best for visual content")
             case "SmallIcon":
-            LV.Opt("+IconSmall")
-            MsgBox("Small icon view - compact icons")
+                LV.Opt("+IconSmall")
+                MsgBox("Small icon view - compact icons")
             case "List":
-            LV.Opt("+List")
-            MsgBox("List view - single column, no details")
+                LV.Opt("+List")
+                MsgBox("List view - single column, no details")
             case "Tile":
-            LV.Opt("+Tile")
-            MsgBox("Tile view - large icons with details")
+                LV.Opt("+Tile")
+                MsgBox("Tile view - large icons with details")
         }
     }
 
@@ -256,12 +256,12 @@ Example5_CheckboxStates() {
     LV := MyGui.Add("ListView", "r12 w700 Checked", ["Task", "Priority", "Completed"])
 
     tasks := [
-    ["Write documentation", "High", "No"],
-    ["Code review", "Medium", "No"],
-    ["Fix bug #123", "Critical", "No"],
-    ["Update tests", "Low", "No"],
-    ["Deploy to staging", "High", "No"],
-    ["Team meeting", "Medium", "No"]
+        ["Write documentation", "High", "No"],
+        ["Code review", "Medium", "No"],
+        ["Fix bug #123", "Critical", "No"],
+        ["Update tests", "Low", "No"],
+        ["Deploy to staging", "High", "No"],
+        ["Team meeting", "Medium", "No"]
     ]
 
     for task in tasks {
@@ -303,16 +303,16 @@ Example5_CheckboxStates() {
         isChecked := LV.GetNext(rowNum - 1, "Checked") = rowNum
 
         if isChecked
-        LV.Modify(rowNum, "-Check")
+            LV.Modify(rowNum, "-Check")
         else
-        LV.Modify(rowNum, "Check")
+            LV.Modify(rowNum, "Check")
     }
 
     CheckHighPriority(*) {
         Loop LV.GetCount() {
             priority := LV.GetText(A_Index, 2)
             if priority = "High" or priority = "Critical"
-            LV.Modify(A_Index, "Check")
+                LV.Modify(A_Index, "Check")
         }
         MsgBox("Checked all High/Critical priority tasks")
     }
@@ -335,15 +335,15 @@ Example5_CheckboxStates() {
 
         Loop total {
             if LV.GetNext(A_Index - 1, "Checked") = A_Index
-            checked++
+                checked++
             if LV.GetText(A_Index, 3) = "Yes"
-            completed++
+                completed++
         }
 
         MsgBox("Total Tasks: " total "`n"
-        . "Checked: " checked "`n"
-        . "Completed: " completed "`n"
-        . "Remaining: " (total - completed))
+            . "Checked: " checked "`n"
+            . "Completed: " completed "`n"
+            . "Remaining: " (total - completed))
     }
 
     MyGui.Show()
@@ -358,13 +358,13 @@ Example6_ColorCustomization() {
     MyGui.Add("Text", "w750", "Default Colors:")
     LV1 := MyGui.Add("ListView", "r5 w750", ["Item", "Value"])
     Loop 5
-    LV1.Add(, "Item " A_Index, Random(100, 999))
+        LV1.Add(, "Item " A_Index, Random(100, 999))
     LV1.ModifyCol()
 
     MyGui.Add("Text", "w750", "Light Background:")
     LV2 := MyGui.Add("ListView", "r5 w750 Background0xF0F0F0", ["Item", "Value"])
     Loop 5
-    LV2.Add(, "Item " A_Index, Random(100, 999))
+        LV2.Add(, "Item " A_Index, Random(100, 999))
     LV2.ModifyCol()
 
     MyGui.Add("Text", "w750", "Dark Theme (requires custom control):")
@@ -375,7 +375,7 @@ Example6_ColorCustomization() {
     LV3 := MyGui.Add("ListView", "r5 w750", ["Item", "Value"])
     LV3.SetFont("cRed s11 Bold")
     Loop 5
-    LV3.Add(, "Item " A_Index, Random(100, 999))
+        LV3.Add(, "Item " A_Index, Random(100, 999))
     LV3.ModifyCol()
 
     MyGui.Show()
@@ -395,16 +395,16 @@ Example7_AdvancedStyling() {
 
     ; Sample data with various statuses
     tasks := [
-    ["✓", "Complete server migration", "Alice", "2025-11-15", "High"],
-    ["○", "Code review PR #234", "Bob", "2025-11-18", "Medium"],
-    ["✗", "Fix critical bug", "Charlie", "2025-11-16", "Critical"],
-    ["○", "Update documentation", "Diana", "2025-11-20", "Low"],
-    ["✓", "Deploy to staging", "Edward", "2025-11-14", "High"],
-    ["○", "Write unit tests", "Fiona", "2025-11-19", "Medium"],
-    ["○", "Database optimization", "George", "2025-11-22", "High"],
-    ["✗", "Security audit", "Hannah", "2025-11-17", "Critical"],
-    ["✓", "Update dependencies", "Ian", "2025-11-13", "Low"],
-    ["○", "Performance testing", "Julia", "2025-11-21", "Medium"]
+        ["✓", "Complete server migration", "Alice", "2025-11-15", "High"],
+        ["○", "Code review PR #234", "Bob", "2025-11-18", "Medium"],
+        ["✗", "Fix critical bug", "Charlie", "2025-11-16", "Critical"],
+        ["○", "Update documentation", "Diana", "2025-11-20", "Low"],
+        ["✓", "Deploy to staging", "Edward", "2025-11-14", "High"],
+        ["○", "Write unit tests", "Fiona", "2025-11-19", "Medium"],
+        ["○", "Database optimization", "George", "2025-11-22", "High"],
+        ["✗", "Security audit", "Hannah", "2025-11-17", "Critical"],
+        ["✓", "Update dependencies", "Ian", "2025-11-13", "Low"],
+        ["○", "Performance testing", "Julia", "2025-11-21", "Medium"]
     ]
 
     for task in tasks {
@@ -421,7 +421,7 @@ Example7_AdvancedStyling() {
     ; Pre-check completed items
     Loop LV.GetCount() {
         if LV.GetText(A_Index, 1) = "✓"
-        LV.Modify(A_Index, "Check")
+            LV.Modify(A_Index, "Check")
     }
 
     ; Action buttons
@@ -443,23 +443,23 @@ Example7_AdvancedStyling() {
             priority := LV.GetText(A_Index, 5)
 
             if status = "✓"
-            completed++
+                completed++
             else if status = "○"
-            pending++
+                pending++
             else if status = "✗"
-            blocked++
+                blocked++
 
             if priority = "Critical"
-            critical++
+                critical++
         }
 
         MsgBox("Task Summary:`n`n"
-        . "Total: " total "`n"
-        . "Completed (✓): " completed "`n"
-        . "Pending (○): " pending "`n"
-        . "Blocked (✗): " blocked "`n"
-        . "Critical Priority: " critical,
-        "Summary")
+            . "Total: " total "`n"
+            . "Completed (✓): " completed "`n"
+            . "Pending (○): " pending "`n"
+            . "Blocked (✗): " blocked "`n"
+            . "Critical Priority: " critical,
+            "Summary")
     }
 
     FilterCritical(*) {
@@ -470,7 +470,7 @@ Example7_AdvancedStyling() {
         checked := 0
         Loop LV.GetCount() {
             if LV.GetNext(A_Index - 1, "Checked") = A_Index
-            checked++
+                checked++
         }
         MsgBox("Exporting " checked " checked tasks...`n(In a real app, this would export to file)")
     }
@@ -481,12 +481,12 @@ Example7_AdvancedStyling() {
 
     ; Info panel
     MyGui.Add("Text", "w850", "`nStyling Features Demonstrated:"
-    . "`n  • Grid lines for better readability"
-    . "`n  • Checkboxes for task completion tracking"
-    . "`n  • Custom font (Segoe UI, 10pt)"
-    . "`n  • Unicode symbols for visual status indicators"
-    . "`n  • Column alignment (center, left)"
-    . "`n  • Professional layout and spacing")
+        . "`n  • Grid lines for better readability"
+        . "`n  • Checkboxes for task completion tracking"
+        . "`n  • Custom font (Segoe UI, 10pt)"
+        . "`n  • Unicode symbols for visual status indicators"
+        . "`n  • Column alignment (center, left)"
+        . "`n  • Professional layout and spacing")
 
     MyGui.Show()
 }
@@ -635,3 +635,4 @@ BEST PRACTICES:
 9. Consider accessibility (contrast, size)
 10. Don't over-style - simplicity often wins
 */
+

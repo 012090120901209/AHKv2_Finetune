@@ -8,20 +8,20 @@ class Graph {
 
     AddVertex(vertex) {
         if (!this.adjacencyList.Has(vertex))
-        this.adjacencyList[vertex] := []
+            this.adjacencyList[vertex] := []
         return this
     }
 
     AddEdge(v1, v2, weight := 1) {
         if (!this.adjacencyList.Has(v1))
-        this.AddVertex(v1)
+            this.AddVertex(v1)
         if (!this.adjacencyList.Has(v2))
-        this.AddVertex(v2)
+            this.AddVertex(v2)
 
-        this.adjacencyList[v1].Push({vertex: v2, weight: weight})
+        this.adjacencyList[v1].Push({ vertex: v2, weight: weight })
 
         if (!this.directed)
-        this.adjacencyList[v2].Push({vertex: v1, weight: weight})
+            this.adjacencyList[v2].Push({ vertex: v1, weight: weight })
 
         return this
     }
@@ -37,18 +37,18 @@ class Graph {
 
     _DFSHelper(vertex, visited, result) {
         if (!this.adjacencyList.Has(vertex) || visited.Has(vertex))
-        return
+            return
 
         visited[vertex] := true
         result.Push(vertex)
 
         for edge in this.adjacencyList[vertex]
-        this._DFSHelper(edge.vertex, visited, result)
+            this._DFSHelper(edge.vertex, visited, result)
     }
 
     BFS(start) {
         if (!this.adjacencyList.Has(start))
-        return []
+            return []
 
         visited := Map()
         queue := [start]
@@ -73,7 +73,7 @@ class Graph {
 
     HasPath(start, end) {
         if (!this.adjacencyList.Has(start) || !this.adjacencyList.Has(end))
-        return false
+            return false
 
         visited := Map()
         return this._HasPathDFS(start, end, visited)
@@ -81,40 +81,40 @@ class Graph {
 
     _HasPathDFS(current, end, visited) {
         if (current = end)
-        return true
+            return true
 
         if (visited.Has(current))
-        return false
+            return false
 
         visited[current] := true
 
         for edge in this.adjacencyList[current]
-        if (this._HasPathDFS(edge.vertex, end, visited))
-        return true
+            if (this._HasPathDFS(edge.vertex, end, visited))
+                return true
 
         return false
     }
 
     FindShortestPath(start, end) {
         if (!this.adjacencyList.Has(start) || !this.adjacencyList.Has(end))
-        return []
+            return []
 
         visited := Map()
-        queue := [{vertex: start, path: [start]}]
+        queue := [{ vertex: start, path: [start] }]
         visited[start] := true
 
         while (queue.Length > 0) {
             current := queue.RemoveAt(1)
 
             if (current.vertex = end)
-            return current.path
+                return current.path
 
             for edge in this.adjacencyList[current.vertex] {
                 if (!visited.Has(edge.vertex)) {
                     visited[edge.vertex] := true
                     newPath := current.path.Clone()
                     newPath.Push(edge.vertex)
-                    queue.Push({vertex: edge.vertex, path: newPath})
+                    queue.Push({ vertex: edge.vertex, path: newPath })
                 }
             }
         }
@@ -127,7 +127,7 @@ class Graph {
     GetEdgeCount() {
         count := 0
         for vertex, edges in this.adjacencyList
-        count += edges.Length
+            count += edges.Length
         return this.directed ? count : count // 2
     }
 
@@ -137,7 +137,7 @@ class Graph {
             str .= vertex . " -> "
             edgeStrs := []
             for edge in edges
-            edgeStrs.Push(edge.vertex . "(" . edge.weight . ")")
+                edgeStrs.Push(edge.vertex . "(" . edge.weight . ")")
             str .= edgeStrs.Join(", ") . "`n"
         }
         return str
@@ -149,7 +149,7 @@ graph := Graph()
 
 ; Add edges (creates vertices automatically)
 graph.AddEdge("A", "B").AddEdge("A", "C").AddEdge("B", "D")
-.AddEdge("C", "D").AddEdge("D", "E").AddEdge("E", "F")
+    .AddEdge("C", "D").AddEdge("D", "E").AddEdge("E", "F")
 
 MsgBox(graph.ToString())
 
@@ -165,8 +165,8 @@ MsgBox("Shortest path A to F: " . path.Join(" -> "))
 ; Directed graph example
 dirGraph := Graph(true)
 dirGraph.AddEdge("Start", "A").AddEdge("Start", "B")
-.AddEdge("A", "C").AddEdge("B", "C")
-.AddEdge("C", "End").AddEdge("B", "End")
+    .AddEdge("A", "C").AddEdge("B", "C")
+    .AddEdge("C", "End").AddEdge("B", "End")
 
 MsgBox(dirGraph.ToString())
 MsgBox("Shortest path Start to End: " . dirGraph.FindShortestPath("Start", "End").Join(" -> "))

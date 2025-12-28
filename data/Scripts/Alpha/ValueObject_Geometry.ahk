@@ -15,14 +15,14 @@ class Point {
     Scale(factor) => Point(this.x * factor, this.y * factor)
 
     Distance(other) => Sqrt((this.x - other.x) ** 2 + (this.y - other.y) ** 2)
-    
+
     Magnitude() => Sqrt(this.x ** 2 + this.y ** 2)
-    
+
     Normalize() {
         mag := this.Magnitude()
         return mag > 0 ? this.Scale(1 / mag) : Point()
     }
-    
+
     Dot(other) => this.x * other.x + this.y * other.y
 
     Rotate(angle, origin := "") {
@@ -91,7 +91,7 @@ class Rectangle {
             Max(this.Bottom, other.Bottom) - Min(this.Top, other.Top)
         )
     }
-    
+
     ToString() => Format("Rect({}, {}, {}x{})", this.x, this.y, this.width, this.height)
 }
 
@@ -100,18 +100,18 @@ p1 := Point(3, 4)
 p2 := Point(6, 8)
 
 MsgBox("Point Operations:`n"
-     . "P1: " p1.ToString() "`n"
-     . "P2: " p2.ToString() "`n"
-     . "Distance: " Round(p1.Distance(p2), 2) "`n"
-     . "P1 Magnitude: " p1.Magnitude() "`n"
-     . "P1 + P2: " p1.Add(p2).ToString())
+    . "P1: " p1.ToString() "`n"
+    . "P2: " p2.ToString() "`n"
+    . "Distance: " Round(p1.Distance(p2), 2) "`n"
+    . "P1 Magnitude: " p1.Magnitude() "`n"
+    . "P1 + P2: " p1.Add(p2).ToString())
 
 rect1 := Rectangle(0, 0, 100, 80)
 rect2 := Rectangle(50, 40, 100, 80)
 
 MsgBox("Rectangle Operations:`n"
-     . "Rect1: " rect1.ToString() "`n"
-     . "Rect2: " rect2.ToString() "`n"
-     . "Intersects: " rect1.Intersects(rect2) "`n"
-     . "Intersection: " rect1.Intersection(rect2).ToString() "`n"
-     . "Union: " rect1.Union(rect2).ToString())
+    . "Rect1: " rect1.ToString() "`n"
+    . "Rect2: " rect2.ToString() "`n"
+    . "Intersects: " rect1.Intersects(rect2) "`n"
+    . "Intersection: " rect1.Intersection(rect2).ToString() "`n"
+    . "Union: " rect1.Union(rect2).ToString())

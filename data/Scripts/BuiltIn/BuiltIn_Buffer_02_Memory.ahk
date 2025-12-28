@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Buffer_02_Memory.ahk
-*
-* DESCRIPTION:
-* Advanced memory allocation, management, and manipulation using Buffer objects.
-* Covers memory copying, alignment, DllCall integration, and low-level operations.
-*
-* FEATURES:
-* - Memory allocation strategies
-* - Buffer memory copying and moving
-* - Memory alignment techniques
-* - DllCall integration with buffers
-* - Memory pools and reuse patterns
-* - Performance optimization techniques
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Buffer and DllCall
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - RtlMoveMemory for fast memory operations
-* - RtlZeroMemory for efficient zeroing
-* - RtlFillMemory for pattern filling
-* - Proper pointer arithmetic with Buffer.Ptr
-* - Memory alignment for performance
-*
-* LEARNING POINTS:
-* 1. Windows API functions provide efficient memory operations
-* 2. Memory alignment affects performance on some architectures
-* 3. Buffers can be reused to reduce allocation overhead
-* 4. DllCall requires proper pointer management with Buffers
-* 5. Large memory operations should use optimized system calls
-*/
+ * BuiltIn_Buffer_02_Memory.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced memory allocation, management, and manipulation using Buffer objects.
+ * Covers memory copying, alignment, DllCall integration, and low-level operations.
+ * 
+ * FEATURES:
+ * - Memory allocation strategies
+ * - Buffer memory copying and moving
+ * - Memory alignment techniques
+ * - DllCall integration with buffers
+ * - Memory pools and reuse patterns
+ * - Performance optimization techniques
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Buffer and DllCall
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - RtlMoveMemory for fast memory operations
+ * - RtlZeroMemory for efficient zeroing
+ * - RtlFillMemory for pattern filling
+ * - Proper pointer arithmetic with Buffer.Ptr
+ * - Memory alignment for performance
+ * 
+ * LEARNING POINTS:
+ * 1. Windows API functions provide efficient memory operations
+ * 2. Memory alignment affects performance on some architectures
+ * 3. Buffers can be reused to reduce allocation overhead
+ * 4. DllCall requires proper pointer management with Buffers
+ * 5. Large memory operations should use optimized system calls
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Memory Copy Operations
@@ -49,9 +49,9 @@ Example1_MemoryCopy() {
     ; Method 1: RtlMoveMemory (fast, handles overlapping regions)
     dest1 := Buffer(100)
     DllCall("RtlMoveMemory"
-    , "Ptr", dest1.Ptr
-    , "Ptr", source.Ptr
-    , "UPtr", source.Size)
+        , "Ptr", dest1.Ptr
+        , "Ptr", source.Ptr
+        , "UPtr", source.Size)
 
     ; Method 2: Byte-by-byte copy (slow, but demonstrates manual approach)
     dest2 := Buffer(100)
@@ -63,22 +63,22 @@ Example1_MemoryCopy() {
     ; Method 3: Copy with RtlCopyMemory (same as RtlMoveMemory on Windows)
     dest3 := Buffer(100)
     DllCall("ntdll\RtlCopyMemory"
-    , "Ptr", dest3.Ptr
-    , "Ptr", source.Ptr
-    , "UPtr", source.Size)
+        , "Ptr", dest3.Ptr
+        , "Ptr", source.Ptr
+        , "UPtr", source.Size)
 
     ; Partial copy - copy first 40 bytes only
     dest4 := Buffer(100)  ; Create 100-byte buffer
     DllCall("RtlMoveMemory"
-    , "Ptr", dest4.Ptr
-    , "Ptr", source.Ptr
-    , "UPtr", 40)  ; Only copy 40 bytes
+        , "Ptr", dest4.Ptr
+        , "Ptr", source.Ptr
+        , "UPtr", 40)  ; Only copy 40 bytes
 
     ; Verify copies
     VerifyBuffers(buf1, buf2) {
         loop buf1.Size {
             if NumGet(buf1, A_Index - 1, "UChar") != NumGet(buf2, A_Index - 1, "UChar")
-            return false
+                return false
         }
         return true
     }
@@ -135,15 +135,15 @@ Example2_ZeroingAndFilling() {
     }
 
     DllCall("RtlZeroMemory"
-    , "Ptr", zeroBuf.Ptr
-    , "UPtr", zeroBuf.Size)
+        , "Ptr", zeroBuf.Ptr
+        , "UPtr", zeroBuf.Size)
 
     ; Method 2: RtlFillMemory - fill with a byte value
     fillBuf := Buffer(256)
     DllCall("RtlFillMemory"
-    , "Ptr", fillBuf.Ptr
-    , "UPtr", fillBuf.Size
-    , "UChar", 0xAA)  ; Fill with 0xAA
+        , "Ptr", fillBuf.Ptr
+        , "UPtr", fillBuf.Size
+        , "UChar", 0xAA)  ; Fill with 0xAA
 
     ; Method 3: Selective zeroing - zero specific regions
     selectiveBuf := Buffer(256)
@@ -153,8 +153,8 @@ Example2_ZeroingAndFilling() {
 
     ; Zero bytes 64-127 (middle section)
     DllCall("RtlZeroMemory"
-    , "Ptr", selectiveBuf.Ptr + 64
-    , "UPtr", 64)
+        , "Ptr", selectiveBuf.Ptr + 64
+        , "UPtr", 64)
 
     ; Method 4: Fill with multi-byte pattern
     patternBuf := Buffer(256)
@@ -168,7 +168,7 @@ Example2_ZeroingAndFilling() {
     CheckZero(buf, offset, size) {
         loop size {
             if NumGet(buf, offset + A_Index - 1, "UChar") != 0
-            return false
+                return false
         }
         return true
     }
@@ -176,7 +176,7 @@ Example2_ZeroingAndFilling() {
     CheckFill(buf, fillValue, size) {
         loop size {
             if NumGet(buf, A_Index - 1, "UChar") != fillValue
-            return false
+                return false
         }
         return true
     }
@@ -256,7 +256,7 @@ Example3_MemoryAlignment() {
             Buffer: buf,
             AlignedPtr: alignedAddr,
             Offset: offset,
-            IsAligned: CheckAlignment({Ptr: alignedAddr}, alignment)
+            IsAligned: CheckAlignment({ Ptr: alignedAddr }, alignment)
         }
     }
 
@@ -284,7 +284,7 @@ Example3_MemoryAlignment() {
     for size, info in alignmentResults {
         count++
         if count > 5
-        break
+            break
 
         result .= "  Size " . size . " bytes:`n"
         result .= "    Pointer: 0x" . Format("{:X}", info.Ptr) . "`n"
@@ -384,16 +384,16 @@ Example5_DllCallIntegration() {
     NumPut("UInt", 260, sizeBuffer, 0)
 
     result1 := DllCall("GetComputerNameW"
-    , "Ptr", nameBuffer.Ptr
-    , "Ptr", sizeBuffer.Ptr
-    , "Int")
+        , "Ptr", nameBuffer.Ptr
+        , "Ptr", sizeBuffer.Ptr
+        , "Int")
 
     computerName := result1 ? StrGet(nameBuffer, "UTF-16") : "Unknown"
 
     ; Example 2: Get system info using GetSystemInfo
     SYSTEM_INFO_SIZE := 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4  ; 36 bytes on x64, adjust for x86
     if A_PtrSize = 8
-    SYSTEM_INFO_SIZE := 48
+        SYSTEM_INFO_SIZE := 48
 
     sysInfoBuf := Buffer(SYSTEM_INFO_SIZE)
 
@@ -465,7 +465,7 @@ ShowMenu() {
     choice := InputBox(menu, "Buffer Memory Examples", "w400 h300")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_MemoryCopy()
@@ -520,7 +520,7 @@ class MemoryPool {
     ; Release a buffer back to the pool
     Release(buf) {
         if !this.inUse.Has(buf.Ptr)
-        throw Error("Buffer not acquired from this pool")
+            throw Error("Buffer not acquired from this pool")
 
         this.inUse.Delete(buf.Ptr)
         this.available.Push(buf)
@@ -536,8 +536,8 @@ class MemoryPool {
             AllocCount: this.allocCount,
             ReuseCount: this.reuseCount,
             ReuseRate: this.allocCount > 0
-            ? Round((this.reuseCount / this.allocCount) * 100, 2)
-            : 0
+                ? Round((this.reuseCount / this.allocCount) * 100, 2)
+                : 0
         }
     }
 

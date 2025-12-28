@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinHide() and WinShow() - Hide/show window
-*
-* Makes a window invisible or visible.
-*/
+ * WinHide() and WinShow() - Hide/show window
+ * 
+ * Makes a window invisible or visible.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

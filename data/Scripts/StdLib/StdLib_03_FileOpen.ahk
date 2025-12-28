@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileOpen() - File object for reading/writing
-*
-* Opens a file and returns a file object with methods like ReadLine(), WriteLine(), etc.
-*/
+ * FileOpen() - File object for reading/writing
+ * 
+ * Opens a file and returns a file object with methods like ReadLine(), WriteLine(), etc.
+ */
 
 dataFile := A_ScriptDir "\data.txt"
 
@@ -19,8 +19,8 @@ file.Close()
 ; Read mode
 file := FileOpen(dataFile, "r")
 MsgBox("Line 1: " file.ReadLine()
-. "`nLine 2: " file.ReadLine()
-. "`nRemaining: " file.Read())
+    . "`nLine 2: " file.ReadLine()
+    . "`nRemaining: " file.Read())
 file.Close()
 
 FileDelete(dataFile)

@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileRead - Large File Handling and Performance Optimization
-* ============================================================================
-*
-* Demonstrates techniques for handling large files:
-* - Memory-efficient reading strategies
-* - Chunked reading for large files
-* - Progress tracking during file reading
-* - Performance optimization techniques
-* - Memory management best practices
-*
-* @description Large file handling examples for FileRead
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
-*/
+ * ============================================================================
+ * FileRead - Large File Handling and Performance Optimization
+ * ============================================================================
+ * 
+ * Demonstrates techniques for handling large files:
+ * - Memory-efficient reading strategies
+ * - Chunked reading for large files
+ * - Progress tracking during file reading
+ * - Performance optimization techniques
+ * - Memory management best practices
+ * 
+ * @description Large file handling examples for FileRead
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileRead.htm
+ */
 
 ; ============================================================================
 ; Example 1: Creating and Reading Large Test Files
@@ -112,7 +112,7 @@ Example2_ChunkedReading() {
             FileAppend("Line " A_Index ": Sample data for chunked reading test.`n", largeFile)
 
             if Mod(A_Index, 10000) = 0
-            ToolTip("Creating: " (A_Index / 500) "%")
+                ToolTip("Creating: " (A_Index / 500) "%")
         }
         ToolTip()
     }
@@ -128,7 +128,7 @@ Example2_ChunkedReading() {
         file := FileOpen(largeFile, "r")
 
         if !file
-        throw Error("Cannot open file")
+            throw Error("Cannot open file")
 
         ; Get total file size
         file.Seek(0, 2)  ; Seek to end
@@ -204,7 +204,7 @@ Example3_LineByLineReading() {
 
             ; Update progress
             if Mod(lineCount, 1000) = 0
-            ToolTip("Processing line " lineCount)
+                ToolTip("Processing line " lineCount)
         }
 
         ToolTip()
@@ -242,15 +242,15 @@ Example4_SelectiveReading() {
 
         FileAppend("[HEADER]`n", testFile)
         Loop 100
-        FileAppend("Header line " A_Index "`n", testFile)
+            FileAppend("Header line " A_Index "`n", testFile)
 
         FileAppend("`n[DATA]`n", testFile)
         Loop 10000
-        FileAppend("Data line " A_Index ": " (A_Index * 456) "`n", testFile)
+            FileAppend("Data line " A_Index ": " (A_Index * 456) "`n", testFile)
 
         FileAppend("`n[FOOTER]`n", testFile)
         Loop 100
-        FileAppend("Footer line " A_Index "`n", testFile)
+            FileAppend("Footer line " A_Index "`n", testFile)
 
         ; Method 1: Read only specific section using Loop Read
         MsgBox("Reading only DATA section using Loop Read...", "Selective Reading")
@@ -270,7 +270,7 @@ Example4_SelectiveReading() {
             }
 
             if inDataSection && Trim(A_LoopReadLine)
-            dataLines.Push(A_LoopReadLine)
+                dataLines.Push(A_LoopReadLine)
         }
 
         loopReadTime := A_TickCount - startTime
@@ -300,7 +300,7 @@ Example4_SelectiveReading() {
 
         output .= "Sample Data (first 3 lines):`n"
         Loop Min(3, dataLines.Length)
-        output .= dataLines[A_Index] "`n"
+            output .= dataLines[A_Index] "`n"
 
         MsgBox(output, "Selective Reading Results")
 
@@ -331,7 +331,7 @@ Example5_LogFileAnalysis() {
             FileAppend(timestamp " [" level "] Message #" A_Index ": Random value " Random(1, 9999) "`n", logFile)
 
             if Mod(A_Index, 5000) = 0
-            ToolTip("Creating log: " (A_Index / 500) "%")
+                ToolTip("Creating log: " (A_Index / 500) "%")
         }
         ToolTip()
 
@@ -339,11 +339,11 @@ Example5_LogFileAnalysis() {
         MsgBox("Analyzing log file using memory-efficient method...", "Analysis")
 
         stats := Map(
-        "total", 0,
-        "INFO", 0,
-        "WARNING", 0,
-        "ERROR", 0,
-        "DEBUG", 0
+            "total", 0,
+            "INFO", 0,
+            "WARNING", 0,
+            "ERROR", 0,
+            "DEBUG", 0
         )
 
         errors := []
@@ -361,7 +361,7 @@ Example5_LogFileAnalysis() {
 
                     ; Collect ERROR entries (limited)
                     if level = "ERROR" && errors.Length < maxErrors
-                    errors.Push(A_LoopReadLine)
+                        errors.Push(A_LoopReadLine)
 
                     break
                 }
@@ -369,7 +369,7 @@ Example5_LogFileAnalysis() {
 
             ; Progress update
             if Mod(stats["total"], 5000) = 0
-            ToolTip("Analyzing: " stats["total"] " entries")
+                ToolTip("Analyzing: " stats["total"] " entries")
         }
 
         ToolTip()
@@ -391,7 +391,7 @@ Example5_LogFileAnalysis() {
 
         output .= "Sample Errors (first 3):`n"
         Loop Min(3, errors.Length)
-        output .= errors[A_Index] "`n"
+            output .= errors[A_Index] "`n"
 
         MsgBox(output, "Log Analysis Complete")
 
@@ -416,7 +416,7 @@ Example6_PerformanceComparison() {
 
         FileDelete(testFile)
         Loop 20000
-        FileAppend("Test line " A_Index " with some sample data: " Random(10000, 99999) "`n", testFile)
+            FileAppend("Test line " A_Index " with some sample data: " Random(10000, 99999) "`n", testFile)
 
         fileSize := Round(FileGetSize(testFile) / 1024, 2)
 
@@ -427,15 +427,15 @@ Example6_PerformanceComparison() {
         content1 := FileRead(testFile)
         lines1 := StrSplit(content1, "`n")
         time1 := A_TickCount - startTime
-        results.Push({method: "FileRead (entire)", time: time1, lines: lines1.Length})
+        results.Push({ method: "FileRead (entire)", time: time1, lines: lines1.Length })
 
         ; Method 2: Loop Read
         startTime := A_TickCount
         lines2 := []
         Loop Read, testFile
-        lines2.Push(A_LoopReadLine)
+            lines2.Push(A_LoopReadLine)
         time2 := A_TickCount - startTime
-        results.Push({method: "Loop Read", time: time2, lines: lines2.Length})
+        results.Push({ method: "Loop Read", time: time2, lines: lines2.Length })
 
         ; Method 3: FileOpen with chunked reading
         startTime := A_TickCount
@@ -447,14 +447,14 @@ Example6_PerformanceComparison() {
         }
         file.Close()
         time3 := A_TickCount - startTime
-        results.Push({method: "FileOpen + ReadLine", time: time3, lines: lines3})
+        results.Push({ method: "FileOpen + ReadLine", time: time3, lines: lines3 })
 
         ; Method 4: FileRead with limited processing
         startTime := A_TickCount
         content4 := FileRead(testFile)
         lines4 := StrLen(content4) - StrLen(StrReplace(content4, "`n", ""))
         time4 := A_TickCount - startTime
-        results.Push({method: "FileRead (count only)", time: time4, lines: lines4})
+        results.Push({ method: "FileRead (count only)", time: time4, lines: lines4 })
 
         ; Display results
         output := "Performance Comparison Results:`n`n"
@@ -464,7 +464,7 @@ Example6_PerformanceComparison() {
         fastest := results[1]
         for result in results {
             if result.time < fastest.time
-            fastest := result
+                fastest := result
         }
 
         for result in results {
@@ -577,30 +577,24 @@ Example7_ProgressTracking() {
 
 ; Run all examples
 RunAllExamples() {
-    examples := [
-    {
-        name: "Create & Read Large File", func: Example1_CreateLargeFile},
-        {
-            name: "Chunked Reading", func: Example2_ChunkedReading},
-            {
-                name: "Line-by-Line Reading", func: Example3_LineByLineReading},
-                {
-                    name: "Selective Reading", func: Example4_SelectiveReading},
-                    {
-                        name: "Log File Analysis", func: Example5_LogFileAnalysis},
-                        {
-                            name: "Performance Comparison", func: Example6_PerformanceComparison},
-                            {
+    examples := [{
+        name: "Create & Read Large File", func: Example1_CreateLargeFile }, {
+            name: "Chunked Reading", func: Example2_ChunkedReading }, {
+                name: "Line-by-Line Reading", func: Example3_LineByLineReading }, {
+                    name: "Selective Reading", func: Example4_SelectiveReading }, {
+                        name: "Log File Analysis", func: Example5_LogFileAnalysis }, {
+                            name: "Performance Comparison", func: Example6_PerformanceComparison }, {
                                 name: "Progress Tracking", func: Example7_ProgressTracking
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "Large File Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "Large File Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
 
-                        ; Uncomment to run all examples interactively:
-                        ; RunAllExamples()
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

@@ -24,16 +24,16 @@ class Spring {
         displacement := this.value - this.target
         springForce := -this.stiffness * displacement
         dampingForce := -this.damping * this.velocity
-        
+
         acceleration := (springForce + dampingForce) / this.mass
         this.velocity += acceleration * deltaTime
         this.value += this.velocity * deltaTime
-        
+
         return this.value
     }
 
     IsAtRest(threshold := 0.001) {
-        return Abs(this.value - this.target) < threshold 
+        return Abs(this.value - this.target) < threshold
             && Abs(this.velocity) < threshold
     }
 
@@ -73,7 +73,7 @@ class Spring2D {
     IsAtRest(threshold := 0.001) {
         return this.springX.IsAtRest(threshold) && this.springY.IsAtRest(threshold)
     }
-    
+
     GetPosition() => Map("x", this.springX.value, "y", this.springY.value)
 }
 
@@ -100,7 +100,7 @@ Loop 30 {
     Loop Round(value / 2)
         bar .= "█"
     result .= Format("t={:4.2f}: {:6.2f} {}`n", A_Index * dt, value, bar)
-    
+
     if mySpring.IsAtRest()
         break
 }
@@ -119,7 +119,7 @@ result := "Spring Preset Comparison (target: 100):`n`n"
 for name, preset in presets {
     s := Spring(preset)
     s.SetTarget(100)
-    
+
     result .= name ":`n"
     Loop 20 {
         value := s.Update(0.02)
@@ -139,7 +139,7 @@ result := "2D Spring Animation:`n`n"
 Loop 15 {
     pos := mySpring2D.Update(0.03)
     result .= Format("t={:.2f}: ({:.1f}, {:.1f})`n", A_Index * 0.03, pos["x"], pos["y"])
-    
+
     if mySpring2D.IsAtRest()
         break
 }

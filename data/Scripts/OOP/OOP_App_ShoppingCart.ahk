@@ -39,7 +39,7 @@ class ShoppingCart {
 
     AddItem(product, quantity := 1) {
         if (quantity > product.stock)
-        return MsgBox("Not enough stock! Only " product.stock " available.", "Error")
+            return MsgBox("Not enough stock! Only " product.stock " available.", "Error")
 
         ; Check if product already in cart
         for item in this.items {
@@ -78,35 +78,35 @@ class ShoppingCart {
     GetSubtotal() {
         total := 0
         for item in this.items
-        total += item.GetSubtotal()
+            total += item.GetSubtotal()
         return total
     }
 
     GetTotal() {
         total := this.GetSubtotal()
         for discount in this.discounts
-        total := discount.Apply(total)
+            total := discount.Apply(total)
         return total
     }
 
     GetItemCount() {
         count := 0
         for item in this.items
-        count += item.quantity
+            count += item.quantity
         return count
     }
 
     GetSummary() {
         summary := "Shopping Cart`n" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n"
         for item in this.items
-        summary .= item.ToString() "`n"
+            summary .= item.ToString() "`n"
 
         summary .= "`nSubtotal: $" . Format("{:.2f}", this.GetSubtotal())
 
         if (this.discounts.Length > 0) {
             summary .= "`n`nDiscounts:"
             for discount in this.discounts
-            summary .= "`n  - " . discount.ToString()
+                summary .= "`n  - " . discount.ToString()
         }
 
         summary .= "`n`nTotal: $" . Format("{:.2f}", this.GetTotal())
@@ -119,12 +119,12 @@ class ShoppingCart {
         ; Validate stock
         for item in this.items {
             if (item.quantity > item.product.stock)
-            return MsgBox("Checkout failed: " . item.product.name . " out of stock!", "Error")
+                return MsgBox("Checkout failed: " . item.product.name . " out of stock!", "Error")
         }
 
         ; Update stock
         for item in this.items
-        item.product.stock -= item.quantity
+            item.product.stock -= item.quantity
 
         order := Order(this)
         this.Clear()
@@ -145,19 +145,19 @@ class Order {
     }
 
     ToString() => Format("Order #{1}`nDate: {2}`nTotal: ${3:.2f}`nItems: {4}",
-    this.orderId,
-    FormatTime(this.createdAt, "yyyy-MM-dd HH:mm"),
-    this.total,
-    this.items.Length)
+        this.orderId,
+        FormatTime(this.createdAt, "yyyy-MM-dd HH:mm"),
+        this.total,
+        this.items.Length)
 }
 
 ; Usage - complete shopping cart system
 catalog := [
-Product("P001", "Laptop", 999.99, "Electronics").SetStock(5),
-Product("P002", "Mouse", 29.99, "Electronics").SetStock(20),
-Product("P003", "Keyboard", 79.99, "Electronics").SetStock(15),
-Product("P004", "Monitor", 299.99, "Electronics").SetStock(8),
-Product("P005", "USB Cable", 9.99, "Accessories").SetStock(50)
+    Product("P001", "Laptop", 999.99, "Electronics").SetStock(5),
+    Product("P002", "Mouse", 29.99, "Electronics").SetStock(20),
+    Product("P003", "Keyboard", 79.99, "Electronics").SetStock(15),
+    Product("P004", "Monitor", 299.99, "Electronics").SetStock(8),
+    Product("P005", "USB Cable", 9.99, "Accessories").SetStock(50)
 ]
 
 cart := ShoppingCart()

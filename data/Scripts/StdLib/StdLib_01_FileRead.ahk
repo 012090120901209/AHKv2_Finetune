@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileRead() - Read entire file
-*
-* Reads the entire contents of a file into a variable.
-*/
+ * FileRead() - Read entire file
+ * 
+ * Reads the entire contents of a file into a variable.
+ */
 
 testFile := A_ScriptDir "\test.txt"
 FileDelete(testFile)

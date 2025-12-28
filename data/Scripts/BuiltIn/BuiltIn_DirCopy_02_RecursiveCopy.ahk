@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DirCopy_02_RecursiveCopy.ahk
-*
-* DESCRIPTION:
-* Recursive directory copying with comprehensive examples demonstrating
-* key concepts and practical applications.
-*
-* FEATURES:
-* - DirCopy basic usage and syntax
-* - Error handling and validation
-* - Practical real-world examples
-* - Integration with other AutoHotkey features
-* - Performance considerations
-* - Best practices and patterns
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DirCopy() function syntax
-* - Return value handling
-* - Error handling with Try/Catch
-* - GUI integration
-* - Event-driven programming
-* - Map and Array usage
-*
-* LEARNING POINTS:
-* 1. DirCopy provides essential functionality
-* 2. Always validate inputs and outputs
-* 3. Handle errors gracefully
-* 4. Consider performance implications
-* 5. Use appropriate data structures
-* 6. Follow AutoHotkey v2 conventions
-* 7. Test edge cases thoroughly
-*/
+ * BuiltIn_DirCopy_02_RecursiveCopy.ahk
+ * 
+ * DESCRIPTION:
+ * Recursive directory copying with comprehensive examples demonstrating
+ * key concepts and practical applications.
+ * 
+ * FEATURES:
+ * - DirCopy basic usage and syntax
+ * - Error handling and validation
+ * - Practical real-world examples
+ * - Integration with other AutoHotkey features
+ * - Performance considerations
+ * - Best practices and patterns
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DirCopy() function syntax
+ * - Return value handling
+ * - Error handling with Try/Catch
+ * - GUI integration
+ * - Event-driven programming
+ * - Map and Array usage
+ * 
+ * LEARNING POINTS:
+ * 1. DirCopy provides essential functionality
+ * 2. Always validate inputs and outputs
+ * 3. Handle errors gracefully
+ * 4. Consider performance implications
+ * 5. Use appropriate data structures
+ * 6. Follow AutoHotkey v2 conventions
+ * 7. Test edge cases thoroughly
+ */
 
 ;;===============================================================================
 ; EXAMPLE 1: RecursiveCopy Example 1
@@ -424,3 +424,4 @@ Example6_DirCopy() {
 ; Example4_DirCopy()
 ; Example5_DirCopy()
 ; Example6_DirCopy()
+

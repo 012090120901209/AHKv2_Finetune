@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Click Function - Basic Click Operations
-* ============================================================================
-*
-* The Click function simulates mouse clicks at specified coordinates or
-* at the current cursor position. It's essential for GUI automation,
-* testing, and user interaction simulation.
-*
-* Syntax: Click([Options])
-*
-* @module BuiltIn_Click_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 Click Function - Basic Click Operations
+ * ============================================================================
+ * 
+ * The Click function simulates mouse clicks at specified coordinates or
+ * at the current cursor position. It's essential for GUI automation,
+ * testing, and user interaction simulation.
+ * 
+ * Syntax: Click([Options])
+ * 
+ * @module BuiltIn_Click_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Basic Left Click at Current Position
 ; ============================================================================
 
 /**
-* Demonstrates basic left mouse button clicking at the current cursor position.
-* This is the simplest form of Click and is useful for automating button presses.
-*
-* @example
-* ; Press F1 to perform a single left click at cursor position
-*/
+ * Demonstrates basic left mouse button clicking at the current cursor position.
+ * This is the simplest form of Click and is useful for automating button presses.
+ * 
+ * @example
+ * ; Press F1 to perform a single left click at cursor position
+ */
 F1:: {
     ToolTip("Clicking at current position...")
     Click()  ; Single left click at current mouse position
@@ -35,9 +35,9 @@ F1:: {
 }
 
 /**
-* Right-click demonstration
-* Shows how to perform a right-click, useful for context menus
-*/
+ * Right-click demonstration
+ * Shows how to perform a right-click, useful for context menus
+ */
 F2:: {
     ToolTip("Right-clicking at current position...")
     Click("Right")  ; Right click at current position
@@ -46,9 +46,9 @@ F2:: {
 }
 
 /**
-* Middle-click demonstration
-* Useful for opening links in new tabs or special application functions
-*/
+ * Middle-click demonstration
+ * Useful for opening links in new tabs or special application functions
+ */
 F3:: {
     ToolTip("Middle-clicking at current position...")
     Click("Middle")  ; Middle mouse button click
@@ -61,14 +61,14 @@ F3:: {
 ; ============================================================================
 
 /**
-* Demonstrates clicking at specific screen coordinates.
-* Coordinates can be absolute (screen) or relative to the active window.
-*
-* @param {Number} x - X coordinate on screen
-* @param {Number} y - Y coordinate on screen
-* @example
-* ; Press F4 to click at specific screen position
-*/
+ * Demonstrates clicking at specific screen coordinates.
+ * Coordinates can be absolute (screen) or relative to the active window.
+ * 
+ * @param {Number} x - X coordinate on screen
+ * @param {Number} y - Y coordinate on screen
+ * @example
+ * ; Press F4 to click at specific screen position
+ */
 F4:: {
     ToolTip("Clicking at coordinates (100, 100)...")
     Click(100, 100)  ; Click at screen position X=100, Y=100
@@ -77,9 +77,9 @@ F4:: {
 }
 
 /**
-* Multiple clicks at specific position
-* Demonstrates click count parameter for double/triple clicks
-*/
+ * Multiple clicks at specific position
+ * Demonstrates click count parameter for double/triple clicks
+ */
 F5:: {
     ToolTip("Double-clicking at (200, 200)...")
     Click(200, 200, 2)  ; Double-click at position
@@ -88,9 +88,9 @@ F5:: {
 }
 
 /**
-* Right-click at specific coordinates
-* Combines coordinate targeting with right-click button
-*/
+ * Right-click at specific coordinates
+ * Combines coordinate targeting with right-click button
+ */
 F6:: {
     ToolTip("Right-clicking at (300, 300)...")
     Click(300, 300, "Right")  ; Right-click at specific position
@@ -103,13 +103,13 @@ F6:: {
 ; ============================================================================
 
 /**
-* Simulates clicking through a form with multiple input fields.
-* This demonstrates practical automation for repetitive data entry tasks.
-*
-* @description
-* Clicks on different form field positions and types data.
-* Useful for automated testing or repetitive form submissions.
-*/
+ * Simulates clicking through a form with multiple input fields.
+ * This demonstrates practical automation for repetitive data entry tasks.
+ * 
+ * @description
+ * Clicks on different form field positions and types data.
+ * Useful for automated testing or repetitive form submissions.
+ */
 ^F1:: {
     ToolTip("Starting automated form filling...")
 
@@ -144,12 +144,12 @@ F6:: {
 ; ============================================================================
 
 /**
-* Demonstrates relative coordinate mode where clicks are positioned
-* relative to the active window instead of the entire screen.
-*
-* @description
-* Uses CoordMode to switch between relative and absolute positioning
-*/
+ * Demonstrates relative coordinate mode where clicks are positioned
+ * relative to the active window instead of the entire screen.
+ * 
+ * @description
+ * Uses CoordMode to switch between relative and absolute positioning
+ */
 F7:: {
     ; Set coordinate mode to relative to active window
     CoordMode("Mouse", "Window")
@@ -164,9 +164,9 @@ F7:: {
 }
 
 /**
-* Automated window interaction example
-* Clicks relative positions within a specific window
-*/
+ * Automated window interaction example
+ * Clicks relative positions within a specific window
+ */
 ^F2:: {
     ; Find and activate target window
     if WinExist("Notepad") {
@@ -194,12 +194,12 @@ F7:: {
 ; ============================================================================
 
 /**
-* Demonstrates click down and up states separately.
-* Useful for drag operations or custom click behaviors.
-*
-* @description
-* Separates the mouse button press and release into distinct actions
-*/
+ * Demonstrates click down and up states separately.
+ * Useful for drag operations or custom click behaviors.
+ * 
+ * @description
+ * Separates the mouse button press and release into distinct actions
+ */
 F8:: {
     ToolTip("Mouse button down...")
     Click("Down")  ; Press and hold left button
@@ -212,9 +212,9 @@ F8:: {
 }
 
 /**
-* Right-click down/up demonstration
-* Shows button down/up with right mouse button
-*/
+ * Right-click down/up demonstration
+ * Shows button down/up with right mouse button
+ */
 F9:: {
     ToolTip("Right button down...")
     Click("Right Down")  ; Press and hold right button
@@ -231,16 +231,16 @@ F9:: {
 ; ============================================================================
 
 /**
-* Comprehensive UI testing simulation.
-* Demonstrates clicking through a series of UI elements with validation.
-*
-* @description
-* Simulates a complete UI interaction flow including:
-* - Menu navigation
-* - Button clicking
-* - Dialog interaction
-* - Result validation
-*/
+ * Comprehensive UI testing simulation.
+ * Demonstrates clicking through a series of UI elements with validation.
+ * 
+ * @description
+ * Simulates a complete UI interaction flow including:
+ * - Menu navigation
+ * - Button clicking
+ * - Dialog interaction
+ * - Result validation
+ */
 ^F3:: {
     testResults := []
 
@@ -287,12 +287,12 @@ F9:: {
 ; ============================================================================
 
 /**
-* Demonstrates various click speeds and delays for different scenarios.
-* Some applications require slower clicks to register properly.
-*
-* @description
-* Uses SetDefaultMouseSpeed to control click execution speed
-*/
+ * Demonstrates various click speeds and delays for different scenarios.
+ * Some applications require slower clicks to register properly.
+ * 
+ * @description
+ * Uses SetDefaultMouseSpeed to control click execution speed
+ */
 ^F4:: {
     ; Save original mouse speed
     originalSpeed := A_DefaultMouseSpeed
@@ -332,9 +332,9 @@ F9:: {
 }
 
 /**
-* Rapid fire clicking for gaming or stress testing
-* Demonstrates multiple rapid clicks at same position
-*/
+ * Rapid fire clicking for gaming or stress testing
+ * Demonstrates multiple rapid clicks at same position
+ */
 ^F5:: {
     ToolTip("Rapid fire clicking (10 clicks)...")
 
@@ -349,9 +349,9 @@ F9:: {
 }
 
 /**
-* Pattern clicking demonstration
-* Creates a clicking pattern useful for grid-based interactions
-*/
+ * Pattern clicking demonstration
+ * Creates a clicking pattern useful for grid-based interactions
+ */
 ^F6:: {
     ToolTip("Pattern clicking in progress...")
 
@@ -365,7 +365,7 @@ F9:: {
     Sleep(100)
     Click(startX + spacing, startY)
     Sleep(100)
-    Click(startX + spacing*2, startY)
+    Click(startX + spacing * 2, startY)
     Sleep(100)
 
     ; Middle row
@@ -373,15 +373,15 @@ F9:: {
     Sleep(100)
     Click(startX + spacing, startY + spacing)
     Sleep(100)
-    Click(startX + spacing*2, startY + spacing)
+    Click(startX + spacing * 2, startY + spacing)
     Sleep(100)
 
     ; Bottom row
-    Click(startX, startY + spacing*2)
+    Click(startX, startY + spacing * 2)
     Sleep(100)
-    Click(startX + spacing, startY + spacing*2)
+    Click(startX + spacing, startY + spacing * 2)
     Sleep(100)
-    Click(startX + spacing*2, startY + spacing*2)
+    Click(startX + spacing * 2, startY + spacing * 2)
 
     ToolTip("Pattern clicking complete!")
     Sleep(1000)
@@ -393,14 +393,14 @@ F9:: {
 ; ============================================================================
 
 /**
-* Safe click function with error handling
-*
-* @param {Number} x - X coordinate
-* @param {Number} y - Y coordinate
-* @param {String} button - Mouse button (optional)
-* @param {Number} count - Number of clicks (optional)
-* @returns {Boolean} Success status
-*/
+ * Safe click function with error handling
+ * 
+ * @param {Number} x - X coordinate
+ * @param {Number} y - Y coordinate
+ * @param {String} button - Mouse button (optional)
+ * @param {Number} count - Number of clicks (optional)
+ * @returns {Boolean} Success status
+ */
 SafeClick(x := "", y := "", button := "Left", count := 1) {
     try {
         if (x != "" && y != "") {
@@ -416,13 +416,13 @@ SafeClick(x := "", y := "", button := "Left", count := 1) {
 }
 
 /**
-* Click with verification
-* Clicks and verifies the action was successful
-*
-* @param {Number} x - X coordinate
-* @param {Number} y - Y coordinate
-* @returns {Boolean} Verification result
-*/
+ * Click with verification
+ * Clicks and verifies the action was successful
+ * 
+ * @param {Number} x - X coordinate
+ * @param {Number} y - Y coordinate
+ * @returns {Boolean} Verification result
+ */
 ClickWithVerify(x, y) {
     Click(x, y)
     Sleep(50)
@@ -458,13 +458,13 @@ ClickWithVerify(x, y) {
 ; ============================================================================
 
 /**
-* Emergency stop - Press ESC to exit script
-*/
-Esc::ExitApp()
+ * Emergency stop - Press ESC to exit script
+ */
+Esc:: ExitApp()
 
 /**
-* Show help information
-*/
+ * Show help information
+ */
 F12:: {
     helpText := "
     (

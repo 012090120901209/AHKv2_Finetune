@@ -37,16 +37,16 @@ class TokenBucket {
     ; How long until n tokens available
     WaitTime(tokens := 1) {
         this._refill()
-        
+
         if this.tokens >= tokens
             return 0
 
         needed := tokens - this.tokens
         intervals := Ceil(needed / this.refillRate)
-        
+
         elapsed := A_TickCount - this.lastRefill
         remaining := this.refillInterval - elapsed
-        
+
         return remaining + (intervals - 1) * this.refillInterval
     }
 
@@ -67,7 +67,7 @@ class SlidingWindowLimiter {
     _cleanup() {
         now := A_TickCount
         cutoff := now - this.windowMs
-        
+
         while this.requests.Length && this.requests[1] < cutoff
             this.requests.RemoveAt(1)
     }
@@ -107,7 +107,7 @@ class LeakyBucket {
         now := A_TickCount
         elapsed := (now - this.lastLeak) / 1000  ; Convert to seconds
         leaked := elapsed * this.leakRate
-        
+
         this.water := Max(0, this.water - leaked)
         this.lastLeak := now
     }
@@ -224,8 +224,8 @@ result .= "Limit: 3 requests per second`n`n"
 ; Make requests
 Loop 5 {
     allowed := slider.TryRequest()
-    result .= "Request " A_Index ": " (allowed ? "✓" : "✗") 
-            . " (remaining: " slider.Remaining() ")`n"
+    result .= "Request " A_Index ": " (allowed ? "✓" : "✗")
+        . " (remaining: " slider.Remaining() ")`n"
 }
 
 result .= "`nReset in: " slider.ResetTime() "ms"
@@ -238,13 +238,13 @@ result := "Rate Limiter Factory Demo:`n`n"
 strategies := ["token", "sliding", "leaky"]
 for strat in strategies {
     limiter := RateLimiter(strat, Map("capacity", 3, "maxRequests", 3, "refillRate", 1, "leakRate", 1))
-    
+
     result .= strat " strategy:`n"
     Loop 4 {
         allowed := limiter.Allow()
         result .= "  " (allowed ? "✓" : "✗")
     }
-    
+
     status := limiter.GetStatus()
     result .= " | Status: "
     for k, v in status

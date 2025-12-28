@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Hotstring() Function - Text Replacement Examples
-* ============================================================================
-*
-* This file demonstrates using the Hotstring() function for automatic text
-* replacement in AutoHotkey v2. Shows how to create dynamic text expanders
-* that improve typing efficiency and accuracy.
-*
-* Features demonstrated:
-* - Basic text replacement
-* - Dynamic hotstring creation
-* - Case-sensitive/insensitive replacement
-* - Auto-correction functionality
-* - Common typing shortcuts
-*
-* @author AutoHotkey v2 Documentation Team
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/Hotstring.htm
-*/
+ * ============================================================================
+ * Hotstring() Function - Text Replacement Examples
+ * ============================================================================
+ * 
+ * This file demonstrates using the Hotstring() function for automatic text
+ * replacement in AutoHotkey v2. Shows how to create dynamic text expanders
+ * that improve typing efficiency and accuracy.
+ * 
+ * Features demonstrated:
+ * - Basic text replacement
+ * - Dynamic hotstring creation
+ * - Case-sensitive/insensitive replacement
+ * - Auto-correction functionality
+ * - Common typing shortcuts
+ * 
+ * @author AutoHotkey v2 Documentation Team
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/Hotstring.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Text Replacement
 ; ============================================================================
 
 /**
-* Demonstrates simple text replacement hotstrings that expand
-* abbreviations into full text.
-*
-* @example
-* ; Type "btw" → "by the way"
-*/
+ * Demonstrates simple text replacement hotstrings that expand
+ * abbreviations into full text.
+ * 
+ * @example
+ * ; Type "btw" → "by the way"
+ */
 Example1_BasicReplacement() {
     ; Create basic replacement hotstrings
     Hotstring("::btw::", "by the way")
@@ -47,20 +47,20 @@ Example1_BasicReplacement() {
     Hotstring("::def::", "default")
 
     MsgBox(
-    "Basic Text Replacement Hotstrings Created`n`n"
-    "Common abbreviations:`n"
-    "  btw → by the way`n"
-    "  fyi → for your information`n"
-    "  asap → as soon as possible`n"
-    "  afaik → as far as I know`n"
-    "  imho → in my humble opinion`n"
-    "  iirc → if I recall correctly`n`n"
-    "Programming:`n"
-    "  func → function`n"
-    "  ret → return`n"
-    "  def → default`n`n"
-    "Open a text editor and try typing these!",
-    "Example 1: Basic Replacement"
+        "Basic Text Replacement Hotstrings Created`n`n"
+        "Common abbreviations:`n"
+        "  btw → by the way`n"
+        "  fyi → for your information`n"
+        "  asap → as soon as possible`n"
+        "  afaik → as far as I know`n"
+        "  imho → in my humble opinion`n"
+        "  iirc → if I recall correctly`n`n"
+        "Programming:`n"
+        "  func → function`n"
+        "  ret → return`n"
+        "  def → default`n`n"
+        "Open a text editor and try typing these!",
+        "Example 1: Basic Replacement"
     )
 }
 
@@ -69,20 +69,20 @@ Example1_BasicReplacement() {
 ; ============================================================================
 
 /**
-* Shows how to create hotstrings programmatically based on data
-* structures or user input.
-*
-* @example
-* ; Create multiple hotstrings from a list
-*/
+ * Shows how to create hotstrings programmatically based on data
+ * structures or user input.
+ * 
+ * @example
+ * ; Create multiple hotstrings from a list
+ */
 Example2_DynamicCreation() {
     ; Define replacement pairs
     replacements := Map(
-    "addr", "123 Main Street, City, State 12345",
-    "phone", "(555) 123-4567",
-    "email", "user@example.com",
-    "sig", "Best regards,`n" . A_UserName,
-    "lorem", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        "addr", "123 Main Street, City, State 12345",
+        "phone", "(555) 123-4567",
+        "email", "user@example.com",
+        "sig", "Best regards,`n" . A_UserName,
+        "lorem", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     )
 
     ; Create hotstrings from the map
@@ -107,7 +107,7 @@ Example2_DynamicCreation() {
     for trigger, replacement in replacements {
         info .= "  " . trigger . " → " . SubStr(replacement, 1, 30)
         if StrLen(replacement) > 30
-        info .= "..."
+            info .= "..."
         info .= "`n"
     }
     info .= "`nNumbered items:`n"
@@ -125,11 +125,11 @@ Example2_DynamicCreation() {
 ; ============================================================================
 
 /**
-* Demonstrates case-sensitive hotstrings and smart case handling.
-*
-* @example
-* ; Different replacements based on capitalization
-*/
+ * Demonstrates case-sensitive hotstrings and smart case handling.
+ * 
+ * @example
+ * ; Different replacements based on capitalization
+ */
 Example3_CaseSensitive() {
     ; Case-sensitive hotstrings (C option)
     Hotstring(":C:SQL::", "Structured Query Language")
@@ -149,22 +149,22 @@ Example3_CaseSensitive() {
     Hotstring(":C:PY::", "PYTHON")
 
     MsgBox(
-    "Case-Sensitive Hotstrings Created`n`n"
-    "Acronyms (case matters):`n"
-    "  SQL → Structured Query Language`n"
-    "  sql → structured query language`n"
-    "  HTML → HyperText Markup Language`n"
-    "  html → hypertext markup language`n`n"
-    "Smart case:`n"
-    "  ahk → AutoHotkey`n"
-    "  Ahk → Autohotkey`n"
-    "  AHK → AUTOHOTKEY`n`n"
-    "Languages:`n"
-    "  js → JavaScript`n"
-    "  JS → JAVASCRIPT`n"
-    "  py → Python`n"
-    "  PY → PYTHON",
-    "Example 3: Case-Sensitive"
+        "Case-Sensitive Hotstrings Created`n`n"
+        "Acronyms (case matters):`n"
+        "  SQL → Structured Query Language`n"
+        "  sql → structured query language`n"
+        "  HTML → HyperText Markup Language`n"
+        "  html → hypertext markup language`n`n"
+        "Smart case:`n"
+        "  ahk → AutoHotkey`n"
+        "  Ahk → Autohotkey`n"
+        "  AHK → AUTOHOTKEY`n`n"
+        "Languages:`n"
+        "  js → JavaScript`n"
+        "  JS → JAVASCRIPT`n"
+        "  py → Python`n"
+        "  PY → PYTHON",
+        "Example 3: Case-Sensitive"
     )
 }
 
@@ -173,11 +173,11 @@ Example3_CaseSensitive() {
 ; ============================================================================
 
 /**
-* Creates hotstrings for mathematical symbols and special characters.
-*
-* @example
-* ; Type shortcuts for symbols
-*/
+ * Creates hotstrings for mathematical symbols and special characters.
+ * 
+ * @example
+ * ; Type shortcuts for symbols
+ */
 Example4_MathSymbols() {
     ; Mathematical symbols
     Hotstring("::alpha::", "α")
@@ -219,17 +219,17 @@ Example4_MathSymbols() {
     Hotstring("::yen::", "¥")
 
     MsgBox(
-    "Math and Symbol Hotstrings Created`n`n"
-    "Greek letters:`n"
-    "  alpha → α, beta → β, gamma → γ, pi → π`n`n"
-    "Math operators:`n"
-    "  approx → ≈, neq → ≠, leq → ≤, inf → ∞`n"
-    "  sum → ∑, sqrt → √, int → ∫`n`n"
-    "Arrows:`n"
-    "  rarr → →, larr → ←, rArr → ⇒`n`n"
-    "Symbols:`n"
-    "  deg → °, copy → ©, euro → €, tm → ™",
-    "Example 4: Math & Symbols"
+        "Math and Symbol Hotstrings Created`n`n"
+        "Greek letters:`n"
+        "  alpha → α, beta → β, gamma → γ, pi → π`n`n"
+        "Math operators:`n"
+        "  approx → ≈, neq → ≠, leq → ≤, inf → ∞`n"
+        "  sum → ∑, sqrt → √, int → ∫`n`n"
+        "Arrows:`n"
+        "  rarr → →, larr → ←, rArr → ⇒`n`n"
+        "Symbols:`n"
+        "  deg → °, copy → ©, euro → €, tm → ™",
+        "Example 4: Math & Symbols"
     )
 }
 
@@ -238,11 +238,11 @@ Example4_MathSymbols() {
 ; ============================================================================
 
 /**
-* Demonstrates replacing abbreviations with multi-line text blocks.
-*
-* @example
-* ; Expand templates and formatted text
-*/
+ * Demonstrates replacing abbreviations with multi-line text blocks.
+ * 
+ * @example
+ * ; Expand templates and formatted text
+ */
 Example5_MultiLine() {
     ; Email templates
     Hotstring("::emailpro::", "
@@ -305,23 +305,23 @@ Example5_MultiLine() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
     MsgBox(
-    "Multi-Line Hotstrings Created`n`n"
-    "Email templates:`n"
-    "  emailpro → Professional email template`n"
-    "  emailcas → Casual email template`n`n"
-    "Code templates:`n"
-    "  functemplate → Function template`n"
-    "  classtemplate → Class template`n`n"
-    "Document formatting:`n"
-    "  header → Document header`n"
-    "  section → Section header`n`n"
-    "Try them in a text editor!",
-    "Example 5: Multi-Line"
+        "Multi-Line Hotstrings Created`n`n"
+        "Email templates:`n"
+        "  emailpro → Professional email template`n"
+        "  emailcas → Casual email template`n`n"
+        "Code templates:`n"
+        "  functemplate → Function template`n"
+        "  classtemplate → Class template`n`n"
+        "Document formatting:`n"
+        "  header → Document header`n"
+        "  section → Section header`n`n"
+        "Try them in a text editor!",
+        "Example 5: Multi-Line"
     )
 }
 
@@ -330,85 +330,85 @@ Example5_MultiLine() {
 ; ============================================================================
 
 /**
-* Creates hotstrings that use functions to generate context-aware
-* replacement text.
-*
-* @example
-* ; Smart replacements based on current context
-*/
+ * Creates hotstrings that use functions to generate context-aware
+ * replacement text.
+ * 
+ * @example
+ * ; Smart replacements based on current context
+ */
 Example6_ContextAware() {
     /**
-    * Inserts current date in various formats
-    */
+     * Inserts current date in various formats
+     */
     Hotstring("::date1::", (*) => SendText(FormatTime(, "MM/dd/yyyy")))
     Hotstring("::date2::", (*) => SendText(FormatTime(, "yyyy-MM-dd")))
     Hotstring("::date3::", (*) => SendText(FormatTime(, "MMMM d, yyyy")))
     Hotstring("::dateiso::", (*) => SendText(FormatTime(, "yyyy-MM-ddTHH:mm:ss")))
 
     /**
-    * Inserts time in various formats
-    */
+     * Inserts time in various formats
+     */
     Hotstring("::time12::", (*) => SendText(FormatTime(, "h:mm tt")))
     Hotstring("::time24::", (*) => SendText(FormatTime(, "HH:mm")))
 
     /**
-    * Inserts day names
-    */
+     * Inserts day names
+     */
     Hotstring("::today::", (*) => SendText(FormatTime(, "dddd")))
     Hotstring("::month::", (*) => SendText(FormatTime(, "MMMM")))
 
     /**
-    * Inserts greeting based on time of day
-    */
+     * Inserts greeting based on time of day
+     */
     Hotstring("::greet::", (*) {
         hour := A_Hour + 0
         if (hour >= 5 && hour < 12)
-        greeting := "Good morning"
+            greeting := "Good morning"
         else if (hour >= 12 && hour < 17)
-        greeting := "Good afternoon"
+            greeting := "Good afternoon"
         else if (hour >= 17 && hour < 21)
-        greeting := "Good evening"
+            greeting := "Good evening"
         else
-        greeting := "Good night"
+            greeting := "Good night"
 
         SendText(greeting)
     })
 
     /**
-    * Inserts random number
-    */
+     * Inserts random number
+     */
     Hotstring("::rand::", (*) => SendText(String(Random(1, 100))))
 
     /**
-    * Inserts UUID-like string
-    */
+     * Inserts UUID-like string
+     */
     Hotstring("::uuid::", (*) {
         uuid := Format("{:08X}-{:04X}-{:04X}-{:04X}-{:012X}",
-        Random(0, 0xFFFFFFFF),
-        Random(0, 0xFFFF),
-        Random(0, 0xFFFF),
-        Random(0, 0xFFFF),
-        Random(0, 0xFFFFFFFFFFFF))
+            Random(0, 0xFFFFFFFF),
+            Random(0, 0xFFFF),
+            Random(0, 0xFFFF),
+            Random(0, 0xFFFF),
+            Random(0, 0xFFFFFFFFFFFF))
         SendText(uuid)
     })
 
     MsgBox(
-    "Context-Aware Hotstrings Created`n`n"
-    "Date formats:`n"
-    "  date1 → MM/dd/yyyy`n"
-    "  date2 → yyyy-MM-dd`n"
-    "  date3 → Month day, year`n"
-    "  dateiso → ISO 8601 format`n`n"
-    "Time formats:`n"
-    "  time12 → 12-hour format`n"
-    "  time24 → 24-hour format`n`n"
-    "Dynamic:`n"
-    "  today → Day name`n"
-    "  month → Month name`n"
-    "  greet → Time-appropriate greeting`n"
-    "  rand → Random number`n"
-    "  uuid → UUID-like string",
-    "Example 6: Context-Aware"
+        "Context-Aware Hotstrings Created`n`n"
+        "Date formats:`n"
+        "  date1 → MM/dd/yyyy`n"
+        "  date2 → yyyy-MM-dd`n"
+        "  date3 → Month day, year`n"
+        "  dateiso → ISO 8601 format`n`n"
+        "Time formats:`n"
+        "  time12 → 12-hour format`n"
+        "  time24 → 24-hour format`n`n"
+        "Dynamic:`n"
+        "  today → Day name`n"
+        "  month → Month name`n"
+        "  greet → Time-appropriate greeting`n"
+        "  rand → Random number`n"
+        "  uuid → UUID-like string",
+        "Example 6: Context-Aware"
     )
 }
 
@@ -417,19 +417,19 @@ Example6_ContextAware() {
 ; ============================================================================
 
 /**
-* Creates a comprehensive system for managing hotstrings with
-* enable/disable functionality.
-*
-* @example
-* ; Manage groups of hotstrings
-*/
+ * Creates a comprehensive system for managing hotstrings with
+ * enable/disable functionality.
+ * 
+ * @example
+ * ; Manage groups of hotstrings
+ */
 Example7_ManagementSystem() {
     ; Hotstring registry
     global hotstringRegistry := Map()
 
     /**
-    * Registers a hotstring with metadata
-    */
+     * Registers a hotstring with metadata
+     */
     RegisterHotstring(trigger, replacement, category := "General") {
         global hotstringRegistry
 
@@ -450,8 +450,8 @@ Example7_ManagementSystem() {
     }
 
     /**
-    * Lists all registered hotstrings
-    */
+     * Lists all registered hotstrings
+     */
     ListHotstrings(category := "") {
         global hotstringRegistry
 
@@ -462,11 +462,11 @@ Example7_ManagementSystem() {
 
         for trigger, info in hotstringRegistry {
             if category != "" && info.category != category
-            continue
+                continue
 
             cat := info.category
             if !categories.Has(cat)
-            categories[cat] := []
+                categories[cat] := []
 
             categories[cat].Push(trigger)
         }
@@ -481,7 +481,7 @@ Example7_ManagementSystem() {
                 if Type(info.replacement) != "Func" {
                     preview := SubStr(info.replacement, 1, 30)
                     if StrLen(info.replacement) > 30
-                    preview .= "..."
+                        preview .= "..."
                     list .= " → " . preview
                 }
                 list .= "`n"
@@ -493,13 +493,13 @@ Example7_ManagementSystem() {
     }
 
     /**
-    * Enables/disables a hotstring
-    */
+     * Enables/disables a hotstring
+     */
     ToggleHotstring(trigger) {
         global hotstringRegistry
 
         if !hotstringRegistry.Has(trigger)
-        return false
+            return false
 
         info := hotstringRegistry[trigger]
         newState := !info.enabled
@@ -509,9 +509,9 @@ Example7_ManagementSystem() {
         info.enabled := newState
 
         MsgBox(
-        "Hotstring: " . trigger . "`n"
-        "Status: " . (newState ? "ENABLED" : "DISABLED"),
-        "Toggle"
+            "Hotstring: " . trigger . "`n"
+            "Status: " . (newState ? "ENABLED" : "DISABLED"),
+            "Toggle"
         )
 
         return true
@@ -520,7 +520,7 @@ Example7_ManagementSystem() {
     Repeat(char, count) {
         result := ""
         Loop count
-        result .= char
+            result .= char
         return result
     }
 
@@ -536,21 +536,21 @@ Example7_ManagementSystem() {
     Hotkey("^!t", (*) {
         result := InputBox("Enter hotstring trigger to toggle:", "Toggle Hotstring")
         if result.Result = "OK" && result.Value != ""
-        ToggleHotstring(result.Value)
+            ToggleHotstring(result.Value)
     })
 
     ; Show initial list
     ListHotstrings()
 
     MsgBox(
-    "Hotstring Management System`n`n"
-    "Ctrl+Alt+L - List all hotstrings`n"
-    "Ctrl+Alt+T - Toggle a hotstring`n`n"
-    "Sample hotstrings registered in categories:`n"
-    "• Examples (ex1, ex2)`n"
-    "• Testing (test1, test2)`n"
-    "• Greetings (greet)",
-    "Example 7: Management"
+        "Hotstring Management System`n`n"
+        "Ctrl+Alt+L - List all hotstrings`n"
+        "Ctrl+Alt+T - Toggle a hotstring`n`n"
+        "Sample hotstrings registered in categories:`n"
+        "• Examples (ex1, ex2)`n"
+        "• Testing (test1, test2)`n"
+        "• Greetings (greet)",
+        "Example 7: Management"
     )
 }
 

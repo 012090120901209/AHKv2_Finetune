@@ -1,19 +1,19 @@
 /**
-* @file DriveInfo_02.ahk
-* @description Advanced drive information analysis and comparison tools using DriveGetType, DriveGetFileSystem, DriveGetLabel, and DriveGetSerial
-* @author AutoHotkey v2 Examples
-* @version 2.0
-* @date 2025-01-16
-*
-* This file demonstrates:
-* - Advanced drive comparison and analytics
-* - Drive profile management
-* - Automated drive documentation
-* - Network drive mapping analysis
-* - Drive performance categorization
-* - Custom drive organization systems
-* - Drive audit and compliance checking
-*/
+ * @file DriveInfo_02.ahk
+ * @description Advanced drive information analysis and comparison tools using DriveGetType, DriveGetFileSystem, DriveGetLabel, and DriveGetSerial
+ * @author AutoHotkey v2 Examples
+ * @version 2.0
+ * @date 2025-01-16
+ * 
+ * This file demonstrates:
+ * - Advanced drive comparison and analytics
+ * - Drive profile management
+ * - Automated drive documentation
+ * - Network drive mapping analysis
+ * - Drive performance categorization
+ * - Custom drive organization systems
+ * - Drive audit and compliance checking
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -22,29 +22,29 @@
 ; ===================================================================================================
 
 /**
-* @class DriveProfile
-* @description Creates and manages comprehensive drive profiles
-*/
+ * @class DriveProfile
+ * @description Creates and manages comprehensive drive profiles
+ */
 class DriveProfile {
     profileDir := A_ScriptDir . "\DriveProfiles"
 
     /**
-    * @constructor
-    */
+     * @constructor
+     */
     __New() {
         if !DirExist(this.profileDir)
-        DirCreate(this.profileDir)
+            DirCreate(this.profileDir)
     }
 
     /**
-    * @method CreateProfile
-    * @description Creates a profile for a drive
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Profile object
-    */
+     * @method CreateProfile
+     * @description Creates a profile for a drive
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Profile object
+     */
     CreateProfile(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         status := DriveGetStatus(driveLetter)
 
@@ -81,11 +81,11 @@ class DriveProfile {
     }
 
     /**
-    * @method CountFilesAndFolders
-    * @description Counts files and folders on a drive
-    * @param {String} driveLetter - Drive letter
-    * @returns {Object} Counts object
-    */
+     * @method CountFilesAndFolders
+     * @description Counts files and folders on a drive
+     * @param {String} driveLetter - Drive letter
+     * @returns {Object} Counts object
+     */
     CountFilesAndFolders(driveLetter) {
         fileCount := 0
         folderCount := 0
@@ -100,16 +100,16 @@ class DriveProfile {
             }
         }
 
-        return {Files: fileCount, Folders: folderCount}
+        return { Files: fileCount, Folders: folderCount }
     }
 
     /**
-    * @method GetLargestFolders
-    * @description Gets the largest folders on a drive
-    * @param {String} driveLetter - Drive letter
-    * @param {Number} count - Number of folders to return
-    * @returns {Array} Array of folder information
-    */
+     * @method GetLargestFolders
+     * @description Gets the largest folders on a drive
+     * @param {String} driveLetter - Drive letter
+     * @param {Number} count - Number of folders to return
+     * @returns {Array} Array of folder information
+     */
     GetLargestFolders(driveLetter, count := 5) {
         folders := Map()
 
@@ -125,21 +125,21 @@ class DriveProfile {
         ; Sort and get top folders
         topFolders := []
         for path, size in folders {
-            topFolders.Push({Path: path, SizeMB: Round(size / 1048576, 2)})
+            topFolders.Push({ Path: path, SizeMB: Round(size / 1048576, 2) })
 
             if (topFolders.Length >= count)
-            break
+                break
         }
 
         return topFolders
     }
 
     /**
-    * @method GetFolderSize
-    * @description Gets the size of a folder
-    * @param {String} folderPath - Folder path
-    * @returns {Number} Size in bytes
-    */
+     * @method GetFolderSize
+     * @description Gets the size of a folder
+     * @param {String} folderPath - Folder path
+     * @returns {Number} Size in bytes
+     */
     GetFolderSize(folderPath) {
         totalSize := 0
 
@@ -153,14 +153,14 @@ class DriveProfile {
     }
 
     /**
-    * @method SaveProfile
-    * @description Saves a drive profile to file
-    * @param {Object} profile - Profile object
-    * @returns {Boolean} Success status
-    */
+     * @method SaveProfile
+     * @description Saves a drive profile to file
+     * @param {Object} profile - Profile object
+     * @returns {Boolean} Success status
+     */
     SaveProfile(profile) {
         if !profile.HasOwnProp("Drive")
-        return false
+            return false
 
         fileName := this.profileDir . "\" . StrReplace(profile.Drive, ":", "") . "_profile.txt"
 
@@ -169,7 +169,7 @@ class DriveProfile {
 
         for key, value in profile.OwnProps() {
             if (Type(value) != "Array" && Type(value) != "Map")
-            content .= Format("{1}: {2}`n", key, value)
+                content .= Format("{1}: {2}`n", key, value)
         }
 
         try {
@@ -182,10 +182,10 @@ class DriveProfile {
     }
 
     /**
-    * @method ShowProfile
-    * @description Shows a drive profile
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method ShowProfile
+     * @description Shows a drive profile
+     * @param {String} driveLetter - Drive letter
+     */
     ShowProfile(driveLetter) {
         profile := this.CreateProfile(driveLetter)
 
@@ -224,25 +224,25 @@ Example1_DriveProfile() {
 ; ===================================================================================================
 
 /**
-* @class DriveComparison
-* @description Compares multiple drives across various metrics
-*/
+ * @class DriveComparison
+ * @description Compares multiple drives across various metrics
+ */
 class DriveComparison {
     /**
-    * @method CompareDrives
-    * @description Compares two or more drives
-    * @param {Array} driveLetters - Array of drive letters to compare
-    * @returns {Object} Comparison results
-    */
+     * @method CompareDrives
+     * @description Compares two or more drives
+     * @param {Array} driveLetters - Array of drive letters to compare
+     * @returns {Object} Comparison results
+     */
     static CompareDrives(driveLetters) {
         if (driveLetters.Length < 2)
-        return {Error: "At least two drives required for comparison"}
+            return { Error: "At least two drives required for comparison" }
 
         drives := []
 
         for driveLetter in driveLetters {
             if !InStr(driveLetter, ":")
-            driveLetter .= ":"
+                driveLetter .= ":"
 
             info := {
                 Drive: driveLetter,
@@ -274,10 +274,10 @@ class DriveComparison {
     }
 
     /**
-    * @method ShowComparison
-    * @description Shows a comparison report
-    * @param {Array} driveLetters - Drives to compare
-    */
+     * @method ShowComparison
+     * @description Shows a comparison report
+     * @param {Array} driveLetters - Drives to compare
+     */
     static ShowComparison(driveLetters) {
         comparison := DriveComparison.CompareDrives(driveLetters)
 
@@ -338,15 +338,15 @@ class DriveComparison {
     }
 
     /**
-    * @method FindSimilarDrives
-    * @description Finds drives with similar characteristics
-    * @param {String} referenceDrive - Reference drive
-    * @param {String} criteria - Similarity criteria (Type, FileSystem, Size)
-    * @returns {Array} Array of similar drives
-    */
+     * @method FindSimilarDrives
+     * @description Finds drives with similar characteristics
+     * @param {String} referenceDrive - Reference drive
+     * @param {String} criteria - Similarity criteria (Type, FileSystem, Size)
+     * @returns {Array} Array of similar drives
+     */
     static FindSimilarDrives(referenceDrive, criteria := "Type") {
         if !InStr(referenceDrive, ":")
-        referenceDrive .= ":"
+            referenceDrive .= ":"
 
         refInfo := {
             Type: DriveGetType(referenceDrive),
@@ -368,18 +368,18 @@ class DriveComparison {
             drive := driveLetter . ":"
 
             if (drive = referenceDrive)
-            continue
+                continue
 
             match := false
 
             if (criteria = "Type") {
                 if (DriveGetType(drive) = refInfo.Type)
-                match := true
+                    match := true
             } else if (criteria = "FileSystem") {
                 if (DriveGetStatus(drive) = "Ready") {
                     try {
                         if (DriveGetFileSystem(drive) = refInfo.FileSystem)
-                        match := true
+                            match := true
                     }
                 }
             } else if (criteria = "Size") {
@@ -388,13 +388,13 @@ class DriveComparison {
                         capacity := DriveGetCapacity(drive)
                         ; Similar if within 10% of reference capacity
                         if (Abs(capacity - refInfo.CapacityMB) / refInfo.CapacityMB < 0.1)
-                        match := true
+                            match := true
                     }
                 }
             }
 
             if (match)
-            similar.Push(drive)
+                similar.Push(drive)
         }
 
         return similar
@@ -423,15 +423,15 @@ Example2_DriveComparison() {
 ; ===================================================================================================
 
 /**
-* @class NetworkDriveMapper
-* @description Analyzes and manages network drive mappings
-*/
+ * @class NetworkDriveMapper
+ * @description Analyzes and manages network drive mappings
+ */
 class NetworkDriveMapper {
     /**
-    * @method GetNetworkDrives
-    * @description Gets all network drives
-    * @returns {Array} Array of network drive information
-    */
+     * @method GetNetworkDrives
+     * @description Gets all network drives
+     * @returns {Array} Array of network drive information
+     */
     static GetNetworkDrives() {
         networkDrives := []
         driveList := DriveGetList("Network")
@@ -463,9 +463,9 @@ class NetworkDriveMapper {
     }
 
     /**
-    * @method ShowNetworkDriveReport
-    * @description Shows a report of network drives
-    */
+     * @method ShowNetworkDriveReport
+     * @description Shows a report of network drives
+     */
     static ShowNetworkDriveReport() {
         netDrives := NetworkDriveMapper.GetNetworkDrives()
 
@@ -495,17 +495,17 @@ class NetworkDriveMapper {
     }
 
     /**
-    * @method AnalyzeNetworkPerformance
-    * @description Analyzes network drive performance
-    * @param {String} networkDrive - Network drive letter
-    * @returns {Object} Performance metrics
-    */
+     * @method AnalyzeNetworkPerformance
+     * @description Analyzes network drive performance
+     * @param {String} networkDrive - Network drive letter
+     * @returns {Object} Performance metrics
+     */
     static AnalyzeNetworkPerformance(networkDrive) {
         if !InStr(networkDrive, ":")
-        networkDrive .= ":"
+            networkDrive .= ":"
 
         if (DriveGetType(networkDrive) != "Network") {
-            return {Error: "Not a network drive"}
+            return { Error: "Not a network drive" }
         }
 
         ; Test read speed
@@ -531,7 +531,7 @@ class NetworkDriveMapper {
                 ReadMBps: Round(1000 / readTime, 2)
             }
         } catch as err {
-            return {Error: "Performance test failed: " . err.Message}
+            return { Error: "Performance test failed: " . err.Message }
         }
     }
 }
@@ -546,19 +546,19 @@ Example3_NetworkDriveMapper() {
 ; ===================================================================================================
 
 /**
-* @class DriveAuditor
-* @description Performs compliance and security audits on drives
-*/
+ * @class DriveAuditor
+ * @description Performs compliance and security audits on drives
+ */
 class DriveAuditor {
     /**
-    * @method AuditDrive
-    * @description Performs a comprehensive audit of a drive
-    * @param {String} driveLetter - Drive to audit
-    * @returns {Object} Audit results
-    */
+     * @method AuditDrive
+     * @description Performs a comprehensive audit of a drive
+     * @param {String} driveLetter - Drive to audit
+     * @returns {Object} Audit results
+     */
     static AuditDrive(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         audit := {
             Drive: driveLetter,
@@ -635,10 +635,10 @@ class DriveAuditor {
     }
 
     /**
-    * @method AuditAllDrives
-    * @description Audits all fixed drives
-    * @returns {Array} Array of audit results
-    */
+     * @method AuditAllDrives
+     * @description Audits all fixed drives
+     * @returns {Array} Array of audit results
+     */
     static AuditAllDrives() {
         audits := []
         driveList := DriveGetList("Fixed")
@@ -652,9 +652,9 @@ class DriveAuditor {
     }
 
     /**
-    * @method ShowAuditReport
-    * @description Shows an audit report
-    */
+     * @method ShowAuditReport
+     * @description Shows an audit report
+     */
     static ShowAuditReport() {
         audits := DriveAuditor.AuditAllDrives()
 
@@ -667,7 +667,7 @@ class DriveAuditor {
             report .= Format("Type: {1} | Status: {2}`n", audit.Type, audit.Status)
 
             if audit.HasOwnProp("FileSystem")
-            report .= Format("File System: {1} | Label: {2}`n", audit.FileSystem, audit.Label)
+                report .= Format("File System: {1} | Label: {2}`n", audit.FileSystem, audit.Label)
 
             report .= "Findings:`n"
             for finding in audit.Findings {
@@ -681,11 +681,11 @@ class DriveAuditor {
     }
 
     /**
-    * @method ExportAudit
-    * @description Exports audit to file
-    * @param {String} outputPath - Output file path
-    * @returns {Boolean} Success status
-    */
+     * @method ExportAudit
+     * @description Exports audit to file
+     * @param {String} outputPath - Output file path
+     * @returns {Boolean} Success status
+     */
     static ExportAudit(outputPath) {
         audits := DriveAuditor.AuditAllDrives()
 
@@ -740,15 +740,15 @@ Example4_DriveAudit() {
 ; ===================================================================================================
 
 /**
-* @class DriveOrganizer
-* @description Organizes and categorizes drives
-*/
+ * @class DriveOrganizer
+ * @description Organizes and categorizes drives
+ */
 class DriveOrganizer {
     /**
-    * @method CategorizeByPurpose
-    * @description Categorizes drives by their likely purpose
-    * @returns {Map} Map of categories to drive arrays
-    */
+     * @method CategorizeByPurpose
+     * @description Categorizes drives by their likely purpose
+     * @returns {Map} Map of categories to drive arrays
+     */
     static CategorizeByPurpose() {
         categories := Map()
         categories["System"] := []
@@ -766,7 +766,7 @@ class DriveOrganizer {
             driveType := DriveGetType(drive)
             status := DriveGetStatus(drive)
 
-            info := {Drive: drive, Type: driveType}
+            info := { Drive: drive, Type: driveType }
 
             if (status = "Ready") {
                 try {
@@ -802,9 +802,9 @@ class DriveOrganizer {
     }
 
     /**
-    * @method ShowOrganizedView
-    * @description Shows drives organized by purpose
-    */
+     * @method ShowOrganizedView
+     * @description Shows drives organized by purpose
+     */
     static ShowOrganizedView() {
         categories := DriveOrganizer.CategorizeByPurpose()
 
@@ -813,7 +813,7 @@ class DriveOrganizer {
 
         for category, drives in categories {
             if (drives.Length = 0)
-            continue
+                continue
 
             report .= Format("▶ {1} ({2} drives):`n", category, drives.Length)
 
@@ -839,11 +839,11 @@ Example5_DriveOrganization() {
 ; ===================================================================================================
 
 /**
-* @function GenerateDriveDocumentation
-* @description Generates comprehensive documentation for all drives
-* @param {String} outputPath - Path to save documentation
-* @returns {Boolean} Success status
-*/
+ * @function GenerateDriveDocumentation
+ * @description Generates comprehensive documentation for all drives
+ * @param {String} outputPath - Path to save documentation
+ * @returns {Boolean} Success status
+ */
 GenerateDriveDocumentation(outputPath) {
     content := "═══════════════════════════════════════════════════════`n"
     content .= "              SYSTEM DRIVE DOCUMENTATION`n"
@@ -881,12 +881,12 @@ GenerateDriveDocumentation(outputPath) {
                 freeSpace := DriveGetSpaceFree(drive)
 
                 content .= Format("Total Capacity: {1} GB ({2} MB)`n",
-                Round(capacity / 1024, 2), capacity)
+                    Round(capacity / 1024, 2), capacity)
                 content .= Format("Free Space: {1} GB ({2} MB)`n",
-                Round(freeSpace / 1024, 2), freeSpace)
+                    Round(freeSpace / 1024, 2), freeSpace)
                 content .= Format("Used Space: {1} GB ({2}%)`n",
-                Round((capacity - freeSpace) / 1024, 2),
-                Round(((capacity - freeSpace) / capacity) * 100, 2))
+                    Round((capacity - freeSpace) / 1024, 2),
+                    Round(((capacity - freeSpace) / capacity) * 100, 2))
             } catch as err {
                 content .= "Error reading drive details: " . err.Message . "`n"
             }
@@ -910,7 +910,7 @@ Example6_Documentation() {
 
     if GenerateDriveDocumentation(outputPath) {
         MsgBox("Drive documentation generated successfully!`n`nSaved to: " . outputPath,
-        "Documentation Complete", "Iconi")
+            "Documentation Complete", "Iconi")
         Run(outputPath)
     } else {
         MsgBox("Failed to generate documentation.", "Error", "Icon!")
@@ -922,26 +922,26 @@ Example6_Documentation() {
 ; ===================================================================================================
 
 /**
-* @class RemovableDriveHistory
-* @description Tracks history of removable drives connected to the system
-*/
+ * @class RemovableDriveHistory
+ * @description Tracks history of removable drives connected to the system
+ */
 class RemovableDriveHistory {
     historyFile := A_ScriptDir . "\removable_drive_history.csv"
 
     /**
-    * @method RecordDrive
-    * @description Records a removable drive connection
-    * @param {String} driveLetter - Drive letter
-    */
+     * @method RecordDrive
+     * @description Records a removable drive connection
+     * @param {String} driveLetter - Drive letter
+     */
     RecordDrive(driveLetter) {
         if !InStr(driveLetter, ":")
-        driveLetter .= ":"
+            driveLetter .= ":"
 
         if (DriveGetType(driveLetter) != "Removable")
-        return
+            return
 
         if (DriveGetStatus(driveLetter) != "Ready")
-        return
+            return
 
         try {
             label := DriveGetLabel(driveLetter)
@@ -952,12 +952,12 @@ class RemovableDriveHistory {
             timestamp := FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss")
 
             record := Format("{1},{2},{3},{4},{5},{6},{7}`n",
-            timestamp, driveLetter, label, serial, fileSystem, capacity, A_ComputerName)
+                timestamp, driveLetter, label, serial, fileSystem, capacity, A_ComputerName)
 
             ; Create file with header if it doesn't exist
             if !FileExist(this.historyFile) {
                 FileAppend("Timestamp,Drive,Label,Serial,FileSystem,CapacityGB,Computer`n",
-                this.historyFile)
+                    this.historyFile)
             }
 
             FileAppend(record, this.historyFile)
@@ -965,13 +965,13 @@ class RemovableDriveHistory {
     }
 
     /**
-    * @method GetHistory
-    * @description Gets the history of removable drives
-    * @returns {Array} Array of history records
-    */
+     * @method GetHistory
+     * @description Gets the history of removable drives
+     * @returns {Array} Array of history records
+     */
     GetHistory() {
         if !FileExist(this.historyFile)
-        return []
+            return []
 
         content := FileRead(this.historyFile)
         lines := StrSplit(content, "`n", "`r")
@@ -979,10 +979,10 @@ class RemovableDriveHistory {
 
         for index, line in lines {
             if (index = 1)  ; Skip header
-            continue
+                continue
 
             if (line = "")
-            continue
+                continue
 
             fields := StrSplit(line, ",")
             if (fields.Length >= 7) {
@@ -1002,9 +1002,9 @@ class RemovableDriveHistory {
     }
 
     /**
-    * @method ShowHistory
-    * @description Shows the removable drive history
-    */
+     * @method ShowHistory
+     * @description Shows the removable drive history
+     */
     ShowHistory() {
         history := this.GetHistory()
 
@@ -1023,9 +1023,9 @@ class RemovableDriveHistory {
             if (i >= startIndex) {
                 report .= Format("[{1}] {2}`n", record.Timestamp, record.Drive)
                 report .= Format("  Label: {1} | Serial: {2}`n",
-                record.Label, record.Serial)
+                    record.Label, record.Serial)
                 report .= Format("  {1} | {2} GB`n`n",
-                record.FileSystem, record.CapacityGB)
+                    record.FileSystem, record.CapacityGB)
             }
         }
 
@@ -1072,3 +1072,4 @@ Example7_RemovableHistory() {
 
 ; Press Ctrl+Alt+D to generate documentation
 ; ^!d::Example6_Documentation()
+

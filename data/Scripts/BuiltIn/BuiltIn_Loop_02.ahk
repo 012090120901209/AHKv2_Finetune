@@ -1,27 +1,27 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Infinite Loop with Break
-* ============================================================================
-*
-* @file BuiltIn_Loop_02.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Infinite loop basics
-* 2. Breaking out of infinite loops
-* 3. Loop with exit conditions
-* 4. Sentinel value patterns
-* 5. User input simulation
-* 6. Event loop patterns
-* 7. State machine implementations
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Infinite Loop with Break
+ * ============================================================================
+ * 
+ * @file BuiltIn_Loop_02.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Infinite loop basics
+ * 2. Breaking out of infinite loops
+ * 3. Loop with exit conditions
+ * 4. Sentinel value patterns
+ * 5. User input simulation
+ * 6. Event loop patterns
+ * 7. State machine implementations
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Infinite Loop Basics
@@ -154,16 +154,16 @@ Example4_UserInputSimulation() {
 
         switch command {
             case "help":
-            OutputDebug("    Available: help, status, info, quit`n")
+                OutputDebug("    Available: help, status, info, quit`n")
             case "status":
-            OutputDebug("    Status: Running`n")
+                OutputDebug("    Status: Running`n")
             case "info":
-            OutputDebug("    Info: Version 1.0`n")
+                OutputDebug("    Info: Version 1.0`n")
             case "quit":
-            OutputDebug("    Exiting...`n")
-            break
+                OutputDebug("    Exiting...`n")
+                break
             default:
-            OutputDebug("    Unknown command`n")
+                OutputDebug("    Unknown command`n")
         }
 
         cmdIndex++
@@ -180,10 +180,10 @@ Example5_EventLoopPattern() {
     OutputDebug("=== Example 5: Event Loop Pattern ===`n")
 
     events := [
-    Map("type", "click", "x", 100),
-    Map("type", "keypress", "key", "A"),
-    Map("type", "move", "x", 200),
-    Map("type", "quit", "x", 0)
+        Map("type", "click", "x", 100),
+        Map("type", "keypress", "key", "A"),
+        Map("type", "move", "x", 200),
+        Map("type", "quit", "x", 0)
     ]
 
     eventIndex := 1
@@ -204,11 +204,11 @@ Example5_EventLoopPattern() {
 
         switch eventType {
             case "click":
-            OutputDebug("    Click at x=" event["x"] "`n")
+                OutputDebug("    Click at x=" event["x"] "`n")
             case "keypress":
-            OutputDebug("    Key: " event["key"] "`n")
+                OutputDebug("    Key: " event["key"] "`n")
             case "move":
-            OutputDebug("    Move to x=" event["x"] "`n")
+                OutputDebug("    Move to x=" event["x"] "`n")
         }
 
         eventIndex++
@@ -244,13 +244,13 @@ Example6_StateMachine() {
 
         switch state {
             case "start":
-            state := (action = "process") ? "processing" : state
+                state := (action = "process") ? "processing" : state
             case "processing":
-            state := (action = "validate") ? "validating" : state
+                state := (action = "validate") ? "validating" : state
             case "validating":
-            state := (action = "complete") ? "completed" : state
+                state := (action = "complete") ? "completed" : state
             case "completed":
-            state := (action = "end") ? "end" : state
+                state := (action = "end") ? "end" : state
         }
 
         stepIndex++

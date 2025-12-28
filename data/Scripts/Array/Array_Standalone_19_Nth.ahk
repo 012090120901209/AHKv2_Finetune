@@ -2,11 +2,11 @@
 #SingleInstance Force
 
 /**
-* Nth() - Get nth element (Standalone Implementation)
-*
-* Gets the element at index n of array.
-* If n is negative, the nth element from the end is returned.
-*/
+ * Nth() - Get nth element (Standalone Implementation)
+ * 
+ * Gets the element at index n of array.
+ * If n is negative, the nth element from the end is returned.
+ */
 
 Nth(array, n := 1) {
     if (n < 0) {
@@ -37,5 +37,5 @@ result3 := Nth([1, 2, 3], 5)
 ; => "" (out of bounds)
 
 MsgBox("Nth at 1: " result1 "`n"
-. "Nth at -3: " result2 "`n"
-. "Nth at 5: '" result3 "'")
+    . "Nth at -3: " result2 "`n"
+    . "Nth at 5: '" result3 "'")

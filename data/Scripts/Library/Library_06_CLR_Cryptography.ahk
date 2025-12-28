@@ -2,17 +2,17 @@
 #SingleInstance Force
 
 /**
-* CLR - Cryptography with .NET
-*
-* Demonstrates using .NET cryptography classes for hashing, encryption,
-* and secure random number generation.
-*
-* Library: https://github.com/Lexikos/CLR.ahk
-*/
+ * CLR - Cryptography with .NET
+ * 
+ * Demonstrates using .NET cryptography classes for hashing, encryption,
+ * and secure random number generation.
+ * 
+ * Library: https://github.com/Lexikos/CLR.ahk
+ */
 
 MsgBox("CLR - Cryptography Example`n`n"
-. "Demonstrates .NET encryption and hashing`n"
-. "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
+    . "Demonstrates .NET encryption and hashing`n"
+    . "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
 
 /*
 ; Uncomment to run (requires CLR.ahk):
@@ -211,3 +211,4 @@ try {
 *     ⚠ Use proper key sizes
 *     ⚠ Update algorithms regularly
 */
+

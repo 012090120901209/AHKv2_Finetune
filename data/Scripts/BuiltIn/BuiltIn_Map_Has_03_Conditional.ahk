@@ -2,26 +2,26 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Has_03_Conditional.ahk
-*
-* @description Map.Has() for conditional logic and decision making
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Using Map.Has() for conditional operations, branching logic,
-* feature detection, and dynamic behavior based on key presence.
-*/
+ * BuiltIn_Map_Has_03_Conditional.ahk
+ * 
+ * @description Map.Has() for conditional logic and decision making
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Using Map.Has() for conditional operations, branching logic,
+ * feature detection, and dynamic behavior based on key presence.
+ */
 
 ;=============================================================================
 ; Example 1: Feature Toggle System
 ;=============================================================================
 
 /**
-* @class FeatureToggles
-* @description Enable/disable features based on existence
-*/
+ * @class FeatureToggles
+ * @description Enable/disable features based on existence
+ */
 class FeatureToggles {
     features := Map()
 
@@ -75,9 +75,9 @@ Example1_FeatureToggles() {
 
 Example2_PermissionLogic() {
     permissions := Map(
-    "read", true,
-    "write", true,
-    "delete", false
+        "read", true,
+        "write", true,
+        "delete", false
     )
 
     CanPerformAction(action) {
@@ -90,22 +90,22 @@ Example2_PermissionLogic() {
 
     for action in actions {
         if (CanPerformAction(action))
-        output .= action ": Allowed`n"
+            output .= action ": Allowed`n"
         else
-        output .= action ": Denied`n"
+            output .= action ": Denied`n"
     }
 
     ; Conditional execution
     output .= "`nAttempting operations:`n"
 
     if (CanPerformAction("read"))
-    output .= "  Reading data... Success`n"
+        output .= "  Reading data... Success`n"
 
     if (CanPerformAction("write"))
-    output .= "  Writing data... Success`n"
+        output .= "  Writing data... Success`n"
 
     if (!CanPerformAction("delete"))
-    output .= "  Cannot delete: Permission denied`n"
+        output .= "  Cannot delete: Permission denied`n"
 
     MsgBox(output, "Permission Logic")
 }
@@ -116,9 +116,9 @@ Example2_PermissionLogic() {
 
 Example3_ConfigBehavior() {
     config := Map(
-    "debugMode", true,
-    "cacheEnabled", true,
-    "compressionLevel", 5
+        "debugMode", true,
+        "cacheEnabled", true,
+        "compressionLevel", 5
     )
 
     output := "=== Config-Based Behavior ===`n`n"
@@ -126,13 +126,13 @@ Example3_ConfigBehavior() {
     ; Conditional logging
     LogMessage(msg) {
         if (config.Has("debugMode") && config["debugMode"])
-        output .= "[DEBUG] " msg "`n"
+            output .= "[DEBUG] " msg "`n"
     }
 
     ; Conditional caching
     GetData() {
         if (config.Has("cacheEnabled") && config["cacheEnabled"])
-        return "Cached data"
+            return "Cached data"
         return "Fresh data"
     }
 
@@ -157,9 +157,9 @@ Example3_ConfigBehavior() {
 
 Example4_ConditionalProcessing() {
     data := Map(
-    "name", "John Doe",
-    "email", "john@example.com",
-    "premium", true
+        "name", "John Doe",
+        "email", "john@example.com",
+        "premium", true
     )
 
     ProcessUser(userData) {
@@ -167,19 +167,19 @@ Example4_ConditionalProcessing() {
 
         ; Apply premium features if available
         if (userData.Has("premium") && userData["premium"])
-        result .= "  Applied premium features`n"
+            result .= "  Applied premium features`n"
         else
-        result .= "  Using standard features`n"
+            result .= "  Using standard features`n"
 
         ; Optional newsletter subscription
         if (userData.Has("newsletter") && userData["newsletter"])
-        result .= "  Subscribed to newsletter`n"
+            result .= "  Subscribed to newsletter`n"
 
         ; Optional profile picture
         if (userData.Has("profilePicture"))
-        result .= "  Profile picture: " userData["profilePicture"] "`n"
+            result .= "  Profile picture: " userData["profilePicture"] "`n"
         else
-        result .= "  Using default avatar`n"
+            result .= "  Using default avatar`n"
 
         return result
     }
@@ -196,14 +196,14 @@ Example4_ConditionalProcessing() {
 
 Example5_DynamicRouting() {
     routes := Map(
-    "home", () => "Rendering home page",
-    "about", () => "Rendering about page",
-    "contact", () => "Rendering contact page"
+        "home", () => "Rendering home page",
+        "about", () => "Rendering about page",
+        "contact", () => "Rendering contact page"
     )
 
     Navigate(route) {
         if (routes.Has(route))
-        return routes[route].Call()
+            return routes[route].Call()
         return "404 - Page not found"
     }
 
@@ -225,22 +225,22 @@ Example5_DynamicRouting() {
 
 Example6_ConditionalDefaults() {
     userSettings := Map(
-    "theme", "dark",
-    "fontSize", 14
+        "theme", "dark",
+        "fontSize", 14
     )
 
     defaultSettings := Map(
-    "theme", "light",
-    "fontSize", 12,
-    "language", "en",
-    "autoSave", true
+        "theme", "light",
+        "fontSize", 12,
+        "language", "en",
+        "autoSave", true
     )
 
     GetSetting(key) {
         if (userSettings.Has(key))
-        return userSettings[key]
+            return userSettings[key]
         if (defaultSettings.Has(key))
-        return defaultSettings[key]
+            return defaultSettings[key]
         return ""
     }
 
@@ -251,7 +251,7 @@ Example6_ConditionalDefaults() {
     for setting in settings {
         value := GetSetting(setting)
         source := userSettings.Has(setting) ? "(user)" :
-        defaultSettings.Has(setting) ? "(default)" : "(not set)"
+            defaultSettings.Has(setting) ? "(default)" : "(not set)"
         output .= setting ": " value " " source "`n"
     }
 
@@ -267,20 +267,20 @@ Example7_StateMachine() {
     state.Set("current", "idle")
 
     transitions := Map(
-    "idle", ["running", "paused"],
-    "running", ["paused", "stopped"],
-    "paused", ["running", "stopped"],
-    "stopped", []
+        "idle", ["running", "paused"],
+        "running", ["paused", "stopped"],
+        "paused", ["running", "stopped"],
+        "stopped", []
     )
 
     CanTransition(from, to) {
         if (!transitions.Has(from))
-        return false
+            return false
 
         allowedTransitions := transitions[from]
         for allowed in allowedTransitions {
             if (allowed = to)
-            return true
+                return true
         }
         return false
     }
@@ -319,28 +319,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Conditional Logic with Map.Has()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Feature Toggles")
-    .OnEvent("Click", (*) => Example1_FeatureToggles())
+        .OnEvent("Click", (*) => Example1_FeatureToggles())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Permissions")
-    .OnEvent("Click", (*) => Example2_PermissionLogic())
+        .OnEvent("Click", (*) => Example2_PermissionLogic())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Config Behavior")
-    .OnEvent("Click", (*) => Example3_ConfigBehavior())
+        .OnEvent("Click", (*) => Example3_ConfigBehavior())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Processing")
-    .OnEvent("Click", (*) => Example4_ConditionalProcessing())
+        .OnEvent("Click", (*) => Example4_ConditionalProcessing())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Routing")
-    .OnEvent("Click", (*) => Example5_DynamicRouting())
+        .OnEvent("Click", (*) => Example5_DynamicRouting())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Defaults")
-    .OnEvent("Click", (*) => Example6_ConditionalDefaults())
+        .OnEvent("Click", (*) => Example6_ConditionalDefaults())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: State Machine")
-    .OnEvent("Click", (*) => Example7_StateMachine())
+        .OnEvent("Click", (*) => Example7_StateMachine())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_FeatureToggles()

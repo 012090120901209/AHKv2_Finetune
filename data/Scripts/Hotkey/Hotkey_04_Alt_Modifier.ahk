@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Alt Modifier (!)
-* ! represents the Alt key
-*/
+ * Alt Modifier (!)
+ * ! represents the Alt key
+ */
 
 ; Alt+N to create a new document
 !n:: {

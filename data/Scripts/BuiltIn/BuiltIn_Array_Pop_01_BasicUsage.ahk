@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Pop() - Basic Usage Examples
-* ============================================================================
-*
-* The Pop() method removes and returns the last element from an array.
-* If the array is empty, an error is thrown.
-*
-* Syntax: value := array.Pop()
-*
-* @description Comprehensive examples demonstrating basic Pop() operations
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Pop() - Basic Usage Examples
+ * ============================================================================
+ * 
+ * The Pop() method removes and returns the last element from an array.
+ * If the array is empty, an error is thrown.
+ * 
+ * Syntax: value := array.Pop()
+ * 
+ * @description Comprehensive examples demonstrating basic Pop() operations
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Single Element Pop
@@ -78,7 +78,7 @@ Example3_DifferentDataTypes() {
     OutputDebug("=== Example 3: Different Data Types ===`n")
 
     ; Array with mixed types
-    mixed := ["String", 42, 3.14, true, {key: "value"}, [1, 2, 3]]
+    mixed := ["String", 42, 3.14, true, { key: "value" }, [1, 2, 3]]
     OutputDebug("Initial array length: " mixed.Length "`n`n")
 
     ; Pop and identify types
@@ -206,201 +206,193 @@ Example6_DataProcessing() {
     OutputDebug("=== Example 6: Data Processing ===`n")
 
     ; Processing log entries (most recent first)
-    logEntries := [
-    {
-        time: "10:00", message: "App started"},
-        {
-            time: "10:05", message: "User logged in"},
-            {
-                time: "10:10", message: "Data loaded"},
-                {
-                    time: "10:15", message: "Processing complete"},
-                    {
+    logEntries := [{
+        time: "10:00", message: "App started" }, {
+            time: "10:05", message: "User logged in" }, {
+                time: "10:10", message: "Data loaded" }, {
+                    time: "10:15", message: "Processing complete" }, {
                         time: "10:20", message: "User logged out"
                     }
-                    ]
+    ]
 
-                    OutputDebug("Log entries (total: " logEntries.Length "):`n")
-                    OutputDebug("Processing most recent entries:`n`n")
+    OutputDebug("Log entries (total: " logEntries.Length "):`n")
+    OutputDebug("Processing most recent entries:`n`n")
 
-                    ; Process last 3 entries
-                    processCount := Min(3, logEntries.Length)
-                    Loop processCount {
-                        entry := logEntries.Pop()
-                        OutputDebug("  [" entry.time "] " entry.message "`n")
-                    }
+    ; Process last 3 entries
+    processCount := Min(3, logEntries.Length)
+    Loop processCount {
+        entry := logEntries.Pop()
+        OutputDebug("  [" entry.time "] " entry.message "`n")
+    }
 
-                    OutputDebug("`nRemaining entries: " logEntries.Length "`n")
+    OutputDebug("`nRemaining entries: " logEntries.Length "`n")
 
-                    ; Build reversed array using pop
-                    source := [1, 2, 3, 4, 5]
-                    reversed := []
+    ; Build reversed array using pop
+    source := [1, 2, 3, 4, 5]
+    reversed := []
 
-                    OutputDebug("`nReversing array using Pop:`n")
-                    OutputDebug("Original: " FormatArray(source) "`n")
+    OutputDebug("`nReversing array using Pop:`n")
+    OutputDebug("Original: " FormatArray(source) "`n")
 
-                    while (source.Length > 0) {
-                        reversed.Push(source.Pop())
-                    }
+    while (source.Length > 0) {
+        reversed.Push(source.Pop())
+    }
 
-                    OutputDebug("Reversed: " FormatArray(reversed) "`n")
+    OutputDebug("Reversed: " FormatArray(reversed) "`n")
 
-                    OutputDebug("`n")
-                }
+    OutputDebug("`n")
+}
 
-                ; ============================================================================
-                ; Example 7: Practical Use Cases
-                ; ============================================================================
-                ; Real-world scenarios using Pop()
-                Example7_PracticalUseCases() {
-                    OutputDebug("=== Example 7: Practical Use Cases ===`n")
+; ============================================================================
+; Example 7: Practical Use Cases
+; ============================================================================
+; Real-world scenarios using Pop()
+Example7_PracticalUseCases() {
+    OutputDebug("=== Example 7: Practical Use Cases ===`n")
 
-                    ; Use Case 1: Processing download queue
-                    OutputDebug("Use Case 1: Download Queue Processing`n")
-                    downloadQueue := [
-                    {
-                        file: "document.pdf", size: 1024},
-                        {
-                            file: "image.jpg", size: 2048},
-                            {
-                                file: "video.mp4", size: 10240
-                            }
-                            ]
+    ; Use Case 1: Processing download queue
+    OutputDebug("Use Case 1: Download Queue Processing`n")
+    downloadQueue := [{
+        file: "document.pdf", size: 1024 }, {
+            file: "image.jpg", size: 2048 }, {
+                file: "video.mp4", size: 10240
+            }
+    ]
 
-                            OutputDebug("Processing downloads (LIFO):`n")
-                            while (downloadQueue.Length > 0) {
-                                download := downloadQueue.Pop()
-                                OutputDebug("  Downloading: " download.file
-                                " (" download.size " KB)`n")
-                            }
+    OutputDebug("Processing downloads (LIFO):`n")
+    while (downloadQueue.Length > 0) {
+        download := downloadQueue.Pop()
+        OutputDebug("  Downloading: " download.file
+            " (" download.size " KB)`n")
+    }
 
-                            ; Use Case 2: Cleanup temporary files
-                            OutputDebug("`nUse Case 2: Cleanup Temporary Files`n")
-                            tempFiles := ["temp1.tmp", "cache2.tmp", "backup3.tmp"]
+    ; Use Case 2: Cleanup temporary files
+    OutputDebug("`nUse Case 2: Cleanup Temporary Files`n")
+    tempFiles := ["temp1.tmp", "cache2.tmp", "backup3.tmp"]
 
-                            OutputDebug("Cleaning up " tempFiles.Length " temporary files:`n")
-                            deletedCount := 0
-                            failedFiles := []
+    OutputDebug("Cleaning up " tempFiles.Length " temporary files:`n")
+    deletedCount := 0
+    failedFiles := []
 
-                            while (tempFiles.Length > 0) {
-                                fileName := tempFiles.Pop()
+    while (tempFiles.Length > 0) {
+        fileName := tempFiles.Pop()
 
-                                ; Simulate deletion
-                                if (Mod(deletedCount, 2) = 0) {  ; Simulate success/failure
-                                OutputDebug("  Deleted: " fileName "`n")
-                                deletedCount++
-                            } else {
-                                OutputDebug("  Failed: " fileName "`n")
-                                failedFiles.Push(fileName)
-                            }
-                        }
+        ; Simulate deletion
+        if (Mod(deletedCount, 2) = 0) {  ; Simulate success/failure
+            OutputDebug("  Deleted: " fileName "`n")
+            deletedCount++
+        } else {
+            OutputDebug("  Failed: " fileName "`n")
+            failedFiles.Push(fileName)
+        }
+    }
 
-                        OutputDebug("Successfully deleted: " deletedCount " files`n")
-                        OutputDebug("Failed: " failedFiles.Length " files`n")
+    OutputDebug("Successfully deleted: " deletedCount " files`n")
+    OutputDebug("Failed: " failedFiles.Length " files`n")
 
-                        ; Use Case 3: Token processing
-                        OutputDebug("`nUse Case 3: Token Processing`n")
-                        tokens := ["END", "world", "+", "Hello"]
+    ; Use Case 3: Token processing
+    OutputDebug("`nUse Case 3: Token Processing`n")
+    tokens := ["END", "world", "+", "Hello"]
 
-                        OutputDebug("Processing tokens in reverse:`n")
-                        result := ""
+    OutputDebug("Processing tokens in reverse:`n")
+    result := ""
 
-                        while (tokens.Length > 0) {
-                            token := tokens.Pop()
+    while (tokens.Length > 0) {
+        token := tokens.Pop()
 
-                            if (token = "+") {
-                                OutputDebug("  Operator: " token "`n")
-                            } else if (token = "END") {
-                                OutputDebug("  End marker reached`n")
-                                break
-                            } else {
-                                result .= token " "
-                                OutputDebug("  Token: " token "`n")
-                            }
-                        }
+        if (token = "+") {
+            OutputDebug("  Operator: " token "`n")
+        } else if (token = "END") {
+            OutputDebug("  End marker reached`n")
+            break
+        } else {
+            result .= token " "
+            OutputDebug("  Token: " token "`n")
+        }
+    }
 
-                        OutputDebug("Final result: " Trim(result) "`n")
+    OutputDebug("Final result: " Trim(result) "`n")
 
-                        OutputDebug("`n")
-                    }
+    OutputDebug("`n")
+}
 
-                    ; ============================================================================
-                    ; Helper Functions
-                    ; ============================================================================
+; ============================================================================
+; Helper Functions
+; ============================================================================
 
-                    /**
-                    * Safely pops an element from array
-                    * @param {Array} arr - The array to pop from
-                    * @returns {Object} Result object with success flag and value/error
-                    */
-                    SafePop(arr) {
-                        if (arr.Length = 0) {
-                            return {success: false, error: "Cannot pop from empty array"}
-                        }
+/**
+ * Safely pops an element from array
+ * @param {Array} arr - The array to pop from
+ * @returns {Object} Result object with success flag and value/error
+ */
+SafePop(arr) {
+    if (arr.Length = 0) {
+        return { success: false, error: "Cannot pop from empty array" }
+    }
 
-                        return {success: true, value: arr.Pop()}
-                    }
+    return { success: true, value: arr.Pop() }
+}
 
-                    /**
-                    * Formats an array for display
-                    * @param {Array} arr - The array to format
-                    * @returns {String} Formatted string representation
-                    */
-                    FormatArray(arr) {
-                        if (arr.Length = 0) {
-                            return "[]"
-                        }
+/**
+ * Formats an array for display
+ * @param {Array} arr - The array to format
+ * @returns {String} Formatted string representation
+ */
+FormatArray(arr) {
+    if (arr.Length = 0) {
+        return "[]"
+    }
 
-                        result := "["
-                        for index, value in arr {
-                            if (index > 1) {
-                                result .= ", "
-                            }
+    result := "["
+    for index, value in arr {
+        if (index > 1) {
+            result .= ", "
+        }
 
-                            valueType := Type(value)
-                            if (valueType = "String") {
-                                result .= '"' value '"'
-                            } else if (valueType = "Integer" || valueType = "Float") {
-                                result .= value
-                            } else if (valueType = "Array") {
-                                result .= "[Array(" value.Length ")]"
-                            } else if (valueType = "Object") {
-                                result .= "{Object}"
-                            } else {
-                                result .= valueType
-                            }
-                        }
-                        result .= "]"
+        valueType := Type(value)
+        if (valueType = "String") {
+            result .= '"' value '"'
+        } else if (valueType = "Integer" || valueType = "Float") {
+            result .= value
+        } else if (valueType = "Array") {
+            result .= "[Array(" value.Length ")]"
+        } else if (valueType = "Object") {
+            result .= "{Object}"
+        } else {
+            result .= valueType
+        }
+    }
+    result .= "]"
 
-                        return result
-                    }
+    return result
+}
 
-                    ; ============================================================================
-                    ; Main Execution
-                    ; ============================================================================
+; ============================================================================
+; Main Execution
+; ============================================================================
 
-                    Main() {
-                        ; Clear debug output
-                        OutputDebug("`n" String.Repeat("=", 80) "`n")
-                        OutputDebug("Array.Pop() - Basic Usage Examples`n")
-                        OutputDebug(String.Repeat("=", 80) "`n`n")
+Main() {
+    ; Clear debug output
+    OutputDebug("`n" String.Repeat("=", 80) "`n")
+    OutputDebug("Array.Pop() - Basic Usage Examples`n")
+    OutputDebug(String.Repeat("=", 80) "`n`n")
 
-                        ; Run all examples
-                        Example1_SingleElementPop()
-                        Example2_PopAllElements()
-                        Example3_DifferentDataTypes()
-                        Example4_ReturnValueUsage()
-                        Example5_ErrorHandling()
-                        Example6_DataProcessing()
-                        Example7_PracticalUseCases()
+    ; Run all examples
+    Example1_SingleElementPop()
+    Example2_PopAllElements()
+    Example3_DifferentDataTypes()
+    Example4_ReturnValueUsage()
+    Example5_ErrorHandling()
+    Example6_DataProcessing()
+    Example7_PracticalUseCases()
 
-                        OutputDebug(String.Repeat("=", 80) "`n")
-                        OutputDebug("All examples completed!`n")
-                        OutputDebug(String.Repeat("=", 80) "`n")
+    OutputDebug(String.Repeat("=", 80) "`n")
+    OutputDebug("All examples completed!`n")
+    OutputDebug(String.Repeat("=", 80) "`n")
 
-                        MsgBox("Array.Pop() examples completed!`nCheck DebugView for output.",
-                        "Examples Complete", "Icon!")
-                    }
+    MsgBox("Array.Pop() examples completed!`nCheck DebugView for output.",
+        "Examples Complete", "Icon!")
+}
 
-                    ; Run the examples
-                    Main()
+; Run the examples
+Main()

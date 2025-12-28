@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_TreeView_02_Navigation.ahk
-*
-* DESCRIPTION:
-* Demonstrates advanced TreeView navigation techniques including programmatic
-* expansion/collapse, keyboard navigation, and automatic scrolling.
-*
-* FEATURES:
-* - Expanding and collapsing nodes programmatically
-* - Keyboard shortcuts for tree navigation
-* - Auto-scroll to make items visible
-* - Breadth-first and depth-first traversal
-* - Smart expansion strategies
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/TreeView.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Modern iteration with For loops
-* - Array and object manipulation
-* - Hotkey function binding
-* - Method references and callbacks
-*
-* LEARNING POINTS:
-* 1. Use GetNext() with "Full" to iterate all visible items
-* 2. Vis option scrolls items into view
-* 3. Expand/Collapse can be toggled with +/- prefixes
-* 4. GetChild() and GetNext() enable tree traversal
-* 5. Recursive functions useful for deep trees
-*/
+ * BuiltIn_TreeView_02_Navigation.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates advanced TreeView navigation techniques including programmatic
+ * expansion/collapse, keyboard navigation, and automatic scrolling.
+ * 
+ * FEATURES:
+ * - Expanding and collapsing nodes programmatically
+ * - Keyboard shortcuts for tree navigation
+ * - Auto-scroll to make items visible
+ * - Breadth-first and depth-first traversal
+ * - Smart expansion strategies
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/TreeView.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Modern iteration with For loops
+ * - Array and object manipulation
+ * - Hotkey function binding
+ * - Method references and callbacks
+ * 
+ * LEARNING POINTS:
+ * 1. Use GetNext() with "Full" to iterate all visible items
+ * 2. Vis option scrolls items into view
+ * 3. Expand/Collapse can be toggled with +/- prefixes
+ * 4. GetChild() and GetNext() enable tree traversal
+ * 5. Recursive functions useful for deep trees
+ */
 
 ;=============================================================================
 ; EXAMPLE 1: Expand/Collapse Operations
@@ -107,12 +107,12 @@ Example1_ExpandCollapse() {
 
     ExpandSelected(*) {
         if (selected := TV.GetSelection())
-        ExpandAll(TV, selected)
+            ExpandAll(TV, selected)
     }
 
     CollapseSelected(*) {
         if (selected := TV.GetSelection())
-        TV.Modify(selected, "-Expand")
+            TV.Modify(selected, "-Expand")
     }
 
     ToggleSelected(*) {
@@ -135,7 +135,7 @@ Example1_ExpandCollapse() {
 
             ; Expand each item in path
             for itemID in path
-            TV.Modify(itemID, "Expand")
+                TV.Modify(itemID, "Expand")
 
             TV.Modify(selected, "Vis")
         }
@@ -165,7 +165,7 @@ Example1_ExpandCollapse() {
 ; Recursively expand all nodes
 ExpandAll(TV, NodeID := 0) {
     if (NodeID)
-    TV.Modify(NodeID, "Expand")
+        TV.Modify(NodeID, "Expand")
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -188,9 +188,9 @@ CollapseAll(TV, NodeID := 0) {
 ExpandToLevel(TV, NodeID, TargetLevel, CurrentLevel := 0) {
     if (NodeID) {
         if (CurrentLevel < TargetLevel)
-        TV.Modify(NodeID, "Expand")
+            TV.Modify(NodeID, "Expand")
         else
-        TV.Modify(NodeID, "-Expand")
+            TV.Modify(NodeID, "-Expand")
     }
 
     ChildID := TV.GetChild(NodeID)
@@ -204,7 +204,7 @@ ExpandToLevel(TV, NodeID, TargetLevel, CurrentLevel := 0) {
 CountExpanded(TV, NodeID := 0) {
     count := 0
     if (NodeID && TV.Get(NodeID, "Expand"))
-    count := 1
+        count := 1
 
     ChildID := TV.GetChild(NodeID)
     while (ChildID) {
@@ -274,33 +274,33 @@ Example2_KeyboardNavigation() {
     ; Hotkey implementations
     ExpandSelectedBranch() {
         if (selected := TV.GetSelection())
-        ExpandAll(TV, selected)
+            ExpandAll(TV, selected)
     }
 
     CollapseSelectedBranch() {
         if (selected := TV.GetSelection())
-        TV.Modify(selected, "-Expand")
+            TV.Modify(selected, "-Expand")
     }
 
     GoToFirst() {
         first := TV.GetNext()
         if (first)
-        TV.Modify(first, "Select Vis")
+            TV.Modify(first, "Select Vis")
     }
 
     GoToLast() {
         last := TV.GetNext()
         current := last
         while (current := TV.GetNext(current, "Full"))
-        last := current
+            last := current
         if (last)
-        TV.Modify(last, "Select Vis")
+            TV.Modify(last, "Select Vis")
     }
 
     GoToParent() {
         if (selected := TV.GetSelection()) {
             if (parent := TV.GetParent(selected))
-            TV.Modify(parent, "Select Vis")
+                TV.Modify(parent, "Select Vis")
         }
     }
 
@@ -316,14 +316,14 @@ Example2_KeyboardNavigation() {
     GoToNextSibling() {
         if (selected := TV.GetSelection()) {
             if (next := TV.GetNext(selected))
-            TV.Modify(next, "Select Vis")
+                TV.Modify(next, "Select Vis")
         }
     }
 
     GoToPrevSibling() {
         if (selected := TV.GetSelection()) {
             if (prev := TV.GetPrev(selected))
-            TV.Modify(prev, "Select Vis")
+                TV.Modify(prev, "Select Vis")
         }
     }
 
@@ -333,25 +333,25 @@ Example2_KeyboardNavigation() {
     FindNext() {
         current := TV.GetSelection()
         if (!current)
-        current := TV.GetNext()
+            current := TV.GetNext()
 
         found := FindInTreeForward(TV, current, searchTerm)
         if (found)
-        TV.Modify(found, "Select Vis")
+            TV.Modify(found, "Select Vis")
         else
-        MsgBox("No more matches found", "Find", 64)
+            MsgBox("No more matches found", "Find", 64)
     }
 
     FindPrevious() {
         current := TV.GetSelection()
         if (!current)
-        current := TV.GetNext()
+            current := TV.GetNext()
 
         found := FindInTreeBackward(TV, current, searchTerm)
         if (found)
-        TV.Modify(found, "Select Vis")
+            TV.Modify(found, "Select Vis")
         else
-        MsgBox("No previous matches found", "Find", 64)
+            MsgBox("No previous matches found", "Find", 64)
     }
 
     closeBtn := myGui.Add("Button", "xm y+10 w100", "Close")
@@ -406,22 +406,22 @@ FindInTreeForward(TV, StartID, SearchText) {
     ; Start from next item
     current := TV.GetNext(StartID, "Full")
     if (!current)
-    current := TV.GetNext()  ; Wrap to beginning
+        current := TV.GetNext()  ; Wrap to beginning
 
     startItem := current
     Loop {
         if (!current)
-        return 0
+            return 0
 
         if (InStr(TV.GetText(current), SearchText))
-        return current
+            return current
 
         current := TV.GetNext(current, "Full")
         if (!current)
-        current := TV.GetNext()
+            current := TV.GetNext()
 
         if (current = startItem)
-        break
+            break
     }
     return 0
 }
@@ -448,23 +448,23 @@ FindInTreeBackward(TV, StartID, SearchText) {
     ; Search backward
     pos := currentPos - 1
     if (pos < 1)
-    pos := items.Length
+        pos := items.Length
 
     startPos := pos
     Loop {
         if (pos < 1 || pos > items.Length)
-        return 0
+            return 0
 
         itemID := items[pos]
         if (InStr(TV.GetText(itemID), SearchText))
-        return itemID
+            return itemID
 
         pos--
         if (pos < 1)
-        pos := items.Length
+            pos := items.Length
 
         if (pos = startPos)
-        break
+            break
     }
     return 0
 }
@@ -518,7 +518,7 @@ Example3_AutoScroll() {
     JumpToTop(*) {
         first := TV.GetNext()
         if (first)
-        TV.Modify(first, "Select Vis")
+            TV.Modify(first, "Select Vis")
     }
 
     JumpToBottom(*) {
@@ -526,10 +526,10 @@ Example3_AutoScroll() {
         last := TV.GetNext()
         current := last
         while (current := TV.GetNext(current, "Full"))
-        last := current
+            last := current
 
         if (last)
-        TV.Modify(last, "Select Vis")
+            TV.Modify(last, "Select Vis")
     }
 
     JumpToMiddle(*) {
@@ -541,20 +541,20 @@ Example3_AutoScroll() {
         current := TV.GetNext()
         Loop target - 1 {
             if (current := TV.GetNext(current, "Full"))
-            continue
+                continue
             else
-            break
+                break
         }
 
         if (current)
-        TV.Modify(current, "Select Vis")
+            TV.Modify(current, "Select Vis")
     }
 
     JumpRandom(*) {
         ; Get random item
         count := TV.GetCount()
         if (count = 0)
-        return
+            return
 
         target := Random(1, count)
 
@@ -564,14 +564,14 @@ Example3_AutoScroll() {
         }
 
         if (current)
-        TV.Modify(current, "Select Vis")
+            TV.Modify(current, "Select Vis")
     }
 
     SmoothScroll(*) {
         ; Simulate smooth scrolling by jumping through items
         current := TV.GetSelection()
         if (!current)
-        current := TV.GetNext()
+            current := TV.GetNext()
 
         Loop 10 {
             if (current := TV.GetNext(current, "Full")) {
@@ -588,7 +588,7 @@ Example3_AutoScroll() {
         current := TV.GetNext()
         Loop {
             if (!current)
-            break
+                break
 
             TV.Modify(current, "Expand")
             current := TV.GetNext(current, "Full")
@@ -760,7 +760,7 @@ LevelOrderTraverse(TV, RootID) {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -857,7 +857,7 @@ Example5_SmartNavigation() {
 
         list := "Saved Bookmarks:`n`n"
         for name, itemID in bookmarks
-        list .= "• " . name . "`n"
+            list .= "• " . name . "`n"
 
         MsgBox(list, "Bookmarks", 64)
     }
@@ -865,7 +865,7 @@ Example5_SmartNavigation() {
     UpdateStatus() {
         text := ""
         if (selected := TV.GetSelection())
-        text := TV.GetText(selected)
+            text := TV.GetText(selected)
 
         statusBar := "Current: " . text
         statusBar .= " | History: " . historyPos . "/" . history.Length
@@ -1140,3 +1140,4 @@ PERFORMANCE TIPS:
 ; Example5_SmartNavigation()
 ; Example6_AnimatedExpansion()
 ; Example7_PerformanceMonitor()
+

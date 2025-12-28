@@ -1,36 +1,36 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Exp_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Basic usage examples of Exp() function for exponential calculations (e^x)
-*
-* FEATURES:
-* - Basic exponential function usage
-* - Euler's number (e) calculations
-* - Exponential growth patterns
-* - Relationship between Exp() and Ln()
-* - Power series approximations
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Math.htm#Exp
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Exp() function
-* - Ln() function (natural logarithm)
-* - Mathematical expressions
-* - Format() for scientific notation
-* - Loop for iterative calculations
-*
-* LEARNING POINTS:
-* 1. Exp(x) calculates e^x where e ≈ 2.71828
-* 2. e is Euler's number, base of natural logarithms
-* 3. Exp() and Ln() are inverse functions
-* 4. Exponential function grows very rapidly
-* 5. Used extensively in calculus and natural phenomena
-*/
+ * BuiltIn_Exp_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Basic usage examples of Exp() function for exponential calculations (e^x)
+ * 
+ * FEATURES:
+ * - Basic exponential function usage
+ * - Euler's number (e) calculations
+ * - Exponential growth patterns
+ * - Relationship between Exp() and Ln()
+ * - Power series approximations
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Math.htm#Exp
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Exp() function
+ * - Ln() function (natural logarithm)
+ * - Mathematical expressions
+ * - Format() for scientific notation
+ * - Loop for iterative calculations
+ * 
+ * LEARNING POINTS:
+ * 1. Exp(x) calculates e^x where e ≈ 2.71828
+ * 2. e is Euler's number, base of natural logarithms
+ * 3. Exp() and Ln() are inverse functions
+ * 4. Exponential function grows very rapidly
+ * 5. Used extensively in calculus and natural phenomena
+ */
 
 ; Mathematical constants
 global E := 2.71828182845905
@@ -49,9 +49,9 @@ for x in values {
 
     ; Special cases
     if (x = 0)
-    output .= "  (Always equals 1)"
+        output .= "  (Always equals 1)"
     else if (x = 1)
-    output .= "  (Equals e)"
+        output .= "  (Equals e)"
 
     output .= "`n"
 }
@@ -63,15 +63,15 @@ MsgBox(output, "Basic Exp() Function", "Icon!")
 ; ============================================================
 
 /**
-* Calculate e using different methods
-*/
+ * Calculate e using different methods
+ */
 CalculateE_Methods() {
     ; Method 1: Exp(1)
     e1 := Exp(1)
 
     ; Method 2: Limit definition (1 + 1/n)^n
     n := 1000000
-    e2 := (1 + 1/n) ** n
+    e2 := (1 + 1 / n) ** n
 
     ; Method 3: Series sum: e = 1 + 1/1! + 1/2! + 1/3! + ...
     e3 := 1
@@ -81,7 +81,7 @@ CalculateE_Methods() {
         e3 += 1 / factorial
     }
 
-    return {exp1: e1, limit: e2, series: e3}
+    return { exp1: e1, limit: e2, series: e3 }
 }
 
 results := CalculateE_Methods()
@@ -105,8 +105,8 @@ MsgBox(output, "Euler's Number", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrate inverse relationship: Ln(Exp(x)) = x and Exp(Ln(x)) = x
-*/
+ * Demonstrate inverse relationship: Ln(Exp(x)) = x and Exp(Ln(x)) = x
+ */
 DemonstrateInverse() {
     testValues := [0.5, 1, 2, 3, 5, 10]
     results := []
@@ -156,8 +156,8 @@ MsgBox(output, "Inverse Functions", "Icon!")
 ; ============================================================
 
 /**
-* Compare linear, quadratic, and exponential growth
-*/
+ * Compare linear, quadratic, and exponential growth
+ */
 CompareGrowthRates(n) {
     results := []
 
@@ -201,8 +201,8 @@ MsgBox(output, "Growth Comparison", "Icon!")
 ; ============================================================
 
 /**
-* Demonstrate key exponential properties
-*/
+ * Demonstrate key exponential properties
+ */
 DemonstrateProperties() {
     a := 2
     b := 3
@@ -228,11 +228,11 @@ DemonstrateProperties() {
     prop5_right := 1 / Exp(x)
 
     return {
-        prop1: {left: prop1_left, right: prop1_right, a: a, b: b},
-        prop2: {left: prop2_left, right: prop2_right, a: a, b: b},
-        prop3: {left: prop3_left, right: prop3_right, a: a, b: b},
+        prop1: { left: prop1_left, right: prop1_right, a: a, b: b },
+        prop2: { left: prop2_left, right: prop2_right, a: a, b: b },
+        prop3: { left: prop3_left, right: prop3_right, a: a, b: b },
         prop4: prop4,
-        prop5: {left: prop5_left, right: prop5_right, x: x}
+        prop5: { left: prop5_left, right: prop5_right, x: x }
     }
 }
 
@@ -272,13 +272,13 @@ MsgBox(output, "Exponential Properties", "Icon!")
 ; ============================================================
 
 /**
-* Approximate e^x using Taylor series
-* e^x = 1 + x + x²/2! + x³/3! + x⁴/4! + ...
-*
-* @param {Number} x - Value to calculate e^x
-* @param {Number} terms - Number of terms to use
-* @returns {Number} - Approximation of e^x
-*/
+ * Approximate e^x using Taylor series
+ * e^x = 1 + x + x²/2! + x³/3! + x⁴/4! + ...
+ * 
+ * @param {Number} x - Value to calculate e^x
+ * @param {Number} terms - Number of terms to use
+ * @returns {Number} - Approximation of e^x
+ */
 ExpTaylor(x, terms := 20) {
     result := 1
     term := 1
@@ -320,25 +320,25 @@ MsgBox(output, "Taylor Series", "Icon!")
 ; ============================================================
 
 /**
-* Calculate continuous compound interest
-* A = P × e^(rt)
-*/
+ * Calculate continuous compound interest
+ * A = P × e^(rt)
+ */
 ContinuousCompound(principal, rate, time) {
     return principal * Exp(rate * time)
 }
 
 /**
-* Population growth (natural growth)
-* P(t) = P₀ × e^(rt)
-*/
+ * Population growth (natural growth)
+ * P(t) = P₀ × e^(rt)
+ */
 PopulationGrowth(initial, rate, time) {
     return initial * Exp(rate * time)
 }
 
 /**
-* Probability density function of normal distribution at x=0
-* For standard normal: f(0) = 1/√(2π) ≈ 0.3989
-*/
+ * Probability density function of normal distribution at x=0
+ * For standard normal: f(0) = 1/√(2π) ≈ 0.3989
+ */
 NormalPDF_AtZero() {
     return 1 / Sqrt(2 * 3.14159265359)
 }

@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinGetList_02.ahk
-* @description Advanced window list operations, sorting, analysis, and monitoring using WinGetList in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Advanced window sorting
-* Example 2: Window list comparator
-* Example 3: Real-time window monitor
-* Example 4: Window search engine
-* Example 5: List-based automation
-* Example 6: Window snapshot system
-*
-* @section FEATURES
-* - Advanced sorting
-* - List comparison
-* - Real-time monitoring
-* - Search functionality
-* - Automation based on lists
-* - Snapshot management
-*/
+ * @file BuiltIn_WinGetList_02.ahk
+ * @description Advanced window list operations, sorting, analysis, and monitoring using WinGetList in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Advanced window sorting
+ * Example 2: Window list comparator
+ * Example 3: Real-time window monitor
+ * Example 4: Window search engine
+ * Example 5: List-based automation
+ * Example 6: Window snapshot system
+ * 
+ * @section FEATURES
+ * - Advanced sorting
+ * - List comparison
+ * - Real-time monitoring
+ * - Search functionality
+ * - Automation based on lists
+ * - Snapshot management
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -133,7 +133,7 @@ class WindowSorter {
     for win in sorted {
         output .= win.Title "`n"
         if A_Index > 15
-        break
+            break
     }
 
     MsgBox(output, "Sorted Windows", "Icon!")
@@ -269,7 +269,7 @@ class RealtimeMonitor {
 
     static CheckChanges() {
         if !this.monitoring
-        return
+            return
 
         currentList := this.GetCurrentList()
 
@@ -293,7 +293,7 @@ class RealtimeMonitor {
     static InList(winId, list) {
         for id in list {
             if id = winId
-            return true
+                return true
         }
         return false
     }
@@ -344,22 +344,22 @@ class WindowSearch {
     static MatchesCriteria(winData, criteria) {
         if criteria.HasOwnProp("TitleContains") {
             if !InStr(winData.Title, criteria.TitleContains)
-            return false
+                return false
         }
 
         if criteria.HasOwnProp("ClassEquals") {
             if winData.Class != criteria.ClassEquals
-            return false
+                return false
         }
 
         if criteria.HasOwnProp("ProcessEquals") {
             if winData.Process != criteria.ProcessEquals
-            return false
+                return false
         }
 
         if criteria.HasOwnProp("TitleRegex") {
             if !(winData.Title ~= criteria.TitleRegex)
-            return false
+                return false
         }
 
         return true
@@ -412,7 +412,7 @@ class ListAutomation {
 }
 
 ^+6:: {
-    criteria := {ClassEquals: "Notepad"}
+    criteria := { ClassEquals: "Notepad" }
     ListAutomation.MinimizeMatching(criteria)
 }
 
@@ -435,7 +435,7 @@ class SnapshotSystem {
                     Title: WinGetTitle("ahk_id " winId),
                     Class: WinGetClass("ahk_id " winId),
                     Process: WinGetProcessName("ahk_id " winId),
-                    Position: {X: x, Y: y, Width: w, Height: h}
+                    Position: { X: x, Y: y, Width: w, Height: h }
                 })
             }
         }
@@ -481,13 +481,13 @@ class SnapshotSystem {
 ^+7:: {
     name := InputBox("Enter snapshot name:", "Create Snapshot").Value
     if name != ""
-    SnapshotSystem.CreateSnapshot(name)
+        SnapshotSystem.CreateSnapshot(name)
 }
 
 ^+8:: {
     name := InputBox("Enter snapshot name to restore:", "Restore Snapshot").Value
     if name != ""
-    SnapshotSystem.RestoreSnapshot(name)
+        SnapshotSystem.RestoreSnapshot(name)
 }
 
 ; ========================================

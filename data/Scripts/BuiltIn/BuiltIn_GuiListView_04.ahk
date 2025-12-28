@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiListView_04.ahk - Advanced ListView Features
-*
-* This file demonstrates advanced ListView functionality in AutoHotkey v2.
-* Topics covered:
-* - ListView icons
-* - Checkboxes
-* - Editable cells
-* - Drag and drop
-* - Virtual ListView
-* - Filtering
-* - Data binding
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiListView_04.ahk - Advanced ListView Features
+ * 
+ * This file demonstrates advanced ListView functionality in AutoHotkey v2.
+ * Topics covered:
+ * - ListView icons
+ * - Checkboxes
+ * - Editable cells
+ * - Drag and drop
+ * - Virtual ListView
+ * - Filtering
+ * - Data binding
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates listview icons
-* Complete ListView example with data management
-*/
+ * Demonstrates listview icons
+ * Complete ListView example with data management
+ */
 Example1_ListViewicons() {
     myGui := Gui(, "ListView icons Demo")
     myGui.BackColor := "White"
@@ -48,14 +47,14 @@ Example1_ListViewicons() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -76,7 +75,7 @@ Example1_ListViewicons() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -125,15 +124,14 @@ Example1_ListViewicons() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Checkboxes
 ; =============================================================================
 
 /**
-* Demonstrates checkboxes
-* Complete ListView example with data management
-*/
+ * Demonstrates checkboxes
+ * Complete ListView example with data management
+ */
 Example2_Checkboxes() {
     myGui := Gui(, "Checkboxes Demo")
     myGui.BackColor := "White"
@@ -154,14 +152,14 @@ Example2_Checkboxes() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -182,7 +180,7 @@ Example2_Checkboxes() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -231,15 +229,14 @@ Example2_Checkboxes() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Editable cells
 ; =============================================================================
 
 /**
-* Demonstrates editable cells
-* Complete ListView example with data management
-*/
+ * Demonstrates editable cells
+ * Complete ListView example with data management
+ */
 Example3_Editablecells() {
     myGui := Gui(, "Editable cells Demo")
     myGui.BackColor := "White"
@@ -260,14 +257,14 @@ Example3_Editablecells() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -288,7 +285,7 @@ Example3_Editablecells() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -337,15 +334,14 @@ Example3_Editablecells() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Drag and drop
 ; =============================================================================
 
 /**
-* Demonstrates drag and drop
-* Complete ListView example with data management
-*/
+ * Demonstrates drag and drop
+ * Complete ListView example with data management
+ */
 Example4_Draganddrop() {
     myGui := Gui(, "Drag and drop Demo")
     myGui.BackColor := "White"
@@ -366,14 +362,14 @@ Example4_Draganddrop() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -394,7 +390,7 @@ Example4_Draganddrop() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -443,15 +439,14 @@ Example4_Draganddrop() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Virtual ListView
 ; =============================================================================
 
 /**
-* Demonstrates virtual listview
-* Complete ListView example with data management
-*/
+ * Demonstrates virtual listview
+ * Complete ListView example with data management
+ */
 Example5_VirtualListView() {
     myGui := Gui(, "Virtual ListView Demo")
     myGui.BackColor := "White"
@@ -472,14 +467,14 @@ Example5_VirtualListView() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -500,7 +495,7 @@ Example5_VirtualListView() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -549,15 +544,14 @@ Example5_VirtualListView() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: Filtering
 ; =============================================================================
 
 /**
-* Demonstrates filtering
-* Complete ListView example with data management
-*/
+ * Demonstrates filtering
+ * Complete ListView example with data management
+ */
 Example6_Filtering() {
     myGui := Gui(, "Filtering Demo")
     myGui.BackColor := "White"
@@ -578,14 +572,14 @@ Example6_Filtering() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -606,7 +600,7 @@ Example6_Filtering() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -655,15 +649,14 @@ Example6_Filtering() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Data binding
 ; =============================================================================
 
 /**
-* Demonstrates data binding
-* Complete ListView example with data management
-*/
+ * Demonstrates data binding
+ * Complete ListView example with data management
+ */
 Example7_Databinding() {
     myGui := Gui(, "Data binding Demo")
     myGui.BackColor := "White"
@@ -684,14 +677,14 @@ Example7_Databinding() {
 
     ; Sample data
     employees := [
-    [1, "John Doe", "Engineering", "$75,000", "Active"],
-    [2, "Jane Smith", "Marketing", "$65,000", "Active"],
-    [3, "Bob Johnson", "Sales", "$70,000", "Active"],
-    [4, "Alice Williams", "HR", "$60,000", "Active"],
-    [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
-    [6, "Diana Prince", "Management", "$95,000", "Active"],
-    [7, "Eve Davis", "Sales", "$68,000", "Active"],
-    [8, "Frank Miller", "Engineering", "$72,000", "Active"]
+        [1, "John Doe", "Engineering", "$75,000", "Active"],
+        [2, "Jane Smith", "Marketing", "$65,000", "Active"],
+        [3, "Bob Johnson", "Sales", "$70,000", "Active"],
+        [4, "Alice Williams", "HR", "$60,000", "Active"],
+        [5, "Charlie Brown", "Engineering", "$80,000", "On Leave"],
+        [6, "Diana Prince", "Management", "$95,000", "Active"],
+        [7, "Eve Davis", "Sales", "$68,000", "Active"],
+        [8, "Frank Miller", "Engineering", "$72,000", "Active"]
     ]
 
     ; Populate ListView
@@ -712,7 +705,7 @@ Example7_Databinding() {
             salary := lv.GetText(selected, 4)
             status := lv.GetText(selected, 5)
             infoText.Value := Format("Selected Employee:\nID: {1} | Name: {2} | Dept: {3} | Salary: {4} | Status: {5}",
-            id, name, dept, salary, status)
+                id, name, dept, salary, status)
         } else {
             infoText.Value := Format("Total Employees: {1}\nNo employee selected", lv.GetCount())
         }
@@ -766,8 +759,8 @@ Example7_Databinding() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiListView_04.ahk - Examples")
     menuGui.BackColor := "White"

@@ -26,10 +26,10 @@ class OrderItem {
     GetSubtotal() => this.menuItem.price * this.quantity
 
     ToString() => Format("{1} x{2} = ${3:.2f}{4}",
-    this.menuItem.name,
-    this.quantity,
-    this.GetSubtotal(),
-    this.specialInstructions ? " (" . this.specialInstructions . ")" : "")
+        this.menuItem.name,
+        this.quantity,
+        this.GetSubtotal(),
+        this.specialInstructions ? " (" . this.specialInstructions . ")" : "")
 }
 
 class Order {
@@ -60,7 +60,7 @@ class Order {
     GetSubtotal() {
         total := 0
         for item in this.items
-        total += item.GetSubtotal()
+            total += item.GetSubtotal()
         return total
     }
 
@@ -73,8 +73,8 @@ class Order {
     GetEstimatedPrepTime() {
         maxTime := 0
         for item in this.items
-        if (item.menuItem.prepTime > maxTime)
-        maxTime := item.menuItem.prepTime
+            if (item.menuItem.prepTime > maxTime)
+                maxTime := item.menuItem.prepTime
         return maxTime
     }
 
@@ -90,12 +90,12 @@ class Order {
         receipt .= "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "=" . "`n"
 
         for item in this.items
-        receipt .= item.ToString() . "`n"
+            receipt .= item.ToString() . "`n"
 
         receipt .= "`nSubtotal: $" . Format("{:.2f}", this.GetSubtotal())
         receipt .= "`nTax: $" . Format("{:.2f}", this.GetTax())
         if (this.tip > 0)
-        receipt .= "`nTip: $" . Format("{:.2f}", this.tip)
+            receipt .= "`nTip: $" . Format("{:.2f}", this.tip)
         receipt .= "`n" . "-" . "-" . "-" . "-" . "-" . "-" . "-" . "-" . "-" . "-" . "-" . "-" . "`n"
         receipt .= "TOTAL: $" . Format("{:.2f}", this.GetTotal())
         receipt .= "`n`nStatus: " . this.status
@@ -114,18 +114,18 @@ class Menu {
     GetItemsByCategory(category) {
         filtered := []
         for id, item in this.items
-        if (item.category = category && item.available)
-        filtered.Push(item)
+            if (item.category = category && item.available)
+                filtered.Push(item)
         return filtered
     }
 
     GetCategories() {
         categories := Map()
         for id, item in this.items
-        categories[item.category] := true
+            categories[item.category] := true
         result := []
         for cat in categories
-        result.Push(cat)
+            result.Push(cat)
         return result
     }
 
@@ -134,7 +134,7 @@ class Menu {
         for category in this.GetCategories() {
             menu .= "`n" . category . ":`n"
             for item in this.GetItemsByCategory(category)
-            menu .= "  " . item.ToString() . "`n"
+                menu .= "  " . item.ToString() . "`n"
         }
         return menu
     }
@@ -154,32 +154,32 @@ class Restaurant {
     GetActiveOrders() {
         active := []
         for order in this.orders
-        if (order.status != Order.STATUS_DELIVERED && order.status != Order.STATUS_CANCELLED)
-        active.Push(order)
+            if (order.status != Order.STATUS_DELIVERED && order.status != Order.STATUS_CANCELLED)
+                active.Push(order)
         return active
     }
 
     GetKitchenQueue() {
         queue := []
         for order in this.orders
-        if (order.status = Order.STATUS_PREPARING)
-        queue.Push(order)
+            if (order.status = Order.STATUS_PREPARING)
+                queue.Push(order)
         return queue
     }
 
     GetOrdersByStatus(status) {
         filtered := []
         for order in this.orders
-        if (order.status = status)
-        filtered.Push(order)
+            if (order.status = status)
+                filtered.Push(order)
         return filtered
     }
 
     GetDailySales() {
         total := 0
         for order in this.orders
-        if (order.status = Order.STATUS_DELIVERED)
-        total += order.GetTotal()
+            if (order.status = Order.STATUS_DELIVERED)
+                total += order.GetTotal()
         return total
     }
 
@@ -199,14 +199,14 @@ restaurant := Restaurant("Bella Italia")
 
 ; Build menu
 restaurant
-.AddMenuItem(MenuItem("APP1", "Bruschetta", 8.99, "Appetizers", 10))
-.AddMenuItem(MenuItem("APP2", "Calamari", 12.99, "Appetizers", 12))
-.AddMenuItem(MenuItem("MAIN1", "Spaghetti Carbonara", 16.99, "Main Course", 20))
-.AddMenuItem(MenuItem("MAIN2", "Margherita Pizza", 14.99, "Main Course", 15))
-.AddMenuItem(MenuItem("MAIN3", "Chicken Parmesan", 18.99, "Main Course", 25))
-.AddMenuItem(MenuItem("DRINK1", "House Wine", 7.99, "Beverages", 2))
-.AddMenuItem(MenuItem("DRINK2", "Sparkling Water", 3.99, "Beverages", 1))
-.AddMenuItem(MenuItem("DESS1", "Tiramisu", 7.99, "Desserts", 5))
+    .AddMenuItem(MenuItem("APP1", "Bruschetta", 8.99, "Appetizers", 10))
+    .AddMenuItem(MenuItem("APP2", "Calamari", 12.99, "Appetizers", 12))
+    .AddMenuItem(MenuItem("MAIN1", "Spaghetti Carbonara", 16.99, "Main Course", 20))
+    .AddMenuItem(MenuItem("MAIN2", "Margherita Pizza", 14.99, "Main Course", 15))
+    .AddMenuItem(MenuItem("MAIN3", "Chicken Parmesan", 18.99, "Main Course", 25))
+    .AddMenuItem(MenuItem("DRINK1", "House Wine", 7.99, "Beverages", 2))
+    .AddMenuItem(MenuItem("DRINK2", "Sparkling Water", 3.99, "Beverages", 1))
+    .AddMenuItem(MenuItem("DESS1", "Tiramisu", 7.99, "Desserts", 5))
 
 MsgBox(restaurant.menu.ToString())
 

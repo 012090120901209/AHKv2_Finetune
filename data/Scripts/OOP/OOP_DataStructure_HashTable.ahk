@@ -15,7 +15,7 @@ class HashTable {
         this.loadFactorThreshold := 0.75
 
         loop capacity
-        this.buckets.Push("")
+            this.buckets.Push("")
     }
 
     _Hash(key) {
@@ -28,7 +28,7 @@ class HashTable {
 
     Set(key, value) {
         if (this.size / this.capacity >= this.loadFactorThreshold)
-        this._Resize()
+            this._Resize()
 
         index := this._Hash(key)
         head := this.buckets[index]
@@ -58,7 +58,7 @@ class HashTable {
 
         while (current) {
             if (current.key = key)
-            return current.value
+                return current.value
             current := current.next
         }
 
@@ -71,7 +71,7 @@ class HashTable {
 
         while (current) {
             if (current.key = key)
-            return true
+                return true
             current := current.next
         }
 
@@ -86,9 +86,9 @@ class HashTable {
         while (current) {
             if (current.key = key) {
                 if (prev)
-                prev.next := current.next
+                    prev.next := current.next
                 else
-                this.buckets[index] := current.next
+                    this.buckets[index] := current.next
 
                 this.size--
                 return true
@@ -129,7 +129,7 @@ class HashTable {
         for bucket in this.buckets {
             current := bucket
             while (current) {
-                entries.Push({key: current.key, value: current.value})
+                entries.Push({ key: current.key, value: current.value })
                 current := current.next
             }
         }
@@ -143,7 +143,7 @@ class HashTable {
         this.size := 0
 
         loop this.capacity
-        this.buckets.Push("")
+            this.buckets.Push("")
 
         ; Rehash all entries
         for bucket in oldBuckets {
@@ -159,12 +159,12 @@ class HashTable {
 
     GetStats() {
         stats := Format("HashTable Stats:`nSize: {1} | Capacity: {2} | Load Factor: {3}",
-        this.size, this.capacity, this.GetLoadFactor())
+            this.size, this.capacity, this.GetLoadFactor())
 
         collisions := 0
         for bucket in this.buckets {
             if (bucket && bucket.next)
-            collisions++
+                collisions++
         }
 
         stats .= Format("`nBuckets with collisions: {1}", collisions)
@@ -179,9 +179,9 @@ ht := HashTable(4)  ; Small capacity to test resizing
 
 ; Set values
 ht.Set("name", "Alice")
-.Set("age", 30)
-.Set("city", "New York")
-.Set("country", "USA")
+    .Set("age", 30)
+    .Set("city", "New York")
+    .Set("country", "USA")
 
 MsgBox(ht.ToString())
 MsgBox(ht.GetStats())
@@ -196,8 +196,8 @@ MsgBox("Has 'phone'? " . (ht.Has("phone") ? "Yes" : "No"))
 
 ; Add more items (triggers resize)
 ht.Set("email", "alice@example.com")
-.Set("phone", "555-1234")
-.Set("job", "Engineer")
+    .Set("phone", "555-1234")
+    .Set("job", "Engineer")
 
 MsgBox("After adding more items:`n" . ht.GetStats())
 
@@ -215,9 +215,9 @@ MsgBox("After deleting phone:`n" . ht.ToString())
 
 ; Cache example
 cache := HashTable()
-cache.Set("user:1", {name: "Alice", age: 30})
-.Set("user:2", {name: "Bob", age: 25})
-.Set("user:3", {name: "Charlie", age: 35})
+cache.Set("user:1", { name: "Alice", age: 30 })
+    .Set("user:2", { name: "Bob", age: 25 })
+    .Set("user:3", { name: "Charlie", age: 35 })
 
 user := cache.Get("user:2")
 MsgBox("Cached user: " . user.name . " (" . user.age . ")")

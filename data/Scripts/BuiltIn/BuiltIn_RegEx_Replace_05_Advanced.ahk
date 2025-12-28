@@ -1,75 +1,75 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_RegEx_Replace_05_Advanced.ahk
-*
-* DESCRIPTION:
-* Advanced RegExReplace techniques including lookahead/lookbehind replacements,
-* recursive patterns, performance optimization, and complex multi-step transformations.
-*
-* FEATURES:
-* - Lookbehind and lookahead in replacements
-* - Multiple chained replacements
-* - Performance optimization techniques
-* - Complex text refactoring
-* - Edge case handling
-* - Recursive pattern applications
-* - Advanced transformation pipelines
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - RegEx
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced PCRE features in replacements
-* - Optimization strategies
-* - Complex pattern combinations
-* - Memory-efficient processing
-* - Error handling
-*
-* LEARNING POINTS:
-* 1. Lookaheads/lookbehinds work in replacement patterns
-* 2. Chain multiple replacements for complex transformations
-* 3. Order of operations matters significantly
-* 4. Performance can be improved with specific patterns
-* 5. Edge cases require careful testing
-* 6. Sometimes multiple simple steps beat one complex pattern
-* 7. Always validate results after transformation
-*/
+ * BuiltIn_RegEx_Replace_05_Advanced.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced RegExReplace techniques including lookahead/lookbehind replacements,
+ * recursive patterns, performance optimization, and complex multi-step transformations.
+ * 
+ * FEATURES:
+ * - Lookbehind and lookahead in replacements
+ * - Multiple chained replacements
+ * - Performance optimization techniques
+ * - Complex text refactoring
+ * - Edge case handling
+ * - Recursive pattern applications
+ * - Advanced transformation pipelines
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - RegEx
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced PCRE features in replacements
+ * - Optimization strategies
+ * - Complex pattern combinations
+ * - Memory-efficient processing
+ * - Error handling
+ * 
+ * LEARNING POINTS:
+ * 1. Lookaheads/lookbehinds work in replacement patterns
+ * 2. Chain multiple replacements for complex transformations
+ * 3. Order of operations matters significantly
+ * 4. Performance can be improved with specific patterns
+ * 5. Edge cases require careful testing
+ * 6. Sometimes multiple simple steps beat one complex pattern
+ * 7. Always validate results after transformation
+ */
 
 ; ========================================
 ; EXAMPLE 1: Lookahead/Lookbehind Replacements
 ; ========================================
 Example1_LookaroundReplacements() {
     MsgBox "EXAMPLE 1: Lookaround Replacements`n" .
-    "===================================="
+        "===================================="
 
     ; Replace numbers followed by specific units
     text := "Weight: 50kg, Height: 180cm, Age: 25"
     result := RegExReplace(text, "\d+(?=kg)", "$0.0")
     MsgBox "Add decimal to kg values:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Replace currency amounts
     text := "Price: $50, Cost: €40, Value: $100"
     result := RegExReplace(text, "(?<=\$)\d+", "$0.00")
     MsgBox "Format dollar amounts:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Replace words not at boundaries
     text := "The theater has theatrical performances"
     result := RegExReplace(text, "(?<!^|\s)the", "THE")
     MsgBox "Replace 'the' not at word start:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . result
+        "Original: " . text . "`n" .
+        "Result: " . result
 
     ; Add comma to numbers
     AddCommas(num) {
         return RegExReplace(num, "(\d)(?=(\d{3})+$)", "$1,")
     }
     MsgBox "Number formatting:`n" .
-    "1234567 -> " . AddCommas("1234567")
+        "1234567 -> " . AddCommas("1234567")
 }
 
 ; ========================================
@@ -77,7 +77,7 @@ Example1_LookaroundReplacements() {
 ; ========================================
 Example2_ChainedTransformations() {
     MsgBox "EXAMPLE 2: Chained Transformations`n" .
-    "===================================="
+        "===================================="
 
     ; Complete text cleanup pipeline
     CleanText(text) {
@@ -92,8 +92,8 @@ Example2_ChainedTransformations() {
     dirty := "  <p>Hello...   World!</p>  @#$  "
     clean := CleanText(dirty)
     MsgBox "Text Cleanup Pipeline:`n" .
-    "Original: '" . dirty . "'`n" .
-    "Cleaned: '" . clean . "'"
+        "Original: '" . dirty . "'`n" .
+        "Cleaned: '" . clean . "'"
 
     ; Code formatting pipeline
     FormatCode(code) {
@@ -105,8 +105,8 @@ Example2_ChainedTransformations() {
 
     code := "if(x>5){y=10;z=20;}"
     MsgBox "Code Formatting:`n" .
-    "Original: " . code . "`n" .
-    "Formatted: " . FormatCode(code)
+        "Original: " . code . "`n" .
+        "Formatted: " . FormatCode(code)
 }
 
 ; ========================================
@@ -114,7 +114,7 @@ Example2_ChainedTransformations() {
 ; ========================================
 Example3_PerformanceOptimization() {
     MsgBox "EXAMPLE 3: Performance Optimization`n" .
-    "====================================="
+        "====================================="
 
     ; Inefficient: Multiple passes
     SlowClean(text) {
@@ -136,9 +136,9 @@ Example3_PerformanceOptimization() {
 
     text := "the cat and the dog or the bird"
     MsgBox "Performance Comparison:`n" .
-    "Single pass is faster than multiple passes`n`n" .
-    "Original: " . text . "`n" .
-    "Result: " . FastClean(text)
+        "Single pass is faster than multiple passes`n`n" .
+        "Original: " . text . "`n" .
+        "Result: " . FastClean(text)
 
     ; Atomic groups for efficiency
     text := StrRepeat("a", 20) . "b"
@@ -147,7 +147,7 @@ Example3_PerformanceOptimization() {
     time1 := A_TickCount - start
 
     MsgBox "Atomic groups prevent backtracking`n" .
-    "Process time: " . time1 . "ms"
+        "Process time: " . time1 . "ms"
 }
 
 ; ========================================
@@ -155,7 +155,7 @@ Example3_PerformanceOptimization() {
 ; ========================================
 Example4_ComplexRefactoring() {
     MsgBox "EXAMPLE 4: Complex Refactoring`n" .
-    "================================"
+        "================================"
 
     ; Refactor variable names
     RefactorCode(code) {
@@ -175,17 +175,17 @@ Example4_ComplexRefactoring() {
     newCode := RefactorCode(oldCode)
 
     MsgBox "Code Refactoring:`n" .
-    "Original:`n" . oldCode . "`n`n" .
-    "Refactored:`n" . newCode
+        "Original:`n" . oldCode . "`n`n" .
+        "Refactored:`n" . newCode
 
     ; Restructure data format
     csvLine := "John,Doe,30,Engineer"
     jsonLine := RegExReplace(csvLine, "([^,]+),([^,]+),([^,]+),([^,]+)",
-    '{"first":"$1","last":"$2","age":$3,"job":"$4"}')
+        '{"first":"$1","last":"$2","age":$3,"job":"$4"}')
 
     MsgBox "CSV to JSON:`n" .
-    "CSV: " . csvLine . "`n" .
-    "JSON: " . jsonLine
+        "CSV: " . csvLine . "`n" .
+        "JSON: " . jsonLine
 }
 
 ; ========================================
@@ -193,7 +193,7 @@ Example4_ComplexRefactoring() {
 ; ========================================
 Example5_EdgeCases() {
     MsgBox "EXAMPLE 5: Edge Case Handling`n" .
-    "=============================="
+        "=============================="
 
     ; Safe division in calculations
     SafeReplace(text) {
@@ -212,15 +212,15 @@ Example5_EdgeCases() {
 
     text := "Values: 10, 20, 99999999999999999999, 30"
     MsgBox "Safe Numeric Operations:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . SafeReplace(text)
+        "Original: " . text . "`n" .
+        "Result: " . SafeReplace(text)
 
     ; Handle empty matches
     text := "word1  word2   word3"
     result := RegExReplace(text, "\s+", " ")
     MsgBox "Handle multiple spaces:`n" .
-    "Original: '" . text . "'`n" .
-    "Result: '" . result . "'"
+        "Original: '" . text . "'`n" .
+        "Result: '" . result . "'"
 
     ; Preserve intentional formatting
     PreserveCode(text) {
@@ -236,14 +236,14 @@ Example5_EdgeCases() {
 ; ========================================
 Example6_RecursiveApplications() {
     MsgBox "EXAMPLE 6: Recursive Applications`n" .
-    "=================================="
+        "=================================="
 
     ; Remove nested parentheses
     RemoveNested(text) {
         loop {
             newText := RegExReplace(text, "\([^()]*\)", "")
             if newText = text
-            break
+                break
             text := newText
         }
         return text
@@ -251,24 +251,24 @@ Example6_RecursiveApplications() {
 
     text := "Text (with (nested (deep) parentheses) here) end"
     MsgBox "Remove Nested Parentheses:`n" .
-    "Original: " . text . "`n" .
-    "Result: " . RemoveNested(text)
+        "Original: " . text . "`n" .
+        "Result: " . RemoveNested(text)
 
     ; Flatten nested tags
     FlattenTags(html) {
         loop 5 {  ; Limit iterations
-        newHtml := RegExReplace(html, "<b>([^<]*)</b>", "$1")
-        if newHtml = html
-        break
-        html := newHtml
+            newHtml := RegExReplace(html, "<b>([^<]*)</b>", "$1")
+            if newHtml = html
+                break
+            html := newHtml
+        }
+        return html
     }
-    return html
-}
 
-html := "<b><b><b>Bold</b></b></b>"
-MsgBox "Flatten Tags:`n" .
-"Original: " . html . "`n" .
-"Result: " . FlattenTags(html)
+    html := "<b><b><b>Bold</b></b></b>"
+    MsgBox "Flatten Tags:`n" .
+        "Original: " . html . "`n" .
+        "Result: " . FlattenTags(html)
 }
 
 ; ========================================
@@ -276,7 +276,7 @@ MsgBox "Flatten Tags:`n" .
 ; ========================================
 Example7_AdvancedPipelines() {
     MsgBox "EXAMPLE 7: Advanced Pipelines`n" .
-    "=============================="
+        "=============================="
 
     ; Markdown to HTML converter
     MarkdownToHTML(md) {
@@ -295,48 +295,47 @@ Example7_AdvancedPipelines() {
         html := RegExReplace(html, "\[([^\]]+)\]\(([^)]+)\)", '<a href="$2">$1</a>')
 
         ; Code
-        html := RegExReplace(html, "`([^`]+)`", "<code>$1</code>")
+        html := RegExReplace(html, "`([^`]+)`", " < code > $1 < / code > ")
+            return html
+        }
 
-        return html
+        md := "# Title`n**Bold** and *italic* with [link](http://example.com)"
+        MsgBox "Markdown to HTML:`n" .
+            "Markdown:`n" . md . "`n`n" .
+            "HTML:`n" . MarkdownToHTML(md)
+
+        ; Advanced sanitization
+        SecuritySanitize(text) {
+            ; Remove scripts
+            text := RegExReplace(text, "i)<script[^>]*>.*?</script>", "")
+            ; Remove event handlers
+            text := RegExReplace(text, 'i)\s*on\w+\s*=\s*"[^"]*"', "")
+            ; Remove javascript: protocol
+            text := RegExReplace(text, 'i)javascript:', "")
+            ; Clean remaining HTML
+            text := RegExReplace(text, "<(?!/?[biu]>)[^>]*>", "")
+            return text
+        }
+
+        dangerous := '<p onclick="alert()">Text<script>bad()</script></p>'
+        safe := SecuritySanitize(dangerous)
+
+        MsgBox "Security Sanitization:`n" .
+            "Dangerous: " . dangerous . "`n" .
+            "Safe: " . safe
     }
 
-    md := "# Title`n**Bold** and *italic* with [link](http://example.com)"
-    MsgBox "Markdown to HTML:`n" .
-    "Markdown:`n" . md . "`n`n" .
-    "HTML:`n" . MarkdownToHTML(md)
-
-    ; Advanced sanitization
-    SecuritySanitize(text) {
-        ; Remove scripts
-        text := RegExReplace(text, "i)<script[^>]*>.*?</script>", "")
-        ; Remove event handlers
-        text := RegExReplace(text, 'i)\s*on\w+\s*=\s*"[^"]*"', "")
-        ; Remove javascript: protocol
-        text := RegExReplace(text, 'i)javascript:', "")
-        ; Clean remaining HTML
-        text := RegExReplace(text, "<(?!/?[biu]>)[^>]*>", "")
-        return text
+    ; Helper Functions
+    StrRepeat(str, count) {
+        result := ""
+        Loop count
+            result .= str
+        return result
     }
 
-    dangerous := '<p onclick="alert()">Text<script>bad()</script></p>'
-    safe := SecuritySanitize(dangerous)
-
-    MsgBox "Security Sanitization:`n" .
-    "Dangerous: " . dangerous . "`n" .
-    "Safe: " . safe
-}
-
-; Helper Functions
-StrRepeat(str, count) {
-    result := ""
-    Loop count
-    result .= str
-    return result
-}
-
-; Main Menu
-ShowMenu() {
-    MsgBox "
+    ; Main Menu
+    ShowMenu() {
+        MsgBox "
     (
     RegExReplace Advanced Techniques
     =================================
@@ -351,15 +350,15 @@ ShowMenu() {
 
     Press Ctrl+1-7 to run examples
     )"
-}
+    }
 
-^1::Example1_LookaroundReplacements()
-^2::Example2_ChainedTransformations()
-^3::Example3_PerformanceOptimization()
-^4::Example4_ComplexRefactoring()
-^5::Example5_EdgeCases()
-^6::Example6_RecursiveApplications()
-^7::Example7_AdvancedPipelines()
-^h::ShowMenu()
+    ^1:: Example1_LookaroundReplacements()
+    ^2:: Example2_ChainedTransformations()
+    ^3:: Example3_PerformanceOptimization()
+    ^4:: Example4_ComplexRefactoring()
+    ^5:: Example5_EdgeCases()
+    ^6:: Example6_RecursiveApplications()
+    ^7:: Example7_AdvancedPipelines()
+    ^h:: ShowMenu()
 
-ShowMenu()
+    ShowMenu()

@@ -1,37 +1,37 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_StrPut_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates writing strings to binary data using StrPut.
-* Covers basic string storage in buffers and memory addresses.
-*
-* FEATURES:
-* - Writing null-terminated strings
-* - Buffer size calculation
-* - UTF-16 and UTF-8 string writing
-* - Multiple string storage
-* - String pointer creation
-* - Practical string serialization
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - StrPut Function
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - StrPut(string, address, length, encoding) syntax
-* - StrPut size calculation mode
-* - UTF-16 writing (Windows default)
-* - UTF-8 writing
-* - Automatic null termination
-*
-* LEARNING POINTS:
-* 1. StrPut writes strings to memory addresses
-* 2. Call StrPut without buffer to get required size
-* 3. Default encoding is UTF-16 on Windows
-* 4. StrPut adds null terminator automatically
-* 5. Returns number of characters written
-*/
+ * BuiltIn_StrPut_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates writing strings to binary data using StrPut.
+ * Covers basic string storage in buffers and memory addresses.
+ * 
+ * FEATURES:
+ * - Writing null-terminated strings
+ * - Buffer size calculation
+ * - UTF-16 and UTF-8 string writing
+ * - Multiple string storage
+ * - String pointer creation
+ * - Practical string serialization
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - StrPut Function
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - StrPut(string, address, length, encoding) syntax
+ * - StrPut size calculation mode
+ * - UTF-16 writing (Windows default)
+ * - UTF-8 writing
+ * - Automatic null termination
+ * 
+ * LEARNING POINTS:
+ * 1. StrPut writes strings to memory addresses
+ * 2. Call StrPut without buffer to get required size
+ * 3. Default encoding is UTF-16 on Windows
+ * 4. StrPut adds null terminator automatically
+ * 5. Returns number of characters written
+ */
 
 ; ================================================================================================
 ; EXAMPLE 1: Basic String Writing
@@ -103,7 +103,7 @@ Example2_MultipleStrings() {
     result .= "String Storage:`n"
     loop strings.Length {
         result .= "  [" . (A_Index - 1) . "] Offset " . offsets[A_Index]
-        . ": '" . readStrings[A_Index] . "'`n"
+            . ": '" . readStrings[A_Index] . "'`n"
     }
 
     MsgBox(result, "Example 2: Multiple Strings", "Icon!")
@@ -162,11 +162,11 @@ Example4_WindowsAPIStrings() {
 
     ; Call Windows API
     result := DllCall("MessageBoxW"
-    , "Ptr", 0
-    , "Ptr", msgBuf.Ptr
-    , "Ptr", titleBuf.Ptr
-    , "UInt", 0x40  ; MB_ICONINFORMATION
-    , "Int")
+        , "Ptr", 0
+        , "Ptr", msgBuf.Ptr
+        , "Ptr", titleBuf.Ptr
+        , "UInt", 0x40  ; MB_ICONINFORMATION
+        , "Int")
 
     ; Display results
     resultText := "Windows API String Usage:`n`n"
@@ -234,7 +234,7 @@ ShowMenu() {
     choice := InputBox(menu, "StrPut Basic Examples", "w450 h300")
 
     if choice.Result = "Cancel"
-    return
+        return
 
     switch choice.Value {
         case "1": Example1_BasicStringWriting()
@@ -267,9 +267,9 @@ class StringBuffer {
             newBuf := Buffer(newCapacity)
 
             DllCall("RtlMoveMemory"
-            , "Ptr", newBuf.Ptr
-            , "Ptr", this.buffer.Ptr
-            , "UPtr", this.position)
+                , "Ptr", newBuf.Ptr
+                , "Ptr", this.buffer.Ptr
+                , "UPtr", this.position)
 
             this.buffer := newBuf
             this.capacity := newCapacity
@@ -277,7 +277,7 @@ class StringBuffer {
 
         offset := this.position
         StrPut(str, this.buffer.Ptr + offset, "UTF-16")
-        this.strings.Push({offset: offset, string: str})
+        this.strings.Push({ offset: offset, string: str })
         this.position += reqSize
 
         return offset
@@ -285,7 +285,7 @@ class StringBuffer {
 
     GetString(index) {
         if index < 1 || index > this.strings.Length
-        return ""
+            return ""
 
         info := this.strings[index]
         return StrGet(this.buffer.Ptr + info.offset, "UTF-16")

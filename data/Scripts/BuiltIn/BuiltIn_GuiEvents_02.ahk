@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiEvents_02.ahk - OnChange Event Handling
-*
-* This file demonstrates change events for GUI controls in AutoHotkey v2.
-* Topics covered:
-* - Edit box changes
-* - Dropdown changes
-* - Real-time validation
-* - Change tracking
-* - Undo/redo systems
-* - Auto-save
-* - Change notifications
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiEvents_02.ahk - OnChange Event Handling
+ * 
+ * This file demonstrates change events for GUI controls in AutoHotkey v2.
+ * Topics covered:
+ * - Edit box changes
+ * - Dropdown changes
+ * - Real-time validation
+ * - Change tracking
+ * - Undo/redo systems
+ * - Auto-save
+ * - Change notifications
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates edit box changes with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates edit box changes with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example1_Editboxchanges() {
     myGui := Gui(, "Edit box changes Demo")
     myGui.BackColor := "White"
@@ -87,15 +86,14 @@ Example1_Editboxchanges() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: Dropdown changes
 ; =============================================================================
 
 /**
-* Demonstrates dropdown changes with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates dropdown changes with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example2_Dropdownchanges() {
     myGui := Gui(, "Dropdown changes Demo")
     myGui.BackColor := "White"
@@ -155,15 +153,14 @@ Example2_Dropdownchanges() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: Real-time validation
 ; =============================================================================
 
 /**
-* Demonstrates real-time validation with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates real-time validation with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example3_Realtimevalidation() {
     myGui := Gui(, "Real-time validation Demo")
     myGui.BackColor := "White"
@@ -223,15 +220,14 @@ Example3_Realtimevalidation() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Change tracking
 ; =============================================================================
 
 /**
-* Demonstrates change tracking with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates change tracking with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example4_Changetracking() {
     myGui := Gui(, "Change tracking Demo")
     myGui.BackColor := "White"
@@ -291,15 +287,14 @@ Example4_Changetracking() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Undo/redo systems
 ; =============================================================================
 
 /**
-* Demonstrates undo/redo systems with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates undo/redo systems with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example5_UndoRedoSystems() {
     myGui := Gui(, "Undo/redo systems Demo")
     myGui.BackColor := "White"
@@ -364,9 +359,9 @@ Example5_UndoRedoSystems() {
 ; =============================================================================
 
 /**
-* Demonstrates auto-save with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates auto-save with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example6_Autosave() {
     myGui := Gui(, "Auto-save Demo")
     myGui.BackColor := "White"
@@ -426,15 +421,14 @@ Example6_Autosave() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Change notifications
 ; =============================================================================
 
 /**
-* Demonstrates change notifications with practical examples
-* Shows event handling patterns and best practices
-*/
+ * Demonstrates change notifications with practical examples
+ * Shows event handling patterns and best practices
+ */
 Example7_Changenotifications() {
     myGui := Gui(, "Change notifications Demo")
     myGui.BackColor := "White"
@@ -499,8 +493,8 @@ Example7_Changenotifications() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiEvents_02.ahk - Examples")
     menuGui.BackColor := "White"

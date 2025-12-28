@@ -1,43 +1,43 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FormatTime Function - Basic Date and Time Formatting
-* ============================================================================
-*
-* This script demonstrates basic usage of the FormatTime() function in AHK v2.
-* FormatTime() converts timestamps to formatted date/time strings using
-* customizable format patterns.
-*
-* @description Basic FormatTime() usage for date and time formatting
-* @author AHK v2 Documentation Team
-* @version 1.0.0
-* @date 2024-01-15
-*
-* Common Format Specifiers:
-* - yyyy = 4-digit year
-* - yy = 2-digit year
-* - MM = 2-digit month
-* - MMM = Abbreviated month name
-* - MMMM = Full month name
-* - dd = 2-digit day
-* - ddd = Abbreviated day name
-* - dddd = Full day name
-* - HH = 24-hour format hour
-* - hh = 12-hour format hour
-* - mm = Minutes
-* - ss = Seconds
-* - tt = AM/PM
-*/
+ * ============================================================================
+ * FormatTime Function - Basic Date and Time Formatting
+ * ============================================================================
+ * 
+ * This script demonstrates basic usage of the FormatTime() function in AHK v2.
+ * FormatTime() converts timestamps to formatted date/time strings using
+ * customizable format patterns.
+ * 
+ * @description Basic FormatTime() usage for date and time formatting
+ * @author AHK v2 Documentation Team
+ * @version 1.0.0
+ * @date 2024-01-15
+ * 
+ * Common Format Specifiers:
+ * - yyyy = 4-digit year
+ * - yy = 2-digit year
+ * - MM = 2-digit month
+ * - MMM = Abbreviated month name
+ * - MMMM = Full month name
+ * - dd = 2-digit day
+ * - ddd = Abbreviated day name
+ * - dddd = Full day name
+ * - HH = 24-hour format hour
+ * - hh = 12-hour format hour
+ * - mm = Minutes
+ * - ss = Seconds
+ * - tt = AM/PM
+ */
 
 ; ============================================================================
 ; Example 1: Basic Date Formats
 ; ============================================================================
 
 /**
-* Demonstrates common date format patterns.
-* Common use: Date displays, reports, file naming
-*/
+ * Demonstrates common date format patterns.
+ * Common use: Date displays, reports, file naming
+ */
 Example1_BasicDateFormats() {
     output := "=== Example 1: Basic Date Formats ===`n`n"
     output .= "Current Date in Various Formats:`n`n"
@@ -47,16 +47,16 @@ Example1_BasicDateFormats() {
 
     ; Common date formats
     formats := Map(
-    "ISO 8601 (Standard)", "yyyy-MM-dd",
-    "US Format", "MM/dd/yyyy",
-    "European Format", "dd/MM/yyyy",
-    "Long Date", "MMMM dd, yyyy",
-    "Short Date", "MMM dd, yy",
-    "Day and Date", "dddd, MMMM dd, yyyy",
-    "Compact Format", "yyyyMMdd",
-    "Month Year", "MMMM yyyy",
-    "Year only", "yyyy",
-    "Slash Format", "MM/dd/yy"
+        "ISO 8601 (Standard)", "yyyy-MM-dd",
+        "US Format", "MM/dd/yyyy",
+        "European Format", "dd/MM/yyyy",
+        "Long Date", "MMMM dd, yyyy",
+        "Short Date", "MMM dd, yy",
+        "Day and Date", "dddd, MMMM dd, yyyy",
+        "Compact Format", "yyyyMMdd",
+        "Month Year", "MMMM yyyy",
+        "Year only", "yyyy",
+        "Slash Format", "MM/dd/yy"
     )
 
     for name, pattern in formats {
@@ -79,9 +79,9 @@ Example1_BasicDateFormats() {
 ; ============================================================================
 
 /**
-* Shows various time format patterns.
-* Common use: Timestamps, logs, scheduling
-*/
+ * Shows various time format patterns.
+ * Common use: Timestamps, logs, scheduling
+ */
 Example2_BasicTimeFormats() {
     output := "=== Example 2: Basic Time Formats ===`n`n"
     output .= "Current Time in Various Formats:`n`n"
@@ -90,14 +90,14 @@ Example2_BasicTimeFormats() {
 
     ; Time formats
     formats := Map(
-    "24-hour (HH:mm:ss)", "HH:mm:ss",
-    "24-hour (HH:mm)", "HH:mm",
-    "12-hour (hh:mm:ss tt)", "hh:mm:ss tt",
-    "12-hour (hh:mm tt)", "hh:mm tt",
-    "Hour only (24h)", "HH",
-    "Hour only (12h)", "hh tt",
-    "Compact (HHmmss)", "HHmmss",
-    "Hour:Minute", "HH:mm"
+        "24-hour (HH:mm:ss)", "HH:mm:ss",
+        "24-hour (HH:mm)", "HH:mm",
+        "12-hour (hh:mm:ss tt)", "hh:mm:ss tt",
+        "12-hour (hh:mm tt)", "hh:mm tt",
+        "Hour only (24h)", "HH",
+        "Hour only (12h)", "hh tt",
+        "Compact (HHmmss)", "HHmmss",
+        "Hour:Minute", "HH:mm"
     )
 
     for name, pattern in formats {
@@ -121,9 +121,9 @@ Example2_BasicTimeFormats() {
 ; ============================================================================
 
 /**
-* Generates timestamps for different purposes.
-* Common use: Logging, file naming, database entries
-*/
+ * Generates timestamps for different purposes.
+ * Common use: Logging, file naming, database entries
+ */
 Example3_TimestampGenerator() {
     output := "=== Example 3: Timestamp Generator ===`n`n"
 
@@ -163,9 +163,9 @@ Example3_TimestampGenerator() {
 ; ============================================================================
 
 /**
-* Creates formatted calendar views and schedules.
-* Common use: Calendar displays, scheduling apps, reminders
-*/
+ * Creates formatted calendar views and schedules.
+ * Common use: Calendar displays, scheduling apps, reminders
+ */
 Example4_CalendarFormatting() {
     ; Get current month info
     now := A_Now
@@ -179,248 +179,237 @@ Example4_CalendarFormatting() {
 
     ; Week headers
     output .= Format("{:^7s} {:^7s} {:^7s} {:^7s} {:^7s} {:^7s} {:^7s}",
-    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat") . "`n"
+        "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat") . "`n"
     output .= StrReplace(Format("{:50s}", ""), " ", "─") . "`n"
 
     ; Sample schedule for today
     output .= "`n`nToday's Schedule (" . FormatTime(now, "dddd, MMMM dd") . "):`n"
     output .= StrReplace(Format("{:50s}", ""), " ", "─") . "`n"
 
-    schedule := [
-    {
-        time: "09:00", event: "Team Meeting", duration: "1 hour"},
-        {
-            time: "10:30", event: "Project Review", duration: "45 mins"},
-            {
-                time: "13:00", event: "Lunch Break", duration: "1 hour"},
-                {
-                    time: "14:00", event: "Client Call", duration: "30 mins"},
-                    {
+    schedule := [{
+        time: "09:00", event: "Team Meeting", duration: "1 hour" }, {
+            time: "10:30", event: "Project Review", duration: "45 mins" }, {
+                time: "13:00", event: "Lunch Break", duration: "1 hour" }, {
+                    time: "14:00", event: "Client Call", duration: "30 mins" }, {
                         time: "16:00", event: "Code Review", duration: "1 hour"
                     }
-                    ]
+    ]
 
-                    for item in schedule {
-                        output .= Format("{:5s} - {:-30s} ({:s})",
-                        item.time,
-                        item.event,
-                        item.duration) . "`n"
-                    }
+    for item in schedule {
+        output .= Format("{:5s} - {:-30s} ({:s})",
+            item.time,
+            item.event,
+            item.duration) . "`n"
+    }
 
-                    ; Week view
-                    output .= "`n`nThis Week:`n"
-                    output .= StrReplace(Format("{:50s}", ""), " ", "─") . "`n"
+    ; Week view
+    output .= "`n`nThis Week:`n"
+    output .= StrReplace(Format("{:50s}", ""), " ", "─") . "`n"
 
-                    ; Calculate start of week (Sunday)
-                    dayOfWeek := FormatTime(now, "w")  ; 1=Sunday, 7=Saturday
-                    daysToSubtract := dayOfWeek - 1
+    ; Calculate start of week (Sunday)
+    dayOfWeek := FormatTime(now, "w")  ; 1=Sunday, 7=Saturday
+    daysToSubtract := dayOfWeek - 1
 
-                    loop 7 {
-                        dayOffset := A_Index - 1 - daysToSubtract
-                        currentDate := DateAdd(now, dayOffset, "days")
-                        dayName := FormatTime(currentDate, "ddd")
-                        dateStr := FormatTime(currentDate, "MM/dd")
-                        isToday := FormatTime(currentDate, "yyyyMMdd") = FormatTime(now, "yyyyMMdd")
+    loop 7 {
+        dayOffset := A_Index - 1 - daysToSubtract
+        currentDate := DateAdd(now, dayOffset, "days")
+        dayName := FormatTime(currentDate, "ddd")
+        dateStr := FormatTime(currentDate, "MM/dd")
+        isToday := FormatTime(currentDate, "yyyyMMdd") = FormatTime(now, "yyyyMMdd")
 
-                        marker := isToday ? "►" : " "
-                        output .= Format("{:s} {:-3s} {:s}",
-                        marker,
-                        dayName,
-                        dateStr) . "`n"
-                    }
+        marker := isToday ? "►" : " "
+        output .= Format("{:s} {:-3s} {:s}",
+            marker,
+            dayName,
+            dateStr) . "`n"
+    }
 
-                    MsgBox(output, "Calendar Formatting", 262144)
-                }
+    MsgBox(output, "Calendar Formatting", 262144)
+}
 
-                ; ============================================================================
-                ; Example 5: Log Entry Formatter
-                ; ============================================================================
+; ============================================================================
+; Example 5: Log Entry Formatter
+; ============================================================================
 
-                /**
-                * Formats log entries with timestamps and levels.
-                * Common use: Application logging, debugging, audit trails
-                */
-                Example5_LogFormatter() {
-                    ; Create formatted log entry
-                    FormatLogEntry(level, message, component := "") {
-                        timestamp := FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss")
-                        levelStr := Format("[{:-8s}]", level)
-                        componentStr := component != "" ? Format("[{:s}]", component) : ""
+/**
+ * Formats log entries with timestamps and levels.
+ * Common use: Application logging, debugging, audit trails
+ */
+Example5_LogFormatter() {
+    ; Create formatted log entry
+    FormatLogEntry(level, message, component := "") {
+        timestamp := FormatTime(A_Now, "yyyy-MM-dd HH:mm:ss")
+        levelStr := Format("[{:-8s}]", level)
+        componentStr := component != "" ? Format("[{:s}]", component) : ""
 
-                        return Format("{:s} {:s} {:s} {:s}",
-                        timestamp,
-                        levelStr,
-                        componentStr,
-                        message)
-                    }
+        return Format("{:s} {:s} {:s} {:s}",
+            timestamp,
+            levelStr,
+            componentStr,
+            message)
+    }
 
-                    output := "=== Example 5: Log Entry Formatter ===`n`n"
-                    output .= "Application Log Entries:`n"
-                    output .= StrReplace(Format("{:80s}", ""), " ", "═") . "`n`n"
+    output := "=== Example 5: Log Entry Formatter ===`n`n"
+    output .= "Application Log Entries:`n"
+    output .= StrReplace(Format("{:80s}", ""), " ", "═") . "`n`n"
 
-                    ; Simulate log entries at different times
-                    baseTime := A_Now
+    ; Simulate log entries at different times
+    baseTime := A_Now
 
-                    logs := [
-                    {
-                        time: baseTime, level: "INFO", component: "App", message: "Application started"},
-                        {
-                            time: DateAdd(baseTime, 1, "seconds"), level: "INFO", component: "Database", message: "Connected to database"},
-                            {
-                                time: DateAdd(baseTime, 5, "seconds"), level: "DEBUG", component: "API", message: "Processing request /api/users"},
-                                {
-                                    time: DateAdd(baseTime, 7, "seconds"), level: "WARN", component: "Cache", message: "Cache miss rate above threshold"},
-                                    {
-                                        time: DateAdd(baseTime, 10, "seconds"), level: "ERROR", component: "FileIO", message: "Failed to write to file"},
-                                        {
-                                            time: DateAdd(baseTime, 12, "seconds"), level: "INFO", component: "App", message: "Request completed successfully"
-                                        }
-                                        ]
+    logs := [{
+        time: baseTime, level: "INFO", component: "App", message: "Application started" }, {
+            time: DateAdd(baseTime, 1, "seconds"), level: "INFO", component: "Database", message: "Connected to database" }, {
+                time: DateAdd(baseTime, 5, "seconds"), level: "DEBUG", component: "API", message: "Processing request /api/users" }, {
+                    time: DateAdd(baseTime, 7, "seconds"), level: "WARN", component: "Cache", message: "Cache miss rate above threshold" }, {
+                        time: DateAdd(baseTime, 10, "seconds"), level: "ERROR", component: "FileIO", message: "Failed to write to file" }, {
+                            time: DateAdd(baseTime, 12, "seconds"), level: "INFO", component: "App", message: "Request completed successfully"
+                        }
+    ]
 
-                                        for log in logs {
-                                            timestamp := FormatTime(log.time, "yyyy-MM-dd HH:mm:ss")
-                                            entry := Format("{:s} [{:-8s}] [{:-10s}] {:s}",
-                                            timestamp,
-                                            log.level,
-                                            log.component,
-                                            log.message)
-                                            output .= entry . "`n"
-                                        }
+    for log in logs {
+        timestamp := FormatTime(log.time, "yyyy-MM-dd HH:mm:ss")
+        entry := Format("{:s} [{:-8s}] [{:-10s}] {:s}",
+            timestamp,
+            log.level,
+            log.component,
+            log.message)
+        output .= entry . "`n"
+    }
 
-                                        ; Different log formats
-                                        output .= "`n`nAlternative Log Formats:`n"
-                                        output .= StrReplace(Format("{:80s}", ""), " ", "─") . "`n`n"
+    ; Different log formats
+    output .= "`n`nAlternative Log Formats:`n"
+    output .= StrReplace(Format("{:80s}", ""), " ", "─") . "`n`n"
 
-                                        now := A_Now
+    now := A_Now
 
-                                        output .= "Compact Format:`n"
-                                        output .= FormatTime(now, "yyyyMMdd HHmmss") . " [INFO] Message here`n`n"
+    output .= "Compact Format:`n"
+    output .= FormatTime(now, "yyyyMMdd HHmmss") . " [INFO] Message here`n`n"
 
-                                        output .= "ISO 8601 Format:`n"
-                                        output .= FormatTime(now, "yyyy-MM-dd'T'HH:mm:ss") . " [INFO] Message here`n`n"
+    output .= "ISO 8601 Format:`n"
+    output .= FormatTime(now, "yyyy-MM-dd'T'HH:mm:ss") . " [INFO] Message here`n`n"
 
-                                        output .= "Human-Readable Format:`n"
-                                        output .= FormatTime(now, "MMM dd, yyyy 'at' hh:mm:ss tt") . " - INFO - Message here`n`n"
+    output .= "Human-Readable Format:`n"
+    output .= FormatTime(now, "MMM dd, yyyy 'at' hh:mm:ss tt") . " - INFO - Message here`n`n"
 
-                                        output .= "Unix-style Format:`n"
-                                        output .= FormatTime(now, "MMM dd HH:mm:ss") . " hostname app[1234]: Message here`n"
+    output .= "Unix-style Format:`n"
+    output .= FormatTime(now, "MMM dd HH:mm:ss") . " hostname app[1234]: Message here`n"
 
-                                        MsgBox(output, "Log Formatter", 262144)
-                                    }
+    MsgBox(output, "Log Formatter", 262144)
+}
 
-                                    ; ============================================================================
-                                    ; Example 6: Time-Based File Organizer
-                                    ; ============================================================================
+; ============================================================================
+; Example 6: Time-Based File Organizer
+; ============================================================================
 
-                                    /**
-                                    * Demonstrates organizing files by date using FormatTime.
-                                    * Common use: File management, backup organization, archiving
-                                    */
-                                    Example6_FileOrganizer() {
-                                        output := "=== Example 6: Time-Based File Organization ===`n`n"
+/**
+ * Demonstrates organizing files by date using FormatTime.
+ * Common use: File management, backup organization, archiving
+ */
+Example6_FileOrganizer() {
+    output := "=== Example 6: Time-Based File Organization ===`n`n"
 
-                                        now := A_Now
+    now := A_Now
 
-                                        ; Organize by year/month/day
-                                        output .= "Hierarchical Organization:`n"
-                                        output .= "Root Folder/`n"
-                                        output .= "  " . FormatTime(now, "yyyy") . "/`n"
-                                        output .= "    " . FormatTime(now, "MM - MMMM") . "/`n"
-                                        output .= "      " . FormatTime(now, "dd - dddd") . "/`n"
-                                        output .= "        file_" . FormatTime(now, "HHmmss") . ".txt`n`n"
+    ; Organize by year/month/day
+    output .= "Hierarchical Organization:`n"
+    output .= "Root Folder/`n"
+    output .= "  " . FormatTime(now, "yyyy") . "/`n"
+    output .= "    " . FormatTime(now, "MM - MMMM") . "/`n"
+    output .= "      " . FormatTime(now, "dd - dddd") . "/`n"
+    output .= "        file_" . FormatTime(now, "HHmmss") . ".txt`n`n"
 
-                                        ; Archive structure
-                                        output .= "Archive Structure:`n"
-                                        output .= "Archives/`n"
-                                        output .= "  " . FormatTime(now, "yyyy") . "/`n"
-                                        output .= "    Q" . Format("{:d}", Ceil(Integer(FormatTime(now, "MM")) / 3)) . "/`n"
-                                        output .= "      " . FormatTime(now, "MMMM") . "/`n"
-                                        output .= "        archive_" . FormatTime(now, "yyyy-MM-dd") . ".zip`n`n"
+    ; Archive structure
+    output .= "Archive Structure:`n"
+    output .= "Archives/`n"
+    output .= "  " . FormatTime(now, "yyyy") . "/`n"
+    output .= "    Q" . Format("{:d}", Ceil(Integer(FormatTime(now, "MM")) / 3)) . "/`n"
+    output .= "      " . FormatTime(now, "MMMM") . "/`n"
+    output .= "        archive_" . FormatTime(now, "yyyy-MM-dd") . ".zip`n`n"
 
-                                        ; Backup naming
-                                        output .= "Backup File Names:`n"
-                                        output .= "  Daily: backup_" . FormatTime(now, "yyyy-MM-dd") . ".bak`n"
-                                        output .= "  Weekly: backup_" . FormatTime(now, "yyyy") . "_W" . FormatTime(now, "ww") . ".bak`n"
-                                        output .= "  Monthly: backup_" . FormatTime(now, "yyyy-MM") . ".bak`n"
-                                        output .= "  Full: backup_full_" . FormatTime(now, "yyyyMMdd_HHmmss") . ".bak`n`n"
+    ; Backup naming
+    output .= "Backup File Names:`n"
+    output .= "  Daily: backup_" . FormatTime(now, "yyyy-MM-dd") . ".bak`n"
+    output .= "  Weekly: backup_" . FormatTime(now, "yyyy") . "_W" . FormatTime(now, "ww") . ".bak`n"
+    output .= "  Monthly: backup_" . FormatTime(now, "yyyy-MM") . ".bak`n"
+    output .= "  Full: backup_full_" . FormatTime(now, "yyyyMMdd_HHmmss") . ".bak`n`n"
 
-                                        ; Log rotation
-                                        output .= "Log File Rotation:`n"
-                                        output .= "  Current: application.log`n"
-                                        output .= "  Rotated: application_" . FormatTime(now, "yyyy-MM-dd") . ".log`n"
-                                        output .= "  Archived: logs_" . FormatTime(now, "yyyy-MM") . ".zip`n"
+    ; Log rotation
+    output .= "Log File Rotation:`n"
+    output .= "  Current: application.log`n"
+    output .= "  Rotated: application_" . FormatTime(now, "yyyy-MM-dd") . ".log`n"
+    output .= "  Archived: logs_" . FormatTime(now, "yyyy-MM") . ".zip`n"
 
-                                        MsgBox(output, "File Organization", 262144)
-                                    }
+    MsgBox(output, "File Organization", 262144)
+}
 
-                                    ; ============================================================================
-                                    ; Example 7: Report Header Generator
-                                    ; ============================================================================
+; ============================================================================
+; Example 7: Report Header Generator
+; ============================================================================
 
-                                    /**
-                                    * Generates formatted report headers with timestamps.
-                                    * Common use: Business reports, analytics, documentation
-                                    */
-                                    Example7_ReportHeaders() {
-                                        ; Generate report header
-                                        GenerateReportHeader(title, reportType := "Standard") {
-                                            now := A_Now
-                                            header := ""
-                                            width := 70
+/**
+ * Generates formatted report headers with timestamps.
+ * Common use: Business reports, analytics, documentation
+ */
+Example7_ReportHeaders() {
+    ; Generate report header
+    GenerateReportHeader(title, reportType := "Standard") {
+        now := A_Now
+        header := ""
+        width := 70
 
-                                            ; Box top
-                                            header .= "╔" . StrReplace(Format("{:" . (width - 2) . "s}", ""), " ", "═") . "╗`n"
+        ; Box top
+        header .= "╔" . StrReplace(Format("{:" . (width - 2) . "s}", ""), " ", "═") . "╗`n"
 
-                                            ; Title
-                                            header .= "║" . Format("{:^" . (width - 2) . "s}", title) . "║`n"
+        ; Title
+        header .= "║" . Format("{:^" . (width - 2) . "s}", title) . "║`n"
 
-                                            ; Report type
-                                            header .= "║" . Format("{:^" . (width - 2) . "s}", reportType . " Report") . "║`n"
+        ; Report type
+        header .= "║" . Format("{:^" . (width - 2) . "s}", reportType . " Report") . "║`n"
 
-                                            ; Separator
-                                            header .= "╠" . StrReplace(Format("{:" . (width - 2) . "s}", ""), " ", "═") . "╣`n"
+        ; Separator
+        header .= "╠" . StrReplace(Format("{:" . (width - 2) . "s}", ""), " ", "═") . "╣`n"
 
-                                            ; Date information
-                                            header .= "║ " . Format("Generated: {:-" . (width - 15) . "s}", FormatTime(now, "dddd, MMMM dd, yyyy")) . " ║`n"
-                                            header .= "║ " . Format("Time:      {:-" . (width - 15) . "s}", FormatTime(now, "hh:mm:ss tt")) . " ║`n"
+        ; Date information
+        header .= "║ " . Format("Generated: {:-" . (width - 15) . "s}", FormatTime(now, "dddd, MMMM dd, yyyy")) . " ║`n"
+        header .= "║ " . Format("Time:      {:-" . (width - 15) . "s}", FormatTime(now, "hh:mm:ss tt")) . " ║`n"
 
-                                            ; Box bottom
-                                            header .= "╚" . StrReplace(Format("{:" . (width - 2) . "s}", ""), " ", "═") . "╝"
+        ; Box bottom
+        header .= "╚" . StrReplace(Format("{:" . (width - 2) . "s}", ""), " ", "═") . "╝"
 
-                                            return header
-                                        }
+        return header
+    }
 
-                                        output := "=== Example 7: Report Headers ===`n`n"
+    output := "=== Example 7: Report Headers ===`n`n"
 
-                                        ; Sales Report
-                                        output .= GenerateReportHeader("MONTHLY SALES REPORT", "Executive") . "`n`n`n"
+    ; Sales Report
+    output .= GenerateReportHeader("MONTHLY SALES REPORT", "Executive") . "`n`n`n"
 
-                                        ; Financial Report
-                                        output .= GenerateReportHeader("QUARTERLY FINANCIAL SUMMARY", "Financial") . "`n`n`n"
+    ; Financial Report
+    output .= GenerateReportHeader("QUARTERLY FINANCIAL SUMMARY", "Financial") . "`n`n`n"
 
-                                        ; Custom header with additional info
-                                        now := A_Now
-                                        customHeader := ""
-                                        customHeader .= "═══════════════════════════════════════════════════════`n"
-                                        customHeader .= Format("{:^55s}", "SYSTEM STATUS REPORT") . "`n"
-                                        customHeader .= "═══════════════════════════════════════════════════════`n"
-                                        customHeader .= Format("Report Date:     {:s}", FormatTime(now, "MMMM dd, yyyy")) . "`n"
-                                        customHeader .= Format("Report Time:     {:s}", FormatTime(now, "hh:mm:ss tt")) . "`n"
-                                        customHeader .= Format("Period:          {:s}", FormatTime(now, "MMMM yyyy")) . "`n"
-                                        customHeader .= Format("Generated By:    System Administrator") . "`n"
-                                        customHeader .= "═══════════════════════════════════════════════════════`n"
+    ; Custom header with additional info
+    now := A_Now
+    customHeader := ""
+    customHeader .= "═══════════════════════════════════════════════════════`n"
+    customHeader .= Format("{:^55s}", "SYSTEM STATUS REPORT") . "`n"
+    customHeader .= "═══════════════════════════════════════════════════════`n"
+    customHeader .= Format("Report Date:     {:s}", FormatTime(now, "MMMM dd, yyyy")) . "`n"
+    customHeader .= Format("Report Time:     {:s}", FormatTime(now, "hh:mm:ss tt")) . "`n"
+    customHeader .= Format("Period:          {:s}", FormatTime(now, "MMMM yyyy")) . "`n"
+    customHeader .= Format("Generated By:    System Administrator") . "`n"
+    customHeader .= "═══════════════════════════════════════════════════════`n"
 
-                                        output .= customHeader
+    output .= customHeader
 
-                                        MsgBox(output, "Report Headers", 262144)
-                                    }
+    MsgBox(output, "Report Headers", 262144)
+}
 
-                                    ; ============================================================================
-                                    ; Main Menu and Hotkeys
-                                    ; ============================================================================
+; ============================================================================
+; Main Menu and Hotkeys
+; ============================================================================
 
-                                    ShowMenu() {
-                                        menu := "
+ShowMenu() {
+    menu := "
                                         (
                                         FormatTime() - Basic Date/Time Formatting
 
@@ -435,16 +424,16 @@ Example4_CalendarFormatting() {
 
                                         Press Ctrl+1-7 to run examples
                                         )"
-                                        MsgBox(menu, "FormatTime Examples", 4096)
-                                    }
+    MsgBox(menu, "FormatTime Examples", 4096)
+}
 
-                                    ^1::Example1_BasicDateFormats()
-                                    ^2::Example2_BasicTimeFormats()
-                                    ^3::Example3_TimestampGenerator()
-                                    ^4::Example4_CalendarFormatting()
-                                    ^5::Example5_LogFormatter()
-                                    ^6::Example6_FileOrganizer()
-                                    ^7::Example7_ReportHeaders()
-                                    ^m::ShowMenu()
+^1:: Example1_BasicDateFormats()
+^2:: Example2_BasicTimeFormats()
+^3:: Example3_TimestampGenerator()
+^4:: Example4_CalendarFormatting()
+^5:: Example5_LogFormatter()
+^6:: Example6_FileOrganizer()
+^7:: Example7_ReportHeaders()
+^m:: ShowMenu()
 
-                                    ShowMenu()
+ShowMenu()

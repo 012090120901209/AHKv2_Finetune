@@ -1,23 +1,23 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* FileAppend - Logging Systems and Techniques
-* ============================================================================
-*
-* Demonstrates logging patterns and techniques:
-* - Application event logging
-* - Error and debug logging
-* - Rotating log files
-* - Log levels and filtering
-* - Structured logging
-* - Performance logging
-*
-* @description Logging system examples using FileAppend
-* @author AutoHotkey Foundation
-* @version 1.0.0
-* @see https://www.autohotkey.com/docs/v2/lib/FileAppend.htm
-*/
+ * ============================================================================
+ * FileAppend - Logging Systems and Techniques
+ * ============================================================================
+ * 
+ * Demonstrates logging patterns and techniques:
+ * - Application event logging
+ * - Error and debug logging
+ * - Rotating log files
+ * - Log levels and filtering
+ * - Structured logging
+ * - Performance logging
+ * 
+ * @description Logging system examples using FileAppend
+ * @author AutoHotkey Foundation
+ * @version 1.0.0
+ * @see https://www.autohotkey.com/docs/v2/lib/FileAppend.htm
+ */
 
 ; ============================================================================
 ; Example 1: Basic Application Logger
@@ -115,10 +115,10 @@ Example2_LogLevels() {
     CreateLeveledLogger(logPath, minLevel := "INFO") {
         ; Define level priorities
         priorities := Map(
-        "DEBUG", 0,
-        "INFO", 1,
-        "WARNING", 2,
-        "ERROR", 3
+            "DEBUG", 0,
+            "INFO", 1,
+            "WARNING", 2,
+            "ERROR", 3
         )
 
         logger := {}
@@ -153,7 +153,7 @@ Example3_RotatingLogs() {
     try {
         ; Create log directory
         if !DirExist(logDir)
-        DirCreate(logDir)
+            DirCreate(logDir)
 
         ; Create rotating logger
         logger := CreateRotatingLogger(logDir, "app.log", 1024)  ; 1KB max size
@@ -186,7 +186,7 @@ Example3_RotatingLogs() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(logDir)
-        DirDelete(logDir, true)
+            DirDelete(logDir, true)
     }
 
     ; Create rotating logger
@@ -200,17 +200,17 @@ Example3_RotatingLogs() {
         logger.Rotate := () {
             ; Check if rotation needed
             if !FileExist(this.currentLog)
-            return
+                return
 
             if FileGetSize(this.currentLog) < this.maxSize
-            return
+                return
 
             ; Find next available backup number
             backupNum := 1
             loop {
                 backupPath := this.logDir "\" SubStr(this.fileName, 1, -4) "_" backupNum ".log"
                 if !FileExist(backupPath)
-                break
+                    break
                 backupNum++
             }
 
@@ -245,28 +245,28 @@ Example4_StructuredLogging() {
 
         ; Log with context
         logger.Log("INFO", "User login", Map(
-        "username", "john_doe",
-        "ip_address", "192.168.1.100",
-        "session_id", "abc123xyz"
+            "username", "john_doe",
+            "ip_address", "192.168.1.100",
+            "session_id", "abc123xyz"
         ))
 
         logger.Log("WARNING", "High memory usage", Map(
-        "memory_used_mb", 850,
-        "memory_total_mb", 1024,
-        "threshold_percent", 80
+            "memory_used_mb", 850,
+            "memory_total_mb", 1024,
+            "threshold_percent", 80
         ))
 
         logger.Log("ERROR", "Database query failed", Map(
-        "query", "SELECT * FROM users",
-        "error_code", 1064,
-        "error_msg", "Syntax error",
-        "retry_count", 3
+            "query", "SELECT * FROM users",
+            "error_code", 1064,
+            "error_msg", "Syntax error",
+            "retry_count", 3
         ))
 
         logger.Log("INFO", "File uploaded", Map(
-        "filename", "document.pdf",
-        "size_bytes", 2048576,
-        "upload_time_ms", 1250
+            "filename", "document.pdf",
+            "size_bytes", 2048576,
+            "upload_time_ms", 1250
         ))
 
         ; Display log
@@ -365,7 +365,7 @@ Example5_PerformanceLogging() {
 
         logger.EndOperation := (name) {
             if !this.operations.Has(name)
-            return
+                return
 
             startTime := this.operations[name]
             duration := A_TickCount - startTime
@@ -374,13 +374,13 @@ Example5_PerformanceLogging() {
             entry := timestamp " [PERF] " name ": " duration " ms`n"
             FileAppend(entry, this.logFile)
 
-            this.timings.Push({name: name, duration: duration})
+            this.timings.Push({ name: name, duration: duration })
             this.operations.Delete(name)
         }
 
         logger.GetSummary := () {
             if this.timings.Length = 0
-            return "No performance data"
+                return "No performance data"
 
             summary := "Performance Summary:`n`n"
 
@@ -410,7 +410,7 @@ Example6_DailyLogs() {
     try {
         ; Create log directory
         if !DirExist(logDir)
-        DirCreate(logDir)
+            DirCreate(logDir)
 
         ; Create daily logger
         logger := CreateDailyLogger(logDir)
@@ -435,7 +435,7 @@ Example6_DailyLogs() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(logDir)
-        DirDelete(logDir, true)
+            DirDelete(logDir, true)
     }
 
     ; Create daily logger
@@ -473,7 +473,7 @@ Example7_MultiFileLogging() {
     try {
         ; Create log directory
         if !DirExist(logDir)
-        DirCreate(logDir)
+            DirCreate(logDir)
 
         ; Create multi-file logger
         logger := CreateMultiFileLogger(logDir)
@@ -505,7 +505,7 @@ Example7_MultiFileLogging() {
         MsgBox("Error: " err.Message, "Error", 16)
     } finally {
         if DirExist(logDir)
-        DirDelete(logDir, true)
+            DirDelete(logDir, true)
     }
 
     ; Create multi-file logger
@@ -513,15 +513,15 @@ Example7_MultiFileLogging() {
         logger := {}
         logger.logDir := logDir
         logger.files := Map(
-        "DEBUG", logDir "\debug.log",
-        "INFO", logDir "\info.log",
-        "WARNING", logDir "\warning.log",
-        "ERROR", logDir "\error.log"
+            "DEBUG", logDir "\debug.log",
+            "INFO", logDir "\info.log",
+            "WARNING", logDir "\warning.log",
+            "ERROR", logDir "\error.log"
         )
 
         logger.Log := (level, message) {
             if !this.files.Has(level)
-            return
+                return
 
             timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
             entry := timestamp " " message "`n"
@@ -557,30 +557,24 @@ Example7_MultiFileLogging() {
 
 ; Run all examples
 RunAllExamples() {
-    examples := [
-    {
-        name: "Basic Logger", func: Example1_BasicLogger},
-        {
-            name: "Log Levels", func: Example2_LogLevels},
-            {
-                name: "Rotating Logs", func: Example3_RotatingLogs},
-                {
-                    name: "Structured Logging", func: Example4_StructuredLogging},
-                    {
-                        name: "Performance Logging", func: Example5_PerformanceLogging},
-                        {
-                            name: "Daily Logs", func: Example6_DailyLogs},
-                            {
+    examples := [{
+        name: "Basic Logger", func: Example1_BasicLogger }, {
+            name: "Log Levels", func: Example2_LogLevels }, {
+                name: "Rotating Logs", func: Example3_RotatingLogs }, {
+                    name: "Structured Logging", func: Example4_StructuredLogging }, {
+                        name: "Performance Logging", func: Example5_PerformanceLogging }, {
+                            name: "Daily Logs", func: Example6_DailyLogs }, {
                                 name: "Multi-File Logging", func: Example7_MultiFileLogging
                             }
-                            ]
+    ]
 
-                            for example in examples {
-                                result := MsgBox("Run: " example.name "?", "Logging Examples", 4)
-                                if result = "Yes"
-                                example.func.Call()
-                            }
-                        }
+    for example in examples {
+        result := MsgBox("Run: " example.name "?", "Logging Examples", 4)
+        if result = "Yes"
+            example.func.Call()
+    }
+}
 
-                        ; Uncomment to run all examples interactively:
-                        ; RunAllExamples()
+; Uncomment to run all examples interactively:
+; RunAllExamples()
+

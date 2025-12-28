@@ -40,16 +40,16 @@ class QueryBuilder {
 
     Build() {
         sql := "SELECT " this.Join(this.columns, ", ") " FROM " this.table
-        
+
         if this.conditions.Length
             sql .= " WHERE " this.Join(this.conditions, " AND ")
-        
+
         if this.orderBy
             sql .= " ORDER BY " this.orderBy
-        
+
         if this.limitCount
             sql .= " LIMIT " this.limitCount
-        
+
         return sql
     }
 

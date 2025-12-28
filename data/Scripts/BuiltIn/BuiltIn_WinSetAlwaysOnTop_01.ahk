@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinSetAlwaysOnTop_01.ahk
-* @description Comprehensive examples demonstrating WinSetAlwaysOnTop function for pinning windows in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic always-on-top toggle
-* Example 2: Pinned window manager
-* Example 3: Auto-pin by application
-* Example 4: Temporary pin with timeout
-* Example 5: Pin groups
-* Example 6: Visual pin indicator
-* Example 7: Pin state persistence
-*
-* @section FEATURES
-* - Toggle always-on-top
-* - Manage pinned windows
-* - Auto-pinning rules
-* - Temporary pins
-* - Group management
-* - Visual indicators
-* - State persistence
-*/
+ * @file BuiltIn_WinSetAlwaysOnTop_01.ahk
+ * @description Comprehensive examples demonstrating WinSetAlwaysOnTop function for pinning windows in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic always-on-top toggle
+ * Example 2: Pinned window manager
+ * Example 3: Auto-pin by application
+ * Example 4: Temporary pin with timeout
+ * Example 5: Pin groups
+ * Example 6: Visual pin indicator
+ * Example 7: Pin state persistence
+ * 
+ * @section FEATURES
+ * - Toggle always-on-top
+ * - Manage pinned windows
+ * - Auto-pinning rules
+ * - Temporary pins
+ * - Group management
+ * - Visual indicators
+ * - State persistence
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -61,7 +61,7 @@ class PinnedWindowManager {
     static PinWindow(WinTitle) {
         winId := WinExist(WinTitle)
         if !winId
-        return false
+            return false
 
         WinSetAlwaysOnTop(1, "ahk_id " winId)
 
@@ -78,7 +78,7 @@ class PinnedWindowManager {
     static UnpinWindow(WinTitle) {
         winId := WinExist(WinTitle)
         if !winId
-        return false
+            return false
 
         WinSetAlwaysOnTop(0, "ahk_id " winId)
 
@@ -105,16 +105,16 @@ class PinnedWindowManager {
 
     static ListPinned() {
         if this.pinnedWindows.Count = 0
-        return "No pinned windows"
+            return "No pinned windows"
 
-        output := "Pinned Windows (`" this.pinnedWindows.Count "):`n`n"
+        output := "Pinned Windows (`" this.pinnedWindows.Count "): `n`n "
 
-        for winId, data in this.pinnedWindows {
-            output .= data.Title "`n"
-        }
-
-        return output
+    for winId, data in this.pinnedWindows {
+        output .= data.Title "`n"
     }
+
+    return output
+}
 }
 
 ^+p:: PinnedWindowManager.PinWindow("A")
@@ -161,14 +161,14 @@ class AutoPin {
                     if processName = rule.ProcessName {
                         exStyle := WinGetExStyle("ahk_id " winId)
                         if !(exStyle & 0x8) {  ; Not already pinned
-                        WinSetAlwaysOnTop(1, "ahk_id " winId)
-                        TrayTip("Auto-pinned", WinGetTitle("ahk_id " winId), "Icon!")
+                            WinSetAlwaysOnTop(1, "ahk_id " winId)
+                            TrayTip("Auto-pinned", WinGetTitle("ahk_id " winId), "Icon!")
+                        }
                     }
                 }
             }
         }
     }
-}
 }
 
 ^+r:: {
@@ -186,7 +186,7 @@ class TemporaryPin {
     static PinTemporary(WinTitle, duration := 60) {
         winId := WinExist(WinTitle)
         if !winId
-        return false
+            return false
 
         WinSetAlwaysOnTop(1, "ahk_id " winId)
 
@@ -249,7 +249,7 @@ class PinGroups {
 
     static UnpinGroup(name) {
         if !this.groups.Has(name)
-        return
+            return
 
         for win in this.groups[name] {
             try {

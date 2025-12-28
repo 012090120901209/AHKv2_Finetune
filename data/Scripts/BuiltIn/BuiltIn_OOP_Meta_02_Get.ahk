@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Meta_02_Get.ahk
-*
-* DESCRIPTION:
-* Demonstrates the __Get meta-function in AutoHotkey v2. __Get is invoked when
-* accessing an undefined property, enabling dynamic property handling, lazy
-* loading, computed properties, and property aliasing.
-*
-* FEATURES:
-* - __Get meta-function basics
-* - Dynamic property creation
-* - Lazy property initialization
-* - Computed properties
-* - Property aliasing
-* - Default property values
-* - Property access logging
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - __Get(name, params) signature
-* - Dynamic property access interception
-* - Property name parameter
-* - On-demand value calculation
-* - Property existence checking
-* - Meta-function return values
-*
-* LEARNING POINTS:
-* 1. __Get intercepts undefined property access
-* 2. First parameter is property name
-* 3. Can generate properties on-the-fly
-* 4. Useful for lazy initialization
-* 5. Enables computed/virtual properties
-* 6. Can implement default values
-* 7. Works with bracket and dot notation
-*/
+ * BuiltIn_OOP_Meta_02_Get.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates the __Get meta-function in AutoHotkey v2. __Get is invoked when
+ * accessing an undefined property, enabling dynamic property handling, lazy
+ * loading, computed properties, and property aliasing.
+ * 
+ * FEATURES:
+ * - __Get meta-function basics
+ * - Dynamic property creation
+ * - Lazy property initialization
+ * - Computed properties
+ * - Property aliasing
+ * - Default property values
+ * - Property access logging
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - __Get(name, params) signature
+ * - Dynamic property access interception
+ * - Property name parameter
+ * - On-demand value calculation
+ * - Property existence checking
+ * - Meta-function return values
+ * 
+ * LEARNING POINTS:
+ * 1. __Get intercepts undefined property access
+ * 2. First parameter is property name
+ * 3. Can generate properties on-the-fly
+ * 4. Useful for lazy initialization
+ * 5. Enables computed/virtual properties
+ * 6. Can implement default values
+ * 7. Works with bracket and dot notation
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic __Get Usage
@@ -57,7 +57,7 @@ class PropertyLogger {
 
         ; Return value if exists
         if (this._actualData.Has(name))
-        return this._actualData[name]
+            return this._actualData[name]
 
         ; Return default value
         return "[Property '" name "' not found]"
@@ -107,7 +107,7 @@ class LazyLoader {
     __Get(name, params) {
         ; Check if already loaded
         if (this._cache.Has(name))
-        return this._cache[name]
+            return this._cache[name]
 
         ; Load based on property name
         value := ""
@@ -137,7 +137,7 @@ class LazyLoader {
     ClearCache(propertyName := "") {
         if (propertyName != "") {
             if (this._cache.Has(propertyName))
-            this._cache.Delete(propertyName)
+                this._cache.Delete(propertyName)
         } else {
             this._cache := Map()
         }
@@ -179,25 +179,25 @@ class Rectangle {
     __Get(name, params) {
         ; Computed properties
         if (name = "Area")
-        return this.Width * this.Height
+            return this.Width * this.Height
 
         if (name = "Perimeter")
-        return 2 * (this.Width + this.Height)
+            return 2 * (this.Width + this.Height)
 
         if (name = "Diagonal")
-        return Sqrt(this.Width**2 + this.Height**2)
+            return Sqrt(this.Width ** 2 + this.Height ** 2)
 
         if (name = "AspectRatio")
-        return this.Width / this.Height
+            return this.Width / this.Height
 
         if (name = "IsSquare")
-        return this.Width = this.Height
+            return this.Width = this.Height
 
         if (name = "IsPortrait")
-        return this.Height > this.Width
+            return this.Height > this.Width
 
         if (name = "IsLandscape")
-        return this.Width > this.Height
+            return this.Width > this.Height
 
         throw Error("Property '" name "' not found")
     }
@@ -208,19 +208,19 @@ rect := Rectangle(10, 5)
 
 ; Access computed properties
 MsgBox("Width: " rect.Width "`nHeight: " rect.Height
-. "`nArea: " rect.Area
-. "`nPerimeter: " rect.Perimeter
-. "`nDiagonal: " Round(rect.Diagonal, 2)
-. "`nAspect Ratio: " rect.AspectRatio
-. "`nIs Square: " rect.IsSquare
-. "`nIs Landscape: " rect.IsLandscape)
+    . "`nArea: " rect.Area
+    . "`nPerimeter: " rect.Perimeter
+    . "`nDiagonal: " Round(rect.Diagonal, 2)
+    . "`nAspect Ratio: " rect.AspectRatio
+    . "`nIs Square: " rect.IsSquare
+    . "`nIs Landscape: " rect.IsLandscape)
 
 ; Change dimensions - computed properties update automatically
 rect.Width := 8
 rect.Height := 8
 
 MsgBox("After resize:`nArea: " rect.Area
-. "`nIs Square: " rect.IsSquare)
+    . "`nIs Square: " rect.IsSquare)
 
 ; ========================================
 ; EXAMPLE 4: Property Aliasing
@@ -241,21 +241,21 @@ class Person {
     __Get(name, params) {
         ; Aliases for FirstName
         if (name = "GivenName" || name = "Forename")
-        return this.FirstName
+            return this.FirstName
 
         ; Aliases for LastName
         if (name = "Surname" || name = "FamilyName")
-        return this.LastName
+            return this.LastName
 
         ; Computed properties
         if (name = "FullName")
-        return this.FirstName " " this.LastName
+            return this.FirstName " " this.LastName
 
         if (name = "Age")
-        return Integer(FormatTime(A_Now, "yyyy")) - this.BirthYear
+            return Integer(FormatTime(A_Now, "yyyy")) - this.BirthYear
 
         if (name = "Initials")
-        return SubStr(this.FirstName, 1, 1) SubStr(this.LastName, 1, 1)
+            return SubStr(this.FirstName, 1, 1) SubStr(this.LastName, 1, 1)
 
         throw Error("Property '" name "' not found")
     }
@@ -287,23 +287,23 @@ class ConfigManager {
     __New() {
         ; Set default values
         this._defaults := Map(
-        "Theme", "Light",
-        "FontSize", 12,
-        "AutoSave", true,
-        "Language", "en",
-        "MaxConnections", 10,
-        "Timeout", 30
+            "Theme", "Light",
+            "FontSize", 12,
+            "AutoSave", true,
+            "Language", "en",
+            "MaxConnections", 10,
+            "Timeout", 30
         )
     }
 
     __Get(name, params) {
         ; Return actual value if set
         if (this._config.Has(name))
-        return this._config[name]
+            return this._config[name]
 
         ; Return default if available
         if (this._defaults.Has(name))
-        return this._defaults[name]
+            return this._defaults[name]
 
         ; No default available
         throw Error("Configuration '" name "' not found and has no default")
@@ -316,7 +316,7 @@ class ConfigManager {
     Reset(name := "") {
         if (name != "") {
             if (this._config.Has(name))
-            this._config.Delete(name)
+                this._config.Delete(name)
         } else {
             this._config := Map()
         }
@@ -384,15 +384,15 @@ class DynamicObject {
 
         ; Generate "isEmpty" property
         if (name = "isEmpty")
-        return this._data.Count = 0
+            return this._data.Count = 0
 
         ; Generate "size" property
         if (name = "size")
-        return this._data.Count
+            return this._data.Count
 
         ; Regular property access
         if (this._data.Has(name))
-        return this._data[name]
+            return this._data[name]
 
         return ""
     }
@@ -403,18 +403,18 @@ class DynamicObject {
 
     _GetItemCount(itemName) {
         if (!this._data.Has(itemName))
-        return 0
+            return 0
 
         value := this._data[itemName]
 
         if (Type(value) = "Array")
-        return value.Length
+            return value.Length
 
         if (Type(value) = "Map")
-        return value.Count
+            return value.Count
 
         if (Type(value) = "String")
-        return StrLen(value)
+            return StrLen(value)
 
         return 1
     }
@@ -458,7 +458,7 @@ class NestedObject {
 
             ; If value is a Map, wrap it in NestedObject for chaining
             if (Type(value) = "Map")
-            return NestedObject(value)
+                return NestedObject(value)
 
             return value
         }
@@ -479,7 +479,7 @@ class NestedObject {
         ; For leaf values
         for key, value in this._data {
             if (Type(value) != "Map")
-            return value
+                return value
         }
         return default
     }
@@ -488,15 +488,15 @@ class NestedObject {
 ; Create nested structure
 root := NestedObject()
 root.Set("User", Map(
-"Name", "John Doe",
-"Contact", Map(
-"Email", "john@example.com",
-"Phone", "555-0123"
-),
-"Settings", Map(
-"Theme", "Dark",
-"Notifications", true
-)
+    "Name", "John Doe",
+    "Contact", Map(
+        "Email", "john@example.com",
+        "Phone", "555-0123"
+    ),
+    "Settings", Map(
+        "Theme", "Dark",
+        "Notifications", true
+    )
 ))
 
 ; Access nested properties (each property returns a new NestedObject)
@@ -509,11 +509,11 @@ nonExistent := root.User.Address.Street
 MsgBox("Non-existent exists: " nonExistent.Exists())
 
 MsgBox("=== OOP __Get Meta-Function Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic __Get interception`n"
-. "- Lazy property initialization`n"
-. "- Computed properties`n"
-. "- Property aliasing`n"
-. "- Default values pattern`n"
-. "- Dynamic property generation`n"
-. "- Chained property access")
+    . "This file demonstrated:`n"
+    . "- Basic __Get interception`n"
+    . "- Lazy property initialization`n"
+    . "- Computed properties`n"
+    . "- Property aliasing`n"
+    . "- Default values pattern`n"
+    . "- Dynamic property generation`n"
+    . "- Chained property access")

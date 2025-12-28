@@ -27,7 +27,7 @@ MsgBox "Found at position: " pos  ; 7
 ; Regular expressions
 text := "My email is john@example.com"
 if RegExMatch(text, "(\w+)@(\w+\.\w+)", &match)
-MsgBox "Email: " match[0] "`nUser: " match[1] "`nDomain: " match[2]
+    MsgBox "Email: " match[0] "`nUser: " match[1] "`nDomain: " match[2]
 
 ; RegExReplace
 phone := "Phone: (555) 123-4567"

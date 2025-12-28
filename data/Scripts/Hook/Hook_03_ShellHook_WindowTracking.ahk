@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* ShellHook - Window Event Tracking
-*
-* Demonstrates using Windows ShellHook to detect window creation,
-* destruction, and activation events without polling.
-*
-* Source: AHK_Notes/Snippets/ShellHook.md
-*/
+ * ShellHook - Window Event Tracking
+ * 
+ * Demonstrates using Windows ShellHook to detect window creation,
+ * destruction, and activation events without polling.
+ * 
+ * Source: AHK_Notes/Snippets/ShellHook.md
+ */
 
 ; Window tracking storage
 windowData := Map()
@@ -35,7 +35,7 @@ if (windowData.Count > 0) {
     for hwnd, info in windowData {
         summary .= "• " info.title " (" info.class ")`n"
         if (++count >= 5)
-        break
+            break
     }
 }
 
@@ -43,10 +43,10 @@ MsgBox(summary, , "T5")
 ExitApp()
 
 /**
-* ShellHook Message Handler
-* @param {int} wParam - Event type code
-* @param {ptr} lParam - Window handle
-*/
+ * ShellHook Message Handler
+ * @param {int} wParam - Event type code
+ * @param {ptr} lParam - Window handle
+ */
 ShellMessageHandler(wParam, lParam, *) {
     static HSHELL_WINDOWCREATED := 1
     static HSHELL_WINDOWDESTROYED := 2
@@ -57,19 +57,19 @@ ShellMessageHandler(wParam, lParam, *) {
 
     switch wParam {
         case HSHELL_WINDOWCREATED:
-        HandleWindowCreated(hwnd)
+            HandleWindowCreated(hwnd)
 
         case HSHELL_WINDOWDESTROYED:
-        HandleWindowDestroyed(hwnd)
+            HandleWindowDestroyed(hwnd)
 
         case HSHELL_WINDOWACTIVATED, HSHELL_WINDOWACTIVATED_TOPMOST:
-        HandleWindowActivated(hwnd)
+            HandleWindowActivated(hwnd)
     }
 }
 
 /**
-* Handle window creation event
-*/
+ * Handle window creation event
+ */
 HandleWindowCreated(hwnd) {
     try {
         title := WinGetTitle("ahk_id " hwnd)
@@ -93,8 +93,8 @@ HandleWindowCreated(hwnd) {
 }
 
 /**
-* Handle window destruction event
-*/
+ * Handle window destruction event
+ */
 HandleWindowDestroyed(hwnd) {
     ; Use stored data since window is gone
     if (windowData.Has(hwnd)) {
@@ -110,8 +110,8 @@ HandleWindowDestroyed(hwnd) {
 }
 
 /**
-* Handle window activation event
-*/
+ * Handle window activation event
+ */
 HandleWindowActivated(hwnd) {
     try {
         title := WinGetTitle("ahk_id " hwnd)
@@ -148,3 +148,4 @@ HandleWindowActivated(hwnd) {
 *    OnExit() deregisters hook
 *    Prevents resource leaks
 */
+

@@ -1,49 +1,49 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileSetAttrib_20.ahk
-*
-* DESCRIPTION:
-* Bulk attribute operations and mass file management
-*
-* FEATURES:
-* - Bulk attribute modification
-* - Batch file processing
-* - Mass protection/unprotection
-* - Recursive attribute setting
-* - Bulk organization operations
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileSetAttrib() with file patterns
-* - Bulk file operations
-* - Recursive directory processing
-* - Error handling in batch operations
-* - Progress tracking
-*
-* LEARNING POINTS:
-* 1. Process multiple files efficiently
-* 2. Use file patterns with FileSetAttrib()
-* 3. Handle errors in bulk operations
-* 4. Track progress of batch operations
-* 5. Implement rollback capabilities
-* 6. Optimize bulk processing
-*/
+ * BuiltIn_FileSetAttrib_20.ahk
+ * 
+ * DESCRIPTION:
+ * Bulk attribute operations and mass file management
+ * 
+ * FEATURES:
+ * - Bulk attribute modification
+ * - Batch file processing
+ * - Mass protection/unprotection
+ * - Recursive attribute setting
+ * - Bulk organization operations
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileSetAttrib.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileSetAttrib() with file patterns
+ * - Bulk file operations
+ * - Recursive directory processing
+ * - Error handling in batch operations
+ * - Progress tracking
+ * 
+ * LEARNING POINTS:
+ * 1. Process multiple files efficiently
+ * 2. Use file patterns with FileSetAttrib()
+ * 3. Handle errors in bulk operations
+ * 4. Track progress of batch operations
+ * 5. Implement rollback capabilities
+ * 6. Optimize bulk processing
+ */
 
 ; ============================================================
 ; Example 1: Bulk Attribute Setting with Pattern
 ; ============================================================
 
 /**
-* Set attributes for all matching files
-*
-* @param {String} pattern - File pattern
-* @param {String} attributes - Attributes to set
-* @returns {Object} - Operation result
-*/
+ * Set attributes for all matching files
+ * 
+ * @param {String} pattern - File pattern
+ * @param {String} attributes - Attributes to set
+ * @returns {Object} - Operation result
+ */
 BulkSetAttributes(pattern, attributes) {
     result := {
         processed: 0,
@@ -99,7 +99,7 @@ if (bulkResult.success > 0) {
     output .= "Successfully Modified:`n"
     for file in bulkResult.files {
         if (file.status = "success")
-        output .= "  • " file.name "`n"
+            output .= "  • " file.name "`n"
     }
 }
 
@@ -113,13 +113,13 @@ FileSetAttrib("-R", testDir "\*.txt")
 ; ============================================================
 
 /**
-* Set attributes recursively in directory tree
-*
-* @param {String} dirPath - Root directory
-* @param {String} pattern - File pattern
-* @param {String} attributes - Attributes to set
-* @returns {Object} - Operation result
-*/
+ * Set attributes recursively in directory tree
+ * 
+ * @param {String} dirPath - Root directory
+ * @param {String} pattern - File pattern
+ * @param {String} attributes - Attributes to set
+ * @returns {Object} - Operation result
+ */
 RecursiveBulkSet(dirPath, pattern, attributes) {
     result := {
         processed: 0,
@@ -129,7 +129,7 @@ RecursiveBulkSet(dirPath, pattern, attributes) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     ; Process files recursively
     Loop Files, dirPath "\" pattern, "FR" {
@@ -141,7 +141,7 @@ RecursiveBulkSet(dirPath, pattern, attributes) {
             ; Track which directories were processed
             SplitPath(A_LoopFilePath, , &fileDir)
             if (!ArrayContains(result.directories, fileDir))
-            result.directories.Push(fileDir)
+                result.directories.Push(fileDir)
         } catch {
             result.failed++
         }
@@ -153,7 +153,7 @@ RecursiveBulkSet(dirPath, pattern, attributes) {
 ArrayContains(arr, value) {
     for item in arr {
         if (item = value)
-        return true
+            return true
     }
     return false
 }
@@ -187,8 +187,8 @@ FileSetAttrib("-H", testDir "\*.txt", "R")
 ; ============================================================
 
 /**
-* Protect multiple files with rollback capability
-*/
+ * Protect multiple files with rollback capability
+ */
 class BatchProtection {
     __New() {
         this.changes := []
@@ -202,7 +202,7 @@ class BatchProtection {
 
         for filePath in files {
             if (!FileExist(filePath))
-            continue
+                continue
 
             ; Store original attributes for rollback
             originalAttrs := FileGetAttrib(filePath)
@@ -256,35 +256,35 @@ class BatchProtection {
 ; Test batch protection
 fileList := []
 Loop Files, testDir "\*.txt", "FR"
-fileList.Push(A_LoopFilePath)
+    fileList.Push(A_LoopFilePath)
 
 batchProt := BatchProtection()
 protResult := batchProt.ProtectFiles(fileList)
 
 MsgBox("BATCH PROTECTION:`n`n"
-. "Files Protected: " protResult.success "`n"
-. "Failed: " protResult.failed "`n`n"
-. batchProt.GetReport(),
-"Batch Protection", "Icon!")
+    . "Files Protected: " protResult.success "`n"
+    . "Failed: " protResult.failed "`n`n"
+    . batchProt.GetReport(),
+    "Batch Protection", "Icon!")
 
 ; Rollback
 rolled := batchProt.Rollback()
 MsgBox("ROLLBACK COMPLETE:`n`n"
-. "Files Restored: " rolled,
-"Rollback", "Icon!")
+    . "Files Restored: " rolled,
+    "Rollback", "Icon!")
 
 ; ============================================================
 ; Example 4: Progress Tracking for Bulk Operations
 ; ============================================================
 
 /**
-* Bulk operation with progress tracking
-*
-* @param {String} dirPath - Directory to process
-* @param {String} attributes - Attributes to set
-* @param {Function} progressCallback - Progress callback function
-* @returns {Object} - Operation result
-*/
+ * Bulk operation with progress tracking
+ * 
+ * @param {String} dirPath - Directory to process
+ * @param {String} attributes - Attributes to set
+ * @param {Function} progressCallback - Progress callback function
+ * @returns {Object} - Operation result
+ */
 BulkSetWithProgress(dirPath, attributes, progressCallback := "") {
     result := {
         total: 0,
@@ -294,11 +294,11 @@ BulkSetWithProgress(dirPath, attributes, progressCallback := "") {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     ; Count files first
     Loop Files, dirPath "\*.*", "FR"
-    result.total++
+        result.total++
 
     ; Process files
     Loop Files, dirPath "\*.*", "FR" {
@@ -345,13 +345,13 @@ MsgBox(output, "Progress Tracking", "Icon!")
 ; ============================================================
 
 /**
-* Apply attributes based on conditions
-*
-* @param {String} dirPath - Directory to process
-* @param {Function} condition - Condition function
-* @param {String} attributes - Attributes if condition true
-* @returns {Object} - Operation result
-*/
+ * Apply attributes based on conditions
+ * 
+ * @param {String} dirPath - Directory to process
+ * @param {Function} condition - Condition function
+ * @param {String} attributes - Attributes if condition true
+ * @returns {Object} - Operation result
+ */
 ConditionalBulkSet(dirPath, condition, attributes) {
     result := {
         scanned: 0,
@@ -361,7 +361,7 @@ ConditionalBulkSet(dirPath, condition, attributes) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "FR" {
         result.scanned++
@@ -404,12 +404,12 @@ FileSetAttrib("-R", testDir "\*.*", "R")
 ; ============================================================
 
 /**
-* Verify bulk attribute operation
-*
-* @param {String} dirPath - Directory to verify
-* @param {String} expectedAttrib - Expected attribute
-* @returns {Object} - Verification result
-*/
+ * Verify bulk attribute operation
+ * 
+ * @param {String} dirPath - Directory to verify
+ * @param {String} expectedAttrib - Expected attribute
+ * @returns {Object} - Verification result
+ */
 VerifyBulkOperation(dirPath, expectedAttrib) {
     result := {
         total: 0,
@@ -419,7 +419,7 @@ VerifyBulkOperation(dirPath, expectedAttrib) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "FR" {
         result.total++
@@ -437,8 +437,8 @@ VerifyBulkOperation(dirPath, expectedAttrib) {
     }
 
     result.percentage := result.total > 0
-    ? Round((result.compliant / result.total) * 100)
-    : 0
+        ? Round((result.compliant / result.total) * 100)
+        : 0
 
     return result
 }
@@ -457,7 +457,7 @@ output .= "Success Rate: " verification.percentage "%`n`n"
 if (verification.nonCompliant.Length > 0) {
     output .= "Non-Compliant Files:`n"
     for file in verification.nonCompliant
-    output .= "  • " file.name " (" file.attributes ")`n"
+        output .= "  • " file.name " (" file.attributes ")`n"
 }
 
 MsgBox(output, "Verification", "Icon!")
@@ -467,16 +467,16 @@ MsgBox(output, "Verification", "Icon!")
 ; ============================================================
 
 /**
-* Optimized bulk attribute setting
-*
-* @param {String} dirPath - Directory to process
-* @param {String} attributes - Attributes to set
-* @param {Object} options - Processing options
-* @returns {Object} - Operation result
-*/
+ * Optimized bulk attribute setting
+ * 
+ * @param {String} dirPath - Directory to process
+ * @param {String} attributes - Attributes to set
+ * @param {Object} options - Processing options
+ * @returns {Object} - Operation result
+ */
 OptimizedBulkSet(dirPath, attributes, options := "") {
     if (!options)
-    options := {batchSize: 100, skipErrors: true, recurse: true}
+        options := { batchSize: 100, skipErrors: true, recurse: true }
 
     result := {
         processed: 0,
@@ -485,7 +485,7 @@ OptimizedBulkSet(dirPath, attributes, options := "") {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     recurseFlag := options.recurse ? "FR" : "F"
 
@@ -497,7 +497,7 @@ OptimizedBulkSet(dirPath, attributes, options := "") {
             result.success++
         } catch Error as err {
             if (!options.skipErrors)
-            throw err
+                throw err
 
             result.errors.Push({
                 file: A_LoopFileName,

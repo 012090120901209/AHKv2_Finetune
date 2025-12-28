@@ -14,7 +14,7 @@ class LRUCache {
     Get(key) {
         if !this.cache.Has(key)
             return ""
-        
+
         this.MoveToFront(key)
         return this.cache[key]
     }
@@ -45,10 +45,10 @@ class LRUCache {
             }
         }
     }
-    
+
     Has(key) => this.cache.Has(key)
     Size() => this.order.Length
-    
+
     GetOrder() {
         result := ""
         for k in this.order

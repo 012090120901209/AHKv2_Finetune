@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinSetTitle() - Set window title
-*
-* Changes the title of a window.
-*/
+ * WinSetTitle() - Set window title
+ * 
+ * Changes the title of a window.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

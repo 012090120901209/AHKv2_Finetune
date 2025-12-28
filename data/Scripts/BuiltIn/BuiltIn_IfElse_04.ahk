@@ -1,40 +1,40 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 Control Flow - Guard Clauses
-* ============================================================================
-*
-* This script demonstrates guard clause patterns in AutoHotkey v2.
-* It covers early returns, defensive programming, input validation,
-* and refactoring techniques to improve code readability.
-*
-* @file BuiltIn_IfElse_04.ahk
-* @author AHK v2 Examples Collection
-* @version 2.0.0
-* @date 2024-01-15
-*
-* @description
-* Examples included:
-* 1. Basic guard clause pattern with early returns
-* 2. Input validation using guard clauses
-* 3. Precondition checking
-* 4. Error handling with guard clauses
-* 5. Refactoring nested ifs to guard clauses
-* 6. Multi-level validation chains
-* 7. Guard clauses in real-world scenarios
-*
-* @requires AutoHotkey v2.0+
-*/
+ * ============================================================================
+ * AutoHotkey v2 Control Flow - Guard Clauses
+ * ============================================================================
+ * 
+ * This script demonstrates guard clause patterns in AutoHotkey v2.
+ * It covers early returns, defensive programming, input validation,
+ * and refactoring techniques to improve code readability.
+ * 
+ * @file BuiltIn_IfElse_04.ahk
+ * @author AHK v2 Examples Collection
+ * @version 2.0.0
+ * @date 2024-01-15
+ * 
+ * @description
+ * Examples included:
+ * 1. Basic guard clause pattern with early returns
+ * 2. Input validation using guard clauses
+ * 3. Precondition checking
+ * 4. Error handling with guard clauses
+ * 5. Refactoring nested ifs to guard clauses
+ * 6. Multi-level validation chains
+ * 7. Guard clauses in real-world scenarios
+ * 
+ * @requires AutoHotkey v2.0+
+ */
 
 ; ============================================================================
 ; Example 1: Basic Guard Clause Pattern
 ; ============================================================================
 
 /**
-* Demonstrates the fundamental guard clause pattern.
-* Shows how early returns improve code readability.
-*/
+ * Demonstrates the fundamental guard clause pattern.
+ * Shows how early returns improve code readability.
+ */
 Example1_BasicGuardClauses() {
     OutputDebug("=== Example 1: Basic Guard Clauses ===`n")
 
@@ -55,8 +55,8 @@ Example1_BasicGuardClauses() {
 }
 
 /**
-* Traditional nested if approach.
-*/
+ * Traditional nested if approach.
+ */
 ProcessUserNested(username, email, age) {
     if (username != "") {
         if (InStr(email, "@")) {
@@ -74,8 +74,8 @@ ProcessUserNested(username, email, age) {
 }
 
 /**
-* Guard clause approach (recommended).
-*/
+ * Guard clause approach (recommended).
+ */
 ProcessUserGuarded(username, email, age) {
     ; Guard: Check username
     if (username = "") {
@@ -104,9 +104,9 @@ ProcessUserGuarded(username, email, age) {
 ; ============================================================================
 
 /**
-* Demonstrates comprehensive input validation using guard clauses.
-* Shows how to validate multiple parameters efficiently.
-*/
+ * Demonstrates comprehensive input validation using guard clauses.
+ * Shows how to validate multiple parameters efficiently.
+ */
 Example2_InputValidation() {
     OutputDebug("=== Example 2: Input Validation ===`n")
 
@@ -125,8 +125,8 @@ Example2_InputValidation() {
 }
 
 /**
-* Account creation with comprehensive guard clauses.
-*/
+ * Account creation with comprehensive guard clauses.
+ */
 CreateAccount(username, email, password, age) {
     ; Guard: Username existence
     if (username = "") {
@@ -180,9 +180,9 @@ CreateAccount(username, email, password, age) {
 ; ============================================================================
 
 /**
-* Demonstrates using guard clauses for precondition validation.
-* Shows system state and resource availability checks.
-*/
+ * Demonstrates using guard clauses for precondition validation.
+ * Shows system state and resource availability checks.
+ */
 Example3_PreconditionChecking() {
     OutputDebug("=== Example 3: Precondition Checking ===`n")
 
@@ -202,8 +202,8 @@ Example3_PreconditionChecking() {
 }
 
 /**
-* Processes data with multiple precondition checks.
-*/
+ * Processes data with multiple precondition checks.
+ */
 ProcessData(systemState, dataSize) {
     ; Guard: System initialized
     if (!systemState.Has("initialized") or !systemState["initialized"]) {
@@ -246,9 +246,9 @@ ProcessData(systemState, dataSize) {
 ; ============================================================================
 
 /**
-* Demonstrates error handling patterns using guard clauses.
-* Shows how to fail fast and provide clear error messages.
-*/
+ * Demonstrates error handling patterns using guard clauses.
+ * Shows how to fail fast and provide clear error messages.
+ */
 Example4_ErrorHandling() {
     OutputDebug("=== Example 4: Error Handling ===`n")
 
@@ -269,8 +269,8 @@ Example4_ErrorHandling() {
 }
 
 /**
-* File operation with error guards.
-*/
+ * File operation with error guards.
+ */
 PerformFileOperation(filePath, operation, size) {
     ; Guard: File path provided
     if (filePath = "") {
@@ -314,8 +314,8 @@ PerformFileOperation(filePath, operation, size) {
 }
 
 /**
-* Transaction execution with guards.
-*/
+ * Transaction execution with guards.
+ */
 ExecuteTransaction(balance, amount, isAuthorized, isBlocked) {
     ; Guard: Account not blocked
     if (isBlocked) {
@@ -348,8 +348,8 @@ ExecuteTransaction(balance, amount, isAuthorized, isBlocked) {
 }
 
 /**
-* Helper function to log errors.
-*/
+ * Helper function to log errors.
+ */
 LogError(message) {
     OutputDebug("✗ ERROR: " message "`n")
 }
@@ -359,9 +359,9 @@ LogError(message) {
 ; ============================================================================
 
 /**
-* Demonstrates before/after refactoring of nested ifs.
-* Shows dramatic readability improvements.
-*/
+ * Demonstrates before/after refactoring of nested ifs.
+ * Shows dramatic readability improvements.
+ */
 Example5_RefactoringExamples() {
     OutputDebug("=== Example 5: Refactoring to Guard Clauses ===`n")
 
@@ -380,8 +380,8 @@ Example5_RefactoringExamples() {
 }
 
 /**
-* Before: Deeply nested shipping calculation.
-*/
+ * Before: Deeply nested shipping calculation.
+ */
 CalculateShippingNested(orderValue, country, inStock, weight) {
     if (orderValue > 0) {
         if (country = "USA" or country = "Canada") {
@@ -409,8 +409,8 @@ CalculateShippingNested(orderValue, country, inStock, weight) {
 }
 
 /**
-* After: Flattened with guard clauses.
-*/
+ * After: Flattened with guard clauses.
+ */
 CalculateShippingGuarded(orderValue, country, inStock, weight) {
     ; Guards handle error cases first
     if (orderValue <= 0) {
@@ -449,31 +449,31 @@ CalculateShippingGuarded(orderValue, country, inStock, weight) {
 ; ============================================================================
 
 /**
-* Demonstrates complex validation chains using guard clauses.
-* Shows how to validate related data in sequence.
-*/
+ * Demonstrates complex validation chains using guard clauses.
+ * Shows how to validate related data in sequence.
+ */
 Example6_ValidationChains() {
     OutputDebug("=== Example 6: Validation Chains ===`n")
 
     ; Create test order
     order := Map(
-    "orderId", "ORD-12345",
-    "customerId", "CUST-001",
-    "items", [
-    Map("id", "ITEM-1", "quantity", 2, "price", 50),
-    Map("id", "ITEM-2", "quantity", 1, "price", 75)
-    ],
-    "shippingAddress", Map(
-    "street", "123 Main St",
-    "city", "Springfield",
-    "state", "IL",
-    "zip", "62701"
-    ),
-    "paymentMethod", Map(
-    "type", "credit",
-    "cardNumber", "4532123456789012",
-    "cvv", "123"
-    )
+        "orderId", "ORD-12345",
+        "customerId", "CUST-001",
+        "items", [
+            Map("id", "ITEM-1", "quantity", 2, "price", 50),
+            Map("id", "ITEM-2", "quantity", 1, "price", 75)
+        ],
+        "shippingAddress", Map(
+            "street", "123 Main St",
+            "city", "Springfield",
+            "state", "IL",
+            "zip", "62701"
+        ),
+        "paymentMethod", Map(
+            "type", "credit",
+            "cardNumber", "4532123456789012",
+            "cvv", "123"
+        )
     )
 
     ValidateOrder(order)
@@ -486,8 +486,8 @@ Example6_ValidationChains() {
 }
 
 /**
-* Complex order validation with chained guards.
-*/
+ * Complex order validation with chained guards.
+ */
 ValidateOrder(order) {
     ; Level 1: Order basics
     if (!order.Has("orderId") or order["orderId"] = "") {
@@ -583,9 +583,9 @@ ValidateOrder(order) {
 ; ============================================================================
 
 /**
-* Demonstrates guard clauses in practical real-world scenarios.
-* Shows authentication, authorization, and business logic.
-*/
+ * Demonstrates guard clauses in practical real-world scenarios.
+ * Shows authentication, authorization, and business logic.
+ */
 Example7_RealWorldScenarios() {
     OutputDebug("=== Example 7: Real-World Scenarios ===`n")
 
@@ -611,8 +611,8 @@ Example7_RealWorldScenarios() {
 }
 
 /**
-* User authentication with security guards.
-*/
+ * User authentication with security guards.
+ */
 AuthenticateUser(username, password, accountLocked, accountActive) {
     ; Guard: Username provided
     if (username = "") {
@@ -653,8 +653,8 @@ AuthenticateUser(username, password, accountLocked, accountActive) {
 }
 
 /**
-* Resource access control.
-*/
+ * Resource access control.
+ */
 AccessResource(userId, userRole, resourcePath, isLoggedIn) {
     ; Guard: User logged in
     if (!isLoggedIn) {
@@ -686,8 +686,8 @@ AccessResource(userId, userRole, resourcePath, isLoggedIn) {
 }
 
 /**
-* Business discount rules.
-*/
+ * Business discount rules.
+ */
 ApplyDiscount(orderValue, memberTier, yearsAsMember, hasPromoCode) {
     ; Guard: Minimum order value
     if (orderValue < 100) {

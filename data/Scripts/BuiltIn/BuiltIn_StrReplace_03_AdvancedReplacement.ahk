@@ -1,47 +1,47 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* BUILT-IN FUNCTION: StrReplace() - Advanced Replacement Techniques
-* ============================================================================
-*
-* DESCRIPTION:
-*   Advanced examples demonstrating sophisticated uses of the StrReplace()
-*   function in AutoHotkey v2. This file covers chain replacements, template
-*   variable substitution, bulk text operations, dynamic replacements, and
-*   complex text transformation scenarios.
-*
-* FEATURES DEMONSTRATED:
-*   - Chain replacement operations for complex transformations
-*   - Template variable substitution systems
-*   - Bulk find-and-replace operations
-*   - Dynamic placeholder replacement
-*   - Nested and recursive replacements
-*   - Configuration-driven text transformation
-*   - Multi-language text processing
-*
-* SOURCE:
-*   AutoHotkey v2 Documentation - StrReplace()
-*   https://www.autohotkey.com/docs/v2/lib/StrReplace.html
-*
-* KEY V2 FEATURES DEMONSTRATED:
-*   - Maps for configuration-driven replacements
-*   - Array iteration for bulk operations
-*   - Function composition and chaining
-*   - Modern parameter handling
-*   - Dynamic text processing patterns
-*
-* LEARNING POINTS:
-*   1. Chain multiple StrReplace calls for complex transformations
-*   2. Use Maps to store replacement rules for dynamic processing
-*   3. Build template systems using placeholder replacement
-*   4. Create reusable text transformation pipelines
-*   5. Handle order-dependent replacements carefully
-*   6. Combine StrReplace with other string functions for power
-*   7. Design maintainable bulk replacement systems
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * BUILT-IN FUNCTION: StrReplace() - Advanced Replacement Techniques
+ * ============================================================================
+ * 
+ * DESCRIPTION:
+ *   Advanced examples demonstrating sophisticated uses of the StrReplace()
+ *   function in AutoHotkey v2. This file covers chain replacements, template
+ *   variable substitution, bulk text operations, dynamic replacements, and
+ *   complex text transformation scenarios.
+ * 
+ * FEATURES DEMONSTRATED:
+ *   - Chain replacement operations for complex transformations
+ *   - Template variable substitution systems
+ *   - Bulk find-and-replace operations
+ *   - Dynamic placeholder replacement
+ *   - Nested and recursive replacements
+ *   - Configuration-driven text transformation
+ *   - Multi-language text processing
+ * 
+ * SOURCE:
+ *   AutoHotkey v2 Documentation - StrReplace()
+ *   https://www.autohotkey.com/docs/v2/lib/StrReplace.html
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ *   - Maps for configuration-driven replacements
+ *   - Array iteration for bulk operations
+ *   - Function composition and chaining
+ *   - Modern parameter handling
+ *   - Dynamic text processing patterns
+ * 
+ * LEARNING POINTS:
+ *   1. Chain multiple StrReplace calls for complex transformations
+ *   2. Use Maps to store replacement rules for dynamic processing
+ *   3. Build template systems using placeholder replacement
+ *   4. Create reusable text transformation pipelines
+ *   5. Handle order-dependent replacements carefully
+ *   6. Combine StrReplace with other string functions for power
+ *   7. Design maintainable bulk replacement systems
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Chain Replacements for Complex Transformations
@@ -163,15 +163,15 @@ Example2_TemplateSubstitution() {
 
     ; Template data
     TemplateData := Map(
-    "NAME", "John Smith",
-    "ORDER_ID", "12345",
-    "AMOUNT", "99.99",
-    "ADDRESS", "123 Main Street",
-    "CITY", "Springfield",
-    "STATE", "IL",
-    "ZIP", "62701",
-    "DELIVERY_DATE", "2024-01-20",
-    "COMPANY_NAME", "Acme Corporation"
+        "NAME", "John Smith",
+        "ORDER_ID", "12345",
+        "AMOUNT", "99.99",
+        "ADDRESS", "123 Main Street",
+        "CITY", "Springfield",
+        "STATE", "IL",
+        "ZIP", "62701",
+        "DELIVERY_DATE", "2024-01-20",
+        "COMPANY_NAME", "Acme Corporation"
     )
 
     ; Process template by replacing all placeholders
@@ -192,10 +192,10 @@ Example2_TemplateSubstitution() {
     )"
 
     UserData := Map(
-    "user_name", "Alice Johnson",
-    "user_email", "alice@example.com",
-    "user_role", "Administrator",
-    "member_since", "January 2020"
+        "user_name", "Alice Johnson",
+        "user_email", "alice@example.com",
+        "user_role", "Administrator",
+        "member_since", "January 2020"
     )
 
     ProcessedHTML := HTMLTemplate
@@ -207,10 +207,10 @@ Example2_TemplateSubstitution() {
     SQLTemplate := "SELECT * FROM {{table}} WHERE {{column}} = '{{value}}' AND status = '{{status}}'"
 
     QueryData := Map(
-    "table", "users",
-    "column", "email",
-    "value", "user@example.com",
-    "status", "active"
+        "table", "users",
+        "column", "email",
+        "value", "user@example.com",
+        "status", "active"
     )
 
     ProcessedSQL := SQLTemplate
@@ -259,10 +259,10 @@ Example3_BulkReplacements() {
 
     ; Define bulk replacements as a Map
     Replacements := Map(
-    "var", "let",
-    "function scope", "function-level scope",
-    "block scope", "block-level scope",
-    "JavaScript", "ECMAScript"
+        "var", "let",
+        "function scope", "function-level scope",
+        "block scope", "block-level scope",
+        "JavaScript", "ECMAScript"
     )
 
     ; Apply all replacements
@@ -281,8 +281,8 @@ Example3_BulkReplacements() {
 
     ; Standardize variations of "login"
     LoginFixes := Map(
-    "login", "log in",
-    "log-in", "log in"
+        "login", "log in",
+        "log-in", "log in"
     )
 
     StandardizedDoc := TechDoc
@@ -299,9 +299,9 @@ Example3_BulkReplacements() {
     )"
 
     BrandChanges := Map(
-    "OldBrand", "NewBrand",
-    "oldbrand.com", "newbrand.com",
-    "oldbrand", "newbrand"
+        "OldBrand", "NewBrand",
+        "oldbrand.com", "newbrand.com",
+        "oldbrand", "newbrand"
     )
 
     RebrandedContent := WebContent
@@ -313,10 +313,10 @@ Example3_BulkReplacements() {
     TypoText := "The quick borwn fox jumps over teh lazy dog. Thsi is a tset."
 
     CommonTypos := Map(
-    "borwn", "brown",
-    "teh", "the",
-    "thsi", "this",
-    "tset", "test"
+        "borwn", "brown",
+        "teh", "the",
+        "thsi", "this",
+        "tset", "test"
     )
 
     CorrectedText := TypoText
@@ -394,13 +394,13 @@ Example4_DynamicPlaceholders() {
 
     ; Create data map
     DynamicData := Map(
-    "CURRENT_DATE", CurrentDate,
-    "CURRENT_TIME", CurrentTime,
-    "START_DATE", StartDate,
-    "END_DATE", EndDate,
-    "DAYS_ELAPSED", DaysElapsed,
-    "USERNAME", UserName,
-    "COMPUTERNAME", ComputerName
+        "CURRENT_DATE", CurrentDate,
+        "CURRENT_TIME", CurrentTime,
+        "START_DATE", StartDate,
+        "END_DATE", EndDate,
+        "DAYS_ELAPSED", DaysElapsed,
+        "USERNAME", UserName,
+        "COMPUTERNAME", ComputerName
     )
 
     ; Process template
@@ -430,12 +430,12 @@ Example4_DynamicPlaceholders() {
     BuildDate := FormatTime(, "yyyy-MM-dd")
 
     ConfigData := Map(
-    "INSTALL_PATH", InstallPath,
-    "DATA_PATH", DataPath,
-    "LOG_PATH", LogPath,
-    "TEMP_PATH", TempPath,
-    "VERSION", Version,
-    "BUILD_DATE", BuildDate
+        "INSTALL_PATH", InstallPath,
+        "DATA_PATH", DataPath,
+        "LOG_PATH", LogPath,
+        "TEMP_PATH", TempPath,
+        "VERSION", Version,
+        "BUILD_DATE", BuildDate
     )
 
     ConfigFile := ConfigTemplate
@@ -447,10 +447,10 @@ Example4_DynamicPlaceholders() {
     URLTemplate := "https://api.example.com/{{ENDPOINT}}?user={{USER_ID}}&token={{TOKEN}}&timestamp={{TIMESTAMP}}"
 
     URLData := Map(
-    "ENDPOINT", "data/export",
-    "USER_ID", "12345",
-    "TOKEN", "abc123xyz",
-    "TIMESTAMP", String(A_TickCount)
+        "ENDPOINT", "data/export",
+        "USER_ID", "12345",
+        "TOKEN", "abc123xyz",
+        "TIMESTAMP", String(A_TickCount)
     )
 
     GeneratedURL := URLTemplate
@@ -1123,9 +1123,9 @@ class TextTransformer {
 
     AddRule(find, replace, caseSensitive := true) {
         this.rules.Push(Map(
-        "find", find,
-        "replace", replace,
-        "caseSensitive", caseSensitive
+            "find", find,
+            "replace", replace,
+            "caseSensitive", caseSensitive
         ))
     }
 

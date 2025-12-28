@@ -5,5 +5,6 @@
 Mute := 1	; mistaken for Mute: after conv to Mute := 1 myGui := Gui()
 ogcCheckboxMute := myGui.Add("Checkbox", "0x8000 vMute checked" . mute . " xp+140 yp w50", "&Mute")
 ogcCheckboxMute.OnEvent("Click", Mute.Bind("Normal")) If (Mute = 0)	; no confusion here SoundPlay("c:\WINDOWS\Media\chimes.wav") Mute()
-Mute(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { oSaved := myGui.Submit(0) Mute := oSaved.Mute ControlFocus("Edit1", AppWindow)
+    Mute(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    oSaved := myGui.Submit(0) Mute := oSaved.Mute ControlFocus("Edit1", AppWindow)
 }

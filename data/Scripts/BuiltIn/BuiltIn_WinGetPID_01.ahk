@@ -1,28 +1,28 @@
 /**
-* @file BuiltIn_WinGetPID_01.ahk
-* @description Comprehensive examples demonstrating WinGetPID function for retrieving process IDs from windows in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Basic PID retrieval
-* Example 2: Process information gatherer
-* Example 3: Window-to-process mapper
-* Example 4: Process resource monitor
-* Example 5: Multi-window process detector
-* Example 6: Process hierarchy explorer
-* Example 7: PID-based window management
-*
-* @section FEATURES
-* - Get process IDs from windows
-* - Link windows to processes
-* - Monitor process resources
-* - Detect multi-window processes
-* - Explore process hierarchies
-* - PID-based management
-* - Process analysis
-*/
+ * @file BuiltIn_WinGetPID_01.ahk
+ * @description Comprehensive examples demonstrating WinGetPID function for retrieving process IDs from windows in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Basic PID retrieval
+ * Example 2: Process information gatherer
+ * Example 3: Window-to-process mapper
+ * Example 4: Process resource monitor
+ * Example 5: Multi-window process detector
+ * Example 6: Process hierarchy explorer
+ * Example 7: PID-based window management
+ * 
+ * @section FEATURES
+ * - Get process IDs from windows
+ * - Link windows to processes
+ * - Monitor process resources
+ * - Detect multi-window processes
+ * - Explore process hierarchies
+ * - PID-based management
+ * - Process analysis
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -31,11 +31,11 @@
 ; ========================================
 
 /**
-* @function GetWindowPID
-* @description Get the process ID of a window
-* @param WinTitle Window identifier
-* @returns {Integer} Process ID
-*/
+ * @function GetWindowPID
+ * @description Get the process ID of a window
+ * @param WinTitle Window identifier
+ * @returns {Integer} Process ID
+ */
 GetWindowPID(WinTitle := "A") {
     try {
         return WinGetPID(WinTitle)
@@ -45,10 +45,10 @@ GetWindowPID(WinTitle := "A") {
 }
 
 /**
-* @function ShowWindowPIDInfo
-* @description Display comprehensive PID information for a window
-* @param WinTitle Window identifier
-*/
+ * @function ShowWindowPIDInfo
+ * @description Display comprehensive PID information for a window
+ * @param WinTitle Window identifier
+ */
 ShowWindowPIDInfo(WinTitle := "A") {
     try {
         pid := WinGetPID(WinTitle)
@@ -79,23 +79,23 @@ ShowWindowPIDInfo(WinTitle := "A") {
 ; ========================================
 
 /**
-* @class ProcessInfo
-* @description Gather detailed information about processes
-*/
+ * @class ProcessInfo
+ * @description Gather detailed information about processes
+ */
 class ProcessInfo {
     /**
-    * @method GetDetailedInfo
-    * @description Get detailed process information
-    * @param pid Process ID
-    * @returns {Object} Process information
-    */
+     * @method GetDetailedInfo
+     * @description Get detailed process information
+     * @param pid Process ID
+     * @returns {Object} Process information
+     */
     static GetDetailedInfo(pid) {
         try {
             ; Open process for query
             hProcess := DllCall("OpenProcess", "UInt", 0x1000, "Int", false, "UInt", pid, "Ptr")
 
             if !hProcess {
-                return {Error: "Cannot open process"}
+                return { Error: "Cannot open process" }
             }
 
             info := {
@@ -113,16 +113,16 @@ class ProcessInfo {
             return info
 
         } catch as err {
-            return {Error: err.Message}
+            return { Error: err.Message }
         }
     }
 
     /**
-    * @method GetProcessName
-    * @description Get process name from PID
-    * @param pid Process ID
-    * @returns {String} Process name
-    */
+     * @method GetProcessName
+     * @description Get process name from PID
+     * @param pid Process ID
+     * @returns {String} Process name
+     */
     static GetProcessName(pid) {
         try {
             ; Find window with this PID
@@ -152,11 +152,11 @@ class ProcessInfo {
     }
 
     /**
-    * @method GetParentPID
-    * @description Get parent process ID
-    * @param pid Child process ID
-    * @returns {Integer} Parent PID
-    */
+     * @method GetParentPID
+     * @description Get parent process ID
+     * @param pid Child process ID
+     * @returns {Integer} Parent PID
+     */
     static GetParentPID(pid) {
         try {
             query := ComObject("WbemScripting.SWbemLocator")
@@ -174,11 +174,11 @@ class ProcessInfo {
     }
 
     /**
-    * @method GetThreadCount
-    * @description Get number of threads
-    * @param pid Process ID
-    * @returns {Integer} Thread count
-    */
+     * @method GetThreadCount
+     * @description Get number of threads
+     * @param pid Process ID
+     * @returns {Integer} Thread count
+     */
     static GetThreadCount(pid) {
         try {
             query := ComObject("WbemScripting.SWbemLocator")
@@ -196,11 +196,11 @@ class ProcessInfo {
     }
 
     /**
-    * @method GetHandleCount
-    * @description Get number of handles
-    * @param hProcess Process handle
-    * @returns {Integer} Handle count
-    */
+     * @method GetHandleCount
+     * @description Get number of handles
+     * @param hProcess Process handle
+     * @returns {Integer} Handle count
+     */
     static GetHandleCount(hProcess) {
         handleCount := 0
         DllCall("GetProcessHandleCount", "Ptr", hProcess, "UInt*", &handleCount)
@@ -208,11 +208,11 @@ class ProcessInfo {
     }
 
     /**
-    * @method GetWorkingSetSize
-    * @description Get process memory working set size
-    * @param hProcess Process handle
-    * @returns {Integer} Working set size in bytes
-    */
+     * @method GetWorkingSetSize
+     * @description Get process memory working set size
+     * @param hProcess Process handle
+     * @returns {Integer} Working set size in bytes
+     */
     static GetWorkingSetSize(hProcess) {
         memCounters := Buffer(72, 0)  ; PROCESS_MEMORY_COUNTERS_EX
         NumPut("UInt", 72, memCounters, 0)
@@ -225,11 +225,11 @@ class ProcessInfo {
     }
 
     /**
-    * @method GetProcessStartTime
-    * @description Get process start time
-    * @param pid Process ID
-    * @returns {String} Start time
-    */
+     * @method GetProcessStartTime
+     * @description Get process start time
+     * @param pid Process ID
+     * @returns {String} Start time
+     */
     static GetProcessStartTime(pid) {
         try {
             query := ComObject("WbemScripting.SWbemLocator")
@@ -256,11 +256,11 @@ class ProcessInfo {
     }
 
     /**
-    * @method GetCommandLine
-    * @description Get process command line
-    * @param pid Process ID
-    * @returns {String} Command line
-    */
+     * @method GetCommandLine
+     * @description Get process command line
+     * @param pid Process ID
+     * @returns {String} Command line
+     */
     static GetCommandLine(pid) {
         try {
             query := ComObject("WbemScripting.SWbemLocator")
@@ -278,18 +278,18 @@ class ProcessInfo {
     }
 
     /**
-    * @method FormatSize
-    * @description Format byte size to human readable
-    * @param bytes Size in bytes
-    * @returns {String} Formatted size
-    */
+     * @method FormatSize
+     * @description Format byte size to human readable
+     * @param bytes Size in bytes
+     * @returns {String} Formatted size
+     */
     static FormatSize(bytes) {
         if bytes >= 1073741824
-        return Round(bytes / 1073741824, 2) " GB"
+            return Round(bytes / 1073741824, 2) " GB"
         if bytes >= 1048576
-        return Round(bytes / 1048576, 2) " MB"
+            return Round(bytes / 1048576, 2) " MB"
         if bytes >= 1024
-        return Round(bytes / 1024, 2) " KB"
+            return Round(bytes / 1024, 2) " KB"
         return bytes " bytes"
     }
 }
@@ -314,7 +314,7 @@ class ProcessInfo {
     output .= "Start Time: " info.StartTime "`n`n"
 
     if info.CommandLine != ""
-    output .= "Command Line:`n" info.CommandLine
+        output .= "Command Line:`n" info.CommandLine
 
     MsgBox(output, "Process Info", "Icon!")
 }
@@ -324,16 +324,16 @@ class ProcessInfo {
 ; ========================================
 
 /**
-* @class WindowProcessMapper
-* @description Map windows to their parent processes
-*/
+ * @class WindowProcessMapper
+ * @description Map windows to their parent processes
+ */
 class WindowProcessMapper {
     /**
-    * @method GetProcessWindows
-    * @description Get all windows for a specific process ID
-    * @param pid Process ID
-    * @returns {Array} Array of window information
-    */
+     * @method GetProcessWindows
+     * @description Get all windows for a specific process ID
+     * @param pid Process ID
+     * @returns {Array} Array of window information
+     */
     static GetProcessWindows(pid) {
         windows := []
         allWindows := WinGetList()
@@ -355,10 +355,10 @@ class WindowProcessMapper {
     }
 
     /**
-    * @method GetProcessMap
-    * @description Get complete map of processes and their windows
-    * @returns {Map} Process map
-    */
+     * @method GetProcessMap
+     * @description Get complete map of processes and their windows
+     * @returns {Map} Process map
+     */
     static GetProcessMap() {
         processMap := Map()
         allWindows := WinGetList()
@@ -387,10 +387,10 @@ class WindowProcessMapper {
     }
 
     /**
-    * @method GetMultiWindowProcesses
-    * @description Get processes that have multiple windows
-    * @returns {Array} Processes with multiple windows
-    */
+     * @method GetMultiWindowProcesses
+     * @description Get processes that have multiple windows
+     * @returns {Array} Processes with multiple windows
+     */
     static GetMultiWindowProcesses() {
         processMap := this.GetProcessMap()
         multiWindow := []
@@ -405,11 +405,11 @@ class WindowProcessMapper {
     }
 
     /**
-    * @method CountWindowsForProcess
-    * @description Count windows for a process
-    * @param pid Process ID
-    * @returns {Integer} Window count
-    */
+     * @method CountWindowsForProcess
+     * @description Count windows for a process
+     * @param pid Process ID
+     * @returns {Integer} Window count
+     */
     static CountWindowsForProcess(pid) {
         count := 0
         allWindows := WinGetList()
@@ -440,11 +440,11 @@ class WindowProcessMapper {
 
     for i, win in windows {
         if i > 15
-        break
+            break
 
         output .= win.Class
         if win.Title != ""
-        output .= " - " SubStr(win.Title, 1, 40)
+            output .= " - " SubStr(win.Title, 1, 40)
         output .= "`n"
     }
 
@@ -456,19 +456,19 @@ class WindowProcessMapper {
 ; ========================================
 
 /**
-* @class ProcessMonitor
-* @description Monitor process resource usage
-*/
+ * @class ProcessMonitor
+ * @description Monitor process resource usage
+ */
 class ProcessMonitor {
     static monitoredPID := 0
     static monitorGui := ""
     static updateTimer := 0
 
     /**
-    * @method StartMonitoring
-    * @description Begin monitoring a process
-    * @param pid Process ID
-    */
+     * @method StartMonitoring
+     * @description Begin monitoring a process
+     * @param pid Process ID
+     */
     static StartMonitoring(pid) {
         this.monitoredPID := pid
 
@@ -492,9 +492,9 @@ class ProcessMonitor {
     }
 
     /**
-    * @method StopMonitoring
-    * @description Stop monitoring
-    */
+     * @method StopMonitoring
+     * @description Stop monitoring
+     */
     static StopMonitoring() {
         if this.updateTimer {
             SetTimer(this.updateTimer, 0)
@@ -510,12 +510,12 @@ class ProcessMonitor {
     }
 
     /**
-    * @method UpdateMonitor
-    * @description Update monitor display
-    */
+     * @method UpdateMonitor
+     * @description Update monitor display
+     */
     static UpdateMonitor() {
         if !this.monitorGui || !this.monitoredPID
-        return
+            return
 
         try {
             info := ProcessInfo.GetDetailedInfo(this.monitoredPID)
@@ -551,9 +551,9 @@ class ProcessMonitor {
 ; ========================================
 
 /**
-* @function DetectMultiWindowProcesses
-* @description Detect and report processes with multiple windows
-*/
+ * @function DetectMultiWindowProcesses
+ * @description Detect and report processes with multiple windows
+ */
 DetectMultiWindowProcesses() {
     multiProc := WindowProcessMapper.GetMultiWindowProcesses()
 
@@ -569,7 +569,7 @@ DetectMultiWindowProcesses() {
         output .= "  Windows: " data.Windows.Length "`n`n"
 
         if A_Index > 10
-        break
+            break
     }
 
     MsgBox(output, "Multi-Window Processes", "Icon!")
@@ -583,16 +583,16 @@ DetectMultiWindowProcesses() {
 ; ========================================
 
 /**
-* @class ProcessHierarchy
-* @description Explore process parent-child relationships
-*/
+ * @class ProcessHierarchy
+ * @description Explore process parent-child relationships
+ */
 class ProcessHierarchy {
     /**
-    * @method GetProcessTree
-    * @description Get process tree starting from a PID
-    * @param pid Root process ID
-    * @returns {Object} Process tree
-    */
+     * @method GetProcessTree
+     * @description Get process tree starting from a PID
+     * @param pid Root process ID
+     * @returns {Object} Process tree
+     */
     static GetProcessTree(pid) {
         tree := {
             PID: pid,
@@ -623,11 +623,11 @@ class ProcessHierarchy {
     }
 
     /**
-    * @method GetChildProcesses
-    * @description Get child processes of a PID
-    * @param parentPID Parent process ID
-    * @returns {Array} Child PIDs
-    */
+     * @method GetChildProcesses
+     * @description Get child processes of a PID
+     * @param parentPID Parent process ID
+     * @returns {Array} Child PIDs
+     */
     static GetChildProcesses(parentPID) {
         children := []
 
@@ -677,21 +677,21 @@ class ProcessHierarchy {
 ; ========================================
 
 /**
-* @class PIDWindowManager
-* @description Manage windows based on their process ID
-*/
+ * @class PIDWindowManager
+ * @description Manage windows based on their process ID
+ */
 class PIDWindowManager {
     /**
-    * @method CloseProcessWindows
-    * @description Close all windows for a process
-    * @param pid Process ID
-    */
+     * @method CloseProcessWindows
+     * @description Close all windows for a process
+     * @param pid Process ID
+     */
     static CloseProcessWindows(pid) {
         windows := WindowProcessMapper.GetProcessWindows(pid)
 
         result := MsgBox("Close " windows.Length " window(s)?", "Confirm", "YesNo Icon?")
         if result = "No"
-        return
+            return
 
         for win in windows {
             try {
@@ -701,10 +701,10 @@ class PIDWindowManager {
     }
 
     /**
-    * @method MinimizeProcessWindows
-    * @description Minimize all windows for a process
-    * @param pid Process ID
-    */
+     * @method MinimizeProcessWindows
+     * @description Minimize all windows for a process
+     * @param pid Process ID
+     */
     static MinimizeProcessWindows(pid) {
         windows := WindowProcessMapper.GetProcessWindows(pid)
 
@@ -718,14 +718,14 @@ class PIDWindowManager {
     }
 
     /**
-    * @method TerminateProcess
-    * @description Terminate a process by PID
-    * @param pid Process ID
-    */
+     * @method TerminateProcess
+     * @description Terminate a process by PID
+     * @param pid Process ID
+     */
     static TerminateProcess(pid) {
         result := MsgBox("Terminate process " pid "?", "Confirm", "YesNo Icon!")
         if result = "No"
-        return
+            return
 
         try {
             Run("taskkill /F /PID " pid, , "Hide")

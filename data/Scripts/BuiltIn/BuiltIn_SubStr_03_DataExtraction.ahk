@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_SubStr_03_DataExtraction.ahk
-*
-* DESCRIPTION:
-* Extract structured data from strings using SubStr()
-*
-* FEATURES:
-* - Log file parsing
-* - Data record extraction
-* - Timestamp parsing
-* - Column-based data reading
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - SubStr()
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - SubStr() for structured data
-* - Combined with RegExMatch for validation
-* - Array and Map for storing extracted data
-* - Class-based extractors
-*
-* LEARNING POINTS:
-* 1. SubStr() excels at fixed-position extraction
-* 2. Useful for parsing logs and reports
-* 3. Combine with string search for flexible parsing
-* 4. Handle different data formats systematically
-*/
+ * BuiltIn_SubStr_03_DataExtraction.ahk
+ * 
+ * DESCRIPTION:
+ * Extract structured data from strings using SubStr()
+ * 
+ * FEATURES:
+ * - Log file parsing
+ * - Data record extraction
+ * - Timestamp parsing
+ * - Column-based data reading
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - SubStr()
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - SubStr() for structured data
+ * - Combined with RegExMatch for validation
+ * - Array and Map for storing extracted data
+ * - Class-based extractors
+ * 
+ * LEARNING POINTS:
+ * 1. SubStr() excels at fixed-position extraction
+ * 2. Useful for parsing logs and reports
+ * 3. Combine with string search for flexible parsing
+ * 4. Handle different data formats systematically
+ */
 
 ; ============================================================
 ; Example 1: Log Entry Parser
 ; ============================================================
 
 /**
-* Parse standard log entry format
-* Format: [TIMESTAMP] [LEVEL] Message
-*/
+ * Parse standard log entry format
+ * Format: [TIMESTAMP] [LEVEL] Message
+ */
 class LogParser {
     static Parse(logLine) {
         entry := Map()
@@ -65,9 +65,9 @@ class LogParser {
 
 ; Sample log entries
 logLines := [
-"[2024-11-16 10:30:45] [INFO] Application started successfully",
-"[2024-11-16 10:31:12] [ERROR] Failed to connect to database",
-"[2024-11-16 10:31:15] [WARNING] Retrying connection..."
+    "[2024-11-16 10:30:45] [INFO] Application started successfully",
+    "[2024-11-16 10:31:12] [ERROR] Failed to connect to database",
+    "[2024-11-16 10:31:15] [WARNING] Retrying connection..."
 ]
 
 output := "LOG PARSING:`n`n"
@@ -85,11 +85,11 @@ MsgBox(output, "Log Parser", "Icon!")
 ; ============================================================
 
 /**
-* Format credit card number with spaces
-*
-* @param {String} cardNumber - Raw card number
-* @returns {String} - Formatted card number
-*/
+ * Format credit card number with spaces
+ * 
+ * @param {String} cardNumber - Raw card number
+ * @returns {String} - Formatted card number
+ */
 FormatCardNumber(cardNumber) {
     ; Remove existing spaces
     clean := StrReplace(cardNumber, " ", "")
@@ -98,7 +98,7 @@ FormatCardNumber(cardNumber) {
     formatted := ""
     Loop (StrLen(clean)) {
         if (A_Index > 1 && Mod(A_Index - 1, 4) = 0)
-        formatted .= " "
+            formatted .= " "
         formatted .= SubStr(clean, A_Index, 1)
     }
 
@@ -109,40 +109,40 @@ rawCard := "4532123456789012"
 formatted := FormatCardNumber(rawCard)
 
 MsgBox("Raw: " rawCard "`n"
-. "Formatted: " formatted,
-"Card Formatting", "Icon!")
+    . "Formatted: " formatted,
+    "Card Formatting", "Icon!")
 
 ; ============================================================
 ; Example 3: Extract Initials from Name
 ; ============================================================
 
 /**
-* Get initials from full name
-*
-* @param {String} fullName - Full name
-* @returns {String} - Initials
-*/
+ * Get initials from full name
+ * 
+ * @param {String} fullName - Full name
+ * @returns {String} - Initials
+ */
 GetInitials(fullName) {
     initials := ""
     words := StrSplit(fullName, " ")
 
     for word in words {
         if (StrLen(word) > 0)
-        initials .= SubStr(word, 1, 1) . "."
+            initials .= SubStr(word, 1, 1) . "."
     }
 
     return initials
 }
 
 names := [
-"John Doe",
-"Mary Jane Watson",
-"Dr. Robert Smith Jr."
+    "John Doe",
+    "Mary Jane Watson",
+    "Dr. Robert Smith Jr."
 ]
 
 output := "NAME INITIALS:`n`n"
 for name in names
-output .= name " → " GetInitials(name) "`n"
+    output .= name " → " GetInitials(name) "`n"
 
 MsgBox(output, "Initials Extractor", "Icon!")
 
@@ -151,12 +151,12 @@ MsgBox(output, "Initials Extractor", "Icon!")
 ; ============================================================
 
 /**
-* Parse ISBN-13 number
-* Format: 978-3-16-148410-0
-*
-* @param {String} isbn - ISBN string
-* @returns {Map} - ISBN components
-*/
+ * Parse ISBN-13 number
+ * Format: 978-3-16-148410-0
+ * 
+ * @param {String} isbn - ISBN string
+ * @returns {Map} - ISBN components
+ */
 ParseISBN(isbn) {
     ; Remove hyphens
     clean := StrReplace(isbn, "-", "")
@@ -178,57 +178,57 @@ isbn := "978-3-16-148410-0"
 parts := ParseISBN(isbn)
 
 MsgBox("ISBN: " isbn "`n`n"
-. "Prefix: " parts["prefix"] "`n"
-. "Group: " parts["group"] "`n"
-. "Publisher: " parts["publisher"] "`n"
-. "Title: " parts["title"] "`n"
-. "Check Digit: " parts["check"],
-"ISBN Parser", "Icon!")
+    . "Prefix: " parts["prefix"] "`n"
+    . "Group: " parts["group"] "`n"
+    . "Publisher: " parts["publisher"] "`n"
+    . "Title: " parts["title"] "`n"
+    . "Check Digit: " parts["check"],
+    "ISBN Parser", "Icon!")
 
 ; ============================================================
 ; Example 5: Phone Number Formatter
 ; ============================================================
 
 /**
-* Format phone number
-*
-* @param {String} phone - Raw phone number
-* @returns {String} - Formatted phone
-*/
+ * Format phone number
+ * 
+ * @param {String} phone - Raw phone number
+ * @returns {String} - Formatted phone
+ */
 FormatPhoneNumber(phone) {
     ; Remove non-digits
     digits := ""
     Loop Parse, phone {
         if (RegExMatch(A_LoopField, "\d"))
-        digits .= A_LoopField
+            digits .= A_LoopField
     }
 
     ; Format based on length
     if (StrLen(digits) = 10) {
         ; (XXX) XXX-XXXX
         return "(" SubStr(digits, 1, 3) ") "
-        . SubStr(digits, 4, 3) "-"
-        . SubStr(digits, 7, 4)
+            . SubStr(digits, 4, 3) "-"
+            . SubStr(digits, 7, 4)
     } else if (StrLen(digits) = 11) {
         ; +X (XXX) XXX-XXXX
         return "+" SubStr(digits, 1, 1) " ("
-        . SubStr(digits, 2, 3) ") "
-        . SubStr(digits, 5, 3) "-"
-        . SubStr(digits, 8, 4)
+            . SubStr(digits, 2, 3) ") "
+            . SubStr(digits, 5, 3) "-"
+            . SubStr(digits, 8, 4)
     }
 
     return phone
 }
 
 phones := [
-"5551234567",
-"15551234567",
-"555-123-4567"
+    "5551234567",
+    "15551234567",
+    "555-123-4567"
 ]
 
 output := "PHONE FORMATTING:`n`n"
 for phone in phones
-output .= phone " → " FormatPhoneNumber(phone) "`n"
+    output .= phone " → " FormatPhoneNumber(phone) "`n"
 
 MsgBox(output, "Phone Formatter", "Icon!")
 
@@ -237,11 +237,11 @@ MsgBox(output, "Phone Formatter", "Icon!")
 ; ============================================================
 
 /**
-* Parse time string (HH:MM:SS)
-*
-* @param {String} timeStr - Time string
-* @returns {Map} - Time components
-*/
+ * Parse time string (HH:MM:SS)
+ * 
+ * @param {String} timeStr - Time string
+ * @returns {Map} - Time components
+ */
 ParseTime(timeStr) {
     parts := Map()
 
@@ -288,12 +288,12 @@ MsgBox(output, "Time Parser", "Icon!")
 ; ============================================================
 
 /**
-* Format MAC address
-*
-* @param {String} mac - MAC address
-* @param {String} separator - Separator character
-* @returns {String} - Formatted MAC
-*/
+ * Format MAC address
+ * 
+ * @param {String} mac - MAC address
+ * @param {String} separator - Separator character
+ * @returns {String} - Formatted MAC
+ */
 FormatMAC(mac, separator := ":") {
     ; Remove existing separators
     clean := StrReplace(mac, ":", "")
@@ -304,7 +304,7 @@ FormatMAC(mac, separator := ":") {
     formatted := ""
     Loop (StrLen(clean) // 2) {
         if (A_Index > 1)
-        formatted .= separator
+            formatted .= separator
         formatted .= SubStr(clean, (A_Index - 1) * 2 + 1, 2)
     }
 
@@ -312,9 +312,9 @@ FormatMAC(mac, separator := ":") {
 }
 
 macAddresses := [
-"001122334455",
-"00-11-22-33-44-55",
-"0011.2233.4455"
+    "001122334455",
+    "00-11-22-33-44-55",
+    "0011.2233.4455"
 ]
 
 output := "MAC ADDRESS FORMATTING:`n`n"

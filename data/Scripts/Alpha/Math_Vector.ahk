@@ -144,6 +144,6 @@ normal := Vector(0, 1).Normalize()
 reflected := incident.Reflect(normal)
 
 MsgBox("Reflection:`n"
-     . "Incident: " incident.ToString() "`n"
-     . "Normal: " normal.ToString() "`n"
-     . "Reflected: " reflected.ToString())
+    . "Incident: " incident.ToString() "`n"
+    . "Normal: " normal.ToString() "`n"
+    . "Reflected: " reflected.ToString())

@@ -1,20 +1,20 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.RemoveAt() - Basic Usage Examples
-* ============================================================================
-*
-* The RemoveAt() method removes element(s) at the specified index and returns
-* the removed value(s). Elements after the removed position shift down.
-*
-* Syntax: value := array.RemoveAt(index [, length])
-*
-* @description Comprehensive examples demonstrating basic RemoveAt() operations
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.RemoveAt() - Basic Usage Examples
+ * ============================================================================
+ * 
+ * The RemoveAt() method removes element(s) at the specified index and returns
+ * the removed value(s). Elements after the removed position shift down.
+ * 
+ * Syntax: value := array.RemoveAt(index [, length])
+ * 
+ * @description Comprehensive examples demonstrating basic RemoveAt() operations
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; Example 1: Single Element Removal
 Example1_SingleRemoval() {
@@ -138,112 +138,108 @@ Example7_PracticalUseCases() {
     OutputDebug("=== Example 7: Practical Use Cases ===`n")
 
     ; Use Case 1: Remove completed tasks
-    tasks := [
-    {
-        name: "Task 1", done: true},
-        {
-            name: "Task 2", done: false},
-            {
-                name: "Task 3", done: true},
-                {
+    tasks := [{
+        name: "Task 1", done: true }, {
+            name: "Task 2", done: false }, {
+                name: "Task 3", done: true }, {
                     name: "Task 4", done: false
                 }
-                ]
+    ]
 
-                OutputDebug("Removing completed tasks:`n")
-                index := tasks.Length
-                while (index >= 1) {
-                    if (tasks[index].done) {
-                        removed := tasks.RemoveAt(index)
-                        OutputDebug("  Removed: " removed.name "`n")
-                    }
-                    index--
-                }
+    OutputDebug("Removing completed tasks:`n")
+    index := tasks.Length
+    while (index >= 1) {
+        if (tasks[index].done) {
+            removed := tasks.RemoveAt(index)
+            OutputDebug("  Removed: " removed.name "`n")
+        }
+        index--
+    }
 
-                OutputDebug("Remaining tasks: " tasks.Length "`n")
+    OutputDebug("Remaining tasks: " tasks.Length "`n")
 
-                ; Use Case 2: Remove duplicates
-                values := [1, 2, 3, 2, 4, 3, 5, 1]
-                OutputDebug("`nOriginal with duplicates: " FormatArray(values) "`n")
+    ; Use Case 2: Remove duplicates
+    values := [1, 2, 3, 2, 4, 3, 5, 1]
+    OutputDebug("`nOriginal with duplicates: " FormatArray(values) "`n")
 
-                seen := Map()
-                index := values.Length
-                while (index >= 1) {
-                    if (seen.Has(values[index])) {
-                        values.RemoveAt(index)
-                    } else {
-                        seen[values[index]] := true
-                    }
-                    index--
-                }
+    seen := Map()
+    index := values.Length
+    while (index >= 1) {
+        if (seen.Has(values[index])) {
+            values.RemoveAt(index)
+        } else {
+            seen[values[index]] := true
+        }
+        index--
+    }
 
-                OutputDebug("After removing duplicates: " FormatArray(values) "`n")
+    OutputDebug("After removing duplicates: " FormatArray(values) "`n")
 
-                ; Use Case 3: Remove items by value
-                inventory := ["Sword", "Shield", "Potion", "Bow", "Potion"]
-                itemToRemove := "Potion"
+    ; Use Case 3: Remove items by value
+    inventory := ["Sword", "Shield", "Potion", "Bow", "Potion"]
+    itemToRemove := "Potion"
 
-                OutputDebug("`nInventory: " FormatArray(inventory) "`n")
-                OutputDebug("Removing all '" itemToRemove "' items:`n")
+    OutputDebug("`nInventory: " FormatArray(inventory) "`n")
+    OutputDebug("Removing all '" itemToRemove "' items:`n")
 
-                index := inventory.Length
-                removed Count := 0
-                while (index >= 1) {
-                    if (inventory[index] = itemToRemove) {
-                        inventory.RemoveAt(index)
-                        removedCount++
-                    }
-                    index--
-                }
+    index := inventory.Length
+    removed Count := 0
+    while (index >= 1) {
+        if (inventory[index] = itemToRemove) {
+            inventory.RemoveAt(index)
+            removedCount++
+        }
+        index--
+    }
 
-                OutputDebug("Removed " removedCount " items`n")
-                OutputDebug("Final inventory: " FormatArray(inventory) "`n`n")
-            }
+    OutputDebug("Removed " removedCount " items`n")
+    OutputDebug("Final inventory: " FormatArray(inventory) "`n`n")
+}
 
-            ; Helper Functions
-            FormatArray(arr) {
-                if (arr.Length = 0)
-                return "[]"
+; Helper Functions
+FormatArray(arr) {
+    if (arr.Length = 0)
+        return "[]"
 
-                result := "["
-                for index, value in arr {
-                    if (index > 1)
-                    result .= ", "
+    result := "["
+    for index, value in arr {
+        if (index > 1)
+            result .= ", "
 
-                    valueType := Type(value)
-                    if (valueType = "String")
-                    result .= '"' value '"'
-                    else if (valueType = "Integer" || valueType = "Float")
-                    result .= value
-                    else if (valueType = "Object")
-                    result .= "{Object}"
-                    else
-                    result .= valueType
-                }
-                result .= "]"
+        valueType := Type(value)
+        if (valueType = "String")
+            result .= '"' value '"'
+        else if (valueType = "Integer" || valueType = "Float")
+            result .= value
+        else if (valueType = "Object")
+            result .= "{Object}"
+        else
+            result .= valueType
+    }
+    result .= "]"
 
-                return result
-            }
+    return result
+}
 
-            Main() {
-                OutputDebug("`n" String.Repeat("=", 80) "`n")
-                OutputDebug("Array.RemoveAt() - Basic Usage Examples`n")
-                OutputDebug(String.Repeat("=", 80) "`n`n")
+Main() {
+    OutputDebug("`n" String.Repeat("=", 80) "`n")
+    OutputDebug("Array.RemoveAt() - Basic Usage Examples`n")
+    OutputDebug(String.Repeat("=", 80) "`n`n")
 
-                Example1_SingleRemoval()
-                Example2_MultipleRemoval()
-                Example3_PositionRemoval()
-                Example4_ReturnValue()
-                Example5_ConditionalRemoval()
-                Example6_SafeRemoval()
-                Example7_PracticalUseCases()
+    Example1_SingleRemoval()
+    Example2_MultipleRemoval()
+    Example3_PositionRemoval()
+    Example4_ReturnValue()
+    Example5_ConditionalRemoval()
+    Example6_SafeRemoval()
+    Example7_PracticalUseCases()
 
-                OutputDebug(String.Repeat("=", 80) "`n")
-                OutputDebug("All examples completed!`n")
-                OutputDebug(String.Repeat("=", 80) "`n")
+    OutputDebug(String.Repeat("=", 80) "`n")
+    OutputDebug("All examples completed!`n")
+    OutputDebug(String.Repeat("=", 80) "`n")
 
-                MsgBox("Array.RemoveAt() examples completed!`nCheck DebugView for output.",
-                "Examples Complete", "Icon!")
-            }
+    MsgBox("Array.RemoveAt() examples completed!`nCheck DebugView for output.",
+        "Examples Complete", "Icon!")
+}
 
-            Main()
+Main()

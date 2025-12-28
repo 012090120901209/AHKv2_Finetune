@@ -3,17 +3,17 @@
 #Include JSON.ahk
 
 /**
-* CLR - HTTP Web Requests
-*
-* Demonstrates making HTTP requests using .NET WebClient and HttpClient
-* for downloading data, calling APIs, and handling responses.
-*
-* Library: https://github.com/Lexikos/CLR.ahk
-*/
+ * CLR - HTTP Web Requests
+ * 
+ * Demonstrates making HTTP requests using .NET WebClient and HttpClient
+ * for downloading data, calling APIs, and handling responses.
+ * 
+ * Library: https://github.com/Lexikos/CLR.ahk
+ */
 
 MsgBox("CLR - HTTP Requests Example`n`n"
-. "Demonstrates web requests with .NET`n"
-. "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
+    . "Demonstrates web requests with .NET`n"
+    . "Requires: CLR.ahk and .NET Framework 4.0+", , "T3")
 
 /*
 ; Uncomment to run (requires CLR.ahk):
@@ -216,3 +216,4 @@ try {
 *     Custom certificates
 *     Compression (gzip)
 */
+

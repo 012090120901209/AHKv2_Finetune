@@ -1,49 +1,49 @@
 /**
-* ============================================================================
-* AutoHotkey v2 #SingleInstance Directive - Multi-Instance Management
-* ============================================================================
-*
-* @description Comprehensive examples for managing multiple script instances
-*              with different #SingleInstance modes
-*
-* @author AHK v2 Documentation Team
-* @version 2.0.0
-* @date 2025-01-15
-*
-* DIRECTIVE: #SingleInstance
-* FOCUS: Ignore, Prompt, and Off modes; Multi-instance scenarios
-*
-* MODES DEMONSTRATED:
-*   - Ignore: Skip new instance, keep old
-*   - Prompt: Ask user what to do
-*   - Off: Allow multiple instances
-*
-* @reference https://www.autohotkey.com/docs/v2/lib/_SingleInstance.htm
-*/
+ * ============================================================================
+ * AutoHotkey v2 #SingleInstance Directive - Multi-Instance Management
+ * ============================================================================
+ * 
+ * @description Comprehensive examples for managing multiple script instances
+ *              with different #SingleInstance modes
+ * 
+ * @author AHK v2 Documentation Team
+ * @version 2.0.0
+ * @date 2025-01-15
+ * 
+ * DIRECTIVE: #SingleInstance
+ * FOCUS: Ignore, Prompt, and Off modes; Multi-instance scenarios
+ * 
+ * MODES DEMONSTRATED:
+ *   - Ignore: Skip new instance, keep old
+ *   - Prompt: Ask user what to do
+ *   - Off: Allow multiple instances
+ * 
+ * @reference https://www.autohotkey.com/docs/v2/lib/_SingleInstance.htm
+ */
 
 #Requires AutoHotkey v2.0
+#SingleInstance Prompt
 ; Note: Using Force mode for this demonstration script
 ; Change to Ignore/Prompt/Off to test different behaviors
-#SingleInstance Prompt
 
 /**
-* ============================================================================
-* Example 1: Ignore Mode Demonstration
-* ============================================================================
-*
-* @description Keep existing instance, prevent new ones
-* @concept Instance protection, prevent duplicates
-*/
+ * ============================================================================
+ * Example 1: Ignore Mode Demonstration
+ * ============================================================================
+ * 
+ * @description Keep existing instance, prevent new ones
+ * @concept Instance protection, prevent duplicates
+ */
 
 /**
-* Ignore mode information class
-* @class
-*/
+ * Ignore mode information class
+ * @class
+ */
 class IgnoreModeInfo {
     /**
-    * Explain Ignore mode behavior
-    * @returns {void}
-    */
+     * Explain Ignore mode behavior
+     * @returns {void}
+     */
     static Explain() {
         info := "Ignore Mode (#SingleInstance Ignore)`n"
         info .= "====================================`n`n"
@@ -73,9 +73,9 @@ class IgnoreModeInfo {
     }
 
     /**
-    * Test Ignore mode behavior
-    * @returns {void}
-    */
+     * Test Ignore mode behavior
+     * @returns {void}
+     */
     static TestBehavior() {
         instructions := "Testing Ignore Mode`n"
         instructions .= "===================`n`n"
@@ -102,27 +102,27 @@ class IgnoreModeInfo {
     }
 }
 
-^!1::IgnoreModeInfo.Explain()
-^!+1::IgnoreModeInfo.TestBehavior()
+^!1:: IgnoreModeInfo.Explain()
+^!+1:: IgnoreModeInfo.TestBehavior()
 
 /**
-* ============================================================================
-* Example 2: Prompt Mode Demonstration
-* ============================================================================
-*
-* @description Ask user what to do with multiple instances
-* @concept User control, dialog prompts, choice
-*/
+ * ============================================================================
+ * Example 2: Prompt Mode Demonstration
+ * ============================================================================
+ * 
+ * @description Ask user what to do with multiple instances
+ * @concept User control, dialog prompts, choice
+ */
 
 /**
-* Prompt mode information class
-* @class
-*/
+ * Prompt mode information class
+ * @class
+ */
 class PromptModeInfo {
     /**
-    * Explain Prompt mode behavior
-    * @returns {void}
-    */
+     * Explain Prompt mode behavior
+     * @returns {void}
+     */
     static Explain() {
         info := "Prompt Mode (#SingleInstance Prompt)`n"
         info .= "=====================================`n`n"
@@ -152,18 +152,18 @@ class PromptModeInfo {
     }
 
     /**
-    * Get current single instance mode
-    * @returns {String} Mode name
-    */
+     * Get current single instance mode
+     * @returns {String} Mode name
+     */
     static GetCurrentMode() {
         ; This script is using Prompt mode
         return "Prompt"
     }
 
     /**
-    * Simulate prompt dialog
-    * @returns {void}
-    */
+     * Simulate prompt dialog
+     * @returns {void}
+     */
     static SimulatePrompt() {
         msg := "An older instance of this script is already running.`n`n"
         msg .= "Replace old instance?`n`n"
@@ -173,33 +173,33 @@ class PromptModeInfo {
         result := MsgBox(msg, "Simulated Prompt", "YesNo Icon?")
 
         if (result = "Yes")
-        MsgBox("User chose: Replace old instance", "Result", "Iconi")
+            MsgBox("User chose: Replace old instance", "Result", "Iconi")
         else
-        MsgBox("User chose: Keep old instance", "Result", "Iconi")
+            MsgBox("User chose: Keep old instance", "Result", "Iconi")
     }
 }
 
-^!2::PromptModeInfo.Explain()
-^!+2::PromptModeInfo.SimulatePrompt()
+^!2:: PromptModeInfo.Explain()
+^!+2:: PromptModeInfo.SimulatePrompt()
 
 /**
-* ============================================================================
-* Example 3: Off Mode - Multiple Instances
-* ============================================================================
-*
-* @description Allow multiple simultaneous instances
-* @concept Multiple instances, parallel execution
-*/
+ * ============================================================================
+ * Example 3: Off Mode - Multiple Instances
+ * ============================================================================
+ * 
+ * @description Allow multiple simultaneous instances
+ * @concept Multiple instances, parallel execution
+ */
 
 /**
-* Off mode information and multi-instance management
-* @class
-*/
+ * Off mode information and multi-instance management
+ * @class
+ */
 class OffModeInfo {
     /**
-    * Explain Off mode behavior
-    * @returns {void}
-    */
+     * Explain Off mode behavior
+     * @returns {void}
+     */
     static Explain() {
         info := "Off Mode (#SingleInstance Off)`n"
         info .= "==============================`n`n"
@@ -233,9 +233,9 @@ class OffModeInfo {
     }
 
     /**
-    * Detect multiple instances
-    * @returns {Array} List of script instances
-    */
+     * Detect multiple instances
+     * @returns {Array} List of script instances
+     */
     static DetectInstances() {
         instances := []
         scriptName := A_ScriptName
@@ -252,9 +252,9 @@ class OffModeInfo {
     }
 
     /**
-    * Show instance list
-    * @returns {void}
-    */
+     * Show instance list
+     * @returns {void}
+     */
     static ShowInstances() {
         instances := this.DetectInstances()
 
@@ -279,31 +279,31 @@ class OffModeInfo {
     }
 }
 
-^!3::OffModeInfo.Explain()
-^!+3::OffModeInfo.ShowInstances()
+^!3:: OffModeInfo.Explain()
+^!+3:: OffModeInfo.ShowInstances()
 
 /**
-* ============================================================================
-* Example 4: Instance Communication
-* ============================================================================
-*
-* @description Communicate between multiple instances
-* @concept Inter-process communication, message passing
-*/
+ * ============================================================================
+ * Example 4: Instance Communication
+ * ============================================================================
+ * 
+ * @description Communicate between multiple instances
+ * @concept Inter-process communication, message passing
+ */
 
 /**
-* Instance communication manager
-* @class
-*/
+ * Instance communication manager
+ * @class
+ */
 class InstanceCommunication {
     static MessageFile := A_Temp "\AHK_InstanceMessages.txt"
     static InstanceID := Random(10000, 99999)
 
     /**
-    * Send message to other instances
-    * @param {String} message - Message to send
-    * @returns {void}
-    */
+     * Send message to other instances
+     * @param {String} message - Message to send
+     * @returns {void}
+     */
     static SendMessage(message) {
         timestamp := FormatTime(, "yyyy-MM-dd HH:mm:ss")
         fullMessage := timestamp " [" this.InstanceID "] " message "`n"
@@ -317,13 +317,13 @@ class InstanceCommunication {
     }
 
     /**
-    * Read messages from other instances
-    * @param {Integer} maxLines - Max lines to read
-    * @returns {String} Messages
-    */
+     * Read messages from other instances
+     * @param {Integer} maxLines - Max lines to read
+     * @returns {String} Messages
+     */
     static ReadMessages(maxLines := 10) {
         if (!FileExist(this.MessageFile))
-        return "No messages"
+            return "No messages"
 
         try {
             content := FileRead(this.MessageFile)
@@ -336,7 +336,7 @@ class InstanceCommunication {
             Loop (lines.Length - startLine + 1) {
                 line := lines[startLine + A_Index - 1]
                 if (line != "")
-                messages .= line "`n"
+                    messages .= line "`n"
             }
 
             return messages
@@ -346,9 +346,9 @@ class InstanceCommunication {
     }
 
     /**
-    * Clear message file
-    * @returns {void}
-    */
+     * Clear message file
+     * @returns {void}
+     */
     static ClearMessages() {
         if FileExist(this.MessageFile) {
             try {
@@ -359,9 +359,9 @@ class InstanceCommunication {
     }
 
     /**
-    * Show communication interface
-    * @returns {void}
-    */
+     * Show communication interface
+     * @returns {void}
+     */
     static ShowInterface() {
         output := "Instance Communication`n"
         output .= "======================`n`n"
@@ -381,29 +381,29 @@ class InstanceCommunication {
     }
 }
 
-^!+send::InstanceCommunication.SendMessage("Test message from instance")
-^!+read::MsgBox(InstanceCommunication.ReadMessages(), "Messages", "Iconi")
-^!+clr::InstanceCommunication.ClearMessages()
-^!4::InstanceCommunication.ShowInterface()
+^!+send:: InstanceCommunication.SendMessage("Test message from instance")
+^!+read:: MsgBox(InstanceCommunication.ReadMessages(), "Messages", "Iconi")
+^!+clr:: InstanceCommunication.ClearMessages()
+^!4:: InstanceCommunication.ShowInterface()
 
 /**
-* ============================================================================
-* Example 5: Mode Comparison and Selection
-* ============================================================================
-*
-* @description Compare all modes and choose appropriate one
-* @concept Mode selection, decision matrix
-*/
+ * ============================================================================
+ * Example 5: Mode Comparison and Selection
+ * ============================================================================
+ * 
+ * @description Compare all modes and choose appropriate one
+ * @concept Mode selection, decision matrix
+ */
 
 /**
-* Mode comparison helper
-* @class
-*/
+ * Mode comparison helper
+ * @class
+ */
 class ModeComparison {
     /**
-    * Display comprehensive comparison
-    * @returns {void}
-    */
+     * Display comprehensive comparison
+     * @returns {void}
+     */
     static ShowComparison() {
         comp := "#SingleInstance Mode Comparison`n"
         comp .= "================================`n`n"
@@ -437,9 +437,9 @@ class ModeComparison {
     }
 
     /**
-    * Show decision tree
-    * @returns {void}
-    */
+     * Show decision tree
+     * @returns {void}
+     */
     static ShowDecisionTree() {
         tree := "Mode Selection Decision Tree`n"
         tree .= "============================`n`n"
@@ -466,27 +466,27 @@ class ModeComparison {
     }
 }
 
-^!5::ModeComparison.ShowComparison()
-^!+5::ModeComparison.ShowDecisionTree()
+^!5:: ModeComparison.ShowComparison()
+^!+5:: ModeComparison.ShowDecisionTree()
 
 /**
-* ============================================================================
-* Example 6: Instance Management Utilities
-* ============================================================================
-*
-* @description Utilities for managing script instances
-* @concept Instance control, management tools
-*/
+ * ============================================================================
+ * Example 6: Instance Management Utilities
+ * ============================================================================
+ * 
+ * @description Utilities for managing script instances
+ * @concept Instance control, management tools
+ */
 
 /**
-* Instance management utilities
-* @class
-*/
+ * Instance management utilities
+ * @class
+ */
 class InstanceManager {
     /**
-    * Check if script is already running
-    * @returns {Boolean} True if another instance exists
-    */
+     * Check if script is already running
+     * @returns {Boolean} True if another instance exists
+     */
     static IsAlreadyRunning() {
         ; Simplified check
         ; Real implementation would check for other processes
@@ -494,9 +494,9 @@ class InstanceManager {
     }
 
     /**
-    * Get count of running instances
-    * @returns {Integer} Number of instances
-    */
+     * Get count of running instances
+     * @returns {Integer} Number of instances
+     */
     static GetInstanceCount() {
         ; This would count actual running instances
         ; For demo, return 1
@@ -504,9 +504,9 @@ class InstanceManager {
     }
 
     /**
-    * Kill all other instances
-    * @returns {Integer} Number of instances killed
-    */
+     * Kill all other instances
+     * @returns {Integer} Number of instances killed
+     */
     static KillOtherInstances() {
         msg := "Kill Other Instances`n"
         msg .= "====================`n`n"
@@ -529,9 +529,9 @@ class InstanceManager {
     }
 
     /**
-    * Show instance management options
-    * @returns {void}
-    */
+     * Show instance management options
+     * @returns {void}
+     */
     static ShowOptions() {
         options := "Instance Management Options`n"
         options .= "===========================`n`n"
@@ -557,27 +557,27 @@ class InstanceManager {
     }
 }
 
-^!6::InstanceManager.ShowOptions()
-^!+6::InstanceManager.KillOtherInstances()
+^!6:: InstanceManager.ShowOptions()
+^!+6:: InstanceManager.KillOtherInstances()
 
 /**
-* ============================================================================
-* Example 7: Best Practices for Each Mode
-* ============================================================================
-*
-* @description Mode-specific best practices
-* @concept Guidelines, recommendations, patterns
-*/
+ * ============================================================================
+ * Example 7: Best Practices for Each Mode
+ * ============================================================================
+ * 
+ * @description Mode-specific best practices
+ * @concept Guidelines, recommendations, patterns
+ */
 
 /**
-* Best practices guide
-* @class
-*/
+ * Best practices guide
+ * @class
+ */
 class BestPracticesGuide {
     /**
-    * Show best practices for all modes
-    * @returns {void}
-    */
+     * Show best practices for all modes
+     * @returns {void}
+     */
     static ShowAll() {
         guide := "Multi-Instance Best Practices`n"
         guide .= "=============================`n`n"
@@ -606,9 +606,9 @@ class BestPracticesGuide {
     }
 
     /**
-    * Show common pitfalls
-    * @returns {void}
-    */
+     * Show common pitfalls
+     * @returns {void}
+     */
     static ShowPitfalls() {
         pitfalls := "Common Pitfalls`n"
         pitfalls .= "===============`n`n"
@@ -639,28 +639,28 @@ class BestPracticesGuide {
     }
 }
 
-^!7::BestPracticesGuide.ShowAll()
-^!+7::BestPracticesGuide.ShowPitfalls()
+^!7:: BestPracticesGuide.ShowAll()
+^!+7:: BestPracticesGuide.ShowPitfalls()
 
 /**
-* ============================================================================
-* STARTUP
-* ============================================================================
-*/
+ * ============================================================================
+ * STARTUP
+ * ============================================================================
+ */
 
 global InstanceID := Random(10000, 99999)
 
 TrayTip(
-"Mode: Prompt`n"
-"Instance: " InstanceID,
-"Script Started",
-"Iconi Mute"
+    "Mode: Prompt`n"
+    "Instance: " InstanceID,
+    "Script Started",
+    "Iconi Mute"
 )
 
 /**
-* Help
-*/
-^!h::{
+ * Help
+ */
+^!h:: {
     help := "Multi-Instance Management`n"
     help .= "=========================`n`n"
 

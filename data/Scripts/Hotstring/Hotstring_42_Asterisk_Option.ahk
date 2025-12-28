@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Hotstring Option: * (Asterisk)
-* Triggers immediately without needing an ending character
-*/
+ * Hotstring Option: * (Asterisk)
+ * Triggers immediately without needing an ending character
+ */
 
 ; Without *, you'd need to press space/enter after "teh"
 ; With *, it triggers immediately after typing "h"
@@ -18,9 +18,10 @@
 :*:seperate::separate
 
 ; Emoji shortcuts that trigger immediately
-:*:)smile:😊
-:*:)heart:❤️
-:*:)fire:🔥
-:*:)check:✓
+: * :) smile: 😊
+    : * :) heart: ❤️
+    : * :) fire: 🔥
+    : * :) check: ✓
 
 ; Note: With *, you don't need to press space after typing
+

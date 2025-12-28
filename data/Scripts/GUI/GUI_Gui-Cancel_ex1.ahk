@@ -6,5 +6,6 @@ ogcButtonOK := myGui.Add("Button", , "OK")
 ogcButtonOK.OnEvent("Click", ButtonOK.Bind("Normal"))
 myGui.Show()
 ButtonOK()
-ButtonOK(A_GuiEvent := "", A_GuiControl := "", Info := "", *) { myGui.Hide()
+ButtonOK(A_GuiEvent := "", A_GuiControl := "", Info := "", *) {
+    myGui.Hide()
 }

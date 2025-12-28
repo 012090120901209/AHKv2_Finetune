@@ -1,44 +1,44 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_DllCall_User32_04_Clipboard.ahk
-*
-* DESCRIPTION:
-* Demonstrates clipboard operations using Windows API through DllCall.
-* Shows how to open/close clipboard, get/set various data formats, enumerate
-* formats, and handle complex clipboard data types.
-*
-* FEATURES:
-* - Opening and closing clipboard safely
-* - Setting and getting clipboard text (ANSI and Unicode)
-* - Working with multiple clipboard formats
-* - Custom clipboard formats
-* - Clipboard format enumeration
-* - HTML and RTF clipboard data
-* - Clipboard monitoring and change detection
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - DllCall
-* https://www.autohotkey.com/docs/v2/lib/DllCall.htm
-* Microsoft Clipboard API
-* https://docs.microsoft.com/en-us/windows/win32/dataxchg/clipboard
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - DllCall() with clipboard functions
-* - Global memory allocation (GlobalAlloc, GlobalLock)
-* - Memory manipulation for clipboard data
-* - Custom clipboard format registration
-* - Clipboard sequence number tracking
-*
-* LEARNING POINTS:
-* 1. Proper clipboard opening and closing sequences
-* 2. Working with global memory handles
-* 3. Converting between clipboard formats
-* 4. Registering custom clipboard formats
-* 5. Enumerating available clipboard formats
-* 6. Setting HTML and RTF formatted text
-* 7. Monitoring clipboard changes
-*/
+ * BuiltIn_DllCall_User32_04_Clipboard.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates clipboard operations using Windows API through DllCall.
+ * Shows how to open/close clipboard, get/set various data formats, enumerate
+ * formats, and handle complex clipboard data types.
+ * 
+ * FEATURES:
+ * - Opening and closing clipboard safely
+ * - Setting and getting clipboard text (ANSI and Unicode)
+ * - Working with multiple clipboard formats
+ * - Custom clipboard formats
+ * - Clipboard format enumeration
+ * - HTML and RTF clipboard data
+ * - Clipboard monitoring and change detection
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - DllCall
+ * https://www.autohotkey.com/docs/v2/lib/DllCall.htm
+ * Microsoft Clipboard API
+ * https://docs.microsoft.com/en-us/windows/win32/dataxchg/clipboard
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - DllCall() with clipboard functions
+ * - Global memory allocation (GlobalAlloc, GlobalLock)
+ * - Memory manipulation for clipboard data
+ * - Custom clipboard format registration
+ * - Clipboard sequence number tracking
+ * 
+ * LEARNING POINTS:
+ * 1. Proper clipboard opening and closing sequences
+ * 2. Working with global memory handles
+ * 3. Converting between clipboard formats
+ * 4. Registering custom clipboard formats
+ * 5. Enumerating available clipboard formats
+ * 6. Setting HTML and RTF formatted text
+ * 7. Monitoring clipboard changes
+ */
 
 ;==============================================================================
 ; EXAMPLE 1: Basic Clipboard Text Operations
@@ -73,9 +73,9 @@ Example1_BasicClipboardText() {
 
     ; Allocate global memory
     hMem := DllCall("Kernel32.dll\GlobalAlloc"
-    , "UInt", GHND
-    , "UPtr", bufSize
-    , "Ptr")
+        , "UInt", GHND
+        , "UPtr", bufSize
+        , "Ptr")
 
     if (!hMem) {
         DllCall("User32.dll\CloseClipboard", "Int")
@@ -94,9 +94,9 @@ Example1_BasicClipboardText() {
 
     ; Set clipboard data
     if !DllCall("User32.dll\SetClipboardData"
-    , "UInt", CF_UNICODETEXT
-    , "Ptr", hMem
-    , "Ptr") {
+        , "UInt", CF_UNICODETEXT
+        , "Ptr", hMem
+        , "Ptr") {
         DllCall("Kernel32.dll\GlobalFree", "Ptr", hMem, "Ptr")
         DllCall("User32.dll\CloseClipboard", "Int")
         MsgBox("Failed to set clipboard data!", "Error")
@@ -205,7 +205,7 @@ SetClipboardAnsi(text) {
 ; List all available clipboard formats
 ListClipboardFormats() {
     if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-    return
+        return
 
     formats := []
     format := 0
@@ -213,19 +213,19 @@ ListClipboardFormats() {
     Loop {
         format := DllCall("User32.dll\EnumClipboardFormats", "UInt", format, "UInt")
         if (!format)
-        break
+            break
 
         ; Get format name
         nameBuf := Buffer(256, 0)
         DllCall("User32.dll\GetClipboardFormatNameW"
-        , "UInt", format
-        , "Ptr", nameBuf.Ptr
-        , "Int", 128
-        , "Int")
+            , "UInt", format
+            , "Ptr", nameBuf.Ptr
+            , "Int", 128
+            , "Int")
 
         formatName := StrGet(nameBuf.Ptr, "UTF-16")
         if (formatName = "")
-        formatName := GetStandardFormatName(format)
+            formatName := GetStandardFormatName(format)
 
         formats.Push(Format("Format {}: {}", format, formatName))
     }
@@ -234,7 +234,7 @@ ListClipboardFormats() {
 
     result := "Available Clipboard Formats:`n`n"
     for item in formats
-    result .= item . "`n"
+        result .= item . "`n"
 
     MsgBox(result, "Clipboard Formats")
 }
@@ -242,23 +242,23 @@ ListClipboardFormats() {
 ; Get standard format names
 GetStandardFormatName(format) {
     static names := Map(
-    1, "CF_TEXT",
-    2, "CF_BITMAP",
-    3, "CF_METAFILEPICT",
-    4, "CF_SYLK",
-    5, "CF_DIF",
-    6, "CF_TIFF",
-    7, "CF_OEMTEXT",
-    8, "CF_DIB",
-    9, "CF_PALETTE",
-    10, "CF_PENDATA",
-    11, "CF_RIFF",
-    12, "CF_WAVE",
-    13, "CF_UNICODETEXT",
-    14, "CF_ENHMETAFILE",
-    15, "CF_HDROP",
-    16, "CF_LOCALE",
-    17, "CF_DIBV5"
+        1, "CF_TEXT",
+        2, "CF_BITMAP",
+        3, "CF_METAFILEPICT",
+        4, "CF_SYLK",
+        5, "CF_DIF",
+        6, "CF_TIFF",
+        7, "CF_OEMTEXT",
+        8, "CF_DIB",
+        9, "CF_PALETTE",
+        10, "CF_PENDATA",
+        11, "CF_RIFF",
+        12, "CF_WAVE",
+        13, "CF_UNICODETEXT",
+        14, "CF_ENHMETAFILE",
+        15, "CF_HDROP",
+        16, "CF_LOCALE",
+        17, "CF_DIBV5"
     )
     return names.Has(format) ? names[format] : "Unknown"
 }
@@ -271,8 +271,8 @@ GetStandardFormatName(format) {
 Example3_CustomFormats() {
     ; Register custom format
     customFormat := DllCall("User32.dll\RegisterClipboardFormatW"
-    , "Str", "MyApp.CustomData"
-    , "UInt")
+        , "Str", "MyApp.CustomData"
+        , "UInt")
 
     if (!customFormat) {
         MsgBox("Failed to register custom format!", "Error")
@@ -286,7 +286,7 @@ Example3_CustomFormats() {
 
     ; Open clipboard
     if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-    return
+        return
 
     DllCall("User32.dll\EmptyClipboard", "Int")
 
@@ -312,7 +312,7 @@ Example3_CustomFormats() {
     Sleep(500)
 
     if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-    return
+        return
 
     hData := DllCall("User32.dll\GetClipboardData", "UInt", customFormat, "Ptr")
 
@@ -354,13 +354,13 @@ Example4_HTMLClipboard() {
 
     ; Format header with proper offsets
     header := Format("Version:0.9`r`nStartHTML:{:010d}`r`nEndHTML:{:010d}`r`nStartFragment:{:010d}`r`nEndFragment:{:010d}`r`n",
-    startHTML, endHTML, startFragment, endFragment)
+        startHTML, endHTML, startFragment, endFragment)
 
     finalData := header . fullHTML
 
     ; Set to clipboard
     if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-    return
+        return
 
     DllCall("User32.dll\EmptyClipboard", "Int")
 
@@ -408,14 +408,14 @@ Example5_ClipboardMonitoring() {
             content := GetClipboardPreview()
 
             changes.Push(Format("[{}] Sequence: {} -> {} | {}",
-            timestamp, lastSequence, currentSequence, content))
+                timestamp, lastSequence, currentSequence, content))
 
             lastSequence := currentSequence
         }
 
         ; Check timeout
         if (A_TickCount - startTime > 30000)
-        break
+            break
 
         Sleep(250)
     }
@@ -426,7 +426,7 @@ Example5_ClipboardMonitoring() {
     } else {
         result := "Clipboard Changes Detected:`n`n"
         for change in changes
-        result .= change . "`n`n"
+            result .= change . "`n`n"
 
         MsgBox(result, "Monitoring Results")
     }
@@ -435,7 +435,7 @@ Example5_ClipboardMonitoring() {
 ; Helper to get clipboard content preview
 GetClipboardPreview() {
     if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-    return "Failed to open"
+        return "Failed to open"
 
     CF_UNICODETEXT := 13
     hData := DllCall("User32.dll\GetClipboardData", "UInt", CF_UNICODETEXT, "Ptr")
@@ -449,7 +449,7 @@ GetClipboardPreview() {
         ; Get first 50 chars
         preview := SubStr(text, 1, 50)
         if (StrLen(text) > 50)
-        preview .= "..."
+            preview .= "..."
     }
 
     DllCall("User32.dll\CloseClipboard", "Int")
@@ -464,7 +464,7 @@ GetClipboardPreview() {
 Example6_ClipboardOwnership() {
     ; Get clipboard owner
     if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-    return
+        return
 
     ownerHwnd := DllCall("User32.dll\GetClipboardOwner", "Ptr")
 
@@ -515,10 +515,10 @@ Example7_AdvancedOperations() {
 
     ; Check various formats
     formats := [
-    "HTML Format",
-    "Rich Text Format",
-    "CSV",
-    "XML"
+        "HTML Format",
+        "Rich Text Format",
+        "CSV",
+        "XML"
     ]
 
     results := "Checking clipboard for various formats:`n`n"
@@ -542,7 +542,7 @@ Example7_AdvancedOperations() {
     ; Demonstrate adding priority clipboard data
     if MsgBox("Set multi-format clipboard data with priority?", "Question", "YesNo") = "Yes" {
         if !DllCall("User32.dll\OpenClipboard", "Ptr", 0, "Int")
-        return
+            return
 
         DllCall("User32.dll\EmptyClipboard", "Int")
 
@@ -600,7 +600,7 @@ ShowDemoMenu() {
         choice := InputBox(menu, "Clipboard Examples", "w400 h350").Value
 
         if (choice = "0" or choice = "")
-        break
+            break
 
         switch choice {
             case "1": Example1_BasicClipboardText()

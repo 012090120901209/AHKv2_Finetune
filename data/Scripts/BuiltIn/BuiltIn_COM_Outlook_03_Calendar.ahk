@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_Outlook_03_Calendar.ahk
-*
-* DESCRIPTION:
-* Calendar and appointment management in Outlook using COM automation.
-*
-* FEATURES:
-* - Creating appointments
-* - Setting reminders
-* - Recurring events
-* - Meeting requests
-* - Calendar searches
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - ComObject
-* https://www.autohotkey.com/docs/v2/lib/ComObject.htm
-*/
+ * BuiltIn_COM_Outlook_03_Calendar.ahk
+ * 
+ * DESCRIPTION:
+ * Calendar and appointment management in Outlook using COM automation.
+ * 
+ * FEATURES:
+ * - Creating appointments
+ * - Setting reminders
+ * - Recurring events
+ * - Meeting requests
+ * - Calendar searches
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - ComObject
+ * https://www.autohotkey.com/docs/v2/lib/ComObject.htm
+ */
 
 Example1_CreateAppointment() {
     MsgBox("Example 1: Create Appointment")
@@ -187,7 +187,7 @@ ShowMenu() {
 
     result := MsgBox("Run another example?", "Continue?", "YesNo")
     if (result = "Yes")
-    ShowMenu()
+        ShowMenu()
 }
 
 ShowMenu()

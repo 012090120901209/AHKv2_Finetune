@@ -1,35 +1,35 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_Menu_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Creating menus, adding items, handlers, and displaying menus
-*
-* FEATURES:
-* - 5-7 detailed practical examples
-* - Comprehensive event handling
-* - Real-world use cases
-* - Helper functions and utilities
-* - Complete reference documentation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/Menu.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Modern v2 syntax
-* - Object-oriented approach
-* - Event-driven programming
-* - Method chaining
-*
-* LEARNING POINTS:
-* 1. Menu control creation and manipulation
-* 2. Event handling and callbacks
-* 3. Property management
-* 4. Best practices and patterns
-* 5. Common use cases and solutions
-*/
+ * BuiltIn_Menu_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Creating menus, adding items, handlers, and displaying menus
+ * 
+ * FEATURES:
+ * - 5-7 detailed practical examples
+ * - Comprehensive event handling
+ * - Real-world use cases
+ * - Helper functions and utilities
+ * - Complete reference documentation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/Menu.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Modern v2 syntax
+ * - Object-oriented approach
+ * - Event-driven programming
+ * - Method chaining
+ * 
+ * LEARNING POINTS:
+ * 1. Menu control creation and manipulation
+ * 2. Event handling and callbacks
+ * 3. Property management
+ * 4. Best practices and patterns
+ * 5. Common use cases and solutions
+ */
 
 
 ;=============================================================================
@@ -55,7 +55,7 @@ Example1_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 1: Demonstrates BasicUsage features")
+        "Example 1: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -102,7 +102,7 @@ Example2_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 2: Demonstrates BasicUsage features")
+        "Example 2: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -149,7 +149,7 @@ Example3_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 3: Demonstrates BasicUsage features")
+        "Example 3: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -196,7 +196,7 @@ Example4_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 4: Demonstrates BasicUsage features")
+        "Example 4: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -243,7 +243,7 @@ Example5_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 5: Demonstrates BasicUsage features")
+        "Example 5: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -290,7 +290,7 @@ Example6_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 6: Demonstrates BasicUsage features")
+        "Example 6: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -337,7 +337,7 @@ Example7_BasicUsage() {
 
     ; Additional controls
     infoText := myGui.Add("Text", "xm y+20 w400",
-    "Example 7: Demonstrates BasicUsage features")
+        "Example 7: Demonstrates BasicUsage features")
 
     ; Status display
     statusText := myGui.Add("Text", "xm y+10 w400 Border", "Ready")
@@ -420,3 +420,4 @@ PERFORMANCE TIPS:
 ; Example5_BasicUsage()
 ; Example6_BasicUsage()
 ; Example7_BasicUsage()
+

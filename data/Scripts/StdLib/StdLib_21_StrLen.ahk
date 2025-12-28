@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* StrLen() - Get string length
-*
-* Returns the number of characters in a string.
-*/
+ * StrLen() - Get string length
+ * 
+ * Returns the number of characters in a string.
+ */
 
 text := "Hello World"
 length := StrLen(text)

@@ -2,6 +2,6 @@
 #SingleInstance Force
 
 if WinExist("ahk_class Notepad")
-FileAppend("notepad is open", "*")
+    FileAppend("notepad is open", "*")
 else
-FileAppend("notepad is not open", "*")
+    FileAppend("notepad is not open", "*")

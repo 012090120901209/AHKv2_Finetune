@@ -11,26 +11,26 @@ class MinMaxStack {
 
         ; Update min stack
         if (this.minStack.Length = 0 || value <= this.GetMin())
-        this.minStack.Push(value)
+            this.minStack.Push(value)
 
         ; Update max stack
         if (this.maxStack.Length = 0 || value >= this.GetMax())
-        this.maxStack.Push(value)
+            this.maxStack.Push(value)
 
         return this
     }
 
     Pop() {
         if (this.IsEmpty())
-        throw Error("Stack is empty")
+            throw Error("Stack is empty")
 
         value := this.stack.Pop()
 
         if (value = this.GetMin())
-        this.minStack.Pop()
+            this.minStack.Pop()
 
         if (value = this.GetMax())
-        this.maxStack.Pop()
+            this.maxStack.Pop()
 
         return value
     }

@@ -13,10 +13,10 @@ class Message {
 
     Edit(newContent) => (this.content := newContent, this.edited := true, this)
     ToString() => Format("[{1}] {2}: {3}{4}",
-    FormatTime(this.timestamp, "HH:mm"),
-    this.sender.username,
-    this.content,
-    this.edited ? " (edited)" : "")
+        FormatTime(this.timestamp, "HH:mm"),
+        this.sender.username,
+        this.content,
+        this.edited ? " (edited)" : "")
 }
 
 class User {
@@ -50,8 +50,8 @@ class ChatRoom {
     AddMember(user) {
         ; Check if already a member
         for member in this.members
-        if (member.username = user.username)
-        return this
+            if (member.username = user.username)
+                return this
 
         this.members.Push(user)
         this._SystemMessage(user.displayName . " joined the room")
@@ -71,7 +71,7 @@ class ChatRoom {
 
     SendMessage(user, content) {
         if (!this._IsMember(user))
-        return MsgBox("User not in room!", "Error")
+            return MsgBox("User not in room!", "Error")
 
         message := Message(user, content)
         this.messages.Push(message)
@@ -82,22 +82,22 @@ class ChatRoom {
         start := Max(1, this.messages.Length - count + 1)
         recent := []
         loop Min(count, this.messages.Length)
-        recent.Push(this.messages[start + A_Index - 1])
+            recent.Push(this.messages[start + A_Index - 1])
         return recent
     }
 
     GetOnlineMembers() {
         online := []
         for member in this.members
-        if (member.IsOnline())
-        online.Push(member)
+            if (member.IsOnline())
+                online.Push(member)
         return online
     }
 
     _IsMember(user) {
         for member in this.members
-        if (member.username = user.username)
-        return true
+            if (member.username = user.username)
+                return true
         return false
     }
 
@@ -107,11 +107,11 @@ class ChatRoom {
     }
 
     ToString() => Format("{1}{2}`nMembers: {3} ({4} online) | Messages: {5}",
-    this.name,
-    this.description ? " - " . this.description : "",
-    this.members.Length,
-    this.GetOnlineMembers().Length,
-    this.messages.Length)
+        this.name,
+        this.description ? " - " . this.description : "",
+        this.members.Length,
+        this.GetOnlineMembers().Length,
+        this.messages.Length)
 }
 
 class DirectMessage {
@@ -124,7 +124,7 @@ class DirectMessage {
     SendMessage(sender, content) {
         ; Verify sender is a participant
         if (sender.username != this.participants[1].username && sender.username != this.participants[2].username)
-        return MsgBox("Not a participant in this conversation!", "Error")
+            return MsgBox("Not a participant in this conversation!", "Error")
 
         message := Message(sender, content)
         this.messages.Push(message)
@@ -133,14 +133,14 @@ class DirectMessage {
 
     GetOtherUser(currentUser) {
         if (this.participants[1].username = currentUser.username)
-        return this.participants[2]
+            return this.participants[2]
         return this.participants[1]
     }
 
     ToString() => Format("DM: {1} <-> {2} ({3} messages)",
-    this.participants[1].displayName,
-    this.participants[2].displayName,
-    this.messages.Length)
+        this.participants[1].displayName,
+        this.participants[2].displayName,
+        this.messages.Length)
 }
 
 class ChatServer {
@@ -160,13 +160,13 @@ class ChatServer {
         user2 := this.users.Has(username2) ? this.users[username2] : ""
 
         if (!user1 || !user2)
-        return MsgBox("User not found!", "Error")
+            return MsgBox("User not found!", "Error")
 
         ; Check if DM already exists
         for dm in this.directMessages
-        if ((dm.participants[1].username = username1 && dm.participants[2].username = username2) ||
-        (dm.participants[1].username = username2 && dm.participants[2].username = username1))
-        return dm
+            if ((dm.participants[1].username = username1 && dm.participants[2].username = username2) ||
+                (dm.participants[1].username = username2 && dm.participants[2].username = username1))
+                return dm
 
         dm := DirectMessage(user1, user2)
         this.directMessages.Push(dm)
@@ -176,13 +176,13 @@ class ChatServer {
     GetUserRooms(username) {
         user := this.users.Has(username) ? this.users[username] : ""
         if (!user)
-        return []
+            return []
 
         userRooms := []
         for room in this.rooms
-        for member in room.members
-        if (member.username = username)
-        userRooms.Push(room)
+            for member in room.members
+                if (member.username = username)
+                    userRooms.Push(room)
 
         return userRooms
     }
@@ -193,8 +193,8 @@ class ChatServer {
 
         onlineCount := 0
         for username, user in this.users
-        if (user.IsOnline())
-        onlineCount++
+            if (user.IsOnline())
+                onlineCount++
 
         stats .= Format("Online users: {1}`n", onlineCount)
         stats .= Format("Total rooms: {1}`n", this.rooms.Length)

@@ -2,35 +2,35 @@
 #SingleInstance Force
 
 /**
-* System Metrics Quick Launch Menu
-*
-* Demonstrates a quick launch menu with real-time system metrics
-* (CPU, RAM, Battery) triggered by double-tapping Shift.
-*
-* Source: JWCow/AHK-Collection - Windows AHK Startup Keys V2
-* Inspired by: https://github.com/JWCow/AHK-Collection
-*/
+ * System Metrics Quick Launch Menu
+ * 
+ * Demonstrates a quick launch menu with real-time system metrics
+ * (CPU, RAM, Battery) triggered by double-tapping Shift.
+ * 
+ * Source: JWCow/AHK-Collection - Windows AHK Startup Keys V2
+ * Inspired by: https://github.com/JWCow/AHK-Collection
+ */
 
 ; Configuration
 global DOUBLE_TAP_THRESHOLD := 300  ; milliseconds
 global lastShiftPress := 0
 
 MsgBox("System Metrics Quick Launch`n`n"
-. "Double-tap RIGHT SHIFT to open menu`n`n"
-. "Features:`n"
-. "- Real-time CPU usage`n"
-. "- Memory usage (RAM)`n"
-. "- Battery status`n"
-. "- Quick launch buttons`n`n"
-. "Try double-tapping Right Shift!", , "T5")
+    . "Double-tap RIGHT SHIFT to open menu`n`n"
+    . "Features:`n"
+    . "- Real-time CPU usage`n"
+    . "- Memory usage (RAM)`n"
+    . "- Battery status`n"
+    . "- Quick launch buttons`n`n"
+    . "Try double-tapping Right Shift!", , "T5")
 
 ; ===============================================
 ; DOUBLE-TAP SHIFT DETECTION
 ; ===============================================
 
 /**
-* Detect double-tap of Right Shift key
-*/
+ * Detect double-tap of Right Shift key
+ */
 ~RShift::
 {
     global lastShiftPress, DOUBLE_TAP_THRESHOLD
@@ -51,8 +51,8 @@ MsgBox("System Metrics Quick Launch`n`n"
 ; ===============================================
 
 /**
-* Show quick launch menu with system metrics
-*/
+ * Show quick launch menu with system metrics
+ */
 ShowQuickLaunchMenu() {
     ; Create GUI
     menuGui := Gui("+AlwaysOnTop -Caption +ToolWindow", "Quick Launch")
@@ -113,8 +113,8 @@ ShowQuickLaunchMenu() {
 ; ===============================================
 
 /**
-* Get current CPU usage percentage
-*/
+ * Get current CPU usage percentage
+ */
 GetCPUUsage() {
     ; Quick estimation using ComObject
     try {
@@ -128,8 +128,8 @@ GetCPUUsage() {
 }
 
 /**
-* Get memory usage information
-*/
+ * Get memory usage information
+ */
 GetMemoryUsage() {
     try {
         wmi := ComObject("WbemScripting.SWbemLocator")
@@ -153,13 +153,13 @@ GetMemoryUsage() {
             percent: percent
         }
     } catch {
-        return {total: 0, used: 0, percent: 0}
+        return { total: 0, used: 0, percent: 0 }
     }
 }
 
 /**
-* Get battery status and percentage
-*/
+ * Get battery status and percentage
+ */
 GetBatteryStatus() {
     try {
         wmi := ComObject("WbemScripting.SWbemLocator")
@@ -169,7 +169,7 @@ GetBatteryStatus() {
 
         ; Check if battery exists
         if (batteries.Count == 0)
-        return {exists: false}
+            return { exists: false }
 
         battery := batteries.ItemIndex(0)
         percent := battery.EstimatedChargeRemaining
@@ -177,19 +177,19 @@ GetBatteryStatus() {
         ; Determine status
         batteryStatus := battery.BatteryStatus
         switch batteryStatus {
-            case 1:  status := "🔌 Charging"
-            case 2:  status := "🔋 On AC"
-            case 3:  status := "⚡ Fully Charged"
+            case 1: status := "🔌 Charging"
+            case 2: status := "🔋 On AC"
+            case 3: status := "⚡ Fully Charged"
             default: status := "🔋 On Battery"
         }
 
         ; Color based on percentage
         if (percent > 50)
-        color := "0x00A000"  ; Green
+            color := "0x00A000"  ; Green
         else if (percent > 20)
-        color := "0xFFA500"  ; Orange
+            color := "0xFFA500"  ; Orange
         else
-        color := "0xFF0000"  ; Red
+            color := "0xFF0000"  ; Red
 
         return {
             exists: true,
@@ -198,7 +198,7 @@ GetBatteryStatus() {
             color: color
         }
     } catch {
-        return {exists: false}
+        return { exists: false }
     }
 }
 
@@ -289,3 +289,4 @@ GetBatteryStatus() {
 *     - Direct API calls
 *     - External tools (HWiNFO)
 */
+

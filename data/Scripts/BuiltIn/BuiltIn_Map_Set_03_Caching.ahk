@@ -2,52 +2,52 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Set_03_Caching.ahk
-*
-* @description Map.Set() for implementing caching systems
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Demonstrates using Map.Set() to implement various caching strategies
-* including LRU cache, time-based expiration, size limits, and more.
-*/
+ * BuiltIn_Map_Set_03_Caching.ahk
+ * 
+ * @description Map.Set() for implementing caching systems
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Demonstrates using Map.Set() to implement various caching strategies
+ * including LRU cache, time-based expiration, size limits, and more.
+ */
 
 ;=============================================================================
 ; Example 1: Simple Cache with Expiration
 ;=============================================================================
 
 /**
-* @class SimpleCache
-* @description Basic cache with time-based expiration
-*/
+ * @class SimpleCache
+ * @description Basic cache with time-based expiration
+ */
 class SimpleCache {
     cache := Map()
     ttl := 60000  ; Time to live: 60 seconds in milliseconds
 
     /**
-    * @method Set
-    * @description Store value in cache with timestamp
-    * @param {String} key - Cache key
-    * @param {Any} value - Value to cache
-    */
+     * @method Set
+     * @description Store value in cache with timestamp
+     * @param {String} key - Cache key
+     * @param {Any} value - Value to cache
+     */
     Set(key, value) {
         this.cache.Set(key, Map(
-        "value", value,
-        "timestamp", A_TickCount
+            "value", value,
+            "timestamp", A_TickCount
         ))
     }
 
     /**
-    * @method Get
-    * @description Retrieve cached value if not expired
-    * @param {String} key - Cache key
-    * @returns {Any} Cached value or empty string if expired/missing
-    */
+     * @method Get
+     * @description Retrieve cached value if not expired
+     * @param {String} key - Cache key
+     * @returns {Any} Cached value or empty string if expired/missing
+     */
     Get(key) {
         if (!this.cache.Has(key))
-        return ""
+            return ""
 
         entry := this.cache[key]
         age := A_TickCount - entry["timestamp"]
@@ -61,10 +61,10 @@ class SimpleCache {
     }
 
     /**
-    * @method GetStats
-    * @description Get cache statistics
-    * @returns {String} Cache statistics
-    */
+     * @method GetStats
+     * @description Get cache statistics
+     * @returns {String} Cache statistics
+     */
     GetStats() {
         valid := 0
         expired := 0
@@ -72,9 +72,9 @@ class SimpleCache {
         for key, entry in this.cache {
             age := A_TickCount - entry["timestamp"]
             if (age > this.ttl)
-            expired++
+                expired++
             else
-            valid++
+                valid++
         }
 
         return "Total entries: " this.cache.Count "`nValid: " valid "`nExpired: " expired
@@ -104,20 +104,20 @@ Example1_SimpleCache() {
 ;=============================================================================
 
 /**
-* @class LRUCache
-* @description Least Recently Used cache with size limit
-*/
+ * @class LRUCache
+ * @description Least Recently Used cache with size limit
+ */
 class LRUCache {
     cache := Map()
     accessOrder := []
     maxSize := 5
 
     /**
-    * @method Set
-    * @description Add item to cache, evicting LRU if at capacity
-    * @param {String} key - Cache key
-    * @param {Any} value - Value to cache
-    */
+     * @method Set
+     * @description Add item to cache, evicting LRU if at capacity
+     * @param {String} key - Cache key
+     * @param {Any} value - Value to cache
+     */
     Set(key, value) {
         ; If key already exists, remove it from access order
         if (this.cache.Has(key)) {
@@ -134,14 +134,14 @@ class LRUCache {
     }
 
     /**
-    * @method Get
-    * @description Retrieve value and update access order
-    * @param {String} key - Cache key
-    * @returns {Any} Cached value
-    */
+     * @method Get
+     * @description Retrieve value and update access order
+     * @param {String} key - Cache key
+     * @returns {Any} Cached value
+     */
     Get(key) {
         if (!this.cache.Has(key))
-        return ""
+            return ""
 
         ; Update access order
         this.RemoveFromOrder(key)
@@ -151,26 +151,26 @@ class LRUCache {
     }
 
     /**
-    * @method RemoveFromOrder
-    * @description Remove key from access order array
-    * @param {String} key - Cache key
-    */
+     * @method RemoveFromOrder
+     * @description Remove key from access order array
+     * @param {String} key - Cache key
+     */
     RemoveFromOrder(key) {
         newOrder := []
         for item in this.accessOrder {
             if (item != key)
-            newOrder.Push(item)
+                newOrder.Push(item)
         }
         this.accessOrder := newOrder
     }
 
     /**
-    * @method EvictLRU
-    * @description Evict least recently used item
-    */
+     * @method EvictLRU
+     * @description Evict least recently used item
+     */
     EvictLRU() {
         if (this.accessOrder.Length = 0)
-        return
+            return
 
         lruKey := this.accessOrder[1]
         this.cache.Delete(lruKey)
@@ -178,10 +178,10 @@ class LRUCache {
     }
 
     /**
-    * @method GetStatus
-    * @description Get cache status
-    * @returns {String} Cache status information
-    */
+     * @method GetStatus
+     * @description Get cache status
+     * @returns {String} Cache status information
+     */
     GetStatus() {
         output := "Cache size: " this.cache.Count "/" this.maxSize "`n"
         output .= "Access order (MRU to LRU): "
@@ -190,7 +190,7 @@ class LRUCache {
         for i in Range(this.accessOrder.Length, 1, -1) {
             output .= this.accessOrder[i]
             if (i > 1)
-            output .= " -> "
+                output .= " -> "
         }
 
         return output
@@ -202,14 +202,14 @@ Range(start, end, step := 1) {
     if (step > 0) {
         Loop {
             if (start > end)
-            break
+                break
             arr.Push(start)
             start += step
         }
     } else {
         Loop {
             if (start < end)
-            break
+                break
             arr.Push(start)
             start += step
         }
@@ -251,22 +251,22 @@ Example2_LRUCache() {
 ;=============================================================================
 
 /**
-* @class MemoCache
-* @description Cache for expensive function results
-*/
+ * @class MemoCache
+ * @description Cache for expensive function results
+ */
 class MemoCache {
     cache := Map()
     hitCount := 0
     missCount := 0
 
     /**
-    * @method Memoize
-    * @description Get cached result or compute and cache
-    * @param {String} funcName - Function identifier
-    * @param {Array} args - Function arguments
-    * @param {Func} computeFunc - Function to call on cache miss
-    * @returns {Any} Function result
-    */
+     * @method Memoize
+     * @description Get cached result or compute and cache
+     * @param {String} funcName - Function identifier
+     * @param {Array} args - Function arguments
+     * @param {Func} computeFunc - Function to call on cache miss
+     * @returns {Any} Function result
+     */
     Memoize(funcName, args, computeFunc) {
         key := this.MakeKey(funcName, args)
 
@@ -283,12 +283,12 @@ class MemoCache {
     }
 
     /**
-    * @method MakeKey
-    * @description Create cache key from function name and arguments
-    * @param {String} funcName - Function name
-    * @param {Array} args - Arguments
-    * @returns {String} Cache key
-    */
+     * @method MakeKey
+     * @description Create cache key from function name and arguments
+     * @param {String} funcName - Function name
+     * @param {Array} args - Arguments
+     * @returns {String} Cache key
+     */
     MakeKey(funcName, args) {
         key := funcName
         for arg in args {
@@ -298,24 +298,24 @@ class MemoCache {
     }
 
     /**
-    * @method GetStats
-    * @description Get cache statistics
-    * @returns {String} Statistics string
-    */
+     * @method GetStats
+     * @description Get cache statistics
+     * @returns {String} Statistics string
+     */
     GetStats() {
         total := this.hitCount + this.missCount
         hitRate := total > 0 ? Round((this.hitCount / total) * 100, 2) : 0
 
         return "Cache hits: " this.hitCount
-        . "`nCache misses: " this.missCount
-        . "`nHit rate: " hitRate "%"
-        . "`nCached results: " this.cache.Count
+            . "`nCache misses: " this.missCount
+            . "`nHit rate: " hitRate "%"
+            . "`nCached results: " this.cache.Count
     }
 
     /**
-    * @method Clear
-    * @description Clear cache and statistics
-    */
+     * @method Clear
+     * @description Clear cache and statistics
+     */
     Clear() {
         this.cache := Map()
         this.hitCount := 0
@@ -326,14 +326,14 @@ class MemoCache {
 ; Expensive calculation (Fibonacci)
 Fibonacci(n) {
     if (n <= 1)
-    return n
+        return n
     return Fibonacci(n - 1) + Fibonacci(n - 2)
 }
 
 ; Factorial calculation
 Factorial(n) {
     if (n <= 1)
-    return 1
+        return 1
     return n * Factorial(n - 1)
 }
 
@@ -369,9 +369,9 @@ Example3_MemoizationCache() {
 ;=============================================================================
 
 /**
-* @class MultiLevelCache
-* @description Two-level cache (L1: fast/small, L2: slower/large)
-*/
+ * @class MultiLevelCache
+ * @description Two-level cache (L1: fast/small, L2: slower/large)
+ */
 class MultiLevelCache {
     l1Cache := Map()  ; Fast, small cache
     l2Cache := Map()  ; Slower, larger cache
@@ -380,11 +380,11 @@ class MultiLevelCache {
     stats := Map("l1Hits", 0, "l2Hits", 0, "misses", 0)
 
     /**
-    * @method Set
-    * @description Store value in both cache levels
-    * @param {String} key - Cache key
-    * @param {Any} value - Value to cache
-    */
+     * @method Set
+     * @description Store value in both cache levels
+     * @param {String} key - Cache key
+     * @param {Any} value - Value to cache
+     */
     Set(key, value) {
         ; Add to L1 cache
         if (this.l1Cache.Count >= this.l1MaxSize) {
@@ -408,11 +408,11 @@ class MultiLevelCache {
     }
 
     /**
-    * @method Get
-    * @description Retrieve from cache, checking L1 then L2
-    * @param {String} key - Cache key
-    * @returns {Any} Cached value
-    */
+     * @method Get
+     * @description Retrieve from cache, checking L1 then L2
+     * @param {String} key - Cache key
+     * @returns {Any} Cached value
+     */
     Get(key) {
         ; Check L1 first
         if (this.l1Cache.Has(key)) {
@@ -437,10 +437,10 @@ class MultiLevelCache {
     }
 
     /**
-    * @method GetStats
-    * @description Get cache statistics
-    * @returns {String} Statistics
-    */
+     * @method GetStats
+     * @description Get cache statistics
+     * @returns {String} Statistics
+     */
     GetStats() {
         total := this.stats["l1Hits"] + this.stats["l2Hits"] + this.stats["misses"]
 
@@ -490,9 +490,9 @@ Example4_MultiLevelCache() {
 ;=============================================================================
 
 /**
-* @class WriteThroughCache
-* @description Cache that writes to backend storage immediately
-*/
+ * @class WriteThroughCache
+ * @description Cache that writes to backend storage immediately
+ */
 class WriteThroughCache {
     cache := Map()
     storage := Map()  ; Simulated persistent storage
@@ -500,11 +500,11 @@ class WriteThroughCache {
     readCount := 0
 
     /**
-    * @method Write
-    * @description Write to cache and storage
-    * @param {String} key - Data key
-    * @param {Any} value - Data value
-    */
+     * @method Write
+     * @description Write to cache and storage
+     * @param {String} key - Data key
+     * @param {Any} value - Data value
+     */
     Write(key, value) {
         ; Write to cache
         this.cache.Set(key, value)
@@ -515,17 +515,17 @@ class WriteThroughCache {
     }
 
     /**
-    * @method Read
-    * @description Read from cache, fallback to storage
-    * @param {String} key - Data key
-    * @returns {Any} Data value
-    */
+     * @method Read
+     * @description Read from cache, fallback to storage
+     * @param {String} key - Data key
+     * @returns {Any} Data value
+     */
     Read(key) {
         this.readCount++
 
         ; Try cache first
         if (this.cache.Has(key))
-        return this.cache[key]
+            return this.cache[key]
 
         ; Fallback to storage
         if (this.storage.Has(key)) {
@@ -538,15 +538,15 @@ class WriteThroughCache {
     }
 
     /**
-    * @method GetStats
-    * @description Get cache statistics
-    * @returns {String} Statistics
-    */
+     * @method GetStats
+     * @description Get cache statistics
+     * @returns {String} Statistics
+     */
     GetStats() {
         return "Cache entries: " this.cache.Count
-        . "`nStorage entries: " this.storage.Count
-        . "`nWrites: " this.writeCount
-        . "`nReads: " this.readCount
+            . "`nStorage entries: " this.storage.Count
+            . "`nWrites: " this.writeCount
+            . "`nReads: " this.readCount
     }
 }
 
@@ -580,27 +580,27 @@ Example5_WriteThroughCache() {
 ;=============================================================================
 
 /**
-* @class MonitoredCache
-* @description Cache with detailed monitoring and statistics
-*/
+ * @class MonitoredCache
+ * @description Cache with detailed monitoring and statistics
+ */
 class MonitoredCache {
     cache := Map()
     stats := Map(
-    "sets", 0,
-    "gets", 0,
-    "hits", 0,
-    "misses", 0,
-    "evictions", 0
+        "sets", 0,
+        "gets", 0,
+        "hits", 0,
+        "misses", 0,
+        "evictions", 0
     )
     maxSize := 100
     keyStats := Map()  ; Per-key statistics
 
     /**
-    * @method Set
-    * @description Add to cache with monitoring
-    * @param {String} key - Cache key
-    * @param {Any} value - Cache value
-    */
+     * @method Set
+     * @description Add to cache with monitoring
+     * @param {String} key - Cache key
+     * @param {Any} value - Cache value
+     */
     Set(key, value) {
         this.stats["sets"]++
 
@@ -610,17 +610,17 @@ class MonitoredCache {
         }
 
         this.cache.Set(key, Map(
-        "value", value,
-        "createdAt", A_TickCount,
-        "lastAccessed", A_TickCount,
-        "accessCount", 0
+            "value", value,
+            "createdAt", A_TickCount,
+            "lastAccessed", A_TickCount,
+            "accessCount", 0
         ))
 
         ; Initialize key stats
         if (!this.keyStats.Has(key)) {
             this.keyStats.Set(key, Map(
-            "hits", 0,
-            "sets", 1
+                "hits", 0,
+                "sets", 1
             ))
         } else {
             this.keyStats[key]["sets"]++
@@ -628,11 +628,11 @@ class MonitoredCache {
     }
 
     /**
-    * @method Get
-    * @description Retrieve from cache with monitoring
-    * @param {String} key - Cache key
-    * @returns {Any} Cached value
-    */
+     * @method Get
+     * @description Retrieve from cache with monitoring
+     * @param {String} key - Cache key
+     * @returns {Any} Cached value
+     */
     Get(key) {
         this.stats["gets"]++
 
@@ -652,9 +652,9 @@ class MonitoredCache {
     }
 
     /**
-    * @method EvictRandom
-    * @description Evict random entry
-    */
+     * @method EvictRandom
+     * @description Evict random entry
+     */
     EvictRandom() {
         for key in this.cache {
             this.cache.Delete(key)
@@ -664,10 +664,10 @@ class MonitoredCache {
     }
 
     /**
-    * @method GetReport
-    * @description Get detailed cache report
-    * @returns {String} Report
-    */
+     * @method GetReport
+     * @description Get detailed cache report
+     * @returns {String} Report
+     */
     GetReport() {
         output := "=== Cache Monitoring Report ===`n`n"
 
@@ -688,7 +688,7 @@ class MonitoredCache {
         ; Get top 5 most accessed keys
         sorted := []
         for key, stats in this.keyStats {
-            sorted.Push({key: key, hits: stats["hits"]})
+            sorted.Push({ key: key, hits: stats["hits"] })
         }
 
         ; Simple bubble sort
@@ -726,11 +726,11 @@ Example6_MonitoredCache() {
 
     ; Simulate access pattern
     Loop 10
-    cache.Get("user:1")
+        cache.Get("user:1")
     Loop 5
-    cache.Get("user:2")
+        cache.Get("user:2")
     Loop 3
-    cache.Get("user:3")
+        cache.Get("user:3")
 
     cache.Get("user:4")  ; Miss
 
@@ -742,9 +742,9 @@ Example6_MonitoredCache() {
 ;=============================================================================
 
 /**
-* @class DistributedCache
-* @description Simulates distributed cache with multiple nodes
-*/
+ * @class DistributedCache
+ * @description Simulates distributed cache with multiple nodes
+ */
 class DistributedCache {
     nodes := []
     nodeCount := 3
@@ -757,11 +757,11 @@ class DistributedCache {
     }
 
     /**
-    * @method GetNodeIndex
-    * @description Hash key to determine which node to use
-    * @param {String} key - Cache key
-    * @returns {Integer} Node index
-    */
+     * @method GetNodeIndex
+     * @description Hash key to determine which node to use
+     * @param {String} key - Cache key
+     * @returns {Integer} Node index
+     */
     GetNodeIndex(key) {
         ; Simple hash function
         hash := 0
@@ -772,22 +772,22 @@ class DistributedCache {
     }
 
     /**
-    * @method Set
-    * @description Store in appropriate node
-    * @param {String} key - Cache key
-    * @param {Any} value - Cache value
-    */
+     * @method Set
+     * @description Store in appropriate node
+     * @param {String} key - Cache key
+     * @param {Any} value - Cache value
+     */
     Set(key, value) {
         nodeIdx := this.GetNodeIndex(key)
         this.nodes[nodeIdx].Set(key, value)
     }
 
     /**
-    * @method Get
-    * @description Retrieve from appropriate node
-    * @param {String} key - Cache key
-    * @returns {Any} Cached value
-    */
+     * @method Get
+     * @description Retrieve from appropriate node
+     * @param {String} key - Cache key
+     * @returns {Any} Cached value
+     */
     Get(key) {
         nodeIdx := this.GetNodeIndex(key)
         node := this.nodes[nodeIdx]
@@ -795,10 +795,10 @@ class DistributedCache {
     }
 
     /**
-    * @method GetDistribution
-    * @description Show how keys are distributed
-    * @returns {String} Distribution info
-    */
+     * @method GetDistribution
+     * @description Show how keys are distributed
+     * @returns {String} Distribution info
+     */
     GetDistribution() {
         output := "=== Distributed Cache Distribution ===`n`n"
 
@@ -843,28 +843,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Caching Strategies with Map.Set()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Simple Cache")
-    .OnEvent("Click", (*) => Example1_SimpleCache())
+        .OnEvent("Click", (*) => Example1_SimpleCache())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: LRU Cache")
-    .OnEvent("Click", (*) => Example2_LRUCache())
+        .OnEvent("Click", (*) => Example2_LRUCache())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Memoization")
-    .OnEvent("Click", (*) => Example3_MemoizationCache())
+        .OnEvent("Click", (*) => Example3_MemoizationCache())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Multi-Level")
-    .OnEvent("Click", (*) => Example4_MultiLevelCache())
+        .OnEvent("Click", (*) => Example4_MultiLevelCache())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Write-Through")
-    .OnEvent("Click", (*) => Example5_WriteThroughCache())
+        .OnEvent("Click", (*) => Example5_WriteThroughCache())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Monitored")
-    .OnEvent("Click", (*) => Example6_MonitoredCache())
+        .OnEvent("Click", (*) => Example6_MonitoredCache())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Distributed Cache")
-    .OnEvent("Click", (*) => Example7_DistributedCache())
+        .OnEvent("Click", (*) => Example7_DistributedCache())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_SimpleCache()

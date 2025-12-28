@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlSetStyle - Advanced Customization and Themes
-* ============================================================================
-*
-* Advanced control style customization for themes and visual design.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ============================================================================
+ * ControlSetStyle - Advanced Customization and Themes
+ * ============================================================================
+ * 
+ * Advanced control style customization for themes and visual design.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -18,11 +18,11 @@
 ;==============================================================================
 
 /**
-* Apply visual theme presets to controls
-*
-* @example
-* Shows how to create and apply different visual themes
-*/
+ * Apply visual theme presets to controls
+ * 
+ * @example
+ * Shows how to create and apply different visual themes
+ */
 Example1_ThemePresets() {
     MyGui := Gui("+Resize", "Example 1: Theme Presets")
 
@@ -64,11 +64,11 @@ Example1_ThemePresets() {
 ;==============================================================================
 
 /**
-* Modify border appearance
-*
-* @example
-* Demonstrates different border configurations
-*/
+ * Modify border appearance
+ * 
+ * @example
+ * Demonstrates different border configurations
+ */
 Example2_BorderStyles() {
     MyGui := Gui("+Resize", "Example 2: Border Styles")
 
@@ -90,14 +90,14 @@ Example2_BorderStyles() {
         style2 := ControlGetStyle(Edit2)
 
         if (style1 & 0x00800000)
-        ControlSetStyle("-0x00800000", Edit1)
+            ControlSetStyle("-0x00800000", Edit1)
         else
-        ControlSetStyle("+0x00800000", Edit1)
+            ControlSetStyle("+0x00800000", Edit1)
 
         if (style2 & 0x00800000)
-        ControlSetStyle("-0x00800000", Edit2)
+            ControlSetStyle("-0x00800000", Edit2)
         else
-        ControlSetStyle("+0x00800000", Edit2)
+            ControlSetStyle("+0x00800000", Edit2)
 
         ResultsEdit.Value := "Toggled borders\n" . ResultsEdit.Value
     }
@@ -108,11 +108,11 @@ Example2_BorderStyles() {
 ;==============================================================================
 
 /**
-* Style read-only controls distinctively
-*
-* @example
-* Makes read-only controls visually distinct
-*/
+ * Style read-only controls distinctively
+ * 
+ * @example
+ * Makes read-only controls visually distinct
+ */
 Example3_ReadOnlyStyling() {
     MyGui := Gui("+Resize", "Example 3: Read-Only Styling")
 
@@ -141,11 +141,11 @@ Example3_ReadOnlyStyling() {
 ;==============================================================================
 
 /**
-* Update styles based on user interaction
-*
-* @example
-* Changes styles dynamically
-*/
+ * Update styles based on user interaction
+ * 
+ * @example
+ * Changes styles dynamically
+ */
 Example4_DynamicUpdates() {
     MyGui := Gui("+Resize", "Example 4: Dynamic Style Updates")
 
@@ -176,11 +176,11 @@ Example4_DynamicUpdates() {
 ;==============================================================================
 
 /**
-* Apply themes across multiple controls
-*
-* @example
-* Theme entire forms at once
-*/
+ * Apply themes across multiple controls
+ * 
+ * @example
+ * Theme entire forms at once
+ */
 Example5_MultiControlTheming() {
     MyGui := Gui("+Resize", "Example 5: Multi-Control Theming")
 
@@ -201,12 +201,12 @@ Example5_MultiControlTheming() {
 
     ApplyTheme1(ctrls) {
         for ctrl in ctrls
-        ControlSetStyle("+0x00800000", ctrl)
+            ControlSetStyle("+0x00800000", ctrl)
     }
 
     ApplyTheme2(ctrls) {
         for ctrl in ctrls
-        ControlSetStyle("-0x00800000", ctrl)
+            ControlSetStyle("-0x00800000", ctrl)
     }
 }
 
@@ -215,11 +215,11 @@ Example5_MultiControlTheming() {
 ;==============================================================================
 
 /**
-* Create smooth style transitions
-*
-* @example
-* Animated style changes
-*/
+ * Create smooth style transitions
+ * 
+ * @example
+ * Animated style changes
+ */
 Example6_AnimatedTransitions() {
     MyGui := Gui("+Resize", "Example 6: Animated Style Transitions")
 
@@ -251,11 +251,11 @@ Example6_AnimatedTransitions() {
 ;==============================================================================
 
 /**
-* Validate style changes were successful
-*
-* @example
-* Ensures styles are properly applied
-*/
+ * Validate style changes were successful
+ * 
+ * @example
+ * Ensures styles are properly applied
+ */
 Example7_StyleValidation() {
     MyGui := Gui("+Resize", "Example 7: Style Validation")
 
@@ -293,13 +293,13 @@ MainGui := Gui("+Resize", "Control Function Examples - Main Menu")
 MainGui.Add("Text", "w400", "Select an example to run:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Theme Presets",
-"Example 2: Border Styles",
-"Example 3: Read-Only Styling",
-"Example 4: Dynamic Style Updates",
-"Example 5: Multi-Control Theming",
-"Example 6: Animated Style Transitions",
-"Example 7: Style Validation"
+    "Example 1: Theme Presets",
+    "Example 2: Border Styles",
+    "Example 3: Read-Only Styling",
+    "Example 4: Dynamic Style Updates",
+    "Example 5: Multi-Control Theming",
+    "Example 6: Animated Style Transitions",
+    "Example 7: Style Validation"
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

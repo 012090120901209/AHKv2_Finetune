@@ -3,10 +3,10 @@
 #Include JSON.ahk
 
 /**
-* Initial() - Get all but last element (Standalone Implementation)
-*
-* Gets all but the last element of array.
-*/
+ * Initial() - Get all but last element (Standalone Implementation)
+ * 
+ * Gets all but the last element of array.
+ */
 
 Initial(array) {
     result := []
@@ -26,4 +26,4 @@ result2 := Initial(["a", "b", "c", "d"])
 ; => ["a", "b", "c"]
 
 MsgBox("Initial of [1,2,3]: " JSON.stringify(result1) "`n"
-. "Initial of ['a','b','c','d']: " JSON.stringify(result2))
+    . "Initial of ['a','b','c','d']: " JSON.stringify(result2))

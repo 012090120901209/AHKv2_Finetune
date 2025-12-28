@@ -1,41 +1,41 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Class_02_Properties.ahk
-*
-* DESCRIPTION:
-* Demonstrates various ways to define and use properties in AutoHotkey v2 classes.
-* Covers instance properties, default values, property methods, and encapsulation patterns.
-*
-* FEATURES:
-* - Instance property definition
-* - Default property values
-* - Property getter/setter methods
-* - Computed properties
-* - Property validation
-* - Private property patterns
-* - Dynamic property access
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Property syntax with := operator
-* - Property methods (get/set)
-* - Dynamic property access with bracket notation
-* - HasOwnProp() method
-* - GetOwnPropDesc() for property metadata
-* - DeleteProp() for property removal
-*
-* LEARNING POINTS:
-* 1. Properties can have default values
-* 2. Properties can be validated on assignment
-* 3. Property methods provide encapsulation
-* 4. Computed properties don't store values
-* 5. Properties can be accessed dynamically
-* 6. Property existence can be checked at runtime
-* 7. Naming conventions can indicate privacy
-*/
+ * BuiltIn_OOP_Class_02_Properties.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates various ways to define and use properties in AutoHotkey v2 classes.
+ * Covers instance properties, default values, property methods, and encapsulation patterns.
+ * 
+ * FEATURES:
+ * - Instance property definition
+ * - Default property values
+ * - Property getter/setter methods
+ * - Computed properties
+ * - Property validation
+ * - Private property patterns
+ * - Dynamic property access
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Property syntax with := operator
+ * - Property methods (get/set)
+ * - Dynamic property access with bracket notation
+ * - HasOwnProp() method
+ * - GetOwnPropDesc() for property metadata
+ * - DeleteProp() for property removal
+ * 
+ * LEARNING POINTS:
+ * 1. Properties can have default values
+ * 2. Properties can be validated on assignment
+ * 3. Property methods provide encapsulation
+ * 4. Computed properties don't store values
+ * 5. Properties can be accessed dynamically
+ * 6. Property existence can be checked at runtime
+ * 7. Naming conventions can indicate privacy
+ */
 
 ; ========================================
 ; EXAMPLE 1: Properties with Default Values
@@ -107,11 +107,11 @@ class User {
         set {
             ; Validate username
             if (StrLen(value) < 3)
-            throw ValueError("Username must be at least 3 characters")
+                throw ValueError("Username must be at least 3 characters")
             if (StrLen(value) > 20)
-            throw ValueError("Username must be less than 20 characters")
+                throw ValueError("Username must be less than 20 characters")
             if (!RegExMatch(value, "^[a-zA-Z0-9_]+$"))
-            throw ValueError("Username can only contain letters, numbers, and underscores")
+                throw ValueError("Username can only contain letters, numbers, and underscores")
 
             this._username := value
         }
@@ -124,7 +124,7 @@ class User {
         set {
             ; Basic email validation
             if (!RegExMatch(value, "^[^@]+@[^@]+\.[^@]+$"))
-            throw ValueError("Invalid email format")
+                throw ValueError("Invalid email format")
 
             this._email := value
         }
@@ -136,7 +136,7 @@ class User {
 
         set {
             if (value < 0 || value > 150)
-            throw ValueError("Age must be between 0 and 150")
+                throw ValueError("Age must be between 0 and 150")
 
             this._age := value
         }
@@ -198,7 +198,7 @@ class Rectangle {
     }
 
     Diagonal {
-        get => Sqrt(this.Width**2 + this.Height**2)
+        get => Sqrt(this.Width ** 2 + this.Height ** 2)
     }
 
     AspectRatio {
@@ -219,7 +219,7 @@ class Rectangle {
 
     ToString() {
         return Format("Rectangle: {}x{}, Area: {}, Perimeter: {}, Diagonal: {:.2f}",
-        this.Width, this.Height, this.Area, this.Perimeter, this.Diagonal)
+            this.Width, this.Height, this.Area, this.Perimeter, this.Diagonal)
     }
 }
 
@@ -244,7 +244,7 @@ class Thermometer {
     RawReading {
         set {
             this._celsius := value
-            this._readings.Push({time: A_Now, value: value})
+            this._readings.Push({ time: A_Now, value: value })
         }
     }
 
@@ -254,7 +254,7 @@ class Thermometer {
     }
 
     Fahrenheit {
-        get => (this._celsius * 9/5) + 32
+        get => (this._celsius * 9 / 5) + 32
     }
 
     Kelvin {
@@ -269,11 +269,11 @@ class Thermometer {
     AverageReading {
         get {
             if (this._readings.Length = 0)
-            return 0
+                return 0
 
             total := 0
             for reading in this._readings
-            total += reading.value
+                total += reading.value
 
             return total / this._readings.Length
         }
@@ -317,7 +317,7 @@ class Configuration {
     ; Get property by name
     Get(propName, defaultValue := "") {
         if (this.HasOwnProp(propName))
-        return this.%propName%
+            return this.%propName%
         return defaultValue
     }
 
@@ -335,7 +335,7 @@ class Configuration {
     GetPropertyNames() {
         names := []
         for propName in this.OwnProps()
-        names.Push(propName)
+            names.Push(propName)
         return names
     }
 
@@ -352,7 +352,7 @@ class Configuration {
     ; Load configuration from map
     LoadFromMap(configMap) {
         for key, value in configMap
-        this.Set(key, value)
+            this.Set(key, value)
     }
 }
 
@@ -369,7 +369,7 @@ MsgBox("Port: " config.Get("Port"))
 ; List all properties
 allProps := ""
 for prop in config.GetPropertyNames()
-allProps .= prop "`n"
+    allProps .= prop "`n"
 MsgBox("All Properties:`n" allProps)
 
 ; Export configuration
@@ -377,9 +377,9 @@ MsgBox(config.Export())
 
 ; Load from map
 newSettings := Map(
-"Debug", true,
-"LogLevel", "DEBUG",
-"MaxConnections", 200
+    "Debug", true,
+    "LogLevel", "DEBUG",
+    "MaxConnections", 200
 )
 config.LoadFromMap(newSettings)
 MsgBox(config.Export())
@@ -457,7 +457,7 @@ class Circle {
 
         set {
             if (value < 0)
-            throw ValueError("Radius cannot be negative")
+                throw ValueError("Radius cannot be negative")
             this._radius := value
         }
     }
@@ -480,7 +480,7 @@ class Circle {
     }
 
     Area {
-        get => 3.14159265359 * this._radius**2
+        get => 3.14159265359 * this._radius ** 2
 
         set {
             this.Radius := Sqrt(value / 3.14159265359)
@@ -493,7 +493,7 @@ class Circle {
 
     ToString() {
         return Format("Circle: r={:.2f}, d={:.2f}, C={:.2f}, A={:.2f}",
-        this.Radius, this.Diameter, this.Circumference, this.Area)
+            this.Radius, this.Diameter, this.Circumference, this.Area)
     }
 
     Scale(factor) {
@@ -522,12 +522,12 @@ circle.Scale(2)
 MsgBox("After scaling by 2:`n" circle.ToString())
 
 MsgBox("=== OOP Properties Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Default property values`n"
-. "- Property getters and setters`n"
-. "- Property validation`n"
-. "- Computed properties`n"
-. "- Read-only and write-only properties`n"
-. "- Dynamic property access`n"
-. "- Lazy initialization`n"
-. "- Property dependencies")
+    . "This file demonstrated:`n"
+    . "- Default property values`n"
+    . "- Property getters and setters`n"
+    . "- Property validation`n"
+    . "- Computed properties`n"
+    . "- Read-only and write-only properties`n"
+    . "- Dynamic property access`n"
+    . "- Lazy initialization`n"
+    . "- Property dependencies")

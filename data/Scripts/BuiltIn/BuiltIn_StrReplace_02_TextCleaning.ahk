@@ -1,46 +1,46 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* BUILT-IN FUNCTION: StrReplace() - Text Cleaning & Sanitization Examples
-* ============================================================================
-*
-* DESCRIPTION:
-*   Comprehensive examples demonstrating text cleaning, sanitization, and
-*   format conversion using the StrReplace() function in AutoHotkey v2.
-*   This file focuses on practical data cleaning scenarios commonly
-*   encountered in text processing and data validation.
-*
-* FEATURES DEMONSTRATED:
-*   - Removing unwanted characters from user input
-*   - Sanitizing filenames for filesystem compatibility
-*   - Cleaning HTML/XML content
-*   - Normalizing whitespace and line endings
-*   - Converting between different text formats
-*   - Removing special characters and symbols
-*   - Data validation and cleaning
-*
-* SOURCE:
-*   AutoHotkey v2 Documentation - StrReplace()
-*   https://www.autohotkey.com/docs/v2/lib/StrReplace.html
-*
-* KEY V2 FEATURES DEMONSTRATED:
-*   - Function-based string manipulation
-*   - Chaining operations for complex cleaning
-*   - Modern parameter syntax
-*   - Integration with other v2 string functions
-*   - Practical data sanitization patterns
-*
-* LEARNING POINTS:
-*   1. StrReplace() is ideal for removing unwanted characters (replace with "")
-*   2. Multiple sequential replacements can clean complex text
-*   3. Case-insensitive mode useful for normalizing input
-*   4. Combine with other string functions for robust cleaning
-*   5. Always validate output after sanitization
-*   6. Different scenarios require different cleaning strategies
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * BUILT-IN FUNCTION: StrReplace() - Text Cleaning & Sanitization Examples
+ * ============================================================================
+ * 
+ * DESCRIPTION:
+ *   Comprehensive examples demonstrating text cleaning, sanitization, and
+ *   format conversion using the StrReplace() function in AutoHotkey v2.
+ *   This file focuses on practical data cleaning scenarios commonly
+ *   encountered in text processing and data validation.
+ * 
+ * FEATURES DEMONSTRATED:
+ *   - Removing unwanted characters from user input
+ *   - Sanitizing filenames for filesystem compatibility
+ *   - Cleaning HTML/XML content
+ *   - Normalizing whitespace and line endings
+ *   - Converting between different text formats
+ *   - Removing special characters and symbols
+ *   - Data validation and cleaning
+ * 
+ * SOURCE:
+ *   AutoHotkey v2 Documentation - StrReplace()
+ *   https://www.autohotkey.com/docs/v2/lib/StrReplace.html
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ *   - Function-based string manipulation
+ *   - Chaining operations for complex cleaning
+ *   - Modern parameter syntax
+ *   - Integration with other v2 string functions
+ *   - Practical data sanitization patterns
+ * 
+ * LEARNING POINTS:
+ *   1. StrReplace() is ideal for removing unwanted characters (replace with "")
+ *   2. Multiple sequential replacements can clean complex text
+ *   3. Case-insensitive mode useful for normalizing input
+ *   4. Combine with other string functions for robust cleaning
+ *   5. Always validate output after sanitization
+ *   6. Different scenarios require different cleaning strategies
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; EXAMPLE 1: Removing Unwanted Characters
@@ -152,7 +152,7 @@ Example2_SanitizeFilenames() {
             prev := clean
             clean := StrReplace(clean, "__", "_")
             if (clean = prev)
-            break
+                break
         }
 
         ; Trim leading/trailing underscores and hyphens
@@ -178,7 +178,7 @@ Example2_SanitizeFilenames() {
             prev := clean
             clean := StrReplace(clean, "  ", " ")
             if (clean = prev)
-            break
+                break
         }
         return Trim(clean)
     }
@@ -239,10 +239,10 @@ Example3_CleanHTMLContent() {
     Loop {
         StartPos := InStr(NoTags, "<")
         if (!StartPos)
-        break
+            break
         EndPos := InStr(NoTags, ">", , StartPos)
         if (!EndPos)
-        break
+            break
         ; Remove the tag
         TagToRemove := SubStr(NoTags, StartPos, EndPos - StartPos + 1)
         NoTags := StrReplace(NoTags, TagToRemove, "")
@@ -269,10 +269,10 @@ Example3_CleanHTMLContent() {
     Loop {
         StartPos := InStr(CleanHTML, "<REMOVESCRIPT>")
         if (!StartPos)
-        break
+            break
         EndPos := InStr(CleanHTML, "</REMOVESCRIPT>", , StartPos)
         if (!EndPos)
-        break
+            break
         ScriptSection := SubStr(CleanHTML, StartPos, EndPos - StartPos + 16)
         CleanHTML := StrReplace(CleanHTML, ScriptSection, "")
     }
@@ -334,13 +334,13 @@ Example4_NormalizeWhitespace() {
         prev := NormalSpaces
         NormalSpaces := StrReplace(NormalSpaces, "  ", " ")
         if (NormalSpaces = prev)
-        break
+            break
     }
 
     ; Mixed tabs and spaces
     MixedWhitespace := "Name:`t`tJohn`t`tDoe`n" .
-    "Age:`t`t`t30`n" .
-    "City:`t`tNew York"
+        "Age:`t`t`t30`n" .
+        "City:`t`tNew York"
 
     ; Convert tabs to spaces
     TabsToSpaces := StrReplace(MixedWhitespace, "`t", "    ")  ; 4 spaces per tab
@@ -367,7 +367,7 @@ Example4_NormalizeWhitespace() {
         prev := CleanText
         CleanText := StrReplace(CleanText, "  ", " ")
         if (CleanText = prev)
-        break
+            break
     }
     ; Normalize line breaks
     CleanText := StrReplace(CleanText, "`n`n", "`n")
@@ -450,8 +450,8 @@ Example5_FormatConversion() {
     ; Format as (555) 123-4567
     if (StrLen(PlainPhone) = 10) {
         FormattedPhone := "(" . SubStr(PlainPhone, 1, 3) . ") " .
-        SubStr(PlainPhone, 4, 3) . "-" .
-        SubStr(PlainPhone, 7, 4)
+            SubStr(PlainPhone, 4, 3) . "-" .
+            SubStr(PlainPhone, 7, 4)
     }
 
     ; Remove phone formatting (reverse)
@@ -610,27 +610,27 @@ Example7_CleaningPipeline() {
     CleanText(text, options := Map()) {
         ; Set default options
         if (!options.Has("trimWhitespace"))
-        options["trimWhitespace"] := true
+            options["trimWhitespace"] := true
         if (!options.Has("normalizeSpaces"))
-        options["normalizeSpaces"] := true
+            options["normalizeSpaces"] := true
         if (!options.Has("normalizeLineEndings"))
-        options["normalizeLineEndings"] := true
+            options["normalizeLineEndings"] := true
         if (!options.Has("removeTabs"))
-        options["removeTabs"] := true
+            options["removeTabs"] := true
         if (!options.Has("removeSpecialChars"))
-        options["removeSpecialChars"] := false
+            options["removeSpecialChars"] := false
         if (!options.Has("toLowerCase"))
-        options["toLowerCase"] := false
+            options["toLowerCase"] := false
 
         result := text
 
         ; 1. Trim leading/trailing whitespace
         if (options["trimWhitespace"])
-        result := Trim(result)
+            result := Trim(result)
 
         ; 2. Remove tabs
         if (options["removeTabs"])
-        result := StrReplace(result, "`t", " ")
+            result := StrReplace(result, "`t", " ")
 
         ; 3. Normalize line endings to LF
         if (options["normalizeLineEndings"]) {
@@ -644,7 +644,7 @@ Example7_CleaningPipeline() {
                 prev := result
                 result := StrReplace(result, "  ", " ")
                 if (result = prev)
-                break
+                    break
             }
         }
 
@@ -658,7 +658,7 @@ Example7_CleaningPipeline() {
 
         ; 6. Convert to lowercase
         if (options["toLowerCase"])
-        result := StrLower(result)
+            result := StrLower(result)
 
         return result
     }
@@ -704,8 +704,8 @@ Example7_CleaningPipeline() {
 
     ; Real-world example: Clean extracted web content
     WebContent := "   Welcome to    Our   Site!!!`r`n`r`n" .
-    "Special   offer:   50% OFF!!!`t`t`t`r`n" .
-    "Click  <HERE>  @@@   NOW!!!   "
+        "Special   offer:   50% OFF!!!`t`t`t`r`n" .
+        "Click  <HERE>  @@@   NOW!!!   "
 
     CleanWebOptions := Map()
     CleanWebOptions["trimWhitespace"] := true
@@ -954,3 +954,4 @@ COMMON MISTAKES TO AVOID:
 END OF REFERENCE
 ═══════════════════════════════════════════════════
 */
+

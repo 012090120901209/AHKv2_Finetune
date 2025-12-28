@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlGetVisible - Practical Applications
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlGetVisible - Practical Applications
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -34,9 +34,9 @@ Example1() {
     }
     CheckMode(*) {
         if (ControlGetVisible(Normal))
-        ResultsEdit.Value := "Mode: Normal\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Mode: Normal\n" . ResultsEdit.Value
         else
-        ResultsEdit.Value := "Mode: Compact\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Mode: Compact\n" . ResultsEdit.Value
     }
 
     MyGui.Show()
@@ -72,7 +72,7 @@ Example2() {
         result := "Active Features:\n"
         for name, ctrl in features {
             if (ControlGetVisible(ctrl))
-            result .= "  ✓ " . name . "\n"
+                result .= "  ✓ " . name . "\n"
         }
         ResultsEdit.Value := result
     }
@@ -90,10 +90,10 @@ Example3() {
 
     steps := []
     loop 4
-    steps.Push(MyGui.Add("Edit", "w250 y+10", "Step " . A_Index))
+        steps.Push(MyGui.Add("Edit", "w250 y+10", "Step " . A_Index))
     for i, step in steps
-    if (i > 1)
-    step.Visible := false
+        if (i > 1)
+            step.Visible := false
     current := 1
     BtnNext := MyGui.Add("Button", "xm y+20 w200", "Reveal Next")
     BtnNext.OnEvent("Click", Next)
@@ -143,11 +143,11 @@ Example4() {
     }
     CheckVis(*) {
         if (ControlGetVisible(TextOpts))
-        ResultsEdit.Value := "Showing: Text Options\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Showing: Text Options\n" . ResultsEdit.Value
         else if (ControlGetVisible(NumberOpts))
-        ResultsEdit.Value := "Showing: Number Options\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Showing: Number Options\n" . ResultsEdit.Value
         else if (ControlGetVisible(DateOpts))
-        ResultsEdit.Value := "Showing: Date Options\n" . ResultsEdit.Value
+            ResultsEdit.Value := "Showing: Date Options\n" . ResultsEdit.Value
     }
     UpdateOpts()
 
@@ -179,7 +179,7 @@ Example5() {
     SetState(newState) {
         for state, controls in states {
             for ctrl in controls
-            ctrl.Visible := (state = newState)
+                ctrl.Visible := (state = newState)
         }
         currentState := newState
     }
@@ -219,7 +219,7 @@ Example6() {
             if (vis) {
                 visCount++
                 if (StrLen(ctrl.Value) = 0)
-                report .= "⚠ " . name . " is visible but empty\n"
+                    report .= "⚠ " . name . " is visible but empty\n"
             } else {
                 hidCount++
             }
@@ -269,13 +269,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Responsive UI",
-"Example 2: Feature Toggles",
-"Example 3: Progressive Disclosure",
-"Example 4: Context-Sensitive UI",
-"Example 5: UI State Machine",
-"Example 6: Accessibility Audit",
-"Example 7: External Window Check",
+    "Example 1: Responsive UI",
+    "Example 2: Feature Toggles",
+    "Example 3: Progressive Disclosure",
+    "Example 4: Context-Sensitive UI",
+    "Example 5: UI State Machine",
+    "Example 6: Accessibility Audit",
+    "Example 7: External Window Check",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

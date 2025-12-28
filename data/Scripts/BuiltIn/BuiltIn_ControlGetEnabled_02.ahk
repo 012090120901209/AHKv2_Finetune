@@ -1,16 +1,16 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* ControlGetEnabled - Advanced State Detection
-* ============================================================================
-*
-* Advanced techniques for detecting and analyzing control enabled states.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ============================================================================
+ * ControlGetEnabled - Advanced State Detection
+ * ============================================================================
+ * 
+ * Advanced techniques for detecting and analyzing control enabled states.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -18,8 +18,8 @@
 ;==============================================================================
 
 /**
-* Check cascading enabled states
-*/
+ * Check cascading enabled states
+ */
 Example1() {
     MyGui := Gui("+Resize", "Example 1: Parent-Child State Check")
     MyGui.Add("Text", "w500", "Check parent-child enabled states:")
@@ -51,15 +51,15 @@ Example1() {
 ;==============================================================================
 
 /**
-* Detect enabled/disabled patterns
-*/
+ * Detect enabled/disabled patterns
+ */
 Example2() {
     MyGui := Gui("+Resize", "Example 2: State Pattern Detector")
     MyGui.Add("Text", "w500", "Detect state patterns:")
 
     controls := []
     loop 10
-    controls.Push(MyGui.Add("Edit", "w100 " . (Mod(A_Index, 5) = 1 ? "xm" : "x+5") . " y" . (Mod(A_Index-1, 5) = 0 ? "+20" : "+0"), A_Index))
+        controls.Push(MyGui.Add("Edit", "w100 " . (Mod(A_Index, 5) = 1 ? "xm" : "x+5") . " y" . (Mod(A_Index - 1, 5) = 0 ? "+20" : "+0"), A_Index))
 
     BtnPattern1 := MyGui.Add("Button", "xm y+20 w150", "Pattern: Odd")
     BtnPattern1.OnEvent("Click", (*) => ApplyPattern(1))
@@ -74,13 +74,13 @@ Example2() {
 
     ApplyPattern(type) {
         for i, ctrl in controls
-        ctrl.Enabled := (type = 1) ? (Mod(i, 2) = 1) : (Mod(i, 2) = 0)
+            ctrl.Enabled := (type = 1) ? (Mod(i, 2) = 1) : (Mod(i, 2) = 0)
     }
 
     DetectPattern(*) {
         pattern := ""
         for i, ctrl in controls
-        pattern .= ControlGetEnabled(ctrl) ? "E" : "D"
+            pattern .= ControlGetEnabled(ctrl) ? "E" : "D"
         ResultsEdit.Value := "Pattern: " . pattern . "\n" . ResultsEdit.Value
     }
 
@@ -92,8 +92,8 @@ Example2() {
 ;==============================================================================
 
 /**
-* Compare states across controls
-*/
+ * Compare states across controls
+ */
 Example3() {
     MyGui := Gui("+Resize", "Example 3: State Comparison")
     MyGui.Add("Text", "w500", "Compare enabled states:")
@@ -103,11 +103,11 @@ Example3() {
 
     MyGui.Add("Text", "xm y+20", "Set 1:")
     loop 3
-    set1.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "A" . A_Index))
+        set1.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "A" . A_Index))
 
     MyGui.Add("Text", "xm y+40", "Set 2:")
     loop 3
-    set2.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "B" . A_Index))
+        set2.Push(MyGui.Add("Edit", "x" . (A_Index = 1 ? "m" : "+10") . " yp+20 w100", "B" . A_Index))
 
     BtnCompare := MyGui.Add("Button", "xm y+40 w200", "Compare Sets")
     BtnCompare.OnEvent("Click", Compare)
@@ -134,15 +134,15 @@ Example3() {
 ;==============================================================================
 
 /**
-* Validate expected states
-*/
+ * Validate expected states
+ */
 Example4() {
     MyGui := Gui("+Resize", "Example 4: State Validation")
     MyGui.Add("Text", "w500", "Validate control states:")
 
     controls := []
     loop 5
-    controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
+        controls.Push(MyGui.Add("Edit", "w200 y+10", "Field " . A_Index))
 
     ; Set expected states
     controls[1].Enabled := true
@@ -166,7 +166,7 @@ Example4() {
             match := (actual = expected[i])
             result .= "Field " . i . ": " . (match ? "✓ PASS" : "✗ FAIL") . "\n"
             if (match)
-            passed++
+                passed++
         }
 
         result .= "\nResult: " . passed . "/" . controls.Length . " passed\n"
@@ -181,8 +181,8 @@ Example4() {
 ;==============================================================================
 
 /**
-* Check control dependencies
-*/
+ * Check control dependencies
+ */
 Example5() {
     MyGui := Gui("+Resize", "Example 5: Dependency Checker")
     MyGui.Add("Text", "w500", "Check control dependencies:")
@@ -218,8 +218,8 @@ Example5() {
         result .= "Dep3: " . (ControlGetEnabled(Dep3) ? "Enabled" : "Disabled") . "\n"
 
         allCorrect := (Primary.Value = ControlGetEnabled(Dep1)) &&
-        (Primary.Value = ControlGetEnabled(Dep2)) &&
-        (Primary.Value = ControlGetEnabled(Dep3))
+            (Primary.Value = ControlGetEnabled(Dep2)) &&
+            (Primary.Value = ControlGetEnabled(Dep3))
 
         result .= "\nDependencies: " . (allCorrect ? "✓ Correct" : "✗ Incorrect") . "\n"
         ResultsEdit.Value := result
@@ -233,8 +233,8 @@ Example5() {
 ;==============================================================================
 
 /**
-* Track state changes over time
-*/
+ * Track state changes over time
+ */
 Example6() {
     MyGui := Gui("+Resize", "Example 6: State History Tracker")
     MyGui.Add("Text", "w500", "Track state change history:")
@@ -274,8 +274,8 @@ Example6() {
 ;==============================================================================
 
 /**
-* Query multiple control states
-*/
+ * Query multiple control states
+ */
 Example7() {
     MyGui := Gui("+Resize", "Example 7: Batch State Query")
     MyGui.Add("Text", "w500", "Batch state query:")
@@ -297,7 +297,7 @@ Example7() {
 
     Randomize(*) {
         for name, ctrl in controls
-        ctrl.Enabled := (Random(0, 1) = 1)
+            ctrl.Enabled := (Random(0, 1) = 1)
         ResultsEdit.Value := "States randomized\n" . ResultsEdit.Value
     }
 
@@ -309,7 +309,7 @@ Example7() {
             enabled := ControlGetEnabled(ctrl)
             result .= Format("{:<15} {:>10}", name . ":", enabled ? "Enabled" : "Disabled") . "\n"
             if (enabled)
-            enabledCount++
+                enabledCount++
         }
 
         result .= "\n" . enabledCount . "/" . controls.Count . " controls enabled\n"
@@ -327,13 +327,13 @@ MainGui := Gui("+Resize", "Examples - Main Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Parent-Child State Check",
-"Example 2: State Pattern Detector",
-"Example 3: State Comparison",
-"Example 4: State Validation",
-"Example 5: Dependency Checker",
-"Example 6: State History Tracker",
-"Example 7: Batch State Query"
+    "Example 1: Parent-Child State Check",
+    "Example 2: State Pattern Detector",
+    "Example 3: State Comparison",
+    "Example 4: State Validation",
+    "Example 5: Dependency Checker",
+    "Example 6: State History Tracker",
+    "Example 7: Batch State Query"
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

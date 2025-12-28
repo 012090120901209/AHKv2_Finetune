@@ -2,13 +2,13 @@
 #SingleInstance Force
 
 /**
-* Destructors - Resource Cleanup with __Delete
-*
-* Demonstrates automatic resource cleanup using __Delete method
-* for file handles, timers, and temporary resources.
-*
-* Source: AHK_Notes/Classes/class-destructors.md
-*/
+ * Destructors - Resource Cleanup with __Delete
+ * 
+ * Demonstrates automatic resource cleanup using __Delete method
+ * for file handles, timers, and temporary resources.
+ * 
+ * Source: AHK_Notes/Classes/class-destructors.md
+ */
 
 ; Test 1: File handle cleanup
 MsgBox("Test 1: File Handle Cleanup", , "T2")
@@ -40,8 +40,8 @@ MsgBox("Test 3: Temporary File Cleanup", , "T2")
 MsgBox("Temp file automatically deleted!", , "T2")
 
 /**
-* ManagedFile - Auto-closing file wrapper
-*/
+ * ManagedFile - Auto-closing file wrapper
+ */
 class ManagedFile {
     handle := 0
     path := ""
@@ -56,16 +56,16 @@ class ManagedFile {
     }
 
     /**
-    * Write line to file
-    */
+     * Write line to file
+     */
     WriteLine(text) {
         if (this.handle)
-        this.handle.WriteLine(text)
+            this.handle.WriteLine(text)
     }
 
     /**
-    * Destructor - Automatically closes file
-    */
+     * Destructor - Automatically closes file
+     */
     __Delete() {
         if (this.handle) {
             try {
@@ -80,8 +80,8 @@ class ManagedFile {
 }
 
 /**
-* ManagedTimer - Auto-stopping timer
-*/
+ * ManagedTimer - Auto-stopping timer
+ */
 class ManagedTimer {
     interval := 0
     timerFunc := 0
@@ -93,23 +93,23 @@ class ManagedTimer {
     }
 
     /**
-    * Start timer
-    */
+     * Start timer
+     */
     Start() {
         SetTimer(this.timerFunc, this.interval)
     }
 
     /**
-    * Timer tick callback
-    */
+     * Timer tick callback
+     */
     Tick() {
         this.tickCount++
         ToolTip("Timer tick: " this.tickCount)
     }
 
     /**
-    * Destructor - Automatically stops timer
-    */
+     * Destructor - Automatically stops timer
+     */
     __Delete() {
         if (this.timerFunc) {
             try {
@@ -121,8 +121,8 @@ class ManagedTimer {
 }
 
 /**
-* TempFile - Auto-deleting temporary file
-*/
+ * TempFile - Auto-deleting temporary file
+ */
 class TempFile {
     path := ""
 
@@ -139,8 +139,8 @@ class TempFile {
     }
 
     /**
-    * Destructor - Automatically deletes temp file
-    */
+     * Destructor - Automatically deletes temp file
+     */
     __Delete() {
         if (this.path && FileExist(this.path)) {
             try {
@@ -212,4 +212,5 @@ class TempFile {
         *    AHK uses reference counting
         *    When refcount = 0, destructor runs
         *    Circular refs prevent cleanup
-        */
+*/
+

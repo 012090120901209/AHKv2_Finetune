@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* FileMove() - Move/rename files
-*
-* Moves or renames one or more files.
-*/
+ * FileMove() - Move/rename files
+ * 
+ * Moves or renames one or more files.
+ */
 
 oldName := A_ScriptDir "\oldname.txt"
 newName := A_ScriptDir "\newname.txt"

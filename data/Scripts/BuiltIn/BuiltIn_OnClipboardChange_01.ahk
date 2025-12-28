@@ -1,67 +1,67 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 - OnClipboardChange: Clipboard Monitoring
-* ============================================================================
-*
-* This file demonstrates using OnClipboardChange to monitor and respond to
-* clipboard changes in real-time, including building clipboard monitors
-* and basic clipboard history.
-*
-* OnClipboardChange is a callback function that runs automatically whenever
-* the clipboard content changes.
-*
-* @file BuiltIn_OnClipboardChange_01.ahk
-* @version 2.0.0
-* @author AHK v2 Examples Collection
-* @date 2024-11-16
-*
-* TABLE OF CONTENTS:
-* ──────────────────────────────────────────────────────────────────────────
-* 1. Basic OnClipboardChange Usage
-* 2. Clipboard Change Logging
-* 3. Real-time Clipboard Monitor
-* 4. Clipboard Change Filtering
-* 5. Basic Clipboard History
-* 6. Clipboard Change Notifications
-* 7. Advanced Clipboard Watcher
-*
-* EXAMPLES SUMMARY:
-* ──────────────────────────────────────────────────────────────────────────
-* - Setting up clipboard change callbacks
-* - Logging clipboard changes
-* - Monitoring clipboard in real-time
-* - Filtering specific clipboard changes
-* - Building basic clipboard history
-* - Creating change notifications
-* - Advanced clipboard watching
-*
-* ============================================================================
-*/
+ * ============================================================================
+ * AutoHotkey v2 - OnClipboardChange: Clipboard Monitoring
+ * ============================================================================
+ * 
+ * This file demonstrates using OnClipboardChange to monitor and respond to
+ * clipboard changes in real-time, including building clipboard monitors
+ * and basic clipboard history.
+ * 
+ * OnClipboardChange is a callback function that runs automatically whenever
+ * the clipboard content changes.
+ * 
+ * @file BuiltIn_OnClipboardChange_01.ahk
+ * @version 2.0.0
+ * @author AHK v2 Examples Collection
+ * @date 2024-11-16
+ * 
+ * TABLE OF CONTENTS:
+ * ──────────────────────────────────────────────────────────────────────────
+ * 1. Basic OnClipboardChange Usage
+ * 2. Clipboard Change Logging
+ * 3. Real-time Clipboard Monitor
+ * 4. Clipboard Change Filtering
+ * 5. Basic Clipboard History
+ * 6. Clipboard Change Notifications
+ * 7. Advanced Clipboard Watcher
+ * 
+ * EXAMPLES SUMMARY:
+ * ──────────────────────────────────────────────────────────────────────────
+ * - Setting up clipboard change callbacks
+ * - Logging clipboard changes
+ * - Monitoring clipboard in real-time
+ * - Filtering specific clipboard changes
+ * - Building basic clipboard history
+ * - Creating change notifications
+ * - Advanced clipboard watching
+ * 
+ * ============================================================================
+ */
 
 ; ============================================================================
 ; Example 1: Basic OnClipboardChange Usage
 ; ============================================================================
 
 /**
-* Demonstrates basic OnClipboardChange setup and usage.
-*
-* @class BasicClipboardMonitor
-* @description Basic clipboard change monitoring
-*/
+ * Demonstrates basic OnClipboardChange setup and usage.
+ * 
+ * @class BasicClipboardMonitor
+ * @description Basic clipboard change monitoring
+ */
 
 class BasicClipboardMonitor {
     static enabled := false
     static changeCount := 0
 
     /**
-    * Enables clipboard monitoring
-    * @returns {void}
-    */
+     * Enables clipboard monitoring
+     * @returns {void}
+     */
     static Enable() {
         if (this.enabled)
-        return
+            return
 
         OnClipboardChange(ClipChanged)
         this.enabled := true
@@ -70,36 +70,36 @@ class BasicClipboardMonitor {
     }
 
     /**
-    * Disables clipboard monitoring
-    * @returns {void}
-    */
+     * Disables clipboard monitoring
+     * @returns {void}
+     */
     static Disable() {
         if (!this.enabled)
-        return
+            return
 
         OnClipboardChange(ClipChanged, 0)
         this.enabled := false
         TrayTip("Monitor Disabled",
-        "Stopped monitoring. Total changes: " . this.changeCount,
-        "Icon Info")
+            "Stopped monitoring. Total changes: " . this.changeCount,
+            "Icon Info")
     }
 
     /**
-    * Toggles clipboard monitoring
-    * @returns {void}
-    */
+     * Toggles clipboard monitoring
+     * @returns {void}
+     */
     static Toggle() {
         if (this.enabled)
-        this.Disable()
+            this.Disable()
         else
-        this.Enable()
+            this.Enable()
     }
 
     /**
-    * Handles clipboard changes
-    * @param {Integer} dataType - Type of data (0=empty, 1=text, 2=non-text)
-    * @returns {void}
-    */
+     * Handles clipboard changes
+     * @param {Integer} dataType - Type of data (0=empty, 1=text, 2=non-text)
+     * @returns {void}
+     */
     static OnChange(dataType) {
         this.changeCount++
 
@@ -112,8 +112,8 @@ class BasicClipboardMonitor {
         }
 
         TrayTip("Clipboard Changed #" . this.changeCount,
-        "Type: " . typeStr,
-        "Icon Info Mute")
+            "Type: " . typeStr,
+            "Icon Info Mute")
     }
 }
 
@@ -123,18 +123,18 @@ ClipChanged(DataType) {
 }
 
 ; Toggle monitoring
-F1::BasicClipboardMonitor.Toggle()
+F1:: BasicClipboardMonitor.Toggle()
 
 ; ============================================================================
 ; Example 2: Clipboard Change Logging
 ; ============================================================================
 
 /**
-* Demonstrates logging clipboard changes to file and memory.
-*
-* @class ClipboardLogger
-* @description Logs clipboard changes with details
-*/
+ * Demonstrates logging clipboard changes to file and memory.
+ * 
+ * @class ClipboardLogger
+ * @description Logs clipboard changes with details
+ */
 
 class ClipboardLogger {
     static log := []
@@ -143,10 +143,10 @@ class ClipboardLogger {
     static logFilePath := A_ScriptDir . "\clipboard_log.txt"
 
     /**
-    * Logs a clipboard change
-    * @param {Integer} dataType - Type of data
-    * @returns {void}
-    */
+     * Logs a clipboard change
+     * @param {Integer} dataType - Type of data
+     * @returns {void}
+     */
     static LogChange(dataType) {
         logEntry := Map()
         logEntry["timestamp"] := A_Now
@@ -154,122 +154,122 @@ class ClipboardLogger {
         logEntry["typeStr"] := this.GetTypeString(dataType)
 
         if (dataType = 1) {  ; Text
-        logEntry["content"] := A_Clipboard
-        logEntry["length"] := StrLen(A_Clipboard)
-    } else {
-        logEntry["content"] := ""
-        logEntry["length"] := 0
+            logEntry["content"] := A_Clipboard
+            logEntry["length"] := StrLen(A_Clipboard)
+        } else {
+            logEntry["content"] := ""
+            logEntry["length"] := 0
+        }
+
+        ; Add to memory log
+        this.log.Push(logEntry)
+
+        ; Limit log size
+        if (this.log.Length > this.maxLogSize)
+            this.log.RemoveAt(1)
+
+        ; Log to file if enabled
+        if (this.logToFile)
+            this.WriteToFile(logEntry)
     }
 
-    ; Add to memory log
-    this.log.Push(logEntry)
-
-    ; Limit log size
-    if (this.log.Length > this.maxLogSize)
-    this.log.RemoveAt(1)
-
-    ; Log to file if enabled
-    if (this.logToFile)
-    this.WriteToFile(logEntry)
-}
-
-/**
-* Gets type string from data type
-* @param {Integer} dataType - Data type code
-* @returns {String}
-*/
-static GetTypeString(dataType) {
-    switch dataType {
-        case 0: return "Empty"
-        case 1: return "Text"
-        case 2: return "Binary"
-        default: return "Unknown"
-    }
-}
-
-/**
-* Writes log entry to file
-* @param {Map} entry - Log entry
-* @returns {void}
-*/
-static WriteToFile(entry) {
-    timestamp := FormatTime(entry["timestamp"], "yyyy-MM-dd HH:mm:ss")
-    logLine := timestamp . " | " . entry["typeStr"]
-
-    if (entry["length"] > 0) {
-        preview := StrLen(entry["content"]) > 50
-        ? SubStr(entry["content"], 1, 50) . "..."
-        : entry["content"]
-        preview := StrReplace(preview, "`n", " ")
-        logLine .= " | " . preview
+    /**
+     * Gets type string from data type
+     * @param {Integer} dataType - Data type code
+     * @returns {String}
+     */
+    static GetTypeString(dataType) {
+        switch dataType {
+            case 0: return "Empty"
+            case 1: return "Text"
+            case 2: return "Binary"
+            default: return "Unknown"
+        }
     }
 
-    logLine .= "`n"
-
-    try {
-        FileAppend(logLine, this.logFilePath)
-    }
-}
-
-/**
-* Shows log GUI
-* @returns {void}
-*/
-static ShowLog() {
-    if (this.log.Length = 0) {
-        MsgBox("No clipboard changes logged yet!", "Log", "Icon Info")
-        return
-    }
-
-    gui := Gui("+Resize", "Clipboard Change Log")
-    gui.SetFont("s9")
-
-    lv := gui.Add("ListView", "w700 h400",
-    ["#", "Time", "Type", "Length", "Preview"])
-    lv.ModifyCol(1, 40)
-    lv.ModifyCol(2, 150)
-    lv.ModifyCol(3, 80)
-    lv.ModifyCol(4, 80)
-    lv.ModifyCol(5, 330)
-
-    ; Populate log (newest first)
-    Loop this.log.Length {
-        index := this.log.Length - A_Index + 1
-        entry := this.log[index]
-
-        timeStr := FormatTime(entry["timestamp"], "HH:mm:ss")
-        preview := ""
+    /**
+     * Writes log entry to file
+     * @param {Map} entry - Log entry
+     * @returns {void}
+     */
+    static WriteToFile(entry) {
+        timestamp := FormatTime(entry["timestamp"], "yyyy-MM-dd HH:mm:ss")
+        logLine := timestamp . " | " . entry["typeStr"]
 
         if (entry["length"] > 0) {
             preview := StrLen(entry["content"]) > 50
-            ? SubStr(entry["content"], 1, 50) . "..."
-            : entry["content"]
+                ? SubStr(entry["content"], 1, 50) . "..."
+                : entry["content"]
             preview := StrReplace(preview, "`n", " ")
+            logLine .= " | " . preview
         }
 
-        lv.Add("", index, timeStr, entry["typeStr"], entry["length"], preview)
+        logLine .= "`n"
+
+        try {
+            FileAppend(logLine, this.logFilePath)
+        }
     }
 
-    ; Buttons
-    btnClear := gui.Add("Button", "w100", "Clear Log")
-    btnClear.OnEvent("Click", (*) => this.ClearLog(gui))
+    /**
+     * Shows log GUI
+     * @returns {void}
+     */
+    static ShowLog() {
+        if (this.log.Length = 0) {
+            MsgBox("No clipboard changes logged yet!", "Log", "Icon Info")
+            return
+        }
 
-    btnClose := gui.Add("Button", "x+10 w100", "Close")
-    btnClose.OnEvent("Click", (*) => gui.Destroy())
+        gui := Gui("+Resize", "Clipboard Change Log")
+        gui.SetFont("s9")
 
-    gui.Show()
-}
+        lv := gui.Add("ListView", "w700 h400",
+            ["#", "Time", "Type", "Length", "Preview"])
+        lv.ModifyCol(1, 40)
+        lv.ModifyCol(2, 150)
+        lv.ModifyCol(3, 80)
+        lv.ModifyCol(4, 80)
+        lv.ModifyCol(5, 330)
 
-/**
-* Clears the log
-* @param {Object} gui - GUI to close
-* @returns {void}
-*/
-static ClearLog(gui) {
-    this.log := []
-    gui.Destroy()
-    MsgBox("Log cleared!", "Cleared", "Icon Info T2")
-}
+        ; Populate log (newest first)
+        Loop this.log.Length {
+            index := this.log.Length - A_Index + 1
+            entry := this.log[index]
+
+            timeStr := FormatTime(entry["timestamp"], "HH:mm:ss")
+            preview := ""
+
+            if (entry["length"] > 0) {
+                preview := StrLen(entry["content"]) > 50
+                    ? SubStr(entry["content"], 1, 50) . "..."
+                    : entry["content"]
+                preview := StrReplace(preview, "`n", " ")
+            }
+
+            lv.Add("", index, timeStr, entry["typeStr"], entry["length"], preview)
+        }
+
+        ; Buttons
+        btnClear := gui.Add("Button", "w100", "Clear Log")
+        btnClear.OnEvent("Click", (*) => this.ClearLog(gui))
+
+        btnClose := gui.Add("Button", "x+10 w100", "Close")
+        btnClose.OnEvent("Click", (*) => gui.Destroy())
+
+        gui.Show()
+    }
+
+    /**
+     * Clears the log
+     * @param {Object} gui - GUI to close
+     * @returns {void}
+     */
+    static ClearLog(gui) {
+        this.log := []
+        gui.Destroy()
+        MsgBox("Log cleared!", "Cleared", "Icon Info T2")
+    }
 }
 
 ; Setup logger callback
@@ -280,14 +280,14 @@ LogClipChanged(DataType) {
 }
 
 ; Show clipboard log
-F2::ClipboardLogger.ShowLog()
+F2:: ClipboardLogger.ShowLog()
 
 ; Toggle file logging
 ^!f:: {
     ClipboardLogger.logToFile := !ClipboardLogger.logToFile
     status := ClipboardLogger.logToFile ? "Enabled" : "Disabled"
     MsgBox("File logging " . status . "`n`nLog file: " . ClipboardLogger.logFilePath,
-    "File Logging", "Icon Info")
+        "File Logging", "Icon Info")
 }
 
 ; ============================================================================
@@ -295,11 +295,11 @@ F2::ClipboardLogger.ShowLog()
 ; ============================================================================
 
 /**
-* Demonstrates real-time clipboard monitoring with live display.
-*
-* @class RealtimeMonitor
-* @description Real-time clipboard monitor with GUI
-*/
+ * Demonstrates real-time clipboard monitoring with live display.
+ * 
+ * @class RealtimeMonitor
+ * @description Real-time clipboard monitor with GUI
+ */
 
 class RealtimeMonitor {
     static monitorGui := ""
@@ -308,9 +308,9 @@ class RealtimeMonitor {
     static changeCount := 0
 
     /**
-    * Shows monitor window
-    * @returns {void}
-    */
+     * Shows monitor window
+     * @returns {void}
+     */
     static ShowMonitor() {
         if (this.monitorGui) {
             this.monitorGui.Show()
@@ -322,7 +322,7 @@ class RealtimeMonitor {
 
         ; Statistics
         this.statsCtrl := this.monitorGui.Add("Text", "w500",
-        "Changes: 0 | Type: - | Size: 0")
+            "Changes: 0 | Type: - | Size: 0")
 
         ; Current clipboard content
         this.monitorGui.Add("Text", "w500", "Current Clipboard Content:")
@@ -343,13 +343,13 @@ class RealtimeMonitor {
     }
 
     /**
-    * Updates monitor display
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Updates monitor display
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static UpdateDisplay(dataType) {
         if (!this.monitorGui)
-        return
+            return
 
         this.changeCount++
 
@@ -363,8 +363,8 @@ class RealtimeMonitor {
 
         size := StrLen(A_Clipboard)
         this.statsCtrl.Value := "Changes: " . this.changeCount
-        . " | Type: " . typeStr
-        . " | Size: " . size . " chars"
+            . " | Type: " . typeStr
+            . " | Size: " . size . " chars"
 
         ; Update content
         if (dataType = 1) {
@@ -377,9 +377,9 @@ class RealtimeMonitor {
     }
 
     /**
-    * Clears statistics
-    * @returns {void}
-    */
+     * Clears statistics
+     * @returns {void}
+     */
     static ClearStats() {
         this.changeCount := 0
         this.UpdateDisplay(1)
@@ -392,41 +392,41 @@ MonitorChanged(DataType) {
 }
 
 ; Show real-time monitor
-F3::RealtimeMonitor.ShowMonitor()
+F3:: RealtimeMonitor.ShowMonitor()
 
 ; ============================================================================
 ; Example 4: Clipboard Change Filtering
 ; ============================================================================
 
 /**
-* Demonstrates filtering clipboard changes by type and content.
-*
-* @class ClipboardFilter
-* @description Filters clipboard changes
-*/
+ * Demonstrates filtering clipboard changes by type and content.
+ * 
+ * @class ClipboardFilter
+ * @description Filters clipboard changes
+ */
 
 class ClipboardFilter {
     static filters := Map()
     static matchLog := []
 
     /**
-    * Adds a filter
-    * @param {String} name - Filter name
-    * @param {Func} condition - Filter condition function
-    * @returns {void}
-    */
+     * Adds a filter
+     * @param {String} name - Filter name
+     * @param {Func} condition - Filter condition function
+     * @returns {void}
+     */
     static AddFilter(name, condition) {
         this.filters[name] := Map("condition", condition, "matches", 0)
     }
 
     /**
-    * Checks clipboard against filters
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Checks clipboard against filters
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static CheckFilters(dataType) {
         if (dataType != 1)  ; Only check text
-        return
+            return
 
         content := A_Clipboard
 
@@ -439,29 +439,29 @@ class ClipboardFilter {
     }
 
     /**
-    * Logs a filter match
-    * @param {String} filterName - Filter that matched
-    * @param {String} content - Matched content
-    * @returns {void}
-    */
+     * Logs a filter match
+     * @param {String} filterName - Filter that matched
+     * @param {String} content - Matched content
+     * @returns {void}
+     */
     static LogMatch(filterName, content) {
         this.matchLog.Push(Map(
-        "filter", filterName,
-        "content", content,
-        "timestamp", A_Now
+            "filter", filterName,
+            "content", content,
+            "timestamp", A_Now
         ))
 
         ; Limit log size
         if (this.matchLog.Length > 50)
-        this.matchLog.RemoveAt(1)
+            this.matchLog.RemoveAt(1)
 
         TrayTip("Filter Match", "Filter: " . filterName, "Icon Info Mute")
     }
 
     /**
-    * Shows filter statistics
-    * @returns {void}
-    */
+     * Shows filter statistics
+     * @returns {void}
+     */
     static ShowStats() {
         if (this.filters.Count = 0) {
             MsgBox("No filters defined!", "Filter Stats", "Icon Info")
@@ -488,16 +488,16 @@ class ClipboardFilter {
 
 ; Setup default filters
 ClipboardFilter.AddFilter("Contains URL",
-(text) => RegExMatch(text, "i)https?://"))
+    (text) => RegExMatch(text, "i)https?://"))
 
 ClipboardFilter.AddFilter("Contains Email",
-(text) => RegExMatch(text, "i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"))
+    (text) => RegExMatch(text, "i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"))
 
 ClipboardFilter.AddFilter("Long Text (>100 chars)",
-(text) => StrLen(text) > 100)
+    (text) => StrLen(text) > 100)
 
 ClipboardFilter.AddFilter("Contains Numbers",
-(text) => RegExMatch(text, "\d+"))
+    (text) => RegExMatch(text, "\d+"))
 
 ; Callback for filter checking
 OnClipboardChange(FilterChanged)
@@ -507,18 +507,18 @@ FilterChanged(DataType) {
 }
 
 ; Show filter stats
-F4::ClipboardFilter.ShowStats()
+F4:: ClipboardFilter.ShowStats()
 
 ; ============================================================================
 ; Example 5: Basic Clipboard History
 ; ============================================================================
 
 /**
-* Demonstrates basic clipboard history functionality.
-*
-* @class BasicClipboardHistory
-* @description Simple clipboard history manager
-*/
+ * Demonstrates basic clipboard history functionality.
+ * 
+ * @class BasicClipboardHistory
+ * @description Simple clipboard history manager
+ */
 
 class BasicClipboardHistory {
     static history := []
@@ -526,35 +526,35 @@ class BasicClipboardHistory {
     static enabled := true
 
     /**
-    * Adds item to history
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Adds item to history
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static AddToHistory(dataType) {
         if (!this.enabled)
-        return
+            return
 
         ; Only save text for basic history
         if (dataType != 1)
-        return
+            return
 
         content := A_Clipboard
 
         ; Don't add empty or duplicate (last item)
         if (content = "" || (this.history.Length > 0 && this.history[this.history.Length] = content))
-        return
+            return
 
         this.history.Push(content)
 
         ; Limit history size
         if (this.history.Length > this.maxHistory)
-        this.history.RemoveAt(1)
+            this.history.RemoveAt(1)
     }
 
     /**
-    * Shows history GUI
-    * @returns {void}
-    */
+     * Shows history GUI
+     * @returns {void}
+     */
     static ShowHistory() {
         if (this.history.Length = 0) {
             MsgBox("No clipboard history available!", "History", "Icon Info")
@@ -635,7 +635,7 @@ class BasicClipboardHistory {
 
     static ClearHistory(gui) {
         result := MsgBox("Clear all clipboard history?",
-        "Confirm", "YesNo Icon Question")
+            "Confirm", "YesNo Icon Question")
         if (result = "Yes") {
             this.history := []
             gui.Destroy()
@@ -652,18 +652,18 @@ HistoryChanged(DataType) {
 }
 
 ; Show history
-F5::BasicClipboardHistory.ShowHistory()
+F5:: BasicClipboardHistory.ShowHistory()
 
 ; ============================================================================
 ; Example 6: Clipboard Change Notifications
 ; ============================================================================
 
 /**
-* Demonstrates clipboard change notifications with customization.
-*
-* @class ClipboardNotifier
-* @description Customizable clipboard notifications
-*/
+ * Demonstrates clipboard change notifications with customization.
+ * 
+ * @class ClipboardNotifier
+ * @description Customizable clipboard notifications
+ */
 
 class ClipboardNotifier {
     static notifyOnChange := true
@@ -673,26 +673,26 @@ class ClipboardNotifier {
     static tooltipDuration := 2000
 
     /**
-    * Notifies on clipboard change
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Notifies on clipboard change
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static Notify(dataType) {
         if (!this.notifyOnChange)
-        return
+            return
 
         ; Check if we should notify for this type
         notifyType := ""
         switch dataType {
             case 0:
-            if (!this.notifyTypes["empty"]) return
-            notifyType := "empty"
+                if (!this.notifyTypes["empty"]) return
+                    notifyType := "empty"
             case 1:
-            if (!this.notifyTypes["text"]) return
-            notifyType := "text"
+                if (!this.notifyTypes["text"]) return
+                    notifyType := "text"
             case 2:
-            if (!this.notifyTypes["binary"]) return
-            notifyType := "binary"
+                if (!this.notifyTypes["binary"]) return
+                    notifyType := "binary"
         }
 
         ; Build notification message
@@ -710,50 +710,50 @@ class ClipboardNotifier {
     }
 
     /**
-    * Builds notification message
-    * @param {Integer} dataType - Data type
-    * @returns {String}
-    */
+     * Builds notification message
+     * @param {Integer} dataType - Data type
+     * @returns {String}
+     */
     static BuildMessage(dataType) {
         switch dataType {
             case 0:
-            return "Clipboard cleared"
+                return "Clipboard cleared"
             case 1:
-            preview := StrLen(A_Clipboard) > 50
-            ? SubStr(A_Clipboard, 1, 50) . "..."
-            : A_Clipboard
-            preview := StrReplace(preview, "`n", " ")
-            return preview
+                preview := StrLen(A_Clipboard) > 50
+                    ? SubStr(A_Clipboard, 1, 50) . "..."
+                : A_Clipboard
+                preview := StrReplace(preview, "`n", " ")
+                return preview
             case 2:
-            return "Binary/Image data copied"
+                return "Binary/Image data copied"
         }
         return "Unknown clipboard change"
     }
 
     /**
-    * Shows settings GUI
-    * @returns {void}
-    */
+     * Shows settings GUI
+     * @returns {void}
+     */
     static ShowSettings() {
         gui := Gui("+AlwaysOnTop", "Notification Settings")
         gui.SetFont("s10")
 
         gui.Add("Checkbox", "vNotifyEnabled Checked" . this.notifyOnChange,
-        "Enable notifications")
+            "Enable notifications")
 
         gui.Add("GroupBox", "w300 h100", "Notify on:")
         gui.Add("Checkbox", "xp+10 yp+25 vNotifyText Checked" . this.notifyTypes["text"],
-        "Text changes")
+            "Text changes")
         gui.Add("Checkbox", "vNotifyBinary Checked" . this.notifyTypes["binary"],
-        "Binary/Image changes")
+            "Binary/Image changes")
         gui.Add("Checkbox", "vNotifyEmpty Checked" . this.notifyTypes["empty"],
-        "Clipboard cleared")
+            "Clipboard cleared")
 
         gui.Add("GroupBox", "x10 y+20 w300 h80", "Notification Method:")
         gui.Add("Checkbox", "xp+10 yp+25 vUseTooltip Checked" . this.useTooltip,
-        "Use tooltip")
+            "Use tooltip")
         gui.Add("Checkbox", "vUseTrayTip Checked" . this.useTrayTip,
-        "Use tray tip")
+            "Use tray tip")
 
         btnSave := gui.Add("Button", "w100", "Save")
         btnSave.OnEvent("Click", (*) => this.SaveSettings(gui))
@@ -786,18 +786,18 @@ NotifyChanged(DataType) {
 }
 
 ; Show notification settings
-F6::ClipboardNotifier.ShowSettings()
+F6:: ClipboardNotifier.ShowSettings()
 
 ; ============================================================================
 ; Example 7: Advanced Clipboard Watcher
 ; ============================================================================
 
 /**
-* Advanced clipboard watcher with comprehensive features.
-*
-* @class AdvancedClipboardWatcher
-* @description Complete clipboard monitoring system
-*/
+ * Advanced clipboard watcher with comprehensive features.
+ * 
+ * @class AdvancedClipboardWatcher
+ * @description Complete clipboard monitoring system
+ */
 
 class AdvancedClipboardWatcher {
     static enabled := true
@@ -805,13 +805,13 @@ class AdvancedClipboardWatcher {
     static lastChange := 0
 
     /**
-    * Handles all clipboard changes
-    * @param {Integer} dataType - Data type
-    * @returns {void}
-    */
+     * Handles all clipboard changes
+     * @param {Integer} dataType - Data type
+     * @returns {void}
+     */
     static OnClipboardChange(dataType) {
         if (!this.enabled)
-        return
+            return
 
         ; Update statistics
         this.stats["total"]++
@@ -832,13 +832,13 @@ class AdvancedClipboardWatcher {
     }
 
     /**
-    * Shows comprehensive statistics
-    * @returns {void}
-    */
+     * Shows comprehensive statistics
+     * @returns {void}
+     */
     static ShowStats() {
         lastChangeStr := this.lastChange > 0
-        ? Round((A_TickCount - this.lastChange) / 1000, 1) . " seconds ago"
-        : "Never"
+            ? Round((A_TickCount - this.lastChange) / 1000, 1) . " seconds ago"
+            : "Never"
 
         msg := "Clipboard Watcher Statistics:`n`n"
         msg .= "Total Changes: " . this.stats["total"] . "`n"
@@ -860,7 +860,7 @@ WatcherChanged(DataType) {
 }
 
 ; Show advanced statistics
-F7::AdvancedClipboardWatcher.ShowStats()
+F7:: AdvancedClipboardWatcher.ShowStats()
 
 ; ============================================================================
 ; HELP AND INFORMATION

@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* WinMinimize() and WinMaximize() - Window state
-*
-* Minimize or maximize a window.
-*/
+ * WinMinimize() and WinMaximize() - Window state
+ * 
+ * Minimize or maximize a window.
+ */
 
 Run("notepad.exe")
 WinWait("ahk_class Notepad", , 2)

@@ -2,123 +2,123 @@
 #SingleInstance Force
 
 /**
-* Static Methods - Class-Level Functionality
-*
-* Demonstrates static methods that belong to the class rather than
-* instances. Useful for utility functions and factory patterns.
-*
-* Source: AHK_Notes/Classes/class-static-methods.md
-*/
+ * Static Methods - Class-Level Functionality
+ * 
+ * Demonstrates static methods that belong to the class rather than
+ * instances. Useful for utility functions and factory patterns.
+ * 
+ * Source: AHK_Notes/Classes/class-static-methods.md
+ */
 
 ; Test MathUtils static methods
 numbers := [10, 25, 30, 15, 20]
 
 MsgBox("MathUtils Static Methods:`n`n"
-. "Numbers: [" Join(numbers) "]`n`n"
-. "Average: " MathUtils.Average(numbers) "`n"
-. "Max: " MathUtils.Max(numbers) "`n"
-. "Min: " MathUtils.Min(numbers) "`n"
-. "Sum: " MathUtils.Sum(numbers), , "T5")
+    . "Numbers: [" Join(numbers) "]`n`n"
+    . "Average: " MathUtils.Average(numbers) "`n"
+    . "Max: " MathUtils.Max(numbers) "`n"
+    . "Min: " MathUtils.Min(numbers) "`n"
+    . "Sum: " MathUtils.Sum(numbers), , "T5")
 
 ; Test StringUtils static methods
 text := "Hello World"
 MsgBox("StringUtils Static Methods:`n`n"
-. "Text: '" text "'`n`n"
-. "Reverse: '" StringUtils.Reverse(text) "'`n"
-. "WordCount: " StringUtils.WordCount(text) "`n"
-. "IsPalindrome('racecar'): " StringUtils.IsPalindrome("racecar"), , "T5")
+    . "Text: '" text "'`n`n"
+    . "Reverse: '" StringUtils.Reverse(text) "'`n"
+    . "WordCount: " StringUtils.WordCount(text) "`n"
+    . "IsPalindrome('racecar'): " StringUtils.IsPalindrome("racecar"), , "T5")
 
 ; Test factory pattern with static method
 user1 := User.Create("Alice", "alice@example.com")
 user2 := User.Create("Bob", "bob@example.com")
 
 MsgBox("Factory Pattern:`n`n"
-. "Created " User.GetCount() " users:`n"
-. user1.GetInfo() "`n`n"
-. user2.GetInfo(), , "T5")
+    . "Created " User.GetCount() " users:`n"
+    . user1.GetInfo() "`n`n"
+    . user2.GetInfo(), , "T5")
 
 /**
-* MathUtils - Static utility methods for math operations
-*/
+ * MathUtils - Static utility methods for math operations
+ */
 class MathUtils {
     /**
-    * Calculate average of numbers
-    */
+     * Calculate average of numbers
+     */
     static Average(numbers) {
         if (numbers.Length == 0)
-        return 0
+            return 0
         return this.Sum(numbers) / numbers.Length
     }
 
     /**
-    * Find maximum value
-    */
+     * Find maximum value
+     */
     static Max(numbers) {
         if (numbers.Length == 0)
-        return 0
+            return 0
 
         max := numbers[1]
         for num in numbers {
             if (num > max)
-            max := num
+                max := num
         }
         return max
     }
 
     /**
-    * Find minimum value
-    */
+     * Find minimum value
+     */
     static Min(numbers) {
         if (numbers.Length == 0)
-        return 0
+            return 0
 
         min := numbers[1]
         for num in numbers {
             if (num < min)
-            min := num
+                min := num
         }
         return min
     }
 
     /**
-    * Calculate sum (used by Average)
-    */
+     * Calculate sum (used by Average)
+     */
     static Sum(numbers) {
         total := 0
         for num in numbers
-        total += num
+            total += num
         return total
     }
 }
 
 /**
-* StringUtils - Static utility methods for strings
-*/
+ * StringUtils - Static utility methods for strings
+ */
 class StringUtils {
     /**
-    * Reverse a string
-    */
+     * Reverse a string
+     */
     static Reverse(str) {
         reversed := ""
         Loop Parse, str
-        reversed := A_LoopField reversed
+            reversed := A_LoopField reversed
         return reversed
     }
 
     /**
-    * Count words in text
-    */
+     * Count words in text
+     */
     static WordCount(text) {
         count := 0
         Loop Parse, text, " `t`n`r"
-        if (StrLen(Trim(A_LoopField)) > 0)
-        count++
+            if (StrLen(Trim(A_LoopField)) > 0)
+                count++
         return count
     }
 
     /**
-    * Check if string is palindrome
-    */
+     * Check if string is palindrome
+     */
     static IsPalindrome(str) {
         cleaned := StrReplace(StrLower(str), " ", "")
         return cleaned == this.Reverse(cleaned)
@@ -126,8 +126,8 @@ class StringUtils {
 }
 
 /**
-* User - Class with static factory method
-*/
+ * User - Class with static factory method
+ */
 class User {
     static _count := 0  ; Static property (shared across all instances)
 
@@ -142,30 +142,30 @@ class User {
     }
 
     /**
-    * Static factory method
-    */
+     * Static factory method
+     */
     static Create(name, email) {
         return User(name, email)
     }
 
     /**
-    * Get total user count (static)
-    */
+     * Get total user count (static)
+     */
     static GetCount() {
         return this._count
     }
 
     /**
-    * Instance method
-    */
+     * Instance method
+     */
     GetInfo() {
         return "User #" this.id ": " this.name " (" this.email ")"
     }
 }
 
 /**
-* Join helper function
-*/
+ * Join helper function
+ */
 Join(arr, delimiter := ", ") {
     result := ""
     for index, value in arr {
@@ -223,4 +223,5 @@ Join(arr, delimiter := ", ") {
             *    }
             *    Centralized object creation
             *    Can add validation, logging
-            */
+*/
+

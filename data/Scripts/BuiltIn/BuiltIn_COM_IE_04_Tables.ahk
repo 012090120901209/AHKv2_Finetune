@@ -1,18 +1,18 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_COM_IE_04_Tables.ahk
-*
-* DESCRIPTION:
-* Table extraction and manipulation in IE using COM.
-*
-* FEATURES:
-* - Reading table data
-* - Extracting rows and cells
-* - Table navigation
-* - Data extraction
-* - Table modification
-*/
+ * BuiltIn_COM_IE_04_Tables.ahk
+ * 
+ * DESCRIPTION:
+ * Table extraction and manipulation in IE using COM.
+ * 
+ * FEATURES:
+ * - Reading table data
+ * - Extracting rows and cells
+ * - Table navigation
+ * - Data extraction
+ * - Table modification
+ */
 
 Example1_ReadTable() {
     MsgBox("Example 1: Read Table Data")
@@ -55,7 +55,7 @@ Example3_IterateRows() {
         table := ie.Document.getElementById("t")
         output := "Rows:`n"
         Loop table.rows.length
-        output .= "Row " A_Index "`n"
+            output .= "Row " A_Index "`n"
         MsgBox(output)
     } Catch as err {
         MsgBox("Error: " err.Message)
@@ -149,6 +149,6 @@ ShowMenu() {
         default: MsgBox("Invalid!")
     }
     if MsgBox("Run another?", "Continue?", "YesNo") = "Yes"
-    ShowMenu()
+        ShowMenu()
 }
 ShowMenu()

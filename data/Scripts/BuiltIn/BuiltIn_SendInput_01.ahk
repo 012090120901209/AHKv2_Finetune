@@ -1,32 +1,32 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* AutoHotkey v2 SendInput Function - Fast Input
-* ============================================================================
-*
-* SendInput is the fastest and most reliable send mode. It buffers keystrokes
-* and plays them back at maximum speed, making it ideal for high-performance
-* automation, gaming macros, and rapid data entry.
-*
-* Syntax: SendInput(Keys)
-*
-* @module BuiltIn_SendInput_01
-* @author AutoHotkey Community
-* @version 2.0.0
-*/
+ * ============================================================================
+ * AutoHotkey v2 SendInput Function - Fast Input
+ * ============================================================================
+ * 
+ * SendInput is the fastest and most reliable send mode. It buffers keystrokes
+ * and plays them back at maximum speed, making it ideal for high-performance
+ * automation, gaming macros, and rapid data entry.
+ * 
+ * Syntax: SendInput(Keys)
+ * 
+ * @module BuiltIn_SendInput_01
+ * @author AutoHotkey Community
+ * @version 2.0.0
+ */
 
 ; ============================================================================
 ; Example 1: Speed Comparison
 ; ============================================================================
 
 /**
-* Compares SendInput speed vs Send.
-* Demonstrates performance difference.
-*
-* @example
-* ; Press F1 to test Send speed
-*/
+ * Compares SendInput speed vs Send.
+ * Demonstrates performance difference.
+ * 
+ * @example
+ * ; Press F1 to test Send speed
+ */
 F1:: {
     ToolTip("Testing Send (normal) in 2 seconds...")
     Sleep(2000)
@@ -46,9 +46,9 @@ F1:: {
 }
 
 /**
-* SendInput performance test
-* Shows faster execution speed
-*/
+ * SendInput performance test
+ * Shows faster execution speed
+ */
 F2:: {
     ToolTip("Testing SendInput (fast) in 2 seconds...")
     Sleep(2000)
@@ -68,9 +68,9 @@ F2:: {
 }
 
 /**
-* Buffered keystroke demonstration
-* SendInput buffers all keystrokes before sending
-*/
+ * Buffered keystroke demonstration
+ * SendInput buffers all keystrokes before sending
+ */
 F3:: {
     ToolTip("Buffered SendInput in 2 seconds...")
     Sleep(2000)
@@ -89,25 +89,25 @@ F3:: {
 ; ============================================================================
 
 /**
-* Rapid form filling with SendInput.
-* Demonstrates fast, reliable form automation.
-*
-* @description
-* Uses SendInput for maximum speed
-*/
+ * Rapid form filling with SendInput.
+ * Demonstrates fast, reliable form automation.
+ * 
+ * @description
+ * Uses SendInput for maximum speed
+ */
 ^F1:: {
     ToolTip("Fast form filling in 2 seconds...")
     Sleep(2000)
     ToolTip()
 
     formData := [
-    "John Doe",
-    "john.doe@example.com",
-    "555-1234",
-    "123 Main Street",
-    "Anytown",
-    "CA",
-    "12345"
+        "John Doe",
+        "john.doe@example.com",
+        "555-1234",
+        "123 Main Street",
+        "Anytown",
+        "CA",
+        "12345"
     ]
 
     for index, data in formData {
@@ -125,9 +125,9 @@ F3:: {
 }
 
 /**
-* Rapid spreadsheet data entry
-* Fills multiple cells quickly
-*/
+ * Rapid spreadsheet data entry
+ * Fills multiple cells quickly
+ */
 ^F2:: {
     ToolTip("Spreadsheet automation in 2 seconds...")
     Sleep(2000)
@@ -135,11 +135,11 @@ F3:: {
 
     ; Sample data rows
     data := [
-    ["Product A", "100", "29.99"],
-    ["Product B", "250", "19.99"],
-    ["Product C", "75", "39.99"],
-    ["Product D", "150", "24.99"],
-    ["Product E", "200", "34.99"]
+        ["Product A", "100", "29.99"],
+        ["Product B", "250", "19.99"],
+        ["Product C", "75", "39.99"],
+        ["Product D", "150", "24.99"],
+        ["Product E", "200", "34.99"]
     ]
 
     for rowIndex, row in data {
@@ -150,9 +150,9 @@ F3:: {
 
             ; Tab to next cell or Enter for new row
             if (colIndex < row.Length)
-            SendInput("{Tab}")
+                SendInput("{Tab}")
             else
-            SendInput("{Enter}")
+                SendInput("{Enter}")
 
             Sleep(50)
         }
@@ -168,12 +168,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* SendInput cannot be interrupted by user input.
-* Demonstrates guaranteed execution.
-*
-* @description
-* Keystrokes execute atomically without interruption
-*/
+ * SendInput cannot be interrupted by user input.
+ * Demonstrates guaranteed execution.
+ * 
+ * @description
+ * Keystrokes execute atomically without interruption
+ */
 ^F3:: {
     ToolTip("Uninterruptible input in 2 seconds...`n`nTry moving the mouse or pressing keys!")
     Sleep(2000)
@@ -190,9 +190,9 @@ F3:: {
 }
 
 /**
-* Critical operation protection
-* Ensures important sequences complete
-*/
+ * Critical operation protection
+ * Ensures important sequences complete
+ */
 ^F4:: {
     ToolTip("Critical operation in 2 seconds...")
     Sleep(2000)
@@ -216,12 +216,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Processes large amounts of text quickly.
-* Ideal for batch text operations.
-*
-* @description
-* Demonstrates high-volume text input
-*/
+ * Processes large amounts of text quickly.
+ * Ideal for batch text operations.
+ * 
+ * @description
+ * Demonstrates high-volume text input
+ */
 ^F5:: {
     ToolTip("Bulk text processing in 2 seconds...")
     Sleep(2000)
@@ -233,7 +233,7 @@ F3:: {
         SendInput("{Enter}")
 
         if (Mod(A_Index, 10) = 0)
-        ToolTip("Processing line " A_Index "...")
+            ToolTip("Processing line " A_Index "...")
     }
 
     ToolTip("Bulk processing complete!")
@@ -242,9 +242,9 @@ F3:: {
 }
 
 /**
-* Code template insertion
-* Quickly inserts code snippets
-*/
+ * Code template insertion
+ * Quickly inserts code snippets
+ */
 ^F6:: {
     ToolTip("Code template insertion in 2 seconds...")
     Sleep(2000)
@@ -273,12 +273,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Fast ability combo for gaming.
-* Executes skill sequence rapidly.
-*
-* @description
-* Gaming macro with precise timing
-*/
+ * Fast ability combo for gaming.
+ * Executes skill sequence rapidly.
+ * 
+ * @description
+ * Gaming macro with precise timing
+ */
 ^F7:: {
     ToolTip("Gaming combo macro activating in 2 seconds...")
     Sleep(2000)
@@ -304,9 +304,9 @@ F3:: {
 }
 
 /**
-* Rapid item usage macro
-* Uses consumables quickly
-*/
+ * Rapid item usage macro
+ * Uses consumables quickly
+ */
 ^F8:: {
     ToolTip("Item usage macro in 2 seconds...")
     Sleep(2000)
@@ -327,9 +327,9 @@ F3:: {
 }
 
 /**
-* Build order macro for strategy games
-* Executes building sequence
-*/
+ * Build order macro for strategy games
+ * Executes building sequence
+ */
 ^F9:: {
     ToolTip("Build order macro in 2 seconds...")
     Sleep(2000)
@@ -359,12 +359,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Multi-step command execution.
-* Ensures all steps execute in order.
-*
-* @description
-* Complex multi-command automation
-*/
+ * Multi-step command execution.
+ * Ensures all steps execute in order.
+ * 
+ * @description
+ * Complex multi-command automation
+ */
 ^F10:: {
     ToolTip("Command sequence in 2 seconds...")
     Sleep(2000)
@@ -400,7 +400,7 @@ F3:: {
         WinClose("Notepad")
         Sleep(200)
         if WinWait("Notepad", , 2)
-        SendInput("n")
+            SendInput("n")
     }
 }
 
@@ -409,12 +409,12 @@ F3:: {
 ; ============================================================================
 
 /**
-* Benchmarks SendInput performance.
-* Measures keystrokes per second.
-*
-* @description
-* Performance analysis
-*/
+ * Benchmarks SendInput performance.
+ * Measures keystrokes per second.
+ * 
+ * @description
+ * Performance analysis
+ */
 ^F11:: {
     ToolTip("Benchmark test starting in 2 seconds...")
     Sleep(2000)
@@ -429,7 +429,7 @@ F3:: {
         SendInput(testText)
 
         if (Mod(A_Index, 20) = 0)
-        ToolTip("Progress: " A_Index "/" iterations)
+            ToolTip("Progress: " A_Index "/" iterations)
     }
 
     elapsed := A_TickCount - startTime
@@ -447,9 +447,9 @@ F3:: {
 }
 
 /**
-* Comparison benchmark
-* Compares all send modes
-*/
+ * Comparison benchmark
+ * Compares all send modes
+ */
 ^F12:: {
     ToolTip("Full comparison benchmark starting in 2 seconds...")
     Sleep(2000)
@@ -465,7 +465,7 @@ F3:: {
     Loop iterations {
         Send(testText)
         if (Mod(A_Index, 10) = 0)
-        ToolTip("Testing Send: " A_Index "/" iterations)
+            ToolTip("Testing Send: " A_Index "/" iterations)
     }
     sendTime := A_TickCount - startTime
     results .= "Send:      " sendTime "ms`n"
@@ -477,7 +477,7 @@ F3:: {
     Loop iterations {
         SendInput(testText)
         if (Mod(A_Index, 10) = 0)
-        ToolTip("Testing SendInput: " A_Index "/" iterations)
+            ToolTip("Testing SendInput: " A_Index "/" iterations)
     }
     sendInputTime := A_TickCount - startTime
     results .= "SendInput: " sendInputTime "ms`n`n"
@@ -494,10 +494,10 @@ F3:: {
 ; ============================================================================
 
 /**
-* Fast multi-line sender
-*
-* @param {Array} lines - Array of text lines
-*/
+ * Fast multi-line sender
+ * 
+ * @param {Array} lines - Array of text lines
+ */
 FastSendLines(lines) {
     for index, line in lines {
         SendInput(line)
@@ -506,16 +506,16 @@ FastSendLines(lines) {
 }
 
 /**
-* Batch data sender with progress
-*
-* @param {Array} data - Array of data items
-* @param {String} separator - Separator between items
-*/
+ * Batch data sender with progress
+ * 
+ * @param {Array} data - Array of data items
+ * @param {String} separator - Separator between items
+ */
 BatchSend(data, separator := "{Tab}") {
     for index, item in data {
         SendInput(item)
         if (index < data.Length)
-        SendInput(separator)
+            SendInput(separator)
     }
 }
 
@@ -550,7 +550,7 @@ BatchSend(data, separator := "{Tab}") {
 ; Exit and Help
 ; ============================================================================
 
-Esc::ExitApp()
+Esc:: ExitApp()
 
 F12:: {
     helpText := "

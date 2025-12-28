@@ -1,38 +1,38 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_EnvGet_02_PathManagement.ahk
-*
-* DESCRIPTION:
-* Advanced PATH environment variable management and manipulation
-* techniques for dynamic program discovery and execution.
-*
-* FEATURES:
-* - PATH variable parsing and searching
-* - Executable location discovery
-* - Path validation and testing
-* - Dynamic PATH modification for script session
-* - Program launcher with PATH integration
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - EnvGet for PATH retrieval
-* - String splitting and parsing
-* - File existence checking
-* - Loop for path iteration
-* - Map for caching results
-*
-* LEARNING POINTS:
-* 1. PATH contains semicolon-separated directories
-* 2. Order matters - first match is used
-* 3. PATHEXT defines executable extensions
-* 4. Can search PATH for program locations
-* 5. Validate paths before use
-* 6. Cache PATH lookups for performance
-* 7. Session-only PATH modifications possible
-*/
+ * BuiltIn_EnvGet_02_PathManagement.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced PATH environment variable management and manipulation
+ * techniques for dynamic program discovery and execution.
+ * 
+ * FEATURES:
+ * - PATH variable parsing and searching
+ * - Executable location discovery
+ * - Path validation and testing
+ * - Dynamic PATH modification for script session
+ * - Program launcher with PATH integration
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - EnvGet for PATH retrieval
+ * - String splitting and parsing
+ * - File existence checking
+ * - Loop for path iteration
+ * - Map for caching results
+ * 
+ * LEARNING POINTS:
+ * 1. PATH contains semicolon-separated directories
+ * 2. Order matters - first match is used
+ * 3. PATHEXT defines executable extensions
+ * 4. Can search PATH for program locations
+ * 5. Validate paths before use
+ * 6. Cache PATH lookups for performance
+ * 7. Session-only PATH modifications possible
+ */
 
 ;===============================================================================
 ; EXAMPLE 1: PATH Directory Lister
@@ -55,7 +55,7 @@ Example1_PathDirectoryLister() {
     for index, dir in dirs {
         dir := Trim(dir)
         if !dir
-        continue
+            continue
 
         exists := DirExist(dir)
         fileCount := 0
@@ -63,7 +63,7 @@ Example1_PathDirectoryLister() {
         if exists {
             try {
                 Loop Files, dir "\*.*"
-                fileCount++
+                    fileCount++
             }
         }
 
@@ -111,7 +111,7 @@ Example2_ExecutableFinder() {
         for dir in dirs {
             dir := Trim(dir)
             if !dir || !DirExist(dir)
-            continue
+                continue
 
             ; Try with each extension
             for ext in exts {
@@ -120,7 +120,7 @@ Example2_ExecutableFinder() {
                 if FileExist(fullPath) {
                     try {
                         fileSize := FileGetSize(fullPath)
-                        results.Add(, dir, fullPath, Round(fileSize/1024, 2) " KB")
+                        results.Add(, dir, fullPath, Round(fileSize / 1024, 2) " KB")
                         found++
                     }
                 }
@@ -131,7 +131,7 @@ Example2_ExecutableFinder() {
             if FileExist(fullPath) && !InStr(progName, ".") {
                 try {
                     fileSize := FileGetSize(fullPath)
-                    results.Add(, dir, fullPath, Round(fileSize/1024, 2) " KB")
+                    results.Add(, dir, fullPath, Round(fileSize / 1024, 2) " KB")
                     found++
                 }
             }
@@ -140,9 +140,9 @@ Example2_ExecutableFinder() {
         results.ModifyCol()
 
         if !found
-        MsgBox("'" progName "' not found in PATH!", "Not Found")
+            MsgBox("'" progName "' not found in PATH!", "Not Found")
         else
-        MsgBox("Found " found " instance(s) of '" progName "'", "Search Complete")
+            MsgBox("Found " found " instance(s) of '" progName "'", "Search Complete")
     }
 
     btnSearch.OnEvent("Click", SearchPATH)
@@ -165,7 +165,7 @@ Example3_PathAnalyzer() {
     for dir in dirs {
         dir := Trim(dir)
         if !dir
-        continue
+            continue
 
         ; Normalize path
         normalized := StrReplace(dir, "/", "\")
@@ -173,7 +173,7 @@ Example3_PathAnalyzer() {
 
         if DirExist(normalized) {
             if duplicates.Has(normalized)
-            duplicates[normalized]++
+                duplicates[normalized]++
             else {
                 duplicates[normalized] := 1
                 valid.Push(normalized)
@@ -205,7 +205,7 @@ Example3_PathAnalyzer() {
     dupInfo := ""
     for path, count in duplicates {
         if count > 1
-        dupInfo .= path " (appears " count " times)`n"
+            dupInfo .= path " (appears " count " times)`n"
     }
     gui.Add("Edit", "x20 y110 w480 h300 ReadOnly Multi", dupInfo)
 
@@ -233,7 +233,7 @@ Example4_ProgramVersions() {
         for dir in dirs {
             dir := Trim(dir)
             if !dir
-            continue
+                continue
 
             fullPath := dir "\" prog
 
@@ -242,7 +242,7 @@ Example4_ProgramVersions() {
 
                 ; Try to get version
                 try {
-                    result := RunWait('"' fullPath '" --version',, "Hide")
+                    result := RunWait('"' fullPath '" --version', , "Hide")
                     ; Would capture output in real implementation
                 }
 
@@ -291,7 +291,7 @@ Example5_QuickLauncher() {
 
     MsgBox("Right-click to show quick launch menu")
 
-    ~RButton::menu.Show()
+    ~RButton:: menu.Show()
 }
 
 ;===============================================================================
@@ -304,3 +304,4 @@ Example5_QuickLauncher() {
 ; Example3_PathAnalyzer()
 ; Example4_ProgramVersions()
 ; Example5_QuickLauncher()
+

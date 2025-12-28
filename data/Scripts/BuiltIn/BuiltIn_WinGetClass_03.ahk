@@ -1,26 +1,26 @@
 /**
-* @file BuiltIn_WinGetClass_03.ahk
-* @description Window class pattern matching, detection, and filtering examples using WinGetClass in AutoHotkey v2
-* @author AutoHotkey Foundation
-* @version 2.0
-* @date 2024-01-15
-*
-* @section EXAMPLES
-* Example 1: Advanced class pattern matching
-* Example 2: Class-based window picker
-* Example 3: Class history tracker
-* Example 4: Cross-application class mapper
-* Example 5: Class-based window rules engine
-* Example 6: Window class validator
-*
-* @section FEATURES
-* - Pattern matching
-* - Window selection
-* - History tracking
-* - Cross-app mapping
-* - Rules engine
-* - Validation
-*/
+ * @file BuiltIn_WinGetClass_03.ahk
+ * @description Window class pattern matching, detection, and filtering examples using WinGetClass in AutoHotkey v2
+ * @author AutoHotkey Foundation
+ * @version 2.0
+ * @date 2024-01-15
+ * 
+ * @section EXAMPLES
+ * Example 1: Advanced class pattern matching
+ * Example 2: Class-based window picker
+ * Example 3: Class history tracker
+ * Example 4: Cross-application class mapper
+ * Example 5: Class-based window rules engine
+ * Example 6: Window class validator
+ * 
+ * @section FEATURES
+ * - Pattern matching
+ * - Window selection
+ * - History tracking
+ * - Cross-app mapping
+ * - Rules engine
+ * - Validation
+ */
 
 #Requires AutoHotkey v2.0
 
@@ -29,51 +29,51 @@
 ; ========================================
 
 /**
-* @class PatternMatcher
-* @description Advanced pattern matching for window classes
-*/
+ * @class PatternMatcher
+ * @description Advanced pattern matching for window classes
+ */
 class PatternMatcher {
     /**
-    * @method Match
-    * @description Match window class against pattern
-    * @param className Class name to test
-    * @param pattern Pattern to match (supports wildcards and regex)
-    * @param mode Match mode (wildcard, regex, exact)
-    * @returns {Boolean} True if matches
-    */
+     * @method Match
+     * @description Match window class against pattern
+     * @param className Class name to test
+     * @param pattern Pattern to match (supports wildcards and regex)
+     * @param mode Match mode (wildcard, regex, exact)
+     * @returns {Boolean} True if matches
+     */
     static Match(className, pattern, mode := "wildcard") {
         switch mode {
             case "exact":
-            return className = pattern
+                return className = pattern
 
             case "wildcard":
-            ; Convert wildcard to regex
-            regexPattern := "^" RegExReplace(RegExReplace(pattern, "\.", "\."), "\*", ".*") "$"
-            return className ~= regexPattern
+                ; Convert wildcard to regex
+                regexPattern := "^" RegExReplace(RegExReplace(pattern, "\.", "\."), "\*", ".*") "$"
+                return className ~= regexPattern
 
             case "regex":
-            return className ~= pattern
+                return className ~= pattern
 
             case "contains":
-            return InStr(className, pattern) > 0
+                return InStr(className, pattern) > 0
 
             case "starts":
-            return SubStr(className, 1, StrLen(pattern)) = pattern
+                return SubStr(className, 1, StrLen(pattern)) = pattern
 
             case "ends":
-            return SubStr(className, -StrLen(pattern) + 1) = pattern
+                return SubStr(className, -StrLen(pattern) + 1) = pattern
         }
 
         return false
     }
 
     /**
-    * @method FindByPattern
-    * @description Find all windows matching a class pattern
-    * @param pattern Pattern to match
-    * @param mode Match mode
-    * @returns {Array} Matching windows
-    */
+     * @method FindByPattern
+     * @description Find all windows matching a class pattern
+     * @param pattern Pattern to match
+     * @param mode Match mode
+     * @returns {Array} Matching windows
+     */
     static FindByPattern(pattern, mode := "wildcard") {
         matches := []
         allWindows := WinGetList()
@@ -97,13 +97,13 @@ class PatternMatcher {
     }
 
     /**
-    * @method MatchMultiple
-    * @description Match against multiple patterns
-    * @param className Class to test
-    * @param patterns Array of patterns
-    * @param matchAll Require all patterns to match (AND logic)
-    * @returns {Boolean} True if matches
-    */
+     * @method MatchMultiple
+     * @description Match against multiple patterns
+     * @param className Class to test
+     * @param patterns Array of patterns
+     * @param matchAll Require all patterns to match (AND logic)
+     * @returns {Boolean} True if matches
+     */
     static MatchMultiple(className, patterns, matchAll := false) {
         matchCount := 0
 
@@ -125,11 +125,11 @@ class PatternMatcher {
     }
 
     /**
-    * @method CreateSmartFilter
-    * @description Create a smart filter from multiple criteria
-    * @param criteria Filter criteria object
-    * @returns {Func} Filter function
-    */
+     * @method CreateSmartFilter
+     * @description Create a smart filter from multiple criteria
+     * @param criteria Filter criteria object
+     * @returns {Func} Filter function
+     */
     static CreateSmartFilter(criteria) {
         Filter(className) {
             ; Include patterns
@@ -142,7 +142,7 @@ class PatternMatcher {
                     }
                 }
                 if !matched
-                return false
+                    return false
             }
 
             ; Exclude patterns
@@ -173,7 +173,7 @@ class PatternMatcher {
                     }
                 }
                 if !hasPrefix
-                return false
+                    return false
             }
 
             return true
@@ -186,7 +186,7 @@ class PatternMatcher {
 ^+f:: {
     pattern := InputBox("Enter class pattern (* for wildcard):", "Pattern Match", "w300").Value
     if pattern = ""
-    return
+        return
 
     matches := PatternMatcher.FindByPattern(pattern, "wildcard")
 
@@ -199,11 +199,11 @@ class PatternMatcher {
 
     for i, win in matches {
         if i > 10
-        break
+            break
 
         output .= win.Class "`n"
         if win.Title != ""
-        output .= "  " win.Title "`n"
+            output .= "  " win.Title "`n"
         output .= "  " win.Process "`n`n"
     }
 
@@ -215,18 +215,18 @@ class PatternMatcher {
 ; ========================================
 
 /**
-* @class WindowPicker
-* @description Interactive window picker by class
-*/
+ * @class WindowPicker
+ * @description Interactive window picker by class
+ */
 class WindowPicker {
     static pickerGui := ""
     static selectedWindow := 0
 
     /**
-    * @method ShowPicker
-    * @description Show window picker GUI
-    * @param filterClass Optional class filter
-    */
+     * @method ShowPicker
+     * @description Show window picker GUI
+     * @param filterClass Optional class filter
+     */
     static ShowPicker(filterClass := "") {
         this.selectedWindow := 0
 
@@ -270,9 +270,9 @@ class WindowPicker {
     }
 
     /**
-    * @method OnSelect
-    * @description Handle window selection
-    */
+     * @method OnSelect
+     * @description Handle window selection
+     */
     static OnSelect() {
         lv := this.pickerGui["WindowList"]
         selected := lv.GetNext()
@@ -289,11 +289,11 @@ class WindowPicker {
     }
 
     /**
-    * @method PickByClassGroup
-    * @description Pick window from a specific class group
-    * @param classGroup Group of related classes
-    * @returns {Integer} Selected window ID
-    */
+     * @method PickByClassGroup
+     * @description Pick window from a specific class group
+     * @param classGroup Group of related classes
+     * @returns {Integer} Selected window ID
+     */
     static PickByClassGroup(classGroup) {
         this.selectedWindow := 0
 
@@ -334,9 +334,9 @@ class WindowPicker {
 ; ========================================
 
 /**
-* @class ClassHistory
-* @description Track window class activation history
-*/
+ * @class ClassHistory
+ * @description Track window class activation history
+ */
 class ClassHistory {
     static history := []
     static maxHistory := 100
@@ -344,9 +344,9 @@ class ClassHistory {
     static trackTimer := 0
 
     /**
-    * @method StartTracking
-    * @description Begin tracking window class history
-    */
+     * @method StartTracking
+     * @description Begin tracking window class history
+     */
     static StartTracking() {
         this.tracking := true
         this.trackTimer := SetTimer(() => this.RecordActive(), 1000)
@@ -354,9 +354,9 @@ class ClassHistory {
     }
 
     /**
-    * @method StopTracking
-    * @description Stop tracking
-    */
+     * @method StopTracking
+     * @description Stop tracking
+     */
     static StopTracking() {
         this.tracking := false
         if this.trackTimer {
@@ -367,9 +367,9 @@ class ClassHistory {
     }
 
     /**
-    * @method RecordActive
-    * @description Record currently active window class
-    */
+     * @method RecordActive
+     * @description Record currently active window class
+     */
     static RecordActive() {
         try {
             className := WinGetClass("A")
@@ -407,13 +407,13 @@ class ClassHistory {
     }
 
     /**
-    * @method GetStatistics
-    * @description Get usage statistics
-    * @returns {Object} Statistics
-    */
+     * @method GetStatistics
+     * @description Get usage statistics
+     * @returns {Object} Statistics
+     */
     static GetStatistics() {
         if this.history.Length = 0 {
-            return {Error: "No history data"}
+            return { Error: "No history data" }
         }
 
         classTime := Map()
@@ -448,19 +448,19 @@ class ClassHistory {
     }
 
     /**
-    * @method ExportHistory
-    * @description Export history to text
-    * @returns {String} Formatted history
-    */
+     * @method ExportHistory
+     * @description Export history to text
+     * @returns {String} Formatted history
+     */
     static ExportHistory() {
         output := "=== Window Class History ===`n`n"
 
         for i, entry in this.history {
             output .= FormatTime(entry.Time, "HH:mm:ss") " - " entry.Class
             if entry.Title != ""
-            output .= " (" entry.Title ")"
+                output .= " (" entry.Title ")"
             if entry.Duration > 0
-            output .= " [" entry.Duration "s]"
+                output .= " [" entry.Duration "s]"
             output .= "`n"
         }
 
@@ -494,27 +494,27 @@ class ClassHistory {
 ; ========================================
 
 /**
-* @class ClassMapper
-* @description Map similar functions across different application classes
-*/
+ * @class ClassMapper
+ * @description Map similar functions across different application classes
+ */
 class ClassMapper {
     static mappings := Map()
 
     /**
-    * @method MapAction
-    * @description Map an action to multiple application classes
-    * @param actionName Name of the action
-    * @param classActions Map of class to action function
-    */
+     * @method MapAction
+     * @description Map an action to multiple application classes
+     * @param actionName Name of the action
+     * @param classActions Map of class to action function
+     */
     static MapAction(actionName, classActions) {
         this.mappings[actionName] := classActions
     }
 
     /**
-    * @method ExecuteAction
-    * @description Execute mapped action for current window class
-    * @param actionName Action to execute
-    */
+     * @method ExecuteAction
+     * @description Execute mapped action for current window class
+     * @param actionName Action to execute
+     */
     static ExecuteAction(actionName) {
         if !this.mappings.Has(actionName) {
             MsgBox("Action not mapped: " actionName, "Error", "IconX")
@@ -541,9 +541,9 @@ class ClassMapper {
     }
 
     /**
-    * @method CreateCommonMappings
-    * @description Create mappings for common actions
-    */
+     * @method CreateCommonMappings
+     * @description Create mappings for common actions
+     */
     static CreateCommonMappings() {
         ; New Tab action
         newTabActions := Map()
@@ -577,19 +577,19 @@ ClassMapper.CreateCommonMappings()
 ; ========================================
 
 /**
-* @class RulesEngine
-* @description Apply rules to windows based on their class
-*/
+ * @class RulesEngine
+ * @description Apply rules to windows based on their class
+ */
 class RulesEngine {
     static rules := []
 
     /**
-    * @method AddRule
-    * @description Add a window rule
-    * @param classPattern Class pattern to match
-    * @param conditions Additional conditions
-    * @param actions Actions to apply
-    */
+     * @method AddRule
+     * @description Add a window rule
+     * @param classPattern Class pattern to match
+     * @param conditions Additional conditions
+     * @param actions Actions to apply
+     */
     static AddRule(classPattern, conditions, actions) {
         this.rules.Push({
             ClassPattern: classPattern,
@@ -601,10 +601,10 @@ class RulesEngine {
     }
 
     /**
-    * @method EvaluateWindow
-    * @description Evaluate and apply rules to a window
-    * @param WinTitle Window identifier
-    */
+     * @method EvaluateWindow
+     * @description Evaluate and apply rules to a window
+     * @param WinTitle Window identifier
+     */
     static EvaluateWindow(WinTitle := "A") {
         try {
             className := WinGetClass(WinTitle)
@@ -632,12 +632,12 @@ class RulesEngine {
     }
 
     /**
-    * @method CheckConditions
-    * @description Check if conditions are met
-    * @param WinTitle Window identifier
-    * @param conditions Conditions to check
-    * @returns {Boolean} True if all conditions met
-    */
+     * @method CheckConditions
+     * @description Check if conditions are met
+     * @param WinTitle Window identifier
+     * @param conditions Conditions to check
+     * @returns {Boolean} True if all conditions met
+     */
     static CheckConditions(WinTitle, conditions) {
         ; Title contains
         if conditions.HasOwnProp("TitleContains") {
@@ -665,16 +665,16 @@ class RulesEngine {
     }
 
     /**
-    * @method ApplyActions
-    * @description Apply actions to window
-    * @param WinTitle Window identifier
-    * @param actions Actions to apply
-    */
+     * @method ApplyActions
+     * @description Apply actions to window
+     * @param WinTitle Window identifier
+     * @param actions Actions to apply
+     */
     static ApplyActions(WinTitle, actions) {
         ; Position
         if actions.HasOwnProp("Position") {
             WinMove(actions.Position.X, actions.Position.Y,
-            actions.Position.Width, actions.Position.Height, WinTitle)
+                actions.Position.Width, actions.Position.Height, WinTitle)
         }
 
         ; Transparency
@@ -699,16 +699,16 @@ class RulesEngine {
     }
 
     /**
-    * @method CreateExampleRules
-    * @description Create example rules
-    */
+     * @method CreateExampleRules
+     * @description Create example rules
+     */
     static CreateExampleRules() {
         ; Rule: Make all dialogs always on top
-        this.AddRule("#32770", {}, {AlwaysOnTop: true})
+        this.AddRule("#32770", {}, { AlwaysOnTop: true })
 
         ; Rule: Position Notepad windows
         this.AddRule("Notepad", {}, {
-            Position: {X: 100, Y: 100, Width: 800, Height: 600}
+            Position: { X: 100, Y: 100, Width: 800, Height: 600 }
         })
 
         TrayTip("Example rules created", "Rules Engine", "Icon!")
@@ -720,17 +720,17 @@ class RulesEngine {
 ; ========================================
 
 /**
-* @class ClassValidator
-* @description Validate window classes against specifications
-*/
+ * @class ClassValidator
+ * @description Validate window classes against specifications
+ */
 class ClassValidator {
     /**
-    * @method Validate
-    * @description Validate a window class
-    * @param className Class to validate
-    * @param spec Validation specification
-    * @returns {Object} Validation result
-    */
+     * @method Validate
+     * @description Validate a window class
+     * @param className Class to validate
+     * @param spec Validation specification
+     * @returns {Object} Validation result
+     */
     static Validate(className, spec) {
         errors := []
         warnings := []

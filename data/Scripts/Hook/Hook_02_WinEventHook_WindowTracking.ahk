@@ -2,24 +2,24 @@
 #SingleInstance Force
 
 /**
-* WinEventHook - Window Creation/Destruction Tracking
-*
-* Demonstrates using WinEventHook to track window lifecycle.
-* Maintains a map of all open windows and detects specific applications.
-*
-* Source: AHK_Notes/Snippets/WinEventHook.md
-*/
+ * WinEventHook - Window Creation/Destruction Tracking
+ * 
+ * Demonstrates using WinEventHook to track window lifecycle.
+ * Maintains a map of all open windows and detects specific applications.
+ * 
+ * Source: AHK_Notes/Snippets/WinEventHook.md
+ */
 
 ; Initialize global window tracking map
 global gOpenWindows := Map()
 
 ; Populate with currently existing windows
 for hwnd in WinGetList()
-try gOpenWindows[hwnd] := {
-    title: WinGetTitle(hwnd),
-    class: WinGetClass(hwnd),
-    processName: WinGetProcessName(hwnd)
-}
+    try gOpenWindows[hwnd] := {
+        title: WinGetTitle(hwnd),
+        class: WinGetClass(hwnd),
+        processName: WinGetProcessName(hwnd)
+    }
 
 ; Event constants
 global EVENT_OBJECT_CREATE := 0x8000
@@ -31,15 +31,15 @@ global INDEXID_CONTAINER := 0
 hook := WinEventHook(HandleWinEvent, EVENT_OBJECT_CREATE, EVENT_OBJECT_DESTROY)
 
 MsgBox("Window tracking active!`n`n"
-. "Currently tracking " gOpenWindows.Count " windows.`n`n"
-. "Try opening/closing Notepad to see detection.", , "T5")
+    . "Currently tracking " gOpenWindows.Count " windows.`n`n"
+    . "Try opening/closing Notepad to see detection.", , "T5")
 
 Persistent()
 
 /**
-* Window Event Handler
-* Tracks window creation and destruction
-*/
+ * Window Event Handler
+ * Tracks window creation and destruction
+ */
 HandleWinEvent(hWinEventHook, event, hwnd, idObject, idChild, idEventThread, dwmsEventTime) {
     ; Use Critical to prevent interruptions
     Critical -1
@@ -63,8 +63,8 @@ HandleWinEvent(hWinEventHook, event, hwnd, idObject, idChild, idEventThread, dwm
                 ; Special notification for Notepad
                 if (gOpenWindows[hwnd].processName = "notepad.exe") {
                     ToolTip("Notepad window created!`n"
-                    . "Title: " gOpenWindows[hwnd].title "`n"
-                    . "Total windows: " gOpenWindows.Count)
+                        . "Title: " gOpenWindows[hwnd].title "`n"
+                        . "Total windows: " gOpenWindows.Count)
                     SetTimer(() => ToolTip(), -3000)
                 }
             }
@@ -78,8 +78,8 @@ HandleWinEvent(hWinEventHook, event, hwnd, idObject, idChild, idEventThread, dwm
             ; Special notification for Notepad
             if (windowInfo.processName = "notepad.exe") {
                 ToolTip("Notepad window destroyed!`n"
-                . "Title: " windowInfo.title "`n"
-                . "Remaining windows: " (gOpenWindows.Count - 1))
+                    . "Title: " windowInfo.title "`n"
+                    . "Remaining windows: " (gOpenWindows.Count - 1))
                 SetTimer(() => ToolTip(), -3000)
             }
 
@@ -90,33 +90,33 @@ HandleWinEvent(hWinEventHook, event, hwnd, idObject, idChild, idEventThread, dwm
 }
 
 /**
-* WinEventHook Class Implementation
-*/
+ * WinEventHook Class Implementation
+ */
 class WinEventHook {
     __New(callback, eventMin?, eventMax?, winTitle := 0, PID := 0, skipOwnProcess := false) {
         if !HasMethod(callback)
-        throw ValueError("The callback argument must be a function", -1)
+            throw ValueError("The callback argument must be a function", -1)
         if !IsSet(eventMin)
-        eventMin := 0x00000001, eventMax := IsSet(eventMax) ? eventMax : 0x7fffffff
+            eventMin := 0x00000001, eventMax := IsSet(eventMax) ? eventMax : 0x7fffffff
         else if !IsSet(eventMax)
-        eventMax := eventMin
+            eventMax := eventMin
         this.callback := callback, this.winTitle := winTitle, this.flags := skipOwnProcess ? 2 : 0
         this.eventMin := eventMin, this.eventMax := eventMax, this.threadId := 0
         if winTitle != 0 {
             if !(this.winTitle := WinExist(winTitle))
-            throw TargetError("Window not found", -1)
+                throw TargetError("Window not found", -1)
             this.threadId := DllCall("GetWindowThreadProcessId", "Ptr", this.winTitle, "UInt*", &PID)
         }
         this.pCallback := CallbackCreate(callback, "C", 7)
         this.hHook := DllCall("SetWinEventHook", "UInt", eventMin, "UInt", eventMax, "Ptr", 0,
-        "Ptr", this.pCallback, "UInt", this.PID := PID,
-        "UInt", this.threadId, "UInt", this.flags)
+            "Ptr", this.pCallback, "UInt", this.PID := PID,
+            "UInt", this.threadId, "UInt", this.flags)
     }
     Stop() => this.__Delete()
     __Delete() {
         if (this.pCallback)
-        DllCall("UnhookWinEvent", "Ptr", this.hHook), CallbackFree(this.pCallback),
-        this.hHook := 0, this.pCallback := 0
+            DllCall("UnhookWinEvent", "Ptr", this.hHook), CallbackFree(this.pCallback),
+                this.hHook := 0, this.pCallback := 0
     }
 }
 
@@ -156,3 +156,4 @@ class WinEventHook {
 *    - Low CPU usage
 *    - Scales well with many windows
 */
+

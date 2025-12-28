@@ -4,10 +4,10 @@
 #Include <adash>
 
 /**
-* _.without() - Exclude values from array
-*
-* Creates an array excluding all given values.
-*/
+ * _.without() - Exclude values from array
+ * 
+ * Creates an array excluding all given values.
+ */
 
 result := _.without([2, 1, 2, 3], 1, 2)
 ; => [3]

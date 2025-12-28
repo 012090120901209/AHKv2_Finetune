@@ -1,67 +1,67 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_ImageSearch_02.ahk
-*
-* DESCRIPTION:
-* Advanced ImageSearch for automation, game bots, and complex recognition tasks
-*
-* FEATURES:
-* - Multi-image automation sequences
-* - Game bot frameworks
-* - Smart retry mechanisms
-* - Image monitoring and triggers
-* - Complex automation workflows
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Advanced ImageSearch patterns
-* - State machine automation
-* - Conditional workflows
-* - Error recovery
-* - Performance optimization
-*
-* LEARNING POINTS:
-* 1. Build complex automation with image recognition
-* 2. Create robust retry and error handling
-* 3. Implement game bot logic
-* 4. Monitor screen state changes
-* 5. Optimize search performance
-* 6. Handle dynamic content
-*/
+ * BuiltIn_ImageSearch_02.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced ImageSearch for automation, game bots, and complex recognition tasks
+ * 
+ * FEATURES:
+ * - Multi-image automation sequences
+ * - Game bot frameworks
+ * - Smart retry mechanisms
+ * - Image monitoring and triggers
+ * - Complex automation workflows
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/ImageSearch.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Advanced ImageSearch patterns
+ * - State machine automation
+ * - Conditional workflows
+ * - Error recovery
+ * - Performance optimization
+ * 
+ * LEARNING POINTS:
+ * 1. Build complex automation with image recognition
+ * 2. Create robust retry and error handling
+ * 3. Implement game bot logic
+ * 4. Monitor screen state changes
+ * 5. Optimize search performance
+ * 6. Handle dynamic content
+ */
 
 ; ============================================================
 ; Example 1: Smart Image Search with Retry
 ; ============================================================
 
 /**
-* Image search with intelligent retry logic
-*/
+ * Image search with intelligent retry logic
+ */
 class SmartImageSearch {
     /**
-    * Search with automatic retry and variation adjustment
-    *
-    * @param {String} imagePath - Path to image
-    * @param {Integer} maxRetries - Maximum retry attempts
-    * @param {Integer} retryDelay - Delay between retries (ms)
-    * @returns {Object} - Search result with metadata
-    */
+     * Search with automatic retry and variation adjustment
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {Integer} maxRetries - Maximum retry attempts
+     * @param {Integer} retryDelay - Delay between retries (ms)
+     * @returns {Object} - Search result with metadata
+     */
     static SearchWithRetry(imagePath, maxRetries := 5, retryDelay := 1000) {
         if !FileExist(imagePath) {
             MsgBox("Image file not found: " imagePath, "Error", "Iconx")
-            return {found: false, x: 0, y: 0, attempts: 0, variation: 0}
+            return { found: false, x: 0, y: 0, attempts: 0, variation: 0 }
         }
 
         variations := [0, 10, 20, 30, 50]
 
         MsgBox("Smart search starting:`n`n"
-        . "Image: " imagePath "`n"
-        . "Max retries: " maxRetries "`n"
-        . "Retry delay: " retryDelay "ms",
-        "Smart Search", "T1")
+            . "Image: " imagePath "`n"
+            . "Max retries: " maxRetries "`n"
+            . "Retry delay: " retryDelay "ms",
+            "Smart Search", "T1")
 
         attempts := 0
 
@@ -73,21 +73,21 @@ class SmartImageSearch {
             searchString := variation > 0 ? "*" variation " " imagePath : imagePath
 
             ToolTip("Attempt " attempts " / " maxRetries "`n"
-            . "Variation: " variation)
+                . "Variation: " variation)
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                searchString) {
+                    searchString) {
                     ToolTip()
 
                     MsgBox("Image found!`n`n"
-                    . "Position: " x ", " y "`n"
-                    . "Attempts: " attempts "`n"
-                    . "Variation used: " variation,
-                    "Found", "Iconi")
+                        . "Position: " x ", " y "`n"
+                        . "Attempts: " attempts "`n"
+                        . "Variation used: " variation,
+                        "Found", "Iconi")
 
-                    return {found: true, x: x, y: y,
-                    attempts: attempts, variation: variation}
+                    return { found: true, x: x, y: y,
+                        attempts: attempts, variation: variation }
                 }
 
             } catch as err {
@@ -96,36 +96,36 @@ class SmartImageSearch {
             }
 
             if A_Index < maxRetries
-            Sleep(retryDelay)
+                Sleep(retryDelay)
         }
 
         ToolTip()
 
         MsgBox("Image not found after " maxRetries " attempts",
-        "Not Found", "Icon!")
+            "Not Found", "Icon!")
 
-        return {found: false, x: 0, y: 0, attempts: attempts, variation: 0}
+        return { found: false, x: 0, y: 0, attempts: attempts, variation: 0 }
     }
 
     /**
-    * Search with exponential backoff
-    */
+     * Search with exponential backoff
+     */
     static SearchWithBackoff(imagePath, maxRetries := 5) {
         if !FileExist(imagePath) {
-            return {found: false, x: 0, y: 0}
+            return { found: false, x: 0, y: 0 }
         }
 
         MsgBox("Searching with exponential backoff...",
-        "Searching", "T1")
+            "Searching", "T1")
 
         Loop maxRetries {
             delay := (2 ** (A_Index - 1)) * 1000  ; 1s, 2s, 4s, 8s, 16s
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                imagePath) {
+                    imagePath) {
                     MsgBox("Found on attempt " A_Index, "Found", "Iconi T1")
-                    return {found: true, x: x, y: y}
+                    return { found: true, x: x, y: y }
                 }
 
             } catch {
@@ -133,13 +133,13 @@ class SmartImageSearch {
             }
 
             if A_Index < maxRetries {
-                ToolTip("Attempt " A_Index " failed, waiting " (delay/1000) "s...")
+                ToolTip("Attempt " A_Index " failed, waiting " (delay / 1000) "s...")
                 Sleep(delay)
             }
         }
 
         ToolTip()
-        return {found: false, x: 0, y: 0}
+        return { found: false, x: 0, y: 0 }
     }
 }
 
@@ -152,12 +152,12 @@ class SmartImageSearch {
 ; ============================================================
 
 /**
-* State machine driven by image recognition
-*/
+ * State machine driven by image recognition
+ */
 class ImageStateMachine {
     /**
-    * Initialize state machine
-    */
+     * Initialize state machine
+     */
     __New() {
         this.currentState := "idle"
         this.states := Map()
@@ -165,13 +165,13 @@ class ImageStateMachine {
     }
 
     /**
-    * Add a state with image trigger and action
-    *
-    * @param {String} stateName - State name
-    * @param {String} triggerImage - Image that triggers this state
-    * @param {Func} action - Action to perform
-    * @param {String} nextState - Next state after action
-    */
+     * Add a state with image trigger and action
+     * 
+     * @param {String} stateName - State name
+     * @param {String} triggerImage - Image that triggers this state
+     * @param {Func} action - Action to perform
+     * @param {String} nextState - Next state after action
+     */
     AddState(stateName, triggerImage, action, nextState) {
         this.states[stateName] := {
             trigger: triggerImage,
@@ -180,20 +180,20 @@ class ImageStateMachine {
         }
 
         MsgBox("State added: " stateName "`n"
-        . "Next state: " nextState,
-        "State Added", "Iconi T1")
+            . "Next state: " nextState,
+            "State Added", "Iconi T1")
     }
 
     /**
-    * Run the state machine
-    */
+     * Run the state machine
+     */
     Run(maxIterations := 20) {
         this.isRunning := true
 
         MsgBox("State machine starting...`n`n"
-        . "States: " this.states.Count "`n"
-        . "Max iterations: " maxIterations,
-        "Starting", "Iconi T1")
+            . "States: " this.states.Count "`n"
+            . "Max iterations: " maxIterations,
+            "Starting", "Iconi T1")
 
         iteration := 0
 
@@ -213,10 +213,10 @@ class ImageStateMachine {
             if FileExist(state.trigger) {
                 try {
                     if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                    state.trigger) {
+                        state.trigger) {
                         ; Execute action
                         if IsSet(state.action) and state.action != ""
-                        state.action.Call(x, y)
+                            state.action.Call(x, y)
 
                         ; Transition to next state
                         this.currentState := state.next
@@ -237,14 +237,14 @@ class ImageStateMachine {
         this.isRunning := false
 
         MsgBox("State machine stopped`n"
-        . "Final state: " this.currentState "`n"
-        . "Iterations: " iteration,
-        "Stopped", "Iconi")
+            . "Final state: " this.currentState "`n"
+            . "Iterations: " iteration,
+            "Stopped", "Iconi")
     }
 
     /**
-    * Stop the state machine
-    */
+     * Stop the state machine
+     */
     Stop() {
         this.isRunning := false
     }
@@ -265,12 +265,12 @@ class ImageStateMachine {
 ; ============================================================
 
 /**
-* Comprehensive game bot using image recognition
-*/
+ * Comprehensive game bot using image recognition
+ */
 class GameBot {
     /**
-    * Initialize game bot
-    */
+     * Initialize game bot
+     */
     __New(gameWindowTitle := "") {
         this.gameWindow := gameWindowTitle
         this.isRunning := false
@@ -284,23 +284,23 @@ class GameBot {
     }
 
     /**
-    * Register an image for the bot to recognize
-    *
-    * @param {String} name - Image identifier
-    * @param {String} path - Path to image file
-    */
+     * Register an image for the bot to recognize
+     * 
+     * @param {String} name - Image identifier
+     * @param {String} path - Path to image file
+     */
     RegisterImage(name, path) {
         this.images[name] := path
         MsgBox("Registered: " name, "Bot", "Iconi T1")
     }
 
     /**
-    * Add action to bot routine
-    *
-    * @param {String} imageName - Image to look for
-    * @param {String} actionType - Action type (click, doubleclick, wait)
-    * @param {Integer} priority - Action priority (higher = more important)
-    */
+     * Add action to bot routine
+     * 
+     * @param {String} imageName - Image to look for
+     * @param {String} actionType - Action type (click, doubleclick, wait)
+     * @param {Integer} priority - Action priority (higher = more important)
+     */
     AddAction(imageName, actionType := "click", priority := 1) {
         this.actions.Push({
             image: imageName,
@@ -310,8 +310,8 @@ class GameBot {
     }
 
     /**
-    * Start bot
-    */
+     * Start bot
+     */
     Start() {
         if this.isRunning {
             MsgBox("Bot already running", "Info", "Iconi T1")
@@ -324,10 +324,10 @@ class GameBot {
         this.stats.errors := 0
 
         MsgBox("Game Bot Starting!`n`n"
-        . "Registered images: " this.images.Count "`n"
-        . "Actions: " this.actions.Length "`n`n"
-        . "Press ESC to stop",
-        "Bot Active", "Iconi")
+            . "Registered images: " this.images.Count "`n"
+            . "Actions: " this.actions.Length "`n`n"
+            . "Press ESC to stop",
+            "Bot Active", "Iconi")
 
         ; Setup ESC to stop
         Hotkey("Esc", (*) => this.Stop())
@@ -337,11 +337,11 @@ class GameBot {
     }
 
     /**
-    * Stop bot
-    */
+     * Stop bot
+     */
     Stop() {
         if !this.isRunning
-        return
+            return
 
         this.isRunning := false
         SetTimer(() => this.BotLoop(), 0)
@@ -353,11 +353,11 @@ class GameBot {
     }
 
     /**
-    * Main bot loop
-    */
+     * Main bot loop
+     */
     BotLoop() {
         if !this.isRunning
-        return
+            return
 
         ; Check for ESC key
         if GetKeyState("Esc", "P") {
@@ -368,7 +368,7 @@ class GameBot {
         ; Focus game window if specified
         if this.gameWindow != "" {
             if WinExist(this.gameWindow)
-            WinActivate(this.gameWindow)
+                WinActivate(this.gameWindow)
         }
 
         ; Sort actions by priority
@@ -377,22 +377,22 @@ class GameBot {
         ; Try each action
         for action in sortedActions {
             if !this.images.Has(action.image)
-            continue
+                continue
 
             imagePath := this.images[action.image]
 
             if !FileExist(imagePath)
-            continue
+                continue
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                "*20 " imagePath) {
+                    "*20 " imagePath) {
                     ; Perform action
                     this.PerformAction(x, y, action.type)
                     this.stats.actions++
 
                     ToolTip("Bot Action: " action.type " on " action.image "`n"
-                    . "Total actions: " this.stats.actions)
+                        . "Total actions: " this.stats.actions)
 
                     Sleep(500)  ; Prevent spam
                     return  ; One action per loop
@@ -405,30 +405,30 @@ class GameBot {
     }
 
     /**
-    * Perform bot action
-    */
+     * Perform bot action
+     */
     PerformAction(x, y, actionType) {
         switch actionType {
             case "click":
-            Click(x, y)
+                Click(x, y)
 
             case "doubleclick":
-            Click(x, y, 2)
+                Click(x, y, 2)
 
             case "rightclick":
-            Click(x, y, "Right")
+                Click(x, y, "Right")
 
             case "hover":
-            MouseMove(x, y)
+                MouseMove(x, y)
 
             default:
-            Click(x, y)
+                Click(x, y)
         }
     }
 
     /**
-    * Sort actions by priority
-    */
+     * Sort actions by priority
+     */
     SortActionsByPriority() {
         sorted := this.actions.Clone()
 
@@ -450,18 +450,18 @@ class GameBot {
     }
 
     /**
-    * Show bot statistics
-    */
+     * Show bot statistics
+     */
     ShowStats() {
         runtime := Round((A_TickCount - this.stats.startTime) / 1000, 1)
         apm := runtime > 0 ? Round((this.stats.actions / runtime) * 60, 1) : 0
 
         MsgBox("BOT STATISTICS:`n`n"
-        . "Runtime: " runtime " seconds`n"
-        . "Actions performed: " this.stats.actions "`n"
-        . "Errors: " this.stats.errors "`n"
-        . "Actions per minute: " apm,
-        "Bot Stats", "Iconi")
+            . "Runtime: " runtime " seconds`n"
+            . "Actions performed: " this.stats.actions "`n"
+            . "Errors: " this.stats.errors "`n"
+            . "Actions per minute: " apm,
+            "Bot Stats", "Iconi")
     }
 }
 
@@ -482,27 +482,27 @@ class GameBot {
 ; ============================================================
 
 /**
-* Monitor screen for images and trigger actions
-*/
+ * Monitor screen for images and trigger actions
+ */
 class ImageMonitor {
     /**
-    * Initialize monitor
-    */
+     * Initialize monitor
+     */
     __New() {
         this.monitors := []
         this.isActive := false
     }
 
     /**
-    * Add image to monitor
-    *
-    * @param {String} imagePath - Path to image
-    * @param {Func} callback - Function to call when found
-    * @param {String} name - Monitor name
-    */
+     * Add image to monitor
+     * 
+     * @param {String} imagePath - Path to image
+     * @param {Func} callback - Function to call when found
+     * @param {String} name - Monitor name
+     */
     AddMonitor(imagePath, callback, name := "") {
         if name = ""
-        name := "Monitor" (this.monitors.Length + 1)
+            name := "Monitor" (this.monitors.Length + 1)
 
         this.monitors.Push({
             name: name,
@@ -515,8 +515,8 @@ class ImageMonitor {
     }
 
     /**
-    * Start monitoring
-    */
+     * Start monitoring
+     */
     Start(checkInterval := 1000) {
         if this.isActive {
             MsgBox("Already monitoring", "Info", "Iconi T1")
@@ -526,16 +526,16 @@ class ImageMonitor {
         this.isActive := true
 
         MsgBox("Image monitoring started`n`n"
-        . "Monitors: " this.monitors.Length "`n"
-        . "Check interval: " checkInterval "ms",
-        "Monitoring", "Iconi")
+            . "Monitors: " this.monitors.Length "`n"
+            . "Check interval: " checkInterval "ms",
+            "Monitoring", "Iconi")
 
         SetTimer(() => this.CheckMonitors(), checkInterval)
     }
 
     /**
-    * Stop monitoring
-    */
+     * Stop monitoring
+     */
     Stop() {
         this.isActive := false
         SetTimer(() => this.CheckMonitors(), 0)
@@ -544,19 +544,19 @@ class ImageMonitor {
     }
 
     /**
-    * Check all monitored images
-    */
+     * Check all monitored images
+     */
     CheckMonitors() {
         if !this.isActive
-        return
+            return
 
         for monitor in this.monitors {
             if !FileExist(monitor.image)
-            continue
+                continue
 
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                "*30 " monitor.image) {
+                    "*30 " monitor.image) {
                     currentTime := A_TickCount
 
                     ; Avoid trigger spam (minimum 5 second gap)
@@ -565,7 +565,7 @@ class ImageMonitor {
 
                         ; Call callback
                         if IsSet(monitor.callback)
-                        monitor.callback.Call(x, y, monitor.name)
+                            monitor.callback.Call(x, y, monitor.name)
                     }
                 }
 
@@ -591,15 +591,15 @@ class ImageMonitor {
 ; ============================================================
 
 /**
-* Execute complex workflows based on image recognition
-*/
+ * Execute complex workflows based on image recognition
+ */
 class WorkflowAutomation {
     /**
-    * Execute a sequence of image-based steps
-    *
-    * @param {Array} steps - Array of workflow steps
-    * @returns {Object} - Execution results
-    */
+     * Execute a sequence of image-based steps
+     * 
+     * @param {Array} steps - Array of workflow steps
+     * @returns {Object} - Execution results
+     */
     static ExecuteSequence(steps) {
         results := {
             totalSteps: steps.Length,
@@ -609,8 +609,8 @@ class WorkflowAutomation {
         }
 
         MsgBox("Starting workflow sequence`n`n"
-        . "Total steps: " steps.Length,
-        "Workflow", "Iconi T1")
+            . "Total steps: " steps.Length,
+            "Workflow", "Iconi T1")
 
         for index, step in steps {
             ToolTip("Step " index " / " steps.Length ": " step.name)
@@ -623,8 +623,8 @@ class WorkflowAutomation {
             } else if step.required {
                 results.failed++
                 MsgBox("Required step failed: " step.name "`n`n"
-                . "Workflow aborted",
-                "Workflow Failed", "Iconx")
+                    . "Workflow aborted",
+                    "Workflow Failed", "Iconx")
                 break
             } else {
                 results.skipped++
@@ -638,308 +638,302 @@ class WorkflowAutomation {
     }
 
     /**
-    * Execute a single workflow step
-    */
+     * Execute a single workflow step
+     */
     static ExecuteStep(step) {
         if !FileExist(step.image)
-        return {success: false, reason: "Image not found"}
+            return { success: false, reason: "Image not found" }
 
         maxAttempts := step.retries ?? 3
 
         Loop maxAttempts {
             try {
                 if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                "*30 " step.image) {
+                    "*30 " step.image) {
                     ; Perform action
                     switch step.action {
                         case "click":
-                        Click(x + (step.offsetX ?? 0), y + (step.offsetY ?? 0))
+                            Click(x + (step.offsetX ?? 0), y + (step.offsetY ?? 0))
 
                         case "doubleclick":
-                        Click(x, y, 2)
+                            Click(x, y, 2)
 
                         case "wait":
-                        ; Just wait, no action
-
+                            ; Just wait, no action
                         default:
-                        Click(x, y)
+                            Click(x, y)
                     }
 
-                    return {success: true, x: x, y: y}
+                    return { success: true, x: x, y: y }
                 }
 
             } catch as err {
                 if A_Index = maxAttempts
-                return {success: false, reason: err.Message}
+                    return { success: false, reason: err.Message }
             }
 
             Sleep(step.retryDelay ?? 1000)
         }
 
-        return {success: false, reason: "Image not found after retries"}
+        return { success: false, reason: "Image not found after retries" }
     }
 
     /**
-    * Show workflow results
-    */
+     * Show workflow results
+     */
     static ShowWorkflowResults(results) {
         MsgBox("WORKFLOW RESULTS:`n`n"
-        . "Total steps: " results.totalSteps "`n"
-        . "Completed: " results.completed "`n"
-        . "Failed: " results.failed "`n"
-        . "Skipped: " results.skipped,
-        "Workflow Complete", "Iconi")
+            . "Total steps: " results.totalSteps "`n"
+            . "Completed: " results.completed "`n"
+            . "Failed: " results.failed "`n"
+            . "Skipped: " results.skipped,
+            "Workflow Complete", "Iconi")
     }
 
     /**
-    * Create a simple form-filling workflow
-    */
+     * Create a simple form-filling workflow
+     */
     static ExampleFormFill() {
-        workflow := [
-        {
+        workflow := [{
             name: "Click Name Field", image: "C:\Workflow\name_field.png",
-            action: "click", required: true, delay: 500},
-            {
+            action: "click", required: true, delay: 500 }, {
                 name: "Click Email Field", image: "C:\Workflow\email_field.png",
-                action: "click", required: true, delay: 500},
-                {
+                action: "click", required: true, delay: 500 }, {
                     name: "Click Submit", image: "C:\Workflow\submit_btn.png",
-                    action: "click", required: true, delay: 1000},
-                    {
+                    action: "click", required: true, delay: 1000 }, {
                         name: "Wait for Confirmation", image: "C:\Workflow\success.png",
-                        action: "wait", required: false, retries: 5, retryDelay: 2000}
-                        ]
+                        action: "wait", required: false, retries: 5, retryDelay: 2000 }
+        ]
 
-                        return this.ExecuteSequence(workflow)
-                    }
+        return this.ExecuteSequence(workflow)
+    }
+}
+
+; Test workflow
+; WorkflowAutomation.ExampleFormFill()
+
+; ============================================================
+; Example 6: Performance-Optimized Image Finder
+; ============================================================
+
+/**
+ * Optimized image searching techniques
+ */
+class OptimizedImageSearch {
+    /**
+     * Search in multiple regions (divide and conquer)
+     */
+    static SearchMultiRegion(imagePath, regions := "") {
+        if !FileExist(imagePath)
+            return { found: false, x: 0, y: 0 }
+
+        ; Default regions: divide screen into quadrants
+        if regions = "" {
+            halfW := A_ScreenWidth // 2
+            halfH := A_ScreenHeight // 2
+
+            regions := [{
+                x1: 0, y1: 0, x2: halfW, y2: halfH },              ; Top-left
+                {
+                    x1: halfW, y1: 0, x2: A_ScreenWidth, y2: halfH },  ; Top-right
+                {
+                    x1: 0, y1: halfH, x2: halfW, y2: A_ScreenHeight }, ; Bottom-left
+                {
+                    x1: halfW, y1: halfH, x2: A_ScreenWidth, y2: A_ScreenHeight } ; Bottom-right
+            ]
+        }
+
+        for region in regions {
+            try {
+                if ImageSearch(&x, &y, region.x1, region.y1,
+                    region.x2, region.y2, imagePath) {
+                    MsgBox("Found in region " A_Index "`n"
+                        . "Position: " x ", " y,
+                        "Found", "Iconi T1")
+
+                    return { found: true, x: x, y: y, region: A_Index }
                 }
 
-                ; Test workflow
-                ; WorkflowAutomation.ExampleFormFill()
+            } catch {
+                continue
+            }
+        }
 
-                ; ============================================================
-                ; Example 6: Performance-Optimized Image Finder
-                ; ============================================================
+        return { found: false, x: 0, y: 0, region: 0 }
+    }
 
-                /**
-                * Optimized image searching techniques
-                */
-                class OptimizedImageSearch {
-                    /**
-                    * Search in multiple regions (divide and conquer)
-                    */
-                    static SearchMultiRegion(imagePath, regions := "") {
-                        if !FileExist(imagePath)
-                        return {found: false, x: 0, y: 0}
+    /**
+     * Cached image search (stores last known position)
+     */
+    static cachedPositions := Map()
 
-                        ; Default regions: divide screen into quadrants
-                        if regions = "" {
-                            halfW := A_ScreenWidth // 2
-                            halfH := A_ScreenHeight // 2
+    static SearchWithCache(imagePath, searchRadius := 100) {
+        if !FileExist(imagePath)
+            return { found: false, x: 0, y: 0 }
 
-                            regions := [
-                            {
-                                x1: 0, y1: 0, x2: halfW, y2: halfH},              ; Top-left
-                                {
-                                    x1: halfW, y1: 0, x2: A_ScreenWidth, y2: halfH},  ; Top-right
-                                    {
-                                        x1: 0, y1: halfH, x2: halfW, y2: A_ScreenHeight}, ; Bottom-left
-                                        {
-                                            x1: halfW, y1: halfH, x2: A_ScreenWidth, y2: A_ScreenHeight} ; Bottom-right
-                                            ]
-                                        }
+        ; Check if we have cached position
+        if this.cachedPositions.Has(imagePath) {
+            cached := this.cachedPositions[imagePath]
 
-                                        for region in regions {
-                                            try {
-                                                if ImageSearch(&x, &y, region.x1, region.y1,
-                                                region.x2, region.y2, imagePath) {
-                                                    MsgBox("Found in region " A_Index "`n"
-                                                    . "Position: " x ", " y,
-                                                    "Found", "Iconi T1")
+            ; Search near last known position first
+            x1 := Max(0, cached.x - searchRadius)
+            y1 := Max(0, cached.y - searchRadius)
+            x2 := Min(A_ScreenWidth, cached.x + searchRadius)
+            y2 := Min(A_ScreenHeight, cached.y + searchRadius)
 
-                                                    return {found: true, x: x, y: y, region: A_Index}
-                                                }
+            try {
+                if ImageSearch(&x, &y, x1, y1, x2, y2, imagePath) {
+                    this.cachedPositions[imagePath] := { x: x, y: y }
+                    return { found: true, x: x, y: y, cached: true }
+                }
 
-                                            } catch {
-                                                continue
-                                            }
-                                        }
+            } catch {
+                ; Fall through to full search
+            }
+        }
 
-                                        return {found: false, x: 0, y: 0, region: 0}
-                                    }
+        ; Full screen search
+        try {
+            if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
+                imagePath) {
+                this.cachedPositions[imagePath] := { x: x, y: y }
+                return { found: true, x: x, y: y, cached: false }
+            }
 
-                                    /**
-                                    * Cached image search (stores last known position)
-                                    */
-                                    static cachedPositions := Map()
+        } catch {
+            return { found: false, x: 0, y: 0 }
+        }
 
-                                    static SearchWithCache(imagePath, searchRadius := 100) {
-                                        if !FileExist(imagePath)
-                                        return {found: false, x: 0, y: 0}
+        return { found: false, x: 0, y: 0 }
+    }
 
-                                        ; Check if we have cached position
-                                        if this.cachedPositions.Has(imagePath) {
-                                            cached := this.cachedPositions[imagePath]
+    /**
+     * Clear cache
+     */
+    static ClearCache() {
+        this.cachedPositions := Map()
+        MsgBox("Image search cache cleared", "Cache", "Iconi T1")
+    }
+}
 
-                                            ; Search near last known position first
-                                            x1 := Max(0, cached.x - searchRadius)
-                                            y1 := Max(0, cached.y - searchRadius)
-                                            x2 := Min(A_ScreenWidth, cached.x + searchRadius)
-                                            y2 := Min(A_ScreenHeight, cached.y + searchRadius)
+; Test optimized search
+; OptimizedImageSearch.SearchMultiRegion("C:\Images\button.png")
+; OptimizedImageSearch.SearchWithCache("C:\Images\logo.png", 100)
 
-                                            try {
-                                                if ImageSearch(&x, &y, x1, y1, x2, y2, imagePath) {
-                                                    this.cachedPositions[imagePath] := {x: x, y: y}
-                                                    return {found: true, x: x, y: y, cached: true}
-                                                }
+; ============================================================
+; Example 7: Image-Based Testing Framework
+; ============================================================
 
-                                            } catch {
-                                                ; Fall through to full search
-                                            }
-                                        }
+/**
+ * Automated testing using image recognition
+ */
+class ImageTestFramework {
+    /**
+     * Run a test suite
+     */
+    static RunTestSuite(tests) {
+        results := {
+            total: tests.Length,
+            passed: 0,
+            failed: 0,
+            errors: 0
+        }
 
-                                        ; Full screen search
-                                        try {
-                                            if ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                                            imagePath) {
-                                                this.cachedPositions[imagePath] := {x: x, y: y}
-                                                return {found: true, x: x, y: y, cached: false}
-                                            }
+        MsgBox("Running test suite`n`n"
+            . "Total tests: " tests.Length,
+            "Testing", "Iconi T1")
 
-                                        } catch {
-                                            return {found: false, x: 0, y: 0}
-                                        }
+        for index, test in tests {
+            ToolTip("Running test " index " / " tests.Length "`n"
+                . test.name)
 
-                                        return {found: false, x: 0, y: 0}
-                                    }
+            try {
+                if this.RunTest(test)
+                    results.passed++
+                else
+                    results.failed++
 
-                                    /**
-                                    * Clear cache
-                                    */
-                                    static ClearCache() {
-                                        this.cachedPositions := Map()
-                                        MsgBox("Image search cache cleared", "Cache", "Iconi T1")
-                                    }
-                                }
+            } catch as err {
+                results.errors++
+                MsgBox("Test error: " test.name "`n" err.Message,
+                    "Error", "Iconx T2")
+            }
 
-                                ; Test optimized search
-                                ; OptimizedImageSearch.SearchMultiRegion("C:\Images\button.png")
-                                ; OptimizedImageSearch.SearchWithCache("C:\Images\logo.png", 100)
+            Sleep(500)
+        }
 
-                                ; ============================================================
-                                ; Example 7: Image-Based Testing Framework
-                                ; ============================================================
+        ToolTip()
+        this.ShowTestResults(results)
 
-                                /**
-                                * Automated testing using image recognition
-                                */
-                                class ImageTestFramework {
-                                    /**
-                                    * Run a test suite
-                                    */
-                                    static RunTestSuite(tests) {
-                                        results := {
-                                            total: tests.Length,
-                                            passed: 0,
-                                            failed: 0,
-                                            errors: 0
-                                        }
+        return results
+    }
 
-                                        MsgBox("Running test suite`n`n"
-                                        . "Total tests: " tests.Length,
-                                        "Testing", "Iconi T1")
+    /**
+     * Run a single test
+     */
+    static RunTest(test) {
+        ; Setup
+        if IsSet(test.setup) and test.setup != ""
+            test.setup.Call()
 
-                                        for index, test in tests {
-                                            ToolTip("Running test " index " / " tests.Length "`n"
-                                            . test.name)
+        Sleep(200)
 
-                                            try {
-                                                if this.RunTest(test)
-                                                results.passed++
-                                                else
-                                                results.failed++
+        ; Execute
+        found := false
+        if FileExist(test.expectedImage) {
+            found := ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
+                "*30 " test.expectedImage)
+        }
 
-                                            } catch as err {
-                                                results.errors++
-                                                MsgBox("Test error: " test.name "`n" err.Message,
-                                                "Error", "Iconx T2")
-                                            }
+        ; Verify
+        passed := (found = test.shouldExist)
 
-                                            Sleep(500)
-                                        }
+        ; Cleanup
+        if IsSet(test.cleanup) and test.cleanup != ""
+            test.cleanup.Call()
 
-                                        ToolTip()
-                                        this.ShowTestResults(results)
+        ; Report
+        status := passed ? "PASS" : "FAIL"
+        ToolTip(status ": " test.name)
+        Sleep(500)
 
-                                        return results
-                                    }
+        return passed
+    }
 
-                                    /**
-                                    * Run a single test
-                                    */
-                                    static RunTest(test) {
-                                        ; Setup
-                                        if IsSet(test.setup) and test.setup != ""
-                                        test.setup.Call()
+    /**
+     * Show test results
+     */
+    static ShowTestResults(results) {
+        passRate := results.total > 0
+            ? Round((results.passed / results.total) * 100, 1)
+            : 0
 
-                                        Sleep(200)
+        MsgBox("TEST RESULTS:`n`n"
+            . "Total: " results.total "`n"
+            . "Passed: " results.passed "`n"
+            . "Failed: " results.failed "`n"
+            . "Errors: " results.errors "`n`n"
+            . "Pass Rate: " passRate "%",
+            "Test Results", results.failed = 0 ? "Iconi" : "Iconx")
+    }
+}
 
-                                        ; Execute
-                                        found := false
-                                        if FileExist(test.expectedImage) {
-                                            found := ImageSearch(&x, &y, 0, 0, A_ScreenWidth, A_ScreenHeight,
-                                            "*30 " test.expectedImage)
-                                        }
+; Example test suite
+; tests := [
+;     {name: "Verify Logo", expectedImage: "C:\Tests\logo.png",
+;      shouldExist: true},
+;     {name: "Verify No Error", expectedImage: "C:\Tests\error.png",
+;      shouldExist: false},
+;     {name: "Button Visible", expectedImage: "C:\Tests\button.png",
+;      shouldExist: true}
+; ]
+; ImageTestFramework.RunTestSuite(tests)
 
-                                        ; Verify
-                                        passed := (found = test.shouldExist)
+; ============================================================
+; Reference Information
+; ============================================================
 
-                                        ; Cleanup
-                                        if IsSet(test.cleanup) and test.cleanup != ""
-                                        test.cleanup.Call()
-
-                                        ; Report
-                                        status := passed ? "PASS" : "FAIL"
-                                        ToolTip(status ": " test.name)
-                                        Sleep(500)
-
-                                        return passed
-                                    }
-
-                                    /**
-                                    * Show test results
-                                    */
-                                    static ShowTestResults(results) {
-                                        passRate := results.total > 0
-                                        ? Round((results.passed / results.total) * 100, 1)
-                                        : 0
-
-                                        MsgBox("TEST RESULTS:`n`n"
-                                        . "Total: " results.total "`n"
-                                        . "Passed: " results.passed "`n"
-                                        . "Failed: " results.failed "`n"
-                                        . "Errors: " results.errors "`n`n"
-                                        . "Pass Rate: " passRate "%",
-                                        "Test Results", results.failed = 0 ? "Iconi" : "Iconx")
-                                    }
-                                }
-
-                                ; Example test suite
-                                ; tests := [
-                                ;     {name: "Verify Logo", expectedImage: "C:\Tests\logo.png",
-                                ;      shouldExist: true},
-                                ;     {name: "Verify No Error", expectedImage: "C:\Tests\error.png",
-                                ;      shouldExist: false},
-                                ;     {name: "Button Visible", expectedImage: "C:\Tests\button.png",
-                                ;      shouldExist: true}
-                                ; ]
-                                ; ImageTestFramework.RunTestSuite(tests)
-
-                                ; ============================================================
-                                ; Reference Information
-                                ; ============================================================
-
-                                info := "
+info := "
                                 (
                                 ADVANCED IMAGESEARCH TECHNIQUES:
 
@@ -1043,4 +1037,4 @@ class WorkflowAutomation {
                                 • User controls
                                 )"
 
-                                MsgBox(info, "Advanced ImageSearch Reference", "Icon!")
+MsgBox(info, "Advanced ImageSearch Reference", "Icon!")

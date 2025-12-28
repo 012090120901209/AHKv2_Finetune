@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Inherit_01_BasicUsage.ahk
-*
-* DESCRIPTION:
-* Demonstrates basic inheritance in AutoHotkey v2 using the 'extends' keyword.
-* Shows how child classes inherit properties and methods from parent classes,
-* and how to extend functionality while maintaining code reuse.
-*
-* FEATURES:
-* - Basic extends syntax
-* - Inheriting properties and methods
-* - Adding new members to child classes
-* - Single inheritance hierarchy
-* - Multi-level inheritance
-* - Accessing inherited members
-* - instanceof-like checks
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - extends keyword for inheritance
-* - Automatic inheritance of parent members
-* - Class hierarchy and type relationships
-* - HasBase() method for type checking
-* - Prototype chain navigation
-* - Method and property inheritance
-*
-* LEARNING POINTS:
-* 1. Inheritance enables code reuse
-* 2. Child classes automatically get parent members
-* 3. Child classes can add new functionality
-* 4. Use extends keyword to inherit
-* 5. Inheritance creates "is-a" relationships
-* 6. Multi-level inheritance is supported
-* 7. Type checking possible with HasBase()
-*/
+ * BuiltIn_OOP_Inherit_01_BasicUsage.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates basic inheritance in AutoHotkey v2 using the 'extends' keyword.
+ * Shows how child classes inherit properties and methods from parent classes,
+ * and how to extend functionality while maintaining code reuse.
+ * 
+ * FEATURES:
+ * - Basic extends syntax
+ * - Inheriting properties and methods
+ * - Adding new members to child classes
+ * - Single inheritance hierarchy
+ * - Multi-level inheritance
+ * - Accessing inherited members
+ * - instanceof-like checks
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - extends keyword for inheritance
+ * - Automatic inheritance of parent members
+ * - Class hierarchy and type relationships
+ * - HasBase() method for type checking
+ * - Prototype chain navigation
+ * - Method and property inheritance
+ * 
+ * LEARNING POINTS:
+ * 1. Inheritance enables code reuse
+ * 2. Child classes automatically get parent members
+ * 3. Child classes can add new functionality
+ * 4. Use extends keyword to inherit
+ * 5. Inheritance creates "is-a" relationships
+ * 6. Multi-level inheritance is supported
+ * 7. Type checking possible with HasBase()
+ */
 
 ; ========================================
 ; EXAMPLE 1: Simple Parent-Child Inheritance
@@ -267,8 +267,8 @@ class Rectangle extends Polygon {
 
     GetInfo() {
         return "Rectangle at " this.GetPosition() ", "
-        . this.Width "x" this.Height
-        . ", Area: " this.Area()
+            . this.Width "x" this.Height
+            . ", Area: " this.Area()
     }
 }
 
@@ -392,8 +392,8 @@ class Manager extends Employee {
 
     GetInfo() {
         return "Manager: " this.Name " (ID: " this.ID ")"
-        . "`nDepartment: " this.Department
-        . "`nTeam Size: " this.TeamSize
+            . "`nDepartment: " this.Department
+            . "`nTeam Size: " this.TeamSize
     }
 }
 
@@ -410,10 +410,10 @@ class Developer extends Employee {
         for lang in this.ProgrammingLanguages {
             langs .= lang
             if (A_Index < this.ProgrammingLanguages.Length)
-            langs .= ", "
+                langs .= ", "
         }
         return "Developer: " this.Name " (ID: " this.ID ")"
-        . "`nLanguages: " langs
+            . "`nLanguages: " langs
     }
 }
 
@@ -423,15 +423,15 @@ CheckEmployeeType(emp) {
 
     ; Check if instance has Employee as base
     if (emp.HasBase(Employee.Prototype))
-    result .= "- An Employee`n"
+        result .= "- An Employee`n"
 
     ; Check if instance has Manager as base
     if (emp.HasBase(Manager.Prototype))
-    result .= "- A Manager`n"
+        result .= "- A Manager`n"
 
     ; Check if instance has Developer as base
     if (emp.HasBase(Developer.Prototype))
-    result .= "- A Developer`n"
+        result .= "- A Developer`n"
 
     return result
 }
@@ -488,7 +488,7 @@ class MySQLConnection extends DatabaseConnection {
 
     Query(sql) {
         if (!this.Connected)
-        return "Not connected"
+            return "Not connected"
         return "Executing MySQL query: " sql
     }
 
@@ -509,7 +509,7 @@ class PostgreSQLConnection extends DatabaseConnection {
 
     Query(sql) {
         if (!this.Connected)
-        return "Not connected"
+            return "Not connected"
         return "Executing PostgreSQL query: " sql
     }
 
@@ -561,8 +561,8 @@ class Account {
 
     GetInfo() {
         return "Account: " this.AccountNumber
-        . "`nOwner: " this.Owner
-        . "`nBalance: $" this.Balance
+            . "`nOwner: " this.Owner
+            . "`nBalance: $" this.Balance
     }
 }
 
@@ -597,7 +597,7 @@ class CheckingAccount extends Account {
 
     WriteCheck(amount) {
         if (amount > (this.Balance + this.OverdraftLimit))
-        return "Insufficient funds (including overdraft)"
+            return "Insufficient funds (including overdraft)"
 
         this.Balance -= amount
         this.ChecksWritten++
@@ -626,12 +626,12 @@ MsgBox(savings.GetInfo())
 MsgBox(checking.GetInfo() "`nChecks Written: " checking.GetCheckCount())
 
 MsgBox("=== OOP Inheritance Basic Usage Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Basic extends syntax`n"
-. "- Inheriting properties and methods`n"
-. "- Adding new members in child classes`n"
-. "- Multi-level inheritance`n"
-. "- Inheriting static members`n"
-. "- Type checking with HasBase()`n"
-. "- Code reuse through inheritance`n"
-. "- Building class hierarchies")
+    . "This file demonstrated:`n"
+    . "- Basic extends syntax`n"
+    . "- Inheriting properties and methods`n"
+    . "- Adding new members in child classes`n"
+    . "- Multi-level inheritance`n"
+    . "- Inheriting static members`n"
+    . "- Type checking with HasBase()`n"
+    . "- Code reuse through inheritance`n"
+    . "- Building class hierarchies")

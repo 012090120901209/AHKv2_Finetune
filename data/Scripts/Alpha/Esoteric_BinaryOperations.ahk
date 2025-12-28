@@ -13,12 +13,12 @@ class BitField {
         this._value := 0
         this._size := size
     }
-    
+
     ; Get bit at position (0-indexed from right)
     GetBit(pos) {
         return (this._value >> pos) & 1
     }
-    
+
     ; Set bit at position
     SetBit(pos, value := 1) {
         if value
@@ -27,26 +27,26 @@ class BitField {
             this._value := this._value & ~(1 << pos)
         return this
     }
-    
+
     ; Toggle bit
     ToggleBit(pos) {
         this._value := this._value ^ (1 << pos)
         return this
     }
-    
+
     ; Get range of bits
     GetBits(start, count) {
         mask := (1 << count) - 1
         return (this._value >> start) & mask
     }
-    
+
     ; Set range of bits
     SetBits(start, count, value) {
         mask := ((1 << count) - 1) << start
         this._value := (this._value & ~mask) | ((value << start) & mask)
         return this
     }
-    
+
     ; Count set bits (population count)
     PopCount() {
         n := this._value
@@ -57,7 +57,7 @@ class BitField {
         }
         return count
     }
-    
+
     ; Find first set bit (from right, 1-indexed, 0 if none)
     FirstSet() {
         if this._value = 0
@@ -70,12 +70,12 @@ class BitField {
         }
         return pos
     }
-    
+
     ; Binary string representation
     ToString(minWidth := 0) {
         if this._value = 0
             return this._pad("0", minWidth)
-        
+
         result := ""
         n := this._value
         while n > 0 {
@@ -84,27 +84,27 @@ class BitField {
         }
         return this._pad(result, minWidth)
     }
-    
+
     _pad(s, width) {
         while StrLen(s) < width
             s := "0" . s
         return s
     }
-    
+
     ; Parse from binary string
     static FromString(binStr) {
         bf := BitField()
         bf._value := 0
-        
+
         loop StrLen(binStr) {
             bf._value := bf._value << 1
             if SubStr(binStr, A_Index, 1) = "1"
                 bf._value := bf._value | 1
         }
-        
+
         return bf
     }
-    
+
     Value {
         get => this._value
         set => this._value := value
@@ -121,21 +121,21 @@ class Flags {
     static WRITE := 2       ; 0010
     static EXECUTE := 4     ; 0100
     static DELETE := 8      ; 1000
-    
+
     static ALL := 15        ; 1111
-    
+
     ; Check if flag is set
     static Has(value, flag) => (value & flag) = flag
-    
+
     ; Add flag
     static Add(value, flag) => value | flag
-    
+
     ; Remove flag
     static Remove(value, flag) => value & ~flag
-    
+
     ; Toggle flag
     static Toggle(value, flag) => value ^ flag
-    
+
     ; Parse from array
     static FromArray(flags) {
         value := 0
@@ -143,7 +143,7 @@ class Flags {
             value := value | flag
         return value
     }
-    
+
     ; Get array of set flags
     static ToArray(value, flagMap) {
         result := []
@@ -164,22 +164,22 @@ class PackedStruct {
         this._fields := fieldDefs  ; [{name: "x", bits: 8}, ...]
         this._value := 0
         this._offsets := Map()
-        
+
         ; Calculate offsets
         offset := 0
         for field in fieldDefs {
-            this._offsets[field.name] := {offset: offset, bits: field.bits}
+            this._offsets[field.name] := { offset: offset, bits: field.bits }
             offset += field.bits
         }
     }
-    
+
     ; Get field value
     Get(name) {
         info := this._offsets[name]
         mask := (1 << info.bits) - 1
         return (this._value >> info.offset) & mask
     }
-    
+
     ; Set field value
     Set(name, value) {
         info := this._offsets[name]
@@ -187,20 +187,20 @@ class PackedStruct {
         this._value := (this._value & ~mask) | ((value << info.offset) & mask)
         return this
     }
-    
+
     ; Property-style access
     __Get(name, params) {
         if this._offsets.Has(name)
             return this.Get(name)
         throw PropertyError("Unknown field: " name)
     }
-    
+
     __Set(name, params, value) {
         if this._offsets.Has(name)
             return this.Set(name, value)
         throw PropertyError("Unknown field: " name)
     }
-    
+
     ; Pack from object
     static Pack(fieldDefs, values) {
         ps := PackedStruct(fieldDefs)
@@ -210,7 +210,7 @@ class PackedStruct {
         }
         return ps
     }
-    
+
     ; Unpack to object
     Unpack() {
         result := {}
@@ -218,7 +218,7 @@ class PackedStruct {
             result.%field.name% := this.Get(field.name)
         return result
     }
-    
+
     Value => this._value
 }
 
@@ -231,14 +231,14 @@ class BinaryBuffer {
         this._buffer := Buffer(size, 0)
         this._pos := 0
     }
-    
+
     ; Write operations
     WriteUInt8(value) {
         NumPut("UChar", value, this._buffer, this._pos)
         this._pos += 1
         return this
     }
-    
+
     WriteUInt16(value, bigEndian := false) {
         if bigEndian {
             this.WriteUInt8(value >> 8)
@@ -249,7 +249,7 @@ class BinaryBuffer {
         }
         return this
     }
-    
+
     WriteUInt32(value, bigEndian := false) {
         if bigEndian {
             this.WriteUInt8((value >> 24) & 0xFF)
@@ -262,31 +262,31 @@ class BinaryBuffer {
         }
         return this
     }
-    
+
     WriteFloat(value) {
         NumPut("Float", value, this._buffer, this._pos)
         this._pos += 4
         return this
     }
-    
+
     WriteString(str, encoding := "UTF-8") {
         len := StrLen(str)
         this.WriteUInt16(len)
-        
+
         loop len {
             ch := Ord(SubStr(str, A_Index, 1))
             this.WriteUInt8(ch)
         }
         return this
     }
-    
+
     ; Read operations
     ReadUInt8() {
         value := NumGet(this._buffer, this._pos, "UChar")
         this._pos += 1
         return value
     }
-    
+
     ReadUInt16(bigEndian := false) {
         if bigEndian {
             high := this.ReadUInt8()
@@ -297,7 +297,7 @@ class BinaryBuffer {
         this._pos += 2
         return value
     }
-    
+
     ReadUInt32(bigEndian := false) {
         if bigEndian {
             return (this.ReadUInt8() << 24) | (this.ReadUInt8() << 16) | (this.ReadUInt8() << 8) | this.ReadUInt8()
@@ -306,13 +306,13 @@ class BinaryBuffer {
         this._pos += 4
         return value
     }
-    
+
     ReadFloat() {
         value := NumGet(this._buffer, this._pos, "Float")
         this._pos += 4
         return value
     }
-    
+
     ReadString() {
         len := this.ReadUInt16()
         result := ""
@@ -320,26 +320,26 @@ class BinaryBuffer {
             result .= Chr(this.ReadUInt8())
         return result
     }
-    
+
     ; Position management
     Seek(pos) {
         this._pos := pos
         return this
     }
-    
+
     Position => this._pos
     Size => this._buffer.Size
     Buffer => this._buffer
-    
+
     ; Hex dump
     HexDump(bytesPerLine := 16) {
         result := ""
         this._pos := 0
-        
+
         while this._pos < this._buffer.Size {
             ; Address
             result .= Format("{:04X}: ", this._pos)
-            
+
             ; Hex bytes
             lineStart := this._pos
             loop bytesPerLine {
@@ -350,7 +350,7 @@ class BinaryBuffer {
                     result .= "   "
                 }
             }
-            
+
             ; ASCII
             result .= " |"
             tempPos := lineStart
@@ -363,7 +363,7 @@ class BinaryBuffer {
             }
             result .= "|`n"
         }
-        
+
         return result
     }
 }
@@ -377,7 +377,7 @@ class Color {
     static Pack(r, g, b, a := 255) {
         return (a << 24) | (r << 16) | (g << 8) | b
     }
-    
+
     ; Unpack to components
     static Unpack(color) {
         return {
@@ -387,12 +387,12 @@ class Color {
             a: (color >> 24) & 0xFF
         }
     }
-    
+
     ; Blend two colors (alpha blend)
     static Blend(color1, color2, factor := 0.5) {
         c1 := Color.Unpack(color1)
         c2 := Color.Unpack(color2)
-        
+
         return Color.Pack(
             Integer(c1.r * (1 - factor) + c2.r * factor),
             Integer(c1.g * (1 - factor) + c2.g * factor),
@@ -400,25 +400,25 @@ class Color {
             Integer(c1.a * (1 - factor) + c2.a * factor)
         )
     }
-    
+
     ; Invert color
     static Invert(color) {
         c := Color.Unpack(color)
         return Color.Pack(255 - c.r, 255 - c.g, 255 - c.b, c.a)
     }
-    
+
     ; Grayscale
     static Grayscale(color) {
         c := Color.Unpack(color)
         gray := Integer(c.r * 0.299 + c.g * 0.587 + c.b * 0.114)
         return Color.Pack(gray, gray, gray, c.a)
     }
-    
+
     ; To hex string
     static ToHex(color) {
         return Format("#{:06X}", color & 0xFFFFFF)
     }
-    
+
     ; From hex string
     static FromHex(hex) {
         hex := StrReplace(hex, "#", "")
@@ -437,14 +437,14 @@ class BitUtils {
         mask := (1 << bits) - 1
         return ((value << shift) | (value >> (bits - shift))) & mask
     }
-    
+
     ; Rotate right
     static RotateRight(value, shift, bits := 32) {
         shift := Mod(shift, bits)
         mask := (1 << bits) - 1
         return ((value >> shift) | (value << (bits - shift))) & mask
     }
-    
+
     ; Reverse bits
     static ReverseBits(value, bits := 32) {
         result := 0
@@ -454,10 +454,10 @@ class BitUtils {
         }
         return result
     }
-    
+
     ; Check if power of 2
     static IsPowerOf2(n) => n > 0 && (n & (n - 1)) = 0
-    
+
     ; Next power of 2
     static NextPowerOf2(n) {
         n--
@@ -468,7 +468,7 @@ class BitUtils {
         n := n | (n >> 16)
         return n + 1
     }
-    
+
     ; Count leading zeros
     static CLZ(n) {
         if n = 0
@@ -495,7 +495,7 @@ class BitUtils {
         }
         return count
     }
-    
+
     ; Count trailing zeros
     static CTZ(n) {
         if n = 0
@@ -507,7 +507,7 @@ class BitUtils {
         }
         return count
     }
-    
+
     ; Sign extend
     static SignExtend(value, fromBits, toBits := 32) {
         signBit := 1 << (fromBits - 1)
@@ -531,7 +531,7 @@ class Checksum {
             checksum := checksum ^ Ord(SubStr(data, A_Index, 1))
         return checksum
     }
-    
+
     ; Simple additive checksum
     static Sum(data) {
         sum := 0
@@ -539,7 +539,7 @@ class Checksum {
             sum += Ord(SubStr(data, A_Index, 1))
         return sum & 0xFF
     }
-    
+
     ; CRC-like checksum (simplified)
     static CRC8(data) {
         crc := 0
@@ -555,17 +555,17 @@ class Checksum {
         }
         return crc
     }
-    
+
     ; Fletcher-16
     static Fletcher16(data) {
         sum1 := 0
         sum2 := 0
-        
+
         loop StrLen(data) {
             sum1 := (sum1 + Ord(SubStr(data, A_Index, 1))) & 0xFF
             sum2 := (sum2 + sum1) & 0xFF
         }
-        
+
         return (sum2 << 8) | sum1
     }
 }
@@ -593,10 +593,7 @@ MsgBox("Flags:`n`n"
     . "Binary: " BitField.FromString(Integer(perms)).ToString(4))
 
 ; Packed struct
-rgb565 := PackedStruct([
-    {name: "blue", bits: 5},
-    {name: "green", bits: 6},
-    {name: "red", bits: 5}
+rgb565 := PackedStruct([{ name: "blue", bits: 5 }, { name: "green", bits: 6 }, { name: "red", bits: 5 }
 ])
 rgb565.red := 31      ; Max value for 5 bits
 rgb565.green := 63    ; Max value for 6 bits

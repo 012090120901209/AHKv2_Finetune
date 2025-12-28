@@ -15,14 +15,14 @@ class ObjectPool {
 
     Acquire() {
         obj := ""
-        
+
         if this.available.Length {
             obj := this.available.Pop()
         } else {
             obj := this.factory()
             this.created++
         }
-        
+
         this.inUse.Push(obj)
         return obj
     }
@@ -41,8 +41,8 @@ class ObjectPool {
 
     GetStats() {
         return "Created: " this.created "`n"
-             . "Available: " this.available.Length "`n"
-             . "In Use: " this.inUse.Length
+            . "Available: " this.available.Length "`n"
+            . "In Use: " this.inUse.Length
     }
 }
 
@@ -53,7 +53,7 @@ ConnectionFactory() {
     connectionId++
     ; Simulate expensive creation
     Sleep(10)
-    return {id: connectionId, created: A_TickCount}
+    return { id: connectionId, created: A_TickCount }
 }
 
 pool := ObjectPool(ConnectionFactory, 5)

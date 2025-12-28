@@ -3,45 +3,45 @@
 ExitApp
 
 /**
-* ============================================================================
-* ControlGetStyle - Basic Style Reading and Detection
-* ============================================================================
-*
-* This script demonstrates how to read and analyze window control styles
-* using ControlGetStyle in AutoHotkey v2.
-*
-* The ControlGetStyle function retrieves the style value of a control as a
-* numeric value that represents various style flags combined with bitwise OR.
-*
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*
-* Related Functions:
-* - ControlGetExStyle() - Gets extended styles
-* - ControlSetStyle() - Modifies control styles
-* - WinGetStyle() - Gets window styles
-*
-* Style Constants Reference:
-* - WS_VISIBLE (0x10000000) - Control is visible
-* - WS_DISABLED (0x08000000) - Control is disabled
-* - WS_TABSTOP (0x00010000) - Control can receive focus via Tab key
-* - BS_PUSHBUTTON (0x00000000) - Standard push button
-* - BS_DEFPUSHBUTTON (0x00000001) - Default push button
-* - ES_READONLY (0x00000800) - Edit control is read-only
-* - ES_MULTILINE (0x00000004) - Edit control supports multiple lines
-*/
+ * ============================================================================
+ * ControlGetStyle - Basic Style Reading and Detection
+ * ============================================================================
+ * 
+ * This script demonstrates how to read and analyze window control styles
+ * using ControlGetStyle in AutoHotkey v2.
+ * 
+ * The ControlGetStyle function retrieves the style value of a control as a
+ * numeric value that represents various style flags combined with bitwise OR.
+ * 
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ * 
+ * Related Functions:
+ * - ControlGetExStyle() - Gets extended styles
+ * - ControlSetStyle() - Modifies control styles
+ * - WinGetStyle() - Gets window styles
+ * 
+ * Style Constants Reference:
+ * - WS_VISIBLE (0x10000000) - Control is visible
+ * - WS_DISABLED (0x08000000) - Control is disabled
+ * - WS_TABSTOP (0x00010000) - Control can receive focus via Tab key
+ * - BS_PUSHBUTTON (0x00000000) - Standard push button
+ * - BS_DEFPUSHBUTTON (0x00000001) - Default push button
+ * - ES_READONLY (0x00000800) - Edit control is read-only
+ * - ES_MULTILINE (0x00000004) - Edit control supports multiple lines
+ */
 
 ;==============================================================================
 ; Example 1: Reading Basic Control Styles
 ;==============================================================================
 
 /**
-* Demonstrates reading and displaying basic control styles
-*
-* @example
-* Creates a GUI with various controls and displays their style values
-*/
+ * Demonstrates reading and displaying basic control styles
+ * 
+ * @example
+ * Creates a GUI with various controls and displays their style values
+ */
 Example1_BasicStyleReading() {
     ; Create a GUI window with different control types
     MyGui := Gui("+Resize", "Example 1: Reading Control Styles")
@@ -147,11 +147,11 @@ Example1_BasicStyleReading() {
 ;==============================================================================
 
 /**
-* Demonstrates detecting specific window style flags
-*
-* @example
-* Shows how to check for specific style flags using bitwise operations
-*/
+ * Demonstrates detecting specific window style flags
+ * 
+ * @example
+ * Shows how to check for specific style flags using bitwise operations
+ */
 Example2_DetectingStyleFlags() {
     MyGui := Gui("+Resize", "Example 2: Detecting Style Flags")
 
@@ -235,11 +235,11 @@ Example2_DetectingStyleFlags() {
 ;==============================================================================
 
 /**
-* Creates a utility for analyzing control styles in any window
-*
-* @example
-* Interactive tool to get style information from external windows
-*/
+ * Creates a utility for analyzing control styles in any window
+ * 
+ * @example
+ * Interactive tool to get style information from external windows
+ */
 Example3_StyleAnalyzer() {
     MyGui := Gui("+Resize +AlwaysOnTop", "Example 3: Style Analyzer Utility")
 
@@ -364,11 +364,11 @@ Example3_StyleAnalyzer() {
 ;==============================================================================
 
 /**
-* Demonstrates comparing control styles before and after changes
-*
-* @example
-* Shows how styles change when controls are modified
-*/
+ * Demonstrates comparing control styles before and after changes
+ * 
+ * @example
+ * Shows how styles change when controls are modified
+ */
 Example4_StyleComparison() {
     MyGui := Gui("+Resize", "Example 4: Style Comparison")
 
@@ -463,11 +463,11 @@ Example4_StyleComparison() {
 ;==============================================================================
 
 /**
-* Demonstrates reading styles from multiple controls at once
-*
-* @example
-* Shows how to read and compare styles across multiple controls
-*/
+ * Demonstrates reading styles from multiple controls at once
+ * 
+ * @example
+ * Shows how to read and compare styles across multiple controls
+ */
 Example5_BulkStyleReading() {
     MyGui := Gui("+Resize", "Example 5: Bulk Style Reading")
 
@@ -475,13 +475,13 @@ Example5_BulkStyleReading() {
 
     ; Create multiple test controls
     controls := []
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+20", "Edit 1"), name: "Edit 1"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10 ReadOnly", "Edit 2 (ReadOnly)"), name: "Edit 2"})
-    controls.Push({ctrl: MyGui.Add("Edit", "w300 y+10 Multi", "Edit 3`n(Multiline)"), name: "Edit 3"})
-    controls.Push({ctrl: MyGui.Add("Button", "w300 y+10", "Button 1"), name: "Button 1"})
-    controls.Push({ctrl: MyGui.Add("Button", "w300 y+10 Default", "Button 2 (Default)"), name: "Button 2"})
-    controls.Push({ctrl: MyGui.Add("Checkbox", "y+10", "Checkbox"), name: "Checkbox"})
-    controls.Push({ctrl: MyGui.Add("Radio", "y+10", "Radio Button"), name: "Radio"})
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+20", "Edit 1"), name: "Edit 1" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10 ReadOnly", "Edit 2 (ReadOnly)"), name: "Edit 2" })
+    controls.Push({ ctrl: MyGui.Add("Edit", "w300 y+10 Multi", "Edit 3`n(Multiline)"), name: "Edit 3" })
+    controls.Push({ ctrl: MyGui.Add("Button", "w300 y+10", "Button 1"), name: "Button 1" })
+    controls.Push({ ctrl: MyGui.Add("Button", "w300 y+10 Default", "Button 2 (Default)"), name: "Button 2" })
+    controls.Push({ ctrl: MyGui.Add("Checkbox", "y+10", "Checkbox"), name: "Checkbox" })
+    controls.Push({ ctrl: MyGui.Add("Radio", "y+10", "Radio Button"), name: "Radio" })
 
     BtnAnalyze := MyGui.Add("Button", "w200 y+20", "Analyze All Controls")
     BtnAnalyze.OnEvent("Click", AnalyzeAll)
@@ -506,10 +506,10 @@ Example5_BulkStyleReading() {
                 disabled := (style & 0x08000000) ? "Yes" : "No"
 
                 results .= Format("{:<20} {:<15} {:<12} {:<10}",
-                item.name,
-                "0x" . Format("{:08X}", style),
-                visible,
-                disabled) . "`n"
+                    item.name,
+                    "0x" . Format("{:08X}", style),
+                    visible,
+                    disabled) . "`n"
             } catch as err {
                 results .= Format("{:<20} {:<15}", item.name, "ERROR") . "`n"
             }
@@ -549,11 +549,11 @@ Example5_BulkStyleReading() {
 ;==============================================================================
 
 /**
-* Demonstrates monitoring control styles for changes
-*
-* @example
-* Shows how to monitor and log style changes over time
-*/
+ * Demonstrates monitoring control styles for changes
+ * 
+ * @example
+ * Shows how to monitor and log style changes over time
+ */
 Example6_StyleMonitoring() {
     MyGui := Gui("+Resize", "Example 6: Style Monitoring")
 
@@ -595,7 +595,7 @@ Example6_StyleMonitoring() {
 
     StartMonitoring() {
         if (monitoring)
-        return
+            return
 
         monitoring := true
         lastStyle := ControlGetStyle(TestEdit)
@@ -608,7 +608,7 @@ Example6_StyleMonitoring() {
 
     StopMonitoring() {
         if (!monitoring)
-        return
+            return
 
         monitoring := false
         SetTimer(CheckStyle, 0)
@@ -618,7 +618,7 @@ Example6_StyleMonitoring() {
 
     CheckStyle() {
         if (!monitoring)
-        return
+            return
 
         try {
             currentStyle := ControlGetStyle(TestEdit)
@@ -645,9 +645,9 @@ Example6_StyleMonitoring() {
     ToggleReadOnly() {
         style := ControlGetStyle(TestEdit)
         if (style & 0x0800)
-        TestEdit.Opt("-ReadOnly")
+            TestEdit.Opt("-ReadOnly")
         else
-        TestEdit.Opt("+ReadOnly")
+            TestEdit.Opt("+ReadOnly")
     }
 
     LogMessage(msg) {
@@ -663,15 +663,15 @@ Example6_StyleMonitoring() {
 ;==============================================================================
 
 /**
-* Demonstrates a helper class for working with control styles
-*
-* @example
-* Shows how to create a reusable class for style operations
-*/
+ * Demonstrates a helper class for working with control styles
+ * 
+ * @example
+ * Shows how to create a reusable class for style operations
+ */
 Example7_StyleHelperClass() {
     /**
-    * Helper class for control style operations
-    */
+     * Helper class for control style operations
+     */
 
     ; Demo the helper class
     MyGui := Gui("+Resize", "Example 7: Style Helper Class")
@@ -722,10 +722,10 @@ Example7_StyleHelperClass() {
 
     ArrayToString(arr) {
         if (arr.Length = 0)
-        return "None"
+            return "None"
         str := ""
         for item in arr
-        str .= item . ", "
+            str .= item . ", "
         return SubStr(str, 1, -2)
     }
 }
@@ -739,13 +739,13 @@ MainGui := Gui("+Resize", "ControlGetStyle Examples - Main Menu")
 MainGui.Add("Text", "w400", "Select an example to run:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Basic Style Reading",
-"Example 2: Detecting Style Flags",
-"Example 3: Style Analyzer Utility",
-"Example 4: Style Comparison",
-"Example 5: Bulk Style Reading",
-"Example 6: Style Monitoring",
-"Example 7: Style Helper Class"
+    "Example 1: Basic Style Reading",
+    "Example 2: Detecting Style Flags",
+    "Example 3: Style Analyzer Utility",
+    "Example 4: Style Comparison",
+    "Example 5: Bulk Style Reading",
+    "Example 6: Style Monitoring",
+    "Example 7: Style Helper Class"
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")
@@ -779,10 +779,10 @@ return
 ; Moved class ControlStyleHelper from nested scope
 class ControlStyleHelper {
     /**
-    * Gets formatted style information
-    * @param {Object} ctrl - The control object
-    * @returns {Object} Style information object
-    */
+     * Gets formatted style information
+     * @param {Object} ctrl - The control object
+     * @returns {Object} Style information object
+     */
     static GetStyleInfo(ctrl) {
         style := ControlGetStyle(ctrl)
         exStyle := ControlGetExStyle(ctrl)
@@ -800,47 +800,47 @@ class ControlStyleHelper {
     }
 
     /**
-    * Checks if a specific style flag is set
-    * @param {Object} ctrl - The control object
-    * @param {Number} flag - The style flag to check
-    * @returns {Boolean} True if flag is set
-    */
+     * Checks if a specific style flag is set
+     * @param {Object} ctrl - The control object
+     * @param {Number} flag - The style flag to check
+     * @returns {Boolean} True if flag is set
+     */
     static HasStyle(ctrl, flag) {
         style := ControlGetStyle(ctrl)
         return !!(style & flag)
     }
 
     /**
-    * Gets all set style flags as array
-    * @param {Object} ctrl - The control object
-    * @returns {Array} Array of set flags
-    */
+     * Gets all set style flags as array
+     * @param {Object} ctrl - The control object
+     * @returns {Array} Array of set flags
+     */
     static GetSetFlags(ctrl) {
         style := ControlGetStyle(ctrl)
         flags := []
 
         ; Common flags
         commonFlags := Map(
-        "WS_VISIBLE", 0x10000000,
-        "WS_DISABLED", 0x08000000,
-        "WS_TABSTOP", 0x00010000,
-        "WS_GROUP", 0x00020000,
-        "WS_BORDER", 0x00800000
+            "WS_VISIBLE", 0x10000000,
+            "WS_DISABLED", 0x08000000,
+            "WS_TABSTOP", 0x00010000,
+            "WS_GROUP", 0x00020000,
+            "WS_BORDER", 0x00800000
         )
 
         for name, value in commonFlags {
             if (style & value)
-            flags.Push(name)
+                flags.Push(name)
         }
 
         return flags
     }
 
     /**
-    * Formats style info as readable string
-    * @param {Object} ctrl - The control object
-    * @returns {String} Formatted string
-    */
+     * Formats style info as readable string
+     * @param {Object} ctrl - The control object
+     * @returns {String} Formatted string
+     */
     static ToString(ctrl) {
         info := this.GetStyleInfo(ctrl)
         str := "Style: " . info.styleHex . "`n"

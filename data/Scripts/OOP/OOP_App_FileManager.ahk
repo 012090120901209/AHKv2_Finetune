@@ -36,11 +36,11 @@ class File extends FileSystemItem {
 
     GetSizeFormatted() {
         if (this.size < 1024)
-        return this.size . " B"
+            return this.size . " B"
         if (this.size < 1048576)
-        return Round(this.size / 1024, 1) . " KB"
+            return Round(this.size / 1024, 1) . " KB"
         if (this.size < 1073741824)
-        return Round(this.size / 1048576, 1) . " MB"
+            return Round(this.size / 1048576, 1) . " MB"
         return Round(this.size / 1073741824, 1) . " GB"
     }
 
@@ -85,15 +85,15 @@ class Folder extends FileSystemItem {
 
     Find(name) {
         for item in this.children
-        if (item.name = name)
-        return item
+            if (item.name = name)
+                return item
         return ""
     }
 
     GetSize() {
         total := 0
         for item in this.children
-        total += item.GetSize()
+            total += item.GetSize()
         return total
     }
 
@@ -101,9 +101,9 @@ class Folder extends FileSystemItem {
         count := 0
         for item in this.children {
             if (item is File)
-            count++
+                count++
             else if (item is Folder)
-            count += item.GetFileCount()
+                count += item.GetFileCount()
         }
         return count
     }
@@ -123,7 +123,7 @@ class Folder extends FileSystemItem {
         list := ""
         for item in this.children {
             if (item is File)
-            list .= indent . item.ToString() . "`n"
+                list .= indent . item.ToString() . "`n"
             else if (item is Folder) {
                 list .= indent . "[DIR] " . item.name . "/`n"
                 list .= item.ListContents(indent . "  ")
@@ -133,9 +133,9 @@ class Folder extends FileSystemItem {
     }
 
     ToString() => Format("[DIR] {1}/ ({2} items, {3})",
-    this.name,
-    this.children.Length,
-    File.prototype.GetSizeFormatted.Call({size: this.GetSize()}))
+        this.name,
+        this.children.Length,
+        File.prototype.GetSizeFormatted.Call({ size: this.GetSize() }))
 }
 
 class FileManager {
@@ -170,7 +170,7 @@ class FileManager {
     Copy(name) {
         item := this.currentFolder.Find(name)
         if (!item)
-        return MsgBox("Item not found!", "Error")
+            return MsgBox("Item not found!", "Error")
 
         this.clipboard := item
         MsgBox(Format("Copied to clipboard: {1}", name))
@@ -179,7 +179,7 @@ class FileManager {
 
     Paste() {
         if (!this.clipboard)
-        return MsgBox("Clipboard empty!", "Error")
+            return MsgBox("Clipboard empty!", "Error")
 
         ; Create copy
         if (this.clipboard is File) {
@@ -198,13 +198,13 @@ class FileManager {
     ChangeDirectory(folderName) {
         if (folderName = "..") {
             if (this.currentFolder.parent)
-            this.currentFolder := this.currentFolder.parent
+                this.currentFolder := this.currentFolder.parent
             return true
         }
 
         folder := this.currentFolder.Find(folderName)
         if (!folder || !(folder is Folder))
-        return MsgBox("Folder not found!", "Error")
+            return MsgBox("Folder not found!", "Error")
 
         this.currentFolder := folder
         MsgBox(Format("Changed to: {1}", this.currentFolder.GetPath()))
@@ -224,10 +224,10 @@ class FileManager {
     _SearchRecursive(folder, query, results) {
         for item in folder.children {
             if (InStr(item.name, query))
-            results.Push(item)
+                results.Push(item)
 
             if (item is Folder)
-            this._SearchRecursive(item, query, results)
+                this._SearchRecursive(item, query, results)
         }
     }
 
@@ -236,7 +236,7 @@ class FileManager {
         stats .= Format("Current path: {1}`n", this.GetCurrentPath())
         stats .= Format("Total files: {1}`n", this.root.GetFileCount())
         stats .= Format("Total folders: {1}`n", this.root.GetFolderCount())
-        stats .= Format("Total size: {1}`n", File.prototype.GetSizeFormatted.Call({size: this.root.GetSize()}))
+        stats .= Format("Total size: {1}`n", File.prototype.GetSizeFormatted.Call({ size: this.root.GetSize() }))
         stats .= Format("Operations: {1}", this.history.Length)
         return stats
     }

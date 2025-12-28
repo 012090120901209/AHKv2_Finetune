@@ -37,14 +37,14 @@ DemoJSONParse() {
     } catch {
         ; Fallback: Manual parsing demo
         MsgBox("JSON Parse Demonstration`n`n"
-        "With cJson library:`n"
-        "data := JSON.Load(jsonString)`n"
-        "name := data['name']  ; 'AutoHotkey'`n"
-        "version := data['version']  ; 2.0`n"
-        "features := data['features']  ; Array`n`n"
-        "10x faster than pure AHK parsers!`n`n"
-        "Install: Download cJSON.ahk from G33kDude/cJson.ahk",
-        "cJson Demo")
+            "With cJson library:`n"
+            "data := JSON.Load(jsonString)`n"
+            "name := data['name']  ; 'AutoHotkey'`n"
+            "version := data['version']  ; 2.0`n"
+            "features := data['features']  ; Array`n`n"
+            "10x faster than pure AHK parsers!`n`n"
+            "Install: Download cJSON.ahk from G33kDude/cJson.ahk",
+            "cJson Demo")
         return
     }
 

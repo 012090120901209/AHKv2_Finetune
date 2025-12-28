@@ -34,7 +34,7 @@ SetTimer(UpdateInfo, 100)
 
 UpdateInfo() {
     if (!spyGui["AutoUpdate"].Value)
-    return
+        return
 
     try {
         MouseGetPos(&mx, &my, &winId)

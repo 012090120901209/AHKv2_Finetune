@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 ; Click-through transparent overlay window
-^!t::ToggleClickThrough()
+^!t:: ToggleClickThrough()
 
 ToggleClickThrough() {
     static overlay := ""

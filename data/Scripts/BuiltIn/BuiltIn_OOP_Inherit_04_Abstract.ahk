@@ -1,42 +1,42 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_OOP_Inherit_04_Abstract.ahk
-*
-* DESCRIPTION:
-* Demonstrates abstract class patterns in AutoHotkey v2. While AHK v2 doesn't have
-* formal abstract keywords, this shows how to simulate abstract classes and methods
-* to enforce implementation in derived classes.
-*
-* FEATURES:
-* - Abstract class simulation
-* - Abstract method patterns
-* - Enforcing method implementation
-* - Template method pattern
-* - Interface-like patterns
-* - Protected constructor pattern
-* - Contract enforcement
-*
-* SOURCE:
-* AutoHotkey v2 Documentation - Objects
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - Error throwing for unimplemented methods
-* - Type checking with HasBase()
-* - Constructor validation
-* - Method contract enforcement
-* - Template method design pattern
-* - Polymorphism through abstract interfaces
-*
-* LEARNING POINTS:
-* 1. Abstract classes define contracts for children
-* 2. Abstract methods must be overridden
-* 3. Use Error() to enforce implementation
-* 4. Template methods provide structure
-* 5. Abstract classes shouldn't be instantiated directly
-* 6. Enables polymorphism with guaranteed interface
-* 7. Documents required child class behavior
-*/
+ * BuiltIn_OOP_Inherit_04_Abstract.ahk
+ * 
+ * DESCRIPTION:
+ * Demonstrates abstract class patterns in AutoHotkey v2. While AHK v2 doesn't have
+ * formal abstract keywords, this shows how to simulate abstract classes and methods
+ * to enforce implementation in derived classes.
+ * 
+ * FEATURES:
+ * - Abstract class simulation
+ * - Abstract method patterns
+ * - Enforcing method implementation
+ * - Template method pattern
+ * - Interface-like patterns
+ * - Protected constructor pattern
+ * - Contract enforcement
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation - Objects
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - Error throwing for unimplemented methods
+ * - Type checking with HasBase()
+ * - Constructor validation
+ * - Method contract enforcement
+ * - Template method design pattern
+ * - Polymorphism through abstract interfaces
+ * 
+ * LEARNING POINTS:
+ * 1. Abstract classes define contracts for children
+ * 2. Abstract methods must be overridden
+ * 3. Use Error() to enforce implementation
+ * 4. Template methods provide structure
+ * 5. Abstract classes shouldn't be instantiated directly
+ * 6. Enables polymorphism with guaranteed interface
+ * 7. Documents required child class behavior
+ */
 
 ; ========================================
 ; EXAMPLE 1: Basic Abstract Class Pattern
@@ -50,7 +50,7 @@ class AbstractAnimal {
     __New(name, species) {
         ; Prevent direct instantiation
         if (this.__Class = "AbstractAnimal")
-        throw Error("Cannot instantiate abstract class AbstractAnimal")
+            throw Error("Cannot instantiate abstract class AbstractAnimal")
 
         this.Name := name
         this.Species := species
@@ -74,8 +74,8 @@ class AbstractAnimal {
     ; Concrete method using abstract methods
     FullDescription() {
         return this.Introduce()
-        . "`nSound: " this.MakeSound()
-        . "`nDiet: " this.GetDiet()
+            . "`nSound: " this.MakeSound()
+            . "`nDiet: " this.GetDiet()
     }
 }
 
@@ -155,7 +155,7 @@ class AbstractReportGenerator {
 
     __New(title, data := "") {
         if (this.__Class = "AbstractReportGenerator")
-        throw Error("Cannot instantiate abstract class AbstractReportGenerator")
+            throw Error("Cannot instantiate abstract class AbstractReportGenerator")
 
         this.ReportTitle := title
         this.Data := data != "" ? data : []
@@ -196,7 +196,7 @@ class HTMLReport extends AbstractReportGenerator {
     ; Implement abstract methods
     GenerateHeader() {
         return "<html>`n<head><title>" this.ReportTitle "</title></head>`n<body>`n"
-        . "<h1>" this.ReportTitle "</h1>`n"
+            . "<h1>" this.ReportTitle "</h1>`n"
     }
 
     GenerateBody() {
@@ -210,7 +210,7 @@ class HTMLReport extends AbstractReportGenerator {
 
     GenerateFooter() {
         return "<footer>Generated: " this.GetTimestamp() "</footer>`n"
-        . "</body>`n</html>"
+            . "</body>`n</html>"
     }
 }
 
@@ -244,7 +244,7 @@ class TextReport extends AbstractReportGenerator {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -265,7 +265,7 @@ MsgBox(textReport.GenerateReport())
 class IComparable {
     __New() {
         if (this.__Class = "IComparable")
-        throw Error("Cannot instantiate interface IComparable")
+            throw Error("Cannot instantiate interface IComparable")
     }
 
     ; Abstract method - compare to another object
@@ -302,13 +302,13 @@ class Version extends IComparable {
     ; Implement required abstract method
     CompareTo(other) {
         if (!other.HasBase(Version.Prototype))
-        throw TypeError("Can only compare to Version objects")
+            throw TypeError("Can only compare to Version objects")
 
         if (this.Major != other.Major)
-        return this.Major - other.Major
+            return this.Major - other.Major
 
         if (this.Minor != other.Minor)
-        return this.Minor - other.Minor
+            return this.Minor - other.Minor
 
         return this.Patch - other.Patch
     }
@@ -336,7 +336,7 @@ class Priority extends IComparable {
     ; Implement required abstract method
     CompareTo(other) {
         if (!other.HasBase(Priority.Prototype))
-        throw TypeError("Can only compare to Priority objects")
+            throw TypeError("Can only compare to Priority objects")
 
         return this.Value - other.Value
     }
@@ -352,18 +352,18 @@ v2 := Version(1, 3, 0)
 v3 := Version(1, 2, 3)
 
 MsgBox("v1 (" v1.ToString() ") vs v2 (" v2.ToString() "):`n"
-. "Equal? " v1.IsEqualTo(v2) "`n"
-. "Greater? " v1.IsGreaterThan(v2) "`n"
-. "Less? " v1.IsLessThan(v2))
+    . "Equal? " v1.IsEqualTo(v2) "`n"
+    . "Greater? " v1.IsGreaterThan(v2) "`n"
+    . "Less? " v1.IsLessThan(v2))
 
 MsgBox("v1 (" v1.ToString() ") vs v3 (" v3.ToString() "):`n"
-. "Equal? " v1.IsEqualTo(v3))
+    . "Equal? " v1.IsEqualTo(v3))
 
 p1 := Priority(Priority.HIGH, "High")
 p2 := Priority(Priority.MEDIUM, "Medium")
 
 MsgBox("Priority comparison:`n"
-. p1.ToString() " > " p2.ToString() ": " p1.IsGreaterThan(p2))
+    . p1.ToString() " > " p2.ToString() ": " p1.IsGreaterThan(p2))
 
 ; ========================================
 ; EXAMPLE 4: Abstract Data Store Pattern
@@ -375,7 +375,7 @@ class AbstractDataStore {
 
     __New(storeName) {
         if (this.__Class = "AbstractDataStore")
-        throw Error("Cannot instantiate abstract class AbstractDataStore")
+            throw Error("Cannot instantiate abstract class AbstractDataStore")
 
         this.StoreName := storeName
     }
@@ -404,7 +404,7 @@ class AbstractDataStore {
     ; Concrete helper method
     ValidateKey(key) {
         if (Trim(key) = "")
-        throw ValueError("Key cannot be empty")
+            throw ValueError("Key cannot be empty")
         return true
     }
 }
@@ -420,7 +420,7 @@ class MemoryStore extends AbstractDataStore {
     Create(key, value) {
         this.ValidateKey(key)
         if (this._data.Has(key))
-        throw Error("Key already exists: " key)
+            throw Error("Key already exists: " key)
 
         this._data[key] := value
         return "Created: " key
@@ -429,7 +429,7 @@ class MemoryStore extends AbstractDataStore {
     Read(key) {
         this.ValidateKey(key)
         if (!this._data.Has(key))
-        throw Error("Key not found: " key)
+            throw Error("Key not found: " key)
 
         return this._data[key]
     }
@@ -437,7 +437,7 @@ class MemoryStore extends AbstractDataStore {
     Update(key, value) {
         this.ValidateKey(key)
         if (!this._data.Has(key))
-        throw Error("Key not found: " key)
+            throw Error("Key not found: " key)
 
         this._data[key] := value
         return "Updated: " key
@@ -446,7 +446,7 @@ class MemoryStore extends AbstractDataStore {
     Delete(key) {
         this.ValidateKey(key)
         if (!this._data.Has(key))
-        throw Error("Key not found: " key)
+            throw Error("Key not found: " key)
 
         this._data.Delete(key)
         return "Deleted: " key
@@ -521,7 +521,7 @@ class AbstractValidator {
 
     __New() {
         if (this.__Class = "AbstractValidator")
-        throw Error("Cannot instantiate abstract class AbstractValidator")
+            throw Error("Cannot instantiate abstract class AbstractValidator")
 
         this.Rules := []
         this.ErrorMessages := []
@@ -538,12 +538,12 @@ class AbstractValidator {
 
         ; Ensure rules are defined
         if (this.Rules.Length = 0)
-        this.DefineRules()
+            this.DefineRules()
 
         ; Run all validation rules
         for rule in this.Rules {
             if (!rule.Check(value))
-            this.ErrorMessages.Push(rule.Message)
+                this.ErrorMessages.Push(rule.Message)
         }
 
         return this.IsValid()
@@ -558,7 +558,7 @@ class AbstractValidator {
     }
 
     AddRule(checkFunc, message) {
-        this.Rules.Push({Check: checkFunc, Message: message})
+        this.Rules.Push({ Check: checkFunc, Message: message })
     }
 }
 
@@ -566,23 +566,23 @@ class EmailValidator extends AbstractValidator {
     DefineRules() {
         ; Define email-specific validation rules
         this.AddRule(
-        (v) => v != "" && Trim(v) != "",
-        "Email is required"
+            (v) => v != "" && Trim(v) != "",
+            "Email is required"
         )
 
         this.AddRule(
-        (v) => StrLen(v) <= 255,
-        "Email must be 255 characters or less"
+            (v) => StrLen(v) <= 255,
+            "Email must be 255 characters or less"
         )
 
         this.AddRule(
-        (v) => RegExMatch(v, "^[^@]+@[^@]+\.[^@]+$"),
-        "Email format is invalid"
+            (v) => RegExMatch(v, "^[^@]+@[^@]+\.[^@]+$"),
+            "Email format is invalid"
         )
 
         this.AddRule(
-        (v) => !RegExMatch(v, "\s"),
-        "Email cannot contain spaces"
+            (v) => !RegExMatch(v, "\s"),
+            "Email cannot contain spaces"
         )
     }
 }
@@ -598,28 +598,28 @@ class PasswordValidator extends AbstractValidator {
     DefineRules() {
         ; Define password-specific validation rules
         this.AddRule(
-        (v) => StrLen(v) >= this.MinLength,
-        "Password must be at least " this.MinLength " characters"
+            (v) => StrLen(v) >= this.MinLength,
+            "Password must be at least " this.MinLength " characters"
         )
 
         this.AddRule(
-        (v) => RegExMatch(v, "[A-Z]"),
-        "Password must contain at least one uppercase letter"
+            (v) => RegExMatch(v, "[A-Z]"),
+            "Password must contain at least one uppercase letter"
         )
 
         this.AddRule(
-        (v) => RegExMatch(v, "[a-z]"),
-        "Password must contain at least one lowercase letter"
+            (v) => RegExMatch(v, "[a-z]"),
+            "Password must contain at least one lowercase letter"
         )
 
         this.AddRule(
-        (v) => RegExMatch(v, "[0-9]"),
-        "Password must contain at least one number"
+            (v) => RegExMatch(v, "[0-9]"),
+            "Password must contain at least one number"
         )
 
         this.AddRule(
-        (v) => RegExMatch(v, "[^A-Za-z0-9]"),
-        "Password must contain at least one special character"
+            (v) => RegExMatch(v, "[^A-Za-z0-9]"),
+            "Password must contain at least one special character"
         )
     }
 }
@@ -634,7 +634,7 @@ if (emailValidator.Validate("invalid.email")) {
 } else {
     msg := "Email validation failed:`n"
     for error in emailValidator.GetErrors()
-    msg .= "- " error "`n"
+        msg .= "- " error "`n"
     MsgBox(msg)
 }
 
@@ -648,7 +648,7 @@ if (passwordValidator.Validate("weak")) {
 } else {
     msg := "Password validation failed:`n"
     for error in passwordValidator.GetErrors()
-    msg .= "- " error "`n"
+        msg .= "- " error "`n"
     MsgBox(msg)
 }
 
@@ -667,7 +667,7 @@ class AbstractCommand {
 
     __New(name, description) {
         if (this.__Class = "AbstractCommand")
-        throw Error("Cannot instantiate abstract class AbstractCommand")
+            throw Error("Cannot instantiate abstract class AbstractCommand")
 
         this.Name := name
         this.Description := description
@@ -704,7 +704,7 @@ class FileCreateCommand extends AbstractCommand {
 
     Undo() {
         if (!this.WasCreated)
-        return "Nothing to undo"
+            return "Nothing to undo"
 
         ; Simulated file deletion
         this.WasCreated := false
@@ -773,7 +773,7 @@ if (!irreversible.CanUndo()) {
 class AbstractUIFactory {
     __New() {
         if (this.__Class = "AbstractUIFactory")
-        throw Error("Cannot instantiate abstract class AbstractUIFactory")
+            throw Error("Cannot instantiate abstract class AbstractUIFactory")
     }
 
     CreateButton(text) {
@@ -791,29 +791,29 @@ class AbstractUIFactory {
 
 class WindowsUIFactory extends AbstractUIFactory {
     CreateButton(text) {
-        return {Type: "WindowsButton", Text: text, Style: "Win32"}
+        return { Type: "WindowsButton", Text: text, Style: "Win32" }
     }
 
     CreateTextBox(defaultText) {
-        return {Type: "WindowsTextBox", Text: defaultText, Style: "Win32"}
+        return { Type: "WindowsTextBox", Text: defaultText, Style: "Win32" }
     }
 
     CreateLabel(text) {
-        return {Type: "WindowsLabel", Text: text, Style: "Win32"}
+        return { Type: "WindowsLabel", Text: text, Style: "Win32" }
     }
 }
 
 class MacUIFactory extends AbstractUIFactory {
     CreateButton(text) {
-        return {Type: "MacButton", Text: text, Style: "Aqua"}
+        return { Type: "MacButton", Text: text, Style: "Aqua" }
     }
 
     CreateTextBox(defaultText) {
-        return {Type: "MacTextBox", Text: defaultText, Style: "Aqua"}
+        return { Type: "MacTextBox", Text: defaultText, Style: "Aqua" }
     }
 
     CreateLabel(text) {
-        return {Type: "MacLabel", Text: text, Style: "Aqua"}
+        return { Type: "MacLabel", Text: text, Style: "Aqua" }
     }
 }
 
@@ -838,11 +838,11 @@ MsgBox(CreateUI(winFactory))
 MsgBox(CreateUI(macFactory))
 
 MsgBox("=== OOP Abstract Patterns Examples Complete ===`n`n"
-. "This file demonstrated:`n"
-. "- Abstract class simulation`n"
-. "- Template method pattern`n"
-. "- Interface-like patterns`n"
-. "- Abstract data store pattern`n"
-. "- Abstract validator pattern`n"
-. "- Abstract command pattern`n"
-. "- Abstract factory pattern")
+    . "This file demonstrated:`n"
+    . "- Abstract class simulation`n"
+    . "- Template method pattern`n"
+    . "- Interface-like patterns`n"
+    . "- Abstract data store pattern`n"
+    . "- Abstract validator pattern`n"
+    . "- Abstract command pattern`n"
+    . "- Abstract factory pattern")

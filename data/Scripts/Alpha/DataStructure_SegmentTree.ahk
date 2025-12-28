@@ -11,14 +11,14 @@ class SegmentTree {
         this.tree := []
         this.lazy := []  ; For lazy propagation
         this.operation := operation
-        
+
         ; Initialize tree (2 * next power of 2)
         treeSize := this.n * 4
         Loop treeSize {
             this.tree.Push(0)
             this.lazy.Push(0)
         }
-        
+
         this._build(arr, 1, 1, this.n)
     }
 
@@ -31,7 +31,7 @@ class SegmentTree {
         mid := (start + end) // 2
         left := this._build(arr, node * 2, start, mid)
         right := this._build(arr, node * 2 + 1, mid + 1, end)
-        
+
         this.tree[node] := this._combine(left, right)
         return this.tree[node]
     }
@@ -75,7 +75,7 @@ class SegmentTree {
         mid := (start + end) // 2
         left := this._query(node * 2, start, mid, l, r)
         right := this._query(node * 2 + 1, mid + 1, end, l, r)
-        
+
         return this._combine(left, right)
     }
 
@@ -121,7 +121,7 @@ class SegmentTree {
         mid := (start + end) // 2
         this._rangeUpdate(node * 2, start, mid, l, r, delta)
         this._rangeUpdate(node * 2 + 1, mid + 1, end, l, r, delta)
-        
+
         this.tree[node] := this._combine(this.tree[node * 2], this.tree[node * 2 + 1])
     }
 

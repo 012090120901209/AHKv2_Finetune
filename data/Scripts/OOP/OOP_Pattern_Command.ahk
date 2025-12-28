@@ -44,7 +44,7 @@ class InsertTextCommand extends Command {
 
 class DeleteTextCommand extends Command {
     __New(editor, count) => (this.editor := editor, this.count := count, this.deletedText := "")
-    Execute() => (this.deletedText := SubStr(this.editor.text, -(this.count-1)), this.editor.text := SubStr(this.editor.text, 1, StrLen(this.editor.text) - this.count))
+    Execute() => (this.deletedText := SubStr(this.editor.text, -(this.count - 1)), this.editor.text := SubStr(this.editor.text, 1, StrLen(this.editor.text) - this.count))
     Undo() => this.editor.text .= this.deletedText
 }
 

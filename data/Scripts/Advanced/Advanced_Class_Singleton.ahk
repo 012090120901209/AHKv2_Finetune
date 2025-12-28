@@ -14,7 +14,7 @@ class Singleton {
 
     static GetInstance() {
         if (Singleton.instance = "")
-        Singleton.instance := Singleton()
+            Singleton.instance := Singleton()
         return Singleton.instance
     }
 
@@ -36,3 +36,4 @@ MsgBox("Theme from config2: " config2.GetValue("theme"))  ; Shows "dark"
 
 ; Both variables reference the same instance
 MsgBox("Same instance? " (config1 = config2 ? "Yes" : "No"))  ; Shows "Yes"
+

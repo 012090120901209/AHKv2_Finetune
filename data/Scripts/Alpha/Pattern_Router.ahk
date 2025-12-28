@@ -186,7 +186,7 @@ result := "Router Demo:`n`n"
 for test in tests {
     response := appRouter.Handle(test[1], test[2])
     result .= test[1] " " test[2] "`n"
-    
+
     for key, value in response {
         if IsObject(value)
             result .= "  " key ": [object]`n"

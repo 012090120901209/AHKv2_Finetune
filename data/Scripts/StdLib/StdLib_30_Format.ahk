@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* Format() - String formatting
-*
-* Formats a string according to a format specification.
-*/
+ * Format() - String formatting
+ * 
+ * Formats a string according to a format specification.
+ */
 
 name := "Alice"
 age := 30

@@ -2,24 +2,24 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Clear_01_BasicUsage.ahk
-*
-* @description Comprehensive examples of Map.Clear() method
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* The Map.Clear() method removes all key-value pairs from a Map.
-* Syntax: MapObject.Clear()
-* Returns: void (no return value)
-*
-* Key Features:
-* - Remove all entries at once
-* - Reset map to empty state
-* - Faster than deleting individually
-* - Useful for bulk operations
-*/
+ * BuiltIn_Map_Clear_01_BasicUsage.ahk
+ * 
+ * @description Comprehensive examples of Map.Clear() method
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * The Map.Clear() method removes all key-value pairs from a Map.
+ * Syntax: MapObject.Clear()
+ * Returns: void (no return value)
+ * 
+ * Key Features:
+ * - Remove all entries at once
+ * - Reset map to empty state
+ * - Faster than deleting individually
+ * - Useful for bulk operations
+ */
 
 ;=============================================================================
 ; Example 1: Basic Clear Operation
@@ -27,11 +27,11 @@
 
 Example1_BasicClear() {
     data := Map(
-    "key1", "value1",
-    "key2", "value2",
-    "key3", "value3",
-    "key4", "value4",
-    "key5", "value5"
+        "key1", "value1",
+        "key2", "value2",
+        "key3", "value3",
+        "key4", "value4",
+        "key5", "value5"
     )
 
     output := "=== Basic Clear Example ===`n`n"
@@ -133,9 +133,9 @@ Example4_SessionManagement() {
     CreateSession(userId) {
         sessionId := "sess_" A_TickCount
         sessions.Set(sessionId, Map(
-        "userId", userId,
-        "created", A_Now,
-        "data", Map()
+            "userId", userId,
+            "created", A_Now,
+            "data", Map()
         ))
         return sessionId
     }
@@ -189,12 +189,12 @@ Example5_BatchProcessing() {
     output := "=== Batch Processing ===`n`n"
 
     ; Batch 1
-    batch1 := [{id: "i1", value: "v1"}, {id: "i2", value: "v2"}]
+    batch1 := [{ id: "i1", value: "v1" }, { id: "i2", value: "v2" }]
     output .= ProcessBatch(batch1) "`n"
     output .= "Buffer after batch 1: " buffer.Count " items`n`n"
 
     ; Batch 2
-    batch2 := [{id: "i3", value: "v3"}, {id: "i4", value: "v4"}, {id: "i5", value: "v5"}]
+    batch2 := [{ id: "i3", value: "v3" }, { id: "i4", value: "v4" }, { id: "i5", value: "v5" }]
     output .= ProcessBatch(batch2) "`n"
     output .= "Buffer after batch 2: " buffer.Count " items`n"
 
@@ -257,9 +257,9 @@ Example7_SynchronizedClear() {
 
     ClearAll() {
         counts := Map(
-        "users", users.Count,
-        "sessions", sessions.Count,
-        "cache", cache.Count
+            "users", users.Count,
+            "sessions", sessions.Count,
+            "cache", cache.Count
         )
 
         users.Clear()
@@ -302,28 +302,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Clear All Entries with Map.Clear()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Basic Clear")
-    .OnEvent("Click", (*) => Example1_BasicClear())
+        .OnEvent("Click", (*) => Example1_BasicClear())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Performance")
-    .OnEvent("Click", (*) => Example2_ClearVsDelete())
+        .OnEvent("Click", (*) => Example2_ClearVsDelete())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Reset")
-    .OnEvent("Click", (*) => Example3_ResetPattern())
+        .OnEvent("Click", (*) => Example3_ResetPattern())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Sessions")
-    .OnEvent("Click", (*) => Example4_SessionManagement())
+        .OnEvent("Click", (*) => Example4_SessionManagement())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Batch")
-    .OnEvent("Click", (*) => Example5_BatchProcessing())
+        .OnEvent("Click", (*) => Example5_BatchProcessing())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Backup")
-    .OnEvent("Click", (*) => Example6_ClearWithBackup())
+        .OnEvent("Click", (*) => Example6_ClearWithBackup())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Synchronized")
-    .OnEvent("Click", (*) => Example7_SynchronizedClear())
+        .OnEvent("Click", (*) => Example7_SynchronizedClear())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_BasicClear()

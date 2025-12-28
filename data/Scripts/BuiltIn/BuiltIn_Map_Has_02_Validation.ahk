@@ -2,43 +2,43 @@
 #SingleInstance Force
 
 /**
-* BuiltIn_Map_Has_02_Validation.ahk
-*
-* @description Map.Has() for data validation and required field checking
-* @author AutoHotkey v2 Examples Collection
-* @version 1.0.0
-* @date 2025-11-16
-*
-* @overview
-* Advanced validation patterns using Map.Has() for checking required fields,
-* data completeness, schema validation, and integrity checks.
-*/
+ * BuiltIn_Map_Has_02_Validation.ahk
+ * 
+ * @description Map.Has() for data validation and required field checking
+ * @author AutoHotkey v2 Examples Collection
+ * @version 1.0.0
+ * @date 2025-11-16
+ * 
+ * @overview
+ * Advanced validation patterns using Map.Has() for checking required fields,
+ * data completeness, schema validation, and integrity checks.
+ */
 
 ;=============================================================================
 ; Example 1: Required Fields Validator
 ;=============================================================================
 
 /**
-* @class RequiredFieldsValidator
-* @description Validate that all required fields exist
-*/
+ * @class RequiredFieldsValidator
+ * @description Validate that all required fields exist
+ */
 class RequiredFieldsValidator {
     /**
-    * @method Validate
-    * @description Check if all required fields are present
-    * @param {Map} data - Data to validate
-    * @param {Array} requiredFields - List of required field names
-    * @returns {Object} Validation result with details
-    */
+     * @method Validate
+     * @description Check if all required fields are present
+     * @param {Map} data - Data to validate
+     * @param {Array} requiredFields - List of required field names
+     * @returns {Object} Validation result with details
+     */
     static Validate(data, requiredFields) {
         missing := []
         present := []
 
         for field in requiredFields {
             if (data.Has(field))
-            present.Push(field)
+                present.Push(field)
             else
-            missing.Push(field)
+                missing.Push(field)
         }
 
         return {
@@ -46,27 +46,27 @@ class RequiredFieldsValidator {
             missing: missing,
             present: present,
             message: missing.Length = 0
-            ? "All required fields present"
-            : "Missing required fields: " this.ArrayToString(missing)
+                ? "All required fields present"
+                : "Missing required fields: " this.ArrayToString(missing)
         }
     }
 
     /**
-    * @method ValidateNested
-    * @description Validate nested required fields
-    * @param {Map} data - Data to validate
-    * @param {Array} paths - Array of dot-notation paths
-    * @returns {Object} Validation result
-    */
+     * @method ValidateNested
+     * @description Validate nested required fields
+     * @param {Map} data - Data to validate
+     * @param {Array} paths - Array of dot-notation paths
+     * @returns {Object} Validation result
+     */
     static ValidateNested(data, paths) {
         missing := []
         present := []
 
         for path in paths {
             if (this.HasPath(data, path))
-            present.Push(path)
+                present.Push(path)
             else
-            missing.Push(path)
+                missing.Push(path)
         }
 
         return {
@@ -77,16 +77,16 @@ class RequiredFieldsValidator {
     }
 
     /**
-    * @method HasPath
-    * @description Check if nested path exists
-    */
+     * @method HasPath
+     * @description Check if nested path exists
+     */
     static HasPath(data, path) {
         parts := StrSplit(path, ".")
         current := data
 
         for part in parts {
             if (!IsObject(current) || !current.Has(part))
-            return false
+                return false
             current := current[part]
         }
 
@@ -105,16 +105,16 @@ class RequiredFieldsValidator {
 Example1_RequiredFields() {
     ; Test data - user registration
     validUser := Map(
-    "username", "johndoe",
-    "email", "john@example.com",
-    "password", "secret123",
-    "age", 25
+        "username", "johndoe",
+        "email", "john@example.com",
+        "password", "secret123",
+        "age", 25
     )
 
     invalidUser := Map(
-    "username", "janedoe",
-    "email", "jane@example.com"
-    ; Missing password and age
+        "username", "janedoe",
+        "email", "jane@example.com"
+        ; Missing password and age
     )
 
     requiredFields := ["username", "email", "password", "age"]
@@ -141,28 +141,28 @@ Example1_RequiredFields() {
 ;=============================================================================
 
 /**
-* @class SchemaValidator
-* @description Validate data against a schema definition
-*/
+ * @class SchemaValidator
+ * @description Validate data against a schema definition
+ */
 class SchemaValidator {
     schema := Map()
 
     /**
-    * @method DefineField
-    * @description Define a field in the schema
-    */
+     * @method DefineField
+     * @description Define a field in the schema
+     */
     DefineField(name, required := true, type := "", validator := "") {
         this.schema.Set(name, Map(
-        "required", required,
-        "type", type,
-        "validator", validator
+            "required", required,
+            "type", type,
+            "validator", validator
         ))
     }
 
     /**
-    * @method Validate
-    * @description Validate data against schema
-    */
+     * @method Validate
+     * @description Validate data against schema
+     */
     Validate(data) {
         errors := []
         warnings := []
@@ -176,7 +176,7 @@ class SchemaValidator {
             }
 
             if (!data.Has(fieldName))
-            continue  ; Optional field not provided
+                continue  ; Optional field not provided
 
             value := data[fieldName]
 
@@ -186,7 +186,7 @@ class SchemaValidator {
                 actualType := Type(value)
 
                 if (actualType != expectedType)
-                errors.Push("Field '" fieldName "' should be " expectedType ", got " actualType)
+                    errors.Push("Field '" fieldName "' should be " expectedType ", got " actualType)
             }
 
             ; Custom validator
@@ -195,16 +195,16 @@ class SchemaValidator {
                 result := validator.Call(value)
 
                 if (Type(result) = "String" && result != "")
-                errors.Push("Field '" fieldName "': " result)
+                    errors.Push("Field '" fieldName "': " result)
                 else if (Type(result) = "Integer" && !result)
-                errors.Push("Field '" fieldName "' validation failed")
+                    errors.Push("Field '" fieldName "' validation failed")
             }
         }
 
         ; Check for extra fields
         for fieldName in data {
             if (!this.schema.Has(fieldName))
-            warnings.Push("Unexpected field: " fieldName)
+                warnings.Push("Unexpected field: " fieldName)
         }
 
         return {
@@ -228,24 +228,24 @@ Example2_SchemaValidation() {
 
     ; Test 1: Valid data
     validData := Map(
-    "username", "johndoe",
-    "email", "john@example.com",
-    "age", 25
+        "username", "johndoe",
+        "email", "john@example.com",
+        "age", 25
     )
 
     result1 := validator.Validate(validData)
     output .= "Test 1 - Valid data:`n"
     output .= "  Valid: " (result1.valid ? "Yes" : "No") "`n"
     if (result1.errors.Length > 0)
-    output .= "  Errors: " ArrayJoin(result1.errors, "; ") "`n"
+        output .= "  Errors: " ArrayJoin(result1.errors, "; ") "`n"
     output .= "`n"
 
     ; Test 2: Invalid data
     invalidData := Map(
-    "username", "ab",  ; Too short
-    "email", "invalid-email",  ; No @
-    "age", 15,  ; Too young
-    "extra", "field"  ; Unexpected
+        "username", "ab",  ; Too short
+        "email", "invalid-email",  ; No @
+        "age", 15,  ; Too young
+        "extra", "field"  ; Unexpected
     )
 
     result2 := validator.Validate(invalidData)
@@ -270,52 +270,52 @@ ArrayJoin(arr, delimiter) {
 ;=============================================================================
 
 /**
-* @class ConditionalValidator
-* @description Validate fields with conditional requirements
-*/
+ * @class ConditionalValidator
+ * @description Validate fields with conditional requirements
+ */
 class ConditionalValidator {
     data := Map()
     rules := []
 
     /**
-    * @method SetData
-    * @description Set data to validate
-    */
+     * @method SetData
+     * @description Set data to validate
+     */
     SetData(data) {
         this.data := data
     }
 
     /**
-    * @method AddRule
-    * @description Add conditional validation rule
-    * @param {String} condition - Condition description
-    * @param {Func} conditionFunc - Function returning true if rule applies
-    * @param {Array} requiredFields - Fields required when condition is true
-    */
+     * @method AddRule
+     * @description Add conditional validation rule
+     * @param {String} condition - Condition description
+     * @param {Func} conditionFunc - Function returning true if rule applies
+     * @param {Array} requiredFields - Fields required when condition is true
+     */
     AddRule(condition, conditionFunc, requiredFields) {
         this.rules.Push(Map(
-        "condition", condition,
-        "conditionFunc", conditionFunc,
-        "requiredFields", requiredFields
+            "condition", condition,
+            "conditionFunc", conditionFunc,
+            "requiredFields", requiredFields
         ))
     }
 
     /**
-    * @method Validate
-    * @description Validate all conditional rules
-    */
+     * @method Validate
+     * @description Validate all conditional rules
+     */
     Validate() {
         errors := []
 
         for rule in this.rules {
             ; Check if condition applies
             if (!rule["conditionFunc"].Call(this.data))
-            continue
+                continue
 
             ; Condition applies - check required fields
             for field in rule["requiredFields"] {
                 if (!this.data.Has(field))
-                errors.Push("When " rule["condition"] ", field '" field "' is required")
+                    errors.Push("When " rule["condition"] ", field '" field "' is required")
             }
         }
 
@@ -332,25 +332,25 @@ Example3_ConditionalValidation() {
     ; Define rules
     ; If shipping is true, address is required
     validator.AddRule(
-    "shipping is required",
-    (data) => data.Has("shipping") && data["shipping"],
-    ["address", "city", "zipCode"]
+        "shipping is required",
+        (data) => data.Has("shipping") && data["shipping"],
+        ["address", "city", "zipCode"]
     )
 
     ; If payment method is credit card, card details required
     validator.AddRule(
-    "payment method is 'credit_card'",
-    (data) => data.Has("paymentMethod") && data["paymentMethod"] = "credit_card",
-    ["cardNumber", "cardExpiry", "cardCVV"]
+        "payment method is 'credit_card'",
+        (data) => data.Has("paymentMethod") && data["paymentMethod"] = "credit_card",
+        ["cardNumber", "cardExpiry", "cardCVV"]
     )
 
     output := "=== Conditional Validation ===`n`n"
 
     ; Test 1: Shipping required but address missing
     order1 := Map(
-    "items", ["item1", "item2"],
-    "shipping", true
-    ; Missing address, city, zipCode
+        "items", ["item1", "item2"],
+        "shipping", true
+        ; Missing address, city, zipCode
     )
 
     validator.SetData(order1)
@@ -359,14 +359,14 @@ Example3_ConditionalValidation() {
     output .= "Test 1 - Shipping without address:`n"
     output .= "  Valid: " (result1.valid ? "Yes" : "No") "`n"
     if (!result1.valid)
-    output .= "  Errors: " ArrayJoin(result1.errors, "; ") "`n"
+        output .= "  Errors: " ArrayJoin(result1.errors, "; ") "`n"
     output .= "`n"
 
     ; Test 2: Credit card payment without details
     order2 := Map(
-    "items", ["item1"],
-    "paymentMethod", "credit_card"
-    ; Missing card details
+        "items", ["item1"],
+        "paymentMethod", "credit_card"
+        ; Missing card details
     )
 
     validator.SetData(order2)
@@ -375,7 +375,7 @@ Example3_ConditionalValidation() {
     output .= "Test 2 - Credit card without details:`n"
     output .= "  Valid: " (result2.valid ? "Yes" : "No") "`n"
     if (!result2.valid)
-    output .= "  Errors: " ArrayJoin(result2.errors, "; ") "`n"
+        output .= "  Errors: " ArrayJoin(result2.errors, "; ") "`n"
 
     MsgBox(output, "Conditional Validation")
 }
@@ -385,26 +385,26 @@ Example3_ConditionalValidation() {
 ;=============================================================================
 
 /**
-* @class CompletenessChecker
-* @description Check data completeness percentage
-*/
+ * @class CompletenessChecker
+ * @description Check data completeness percentage
+ */
 class CompletenessChecker {
     /**
-    * @method CheckCompleteness
-    * @description Calculate completeness percentage
-    * @param {Map} data - Data to check
-    * @param {Array} allFields - All possible fields
-    * @returns {Object} Completeness information
-    */
+     * @method CheckCompleteness
+     * @description Calculate completeness percentage
+     * @param {Map} data - Data to check
+     * @param {Array} allFields - All possible fields
+     * @returns {Object} Completeness information
+     */
     static CheckCompleteness(data, allFields) {
         present := []
         missing := []
 
         for field in allFields {
             if (data.Has(field))
-            present.Push(field)
+                present.Push(field)
             else
-            missing.Push(field)
+                missing.Push(field)
         }
 
         percentage := Round((present.Length / allFields.Length) * 100)
@@ -419,18 +419,18 @@ class CompletenessChecker {
     }
 
     /**
-    * @method GetCompletenessStatus
-    * @description Get status description based on percentage
-    */
+     * @method GetCompletenessStatus
+     * @description Get status description based on percentage
+     */
     static GetCompletenessStatus(percentage) {
         if (percentage = 100)
-        return "Complete"
+            return "Complete"
         if (percentage >= 75)
-        return "Mostly Complete"
+            return "Mostly Complete"
         if (percentage >= 50)
-        return "Partially Complete"
+            return "Partially Complete"
         if (percentage >= 25)
-        return "Incomplete"
+            return "Incomplete"
         return "Barely Started"
     }
 }
@@ -439,13 +439,11 @@ Example4_CompletenessCheck() {
     allFields := ["name", "email", "phone", "address", "city", "state", "zipCode", "country"]
 
     profiles := [
-    Map("name", "John", "email", "john@example.com", "phone", "555-1234",
-    "address", "123 Main St", "city", "New York", "state", "NY",
-    "zipCode", "10001", "country", "USA"),
-
-    Map("name", "Jane", "email", "jane@example.com", "phone", "555-5678"),
-
-    Map("name", "Bob")
+        Map("name", "John", "email", "john@example.com", "phone", "555-1234",
+            "address", "123 Main St", "city", "New York", "state", "NY",
+            "zipCode", "10001", "country", "USA"),
+        Map("name", "Jane", "email", "jane@example.com", "phone", "555-5678"),
+        Map("name", "Bob")
     ]
 
     output := "=== Data Completeness Check ===`n`n"
@@ -468,39 +466,39 @@ Example4_CompletenessCheck() {
 ;=============================================================================
 
 /**
-* @class DependencyValidator
-* @description Validate field dependencies
-*/
+ * @class DependencyValidator
+ * @description Validate field dependencies
+ */
 class DependencyValidator {
     dependencies := Map()
 
     /**
-    * @method AddDependency
-    * @description Define that field A depends on field B
-    */
+     * @method AddDependency
+     * @description Define that field A depends on field B
+     */
     AddDependency(field, dependsOn) {
         if (!this.dependencies.Has(field))
-        this.dependencies.Set(field, [])
+            this.dependencies.Set(field, [])
 
         this.dependencies[field].Push(dependsOn)
     }
 
     /**
-    * @method Validate
-    * @description Validate all dependencies
-    */
+     * @method Validate
+     * @description Validate all dependencies
+     */
     Validate(data) {
         errors := []
 
         for field, deps in this.dependencies {
             ; Only check if field is present
             if (!data.Has(field))
-            continue
+                continue
 
             ; Check all dependencies
             for dep in deps {
                 if (!data.Has(dep))
-                errors.Push("Field '" field "' requires '" dep "' to be present")
+                    errors.Push("Field '" field "' requires '" dep "' to be present")
             }
         }
 
@@ -525,24 +523,24 @@ Example5_DependencyValidation() {
 
     ; Test 1: City without address
     data1 := Map(
-    "name", "John",
-    "city", "New York"
-    ; Missing address
+        "name", "John",
+        "city", "New York"
+        ; Missing address
     )
 
     result1 := validator.Validate(data1)
     output .= "Test 1 - City without address:`n"
     output .= "  Valid: " (result1.valid ? "Yes" : "No") "`n"
     if (!result1.valid)
-    output .= "  Errors: " ArrayJoin(result1.errors, "; ") "`n"
+        output .= "  Errors: " ArrayJoin(result1.errors, "; ") "`n"
     output .= "`n"
 
     ; Test 2: All dependencies satisfied
     data2 := Map(
-    "name", "Jane",
-    "address", "123 Main St",
-    "city", "Boston",
-    "zipCode", "02101"
+        "name", "Jane",
+        "address", "123 Main St",
+        "city", "Boston",
+        "zipCode", "02101"
     )
 
     result2 := validator.Validate(data2)
@@ -557,33 +555,33 @@ Example5_DependencyValidation() {
 ;=============================================================================
 
 /**
-* @class MultiLanguageValidator
-* @description Validate multi-language content
-*/
+ * @class MultiLanguageValidator
+ * @description Validate multi-language content
+ */
 class MultiLanguageValidator {
     requiredLanguages := []
     optionalLanguages := []
 
     /**
-    * @method SetRequiredLanguages
-    * @description Set required language codes
-    */
+     * @method SetRequiredLanguages
+     * @description Set required language codes
+     */
     SetRequiredLanguages(languages) {
         this.requiredLanguages := languages
     }
 
     /**
-    * @method SetOptionalLanguages
-    * @description Set optional language codes
-    */
+     * @method SetOptionalLanguages
+     * @description Set optional language codes
+     */
     SetOptionalLanguages(languages) {
         this.optionalLanguages := languages
     }
 
     /**
-    * @method Validate
-    * @description Validate multilingual data
-    */
+     * @method Validate
+     * @description Validate multilingual data
+     */
     Validate(data, field) {
         missing := []
         present := []
@@ -593,9 +591,9 @@ class MultiLanguageValidator {
             key := field "." lang
 
             if (data.Has(key))
-            present.Push(lang)
+                present.Push(lang)
             else
-            missing.Push(lang)
+                missing.Push(lang)
         }
 
         ; Check optional languages
@@ -603,7 +601,7 @@ class MultiLanguageValidator {
         for lang in this.optionalLanguages {
             key := field "." lang
             if (data.Has(key))
-            optional.Push(lang)
+                optional.Push(lang)
         }
 
         return {
@@ -622,12 +620,12 @@ Example6_MultiLanguageValidation() {
     validator.SetOptionalLanguages(["de", "it", "pt"])
 
     product := Map(
-    "name.en", "Product Name",
-    "name.es", "Nombre del Producto",
-    "name.de", "Produktname",
-    "description.en", "Product description",
-    "description.fr", "Description du produit"
-    ; Missing: name.fr, description.es, description.de
+        "name.en", "Product Name",
+        "name.es", "Nombre del Producto",
+        "name.de", "Produktname",
+        "description.en", "Product description",
+        "description.fr", "Description du produit"
+        ; Missing: name.fr, description.es, description.de
     )
 
     output := "=== Multi-Language Validation ===`n`n"
@@ -656,9 +654,9 @@ Example6_MultiLanguageValidation() {
 ;=============================================================================
 
 /**
-* @class BatchValidator
-* @description Validate multiple records at once
-*/
+ * @class BatchValidator
+ * @description Validate multiple records at once
+ */
 class BatchValidator {
     requiredFields := []
 
@@ -667,9 +665,9 @@ class BatchValidator {
     }
 
     /**
-    * @method ValidateBatch
-    * @description Validate array of records
-    */
+     * @method ValidateBatch
+     * @description Validate array of records
+     */
     ValidateBatch(records) {
         results := []
         validCount := 0
@@ -680,19 +678,19 @@ class BatchValidator {
 
             for field in this.requiredFields {
                 if (!record.Has(field))
-                missing.Push(field)
+                    missing.Push(field)
             }
 
             valid := missing.Length = 0
             if (valid)
-            validCount++
+                validCount++
             else
-            invalidCount++
+                invalidCount++
 
             results.Push(Map(
-            "index", index,
-            "valid", valid,
-            "missing", missing
+                "index", index,
+                "valid", valid,
+                "missing", missing
             ))
         }
 
@@ -711,10 +709,10 @@ Example7_BatchValidation() {
     validator.SetRequiredFields(["id", "name", "email"])
 
     records := [
-    Map("id", 1, "name", "John", "email", "john@example.com"),
-    Map("id", 2, "name", "Jane"),  ; Missing email
-    Map("id", 3, "email", "bob@example.com"),  ; Missing name
-    Map("id", 4, "name", "Alice", "email", "alice@example.com")
+        Map("id", 1, "name", "John", "email", "john@example.com"),
+        Map("id", 2, "name", "Jane"),  ; Missing email
+        Map("id", 3, "email", "bob@example.com"),  ; Missing name
+        Map("id", 4, "name", "Alice", "email", "alice@example.com")
     ]
 
     result := validator.ValidateBatch(records)
@@ -730,7 +728,7 @@ Example7_BatchValidation() {
     for res in result.results {
         output .= "  Record " res["index"] ": " (res["valid"] ? "Valid" : "Invalid")
         if (!res["valid"])
-        output .= " (Missing: " ArrayJoin(res["missing"], ", ") ")"
+            output .= " (Missing: " ArrayJoin(res["missing"], ", ") ")"
         output .= "`n"
     }
 
@@ -748,28 +746,28 @@ CreateDemoGUI() {
     demoGui.Add("Text", "x10 y10 w480 +Center", "Validation Patterns with Map.Has()")
 
     demoGui.Add("Button", "x10 y40 w230 h30", "Example 1: Required Fields")
-    .OnEvent("Click", (*) => Example1_RequiredFields())
+        .OnEvent("Click", (*) => Example1_RequiredFields())
 
     demoGui.Add("Button", "x250 y40 w230 h30", "Example 2: Schema")
-    .OnEvent("Click", (*) => Example2_SchemaValidation())
+        .OnEvent("Click", (*) => Example2_SchemaValidation())
 
     demoGui.Add("Button", "x10 y80 w230 h30", "Example 3: Conditional")
-    .OnEvent("Click", (*) => Example3_ConditionalValidation())
+        .OnEvent("Click", (*) => Example3_ConditionalValidation())
 
     demoGui.Add("Button", "x250 y80 w230 h30", "Example 4: Completeness")
-    .OnEvent("Click", (*) => Example4_CompletenessCheck())
+        .OnEvent("Click", (*) => Example4_CompletenessCheck())
 
     demoGui.Add("Button", "x10 y120 w230 h30", "Example 5: Dependencies")
-    .OnEvent("Click", (*) => Example5_DependencyValidation())
+        .OnEvent("Click", (*) => Example5_DependencyValidation())
 
     demoGui.Add("Button", "x250 y120 w230 h30", "Example 6: Multi-Language")
-    .OnEvent("Click", (*) => Example6_MultiLanguageValidation())
+        .OnEvent("Click", (*) => Example6_MultiLanguageValidation())
 
     demoGui.Add("Button", "x10 y160 w470 h30", "Example 7: Batch Validation")
-    .OnEvent("Click", (*) => Example7_BatchValidation())
+        .OnEvent("Click", (*) => Example7_BatchValidation())
 
     demoGui.Add("Button", "x10 y200 w470 h30", "Run All Examples")
-    .OnEvent("Click", RunAll)
+        .OnEvent("Click", RunAll)
 
     RunAll(*) {
         Example1_RequiredFields()

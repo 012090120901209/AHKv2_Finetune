@@ -13,48 +13,48 @@ class Query {
         this.source := source is Array ? source : [source]
         this.operations := []
     }
-    
+
     static From(source) => Query(source)
-    
+
     Where(predicate) {
-        this.operations.Push({type: "where", fn: predicate})
+        this.operations.Push({ type: "where", fn: predicate })
         return this
     }
-    
+
     Select(transform) {
-        this.operations.Push({type: "select", fn: transform})
+        this.operations.Push({ type: "select", fn: transform })
         return this
     }
-    
+
     OrderBy(keyFn, desc := false) {
-        this.operations.Push({type: "orderBy", fn: keyFn, desc: desc})
+        this.operations.Push({ type: "orderBy", fn: keyFn, desc: desc })
         return this
     }
-    
+
     Take(count) {
-        this.operations.Push({type: "take", count: count})
+        this.operations.Push({ type: "take", count: count })
         return this
     }
-    
+
     Skip(count) {
-        this.operations.Push({type: "skip", count: count})
+        this.operations.Push({ type: "skip", count: count })
         return this
     }
-    
+
     Distinct() {
-        this.operations.Push({type: "distinct"})
+        this.operations.Push({ type: "distinct" })
         return this
     }
-    
+
     GroupBy(keyFn) {
-        this.operations.Push({type: "groupBy", fn: keyFn})
+        this.operations.Push({ type: "groupBy", fn: keyFn })
         return this
     }
-    
+
     ; Terminal operations
     ToArray() {
         result := this.source.Clone()
-        
+
         for op in this.operations {
             switch op.type {
                 case "where":
@@ -73,29 +73,29 @@ class Query {
                     result := this._groupBy(result, op.fn)
             }
         }
-        
+
         return result
     }
-    
+
     First(default := "") {
         arr := this.ToArray()
         return arr.Length > 0 ? arr[1] : default
     }
-    
+
     Count() => this.ToArray().Length
-    
+
     Sum(keyFn := (x) => x) {
         total := 0
         for item in this.ToArray()
             total += keyFn(item)
         return total
     }
-    
+
     Average(keyFn := (x) => x) {
         arr := this.ToArray()
         return arr.Length > 0 ? this.Sum(keyFn) / arr.Length : 0
     }
-    
+
     ; Helper methods
     _filter(arr, fn) {
         result := []
@@ -104,14 +104,14 @@ class Query {
                 result.Push(item)
         return result
     }
-    
+
     _map(arr, fn) {
         result := []
         for item in arr
             result.Push(fn(item))
         return result
     }
-    
+
     _sort(arr, keyFn, desc) {
         ; Simple bubble sort for demo
         result := arr.Clone()
@@ -132,21 +132,21 @@ class Query {
         }
         return result
     }
-    
+
     _take(arr, count) {
         result := []
         Loop Min(count, arr.Length)
             result.Push(arr[A_Index])
         return result
     }
-    
+
     _skip(arr, count) {
         result := []
         Loop arr.Length - count
             result.Push(arr[A_Index + count])
         return result
     }
-    
+
     _distinct(arr) {
         seen := Map()
         result := []
@@ -159,7 +159,7 @@ class Query {
         }
         return result
     }
-    
+
     _groupBy(arr, keyFn) {
         groups := Map()
         for item in arr {
@@ -168,11 +168,11 @@ class Query {
                 groups[key] := []
             groups[key].Push(item)
         }
-        
+
         ; Convert to array of {key, items}
         result := []
         for key, items in groups
-            result.Push({key: key, items: items})
+            result.Push({ key: key, items: items })
         return result
     }
 }
@@ -185,94 +185,94 @@ class StringBuilder {
     __New() {
         this.parts := []
     }
-    
+
     static Create() => StringBuilder()
-    
+
     Append(str) {
         this.parts.Push(str)
         return this
     }
-    
+
     AppendLine(str := "") {
         this.parts.Push(str "`n")
         return this
     }
-    
+
     AppendFormat(format, args*) {
         this.parts.Push(Format(format, args*))
         return this
     }
-    
+
     Prepend(str) {
         this.parts.InsertAt(1, str)
         return this
     }
-    
+
     Repeat(str, count) {
         Loop count
             this.parts.Push(str)
         return this
     }
-    
+
     If(condition, thenStr, elseStr := "") {
         this.parts.Push(condition ? thenStr : elseStr)
         return this
     }
-    
+
     When(condition, callback) {
         if condition
             callback(this)
         return this
     }
-    
+
     Join(arr, sep := "") {
         for i, item in arr
             this.parts.Push((i > 1 ? sep : "") item)
         return this
     }
-    
+
     Pad(length, char := " ", right := false) {
         str := this.ToString()
         padding := ""
         Loop Max(0, length - StrLen(str))
             padding .= char
-        
+
         this.parts := right ? [str, padding] : [padding, str]
         return this
     }
-    
+
     Trim() {
         this.parts := [Trim(this.ToString())]
         return this
     }
-    
+
     Replace(search, replace) {
         this.parts := [StrReplace(this.ToString(), search, replace)]
         return this
     }
-    
+
     ToUpper() {
         this.parts := [StrUpper(this.ToString())]
         return this
     }
-    
+
     ToLower() {
         this.parts := [StrLower(this.ToString())]
         return this
     }
-    
+
     Clear() {
         this.parts := []
         return this
     }
-    
+
     ToString() {
         result := ""
         for part in this.parts
             result .= part
         return result
     }
-    
+
     Length => StrLen(this.ToString())
 }
 
@@ -288,72 +288,72 @@ class HttpRequest {
         this._body := ""
         this._timeout := 30
     }
-    
+
     static Create() => HttpRequest()
-    
+
     Get(url) {
         this._method := "GET"
         this._url := url
         return this
     }
-    
+
     Post(url) {
         this._method := "POST"
         this._url := url
         return this
     }
-    
+
     Put(url) {
         this._method := "PUT"
         this._url := url
         return this
     }
-    
+
     Delete(url) {
         this._method := "DELETE"
         this._url := url
         return this
     }
-    
+
     Header(name, value) {
         this._headers[name] := value
         return this
     }
-    
+
     ContentType(type) {
         this._headers["Content-Type"] := type
         return this
     }
-    
+
     Accept(type) {
         this._headers["Accept"] := type
         return this
     }
-    
+
     Authorization(type, token) {
         this._headers["Authorization"] := type " " token
         return this
     }
-    
+
     Bearer(token) => this.Authorization("Bearer", token)
-    
+
     Body(data) {
         this._body := data
         return this
     }
-    
+
     Json(obj) {
         ; Simplified JSON serialization
         this._body := this._toJson(obj)
         this._headers["Content-Type"] := "application/json"
         return this
     }
-    
+
     Timeout(seconds) {
         this._timeout := seconds
         return this
     }
-    
+
     ; Build request description (actual HTTP would need ComObject)
     Build() {
         return Map(
@@ -364,20 +364,20 @@ class HttpRequest {
             "timeout", this._timeout
         )
     }
-    
+
     ToString() {
         lines := [this._method " " this._url]
         for name, value in this._headers
             lines.Push(name ": " value)
         if this._body
             lines.Push("", this._body)
-        
+
         result := ""
         for line in lines
             result .= line "`n"
         return result
     }
-    
+
     _toJson(obj) {
         if obj is Map {
             parts := []
@@ -395,7 +395,7 @@ class HttpRequest {
             return '"' obj '"'
         return String(obj)
     }
-    
+
     _joinArr(arr, sep) {
         r := ""
         for i, v in arr
@@ -414,56 +414,56 @@ class Assert {
         this.description := description
         this.negated := false
     }
-    
+
     static That(value, description := "") => Assert(value, description)
-    
+
     Not {
         get {
             this.negated := !this.negated
             return this
         }
     }
-    
+
     Equals(expected) {
         result := this.value = expected
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("equal", expected))
         return this
     }
-    
+
     IsTrue() {
         result := !!this.value
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("be true"))
         return this
     }
-    
+
     IsFalse() {
         result := !this.value
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("be false"))
         return this
     }
-    
+
     IsNull() {
         result := this.value = ""
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("be null/empty"))
         return this
     }
-    
+
     Contains(item) {
         if this.value is String
             result := InStr(this.value, item)
@@ -471,54 +471,54 @@ class Assert {
             result := this._arrayContains(this.value, item)
         else
             result := false
-        
+
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("contain", item))
         return this
     }
-    
+
     HasLength(expected) {
         actual := this.value is String ? StrLen(this.value) : this.value.Length
         result := actual = expected
-        
+
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("have length", expected))
         return this
     }
-    
+
     IsGreaterThan(expected) {
         result := this.value > expected
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("be greater than", expected))
         return this
     }
-    
+
     IsLessThan(expected) {
         result := this.value < expected
         if this.negated
             result := !result
-        
+
         if !result
             throw Error("Assertion failed: " this._msg("be less than", expected))
         return this
     }
-    
+
     _arrayContains(arr, item) {
         for v in arr
             if v = item
                 return true
         return false
     }
-    
+
     _msg(verb, expected := "") {
         msg := "Expected "
         if this.description
@@ -540,69 +540,69 @@ class Config {
         this._data := Map()
         this._path := []
     }
-    
+
     static Create() => Config()
-    
+
     Section(name) {
         this._path.Push(name)
         if !this._data.Has(name)
             this._data[name] := Map()
         return this
     }
-    
+
     EndSection() {
         if this._path.Length > 0
             this._path.Pop()
         return this
     }
-    
+
     Set(key, value) {
         target := this._getTarget()
         target[key] := value
         return this
     }
-    
+
     SetIf(condition, key, value) {
         if condition
             this.Set(key, value)
         return this
     }
-    
+
     SetDefault(key, value) {
         target := this._getTarget()
         if !target.Has(key)
             target[key] := value
         return this
     }
-    
+
     Merge(data) {
         target := this._getTarget()
         for k, v in data
             target[k] := v
         return this
     }
-    
+
     _getTarget() {
         target := this._data
         for segment in this._path
             target := target[segment]
         return target
     }
-    
+
     Get(path) {
         parts := StrSplit(path, ".")
         target := this._data
-        
+
         for part in parts {
             if target is Map && target.Has(part)
                 target := target[part]
             else
                 return ""
         }
-        
+
         return target
     }
-    
+
     ToMap() => this._data.Clone()
 }
 
@@ -611,12 +611,7 @@ class Config {
 ; =============================================================================
 
 ; Query builder
-people := [
-    {name: "Alice", age: 30, city: "NYC"},
-    {name: "Bob", age: 25, city: "LA"},
-    {name: "Charlie", age: 35, city: "NYC"},
-    {name: "Diana", age: 28, city: "LA"},
-    {name: "Eve", age: 32, city: "NYC"}
+people := [{ name: "Alice", age: 30, city: "NYC" }, { name: "Bob", age: 25, city: "LA" }, { name: "Charlie", age: 35, city: "NYC" }, { name: "Diana", age: 28, city: "LA" }, { name: "Eve", age: 32, city: "NYC" }
 ]
 
 result := Query.From(people)
@@ -671,13 +666,13 @@ try {
 ; Config builder
 config := Config.Create()
     .Section("database")
-        .Set("host", "localhost")
-        .Set("port", 5432)
-        .Set("name", "myapp")
+    .Set("host", "localhost")
+    .Set("port", 5432)
+    .Set("name", "myapp")
     .EndSection()
     .Section("server")
-        .Set("port", 8080)
-        .SetDefault("timeout", 30)
+    .Set("port", 8080)
+    .SetDefault("timeout", 30)
     .EndSection()
 
 MsgBox("Config Builder:`n"

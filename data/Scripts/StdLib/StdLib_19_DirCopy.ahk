@@ -2,10 +2,10 @@
 #SingleInstance Force
 
 /**
-* DirCopy() - Copy directory
-*
-* Copies a folder along with all its sub-folders and files.
-*/
+ * DirCopy() - Copy directory
+ * 
+ * Copies a folder along with all its sub-folders and files.
+ */
 
 sourceDir := A_ScriptDir "\sourcedir"
 destDir := A_ScriptDir "\destdir"

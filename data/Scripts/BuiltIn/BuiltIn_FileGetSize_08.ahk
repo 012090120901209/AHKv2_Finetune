@@ -1,46 +1,46 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetSize_08.ahk
-*
-* DESCRIPTION:
-* File size limits, validation, and constraint enforcement
-*
-* FEATURES:
-* - Size limit validation
-* - Upload/download size checks
-* - File size constraints
-* - Automatic size management
-* - Size-based file filtering
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetSize() for validation
-* - Size constraint checking
-* - Error handling
-* - Automated size management
-* - File filtering by size
-*
-* LEARNING POINTS:
-* 1. Enforce size limits before operations
-* 2. Validate file sizes for uploads
-* 3. Implement size-based quotas
-* 4. Automatic file cleanup by size
-* 5. Size-based file categorization
-* 6. Prevent oversized files
-*/
+ * BuiltIn_FileGetSize_08.ahk
+ * 
+ * DESCRIPTION:
+ * File size limits, validation, and constraint enforcement
+ * 
+ * FEATURES:
+ * - Size limit validation
+ * - Upload/download size checks
+ * - File size constraints
+ * - Automatic size management
+ * - Size-based file filtering
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetSize.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetSize() for validation
+ * - Size constraint checking
+ * - Error handling
+ * - Automated size management
+ * - File filtering by size
+ * 
+ * LEARNING POINTS:
+ * 1. Enforce size limits before operations
+ * 2. Validate file sizes for uploads
+ * 3. Implement size-based quotas
+ * 4. Automatic file cleanup by size
+ * 5. Size-based file categorization
+ * 6. Prevent oversized files
+ */
 
 ; Helper function
 FormatSize(bytes) {
     if (bytes < 1024)
-    return bytes " B"
+        return bytes " B"
     if (bytes < 1024 * 1024)
-    return Round(bytes / 1024, 2) " KB"
+        return Round(bytes / 1024, 2) " KB"
     if (bytes < 1024 * 1024 * 1024)
-    return Round(bytes / (1024 * 1024), 2) " MB"
+        return Round(bytes / (1024 * 1024), 2) " MB"
     return Round(bytes / (1024 * 1024 * 1024), 2) " GB"
 }
 
@@ -49,12 +49,12 @@ FormatSize(bytes) {
 ; ============================================================
 
 /**
-* Validate file size against constraints
-*
-* @param {String} filePath - File to validate
-* @param {Object} constraints - Size constraints
-* @returns {Object} - Validation result
-*/
+ * Validate file size against constraints
+ * 
+ * @param {String} filePath - File to validate
+ * @param {Object} constraints - Size constraints
+ * @returns {Object} - Validation result
+ */
 ValidateFileSize(filePath, constraints := "") {
     if (!constraints) {
         constraints := {
@@ -124,7 +124,7 @@ FileAppend("Small content", testFile1)
 testFile2 := A_ScriptDir "\large.txt"
 content := ""
 Loop 5000
-content .= "Large file content line " A_Index "`n"
+    content .= "Large file content line " A_Index "`n"
 FileAppend(content, testFile2)
 
 ; Test validation
@@ -147,14 +147,14 @@ output .= "File 1 (small.txt):`n"
 output .= "  Size: " FormatSize(validation1.size) "`n"
 output .= "  Valid: " (validation1.valid ? "Yes ✓" : "No ✗") "`n"
 if (!validation1.valid)
-output .= "  Error: " validation1.error "`n"
+    output .= "  Error: " validation1.error "`n"
 output .= "`n"
 
 output .= "File 2 (large.txt):`n"
 output .= "  Size: " FormatSize(validation2.size) "`n"
 output .= "  Valid: " (validation2.valid ? "Yes ✓" : "No ✗") "`n"
 if (!validation2.valid)
-output .= "  Error: " validation2.error
+    output .= "  Error: " validation2.error
 
 MsgBox(output, "Size Validation", "Icon!")
 
@@ -163,12 +163,12 @@ MsgBox(output, "Size Validation", "Icon!")
 ; ============================================================
 
 /**
-* Check if file is acceptable for upload
-*
-* @param {String} filePath - File to check
-* @param {Integer} maxUploadSize - Maximum upload size
-* @returns {Object} - Upload eligibility
-*/
+ * Check if file is acceptable for upload
+ * 
+ * @param {String} filePath - File to check
+ * @param {Integer} maxUploadSize - Maximum upload size
+ * @returns {Object} - Upload eligibility
+ */
 CheckUploadEligibility(filePath, maxUploadSize := 1024 * 1024 * 5) {
     result := {
         eligible: false,
@@ -227,46 +227,46 @@ MsgBox(output, "Upload Check", "Icon!")
 ; ============================================================
 
 /**
-* Categorize file by size
-*
-* @param {Integer} bytes - File size in bytes
-* @returns {String} - Size category
-*/
+ * Categorize file by size
+ * 
+ * @param {Integer} bytes - File size in bytes
+ * @returns {String} - Size category
+ */
 CategorizeBySize(bytes) {
     if (bytes = 0)
-    return "Empty"
+        return "Empty"
     if (bytes < 1024)
-    return "Tiny"
+        return "Tiny"
     if (bytes < 1024 * 100)
-    return "Small"
+        return "Small"
     if (bytes < 1024 * 1024)
-    return "Medium"
+        return "Medium"
     if (bytes < 1024 * 1024 * 10)
-    return "Large"
+        return "Large"
     if (bytes < 1024 * 1024 * 100)
-    return "Very Large"
+        return "Very Large"
     return "Huge"
 }
 
 /**
-* Categorize files in directory
-*
-* @param {String} dirPath - Directory to analyze
-* @returns {Object} - Categorization results
-*/
+ * Categorize files in directory
+ * 
+ * @param {String} dirPath - Directory to analyze
+ * @returns {Object} - Categorization results
+ */
 CategorizeFiles(dirPath) {
     categories := Map(
-    "Empty", {count: 0, totalSize: 0, files: []},
-    "Tiny", {count: 0, totalSize: 0, files: []},
-    "Small", {count: 0, totalSize: 0, files: []},
-    "Medium", {count: 0, totalSize: 0, files: []},
-    "Large", {count: 0, totalSize: 0, files: []},
-    "Very Large", {count: 0, totalSize: 0, files: []},
-    "Huge", {count: 0, totalSize: 0, files: []}
+        "Empty", { count: 0, totalSize: 0, files: [] },
+        "Tiny", { count: 0, totalSize: 0, files: [] },
+        "Small", { count: 0, totalSize: 0, files: [] },
+        "Medium", { count: 0, totalSize: 0, files: [] },
+        "Large", { count: 0, totalSize: 0, files: [] },
+        "Very Large", { count: 0, totalSize: 0, files: [] },
+        "Huge", { count: 0, totalSize: 0, files: [] }
     )
 
     if (!DirExist(dirPath))
-    return categories
+        return categories
 
     Loop Files, dirPath "\*.*", "F" {
         size := A_LoopFileSize
@@ -291,7 +291,7 @@ FileAppend(StrRepeat("Small file ", 50), testDir "\small.txt")
 
 medContent := ""
 Loop 500
-medContent .= "Medium content " A_Index "`n"
+    medContent .= "Medium content " A_Index "`n"
 FileAppend(medContent, testDir "\medium.txt")
 
 ; Categorize files
@@ -312,7 +312,7 @@ StrJoin(arr, delimiter) {
     result := ""
     for item in arr {
         if (A_Index > 1)
-        result .= delimiter
+            result .= delimiter
         result .= item
     }
     return result
@@ -321,7 +321,7 @@ StrJoin(arr, delimiter) {
 StrRepeat(str, count) {
     result := ""
     Loop count
-    result .= str
+        result .= str
     return result
 }
 
@@ -330,13 +330,13 @@ StrRepeat(str, count) {
 ; ============================================================
 
 /**
-* Remove files exceeding size limit
-*
-* @param {String} dirPath - Directory to clean
-* @param {Integer} maxFileSize - Maximum file size
-* @param {Boolean} dryRun - Preview without deleting
-* @returns {Object} - Cleanup results
-*/
+ * Remove files exceeding size limit
+ * 
+ * @param {String} dirPath - Directory to clean
+ * @param {Integer} maxFileSize - Maximum file size
+ * @param {Boolean} dryRun - Preview without deleting
+ * @returns {Object} - Cleanup results
+ */
 CleanupOversizedFiles(dirPath, maxFileSize, dryRun := true) {
     result := {
         found: 0,
@@ -346,7 +346,7 @@ CleanupOversizedFiles(dirPath, maxFileSize, dryRun := true) {
     }
 
     if (!DirExist(dirPath))
-    return result
+        return result
 
     Loop Files, dirPath "\*.*", "F" {
         if (A_LoopFileSize > maxFileSize) {
@@ -395,12 +395,12 @@ MsgBox(output, "Cleanup Preview", "Icon!")
 ; ============================================================
 
 /**
-* Enforce total size quota for directory
-*
-* @param {String} dirPath - Directory to monitor
-* @param {Integer} quotaBytes - Maximum total size
-* @returns {Object} - Quota status and enforcement
-*/
+ * Enforce total size quota for directory
+ * 
+ * @param {String} dirPath - Directory to monitor
+ * @param {Integer} quotaBytes - Maximum total size
+ * @returns {Object} - Quota status and enforcement
+ */
 EnforceQuota(dirPath, quotaBytes) {
     status := {
         currentSize: 0,
@@ -411,7 +411,7 @@ EnforceQuota(dirPath, quotaBytes) {
     }
 
     if (!DirExist(dirPath))
-    return status
+        return status
 
     ; Calculate current usage and collect file info
     files := []
@@ -449,7 +449,7 @@ EnforceQuota(dirPath, quotaBytes) {
 
         for file in files {
             if (sizeFreed >= sizeToFree)
-            break
+                break
             status.oldestFiles.Push(file)
             sizeFreed += file.size
         }
@@ -482,29 +482,29 @@ MsgBox(output, "Quota Status", quotaStatus.withinQuota ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Filter files by size range
-*
-* @param {String} dirPath - Directory to search
-* @param {Integer} minSize - Minimum size (0 = no min)
-* @param {Integer} maxSize - Maximum size (0 = no max)
-* @returns {Array} - Filtered files
-*/
+ * Filter files by size range
+ * 
+ * @param {String} dirPath - Directory to search
+ * @param {Integer} minSize - Minimum size (0 = no min)
+ * @param {Integer} maxSize - Maximum size (0 = no max)
+ * @returns {Array} - Filtered files
+ */
 FilterFilesBySize(dirPath, minSize := 0, maxSize := 0) {
     filtered := []
 
     if (!DirExist(dirPath))
-    return filtered
+        return filtered
 
     Loop Files, dirPath "\*.*", "F" {
         size := A_LoopFileSize
 
         ; Check minimum
         if (minSize > 0 && size < minSize)
-        continue
+            continue
 
         ; Check maximum
         if (maxSize > 0 && size > maxSize)
-        continue
+            continue
 
         filtered.Push({
             name: A_LoopFileName,
@@ -542,12 +542,12 @@ MsgBox(output, "Size Filter", "Icon!")
 ; ============================================================
 
 /**
-* Calculate appropriate size limits based on available space
-*
-* @param {String} drive - Drive letter (e.g., "C:")
-* @param {Float} percentAllowed - Percentage of free space allowed
-* @returns {Object} - Calculated limits
-*/
+ * Calculate appropriate size limits based on available space
+ * 
+ * @param {String} drive - Drive letter (e.g., "C:")
+ * @param {Float} percentAllowed - Percentage of free space allowed
+ * @returns {Object} - Calculated limits
+ */
 CalculateDynamicLimits(drive, percentAllowed := 10.0) {
     ; Note: Getting actual drive space requires DriveGetCapacity/DriveGetFree
     ; For demo, we'll use simulated values

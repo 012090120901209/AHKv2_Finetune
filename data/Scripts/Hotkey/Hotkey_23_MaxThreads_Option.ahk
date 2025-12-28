@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* MaxThreads Hotkey Option
-* Control how many instances of a hotkey can run simultaneously
-*/
+ * MaxThreads Hotkey Option
+ * Control how many instances of a hotkey can run simultaneously
+ */
 
 ; Allow up to 3 simultaneous instances of this hotkey
 Hotkey("F10", SlowFunction, "T3")  ; T3 = MaxThreads 3

@@ -7,11 +7,15 @@ myGui.Add("Text", , "Click anywhere in this window.")
 ogcMyEdit := myGui.Add("Edit", "w200 vMyEdit")
 myGui.Show()
 OnMessage(0x0201, WM_LBUTTONDOWN)
-WM_LBUTTONDOWN(wParam, lParam, msg, hwnd) { ToolTip("GUI Clicked")
-} F5:: HK1_F5()
+WM_LBUTTONDOWN(wParam, lParam, msg, hwnd) {
+    ToolTip("GUI Clicked")
+}
+F5:: HK1_F5()
 GuiClose()
 ExitApp()
-HK1_F5() { OnMessage(0x0201, WM_LBUTTONDOWN, 0)
+HK1_F5() {
+    OnMessage(0x0201, WM_LBUTTONDOWN, 0)
 }
-GuiClose(*) { ExitApp()
+GuiClose(*) {
+    ExitApp()
 }

@@ -15,7 +15,7 @@ class ChatMediator extends Mediator {
         if (event = "message") {
             for user in this.users {
                 if (user !== sender)
-                user.Receive(sender.name ": " sender.GetLastMessage())
+                    user.Receive(sender.name ": " sender.GetLastMessage())
             }
         }
     }

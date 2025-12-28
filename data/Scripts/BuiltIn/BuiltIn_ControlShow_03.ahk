@@ -1,13 +1,13 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ControlShow - Professional UI Patterns
-*
-* Comprehensive examples for AutoHotkey v2.0
-* @author AutoHotkey Community
-* @date 2025-01-16
-* @version 1.0.0
-*/
+ * ControlShow - Professional UI Patterns
+ * 
+ * Comprehensive examples for AutoHotkey v2.0
+ * @author AutoHotkey Community
+ * @date 2025-01-16
+ * @version 1.0.0
+ */
 
 
 ;==============================================================================
@@ -39,9 +39,9 @@ Example1() {
         for page, controls in pages {
             for ctrl in controls {
                 if (page = name)
-                ControlShow(ctrl)
+                    ControlShow(ctrl)
                 else
-                ControlHide(ctrl)
+                    ControlHide(ctrl)
             }
         }
     }
@@ -63,7 +63,7 @@ Example2() {
     features.Push(MyGui.Add("Edit", "w200 y+10", "Feature 2"))
     features.Push(MyGui.Add("Edit", "w200 y+10", "Feature 3"))
     loop features.Length - 1
-    ControlHide(features[A_Index + 1])
+        ControlHide(features[A_Index + 1])
     BtnUnlock := MyGui.Add("Button", "xm y+20 w200", "Unlock Next")
     BtnUnlock.OnEvent("Click", Unlock)
     current := 1
@@ -99,9 +99,9 @@ Example3() {
         for state, controls in states {
             for ctrl in controls {
                 if (state = name)
-                ControlShow(ctrl)
+                    ControlShow(ctrl)
                 else
-                ControlHide(ctrl)
+                    ControlHide(ctrl)
             }
         }
     }
@@ -121,7 +121,7 @@ Example4() {
     PublicCtrls := []
     AdminCtrls := []
     loop 2
-    PublicCtrls.Push(MyGui.Add("Edit", "w200 y+10", "Public " . A_Index))
+        PublicCtrls.Push(MyGui.Add("Edit", "w200 y+10", "Public " . A_Index))
     loop 2 {
         ctrl := MyGui.Add("Edit", "w200 y+10", "Admin " . A_Index)
         ControlHide(ctrl)
@@ -132,11 +132,11 @@ Example4() {
     Role.OnEvent("Change", UpdatePerms)
     UpdatePerms(*) {
         if (Role.Text = "Admin")
-        for ctrl in AdminCtrls
-        ControlShow(ctrl)
-        else
-        for ctrl in AdminCtrls
-        ControlHide(ctrl)
+            for ctrl in AdminCtrls
+                ControlShow(ctrl)
+            else
+                for ctrl in AdminCtrls
+                    ControlHide(ctrl)
     }
 
     MyGui.Show()
@@ -162,13 +162,13 @@ Example5() {
     Load(*) {
         ControlShow(Loader)
         for ctrl in Content
-        ControlHide(ctrl)
+            ControlHide(ctrl)
         SetTimer(Complete, -2000)
     }
     Complete() {
         ControlHide(Loader)
         for ctrl in Content
-        ControlShow(ctrl)
+            ControlShow(ctrl)
     }
     ControlHide(Loader)
 
@@ -185,20 +185,20 @@ Example6() {
 
     fields := []
     loop 3
-    fields.Push(MyGui.Add("Edit", "w200 y+10", ""))
+        fields.Push(MyGui.Add("Edit", "w200 y+10", ""))
     SuccessMsg := MyGui.Add("Text", "xm y+10 w300 cGreen", "✓ Complete!")
     ControlHide(SuccessMsg)
     for field in fields
-    field.OnEvent("Change", CheckComplete)
+        field.OnEvent("Change", CheckComplete)
     CheckComplete(*) {
         allFilled := true
         for field in fields
-        if (StrLen(field.Value) = 0)
-        allFilled := false
+            if (StrLen(field.Value) = 0)
+                allFilled := false
         if (allFilled)
-        ControlShow(SuccessMsg)
+            ControlShow(SuccessMsg)
         else
-        ControlHide(SuccessMsg)
+            ControlHide(SuccessMsg)
     }
 
     MyGui.Show()
@@ -230,13 +230,13 @@ MainGui := Gui("+Resize", "Examples Menu")
 MainGui.Add("Text", "w400", "Select an example:")
 
 examplesList := MainGui.Add("ListBox", "w400 h200 y+10", [
-"Example 1: Page Navigation",
-"Example 2: Feature Unlock",
-"Example 3: State Transitions",
-"Example 4: Permission Reveal",
-"Example 5: Loading Complete",
-"Example 6: Form Completion",
-"Example 7: Help System",
+    "Example 1: Page Navigation",
+    "Example 2: Feature Unlock",
+    "Example 3: State Transitions",
+    "Example 4: Permission Reveal",
+    "Example 5: Loading Complete",
+    "Example 6: Form Completion",
+    "Example 7: Help System",
 ])
 
 btnRun := MainGui.Add("Button", "w200 y+20", "Run Example")

@@ -2,41 +2,41 @@
 #SingleInstance Force
 
 /**
-* Event-Driven GUI Architecture
-*
-* Demonstrates decoupled component communication using custom event
-* system with publish/subscribe pattern.
-*
-* Source: AHK_Notes/Snippets/event-driven-gui.md
-*/
+ * Event-Driven GUI Architecture
+ * 
+ * Demonstrates decoupled component communication using custom event
+ * system with publish/subscribe pattern.
+ * 
+ * Source: AHK_Notes/Snippets/event-driven-gui.md
+ */
 
 app := EventDrivenApp()
 app.Show()
 
 /**
-* EventBus - Central event system for component communication
-*/
+ * EventBus - Central event system for component communication
+ */
 class EventBus {
     subscribers := Map()
 
     /**
-    * Subscribe to event
-    * @param {string} eventName - Event to listen for
-    * @param {func} callback - Function to call when event fires
-    */
+     * Subscribe to event
+     * @param {string} eventName - Event to listen for
+     * @param {func} callback - Function to call when event fires
+     */
     Subscribe(eventName, callback) {
         if (!this.subscribers.Has(eventName))
-        this.subscribers[eventName] := []
+            this.subscribers[eventName] := []
 
         this.subscribers[eventName].Push(callback)
     }
 
     /**
-    * Unsubscribe from event
-    */
+     * Unsubscribe from event
+     */
     Unsubscribe(eventName, callback) {
         if (!this.subscribers.Has(eventName))
-        return
+            return
 
         callbacks := this.subscribers[eventName]
         for index, cb in callbacks {
@@ -48,13 +48,13 @@ class EventBus {
     }
 
     /**
-    * Publish event to all subscribers
-    * @param {string} eventName - Event to trigger
-    * @param {any} data - Data to pass to subscribers
-    */
+     * Publish event to all subscribers
+     * @param {string} eventName - Event to trigger
+     * @param {any} data - Data to pass to subscribers
+     */
     Publish(eventName, data := "") {
         if (!this.subscribers.Has(eventName))
-        return
+            return
 
         for callback in this.subscribers[eventName] {
             try {
@@ -67,8 +67,8 @@ class EventBus {
 }
 
 /**
-* EventDrivenApp - Main application using event-driven architecture
-*/
+ * EventDrivenApp - Main application using event-driven architecture
+ */
 class EventDrivenApp {
     gui := ""
     bus := EventBus()
@@ -89,8 +89,8 @@ class EventDrivenApp {
     }
 
     /**
-    * Event handlers
-    */
+     * Event handlers
+     */
     OnTextUpdate(text) {
         ; Publish to display component
         this.bus.Publish("display.update", "Text: " text)
@@ -111,8 +111,8 @@ class EventDrivenApp {
 }
 
 /**
-* TextDisplay - Component displaying text
-*/
+ * TextDisplay - Component displaying text
+ */
 class TextDisplay {
     control := ""
 
@@ -130,8 +130,8 @@ class TextDisplay {
 }
 
 /**
-* TextInput - Component for text input
-*/
+ * TextInput - Component for text input
+ */
 class TextInput {
     control := ""
     bus := ""
@@ -158,8 +158,8 @@ class TextInput {
 }
 
 /**
-* ControlPanel - Component with action buttons
-*/
+ * ControlPanel - Component with action buttons
+ */
 class ControlPanel {
     bus := ""
 
@@ -228,3 +228,4 @@ class ControlPanel {
 *    ✅ Reactive applications
 *    ✅ Multi-component coordination
 */
+

@@ -2,9 +2,9 @@
 #SingleInstance Force
 
 /**
-* Basic Hotkey - F1 Key
-* Demonstrates the simplest hotkey syntax
-*/
+ * Basic Hotkey - F1 Key
+ * Demonstrates the simplest hotkey syntax
+ */
 
 ; Press F1 to show a message box
-F1::MsgBox("You pressed F1!")
+F1:: MsgBox("You pressed F1!")

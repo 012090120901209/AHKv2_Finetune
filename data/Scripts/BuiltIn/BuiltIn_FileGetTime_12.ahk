@@ -1,52 +1,52 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_FileGetTime_12.ahk
-*
-* DESCRIPTION:
-* Advanced timestamp operations and time-based automation
-*
-* FEATURES:
-* - Timestamp arithmetic
-* - Time-based triggers
-* - Scheduled file operations
-* - Timestamp synchronization
-* - Time-based automation
-*
-* SOURCE:
-* AutoHotkey v2 Documentation
-* https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm
-*
-* KEY V2 FEATURES DEMONSTRATED:
-* - FileGetTime() for automation
-* - FileSetTime() for modification
-* - DateAdd() and DateDiff()
-* - Timestamp manipulation
-* - Automated scheduling
-*
-* LEARNING POINTS:
-* 1. Perform timestamp arithmetic
-* 2. Trigger actions based on file time
-* 3. Synchronize file timestamps
-* 4. Implement time-based automation
-* 5. Schedule file operations
-* 6. Track file modification patterns
-*/
+ * BuiltIn_FileGetTime_12.ahk
+ * 
+ * DESCRIPTION:
+ * Advanced timestamp operations and time-based automation
+ * 
+ * FEATURES:
+ * - Timestamp arithmetic
+ * - Time-based triggers
+ * - Scheduled file operations
+ * - Timestamp synchronization
+ * - Time-based automation
+ * 
+ * SOURCE:
+ * AutoHotkey v2 Documentation
+ * https://www.autohotkey.com/docs/v2/lib/FileGetTime.htm
+ * 
+ * KEY V2 FEATURES DEMONSTRATED:
+ * - FileGetTime() for automation
+ * - FileSetTime() for modification
+ * - DateAdd() and DateDiff()
+ * - Timestamp manipulation
+ * - Automated scheduling
+ * 
+ * LEARNING POINTS:
+ * 1. Perform timestamp arithmetic
+ * 2. Trigger actions based on file time
+ * 3. Synchronize file timestamps
+ * 4. Implement time-based automation
+ * 5. Schedule file operations
+ * 6. Track file modification patterns
+ */
 
 ; ============================================================
 ; Example 1: Timestamp Arithmetic
 ; ============================================================
 
 /**
-* Calculate future/past timestamps relative to file
-*
-* @param {String} filePath - File to use as reference
-* @param {Integer} offset - Days to add/subtract
-* @returns {Object} - Calculated timestamps
-*/
+ * Calculate future/past timestamps relative to file
+ * 
+ * @param {String} filePath - File to use as reference
+ * @param {Integer} offset - Days to add/subtract
+ * @returns {Object} - Calculated timestamps
+ */
 CalculateRelativeTimestamp(filePath, offset) {
     if (!FileExist(filePath))
-    return {valid: false}
+        return { valid: false }
 
     fileTime := FileGetTime(filePath, "M")
     futureTime := DateAdd(fileTime, offset, "Days")
@@ -82,12 +82,12 @@ if (calc.valid) {
 ; ============================================================
 
 /**
-* Check if file should trigger action based on time
-*
-* @param {String} filePath - File to check
-* @param {Object} trigger - Trigger conditions
-* @returns {Object} - Trigger status
-*/
+ * Check if file should trigger action based on time
+ * 
+ * @param {String} filePath - File to check
+ * @param {Object} trigger - Trigger conditions
+ * @returns {Object} - Trigger status
+ */
 CheckTimeTrigger(filePath, trigger) {
     result := {
         shouldTrigger: false,
@@ -134,30 +134,30 @@ MsgBox(output, "Trigger Check", triggerStatus.shouldTrigger ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Determine if scheduled action should run
-*
-* @param {String} filePath - File to check
-* @param {String} schedule - Schedule type
-* @returns {Boolean} - Should run now
-*/
+ * Determine if scheduled action should run
+ * 
+ * @param {String} filePath - File to check
+ * @param {String} schedule - Schedule type
+ * @returns {Boolean} - Should run now
+ */
 ShouldRunScheduledAction(filePath, schedule := "daily") {
     if (!FileExist(filePath))
-    return false
+        return false
 
     lastModified := FileGetTime(filePath, "M")
     hoursSince := DateDiff(A_Now, lastModified, "Hours")
 
     switch schedule {
         case "hourly":
-        return hoursSince >= 1
+            return hoursSince >= 1
         case "daily":
-        return hoursSince >= 24
+            return hoursSince >= 24
         case "weekly":
-        return hoursSince >= 168
+            return hoursSince >= 168
         case "monthly":
-        return hoursSince >= 720
+            return hoursSince >= 720
         default:
-        return false
+            return false
     }
 }
 
@@ -179,13 +179,13 @@ MsgBox(output, "Schedule Check", "Icon!")
 ; ============================================================
 
 /**
-* Synchronize timestamps between files
-*
-* @param {String} sourceFile - File to copy timestamp from
-* @param {Array} targetFiles - Files to update
-* @param {String} timeType - Time type to sync
-* @returns {Object} - Sync results
-*/
+ * Synchronize timestamps between files
+ * 
+ * @param {String} sourceFile - File to copy timestamp from
+ * @param {Array} targetFiles - Files to update
+ * @param {String} timeType - Time type to sync
+ * @returns {Object} - Sync results
+ */
 SynchronizeTimestamps(sourceFile, targetFiles, timeType := "M") {
     result := {
         success: false,
@@ -195,7 +195,7 @@ SynchronizeTimestamps(sourceFile, targetFiles, timeType := "M") {
     }
 
     if (!FileExist(sourceFile))
-    return result
+        return result
 
     sourceTime := FileGetTime(sourceFile, timeType)
     result.sourceTime := FormatTime(sourceTime, "yyyy-MM-dd HH:mm:ss")
@@ -239,8 +239,8 @@ MsgBox(output, "Timestamp Sync", syncResult.success ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Detect modification pattern by tracking changes
-*/
+ * Detect modification pattern by tracking changes
+ */
 class ModificationTracker {
     __New(filePath) {
         this.filePath := filePath
@@ -250,7 +250,7 @@ class ModificationTracker {
 
     RecordSnapshot() {
         if (!FileExist(this.filePath))
-        return false
+            return false
 
         this.snapshots.Push({
             time: A_Now,
@@ -262,7 +262,7 @@ class ModificationTracker {
 
     DetectPattern() {
         if (this.snapshots.Length < 2)
-        return "Insufficient data"
+            return "Insufficient data"
 
         intervals := []
 
@@ -277,23 +277,23 @@ class ModificationTracker {
         }
 
         if (intervals.Length = 0)
-        return "No modifications detected"
+            return "No modifications detected"
 
         ; Calculate average interval
         total := 0
         for interval in intervals
-        total += interval
+            total += interval
 
         avgInterval := Round(total / intervals.Length)
 
         if (avgInterval < 5)
-        return "Frequent modifications (< 5 min)"
+            return "Frequent modifications (< 5 min)"
         else if (avgInterval < 60)
-        return "Regular modifications (" avgInterval " min avg)"
+            return "Regular modifications (" avgInterval " min avg)"
         else if (avgInterval < 1440)
-        return "Hourly modifications (" Round(avgInterval/60) " hr avg)"
+            return "Hourly modifications (" Round(avgInterval / 60) " hr avg)"
         else
-        return "Daily modifications (" Round(avgInterval/1440) " days avg)"
+            return "Daily modifications (" Round(avgInterval / 1440) " days avg)"
     }
 
     GetReport() {
@@ -330,12 +330,12 @@ MsgBox(tracker.GetReport(), "Modification Tracking", "Icon!")
 ; ============================================================
 
 /**
-* Rotate files based on time criteria
-*
-* @param {String} filePath - File to rotate
-* @param {Integer} maxAgeDays - Maximum age before rotation
-* @returns {Object} - Rotation result
-*/
+ * Rotate files based on time criteria
+ * 
+ * @param {String} filePath - File to rotate
+ * @param {Integer} maxAgeDays - Maximum age before rotation
+ * @returns {Object} - Rotation result
+ */
 RotateFileByAge(filePath, maxAgeDays) {
     result := {
         rotated: false,
@@ -384,7 +384,7 @@ output .= "Original: timestamp_calc.txt`n"
 output .= "Rotated: " (rotation.rotated ? "YES" : "NO") "`n"
 output .= "Reason: " rotation.reason "`n"
 if (rotation.rotated)
-output .= "`nNew File: " rotation.newPath
+    output .= "`nNew File: " rotation.newPath
 
 MsgBox(output, "File Rotation", rotation.rotated ? "Icon!" : "IconX")
 
@@ -393,12 +393,12 @@ MsgBox(output, "File Rotation", rotation.rotated ? "Icon!" : "IconX")
 ; ============================================================
 
 /**
-* Execute workflow based on file timestamps
-*
-* @param {String} inputFile - Input file
-* @param {String} outputFile - Output file
-* @returns {Object} - Workflow result
-*/
+ * Execute workflow based on file timestamps
+ * 
+ * @param {String} inputFile - Input file
+ * @param {String} outputFile - Output file
+ * @returns {Object} - Workflow result
+ */
 TimestampBasedWorkflow(inputFile, outputFile) {
     result := {
         executed: false,
@@ -519,4 +519,4 @@ FileDelete(outputFile)
 
 ; Clean up rotated files
 Loop Files, A_ScriptDir "\timestamp_calc_*.txt"
-FileDelete(A_LoopFilePath)
+    FileDelete(A_LoopFilePath)

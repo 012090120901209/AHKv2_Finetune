@@ -1,19 +1,19 @@
 #Requires AutoHotkey v2.0
 
 /**
-* ============================================================================
-* Array.Pop() - Undo/Redo System Implementation
-* ============================================================================
-*
-* This file demonstrates how to implement comprehensive undo/redo systems
-* using Pop() and Push(). These patterns are essential for text editors,
-* graphics programs, and any application requiring action reversibility.
-*
-* @description Undo/Redo system implementations using Array.Pop()
-* @author AutoHotkey v2 Documentation
-* @version 1.0.0
-* @date 2025-01-16
-*/
+ * ============================================================================
+ * Array.Pop() - Undo/Redo System Implementation
+ * ============================================================================
+ * 
+ * This file demonstrates how to implement comprehensive undo/redo systems
+ * using Pop() and Push(). These patterns are essential for text editors,
+ * graphics programs, and any application requiring action reversibility.
+ * 
+ * @description Undo/Redo system implementations using Array.Pop()
+ * @author AutoHotkey v2 Documentation
+ * @version 1.0.0
+ * @date 2025-01-16
+ */
 
 ; ============================================================================
 ; Example 1: Basic Text Editor Undo/Redo
@@ -48,7 +48,7 @@ Example1_TextEditorUndoRedo() {
 
     OutputDebug("`nAfter 1 redo: '" editor.GetText() "'`n")
     OutputDebug("Final undo stack: " editor.undoStack.Length
-    " | Redo stack: " editor.redoStack.Length "`n`n")
+        " | Redo stack: " editor.redoStack.Length "`n`n")
 }
 
 ; ============================================================================
@@ -234,7 +234,7 @@ Example6_LimitedUndoHistory() {
     Loop 10 {
         editor.AddText("Line " A_Index)
         OutputDebug("  Added: Line " A_Index
-        " | History size: " editor.undoStack.Length "`n")
+            " | History size: " editor.undoStack.Length "`n")
     }
 
     OutputDebug("`nFinal history size: " editor.undoStack.Length "`n")
@@ -312,14 +312,14 @@ class TextEditor {
     redoStack := []
 
     Type(chars) {
-        this.undoStack.Push({action: "type", text: this.text})
+        this.undoStack.Push({ action: "type", text: this.text })
         this.text .= chars
         this.redoStack := []
         OutputDebug("  Typed: '" chars "' -> Current: '" this.text "'`n")
     }
 
     Delete(count) {
-        this.undoStack.Push({action: "delete", text: this.text})
+        this.undoStack.Push({ action: "delete", text: this.text })
         this.text := SubStr(this.text, 1, -count)
         this.redoStack := []
         OutputDebug("  Deleted " count " chars -> Current: '" this.text "'`n")
@@ -331,7 +331,7 @@ class TextEditor {
             return
         }
 
-        this.redoStack.Push({action: "redo", text: this.text})
+        this.redoStack.Push({ action: "redo", text: this.text })
         state := this.undoStack.Pop()
         this.text := state.text
         OutputDebug("  Undo -> Text: '" this.text "'`n")
@@ -343,7 +343,7 @@ class TextEditor {
             return
         }
 
-        this.undoStack.Push({action: "undo", text: this.text})
+        this.undoStack.Push({ action: "undo", text: this.text })
         state := this.redoStack.Pop()
         this.text := state.text
         OutputDebug("  Redo -> Text: '" this.text "'`n")
@@ -358,15 +358,15 @@ class DrawingCanvas {
     redoStack := []
 
     DrawCircle(x, y, radius, color) {
-        this.AddShape({type: "circle", x: x, y: y, radius: radius, color: color})
+        this.AddShape({ type: "circle", x: x, y: y, radius: radius, color: color })
     }
 
     DrawRectangle(x, y, width, height, color) {
-        this.AddShape({type: "rectangle", x: x, y: y, width: width, height: height, color: color})
+        this.AddShape({ type: "rectangle", x: x, y: y, width: width, height: height, color: color })
     }
 
     DrawLine(x1, y1, x2, y2, color) {
-        this.AddShape({type: "line", x1: x1, y1: y1, x2: x2, y2: y2, color: color})
+        this.AddShape({ type: "line", x1: x1, y1: y1, x2: x2, y2: y2, color: color })
     }
 
     AddShape(shape) {
@@ -378,7 +378,7 @@ class DrawingCanvas {
 
     Undo() {
         if (this.undoStack.Length = 0)
-        return
+            return
 
         this.redoStack.Push(this.shapes.Clone())
         this.shapes := this.undoStack.Pop()
@@ -387,7 +387,7 @@ class DrawingCanvas {
 
     Redo() {
         if (this.redoStack.Length = 0)
-        return
+            return
 
         this.undoStack.Push(this.shapes.Clone())
         this.shapes := this.redoStack.Pop()
@@ -408,7 +408,7 @@ class FormTracker {
 
     SetField(name, value) {
         oldValue := this.fields.Has(name) ? this.fields[name] : ""
-        this.undoStack.Push({field: name, value: oldValue})
+        this.undoStack.Push({ field: name, value: oldValue })
         this.fields[name] := value
         this.redoStack := []
         OutputDebug("  Set " name " = '" value "'`n")
@@ -416,27 +416,27 @@ class FormTracker {
 
     Undo() {
         if (this.undoStack.Length = 0)
-        return
+            return
 
         change := this.undoStack.Pop()
         currentValue := this.fields.Has(change.field) ? this.fields[change.field] : ""
-        this.redoStack.Push({field: change.field, value: currentValue})
+        this.redoStack.Push({ field: change.field, value: currentValue })
 
         if (change.value = "")
-        this.fields.Delete(change.field)
+            this.fields.Delete(change.field)
         else
-        this.fields[change.field] := change.value
+            this.fields[change.field] := change.value
 
         OutputDebug("  Undid change to " change.field "`n")
     }
 
     Redo() {
         if (this.redoStack.Length = 0)
-        return
+            return
 
         change := this.redoStack.Pop()
         oldValue := this.fields.Has(change.field) ? this.fields[change.field] : ""
-        this.undoStack.Push({field: change.field, value: oldValue})
+        this.undoStack.Push({ field: change.field, value: oldValue })
         this.fields[change.field] := change.value
         OutputDebug("  Redid change to " change.field "`n")
     }
@@ -454,7 +454,7 @@ class ConfigManager {
 
     Set(key, value) {
         oldValue := this.settings.Has(key) ? this.settings[key] : ""
-        this.undoStack.Push({key: key, value: oldValue, exists: this.settings.Has(key)})
+        this.undoStack.Push({ key: key, value: oldValue, exists: this.settings.Has(key) })
         this.settings[key] := value
         OutputDebug("  Set " key " = " value "`n")
     }
@@ -463,13 +463,13 @@ class ConfigManager {
 
     Undo() {
         if (this.undoStack.Length = 0)
-        return
+            return
 
         change := this.undoStack.Pop()
         if (change.exists)
-        this.settings[change.key] := change.value
+            this.settings[change.key] := change.value
         else
-        this.settings.Delete(change.key)
+            this.settings.Delete(change.key)
 
         OutputDebug("  Undid " change.key "`n")
     }
@@ -487,18 +487,18 @@ class GroupedEditor {
     currentGroup := ""
 
     BeginGroup(name) {
-        this.currentGroup := {name: name, actions: []}
+        this.currentGroup := { name: name, actions: [] }
         OutputDebug("Begin group: " name "`n")
     }
 
     ExecuteAction(action, data) {
-        actionObj := {action: action, data: data}
+        actionObj := { action: action, data: data }
 
         if (this.currentGroup != "") {
             this.currentGroup.actions.Push(actionObj)
             OutputDebug("  + " action ": " data "`n")
         } else {
-            this.undoStack.Push({name: action, actions: [actionObj]})
+            this.undoStack.Push({ name: action, actions: [actionObj] })
             OutputDebug("Action: " action ": " data "`n")
         }
     }
@@ -508,19 +508,19 @@ class GroupedEditor {
             this.undoStack.Push(this.currentGroup)
             this.redoStack := []
             OutputDebug("End group: " this.currentGroup.name
-            " (" this.currentGroup.actions.Length " actions)`n`n")
+                " (" this.currentGroup.actions.Length " actions)`n`n")
             this.currentGroup := ""
         }
     }
 
     Undo() {
         if (this.undoStack.Length = 0)
-        return
+            return
 
         group := this.undoStack.Pop()
         this.redoStack.Push(group)
         OutputDebug("  Undid group: " group.name
-        " (" group.actions.Length " actions)`n")
+            " (" group.actions.Length " actions)`n")
     }
 }
 
@@ -555,7 +555,7 @@ class LimitedUndoEditor {
 }
 
 class SnapshotApp {
-    state := {text: "", fontSize: 12, color: "black"}
+    state := { text: "", fontSize: 12, color: "black" }
     undoStack := []
     redoStack := []
 
@@ -571,7 +571,7 @@ class SnapshotApp {
 
     Undo() {
         if (this.undoStack.Length = 0)
-        return
+            return
 
         this.redoStack.Push({
             text: this.state.text,
@@ -587,7 +587,7 @@ class SnapshotApp {
 
     Redo() {
         if (this.redoStack.Length = 0)
-        return
+            return
 
         this.undoStack.Push({
             text: this.state.text,
@@ -630,7 +630,7 @@ Main() {
     OutputDebug(String.Repeat("=", 80) "`n")
 
     MsgBox("Array.Pop() undo/redo examples completed!`nCheck DebugView for output.",
-    "Examples Complete", "Icon!")
+        "Examples Complete", "Icon!")
 }
 
 Main()

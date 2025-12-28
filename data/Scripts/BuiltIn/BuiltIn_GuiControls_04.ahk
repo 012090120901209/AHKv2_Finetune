@@ -1,23 +1,22 @@
 #Requires AutoHotkey v2.0
 
 /**
-* BuiltIn_GuiControls_04.ahk - DropDownList, ComboBox, and ListBox Controls
-*
-* This file demonstrates list controls including DropDownList, ComboBox, and ListBox in AutoHotkey v2.
-* Topics covered:
-* - DropDownList basics
-* - ComboBox usage
-* - ListBox controls
-* - Multi-select lists
-* - Dynamic list population
-* - List sorting
-* - Cascading dropdowns
-*
-* @author AutoHotkey Community
-* @version 2.0
-* @date 2024
-*/
-
+ * BuiltIn_GuiControls_04.ahk - DropDownList, ComboBox, and ListBox Controls
+ * 
+ * This file demonstrates list controls including DropDownList, ComboBox, and ListBox in AutoHotkey v2.
+ * Topics covered:
+ * - DropDownList basics
+ * - ComboBox usage
+ * - ListBox controls
+ * - Multi-select lists
+ * - Dynamic list population
+ * - List sorting
+ * - Cascading dropdowns
+ * 
+ * @author AutoHotkey Community
+ * @version 2.0
+ * @date 2024
+ */
 
 
 ; =============================================================================
@@ -25,9 +24,9 @@
 ; =============================================================================
 
 /**
-* Demonstrates dropdownlist basics
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates dropdownlist basics
+ * Advanced GUI techniques and patterns
+ */
 Example1_DropDownListbasics() {
     myGui := Gui(, "DropDownList basics Demo")
     myGui.BackColor := "White"
@@ -67,14 +66,13 @@ Example1_DropDownListbasics() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -94,15 +92,14 @@ Example1_DropDownListbasics() {
 }
 
 
-
 ; =============================================================================
 ; Example 2: ComboBox usage
 ; =============================================================================
 
 /**
-* Demonstrates combobox usage
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates combobox usage
+ * Advanced GUI techniques and patterns
+ */
 Example2_ComboBoxusage() {
     myGui := Gui(, "ComboBox usage Demo")
     myGui.BackColor := "White"
@@ -142,14 +139,13 @@ Example2_ComboBoxusage() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -169,15 +165,14 @@ Example2_ComboBoxusage() {
 }
 
 
-
 ; =============================================================================
 ; Example 3: ListBox controls
 ; =============================================================================
 
 /**
-* Demonstrates listbox controls
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates listbox controls
+ * Advanced GUI techniques and patterns
+ */
 Example3_ListBoxcontrols() {
     myGui := Gui(, "ListBox controls Demo")
     myGui.BackColor := "White"
@@ -217,14 +212,13 @@ Example3_ListBoxcontrols() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -244,15 +238,14 @@ Example3_ListBoxcontrols() {
 }
 
 
-
 ; =============================================================================
 ; Example 4: Multi-select lists
 ; =============================================================================
 
 /**
-* Demonstrates multi-select lists
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates multi-select lists
+ * Advanced GUI techniques and patterns
+ */
 Example4_Multiselectlists() {
     myGui := Gui(, "Multi-select lists Demo")
     myGui.BackColor := "White"
@@ -292,14 +285,13 @@ Example4_Multiselectlists() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -319,15 +311,14 @@ Example4_Multiselectlists() {
 }
 
 
-
 ; =============================================================================
 ; Example 5: Dynamic list population
 ; =============================================================================
 
 /**
-* Demonstrates dynamic list population
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates dynamic list population
+ * Advanced GUI techniques and patterns
+ */
 Example5_Dynamiclistpopulation() {
     myGui := Gui(, "Dynamic list population Demo")
     myGui.BackColor := "White"
@@ -367,14 +358,13 @@ Example5_Dynamiclistpopulation() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -394,15 +384,14 @@ Example5_Dynamiclistpopulation() {
 }
 
 
-
 ; =============================================================================
 ; Example 6: List sorting
 ; =============================================================================
 
 /**
-* Demonstrates list sorting
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates list sorting
+ * Advanced GUI techniques and patterns
+ */
 Example6_Listsorting() {
     myGui := Gui(, "List sorting Demo")
     myGui.BackColor := "White"
@@ -442,14 +431,13 @@ Example6_Listsorting() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -469,15 +457,14 @@ Example6_Listsorting() {
 }
 
 
-
 ; =============================================================================
 ; Example 7: Cascading dropdowns
 ; =============================================================================
 
 /**
-* Demonstrates cascading dropdowns
-* Advanced GUI techniques and patterns
-*/
+ * Demonstrates cascading dropdowns
+ * Advanced GUI techniques and patterns
+ */
 Example7_Cascadingdropdowns() {
     myGui := Gui(, "Cascading dropdowns Demo")
     myGui.BackColor := "White"
@@ -517,14 +504,13 @@ Example7_Cascadingdropdowns() {
     UpdateStatus(*) {
         enabled := []
         if (toggle1.Value) enabled.Push("A")
-        if (toggle2.Value) enabled.Push("B")
-        if (toggle3.Value) enabled.Push("C")
-
-        if (enabled.Length > 0) {
-            statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
-        } else {
-            statusText.Value := "Status: No features enabled"
-        }
+            if (toggle2.Value) enabled.Push("B")
+                if (toggle3.Value) enabled.Push("C")
+                    if (enabled.Length > 0) {
+                        statusText.Value := "Status: Features " enabled.Join(", ") " enabled"
+                    } else {
+                        statusText.Value := "Status: No features enabled"
+                    }
     }
 
     ; Action buttons
@@ -549,8 +535,8 @@ Example7_Cascadingdropdowns() {
 ; =============================================================================
 
 /**
-* Creates a main menu to launch all examples
-*/
+ * Creates a main menu to launch all examples
+ */
 ShowMainMenu() {
     menuGui := Gui(, "BuiltIn_GuiControls_04.ahk - Examples")
     menuGui.BackColor := "White"
