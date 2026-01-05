@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * BuiltIn_GuiControls_03.ahk - Checkbox and Radio Button Controls

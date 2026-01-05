@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include JSON.ahk
+#Include ../JSON.ahk
 
 /**
  * Take() - Take elements from beginning (Standalone Implementation)

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinSetAlwaysOnTop_01.ahk
  * @description Comprehensive examples demonstrating WinSetAlwaysOnTop function for pinning windows in AutoHotkey v2
  * @author AutoHotkey Foundation

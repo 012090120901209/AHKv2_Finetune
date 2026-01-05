@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: RaptorX/SQLite
 ; Function: Execute SQL queries

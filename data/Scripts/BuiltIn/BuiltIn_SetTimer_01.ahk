@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_SetTimer_01.ahk
  * @description Comprehensive examples of basic SetTimer functionality in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

@@ -3,7 +3,9 @@
 
 FTPCommandFile := A_ScriptDir "\FTPCommands.txt"
 FTPLogFile := A_ScriptDir "\FTPLog.txt"
-FileDelete(FTPCommandFile) ; In case previous run was terminated prematurely. FileAppend( ; The comma is required in this case.
+FileDelete(FTPCommandFile)
+
+FileAppend(
 (
     "open host.domain.com
 username
@@ -15,7 +17,8 @@ delete SomeOtherFile.htm
 rename OldFileName.htm NewFileName.htm
 ls -l
 quit"
-), FTPCommandFile) RunWait(A_ComSpec " /c ftp.exe -s:`"" FTPCommandFile "`" > `"" FTPLogFile "`"")
+), FTPCommandFile)
+
+RunWait(A_ComSpec " /c ftp.exe -s:`"" FTPCommandFile "`" > `"" FTPLogFile "`"")
 FileDelete(FTPCommandFile) ; Delete for security reasons.
 Run(FTPLogFile) ; Display the log for review.
-

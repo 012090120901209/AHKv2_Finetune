@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * BuiltIn_Download_10.ahk - Advanced Download Patterns

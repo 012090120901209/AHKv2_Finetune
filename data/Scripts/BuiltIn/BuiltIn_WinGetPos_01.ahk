@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetPos_01.ahk
  * @description Comprehensive examples demonstrating WinGetPos function for retrieving window position and size information in AutoHotkey v2
  * @author AutoHotkey Foundation

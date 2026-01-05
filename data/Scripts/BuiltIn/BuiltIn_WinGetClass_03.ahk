@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetClass_03.ahk
  * @description Window class pattern matching, detection, and filtering examples using WinGetClass in AutoHotkey v2
  * @author AutoHotkey Foundation

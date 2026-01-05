@@ -57,9 +57,9 @@ class Square extends Shape {
 
 ; Polymorphic function - works with any Animal
 ProcessAnimal(animal) {
-    MsgBox("Processing: " animal.Describe())
-    animal.Speak()
-    animal.Move()
+    MsgBox("Processing: " animalobj .Describe())
+    animalobj .Speak()
+    animalobj .Move()
 }
 
 ; Polymorphic array processing
@@ -80,7 +80,7 @@ animals := [
     Bird("Penguin", false)
 ]
 
-for animal in animals
+for animalItem in  animals
     ProcessAnimal(animal)
 
 ; Dog-specific method

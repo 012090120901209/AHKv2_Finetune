@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * BuiltIn_COM_Word_01_BasicUsage.ahk

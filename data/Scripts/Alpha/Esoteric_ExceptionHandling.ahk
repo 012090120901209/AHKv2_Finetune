@@ -481,8 +481,8 @@ try {
 }
 
 ; Nested try/finally
-result := NestedTry()
-MsgBox("Nested Try: " result)
+nestedResult := NestedTry()
+MsgBox("Nested Try: " nestedResult)
 
 ; Error type filtering
 r1 := HandleError(() => (throw TypeError("type issue")))

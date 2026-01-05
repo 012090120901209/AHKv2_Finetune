@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinWait_02.ahk
  * @description Advanced window waiting patterns, retry logic, and async waiting using WinWait in AutoHotkey v2
  * @author AutoHotkey Foundation

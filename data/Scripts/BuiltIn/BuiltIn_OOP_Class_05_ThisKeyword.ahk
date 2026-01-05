@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * BuiltIn_OOP_Class_05_ThisKeyword.ahk

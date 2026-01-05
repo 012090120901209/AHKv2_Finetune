@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinWait_01.ahk
  * @description Comprehensive examples demonstrating WinWait function for waiting on window appearance in AutoHotkey v2
  * @author AutoHotkey Foundation

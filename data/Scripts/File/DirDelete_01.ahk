@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirDelete_01.ahk
  * @description Comprehensive examples of DirDelete safe folder deletion with recovery options
  * @author AutoHotkey v2 Examples

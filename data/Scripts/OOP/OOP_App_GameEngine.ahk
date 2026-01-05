@@ -204,10 +204,10 @@ class Game {
 }
 
 ; Usage - Create a simple game
-game := Game("Space Battle Simulator")
+gameengine := Game("Space Battle Simulator")
 
 ; Create player
-player := game.world.CreateEntity("Player")
+player := gameengine .world.CreateEntity("Player")
 player.AddTag("player").AddTag("controllable")
 
 playerTransform := Transform(player, 100, 100)
@@ -219,31 +219,31 @@ player.AddComponent("Transform", playerTransform)
     .AddComponent("Health", playerHealth)
 
 ; Create enemies
-enemy1 := game.world.CreateEntity("Enemy1")
+enemy1 := gameengine .world.CreateEntity("Enemy1")
 enemy1.AddTag("enemy")
 enemy1.AddComponent("Transform", Transform(enemy1, 300, 200))
     .AddComponent("Physics", Physics(enemy1))
     .AddComponent("Health", Health(enemy1, 50))
 
-enemy2 := game.world.CreateEntity("Enemy2")
+enemy2 := gameengine .world.CreateEntity("Enemy2")
 enemy2.AddTag("enemy")
 enemy2.AddComponent("Transform", Transform(enemy2, 400, 150))
     .AddComponent("Physics", Physics(enemy2))
     .AddComponent("Health", Health(enemy2, 50))
 
 ; Create power-up
-powerup := game.world.CreateEntity("Health Pack")
+powerup := gameengine .world.CreateEntity("Health Pack")
 powerup.AddTag("powerup")
 powerup.AddComponent("Transform", Transform(powerup, 250, 250))
 
 MsgBox("Initial state:`n" . player.ToString())
 
 ; Start game
-game.Start()
+gameengine .Start()
 
 ; Simulate player movement
 playerPhysics.ApplyForce(Vector2D(10, 5))
-game.Tick()
+gameengine .Tick()
 
 MsgBox("After movement:`n" . player.ToString())
 
@@ -255,22 +255,22 @@ MsgBox("After damage:`n" . player.ToString())
 MsgBox("Enemy1:`n" . enemy1.ToString())
 
 ; Simulate more ticks
-game.RunSimulation(10)
+gameengine .RunSimulation(10)
 
 ; Find entities
-enemies := game.world.FindEntitiesByTag("enemy")
+enemies := gameengine .world.FindEntitiesByTag("enemy")
 MsgBox("Found " . enemies.Length . " enemies")
 
-entitiesWithHealth := game.world.FindEntitiesWithComponent("Health")
+entitiesWithHealth := gameengine .world.FindEntitiesWithComponent("Health")
 MsgBox("Entities with health:`n" . entitiesWithHealth.Map((e) => e.name).Join(", "))
 
 ; Destroy an enemy
 enemy1.GetComponent("Health").TakeDamage(20)  ; Kill it
-game.world.RemoveDestroyedEntities()
+gameengine .world.RemoveDestroyedEntities()
 
-MsgBox("After cleanup:`n" . game.world.GetWorldStats())
+MsgBox("After cleanup:`n" . gameengine .world.GetWorldStats())
 
 ; Final state
 MsgBox("Player final state:`n" . player.ToString())
 
-game.Stop()
+gameengine .Stop()

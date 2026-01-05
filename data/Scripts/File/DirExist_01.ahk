@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirExist_01.ahk
  * @description Comprehensive examples of DirExist folder validation and verification
  * @author AutoHotkey v2 Examples

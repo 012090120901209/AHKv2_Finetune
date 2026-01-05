@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: Descolada/Acc-v2
 ; Function: ElementFromPoint - Get accessible element at cursor

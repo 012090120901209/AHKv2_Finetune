@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * BuiltIn_GuiAdvanced_04.ahk - Menu Bar and Context Menus

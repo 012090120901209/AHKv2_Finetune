@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirCopy_02.ahk
  * @description Comprehensive examples of DirCopy advanced recursive and incremental copying
  * @author AutoHotkey v2 Examples

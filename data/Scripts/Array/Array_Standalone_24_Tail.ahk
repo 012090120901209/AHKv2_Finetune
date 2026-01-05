@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include JSON.ahk
+#Include ../JSON.ahk
 
 /**
  * Tail() - Get all but first element (Standalone Implementation)

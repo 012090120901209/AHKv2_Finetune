@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveList_01.ahk
  * @description Comprehensive examples of DriveGetList function with drive enumeration and monitoring
  * @author AutoHotkey v2 Examples

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirMove_02.ahk
  * @description Comprehensive examples of DirMove advanced organization and automation
  * @author AutoHotkey v2 Examples

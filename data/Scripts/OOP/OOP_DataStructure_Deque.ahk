@@ -52,16 +52,16 @@ class Deque {
 
 ; Palindrome checker using deque
 IsPalindrome(str) {
-    deque := Deque()
+    dequeobj := Deque()
 
     ; Add all characters
     loop parse str
         if (A_LoopField != " ")
-            deque.AddRear(StrLower(A_LoopField))
+            dequeobj .AddRear(StrLower(A_LoopField))
 
     ; Check palindrome
-    while (deque.Size() > 1) {
-        if (deque.RemoveFront() != deque.RemoveRear())
+    while (dequeobj .Size() > 1) {
+        if (dequeobj .RemoveFront() != dequeobj .RemoveRear())
             return false
     }
 
@@ -69,21 +69,21 @@ IsPalindrome(str) {
 }
 
 ; Usage
-deque := Deque()
+dequeobj := Deque()
 
 ; Add elements
-deque.AddRear(1).AddRear(2).AddRear(3)
-MsgBox("Deque after AddRear: " . deque.ToString())
+dequeobj .AddRear(1).AddRear(2).AddRear(3)
+MsgBox("Deque after AddRear: " . dequeobj .ToString())
 
-deque.AddFront(0).AddFront(-1)
-MsgBox("Deque after AddFront: " . deque.ToString())
+dequeobj .AddFront(0).AddFront(-1)
+MsgBox("Deque after AddFront: " . dequeobj .ToString())
 
 ; Peek
-MsgBox("Front: " . deque.PeekFront() . "`nRear: " . deque.PeekRear())
+MsgBox("Front: " . dequeobj .PeekFront() . "`nRear: " . dequeobj .PeekRear())
 
 ; Remove
-MsgBox("Removed from front: " . deque.RemoveFront() . "`nDeque: " . deque.ToString())
-MsgBox("Removed from rear: " . deque.RemoveRear() . "`nDeque: " . deque.ToString())
+MsgBox("Removed from front: " . dequeobj .RemoveFront() . "`nDeque: " . dequeobj .ToString())
+MsgBox("Removed from rear: " . dequeobj .RemoveRear() . "`nDeque: " . dequeobj .ToString())
 
 ; Palindrome checker
 MsgBox("Is 'racecar' a palindrome? " . (IsPalindrome("racecar") ? "Yes" : "No"))
@@ -93,24 +93,24 @@ MsgBox("Is 'A man a plan a canal Panama' a palindrome? " . (IsPalindrome("A man 
 ; Sliding window maximum
 FindMaxInWindow(arr, k) {
     result := []
-    deque := Deque()
+    dequeobj := Deque()
 
     loop arr.Length {
         i := A_Index
 
         ; Remove elements outside window
-        while (!deque.IsEmpty() && deque.PeekFront() < i - k + 1)
-            deque.RemoveFront()
+        while (!dequeobj .IsEmpty() && dequeobj .PeekFront() < i - k + 1)
+            dequeobj .RemoveFront()
 
         ; Remove smaller elements from rear
-        while (!deque.IsEmpty() && arr[deque.PeekRear()] < arr[i])
-            deque.RemoveRear()
+        while (!dequeobj .IsEmpty() && arr[dequeobj .PeekRear()] < arr[i])
+            dequeobj .RemoveRear()
 
-        deque.AddRear(i)
+        dequeobj .AddRear(i)
 
         ; Add to result when window is complete
         if (i >= k)
-            result.Push(arr[deque.PeekFront()])
+            result.Push(arr[dequeobj .PeekFront()])
     }
 
     return result

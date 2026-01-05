@@ -17,9 +17,9 @@ HighPriorityFunction(*) {
 ; Normal priority hotkey (default is 0)
 ^!n:: MsgBox("Normal priority hotkey")
 
-; You can also use #MaxThreadsPerHotkey and set priority
-#HotKeyInterval 2000  ; Time window in milliseconds
-#MaxThreadsPerHotkey 1
+; Note: In AHK v2, these settings are handled via Hotkey() function options
+; #HotKeyInterval 2000  ; Time window in milliseconds (v1 directive)
+; #MaxThreadsPerHotkey 1  ; (v1 directive)
 
 F12:: {
     MsgBox("Priority can affect which hotkey fires first`nwhen multiple are triggered rapidly")

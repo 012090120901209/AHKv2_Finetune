@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveInfo_01.ahk
  * @description Comprehensive examples of DriveGetType, DriveGetFileSystem, DriveGetLabel, and DriveGetSerial functions
  * @author AutoHotkey v2 Examples

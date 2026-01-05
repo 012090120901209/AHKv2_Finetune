@@ -5,6 +5,7 @@
 ; Dependencies: None
 
 #Requires AutoHotkey v2
+#SingleInstance Force
 
 /**
  * OCR library: a wrapper for the the UWP Windows.Media.Ocr library.

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_Critical_01.ahk
  * @description Thread safety and interruption control with Critical in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

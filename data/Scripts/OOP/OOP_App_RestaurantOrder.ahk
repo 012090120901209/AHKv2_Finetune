@@ -195,7 +195,7 @@ class Restaurant {
 }
 
 ; Usage - complete restaurant system
-restaurant := Restaurant("Bella Italia")
+restaurantobj := Restaurant("Bella Italia")
 
 ; Build menu
 restaurant
@@ -208,19 +208,19 @@ restaurant
     .AddMenuItem(MenuItem("DRINK2", "Sparkling Water", 3.99, "Beverages", 1))
     .AddMenuItem(MenuItem("DESS1", "Tiramisu", 7.99, "Desserts", 5))
 
-MsgBox(restaurant.menu.ToString())
+MsgBox(restaurantobj .menu.ToString())
 
 ; Create orders
-order1 := restaurant.CreateOrder(5, "Maria")
-order1.AddItem(restaurant.menu.GetItem("APP1"), 2)
-order1.AddItem(restaurant.menu.GetItem("MAIN2"), 1, "Extra cheese")
-order1.AddItem(restaurant.menu.GetItem("DRINK1"), 2)
+order1 := restaurantobj .CreateOrder(5, "Maria")
+order1.AddItem(restaurantobj .menu.GetItem("APP1"), 2)
+order1.AddItem(restaurantobj .menu.GetItem("MAIN2"), 1, "Extra cheese")
+order1.AddItem(restaurantobj .menu.GetItem("DRINK1"), 2)
 
-order2 := restaurant.CreateOrder(3, "Carlos")
-order2.AddItem(restaurant.menu.GetItem("MAIN1"), 1)
-order2.AddItem(restaurant.menu.GetItem("MAIN3"), 1, "No sauce")
-order2.AddItem(restaurant.menu.GetItem("DRINK2"), 2)
-order2.AddItem(restaurant.menu.GetItem("DESS1"), 2)
+order2 := restaurantobj .CreateOrder(3, "Carlos")
+order2.AddItem(restaurantobj .menu.GetItem("MAIN1"), 1)
+order2.AddItem(restaurantobj .menu.GetItem("MAIN3"), 1, "No sauce")
+order2.AddItem(restaurantobj .menu.GetItem("DRINK2"), 2)
+order2.AddItem(restaurantobj .menu.GetItem("DESS1"), 2)
 
 ; Show order details
 MsgBox(order1.GetReceipt())
@@ -230,7 +230,7 @@ MsgBox("Estimated prep time: " . order1.GetEstimatedPrepTime() . " minutes")
 order1.SendToKitchen()
 order2.SendToKitchen()
 
-MsgBox("Kitchen Queue:`n" . restaurant.GetKitchenQueue().Map((o) => Format("Order #{1} (Table {2}) - {3} items", o.orderId, o.tableNumber, o.items.Length)).Join("`n"))
+MsgBox("Kitchen Queue:`n" . restaurantobj .GetKitchenQueue().Map((o) => Format("Order #{1} (Table {2}) - {3} items", o.orderId, o.tableNumber, o.items.Length)).Join("`n"))
 
 ; Complete orders
 order1.MarkReady()
@@ -246,4 +246,4 @@ MsgBox(order1.GetReceipt())
 MsgBox(order2.GetReceipt())
 
 ; Restaurant summary
-MsgBox(restaurant.GetRestaurantSummary())
+MsgBox(restaurantobj .GetRestaurantSummary())

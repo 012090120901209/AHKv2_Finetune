@@ -37,6 +37,13 @@ class Sym {
     Substitute(varName, expr) => this
 }
 
+_SymCompileEval(expr, varNames, args) {
+    vars := Map()
+    for i, name in varNames
+        vars[name] := args[i]
+    return expr.Eval(vars)
+}
+
 ; =============================================================================
 ; 2. Numeric Literal
 ; =============================================================================
@@ -400,12 +407,7 @@ class ExprCompiler {
         ; Return a function that evaluates the expression
         ; Note: In real AHK, we'd use different approach since no eval()
         ; This returns a wrapper that uses Eval
-        return (args*) => (
-            vars := Map(),
-            (for i, name in varNames
-                vars[name] := args[i]),
-            expr.Eval(vars)
-        )
+        return (args*) => _SymCompileEval(expr, varNames, args)
     }
 
     static _generate(expr) {

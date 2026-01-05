@@ -4,6 +4,7 @@
 ; Description: Creating a simple GUI window with text, edit box, and buttons including event handling.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Create a simple GUI
 MyGui := Gui()

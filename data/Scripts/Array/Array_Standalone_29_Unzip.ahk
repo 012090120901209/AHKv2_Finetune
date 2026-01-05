@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include JSON.ahk
+#Include ../JSON.ahk
 
 /**
  * Unzip() - Unzip grouped elements (Standalone Implementation)

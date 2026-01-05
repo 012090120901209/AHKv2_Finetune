@@ -1,0 +1,2234 @@
+
+../../data/Scripts/Advanced/Advanced_Misc_UnitConverter.ahk:
+  WARN  [conversion-artifact] Line 3: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 5: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Alpha/Parser_Path.ahk:
+  WARN  [hardcoded-path] Line 174: Hardcoded user path detected
+  WARN  [hardcoded-path] Line 202: Hardcoded user path detected
+
+../../data/Scripts/Array/Array_Basic_Operations.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_A_Variables_01_SystemInfo.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_A_Variables_02_ScriptInfo.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_A_Variables_03_TimeDate.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Abs_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Abs_02_MathOperations.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Abs_03_DataProcessing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_InsertAt_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_InsertAt_02_Sorting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_InsertAt_03_ListManagement.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_InsertAt_04_DataStructures.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Pop_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Pop_02_LIFO.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Pop_03_UndoSystem.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Pop_04_Processing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Push_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Push_02_ListBuilding.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Push_03_DataCollection.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_Push_04_StackOperations.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_RemoveAt_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_RemoveAt_02_Filtering.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_RemoveAt_03_Cleanup.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Array_RemoveAt_04_Batch.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Binary_01_FileHeaders.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Binary_02_NetworkData.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Binary_03_Serialization.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Binary_04_Interop.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_BreakContinue_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Buffer_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Buffer_02_Memory.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Buffer_03_Structures.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Buffer_04_Advanced.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_ComObjActive_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_ComObjArray_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_ComObjConnect_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_ComObjGet_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_ComValue_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Excel_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Excel_02_Cells.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Excel_03_Formulas.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Excel_04_Formatting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Excel_05_Charts.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_IE_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_IE_02_DOM.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_IE_03_Forms.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_IE_04_Tables.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_IE_05_JavaScript.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Outlook_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Outlook_02_Contacts.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Outlook_03_Calendar.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Outlook_04_Tasks.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Outlook_05_Folders.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Shell_01_Files.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Shell_02_Registry.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Shell_03_Shortcuts.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_WMI_01_Processes.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_WMI_02_System.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Word_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Word_02_Text.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Word_03_Formatting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Word_04_Tables.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_COM_Word_05_MailMerge.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ceil_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ceil_02_Pagination.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ceil_03_Quantization.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Chr_01_CodeToCharacter.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Chr_02_SpecialCharacters.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Click_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Click_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Click_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ClipWait_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ClipWait_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ClipboardAll_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ClipboardAll_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ClipboardAll_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 475: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 479: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 552: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_Clipboard_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Clipboard_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Clipboard_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlClick_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlClick_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlClick_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetChecked_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetChecked_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetChecked_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetEnabled_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetEnabled_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetEnabled_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetStyle_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetStyle_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetStyle_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetVisible_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetVisible_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlGetVisible_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlHide_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlHide_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlHide_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetChecked_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetEnabled_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetEnabled_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetEnabled_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetStyle_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetStyle_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlSetStyle_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlShow_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlShow_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ControlShow_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_CoordMode_01_MouseCoordinates.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 143: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 144: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 145: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 146: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 149: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 150: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 152: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 153: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 155: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 156: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 158: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 159: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 209: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 210: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 489: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_CoordMode_02_PixelSearch.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_CoordMode_03_MenuPositioning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DPI_01_Awareness.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DPI_02_Scaling.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DPI_03_MultiDPI.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DateAdd_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DateAdd_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DateAdd_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DateDiff_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DateDiff_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirCopy_01_BasicCopying.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirCopy_02_RecursiveCopy.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirCopy_03_BackupSolutions.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirCreate_01_BasicCreation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirCreate_02_NestedDirectories.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirDelete_01_SafeDeletion.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirDelete_02_RecursiveDelete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirExist_01_DirectoryChecks.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirExist_02_AttributeVerification.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirMove_01_BasicMoving.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirMove_02_RenameOperations.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirSelect_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DirSelect_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Advapi32_01_Registry.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Custom_01_UserDLL.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Dwmapi_01_Desktop.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Gdi32_01_Drawing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Gdi32_02_Fonts.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Gdi32_03_Colors.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Gdi32_04_Bitmaps.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Gdi32_05_Screen.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Kernel32_01_Memory.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Kernel32_02_Files.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Kernel32_03_Processes.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Kernel32_04_Time.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Kernel32_05_Console.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Psapi_01_Performance.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Shell32_01_FileOps.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Shell32_02_Icons.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Shell32_03_Shell.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Shell32_04_Folders.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Shell32_05_Taskbar.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_User32_01_MessageBox.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_User32_02_Windows.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_User32_03_Input.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_User32_04_Clipboard.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_User32_05_SystemMetrics.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Winmm_01_Sound.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Winmm_02_Volume.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Winmm_03_MIDI.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Winmm_04_Joystick.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Winmm_05_Timer.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllCall_Winspool_01_Printing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllLoad_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_DllLoad_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_05.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_06.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_07.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_08.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_09.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Download_10.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_02_Multiline.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_03_ReadOnly.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_04_Selection.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_05_Formatting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_06_Validation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_07_Autocomplete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_08_UndoRedo.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_09_Search.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Edit_10_Advanced.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_EnvGet_01_SystemVariables.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_EnvGet_02_PathManagement.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_EnvGet_03_UserEnvironment.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_EnvSet_01_SettingVariables.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_EnvSet_02_ProcessEnvironment.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Exp_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Exp_02_Growth.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Exp_03_Decay.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileAppend_01_BasicAppend.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileAppend_02_Logging.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileAppend_03_CSV.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileAppend_04_ErrorHandling.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileCopy_01_BasicCopy.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileCopy_02_Backup.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileCopy_03_BatchCopy.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileCopy_04_OverwriteHandling.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileDelete_01_BasicDelete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileDelete_02_Wildcards.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileDelete_03_Cleanup.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileDelete_04_SafeDeletion.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileExist_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileExist_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileExist_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileExist_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetAttrib_13.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetAttrib_14.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetAttrib_15.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetAttrib_16.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetSize_05.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetSize_06.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetSize_07.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetSize_08.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetTime_09.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetTime_10.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetTime_11.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileGetTime_12.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileMove_01_BasicMove.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileMove_02_Rename.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileMove_03_Organize.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileMove_04_Atomicity.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileRead_01_BasicReading.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileRead_02_Encoding.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileRead_03_LargeFiles.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileRead_04_StructuredData.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileSelect_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 463: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 464: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 495: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 497: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_FileSelect_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileSetAttrib_17.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileSetAttrib_18.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileSetAttrib_19.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FileSetAttrib_20.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Floor_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Floor_02_GridAlignment.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Floor_03_Binning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_For_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_For_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_For_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_For_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FormatTime_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FormatTime_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FormatTime_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FormatTime_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_FormatTime_05.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Format_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Format_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Format_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Format_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Format_05.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GetKeyState_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GetKeyState_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GroupActivate_01_BasicActivation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GroupActivate_02_CyclingWindows.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GroupAdd_01_WindowGroups.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GroupAdd_02_AdvancedGrouping.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiAdvanced_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiAdvanced_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiAdvanced_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiAdvanced_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiControls_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiControls_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiControls_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiControls_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiEvents_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiEvents_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiEvents_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiEvents_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiListView_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiListView_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiListView_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_GuiListView_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Gui_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Gui_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Gui_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Gui_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotIf_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotIf_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotIf_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotIf_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotkeyExamples_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotkeyExamples_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotkeyManagement_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotkeyManagement_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotkeyManagement_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotkey_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotkey_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotkey_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotkey_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotstringExamples_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_HotstringExamples_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotstring_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotstring_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotstring_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Hotstring_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IfElse_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IfElse_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IfElse_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IfElse_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ImageSearch_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ImageSearch_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_InStr_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 135: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_InStr_02_Parsing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 101: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_InStr_03_Validation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Include_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Include_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 210: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_Include_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IniRead_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IniRead_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IniRead_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IniWrite_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IniWrite_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_IniWrite_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_InputBox_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 47: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_InputBox_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_InputBox_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 60: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 61: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 154: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 156: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 160: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 563: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 564: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_ListLines_01_DebuggingBasics.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListLines_02_PerformanceTracking.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListVars_01_VariableInspection.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListVars_02_DebuggingTools.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_02_Columns.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_03_Sorting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_04_Selection.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_05_Icons.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_06_ContextMenu.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_07_Editing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 122: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_08_DataBinding.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_09_Virtualization.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ListView_10_Styling.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ln_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ln_02_GrowthRates.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ln_03_HalfLife.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Log_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Log_02_Scales.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Log_03_DataAnalysis.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Loop_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Loop_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Loop_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Loop_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Map_Basic.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MaxThreads_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MaxThreads_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_02_Submenus.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_03_Icons.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_04_Checkmarks.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_05_ContextMenu.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_06_TrayMenu.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_07_MenuBar.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_08_Dynamic.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_09_Keyboard.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Menu_10_Advanced.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MinMax_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MinMax_02_RangeValidation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MinMax_03_DataAnalysis.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Mod_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Mod_02_CyclicPatterns.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGetCount_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGetCount_02_Detection.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGetCount_03_Display.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGetPrimary_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGetPrimary_02_Positioning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGetPrimary_03_MultiDisplay.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGet_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGet_02_MultiMonitor.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MonitorGet_03_Positioning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MouseGetPos_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MouseGetPos_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MouseGetPos_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MouseMove_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MouseMove_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MouseMove_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MsgBox_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MsgBox_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 344: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_MsgBox_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_MsgBox_Basic.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NoTrayIcon_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NoTrayIcon_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumGet_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumGet_02_FloatingPoint.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumGet_03_Pointers.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumGet_04_Structures.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumPut_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumPut_02_FloatingPoint.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumPut_03_Pointers.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_NumPut_04_Structures.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Class_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Class_02_Properties.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Class_03_Constructor.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Class_04_Static.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Class_05_ThisKeyword.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Inherit_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Inherit_02_Super.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Inherit_03_Override.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Inherit_04_Abstract.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Inherit_05_Polymorphism.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Meta_01_Call.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Meta_02_Get.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Meta_03_Set.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Meta_04_Enum.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Meta_05_Delete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Object_01_Create.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Object_02_HasOwnProp.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Object_03_OwnProps.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Object_04_Clone.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Object_05_Prototype.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Pattern_01_Singleton.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Pattern_02_Factory.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Pattern_03_Observer.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Pattern_04_Strategy.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Pattern_05_Decorator.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Practical_01_Database.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Practical_02_HTTP.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Practical_03_Logger.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Practical_04_Config.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OOP_Practical_05_Validator.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OnClipboardChange_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_OnClipboardChange_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ord_01_CharacterCodes.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Ord_02_UnicodeHandling.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_PixelSearch_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_PixelSearch_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessClose_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessClose_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessClose_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessClose_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessExist_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessExist_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessExist_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessExist_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessSetPriority_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ProcessSetPriority_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Random_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegDelete_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegDelete_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegDelete_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Match_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Match_02_Groups.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Match_03_Patterns.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Match_04_Options.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Match_05_Advanced.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Patterns_01_Email.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Patterns_02_URL.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Patterns_03_Phone.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Patterns_04_DateTime.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Patterns_05_DataExtraction.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Practical_01_Validation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Practical_02_Parsing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Practical_03_Cleaning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Practical_04_Extraction.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Practical_05_Transformation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Replace_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 207: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 469: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Replace_02_Backreferences.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 241: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Replace_03_Functions.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 96: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Replace_04_Patterns.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegEx_Replace_05_Advanced.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 281: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_RegRead_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegRead_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegRead_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegWrite_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegWrite_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RegWrite_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Requires_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Requires_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Round_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Round_02_Financial.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Round_03_DataFormatting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RunWait_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 435: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_RunWait_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RunWait_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_RunWait_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 93: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 100: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 114: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 115: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 116: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 119: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 120: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 122: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 123: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 125: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 126: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 127: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 129: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 132: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 157: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 182: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 184: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 188: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_Run_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Run_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Run_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Run_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SendInput_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SendInput_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SendInput_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SendText_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SendText_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SendText_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Send_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Send_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Send_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Shutdown_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Shutdown_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Sort_01_BasicSorting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Sort_02_AdvancedSorting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Sort_03_CustomSorting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SoundBeep_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SoundBeep_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SoundPlay_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SoundPlay_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SoundVolume_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SoundVolume_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SplitPath_01_PathParsing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SplitPath_02_FileOperations.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SplitPath_03_AdvancedParsing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Sqrt_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Sqrt_02_Geometry.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Sqrt_03_Statistics.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrCase_01_BasicConversions.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrCase_02_TextFormatting.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrCase_03_DataNormalization.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrGet_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrGet_02_Encoding.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrLen_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrLen_02_Validation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrLen_03_TextProcessing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrPut_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrPut_02_Encoding.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrReplace_01_BasicUsage.ahk:
+  ERROR [v1-stringreplace] Line 632: v1 StringReplace command (use StrReplace() instead)
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrReplace_02_TextCleaning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 440: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_StrReplace_03_AdvancedReplacement.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 760: Conversion artifact detected - should be cleaned up
+  WARN  [hardcoded-path] Line 530: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_StrSplit_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_StrSplit_02_CSVParsing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 250: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/BuiltIn/BuiltIn_StrSplit_03_AdvancedParsing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 245: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_SubStr_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 79: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_SubStr_02_TextManipulation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SubStr_03_DataExtraction.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Switch_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Switch_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Switch_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Switch_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SysGet_01_Metrics.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SysGet_02_Colors.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_SysGet_03_Info.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ToolTip_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ToolTip_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_ToolTip_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TrayTip_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TrayTip_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_02_Navigation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_03_Selection.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_04_Icons.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_05_DragDrop.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_06_ContextMenu.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_07_FileSystem.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_08_DataBinding.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_09_Searching.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TreeView_10_Checkboxes.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Trim_01_BasicUsage.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Trim_02_DataCleaning.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Trim_03_TextProcessing.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 298: Hardcoded user path detected
+
+../../data/Scripts/BuiltIn/BuiltIn_TryCatch_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TryCatch_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TryCatch_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_TryCatch_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_UseHook_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_VerCompare_01_BasicComparison.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_VerCompare_02_VersionValidation.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Warn_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_Warn_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_While_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_While_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_While_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_While_04.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinActivate_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinActivate_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinActivate_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinClose_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinClose_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinClose_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinExist_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinExist_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinExist_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetClass_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetClass_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetClass_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetList_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetList_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetPID_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetPID_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetPID_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetPos_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetPos_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetPos_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetTitle_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetTitle_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinGetTitle_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinHide_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinHide_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinHide_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinMinMax_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinMove_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinMove_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinMove_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetAlwaysOnTop_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetAlwaysOnTop_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetTitle_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetTitle_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetTitle_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetTransparent_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinSetTransparent_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinShow_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinShow_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinShow_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinWaitClose_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinWaitClose_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinWait_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinWait_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/BuiltIn/BuiltIn_WinWait_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlFocus_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlFocus_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlFocus_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetFocus_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetFocus_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetFocus_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetHwnd_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetPos_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetPos_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetPos_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetText_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetText_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlGetText_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlMove_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlMove_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlMove_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlSend_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlSend_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlSend_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlSetText_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlSetText_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/ControlSetText_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Control/Control_Indentation-Issue349.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue25.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue26_ex1.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue26_ex2.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue26_ex3.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue87_ex1.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue87_ex2.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Control/Control_if_issue87_ex3.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/File/DirCopy_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirCopy_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirCopy_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirCreate_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirCreate_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirCreate_03.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirDelete_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirExist_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirMove_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DirMove_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveEject_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveEject_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveGet_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveGet_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveInfo_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveInfo_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveList_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveList_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveSet_01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/DriveSet_02.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/File_ReadAppend_Basic.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/File/File_ReadLine_Issue20.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 3: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/File/File_ReadLine_Issue20b.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/GUI/GUI_GuiControl_test.ahk:
+  WARN  [hardcoded-path] Line 13: Hardcoded user path detected
+  WARN  [hardcoded-path] Line 65: Hardcoded user path detected
+
+../../data/Scripts/GUI/GUI_Gui_Issue331.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/GUI/GUI_Gui_issue281_ex1.ahk:
+  WARN  [conversion-artifact] Line 2: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/GUI/GUI_Simple_Form.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/GitHub/GitHub_COM_01_Excel_CreateWorkbook.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/GitHub/GitHub_DllCall_01_CreateGUID.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/GitHub/GitHub_DllCall_02_SystemProcessorInfo.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/GitHub/GitHub_DllCall_03_ClipboardHTML.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/GitHub/GitHub_HTTP_01_WinHttpRequest_GET.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/GitHub/GitHub_HTTP_02_WinHttpRequest_POST.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 87: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Hotkey/Hotkey_Basic_Examples.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Integrity/Integrity_Accumulated Errors 01.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Integrity/Integrity_Class_01_Issue_379.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/JSON.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Lib/ImagePut.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Lib/JSON.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Lib/OCR.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Lib/OVERLAPPED.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Lib/adash.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Lib/ctypes.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_06_CLR_Cryptography.ahk:
+  WARN  [conversion-artifact] Line 37: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 45: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 96: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Library/Library_Acc_01_ElementFromPoint.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_Array_01_Map.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_GDI_01_CreateBitmap.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_HTTP_01_Request.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_HttpServer_Complete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_ImagePut_01_Window.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_ImagePut_02_Clipboard.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [conversion-artifact] Line 21: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Library/Library_ImagePut_Complete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+  WARN  [hardcoded-path] Line 121: Hardcoded user path detected
+
+../../data/Scripts/Library/Library_JSON_01_Load.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_JSON_02_Dump.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_OCR_01_FromRect.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_OCR_02_FindString.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_OCR_Complete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_SQLite_01_Query.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_String_01_Case.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_UIA_01_ElementFromPoint.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_UIA_02_FindElement.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_UIA_Complete.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_WebView2_01_Create.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Library/Library_WinRT_01_Toast.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Misc/Local_Research_Scanner.ahk:
+  WARN  [hardcoded-path] Line 10: Hardcoded user path detected
+  WARN  [hardcoded-path] Line 11: Hardcoded user path detected
+  WARN  [hardcoded-path] Line 32: Hardcoded user path detected
+  WARN  [hardcoded-path] Line 33: Hardcoded user path detected
+
+../../data/Scripts/Module/Module_Practical_01_Validators.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Practical_03_EventSystem.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Tier1_01_MathHelpers_Module.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Tier1_03_DataStructures_Module.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Tier1_05_Constants_Module.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Tier2_01_StringHelpers_Module.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Tier2_04_ArrayHelpers_Module.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Module/Module_Tier3_01_Helpers_Bundle.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/OOP/OOP_02_PropertyDescriptors.ahk:
+  WARN  [conversion-artifact] Line 5: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Pattern/Pattern_07_Closures_Multiplier.ahk:
+  WARN  [conversion-artifact] Line 28: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/Process/Process_OnMessage_Issue_384.ahk:
+  WARN  [conversion-artifact] Line 3: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/String/String_CaseConverter_Menu.ahk:
+  WARN  [conversion-artifact] Line 5: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 15: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 28: Conversion artifact detected - should be cleaned up
+  WARN  [conversion-artifact] Line 48: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/String/String_Continuation_Issue_72.ahk:
+  WARN  [conversion-artifact] Line 3: Conversion artifact detected - should be cleaned up
+
+../../data/Scripts/String/String_Operations_Basic.ahk:
+  WARN  [missing-singleinstance] Line 1: Missing #SingleInstance directive (recommended: #SingleInstance Force)
+
+../../data/Scripts/Syntax/Syntax_Cmd_Removal_Issue_#375.ahk:
+  WARN  [conversion-artifact] Line 3: Conversion artifact detected - should be cleaned up
+
+============================================================
+Files scanned:      1873
+Files with errors:  1
+Files with warnings: 715
+Total errors:       1
+Total warnings:     796

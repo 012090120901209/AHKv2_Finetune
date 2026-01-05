@@ -137,36 +137,36 @@ class Trie {
 }
 
 ; Usage
-trie := Trie()
+trieobj := Trie()
 
 ; Insert words
-trie.Insert("apple").Insert("app").Insert("application")
+trieobj .Insert("apple").Insert("app").Insert("application")
     .Insert("apply").Insert("banana").Insert("band")
     .Insert("bandana").Insert("can").Insert("candy")
 
-MsgBox(trie.ToString())
+MsgBox(trieobj .ToString())
 
 ; Search
-MsgBox("Search 'apple': " . (trie.Search("apple") ? "Found" : "Not found"))
-MsgBox("Search 'app': " . (trie.Search("app") ? "Found" : "Not found"))
-MsgBox("Search 'appl': " . (trie.Search("appl") ? "Found" : "Not found"))
+MsgBox("Search 'apple': " . (trieobj .Search("apple") ? "Found" : "Not found"))
+MsgBox("Search 'app': " . (trieobj .Search("app") ? "Found" : "Not found"))
+MsgBox("Search 'appl': " . (trieobj .Search("appl") ? "Found" : "Not found"))
 
 ; Prefix search
-MsgBox("Starts with 'app': " . (trie.StartsWith("app") ? "Yes" : "No"))
-MsgBox("Starts with 'ban': " . (trie.StartsWith("ban") ? "Yes" : "No"))
-MsgBox("Starts with 'xyz': " . (trie.StartsWith("xyz") ? "Yes" : "No"))
+MsgBox("Starts with 'app': " . (trieobj .StartsWith("app") ? "Yes" : "No"))
+MsgBox("Starts with 'ban': " . (trieobj .StartsWith("ban") ? "Yes" : "No"))
+MsgBox("Starts with 'xyz': " . (trieobj .StartsWith("xyz") ? "Yes" : "No"))
 
 ; Autocomplete
-MsgBox("Words starting with 'app': " . trie.GetWordsWithPrefix("app").Join(", "))
-MsgBox("Words starting with 'ban': " . trie.GetWordsWithPrefix("ban").Join(", "))
-MsgBox("Words starting with 'c': " . trie.GetWordsWithPrefix("c").Join(", "))
+MsgBox("Words starting with 'app': " . trieobj .GetWordsWithPrefix("app").Join(", "))
+MsgBox("Words starting with 'ban': " . trieobj .GetWordsWithPrefix("ban").Join(", "))
+MsgBox("Words starting with 'c': " . trieobj .GetWordsWithPrefix("c").Join(", "))
 
 ; All words
-MsgBox("All words: " . trie.GetAllWords().Join(", "))
+MsgBox("All words: " . trieobj .GetAllWords().Join(", "))
 
 ; Delete
-trie.Delete("app")
-MsgBox("After deleting 'app': " . trie.GetAllWords().Join(", "))
+trieobj .Delete("app")
+MsgBox("After deleting 'app': " . trieobj .GetAllWords().Join(", "))
 
 ; Dictionary example
 dictionary := Trie()

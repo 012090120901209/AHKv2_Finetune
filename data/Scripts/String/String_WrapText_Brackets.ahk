@@ -186,4 +186,3 @@ WrapCustom(text) {
 *     HTML: <>, ""
 *     Markdown: *, **, `, []
 */
-

@@ -13,6 +13,7 @@
  * DIRECTIVE: #Requires
  * PURPOSE: Specifies minimum AutoHotkey version required to run the script
  * SYNTAX: #Requires AutoHotkey v2.0
+#SingleInstance Force
  *         #Requires AutoHotkey >=v2.0-beta.1
  *         #Requires AutoHotkey v2.0.2
  * 

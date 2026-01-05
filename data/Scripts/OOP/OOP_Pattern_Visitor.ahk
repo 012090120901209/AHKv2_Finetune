@@ -39,12 +39,12 @@ class RenderVisitor extends Visitor {
 ; Usage
 elements := [ConcreteElementA(), ConcreteElementB()]
 
-exportVisitor := ExportVisitor()
-for element in elements
-    element.Accept(exportVisitor)
-MsgBox(exportVisitor.GetResult())
+exportvisitorobj := ExportVisitor()
+for elem in  elements
+    elem.Accept(exportVisitor)
+MsgBox(exportvisitorobj .GetResult())
 
 renderVisitor := RenderVisitor()
-for element in elements
-    element.Accept(renderVisitor)
+for elem in  elements
+    elem.Accept(renderVisitor)
 MsgBox(renderVisitor.GetResult())

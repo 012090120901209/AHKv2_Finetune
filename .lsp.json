@@ -1,0 +1,29 @@
+{
+  "autohotkey2": {
+    "command": "node",
+    "args": ["C:/Users/uphol/Documents/Design/Coding/ahk-finetune/vscode-autohotkey2-lsp/server/dist/server.js", "--stdio"],
+    "extensionToLanguage": {
+      ".ahk": "autohotkey2",
+      ".ahk2": "autohotkey2",
+      ".ah2": "autohotkey2"
+    },
+    "transport": "stdio",
+    "initializationOptions": {
+      "locale": "en-us",
+      "AutoLibInclude": "Disabled",
+      "CompleteFunctionParens": true,
+      "Diagnostics": {
+        "ClassStaticMemberCheck": true,
+        "ParamsCheck": true
+      },
+      "ActionWhenV1IsDetected": "Warn",
+      "Warn": {
+        "VarUnset": true,
+        "LocalSameAsGlobal": true,
+        "CallWithoutParentheses": true
+      }
+    },
+    "settings": {},
+    "maxRestarts": 3
+  }
+}

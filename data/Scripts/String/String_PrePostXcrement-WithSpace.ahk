@@ -6,4 +6,3 @@ i := 0++ i ; valid (space)
 i++ ; invalid (space)
 i++ ; invalid (space)
 i++ ; invalid (tab) MsgBox(i) ; 3
-

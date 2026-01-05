@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetPID_01.ahk
  * @description Comprehensive examples demonstrating WinGetPID function for retrieving process IDs from windows in AutoHotkey v2
  * @author AutoHotkey Foundation

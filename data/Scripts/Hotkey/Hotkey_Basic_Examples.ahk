@@ -4,6 +4,7 @@
 ; Description: Various hotkey and hotstring examples including context-sensitive hotkeys and dynamic hotkey creation.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Simple hotkey - Press Ctrl+J to trigger
 ^j:: MsgBox "You pressed Ctrl+J"

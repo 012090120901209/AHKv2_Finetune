@@ -107,7 +107,7 @@ class Report {
     Details {
         get {
             if (!this._details) {
-                MsgBox("Generating detailed report...")
+                MsgBox("Generating detailed reportobj ...")
                 Sleep(1000)
                 this._details := "Detailed analysis for: " this.title
             }
@@ -150,19 +150,19 @@ config2 := ConfigManager.Instance  ; Same instance
 MsgBox("Same instance? " (config1 = config2 ? "Yes" : "No"))
 
 ; Usage - lazy computed properties
-report := Report("Q4 2024 Sales")
+reportobj := Report("Q4 2024 Sales")
 MsgBox("Report created (nothing computed yet)")
 
 result := MsgBox("Show summary?", "Choose", "YesNo")
 if (result = "Yes")
-    MsgBox(report.Summary)
+    MsgBox(reportobj .Summary)
 
 result := MsgBox("Show details?", "Choose", "YesNo")
 if (result = "Yes")
-    MsgBox(report.Details)
+    MsgBox(reportobj .Details)
 
 result := MsgBox("Show charts?", "Choose", "YesNo")
 if (result = "Yes")
-    MsgBox(report.Charts)
+    MsgBox(reportobj .Charts)
 
 MsgBox("Lazy initialization pattern demonstrated!")

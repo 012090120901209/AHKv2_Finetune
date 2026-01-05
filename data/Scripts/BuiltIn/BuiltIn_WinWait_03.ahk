@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinWait_03.ahk
  * @description Window waiting patterns for complex scenarios, state machines, and event-driven waiting using WinWait in AutoHotkey v2
  * @author AutoHotkey Foundation

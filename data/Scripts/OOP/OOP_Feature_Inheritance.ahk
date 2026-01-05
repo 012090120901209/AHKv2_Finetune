@@ -41,9 +41,9 @@ regularCar := Car("Toyota", 2020, 4)
 regularCar.Start()
 MsgBox(regularCar.GetInfo())
 
-electricCar := ElectricCar("Tesla", 2024, 4, 75)
-electricCar.charge := 15  ; Set low charge
-electricCar.Start()
-electricCar.Charge()
-electricCar.Start()
-MsgBox(electricCar.GetInfo())
+electriccarobj := ElectricCar("Tesla", 2024, 4, 75)
+electriccarobj .charge := 15  ; Set low charge
+electriccarobj .Start()
+electriccarobj .Charge()
+electriccarobj .Start()
+MsgBox(electriccarobj .GetInfo())

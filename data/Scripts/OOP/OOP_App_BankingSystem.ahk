@@ -158,12 +158,12 @@ class Bank {
 }
 
 ; Usage - complete banking system
-bank := Bank("First National Bank")
+bankobj := Bank("First National Bank")
 
 ; Create accounts
-aliceChecking := bank.CreateCheckingAccount("Alice Johnson", 1000, 500)
-bobSavings := bank.CreateSavingsAccount("Bob Smith", 5000, 3.0)
-charlieSavings := bank.CreateSavingsAccount("Charlie Brown", 2000, 2.5)
+aliceChecking := bankobj .CreateCheckingAccount("Alice Johnson", 1000, 500)
+bobSavings := bankobj .CreateSavingsAccount("Bob Smith", 5000, 3.0)
+charlieSavings := bankobj .CreateSavingsAccount("Charlie Brown", 2000, 2.5)
 
 ; Perform transactions
 aliceChecking.Deposit(500, "Paycheck")
@@ -173,14 +173,14 @@ bobSavings.Deposit(1000, "Birthday gift")
 bobSavings.ApplyInterest()
 
 ; Transfer between accounts
-bank.Transfer(aliceChecking.accountNumber, bobSavings.accountNumber, 300, "Loan repayment")
+bankobj .Transfer(aliceChecking.accountNumber, bobSavings.accountNumber, 300, "Loan repayment")
 
 ; Show statements
 MsgBox(aliceChecking.GetStatement())
 MsgBox(bobSavings.GetStatement())
 
 ; Bank summary
-MsgBox(bank.GetBankSummary())
+MsgBox(bankobj .GetBankSummary())
 
 ; Test overdraft
 MsgBox("Alice's available balance (with overdraft): $" . aliceChecking.GetAvailableBalance())

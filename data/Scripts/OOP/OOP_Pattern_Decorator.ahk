@@ -9,9 +9,9 @@ class Coffee {
 }
 
 class CoffeeDecorator extends Coffee {
-    __New(coffee) => this.coffee := coffee
-    Cost() => this.coffee.Cost()
-    Description() => this.coffee.Description()
+    __New(coffee) => this.coffeeobj := coffee
+    Cost() => this.coffeeobj .Cost()
+    Description() => this.coffeeobj .Description()
 }
 
 class MilkDecorator extends CoffeeDecorator {
@@ -35,13 +35,13 @@ class WhippedCreamDecorator extends CoffeeDecorator {
 }
 
 ; Elegant composition
-coffee := Coffee.New()
-coffee := MilkDecorator.New(coffee)
-coffee := SugarDecorator.New(coffee)
-coffee := CaramelDecorator.New(coffee)
-coffee := WhippedCreamDecorator.New(coffee)
+coffeeobj := Coffee.New()
+coffeeobj := MilkDecorator.New(coffee)
+coffeeobj := SugarDecorator.New(coffee)
+coffeeobj := CaramelDecorator.New(coffee)
+coffeeobj := WhippedCreamDecorator.New(coffee)
 
-MsgBox(Format("{}`nTotal: ${:.2f}", coffee.Description(), coffee.Cost()))
+MsgBox(Format("{}`nTotal: ${:.2f}", coffeeobj .Description(), coffeeobj .Cost()))
 
 ; One-liner version
 fancyCoffee := WhippedCreamDecorator.New(CaramelDecorator.New(MilkDecorator.New(Coffee.New())))

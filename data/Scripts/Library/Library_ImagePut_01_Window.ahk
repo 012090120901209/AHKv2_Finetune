@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: iseahound/ImagePut
 ; Function: ImagePutWindow - Display image in a window

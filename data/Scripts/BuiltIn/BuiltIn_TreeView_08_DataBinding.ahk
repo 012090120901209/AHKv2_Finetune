@@ -1,5 +1,6 @@
 #Requires AutoHotkey v2.0
-#Include JSON.ahk
+#SingleInstance Force
+#Include ../JSON.ahk
 
 /**
  * BuiltIn_TreeView_08_DataBinding.ahk

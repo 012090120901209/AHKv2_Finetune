@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_Sleep_03.ahk
  * @description Animations and visual effects with Sleep in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

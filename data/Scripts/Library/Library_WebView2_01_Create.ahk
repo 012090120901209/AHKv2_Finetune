@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: thqby/ahk2_lib/WebView2
 ; Function: Create WebView2 GUI

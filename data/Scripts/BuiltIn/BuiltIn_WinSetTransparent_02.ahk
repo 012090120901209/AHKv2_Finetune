@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinSetTransparent_02.ahk
  * @description Advanced transparency features, animations, and visual effects using WinSetTransparent in AutoHotkey v2
  * @author AutoHotkey Foundation

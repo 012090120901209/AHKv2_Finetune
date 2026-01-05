@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHK Training Reviewer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>AHK Training Reviewer</h1>
+            <div class="stats" id="stats">
+                <span class="stat">Total: <strong id="stat-total">0</strong></span>
+                <span class="stat">Reviewed: <strong id="stat-reviewed">0</strong></span>
+                <span class="stat">Progress: <strong id="stat-progress">0%</strong></span>
+            </div>
+            <div class="controls">
+                <button id="btn-review-mode" class="btn btn-primary">Review Mode (R)</button>
+                <button id="btn-refresh" class="btn">Refresh</button>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <div class="main">
+            <!-- Sidebar - Script List -->
+            <aside class="sidebar" id="sidebar">
+                <div class="filters">
+                    <select id="filter-category">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="needs_fix">Needs Fix</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="reviewed_ok">Reviewed OK</option>
+                        <option value="skip">Skip</option>
+                    </select>
+                    <select id="filter-quality">
+                        <option value="">All Quality</option>
+                        <option value="good">Good</option>
+                        <option value="warning">Warnings</option>
+                        <option value="error">Errors</option>
+                        <option value="unknown">Not Linted</option>
+                    </select>
+                </div>
+                <div class="script-list" id="script-list">
+                    <!-- Scripts loaded dynamically -->
+                </div>
+            </aside>
+
+            <!-- Content area -->
+            <main class="content">
+                <!-- Script viewer -->
+                <div class="script-viewer" id="script-viewer">
+                    <div class="script-header">
+                        <div class="script-info">
+                            <h2 id="script-title">Select a script</h2>
+                            <div class="script-meta">
+                                <span id="script-category" class="badge"></span>
+                                <span id="script-status" class="badge"></span>
+                                <span id="script-quality" class="badge"></span>
+                            </div>
+                        </div>
+                        <div class="script-actions">
+                            <button id="btn-run" class="btn btn-success" title="Run (Ctrl+R)">Run</button>
+                            <button id="btn-lint" class="btn" title="Lint (L)">Lint</button>
+                            <button id="btn-edit" class="btn" title="Edit (E)">Edit</button>
+                            <button id="btn-save" class="btn btn-primary hidden" title="Save (Ctrl+S)">Save</button>
+                            <button id="btn-cancel-edit" class="btn hidden">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Code display (Monaco Editor) -->
+                    <div class="code-container">
+                        <div id="monaco-container"></div>
+                    </div>
+
+                    <!-- Lint results -->
+                    <div class="lint-results hidden" id="lint-results">
+                        <h3>Lint Results</h3>
+                        <div id="lint-list"></div>
+                    </div>
+
+                    <!-- Review actions -->
+                    <div class="review-actions" id="review-actions">
+                        <div class="status-buttons">
+                            <button class="btn btn-success status-btn" data-status="approved" title="1">
+                                Approved (1)
+                            </button>
+                            <button class="btn btn-warning status-btn" data-status="needs_fix" title="2">
+                                Needs Fix (2)
+                            </button>
+                            <button class="btn btn-danger status-btn" data-status="rejected" title="3">
+                                Rejected (3)
+                            </button>
+                            <button class="btn btn-info status-btn" data-status="reviewed_ok" title="4">
+                                Reviewed OK (4)
+                            </button>
+                            <button class="btn status-btn" data-status="skip" title="5">
+                                Skip (5)
+                            </button>
+                        </div>
+                        <div class="fix-controls">
+                            <select id="fix-level">
+                                <option value="formatting">Formatting</option>
+                                <option value="syntax">Syntax</option>
+                                <option value="semantic" selected>Semantic</option>
+                                <option value="full">Full Rewrite</option>
+                            </select>
+                            <button id="btn-fix" class="btn btn-primary" title="Fix (F)">Fix with AI</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diff viewer (for fixes) -->
+                <div class="diff-viewer hidden" id="diff-viewer">
+                    <div class="diff-header">
+                        <h3>AI Fix Preview</h3>
+                        <div class="diff-actions">
+                            <button id="btn-accept-fix" class="btn btn-success">Accept</button>
+                            <button id="btn-reject-fix" class="btn btn-danger">Reject</button>
+                        </div>
+                    </div>
+                    <div class="diff-container">
+                        <div class="diff-pane">
+                            <h4>Original</h4>
+                            <div id="diff-original-monaco"></div>
+                        </div>
+                        <div class="diff-pane">
+                            <h4>Fixed</h4>
+                            <div id="diff-fixed-monaco"></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Review mode overlay -->
+        <div class="review-mode-overlay hidden" id="review-mode-overlay">
+            <div class="review-mode-header">
+                <span>Review Mode</span>
+                <span id="review-mode-progress">1 / 100</span>
+                <button id="btn-exit-review" class="btn">Exit (Esc)</button>
+            </div>
+        </div>
+
+        <!-- Loading overlay -->
+        <div class="loading-overlay hidden" id="loading">
+            <div class="spinner"></div>
+            <p id="loading-text">Loading...</p>
+        </div>
+
+        <!-- Toast notifications -->
+        <div class="toast-container" id="toast-container"></div>
+    </div>
+
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    <script src="/static/ahk-language.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>

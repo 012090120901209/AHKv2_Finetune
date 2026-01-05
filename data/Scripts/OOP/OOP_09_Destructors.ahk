@@ -12,31 +12,22 @@
 
 ; Test 1: File handle cleanup
 MsgBox("Test 1: File Handle Cleanup", , "T2")
-{
-    file := ManagedFile("test_output.txt")
-    file.WriteLine("Hello, World!")
-    file.WriteLine("This file will auto-close")
-    ; file.__Delete() automatically called when 'file' goes out of scope
-}
+file := ManagedFile("test_output.txt")
+file.WriteLine("Hello, World!")
+file.WriteLine("This file will auto-close")
 MsgBox("File automatically closed!", , "T2")
 
 ; Test 2: Timer cleanup
 MsgBox("Test 2: Timer Cleanup (3 seconds)", , "T2")
-{
-    timer := ManagedTimer(500)
-    timer.Start()
-    Sleep(3000)
-    ; timer.__Delete() automatically stops timer
-}
+timer := ManagedTimer(500)
+timer.Start()
+Sleep(3000)
 MsgBox("Timer automatically stopped!", , "T2")
 
 ; Test 3: Temporary file cleanup
 MsgBox("Test 3: Temporary File Cleanup", , "T2")
-{
-    tempFile := TempFile()
-    MsgBox("Temp file created: " tempFile.path "`n`nWill be deleted automatically.", , "T3")
-    ; tempFile.__Delete() automatically deletes file
-}
+tmpFile := TempFile()
+MsgBox("Temp file created: " tmpFile.path "`n`nWill be deleted automatically.", , "T3")
 MsgBox("Temp file automatically deleted!", , "T2")
 
 /**

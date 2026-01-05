@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * ============================================================================
  * AutoHotkey v2 #Include Directive - Library Management
  * ============================================================================
@@ -132,7 +134,7 @@ class StringUtils {
  */
 
 /**
- * Example: #Include <JSON>
+ * Example: #Include ../JSON.ahk
  * Would include JSON.ahk from standard library locations
  */
 

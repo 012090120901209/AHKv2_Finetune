@@ -99,7 +99,7 @@ CleanupResources(disposables*) {
 }
 
 ; Usage - polymorphic interface usage
-product := Product("P001", "Laptop", 999.99)
+productobj := Product("P001", "Laptop", 999.99)
 serialized := SaveToStorage(product)
 restored := Product.Deserialize(serialized)
 MsgBox("Restored product: " restored.name " ($" restored.price ")")

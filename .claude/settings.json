@@ -1,0 +1,26 @@
+{
+  "agents": {
+    "ahk-fixer": {
+      "description": "Fix AHK v2 scripts based on AGENTS.md rules. Handles formatting, syntax, semantic improvements, and full rewrites.",
+      "definition": ".claude/agents/ahk-fixer.md",
+      "tools": ["Read", "Edit", "Write", "Bash", "Glob", "Grep"]
+    },
+    "ahk-linter": {
+      "description": "Analyze AHK v2 scripts and generate problems report. Validation only - no modifications.",
+      "definition": ".claude/agents/ahk-linter.md",
+      "tools": ["Read", "Bash", "Glob", "Grep"]
+    },
+    "ahk-generator": {
+      "description": "Generate new AHK v2 example scripts following all conventions and rules.",
+      "definition": ".claude/agents/ahk-generator.md",
+      "tools": ["Read", "Write", "Glob", "Grep"]
+    }
+  },
+  "context": {
+    "include": [
+      "data/Scripts/AGENTS.md",
+      "docs/dataset_guidelines.md",
+      "ahk_formatting_spec.md"
+    ]
+  }
+}

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetClass_01.ahk
  * @description Comprehensive examples demonstrating WinGetClass function for retrieving window class names in AutoHotkey v2
  * @author AutoHotkey Foundation

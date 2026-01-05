@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_Critical_02.ahk
  * @description Atomic operations and data consistency with Critical in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

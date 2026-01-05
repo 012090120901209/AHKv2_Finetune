@@ -145,21 +145,21 @@ class Graph {
 }
 
 ; Usage - Undirected graph
-graph := Graph()
+graphobj := Graph()
 
 ; Add edges (creates vertices automatically)
-graph.AddEdge("A", "B").AddEdge("A", "C").AddEdge("B", "D")
+graphobj .AddEdge("A", "B").AddEdge("A", "C").AddEdge("B", "D")
     .AddEdge("C", "D").AddEdge("D", "E").AddEdge("E", "F")
 
-MsgBox(graph.ToString())
+MsgBox(graphobj .ToString())
 
 ; Traversals
-MsgBox("DFS from A: " . graph.DFS("A").Join(" -> "))
-MsgBox("BFS from A: " . graph.BFS("A").Join(" -> "))
+MsgBox("DFS from A: " . graphobj .DFS("A").Join(" -> "))
+MsgBox("BFS from A: " . graphobj .BFS("A").Join(" -> "))
 
 ; Path finding
-MsgBox("Has path A to F? " . (graph.HasPath("A", "F") ? "Yes" : "No"))
-path := graph.FindShortestPath("A", "F")
+MsgBox("Has path A to F? " . (graphobj .HasPath("A", "F") ? "Yes" : "No"))
+path := graphobj .FindShortestPath("A", "F")
 MsgBox("Shortest path A to F: " . path.Join(" -> "))
 
 ; Directed graph example

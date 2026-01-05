@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
  * Practical Module Example 03: Event System Module

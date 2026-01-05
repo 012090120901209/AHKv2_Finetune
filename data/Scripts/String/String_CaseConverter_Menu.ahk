@@ -270,4 +270,3 @@ JoinArray(arr, delimiter) {
 *     Character-by-character for invert
 *     Word-by-word for title case
 */
-

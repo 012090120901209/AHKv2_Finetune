@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * GitHub_DllCall_03_ClipboardHTML.ahk

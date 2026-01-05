@@ -39,15 +39,15 @@ TimestampMixin.Apply(Task.Prototype)
 SerializableMixin.Apply(Task.Prototype)
 
 ; Now Task has logging, timestamps, and serialization
-task := Task("Fix Bug #123", "Resolve memory leak in parser")
-task.Log("Task created")
+taskobj := Task("Fix Bug #123", "Resolve memory leak in parser")
+taskobj .Log("Task created")
 Sleep(100)
-task.Touch()
-task.Log("Task updated")
-task.Log("Task completed")
+taskobj .Touch()
+taskobj .Log("Task updated")
+taskobj .Log("Task completed")
 
-MsgBox("Created: " task.CreatedAt "`nUpdated: " task.UpdatedAt)
-MsgBox("Logs:`n" task.GetLogs().Join("`n"))
+MsgBox("Created: " taskobj .CreatedAt "`nUpdated: " taskobj .UpdatedAt)
+MsgBox("Logs:`n" taskobj .GetLogs().Join("`n"))
 
 class JSON {
     static stringify(obj) {

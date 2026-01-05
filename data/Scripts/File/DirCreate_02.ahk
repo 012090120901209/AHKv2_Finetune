@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirCreate_02.ahk
  * @description Advanced DirCreate examples with automation, templates, and intelligent folder management
  * @author AutoHotkey v2 Examples

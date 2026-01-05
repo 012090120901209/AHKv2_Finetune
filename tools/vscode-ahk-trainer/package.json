@@ -1,0 +1,180 @@
+{
+  "name": "ahk-training-review",
+  "displayName": "AHK Training Data Review",
+  "description": "Review, analyze, and manage AutoHotkey v2 training examples",
+  "version": "0.1.0",
+  "publisher": "ahk-finetune",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other",
+    "Data Science"
+  ],
+  "keywords": [
+    "autohotkey",
+    "ahk",
+    "training-data",
+    "machine-learning"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/data/Scripts/**/*.ahk",
+    "onView:ahkTraining.scriptExplorer"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ahkTrainingContainer",
+          "title": "AHK Training Review",
+          "icon": "media/icons/activity-bar.svg"
+        }
+      ]
+    },
+    "views": {
+      "ahkTrainingContainer": [
+        {
+          "id": "ahkTraining.scriptExplorer",
+          "name": "Script Explorer",
+          "type": "tree"
+        },
+        {
+          "id": "ahkTraining.categories",
+          "name": "Categories",
+          "type": "tree"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "ahkTraining.refreshExplorer",
+        "title": "Refresh Script Explorer",
+        "icon": "$(refresh)",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.openPreview",
+        "title": "Open Script Preview",
+        "icon": "$(open-preview)",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.openAnalytics",
+        "title": "Open Analytics Dashboard",
+        "icon": "$(graph)",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.searchScripts",
+        "title": "Search Training Scripts",
+        "icon": "$(search)",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.lintFile",
+        "title": "Lint This Script",
+        "icon": "$(checklist)",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.lintCategory",
+        "title": "Lint Category",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.lintAll",
+        "title": "Lint All Scripts",
+        "category": "AHK Training"
+      },
+      {
+        "command": "ahkTraining.filterByQuality",
+        "title": "Filter by Quality",
+        "category": "AHK Training"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "ahkTraining.refreshExplorer",
+          "when": "view == ahkTraining.scriptExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "ahkTraining.searchScripts",
+          "when": "view == ahkTraining.scriptExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "ahkTraining.openAnalytics",
+          "when": "view == ahkTraining.scriptExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "ahkTraining.openPreview",
+          "when": "view == ahkTraining.scriptExplorer && viewItem == scriptFile"
+        },
+        {
+          "command": "ahkTraining.lintFile",
+          "when": "view == ahkTraining.scriptExplorer && viewItem == scriptFile"
+        },
+        {
+          "command": "ahkTraining.lintCategory",
+          "when": "view == ahkTraining.scriptExplorer && viewItem == category"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AHK Training Review",
+      "properties": {
+        "ahkTraining.scriptsRoot": {
+          "type": "string",
+          "default": "data/Scripts",
+          "description": "Root directory for training scripts (relative to workspace)"
+        },
+        "ahkTraining.metadataPath": {
+          "type": "string",
+          "default": "data/ahk_example_metadata.jsonl",
+          "description": "Path to metadata JSONL file"
+        },
+        "ahkTraining.linterPath": {
+          "type": "string",
+          "default": "tools/ahk-linter",
+          "description": "Path to ahk-linter tool"
+        },
+        "ahkTraining.autoLintOnOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically lint scripts when opened"
+        },
+        "ahkTraining.qualityThreshold.maxErrors": {
+          "type": "number",
+          "default": 0,
+          "description": "Max errors for 'good' quality rating"
+        },
+        "ahkTraining.qualityThreshold.maxWarnings": {
+          "type": "number",
+          "default": 3,
+          "description": "Max warnings for 'good' quality rating"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "build:watch": "npm run build -- --watch",
+    "package": "vsce package",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.82.0",
+    "@vscode/vsce": "^2.22.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0"
+  }
+}

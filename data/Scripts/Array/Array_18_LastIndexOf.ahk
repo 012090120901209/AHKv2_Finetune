@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include <adash>
+#Include ../Lib/adash.ahk
 
 /**
  * _.lastIndexOf() - Find last index of value

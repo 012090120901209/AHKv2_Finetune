@@ -44,10 +44,10 @@ class Forest {
 }
 
 ; Usage - memory efficient with thousands of trees
-forest := Forest()
+forestobj := Forest()
     .PlantTree(10, 20, "Oak", "Green", "Rough")
     .PlantTree(30, 40, "Pine", "DarkGreen", "Smooth")
     .PlantTree(50, 60, "Oak", "Green", "Rough")  ; Reuses first type
     .PlantTree(70, 80, "Pine", "DarkGreen", "Smooth")  ; Reuses second type
 
-forest.Draw()
+forestobj .Draw()

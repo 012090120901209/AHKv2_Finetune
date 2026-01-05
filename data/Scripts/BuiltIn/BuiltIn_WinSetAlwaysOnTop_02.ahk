@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinSetAlwaysOnTop_02.ahk
  * @description Advanced always-on-top features, smart pinning, and context-aware pin management using WinSetAlwaysOnTop in AutoHotkey v2
  * @author AutoHotkey Foundation

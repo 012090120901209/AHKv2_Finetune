@@ -5,6 +5,7 @@
 ; Dependencies: UIA.ahk`n`n
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /*
 Introduction & credits

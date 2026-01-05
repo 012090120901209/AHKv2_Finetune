@@ -188,43 +188,43 @@ class Hotel {
 }
 
 ; Usage - complete hotel booking system
-hotel := Hotel("Grand Plaza Hotel")
+hotelobj := Hotel("Grand Plaza Hotel")
 
 ; Add rooms
-hotel.AddRoom(Room(101, Room.TYPE_SINGLE, 100).AddFeature("WiFi").AddFeature("TV"))
-hotel.AddRoom(Room(102, Room.TYPE_SINGLE, 100).AddFeature("WiFi").AddFeature("TV"))
-hotel.AddRoom(Room(201, Room.TYPE_DOUBLE, 150).AddFeature("WiFi").AddFeature("TV").AddFeature("Mini Bar"))
-hotel.AddRoom(Room(202, Room.TYPE_DOUBLE, 150).AddFeature("WiFi").AddFeature("TV").AddFeature("Mini Bar"))
-hotel.AddRoom(Room(301, Room.TYPE_SUITE, 300).AddFeature("WiFi").AddFeature("TV").AddFeature("Mini Bar").AddFeature("Ocean View"))
+hotelobj .AddRoom(Room(101, Room.TYPE_SINGLE, 100).AddFeature("WiFi").AddFeature("TV"))
+hotelobj .AddRoom(Room(102, Room.TYPE_SINGLE, 100).AddFeature("WiFi").AddFeature("TV"))
+hotelobj .AddRoom(Room(201, Room.TYPE_DOUBLE, 150).AddFeature("WiFi").AddFeature("TV").AddFeature("Mini Bar"))
+hotelobj .AddRoom(Room(202, Room.TYPE_DOUBLE, 150).AddFeature("WiFi").AddFeature("TV").AddFeature("Mini Bar"))
+hotelobj .AddRoom(Room(301, Room.TYPE_SUITE, 300).AddFeature("WiFi").AddFeature("TV").AddFeature("Mini Bar").AddFeature("Ocean View"))
 
 ; Register guests
-alice := hotel.RegisterGuest(Guest("Alice Johnson", "alice@email.com", "555-0101"))
-bob := hotel.RegisterGuest(Guest("Bob Smith", "bob@email.com", "555-0102"))
+alice := hotelobj .RegisterGuest(Guest("Alice Johnson", "alice@email.com", "555-0101"))
+bob := hotelobj .RegisterGuest(Guest("Bob Smith", "bob@email.com", "555-0102"))
 
 ; Show available rooms
-availableSuites := hotel.FindAvailableRooms(Room.TYPE_SUITE)
+availableSuites := hotelobj .FindAvailableRooms(Room.TYPE_SUITE)
 MsgBox("Available suites:`n" . availableSuites.Map((r) => r.ToString()).Join("`n"))
 
 ; Create reservations
 checkIn := DateAdd(A_Now, 1, "Days")
 checkOut := DateAdd(checkIn, 3, "Days")
 
-res1 := hotel.CreateReservation(alice.guestId, 301, checkIn, checkOut)
+res1 := hotelobj .CreateReservation(alice.guestId, 301, checkIn, checkOut)
 res1.Confirm()
 
-res2 := hotel.CreateReservation(bob.guestId, 201, checkIn, DateAdd(checkIn, 2, "Days"))
+res2 := hotelobj .CreateReservation(bob.guestId, 201, checkIn, DateAdd(checkIn, 2, "Days"))
 res2.Confirm()
 
 ; Check in
-hotel.CheckIn(res1.reservationId)
-hotel.CheckIn(res2.reservationId)
+hotelobj .CheckIn(res1.reservationId)
+hotelobj .CheckIn(res2.reservationId)
 
 MsgBox(alice.ToString())
 
 ; Hotel summary
-MsgBox(hotel.GetHotelSummary())
+MsgBox(hotelobj .GetHotelSummary())
 
 ; Check out
-hotel.CheckOut(res1.reservationId)
+hotelobj .CheckOut(res1.reservationId)
 
-MsgBox(hotel.GetHotelSummary())
+MsgBox(hotelobj .GetHotelSummary())

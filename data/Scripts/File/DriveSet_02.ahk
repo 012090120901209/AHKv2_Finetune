@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveSet_02.ahk
  * @description Advanced drive management with DriveSetLabel, DriveLock, and DriveUnlock for automation and organization
  * @author AutoHotkey v2 Examples

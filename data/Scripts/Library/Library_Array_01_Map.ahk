@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: Descolada/AHK-v2-libraries/Array.ahk
 ; Function: Array.Map - Transform array elements

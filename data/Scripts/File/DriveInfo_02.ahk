@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveInfo_02.ahk
  * @description Advanced drive information analysis and comparison tools using DriveGetType, DriveGetFileSystem, DriveGetLabel, and DriveGetSerial
  * @author AutoHotkey v2 Examples

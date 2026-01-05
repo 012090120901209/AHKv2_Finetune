@@ -1,7 +1,8 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
-Basic AHK v2 example demonstrating variable assignment and control flow Haystack := "abcdefabcdef"
+; Basic AHK v2 example demon
+strating variable assignment and control flow Haystack := "abcdefabcdef"
 Needle := "cde"
 var := 1
 pos := InStr(Haystack, Needle, , (var + 2) + 1) - 1

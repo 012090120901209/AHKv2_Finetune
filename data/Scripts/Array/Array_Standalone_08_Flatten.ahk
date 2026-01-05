@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include JSON.ahk JSON.ahk
+#Include ../JSON.ahk
 
 /**
  * Flatten() - Flatten array one level (Standalone Implementation)

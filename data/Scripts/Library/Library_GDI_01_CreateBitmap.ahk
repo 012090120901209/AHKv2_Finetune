@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: mmikeww/AHKv2-Gdip
 ; Function: Gdip_CreateBitmap - Create blank bitmap for drawing

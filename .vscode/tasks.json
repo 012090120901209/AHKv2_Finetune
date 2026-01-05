@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-ahk-trainer-extension",
+      "type": "shell",
+      "command": "npm run build",
+      "options": {
+        "cwd": "${workspaceFolder}/tools/vscode-ahk-trainer"
+      },
+      "problemMatcher": "$esbuild",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "watch-ahk-trainer-extension",
+      "type": "shell",
+      "command": "npm run build:watch",
+      "options": {
+        "cwd": "${workspaceFolder}/tools/vscode-ahk-trainer"
+      },
+      "problemMatcher": "$esbuild-watch",
+      "isBackground": true,
+      "group": "build"
+    }
+  ]
+}

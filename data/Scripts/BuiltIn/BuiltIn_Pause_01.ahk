@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_Pause_01.ahk
  * @description Pause and resume script execution in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

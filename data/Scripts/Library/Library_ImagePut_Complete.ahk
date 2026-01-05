@@ -12,6 +12,7 @@
 ; Version:   1.11
 
 #Requires AutoHotkey v2.0-beta.13+
+#SingleInstance Force
 
 ; Scroll down for a list of all output functions and their descriptions.
 ; The coimage is the same thing as the image.

@@ -101,19 +101,19 @@ class MultiFunctionPrinter {
 }
 
 ; Usage - car with delegation
-car := Car("Tesla Model S")
-car.gps.UpdateLocation(37.7749, -122.4194)
+carobj := Car("Tesla Model S")
+carobj .gps.UpdateLocation(37.7749, -122.4194)
 
-MsgBox(car.GetStatus())
+MsgBox(carobj .GetStatus())
 
-car.StartJourney("Golden Gate Bridge", "Road Trip Playlist")
+carobj .StartJourney("Golden Gate Bridge", "Road Trip Playlist")
 
-car.VolumeUp()
-car.VolumeUp()
+carobj .VolumeUp()
+carobj .VolumeUp()
 
-car.WhereAmI()
+carobj .WhereAmI()
 
-car.Stop()
+carobj .Stop()
 
 ; Usage - multi-function printer with delegation
 mfp := MultiFunctionPrinter()

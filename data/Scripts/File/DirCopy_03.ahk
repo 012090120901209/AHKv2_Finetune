@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirCopy_03.ahk
  * @description Comprehensive examples of DirCopy enterprise backup and archiving systems
  * @author AutoHotkey v2 Examples

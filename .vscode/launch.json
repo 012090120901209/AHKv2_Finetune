@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run AHK Trainer Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/tools/vscode-ahk-trainer",
+        "${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/tools/vscode-ahk-trainer/dist/**/*.js"
+      ],
+      "preLaunchTask": "build-ahk-trainer-extension"
+    },
+    {
+      "name": "Run AHK Trainer Extension (Watch)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/tools/vscode-ahk-trainer",
+        "${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/tools/vscode-ahk-trainer/dist/**/*.js"
+      ]
+    }
+  ]
+}

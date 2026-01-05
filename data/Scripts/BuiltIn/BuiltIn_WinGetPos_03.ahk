@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetPos_03.ahk
  * @description Window alignment, snapping, and smart positioning examples using WinGetPos in AutoHotkey v2
  * @author AutoHotkey Foundation

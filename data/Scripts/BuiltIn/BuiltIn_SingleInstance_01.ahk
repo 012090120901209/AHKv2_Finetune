@@ -1,3 +1,4 @@
+#Requires AutoHotkey v2.0
 /**
  * ============================================================================
  * AutoHotkey v2 #SingleInstance Directive - Instance Control

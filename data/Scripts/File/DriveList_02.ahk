@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveList_02.ahk
  * @description Advanced drive listing with custom filtering, analytics, and system integration
  * @author AutoHotkey v2 Examples

@@ -4,6 +4,7 @@
 ; Description: Map (dictionary/hash table) creation and manipulation including iteration, checking keys, and nested structures.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Create a map
 person := Map()

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirMove_01.ahk
  * @description Comprehensive examples of DirMove folder moving and renaming operations
  * @author AutoHotkey v2 Examples

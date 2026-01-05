@@ -166,4 +166,3 @@ SwapAdjacentCharacters() {
 *    SetTimer for delayed restore
 *    Works in most text editors
 */
-

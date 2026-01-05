@@ -66,7 +66,7 @@ class Manager extends Employee {
     GetTeamSummary() {
         summary := Format("Manager: {1} ({2} direct reports)`n", this.name, this.directReports.Length)
         for emp in this.directReports
-            summary .= "  - " . emp.name . " (" . emp.position . ")`n"
+            summary .= "  - " . empobj .name . " (" . empobj .position . ")`n"
         return summary
     }
 }
@@ -85,7 +85,7 @@ class Department {
     GetTotalSalaries() {
         total := 0
         for emp in this.employees
-            total += emp.GetAnnualSalary()
+            total += empobj .GetAnnualSalary()
         return total
     }
 
@@ -164,7 +164,7 @@ class Company {
     GetTotalPayroll() {
         total := 0
         for id, emp in this.employees
-            total += emp.GetAnnualSalary()
+            total += empobj .GetAnnualSalary()
         return total
     }
 
@@ -183,14 +183,14 @@ class Company {
 }
 
 ; Usage - complete employee management system
-company := Company("TechCorp Inc.")
+companyobj := Company("TechCorp Inc.")
 
 ; Create departments
 engineering := Department("Engineering", 1000000)
 sales := Department("Sales", 750000)
 hr := Department("Human Resources", 300000)
 
-company.AddDepartment(engineering).AddDepartment(sales).AddDepartment(hr)
+companyobj .AddDepartment(engineering).AddDepartment(sales).AddDepartment(hr)
 
 ; Hire managers
 engManager := Manager("Alice Johnson", "alice@techcorp.com", "Engineering Manager", 120000)
@@ -202,26 +202,26 @@ salesManager.SetBonus(30000)
 sales.SetManager(salesManager)
 
 ; Hire employees
-company.HireEmployee(Employee("Charlie Brown", "charlie@techcorp.com", "Senior Developer", 95000), "Engineering")
-company.HireEmployee(Employee("Diana Prince", "diana@techcorp.com", "Developer", 80000), "Engineering")
-company.HireEmployee(Employee("Eve Davis", "eve@techcorp.com", "Junior Developer", 65000), "Engineering")
+companyobj .HireEmployee(Employee("Charlie Brown", "charlie@techcorp.com", "Senior Developer", 95000), "Engineering")
+companyobj .HireEmployee(Employee("Diana Prince", "diana@techcorp.com", "Developer", 80000), "Engineering")
+companyobj .HireEmployee(Employee("Eve Davis", "eve@techcorp.com", "Junior Developer", 65000), "Engineering")
 
-company.HireEmployee(Employee("Frank Miller", "frank@techcorp.com", "Sales Rep", 70000), "Sales")
-company.HireEmployee(Employee("Grace Lee", "grace@techcorp.com", "Sales Rep", 70000), "Sales")
+companyobj .HireEmployee(Employee("Frank Miller", "frank@techcorp.com", "Sales Rep", 70000), "Sales")
+companyobj .HireEmployee(Employee("Grace Lee", "grace@techcorp.com", "Sales Rep", 70000), "Sales")
 
-company.HireEmployee(Employee("Henry Wilson", "henry@techcorp.com", "HR Manager", 85000), "Human Resources")
+companyobj .HireEmployee(Employee("Henry Wilson", "henry@techcorp.com", "HR Manager", 85000), "Human Resources")
 
 ; Set up reporting structure
-engManager.AddDirectReport(company.employees[1001])  ; Charlie
-engManager.AddDirectReport(company.employees[1002])  ; Diana
-engManager.AddDirectReport(company.employees[1003])  ; Eve
+engManager.AddDirectReport(companyobj .employees[1001])  ; Charlie
+engManager.AddDirectReport(companyobj .employees[1002])  ; Diana
+engManager.AddDirectReport(companyobj .employees[1003])  ; Eve
 
-salesManager.AddDirectReport(company.employees[1004])  ; Frank
-salesManager.AddDirectReport(company.employees[1005])  ; Grace
+salesManager.AddDirectReport(companyobj .employees[1004])  ; Frank
+salesManager.AddDirectReport(companyobj .employees[1005])  ; Grace
 
 ; Employee actions
-company.employees[1001].UseVacationDays(5)
-company.employees[1002].GiveRaise(10)
+companyobj .employees[1001].UseVacationDays(5)
+companyobj .employees[1002].GiveRaise(10)
 
 ; Manager actions
 MsgBox(engManager.GetTeamSummary())
@@ -235,9 +235,9 @@ if (engineering.IsOverBudget())
     MsgBox("Engineering is over budget!", "Warning")
 
 ; Payroll generation
-payroll := company.GeneratePayroll("October", 2024)
+payroll := companyobj .GeneratePayroll("October", 2024)
 MsgBox(payroll[1].ToString())  ; Show one paycheck
 MsgBox(payroll[2].ToString())
 
 ; Company summary
-MsgBox(company.GetCompanySummary())
+MsgBox(companyobj .GetCompanySummary())

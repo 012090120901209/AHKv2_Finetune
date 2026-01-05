@@ -436,16 +436,16 @@ class UserService {
 ; =============================================================================
 
 ; Basic container usage
-container := Container()
+diContainer := Container()
 
-container
+diContainer
     .Bind("ILogger", ConsoleLogger)
     .Singleton("IDatabase", MemoryDatabase)
     .Instance("config", { appName: "MyApp", debug: true })
 
-logger := container.Make("ILogger")
-db := container.Make("IDatabase")
-config := container.Make("config")
+logger := diContainer.Make("ILogger")
+db := diContainer.Make("IDatabase")
+config := diContainer.Make("config")
 
 MsgBox("Basic DI Container:`n`n"
     . "Logger type: " Type(logger) "`n"
@@ -461,8 +461,8 @@ awContainer
     .Bind("UserService", UserService)
     .WithDependencies("UserService", "ILogger", "IDatabase")
 
-userService := awContainer.Make("UserService")
-MsgBox("Auto-wired UserService:`n`n" userService.GetUser(123))
+userSvc := awContainer.Make("UserService")
+MsgBox("Auto-wired UserService:`n`n" userSvc.GetUser(123))
 
 ; Tagged services
 tagContainer := TaggedContainer()

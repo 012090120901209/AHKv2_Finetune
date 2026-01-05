@@ -4,6 +4,7 @@
 ; Description: Basic MsgBox function examples showing different parameter combinations including simple messages, titles, button types, and icons.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Simple message box
 MsgBox "This is a simple message box."

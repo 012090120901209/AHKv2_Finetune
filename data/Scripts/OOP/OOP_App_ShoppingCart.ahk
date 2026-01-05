@@ -126,7 +126,7 @@ class ShoppingCart {
         for item in this.items
             item.product.stock -= item.quantity
 
-        order := Order(this)
+        orderobj := Order(this)
         this.Clear()
         return order
     }
@@ -176,8 +176,8 @@ cart.ApplyDiscount(FixedDiscount(50, "Loyalty Reward"))
 MsgBox(cart.GetSummary())
 
 ; Checkout
-order := cart.Checkout()
-MsgBox(order.ToString() "`n`nOrder complete!")
+orderobj := cart.Checkout()
+MsgBox(orderobj .ToString() "`n`nOrder complete!")
 
 ; Show updated stock
 MsgBox("Updated Stock:`n" . catalog[1].ToString() . "`n" . catalog[2].ToString() . "`n" . catalog[3].ToString())

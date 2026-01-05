@@ -4,6 +4,7 @@
 ; Description: Comprehensive examples of array creation, manipulation, iteration, and common operations in AutoHotkey v2.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Create an array
 myArray := ["apple", "banana", "cherry"]

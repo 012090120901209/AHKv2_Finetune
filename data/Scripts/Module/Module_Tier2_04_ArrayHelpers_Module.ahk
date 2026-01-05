@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
  * Module Tier 2 Example 04: Array Helpers Module with Setup

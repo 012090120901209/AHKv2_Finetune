@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include JSON.ahk
-#Include <adash>
+#Include ../JSON.ahk
+#Include ../Lib/adash.ahk
 
 /**
  * _.uniq() - Remove duplicates

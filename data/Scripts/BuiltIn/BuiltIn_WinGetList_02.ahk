@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetList_02.ahk
  * @description Advanced window list operations, sorting, analysis, and monitoring using WinGetList in AutoHotkey v2
  * @author AutoHotkey Foundation

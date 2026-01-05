@@ -217,12 +217,14 @@ class MathSet {
 }
 
 ; Helper
-Array.Prototype.Join := (this, sep := ",") => (
-    r := "",
-    (for i, v in this
-        r .= (i > 1 ? sep : "") v),
-    r
-)
+Array.Prototype.Join := (this, sep := ",") => _ArrayJoinHelper(this, sep)
+
+_ArrayJoinHelper(arr, sep) {
+    r := ""
+    for i, v in arr
+        r .= (i > 1 ? sep : "") v
+    return r
+}
 
 ; =============================================================================
 ; 4. Expression Building with Operators
@@ -352,13 +354,15 @@ MsgBox("Complex Numbers:`n`n"
 ; Vectors
 v1 := Vec3(1, 2, 3)
 v2 := Vec3(4, 5, 6)
+dot := v1
+dotResult := dot.__Mod(v2)
 MsgBox("Vector3:`n`n"
     . "v1 = " v1.ToString() "`n"
     . "v2 = " v2.ToString() "`n"
     . "v1 + v2 = " (v1 + v2).ToString() "`n"
     . "v1 - v2 = " (v1 - v2).ToString() "`n"
     . "v1 * 2 = " (v1 * 2).ToString() "`n"
-    . "v1 dot v2 = " (v1%v2) "`n"
+    . "v1 dot v2 = " dotResult "`n"
     . "v1 cross v2 = " (v1 ^ v2).ToString() "`n"
     . "|v1| = " Round(v1.Length, 2))
 
@@ -376,10 +380,10 @@ MsgBox("Set Operations:`n`n"
 ; Expression building
 x := Expr.Var("x")
 y := Expr.Var("y")
-expr := (x + Expr.Num(5)) * (y - Expr.Num(2))
+exprTree := (x + Expr.Num(5)) * (y - Expr.Num(2))
 MsgBox("Expression Tree:`n`n"
-    . "Expression: " expr.ToString() "`n"
-    . "Eval(x=3, y=7): " expr.Eval(Map("x", 3, "y", 7)))
+    . "Expression: " exprTree.ToString() "`n"
+    . "Eval(x=3, y=7): " exprTree.Eval(Map("x", 3, "y", 7)))
 
 ; Money
 price := Money(99.99, "USD")

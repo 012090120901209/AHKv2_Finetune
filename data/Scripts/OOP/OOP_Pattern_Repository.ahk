@@ -51,7 +51,7 @@ repo.Save(found)
 ; List all
 output := "All users:`n"
 for id, user in repo.data
-    output .= user.ToString() "`n"
+    output .= userobj .ToString() "`n"
 MsgBox(output)
 
 ; Delete

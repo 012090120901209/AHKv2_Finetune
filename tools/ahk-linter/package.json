@@ -1,0 +1,28 @@
+{
+  "name": "ahk-linter",
+  "version": "1.0.0",
+  "description": "Headless AHK v2 linter using THQBY LSP",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ahk-linter": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node index.ts",
+    "lint": "ts-node index.ts lint",
+    "test": "ts-node index.ts lint path=../../data/Scripts/Advanced/Advanced_GUI_Calculator.ahk"
+  },
+  "dependencies": {
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-uri": "^3.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

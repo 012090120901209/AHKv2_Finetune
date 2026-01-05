@@ -13,6 +13,7 @@
  * DIRECTIVE: #Requires
  * PURPOSE: Enforce OS version requirements and platform compatibility
  * SYNTAX: #Requires AutoHotkey v2.0
+#SingleInstance Force
  * 
  * OS DETECTION VARIABLES:
  *   A_OSVersion - Windows version identifier

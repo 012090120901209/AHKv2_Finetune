@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# AHK Agent Harness - Convenience wrapper
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+AGENT_DIR="$SCRIPT_DIR/tools/agent-harness"
+
+# Detect Python
+if command -v python3 &> /dev/null; then
+    PYTHON=python3
+elif command -v python &> /dev/null; then
+    PYTHON=python
+else
+    echo "Error: Python not found"
+    exit 1
+fi
+
+# Run the agent
+exec "$PYTHON" "$AGENT_DIR/agent.py" "$@"

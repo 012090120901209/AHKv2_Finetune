@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: Lexikos/winrt.ahk
 ; Function: Windows Runtime Toast Notifications

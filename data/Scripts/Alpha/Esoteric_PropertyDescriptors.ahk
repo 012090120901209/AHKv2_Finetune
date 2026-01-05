@@ -310,11 +310,11 @@ for key in wordCount.Keys()
 MsgBox(output)
 
 ; Computed properties
-circle := Circle(5)
+c := Circle(5)
 MsgBox("Circle (radius=5):`n"
-    . "Diameter: " circle.diameter "`n"
-    . "Circumference: " Round(circle.circumference, 2) "`n"
-    . "Area: " Round(circle.area, 2))
+    . "Diameter: " c.diameter "`n"
+    . "Circumference: " Round(c.circumference, 2) "`n"
+    . "Area: " Round(c.area, 2))
 
 ; Validated properties
 person := ValidatedPerson()
@@ -331,20 +331,20 @@ try {
 }
 
 ; Observable properties
-observable := Observable()
-observable.AddProperty("count", 0)
-observable.OnChange("count", (name, old, new) =>
+obs := Observable()
+obs.AddProperty("count", 0)
+obs.OnChange("count", (name, old, new) =>
     ToolTip("count changed: " old " -> " new))
 
-observable.count := 1
+obs.count := 1
 Sleep(500)
-observable.count := 5
+obs.count := 5
 Sleep(500)
-observable.count := 10
+obs.count := 10
 Sleep(500)
 ToolTip()
 
-MsgBox("Observable property final value: " observable.count)
+MsgBox("Observable property final value: " obs.count)
 
 ; Lazy properties
 expensive := ExpensiveData(42)

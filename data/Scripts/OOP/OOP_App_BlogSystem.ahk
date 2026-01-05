@@ -209,17 +209,17 @@ class Blog {
 }
 
 ; Usage - complete blog system
-blog := Blog("Tech Insights", "A blog about technology and programming")
+blogobj := Blog("Tech Insights", "A blog about technology and programming")
 
 ; Register authors
-alice := blog.RegisterAuthor(Author("alice_codes", "alice@blog.com", "Alice Johnson"))
+alice := blogobj .RegisterAuthor(Author("alice_codes", "alice@blogobj .com", "Alice Johnson"))
     .SetBio("Full-stack developer passionate about web technologies")
 
-bob := blog.RegisterAuthor(Author("bob_dev", "bob@blog.com", "Bob Smith"))
+bob := blogobj .RegisterAuthor(Author("bob_dev", "bob@blogobj .com", "Bob Smith"))
     .SetBio("DevOps engineer and cloud enthusiast")
 
 ; Create posts
-post1 := blog.CreatePost(alice, "Getting Started with AutoHotkey v2",
+post1 := blogobj .CreatePost(alice, "Getting Started with AutoHotkey v2",
     "AutoHotkey v2 brings many exciting new features to the scripting language. " .
     "In this post, we'll explore the key changes and how to migrate from v1. " .
     "The new syntax is more consistent and modern, making it easier to write clean code.")
@@ -228,7 +228,7 @@ post1.AddCategory("Programming").AddCategory("AutoHotkey")
     .AddTag("tutorial").AddTag("beginner").AddTag("ahk-v2")
     .Publish()
 
-post2 := blog.CreatePost(bob, "Docker Best Practices for 2024",
+post2 := blogobj .CreatePost(bob, "Docker Best Practices for 2024",
     "Docker has become an essential tool for modern development. " .
     "Here are the top 10 best practices every developer should follow " .
     "to create efficient and secure containerized applications.")
@@ -237,7 +237,7 @@ post2.AddCategory("DevOps").AddCategory("Containers")
     .AddTag("docker").AddTag("best-practices").AddTag("security")
     .Publish()
 
-post3 := blog.CreatePost(alice, "Building RESTful APIs with Node.js",
+post3 := blogobj .CreatePost(alice, "Building RESTful APIs with Node.js",
     "Learn how to build scalable RESTful APIs using Node.js and Express. " .
     "We'll cover routing, middleware, error handling, and authentication.")
 
@@ -273,20 +273,20 @@ MsgBox(post1.ToString())
 MsgBox("Comments on '" . post1.title . "':`n`n" . post1.comments.Map((c) => c.ToString()).Join("`n"))
 
 ; Filter posts
-MsgBox("Programming posts:`n`n" . blog.GetPostsByCategory("Programming").Map((p) => p.title).Join("`n"))
+MsgBox("Programming posts:`n`n" . blogobj .GetPostsByCategory("Programming").Map((p) => p.title).Join("`n"))
 
-MsgBox("Posts by Alice:`n`n" . blog.GetPostsByAuthor(alice.authorId).Map((p) => p.title).Join("`n"))
+MsgBox("Posts by Alice:`n`n" . blogobj .GetPostsByAuthor(alice.authorId).Map((p) => p.title).Join("`n"))
 
-MsgBox("Posts tagged 'tutorial':`n`n" . blog.GetPostsByTag("tutorial").Map((p) => p.title).Join("`n"))
+MsgBox("Posts tagged 'tutorial':`n`n" . blogobj .GetPostsByTag("tutorial").Map((p) => p.title).Join("`n"))
 
 ; Search
-MsgBox("Search results for 'API':`n`n" . blog.SearchPosts("API").Map((p) => p.title).Join("`n"))
+MsgBox("Search results for 'API':`n`n" . blogobj .SearchPosts("API").Map((p) => p.title).Join("`n"))
 
 ; Popular posts
-MsgBox("Popular posts:`n`n" . blog.GetPopularPosts(3).Map((p) => Format("{1} ({2} views)", p.title, p.views)).Join("`n"))
+MsgBox("Popular posts:`n`n" . blogobj .GetPopularPosts(3).Map((p) => Format("{1} ({2} views)", p.title, p.views)).Join("`n"))
 
 ; Blog stats
-MsgBox(blog.GetBlogStats())
+MsgBox(blogobj .GetBlogStats())
 
 ; Author info
 MsgBox(alice.ToString() . "`n`n" . alice.bio)

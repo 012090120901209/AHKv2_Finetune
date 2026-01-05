@@ -664,7 +664,7 @@ try {
 }
 
 ; Config builder
-config := Config.Create()
+cfg := Config.Create()
     .Section("database")
     .Set("host", "localhost")
     .Set("port", 5432)
@@ -676,9 +676,9 @@ config := Config.Create()
     .EndSection()
 
 MsgBox("Config Builder:`n"
-    . "DB Host: " config.Get("database.host") "`n"
-    . "DB Port: " config.Get("database.port") "`n"
-    . "Server Port: " config.Get("server.port"))
+    . "DB Host: " cfg.Get("database.host") "`n"
+    . "DB Port: " cfg.Get("database.port") "`n"
+    . "Server Port: " cfg.Get("server.port"))
 
 ; Helper
 JoinArr(arr, sep) {

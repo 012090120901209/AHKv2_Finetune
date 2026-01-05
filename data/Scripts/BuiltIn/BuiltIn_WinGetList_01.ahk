@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetList_01.ahk
  * @description Comprehensive examples demonstrating WinGetList function for enumerating windows in AutoHotkey v2
  * @author AutoHotkey Foundation

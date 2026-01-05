@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
  * Module Tier 3 Example 01: Helpers Bundle (Re-exports)

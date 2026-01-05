@@ -4,13 +4,13 @@
 ; Demonstrates: Method chaining, builder pattern, immutability options
 
 class PersonBuilder {
-    __New() => (this.person := { name: "", age: 0, email: "", phone: "", address: "" })
+    __New() => (this.personobj := { name: "", age: 0, email: "", phone: "", address: "" })
 
-    WithName(name) => (this.person.name := name, this)
-    WithAge(age) => (this.person.age := age, this)
-    WithEmail(email) => (this.person.email := email, this)
-    WithPhone(phone) => (this.person.phone := phone, this)
-    WithAddress(address) => (this.person.address := address, this)
+    WithName(name) => (this.personobj .name := name, this)
+    WithAge(age) => (this.personobj .age := age, this)
+    WithEmail(email) => (this.personobj .email := email, this)
+    WithPhone(phone) => (this.personobj .phone := phone, this)
+    WithAddress(address) => (this.personobj .address := address, this)
 
     Build() => Person(this.person*)
 }
@@ -26,7 +26,7 @@ class Person {
 }
 
 ; Usage with beautiful chaining
-person := PersonBuilder()
+personobj := PersonBuilder()
     .WithName("Alice Johnson")
     .WithAge(28)
     .WithEmail("alice@example.com")
@@ -34,5 +34,5 @@ person := PersonBuilder()
     .WithAddress("123 Main St")
     .Build()
 
-person.Greet()
-MsgBox(person.ToString())
+personobj .Greet()
+MsgBox(personobj .ToString())

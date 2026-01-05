@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetPos_02.ahk
  * @description Advanced window monitoring and position management examples using WinGetPos in AutoHotkey v2
  * @author AutoHotkey Foundation

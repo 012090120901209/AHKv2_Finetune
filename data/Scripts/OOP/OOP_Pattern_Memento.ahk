@@ -29,18 +29,18 @@ class History {
 
 ; Usage
 editor := TextEditor()
-history := History()
+historyobj := History()
 
 editor.Type("Hello ")
-history.Save(editor.Save())
+historyobj .Save(editor.Save())
 
 editor.Type("World!")
-history.Save(editor.Save())
+historyobj .Save(editor.Save())
 
 editor.Display()
 
 ; Undo
-saved := history.Undo()
+saved := historyobj .Undo()
 if (saved) {
     editor.Restore(saved)
     editor.Display()

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DirCreate_01.ahk
  * @description Comprehensive examples of DirCreate function with folder creation, recursive operations, and error handling
  * @author AutoHotkey v2 Examples

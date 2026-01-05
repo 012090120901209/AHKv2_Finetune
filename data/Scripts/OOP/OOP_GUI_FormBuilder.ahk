@@ -126,7 +126,7 @@ class Form {
 }
 
 ; Usage
-form := Form("User Registration")
+formobj := Form("User Registration")
 
 ; Add fields with validation
 nameField := FormField("name", "Full Name")
@@ -141,11 +141,11 @@ ageField := FormField("age", "Age")
     .SetRequired()
     .AddValidator(NumericValidator())
 
-form.AddField(nameField)
+formobj .AddField(nameField)
     .AddField(emailField)
     .AddField(ageField)
 
 ; Set submit callback
-form.SetSubmitCallback((data) => MsgBox("Form submitted!`n`nName: " . data["name"] . "`nEmail: " . data["email"] . "`nAge: " . data["age"]))
+formobj .SetSubmitCallback((data) => MsgBox("Form submitted!`n`nName: " . data["name"] . "`nEmail: " . data["email"] . "`nAge: " . data["age"]))
 
-form.Build()
+formobj .Build()

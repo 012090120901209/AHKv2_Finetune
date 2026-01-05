@@ -49,17 +49,17 @@ class RecurringEvent extends Event {
     static FREQ_WEEKLY := "WEEKLY"
     static FREQ_MONTHLY := "MONTHLY"
 
-    __New(title, startTime, endTime, frequency, until) {
+    __New(title, startTime, endTime, frequency, untilDate) {
         super.__New(title, startTime, endTime)
         this.frequency := frequency
-        this.until := until
+        this.untilDate := untilDate
     }
 
     GetOccurrences() {
         occurrences := []
         current := this.startTime
 
-        while (current <= this.until) {
+        while (current <= this.untilDate) {
             duration := DateDiff(this.endTime, this.startTime, "Minutes")
             occurrenceEnd := DateAdd(current, duration, "Minutes")
 
@@ -224,7 +224,7 @@ class Calendar {
 }
 
 ; Usage - complete calendar system
-calendar := Calendar("Alice Johnson")
+cal :=  Calendar("Alice Johnson")
 
 ; Add single events
 meeting1 := Event("Team Standup", DateAdd(A_Now, 1, "Hours"), DateAdd(A_Now, 90, "Minutes"), Event.TYPE_MEETING)
@@ -234,24 +234,24 @@ meeting1.SetLocation("Conference Room A")
     .AddReminder(15)
     .AddTag("team")
 
-calendar.AddEvent(meeting1)
+cal.AddEvent(meeting1)
 
 task1 := Event("Code Review", DateAdd(A_Now, 3, "Hours"), DateAdd(A_Now, 240, "Minutes"), Event.TYPE_TASK)
 task1.SetDescription("Review PR #123 - New authentication system")
     .AddTag("development")
 
-calendar.AddEvent(task1)
+cal.AddEvent(task1)
 
 appointment1 := Event("Doctor Appointment", DateAdd(A_Now, 5, "Hours"), DateAdd(A_Now, 350, "Minutes"), Event.TYPE_APPOINTMENT)
 appointment1.SetLocation("City Medical Center")
     .AddReminder(60)
     .AddReminder(30)
 
-calendar.AddEvent(appointment1)
+cal.AddEvent(appointment1)
 
 ; Try to add conflicting event
 conflict := Event("Client Call", DateAdd(A_Now, 1, "Hours"), DateAdd(A_Now, 120, "Minutes"), Event.TYPE_MEETING)
-calendar.AddEvent(conflict)  ; Will show conflict warning
+cal.AddEvent(conflict)  ; Will show conflict warning
 
 ; Add recurring event
 dailyStandup := RecurringEvent(
@@ -262,18 +262,18 @@ dailyStandup := RecurringEvent(
     DateAdd(A_Now, 7, "Days")
 )
 dailyStandup.SetLocation("Zoom")
-calendar.AddRecurringEvent(dailyStandup)
+cal.AddRecurringEvent(dailyStandup)
 
 ; View daily agenda
-MsgBox(calendar.GetDailyAgenda(A_Now))
+MsgBox(cal.GetDailyAgenda(A_Now))
 
 ; View upcoming events
-upcoming := calendar.GetUpcomingEvents(3)
+upcoming := cal.GetUpcomingEvents(3)
 MsgBox("Upcoming events (3 days):`n`n" . upcoming.Map((e) => e.ToString()).Join("`n`n"))
 
 ; View meetings only
-meetings := calendar.GetEventsByType(Event.TYPE_MEETING)
+meetings := cal.GetEventsByType(Event.TYPE_MEETING)
 MsgBox("All meetings:`n`n" . meetings.Map((e) => e.title).Join("`n"))
 
 ; Weekly summary
-MsgBox(calendar.GetWeeklySummary())
+MsgBox(cal.GetWeeklySummary())

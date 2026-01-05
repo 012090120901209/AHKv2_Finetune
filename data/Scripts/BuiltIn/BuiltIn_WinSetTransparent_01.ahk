@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinSetTransparent_01.ahk
  * @description Comprehensive examples demonstrating WinSetTransparent function for window transparency in AutoHotkey v2
  * @author AutoHotkey Foundation

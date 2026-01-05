@@ -11,22 +11,22 @@
  */
 
 ; Test User class with validation
-user := User()
-user.Name := "Alice"
-user.Email := "alice@example.com"
-user.Age := 25
+usr := User()
+usr.Name := "Alice"
+usr.Email := "alice@example.com"
+usr.Age := 25
 
-MsgBox(user.GetInfo(), "Valid User", "T3")
+MsgBox(usr.GetInfo(), "Valid User", "T3")
 
 ; Test validation
 try {
-    user.Age := -5  ; Should throw error
+    usr.Age := -5  ; Should throw error
 } catch as err {
     MsgBox("Validation Error:`n" err.Message, , "T3")
 }
 
 try {
-    user.Email := "invalid-email"  ; Should throw error
+    usr.Email := "invalid-email"  ; Should throw error
 } catch as err {
     MsgBox("Validation Error:`n" err.Message, , "T3")
 }

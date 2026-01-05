@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_Sleep_01.ahk
  * @description Comprehensive examples of Sleep function for delays in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

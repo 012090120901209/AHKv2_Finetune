@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * BuiltIn_GuiControls_04.ahk - DropDownList, ComboBox, and ListBox Controls

@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_SetTimer_03.ahk
  * @description Countdown timers and time-limited operations with SetTimer in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

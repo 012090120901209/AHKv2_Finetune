@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveEject_02.ahk
  * @description Advanced drive ejection automation and scheduled eject systems
  * @author AutoHotkey v2 Examples

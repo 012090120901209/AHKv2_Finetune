@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_Persistent_01.ahk
  * @description Keeping scripts running persistently in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

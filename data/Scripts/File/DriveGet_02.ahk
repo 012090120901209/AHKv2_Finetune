@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveGet_02.ahk
  * @description Advanced examples of drive space monitoring, tracking, and management using DriveGet functions
  * @author AutoHotkey v2 Examples

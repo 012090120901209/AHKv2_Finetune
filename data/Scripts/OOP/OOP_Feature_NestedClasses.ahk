@@ -29,17 +29,17 @@ db := Database("localhost", 3306)
 db.Connect()
 
 ; Use nested Query class
-query := db.CreateQuery()
+queryobj := db.CreateQuery()
     .Select("id", "name", "email")
     .From("users")
     .Where("age > 18")
     .Execute()
 
-MsgBox("Query returned " query.rows " rows")
+MsgBox("Query returned " queryobj .rows " rows")
 
 ; Use nested Transaction class
-transaction := db.CreateTransaction()
-transaction.Begin()
+transactionobj := db.CreateTransaction()
+transactionobj .Begin()
     .Add("INSERT INTO users VALUES (1, 'Alice')")
     .Add("INSERT INTO users VALUES (2, 'Bob')")
     .Add("UPDATE users SET status = 'active'")

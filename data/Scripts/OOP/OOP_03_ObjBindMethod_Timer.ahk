@@ -11,15 +11,15 @@
  */
 
 ; Create counter and start
-counter := Counter()
-boundFunc := counter.StartCounting()
+ctr := Counter()
+boundFunc := ctr.StartCounting()
 
 MsgBox("Counter started.`nWill run for 5 seconds...", , "T2")
 
 Sleep(5000)
-counter.StopCounting(boundFunc)
+ctr.StopCounting(boundFunc)
 
-MsgBox("Counter stopped.`nFinal count: " counter.count, , "T3")
+MsgBox("Counter stopped.`nFinal count: " ctr.count, , "T3")
 
 /**
  * Counter Class

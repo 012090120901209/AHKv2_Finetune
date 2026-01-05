@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file DriveSet_01.ahk
  * @description Comprehensive examples of DriveSetLabel, DriveLock, and DriveUnlock functions in AutoHotkey v2
  * @author AutoHotkey v2 Examples

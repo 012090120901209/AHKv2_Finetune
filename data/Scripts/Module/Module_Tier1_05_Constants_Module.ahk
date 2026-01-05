@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.1-alpha.17
+#SingleInstance Force
 
 /**
  * Module Tier 1 Example 05: Constants Module

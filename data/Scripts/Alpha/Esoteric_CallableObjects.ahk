@@ -63,12 +63,14 @@ class Memoize {
 }
 
 ; Helper for array join
-Array.Prototype.Join := (this, sep := ",") => (
-    result := "",
-    (for i, v in this
-        result .= (i > 1 ? sep : "") v),
-    result
-)
+Array.Prototype.Join := (this, sep := ",") => _ArrayJoin(this, sep)
+
+_ArrayJoin(arr, sep) {
+    result := ""
+    for i, v in arr
+        result .= (i > 1 ? sep : "") v
+    return result
+}
 
 ; =============================================================================
 ; 4. Partial Application Callable
@@ -315,11 +317,11 @@ MsgBox("Adder(5):`n"
     . "add5(20) = " add5(20))
 
 ; Counter
-counter := Counter()
+ctr := Counter()
 MsgBox("Counter:`n"
-    . "call 1: " counter() "`n"
-    . "call 2: " counter() "`n"
-    . "call 3: " counter())
+    . "call 1: " ctr() "`n"
+    . "call 2: " ctr() "`n"
+    . "call 3: " ctr())
 
 ; Memoization
 expensiveFib := Memoize((n) => n <= 1 ? n : expensiveFib(n - 1) + expensiveFib(n - 2))
@@ -348,9 +350,9 @@ double := (x) => x * 2
 addTen := (x) => x + 10
 stringify := (x) => "Result: " x
 
-pipeline := Pipeline(double, addTen, stringify)
+pipelineFunc := Pipeline(double, addTen, stringify)
 MsgBox("Pipeline:`n"
-    . "pipeline(5) = " pipeline(5) "`n"
+    . "pipelineFunc(5) = " pipelineFunc(5) "`n"
     . "(5 * 2 + 10 = 20)")
 
 ; Once

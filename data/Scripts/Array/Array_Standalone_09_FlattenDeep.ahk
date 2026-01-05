@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include <JSON>
+#Include ../JSON.ahk
 
 FlattenDeep(array) {
     result := []

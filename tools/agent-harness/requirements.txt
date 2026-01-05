@@ -1,0 +1,6 @@
+# AHK Agent Harness Dependencies
+
+# Claude API (optional - for AI-powered fixes)
+anthropic>=0.34.0
+
+# No other dependencies - uses Python stdlib only

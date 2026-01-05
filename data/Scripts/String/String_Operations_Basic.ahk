@@ -4,6 +4,7 @@
 ; Description: Comprehensive string manipulation examples including replacement, substring extraction, searching, and regular expressions.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; StrReplace
 text := "Hello World, World!"

@@ -32,27 +32,40 @@ class Calculator {
 
 ; Bind function to context (thisArg)
 Bind(fn, thisArg, args*) {
-    return (callArgs*) => fn.Call(thisArg, args *, callArgs*)
+    return (callArgs*) => _BindImpl(fn, thisArg, args, callArgs)
+}
+
+_BindImpl(fn, thisArg, args, callArgs) {
+    allArgs := []
+    for arg in args
+        allArgs.Push(arg)
+    for arg in callArgs
+        allArgs.Push(arg)
+    return fn.Call(thisArg, allArgs*)
 }
 
 ; Bind with placeholder support
 PLACEHOLDER := { __isPlaceholder: true }
 
 BindWithPlaceholders(fn, args*) {
-    return (callArgs*) => (
-        mergedArgs := [],
-        callIndex := 1,
-        (for arg in args {
-            if IsObject(arg) && arg.HasOwnProp("__isPlaceholder")
-                mergedArgs.Push(callArgs[callIndex++])
-                else
-                    mergedArgs.Push(arg)
-            }),
-        ; Add remaining args
-        (while callIndex <= callArgs.Length
-            mergedArgs.Push(callArgs[callIndex++])),
-        fn(mergedArgs*)
-    )
+    return (callArgs*) => _BindWithPlaceholdersImpl(fn, args, callArgs)
+}
+
+_BindWithPlaceholdersImpl(fn, args, callArgs) {
+    mergedArgs := []
+    callIndex := 1
+
+    for arg in args {
+        if IsObject(arg) && arg.HasOwnProp("__isPlaceholder")
+            mergedArgs.Push(callArgs[callIndex++])
+        else
+            mergedArgs.Push(arg)
+    }
+
+    while callIndex <= callArgs.Length
+        mergedArgs.Push(callArgs[callIndex++])
+
+    return fn(mergedArgs*)
 }
 
 ; =============================================================================
@@ -61,12 +74,30 @@ BindWithPlaceholders(fn, args*) {
 
 ; Apply arguments from the left
 PartialLeft(fn, boundArgs*) {
-    return (args*) => fn(boundArgs *, args*)
+    return (args*) => _PartialLeftImpl(fn, boundArgs, args)
+}
+
+_PartialLeftImpl(fn, boundArgs, args) {
+    allArgs := []
+    for arg in boundArgs
+        allArgs.Push(arg)
+    for arg in args
+        allArgs.Push(arg)
+    return fn(allArgs*)
 }
 
 ; Apply arguments from the right
 PartialRight(fn, boundArgs*) {
-    return (args*) => fn(args *, boundArgs*)
+    return (args*) => _PartialRightImpl(fn, boundArgs, args)
+}
+
+_PartialRightImpl(fn, boundArgs, args) {
+    allArgs := []
+    for arg in args
+        allArgs.Push(arg)
+    for arg in boundArgs
+        allArgs.Push(arg)
+    return fn(allArgs*)
 }
 
 ; Example functions
@@ -110,22 +141,26 @@ Uncurry3(fn) => (a, b, c) => fn(a)(b)(c)
 
 ; Compose right to left: (f ∘ g)(x) = f(g(x))
 Compose(fns*) {
-    return (x) => (
-        result := x,
-        (loop fns.Length
-            result := fns[fns.Length - A_Index + 1](result)),
-        result
-    )
+    return (x) => _ComposeImpl(x, fns)
+}
+
+_ComposeImpl(x, fns) {
+    result := x
+    loop fns.Length
+        result := fns[fns.Length - A_Index + 1](result)
+    return result
 }
 
 ; Pipe left to right
 Pipe(fns*) {
-    return (x) => (
-        result := x,
-        (for fn in fns
-            result := fn(result)),
-        result
-    )
+    return (x) => _PipeImpl(x, fns)
+}
+
+_PipeImpl(x, fns) {
+    result := x
+    for fn in fns
+        result := fn(result)
+    return result
 }
 
 ; =============================================================================
@@ -211,12 +246,14 @@ Flip(fn) => (a, b, rest*) => fn(b, a, rest*)
 
 ; Reverse all arguments
 ReverseArgs(fn) {
-    return (args*) => (
-        reversed := [],
-        (loop args.Length
-            reversed.Push(args[args.Length - A_Index + 1])),
-        fn(reversed*)
-    )
+    return (args*) => _ReverseArgsImpl(fn, args)
+}
+
+_ReverseArgsImpl(fn, args) {
+    reversed := []
+    loop args.Length
+        reversed.Push(args[args.Length - A_Index + 1])
+    return fn(reversed*)
 }
 
 ; =============================================================================

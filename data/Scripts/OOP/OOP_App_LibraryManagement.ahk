@@ -50,7 +50,7 @@ class Loan {
     static FINE_PER_DAY := 0.50
 
     __New(book, member) {
-        this.book := book
+        this.bookobj := book
         this.member := member
         this.borrowDate := A_Now
         this.dueDate := this._CalculateDueDate()
@@ -81,7 +81,7 @@ class Loan {
     }
 
     ToString() => Format("{1} - Due: {2}{3}",
-        this.book.title,
+        this.bookobj .title,
         FormatTime(this.dueDate, "yyyy-MM-dd"),
         this.IsOverdue() ? Format(" (OVERDUE: {1} days, ${2:.2f} fine)", this.GetDaysOverdue(), this.CalculateFine()) : "")
 }
@@ -89,19 +89,19 @@ class Loan {
 class Library {
     __New(name) => (this.name := name, this.books := Map(), this.members := Map(), this.loans := [])
 
-    AddBook(book) => (this.books[book.bookId] := book, this)
+    AddBook(book) => (this.books[bookobj .bookId] := book, this)
     AddMember(member) => (this.members[member.memberId] := member, this)
 
     FindBookByTitle(title) {
         for id, book in this.books
-            if (InStr(book.title, title))
+            if (InStr(bookobj .title, title))
                 return book
         return ""
     }
 
     BorrowBook(memberId, bookId) {
         member := this.members.Has(memberId) ? this.members[memberId] : ""
-        book := this.books.Has(bookId) ? this.books[bookId] : ""
+        bookobj := this.books.Has(bookId) ? this.books[bookId] : ""
 
         if (!member)
             return MsgBox("Member not found!", "Error")
@@ -109,17 +109,17 @@ class Library {
             return MsgBox("Book not found!", "Error")
         if (!member.CanBorrow())
             return MsgBox("Member cannot borrow: " . (member.fines > 0 ? "outstanding fines" : "max books reached"), "Error")
-        if (!book.IsAvailable())
+        if (!bookobj .IsAvailable())
             return MsgBox("Book not available!", "Error")
 
         loan := Loan(book, member)
         this.loans.Push(loan)
         member.borrowedBooks.Push(loan)
-        book.Borrow()
+        bookobj .Borrow()
 
         MsgBox(Format("{1} borrowed '{2}'`nDue: {3}",
             member.name,
-            book.title,
+            bookobj .title,
             FormatTime(loan.dueDate, "yyyy-MM-dd")))
         return true
     }
@@ -130,9 +130,9 @@ class Library {
             return MsgBox("Member not found!", "Error")
 
         for index, loan in member.borrowedBooks {
-            if (loan.book.bookId = bookId) {
+            if (loan.bookobj .bookId = bookId) {
                 loan.returnDate := A_Now
-                loan.book.Return()
+                loan.bookobj .Return()
 
                 fine := loan.CalculateFine()
                 if (fine > 0) {
@@ -185,22 +185,22 @@ class Library {
 }
 
 ; Usage - complete library system
-library := Library("City Public Library")
+libraryobj := Library("City Public Library")
 
 ; Add books
-library.AddBook(Book("The Great Gatsby", "F. Scott Fitzgerald", "978-0743273565", 3))
-library.AddBook(Book("1984", "George Orwell", "978-0451524935", 2))
-library.AddBook(Book("To Kill a Mockingbird", "Harper Lee", "978-0060935467", 2))
+libraryobj .AddBook(Book("The Great Gatsby", "F. Scott Fitzgerald", "978-0743273565", 3))
+libraryobj .AddBook(Book("1984", "George Orwell", "978-0451524935", 2))
+libraryobj .AddBook(Book("To Kill a Mockingbird", "Harper Lee", "978-0060935467", 2))
 
 ; Add members
 alice := Member("Alice Johnson", "alice@email.com")
 bob := Member("Bob Smith", "bob@email.com")
-library.AddMember(alice).AddMember(bob)
+libraryobj .AddMember(alice).AddMember(bob)
 
 ; Borrow books
-library.BorrowBook(alice.memberId, 1)  ; Alice borrows The Great Gatsby
-library.BorrowBook(alice.memberId, 2)  ; Alice borrows 1984
-library.BorrowBook(bob.memberId, 3)    ; Bob borrows To Kill a Mockingbird
+libraryobj .BorrowBook(alice.memberId, 1)  ; Alice borrows The Great Gatsby
+libraryobj .BorrowBook(alice.memberId, 2)  ; Alice borrows 1984
+libraryobj .BorrowBook(bob.memberId, 3)    ; Bob borrows To Kill a Mockingbird
 
 ; Show member's borrowed books
 MsgBox("Alice's borrowed books:`n" . alice.borrowedBooks.Map((loan) => loan.ToString()).Join("`n"))
@@ -211,7 +211,7 @@ alice.borrowedBooks[1].dueDate := DateAdd(A_Now, -10, "Days")
 MsgBox("Alice's borrowed books (with overdue):`n" . alice.borrowedBooks.Map((loan) => loan.ToString()).Join("`n"))
 
 ; Return book with fine
-library.ReturnBook(alice.memberId, 1)
+libraryobj .ReturnBook(alice.memberId, 1)
 
 MsgBox(alice.ToString())
 
@@ -220,10 +220,10 @@ alice.PayFine(5.00)
 MsgBox("After paying fine: " . alice.ToString())
 
 ; Library summary
-MsgBox(library.GetLibrarySummary())
+MsgBox(libraryobj .GetLibrarySummary())
 
 ; Show catalog
 catalog := ""
-for id, book in library.books
-    catalog .= book.ToString() . "`n"
+for id, bookItem in libraryobj.books
+    catalog .= bookItem.ToString() . "`n"
 MsgBox("Library Catalog:`n" . catalog)

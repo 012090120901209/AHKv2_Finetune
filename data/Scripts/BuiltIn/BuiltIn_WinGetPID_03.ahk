@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinGetPID_03.ahk
  * @description PID correlation, process analysis, and advanced window-process linking using WinGetPID in AutoHotkey v2
  * @author AutoHotkey Foundation

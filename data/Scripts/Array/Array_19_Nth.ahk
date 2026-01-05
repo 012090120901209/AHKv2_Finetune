@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include <adash>
+#Include ../Lib/adash.ahk
 
 /**
  * _.nth() - Get nth element

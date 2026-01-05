@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Library: Descolada/UIA-v2
 ; Function: ElementFromPoint - Get UI element at cursor position

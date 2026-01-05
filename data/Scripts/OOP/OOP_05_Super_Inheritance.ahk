@@ -11,18 +11,18 @@
  */
 
 ; Create instances
-dog := Dog("Buddy")
-dog.Speak()
+dogObj := Dog("Buddy")
+dogObj.Speak()
 
 calc := AdvancedCalculator()
 result := calc.Calculate(10, 5, "+")
 
-car := Car()
-car.Speed := 100
-MsgBox("Set speed to 100: Actual = " car.Speed)
+carObj := Car()
+carObj.Speed := 100
+MsgBox("Set speed to 100: Actual = " carObj.Speed)
 
-car.Speed := 200
-MsgBox("Set speed to 200: Actual = " car.Speed " (capped at max)")
+carObj.Speed := 200
+MsgBox("Set speed to 200: Actual = " carObj.Speed " (capped at max)")
 
 /**
  * Animal - Base Class

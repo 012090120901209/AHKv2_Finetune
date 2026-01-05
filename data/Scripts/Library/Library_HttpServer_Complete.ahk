@@ -5,6 +5,7 @@
 ; Dependencies: OVERLAPPED, ctypes, compress, JSON
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 #Include <OVERLAPPED>
 #Include <ctypes>
 #Include JSON.ahk	; https://github.com/thqby/ahk2_lib/blob/master/JSON.ahk

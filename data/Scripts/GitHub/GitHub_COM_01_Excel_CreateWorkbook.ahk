@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 /**
  * GitHub_COM_01_Excel_CreateWorkbook.ahk

@@ -4,6 +4,7 @@
 ; Description: File reading and writing operations including error handling, encodings, and line-by-line processing.
 
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
 ; Read entire file
 try {

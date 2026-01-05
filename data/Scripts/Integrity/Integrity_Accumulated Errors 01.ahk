@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0 ; Source: Code Integrity/Accumulated Errors 01.ah2 is_arr := { (tree): 1 } key := { 0 : 0 , _0x00: "Icon", 500:"5 hundred"} Static Views := {_0x00: "Icon", _0x01: "Report", _0x02: "IconSmall", _0x03: "List", _0x04: "Tile"} return this.str({""_INVALID_KEYNAME: param_value}, "") ; missing object property strangeKeynames := { (weirdkn): "weird kn", anotherone: "another", [s u p e r "s t r @ n g 3"]_INVALID_KEYNAME: "super-strange"} HelpText := (join`r`n
+#SingleInstance Force
 
 "This program allows you to load a CSV file (any delimited file)
 and use various search criteria to filter the listview.

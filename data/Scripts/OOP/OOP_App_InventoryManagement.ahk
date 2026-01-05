@@ -227,12 +227,12 @@ class Warehouse {
 }
 
 ; Usage
-warehouse := Warehouse("Main Distribution Center")
+warehouseobj := Warehouse("Main Distribution Center")
 
 ; Add suppliers
 acmeSupplier := Supplier("Acme Corp", "John Smith", "john@acme.com")
 techSupplier := Supplier("Tech Supplies Inc", "Jane Doe", "jane@techsupplies.com")
-warehouse.AddSupplier(acmeSupplier).AddSupplier(techSupplier)
+warehouseobj .AddSupplier(acmeSupplier).AddSupplier(techSupplier)
 
 ; Add products
 laptop := Product("Laptop Pro 15", "LAP-001", 999.99, 10, 20)
@@ -243,34 +243,34 @@ monitor := Product("4K Monitor 27", "MON-001", 399.99, 15, 25)
 acmeSupplier.AddProduct(laptop).AddProduct(monitor)
 techSupplier.AddProduct(mouse).AddProduct(keyboard)
 
-warehouse.AddProduct(laptop).AddProduct(mouse).AddProduct(keyboard).AddProduct(monitor)
+warehouseobj .AddProduct(laptop).AddProduct(mouse).AddProduct(keyboard).AddProduct(monitor)
 
 ; Receive initial stock
-warehouse.ReceiveStock(laptop, 50, "Initial stock")
-warehouse.ReceiveStock(mouse, 200, "Initial stock")
-warehouse.ReceiveStock(keyboard, 100, "Initial stock")
-warehouse.ReceiveStock(monitor, 40, "Initial stock")
+warehouseobj .ReceiveStock(laptop, 50, "Initial stock")
+warehouseobj .ReceiveStock(mouse, 200, "Initial stock")
+warehouseobj .ReceiveStock(keyboard, 100, "Initial stock")
+warehouseobj .ReceiveStock(monitor, 40, "Initial stock")
 
 ; Ship products
-warehouse.ShipStock(laptop, 35, "Customer order #1001")
-warehouse.ShipStock(laptop, 10, "Customer order #1002")  ; Triggers low stock alert
+warehouseobj .ShipStock(laptop, 35, "Customer order #1001")
+warehouseobj .ShipStock(laptop, 10, "Customer order #1002")  ; Triggers low stock alert
 
-warehouse.ShipStock(mouse, 155, "Bulk order #2001")
+warehouseobj .ShipStock(mouse, 155, "Bulk order #2001")
 
 ; Check low stock
-MsgBox(warehouse.GenerateReorderReport())
+MsgBox(warehouseobj .GenerateReorderReport())
 
 ; Create and process purchase order
-po := warehouse.CreatePurchaseOrder(acmeSupplier)
+po := warehouseobj .CreatePurchaseOrder(acmeSupplier)
 po.AddItem(laptop, 20).AddItem(monitor, 10)
 
 MsgBox(po.ToString())
 po.Place()
 
-warehouse.ProcessPurchaseOrder(po.poId)
+warehouseobj .ProcessPurchaseOrder(po.poId)
 
 ; Warehouse summary
-MsgBox(warehouse.GetWarehouseSummary())
+MsgBox(warehouseobj .GetWarehouseSummary())
 
 ; Recent movements
-MsgBox("Recent Stock Movements:`n`n" . warehouse.movements.Slice(-5).Map((m) => m.ToString()).Join("`n"))
+MsgBox("Recent Stock Movements:`n`n" . warehouseobj .movements.Slice(-5).Map((m) => m.ToString()).Join("`n"))

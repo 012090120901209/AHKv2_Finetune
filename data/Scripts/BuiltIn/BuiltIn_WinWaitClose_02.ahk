@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_WinWaitClose_02.ahk
  * @description Advanced window close monitoring, cleanup sequences, and termination handling using WinWaitClose in AutoHotkey v2
  * @author AutoHotkey Foundation

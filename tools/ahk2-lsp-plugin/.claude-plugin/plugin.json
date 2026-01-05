@@ -1,0 +1,9 @@
+{
+  "name": "ahk2-lsp",
+  "description": "AutoHotkey v2 language server for Claude Code - provides syntax checking, diagnostics, and code intelligence",
+  "version": "1.0.0",
+  "author": {
+    "name": "thqby (LSP), dbcooper (plugin)"
+  },
+  "repository": "https://github.com/thqby/vscode-autohotkey2-lsp"
+}

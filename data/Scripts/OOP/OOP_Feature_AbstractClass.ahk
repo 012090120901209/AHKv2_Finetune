@@ -31,5 +31,5 @@ class Triangle extends Shape {
 }
 
 shapes := [Circle(0, 0, 5), Rectangle(10, 10, 4, 6), Triangle(20, 20, 3, 4, 3, 4, 5)]
-for shape in shapes
-    shape.Draw()
+for shapeItem in shapes
+    shapeobj .Draw()

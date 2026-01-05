@@ -1,4 +1,6 @@
+#Requires AutoHotkey v2.0
 /**
+#SingleInstance Force
  * @file BuiltIn_SetTimer_02.ahk
  * @description Recurring tasks and scheduled operations with SetTimer in AutoHotkey v2
  * @author AutoHotkey v2 Examples Collection

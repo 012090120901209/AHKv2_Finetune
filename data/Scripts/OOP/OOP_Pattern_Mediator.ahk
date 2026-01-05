@@ -24,11 +24,11 @@ class ChatMediator extends Mediator {
 class User {
     __New(name) => (this.name := name, this.messages := [])
 
-    SetMediator(mediator) => this.mediator := mediator
+    SetMediator(mediator) => this.mediatorobj := mediator
 
     Send(message) {
         this.messages.Push(message)
-        this.mediator.Notify(this, "message")
+        this.mediatorobj .Notify(this, "message")
     }
 
     Receive(message) => MsgBox(this.name " received: " message)
@@ -36,15 +36,15 @@ class User {
 }
 
 ; Usage - users communicate through mediator
-mediator := ChatMediator()
+mediatorobj := ChatMediator()
 
 alice := User("Alice")
 bob := User("Bob")
 charlie := User("Charlie")
 
-mediator.AddUser(alice)
-mediator.AddUser(bob)
-mediator.AddUser(charlie)
+mediatorobj .AddUser(alice)
+mediatorobj .AddUser(bob)
+mediatorobj .AddUser(charlie)
 
 alice.Send("Hello everyone!")
 bob.Send("Hi Alice!")
