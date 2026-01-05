@@ -5,6 +5,7 @@ outputs/
 checkpoints/
 data/prepared/
 *.gguf
+python_ex2.json
 
 Lib/
 .history/
